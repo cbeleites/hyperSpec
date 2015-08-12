@@ -112,6 +112,7 @@ Collate:
     'read.mat.Witec.R'
     'read.spc.Kaiser.R'
     'read.spc.R'
+    'read.spe.R'
     'read.txt.Horiba.R'
     'read.txt.Shimadzu.R'
     'read.txt.long.R'
