@@ -98,19 +98,17 @@ wl <- function (x){
 
 
 ###-----------------------------------------------------------------------------
-
-
 ##' @title Convert wavelength between nm, cm-1, eV, THz and Raman shift
 ##' in an arbitrary direction
 ##'
+##' @param points data for conversion
 ##' @param src source unit
 ##' @param dst destination unit
-##' @param points data for convertion
 ##' @param laser laser wavelength (required for work with Raman shift)
 ##'
 ##' @author R. Kiselev
 ##' @export
-wlconv <- function(src, dst, points, laser=NULL){
+wlconv <- function(points, src, dst, laser=NULL){
   SRC <- .fixunitname(src)
   DST <- .fixunitname(dst)
 
@@ -125,205 +123,107 @@ wlconv <- function(src, dst, points, laser=NULL){
   return(f(points, laser))
 }
 
-##' @title Convert wavelength from one unit to another one
-##'
 ##' @param x wavelength points for conversion
 ##' @param laser wavelength of the excitation laser in nm (for Raman shift)
-##'
-##' @author R. Kiselev
+##' @param ... ignored
+##' @describeIn wlconv conversion \strong{nanometers} -> \strong{Raman shift (relative wavenumber)}
 ##' @export
 nm2raman    <- function(x, laser)  1e7*(1/laser - 1/x)
 
 
-##' @title Convert wavelength from one unit to another one
-##'
-##' @param x wavelength points for conversion
-##' @param y dummy unused parameter
-##'
-##' @author R. Kiselev
+##' @describeIn wlconv conversion \strong{nanometers} -> \strong{inverse cm (absolute wavenumber)}
 ##' @export
-nm2invcm    <- function(x, y=NULL) 1e7/x
+nm2invcm    <- function(x, ...) 1e7/x
 
 
-##' @title Convert wavelength from one unit to another one
-##'
-##' @param x wavelength points for conversion
-##' @param y dummy unused parameter
-##'
-##' @author R. Kiselev
+##' @describeIn wlconv conversion \strong{nanometers} -> \strong{electronvolt}
 ##' @export
-nm2ev       <- function(x, y=NULL) 1e9*h*c/(q*x)
+nm2ev       <- function(x, ...) 1e9*h*c/(q*x)
 
 
-##' @title Convert wavelength from one unit to another one
-##'
-##' @param x wavelength points for conversion
-##' @param y dummy unused parameter
-##'
-##' @author R. Kiselev
+##' @describeIn wlconv conversion \strong{nm} -> \strong{frequency in THz}
 ##' @export
-nm2freq     <- function(x, y=NULL) 1e-3*c/x
+nm2freq     <- function(x, ...) 1e-3*c/x
 
 
-##' @title Convert wavelength from one unit to another one
-##'
-##' @param x wavelength points for conversion
-##' @param laser wavelength of the excitation laser in nm (for Raman shift)
-##'
-##' @author R. Kiselev
+##' @describeIn wlconv conversion \strong{inverse cm (absolute wavenumber)} -> \strong{Raman shift (relative wavenumber)}
 ##' @export
 invcm2raman <- function(x, laser)  1e7/laser - x
 
 
-##' @title Convert wavelength from one unit to another one
-##'
-##' @param x wavelength points for conversion
-##' @param y dummy unused parameter
-##'
-##' @author R. Kiselev
+##' @describeIn wlconv conversion \strong{inverse cm (absolute wavenumber)} -> \strong{nanometers}
 ##' @export
-invcm2nm    <- function(x, y=NULL) 1e7/x
+invcm2nm    <- function(x, ...) 1e7/x
 
 
-##' @title Convert wavelength from one unit to another one
-##'
-##' @param x wavelength points for conversion
-##' @param y dummy unused parameter
-##'
-##' @author R. Kiselev
+##' @describeIn wlconv conversion \strong{inverse cm (absolute wavenumber)} -> \strong{electronvolt}
 ##' @export
-invcm2ev    <- function(x, y=NULL) 100*x*c*h/q
+invcm2ev    <- function(x, ...) 100*x*c*h/q
 
 
-##' @title Convert wavelength from one unit to another one
-##'
-##' @param x wavelength points for conversion
-##' @param y dummy unused parameter
-##'
-##' @author R. Kiselev
+##' @describeIn wlconv conversion \strong{inverse cm (absolute wavenumber)} -> \strong{frequency in THz}
 ##' @export
-invcm2freq  <- function(x, y=NULL) nm2freq(invcm2nm(x))
+invcm2freq  <- function(x, ...) nm2freq(invcm2nm(x))
 
 
-##' @title Convert wavelength from one unit to another one
-##'
-##' @param x wavelength points for conversion
-##' @param laser wavelength of the excitation laser in nm (for Raman shift)
-##'
-##' @author R. Kiselev
+##' @describeIn wlconv conversion \strong{Raman shift (relative wavenumber)} -> \strong{inverse cm (absolute wavenumber)}
 ##' @export
 raman2invcm <- function(x, laser)  1e7/laser - x
 
 
-##' @title Convert wavelength from one unit to another one
-##'
-##' @param x wavelength points for conversion
-##' @param laser wavelength of the excitation laser in nm (for Raman shift)
-##'
-##' @author R. Kiselev
+##' @describeIn wlconv conversion \strong{Raman shift (relative wavenumber)} -> \strong{nanometers}
 ##' @export
 raman2nm    <- function(x, laser)  1e7/(1e7/laser - x)
 
 
-##' @title Convert wavelength from one unit to another one
-##'
-##' @param x wavelength points for conversion
-##' @param laser wavelength of the excitation laser in nm (for Raman shift)
-##'
-##' @author R. Kiselev
+##' @describeIn wlconv conversion \strong{Raman shift (relative wavenumber)} -> \strong{electronvolt}
 ##' @export
 raman2ev    <- function(x, laser)  100*h*c*(1e7/laser - x)/q
 
 
-##' @title Convert wavelength from one unit to another one
-##'
-##' @param x wavelength points for conversion
-##' @param laser wavelength of the excitation laser in nm (for Raman shift)
-##'
-##' @author R. Kiselev
+##' @describeIn wlconv conversion \strong{Raman shift (relative wavenumber)} -> \strong{frequency in THz}
 ##' @export
 raman2freq  <- function(x, laser)  nm2freq(raman2nm(x, laser))
 
 
-##' @title Convert wavelength from one unit to another one
-##'
-##' @param x wavelength points for conversion
-##' @param laser wavelength of the excitation laser in nm (for Raman shift)
-##'
-##' @author R. Kiselev
+##' @describeIn wlconv conversion \strong{electronvolt} -> \strong{Raman shift (relative wavenumber)}
 ##' @export
 ev2raman    <- function(x, laser)  1e7/laser - x*q/(100*h*c)
 
 
-##' @title Convert wavelength from one unit to another one
-##'
-##' @param x wavelength points for conversion
-##' @param y dummy unused parameter
-##'
-##' @author R. Kiselev
+##' @describeIn wlconv conversion \strong{electronvolt} -> \strong{inverse cm (absolute wavenumber)}
 ##' @export
-ev2invcm    <- function(x, y=NULL) q*x/(100*h*c)
+ev2invcm    <- function(x, ...) q*x/(100*h*c)
 
 
-##' @title Convert wavelength from one unit to another one
-##'
-##' @param x wavelength points for conversion
-##' @param y dummy unused parameter
-##'
-##' @author R. Kiselev
+##' @describeIn wlconv conversion \strong{electronvolt} -> \strong{nanometers}
 ##' @export
-ev2nm       <- function(x, y=NULL) 1e9*h*c/(q*x)
+ev2nm       <- function(x, ...) 1e9*h*c/(q*x)
 
 
-##' @title Convert wavelength from one unit to another one
-##'
-##' @param x wavelength points for conversion
-##' @param y dummy unused parameter
-##'
-##' @author R. Kiselev
+##' @describeIn wlconv conversion \strong{electronvolt} -> \strong{frequency in THz}
 ##' @export
-ev2freq     <- function(x, y=NULL) nm2freq(ev2nm(x))
+ev2freq     <- function(x, ...) nm2freq(ev2nm(x))
 
 
-##' @title Convert wavelength from one unit to another one
-##'
-##' @param x wavelength points for conversion
-##' @param y dummy unused parameter
-##'
-##' @author R. Kiselev
+##' @describeIn wlconv conversion \strong{frequency in THz} -> \strong{nanometers}
 ##' @export
-freq2nm     <- function(x, y=NULL) 1e-3*c/x
+freq2nm     <- function(x, ...) 1e-3*c/x
 
 
-##' @title Convert wavelength from one unit to another one
-##'
-##' @param x wavelength points for conversion
-##' @param y dummy unused parameter
-##'
-##' @author R. Kiselev
+##' @describeIn wlconv conversion \strong{frequency in THz} -> \strong{inverse cm (absolute wavenumber)}
 ##' @export
-freq2invcm  <- function(x, y=NULL) nm2invcm(freq2nm(x))
+freq2invcm  <- function(x, ...) nm2invcm(freq2nm(x))
 
 
-##' @title Convert wavelength from one unit to another one
-##'
-##' @param x wavelength points for conversion
-##' @param y dummy unused parameter
-##'
-##' @author R. Kiselev
+##' @describeIn wlconv conversion \strong{frequency in THz} -> \strong{electronvolt}
 ##' @export
-freq2ev     <- function(x, y=NULL) nm2ev(freq2nm(x))
+freq2ev     <- function(x, ...) nm2ev(freq2nm(x))
 
 
-##' @title Convert wavelength from one unit to another one
-##'
-##' @param x wavelength points for conversion
-##' @param laser wavelength of the excitation laser in nm (for Raman shift)
-##'
-##' @author R. Kiselev
+##' @describeIn wlconv conversion \strong{frequency in THz} -> \strong{Raman shift (relative wavenumber)}
 ##' @export
 freq2raman  <- function(x, laser)  nm2raman(freq2nm(x), laser)
-
 
 
 # Bring the argument to a conventional name

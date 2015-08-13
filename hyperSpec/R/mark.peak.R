@@ -4,6 +4,7 @@
 ##' @param xpos position of the peak(s) in current x-axis units
 ##' @param col color of the markers and text
 ##'
+##'
 ##' @author R. Kiselev
 ##' @export
 markpeak <- function(spc, xpos, col="red"){

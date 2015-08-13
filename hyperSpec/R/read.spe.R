@@ -8,17 +8,20 @@
 
 ##' Import WinSpec SPE file
 ##'
-##' Import function for SPE file (version 2.5)
+##' Import function for WinSpec SPE files (file version 2.5)
 ##'
 ##' @param filename Name of the SPE file to read data from
-##' @param xaxis Units of x-axis, e.g. "file", "px", "nm", "energy", "raman", ...
-##' Function automatically checks if the x-calibration data is
+##' @param xaxis Units of x-axis, e.g. \emph{"file"}, \emph{"px"},
+##' \emph{"nm"}, \emph{"energy"}, \emph{"raman"}, \emph{...}
+##' \code{read.spe} function automatically checks if the x-calibration data is
 ##' available and uses it (if possible) to reconstruct the xaxis
 ##' in the selected units.
-##' @param keys.hdr2data Which data from the file header should be saved to the
-##' "Data" slot of a newly created hyperSpec object
+##' @param keys.hdr2data Which metadata from the file header should be saved to
+##' the \code{Data} slot of a newly created hyperSpec object
 ##'
 ##' @return hyperSpec object
+##'
+##' @rdname read.spe
 ##'
 ##' @author R. Kiselev, C. Beleites
 ##' @export
@@ -97,13 +100,8 @@ read.spe <- function(filename, xaxis="file",
 }
 
 
-##' @title Read only header of a WinSpec SPE file (version 2.5)
-##'
-##' @param filename Name of the SPE file to read data from
-##'
+##' @describeIn read.spe Read only header of a WinSpec SPE file (version 2.5)
 ##' @return hdr list with \code{key=value} pairs
-##'
-##' @author R. Kiselev, C. Beleites
 ##' @export
 read.spe.header <- function(filename){
   # Read the 4100-byte long binary header from the SPE file and parse it
@@ -173,16 +171,8 @@ read.spe.header <- function(filename){
 }
 
 
-##' @title Plot the WinSpec SPE file (version 2.5) and show the
+##' @describeIn read.spe Plot the WinSpec SPE file (version 2.5) and show the
 ##' calibration points stored inside of it (x-axis calibration)
-##'
-##' @param filename name of the SPE file to read data from
-##' @param xaxis units of x-axis, e.g. "file", "px", "nm", "energy", "raman", ...
-##' Function automatically checks if the x-calibration data is
-##' available and uses it (if possible) to reconstruct the xaxis
-##' in the selected units.
-##'
-##' @author R. Kiselev
 ##' @export
 spe.showcalpoints <- function(filename, xaxis="file"){
   # Open file, make plot and mark position of all peaks stored inside the file
