@@ -1,4 +1,4 @@
-##' 
+##' @details
 ##' Nicolet uses some more keywords in their header file.
 ##' They are interpreted as follows:
 ##' \tabular{ll}{
@@ -15,7 +15,7 @@
 ##' 
 ##' @param nicolet.correction see details
 ##' @param ... handed to \code{read.ENVI}
-##' @rdname readENVI
+##' @describeIn  read.ENVI
 ##' @export
 
 read.ENVI.Nicolet <- function (file = stop ("read.ENVI: file name needed"), headerfile = NULL, 
@@ -103,3 +103,4 @@ read.ENVI.Nicolet <- function (file = stop ("read.ENVI: file name needed"), head
 
   spc
 }
+

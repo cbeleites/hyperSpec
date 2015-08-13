@@ -193,17 +193,20 @@ split.line <- function (x, separator, trim.blank = TRUE) {
 
 
 
-##' Import of ENVI data as hyperSpec object
+##' @title Import of ENVI data as hyperSpec object
+##'
+##' @description
 ##' This function allows ENVI data import as \code{hyperSpec} object.
 ##' 
 ##' \code{read.ENVI.Nicolet} should be a good starting point for writing custom
 ##' wrappers for \code{read.ENVI} that take into account your manufacturer's
 ##' special entries in the header file.
 ##' 
+##' @details
 ##' ENVI data usually consists of two files, an ASCII header and a binary data
 ##' file. The header contains all information necessary for correctly reading
 ##' the binary file.
-##' 
+##'
 ##' I experienced missing header files (or rather: header files without any
 ##' contents) produced by Bruker Opus' ENVI export.
 ##' 
