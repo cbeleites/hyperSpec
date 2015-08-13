@@ -5,6 +5,7 @@
 ##' description   \tab giving the position of the first spectrum \cr
 ##' z plot titles \tab wavelength and intensity axis units, comma separated \cr
 ##' pixel size    \tab interpreted as x and y step size
+##'                    (specify \code{x = NA} and \code{y = NA})
 ##' }
 ##' These parameters can be overwritten by giving a list with the respective
 ##' elements in parameter \code{header}.
@@ -19,8 +20,9 @@
 ##' @export
 read.ENVI.Nicolet <- function (file = stop ("read.ENVI: file name needed"),
 															 headerfile = NULL, header = list (), ...,
-															 x = NA, y = NA, # NA means: use the specifications from the header file if possible
+															 x = NA, y = NA,
 															 nicolet.correction = FALSE) {
+
 	## the additional keywords to interprete must be read from headerfile
 	headerfile <- .find.ENVI.header (file, headerfile)
 	keys <- readLines (headerfile)
@@ -34,9 +36,9 @@ read.ENVI.Nicolet <- function (file = stop ("read.ENVI: file name needed"),
 										x = if (is.na (x)) 0 : 1 else x,
 										y = if (is.na (y)) 0 : 1 else y)
 
-	### From here on processing the additional keywords in Nicolet's ENVI header ************************
+	### From here on processing the additional keywords in Nicolet's ENVI header *
 
-	## z plot titles ----------------------------------------------------------------------------------
+	## z plot titles -------------------------------------------------------------
 	## default labels
 	label <- list (x = expression (`/` (x, micro * m)),
 								 y = expression (`/` (y, micro * m)),
@@ -64,7 +66,7 @@ read.ENVI.Nicolet <- function (file = stop ("read.ENVI: file name needed"),
 	## modify the labels accordingly
 	spc@label <- modifyList (label, spc@label)
 
-	## set up spatial coordinates ---------------------------------------------------------------------
+	## set up spatial coordinates ------------------------------------------------
 	## look for x and y in the header only if x and y are NULL
 	## they are in `description` and `pixel size`
 
