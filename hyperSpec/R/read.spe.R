@@ -175,6 +175,18 @@ read.spe.header <- function(filename){
 ##' calibration points stored inside of it (x-axis calibration)
 ##' @export
 spe.showcalpoints <- function(filename, xaxis="file"){
+
+  hdr <- read.spe.header(filename)
+  xaxis <- .fixunitname(xaxis)
+
+  # Check if we should use display units specified in the SPE file
+  if (xaxis == "file")
+    xaxis <- .fixunitname(hdr$xCalDisplayUnit)
+  if (xaxis == "px"){
+    xaxis <- hdr$xCalPolyUnit
+    warning("Cannot show calibration data in pixels")
+    }
+
   # Open file, make plot and mark position of all peaks stored inside the file
   # in the x-calibration structure
   spc <- read.spe(filename, xaxis)
@@ -185,11 +197,7 @@ spe.showcalpoints <- function(filename, xaxis="file"){
   else
     plot(spc, plot.args=list(ylim=(ylims)))
   title(basename(filename))
-  hdr <- read.spe.header(filename)
 
-  # Check if we should use display units specified in the SPE file
-  if (xaxis == "file")
-    xaxis = .fixunitname(hdr$xCalDisplayUnit)
 
   if (hdr$xCalPointCount == 0){
     warning("No calibration data! Nothing to show")
