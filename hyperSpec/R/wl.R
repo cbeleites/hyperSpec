@@ -98,8 +98,8 @@ wl <- function (x){
 
 
 ###-----------------------------------------------------------------------------
-##' @title Convert wavelength between nm, cm-1, eV, THz and Raman shift
-##' in an arbitrary direction
+##' @title Convert wavelength between \emph{nm}, \emph{\eqn{cm^{-1}}{inverse cm}},
+##' \emph{eV}, \emph{THz} and \emph{Raman shift} in an arbitrary direction
 ##'
 ##' @param points data for conversion
 ##' @param src source unit
@@ -124,7 +124,6 @@ wlconv <- function(points, src, dst, laser=NULL){
 }
 
 ##' @param x wavelength points for conversion
-##' @param laser wavelength of the excitation laser in nm (for Raman shift)
 ##' @param ... ignored
 ##' @describeIn wlconv conversion \strong{nanometers} -> \strong{Raman shift (relative wavenumber)}
 ##' @export
