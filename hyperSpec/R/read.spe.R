@@ -16,6 +16,13 @@
 ##' \code{read.spe} function automatically checks if the x-calibration data is
 ##' available and uses it (if possible) to reconstruct the xaxis
 ##' in the selected units.
+##' @param acc2avg whether to divide the actual data set by the number of
+##' accumulations, thus transforming \emph{accumulated} spectra to
+##' \emph{averaged} spectra. WinSpec does not do this automatically, so the
+##' spectral intensity is always proportional to the number of accumulations.
+##' The flag \code{@@data$averaged} is automatically set to \code{TRUE}.
+##' @param cts_sec whether to divide the actual data set by the exposure time,
+##' thus going to count per second unit.
 ##' @param keys.hdr2data Which metadata from the file header should be saved to
 ##' the \code{Data} slot of a newly created hyperSpec object
 ##'
@@ -25,7 +32,7 @@
 ##'
 ##' @author R. Kiselev, C. Beleites
 ##' @export
-read.spe <- function(filename, xaxis="file",
+read.spe <- function(filename, xaxis="file", acc2avg=F, cts_sec=F,
                      keys.hdr2data=c("exposure_sec",
                                      "xCalLaserWl",
                                      "accumulCount",
@@ -100,6 +107,14 @@ read.spe <- function(filename, xaxis="file",
                                  ev=expression("Energy / eV"),
                                  freq=expression(nu / THz),
                                  raman=expression(Raman~shift / cm^-1))
+  if (acc2avg){
+    spc <- spc / hdr$accumulCount
+    spc@data$averaged <- T
+  }
+  if (cts_sec){
+    spc <- spc / hdr$exposure_sec
+    spc@label$spc <- expression("counts / s")
+  }
   return(spc)
 }
 
@@ -178,7 +193,7 @@ read.spe.header <- function(filename){
 ##' @describeIn read.spe Plot the WinSpec SPE file (version 2.5) and show the
 ##' calibration points stored inside of it (x-axis calibration)
 ##' @export
-spe.showcalpoints <- function(filename, xaxis="file"){
+spe.showcalpoints <- function(filename, xaxis="file", acc2avg=F, cts_sec=F){
 
   hdr <- read.spe.header(filename)
   xaxis <- .fixunitname(xaxis)
@@ -193,7 +208,7 @@ spe.showcalpoints <- function(filename, xaxis="file"){
 
   # Open file, make plot and mark position of all peaks stored inside the file
   # in the x-calibration structure
-  spc <- read.spe(filename, xaxis)
+  spc <- read.spe(filename, xaxis, acc2avg, cts_sec)
   rng <- max(spc) - min(spc)
   ylims <- c(min(spc), max(spc) + 0.3*rng)
   if (dim(spc@data$spc)[1] > 1)
