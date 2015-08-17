@@ -26,5 +26,6 @@
 | binary | spc                   | Renishaw          | Raman            | read.spc             | scan.txt.Renishaw    | \emph{Not} recommended, see discussion of ASCII files.    |
 | binary | spc                   | Witec             | Raman            | read.spc             | read.spc             | spc export not available for images                       |
 | binary | spc                   | Horiba            | Raman            | read.spc             | read.spc             |                                                           |
+| binary | spe                   | Princeton Instruments | Raman        | read.spe             | read.spe             | WinSpec                                                   |
 | binary | array                 |                   |                  | -                    | new                  |                                                           |
 | binary | matrix                |                   |                  | -                    | new                  |                                                           |
