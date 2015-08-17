@@ -26,7 +26,11 @@
 ##' @author R. Kiselev, C. Beleites
 ##' @export
 read.spe <- function(filename, xaxis="file",
-                     keys.hdr2data=c("exp_sec", "xCalLaserWl")){
+                     keys.hdr2data=c("exposure_sec",
+                                     "xCalLaserWl",
+                                     "accumulCount",
+                                     "numFrames",
+                                     "bgCorrected")){
 
 
   hdr <- read.spe.header(filename)
@@ -114,7 +118,7 @@ read.spe.header <- function(filename){
     hwVersion      = readBin(raw.data[1   :2   ], "integer", 1, 2, signed=TRUE ), # uint16
     xDimDet        = readBin(raw.data[7   :8   ], "integer", 1, 2, signed=FALSE), # uint16
     mode           = readBin(raw.data[9   :10  ], "integer", 1, 2, signed=TRUE ), # uint16
-    exp_sec        = readBin(raw.data[11  :14  ], "double",  1, 4),               # float32
+    exposure_sec   = readBin(raw.data[11  :14  ], "double",  1, 4),               # float32
     vChipXDim      = readBin(raw.data[15  :16  ], "integer", 1, 2, signed=TRUE ), # int8
     vChipYDim      = readBin(raw.data[17  :18  ], "integer", 1, 2, signed=TRUE ), # int8
     yDimDet        = readBin(raw.data[19  :20  ], "integer", 1, 2, signed=FALSE), # uint16
