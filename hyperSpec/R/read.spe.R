@@ -34,10 +34,10 @@
 ##' @export
 read.spe <- function(filename, xaxis="file", acc2avg=F, cts_sec=F,
                      keys.hdr2data=c("exposure_sec",
-                                     "xCalLaserWl",
+                                     "LaserWavelen",
                                      "accumulCount",
                                      "numFrames",
-                                     "bgCorrected")){
+                                     "darkSubtracted")){
 
 
   hdr <- read.spe.header(filename)
@@ -92,14 +92,14 @@ read.spe <- function(filename, xaxis="file", acc2avg=F, cts_sec=F,
   vM <- vanderMonde(spc@wavelength, polyorder)
 
   # Check if we have laser wavelength
-  if (hdr$xCalLaserWl < 10)
-    hdr$xCalLaserWl <- NULL
+  if (hdr$LaserWavelen < 10)
+    hdr$LaserWavelen <- NULL
 
   # Perform convertion
   spc@wavelength <- wlconv(src=.fixunitname(hdr$xCalPolyUnit),
                            dst=xaxis,
                            points=as.numeric(vM %*% coeffs),
-                           laser=hdr$xCalLaserWl)
+                           laser=hdr$LaserWavelen)
 
   spc@label$.wavelength = switch(xaxis,
                                  nm=expression("Wavelength, nm"),
@@ -143,7 +143,7 @@ read.spe.header <- function(filename){
     shutterMode    = readBin(raw.data[51  :52  ], "integer", 1, 2, signed=FALSE), # uint16
     specCenterWlNm = readBin(raw.data[73  :76  ], "double",  1, 4),               # float32
     datatype       = readBin(raw.data[109 :110 ], "integer", 1, 2, signed=TRUE ), # int8
-    bgCorrected    = readBin(raw.data[151 :152 ], "integer", 1, 2, signed=FALSE), # int8
+    darkSubtracted = readBin(raw.data[151 :152 ], "integer", 1, 2, signed=FALSE), # int8
     timeLocal      = readBin(raw.data[173 :179 ], "character", 1, 7            ), # char
     timeUTC        = readBin(raw.data[180 :186 ], "character", 1, 7            ), # char
     gain           = readBin(raw.data[199 :200 ], "integer", 1, 2, signed=FALSE), # uint16
@@ -177,7 +177,7 @@ read.spe.header <- function(filename){
     xCalPxPos      = readBin(raw.data[3104:3183], "double", 10, 8, signed=TRUE ), # float64
     xCalValues     = readBin(raw.data[3184:3263], "double", 10, 8, signed=TRUE ), # float64
     xCalPolCoeffs  = readBin(raw.data[3264:3311], "double",  6, 8, signed=TRUE ), # float64
-    xCalLaserWl    = readBin(raw.data[3312:3319], "double",  1, 8, signed=TRUE )  # float64
+    LaserWavelen   = readBin(raw.data[3312:3319], "double",  1, 8, signed=TRUE )  # float64
   )
 
   # Convert magic numbers into human-readable unit strings
@@ -226,7 +226,7 @@ spe.showcalpoints <- function(filename, xaxis="file", acc2avg=F, cts_sec=F){
   markpeak(spc, wlconv(src=hdr$xCalInputUnit,
                        dst=.fixunitname(xaxis),
                        points=hdr$xCalValues,
-                       laser=hdr$xCalLaserWl))
+                       laser=hdr$LaserWavelen))
 }
 
 
