@@ -229,19 +229,3 @@ spe.showcalpoints <- function(filename, xaxis="file", acc2avg=F, cts_sec=F){
                        laser=hdr$LaserWavelen))
 }
 
-
-
-
-
-
-
-
-
-
-
-
-# HeNe_lines <- c(783.9055, 794.3181, 808.2458, 830.0326, 841.8427, 859.1259, 891.9501,
-#       914.8670, 920.1760, 937.3310, 948.6680, 966.5420, 1029.5420, 1056.2410, 1079.807)
-
-
-
