@@ -58,7 +58,7 @@ setMethod ("as.character", signature = signature (x = "hyperSpec"),
   chr
 })
 
-##' Convert a hyerSpec object to character strings for Display
+##' Convert a hyperSpec object to character strings for Display
 ##' \code{print}, \code{show}, and \code{summary} show the result of
 ##' \code{as.character}.
 ##' 
