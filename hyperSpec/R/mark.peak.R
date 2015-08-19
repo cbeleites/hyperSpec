@@ -8,6 +8,10 @@
 ##' @author R. Kiselev
 ##' @export
 markpeak <- function(spc, xpos, col="red"){
+
+  chk.hy (spc)
+  validObject (spc)
+
   plot(spc[1,,xpos], add=T, lines.args=list(type="p"), col=col)
   text(x=xpos, y=spc[[1,,xpos]], col=col, labels=sprintf("\u2190 %.2f", xpos),
        adj=c(-0.2,0.37), srt=90, cex=0.75)
