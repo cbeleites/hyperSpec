@@ -8,13 +8,17 @@
 
 ##' Import WinSpec SPE file
 ##'
-##' Import function for WinSpec SPE files (file version 2.5)
+##' Import function for WinSpec SPE files (file version 2.5). The calibration
+##' data (polynome and calibration data pairs) for x-axis are automatically
+##' read and applied to the spectra. Note that the y-calibration data structure
+##' is not extracted from the file since it is not saved there by WinSpec and is
+##' always empty.
 ##'
 ##' @param filename Name of the SPE file to read data from
 ##' @param xaxis Units of x-axis, e.g. \emph{"file"}, \emph{"px"},
 ##' \emph{"nm"}, \emph{"energy"}, \emph{"raman"}, \emph{...}
-##' \code{read.spe} function automatically checks if the x-calibration data is
-##' available and uses it (if possible) to reconstruct the xaxis
+##' \code{read.spe} function automatically checks if the x-calibration data are
+##' available and uses them (if possible) to reconstruct the xaxis
 ##' in the selected units.
 ##' @param acc2avg whether to divide the actual data set by the number of
 ##' accumulations, thus transforming \emph{accumulated} spectra to
