@@ -119,7 +119,9 @@ read.spe <- function(filename, xaxis="file", acc2avg=F, cts_sec=F,
     spc <- spc / hdr$exposure_sec
     spc@label$spc <- expression("counts / s")
   }
-  return(spc)
+
+  ## consistent file import behaviour across import functions
+  .fileio.optional (spc, filename)
 }
 
 

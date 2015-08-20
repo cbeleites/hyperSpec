@@ -6,8 +6,8 @@
 ##'
 ##' NTUPLES / PAGES are not (yet) supported.
 ##'
-##' DIF, DUF, DIFDUP and SQZ data formats are not (yet) supported. 
-##' 
+##' DIF, DUF, DIFDUP and SQZ data formats are not (yet) supported.
+##'
 ##' @note JCAMP-DX support is incomplete and the functions may change without notice. See
 ##' \code{vignette ("fileio")}  and the details section.
 ##' @param filename file name and path of the .jdx file
@@ -32,26 +32,26 @@ read.jdx <- function(filename = stop ("filename is needed"), encoding = "",
                      header = list (), keys.hdr2data = FALSE, ...,
                      NA.symbols = c ("NA", "N/A", "N.A."),
                      collapse.multi = TRUE){
-  
+
   ## see readLines help: this way, encoding is translated to standard encoding on current system.
   file <- file (filename, "r", encoding = encoding, blocking = FALSE)
   jdx <- readLines (file)
   close (file)
-  
+
   ## start & end of spectra header and data
   hdrstart <- grep ("^[[:blank:]]*##TITLE=", jdx)
   if (length (hdrstart) == 0L) stop ("No spectra found.")
-      
+
   datastart <- grep (sprintf ("^[[:blank:]]*##(%s)=", paste (.DATA.START, collapse = "|")), jdx) + 1
       # V 4.24 uses ##XYDATA=
       # V 5.00 uses ##DATA TABLE= ..., XYDATA
       # V 5.01 MPI Golm files use ##PEAK TABLE=
 
   if (length (datastart) == 0L) stop ("No data found: unsupported data type.")
-      
+
   dataend <- grep ("^[[:blank:]]*##", jdx)
   dataend <- sapply (datastart, function (s) dataend [which (dataend > s)[1]]) - 1
-  
+
   spcend <- grep ("^[[:blank:]]*##END=[[:blank:]]*$", jdx) - 1
 
   ## some checks
@@ -73,7 +73,7 @@ read.jdx <- function(filename = stop ("filename is needed"), encoding = "",
         hdr <- modifyList (list (file = as.character (filename)), hdr)
         header <- hdr [! names (hdr) %in% .key2names (.DATA.START)]
       }
-    
+
     ## evaluate data block
 
     if (grepl ("[A-DF-Za-df-z%@]", jdx[datastart [s]]))
@@ -90,12 +90,13 @@ read.jdx <- function(filename = stop ("filename is needed"), encoding = "",
     spc [[s]] <- .jdx.processhdr (spc [[s]], hdr, keys.hdr2data, ..., NA.symbols = NA.symbols)
   }
 
-  if (length (spc) == 1L) 
+  if (length (spc) == 1L)
     spc <- spc [[1]]
   else if (collapse.multi)
     spc <- collapse (spc)
 
-  spc
+  ## consistent file import behaviour across import functions
+  .fileio.optional (spc, filename)
 }
 
 ### HEADER ------------------------------------------------------------------------------------------
@@ -115,7 +116,7 @@ read.jdx <- function(filename = stop ("filename is needed"), encoding = "",
   }
 
   names <-  .key2names (sub ("^[[:blank:]]*##(.*)=.*$", "\\1", hdr))
-  
+
   hdr <- sub ("^[[:blank:]]*##.*=[[:blank:]]*(.*)[[:blank:]]*$", "\\1", hdr)
   hdr <-   gsub ("^[\"'[:blank:]]*([^\"'[:blank:]].*[^\"'[:blank:]])[\"'[:blank:]]*$", "\\1", hdr)
   i <- grepl ("^[[:blank:]]*[-]?[.[:digit:]]*[eE]?[-]?[.[:digit:]]*[[:blank:]]*$", hdr)
@@ -132,11 +133,11 @@ read.jdx <- function(filename = stop ("filename is needed"), encoding = "",
   format <- format [! sapply (format, is.null)]
   if (length (format) != 1)
       stop ("contradicting format specification: please contact the maintainer (",
-            maintainer ("hyperSpec"), 
+            maintainer ("hyperSpec"),
             "supplying the file you just tried to load.")
-  
+
   hdr$.format <- format [[1]]
-      
+
   hdr
 }
 
@@ -157,7 +158,7 @@ read.jdx <- function(filename = stop ("filename is needed"), encoding = "",
                         maxy - hdr$maxy,
                         (maxy - hdr$maxy) / hdr$yfactor))
 
-  
+
   spc@label$.wavelength <- .jdx.xunits (hdr$xunits)
   spc@label$spc <- .jdx.yunits (hdr$yunits)
 
@@ -167,7 +168,7 @@ read.jdx <- function(filename = stop ("filename is needed"), encoding = "",
 
   # delete header lines already processed
   hdr[c ("jcampdx", "xunits", "yunits", "xfactor", "yfactor", "firstx", "lastx", "npoints",
-         "firsty", "xydata", "end", "deltax", "maxy", "miny", 
+         "firsty", "xydata", "end", "deltax", "maxy", "miny",
          "concentrations")] <- NULL
   if (is.character (keys))
       keys <- keys [keys %in% names (hdr)]
@@ -175,7 +176,7 @@ read.jdx <- function(filename = stop ("filename is needed"), encoding = "",
 
   if (length (hdr) > 0L)
       spc@data <- cbind (spc@data, hdr)
-  
+
   spc
 }
 
@@ -185,11 +186,11 @@ read.jdx <- function(filename = stop ("filename is needed"), encoding = "",
 
   ## regexp for numbers including scientific notation
   .PATTERN.number <- "[0-9]*[.]?[0-9]*([eE][+-]?[0-9]+)?"
-  
+
   if (is.null (hdr$firstx))  stop ("##FIRSTX= missing.")
   if (is.null (hdr$lastx))   stop ("##LASTX= missing.")
   if (is.null (hdr$npoints)) stop ("##NPOINTS= missing.")
-  
+
   wl <- seq (hdr$firstx, hdr$lastx, length.out = hdr$npoints)
 
   ## remove starting X
@@ -235,7 +236,7 @@ read.jdx <- function(filename = stop ("filename is needed"), encoding = "",
 .jdx.xunits <- function (xunits){
   if (is.null (xunits))
       NULL
-  else 
+  else
       switch (tolower (xunits),
               `1/cm` = expression (tilde (nu) / cm^-1),
               micrometers = expression (`/` (lambda, micro * m)),
@@ -248,7 +249,7 @@ read.jdx <- function(filename = stop ("filename is needed"), encoding = "",
   if (is.null (yunits))
       NULL
 
-  else 
+  else
       switch (tolower (yunits),
               transmittance     = "T",
               reflectance       = "R",
@@ -260,7 +261,7 @@ read.jdx <- function(filename = stop ("filename is needed"), encoding = "",
 
 ## HDR processing functions
 .jdx.hdr.concentrations <- function (spc, hdr, NA.symbols){
-  
+
   hdr <- strsplit (hdr$concentrations, "[)][[:blank:]]*[(]")[[1]]
   hdr [length (hdr)] <- gsub (")$", "", hdr [length (hdr)])
   if (hdr [1] == "(NCU")
@@ -276,13 +277,13 @@ read.jdx <- function(filename = stop ("filename is needed"), encoding = "",
   N <- sub ("^([^[:alpha:]]*)", "", N)
   N <- sub ("([^[:alpha:]]*)$", "", N)
   N <- gsub ("([^[:alnum:]_-])", ".", N)
-    
+
   ## concentrations
   C <- t (as.numeric (hdr [2,]))
   colnames (C) <- N
   C <- as.data.frame (C)
   spc@data <- cbind (spc@data, C)
-    
+
   ## units
   U <- as.list (hdr [3,])
   names (U) <- N
