@@ -18,12 +18,13 @@ read.txt.Horiba <- function (file, cols = c (spc = "I / a.u.",
   spc <- read.txt.wide (file, cols = cols,
                        header = header, sep = sep, row.names = row.names,
                        check.names = check.names, ...)
-  
+
   if (remove.zerospc) {
     spc <- spc [rowSums (abs (spc) > .Machine$double.eps^0.5) > 0]
   }
 
-  spc
+  ## consistent file import behaviour across import functions
+  .fileio.optional(spc, filename = file)
 }
 
 ##' @rdname read.txt.Horiba
