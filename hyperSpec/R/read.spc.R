@@ -723,13 +723,16 @@ read.spc <- function (filename,
 		lapply (spc, .fileio.optional, filename = filename)
 	else if (no.object)
 		list (spc = spc, wavelength = wavelength, data = data, labels = label)
-	else
+	else {
+		if (hdr$fnsub > 1L && nrow (data) == 1L)
+			data <- data [rep (1L, hdr$fnsub), ]
+
+		spc <- new ("hyperSpec",  spc = spc, wavelength = wavelength,
+								data = data, labels = label)
+
 		## consistent file import behaviour across import functions
-		.fileio.optional (
-			new ("hyperSpec",  spc = spc, wavelength = wavelength,
-					 data = data [rep (1, hdr$fnsub), ], labels = label),
-			filename
-		)
+		.fileio.optional (spc, filename)
+	}
 }
 
 
