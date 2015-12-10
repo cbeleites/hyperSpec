@@ -338,9 +338,9 @@ raw.split.nul <- function (raw, trunc = c (TRUE, TRUE), firstonly = FALSE, paste
 	hdr$.last.read <- pos + .spc.size ['subhdr']
 
 	## checking
-	if (subhdr$subexp == -128 && hdr$fexp != -128)
+	if (subhdr$subexp == -128 && hdr$fexp != -128) 
 		message ("subfile ", subhdr$subindx,  " specifies data type float, but file header doesn't.",
-				"\n=> Data will be interpreted as float.")
+				"\n=> Data will be interpreted as float unless TMULTI is set.")
 
 	if (subhdr$subnpts > 0 && subhdr$subnpts != hdr$fnpts && ! hdr$ftflgs ['TXYXYS'])
 		message ('subfile ', subhdr$subindx, ": number of points in file header and subfile header ",
