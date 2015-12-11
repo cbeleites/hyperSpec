@@ -14,10 +14,10 @@
 ##' \code{\link[graphics]{image}}?
 ##' @author Claudia Beleites
 ##' @seealso  \code{\link[graphics]{image}}, \code{\link[graphics]{contour}}, \code{\link[hyperSpec]{levelplot}}
-##' @export 
+##' @export
 ##' @examples
 ##' plotmat (laser, col = alois.palette (100))
-##' 
+##'
 ##' plot (laser, "mat")
 ##'
 ##' plotmat (laser)
@@ -26,25 +26,26 @@
 ##' ## use different y axis labels
 ##'
 ##' plotmat (laser, "t")
-##' 
+##'
 ##' plotmat (laser, laser$t / 3600, ylab = "t / h")
 plotmat <- function (object, y = ".row", ylab, col = alois.palette (20), ...,
                      contour = FALSE){
 
   chk.hy (object)
   validObject (object)
+  object <- orderwl (object)
 
   if (is.character (y)) {
     if (missing (ylab))
       ylab <- switch (y,
                       .row = "row",
                       labels (object, y))
-        
+
     y <- switch (y,
                  .row = seq_len (nrow (object)),
                  object@data [[y]])
   }
-  
+
   dots <- modifyList (list (x = wl (object),
                             y = y,
                             z = t (object [[]]),
@@ -54,7 +55,7 @@ plotmat <- function (object, y = ".row", ylab, col = alois.palette (20), ...,
                             ),
                       list (...))
 
-  
+
   if (contour)
     do.call ("contour", dots)
   else {
@@ -62,17 +63,17 @@ plotmat <- function (object, y = ".row", ylab, col = alois.palette (20), ...,
     mar <- par()$ mar
     if (mar [4] < 5)
       par (mar = c (mar [1 : 3], 5))
-    
+
     do.call ("image", dots)
     par (mar = mar)
 
     ## color legend
     if (requireNamespace ("plotrix")){
-    
+
       usr <- par()$usr
 
       dx <- diff (usr [1 : 2])
-    
+
       plotrix::color.legend (usr [2] + 0.05 * dx,
       											 usr [3],
       											 usr [2] + 0.10 * dx,
@@ -86,6 +87,6 @@ plotmat <- function (object, y = ".row", ylab, col = alois.palette (20), ...,
 
   }
 
-  
+
 }
 
