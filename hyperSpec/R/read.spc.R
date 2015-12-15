@@ -647,38 +647,16 @@ read.spc <- function (filename,
 			keys.log2data,  keys.log2log)
 	## TODO: remove keys.log2log data2log
 
-	
 	data <- c (data, tmp$extra.data, getbynames (hdr, keys.hdr2data))
-
-	## try to preallocate spectra matrix and extra data data.frame
-	## if multispectra file with separate wavelength axes, prepare a list
+	
+	## preallocate spectra matrix or list for multispectra file with separate wavelength axes
+	## populate extra data
 	if (hdr$ftflgs ['TXYXYS'] && hdr$ftflgs ['TMULTI']) {
 		spc <- list ()
-		data <- as.data.frame (data, stringsAsFactors = FALSE)
+		data <- .prepare.hdr.df (data, nsubfiles = 1L)	
 	} else {
 	  spc <- matrix (NA, nrow = hdr$fnsub, ncol = hdr$fnpts)
-	  
-	  ## the *type header elements are expressions. They need to be converted to character.
-	  data <- lapply (data, function (x) {
-	    if (mode (x) == "expression")
-	      as.character (x)
-	    else
-	      x
-	  })
-
-	  ## convert vectors to matrix, otherwise the data.frame will contain one  row per element.
-	  ## matrices need to be protected during as.data.frame
-	  ## TODO: refactor -> should go into helper function
-	  
-	  vector.entries <- which (sapply (data, length) > 1L)
-	  for (v in vector.entries) 
-	    data [[v]] <- I (t (as.matrix (data [[v]])))
-	
-		data <- as.data.frame (data, stringsAsFactors = FALSE)
-		data <- data [rep (1L, hdr$fnsub), ]
-
-		for (v in vector.entries) 
-		  data [[v]] <- unclass (data [[v]]) # remove AsIs protection
+	  data <- .prepare.hdr.df (data, nsubfiles = hdr$fnsub)	
 	}
 
 	## read subfiles
@@ -749,3 +727,27 @@ read.spc <- function (filename,
 }
 
 
+.prepare.hdr.df <- function (data, nsubfiles){
+  ## the *type header elements are expressions. They need to be converted to character.
+  data <- lapply (data, function (x) {
+    if (mode (x) == "expression")
+      as.character (x)
+    else
+      x
+  })
+  
+  ## convert vectors to matrix, otherwise the data.frame will contain one  row per element.
+  ## matrices need to be protected during as.data.frame
+
+  vector.entries <- which (sapply (data, length) > 1L)
+  for (v in vector.entries) 
+    data [[v]] <- I (t (as.matrix (data [[v]])))
+  
+  data <- as.data.frame (data, stringsAsFactors = FALSE)
+  data <- data [rep (1L, nsubfiles), ]
+  
+  for (v in vector.entries) 
+    data [[v]] <- unclass (data [[v]]) # remove AsIs protection
+  
+  data
+}
