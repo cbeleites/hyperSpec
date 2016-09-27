@@ -1,0 +1,364 @@
+% -*- mode: noweb; noweb-default-code-mode: R-mode; -*- 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenx}
+\DeclareUnicodeCharacter{03BB}{\ensuremath{\lambda}}
+\setlength{\parskip}{\medskipamount}
+\setlength{\parindent}{0pt}
+\usepackage{color}
+\usepackage{babel}
+
+\usepackage{fourier}
+\usepackage[]{helvet}
+
+\usepackage{array}
+\usepackage{textcomp}
+\usepackage{url}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[numbers]{natbib}
+\usepackage[unicode = true,
+            bookmarks = true,
+            bookmarksnumbered = false,
+            bookmarksopen = false,
+            breaklinks = false,
+            backref = false,
+            colorlinks = true,
+            citecolor=green!50!black,        % color of links to bibli
+            filecolor=blue!50!black,         % color of file links
+            urlcolor=blue!50!black,          % color of external links
+            linkcolor=blue!50!black          % color of internal links
+           ]{hyperref}
+\usepackage{hyphenat}
+\usepackage{paralist}
+
+\AtBeginDocument{
+  	\setlength{\parskip}{\medskipamount}
+	\setlength{\parindent}{0pt}
+   \fvset{listparameters={\setlength{\topsep}{0pt}}}
+   \renewenvironment{Schunk}{\vspace{0pt}\begin{small}}{\end{small}\vspace{0pt}}
+   \RecustomVerbatimEnvironment{Sinput}{Verbatim}{formatcom=\small}
+   \RecustomVerbatimEnvironment{Soutput}{Verbatim}{formatcom=\footnotesize}
+}
+
+% my preferred packages
+\usepackage{xspace}
+\usepackage{tikz}
+\usepackage{subfig}
+\usepackage{booktabs}
+
+\usepackage{hyphenat}
+\usepackage{fancyvrb}
+
+\usepackage[font=footnotesize, labelfont=bf, labelsep=quad, format=plain]{caption}
+
+\makeatletter
+\@ifundefined{showcaptionsetup}{}{%
+ \PassOptionsToPackage{caption=false}{subfig}}
+\usepackage{subfig}
+\makeatother
+
+% fancy warning box
+\newcommand{\warnbox}[3][red]{
+\begin{tikzpicture}
+\node [draw=#1, very thick, rectangle, rounded corners, inner sep=10pt] (box){%
+    \begin{minipage}{\linewidth}
+      \vspace{0.5\baselineskip}
+      #3
+    \end{minipage}
+};
+\node[fill = #1, text = white, right=5mm, rounded corners] at (box.north west)
+  {\sffamily\bfseries\large #2};
+\end{tikzpicture}%
+}
+ 
+\newcommand{\Rcode}[2][]{\texorpdfstring{\nohyphens{#1\texttt{#2}}}{#2}}
+\newcommand{\Robject}[2][]{\texorpdfstring{\nohyphens{#1\texttt{#2}}}{#2}}
+\newcommand{\Rcommand}[2][]{\texorpdfstring{\nohyphens{#1\texttt{#2}}}{#2}}
+\newcommand{\Rfunction}[2][]{\texorpdfstring{\nohyphens{#1\texttt{#2}}}{#2}}
+
+\newcommand{\Rfunarg}[1]{\texorpdfstring{\nohyphens{\textit{#1}}}{#1}}
+\newcommand{\Rpackage}[1]{\texorpdfstring{\nohyphens{\textit{#1}}}{#1}}
+\newcommand{\Rmethod}[1]{\texorpdfstring{\nohyphens{\textit{#1}}}{#1}}
+\newcommand{\Rclass}[1]{\texorpdfstring{\nohyphens{\textit{#1}}}{#1}}
+
+\newcommand{\df}{\Rclass{data.frame}\xspace}
+
+\newcommand{\mFun}[1]{\marginpar{\scriptsize \Rfunction{#1}}}
+
+\newcommand{\phy}{\texorpdfstring{\nohyphens{\textit{hyperSpec}}}{hyperSpec}\xspace}
+\newcommand{\chy}{\Rclass{hyperSpec}\xspace}
+
+\newcommand{\eg}{e.\,g.\xspace}
+\newcommand{\ie}{i.\,e.\xspace}
+
+\newcommand{\mum}[1]{\ensuremath{#1\;}\textmu m\xspace}
+\newcommand{\rcm}[1]{\ensuremath{#1\;\mathrm{cm^{-1}}}\xspace}
+
+\newcommand{\R}{\texorpdfstring{\texttt{R}}{R}\xspace}
+
+\author{%
+\Sexpr{sub ("[<].*$", "", packageDescription ("hyperSpec")$Maintainer)}%
+  \url{%
+\Sexpr{sub ("^.*[<]", "<", packageDescription ("hyperSpec")$Maintainer)}%
+}\\
+CENMAT and DI3, University of Trieste\\
+Spectroscopy $\cdot$ Imaging, IPHT Jena e.V.%
+}
+
+\SweaveOpts{pgf = FALSE, eps = FALSE, external = FALSE, pdf = TRUE, ps = FALSE}
+\SweaveOpts{width=6,height=3}
+%\SweaveOpts{prefix.string=fig/fig}
+\SweaveOpts{keep.source = TRUE, strip.white=true}
+\AtBeginDocument{
+\setkeys{Gin}{width = .5\textwidth}
+}
+<<startup, echo = FALSE, results = hide>>=
+#system ("mkdir fig")
+options(SweaveHooks=list(fig=function() {
+  par(mar = c (4.1, 4.1, 1, .6))
+
+  trellis.pars <- trellis.par.get ("layout.heights")
+  trellis.pars [grep ("padding", names (trellis.pars))] <- 0
+  trellis.par.set(layout.heights = trellis.pars)
+  
+  trellis.pars <- trellis.par.get ("layout.widths")
+  trellis.pars [grep ("padding", names (trellis.pars))] <- 0
+  trellis.par.set(layout.widths = trellis.pars)
+}))
+options ("width" = 100, "digits" = 5)
+library (hyperSpec)
+
+# redefine lattice functions so that the result is printed without external print command
+setMethod ("plot",
+           signature (x = "hyperSpec", y = "character"),
+           function (x, y, ...){
+             tmp <- hyperSpec:::.plot (x, y, ...)
+             if (is (tmp, "trellis"))
+               print (tmp)
+             invisible (tmp)
+           })
+
+
+plotmap <- function (...) print (hyperSpec:::plotmap (...))
+
+setMethod ("levelplot", signature (x = "hyperSpec", data = "missing"),
+   function (x, data, ...) {
+	   l <- hyperSpec:::.levelplot (x = formula (spc ~ x * y), data = x, ...)
+		print (l)
+	}
+)
+
+setMethod ("levelplot", signature (x = "formula", data = "hyperSpec"), 
+   function (x, data, ...) print (hyperSpec:::.levelplot (x, data, ...))
+)
+
+plotc <- function (...){
+   call <- match.call () 
+   call [[1]] <- hyperSpec:::plotc 
+   print (eval (call))
+}
+
+ploterrormsg <- function (fn, pkg) {
+  plot (0, 0, type = "n", axes = FALSE, bty = "n", xlab = "", ylab = "")
+  text (0, 0, paste ("Function", fn, "not available:\npackage", pkg, "needed."))
+}
+griderrormsg <- function (fn, pkg) {
+  require (grid)
+  grid.text (label = paste ("Function", fn, "not available:\npackage", pkg, "needed."))
+  NA
+}
+texterrormsg <- function (fn, pkg) {
+  cat ("Function", fn, "not available:\npackage", pkg, "needed.\n")
+}
+
+nice.paste <- function (...){
+  fnames <- c (...)
+  
+  if (length (fnames) == 2L)
+    fnames <- paste (fnames, collapse = " and ")
+  if (length (fnames) > 1L){
+    fnames [length (fnames)] <- paste ("and", tail (fnames, 1))
+    fnames <- paste (fnames, collapse = ", ")
+  }
+
+  fnames
+}
+
+check.req.pkg <- function (pkg = stop ("pkg needed"), 
+                           texterrors = NULL, ploterrors = NULL, griderrors = NULL,
+                           hynstext = NULL, hynsplot = NULL, hynsgrid = NULL, 
+                           donothing = NULL, special = NULL, v = TRUE){
+  if (v) cat ("\\item[\\Rpackage{", pkg, "}:] ", sep = "")
+  
+  dummies <- list ()
+  
+  if (pkg.exists (pkg)){
+    if (v) cat ("available\n")
+  } else {
+    for (fn in as.character (texterrors))
+      dummies <- c (dummies, bquote (.(fn) <- function (...) texterrormsg (.(fn), .(pkg))))
+    for (fn in as.character (ploterrors))
+      dummies <- c (dummies, bquote (.(fn) <- function (...) ploterrormsg (.(fn), .(pkg))))
+    for (fn in as.character (griderrors))
+      dummies <- c (dummies, bquote (.(fn) <- function (...) griderrormsg (.(fn), .(pkg))))
+
+    for (fn in as.character (hynstext))
+      assignInNamespace (x = fn, 
+                         value = eval (bquote (function (...) texterrormsg (.(fn), .(pkg)))), 
+                         ns = "hyperSpec")
+    for (fn in as.character (hynsplot))
+      assignInNamespace (x = fn, 
+                         value = eval (bquote (function (...) ploterrormsg (.(fn), .(pkg)))), 
+                         ns = "hyperSpec")
+    for (fn in as.character (hynsgrid))
+      assignInNamespace (x = fn, 
+                         value = eval (bquote (function (...) griderrormsg (.(fn), .(pkg)))), 
+                         ns = "hyperSpec")
+
+    fnames <- nice.paste (texterrors, ploterrors, griderrors, hynstext, hynsplot, hynsgrid, names (special))
+    if (v && length (fnames) > 0L) cat (fnames, "replaced.")
+    
+    for (fn in as.character (donothing))
+      dummies <- c (dummies, bquote (.(fn) <- function (...) invisible (NULL)))
+    
+    fnames <- nice.paste (donothing)
+    if (v && length (fnames) > 0L) cat (fnames, "missing.")
+    
+    if (v) cat ("\n")
+  }
+  
+  invisible (dummies)
+}
+
+plotvoronoi <- function (...) print (hyperSpec:::plotvoronoi (...))
+
+# set standardized color palettes 
+seq.palette <- colorRampPalette (c ("white", "dark green"), space = "Lab")
+
+YG.palette <- function (n = 20) rgb (colorRamp (c("#F7FCF5", "#E5F5E0", "#C7E9C0", "#A1D99B", "#74C476", 
+                                             "#41AB5D", "#238B45", "#006D2C", "#00441B"), space = "Lab") 
+                                # was: brewer.pal (9, "Greens")
+                                (seq (1/3, 1, length.out = n)^2), maxColorValue = 255)
+
+										  
+div.palette <- colorRampPalette (c("#00008B", "#351C96", "#5235A2", "#6A4CAE", "#8164BA", "#967CC5", 
+                                   "#AC95D1", "#C1AFDC", "#D5C9E8", "#E0E3E3", "#F8F8B0", "#F7E6C2", 
+											  "#EFCFC6", "#E6B7AB", "#DCA091", "#D08977", "#C4725E", "#B75B46",
+											  "#A9432F", "#9A2919", "#8B0000"), space = "Lab")
+
+pkgSuggests <- function (...)
+  strsplit (packageDescription (..., fields="Suggests"), ",\\s*")[[1]]
+
+pkg.exists <- function (pkg = stop ("package name needed"), lib.loc = NULL){
+  dir <- sapply (pkg, function (p) system.file (package = p, lib.loc = lib.loc))
+  nzchar (dir) > 0L 
+}
+  
+is.basepkg <- function (pkg){
+  pkg.exists (pkg) && grepl ("^base$", packageDescription (pkg, fields = "Priority"))
+}
+
+pkg.or.base <- function (pkg){
+  pkg [sapply (pkg, is.basepkg)] <- "base"
+  
+  pkg
+}
+
+citation.or.file <- function (pkg, svd.cit = sprintf ("%s.CITATION", pkg)){
+  if (pkg.exists (pkg))
+    citation (pkg)
+  else if (file.exists (svd.cit))
+    readCitationFile (file = svd.cit)
+  else
+    NULL
+}
+
+make.cite.keys <- function (pkg, entries){
+  pkg <- pkg.or.base (pkg)
+
+  if (! pkg.exists (pkg))
+    return (pkg)
+  
+  if (missing (entries))
+    entries <- citation.or.file (pkg)
+  
+  keys <- sapply (unclass (entries), attr, "key")
+  
+  noname <- which (sapply (keys, is.null))
+
+  if (length (keys) == 1L && noname == 1L) {
+    keys <- pkg
+  } else {
+    for (i in noname)
+      keys [[i]] <- paste (pkg, i, sep = ".")
+  }
+
+  keys <- make.unique (unlist (keys))
+  
+  keys
+}
+  
+citation.with.key <- function (pkg = "base"){
+  pkg <- pkg.or.base (pkg)
+
+  tmp <- citation.or.file (pkg)
+  
+  keys <- make.cite.keys (pkg, tmp)
+
+  for (entry in seq_along (tmp))
+    tmp [entry]$"key" <- keys [[entry]]
+
+  tmp
+}
+
+cite.pkg <- function (p, entries, citefun = "cite"){
+  paste ("\\\\", citefun, "{", paste (make.cite.keys (p, entries), collapse = ", "), "}", sep = "")
+}
+
+make.bib <- function (..., file = NULL) {
+  pkg <- c (...)
+
+  if (length (pkg) == 0L) {
+    pkg <- loadedNamespaces()
+ 
+    pkg <- unique (pkg.or.base (pkg))
+  }
+  
+  l <- lapply (pkg, citation.with.key)
+  l <- do.call ("c", l [! sapply (l, is.null)])
+
+  if (!is.null (file))
+    if (is.null (l))
+      cat (NULL, file = file)           # touches file
+    else
+      cat (toBibtex (l), file = file, sep = "\n")
+  
+  invisible (l)
+}
+
+@
+
+<<mailme, results = tex, echo = FALSE, strip.white=true>>=
+cat ("\\newcommand{\\mailme}{\\href{mailto:", 
+     packageDescription ("hyperSpec")$Maintainer, 
+	  "}{\\texttt{", 
+	  packageDescription ("hyperSpec")$Maintainer,
+	  "}}}\n", 
+	  sep = "")
+@
+
+<<listfunctions, echo = FALSE>>=
+texListFun <- function (pattern){
+  funs <- ls (envir = getNamespace ("hyperSpec"), pattern = pattern)
+  funs <- paste ("\\\\Rfunction{", funs, "}", sep ="")
+  nice.paste (funs)
+}
+@
+
+
+<<cleanup, eval=FALSE, echo=FALSE>>=
+sessionInfo ()
+rm (list = ls ())
+library (tools)
+@ 
+

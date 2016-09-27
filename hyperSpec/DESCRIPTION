@@ -1,0 +1,150 @@
+Package: hyperSpec
+Type: Package
+Title: Work with Hyperspectral Data, i.e. Spectra + Meta Information (Spatial,
+    Time, Concentration, ...)
+Version: 0.98-20150805
+Date: 2015-08-05
+Author: Claudia Beleites
+Maintainer: Claudia Beleites <chemometrie@beleites.de>
+Description: Comfortable ways to work with hyperspectral data sets.
+    I.e. spatially or time-resolved spectra, or spectra with any other kind
+    of information associated with each of the spectra. The spectra can be data
+    as obtained in XRF, UV/VIS, Fluorescence, AES, NIR, IR, Raman, NMR, MS,
+    etc. More generally, any data that is recorded over a discretized variable,
+    e.g. absorbance = f (wavelength), stored as a vector of absorbance values
+    for discrete wavelengths is suitable.
+License: GPL (>= 3)
+LazyLoad: yes
+LazyData: yes
+Depends:
+    R (>= 2.15),
+    lattice,
+    grid,
+    ggplot2 (>= 0.9.2)
+Suggests:
+    R.matlab,
+    tripack,
+    deldir,
+    rgl,
+    plotrix,
+    testthat,
+    sp,
+    baseline,
+    compiler,
+    inline,
+    Rcpp,
+    MASS,
+    fastcluster,
+    pls,
+    mvtnorm,
+    digest
+Imports:
+    methods,
+    utils,
+    latticeExtra,
+    svUnit
+URL: http://hyperSpec.r-forge.r-project.org/
+Collate:
+    'validate.R'
+    'hyperspec-class.R'
+    'barbiturates.R'
+    'paracetamol.R'
+    'laser.R'
+    'chondro.R'
+    'flu.R'
+    'hyperspec-package.R'
+    'paste.row.R'
+    'Arith.R'
+    'Compare.R'
+    'DollarNames.R'
+    'Math.R'
+    'Summary.R'
+    'aggregate.R'
+    'all.equal.R'
+    'apply.R'
+    'as.data.frame.R'
+    'bind.R'
+    'call.list.R'
+    'chk.hy.R'
+    'colMeans.R'
+    'collapse.R'
+    'cov.R'
+    'decomposition.R'
+    'dim.R'
+    'dimnames.R'
+    'empty.R'
+    'wl2i.R'
+    'extract.R'
+    'factor2num.R'
+    'fileio.optional.R'
+    'getbynames.R'
+    'initialize.R'
+    'labels.R'
+    'plotmap.R'
+    'levelplot.R'
+    'makeraster.R'
+    'map.identify.R'
+    'map.sel.poly.R'
+    'mark.dendrogram.R'
+    'matlab.palette.R'
+    'mean_sd.R'
+    'merge.R'
+    'mvtnorm.R'
+    'normalize01.R'
+    'options.R'
+    'orderwl.R'
+    'pearson.dist.R'
+    'plot.R'
+    'plotc.R'
+    'plotmat.R'
+    'plotspc.R'
+    'plotvoronoi.R'
+    'qplot.R'
+    'qplotmixmap.R'
+    'quantile.R'
+    'rbind.fill.R'
+    'read.ENVI.Nicolet.R'
+    'read.ENVI.R'
+    'read.ini.R'
+    'read.jdx.R'
+    'read.jdx.Shimadzu.R'
+    'read.mat.Cytospec.R'
+    'read.mat.Witec.R'
+    'read.spc.Kaiser.R'
+    'read.spc.R'
+    'read.txt.Horiba.R'
+    'read.txt.Shimadzu.R'
+    'read.txt.long.R'
+    'read.txt.wide.R'
+    'replace.R'
+    'sample.R'
+    'scale.R'
+    'scan.txt.Witec.R'
+    'scan.asc.Andor.R'
+    'scan.txt.Renishaw.R'
+    'seq.R'
+    'show.R'
+    'spc.NA.approx.R'
+    'spc.bin.R'
+    'spc.fit.poly.R'
+    'spc.identify.R'
+    'spc.loess.R'
+    'spc.rubberband.R'
+    'spc.spline.R'
+    'split.R'
+    'split.string.R'
+    'splitdots.R'
+    'subset.R'
+    'sweep.R'
+    'trellis.factor.key.R'
+    'units.R'
+    'unittest.R'
+    'vandermonde.R'
+    'wc.R'
+    'wl.R'
+    'wleval.R'
+    'write.txt.long.R'
+    'write.txt.wide.R'
+    'y-pastenames.R'
+    'zzz.R'
+RoxygenNote: 5.0.1

@@ -1,0 +1,427 @@
+\documentclass[english, a4paper, 10pt, headings=small, DIV11]{scrartcl}
+\SweaveInput{vignettes.defs}
+\hypersetup{pdftitle={baseline},
+ pdfauthor={C. Beleites},
+ pdfsubject={Vignette on hyperSpec's baselinebelow data set},
+ pdfkeywords={hyperSpec, baselinebelow}}
+\SweaveOpts{prefix.string=baseline-fig-}
+% \VignetteIndexEntry{baseline: Vignette explaining hyperSpec's baseline fitting functions.}
+% \VignetteKeywords{hyperspec, baseline}
+% \VignettePackage{hyperSpec}
+\renewcommand{\textfraction}{0.1} 
+
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+\title{Fitting Baselines to Spectra}
+\maketitle
+
+\tableofcontents
+\section{Introduction}
+\label{sec:introduction}
+
+This document discusses baseline correction methods that can be used with \phy. \phy provides two
+fitting functions for polynomial baselines, \Rfunction{spc.fit.poly} and
+\Rfunction{spc.fit.poly.below}. Another possibility is \Rfunction{spc.rubberband}, a ``rubberband''
+method that determines support points by finding the convex hull of each spectrum. The baselines are
+then piecewise linear or (smoothing) splines through the support points.
+
+Please note that a specialized package for baseline fitting,
+\Rpackage{baseline}\Sexpr{cite.pkg("baseline")}, exists that provides many more methods to fit
+baselines to spectroscopic data. Using \Rpackage{baseline} with \chy objects is demonstrated in
+\Rcode{vignette ("introduction")}.
+
+\section{Polynomial Baselines}
+\label{sec:polynomial-baselines}
+
+In contrast to many other programs that provide baseline correction methods, \phy's polynomial
+baseline functions do least squares fits. However, the baselines can be forced through particular
+points, if this behaviour is needed.
+
+The main difference between the two functions is that \Rfunction{spc.fit.poly} returns a least
+squares fit through the complete spectrum that is given in \Rfunarg{fit.to} whereas
+\Rfunction{spc.fit.poly.below} tries to find appropriate spectral regions to fit the baseline to.
+
+\newlength{\tmplength}
+\subsection{Syntax \& parameters}
+\settowidth{\tmplength}{\Rcode{spc.fit.poly (}}
+\Rcode{spc.fit.poly (fit.to, apply.to = fit.to, poly.order = 1}\\[1ex]
+\settowidth{\tmplength}{\Rcode{spc.fit.poly.below (}}
+\Rcode{spc.fit.poly.below (fit.to, apply.to = fit.to, poly.order = 1, npts.min = NULL,\\
+\hspace*{\tmplength}noise = 0)}
+\begin{labeling}{\Rcode{poly.order}:~~~}
+\item[\Rfunction{fit.to}:] \Robject{hyperSpec} object with the spectra whose baselines are to be
+  fitted.
+\item[\Rfunction{apply.to}:] \Robject{hyperSpec} object giving the spectral range, on which the
+  baselines should be evaluated.\\
+  If \Rfunction{apply} is \Rcode{NULL}, a \Robject{hyperSpec} object with the polynomial coefficients
+  is returned instead of evaluated baselines.
+\item[\Rfunction{poly.order}:] polynomial order of the baselines
+\item[\Rfunction{npts.min}:] minimal number of data points per spectrum to be used for the fit.\\
+  \Rfunction{npts.min} defaults to the larger of 3 times (\Rfunction{poly.order} + 1) or
+  $\frac{1}{20th}$ of the number of data points per spectrum.\\
+  If \Rfunction{npts.min} $\leq$ {poly.order}, a warning is issued and \Rcode{npts.min <- poly.order
+    + 1} is used.
+ \item[\Rcode{noise}:] a vector giving the amount of noise, see below.
+ \end{labeling}
+
+
+\subsection{General Use}
+Both functions fit the polynomial to the spectral range given in \chy object \Rfunarg{fit.to}. If
+\Rfunarg{apply.to} is not \Rcode{NULL}, the polynomials are evaluated on the spectral range of
+\Rfunarg{apply.to}. Otherwise, the polynomial coefficients are returned.
+
+Subtracting the baseline is up to the user, it is easily done as \chy provides the \Rcode{-} (minus)
+operator.
+
+\subsection{Fitting polynomial baselines using least squares }
+\label{sec:fitt-polyn-basel}
+
+Commonly, baselines are fit using (single) support points that are specified by the user. Also,
+usually $n + 1$ support point is used for a polynomial of order $n$.  This approach is appropriate
+for spectra with high signal to noise ratio.
+
+Such a baseline can be obtained by restricting the spectra in \Rfunarg{fit.to} to the respective
+points (see figure~\ref{fig:classical}):
+<<classical-bl, fig = TRUE, width = 8, height = 4, include = FALSE>>=
+bl <- spc.fit.poly (chondro [c (1, 101),, c (633, 1788)], chondro [c (1, 101)])
+
+plot (chondro [c (1, 101)], plot.args = list (ylim = c(200, 600)), col = 1 : 2)
+plot (chondro [c (1, 101),, c(633, 1788)], add = TRUE, col = 1:2, 
+      lines.args = list (type = "p", pch = 20))
+plot (bl, add = TRUE, col = 1 : 2)
+@
+\begin{figure}[tbh]
+\begin{center}
+  \includegraphics[width=\textwidth]{baseline-fig--classical-bl}
+  \caption{Fitting a linear baseline through two points. If the signal to noise ratio is not ideal,
+    wavelengths that work fine for one spectrum (black) may not be appropriate for another (red).}
+  \label{fig:classical}
+\end{center}
+\end{figure}
+
+However, if the signal to noise ratio is not ideal, a polynomial with $n + 1$ supporting points
+(i.e. with zero degrees of freedom) is subject to a considerable amount of noise.  If on the other
+hand, more data points consisting of baseline only are available, the uncertainty on the polynomial
+can be reduced by a least squares fit.
+
+Both \Rfunction{spc.fit.poly} and \Rfunction{spc.fit.poly.below} therefore provide least squares
+fitting for the polynomial.
+
+\Rfunction{spc.fit.poly} fits to the whole spectral region of \Rfunarg{fit.to}.  Thus, for baseline
+fitting the spectra need to be cut to appropriate wavelength ranges that do not contain any signal.
+
+In order to speed up calculations, the least squares fit is done by using the Vandermonde matrix and
+solving the equation system by \Rfunction{qr.solve}.
+
+This fit is not weighted. A spectral region with many data points therefore has greater influence on
+the resulting baseline than a region with just a few data points. It is up to the user to decide
+whether this should be corrected for by selecting appropriate numbers of data points (e.g. by using
+replicates of the shorter spectral region).
+
+\subsection[The mechanism of automatically fitting the baseline in spc.fit.poly.below]%
+{The mechanism of automatically fitting the baseline in \Rfunction{spc.fit.poly.below}}
+\Rfunction{spc.fit.poly.below} tries to automatically find appropriate spectral regions for baseline
+fitting.  This is done by excluding spectral regions that contain signals from the baseline
+fitting. The idea is that all data points that lie above a fitted polynomial (initially through the
+whole spectrum, then through the remaining parts of the spectrum) will be treated as signal and thus
+be excluded from the baseline fitting.
+
+The supporting points for the baseline polynomials are calculated iteratively:
+\begin{enumerate}
+\item A polynomial of the requested order is fit to the considered spectral range, initially to the
+  whole spectrum given in \Rfunarg{fit.to}
+\item Only the parts of the spectrum that lie below this polynomial plus the \Rcode{noise} are
+  retained as supporting points for the next iteration.
+\end{enumerate}
+These two steps are repeated until either
+\begin{itemize}
+\item no further points are excluded, or
+\item the next polynomial would have less than \Rcode{npts.min} supporting points.
+\end{itemize}
+The baselines and respective supporting points for each iteration of
+\Rcode{spc.fit.poly.below (chondro [1], poly.order = 1)}
+are shown in figure~\ref{fig:iter}.
+
+<<trace, echo = FALSE, results = hide>>=
+trace (spc.fit.poly.below, quote ({
+  plot (fit.to[,, use.old], col = cl, add = TRUE, lines.args = list (pch = 20, type = "p"));
+  lines (fit.to@wavelength, bl, col = cl);
+}), at = 12, print = FALSE)
+@
+<<fig1, fig=TRUE, pdf = TRUE, echo = FALSE, results = hide, eps = FALSE, width = 12, height = 4, include = FALSE>>=
+cols <- matlab.dark.palette (8) 
+
+bl <- chondro [1] + 1
+plot (chondro [1])
+npts <- numeric (length (cols))
+
+for (iter in seq_along (cols)){
+	npts [iter] <- sum (chondro [[1]] < bl [[]])
+	cl <- cols [iter]
+	text (750, max (chondro [1]), paste ("Iter. ", iter, ": ", npts [iter], " support pts.", sep = ""),
+			 pos = 1, col = cols [iter], offset = iter - 1)
+	bl <- spc.fit.poly.below (chondro [1], poly.order = 1, npts.min = npts[iter]  - 1)
+}
+plot (chondro [1], add = TRUE)
+@
+<<fig2, fig=TRUE, pdf = TRUE, echo = FALSE, results = hide, eps = FALSE, width = 12, height = 2.5, include = FALSE>>=
+bl <- chondro [1] + 1
+plot (chondro [1], plot.args = list (ylim = range (chondro [1,, c(600 ~ 650, 1730 ~ 1800)])))
+for (iter in seq_along (cols)){
+	npts <- sum (chondro [[1]] < bl [[]])
+	cl <- cols [iter]
+	bl <- spc.fit.poly.below (chondro [1], poly.order = 1, npts.min = npts - 1)
+}
+plot (chondro [1], add = TRUE)
+@
+\begin{figure}
+\begin{center}
+  \includegraphics[width=\textwidth]{baseline-fig--fig1}
+  \includegraphics[width=\textwidth]{baseline-fig--fig2}
+  \caption{Iterative fitting of the baseline. The dots give the supporting points for the baselines
+    in the same colour.  The lower part is a magnification of the intensity axis.}
+  \label{fig:iter}
+\end{center}
+\end{figure}
+
+
+\subsection{Specifying the spectral range}
+<<trace, echo = FALSE, results = hide>>=
+	trace (spc.fit.poly.below, quote ({ls ();
+	plot (fit.to[,, use.old], col = cl, add = TRUE, lines.args = list (pch = pch, type = "p"), zeroline = NA);
+	}), at = 12, print = FALSE)
+@
+<<figspcrange, fig=TRUE, pdf = TRUE, echo = FALSE, results = hide, eps = FALSE, width = 8, height = 4, include = FALSE>>=
+plot (chondro [3,,1700 ~ 1750], plot.args = list (ylim = range (chondro [3,,1700 ~ 1750]) + c(-50, 0)))
+cl <- "black"
+pch = 1
+bl <- spc.fit.poly.below (chondro [3,,1700 ~ 1750], NULL, poly.order = 1)
+pch = 20
+plot (chondro [3,,1720 ~ 1750], col = "blue", add = TRUE, lines.args = list (lwd = 2))
+abline (bl[[]], col = "black")
+cl <- "blue"
+bl <- spc.fit.poly.below (chondro [3,,1720 ~ 1750], NULL, poly.order = 1)
+abline (bl[[]], col = "blue")
+@
+\begin{figure}
+\begin{center}
+\includegraphics[width = .66\textwidth]{baseline-fig--figspcrange}
+\caption{Influence of \Rcode{fit.to} on the baseline polynomial. The black baseline is fit to the
+  spectral range \rcm{1700 - 1800}, the blue to \rcm{1715 - 1800} only (dots \& circles: supporting
+  points).}
+\label{fig:spectralrange}
+\end{center}
+\end{figure}
+
+It is possible to exclude spectral regions that do not contribute to the baseline from the fitting,
+while the baseline is used for the whole spectrum. This selection of appropriate spectral regions is
+essential for \Rfunction{spc.fit.poly}. But also \Rfunction{spc.fit.poly.below} can benefit from
+narrower spectral ranges: the fitting gains speed. The default value for \Rfunarg{npts.min} depends
+on the number of data points per spectrum. Thus one should also consider requiring more support points than
+the default value suggests.
+<<untrace1, echo = FALSE, results = hide>>=
+untrace (spc.fit.poly.below)
+@ 
+<<fit-apply>>=
+system.time (spc.fit.poly.below (chondro, NULL, npts.min = 20))
+system.time (spc.fit.poly.below (chondro [,, c (min ~ 700, 1700 ~ max)], NULL, npts.min = 20))
+@
+
+The choice of the spectral range in \Rcode{fit.to} influences the resulting baselines to a certain
+extent, as becomes clear from figure~\ref{fig:spectralrange}.
+
+\subsection{Fitting  polynomials of different orders}
+<<trace2, echo = FALSE, results = hide>>=
+	trace (spc.fit.poly.below, quote ({ls ();
+	plot (fit.to[,, use.old], col = cl, add = TRUE, lines.args = list (pch = pch, type = "p"), zeroline = NA);
+	lines (fit.to@wavelength, bl, col = cl);
+	}), at = 12, print = FALSE)
+@
+<<figorder, fig=TRUE, pdf = TRUE, echo = FALSE, results = hide, eps = FALSE, width = 12, height = 4, include = FALSE>>=
+plot (chondro [1], lines.args = list (type = "n"))
+cols <- c ("black", "blue", "#008000", "red")
+for (o in 0 : 3){
+		cl <- cols [o + 1]
+		bl <- spc.fit.poly.below (chondro [1], poly.order = o)
+	}
+	plot (chondro [1], add = TRUE)
+@
+<<untrace2, echo = FALSE, results = hide>>=
+untrace (spc.fit.poly.below)
+@ 
+\begin{figure}
+\begin{center}
+\includegraphics[width=\textwidth]{baseline-fig--figorder}
+\caption{Baseline polynomial fit to the first spectrum of the chondro data set of order 0 (black), 1
+  (blue), 2 (green), and 3 (red). The dots indicate the points used for the fitting of the
+  polynomial.}
+\label{fig:order}
+\end{center}
+\end{figure}
+Figure~\ref{fig:order} shows the resulting baseline polynomial of
+\Rcode{spc.fit.poly.below (chondro [1], poly.order = order)}
+with \Rcode{order} $=$ 0 to 3 for the first spectrum of the chondro data set.
+
+
+\subsection{The noise level}
+<<fig3, fig=TRUE, pdf = TRUE, echo = FALSE, results = hide, eps = FALSE, width = 8, height = 3, include = FALSE>>=
+spc <- new ("hyperSpec", spc = matrix (rnorm (30, mean = 100, sd = 2), ncol = 30))
+noise <- 10
+plot (spc)
+trace (spc.fit.poly.below, quote ({
+					plot (fit.to[,, use.old], col = cl, add = TRUE, lines.args = list (pch = 20, type = "p"), zeroline = NA);
+					lines (fit.to@wavelength, bl, col = cl);
+					lines (fit.to@wavelength, bl + noise, col = cl, lty = 2)
+				}), at = 12, print = FALSE)
+
+cols <- matlab.dark.palette (2)
+
+bl <- spc + 15
+for (iter in seq_along (cols)){
+	npts <- sum (spc [[]] < (bl [[]] + noise))
+	cl <- cols [iter]
+	bl <- spc.fit.poly.below (spc, poly.order = 0, npts.min = npts, noise = noise)
+	text (5, max (spc[]), paste ("Iter. ", iter, ": ", npts, " support pts.", sep = ""),
+			pos = 1, col = cols [iter], offset = iter - 1)
+}
+cl <- "black"
+trace (spc.fit.poly.below, quote ({
+					plot (fit.to[,, use.old], col = cl, add = TRUE, lines.args = list (type = "p"), zeroline = NA);
+					lines (fit.to@wavelength, bl, col = cl);
+				}), at = 12, print = FALSE)
+bl <- spc.fit.poly.below (spc, poly.order = 0)
+@
+<<fig4, fig=TRUE, pdf = TRUE, echo = FALSE, results = hide, eps = FALSE, width = 12, height = 4, include = FALSE>>=
+trace (spc.fit.poly.below, quote ({
+					plot (fit.to[,, use.old], col = cl, add = TRUE, lines.args = list (pch = 20, type = "p"), zeroline = NA);
+					lines (fit.to@wavelength, bl, col = cl);
+					lines (fit.to@wavelength, bl + noise, col = cl, lty = 2)
+				}), at = 12, print = FALSE)
+cols <- matlab.dark.palette (10)
+
+bl <- chondro [1] + 15
+plot (chondro [1])
+for (iter in seq_along (cols)){
+	npts <- sum (chondro [[1]] < bl [[]] + noise)
+	cl <- cols [iter]
+	text (750, max (chondro [1]), paste ("Iter. ", iter, ": ", npts, " support pts.", sep = ""),
+			pos = 1, offset = iter-1, col = cols [iter])
+	bl <- spc.fit.poly.below (chondro [1], poly.order = 1, npts.min = npts - 1, noise = noise)
+}
+plot (chondro [1], add = TRUE)
+@
+<<fig5, fig=TRUE, pdf = TRUE, echo = FALSE, results = hide, eps = FALSE, width = 12, height = 2.5, include = FALSE>>=
+trace (spc.fit.poly.below, quote ({
+					plot (fit.to[,, use.old], col = cl, add = TRUE, lines.args = list (pch = 20, type = "p"));
+					lines (fit.to@wavelength, bl, col = cl);
+					lines (fit.to@wavelength, bl + noise, col = cl, lty = 2)
+				}), at = 12, print = FALSE)
+cols <- matlab.dark.palette (10)
+
+bl <- chondro [1] + 15
+plot (chondro [1], plot.args = list (ylim = range (chondro [1,, c(600 ~ 650, 1730 ~ 1800)])))
+for (iter in seq_along (cols)){
+	npts <- sum (chondro [[1]] < bl [[]] + noise)
+	cl <- cols [iter]
+	cat ("Iteration", iter, ":", npts, "supporting points\n")
+	bl <- spc.fit.poly.below (chondro [1], poly.order = 1, npts.min = npts - 1, noise = noise)
+}
+plot (chondro [1], add = TRUE)
+untrace (spc.fit.poly.below)
+@
+\begin{figure}[t]
+\begin{center}
+  \includegraphics[width=.66\textwidth]{baseline-fig--fig3}
+  \includegraphics[width=\textwidth]{baseline-fig--fig4}
+  \includegraphics[width=\textwidth]{baseline-fig--fig5}
+  \caption{Iterative fitting of the baseline with noise level. Upper part: effects of the noise
+    parameter on the baseline of a spectrum consisting only of noise and offset: without giving
+    \Rcode{noise} the resulting baseline (black) is clearly too low. A noise level of 10 results in
+    the red baseline.  The middle and lower part show the baseline fitting with noise level on the
+    complete spectrum.  Colour: iterations, dots/circles: supporting points for the respective
+    baselines. Dashed: baseline plus noise. All points above this line are excluded from the next
+    iteration.  }
+  \label{fig:noise}
+\end{center}
+\end{figure}
+
+Besides defining a minimal number of supporting points, a ``noise level'' may be given.  Consider a
+spectral range consisting only of noise.  The upper part of figure~\ref{fig:noise} illustrates the
+problem. As the baseline fitting algorithm cannot distinguish between noise and real bands appearing
+above the fitted polynomial, the resulting baseline (black) is too low if the \Rcode{noise} parameter
+is not given.
+
+Setting the noise level to \Sexpr{noise} (2 standard deviations), the fitting converges immediately
+with a much better result.  The resulting baselines for \Rcode{spc.fit.poly.below (chondro [1],
+  poly.order = 1, noise = 12)} of the whole spectrum are shown in the middle and lower part of
+figure~\ref{fig:noise}
+
+\Rcode{noise} may be a single value for all spectra, or a vector with the noise level for each of the
+spectra separately.
+
+\section{Rubberband Method}
+Particularly Raman spectra often show increasing background towards $\Delta\tilde\nu = 0$. In this
+case, polynomial baselines often either need high order or residual background is left in the
+spectra.
+
+In that case, smoothing splines fitted through the supporting points are a good alternative.
+
+For the \Rcode{paracetamol} spectrum (fig.~\ref{fig:rubberband}), a noise level of 300 counts and the
+equivalent of 20 degrees of freedom work well.
+<<>>=
+bl <- spc.rubberband (paracetamol [,, 175 ~ 1800], noise = 300, df = 20)
+@
+
+\begin{figure}[th]
+\subfloat[\Rcode{paracetamol} with the \Rfunction{rubberband} fitted baseline.]{
+<<rubberband-raw, fig = TRUE, width = 6, height = 4, echo = FALSE, results = hide, include=TRUE>>=
+plot (paracetamol [,, 175 ~ 1800])
+plot (bl, add = TRUE, col = 2)
+@
+}%  
+\subfloat[Corrected spectrum.]{
+<<rubberband, fig = TRUE, width = 6, height = 4, echo = FALSE, results = hide, include=TRUE>>=
+plot (paracetamol [,, 175 ~ 1800] - bl)
+@
+}
+  \caption{Rubberband baselines for the paracetamol spectrum.}
+  \label{fig:rubberband}
+\end{figure}
+
+However, there is possibly some background left between 1200 and 1750\,cm\textsuperscript{-1} where
+the original spectrum is slightly concave. This can be corrected by bending the spectrum before
+applying the rubberband correction (fig.~\ref{fig:rubberband-bent}):
+
+<<bent-rubberband>>=
+bend <- 5e4 * wl.eval (paracetamol [,, 175 ~ 1800], function (x) x^2, normalize.wl=normalize01)
+bl <- spc.rubberband (paracetamol [,, 175 ~ 1800] + bend) - bend
+@
+
+
+\begin{figure}[th]
+\subfloat[Bent \Rcode{paracetamol} spectrum and rubberband baseline.]{
+<<rubberband-bent-raw, fig = TRUE, width = 6, height = 4, echo = FALSE, results = hide, include=TRUE>>=
+plot (paracetamol [,, 175 ~ 1800] + bend)
+plot (bl + bend, add = T, col = 2)
+@
+}%  
+\subfloat[Corrected spectrum.]{
+<<rubberband-bent-corrected, fig = TRUE, width = 6, height = 4, echo = FALSE, results = hide, include=TRUE>>=
+plot (paracetamol [,, 175 ~ 1800] - bl)
+@
+}
+  \caption{Rubberband baselines for the paracetamol spectrum after bending.}
+  \label{fig:rubberband-bent}
+\end{figure}
+
+
+\bibliographystyle{unsrtnat}
+\bibliography{baseline-pkg}
+
+\section*{Session Info}
+<<echo = FALSE>>=
+make.bib ("baseline", file = "baseline-pkg.bib")
+print (as.matrix(Sys.info()))
+<<cleanup>>
+@ 
+\end{document}
