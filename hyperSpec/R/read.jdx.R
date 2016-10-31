@@ -118,7 +118,7 @@ read.jdx <- function(filename = stop ("filename is needed"), encoding = "",
   
   hdr <- sub ("^[[:blank:]]*##.*=[[:blank:]]*(.*)[[:blank:]]*$", "\\1", hdr)
   hdr <-   gsub ("^[\"'[:blank:]]*([^\"'[:blank:]].*[^\"'[:blank:]])[\"'[:blank:]]*$", "\\1", hdr)
-  i <- grepl ("^[[:blank:]]*[-]?[.[:digit:]]*[eE]?[-]?[.[:digit:]]*[[:blank:]]*$", hdr)
+  i <- grepl ("^[[:blank:]]*[-+]?[.[:digit:]]*[eE]?[-+]?[.[:digit:]]*[[:blank:]]*$", hdr)
   hdr <- as.list (hdr)
   hdr [i] <- as.numeric (hdr [i])
   names (hdr) <- names
