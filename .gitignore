@@ -1,12 +1,22 @@
 *~
 *.tex
+*.aux
+*.log
+*.rip
+*.bbl
+*.toc
+
 hyperSpec/NAMESPACE
 hyperSpec/data/*.rda
 hyperSpec/R/sysdata.rda
 hyperSpec/vignettes/*.Rnw
 hyperSpec/vignettes/vignettes.defs
 hyperSpec/vignettes/scan.txt.PerkinElmer.R
+hyperSpec/vignettes/fig-3D.png
 hyperSpec/inst/doc/*.pdf
+hyperSpec/inst/doc/vignettes.defs
+hyperSpec/vignettes/rawdata
+hyperSpec/vignettes/strukturhyperspec.pdf
 hyperSpec/man/*.Rd
 Vignettes/*/*.pdf
 Vignettes/*/*.png
@@ -14,6 +24,10 @@ Vignettes/*/vignettes.defs
 Vignettes/chondro/rawdata/
 Vignettes/flu/scan.txt.PerkinElmer.R
 Vignettes/fileio/wdf.Renishaw/WdfAccess
+Vignettes/flu/rawdata/flu*.txt
+Vignettes/plotting/plotting-pkg.bib
+Vignettes/laser/rawdata/
+
 .build.timestamp
 
 # History files
@@ -27,5 +41,5 @@ Vignettes/fileio/wdf.Renishaw/WdfAccess
 *-Ex.R
 
 # RStudio files
-.Rproj.user/
-
+.Rproj.user
+*.Rproj

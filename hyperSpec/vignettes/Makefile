@@ -1,4 +1,4 @@
-all: vignettes.defs baseline.Rnw flu.Rnw introduction.Rnw chondro.pdf
+all: vignettes.defs baseline.Rnw flu.Rnw introduction.Rnw chondro.pdf fileio.pdf
 
 vignettes.defs: ../../Vignettes/vignettes.defs 
 	cp -av $< $@
@@ -12,10 +12,14 @@ baseline.Rnw: ../../Vignettes/baseline/baseline.Rnw
 # chondro
 # for chondro, the vignette is not built as the rawdata is too big for distributing.
 # The .Rnw is a stub and the .pdf is provided in inst/doc
+chondro.pdf: 
+	cd ../inst/doc/ && $(MAKE) chondro.pdf
 
 # fileio
 # for fileio, the vignette is not built as the rawdata is too big for distributing.
 # The .Rnw is a stub and the .pdf is provided in inst/doc
+fileio.pdf: 
+	cd ../inst/doc/ && $(MAKE) fileio.pdf
 
 # flu
 
