@@ -19,10 +19,9 @@ Vignette for the Data Set \Robject{flu} of the R package \Rpackage{hyperSpec} }
 The spectra files are shipped with \phy. This allows reproduction of the whole
 vignette (source code and spectra files are in the package's documentation directory and its \texttt{rawdata} subdirectory).
 
-For reproducing the examples in a live session, the full file names of the 
+For reproducing the examples in a live session, the full file names of the
 spectra can be found with the command:\\
-\texttt{\small\textsl{> Sys.glob (paste (.libPaths (),
-"hyperSpec/doc/rawdata/flu*.txt", sep = "/"))}}. 
+\texttt{\small\textsl{> list.files (system.file("doc", package = "hyperSpec"), pattern = "flu[1-6][.]txt")}}.
 Note that loading the package, and some definitions e.g. of the color palettes are executed in \texttt{vignettes.def}.
 }
 
@@ -116,7 +115,7 @@ plotc (flu, xlim = range (0, flu$c), ylim = range (0, flu$spc))
 
 The actual calibration is a linear model, which can be fitted by the R function \Rfunction{lm}.
 \Rfunction{lm} needs a \emph{formula} that specifies which data columns are dependent and independent
-variables. 
+variables.
 
 The normal calibration plot gives the emission intensity as a function of the concentration, and
 the calibration function thus models $I = f (c)$, i. e.  $I = m c + b$ for a linear calibration.
@@ -162,7 +161,7 @@ If we observe e.g. an intensity of 125 or 400 units, the corresponding concentra
 
 <<pred>>=
 I <- c (125, 400)
-conc <- predict (calibration, newdata = list (spc = as.matrix(I)), interval = "prediction", 
+conc <- predict (calibration, newdata = list (spc = as.matrix(I)), interval = "prediction",
                  level = .99)
 conc
 @
@@ -199,7 +198,7 @@ Or, we can add the respective data to the \chy object. The meaning of the data c
 First, the spectral range of \Robject{flu} is cut to contain the fluorescence emission at 450\,nm only, and the new column is introduced for the original data:
 <<calplot4.1>>=
 flu$type <- "data points"
-@ 
+@
 Next, the calculated confidence intervals are appended:
 <<calplot4.2>>=
 tmp <- new ("hyperSpec", spc = as.matrix(seq (min (flu), max(flu), length.out = 25)),
@@ -214,32 +213,32 @@ flu <- rbind (flu, tmp)
 
 Finally, the resulting object is plotted. Our prediction example is handled by another customized panel function:
 <<calplot4, fig=TRUE, pdf = TRUE, eps = FALSE, width = 6, height = 6>>=
-panel.predict <- function (x, y, ..., 
+panel.predict <- function (x, y, ...,
                  intensity, ci, pred.col = "red", pred.pch = 19, pred.cex = 1) {
    panel.xyplot (x, y, ...)
    mapply (function (i, lwr, upr, ...) {
                  panel.lines (c (lwr, upr), rep (i, 2), ...)
-              }, 
+              },
            intensity, ci [, 2], ci [, 3], MoreArgs = list (col = pred.col))
    panel.xyplot (ci [, 1], intensity, col = pred.col, pch = pred.pch, cex = pred.cex, type = "p")
 }
 
 
 plotc (flu, groups = type, type = c("l", "p"),
-       col = c ("black", "black", "#606060", "#606060"), 
-       pch = c (19, NA, NA, NA), cex = 0.5, 
+       col = c ("black", "black", "#606060", "#606060"),
+       pch = c (19, NA, NA, NA), cex = 0.5,
        lty = c (0, 1, 1, 1),
        panel = panel.predict,
        intensity = I,
        ci = conc,
        pred.cex = 0.5)
-@ 
+@
 
 \section*{Session Info}
 \begin{footnotesize}
 <<echo = FALSE>>=
 <<cleanup>>
-@ 
+@
 \end{footnotesize}
 \end{document}
 
