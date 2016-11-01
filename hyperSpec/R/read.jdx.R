@@ -115,7 +115,7 @@ read.jdx <- function(filename = stop ("filename is needed"), encoding = "",
   }
 
   names <-  .key2names (sub ("^[[:blank:]]*##(.*)=.*$", "\\1", hdr))
-  
+
   hdr <- sub ("^[[:blank:]]*##.*=[[:blank:]]*(.*)[[:blank:]]*$", "\\1", hdr)
   hdr <-   gsub ("^[\"'[:blank:]]*([^\"'[:blank:]].*[^\"'[:blank:]])[\"'[:blank:]]*$", "\\1", hdr)
   i <- grepl ("^[[:blank:]]*[-+]?[.[:digit:]]*[eE]?[-+]?[.[:digit:]]*[[:blank:]]*$", hdr)
@@ -140,7 +140,7 @@ read.jdx <- function(filename = stop ("filename is needed"), encoding = "",
   hdr
 }
 
-.jdx.processhdr <- function (spc, hdr, keys, ..., ytol = hdr$yfactor, NA.symbols){
+.jdx.processhdr <- function (spc, hdr, keys, ..., ytol = abs (hdr$yfactor), NA.symbols){
 
   ## hdr$xfactor and $yfactor applied by individual reading functions
 
@@ -184,12 +184,12 @@ read.jdx <- function(filename = stop ("filename is needed"), encoding = "",
 .jdx.TABULAR.PAC <- function (hdr, data, ..., xtol = hdr$xfactor){
 
   ## regexp for numbers including scientific notation
-  .PATTERN.number <- "[0-9]*[.]?[0-9]*([eE][+-]?[0-9]+)?"
+  .PATTERN.number <- "[-+]?[0-9]*[.]?[0-9]*([eE][-+]?[0-9]+)?"
   
   if (is.null (hdr$firstx))  stop ("##FIRSTX= missing.")
   if (is.null (hdr$lastx))   stop ("##LASTX= missing.")
   if (is.null (hdr$npoints)) stop ("##NPOINTS= missing.")
-  
+
   wl <- seq (hdr$firstx, hdr$lastx, length.out = hdr$npoints)
 
   ## remove starting X
@@ -222,7 +222,7 @@ read.jdx <- function(filename = stop ("filename is needed"), encoding = "",
 }
 
 .jdx.TABULAR.AFFN <- function (hdr, data, ...){
-  #browser ()
+  
   data <- strsplit (data, "[,;[:blank:]]+")
   data <- unlist (data)
   data <- matrix (as.numeric (data), nrow = 2)
