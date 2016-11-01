@@ -535,3 +535,4 @@ Vignettes/fileio/uxd/VCA0106701(1).UXD filter=lfs diff=lfs merge=lfs -text
 Vignettes/fileio/uxd/VCA0106702(1).UXD filter=lfs diff=lfs merge=lfs -text
 Vignettes/fileio/uxd/VCA0106703(1).UXD filter=lfs diff=lfs merge=lfs -text
 *.zip filter=lfs diff=lfs merge=lfs -text
+*.jdx filter=lfs diff=lfs merge=lfs -text
