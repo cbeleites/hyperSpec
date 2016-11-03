@@ -9,6 +9,8 @@ installdev: roxygenize pkg-vignettes
 	R CMD INSTALL hyperSpec --with.keep-source --fake --no-docs --no-build-vignettes
 
 # Code building
+build: roxygenize pkg-vignettes
+	R CMD build hyperSpec
 
 roxygenize: hyperSpec/DESCRIPTION hyperSpec/R/*.R 
 	Rscript --vanilla -e "library (roxygen2); roxygenize ('hyperSpec')" 
@@ -26,7 +28,7 @@ vignettes: baseline chondro flu laser plotting
 
 baseline:
 	cd Vignettes/baseline && $(MAKE)
-	cd hyperSpec/vignettes && $(MAKE) baseline.Rnw
+	cd hyperSpec/vignettes && $(MAKE) -f Makefile-localbaseline.Rnw
 
 # chondro ..........................................................................................
 
@@ -46,32 +48,33 @@ fileio:
 
 flu:
 	cd Vignettes/flu && $(MAKE)
-	cd hyperSpec/vignettes && $(MAKE) flu.Rnw
+	cd hyperSpec/vignettes && $(MAKE) -f Makefile-local flu.Rnw
 
 # introduction .....................................................................................
 
 introduction:
 	cd Vignettes/introduction && $(MAKE)
-	cd hyperSpec/vignettes && $(MAKE) introduction.Rnw
+	cd hyperSpec/vignettes && $(MAKE) -f Makefile-local introduction.Rnw
 
 # laser ............................................................................................
 
 laser:
 	cd Vignettes/laser && $(MAKE)
-	cd hyperSpec/vignettes && $(MAKE) laser.Rnw
+	cd hyperSpec/vignettes && $(MAKE) -f Makefile-local laser.Rnw
 
 # plotting .........................................................................................
 
 plotting:
 	cd Vignettes/plotting && $(MAKE)
-	cd hyperSpec/vignettes && $(MAKE) plotting.Rnw
+	cd hyperSpec/vignettes && $(MAKE) -f Makefile-local plotting.Rnw
 
 # vignettes in package folder ----------------------------------------------------------------------
 
 pkg-vignettes: 
 	cd hyperSpec/inst/doc && $(MAKE) # for fileio.pdf and chondro.pdf
-	cd hyperSpec/vignettes && $(MAKE)
-
+	cd hyperSpec/vignettes && $(MAKE) -f Makefile-local # do not use Makefile here as 
+	                                                    # tools::buildVignettes will attempt to use it.
+	                                                    # (even if .Rbuildignore lists the Makefile!)
 
 # package data --------------------------------------------------------------------------------------
 
