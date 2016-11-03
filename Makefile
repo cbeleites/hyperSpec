@@ -27,59 +27,59 @@ vignettes: baseline chondro flu laser plotting
 # baseline .........................................................................................
 
 baseline:
-	cd Vignettes/baseline && $(MAKE)
-	cd hyperSpec/vignettes && $(MAKE) -f Makefile-localbaseline.Rnw
+	$(MAKE) -C Vignettes/baseline 
+	$(MAKE) -C hyperSpec/vignettes -f Makefile-local baseline.Rnw
 
 # chondro ..........................................................................................
 
 chondro:
-	cd Vignettes/chondro && $(MAKE)
-	cd hyperSpec/inst/doc && $(MAKE) chondro.pdf
+	$(MAKE) -C Vignettes/chondro 
+	$(MAKE) -C hyperSpec/inst/doc  chondro.pdf
 
 #	cd $(dir $<) &&	R CMD Sweave chondro.Rnw --clean --pdf --compact="both" --quiet
 
 # fileio ...........................................................................................
 
 fileio:
-	cd Vignettes/fileio && $(MAKE)
-	cd hyperSpec/inst/doc && $(MAKE) fileio.pdf
+	$(MAKE) -C Vignettes/fileio 
+	$(MAKE) -C hyperSpec/inst/doc  fileio.pdf
 
 # flu ..............................................................................................
 
 flu:
-	cd Vignettes/flu && $(MAKE)
-	cd hyperSpec/vignettes && $(MAKE) -f Makefile-local flu.Rnw
+	$(MAKE) -C Vignettes/flu 
+	$(MAKE) -C hyperSpec/vignettes -f Makefile-local flu.Rnw
 
 # introduction .....................................................................................
 
 introduction:
-	cd Vignettes/introduction && $(MAKE)
-	cd hyperSpec/vignettes && $(MAKE) -f Makefile-local introduction.Rnw
+	$(MAKE) -C Vignettes/introduction 
+	$(MAKE) -C hyperSpec/vignettes -f Makefile-local introduction.Rnw
 
 # laser ............................................................................................
 
 laser:
-	cd Vignettes/laser && $(MAKE)
-	cd hyperSpec/vignettes && $(MAKE) -f Makefile-local laser.Rnw
+	$(MAKE) -C Vignettes/laser 
+	$(MAKE) -C hyperSpec/vignettes -f Makefile-local laser.Rnw
 
 # plotting .........................................................................................
 
 plotting:
-	cd Vignettes/plotting && $(MAKE)
-	cd hyperSpec/vignettes && $(MAKE) -f Makefile-local plotting.Rnw
+	$(MAKE) -C Vignettes/plotting 
+	$(MAKE) -C hyperSpec/vignettes -f Makefile-local plotting.Rnw
 
 # vignettes in package folder ----------------------------------------------------------------------
 
 pkg-vignettes: 
-	cd hyperSpec/inst/doc && $(MAKE) # for fileio.pdf and chondro.pdf
-	cd hyperSpec/vignettes && $(MAKE) -f Makefile-local # do not use Makefile here as 
-	                                                    # tools::buildVignettes will attempt to use it.
-	                                                    # (even if .Rbuildignore lists the Makefile!)
+	$(MAKE) -C hyperSpec/inst/doc  # for fileio.pdf and chondro.pdf
+	$(MAKE) -C hyperSpec/vignettes -f Makefile-local # do not use Makefile here as 
+	                                                 # tools::buildVignettes will attempt to use it.
+	                                                 # (even if .Rbuildignore lists the Makefile!)
 
 # package data --------------------------------------------------------------------------------------
 
 pkg-data:
-	cd hyperSpec/data && $(MAKE)
+	$(MAKE) -C hyperSpec/data 
 
 # Vignette zips -------------------------------------------------------------------------------------
 
