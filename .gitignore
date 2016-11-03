@@ -13,6 +13,9 @@ hyperSpec/vignettes/*.Rnw
 hyperSpec/vignettes/vignettes.defs
 hyperSpec/vignettes/scan.txt.PerkinElmer.R
 hyperSpec/vignettes/fig-3D.png
+hyperSpec/vignettes/introduction.bib
+hyperSpec/vignettes/functions.RData
+hyperSpec/vignettes/rawdata
 hyperSpec/inst/doc/*.pdf
 hyperSpec/inst/doc/vignettes.defs
 hyperSpec/vignettes/rawdata
@@ -27,6 +30,8 @@ Vignettes/fileio/wdf.Renishaw/WdfAccess
 Vignettes/flu/rawdata/flu*.txt
 Vignettes/plotting/plotting-pkg.bib
 Vignettes/laser/rawdata/
+
+hyperSpec_*.tar.gz
 
 .build.timestamp
 
