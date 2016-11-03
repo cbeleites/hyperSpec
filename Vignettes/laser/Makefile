@@ -13,5 +13,5 @@ rawdata:
 	mkdir rawdata
 
 rawdata/laser.txt.gz: 
-	cd ../fileio && $(MAKE) txt.Renishaw/laser.txt.gz
+	$(MAKE) -C ../fileio txt.Renishaw/laser.txt.gz
 	cp ../fileio/txt.Renishaw/laser.txt.gz $@ 

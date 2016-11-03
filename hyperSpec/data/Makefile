@@ -1,22 +1,22 @@
 all: barbiturates.rda paracetamol.rda flu.rda laser.rda 
 
 barbiturates.rda:
-	cd ../../Vignettes/fileio && $(MAKE)
+	$(MAKE) -C ../../Vignettes/fileio 
 	cp ../../Vignettes/fileio/barbiturates.rda $@
 
 paracetamol.rda:
-	cd ../../Vignettes/fileio && $(MAKE)
+	$(MAKE) -C ../../Vignettes/fileio 
 	cp ../../Vignettes/fileio/paracetamol.rda $@
 
 flu.rda:
-	cd ../../Vignettes/flu && $(MAKE)
+	$(MAKE) -C ../../Vignettes/flu 
 	cp ../../Vignettes/flu/flu.rda $@
 
 laser.rda:
-	cd ../../Vignettes/laser && $(MAKE)
+	$(MAKE) -C ../../Vignettes/laser 
 	cp ../../Vignettes/laser/laser.rda $@
 
 # for some reason, internal data needs to be in R/sysdata.rda
 ../R/sysdata.rda:
-	cd ../../Vignettes/chondro && $(MAKE)
+	$(MAKE) -C ../../Vignettes/chondro 
 	cp ../../Vignettes/chondro/chondro-internal.rda $@

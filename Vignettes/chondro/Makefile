@@ -7,7 +7,7 @@ vignettes.defs: ../vignettes.defs
 	cp -av $< $@
 
 rawdata/chondro.txt: ../fileio/txt.Renishaw/chondro.txt | rawdata 
-	cd ../fileio && $(MAKE) txt.Renishaw/chondro.txt
+	$(MAKE) -C ../fileio txt.Renishaw/chondro.txt
 	cp -av $< $@
 
 rawdata:
