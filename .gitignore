@@ -18,6 +18,7 @@ hyperSpec/vignettes/functions.RData
 hyperSpec/vignettes/rawdata
 hyperSpec/inst/doc/*.pdf
 hyperSpec/inst/doc/vignettes.defs
+hyperSpec/inst/doc/rawdata
 hyperSpec/vignettes/rawdata
 hyperSpec/vignettes/strukturhyperspec.pdf
 hyperSpec/man/*.Rd
