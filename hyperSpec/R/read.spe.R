@@ -6,22 +6,43 @@
 # July 2015
 
 
-
+##' Import WinSpec SPE file
+##'
+##' Import function for WinSpec SPE files (file version 2.5). The calibration
+##' data (polynome and calibration data pairs) for x-axis are automatically
+##' read and applied to the spectra. Note that the y-calibration data structure
+##' is not extracted from the file since it is not saved there by WinSpec and is
+##' always empty.
+##'
+##' @param filename Name of the SPE file to read data from
+##' @param xaxis Units of x-axis, e.g. \emph{"file"}, \emph{"px"},
+##' \emph{"nm"}, \emph{"energy"}, \emph{"raman"}, \emph{...}
+##' \code{read.spe} function automatically checks if the x-calibration data are
+##' available and uses them (if possible) to reconstruct the xaxis
+##' in the selected units.
+##' @param acc2avg whether to divide the actual data set by the number of
+##' accumulations, thus transforming \emph{accumulated} spectra to
+##' \emph{averaged} spectra. WinSpec does not do this automatically, so the
+##' spectral intensity is always proportional to the number of accumulations.
+##' The flag \code{@@data$averaged} is automatically set to \code{TRUE}.
+##' @param cts_sec whether to divide the actual data set by the exposure time,
+##' thus going to count per second unit.
+##' @param keys.hdr2data Which metadata from the file header should be saved to
+##' the \code{Data} slot of a newly created hyperSpec object
+##'
+##' @return hyperSpec object
+##'
+##' @rdname read.spe
+##'
+##' @author R. Kiselev, C. Beleites
 ##' @export
-read.spe <- function(filename, xaxis="file",
-                     keys.hdr2data=c("exp_sec", "xCalLaserWl")){
-  # reads the SPE file (first argument) and create a hyperSpec
-  # object out of it.
-  #
-  # Options
-  # -------
-  # filename : file in SPE format, file header version 2.5
-  # xaxis : units of x-axis, e.g. "file", "px", "nm", "energy", "raman", ...
-  #         Function automatically checks if the x-calibration data is
-  #         available and uses it (if possible) to reconstruct the xaxis
-  #         in selected units.
-  # keys.hdr2data : selects which part of the header file should go into the
-  #         "data" slot of a hyperSpec object
+read.spe <- function(filename, xaxis="file", acc2avg=F, cts_sec=F,
+                     keys.hdr2data=c("exposure_sec",
+                                     "LaserWavelen",
+                                     "accumulCount",
+                                     "numFrames",
+                                     "darkSubtracted")){
+
 
   hdr <- read.spe.header(filename)
 
@@ -49,20 +70,20 @@ read.spe <- function(filename, xaxis="file",
     extra_data <- cbind (extra_data, hdr2data)
 
   # Create hyperSpec object
-  hSo <- new("hyperSpec", spc=t(spc), data=extra_data)
+  spc <- new("hyperSpec", spc=t(spc), data=extra_data)
 
   # Modify hyperSpec object
-  hSo@label$spc <- expression("counts")
-  hSo@label$.wavelength <- expression("pixel number")
+  spc@label$spc <- expression("counts")
+  spc@label$.wavelength <- expression("pixel number")
 
   # Check if we should use display units specified in the SPE file
   if (xaxis == "file")
-    xaxis = fixunitname(hdr$xCalDisplayUnit)
+    xaxis = .fixunitname(hdr$xCalDisplayUnit)
 
   # Create a new x-axis, if required
-  xaxis <- fixunitname(xaxis)
+  xaxis <- .fixunitname(xaxis)
   if (xaxis == "px")
-    return(hSo)
+    return(spc)
 
 
   if (! hdr$xCalValid)
@@ -71,28 +92,41 @@ read.spe <- function(filename, xaxis="file",
   # Recreate calibration function
   polyorder <- hdr$xCalPolyOrder
   coeffs <- hdr$xCalPolCoeffs[seq(polyorder + 1)]
-  
-  vM <- vanderMonde(hSo@wavelength, polyorder)
+
+  vM <- vanderMonde(spc@wavelength, polyorder)
 
   # Check if we have laser wavelength
-  if (hdr$xCalLaserWl < 10)
-    hdr$xCalLaserWl <- NULL
+  if (hdr$LaserWavelen < 10)
+    hdr$LaserWavelen <- NULL
 
   # Perform convertion
-  hSo@wavelength <- wlconv(src=fixunitname(hdr$xCalPolyUnit),
+  spc@wavelength <- wlconv(src=.fixunitname(hdr$xCalPolyUnit),
                            dst=xaxis,
                            points=as.numeric(vM %*% coeffs),
-                           laser=hdr$xCalLaserWl)
+                           laser=hdr$LaserWavelen)
 
-  hSo@label$.wavelength = switch(xaxis,
+  spc@label$.wavelength = switch(xaxis,
                                  nm=expression("Wavelength, nm"),
                                  invcm=expression(tilde(nu) / cm^-1),
                                  ev=expression("Energy / eV"),
                                  freq=expression(nu / THz),
                                  raman=expression(Raman~shift / cm^-1))
-  return(hSo)
+  if (acc2avg){
+    spc <- spc / hdr$accumulCount
+    spc@data$averaged <- T
+  }
+  if (cts_sec){
+    spc <- spc / hdr$exposure_sec
+    spc@label$spc <- expression("counts / s")
+  }
+
+  ## consistent file import behaviour across import functions
+  .fileio.optional (spc, filename)
 }
 
+
+##' @describeIn read.spe Read only header of a WinSpec SPE file (version 2.5)
+##' @return hdr list with \code{key=value} pairs
 ##' @export
 read.spe.header <- function(filename){
   # Read the 4100-byte long binary header from the SPE file and parse it
@@ -105,7 +139,7 @@ read.spe.header <- function(filename){
     hwVersion      = readBin(raw.data[1   :2   ], "integer", 1, 2, signed=TRUE ), # uint16
     xDimDet        = readBin(raw.data[7   :8   ], "integer", 1, 2, signed=FALSE), # uint16
     mode           = readBin(raw.data[9   :10  ], "integer", 1, 2, signed=TRUE ), # uint16
-    exp_sec        = readBin(raw.data[11  :14  ], "double",  1, 4),               # float32
+    exposure_sec   = readBin(raw.data[11  :14  ], "double",  1, 4),               # float32
     vChipXDim      = readBin(raw.data[15  :16  ], "integer", 1, 2, signed=TRUE ), # int8
     vChipYDim      = readBin(raw.data[17  :18  ], "integer", 1, 2, signed=TRUE ), # int8
     yDimDet        = readBin(raw.data[19  :20  ], "integer", 1, 2, signed=FALSE), # uint16
@@ -115,7 +149,7 @@ read.spe.header <- function(filename){
     shutterMode    = readBin(raw.data[51  :52  ], "integer", 1, 2, signed=FALSE), # uint16
     specCenterWlNm = readBin(raw.data[73  :76  ], "double",  1, 4),               # float32
     datatype       = readBin(raw.data[109 :110 ], "integer", 1, 2, signed=TRUE ), # int8
-    bgCorrected    = readBin(raw.data[151 :152 ], "integer", 1, 2, signed=FALSE), # int8
+    darkSubtracted = readBin(raw.data[151 :152 ], "integer", 1, 2, signed=FALSE), # int8
     timeLocal      = readBin(raw.data[173 :179 ], "character", 1, 7            ), # char
     timeUTC        = readBin(raw.data[180 :186 ], "character", 1, 7            ), # char
     gain           = readBin(raw.data[199 :200 ], "integer", 1, 2, signed=FALSE), # uint16
@@ -136,7 +170,7 @@ read.spe.header <- function(filename){
     kinWindowSize  = readBin(raw.data[1483:1484], "integer", 1, 2, signed=TRUE ), # int16
     clkSpeed       = readBin(raw.data[1485:1486], "integer", 1, 2, signed=TRUE ), # int16
     computerIface  = readBin(raw.data[1487:1488], "integer", 1, 2, signed=TRUE ), # int16
-    
+
     # X Calibration Structure
     xCalOffset     = readBin(raw.data[3001:3008], "double",  1, 8, signed=TRUE ), # float64
     xCalFactor     = readBin(raw.data[3009:3016], "double",  1, 8, signed=TRUE ), # float64
@@ -149,7 +183,7 @@ read.spe.header <- function(filename){
     xCalPxPos      = readBin(raw.data[3104:3183], "double", 10, 8, signed=TRUE ), # float64
     xCalValues     = readBin(raw.data[3184:3263], "double", 10, 8, signed=TRUE ), # float64
     xCalPolCoeffs  = readBin(raw.data[3264:3311], "double",  6, 8, signed=TRUE ), # float64
-    xCalLaserWl    = readBin(raw.data[3312:3319], "double",  1, 8, signed=TRUE )  # float64
+    LaserWavelen   = readBin(raw.data[3312:3319], "double",  1, 8, signed=TRUE )  # float64
   )
 
   # Convert magic numbers into human-readable unit strings
@@ -162,126 +196,42 @@ read.spe.header <- function(filename){
 }
 
 
+##' @describeIn read.spe Plot the WinSpec SPE file (version 2.5) and show the
+##' calibration points stored inside of it (x-axis calibration)
 ##' @export
-spe.showcalpoints <- function(filename, xaxis="file"){
-  # Open file, make plot and mark position of all peaks stored inside the file
-  # in the x-calibration structure
-  hSo <- read.spe(filename, xaxis)
-  rng <- max(hSo) - min(hSo)
-  ylims <- c(min(hSo), max(hSo) + 0.3*rng)
-  if (dim(hSo@data$spc)[1] > 1)
-    plot(hSo, plot.args=list(ylim=(ylims)), "spcprctl5")
-  else
-    plot(hSo, plot.args=list(ylim=(ylims)))
-  title(basename(filename))
+spe.showcalpoints <- function(filename, xaxis="file", acc2avg=F, cts_sec=F){
+
   hdr <- read.spe.header(filename)
+  xaxis <- .fixunitname(xaxis)
 
   # Check if we should use display units specified in the SPE file
   if (xaxis == "file")
-    xaxis = fixunitname(hdr$xCalDisplayUnit)
+    xaxis <- .fixunitname(hdr$xCalDisplayUnit)
+  if (xaxis == "px"){
+    xaxis <- hdr$xCalPolyUnit
+    warning("Cannot show calibration data in pixels")
+    }
+
+  # Open file, make plot and mark position of all peaks stored inside the file
+  # in the x-calibration structure
+  spc <- read.spe(filename, xaxis, acc2avg, cts_sec)
+  rng <- max(spc) - min(spc)
+  ylims <- c(min(spc), max(spc) + 0.3*rng)
+  if (dim(spc@data$spc)[1] > 1)
+    plot(spc, plot.args=list(ylim=(ylims)), "spcprctl5")
+  else
+    plot(spc, plot.args=list(ylim=(ylims)))
+  title(basename(filename))
+
 
   if (hdr$xCalPointCount == 0){
     warning("No calibration data! Nothing to show")
     return("")
   }
-    
-  markpeak(hSo, wlconv(src=hdr$xCalInputUnit,
-                       dst=fixunitname(xaxis),
+
+  markpeak(spc, wlconv(src=hdr$xCalInputUnit,
+                       dst=.fixunitname(xaxis),
                        points=hdr$xCalValues,
-                       laser=hdr$xCalLaserWl))
+                       laser=hdr$LaserWavelen))
 }
-
-##' @export
-markpeak <- function(hSo, xpos, col="red"){
-  plot(hSo[1,,xpos], add=T, lines.args=list(type="p"), col=col)
-  text(x=xpos, y=hSo[[1,,xpos]], col=col, labels=sprintf("← %.2f", xpos),
-       adj=c(-0.2,0.37), srt=90, cex=0.75)
-}
-
-
-fixunitname <- function(unit){
-  unit <- gsub(" .*$", "", tolower(unit))
-  if (unit %in% c("raman", "stokes", "rel", "rel.", "relative", "rel.cm-1", "rel.cm"))
-    return("raman")
-  if (unit %in% c("invcm", "energy", "wavenumber", "cm-1", "inverted", "cm"))
-    return("invcm")
-  if (unit %in% c("nm", "nanometer", "wavelength"))
-    return("nm")
-  if (unit %in% c("ev", "electronvolt"))
-    return("ev")
-  if (unit %in% c("freq", "frequency", "thz", "terahertz"))
-    return("freq")
-  if (unit %in% c("pixel", "px", "sensor"))
-    return("px")
-  if (unit == "file")
-    return(unit)
-  stop(paste0("'", unit, "': Unknown unit type"))
-}
-
-
-# Some physical constants
-q <- 1.60217656535e-19  # elementary charge
-h <- 6.6260695729e-34   # Planck's constant
-c <- 299792458          # speed of light
-
-nm2raman    <- function(x, laser)  1e7*(1/laser - 1/x)
-nm2invcm    <- function(x, y=NULL) 1e7/x
-nm2ev       <- function(x, y=NULL) 1e9*h*c/(q*x)
-nm2freq     <- function(x, y=NULL) 1e-3*c/x
-
-invcm2raman <- function(x, laser)  1e7/laser - x
-invcm2nm    <- function(x, y=NULL) 1e7/x
-invcm2ev    <- function(x, y=NULL) 100*x*c*h/q
-invcm2freq  <- function(x, y=NULL) nm2freq(invcm2nm(x))
-
-raman2invcm <- function(x, laser)  1e7/laser - x
-raman2nm    <- function(x, laser)  1e7/(1e7/laser - x)
-raman2ev    <- function(x, laser)  100*h*c*(1e7/laser - x)/q
-raman2freq  <- function(x, laser)  nm2freq(raman2nm(x, laser))
-
-ev2raman    <- function(x, laser)  1e7/laser - x*q/(100*h*c)
-ev2invcm    <- function(x, y=NULL) q*x/(100*h*c)
-ev2nm       <- function(x, y=NULL) 1e9*h*c/(q*x)
-ev2freq     <- function(x, y=NULL) nm2freq(ev2nm(x))
-
-freq2nm     <- function(x, y=NULL) 1e-3*c/x
-freq2invcm  <- function(x, y=NULL) nm2invcm(freq2nm(x))
-freq2ev     <- function(x, y=NULL) nm2ev(freq2nm(x))
-freq2raman  <- function(x, laser)  nm2raman(freq2nm(x), laser)
-
-
-##' @export
-wlconv <- function(src, dst, points, laser=NULL){
-  # Convert between nm, cm-1, eV and Raman shift in arbitrary direction
-  # 'laser' is the excitation laser wavelength in nm.
-  # Calibration is applied as well
-  SRC <- fixunitname(src)
-  DST <- fixunitname(dst)
-
-  if (SRC == DST)
-    return(points)
-
-  if ((SRC == "raman" | DST == "raman") & is.null(laser))
-    stop("Work with Raman shift requires knowledge of laser wavelength")
-
-  f <- paste0(SRC, "2", DST)
-  f <- get(f)
-  return(f(points, laser))
-}
-
-
-
-
-
-
-
-
-
-
-
-
-# HeNe_lines <- c(783.9055, 794.3181, 808.2458, 830.0326, 841.8427, 859.1259, 891.9501,
-#       914.8670, 920.1760, 937.3310, 948.6680, 966.5420, 1029.5420, 1056.2410, 1079.807)
-
-
 

@@ -1,8 +1,8 @@
 ####################################################################################################
 ###
-###  read.ENVI - read ENVI files, missing header files may be replaced by list in parameter header 
+###  read.ENVI - read ENVI files, missing header files may be replaced by list in parameter header
 ###
-###  * read.ENVI.Nicolet for ENVI files written by Nicolet spectrometers 
+###  * read.ENVI.Nicolet for ENVI files written by Nicolet spectrometers
 ###  * adapted from caTools read.ENVI
 ###
 ###  Time-stamp: <Claudia Beleites on Saturday, 2011-02-05 at 19:19:00 on cb>
@@ -41,23 +41,28 @@ split.line <- function (x, separator, trim.blank = TRUE) {
 
 .find.ENVI.header  <- function (file, headerfilename) {
   if (is.null (headerfilename)) {
-    headerfilename <- paste (dirname (file), sub ("[.][^.]+$", ".*", basename (file)), sep = "/")
+    headerfilename <- paste (dirname (file),
+    												 sub ("[.][^.]+$", ".*", basename (file)), sep = "/")
+
     tmp <- Sys.glob (headerfilename)
+
     headerfilename <- tmp [! grepl (file, tmp)]
 
-    if (length (headerfilename) > 1) {
-      headerfilename <- headerfilename [grepl ("[.][hH][dD][rR]$", headerfilename)]
-      if (length (headerfilename == 1))
+    if (length (headerfilename) > 1L) {
+
+    	headerfilename <- headerfilename [grepl ("[.][hH][dD][rR]$", headerfilename)]
+
+    	if (length (headerfilename == 1L))
         message (".read.ENVI.header: Guessing header file name ", headerfilename)
     }
-    
-    if (length (headerfilename) != 1)
+
+    if (length (headerfilename) != 1L)
       stop ("Cannot guess header file name")
     else
       message (".read.ENVI.header: Guessing header file name ", headerfilename)
   }
-    
-  if (!file.exists(headerfilename)) 
+
+  if (!file.exists(headerfilename))
     stop("Could not open header file: ", headerfilename)
 
   headerfilename
@@ -66,37 +71,38 @@ split.line <- function (x, separator, trim.blank = TRUE) {
 # ...................................................................................................
 
 .read.ENVI.split.header <- function (header) {
+
   ## check ENVI at beginning of file
-  if (!grepl("ENVI", header[1])) 
-    stop("Not an ENVI header (ENVI keyword missing)")
+  if (!grepl ("ENVI", header[1]))
+    stop ("Not an ENVI header (ENVI keyword missing)")
   else
     header <- header [-1]
 
   ## remove curly braces and put multi-line key-value-pairs into one line
-  header <- gsub("\\{([^}]*)\\}", "\\1", header)
+  header <- gsub ("\\{([^}]*)\\}", "\\1", header)
 
-  l <- grep("\\{", header)
-  r <- grep("\\}", header)
-  
-  if (length(l) != length(r)) 
-    stop("Error matching curly braces in header (differing numbers).")
+  l <- grep ("\\{", header)
+  r <- grep ("\\}", header)
 
-  if (any(r <= l)) 
-    stop("Mismatch of curly braces in header.")
+  if (length (l) != length(r))
+    stop ("Error matching curly braces in header (differing numbers).")
 
-  header[l] <- sub("\\{", "", header[l])
-  header[r] <- sub("\\}", "", header[r])
+  if (any (r <= l))
+    stop ("Mismatch of curly braces in header.")
 
-  for (i in rev(seq_along(l))) 
-    header <- c(header[seq_len(l[i] - 1)],
-                paste(header[l[i]:r[i]], collapse = " "),
-                header[-seq_len(r[i])])
+  header[l] <- sub ("\\{", "", header[l])
+  header[r] <- sub ("\\}", "", header[r])
+
+  for (i in rev (seq_along (l)))
+    header <- c (header [seq_len (l [i] - 1)],
+                paste (header [l [i] : r [i]], collapse = " "),
+                header [-seq_len (r [i])])
 
   ## split key = value constructs into list with keys as names
   header <- sapply (header, split.line, "=", USE.NAMES = FALSE)
   names (header) <- tolower (names (header))
 
-  ## some values are numeric
+  ## process numeric values
   tmp <- names (header) %in% c("samples", "lines", "bands", "data type", "header offset")
   header [tmp] <- lapply (header [tmp], as.numeric)
 
@@ -106,26 +112,28 @@ split.line <- function (x, separator, trim.blank = TRUE) {
 ### .................................................................................................
 
 .read.ENVI.bin <- function (file, header) {
-  if (any (is.null (header [c("samples", "lines", "bands", "data type")]) ||
-           is.na   (header [c("samples", "lines", "bands", "data type")]) ))
+
+  if (any (is.null (header [c ("samples", "lines", "bands", "data type")]) ||
+           is.na   (header [c ("samples", "lines", "bands", "data type")]) ))
     stop("Error in ENVI header (required entry missing or incorrect)\n header: ",
          paste (names (header), " = ", header, collapse = ", "))
 
   if (header$samples <= 0)
-    stop("Error in ENVI header: incorrect data size (", header$samples, ")")
+    stop ("Error in ENVI header: incorrect data size (", header$samples, ")")
   if (header$lines <= 0)
-    stop("Error in ENVI header: incorrect data size (", header$lines, ")")
+    stop ("Error in ENVI header: incorrect data size (", header$lines, ")")
   if (header$bands <= 0)
-    stop("Error in ENVI header: incorrect data size (", header$bands, ")")
-  
-  if (!(header$`data type` %in% c(1 : 5, 9, 12))) 
-    stop("Error in ENVI header: data type incorrect or unsupported (", header$`data type`,")")
+    stop ("Error in ENVI header: incorrect data size (", header$bands, ")")
+
+  if (!(header$`data type` %in% c (1 : 5, 9, 12)))
+    stop ("Error in ENVI header: data type incorrect or unsupported (", header$`data type`,")")
 
   if (is.null (header$`byte order`)){
     header$`byte order` <- .Platform$endian
     message (".read.ENVI.bin: 'byte order' not given => Guessing '",
              .Platform$endian, "'\n", sep = '')
   }
+
   if (! header$`byte order` %in% c ("big", "little", "swap")) {
     header$`byte order` <- as.numeric (header$`byte order`)
     if (! header$`byte order` %in% 0 : 1) {
@@ -133,55 +141,55 @@ split.line <- function (x, separator, trim.blank = TRUE) {
       warning ("byte order incorrect. Guessing '", .Platform$endian, "'")
     } else if (header$`byte order` == 0)
       header$`byte order` <- "little"
-    else 
+    else
       header$`byte order` <- "big"
   }
 
   n <- header$samples * header$lines * header$bands
 
-  if (!file.exists(file)) 
-    stop("Could not open binary file: ", file)
+  if (!file.exists (file))
+    stop("Binary file not found: ", file)
 
   f <- file (file, "rb")
-  if (! is.null (header$`header offset`)) 
-    readBin(f, raw(), n = header$`header offset`)
-  
+  if (! is.null (header$`header offset`))
+    readBin (f, raw(), n = header$`header offset`)
+
   switch(header$`data type`,
-         spc <- readBin(f, integer(), n = n, size =  1, signed = FALSE),
-         spc <- readBin(f, integer(), n = n, size =  2, endian = header$`byte order`),
-         spc <- readBin(f, integer(), n = n, size =  4, endian = header$`byte order`),
-         spc <- readBin(f, double(),  n = n, size =  4, endian = header$`byte order`),
-         spc <- readBin(f, double(),  n = n, size =  8, endian = header$`byte order`),
+         spc <- readBin(f, integer (), n = n, size =  1, signed = FALSE),
+         spc <- readBin(f, integer (), n = n, size =  2, endian = header$`byte order`),
+         spc <- readBin(f, integer (), n = n, size =  4, endian = header$`byte order`),
+         spc <- readBin(f, double (),  n = n, size =  4, endian = header$`byte order`),
+         spc <- readBin(f, double (),  n = n, size =  8, endian = header$`byte order`),
          , # 6 unused
          , # 7 unused
          , # 8 unused
-         spc <- readBin(f, complex(), n = n, size = 16, endian = header$`byte order`),
+         spc <- readBin (f, complex(), n = n, size = 16, endian = header$`byte order`),
          , # 10 unused
          , # 11 unused
-         spc <- readBin(f, integer(), n = n, size =  2, endian = header$`byte order`, signed = FALSE)
+         spc <- readBin (f, integer(), n = n, size =  2, endian = header$`byte order`, signed = FALSE)
          )
-  
+
   close(f)
 
   if (is.null (header$interleave))
-    header$interleave <- "bsq"    # de
-  
+    header$interleave <- "bsq"
+
   switch (tolower (header$interleave),
           bil = {
-            dim (spc) <- c(header$samples, header$bands, header$lines);
-            spc <- aperm(spc, c(3, 1, 2))
+            dim (spc) <- c (header$samples, header$bands, header$lines);
+            spc <- aperm (spc, c(3, 1, 2))
           },
           bip = {
-            dim (spc) <- c(header$bands, header$samples, header$lines);
-            spc <- aperm(spc, c(3, 2, 1))
+            dim (spc) <- c (header$bands, header$samples, header$lines);
+            spc <- aperm (spc, c(3, 2, 1))
           },
           bsq = {
-            dim (spc) <- c(header$samples, header$lines, header$bands);
-            spc <- aperm(spc, c(2, 1, 3))
+            dim (spc) <- c (header$samples, header$lines, header$bands);
+            spc <- aperm (spc, c(2, 1, 3))
           },
           stop ("Unknown interleave (",
                 header$interleave,
-                ", should be one of 'bsq', 'bil', 'bip')")
+                ", should be one of 'BSQ', 'BIL', 'BIP')")
           )
 
   dim (spc) <- c (header$samples * header$lines, header$bands)
@@ -193,25 +201,28 @@ split.line <- function (x, separator, trim.blank = TRUE) {
 
 
 
-##' Import of ENVI data as hyperSpec object
+##' @title Import of ENVI data as hyperSpec object
+##'
+##' @description
 ##' This function allows ENVI data import as \code{hyperSpec} object.
-##' 
+##'
 ##' \code{read.ENVI.Nicolet} should be a good starting point for writing custom
 ##' wrappers for \code{read.ENVI} that take into account your manufacturer's
 ##' special entries in the header file.
-##' 
+##'
+##' @details
 ##' ENVI data usually consists of two files, an ASCII header and a binary data
 ##' file. The header contains all information necessary for correctly reading
 ##' the binary file.
-##' 
+##'
 ##' I experienced missing header files (or rather: header files without any
 ##' contents) produced by Bruker Opus' ENVI export.
-##' 
+##'
 ##' In this case the necessary information can be given as a list in parameter
 ##' \code{header} instead. The elements of header are then:
-##' 
+##'
 ##' \tabular{lll}{
-##' \code{header\$}         \tab values        \tab meaning\cr
+##' \code{header$}          \tab values        \tab meaning\cr
 ##' \code{samples}          \tab integer       \tab no of columns / spectra in x direction\cr
 ##' \code{lines}            \tab integer       \tab no of lines / spectra in y direction\cr
 ##' \code{bands}            \tab integer       \tab no of wavelengths / data points per spectrum\cr
@@ -232,18 +243,19 @@ split.line <- function (x, separator, trim.blank = TRUE) {
 ##'                         \tab 1 or "big"    \tab big endian \cr
 ##'                         \tab "swap"        \tab swap byte order
 ##' }
-##' 
+##'
 ##' Some more information that is not provided by the ENVI files may be given:
-##' 
+##'
 ##' Wavelength axis and axis labels in the respective parameters. For more
 ##' information, see \code{\link[hyperSpec]{initialize}}.
-##' 
+##'
 ##' The spatial information is by default a sequence from 0 to
 ##' \code{header$samples - 1} and \code{header$lines - 1}, respectively.
 ##' \code{x} and \code{y} give offset of the first spectrum and step size.
-##' 
+##'
 ##' Thus, the object's \code{$x} colum is: \code{(0 : header$samples - 1) * x
 ##' [2] + x [1]}.  The \code{$y} colum is calculated analogously.
+##'
 ##' @aliases read.ENVI read.ENVI.Nicolet
 ##' @param file complete name of the binary file
 ##' @param headerfile name of the ASCII header file. If \code{NULL}, the name
@@ -255,28 +267,27 @@ split.line <- function (x, separator, trim.blank = TRUE) {
 ##' @param wavelength,label lists that overwrite the respective information
 ##'   from the ENVI header file. These data is then handed to
 ##'   \code{\link[hyperSpec]{initialize}}
-##' @param keys.hdr2data determines which fields of the header file should be put into the extra
-##' data. Defaults to none.
-##' 
+##' @param keys.hdr2data determines which fields of the header file should be
+##'   put into the extra data. Defaults to none.
+##'
 ##' To specify certain entries, give character vectors containing the lowercase
 ##'   names of the header file entries.
 ##' @return a \code{hyperSpec} object
 ##' @author C. Beleites, testing for the Nicolet files C. Dicko
 ##' @seealso \code{\link[caTools]{read.ENVI}}
-##' 
+##'
 ##' \code{\link[hyperSpec]{textio}}
 ##' @references This function was adapted from
 ##'   \code{\link[caTools]{read.ENVI}}:
-##' 
+##'
 ##' Jarek Tuszynski (2008). caTools: Tools: moving window statistics, GIF,
 ##'   Base64, ROC AUC, etc.. R package version 1.9.
-##' @rdname readENVI
 ##' @export
 ##' @keywords IO file
-read.ENVI <- function (file = stop ("read.ENVI: file name needed"), headerfile = NULL, 
-							  header = list (), 
-							  keys.hdr2data = FALSE, 
-							  x = 0 : 1, y = x, 
+read.ENVI <- function (file = stop ("read.ENVI: file name needed"), headerfile = NULL,
+							  header = list (),
+							  keys.hdr2data = FALSE,
+							  x = 0 : 1, y = x,
 							  wavelength = NULL, label = list ()) {
   force (y)
 
@@ -288,17 +299,13 @@ read.ENVI <- function (file = stop ("read.ENVI: file name needed"), headerfile =
       stop ("header must be a list of parameters. Did you mean headerfile instead?")
     else
       stop ("header must be a list of parameters.")
-				
+
   if (is.null (headerfile))
   	headerfile <- .find.ENVI.header (file, headerfile)
-  
+
   tmp <- readLines (headerfile)
   tmp <- .read.ENVI.split.header (tmp)
-  header <- modifyList (tmp, header)  
-
-  ## _no_ capital letters here: .read.ENVI.split.header produces lowercase names
-  recognized.keywords <- c("samples", "lines", "bands", "data type", "header offset", 
-                           "interleave", "byte order", "wavelength")
+  header <- modifyList (tmp, header)
 
   ## read the binary file
   spc <- .read.ENVI.bin (file, header)
@@ -309,29 +316,29 @@ read.ENVI <- function (file = stop ("read.ENVI: file name needed"), headerfile =
 
     if (! any (is.na (header$wavelength)) && is.null (wavelength))
       wavelength <- header$wavelength
-  } 
-  
+  }
+
   ## set up spatial coordinates
   x <- rep (seq (0, header$samples - 1), each = header$lines)   * x [2] + x [1]
   y <- rep (seq (0, header$lines   - 1),        header$samples) * y [2] + y [1]
-  
-  ## header lines => extra data columns 
+
+  ## header lines => extra data columns
   extra.data <- header [keys.hdr2data]
 
   if (.options$gc) gc ()
-  
+
   if (length (extra.data) > 0) {
 	  extra.data <- lapply (extra.data, rep, length.out = length (x))
 	  data <- data.frame (x = x, y = y, extra.data)
   } else {
 	  data <- data.frame (x = x, y = y)
   }
-  
+
   if (.options$gc) gc ()
 
   ## finally put together the hyperSpec object
   spc <- new ("hyperSpec", data = data, spc = spc, wavelength = wavelength, labels = label)
-  
+
   ## consistent file import behaviour across import functions
   .fileio.optional (spc, file)
 }

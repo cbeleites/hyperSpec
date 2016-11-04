@@ -4,8 +4,6 @@
 ##'
 ##' @title Import Horiba Labspec exported ASCII files
 ##' @param file connection (file name and path) to the .txt file
-##' @param remove.zerospc LabRAM saves spectra consisting of zeros only if e.g. a map was
-##' aborted. The default is to remove these spectra.
 ##' @param cols,header,sep,row.names,check.names,... further parameters are handed over to \code{\link[hyperSpec]{read.txt.wide}}
 ##' @rdname read.txt.Horiba
 ##' @author C. Beleites
@@ -14,15 +12,14 @@
 read.txt.Horiba <- function (file, cols = c (spc = "I / a.u.",
                                              .wavelength = expression (Delta*tilde(nu) / cm^-1)),
                              header = TRUE, sep = "\t", row.names = NULL,
-                             check.names = FALSE, ..., remove.zerospc = TRUE){
+                             check.names = FALSE, ...){
   spc <- read.txt.wide (file, cols = cols,
                        header = header, sep = sep, row.names = row.names,
                        check.names = check.names, ...)
-  
-  if (remove.zerospc) {
-    spc <- spc [rowSums (abs (spc) > .Machine$double.eps^0.5) > 0]
-  }
 
+  ## consistent file import behaviour across import functions
+  ## is already provided by read.txt.wide
+  
   spc
 }
 

@@ -6,25 +6,25 @@ vignettes.defs: ../../Vignettes/vignettes.defs
 # baseline
 
 baseline.Rnw: ../../Vignettes/baseline/baseline.Rnw
-	cd ../../Vignettes/baseline && $(MAKE)
+#	$(MAKE) -C ../../Vignettes/baseline 
 	cp -av $< $@
 
 # chondro
 # for chondro, the vignette is not built as the rawdata is too big for distributing.
 # The .Rnw is a stub and the .pdf is provided in inst/doc
 chondro.pdf: 
-	cd ../inst/doc/ && $(MAKE) chondro.pdf
+	$(MAKE) -C ../inst/doc/  chondro.pdf
 
 # fileio
 # for fileio, the vignette is not built as the rawdata is too big for distributing.
 # The .Rnw is a stub and the .pdf is provided in inst/doc
 fileio.pdf: 
-	cd ../inst/doc/ && $(MAKE) fileio.pdf
+	$(MAKE) -C ../inst/doc/  fileio.pdf
 
 # flu
 
 flu.Rnw:  ../../Vignettes/flu/flu.Rnw scan.txt.PerkinElmer.R fludata | rawdata 
-	cd ../../Vignettes/flu && $(MAKE)
+#	$(MAKE) -C ../../Vignettes/flu 
 	cp -av $< $@
 
 scan.txt.PerkinElmer.R: ../../Vignettes/fileio/scan.txt.PerkinElmer.R
@@ -38,23 +38,24 @@ rawdata:
 
 # introduction
 
-introduction.Rnw: ../../Vignettes/introduction/introduction.Rnw ../../Vignettes/introduction/strukturhyperspec.pdf
-	cd ../../Vignettes/introduction && $(MAKE)
+introduction.Rnw: ../../Vignettes/introduction/introduction.Rnw ../../Vignettes/introduction/strukturhyperspec.pdf \
+                  ../../Vignettes/introduction/functions.RData ../../Vignettes/introduction/introduction.bib
+#	$(MAKE) -C ../../Vignettes/introduction 
 	cp -av $^ ./
 
 # laser
 
 laser.Rnw: ../../Vignettes/laser/laser.Rnw rawdata/laser.txt.gz 
-	cd ../../Vignettes/laser && $(MAKE)
+#	$(MAKE) -C ../../Vignettes/laser 
 	cp -av $< $@
 
 rawdata/laser.txt.gz: ../../Vignettes/fileio/txt.Renishaw/laser.txt.gz | rawdata
-	cd ../../Vignettes/fileio && $(MAKE) txt.Renishaw/laser.txt.gz
+#	$(MAKE) -C ../../Vignettes/fileio  txt.Renishaw/laser.txt.gz
 	cp $< $@ 
 
 # plotting
 
 plotting.Rnw: ../../Vignettes/plotting/plotting.Rnw 
-	cd ../../Vignettes/plotting && $(MAKE)
+#	$(MAKE) -C ../../Vignettes/plotting 
 	cp -av $^ ./
 

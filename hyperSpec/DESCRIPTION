@@ -2,8 +2,8 @@ Package: hyperSpec
 Type: Package
 Title: Work with Hyperspectral Data, i.e. Spectra + Meta Information (Spatial,
     Time, Concentration, ...)
-Version: 0.98-20150805
-Date: 2015-08-05
+Version: 0.98-20161104
+Date: 2016-11-04
 Author: Claudia Beleites
 Maintainer: Claudia Beleites <chemometrie@beleites.de>
 Description: Comfortable ways to work with hyperspectral data sets.
@@ -86,6 +86,7 @@ Collate:
     'map.identify.R'
     'map.sel.poly.R'
     'mark.dendrogram.R'
+    'mark.peak.R'
     'matlab.palette.R'
     'mean_sd.R'
     'merge.R'
