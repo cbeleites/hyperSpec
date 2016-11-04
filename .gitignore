@@ -1,9 +1,13 @@
 *~
+\#*\#
+.\#*
+
 *.tex
 *.aux
 *.log
 *.rip
 *.bbl
+*.blg
 *.toc
 
 hyperSpec/NAMESPACE
@@ -30,7 +34,7 @@ Vignettes/flu/scan.txt.PerkinElmer.R
 Vignettes/fileio/wdf.Renishaw/WdfAccess
 Vignettes/flu/rawdata/flu*.txt
 Vignettes/plotting/plotting-pkg.bib
-Vignettes/laser/rawdata/
+Vignettes/laser/rawdata/*
 
 hyperSpec_*.tar.gz
 
