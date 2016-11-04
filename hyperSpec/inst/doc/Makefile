@@ -1,4 +1,4 @@
-all: vignettes.defs fileio.pdf chondro.pdf 
+all: vignettes.defs fileio.pdf chondro.pdf fludata laserdata
 
 vignettes.defs: ../../../Vignettes/vignettes.defs
 	cp -av $< $@
@@ -11,3 +11,11 @@ fileio.pdf:
 	$(MAKE) -C ../../../Vignettes/fileio fileio.pdf
 	cp -av ../../../Vignettes/fileio/fileio.pdf $@
 
+fludata: ../../../Vignettes/flu/rawdata | rawdata
+	cp -av $^ rawdata/
+
+laserdata: ../../../Vignettes/fileio/txt.Renishaw/laser.txt.gz | rawdata
+	cp $< $@ 
+
+rawdata:
+	mkdir $@
