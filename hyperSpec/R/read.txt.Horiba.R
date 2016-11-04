@@ -13,9 +13,14 @@ read.txt.Horiba <- function (file, cols = c (spc = "I / a.u.",
                                              .wavelength = expression (Delta*tilde(nu) / cm^-1)),
                              header = TRUE, sep = "\t", row.names = NULL,
                              check.names = FALSE, ...){
-  read.txt.wide (file, cols = cols,
-  							 header = header, sep = sep, row.names = row.names,
-  							 check.names = check.names, ...)
+  spc <- read.txt.wide (file, cols = cols,
+                       header = header, sep = sep, row.names = row.names,
+                       check.names = check.names, ...)
+
+  ## consistent file import behaviour across import functions
+  ## is already provided by read.txt.wide
+  
+  spc
 }
 
 ##' @rdname read.txt.Horiba
@@ -33,7 +38,7 @@ read.txt.Horiba.xy <- function (file, ...){
 ##' @rdname read.txt.Horiba
 ##' @export
 read.txt.Horiba.t <- function (file, header = TRUE, sep = "\t", row.names = NULL,
-                                 check.names = FALSE, ...){
+                                 check.names = FALSE, ..., remove.zerospc = TRUE){
   read.txt.Horiba (file,
                    cols = c (t = "t / s",
                              spc = "I / a.u.",
