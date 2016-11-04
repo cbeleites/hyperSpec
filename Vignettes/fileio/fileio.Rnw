@@ -13,7 +13,7 @@
  pdfkeywords={hyperSpec, data format, file, import, export}}
 
 % \VignetteIndexEntry{fileio: Import and Export of Spectra into R/hyperSpec}
-% \VignetteKeywords{hyperSpec, import, export}
+% \VignetteKeywords{hyperSpec, import, export, .spc, ENVI, ASCII}
 % \VignettePackage{hyperSpec}
 
 \begin{document}
@@ -362,7 +362,7 @@ file <- file [! grepl ("^[[:space:]]+$", file)]
 colnames <- file [1]
 colnames <- gsub ("[[:space:]][[:space:]]+", "\t",  file [1])
 colnames <- strsplit (colnames, "\t")[[1]]
-if (colnames != c ("Intensity", "Wavelength (&Aring;)", "Spectrum", "Ref. "))
+if (! all (colnames == c ("Intensity", "Wavelength (&Aring;)", "Spectrum", "Ref. ")))
   stop ("file format changed!")
 
 tablestart <- grep ("^[[:blank:]]*[[:alpha:]]+$", file) + 1
@@ -538,6 +538,28 @@ the old file format that was used before 1996. In addition, no test data with \e
 available --- thus the import of such files could not be tested. If you come across such files,
 please contact the package maintainer (\mailme).
 
+Here are some tests using Thermo Galactic's example files:
+<<read.spc>>=
+## old format files stop with an error:
+old <- paste ("spc", c ('CONTOUR.SPC', 'DEMO 3D.SPC', 'LC DIODE ARRAY.SPC'), sep = "/")
+for (f in old)
+  try (read.spc (f))
+
+## all other files should be good for import
+other <- setdiff (Sys.glob ("spc/*.[sS][pP][cC]"), old)
+for (f in other){
+  spc <- read.spc (f)
+
+  if (is (spc, "hyperSpec"))
+    cat (f, ": ", nrow (spc), " spectrum(a), ", nwl (spc), " data pts / spc.\n", sep = "")
+  else
+    cat (f, ": list of ", length (spc), " spectra, ", 
+         paste (range (sapply (spc, nwl)), collapse = " - "), 
+         " data pts / spc\n", sep = "")
+}
+@
+
+
 The header and subheader blocks of spc files store additional information of pre-defined types (see
 the file format specification\cite{Galactic1997}). Further information can be stored in the so-called
 log block at the end of the file, and should be in a key-value format (although even the official
@@ -564,6 +586,9 @@ read.spc ("spc.Kaisermap/ebroAVII.spc", keys.hdr2data = TRUE)
 read.spc ("spc.Kaisermap/ebroAVII.spc", keys.log2data = TRUE)
 @ 
 
+<<test-hdr2data, echo=FALSE>>=
+read.spc ("spc/BARBITUATES.SPC", keys.hdr2data = TRUE)
+@ 
 
 
 .spc files may contain multiple spectra that do \emph{not} share a common wavelength axis. In this
@@ -583,6 +608,10 @@ barbiturates [[1:10, , 25 ~ 30]]
 \paragraph{Unit Tests}
 <<spc-tests, echo = FALSE>>=
 tests <- test_file_keep ("test-read.spc.R", reporter, tests)
+@
+<<Horiba-spc, echo=FALSE, results=hide>>=
+read.spc("spc.LabRam/LabRam-1.spc")
+read.spc("spc.LabRam/LabRam-2.spc")
 @
 
 \paragraph{Deriving manufacturer specific import filters.}
@@ -849,22 +878,15 @@ time series (\Rfunction{read.txt.Horiba.t}) are provided.
 
 <<testHoriba, echo=FALSE, results=hide>>=
 spc <- read.txt.Horiba.xy ("txt.HoribaJobinYvon/map.txt")
-if (any (dim (spc) != c (141, 3, 616)) || 
+if (any (dim (spc) != c (141, 4, 616)) || 
     any (abs (spc) < .Machine$double.eps^.5) ||
     is.null (spc$x) || any (is.na (spc$x)) || 
     is.null (spc$y) || any (is.na (spc$y)) ||
     length (setdiff (wl (spc), 1 : 616)) == 0L)
   stop ("error in testing read.txt.Horiba.xy. Please contact ", maintainer ("hyperSpec"))
 
-spc <- read.txt.Horiba.xy ("txt.HoribaJobinYvon/map.txt", remove.zerospc = FALSE)
-if (any (dim (spc) != c (398, 3, 616)) || 
-    is.null (spc$x) || any (is.na (spc$x)) || 
-    is.null (spc$y) || any (is.na (spc$y)) ||
-    length (setdiff (wl (spc), 1 : 616)) == 0L)
-  stop ("error in testing read.txt.Horiba.xy. Please contact ", maintainer ("hyperSpec"))
-
 spc <- read.txt.Horiba.t ("txt.HoribaJobinYvon/ts.txt", remove.zerospc = FALSE)
-if (any (dim (spc) != c (100, 2, 1024)) || 
+if (any (dim (spc) != c (100, 3, 1024)) || 
     is.null (spc$t) || any (is.na (spc$t)) ||
     length (setdiff (wl (spc), 1 : 1024)) == 0L)
   stop ("error in testing read.txt.Horiba.xy. Please contact ", maintainer ("hyperSpec"))

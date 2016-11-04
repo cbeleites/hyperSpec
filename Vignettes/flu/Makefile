@@ -16,7 +16,7 @@ fludata: $(FLU) | rawdata
 
 
 $(FLU):
-	cd ../fileio/ && $(MAKE) txt.PerkinElmer/$(notdir $@)
+	$(MAKE) -C ../fileio txt.PerkinElmer/$(notdir $@)
 	cp -av ../fileio/txt.PerkinElmer/$(notdir $@) $@
 
 rawdata:
