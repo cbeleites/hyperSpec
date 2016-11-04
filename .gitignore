@@ -37,6 +37,7 @@ Vignettes/plotting/plotting-pkg.bib
 Vignettes/laser/rawdata/*
 
 hyperSpec_*.tar.gz
+*.Rcheck
 
 .build.timestamp
 
