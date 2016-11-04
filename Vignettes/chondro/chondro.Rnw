@@ -118,6 +118,7 @@ spectra.]{\includegraphics[width=0.5\textwidth]{chondro-fig--rawspc}}
 As usual in Raman spectroscopy of biological tissues, the spectra need some preprocessing.
 
 \subsection{Aligning the Spatial Grid} 
+
 The spectra were acquired on a regular square grid of measurement positions over the sample. \chy
 however does not store the data on this grid but rather stores the position where the spectra were
 taken. This allows more handling of irregular point patterns, and of sparse measurements where not a
@@ -127,7 +128,7 @@ Occasionally, numeric or rounding errors will lead to seemingly irregular spacin
 points. This is most obvious in false-colour maps of the sample (fig.~{fig:raw:b}), as
 \Rcode{plotmap} by default uses \Rcode{panel.levelplot.raster} which assumes a regular grid is
 underlying the data. The symptoms are warnings ``'x' values are not equispaced; output may be wrong''
-and white stripes in the false colour map (fig~\ref{fig:irregular:a}) which occur even thought the points are almost at their correct place (fig~\ref{fig:irregular:b})  
+and white stripes in the false colour map (fig~\ref{fig:irregular:a}) which occur even thought the points are almost at their correct place (fig~\ref{fig:irregular:b})
 <<>>=
 ## disturb a few points
 chondro$x [500] <- chondro$x [500] + rnorm (1, sd = 0.01)
@@ -138,7 +139,7 @@ plotmap (chondro, col.regions = seq.palette (20))
 @
 <<irregular-pts, fig = TRUE, width = 7.5, height = 5, include = FALSE>>=
 require ("latticeExtra")
-plotmap (chondro, col.regions = seq.palette (20), panel = panel.levelplot.points, 
+plotmap (chondro, col.regions = seq.palette (20), panel = panel.levelplot.points,
          col = NA, pch = 22, cex = 1.9)
 @
 
@@ -159,7 +160,7 @@ plotmap (chondro, col.regions = seq.palette (20))
 \subfloat[\label{fig:irregular:a}Off-grid points cause stripes]{\includegraphics[width=0.3\textwidth]{chondro-fig--irregular-grid}}
 \subfloat[\label{fig:irregular:b}Slightly wrong coordinages]{\includegraphics[width=0.3\textwidth]{chondro-fig--irregular-pts}}
 \subfloat[\label{fig:irregular:c}Corrected grid]{\includegraphics[width=0.3\textwidth]{chondro-fig--irregular-corr}}
-\caption{\label{fig:raw} Rounding erros in the point coordinates of lateral measurement grid.}
+\caption{\label{fig:pointerror} Rounding erros in the point coordinates of lateral measurement grid.}
 \end{figure}
 
 \subsection{Spectral Smoothing}
@@ -237,10 +238,10 @@ are put again into \Rclass{hyperSpec} objects by \Rfunction{decomposition}:
 <<pca>>=
 pca <- prcomp (chondro, center = TRUE)
 
-scores <- decomposition (chondro, pca$x, label.wavelength = "PC", 
+scores <- decomposition (chondro, pca$x, label.wavelength = "PC",
 												 label.spc = "score / a.u.")
 
-loadings <- decomposition (chondro, t(pca$rotation), scores = FALSE, 
+loadings <- decomposition (chondro, t(pca$rotation), scores = FALSE,
 													 label.spc = "loading I / a.u.")
 @
 
@@ -280,14 +281,14 @@ We can check our findings by comparing the spectra to the bulk of
 spectra (figure~\ref{PCA:b}):
 
 <<pca-outspc, fig = TRUE, width = 7.5, height = 7.5, include = FALSE>>=
-plot(chondro[1], plot.args = list (ylim = c (1, length (out) + .7)), 
+plot(chondro[1], plot.args = list (ylim = c (1, length (out) + .7)),
 		 lines.args = list(  type = "n"))
 
 for (i in seq (along = out)){
    plot(chondro, "spcprctl5", yoffset = i, add = TRUE, col = "gray")
-   plot (chondro [out[i]], yoffset = i, col = outcols[i] , add = TRUE, 
+   plot (chondro [out[i]], yoffset = i, col = outcols[i] , add = TRUE,
    			lines.args = list (lwd = 2))
-   text (600, i + .33, out [i])  
+   text (600, i + .33, out [i])
 }
 @
 
@@ -344,7 +345,7 @@ plot (dendrogram)
 @
 
 In order to get clusters, the dendrogram is cut at a level specified
-either by height or by the number of clusters. 
+either by height or by the number of clusters.
 <<dendcut>>=
 chondro$clusters <- as.factor (cutree (dendrogram, k = 3))
 cols <- c ("dark blue", "orange", "#C02020")
@@ -366,10 +367,10 @@ The cluster membership can also be marked in the dendrogram:
 
 <<dend, fig = TRUE, width = 7.5, height = 5, include = FALSE>>=
 par (xpd = TRUE)                        # allow plotting the markers into the margin
-plot (dendrogram, labels = FALSE, hang = -1) 
+plot (dendrogram, labels = FALSE, hang = -1)
 mark.dendrogram (dendrogram, chondro$clusters, col = cols)
-@     
-   
+@
+
 Figure~\ref{fig:dend} shows the dendrogram and \ref{fig:clustmap}
 the resulting cluster map. The three clusters correspond to the cartilage
 matrix, the lacuna and the cells. The left cell is destroyed and its
@@ -377,7 +378,7 @@ contents are leaking into the matrix, while the right cells looks
 intact.
 
 We can plot the cluster mean spectra $\pm$
-1 standard deviation using \Rfunction{aggregate} (see figure~\ref{fig:clustmeans}): 
+1 standard deviation using \Rfunction{aggregate} (see figure~\ref{fig:clustmeans}):
 
 <<clustmeans, fig = TRUE, width = 7.5, height = 5, include = FALSE>>=
 cluster.means <- aggregate (chondro, chondro$clusters, mean_pm_sd)
@@ -401,7 +402,7 @@ collagen, and the red cluster proteins and nucleic acids.}
 spectral ranges. Expressing things like 1000~cm\textsuperscript{-1}
 $\pm$~1 data points is easily possible. Thus, we can have a fast
 look at the nucleic acid distribution, using the DNA bands at 728,
-782, 1098, 1240, 1482, and 1577~cm\textsuperscript{-1}: 
+782, 1098, 1240, 1482, and 1577~cm\textsuperscript{-1}:
 
 <<DNA, fig = TRUE, width = 7.5, height = 5, include = FALSE>>=
 plotmap (chondro[, , c( 728, 782, 1098, 1240, 1482, 1577)],
@@ -433,8 +434,8 @@ pca <- prcomp (spectra.to.save)
 .chondro.labels   <- lapply (labels (chondro), as.expression)
 .chondro.extra    <- spectra.to.save$..
 
-save (.chondro.scores, .chondro.loadings, .chondro.center, 
-      .chondro.wl, .chondro.labels, .chondro.extra, 
+save (.chondro.scores, .chondro.loadings, .chondro.center,
+      .chondro.wl, .chondro.labels, .chondro.extra,
       file = "chondro-internal.rda")
 @
 This is the file distributed with \phy as example data set.
@@ -443,6 +444,6 @@ This is the file distributed with \phy as example data set.
 \begin{footnotesize}
 <<echo = FALSE>>=
 <<cleanup>>
-@ 
+@
 \end{footnotesize}
 \end{document}
