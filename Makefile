@@ -12,10 +12,16 @@ installdev: roxygenize pkg-vignettes
 build: roxygenize pkg-vignettes
 	R CMD build hyperSpec
 
-roxygenize: hyperSpec/DESCRIPTION hyperSpec/R/*.R 
+roxygenize: DESCRIPTION hyperSpec/R/*.R 
 	Rscript --vanilla -e "library (roxygen2); roxygenize ('hyperSpec')" 
 # TODO: DESCRIPTION target 
 # add dependency clean
+
+DESCRIPTION: $(shell find pkg/hyperSpec -maxdepth 1 -daystart -not -ctime 0 -name "DESCRIPTION") #only if not modified today
+	@echo update DESCRIPTION
+	sed "s/\(^Version: .*-\)20[0-9][0-9][0-1][0-9][0-3][0-9]\(.*\)$$/\1`date +%Y%m%d`\2/" hyperSpec/DESCRIPTION > .DESCRIPTION
+	sed "s/\(^Date: .*\)20[0-9][0-9]-[0-1][0-9]-[0-3][0-9]\(.*\)$$/\1`date +%F`\2/" .DESCRIPTION > hyperSpec/DESCRIPTION
+	rm .DESCRIPTION
 
 # VIGNETTES ########################################################################################
 
