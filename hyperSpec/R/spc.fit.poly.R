@@ -18,6 +18,8 @@
 ##'   If \code{NULL}, a \code{hyperSpec} object containing the polynomial
 ##'   coefficients rather than evaluted baselines is returned.
 ##' @param poly.order order of the polynomial to be used
+##' @param offset.wl should the wavelength range be mapped to -> [0, delta wl]? 
+##' This enhances numerical stability.
 ##' @return \code{hyperspec} object containing the baselines in the spectra
 ##'   matrix, either as polynomial coefficients or as polynomials evaluted on
 ##'   the spectral range of \code{apply.to}
@@ -33,7 +35,7 @@
 ##' baselines <- spc.fit.poly(spc [,, c (625 ~ 640, 1785 ~ 1800)], spc)
 ##' plot(spc - baselines)
 ##' 
-spc.fit.poly <- function (fit.to, apply.to = NULL, poly.order = 1){
+spc.fit.poly <- function (fit.to, apply.to = NULL, poly.order = 1, offset.wl = ! (is.null (apply.to))){
   chk.hy (fit.to)
   if (! is.null (apply.to))
     chk.hy (apply.to)
@@ -42,24 +44,48 @@ spc.fit.poly <- function (fit.to, apply.to = NULL, poly.order = 1){
   validObject (apply.to)
 
   x <- fit.to@wavelength
+  
+  if (offset.wl){
+    minx <- min (x)
+    x <- x - min (x)
+  } else {
+    minx <- 0
+  }
+      
   x <- outer(x, 0 : poly.order, "^")             # Vandermonde matrix of x
   
   p <- apply (fit.to, 1, function (y, x){qr.solve (x, y)}, x)
 
   if (is.null (apply.to)){
-    colnames (p@data$spc) <- paste ("x^", 0 : poly.order, sep="")
-
-    p
+    colnames (p@data$spc) <- paste ("(x - minx)^", 0 : poly.order, sep="")
+    
+    list (coef = p, minx = minx)
+    
   } else {
-    wl <- apply.to@wavelength;
+    wl <- apply.to@wavelength - minx
+
     x <- outer(wl, 0 : poly.order, "^")             # Vandermonde matrix of x
     apply.to@data$spc <- I (t (apply (p[[]], 1, function (p, x) {x %*% p}, x)))
-
-    .wl(apply.to) <- wl
-    colnames (apply.to@data$spc) <- format (wl, digits = 4)
+    
+    # .wl(apply.to) <- wl
+    # colnames (apply.to@data$spc) <- format (wl, digits = 4)
 
     apply.to
   }
+}
+
+.test (spc.fit.poly) <- function (){
+  bl.nonorm <- spc.fit.poly (flu, flu, poly.order = 3, offset.wl = FALSE)
+
+  # test effect of wavelength axis normalization
+  # was issue 1 on github
+  tmp <- flu
+  wl (tmp) <- wl (tmp) + 1e4
+  
+  checkException(spc.fit.poly(tmp, poly.order = 3, offset.wl = FALSE))
+  
+  bl.1e4 <- spc.fit.poly(tmp, tmp, poly.order = 3, offset.wl = TRUE)
+  checkEqualsNumeric (bl.nonorm [[]], bl.1e4 [[]])
 }
 
                                         
@@ -78,7 +104,7 @@ spc.fit.poly <- function (fit.to, apply.to = NULL, poly.order = 1){
 ##' plot (spc - baselines)
 ##' 
 spc.fit.poly.below <- function (fit.to, apply.to = fit.to, poly.order = 1,
-                                npts.min = NULL, noise = 0){
+                                npts.min = NULL, noise = 0, offset.wl = FALSE){
   chk.hy (fit.to)
   if (! is.null (apply.to))
     chk.hy (apply.to)
@@ -97,8 +123,17 @@ spc.fit.poly.below <- function (fit.to, apply.to = fit.to, poly.order = 1,
   if (length (noise) == 1)
     noise <- rep (noise, nrow (fit.to))
 
-  vdm <- outer(fit.to@wavelength, 0 : poly.order, "^")
-  y <- t(fit.to [[]])
+  x <- fit.to@wavelength
+    
+  if (offset.wl){
+    minx <- min (x)
+    x <- x - min (x)
+  } else {
+    minx <- 0
+  }
+  
+  vdm <- outer(x, 0 : poly.order, "^")
+  y <- t (fit.to [[]])
 
   p <- matrix (nrow = nrow(fit.to) , ncol = poly.order + 1)
   for (i in row.seq (fit.to)){
@@ -117,23 +152,56 @@ spc.fit.poly.below <- function (fit.to, apply.to = fit.to, poly.order = 1,
   if (is.null (apply.to)){
     fit.to@data$spc <- p
     .wl (fit.to) <- 0 : poly.order
-    colnames (fit.to@data$spc) <- paste ("x^", 0 : poly.order, sep="")
+    colnames (fit.to@data$spc) <- paste ("(x - minx)^", 0 : poly.order, sep="")
 
     validObject (fit.to)
     
     fit.to
   } else {
-    x <- apply.to@wavelength
+    x <- apply.to@wavelength - minx
 
     vdm <- outer(x, 0 : poly.order, "^")             # Vandermonde matrix of x
 
     apply.to@data$spc <- I (t (apply (p, 1, function (p, x) {x %*% p}, vdm)))
 
-    .wl(apply.to) <- x
-    colnames (apply.to@data$spc) <- format (x, digits = 4)
+    #.wl(apply.to) <- x
+    #colnames (apply.to@data$spc) <- format (x, digits = 4)
 
     validObject (apply.to)
     
     apply.to
   }
+}
+
+.test (spc.fit.poly.below) <- function (){
+  bl.nonorm <- spc.fit.poly.below (flu, flu, poly.order = 3, offset.wl = FALSE)
+  
+  # test effect of wavelength axis normalization
+  # was issue 1 on github
+  tmp <- flu
+  wl (tmp) <- wl (tmp) + 1e4
+  
+  checkException(spc.fit.poly.below (tmp, poly.order = 3, offset.wl = FALSE))
+  
+  bl.1e4 <- spc.fit.poly.below (tmp, tmp, poly.order = 3, offset.wl = TRUE)
+  checkEqualsNumeric (bl.nonorm [[]], bl.1e4 [[]])
+}
+
+
+
+##' Matrix of binomial coefficients 
+##' 
+##' Needed to (back)transform poly (x +y) -> poly (x) 
+##'  
+.binomial.matrix <- function (order){
+  b <- diag (order + 1)
+  b [1, ] <- 1
+  
+  for (o in 2 : order){
+    print (o)
+    print (b [o, (o + 1) : (order + 1)])
+  }
+  
+  colnames (b) <- letters [1 : (order + 1)]  
+  rownames (b) <- paste0("y^", 0 : order)
 }
