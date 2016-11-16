@@ -98,8 +98,10 @@ wl <- function (x){
 
 
 ###-----------------------------------------------------------------------------
-##' @title Convert wavelength between \emph{nm}, \emph{\eqn{cm^{-1}}{inverse cm}},
-##' \emph{eV}, \emph{THz} and \emph{Raman shift} in an arbitrary direction
+##' @title Convert different wavelength units
+##' 
+##' \emph{nm}, \emph{\eqn{cm^{-1}}{inverse cm}}, ##' \emph{eV}, \emph{THz} and 
+##' \emph{Raman shift} can be converted an arbitrary direction
 ##'
 ##' @param points data for conversion
 ##' @param src source unit
@@ -108,6 +110,9 @@ wl <- function (x){
 ##'
 ##' @author R. Kiselev
 ##' @export
+##' @examples 
+##' wlconv ("Raman shift", "nm", 3200, laser = 785.04)
+##' wlconv("nm", "invcm", 785)
 wlconv <- function(points, src, dst, laser=NULL){
   SRC <- .fixunitname(src)
   DST <- .fixunitname(dst)
@@ -116,7 +121,7 @@ wlconv <- function(points, src, dst, laser=NULL){
     return(points)
 
   if ((SRC == "raman" | DST == "raman") & is.null(laser))
-    stop("Work with Raman shift requires knowledge of laser wavelength")
+    stop("Working with Raman shift requires knowledge of laser wavelength")
 
   f <- paste0(SRC, "2", DST)
   f <- get(f)
