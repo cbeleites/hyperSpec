@@ -1,7 +1,8 @@
-##' Dimnames for hyperSpec objects
+##' dimnames for hyperSpec objects
 ##'
 ##' hyperSpec objects can have row- and column names like data.frames. The "names" of the wavelengths
 ##' are treated separately: see \code{\link{wl}}
+##' 
 ##' @param x the hyperSpec object
 ##' @aliases dimnames
 ##' @keywords methods
