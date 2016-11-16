@@ -8,6 +8,8 @@
 ##' @aliases write.txt.wide
 ##' @rdname textio
 ##' @export
+##' @importFrom utils write.table
+##' 
 
 write.txt.wide <- function (object,
                             file = "",

@@ -36,6 +36,7 @@
 ##'                  pos.marker = -.015, text.col = NA,
 ##'                  label = expression (I [lambda == 405.36~nm]), label.right = FALSE)
 ##'  
+##' @importFrom utils head tail
 mark.dendrogram <- function (dendrogram, groups, col = seq_along (unique (groups)),
                              pos.marker = 0, 
                              height = 0.025 * max (dendrogram$height), 

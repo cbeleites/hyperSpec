@@ -99,6 +99,7 @@ qplotspc <- function (x,
 ##'
 ##' ## works also with discrete x or y axis:
 ##' qplotmap (chondro, mapping = aes (x = x, y = as.factor (y), fill = spc)) 
+##' @importFrom utils tail
 qplotmap <- function (object, mapping = aes_string (x = "x", y = "y", fill = "spc"), ...,
                       func = mean, func.args = list (),
                       map.tileonly = FALSE){

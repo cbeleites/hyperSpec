@@ -8,6 +8,7 @@
   ##' @return list of spectra tables
   ##' @author Bjoern Egert 
   ##' @export  
+  ##' @importFrom utils read.table
   read.txt.Shimadzu <- function(filename, encoding = "", quiet = TRUE)
   {    
     

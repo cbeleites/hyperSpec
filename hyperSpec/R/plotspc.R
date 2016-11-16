@@ -153,6 +153,8 @@
 ##' mean.pm.sd <- aggregate (chondro, chondro$clusters, mean_pm_sd)
 ##' plot (mean.pm.sd, col = matlab.palette (3), fill = ".aggregate", stacked = ".aggregate")
 ##' 
+##' @importFrom utils modifyList relist head tail
+##' @importFrom grDevices rgb col2rgb
 plotspc <- function  (object,
                        ## what wavelengths to plot
                       wl.range = NULL, wl.index = FALSE,  wl.reverse = FALSE,
@@ -581,6 +583,7 @@ stacked.offsets <- function (x, stacked = TRUE,
   mtext("//", at = breakpos, side = axis, padj = -1, adj = 0.5)
 
 ###.cut.ticks - pretty tick marks for cut axes
+##' @importFrom utils head
 .cut.ticks <- function (start.ranges,
                        end.ranges,
                        offsets,

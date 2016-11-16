@@ -110,6 +110,7 @@
 
 ## helper functions ---------------------------------------------------------------------------------
 ### raw.split.nul - rawToChar conversion, splitting at \0
+##' @importFrom utils tail
 raw.split.nul <- function (raw, trunc = c (TRUE, TRUE), firstonly = FALSE, paste.collapse = NULL) {
 	# todo make better truncation
 	trunc <- rep (trunc, length.out = 2)
@@ -156,6 +157,7 @@ raw.split.nul <- function (raw, trunc = c (TRUE, TRUE), firstonly = FALSE, paste
 ##
 ##
 
+##' @importFrom utils maintainer
 .spc.filehdr <- function (raw.data) {
 	## check file format
 	## NEW.LSB = 75 supported,
@@ -429,7 +431,7 @@ raw.split.nul <- function (raw, trunc = c (TRUE, TRUE), firstonly = FALSE, paste
 
 ## read log block header ............................................................................
 ##
-
+##' @importFrom utils head tail
 .spc.log <- function (raw.data, pos, log.bin, log.disk, log.txt, keys.log2data,  keys.log2log,
                       replace.nul = as.raw (255), iconv.from = "latin1", iconv.to = "utf8") {
 
@@ -515,6 +517,7 @@ raw.split.nul <- function (raw, trunc = c (TRUE, TRUE), firstonly = FALSE, paste
 }
 
 ## error .............................................................................................
+##' @importFrom utils str
 .spc.error <- function (fname, objects, ...) {
 	cat ('ERROR in read.spc function ', fname, '\n\n')
 	for (i in seq_along (objects)) {
@@ -595,6 +598,7 @@ raw.split.nul <- function (raw, trunc = c (TRUE, TRUE), firstonly = FALSE, paste
 ##' plot (spc [[1]], lines.args = list (type = "h"))
 ##' }
 ##'
+##' @importFrom utils modifyList
 read.spc <- function (filename,
 		keys.hdr2data = FALSE, keys.hdr2log = FALSE,
 		keys.log2data = FALSE, keys.log2log = FALSE,

@@ -230,6 +230,7 @@ qmixlegend <- function (x, purecol, dx = 0.33, ny = 100, labels = names (purecol
 ##' @return character with colours
 ##' @author Claudia Beleites
 ##' @export
+##' @importFrom grDevices col2rgb rgb
 colmix.rgb <- function (x, purecol, against = 1, sub = TRUE,
                         normalize = normalize.colrange, ...){
   if (! is.null (normalize))

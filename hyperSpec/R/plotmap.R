@@ -99,6 +99,7 @@
 ##'     plotvoronoi (smpl, clusters ~ x * y,
 ##'                  use.tripack = FALSE)
 ##' 
+##' @importFrom utils modifyList
 plotmap <- function (object, model = spc ~ x * y,
                      func = mean, func.args = list (), ...){
   chk.hy (object)

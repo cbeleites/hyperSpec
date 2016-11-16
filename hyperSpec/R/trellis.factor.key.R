@@ -32,6 +32,7 @@
 ##' plotmap (chondro, z ~ x * y,
 ##'          col.regions = c ("gray", "red", "blue", "dark green"))
 ##' 
+##' @importFrom utils modifyList
 trellis.factor.key <- function (f, levelplot.args = list ()) {
   at <-  seq (0, nlevels (f)) + .5
   
