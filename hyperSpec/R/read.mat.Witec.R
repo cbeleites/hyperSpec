@@ -1,4 +1,5 @@
 ## ' @export
+##' @importFrom utils maintainer
 read.mat.Witec <- function (file = stop ("filename or connection needed")){
   if (! requireNamespace ("R.matlab"))
     stop ("package 'R.matlab' needed.")

@@ -69,6 +69,7 @@ hy.getOption <- function (name){
 
 ##' @rdname options
 ##' @export
+##' @importFrom utils modifyList
 hy.setOptions <- function (...){
   new <- list (...)
   names <- nzchar (names (new))

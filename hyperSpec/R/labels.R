@@ -1,3 +1,4 @@
+##' @importFrom utils modifyList
 .labels <- function (object, which = bquote(), drop = TRUE, ..., use.colnames = TRUE){
   validObject (object)                  
 

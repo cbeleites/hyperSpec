@@ -18,6 +18,7 @@
 ##' @param ... handed to \code{read.ENVI}
 ##' @describeIn  read.ENVI
 ##' @export
+##' @importFrom utils modifyList
 read.ENVI.Nicolet <- function (file = stop ("read.ENVI: file name needed"),
 															 headerfile = NULL, header = list (), ...,
 															 x = NA, y = NA,

@@ -29,6 +29,7 @@ matlab.palette <- function (n = 100, ...) {
 ##' @examples
 ##' 
 ##' plot (flu, col = matlab.dark.palette (nrow (flu)))
+##' @importFrom grDevices col2rgb rgb
 matlab.dark.palette <- function (n = 100, ...) {
   pal <- rev (rainbow (n, start = 0, end = 4/6, ...))
   pal <- col2rgb(pal)
@@ -42,6 +43,7 @@ matlab.dark.palette <- function (n = 100, ...) {
 ##' @examples
 ##' 
 ##' plotmap (chondro, col = alois.palette)
+##' @importFrom grDevices colorRampPalette
 alois.palette <- function (n = 100, ...) {
   colorRampPalette(c("black", "blue","cyan", "green", "yellow", "red"), ...) (n)
 }

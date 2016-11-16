@@ -1,9 +1,10 @@
+
 ###-----------------------------------------------------------------------------
 ###
 ###  .paste.row
 ###
 ###
-
+##' @importFrom utils head tail
 .paste.row <- function (x, label = "", name = "", ins = 0, i = NULL, val = FALSE,
                         ...){
   .print.val <- function (x, range = TRUE, digits = getOption ("digits"),

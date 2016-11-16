@@ -22,6 +22,7 @@
 ##' @aliases write.txt.long
 ##' @rdname textio
 ##' @export
+##' @importFrom utils write.table
 write.txt.long <- function (object,
                             file = "",
                             order = c (".rownames", ".wavelength"),

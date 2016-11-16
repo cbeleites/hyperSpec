@@ -44,6 +44,7 @@
 ##' @param check.names handed to \code{\link[utils]{read.table}}. Make sure this is \code{FALSE}, if
 ##' the column names of the spectra are the wavelength values.
 ##' @export
+##' @importFrom utils read.table head
 read.txt.wide <- function (file = stop ("file is required"),
                            cols = list (
                              spc = "I / a.u.",

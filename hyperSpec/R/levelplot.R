@@ -9,6 +9,7 @@ setGeneric ("levelplot", package = "lattice")
 ###
 
 ### the workhorse function
+##' @importFrom utils modifyList
 .levelplot <- function (x, data, transform.factor = TRUE, ...,
                         contour = FALSE, useRaster = !contour) {
   validObject (data)
