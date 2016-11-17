@@ -12,7 +12,7 @@
 ##' @export
 ##' @examples 
 ##' plot (chondro [7])
-##' mark.peak (chondro [7], 1662)
+##' markpeak (chondro [7], 1662)
 markpeak <- function(spc, xpos, col="red"){
 
   chk.hy (spc)
