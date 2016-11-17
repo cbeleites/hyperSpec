@@ -12,7 +12,7 @@ fileio.pdf: ../../../Vignettes/fileio/fileio.pdf
 	cp -av ../../../Vignettes/fileio/fileio.pdf $@
 
 fludata: ../../../Vignettes/flu/rawdata | rawdata
-	cp -av $^ rawdata/
+	cp -av $^ .
 
 laserdata: ../../../Vignettes/fileio/txt.Renishaw/laser.txt.gz | rawdata
 	cp $< $@ 

@@ -1,4 +1,4 @@
-all: roxygenize vignettes pkg-data
+all: roxygenize vignettes pkg-data pkg-doc
 
 superclean: .FORCE
 	git clean -q -f
@@ -86,6 +86,11 @@ pkg-vignettes:
 
 pkg-data:
 	$(MAKE) -C hyperSpec/data 
+
+# package inst/doc ----------------------------------------------------------------------------------
+
+pkg-data:
+	$(MAKE) -C hyperSpec/inst/doc 
 
 # Vignette zips -------------------------------------------------------------------------------------
 
