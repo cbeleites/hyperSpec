@@ -38,7 +38,7 @@ read.txt.Horiba.xy <- function (file, ...){
 ##' @rdname read.txt.Horiba
 ##' @export
 read.txt.Horiba.t <- function (file, header = TRUE, sep = "\t", row.names = NULL,
-                                 check.names = FALSE, ..., remove.zerospc = TRUE){
+                                 check.names = FALSE, ...){
   read.txt.Horiba (file,
                    cols = c (t = "t / s",
                              spc = "I / a.u.",
