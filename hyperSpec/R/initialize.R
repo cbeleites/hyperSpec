@@ -235,3 +235,36 @@ setMethod ("initialize", "hyperSpec", .initialize)
   checkEqualsNumeric (h@data$spc, spc)
   checkEqualsNumeric (dim (h), c (3L, 1L, 4L)) 
 }
+
+
+
+#' as.hyperSpec: convenience conversion functions
+#'
+#' These functions are shortcuts to convert other objects into hypeSpec objects. 
+#'
+#' @param X the object to convert
+#' @param ... additional parameters that should be handed over to \code{new ("hyperSpec")}
+#'
+#' @return hyperSpec object
+#' @export
+setGeneric ("as.hyperSpec", 
+            function (X, ...){
+              stop ("as.hyperSpec is not available for objects of class ", class (X))
+            }
+)
+
+#' @include guesswavelength.R
+.as.hyperSpec.matrix <- function (X, wl = guess.wavelength (colnames (X)), ...){
+  new ("hyperSpec", spc = X, wavlength = wl, ...)
+}
+
+#' @rdname as.hyperSpec
+#' @param wl wavelength vector. Defaults to guessing from the column names \code{X}
+#' @export
+#' 
+#' @examples
+#' tmp <- data.frame(flu [[,, 400 ~ 410]])
+#' (wl <- colnames (tmp))
+#' guess.wavelength (wl)
+
+setMethod ("as.hyperSpec", "matrix", .as.hyperSpec.matrix)
