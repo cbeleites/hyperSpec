@@ -111,8 +111,8 @@ wl <- function (x){
 ##' @author R. Kiselev
 ##' @export
 ##' @examples 
-##' wlconv ("Raman shift", "nm", 3200, laser = 785.04)
-##' wlconv("nm", "invcm", 785)
+##' wlconv (3200, "Raman shift", "nm", laser = 785.04)
+##' wlconv( 785, "nm", "invcm")
 wlconv <- function(points, src, dst, laser=NULL){
   SRC <- .fixunitname(src)
   DST <- .fixunitname(dst)
