@@ -1,5 +1,6 @@
-library ("hyperSpec", quiet = TRUE)
+library ("hyperSpec")
 hy.unittest ()
 
 library (testthat)
-test_dir("tests/testthat")
+test_check("hyperSpec")
+
