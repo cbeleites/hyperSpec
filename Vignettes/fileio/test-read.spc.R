@@ -9,38 +9,40 @@ test_that ("old file format -> error", {
 
 test_that("SPC SDK example files", {
   
-  checksums <-  c (`spc/BARBITUATES.SPC` = 'ea0df161b701569878a6334e24272c89',
-                   `spc/barbsvd.spc` = 'ea0df161b701569878a6334e24272c89',
-                   `spc/BENZENE.SPC` = '62230d381d856dba5fd0d47b4f23ceac',
-                   `spc/DRUG SAMPLE_PEAKS.SPC` = 'cc72aa701d26dcefa38bb2f0d8e94b37',
-                   `spc/DRUG SAMPLE.SPC` = 'b3f7146e14438c182c14c392a9a559c6',
-                   `spc/FID.SPC` = '84728e15c4729dd6c9bb42fa38a19987',
-                   `spc/HCL.SPC` = 'a522a71e85de7a0fadd5e7b8e11a5f2f',
-                   `spc/HOLMIUM.SPC` = '14840f0dbb0a5a6a43668f22996df6c4',
-                   `spc/IG_BKGND.SPC` = 'fbf8f6f8651c777028c62ce0875bb039',
-                   `spc/IG_MULTI.SPC` = 'e47ebbbe892fd2a593f5d9159a8aac2d',
-                   `spc/IG_SAMP.SPC` = '18a98ff8fc33dab2f966d61d235b4a95',
-                   `spc/KKSAM.SPC` = 'b9da38601a6779814cc30aa5e166b579',
-                   `spc/POLYR.SPC` = '5e56d2e3655818f7624be79fea0786e5',
-                   `spc/POLYS.SPC` = '6109a96011cbf1037aba7b742114e6fa',
-                   `spc/SINGLE POLYMER FILM.SPC` = '6d10890c00766709abe045fe7e4d0cb2',
-                   `spc/SPECTRUM WITH BAD BASELINE.SPC` = '2017e75947a39bdac23886d08eb8a64a',
-                   `spc/TOLUENE.SPC` = '6da20abc17ca8a22ee2ec44270fb763b',
-                   `spc/TriVista-linear.spc` = '03c05e5df5450e6ea57ad9488c7cd6e7',
-                   `spc/TriVista-normal.spc` = '9a058749cbbc660592a89ec870157ca5',
-                   `spc/TUMIX.SPC` = '5d7d1e199d1d9563b785b8252690dd80',
-                   `spc/TWO POLYMER FILMS.SPC` = '6109a96011cbf1037aba7b742114e6fa',
-                   `spc/Witec-timeseries.spc` = '8310efddaae41cdf9bb3804696faa31d',
-                   `spc/XYTRACE.SPC` = '85e1bb738671f9abb4c8952ac0bd3d55')
-    
+  checksums <-  c (`spc/BARBITUATES.SPC` = 'b60431f933320c12791a5b5478483770',
+                   `spc/barbsvd.spc` = 'd1233e4e64f77b208efa9826ff6e7886',
+                   `spc/BENZENE.SPC` = '65edfda407c047a26d758cac9d14c3e7',
+                   `spc/DRUG SAMPLE_PEAKS.SPC` = 'b4010a0146de3bb33fea69591bed6052',
+                   `spc/DRUG SAMPLE.SPC` = 'b7e7598ccf27ff91602312fe796a3195',
+                   `spc/FID.SPC` = 'a57a88eed49a8b3b1ca01b429d5e06e7',
+                   `spc/HCL.SPC` = 'b15861b9558d3e15343a0de84d541d33',
+                   `spc/HOLMIUM.SPC` = 'd8371d9e0fd62984fc0cf46f12dc2e81',
+                   `spc/IG_BKGND.SPC` = '445ec3770b8e6f0070024b059fd81f4c',
+                   `spc/IG_MULTI.SPC` = 'cb032af1a3db205a82e39a669dd6b5bd',
+                   `spc/IG_SAMP.SPC` = 'e83e3de820c8a1430f42f1f4ea1c075f',
+                   `spc/KKSAM.SPC` = '64ca86bd563bc71f4616fd59321aa96b',
+                   `spc/POLYR.SPC` = '9805a8a2608fe05012bc9ec55ffcf70a',
+                   `spc/POLYS.SPC` = 'c26b60aefae86e6a492266c35ba3e900',
+                   `spc/SINGLE POLYMER FILM.SPC` = 'd3691203156a5cb6cde8d458f98310b8',
+                   `spc/SPECTRUM WITH BAD BASELINE.SPC` = 'cb2cd63223fdd174824eec08cd36907c',
+                   `spc/time.spc` = '6ed422c24d57912e03a924ebd62eef47',
+                   `spc/TOLUENE.SPC` = '6fc420528c9f723d296e948f019229aa',
+                   `spc/TriVista-linear.spc` = '8512c24cb1bf673725ad3cc4dd0d17da',
+                   `spc/TriVista-normal.spc` = '61b7fb5eebb3251edcfd4201de4d9e14',
+                   `spc/TUMIX.SPC` = '6a6974b0c4545a980f18b8ecbcd78d46',
+                   `spc/TWO POLYMER FILMS.SPC` = '34d9c5c1f98da4906b2de85cc25376bb',
+                   `spc/Witec-timeseries.spc` = '5e9bdf41fd1599016fefc0431e19be07',
+                   `spc/XYTRACE.SPC` = '29dfa274f0282e6577ef3977aa2864aa')
+
   for (f in other.spc) {
     spc <- read.spc (f)
+#    cat (sprintf ("                   `%s` = '%s',\n", f, digest (spc)))
     expect_equivalent (digest (spc), checksums [f])
   }
 })
 
 test_that("LabRam spc files", {
-  expect_equal (digest (read.spc("spc.LabRam/LabRam-1.spc")), "1e94aa0059bb680b2b725706e012fd5c")
-  expect_equal (digest (read.spc("spc.LabRam/LabRam-2.spc")), "f34707e5be36205a3d66985f29c829c7")
+  expect_equal (digest (read.spc("spc.LabRam/LabRam-1.spc")), "502481f3310f21fb98683dfcfd920543")
+  expect_equal (digest (read.spc("spc.LabRam/LabRam-2.spc")), "4f37d25a94cfb0fa4ea56aa83f318e0a")
 })
 

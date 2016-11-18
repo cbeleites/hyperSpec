@@ -300,43 +300,15 @@ appropriate tolerance can be chosen:
 read.jdx ("jcamp-dx/virgilio.jdx", ytol = 1e-9)
 @ 
 
-To test the import, read a number of test files: 
-<<test-read-jdx, echo = FALSE>>=
-files <- c (Sys.glob ("jcamp-dx/*.DX"), Sys.glob ("jcamp-dx/*.dx"), 
-            Sys.glob ("jcamp-dx/*.jdx"), Sys.glob ("jcamp-dx/*.JCM"), 
-            Sys.glob ("jcamp-dx/PE-IR/*.DX"), 
-				"jcamp-dx/GMD_20111121_MDN35_ALK_JCAMP.txt" # MPI Golm
-				)
-
-## not covered:
-# setdiff (c (Sys.glob ("jcamp-dx/*"), Sys.glob ("jcamp-dx/PE-IR/*")), files)
-
-## exclude files already checked with the visible examples: 
-files <- setdiff (files, c ("jcamp-dx/shimadzu.jdx", "jcamp-dx/virgilio.jdx"))
-
-unsupported <- c ("jcamp-dx/BRUKER2.JCM", 
-                  "jcamp-dx/BRUKER1.JCM", 
-                  "jcamp-dx/TESTSPEC.DX",  
-                  "jcamp-dx/TEST32.DX", 
-                  "jcamp-dx/SPECFILE.DX",  
-                  "jcamp-dx/ISAS_MS2.DX", 
-                  "jcamp-dx/ISAS_MS3.DX", # NTUPLES
-                  "jcamp-dx/BRUKSQZ.DX", 
-                  "jcamp-dx/BRUKDIF.DX",
-                  "jcamp-dx/BRUKNTUP.DX", # NTUPLES
-                  "jcamp-dx/ISAS_CDX.DX", # PEAK ASSIGNMENTS= (XYMA)
-                  "jcamp-dx/TESTFID.DX", # NTUPLES
-                  "jcamp-dx/TESTNTUP.DX" # NTUPLES
-                  )
-
-for (file in files [! files %in% unsupported]) {
-  cat (file)
-  read.jdx (file, ytol = 1e-6)
-  cat ("\n")
-}
-@
-
 \warnbox{Note}{\Rfunction{read.jdx.Shimadzu} is deprecated.}
+\warnbox{Note}{An R package dedicated to importing JCAMP-DX is currently under development by Bryan Hanson 
+(\url{https://github.com/bryanhanson/readJDX}).
+\phy will use that package once it is available on CRAN. Maintenance of \phy's \Rfunction{read.jdx} function 
+is limited from now on in favor of Bryan's pacakge.}
+
+<<test-read.jdx, echo = FALSE, results=hide>>=
+tests <- test_file_keep ("test-read.jdx.R", reporter, tests)
+@ 
 
 \subsection{Basic Atomic Spectra from NIST Tables}
 \label{sec:aes-nist}
@@ -538,28 +510,6 @@ the old file format that was used before 1996. In addition, no test data with \e
 available --- thus the import of such files could not be tested. If you come across such files,
 please contact the package maintainer (\mailme).
 
-Here are some tests using Thermo Galactic's example files:
-<<read.spc>>=
-## old format files stop with an error:
-old <- paste ("spc", c ('CONTOUR.SPC', 'DEMO 3D.SPC', 'LC DIODE ARRAY.SPC'), sep = "/")
-for (f in old)
-  try (read.spc (f))
-
-## all other files should be good for import
-other <- setdiff (Sys.glob ("spc/*.[sS][pP][cC]"), old)
-for (f in other){
-  spc <- read.spc (f)
-
-  if (is (spc, "hyperSpec"))
-    cat (f, ": ", nrow (spc), " spectrum(a), ", nwl (spc), " data pts / spc.\n", sep = "")
-  else
-    cat (f, ": list of ", length (spc), " spectra, ", 
-         paste (range (sapply (spc, nwl)), collapse = " - "), 
-         " data pts / spc\n", sep = "")
-}
-@
-
-
 The header and subheader blocks of spc files store additional information of pre-defined types (see
 the file format specification\cite{Galactic1997}). Further information can be stored in the so-called
 log block at the end of the file, and should be in a key-value format (although even the official
@@ -586,7 +536,7 @@ read.spc ("spc.Kaisermap/ebroAVII.spc", keys.hdr2data = TRUE)
 read.spc ("spc.Kaisermap/ebroAVII.spc", keys.log2data = TRUE)
 @ 
 
-<<test-hdr2data, echo=FALSE>>=
+<<test-hdr2data, echo=FALSE, results=hide>>=
 read.spc ("spc/BARBITUATES.SPC", keys.hdr2data = TRUE)
 @ 
 
