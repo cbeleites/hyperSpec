@@ -139,52 +139,60 @@ decomposition <- function (object, x, wavelength = seq_len (ncol (x)),
 }
 
 .test (decomposition) <- function (){
+context ("decomposition")
   rm (flu)
 
-  ## check scores-like
-  flu$matrix <- cbind (flu$c, flu$c)
-  checkTrue (is.matrix (flu$matrix))
-
-  tmp <- flu [,, 405 ~ 410]
-  tmp@wavelength <- seq_len (nwl (tmp))
-  colnames (tmp@data$spc) <- seq_len (nwl (tmp))
-
-  scores <- decomposition (flu, flu [[,, 405 ~ 410]])
-  checkEquals (scores, tmp)
-
-  ## spc labels
-  scores <- decomposition (flu, flu [[,, 405 ~ 410]], label.spc = "bla")
-  checkEquals (labels (scores, "spc"), "bla")
-
-  ## wl labels
-  scores <- decomposition (flu, flu [[,, 405 ~ 410]], label.wavelength = "bla")
-  checkEquals (labels (scores, ".wavelength"),	"bla")
-
+  test_that ("scores-like", {
+    flu$matrix <- cbind (flu$c, flu$c)
+    expect_true (is.matrix (flu$matrix))
+    
+    tmp <- flu [,, 405 ~ 410]
+    tmp@wavelength <- seq_len (nwl (tmp))
+    colnames (tmp@data$spc) <- seq_len (nwl (tmp))
+    
+    scores <- decomposition (flu, flu [[,, 405 ~ 410]])
+    expect_equal (scores, tmp)
+  })
+  
+  test_that ("spc labels", {
+    scores <- decomposition (flu, flu [[,, 405 ~ 410]], label.spc = "bla")
+    expect_equal (labels (scores, "spc"), "bla")
+  })
+  
+  test_that ("wl labels", {
+    scores <- decomposition (flu, flu [[,, 405 ~ 410]], label.wavelength = "bla")
+    expect_equal (labels (scores, ".wavelength"),	"bla")
+  })
+  
   rm (scores, tmp)
+  
+  test_that ("check loadings-like", {
+    
+    tmp <- flu [1, c ("spc"),]
+    loadings <- decomposition (flu, flu [[1,,]])
+    expect_equal (loadings, tmp)
+  })
 
-  ## check loadings-like
-
-  tmp <- flu [1, c ("spc"),]
-  loadings <- decomposition (flu, flu [[1,,]])
-  checkEquals (loadings, tmp)
-
-
-  ## POSIXct
-  flu$ct <- as.POSIXct(Sys.time())
-  checkEquals (decomposition (flu, flu [[]], scores = FALSE)$ct, flu$ct)
-
-  ## POSIXlt
-  flu$lt <- as.POSIXlt(Sys.time())
-  checkEquals (decomposition (flu, flu [[]], scores = FALSE)$lt, flu$lt)
-
-  ## spc labels
-  tmp <- decomposition (flu, flu [[]], scores = FALSE, label.spc = "bla")
-  checkEquals (labels (tmp, "spc"),	"bla")
-
-  ## wl labels: should *not* be changed for loadings-like decomposition
-  tmp <- decomposition (flu, flu [[]], scores = FALSE, label.wavelength = "bla")
-  checkEquals (labels (tmp, ".wavelength"),	labels (flu, ".wavelength"))
-
+  test_that ("POSIXct", {
+    flu$ct <- as.POSIXct(Sys.time())
+    expect_equal (decomposition (flu, flu [[]], scores = FALSE)$ct, flu$ct)
+  })
+  
+  test_that ("POSIXlt", {
+    flu$lt <- as.POSIXlt(Sys.time())
+    expect_equal (decomposition (flu, flu [[]], scores = FALSE)$lt, flu$lt)
+  })
+  
+  test_that ("spc labels", {
+    tmp <- decomposition (flu, flu [[]], scores = FALSE, label.spc = "bla")
+    expect_equal (labels (tmp, "spc"),	"bla")
+  })
+  
+  test_that ("wl labels: should *not* be changed for loadings-like decomposition", {
+    tmp <- decomposition (flu, flu [[]], scores = FALSE, label.wavelength = "bla")
+    expect_equal (labels (tmp, ".wavelength"),	labels (flu, ".wavelength"))
+  })
+  
   rm (flu)
 }
 
