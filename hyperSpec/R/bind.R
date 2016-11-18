@@ -86,27 +86,26 @@ bind <- function (direction = stop ("direction ('c' or 'r') required"), ...,
 }
 
 .test (bind) <- function () {
-	## wl.tolerance on rbind
-	tmp <- flu
-	wl (tmp) <- wl (tmp) + 0.01
-	checkException (bind ("r", tmp, flu))
-	checkEqualsNumeric (nwl (bind ("r", tmp, flu, tmp, flu, wl.tolerance = 0.1)), nwl (flu))
+  context ("bind")
+  
+  test_that("wl.tolerance for rbind", {
+    tmp <- flu
+    wl (tmp) <- wl (tmp) + 0.01
+    expect_error (bind ("r", tmp, flu))
+    expect_equivalent (nwl (bind ("r", tmp, flu, tmp, flu, wl.tolerance = 0.1)), nwl (flu))
+
 	
-	
-	tmp.list <- list (flu, tmp, flu)
-
-	checkException (bind ("r", tmp.list))
-	checkTrue (all.equal (bind ("r", tmp.list, wl.tolerance = 0.1), 
-												flu [rep (row.seq (flu), 3)], 
-												check.label = TRUE))
-
-	checkTrue (all.equal (do.call ("bind", list ("r", tmp.list, wl.tolerance = 0.1)), 
-												flu [rep (row.seq (flu), 3)], 
-												check.label = TRUE))
-
-	checkTrue (all.equal (do.call ("bind", c ("r", tmp.list, wl.tolerance = 0.1)), 
-												flu [rep (row.seq (flu), 3)], 
-												check.label = TRUE))						 
+    tmp.list <- list (flu, tmp, flu)
+    
+    expect_error (bind ("r", tmp.list))
+    expect_true (all.equal (bind ("r", tmp.list, wl.tolerance = 0.1), 
+                            flu [rep (row.seq (flu), 3)], 
+                            check.label = TRUE))
+    
+    expect_true (all.equal (do.call ("bind", list ("r", tmp.list, wl.tolerance = 0.1)), 
+                            flu [rep (row.seq (flu), 3)], 
+                            check.label = TRUE))
+  })
 }
 
 
@@ -139,8 +138,8 @@ rbind.hyperSpec <- function (...) bind ("r", ...)
 	## wl.tolerance
 	tmp <- flu
 	wl (tmp) <- wl (tmp) + 0.01
-	checkException (rbind (tmp, flu))
-	checkEqualsNumeric (nwl (rbind (tmp, flu, flu, wl.tolerance = 0.1)), nwl (flu))
+	expect_error (rbind (tmp, flu))
+	expect_equivalent (nwl (rbind (tmp, flu, flu, wl.tolerance = 0.1)), nwl (flu))
 	
 	tmp.list <- list (flu, tmp, flu)
 	checkTrue (all.equal (do.call ("rbind", c (tmp.list, wl.tolerance = 0.1)), 
@@ -209,8 +208,8 @@ setMethod("cbind2", signature = signature (x = "hyperSpec", y = "missing"), func
 	## wl.tolerance
 	tmp <- flu
 	wl (tmp) <- wl (tmp) + 0.01
-	checkException (rbind2 (tmp, flu))
-	checkEqualsNumeric (nwl (rbind2 (tmp, flu, wl.tolerance = 0.1)), nwl (flu))
+	expect_error (rbind2 (tmp, flu))
+	expect_equivalent (nwl (rbind2 (tmp, flu, wl.tolerance = 0.1)), nwl (flu))
 }
 
 ##' @rdname bind
