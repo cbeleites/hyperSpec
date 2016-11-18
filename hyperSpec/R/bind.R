@@ -209,11 +209,14 @@ setMethod("cbind2", signature = signature (x = "hyperSpec", y = "missing"), func
 }
 
 .test (.rbind2) <- function () {
-	## wl.tolerance
-	tmp <- flu
-	wl (tmp) <- wl (tmp) + 0.01
-	expect_error (rbind2 (tmp, flu))
-	expect_equivalent (nwl (rbind2 (tmp, flu, wl.tolerance = 0.1)), nwl (flu))
+  context (".rbind2")
+  
+	test_that("wl.tolerance", {
+	  tmp <- flu
+	  wl (tmp) <- wl (tmp) + 0.01
+	  expect_error (rbind2 (tmp, flu))
+	  expect_equivalent (nwl (rbind2 (tmp, flu, wl.tolerance = 0.1)), nwl (flu))
+	})
 }
 
 ##' @rdname bind
