@@ -633,13 +633,17 @@ stacked.offsets <- function (x, stacked = TRUE,
 
 ##' @include hyperspec-package.R
 .test (.cut.ticks) <- function (){
+  context (".cut.ticks")
+  
   ## bugfix:
   ## plotspc (paracetamol, wl.range = c (min ~ 1800, 2800 ~ max), xoffset = 900)
   ## had 2600 1/cm label printed in low wavelength range
-  checkEqualsNumeric (.cut.ticks (start.ranges = c (96.7865, 2799.86),
-                                  end.ranges = c(1799.95, 3200.07),
-                                  offsets = c (0, 900),
-                                  nticks = 10)$labels,
-                      c (seq (0, 1800, 200), seq (2800, 3400, 200))
-                      )
+  test_that("labels not too far outside wl.range",{
+    expect_equal (.cut.ticks (start.ranges = c (96.7865, 2799.86),
+                              end.ranges = c(1799.95, 3200.07),
+                              offsets = c (0, 900),
+                              nticks = 10)$labels,
+                  c (seq (0, 1800, 200), seq (2800, 3400, 200))
+    )
+  })
 }
