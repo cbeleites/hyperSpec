@@ -187,25 +187,27 @@ setMethod ("apply", signature = signature (X = "hyperSpec"),
 
 
 
-.test (apply) <- function (){
-  ## check whether .na.if.different is working correctly
-  rm (flu)
-  flu$equal <- 1
-  tmp <- apply (flu, 2, mean)$..
-  checkEquals (is.na (tmp),
-               structure(c (TRUE, TRUE, FALSE),
-                         .Dim = c(1L, 3L),
-                         .Dimnames = list (NULL, c("file", "c", "equal")))
-               )
-  checkEquals (tmp$equal, 1)
+.test (.apply) <- function (){
+  context ("apply")
+  
+  test_that ("check whether .na.if.different is working correctly", {
+    flu$equal <- 1
+    tmp <- apply (flu, 2, mean)$..
+    expect_equal (is.na (tmp),
+                 structure(c (TRUE, TRUE, FALSE),
+                           .Dim = c(1L, 3L),
+                           .Dimnames = list (NULL, c("file", "c", "equal")))
+    )
+    expect_equal (tmp$equal, 1)
+  })
+  
+  test_that ("POSIXct", {
+    flu$ct <- as.POSIXct(Sys.time()) 
+    expect_equal (apply (flu, 2, mean)$ct, flu$ct [1])
+  })
 
-  ## POSIXct
-  flu$ct <- as.POSIXct(Sys.time()) 
-  checkEquals (apply (flu, 2, mean)$ct, flu$ct [1])
-
-  ## POSIXlt
-  flu$lt <- as.POSIXlt(Sys.time()) 
-  checkEquals (apply (flu, 2, mean)$lt, flu$lt [1])
-
-  rm (flu)
+  test_that ("POSIXlt", {
+    flu$lt <- as.POSIXlt(Sys.time()) 
+    expect_equal (apply (flu, 2, mean)$lt, flu$lt [1])
+  })
 }

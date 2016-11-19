@@ -284,6 +284,7 @@ split.line <- function (x, separator, trim.blank = TRUE) {
 ##'   Base64, ROC AUC, etc.. R package version 1.9.
 ##' @export
 ##' @keywords IO file
+##' @importFrom utils modifyList
 read.ENVI <- function (file = stop ("read.ENVI: file name needed"), headerfile = NULL,
 							  header = list (),
 							  keys.hdr2data = FALSE,

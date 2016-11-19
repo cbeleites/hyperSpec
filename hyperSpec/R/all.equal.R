@@ -41,24 +41,35 @@
 
 
 .test (.all.equal) <- function () {
-  checkTrue (all.equal (flu, --flu))
-  checkTrue (all.equal (flu, --flu, check.attributes = TRUE)) 
-  checkTrue (all.equal (flu, --flu, check.names = TRUE))
+  context (".all.equal")
   
-  ## labels
-  checkTrue (all.equal (flu, --flu, check.label = TRUE))
-  ## order of labels does *not* matter
-  tmp <- flu
-  tmp@label <- rev (tmp@label)
-  checkTrue (all.equal (flu, tmp, check.label = TRUE))
-  ## whether character or expression does matter:
-  tmp@label <- lapply (tmp@label, as.expression)
-  checkTrue (! isTRUE (all.equal (flu, tmp, check.label = TRUE)))
+  test_that("basic equalities", {
+    expect_true (all.equal (flu, --flu))
+    expect_true (all.equal (flu, --flu, check.attributes = TRUE)) 
+    expect_true (all.equal (flu, --flu, check.names = TRUE))
+  })
   
-  ## column order
-  checkTrue ( all.equal (flu, --flu, check.column.order = TRUE))
-  checkTrue (! isTRUE (all.equal (flu, flu [, rev (colnames (flu))], check.column.order = TRUE)))
-  checkTrue (          all.equal (flu, flu [, rev (colnames (flu))], check.column.order = FALSE))
+  test_that("labels", {
+    expect_true (all.equal (flu, --flu, check.label = TRUE))
+  })
+  
+  test_that("labels: order of labels does *not* matter", {
+    tmp <- flu
+    tmp@label <- rev (tmp@label)
+    expect_true (all.equal (flu, tmp, check.label = TRUE))
+  })
+  
+  test_that("labels: character vs. expression does matter:", {
+    tmp <- flu
+    tmp@label <- lapply (tmp@label, as.expression)
+    expect_true (! isTRUE (all.equal (flu, tmp, check.label = TRUE)))
+  })
+  
+  test_that("column order", {
+    expect_true (          all.equal (flu, --flu, check.column.order = TRUE))
+    expect_true (! isTRUE (all.equal (flu, flu [, rev (colnames (flu))], check.column.order = TRUE)))
+    expect_true (          all.equal (flu, flu [, rev (colnames (flu))], check.column.order = FALSE))
+  })
 }
 
 

@@ -28,6 +28,7 @@
 ##' plotmat (laser, "t")
 ##'
 ##' plotmat (laser, laser$t / 3600, ylab = "t / h")
+##' @importFrom utils modifyList
 plotmat <- function (object, y = ".row", ylab, col = alois.palette (20), ...,
                      contour = FALSE){
 
@@ -68,7 +69,7 @@ plotmat <- function (object, y = ".row", ylab, col = alois.palette (20), ...,
     par (mar = mar)
 
     ## color legend
-    if (requireNamespace ("plotrix")){
+    if (requireNamespace ("plotrix", quietly = TRUE)){
 
       usr <- par()$usr
 
@@ -91,12 +92,17 @@ plotmat <- function (object, y = ".row", ylab, col = alois.palette (20), ...,
 }
 
 .test (plotmat) <- function (){
-  ## test non-increasing wavelength axis
+  context ("plotmat")
+  
+  test_that ("non-increasing wavelength axis", {
+    tmp <- flu
+    tmp [[]] <- tmp [[,, max ~ min]]
+    tmp@wavelength <- rev (tmp@wavelength)
+    
+    expect_silent (plotmat (tmp))
+  })
+  
+  ## TODO vdiffr
 
-  tmp <- flu
-  tmp [[]] <- tmp [[,, max ~ min]]
-  tmp@wavelength <- rev (tmp@wavelength)
-
-  plotmat (tmp)
 
 }

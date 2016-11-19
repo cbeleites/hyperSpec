@@ -54,10 +54,18 @@ hy.getOptions <- function (...){
 
 ##' @include hyperspec-package.R
 .test (hy.getOptions) <- function (){
-  checkEquals (hy.getOptions (), .options)
-
-  checkEquals (hy.getOptions (tail (names (.options), 1)),
-               tail (.options, 1))
+  context("hy.getOptions")
+  
+  test_that("proper return", {
+    hy.opts <- get (".options", asNamespace("hyperSpec"))
+    expect_equal (hy.getOptions (), hy.opts)
+    
+    expect_equal (hy.getOptions ("debuglevel"),
+                 hy.opts["debuglevel"])
+    
+    .options <- list ()
+    expect_equal (hy.getOptions (), hy.opts)
+  })
 }
 
 ##' @rdname options
@@ -69,11 +77,17 @@ hy.getOption <- function (name){
 
 ##' @rdname options
 ##' @export
+##' @importFrom utils modifyList
 hy.setOptions <- function (...){
   new <- list (...)
+  
+  ## if called with list in 1st argument, use that list
+  if (length (new) == 1 && is.list (new [[1]]))
+    new <- new [[1]]
+  
   names <- nzchar (names (new))
 
-  if (! all (names))
+  if (! all (names) || length (names) != length (new))
     warning ("options without name are discarded: ", which (! names))
   
   opts <- modifyList (.options, new [names])
@@ -81,12 +95,7 @@ hy.setOptions <- function (...){
   opts$tolerance <- .checkpos (opts$tolerance, "tolerance")
   opts$wl.tolerance <- .checkpos (opts$wl.tolerance, "wl.tolerance")
   
-  if (sys.parent() == 0) 
-    env <- asNamespace ("hyperSpec")
-  else
-    env <- parent.frame ()
-
-  assign(".options", opts, envir = env)
+  assign(".options", opts, envir = asNamespace ("hyperSpec"))
 
   invisible (opts)
 }
@@ -101,4 +110,61 @@ hy.setOptions <- function (...){
 	opt
 }
 
-## todo unit tests
+.test (hy.setOptions) <- function (){
+  context ("hy.setOptions")
+  
+  old <- hy.getOptions ()
+  on.exit(hy.setOptions (old))
+ 
+  test_that("new option and proper return value", {
+    expect_equal(hy.setOptions (bla = 1)$bla, 1)
+    expect_equal (hy.getOption ("bla"), 1)
+  })
+
+  test_that("setting", {
+    tmp <- hy.setOptions (debuglevel = 27)
+    expect_equal(tmp$debuglevel, 27)
+
+    tmp <- hy.setOptions (list (debuglevel = 20))
+    expect_equal(tmp$debuglevel, 20)
+
+    tmp <- hy.setOptions (debuglevel = 27, tolerance = 4)
+    expect_equal(tmp$debuglevel, 27)
+    expect_equal(tmp$tolerance, 4)
+
+    tmp <- hy.setOptions (list (debuglevel = 20, tolerance = 5))
+    expect_equal(tmp$debuglevel, 20)
+    expect_equal(tmp$tolerance, 5)
+  })
+  
+  test_that ("restrictions on tolerances", {
+    for (o in c ("tolerance", "wl.tolerance")){
+      expect_warning(hy.setOptions (structure (list (0), .Names = o)))
+      expect_equal(hy.getOption (o), .Machine$double.eps, label = o)
+      
+      hy.setOptions (structure (list (1), .Names = o))
+      expect_equal(hy.getOption (o), 1)
+      expect_warning(hy.setOptions (structure (list (-1), .Names = o)))
+      expect_equal(hy.getOption (o), .Machine$double.eps, label = o)
+
+      hy.setOptions (structure (list (1), .Names = o))
+      expect_equal(hy.getOption (o), 1)
+      expect_warning(hy.setOptions (structure (list (NA), .Names = o)))
+      expect_equal(hy.getOption (o), .Machine$double.eps, label = o)
+    }
+    
+    expect_warning(hy.setOptions (tolerance = NULL))
+    expect_equal(hy.getOption ("tolerance"), .Machine$double.eps)
+    
+    expect_warning(hy.setOptions (wl.tolerance = NULL))
+    expect_equal(hy.getOption ("wl.tolerance"), .Machine$double.eps)
+  })
+  
+ 
+  test_that("options must be named", {
+    tmp.a <- hy.getOptions ()
+    expect_warning (tmp.b <- hy.setOptions (1))
+    expect_equal(tmp.a, tmp.b)
+  })
+  
+}

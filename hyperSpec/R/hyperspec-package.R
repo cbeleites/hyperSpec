@@ -29,14 +29,6 @@
 ##' @include laser.R
 ##' @include paracetamol.R
 ##' @include barbiturates.R
+##' @include unittest.R
 ##' @keywords package
-if (!requireNamespace ("svUnit", quietly = TRUE)){
-  `.test<-` <- function (f, value) {
-      class (value) <-  c ("svTest", "function")
-    attr (f, "test") <- value
-    f
-  }
-} else {
- `.test<-` <- `test<-`
-}
-
+NULL

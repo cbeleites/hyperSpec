@@ -41,6 +41,7 @@ spc.rubberband <- function (spc, ..., upper = FALSE, noise = 0, spline = TRUE){
   spc
 }
 
+##' @importFrom grDevices chull
 .rubberband <- function (x, y, noise, spline, ..., debuglevel = hy.getOption ("debuglevel")){
   for (s in seq_len (nrow (y))){
     pts <- chull (x, y [s,])

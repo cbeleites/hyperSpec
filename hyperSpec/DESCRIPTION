@@ -2,8 +2,8 @@ Package: hyperSpec
 Type: Package
 Title: Work with Hyperspectral Data, i.e. Spectra + Meta Information (Spatial,
     Time, Concentration, ...)
-Version: 0.98-20161115
-Date: 2016-11-15
+Version: 0.98-20161119
+Date: 2016-11-19
 Author: Claudia Beleites
 Maintainer: Claudia Beleites <chemometrie@beleites.de>
 Description: Comfortable ways to work with hyperspectral data sets.
@@ -20,14 +20,13 @@ Depends:
     R (>= 2.15),
     lattice,
     grid,
-    ggplot2 (>= 0.9.2)
+    ggplot2 (>= 2.2.0)
 Suggests:
     R.matlab,
     tripack,
     deldir,
     rgl,
     plotrix,
-    testthat,
     sp,
     baseline,
     compiler,
@@ -39,14 +38,15 @@ Suggests:
     mvtnorm,
     digest
 Imports:
+    testthat,
     methods,
     utils,
-    latticeExtra,
-    svUnit
+    latticeExtra
 URL: http://hyperSpec.r-forge.r-project.org/
 Collate:
     'validate.R'
     'hyperspec-class.R'
+    'unittest.R'
     'barbiturates.R'
     'paracetamol.R'
     'laser.R'
@@ -140,7 +140,6 @@ Collate:
     'sweep.R'
     'trellis.factor.key.R'
     'units.R'
-    'unittest.R'
     'vandermonde.R'
     'wc.R'
     'wl.R'

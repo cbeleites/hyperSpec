@@ -1,62 +1,74 @@
-##' Convert Principal Component Decomposition or the like into a hyperSpec Object
-##'
-##' Decomposition of the spectra matrix is a common procedure in chemometric data
-##' analysis. \code{scores} and \code{loadings} convert the result matrices into new \code{hyperSpec}
-##' objects.
-##'
-##' Multivariate data are frequently decomposed by methods like principal component analysis, partial
-##' least squares, linear discriminant analysis, and the like.  These methods yield latent spectra
-##' (or latent variables, loadings, components, \dots{}) that are linear combination coefficients
+##' Convert Principal Component Decomposition or the like into a hyperSpec
+##' Object
+##' 
+##' Decomposition of the spectra matrix is a common procedure in chemometric
+##' data analysis. \code{scores} and \code{loadings} convert the result matrices
+##' into new \code{hyperSpec} objects.
+##' 
+##' Multivariate data are frequently decomposed by methods like principal
+##' component analysis, partial least squares, linear discriminant analysis, and
+##' the like.  These methods yield latent spectra (or latent variables,
+##' loadings, components, \dots{}) that are linear combination coefficients 
 ##' along the wavelength axis and scores for each spectrum and loading.
-##'
-##' The loadings matrix gives a coordinate transformation, and the scores are values in that
-##' new coordinate system.
-##'
-##' The obtained latent variables are spectra-like objects: a latent variable has a coefficient for
-##' each wavelength. If such a matrix (with the same number of columns as \code{object} has
-##' wavelengths) is given to \code{decomposition} (also setting \code{scores = FALSE}), the spectra
-##' matrix is replaced by \code{x}. Moreover, all columns of \code{object@@data} that did not contain
-##' the same value for all spectra are set to \code{NA}.  Thus, for the resulting \code{hyperSpec}
-##' object, \code{\link{plotspc}} and related functions are meaningful.
-##' \code{\link[hyperSpec]{plotmap}} cannot be applied as the loadings are not laterally resolved.
-##'
-##' The scores matrix needs to have the same number of rows as \code{object} has spectra. If such a
-##' matrix is given, \code{decomposition} will replace the spectra matrix is replaced by \code{x} and
-##' \code{object@@wavelength} by \code{wavelength}. The information related to each of the spectra is
-##' retained. For such a \code{hyperSpec} object, \code{\link{plotmap}} and \code{\link{plotc}} and
-##' the like can be applied. It is also possible to use the spectra plotting, but the
-##' interpretation is not that of the spectrum any longer.
-##'
+##' 
+##' The loadings matrix gives a coordinate transformation, and the scores are
+##' values in that new coordinate system.
+##' 
+##' The obtained latent variables are spectra-like objects: a latent variable
+##' has a coefficient for each wavelength. If such a matrix (with the same
+##' number of columns as \code{object} has wavelengths) is given to
+##' \code{decomposition} (also setting \code{scores = FALSE}), the spectra 
+##' matrix is replaced by \code{x}. Moreover, all columns of \code{object@@data}
+##' that did not contain the same value for all spectra are set to \code{NA}. 
+##' Thus, for the resulting \code{hyperSpec} object, \code{\link{plotspc}} and
+##' related functions are meaningful. \code{\link[hyperSpec]{plotmap}} cannot be
+##' applied as the loadings are not laterally resolved.
+##' 
+##' The scores matrix needs to have the same number of rows as \code{object} has
+##' spectra. If such a matrix is given, \code{decomposition} will replace the
+##' spectra matrix is replaced by \code{x} and \code{object@@wavelength} by
+##' \code{wavelength}. The information related to each of the spectra is 
+##' retained. For such a \code{hyperSpec} object, \code{\link{plotmap}} and
+##' \code{\link{plotc}} and the like can be applied. It is also possible to use
+##' the spectra plotting, but the interpretation is not that of the spectrum any
+##' longer.
+##' 
 ##' @param object A \code{hyperSpec} object.
 ##' @param x matrix with the new content for \code{object@@data$spc}.
-##'
-##' Its size must correspond to rows (for \code{scores}) and to either columns or rows (for
-##' \code{loadings}) of \code{object}.
-##' @param wavelength for a scores-like \code{x}: the new \code{object@@wavelength}.
-##' @param label.wavelength The new label for the wavelength axis (if \code{x} is scores-like)
-##' @param label.spc The new label for the spectra matrix
+##'   
+##'   Its size must correspond to rows (for \code{scores}) and to either columns
+##'   or rows (for \code{loadings}) of \code{object}.
+##' @param wavelength for a scores-like \code{x}: the new
+##'   \code{object@@wavelength}.
+##' @param label.wavelength The new label for the wavelength axis (if \code{x}
+##'   is scores-like). If not given, the label of \code{object} is kept.
+##' @param label.spc The new label for the spectra matrix. If not given, the
+##'   label of \code{object} is kept.
 ##' @param scores is \code{x} a scores-like matrix?
-##' @param retain.columns for loading-like decompostition (i.e. \code{x} holds loadings, pure
-##' component spectra or the like), the data columns need special attention.
-##'
-##' Columns with different values across the rows will be set to \code{NA} if \code{retain.columns}
-##' is \code{TRUE}, otherwise they will be deleted.
+##' @param retain.columns for loading-like decompostition (i.e. \code{x} holds
+##'   loadings, pure component spectra or the like), the data columns need
+##'   special attention.
+##'   
+##'   Columns with different values across the rows will be set to \code{NA} if
+##'   \code{retain.columns} is \code{TRUE}, otherwise they will be deleted.
 ##' @param ... ignored.
 ##' @return A \code{hyperSpec} object, updated according to \code{x}
 ##' @author C. Beleites
-##' @seealso See \code{\link{\%*\%}} for matrix multiplication of \code{hyperSpec} objects.
-##'
-##' See e.g. \code{\link[stats]{prcomp}} and \code{\link[stats]{princomp}} for principal component
-##' analysis, and package \code{pls} for Partial Least Squares Regression.
+##' @seealso See \code{\link{\%*\%}} for matrix multiplication of
+##'   \code{hyperSpec} objects.
+##'   
+##'   See e.g. \code{\link[stats]{prcomp}} and \code{\link[stats]{princomp}} for
+##'   principal component analysis, and package \code{pls} for Partial Least
+##'   Squares Regression.
 ##' @keywords methods manip
 ##' @include apply.R
 ##' @examples
 ##' pca <- prcomp (flu)
-##'
+##' 
 ##' pca.loadings <- decomposition (flu, t (pca$rotation), scores = FALSE)
 ##' pca.center <- decomposition (flu, pca$center, scores = FALSE)
 ##' pca.scores <- decomposition (flu, pca$x)
-##'
+##' 
 ##' plot (pca.center)
 ##' plot (pca.loadings, col = c ("red", "gray50"))
 ##' plotc (pca.scores, groups = .wavelength)
@@ -127,54 +139,56 @@ decomposition <- function (object, x, wavelength = seq_len (ncol (x)),
 }
 
 .test (decomposition) <- function (){
-  rm (flu)
+context ("decomposition")
 
-  ## check scores-like
-  flu$matrix <- cbind (flu$c, flu$c)
-  checkTrue (is.matrix (flu$matrix))
+  test_that ("scores-like", {
+    flu$matrix <- cbind (flu$c, flu$c)
+    expect_true (is.matrix (flu$matrix))
+    
+    tmp <- flu [,, 405 ~ 410]
+    tmp@wavelength <- seq_len (nwl (tmp))
+    colnames (tmp@data$spc) <- seq_len (nwl (tmp))
+    
+    scores <- decomposition (flu, flu [[,, 405 ~ 410]])
+    expect_equal (scores, tmp)
+  })
+  
+  test_that ("spc labels", {
+    scores <- decomposition (flu, flu [[,, 405 ~ 410]], label.spc = "bla")
+    expect_equal (labels (scores, "spc"), "bla")
+  })
+  
+  test_that ("wl labels", {
+    scores <- decomposition (flu, flu [[,, 405 ~ 410]], label.wavelength = "bla")
+    expect_equal (labels (scores, ".wavelength"),	"bla")
+  })
+  
+  test_that ("check loadings-like", {
+    
+    tmp <- flu [1, c ("spc"),]
+    loadings <- decomposition (flu, flu [[1,,]])
+    expect_equal (loadings, tmp)
+  })
 
-  tmp <- flu [,, 405 ~ 410]
-  labels (tmp, "spc") <- "spc"
-  tmp@wavelength <- seq_len (nwl (tmp))
-  colnames (tmp@data$spc) <- seq_len (nwl (tmp))
-
-  scores <- decomposition (flu, flu [[,, 405 ~ 410]])
-  checkEquals (scores, tmp)
-
-  ## spc labels
-  scores <- decomposition (flu, flu [[,, 405 ~ 410]], label.spc = "bla")
-  checkEquals (labels (scores, "spc"), "bla")
-
-  ## wl labels
-  scores <- decomposition (flu, flu [[,, 405 ~ 410]], label.wavelength = "bla")
-  checkEquals (labels (scores, ".wavelength"),	"bla")
-
-  rm (scores, tmp)
-
-  ## check loadings-like
-
-  tmp <- flu [1, c ("spc"),]
-  tmp@label$spc <- "spc"
-  loadings <- decomposition (flu, flu [[1,,]])
-  checkEquals (loadings, tmp)
-
-
-  ## POSIXct
-  flu$ct <- as.POSIXct(Sys.time())
-  checkEquals (decomposition (flu, flu [[]], scores = FALSE)$ct, flu$ct)
-
-  ## POSIXlt
-  flu$lt <- as.POSIXlt(Sys.time())
-  checkEquals (decomposition (flu, flu [[]], scores = FALSE)$lt, flu$lt)
-
-  ## spc labels
-  tmp <- decomposition (flu, flu [[]], scores = FALSE, label.spc = "bla")
-  checkEquals (labels (tmp, "spc"),	"bla")
-
-  ## wl labels: should *not* be changed for loadings-like decomposition
-  tmp <- decomposition (flu, flu [[]], scores = FALSE, label.wavelength = "bla")
-  checkEquals (labels (tmp, ".wavelength"),	labels (flu, ".wavelength"))
-
-  rm (flu)
+  test_that ("POSIXct", {
+    flu$ct <- as.POSIXct(Sys.time())
+    expect_equal (decomposition (flu, flu [[]], scores = FALSE)$ct, flu$ct)
+  })
+  
+  test_that ("POSIXlt", {
+    flu$lt <- as.POSIXlt(Sys.time())
+    expect_equal (decomposition (flu, flu [[]], scores = FALSE)$lt, flu$lt)
+  })
+  
+  test_that ("spc labels", {
+    tmp <- decomposition (flu, flu [[]], scores = FALSE, label.spc = "bla")
+    expect_equal (labels (tmp, "spc"),	"bla")
+  })
+  
+  test_that ("wl labels: should *not* be changed for loadings-like decomposition", {
+    tmp <- decomposition (flu, flu [[]], scores = FALSE, label.wavelength = "bla")
+    expect_equal (labels (tmp, ".wavelength"),	labels (flu, ".wavelength"))
+  })
+  
 }
 

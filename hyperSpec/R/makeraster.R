@@ -35,6 +35,7 @@
 ##' onraster <- raster$x %in% raster$levels
 ##' points (which (onraster), raster$x [onraster], col = "blue", pch = 20)
 ##'
+##' @importFrom utils tail
 makeraster <- function (x, startx, d, newlevels, tol = 0.1){
 
   if (missing (newlevels))
