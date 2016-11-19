@@ -1,4 +1,5 @@
 ##' Binding hyperSpec Objects
+##' 
 ##' Two S3 functions \code{cbind.hyperSpec} and \code{rbind.hyperSpec} act as
 ##' an interfaces to \code{cbind2} and \code{rbind2} because neither
 ##' \code{\link[Matrix]{rBind}} and \code{\link[Matrix]{cBind}} nor S4 versions
@@ -86,34 +87,32 @@ bind <- function (direction = stop ("direction ('c' or 'r') required"), ...,
 }
 
 .test (bind) <- function () {
-	## wl.tolerance on rbind
-	tmp <- flu
-	wl (tmp) <- wl (tmp) + 0.01
-	checkException (bind ("r", tmp, flu))
-	checkEqualsNumeric (nwl (bind ("r", tmp, flu, tmp, flu, wl.tolerance = 0.1)), nwl (flu))
+  context ("bind")
+  
+  test_that("wl.tolerance for rbind", {
+    tmp <- flu
+    wl (tmp) <- wl (tmp) + 0.01
+    expect_error (bind ("r", tmp, flu))
+    expect_equivalent (nwl (bind ("r", tmp, flu, tmp, flu, wl.tolerance = 0.1)), nwl (flu))
+
 	
-	
-	tmp.list <- list (flu, tmp, flu)
-
-	checkException (bind ("r", tmp.list))
-	checkTrue (all.equal (bind ("r", tmp.list, wl.tolerance = 0.1), 
-												flu [rep (row.seq (flu), 3)], 
-												check.label = TRUE))
-
-	checkTrue (all.equal (do.call ("bind", list ("r", tmp.list, wl.tolerance = 0.1)), 
-												flu [rep (row.seq (flu), 3)], 
-												check.label = TRUE))
-
-	checkTrue (all.equal (do.call ("bind", c ("r", tmp.list, wl.tolerance = 0.1)), 
-												flu [rep (row.seq (flu), 3)], 
-												check.label = TRUE))						 
+    tmp.list <- list (flu, tmp, flu)
+    
+    expect_error (bind ("r", tmp.list))
+    expect_true (all.equal (bind ("r", tmp.list, wl.tolerance = 0.1), 
+                            flu [rep (row.seq (flu), 3)], 
+                            check.label = TRUE))
+    
+    expect_true (all.equal (do.call ("bind", list ("r", tmp.list, wl.tolerance = 0.1)), 
+                            flu [rep (row.seq (flu), 3)], 
+                            check.label = TRUE))
+  })
 }
 
 
-##' \code{cbind2} binds the spectral matrices of two \code{hyperSpec} objects by column. All columns
+##' @description  \code{cbind2} binds the spectral matrices of two \code{hyperSpec} objects by column. All columns
 ##' besides \code{spc} with the same name in \code{x@@data} and \code{y@@data} must have the same
 ##' elements.  Rows are ordered before checking.
-##' 
 ##' @aliases bind cbind.hyperSpec rbind.hyperSpec
 ##'   cbind2,hyperSpec,hyperSpec-method rbind2,hyperSpec,hyperSpec-method
 ##'   cbind2,hyperSpec,missing-method rbind2,hyperSpec,missing-method
@@ -136,16 +135,19 @@ cbind.hyperSpec <- function (...) bind ("c", ...)
 rbind.hyperSpec <- function (...) bind ("r", ...)
 
 .test (rbind.hyperSpec) <- function () {
-	## wl.tolerance
-	tmp <- flu
-	wl (tmp) <- wl (tmp) + 0.01
-	checkException (rbind (tmp, flu))
-	checkEqualsNumeric (nwl (rbind (tmp, flu, flu, wl.tolerance = 0.1)), nwl (flu))
-	
-	tmp.list <- list (flu, tmp, flu)
-	checkTrue (all.equal (do.call ("rbind", c (tmp.list, wl.tolerance = 0.1)), 
-												flu [rep (row.seq (flu), 3)], 
-												check.label = TRUE))			
+  context ("rbind.hyperSpec")
+
+  test_that("wl.tolerance",{
+    tmp <- flu
+    wl (tmp) <- wl (tmp) + 0.01
+    expect_error (rbind (tmp, flu))
+    expect_equivalent (nwl (rbind (tmp, flu, flu, wl.tolerance = 0.1)), nwl (flu))
+    
+    tmp.list <- list (flu, tmp, flu)
+    expect_true (all.equal (do.call ("rbind", c (tmp.list, wl.tolerance = 0.1)), 
+                            flu [rep (row.seq (flu), 3)], 
+                            check.label = TRUE))			
+  })
 }
 
 
@@ -206,11 +208,14 @@ setMethod("cbind2", signature = signature (x = "hyperSpec", y = "missing"), func
 }
 
 .test (.rbind2) <- function () {
-	## wl.tolerance
-	tmp <- flu
-	wl (tmp) <- wl (tmp) + 0.01
-	checkException (rbind2 (tmp, flu))
-	checkEqualsNumeric (nwl (rbind2 (tmp, flu, wl.tolerance = 0.1)), nwl (flu))
+  context (".rbind2")
+  
+	test_that("wl.tolerance", {
+	  tmp <- flu
+	  wl (tmp) <- wl (tmp) + 0.01
+	  expect_error (rbind2 (tmp, flu))
+	  expect_equivalent (nwl (rbind2 (tmp, flu, wl.tolerance = 0.1)), nwl (flu))
+	})
 }
 
 ##' @rdname bind

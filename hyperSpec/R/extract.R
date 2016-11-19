@@ -195,7 +195,7 @@
 ##' colnames (flu$..)
 ##' 
 ##' @include call.list.R
-##' @export "["
+##' @export
 setMethod ("[", signature = signature (x = "hyperSpec"),
            function (x, i, j, l, ..., 
                      wl.index = FALSE, 
@@ -221,7 +221,7 @@ setMethod ("[", signature = signature (x = "hyperSpec"),
 })
 
 ##' @rdname extractreplace
-##' @export "[["
+##' @export
 ##' @aliases [[ [[,hyperSpec-method
 ## ' @name [[
 setMethod ("[[", signature = signature (x = "hyperSpec"),
@@ -258,7 +258,7 @@ setMethod ("[[", signature = signature (x = "hyperSpec"),
 ##' @rdname extractreplace
 ##' @param name name of the data column to extract. \code{$spc} yields the spectra matrix.
 ##' @aliases $ $,hyperSpec-method
-##' @export "$"
+##' @export
 setMethod ("$", signature = signature (x = "hyperSpec"),
            function (x, name){
   validObject (x)

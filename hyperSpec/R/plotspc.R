@@ -577,6 +577,35 @@ stacked.offsets <- function (x, stacked = TRUE,
         )
 }
 
+.test (stacked.offsets) <- function (){
+  context ("stacked.offsets")
+  
+  test_that("ranges do not overlap", {
+    spc <- do.call (collapse, barbiturates [1:3])
+    ofs <- stacked.offsets (spc)
+    spc <- spc + ofs$offsets
+    rngs <- apply (spc [[]], 1, range, na.rm = TRUE)
+ 
+    expect_equal (as.numeric (rngs), sort (rngs))
+  }) 
+  
+  test_that("extra space", {
+    spc <- new ("hyperSpec", spc = matrix (c (0, 0, 2, 1 : 3), nrow = 3))
+    
+    expect_equal (stacked.offsets (spc, add.factor = 0)$offsets, c (0, 1, 1))
+    expect_equal (stacked.offsets (spc, add.factor = 1)$offsets, c (0, 2, 4))
+    expect_equal (stacked.offsets (spc, add.factor = 0, add.sum = 1)$offsets, c (0, 2, 3))
+  }) 
+  
+  test_that("min.zero", {
+    ofs <- stacked.offsets (flu, min.zero = TRUE, add.factor = 0)
+    expect_equal (ofs$offsets, 
+                  c (0, cumsum (apply (flu [[- nrow (flu)]], 1, max))))
+  })
+  
+  
+  
+}
 
 ###  .axis.break - poor man's version of axis.break 
 .axis.break <- function (axis = 1,breakpos = NULL, ...) 
@@ -633,13 +662,17 @@ stacked.offsets <- function (x, stacked = TRUE,
 
 ##' @include hyperspec-package.R
 .test (.cut.ticks) <- function (){
+  context (".cut.ticks")
+  
   ## bugfix:
   ## plotspc (paracetamol, wl.range = c (min ~ 1800, 2800 ~ max), xoffset = 900)
   ## had 2600 1/cm label printed in low wavelength range
-  checkEqualsNumeric (.cut.ticks (start.ranges = c (96.7865, 2799.86),
-                                  end.ranges = c(1799.95, 3200.07),
-                                  offsets = c (0, 900),
-                                  nticks = 10)$labels,
-                      c (seq (0, 1800, 200), seq (2800, 3400, 200))
-                      )
+  test_that("labels not too far outside wl.range",{
+    expect_equal (.cut.ticks (start.ranges = c (96.7865, 2799.86),
+                              end.ranges = c(1799.95, 3200.07),
+                              offsets = c (0, 900),
+                              nticks = 10)$labels,
+                  c (seq (0, 1800, 200), seq (2800, 3400, 200))
+    )
+  })
 }

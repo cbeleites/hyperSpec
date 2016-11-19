@@ -101,6 +101,10 @@ setMethod ("merge", signature = signature (x = "hyperSpec", y = "hyperSpec"),
 }
 
 .test (.merge) <- function (){
-	checkEqualsNumeric (nrow (merge (chondro [1:10], chondro [5:15], all = TRUE)), 15)
-	checkEqualsNumeric (nrow (merge (chondro [1:10], chondro [5:15])), 6)
+  context (".merge")
+  
+  test_that ("correct number of rows", {
+    expect_equal (nrow (merge (chondro [1:10], chondro [5:15], all = TRUE)), 15)
+    expect_equal (nrow (merge (chondro [1:10], chondro [5:15])), 6)
+  })
 }
