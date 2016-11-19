@@ -10,7 +10,7 @@
 ##' @export
 ##' @seealso \code{\link[hyperSpec]{vanderMonde}} for  polynomials,
 ##'
-##' \code{\link[hyperSpec]{normalize01}} to normalize the wavnumbers before evaluating the function
+##' \code{\link[hyperSpec]{normalize01}} to normalize the wavenumbers before evaluating the function
 ##' @author C. Beleites
 ##' @examples
 ##' plot (wl.eval (laser, exp = function (x) exp (-x)))
@@ -31,11 +31,44 @@ wl.eval <- function (x, ..., normalize.wl = I){
 }
 
 .test (wl.eval) <- function (){
-  x <- runif (10, min = -1e3, max = 1e3)
+  context ("wl.eval")
   
-  checkEqualsNumeric (min (normalize01 (x)), 0)
-  checkEqualsNumeric (max (normalize01 (x)), 1)
+  test_that("error on function not returning same length as input", {
+    expect_error (wl.eval (flu, function (x) 1))
+  })
+  
+  test_that("wl.eval against manual evaluation", {
+    expect_equivalent (wl.eval (flu, function (x) rep (5, length (x)), normalize.wl = normalize01) [[]], 
+                       matrix (rep (5, nwl (flu)), nrow = 1))
+    
+    expect_equivalent (wl.eval (flu, function (x) x), 
+                       vanderMonde(flu, 1)[2])
+    
+    expect_equivalent (wl.eval (flu, function (x) exp (-x)) [[]], 
+                       matrix (exp (-flu@wavelength), nrow = 1))
+  })
 
-  checkEqualsNumeric (normalize01 (x), (x - min (x)) / diff (range (x)))
+  test_that("normalization", {
+    expect_equivalent (wl.eval (flu, function (x) rep (5, length (x)), normalize.wl = normalize01) [[]], 
+                       matrix (rep (5, nwl (flu)), nrow = 1))
+    
+    expect_equivalent (wl.eval (flu, function (x) x, normalize.wl = normalize01) [[]], 
+                       matrix (seq (0, 1, length.out = nwl (flu)), nrow = 1))
+    
+    expect_equivalent (wl.eval (flu, function (x) exp (x), normalize.wl = normalize01) [[]], 
+                       matrix (exp (seq (0, 1, length.out = nwl (flu))), nrow = 1))
+  })
+  
+    
+  test_that("multiple functions", {
+    expect_equivalent (wl.eval (flu, function (x) rep (1, length (x)), function (x) x), 
+                       vanderMonde(flu, 1))
+    
+  })
+  
+  test_that("function names", {
+    tmp <- wl.eval (flu, f = function (x) x, g = function (x) exp (-x))
+    
+    expect_equal(tmp$.f, c ("f", "g"))
+  })
 }
-
