@@ -10,6 +10,7 @@
 ##'   not available
 ##' @export
 ##' @author C. Beleites
+##' @importFrom utils read.table
 wc <- function (file, flags = c("lines", "words", "bytes")){
   if (length (system ("wc --help", intern = TRUE)) == 0)
     return (NULL)

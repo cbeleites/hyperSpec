@@ -16,7 +16,7 @@
 ##' @seealso \code{\link[latticeExtra]{panel.voronoi}}
 ##' @importFrom latticeExtra panel.voronoi
 ##' @importFrom lattice prepanel.default.levelplot
-##' 
+##' @importFrom utils modifyList
 plotvoronoi <- function (object, model = spc ~ x * y,
                          use.tripack = FALSE, mix = FALSE, ...){
   if (!requireNamespace ("latticeExtra"))

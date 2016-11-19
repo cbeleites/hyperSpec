@@ -192,46 +192,66 @@ setMethod ("initialize", "hyperSpec", .initialize)
 
 ##' @include hyperspec-package.R
 .test (.initialize) <- function (){
+  context (".initialize / new (\"hyperSpec\")")
 
-  checkEqualsNumeric (dim (new ("hyperSpec")), c (0L, 1L, 0L))
-
-  h <- new ("hyperSpec", spc = 1 : 4)
-  checkEqualsNumeric (h@data$spc, 1 : 4)
-  checkEqualsNumeric (dim (h), c (1L, 1L, 4L))
-  checkEqualsNumeric (h@wavelength, 1 : 4)
+  test_that("empty hyperSpec object", { 
+    expect_equivalent (dim (new ("hyperSpec")), c (0L, 1L, 0L))
+  })
+            
+  test_that("vector for spc", {
+    h <- new ("hyperSpec", spc = 1 : 4)
+    expect_equal (h@data$spc, matrix (1 : 4, nrow = 1))
+    expect_equivalent (dim (h), c (1L, 1L, 4L))
+    expect_equal (h@wavelength, 1 : 4)
+  })
   
-
+  test_that("matrix for spc", {
+    spc <- matrix (c(1 : 12), nrow = 3)
+    h <- new ("hyperSpec", spc = spc)
+    expect_equivalent (h@data$spc, spc)
+    expect_equivalent (dim (h), c (3L, 1L, 4L))
+    expect_equal (h@wavelength, 1 : 4)
+  })
+  
   spc <- matrix (c(1 : 12), nrow = 3)
-  h <- new ("hyperSpec", spc = spc)
-  checkEqualsNumeric (h@data$spc, spc)
-  checkEqualsNumeric (dim (h), c (3L, 1L, 4L))
-  checkEqualsNumeric (h@wavelength, 1 : 4)
-
+  test_that("matrix with numbers in colnames for spc", {
+    colnames(spc) <- c(600, 601, 602, 603)
+    h <- new ("hyperSpec", spc = spc)
+    expect_equivalent (h@data$spc, spc)
+    expect_equivalent (dim (h), c (3L, 1L, 4L))
+    expect_equal (h@wavelength, c(600, 601, 602, 603))
+  })
+  
   colnames(spc) <- c(600, 601, 602, 603)
-  h <- new ("hyperSpec", spc = spc)
-  checkEqualsNumeric (h@data$spc, spc)
-  checkEqualsNumeric (dim (h), c (3L, 1L, 4L))
-  checkEqualsNumeric (h@wavelength, c(600, 601, 602, 603))
-
-  h <- new ("hyperSpec", spc = spc, data = data.frame (x = 3))
-  checkEqualsNumeric (h@data$spc, spc)
-  checkEqualsNumeric (dim (h), c (3L, 2L, 4L))
-  checkEqualsNumeric (h@wavelength, c(600, 601, 602, 603))
-  checkEqualsNumeric (h@data$x, rep (3, 3L))
-
-  h <- new ("hyperSpec", spc = spc, data = data.frame (spc = 11:13))
-  checkEqualsNumeric (h@data$spc, spc)
-  checkEqualsNumeric (dim (h), c (3L, 1L, 4L))
-  checkEqualsNumeric (h@wavelength, c(600, 601, 602, 603))
-
-  checkException (new ("hyperSpec", spc = spc, data = data.frame (x = 11:12))) # different number of rows
-
-  h <- new ("hyperSpec", data = data.frame (spc = I (spc)))
-  checkEqualsNumeric (h@data$spc, spc)
-  checkEqualsNumeric (dim (h), c (3L, 1L, 4L))
-  checkEqualsNumeric (h@wavelength, c(600, 601, 602, 603))
- 
-  h <- new ("hyperSpec", spc = as.data.frame (spc))
-  checkEqualsNumeric (h@data$spc, spc)
-  checkEqualsNumeric (dim (h), c (3L, 1L, 4L)) 
+  test_that("spc and data given", {
+    h <- new ("hyperSpec", spc = spc, data = data.frame (x = 3))
+    expect_equal (h@data$spc, spc)
+    expect_equivalent (dim (h), c (3L, 2L, 4L))
+    expect_equal (h@wavelength, c(600, 601, 602, 603))
+    expect_equal (h@data$x, rep (3, 3L))
+  })
+  
+  test_that("spc and data given, data has $spc column (which should be overwritten with warning)", {
+    expect_warning(h <- new ("hyperSpec", spc = spc, data = data.frame (spc = 11:13)))
+    expect_equal (h@data$spc, spc)
+    expect_equivalent (dim (h), c (3L, 1L, 4L))
+    expect_equal (h@wavelength, c(600, 601, 602, 603))
+  })
+  
+  test_that("spc and data given, different numbers of rows", {
+    expect_error (new ("hyperSpec", spc = spc, data = data.frame (x = 11:12))) 
+  })
+  
+  test_that("only data given, data has $spc column with `I()`-protected matrix", {
+    h <- new ("hyperSpec", data = data.frame (spc = I (spc)))
+    expect_equal (h@data$spc, spc)
+    expect_equivalent (dim (h), c (3L, 1L, 4L))
+    expect_equal (h@wavelength, c(600, 601, 602, 603))
+  })
+  
+  test_that("spc is data.frame", {
+    h <- new ("hyperSpec", spc = as.data.frame (spc))
+    expect_equal (h@data$spc, spc)
+    expect_equivalent (dim (h), c (3L, 1L, 4L)) 
+  })
 }

@@ -9,6 +9,7 @@ setGeneric ("levelplot", package = "lattice")
 ###
 
 ### the workhorse function
+##' @importFrom utils modifyList
 .levelplot <- function (x, data, transform.factor = TRUE, ...,
                         contour = FALSE, useRaster = !contour) {
   validObject (data)
@@ -63,16 +64,19 @@ setGeneric ("levelplot", package = "lattice")
 }
 
 .test (.levelplot) <- function (){
-
-  ## just check that no errors occur
-  levelplot (laser, contour = TRUE, col = "#00000080")
+  context (".levelplot")
   
-  ## applying a function before plotting
-  plotmap (chondro, func = max, col.regions = gray (seq (0, 1, 0.05)))
-
-  plotmap (chondro, clusters ~ x * y, transform.factor = FALSE)
-  plotmap (chondro, clusters ~ x * y, col.regions = gray (seq (0, 1, 0.05)))
-
+  test_that ("no errors", {
+    ## just check that no errors occur
+    expect_silent (levelplot (laser, contour = TRUE, col = "#00000080"))
+    
+    ## applying a function before plotting
+    expect_silent (plotmap (chondro, func = max, col.regions = gray (seq (0, 1, 0.05))))
+    
+    expect_silent (plotmap (chondro, clusters ~ x * y, transform.factor = FALSE))
+    expect_silent (plotmap (chondro, clusters ~ x * y, col.regions = gray (seq (0, 1, 0.05))))
+  })
+  
 }
 
 ##' @include plotmap.R

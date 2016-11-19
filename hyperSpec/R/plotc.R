@@ -81,6 +81,7 @@
 ##' plotc (laser [,, wl], spc ~ t, groups = .wavelength, type = "b",
 ##'        col = cols)
 ##' 
+##' @importFrom utils modifyList
 plotc <- function (object, model = spc ~ c, groups = NULL,
                      func = NULL, func.args = list (), ...){
   chk.hy (object)

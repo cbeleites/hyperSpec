@@ -92,36 +92,53 @@ collapse <- function (..., wl.tolerance = hy.getOption ("wl.tolerance")){
 }
 
 .test (collapse) <- function () {
-  ## collapse messed up labels if a named list is collapsed
-  tmp <- collapse (a = flu, b = flu)
-  flu.labels <- lapply (flu@label, as.expression)
-  checkEquals (labels (tmp) [names (flu.labels)], flu.labels)
+  context ("collapse")
+  
+  test_that ("correctly assembled", {
+    new <- do.call (collapse, barbiturates [1 : 3])
+    wl <- unlist (lapply (barbiturates [1 : 3], slot, "wavelength"))
+    expect_equal (wl (new), wl [! duplicated (wl)])
+    
+    for (s in 1 : 3){
+      expect_equal (as.numeric (new [[s,, wl (barbiturates [[s]])]]), 
+                    as.numeric (barbiturates [[s]][[]]), 
+                    label = paste0 ("barbiturates [[", s, "]]"))
+    }
+  })
 
-  ## named lists should return .name column
-  checkEquals (tmp$.name, rep (c ("a", "b"), each = nrow (flu)))
+  tmp <- collapse (a = flu, b = flu)
+  test_that ("collapse messed up labels if a named list is collapsed", {
+    flu.labels <- lapply (flu@label, as.expression)
+    expect_equal (labels (tmp) [names (flu.labels)], flu.labels)
+  })
   
-  ## no difference whether list or single arguments are given
-  tmp2 <- list (a = flu, b = flu)
-  tmp2 <- collapse (a = flu, b = flu)
-  checkEquals (tmp, tmp2, 
-               check.attributes = TRUE, check.names = TRUE, check.column.order = FALSE, check.label = TRUE)
+  test_that ("named lists should return .name column", {
+    expect_equal (tmp$.name, rep (c ("a", "b"), each = nrow (flu)))
+  })
   
-  ## wl.tolerance
-  tmp <- flu
-  wl (tmp) <- wl (tmp) + 0.01
-  checkEqualsNumeric (nwl (collapse (tmp, flu                    )), 2 * nwl (flu))
-  checkEqualsNumeric (nwl (collapse (tmp, flu, wl.tolerance = 0.1)), nwl (flu))
+  test_that ("no difference whether list or single arguments are given", {
+    tmp2 <- list (a = flu, b = flu)
+    tmp2 <- collapse (a = flu, b = flu)
+    expect_equal (tmp, tmp2, 
+                 check.attributes = TRUE, check.names = TRUE, check.column.order = FALSE, check.label = TRUE)
+  })
   
-  ## check warning occurs for too large tolerance
-  warnlevel <- options()$warn
-  options (warn = 2)
-  checkException (collapse (flu, wl.tolerance = 0.5 + .Machine$double.eps))
+  test_that ("wl.tolerance", {
+    tmp <- flu
+    wl (tmp) <- wl (tmp) + 0.01
+    expect_equal (nwl (collapse (tmp, flu                    )), 2 * nwl (flu))
+    expect_equal (nwl (collapse (tmp, flu, wl.tolerance = 0.1)), nwl (flu))
+  })
   
-  ## bugfix: wl.tolerance generated warning for negative diff (wl (spc))
-  tmp <- flu
-  wl (tmp) <- rev (wl (tmp))
-  collapse (tmp, tmp)
+  test_that ("check warning occurs for too large tolerance", {
+    expect_warning (collapse (flu, wl.tolerance = 0.5 + .Machine$double.eps))
+  })
   
-  options (warn = warnlevel)
+  test_that ("bugfix: wl.tolerance generated warning for negative diff (wl (spc))", {
+    tmp <- flu
+    wl (tmp) <- rev (wl (tmp))
+    expect_silent (collapse (tmp, tmp))
+  })
+  
 }
 

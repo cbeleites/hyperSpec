@@ -154,7 +154,7 @@ setMethod ("Arith", signature (e1 = "matrix", e2 = "hyperSpec"), .arithy)
 ##' @concept hyperSpec matrix multiplication
 ##' @aliases %*% %*%,hyperSpec,hyperSpec-method %*%,matrix,hyperSpec-method
 ##' %*%,hyperSpec,matrix-method
-##' @export "%*%"
+##' @export
 ##' @seealso  \code{\link[base]{matmult}} for matrix multiplications with \code{\%*\%}.
 setMethod ("%*%", signature (x = "hyperSpec", y = "hyperSpec"),
            function (x, y){
@@ -203,16 +203,26 @@ setMethod ("%*%", signature (x = "matrix", y = "hyperSpec"),
            )
 
 .test (Arith) <- function (){
-  checkEqualsNumeric (as.matrix (flu - flu), rep (0, nrow (flu) * nwl (flu)))
-  checkEqualsNumeric (as.matrix (flu - flu [1]), as.matrix (sweep (flu, 2, flu [1], `-`)))
-  checkEqualsNumeric (as.matrix (flu - flu [,, 450]), as.matrix (sweep (flu, 1, flu [,, 450], `-`)))
-
-  checkEqualsNumeric (as.matrix (flu / flu), rep (1, nrow (flu) * nwl (flu)))
-  checkEqualsNumeric (as.matrix (flu / flu [1]), as.matrix (sweep (flu, 2, flu [1], `/`)))
-  checkEqualsNumeric (as.matrix (flu / flu [,, 450]), as.matrix (sweep (flu, 1, flu [,, 450], `/`)))
-
-  checkEqualsNumeric (as.matrix (flu + 1), as.matrix (flu) + 1) 
-  checkEqualsNumeric (as.matrix (1 + flu), as.matrix (flu) + 1) 
-
-  checkEqualsNumeric (as.matrix (-flu), - as.matrix (flu))
+  context ("Arith")
+  
+  test_that("binary -", {
+    expect_equal (as.matrix (flu - flu), matrix (0, nrow = nrow (flu), ncol = nwl (flu)))
+    expect_equal (as.matrix (flu - flu [1]), as.matrix (sweep (flu, 2, flu [1], `-`)))
+    expect_equal (as.matrix (flu - flu [,, 450]), as.matrix (sweep (flu, 1, flu [,, 450], `-`)))
+  })
+  
+  test_that("binary /", {
+    expect_equal (as.matrix (flu / flu), matrix (1, nrow = nrow (flu), ncol = nwl (flu)))
+    expect_equal (as.matrix (flu / flu [1]), as.matrix (sweep (flu, 2, flu [1], `/`)))
+    expect_equal (as.matrix (flu / flu [,, 450]), as.matrix (sweep (flu, 1, flu [,, 450], `/`)))
+  })
+  
+  test_that("binary + with scalar", {
+    expect_equal (as.matrix (flu + 1), as.matrix (flu) + 1) 
+    expect_equal (as.matrix (1 + flu), as.matrix (flu) + 1) 
+  })
+  
+  test_that("unary -", {
+    expect_equal (as.matrix (-flu), - as.matrix (flu))
+  })
 }

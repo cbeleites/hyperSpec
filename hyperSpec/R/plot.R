@@ -7,7 +7,7 @@
 ###
 ### .plot: main switchyard for plotting functions
 ###
-
+##' @importFrom utils modifyList
 .plot <-  function (x, y, ...){
   ##    'spc'        ... spectra
   ##    'map'        ... map

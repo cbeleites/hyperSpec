@@ -1,3 +1,4 @@
+##' @importFrom utils modifyList
 .labels <- function (object, which = bquote(), drop = TRUE, ..., use.colnames = TRUE){
   validObject (object)                  
 
@@ -24,22 +25,32 @@
 
 ##' @include hyperspec-package.R
 .test (.labels) <- function (){
+  context (".labels")
+  
   .sort <- function (x)
     x [order (names (x))]
   
-  checkEquals (.sort (labels (flu, use.colnames = FALSE)), .sort (flu@label))
-  tmp <- c (flu@label, file = "file")
-  checkEquals (.sort (labels (flu)), .sort (tmp))
+  test_that ("return exactly @label with use.colnames == FALSE",
+            expect_equal(.sort (labels (flu, use.colnames = FALSE)), .sort (flu@label))
+  )
   
-  tmp <- flu
-  tmp@label$file <- NULL
-  checkEquals (labels (tmp, c ("c", "file", "fil"), use.colnames = FALSE),
-               structure(list(c = "c / (mg / l)", `NA` = NULL, `NA` = NULL),
-                         .Names = c("c", NA, NA)))
-
-  checkEquals (labels (tmp, c ("c", "file", "fil")),
-               structure(list(c = "c / (mg / l)", file = "file", `NA` = NULL),
-                         .Names = c("c", "file", NA)))
+  test_that ("fill in missing labels", {
+    tmp <- c (flu@label, file = "file")
+    expect_equal (.sort (labels (flu)), .sort (tmp))
+  })
+  
+  
+  test_that ("labels for specified columns", {
+    tmp <- flu
+    tmp@label$file <- NULL
+    expect_equal (labels (tmp, c ("c", "file", "fil"), use.colnames = FALSE),
+                  structure(list(c = "c / (mg / l)", `NA` = NULL, `NA` = NULL),
+                            .Names = c("c", NA, NA)))
+    
+    expect_equal (labels (tmp, c ("c", "file", "fil")),
+                  structure(list(c = "c / (mg / l)", file = "file", `NA` = NULL),
+                            .Names = c("c", "file", NA)))
+  })
 }
 
 ##' @rdname labels

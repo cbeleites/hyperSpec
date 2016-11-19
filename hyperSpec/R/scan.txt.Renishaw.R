@@ -41,6 +41,7 @@
 ##' @seealso \code{\link{read.txt.long}}, \code{\link{read.txt.wide}},
 ##'   \code{\link[base]{scan}}
 ##' @keywords IO file
+##' @importFrom utils head
 scan.txt.Renishaw <- function (file = stop ("file is required"),
                                data = "xyspc", nlines = 0, nspc = NULL){
   cols <- switch (data,

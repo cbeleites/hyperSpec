@@ -27,7 +27,6 @@
 ##'   from a spectroscopic point of view.
 ##' @keywords classes
 ##' @export
-##' @noRd
 ##' @include validate.R
 ##' @examples
 ##' 

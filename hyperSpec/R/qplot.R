@@ -18,6 +18,7 @@
 ##' @examples
 ##' 
 ##'   qplotspc (chondro)
+##'   
 ##'   qplotspc (paracetamol, c (2800 ~ max, min ~ 1800)) + scale_x_reverse (breaks = seq (0, 3200, 400))
 ##' 
 ##'   qplotspc (aggregate (chondro, chondro$clusters, mean),
@@ -66,10 +67,11 @@ qplotspc <- function (x,
   p <- p + xlab (labels (x, ".wavelength")) + ylab (labels (x, "spc")) 
 
   if (!missing (wl.range))
-      p <- p + facet_grid (. ~ .wl.range, labeller = function (...) "",
-                           scales = "free", space = "free") +
-               theme (strip.text.x = element_text (size = 0))
-
+    p <- p + facet_grid (. ~ .wl.range, 
+                         labeller = as_labeller (rep (NA, nlevels (df$.wl.range))),
+                         scales = "free", space = "free") +
+    theme (strip.text.x = element_text (size = 0))
+  
   p
 }
 
@@ -99,6 +101,7 @@ qplotspc <- function (x,
 ##'
 ##' ## works also with discrete x or y axis:
 ##' qplotmap (chondro, mapping = aes (x = x, y = as.factor (y), fill = spc)) 
+##' @importFrom utils tail
 qplotmap <- function (object, mapping = aes_string (x = "x", y = "y", fill = "spc"), ...,
                       func = mean, func.args = list (),
                       map.tileonly = FALSE){

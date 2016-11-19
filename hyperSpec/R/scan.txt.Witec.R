@@ -19,6 +19,7 @@
 ##'
 ##' \code{\link{options}} for details on options.
 ##' @export
+##' @importFrom utils head
 scan.txt.Witec <- function (file = stop ("filename or connection needed"),
                             points.per.line = NULL,
                             lines.per.image = NULL,

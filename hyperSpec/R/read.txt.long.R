@@ -102,6 +102,7 @@
 ##' 		header = TRUE)
 ##'
 ##'
+##' @importFrom utils read.table unstack
 read.txt.long <- function (file = stop ("file is required"),
                            cols = list (
                              .wavelength = expression (lambda / nm),

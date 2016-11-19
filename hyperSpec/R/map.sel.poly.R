@@ -90,6 +90,7 @@ map.sel.poly <- function (data, pch = 19, size = 0.3, ...){
 ##' @keywords iplot
 ##' @rdname map-sel-poly
 ##' @importFrom grid grid.lines grid.points
+##' @importFrom utils tail
 sel.poly <- function (pch = 19, size = 0.3, ...){
 	if (! interactive ())
 		stop ("sel.poly works only on interactive graphics devices.")
