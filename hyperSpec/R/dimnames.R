@@ -22,8 +22,6 @@ setMethod ("dimnames", signature = signature (x = "hyperSpec"), function (x){
         wl = colnames (x@data$spc))
 })
 
-##'
-##'
 ##' @rdname dimnames
 ##' @aliases rownames
 ##' @param do.NULL handed to \code{\link[base]{rownames}} or \code{\link[base]{colnames}}: logical.
