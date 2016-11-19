@@ -9,45 +9,21 @@
 ##' @author Claudia Beleites
 ##'
 ##' @keywords programming utilities
-##' @importFrom testthat SummaryReporter ListReporter MultiReporter get_reporter
-##' @include hyperSpec-package.R
+##' @import testthat
 ##' @export
 ##' @examples
 ##' 
 ##' hy.unittest ()
 ##' 
 hy.unittest <- function (){
-  if (! requireNamespace ("svUnit", quietly = TRUE)){
-    warning ("svUnit required to run the unit tests.")
-    return (NA)
-  }
-
-  tests <- unlist (eapply (env = getNamespace ("hyperSpec"), FUN = svUnit::is.test, all.names = TRUE))
-  tests <- names (tests [tests])
-  tests <- sapply (tests, get, envir = getNamespace ("hyperSpec"))
-
-  clearLog ()
-  warnlevel <- options()$warn
-  options (warn = 0)
-  for (t in seq_along (tests))
-  	runTest (tests [[t]], names (tests) [t])
-  options (warn = warnlevel)
-
-  if (interactive ())
-    print (stats (Log()))
-  else
-    print (stats (Log ())[,c ("kind", "msg")])
-
-  errorLog (summarize = FALSE)
-  
-  ## from here on: testthat unit tests
-  
   if (!requireNamespace("testthat", quietly=TRUE)) {
     warning("testthat required to run the unit tests.")
     return(NA)
-  }
+  } 
+  if (! "testthat" %in% search ())
+    attachNamespace("testthat")
   
-  tests <- eapply(env = getNamespace ("unmixR"), FUN = get.test, all.names=TRUE)
+  tests <- eapply(env = getNamespace ("hyperSpec"), FUN = get.test, all.names=TRUE)
   tests <- tests [! sapply (tests, is.null)]
   
   reporter <- SummaryReporter$new()
