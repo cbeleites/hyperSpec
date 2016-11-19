@@ -94,6 +94,16 @@ collapse <- function (..., wl.tolerance = hy.getOption ("wl.tolerance")){
 .test (collapse) <- function () {
   context ("collapse")
   
+  test_that ("correctly assembled", {
+    new <- do.call (collapse, barbiturates [1 : 3])
+    wl <- unlist (lapply (barbiturates [1 : 3], slot, "wavelength"))
+    expect_equal (wl (new), wl [! duplicated (wl)])
+    
+    for (s in 1 : 3){
+      expect_equal (new [[s,, wl (barbiturates [[s]])]], barbiturates [[s]][[]], label = paste0 ("barbiturates [[", s, "]]"))
+    }
+  })
+
   tmp <- collapse (a = flu, b = flu)
   test_that ("collapse messed up labels if a named list is collapsed", {
     flu.labels <- lapply (flu@label, as.expression)
