@@ -39,17 +39,21 @@ pearson.dist <- function (x) {
 }
 
 .test (pearson.dist) <- function (){
-	checkEqualsNumeric (
-		pearson.dist (flu),
-		as.dist (0.5 - cor (t (as.matrix (flu))) / 2))
+  context ("pearson.dist")
+  
+  test_that("pearson.dist against manual calculation", {
+    expect_equivalent (
+      pearson.dist (flu),
+      as.dist (0.5 - cor (t (as.matrix (flu))) / 2))
+  })
 }
 
 ## benchmark
-function (){
-  m <- sample (chondro, 10000) [[]]
-  microbenchmark (
-    cor = as.dist (0.5 - cor (t (as.matrix (m))) / 2),
-    tcross = pearson.dist (m),
-    times = 10L
-  )
-}
+# function (){
+#   m <- sample (chondro, 10000) [[]]
+#   microbenchmark (
+#     cor = as.dist (0.5 - cor (t (as.matrix (m))) / 2),
+#     tcross = pearson.dist (m),
+#     times = 10L
+#   )
+# }
