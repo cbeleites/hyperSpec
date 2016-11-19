@@ -100,7 +100,9 @@ collapse <- function (..., wl.tolerance = hy.getOption ("wl.tolerance")){
     expect_equal (wl (new), wl [! duplicated (wl)])
     
     for (s in 1 : 3){
-      expect_equal (new [[s,, wl (barbiturates [[s]])]], barbiturates [[s]][[]], label = paste0 ("barbiturates [[", s, "]]"))
+      expect_equal (as.numeric (new [[s,, wl (barbiturates [[s]])]]), 
+                    as.numeric (barbiturates [[s]][[]]), 
+                    label = paste0 ("barbiturates [[", s, "]]"))
     }
   })
 
