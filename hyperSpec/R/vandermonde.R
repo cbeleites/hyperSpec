@@ -50,19 +50,28 @@ setMethod ("vanderMonde", signature = signature (x = "hyperSpec"),
 
 
 .test (vanderMonde) <- function (){
-  checkEqualsNumeric (vanderMonde (c (1 : 3, 5), 2),
-                      matrix (c (1, 1, 1, 1, 1, 2, 3, 5, 1, 4, 9, 25), nrow = 4)
-                      )
-  checkException (vanderMonde (1, 0, normalize.wl = normalize01))
-
-  checkTrue (chk.hy (vanderMonde (flu, 0)))
-  checkTrue (validObject (vanderMonde (flu, 0)))
+  context ("vanderMonde")
   
-  checkEqualsNumeric (vanderMonde (paracetamol, 3, normalize.wl = I)[[]],
-                      t (vanderMonde (wl (paracetamol), 3)))
-
-  checkEqualsNumeric (vanderMonde (paracetamol, 3, normalize.wl = normalize01)[[]],
-                      t (vanderMonde (normalize01 (wl (paracetamol)), 3)))
+  test_that("vector against manual calculation",{
+    expect_equal (vanderMonde (c (1 : 3, 5), 2),
+                  matrix (c (1, 1, 1, 1, 1, 2, 3, 5, 1, 4, 9, 25), nrow = 4)
+    )
+  })
+  
+  test_that("default method doesn't provide normalization",{
+    expect_error (vanderMonde (1, 0, normalize.wl = normalize01))
+  })
+  
+  test_that ("hyperSpec objects", {
+    expect_true (chk.hy (vanderMonde (flu, 0)))
+    expect_true (validObject (vanderMonde (flu, 0)))
+    
+    expect_equal (vanderMonde (paracetamol, 3, normalize.wl = I)[[]],
+                  t (vanderMonde (wl (paracetamol), 3)))
+    
+    expect_equal (vanderMonde (paracetamol, 3, normalize.wl = normalize01)[[]],
+                  t (vanderMonde (normalize01 (wl (paracetamol)), 3)))
+  })
 }
 
 
