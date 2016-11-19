@@ -154,7 +154,7 @@ setMethod ("Arith", signature (e1 = "matrix", e2 = "hyperSpec"), .arithy)
 ##' @concept hyperSpec matrix multiplication
 ##' @aliases %*% %*%,hyperSpec,hyperSpec-method %*%,matrix,hyperSpec-method
 ##' %*%,hyperSpec,matrix-method
-##' @export "%*%"
+##' @export
 ##' @seealso  \code{\link[base]{matmult}} for matrix multiplications with \code{\%*\%}.
 setMethod ("%*%", signature (x = "hyperSpec", y = "hyperSpec"),
            function (x, y){

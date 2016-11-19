@@ -1,4 +1,5 @@
 ##' Binding hyperSpec Objects
+##' 
 ##' Two S3 functions \code{cbind.hyperSpec} and \code{rbind.hyperSpec} act as
 ##' an interfaces to \code{cbind2} and \code{rbind2} because neither
 ##' \code{\link[Matrix]{rBind}} and \code{\link[Matrix]{cBind}} nor S4 versions
@@ -109,11 +110,9 @@ bind <- function (direction = stop ("direction ('c' or 'r') required"), ...,
 }
 
 
-##' \code{cbind2} binds the spectral matrices of two \code{hyperSpec} objects by column. All columns
+##' @description  \code{cbind2} binds the spectral matrices of two \code{hyperSpec} objects by column. All columns
 ##' besides \code{spc} with the same name in \code{x@@data} and \code{y@@data} must have the same
 ##' elements.  Rows are ordered before checking.
-##'   })
-
 ##' @aliases bind cbind.hyperSpec rbind.hyperSpec
 ##'   cbind2,hyperSpec,hyperSpec-method rbind2,hyperSpec,hyperSpec-method
 ##'   cbind2,hyperSpec,missing-method rbind2,hyperSpec,missing-method
