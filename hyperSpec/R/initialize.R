@@ -192,7 +192,7 @@ setMethod ("initialize", "hyperSpec", .initialize)
 
 ##' @include hyperspec-package.R
 .test (.initialize) <- function (){
-  context (".initialize / new (\"hyperSpec\"")
+  context (".initialize / new (\"hyperSpec\")")
 
   test_that("empty hyperSpec object", { 
     expect_equivalent (dim (new ("hyperSpec")), c (0L, 1L, 0L))
