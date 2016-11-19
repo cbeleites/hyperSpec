@@ -140,7 +140,6 @@ decomposition <- function (object, x, wavelength = seq_len (ncol (x)),
 
 .test (decomposition) <- function (){
 context ("decomposition")
-  rm (flu)
 
   test_that ("scores-like", {
     flu$matrix <- cbind (flu$c, flu$c)
@@ -163,8 +162,6 @@ context ("decomposition")
     scores <- decomposition (flu, flu [[,, 405 ~ 410]], label.wavelength = "bla")
     expect_equal (labels (scores, ".wavelength"),	"bla")
   })
-  
-  rm (scores, tmp)
   
   test_that ("check loadings-like", {
     
@@ -193,6 +190,5 @@ context ("decomposition")
     expect_equal (labels (tmp, ".wavelength"),	labels (flu, ".wavelength"))
   })
   
-  rm (flu)
 }
 
