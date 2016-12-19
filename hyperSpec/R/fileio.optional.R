@@ -2,13 +2,13 @@
 
 ## consistent optional treatment during file import
 
-.fileio.optional <- function (spc, filename, ..., 
+.fileio.optional <- function (spc, filename, ...,
                               file.remove.emptyspc = hy.getOption ("file.remove.emptyspc"),
                               file.keep.name = hy.getOption ("file.keep.name"),
 															tolerance = hy.getOption ("tolerance")){
-  
+
 	tolerance <- .checkpos (tolerance, "tolerance")
-	
+
   if (file.remove.emptyspc) {
     ## remove spectra consisting of 0 only
     spc <- spc [rowSums (abs (spc) < tolerance) < nwl (spc)]
@@ -16,26 +16,30 @@
     ## remove spectra consisting of NAs only
     spc <- spc [rowSums (is.na (spc)) < nwl (spc)]
   }
-  
+
   if (file.keep.name & nrow (spc) > 0L){
-    if (is.null (spc@data$filename)){ 
+    if (is.null (spc@data$filename)){
       spc@data$filename <- filename
       spc@label$filename <- "filename"
     } else {
       warning ("$filename already exists. => Skipping file.keep.name")
     }
   }
-  
+
   spc
 }
 
+##' @include unittest.R
 .test (.fileio.optional) <- function (){
+  context (".fileio.optional")
+  skip ("unittests not yet implemented.")
   options.state <- .options
-  
+
   flu [[3]] <- 0
   flu [[5]] <- .Machine$double.eps
-  
-  
-  
-  do.call (hy.setOptions, options.state) 
+
+  # TODO: proper unit tests
+  # options treatment for testing (onexit?)
+
+  do.call (hy.setOptions, options.state)
 }
