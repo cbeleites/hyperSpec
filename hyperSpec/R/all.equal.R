@@ -1,18 +1,18 @@
-.all.equal <- function (target, current, ..., check.attributes = FALSE, check.names = FALSE, 
+.all.equal <- function (target, current, ..., check.attributes = FALSE, check.names = FALSE,
                         check.column.order = FALSE, check.label = FALSE,
 												tolerance = hy.getOption ("tolerance"), wl.tolerance = hy.getOption ("wl.tolerance")){
   validObject (target)
   validObject (current)
   tolerance    <- .checkpos (   tolerance,    "tolerance")
   wl.tolerance <- .checkpos (wl.tolerance, "wl.tolerance")
-  
+
   result <- character (0)
-  
+
   cmp <- all.equal (target = target@wavelength, current = current@wavelength, ...,
-  									tolerance = wl.tolerance, 
+  									tolerance = wl.tolerance,
                     check.attributes = check.attributes, check.names = check.names)
   if (! isTRUE (cmp)) result <- c("@wavelength:", cmp)
-  
+
   if (check.column.order)
     cmp <- all.equal (target = target@data, current = current@data, ...,
     									tolerance = tolerance,
@@ -24,7 +24,7 @@
     									tolerance = tolerance,
     									check.attributes = check.attributes, check.names = check.names)
   if (! isTRUE (cmp)) result <- c (result, "@data:", cmp)
-  
+
   if (check.label){
     cmp <- all.equal (target  = target@label  [order (names (target@label))],
                       current = current@label [order (names (current@label))],
@@ -32,39 +32,39 @@
                       check.attributes = check.attributes, check.names = check.names)
     if (! isTRUE (cmp)) result <- c (result, "@label:", cmp)
   }
-  
+
   if (length (result) == 0)
     TRUE
   else
     result
 }
 
-
+##' @include unittest.R
 .test (.all.equal) <- function () {
   context (".all.equal")
-  
+
   test_that("basic equalities", {
     expect_true (all.equal (flu, --flu))
-    expect_true (all.equal (flu, --flu, check.attributes = TRUE)) 
+    expect_true (all.equal (flu, --flu, check.attributes = TRUE))
     expect_true (all.equal (flu, --flu, check.names = TRUE))
   })
-  
+
   test_that("labels", {
     expect_true (all.equal (flu, --flu, check.label = TRUE))
   })
-  
+
   test_that("labels: order of labels does *not* matter", {
     tmp <- flu
     tmp@label <- rev (tmp@label)
     expect_true (all.equal (flu, tmp, check.label = TRUE))
   })
-  
+
   test_that("labels: character vs. expression does matter:", {
     tmp <- flu
     tmp@label <- lapply (tmp@label, as.expression)
     expect_true (! isTRUE (all.equal (flu, tmp, check.label = TRUE)))
   })
-  
+
   test_that("column order", {
     expect_true (          all.equal (flu, --flu, check.column.order = TRUE))
     expect_true (! isTRUE (all.equal (flu, flu [, rev (colnames (flu))], check.column.order = TRUE)))
