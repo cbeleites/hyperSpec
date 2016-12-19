@@ -13,7 +13,7 @@
 ##' @rdname colSums
 ##' @name colSums
 NULL
- 
+
 ##' @noRd
 setGeneric ('colMeans')#, package = 'matrixStats')
 
@@ -27,7 +27,7 @@ setGeneric ('colMeans')#, package = 'matrixStats')
       result <- t (result)
 
    decomposition (x, result, scores = FALSE, label.spc = label.spc)
-}) 
+})
 
 ##' @noRd
 setGeneric ('colSums') #, package = 'matrixStats')
@@ -42,7 +42,7 @@ setMethod ("colSums", signature = signature (x = "hyperSpec"), function (x, na.r
       result <- t (result)
 
    decomposition (x, result, scores = FALSE, label.spc = label.spc)
-}) 
+})
 
 
 ##' @noRd
@@ -58,7 +58,7 @@ setMethod ("rowMeans", signature = signature (x = "hyperSpec"), function (x, na.
       result <- t (result)
 
    decomposition (x, result, scores = TRUE, label.wavelength = label.wavelength)
-}) 
+})
 
 ##' @noRd
 setGeneric ('rowSums') #, package = 'matrixStats')
@@ -73,22 +73,23 @@ setMethod ("rowSums", signature = signature (x = "hyperSpec"), function (x, na.r
       result <- t (result)
 
    decomposition (x, result, scores = TRUE, label.wavelength = label.wavelength)
-}) 
+})
 
+##' @include unittest.R
 .test (colMeans) <- function (){
-  
+
   for (fun in c ("colMeans", "colSums", "rowMeans", "rowSums")){
     context (fun)
     f <- get (fun, mode = "function")
     test_that("basic operation", {
       expect_equal (as.numeric (f (flu)                 [[]]), f (flu [[]])                 , label = fun)
     })
-    
+
     test_that("behaviour with NAs", {
       expect_equal (as.numeric (f (fluNA)               [[]]), f (fluNA [[]], na.rm = TRUE ), label = fun)
       expect_equal (as.numeric (f (fluNA, na.rm = FALSE)[[]]), f (fluNA [[]], na.rm = FALSE), label = fun)
     })
-    
+
   }
 }
 
