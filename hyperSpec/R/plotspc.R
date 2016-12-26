@@ -96,6 +96,7 @@
 ##'
 ##' \code{NA} suppresses plotting of the line.  The line is by default turned
 ##'   off if \code{yoffset} is not 0.
+##' @param debuglevel if > 0, additional debug output is produced
 ##' @return \code{plotspc} invisibly returns a list with
 ##'
 ##' \item{x}{the abscissa coordinates of the plotted spectral data points}
@@ -159,7 +160,8 @@ plotspc <- function  (object,
                        ## what wavelengths to plot
                       wl.range = NULL, wl.index = FALSE,  wl.reverse = FALSE,
                       ## what spectra to plot
-                      spc.nmax = 50, func = NULL, func.args = list (),
+                      spc.nmax = hy.getOption("plot.spc.nmax"),
+                      func = NULL, func.args = list (),
                       stacked = NULL, stacked.args = list (),
                       ## plot area
                       add = FALSE, bty = "l", plot.args = list(),
@@ -173,7 +175,8 @@ plotspc <- function  (object,
                       ## parameters for filled regions
                       fill = NULL, fill.col = NULL, border = NA, polygon.args = list (),
                       ## line indicating zero intensity
-                      zeroline = list (lty = 2, col = col)){
+                      zeroline = list (lty = 2, col = col),
+                      debuglevel = hy.getOption("debuglevel")){
   force (zeroline) # otherwise stacking messes up colors
 
   chk.hy (object)
@@ -246,8 +249,9 @@ plotspc <- function  (object,
   ## do not plot too many spectra by default: can take very long and there is most probably nothing
   ## visible on the resulting picture
   if (nrow (spc) > spc.nmax){
-    warning (paste ("Number of spectra exceeds spc.nmax. Only the first",
-                    spc.nmax, "are plotted."))
+    if (debuglevel >= 1L)
+      message ("Number of spectra exceeds spc.nmax. Only the first", spc.nmax, "are plotted.")
+
     spc <- spc [seq_len (spc.nmax), , drop = FALSE]
   }
 
@@ -543,7 +547,8 @@ stacked.offsets <- function (x, stacked = TRUE,
   ## cut stacked if necessary
   if (length (stacked) != nrow (.spc)){
     stacked <- rep (stacked, length.out = nrow (.spc))
-    warning ("stacking variable recycled to ", nrow (.spc), " values.")
+    if (debuglevel >= 1L)
+      message ("stacking variable recycled to ", nrow (.spc), " values.")
   }
   if (is.numeric (stacked))
     stacked <- as.factor (stacked)
