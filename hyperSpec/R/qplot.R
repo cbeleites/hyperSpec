@@ -9,39 +9,42 @@
 ##' @param spc.nmax maximum number of spectra to plot
 ##' @param map.lineonly if \code{TRUE}, \code{mapping} will be handed to
 ##' \code{\link[ggplot2]{geom_line}} instead of \code{\link[ggplot2]{ggplot}}.
+##' @param debuglevel if > 0, additional debug output is produced
 ##' @return a \code{\link[ggplot2]{ggplot}} object
 ##' @author Claudia Beleites
-##' @export 
+##' @export
 ##' @seealso \code{\link{plotspc}}
 ##'
 ##' \code{\link[ggplot2]{ggplot}}\code{\link[ggplot2]{geom_line}}
 ##' @examples
-##' 
+##'
 ##'   qplotspc (chondro)
-##'   
+##'
 ##'   qplotspc (paracetamol, c (2800 ~ max, min ~ 1800)) + scale_x_reverse (breaks = seq (0, 3200, 400))
-##' 
+##'
 ##'   qplotspc (aggregate (chondro, chondro$clusters, mean),
 ##'             mapping = aes (x = .wavelength, y = spc, colour = clusters)) +
 ##'     facet_grid (clusters ~ .)
-##' 
+##'
 ##'   qplotspc (aggregate (chondro, chondro$clusters, mean_pm_sd),
 ##'             mapping = aes (x = .wavelength, y = spc, colour = clusters, group = .rownames)) +
 ##'     facet_grid (clusters ~ .)
 qplotspc <- function (x,
                       wl.range, ...,
                       mapping = aes_string (x = ".wavelength", y = "spc", group = ".rownames"),
-                      spc.nmax = 10,
-                      map.lineonly = FALSE){
+                      spc.nmax = hy.getOption("ggplot.spc.nmax"),
+                      map.lineonly = FALSE,
+                      debuglevel = hy.getOption("debuglevel")){
   chk.hy (x)
   validObject (x)
-  
+
   ## cut away everything that isn't asked for _before_ transforming to data.frame
   if (nrow (x) > spc.nmax) {
-    warning ("Number of spectra exceeds spc.nmax. Only the first ", spc.nmax, " are plotted.")
+    if (debuglevel >= 1L)
+      message ("Number of spectra exceeds spc.nmax. Only the first ", spc.nmax, " are plotted.")
     x <- x [seq_len (spc.nmax)]
   }
-  
+
   if (!missing (wl.range))
     x <- x [,, wl.range]
 
@@ -50,7 +53,7 @@ qplotspc <- function (x,
   # different spectral ranges go into facets
   if (!missing (wl.range)){
     ranges <- integer (nwl (x))
-    for (r in seq_along (wl.range)) 
+    for (r in seq_along (wl.range))
       ranges [wl2i (x, wl.range [r])] <- r
     if (any (ranges == 0))
       stop ("internal error in qplotspc: 0 range. Please contact the package maintainer.")
@@ -64,14 +67,14 @@ qplotspc <- function (x,
   else
       p <- ggplot (df, mapping = mapping) + geom_line (...)
 
-  p <- p + xlab (labels (x, ".wavelength")) + ylab (labels (x, "spc")) 
+  p <- p + xlab (labels (x, ".wavelength")) + ylab (labels (x, "spc"))
 
   if (!missing (wl.range))
-    p <- p + facet_grid (. ~ .wl.range, 
+    p <- p + facet_grid (. ~ .wl.range,
                          labeller = as_labeller (rep (NA, nlevels (df$.wl.range))),
                          scales = "free", space = "free") +
     theme (strip.text.x = element_text (size = 0))
-  
+
   p
 }
 
@@ -80,7 +83,7 @@ qplotspc <- function (x,
 ##'
 ##' These functions are still experimental and may change substantially in future.
 ##'
-##' Note that \code{qplotmap} will currently produce the wrong scales if x or y are discrete. 
+##' Note that \code{qplotmap} will currently produce the wrong scales if x or y are discrete.
 ##' @title Spectra plotting with ggplot2
 ##' @param object  hyperSpec object
 ##' @param mapping see  \code{\link[ggplot2]{geom_tile}}
@@ -90,7 +93,7 @@ qplotspc <- function (x,
 ##' @param map.tileonly if \code{TRUE}, \code{mapping} will be handed to
 ##' \code{\link[ggplot2]{geom_tile}} instead of \code{\link[ggplot2]{ggplot}}.
 ##' @return a \code{\link[ggplot2]{ggplot}} object
-##' @export 
+##' @export
 ##' @author Claudia Beleites
 ##' @seealso \code{\link{plotmap}}
 ##'
@@ -100,7 +103,7 @@ qplotspc <- function (x,
 ##' qplotmap (chondro) + scale_fill_gradientn (colours = alois.palette ())
 ##'
 ##' ## works also with discrete x or y axis:
-##' qplotmap (chondro, mapping = aes (x = x, y = as.factor (y), fill = spc)) 
+##' qplotmap (chondro, mapping = aes (x = x, y = as.factor (y), fill = spc))
 ##' @importFrom utils tail
 qplotmap <- function (object, mapping = aes_string (x = "x", y = "y", fill = "spc"), ...,
                       func = mean, func.args = list (),
@@ -112,22 +115,22 @@ qplotmap <- function (object, mapping = aes_string (x = "x", y = "y", fill = "sp
     object <- do.call (apply, c (list (object, 1, func), func.args))
 
   if (map.tileonly)
-      p <- ggplot (as.long.df (object)) + geom_tile (mapping = mapping) 
+      p <- ggplot (as.long.df (object)) + geom_tile (mapping = mapping)
   else
-      p <- ggplot (as.long.df (object), mapping = mapping) + geom_tile () 
-  
+      p <- ggplot (as.long.df (object), mapping = mapping) + geom_tile ()
+
   p <- p + coord_equal ()
 
   ## set expand to c(0, 0) to suppress the gray backgroud
   if (is.factor (with (p$data, eval (p$mapping$x))))
-        p <- p + scale_x_discrete (expand = c(0, 0)) 
+        p <- p + scale_x_discrete (expand = c(0, 0))
   else
-        p <- p + scale_x_continuous (expand = c(0, 0)) 
+        p <- p + scale_x_continuous (expand = c(0, 0))
 
   if (is.factor (with (p$data, eval (p$mapping$y))))
-        p <- p + scale_y_discrete (expand = c(0, 0)) 
+        p <- p + scale_y_discrete (expand = c(0, 0))
   else
-      p <- p + scale_y_continuous (expand = c(0, 0)) 
+      p <- p + scale_y_continuous (expand = c(0, 0))
 
   ## generate axis/scale labels
   ## TODO: own function
@@ -143,7 +146,7 @@ qplotmap <- function (object, mapping = aes_string (x = "x", y = "y", fill = "sp
   flabel <- labels (object)[[tail (f, 1)]]
   if (is.null (flabel)) flabel <- f
 
-  p + labs (x = xlabel, y = ylabel, fill = flabel) 
+  p + labs (x = xlabel, y = ylabel, fill = flabel)
 }
 
 
@@ -154,7 +157,7 @@ qplotmap <- function (object, mapping = aes_string (x = "x", y = "y", fill = "sp
 ##' @param object hyperSpec object
 ##' @param mapping see  \code{\link[ggplot2]{geom_point}}
 ##' @param ... handed to \code{\link[ggplot2]{geom_point}}
-##' @export 
+##' @export
 ##' @param func function to summarize the wavelengths, if \code{NULL}, only the first wavelength is used
 ##' @param func.args arguments to \code{func}
 ##' @param map.pointonly if \code{TRUE}, \code{mapping} will be handed to
@@ -175,9 +178,9 @@ qplotc <- function (object, mapping = aes_string(x = "c", y = "spc"), ...,
 
   dots <- list (...)
 
-  if (! is.null (func)) 
+  if (! is.null (func))
     object <- do.call (apply, c (list (object, 1, func), func.args))
-  
+
   ## allow to plot against the row number
   object$.row <- seq (object, index = TRUE)
 
@@ -194,10 +197,10 @@ qplotc <- function (object, mapping = aes_string(x = "c", y = "spc"), ...,
 
   ## produce fancy y label
   ylab <- labels (object, as.character (mapping$y))
-  if (! is.null (func)) 
+  if (! is.null (func))
     ylab <- make.fn.expr (substitute (func), c (ylab, func.args))
   ylab <- as.expression (ylab)
-  
+
   ## expand the data.frame
   df <- as.long.df (object, rownames = TRUE, wl.factor = TRUE)
 
@@ -209,7 +212,7 @@ qplotc <- function (object, mapping = aes_string(x = "c", y = "spc"), ...,
       p <- ggplot (df) + geom_point (mapping = mapping)
   else
       p <- ggplot (df, mapping = mapping) + geom_point ()
-  
+
   p + ylab (ylab) +
       xlab (labels (object, as.character (mapping$x)))
 }
@@ -223,10 +226,10 @@ make.fn.expr <- function (fn, l = list ()){
 
   if (is.null (names (l)))
     names (l) <- rep ("", length (l))
-  
+
   tmp <- mapply (function (x, y) if (nzchar (x) > 0L) bquote (.(x) == .(y)) else y,
                  names (l), l)
-  
+
   e <- expression (f (x))
   e [[1]][[1]] <- fn
   if (length (tmp) > 0L)
