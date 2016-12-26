@@ -32,7 +32,7 @@
 ##' @include unittest.R
 .test (.fileio.optional) <- function (){
   context (".fileio.optional")
-  skip ("unittests not yet implemented.")
+  #skip ("unittests not yet implemented.")
   options.state <- .options
 
   flu [[3]] <- 0
