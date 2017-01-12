@@ -50,6 +50,17 @@ beginning of the file in order to have the code as similar as possible to intera
 \warnbox[blue!50!black]{Suggested Packages}{
 \begin{labeling}{latticeExtra}
 <<check-required, echo = FALSE, results = tex>>=
+
+# ROMAN'S DIRTY HACK
+load("../flu/flu.rda")
+load("../fileio/barbiturates.rda")
+load("../laser/laser.rda")
+load("../../hyperSpec/data/paracetamol.rda")
+load("../chondro/chondro-internal.rda")
+chondro <- hyperSpec:::.make.chondro()
+########
+
+
 msg <- function (...) system (sprintf ("echo '%s'", paste (...)))
 
 required.pkgs <- c("latticeExtra", "deldir", "rgl", "ggplot2")

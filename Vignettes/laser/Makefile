@@ -1,7 +1,7 @@
 all: laser.pdf
 
 laser.pdf: laser.Rnw vignettes.defs  rawdata/laser.txt.gz fig-3D.png
-	R CMD Sweave laser.Rnw --clean --pdf --compact="both" 
+	R CMD Sweave laser.Rnw --pdf --compact="both" 
 
 vignettes.defs: ../vignettes.defs
 	cp -av $< $@
