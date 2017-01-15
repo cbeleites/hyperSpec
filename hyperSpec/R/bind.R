@@ -211,6 +211,20 @@ setMethod("cbind2", signature = signature (x = "hyperSpec", y = "missing"), func
 .test (.rbind2) <- function () {
   context (".rbind2")
 
+  test_that("flu", {
+    expect_equal (rbind (flu [ 1],  flu [-1]),  flu,              check.attributes = FALSE)
+    expect_equal (rbind (flu [-1],  flu [ 1]),  flu [c (2:6, 1)], check.attributes = FALSE)
+    expect_equal (rbind (flu [1:2], flu [3:6]), flu,              check.attributes = FALSE)
+  })
+
+  test_that("empty objects", {
+    expect_equal (rbind (flu [FALSE], flu [0]), flu [0], check.attributes = FALSE)
+    expect_equal (rbind (flu [FALSE], flu [1]), flu [1], check.attributes = FALSE)
+    expect_equal (rbind (flu [1], flu [0]), flu [1], check.attributes = FALSE)
+    expect_equal (rbind (flu [0], flu [1]), flu [1], check.attributes = FALSE)
+  })
+
+
 	test_that("wl.tolerance", {
 	  tmp <- flu
 	  wl (tmp) <- wl (tmp) + 0.01
