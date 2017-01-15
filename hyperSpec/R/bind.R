@@ -218,8 +218,7 @@ setMethod("cbind2", signature = signature (x = "hyperSpec", y = "missing"), func
   })
 
   test_that("empty objects", {
-    expect_equal (rbind (flu [FALSE], flu [0]), flu [0], check.attributes = FALSE)
-    expect_equal (rbind (flu [FALSE], flu [1]), flu [1], check.attributes = FALSE)
+    expect_equal (rbind (flu [0], flu [0]), flu [0], check.attributes = FALSE)
     expect_equal (rbind (flu [1], flu [0]), flu [1], check.attributes = FALSE)
     expect_equal (rbind (flu [0], flu [1]), flu [1], check.attributes = FALSE)
   })
