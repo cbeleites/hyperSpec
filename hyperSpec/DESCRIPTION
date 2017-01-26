@@ -2,8 +2,8 @@ Package: hyperSpec
 Type: Package
 Title: Work with Hyperspectral Data, i.e. Spectra + Meta Information (Spatial,
     Time, Concentration, ...)
-Version: 0.98-20161119
-Date: 2016-11-19
+Version: 0.98-20170126
+Date: 2017-01-26
 Author: Claudia Beleites
 Maintainer: Claudia Beleites <chemometrie@beleites.de>
 Description: Comfortable ways to work with hyperspectral data sets.
@@ -47,12 +47,6 @@ Collate:
     'validate.R'
     'hyperspec-class.R'
     'unittest.R'
-    'barbiturates.R'
-    'paracetamol.R'
-    'laser.R'
-    'chondro.R'
-    'flu.R'
-    'hyperspec-package.R'
     'paste.row.R'
     'Arith.R'
     'Compare.R'
@@ -63,21 +57,28 @@ Collate:
     'all.equal.R'
     'apply.R'
     'as.data.frame.R'
+    'barbiturates.R'
     'bind.R'
     'call.list.R'
     'chk.hy.R'
+    'chondro.R'
     'colMeans.R'
     'collapse.R'
     'cov.R'
     'decomposition.R'
     'dim.R'
     'dimnames.R'
+    'droplevels.R'
     'empty.R'
     'wl2i.R'
     'extract.R'
     'factor2num.R'
     'fileio.optional.R'
+    'flu.R'
     'getbynames.R'
+    'paracetamol.R'
+    'laser.R'
+    'hyperspec-package.R'
     'initialize.R'
     'labels.R'
     'plotmap.R'

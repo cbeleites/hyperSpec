@@ -26,7 +26,7 @@ setGeneric ("levelplot", package = "lattice")
   use.z <- parsed.formula$left.name
 
   dots <- list (..., contour = contour, useRaster = useRaster)
-  
+
   ## if spc is used as z and the data set has multiple wavelengths cut and warn
   if (use.z == "spc" && nwl (data) > 1 &&
       !any (grepl (".wavelength", c(as.character (x),
@@ -35,7 +35,7 @@ setGeneric ("levelplot", package = "lattice")
     data <- data [, , 1, wl.index = TRUE]
     warning ("Only first wavelength is used for plotting")
   }
-  
+
   dots <- modifyList (list (xlab = data@label [[use.x]],
                             ylab = data@label [[use.y]]),
                       dots)
@@ -54,29 +54,30 @@ setGeneric ("levelplot", package = "lattice")
   }
 
 
-  
+
   if (is.factor (data [[use.z]]) && transform.factor) {
     dots <- trellis.factor.key (data [[use.z]], dots)
     data [[use.z]] <- as.numeric (data [[use.z]])
   }
-  
+
   do.call(levelplot, c (list (x, data), dots))
 }
 
+##' @include unittest.R
 .test (.levelplot) <- function (){
   context (".levelplot")
-  
+
   test_that ("no errors", {
     ## just check that no errors occur
     expect_silent (levelplot (laser, contour = TRUE, col = "#00000080"))
-    
+
     ## applying a function before plotting
     expect_silent (plotmap (chondro, func = max, col.regions = gray (seq (0, 1, 0.05))))
-    
+
     expect_silent (plotmap (chondro, clusters ~ x * y, transform.factor = FALSE))
     expect_silent (plotmap (chondro, clusters ~ x * y, col.regions = gray (seq (0, 1, 0.05))))
   })
-  
+
 }
 
 ##' @include plotmap.R
