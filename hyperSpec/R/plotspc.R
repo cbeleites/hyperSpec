@@ -96,7 +96,8 @@
 ##'
 ##' \code{NA} suppresses plotting of the line.  The line is by default turned
 ##'   off if \code{yoffset} is not 0.
-##' @param debuglevel if > 0, additional debug output is produced
+##' @param debuglevel if > 0, additional debug output is produced,
+##' see \code{\link[hyperSpec]{options}} for details
 ##' @return \code{plotspc} invisibly returns a list with
 ##'
 ##' \item{x}{the abscissa coordinates of the plotted spectral data points}
@@ -533,7 +534,7 @@ plotspc <- function  (object,
 stacked.offsets <- function (x, stacked = TRUE,
                              min.zero = FALSE, add.factor = 0.05, add.sum = 0,
                              #tight = FALSE, TODO
-                             .spc = NULL){
+                             .spc = NULL, debuglevel = hy.getOption("debuglevel")){
   lvl <- NULL
 
   if (is.null (.spc))
