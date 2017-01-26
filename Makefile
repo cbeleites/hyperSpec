@@ -1,4 +1,4 @@
-all: roxygenize vignettes pkg-data pkg-doc
+all: roxygenize  pkg-data pkg-doc vignettes
 
 superclean: .FORCE
 	git clean -q -f
@@ -9,7 +9,7 @@ installdev: roxygenize pkg-vignettes
 	R CMD INSTALL hyperSpec --with.keep-source --fake --no-docs --no-build-vignettes
 
 # Code building
-build: roxygenize pkg-vignettes
+build: all
 	R CMD build hyperSpec
 
 roxygenize: DESCRIPTION hyperSpec/R/*.R 

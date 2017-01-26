@@ -91,17 +91,18 @@ plotmat <- function (object, y = ".row", ylab, col = alois.palette (20), ...,
 
 }
 
+##' @include unittest.R
 .test (plotmat) <- function (){
   context ("plotmat")
-  
+
   test_that ("non-increasing wavelength axis", {
     tmp <- flu
     tmp [[]] <- tmp [[,, max ~ min]]
     tmp@wavelength <- rev (tmp@wavelength)
-    
+
     expect_silent (plotmat (tmp))
   })
-  
+
   ## TODO vdiffr
 
 

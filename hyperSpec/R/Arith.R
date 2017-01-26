@@ -1,25 +1,25 @@
 ##' Arithmetical Operators: +, -, *, /, ^, \%\%, \%/\%, \%*\% for hyperSpec objects
 ##'
 ##' The arithmetical operators \code{+}, \code{-}, \code{*}, \code{/}, \code{\^}, \code{\%\%},
-##' \code{\%/\%},  and \code{\%*\%} for \code{hyperSpec} objects. 
-##' 
+##' \code{\%/\%},  and \code{\%*\%} for \code{hyperSpec} objects.
+##'
 ##' You can use these operators in different ways:
 ##' \preformatted{
 ##' e1 + e2
 ##' `+` (e1, e2)
-##' 
+##'
 ##' x \%*\% y
 ##' `\%*\%`(x, y)
-##' 
+##'
 ##' -x }
 ##' The arithmetical operators \code{+}, \code{-}, \code{*}, \code{/}, \code{^}, \code{\%\%},
 ##' \code{\%/\%}, and \code{\%*\%} work on the  spectra matrix of the \code{hyperSpec} object. They
 ##' have their usual meaning (see \code{\link[base]{Arithmetic}}).  The operators work also with one
 ##' \code{hyperSpec} object and a numeric object or a matrices of the same size as the spectra matrix
 ##' of the \code{hyperSpec} object.
-##' 
+##'
 ##' With numeric vectors \code{\link[hyperSpec]{sweep}} is most probably more appropriate.
-##'   
+##'
 ##' If you want to calculate on the extra data as well, use the data.frame \code{hyperSpec@@data}
 ##' directly or \code{\link[hyperSpec]{as.data.frame} (x)}.
 ##' @author C. Beleites
@@ -44,13 +44,13 @@
 ##'
 ##' a vector which length equalling either the number of rows or the number of wavelengths
 ##' of the hyperSpec object, or
-##' 
+##'
 ##' a scalar (numeric of length 1).
 ##' @return \code{hyperSpec} object with the new spectra matrix.
 ##' @export
 ##' @keywords methods arith
 ##' @include paste.row.R
-##' @include hyperspec-package.R
+##' @include unittest.R
 ##' @include hyperspec-class.R
 ##' @concept hyperSpec arithmetic
 ##' @concept hyperSpec arithmetical operators
@@ -60,13 +60,13 @@
 ##' @seealso
 ##' \code{\link[hyperSpec]{sweep-methods}} for calculations involving a vector and
 ##'   the spectral matrix.
-##'   
+##'
 ##'   \code{\link[methods]{S4groupGeneric}} for group generic methods.
-##' 
+##'
 ##'   \code{\link[base]{Arithmetic}} for the base arithmetic functions.
-##' 
-##'   \code{\link[hyperSpec]{Comparison}} for comparison operators, 
-##'   \code{\link[hyperSpec]{Math}} for mathematical group generic 
+##'
+##'   \code{\link[hyperSpec]{Comparison}} for comparison operators,
+##'   \code{\link[hyperSpec]{Math}} for mathematical group generic
 ##'   functions (Math and Math2 groups) working on \code{hyperSpec} objects.
 ##' @examples
 ##' flu + flu
@@ -83,7 +83,7 @@ setMethod ("Arith", signature (e1 = "hyperSpec", e2 = "hyperSpec"),
 
              e1 <- .expand (e1, dim (e2) [c (1, 3)])
              e2 <- .expand (e2, dim (e1) [c (1, 3)])
-             
+
              e1 [[]] <- callGeneric (e1[[]], e2[[]])
              e1
            }
@@ -101,7 +101,7 @@ setMethod ("Arith", signature (e1 = "hyperSpec", e2 = "hyperSpec"),
     ## called /only/ with e1 hyperSpec but e2 matrix-like
     e1 <- .expand (e1, dim (e2))
     e2 <- .expand (e2, dim (e1) [c (1, 3)])
-    
+
     e1  [[]] <- callGeneric (e1 [[]], e2)
     e1
   }
@@ -116,11 +116,11 @@ setMethod ("Arith", signature (e1 = "hyperSpec", e2 = "missing"), .arithx)
 .arithy <- function (e1, e2){
   e1 <- as.matrix (e1)
   validObject (e2)
-  
+
   ## called /only/ with e2 hyperSpec but e1 matrix-like
   e1 <- .expand (e1, dim (e2) [c (1, 3)])
   e2 <- .expand (e2, dim (e1))
-    
+
   e2  [[]] <- callGeneric (e1, e2 [[]])
   e2
 }
@@ -134,7 +134,7 @@ setMethod ("Arith", signature (e1 = "matrix", e2 = "hyperSpec"), .arithy)
 ##' @noRd
 .expand <- function (m, target.dim) {
   m.dim = dim (m)
-   
+
   if (m.dim [1]  == 1L & target.dim [1] > 1L)
       m <- m [rep (1, target.dim [1]),, drop = FALSE]
 
@@ -145,7 +145,7 @@ setMethod ("Arith", signature (e1 = "matrix", e2 = "hyperSpec"), .arithy)
     if (m.dim [2] == 1L & target.dim [2] > 1L)
         m <- m [, rep (1, target.dim [2]), drop = FALSE]
   }
-  
+
   m
 }
 
@@ -204,24 +204,24 @@ setMethod ("%*%", signature (x = "matrix", y = "hyperSpec"),
 
 .test (Arith) <- function (){
   context ("Arith")
-  
+
   test_that("binary -", {
     expect_equal (as.matrix (flu - flu), matrix (0, nrow = nrow (flu), ncol = nwl (flu)))
     expect_equal (as.matrix (flu - flu [1]), as.matrix (sweep (flu, 2, flu [1], `-`)))
     expect_equal (as.matrix (flu - flu [,, 450]), as.matrix (sweep (flu, 1, flu [,, 450], `-`)))
   })
-  
+
   test_that("binary /", {
     expect_equal (as.matrix (flu / flu), matrix (1, nrow = nrow (flu), ncol = nwl (flu)))
     expect_equal (as.matrix (flu / flu [1]), as.matrix (sweep (flu, 2, flu [1], `/`)))
     expect_equal (as.matrix (flu / flu [,, 450]), as.matrix (sweep (flu, 1, flu [,, 450], `/`)))
   })
-  
+
   test_that("binary + with scalar", {
-    expect_equal (as.matrix (flu + 1), as.matrix (flu) + 1) 
-    expect_equal (as.matrix (1 + flu), as.matrix (flu) + 1) 
+    expect_equal (as.matrix (flu + 1), as.matrix (flu) + 1)
+    expect_equal (as.matrix (1 + flu), as.matrix (flu) + 1)
   })
-  
+
   test_that("unary -", {
     expect_equal (as.matrix (-flu), - as.matrix (flu))
   })

@@ -1,17 +1,19 @@
 
 
-.options <- list (debuglevel = 0L,              
-                  gc = FALSE,                   
-                  file.remove.emptyspc = TRUE, 
+.options <- list (debuglevel = 0L,
+                  gc = FALSE,
+                  file.remove.emptyspc = TRUE,
                   file.keep.name = TRUE,
                   tolerance = sqrt (.Machine$double.eps),
-									wl.tolerance = sqrt (.Machine$double.eps)
+									wl.tolerance = sqrt (.Machine$double.eps),
+									plot.spc.nmax = 25,
+									ggplot.spc.nmax = 10
                   )
 
 
 ##' Options for package hyperSpec
 ##' Functions to access and set hyperSpec's options.
-##' 
+##'
 ##' Currently, the following options are defined:
 ##' \tabular{llll}{
 ##' \bold{Name}          \tab \bold{Default Value (range)}      \tab \bold{Description}                               \tab \bold{Used by}\cr
@@ -22,11 +24,13 @@
 ##' file.keep.name       \tab TRUE                              \tab always create filename column                    \tab various file import functions\cr
 ##' tolerance            \tab \code{sqrt (.Machine$double.eps)} \tab tolerance for numerical comparisons              \tab \code{\link{normalize01}}, file import: \code{file.remove.emptyspc}\cr
 ##' wl.tolerance         \tab \code{sqrt (.Machine$double.eps)} \tab tolerance for comparisons of the wavelength axis \tab \code{\link{all.equal}}, \code{\link{collapse}}, \code{\link{rbind}}\cr
+##' plot.spc.nmax        \tab 25                                \tab number of spectra to be plotted by default       \tab \code{\link{plotspc}}\cr
+##' ggplot.spc.nmax      \tab 10                                \tab                                                  \tab \code{\link{qplotspc}}\cr
 ##' }
-##' 
+##'
 ##' \code{hy.setOptions} will discard any values that were given without a
 ##' name.
-##' 
+##'
 ##' @rdname options
 ##' @param ... \code{hy.setOptions}: pairs of argument names and values.
 ##'
@@ -41,9 +45,9 @@
 ##' @keywords misc
 ##' @export
 ##' @examples
-##' 
+##'
 ##' hy.getOptions ()
-##' 
+##'
 hy.getOptions <- function (...){
   dots <- c (...)
   if (length (dots) == 0L)
@@ -52,17 +56,17 @@ hy.getOptions <- function (...){
   .options [dots]
 }
 
-##' @include hyperspec-package.R
+##' @include unittest.R
 .test (hy.getOptions) <- function (){
   context("hy.getOptions")
-  
+
   test_that("proper return", {
     hy.opts <- get (".options", asNamespace("hyperSpec"))
     expect_equal (hy.getOptions (), hy.opts)
-    
+
     expect_equal (hy.getOptions ("debuglevel"),
                  hy.opts["debuglevel"])
-    
+
     .options <- list ()
     expect_equal (hy.getOptions (), hy.opts)
   })
@@ -80,21 +84,21 @@ hy.getOption <- function (name){
 ##' @importFrom utils modifyList
 hy.setOptions <- function (...){
   new <- list (...)
-  
+
   ## if called with list in 1st argument, use that list
   if (length (new) == 1 && is.list (new [[1]]))
     new <- new [[1]]
-  
+
   names <- nzchar (names (new))
 
   if (! all (names) || length (names) != length (new))
     warning ("options without name are discarded: ", which (! names))
-  
+
   opts <- modifyList (.options, new [names])
-  
+
   opts$tolerance <- .checkpos (opts$tolerance, "tolerance")
   opts$wl.tolerance <- .checkpos (opts$wl.tolerance, "wl.tolerance")
-  
+
   assign(".options", opts, envir = asNamespace ("hyperSpec"))
 
   invisible (opts)
@@ -112,10 +116,10 @@ hy.setOptions <- function (...){
 
 .test (hy.setOptions) <- function (){
   context ("hy.setOptions")
-  
+
   old <- hy.getOptions ()
   on.exit(hy.setOptions (old))
- 
+
   test_that("new option and proper return value", {
     expect_equal(hy.setOptions (bla = 1)$bla, 1)
     expect_equal (hy.getOption ("bla"), 1)
@@ -136,12 +140,12 @@ hy.setOptions <- function (...){
     expect_equal(tmp$debuglevel, 20)
     expect_equal(tmp$tolerance, 5)
   })
-  
+
   test_that ("restrictions on tolerances", {
     for (o in c ("tolerance", "wl.tolerance")){
       expect_warning(hy.setOptions (structure (list (0), .Names = o)))
       expect_equal(hy.getOption (o), .Machine$double.eps, label = o)
-      
+
       hy.setOptions (structure (list (1), .Names = o))
       expect_equal(hy.getOption (o), 1)
       expect_warning(hy.setOptions (structure (list (-1), .Names = o)))
@@ -152,19 +156,19 @@ hy.setOptions <- function (...){
       expect_warning(hy.setOptions (structure (list (NA), .Names = o)))
       expect_equal(hy.getOption (o), .Machine$double.eps, label = o)
     }
-    
+
     expect_warning(hy.setOptions (tolerance = NULL))
     expect_equal(hy.getOption ("tolerance"), .Machine$double.eps)
-    
+
     expect_warning(hy.setOptions (wl.tolerance = NULL))
     expect_equal(hy.getOption ("wl.tolerance"), .Machine$double.eps)
   })
-  
- 
+
+
   test_that("options must be named", {
     tmp.a <- hy.getOptions ()
     expect_warning (tmp.b <- hy.setOptions (1))
     expect_equal(tmp.a, tmp.b)
   })
-  
+
 }
