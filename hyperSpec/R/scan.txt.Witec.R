@@ -12,6 +12,7 @@
 ##' @param type type of spectra: \code{single} for single spectra (including time series), \code{map} for imaging data.
 ##' @param hdr.label WITec Project exports the spectra names (contain information of map position or number of spectra) within the \code{file}.
 ##' @param hdr.units WITec Project exports the spectra units within the \code{file}.
+##' @param encoding character encoding, see \code{\link[base]{readLines}}
 ##' @param ...,quiet handed to \code{\link[base]{scan}}
 ##' @return a hyperSpec object
 ##' @author Claudia Beleites and Marcel Dahms
@@ -28,6 +29,7 @@ scan.txt.Witec <- function (file = stop ("filename or connection needed"),
                             type = c ("single", "map"),
                             hdr.label = FALSE,
                             hdr.units = FALSE,
+                            encoding = "unknown",
                             ...,
                             quiet = TRUE){
 
@@ -48,9 +50,9 @@ scan.txt.Witec <- function (file = stop ("filename or connection needed"),
     skip <- hdr.label + hdr.units
 
     ## read spectra
-    tmp <- readLines (file)
+    tmp <- readLines (file, encoding = encoding)
     nwl <- length (tmp) - skip
-    txt <- scan (text = tmp, skip = skip, quiet = quiet, ...)
+    txt <- scan (text = tmp, skip = skip, quiet = quiet, encoding = encoding, ...)
 
     dim (txt) <- c (length (txt) / nwl, nwl)
 
@@ -84,6 +86,7 @@ scan.dat.Witec <- function (filex = stop ("filename or connection needed"),
                             points.per.line = NULL,
                             lines.per.image = NULL,
                             type = c ("single", "map"),
+                            encoding = "unknown",
                             ...,
                             quiet = hy.getOption ("debuglevel") < 1L){
     ## check valid data connection
@@ -94,8 +97,8 @@ scan.dat.Witec <- function (filex = stop ("filename or connection needed"),
                           lines.per.image = lines.per.image)
 
     ## read data
-    wl <- scan (file = filex, ..., quiet = quiet)
-    spc <- scan (file = filey, ..., quiet = quiet)
+    wl <- scan (file = filex, ..., quiet = quiet, encoding = encoding)
+    spc <- scan (file = filey, ..., quiet = quiet, encoding = encoding)
 
     dim (spc) <- c (length (wl), length (spc) / length (wl))
 
@@ -115,13 +118,13 @@ scan.dat.Witec <- function (filex = stop ("filename or connection needed"),
 scan.txt.Witec.Graph <- function (headerfile = stop ("filename or connection needed"),
                                   filex = gsub ("Header", "X-Axis", headerfile),
                                   filey = gsub ("Header", "Y-Axis", headerfile),
-                                  type = c ("single", "map"),
+                                  type = c ("single", "map"), encoding = "unknown",
                                   ..., quiet = TRUE){
     ## check for valid data connection
     .check.con (headerfile, filex, filey)
 
     ## processing headerfile
-    hdr <- read.ini (headerfile, skip = 1)
+    hdr <- read.ini (headerfile, skip = 1, encoding = encoding)
   hdr <- sapply (hdr, function (x) unlist (x, recursive = FALSE)) # returns a matrix with colnames and rownames for better adressing
 
     ## check valid input
@@ -129,10 +132,10 @@ scan.txt.Witec.Graph <- function (headerfile = stop ("filename or connection nee
                           ...)
 
     ## read spectra and header
-    wl <- scan (filex, quiet = quiet)
+    wl <- scan (filex, quiet = quiet, encoding = encoding)
     nwl <- length (wl)
 
-    txt <- scan (filey, quiet = quiet)
+    txt <- scan (filey, quiet = quiet, encoding = encoding)
     dim (txt) <- c (nwl, length (txt) / nwl)
 
     spc <- new ("hyperSpec", wavelength = wl, spc = t (txt))
