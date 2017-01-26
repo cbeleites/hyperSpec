@@ -24,8 +24,8 @@
 ##' file.keep.name       \tab TRUE                              \tab always create filename column                    \tab various file import functions\cr
 ##' tolerance            \tab \code{sqrt (.Machine$double.eps)} \tab tolerance for numerical comparisons              \tab \code{\link{normalize01}}, file import: \code{file.remove.emptyspc}\cr
 ##' wl.tolerance         \tab \code{sqrt (.Machine$double.eps)} \tab tolerance for comparisons of the wavelength axis \tab \code{\link{all.equal}}, \code{\link{collapse}}, \code{\link{rbind}}\cr
-##' plot.spc.nmax        \tab 25                                \tab number of spectra to be plotted by default       \tab \code{\link{plot.spc}}\cr
-##' ggplot.spc.nmax      \tab 10                                \tab                                                  \tab \code{\link{qplot.spc}}\cr
+##' plot.spc.nmax        \tab 25                                \tab number of spectra to be plotted by default       \tab \code{\link{plotspc}}\cr
+##' ggplot.spc.nmax      \tab 10                                \tab                                                  \tab \code{\link{qplotspc}}\cr
 ##' }
 ##'
 ##' \code{hy.setOptions} will discard any values that were given without a
