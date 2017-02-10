@@ -25,7 +25,7 @@ guess.wavelength <- function (X) {
     if (hy.getOption("debuglevel") >= 1L)
       message("could not guess wavelengths")
     
-    wl <- seq_len (X)  
+    wl <- NULL
   }
 
   wl  
