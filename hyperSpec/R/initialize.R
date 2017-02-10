@@ -275,7 +275,7 @@ setGeneric ("as.hyperSpec",
 
 #' @include guesswavelength.R
 .as.hyperSpec.matrix <- function (X, wl = guess.wavelength (colnames (X)), ...){
-  new ("hyperSpec", spc = X, wavlength = wl, ...)
+  new ("hyperSpec", spc = X, wavelength = wl, ...)
 }
 
 #' @rdname as.hyperSpec
