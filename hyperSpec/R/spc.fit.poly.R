@@ -143,7 +143,7 @@ spc.fit.poly.below <- function (fit.to, apply.to = fit.to, poly.order = 1,
   y <- t (fit.to [[]])
 
   p <- matrix (nrow = nrow(fit.to) , ncol = poly.order + 1)
-  for (i in row.seq (fit.to)){
+  for (i in hyperSpec:::row.seq (fit.to)){
     use.old <- logical (nwl (fit.to))
     use <- !use.old
 
@@ -157,8 +157,7 @@ spc.fit.poly.below <- function (fit.to, apply.to = fit.to, poly.order = 1,
     }
   }
   if (is.null (apply.to)){
-    fit.to@data$spc <- p
-    .wl (fit.to) <- 0 : poly.order
+    fit.to <- new("hyperSpec", spc=p, wavelength=0 : poly.order)
     colnames (fit.to@data$spc) <- paste ("(x - minx)^", 0 : poly.order, sep="")
 
     validObject (fit.to)
