@@ -25,8 +25,7 @@ DESCRIPTION: $(shell find hyperSpec -maxdepth 1 -daystart -not -ctime 0 -name "D
 
 # VIGNETTES ########################################################################################
 
-vignettes: baseline chondro flu laser plotting introduction
-# fileio laser plotting
+vignettes: baseline chondro flu laser plotting introduction fileio laser plotting
 
 # in subdirs ---------------------------------------------------------------------------------------
 
