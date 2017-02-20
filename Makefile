@@ -14,8 +14,8 @@ build: all
 
 roxygenize: DESCRIPTION hyperSpec/R/*.R 
 	Rscript --vanilla -e "library (roxygen2); roxygenize ('hyperSpec')" 
-# TODO: DESCRIPTION target 
-# add dependency clean
+
+# TODO: add dependency `clean`
 
 DESCRIPTION: $(shell find hyperSpec -maxdepth 1 -daystart -not -ctime 0 -name "DESCRIPTION") #only if not modified today
 	@echo update DESCRIPTION
@@ -25,8 +25,8 @@ DESCRIPTION: $(shell find hyperSpec -maxdepth 1 -daystart -not -ctime 0 -name "D
 
 # VIGNETTES ########################################################################################
 
-vignettes: baseline chondro flu laser plotting 
-# fileio introduction laser plotting
+vignettes: baseline chondro flu laser plotting introduction
+# fileio laser plotting
 
 # in subdirs ---------------------------------------------------------------------------------------
 
