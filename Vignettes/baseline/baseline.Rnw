@@ -186,13 +186,10 @@ plot (chondro [1], add = TRUE)
 
 
 \subsection{Specifying the spectral range}
-<<trace, echo = FALSE, results = hide>>=
-	trace (spc.fit.poly.below, exit = quote ({ls ();
-	plot (fit.to[,, use.old], col = cl, add = TRUE, lines.args = list (pch = pch, type = "p"), zeroline = NA);
-	}), print = FALSE)
-@
 <<figspcrange, fig=TRUE, pdf = TRUE, echo = FALSE, results = hide, eps = FALSE, width = 8, height = 4, include = FALSE>>=
+untrace(spc.fit.poly.below)
 plot (chondro [3,,1700 ~ 1750], plot.args = list (ylim = range (chondro [3,,1700 ~ 1750]) + c(-50, 0)))
+plot (chondro [3,,1705 ~ 1742], lines.args = list(type = "b"), add=T)
 cl <- "black"
 pch = 1
 bl <- spc.fit.poly.below (chondro [3,,1700 ~ 1750], NULL, poly.order = 1)
@@ -207,7 +204,7 @@ abline (bl[[]], col = "blue")
 \begin{center}
 \includegraphics[width = .66\textwidth]{baseline-fig--figspcrange}
 \caption{Influence of \Rcode{fit.to} on the baseline polynomial. The black baseline is fit to the
-  spectral range \rcm{1700 - 1800}, the blue to \rcm{1715 - 1800} only (dots \& circles: supporting
+  spectral range \rcm{1700 - 1750}, the blue to \rcm{1720 - 1750} only (dots \& circles: supporting
   points).}
 \label{fig:spectralrange}
 \end{center}
@@ -219,9 +216,6 @@ essential for \Rfunction{spc.fit.poly}. But also \Rfunction{spc.fit.poly.below} 
 narrower spectral ranges: the fitting gains speed. The default value for \Rfunarg{npts.min} depends
 on the number of data points per spectrum. Thus one should also consider requiring more support points than
 the default value suggests.
-<<untrace1, echo = FALSE, results = hide>>=
-untrace (spc.fit.poly.below)
-@ 
 <<fit-apply>>=
 system.time (spc.fit.poly.below (chondro, NULL, npts.min = 20))
 system.time (spc.fit.poly.below (chondro [,, c (min ~ 700, 1700 ~ max)], NULL, npts.min = 20))
