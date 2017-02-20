@@ -83,13 +83,6 @@ for spectra with high signal to noise ratio.
 Such a baseline can be obtained by restricting the spectra in \Rfunarg{fit.to} to the respective
 points (see figure~\ref{fig:classical}):
 <<classical-bl, fig = TRUE, width = 8, height = 4, include = FALSE>>=
-
-# ROMAN'S DIRTY HACK
-load("../chondro/chondro-internal.rda")
-load("../../hyperSpec/data/paracetamol.rda")
-chondro <- hyperSpec:::.make.chondro()
-########
-
 bl <- spc.fit.poly (chondro [c (1, 101),, c (633, 1788)], chondro [c (1, 101)])
 
 plot (chondro [c (1, 101)], plot.args = list (ylim = c(200, 600)), col = 1 : 2)
