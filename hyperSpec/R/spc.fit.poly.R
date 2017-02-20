@@ -20,6 +20,7 @@
 ##' @param poly.order order of the polynomial to be used
 ##' @param offset.wl should the wavelength range be mapped to -> [0, delta wl]?
 ##' This enhances numerical stability.
+##' @param debuglevel  see \code{\link[hyperSpec]{options}}
 ##' @return \code{hyperspec} object containing the baselines in the spectra
 ##'   matrix, either as polynomial coefficients or as polynomials evaluted on
 ##'   the spectral range of \code{apply.to}
@@ -35,7 +36,8 @@
 ##' baselines <- spc.fit.poly(spc [,, c (625 ~ 640, 1785 ~ 1800)], spc)
 ##' plot(spc - baselines)
 ##'
-spc.fit.poly <- function (fit.to, apply.to = NULL, poly.order = 1, offset.wl = ! (is.null (apply.to))){
+spc.fit.poly <- function (fit.to, apply.to = NULL, poly.order = 1, offset.wl = ! (is.null (apply.to)),
+                          debuglevel = hy.getOption("debuglevel")){
   chk.hy (fit.to)
   if (! is.null (apply.to))
     chk.hy (apply.to)
@@ -52,23 +54,22 @@ spc.fit.poly <- function (fit.to, apply.to = NULL, poly.order = 1, offset.wl = !
     minx <- 0
   }
 
-  x <- outer(x, 0 : poly.order, "^")             # Vandermonde matrix of x
+  x <- vanderMonde (x, poly.order)          # Vandermonde matrix of x
 
   p <- apply (fit.to, 1, function (y, x){qr.solve (x, y)}, x)
 
   if (is.null (apply.to)){
-    colnames (p@data$spc) <- paste ("(x - minx)^", 0 : poly.order, sep="")
+    colnames (p@data$spc) <- paste0 ("(x - minx)^", 0 : poly.order)
 
-    list (coef = p, minx = minx)
+    list (coef = p, min.x = minx)
 
   } else {
     wl <- apply.to@wavelength - minx
 
-    x <- outer(wl, 0 : poly.order, "^")             # Vandermonde matrix of x
+    x <- vanderMonde(wl, poly.order)   # Vandermonde matrix of x
     apply.to@data$spc <- I (t (apply (p[[]], 1, function (p, x) {x %*% p}, x)))
 
-    # .wl(apply.to) <- wl
-    # colnames (apply.to@data$spc) <- format (wl, digits = 4)
+    validObject(apply.to)
 
     apply.to
   }
@@ -139,7 +140,7 @@ spc.fit.poly.below <- function (fit.to, apply.to = fit.to, poly.order = 1,
     minx <- 0
   }
 
-  vdm <- outer(x, 0 : poly.order, "^")
+  vdm <- vanderMonde (x, poly.order)
   y <- t (fit.to [[]])
 
   p <- matrix (nrow = nrow(fit.to) , ncol = poly.order + 1)
@@ -152,6 +153,12 @@ spc.fit.poly.below <- function (fit.to, apply.to = fit.to, poly.order = 1,
       bl <- vdm %*% p [i,]
       use.old <- use
       use <- y[, i] < bl + noise [i]
+
+      if (debuglevel > 0) {
+        plot (fit.to[,, use.old], col = cl, add = TRUE, lines.args = list (pch = 20, type = "p"));
+        lines (fit.to@wavelength, bl, col = cl);
+      }
+
       if ((sum (use, na.rm=TRUE) < npts.min) || all (use == use.old, na.rm = TRUE))
         break
     }
@@ -159,20 +166,17 @@ spc.fit.poly.below <- function (fit.to, apply.to = fit.to, poly.order = 1,
   if (is.null (apply.to)){
     fit.to@data$spc <- p
     .wl (fit.to) <- 0 : poly.order
-    colnames (fit.to@data$spc) <- paste ("(x - minx)^", 0 : poly.order, sep="")
+    colnames (fit.to@data$spc) <- paste0 ("(x - minx)^", 0 : poly.order)
 
     validObject (fit.to)
 
-    fit.to
+    list (coef = fit.to, min.x = minx)
   } else {
     x <- apply.to@wavelength - minx
 
-    vdm <- outer(x, 0 : poly.order, "^")             # Vandermonde matrix of x
+    vdm <- vanderMonde(x, poly.order)             # Vandermonde matrix of x
 
     apply.to@data$spc <- I (t (apply (p, 1, function (p, x) {x %*% p}, vdm)))
-
-    #.wl(apply.to) <- x
-    #colnames (apply.to@data$spc) <- format (x, digits = 4)
 
     validObject (apply.to)
 
