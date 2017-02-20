@@ -1,4 +1,4 @@
-all: barbiturates.rda paracetamol.rda flu.rda laser.rda 
+all: barbiturates.rda paracetamol.rda flu.rda laser.rda ../R/sysdata.rda
 
 barbiturates.rda:
 	$(MAKE) -C ../../Vignettes/fileio 
