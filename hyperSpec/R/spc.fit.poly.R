@@ -96,7 +96,6 @@ spc.fit.poly <- function (fit.to, apply.to = NULL, poly.order = 1, offset.wl = !
   })
   }
 
-
 ##'
 ##' \code{spc.fit.poly.below} tries to fit the baseline on appropriate spectral
 ##' ranges of the spectra in \code{fit.to}.  For details, see the
@@ -185,7 +184,7 @@ spc.fit.poly.below <- function (fit.to, apply.to = fit.to, poly.order = 1,
 }
 
 .test (spc.fit.poly.below) <- function (){
-   context ("spc.fit.poly.below")
+  context ("spc.fit.poly.below")
 
   test_that("no normalization",
             bl.nonorm <- spc.fit.poly.below (flu, flu, poly.order = 3, offset.wl = FALSE, npts.min = 25)
@@ -201,10 +200,9 @@ spc.fit.poly.below <- function (fit.to, apply.to = fit.to, poly.order = 1,
 
     bl.1e4 <- spc.fit.poly.below (tmp, tmp, poly.order = 3, offset.wl = TRUE, npts.min = 25)
     bl.nonorm <- spc.fit.poly.below (flu, flu, poly.order = 3, offset.wl = FALSE, npts.min = 25)
+
     expect_equal (bl.nonorm [[]], bl.1e4 [[]])
   })
 }
-
-
 
 
