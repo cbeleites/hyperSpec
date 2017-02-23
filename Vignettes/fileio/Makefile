@@ -1,4 +1,4 @@
-all: barbiturates.rda paracetamol.rda fileio.pdf 
+all: barbiturates.rda paracetamol.rda fileio.pdf
 
 
 .SECONDARY: barbiturates.rda paracetamol.rda
@@ -105,9 +105,9 @@ spc.Witec = spc.Witec/P_A32_006_Spec.Data\ 1.spc spc.Witec/P_A32_007_Spec.Data\ 
 
 spe =     spe/aspirin.spe  spe/HeNe.SPE spe/noise.spe spe/polystyrene.SPE \
           spe/blut1.SPE spe/blut2.SPE spe/kuvette.SPE \
-          spe/blut1.spc spe/blut2.spc spe/kuvette.spc 
+          spe/blut1.spc spe/blut2.spc spe/kuvette.spc
 
-spe.gasmet = spe.gasmet/06dvan_BS_cdst_Diesel_run3_281011_00001.SPE 
+spe.gasmet = spe.gasmet/06dvan_BS_cdst_Diesel_run3_281011_00001.SPE
 
 sp.PerkinElmer = sp.PerkinElmer/A1701001.SP sp.PerkinElmer/A1702001.SP sp.PerkinElmer/A1703001.SP \
           sp.PerkinElmer/A1704001.SP sp.PerkinElmer/A1705001.SP sp.PerkinElmer/A1706001.SP \
@@ -222,7 +222,9 @@ txt.Witec = txt.Witec/Witec-Map_full.txt \
           txt.Witec/Witec-timeseries\ (X-Axis).txt txt.Witec/Witec-timeseries\ (Y-Axis).txt \
           txt.Witec/Witec-timeseries_label.txt txt.Witec/Witec-timeseries_no.txt  \
           txt.Witec/Witec-timeseries_unit.txt \
-          txt.Witec/Witec-timeseries-x.dat txt.Witec/Witec-timeseries-y.dat
+          txt.Witec/Witec-timeseries-x.dat txt.Witec/Witec-timeseries-y.dat \
+          txt.Witec/nofilename\ (Header).txt txt.Witec/nofilename\ (X-Axis).txt txt.Witec/nofilename\ (Y-Axis).txt
+
 uxd = uxd/DIV1208200(1).UXD uxd/DIV1208300(1).UXD uxd/DIV1208400(1).UXD uxd/DIV1208500(1).UXD  \
           uxd/DIV1208600(1).UXD uxd/DIV1208700(1).UXD uxd/DIV1208800(1).UXD uxd/DIV1208900(1).UXD \
           uxd/DIV1209000(1).UXD uxd/DIV1214300(1).UXD uxd/DIV1214400(1).UXD uxd/DIV1214500(1).UXD \
@@ -258,7 +260,7 @@ RAWFILES = $(asc.Andor) \
            $(txt.Witec) \
            $(uxd) \
            $(wdf.Renishaw) \
-           $(WIP.Witec) 
+           $(WIP.Witec)
 
 fileio.pdf: fileio.Rnw vignettes.defs barbiturates.rda | $(RAWFILES)
 	R CMD Sweave fileio.Rnw --pdf --compact="both" 
@@ -272,5 +274,5 @@ $(RAWFILES):
 barbiturates.rda:
 	touch barbiturates.rda
 
-paracetamol.rda: 
+paracetamol.rda:
 	touch paracetamol.rda
