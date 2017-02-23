@@ -1,4 +1,4 @@
-% -*- mode: noweb; noweb-default-code-mode: R-mode; -*- 
+% -*- mode: noweb; noweb-default-code-mode: R-mode; -*-
 \documentclass[english, a4paper, 10pt, headings=small, DIV11]{scrartcl}
 \usepackage{longtable}
 
@@ -13,7 +13,7 @@
 % \VignetteKeywords{hyperspec}
 % \VignettePackage{hyperSpec}
 % \VignetteDepends{MASS}
-\usepackage{makeidx} 
+\usepackage{makeidx}
 \makeindex
 
 \begin{document}
@@ -21,7 +21,7 @@
 \title{\phy Introduction }
 \maketitle
 \warnbox{Reproducing the Examples in this Vignette}{
-All spectra used in this manual are installed automatically with \phy. 
+All spectra used in this manual are installed automatically with \phy.
 
 Note that some definitions are executed in \texttt{vignette.defs}.
 }
@@ -33,7 +33,7 @@ Note that some definitions are executed in \texttt{vignette.defs}.
 \begin{labeling}{latticeExtra}
 <<check-required, echo = FALSE, results = tex>>=
 check.req.pkg ("pls", special = list (msc = function (x) {texterrormsg ("msc", "pls"); x}))
-check.req.pkg ("baseline", 
+check.req.pkg ("baseline",
                special = list (
                  baseline = function (x) {texterrormsg ("baseline", "baseline"); x},
                  getCorrected = function (x) {texterrormsg ("getCorrected", "baseline"); x}
@@ -41,7 +41,7 @@ check.req.pkg ("baseline",
 check.req.pkg ("ggplot2", donothing = "")
 check.req.pkg ("compiler", donothing = "")
 check.req.pkg ("inline", donothing = "")
-@ 
+@
 %
 \end{labeling}
 }
@@ -130,19 +130,19 @@ vignettes to be exactly what one would type during an interactive \R session. Fo
 
 \subsection{Validity Checking}
 S4 classes have a mechanism to define and enforce that the data actually stored in the object is
-appropriate for this class. In other words, there is a mechanism of \emph{\index{validity checking}validity checking}. 
+appropriate for this class. In other words, there is a mechanism of \emph{\index{validity checking}validity checking}.
 
 The functions provided by \phy check the validity of \Rclass{hyperSpec} objects at the beginning, and
 -- if the validity could be broken by inappropriate arguments -- also before leaving the
 function. \index{validObject|texttt}\index{chk.hy|texttt} \mFun{validObject, chk.hy}
- 
+
 It is highly recommended to use validity checking also for user-defined functions. In addition,
 non-generic functions should first ensure that the argument actually is a \chy object. The two tasks
 are accomplished by:
 <<eval = FALSE>>=
-chk.hy (object)                         
-validObject (object)                    
-@ 
+chk.hy (object)
+validObject (object)
+@
 %
 The first line checks whether \Robject{object} is a \chy object, the second checks its validity.
 Both functions return \Rcode{TRUE} if the checks succeed, otherwise they raise an error and stop.
@@ -158,13 +158,13 @@ can be handed over as arguments to other functions (particularly to the vectoriz
 \verb+`-`+ is the recommended style (although \verb+"-"+ will often work as well), \eg:
 <<eval = FALSE>>=
 sweep (flu, 2, mean, `-`)
-@ 
+@
 %
 
 These functions can also be called in a more function-like style (prefix notation):
 <<>>=
 `+` (3, 5)
-@ 
+@
 %
 
 \subsubsection{Assignment Functions}
@@ -182,7 +182,7 @@ an assignment to variable \verb+wl+: \verb+`wl<-`+.
 To \index{loading}load \phy, use\nopagebreak
 <<init>>=
 library ("hyperSpec")
-@ 
+@
 %
 \index{options|textbf}
 \index{options!debuglevel}
@@ -202,16 +202,18 @@ retrieved with \Rfunction{hy.getOptions} and \Rfunction{hy.getOption}, and chang
     wl.tolerance & $\sqrt{\Rcode{.Machine\$.double.eps}}$ & tolerance for comparisons of the wavelength axis & \Rfunction{rbind}, \Rfunction{rbind2}, \Rfunction{bind}\Rcode{ ("r", ...)}, \Rfunction{all.equal}, \Rfunction{collapse}\\
     file.remove.emptyspc & TRUE & automatic removing of empty spectra & file import functions, see \Rcode{vignette ("fileio")}\\
     file.keep.name & TRUE & automatic recording of file name in column \Rcode{\$filename} & file import functions, see \Rcode{vignette ("fileio")}\\
+    plot.spc.nmax        & 25                                & number of spectra to be plotted by default       & \Rfunction{plotspc}\\
+ ggplot.spc.nmax      & 10                                &                                                  & \Rfunction{qplotspc}\\
     \hline
-    % 
+    %
   \end{tabular}
   \end{small}
   \caption{\phy options. Please refer to the documentation of the respective functions for details about the effect of the options.}
   \label{tab:options}
 \end{table}
 <<checkCompleteOptionTable, echo = FALSE, results = hide>>=
-stopifnot (all (names (hy.getOptions(TRUE)) %in% c ("debuglevel", "gc", "file.remove.emptyspc", 
-                  "file.keep.name", "tolerance", "wl.tolerance")))
+stopifnot (all (names (hy.getOptions(TRUE)) %in% c ("debuglevel", "gc", "file.remove.emptyspc",
+                  "file.keep.name", "tolerance", "wl.tolerance", "plot.spc.nmax", "ggplot.spc.nmax")))
 @
 \section{The structure of \Rclass{hyperSpec} objects}
 \label{sec:structure-chy}
@@ -233,7 +235,7 @@ cases, however, direct access to the slots can considerably speed up calculation
     \toprule
     \textbf{slot} & \textbf{get}                                                                   & \textbf{set}                        \\
     \cmidrule(lr){1-1} \cmidrule(lr){2-2} \cmidrule(lr){3-3}
-    @wavelength   & \verb+wl+                                                                      & wl<-                                \\ 
+    @wavelength   & \verb+wl+                                                                      & wl<-                                \\
     @data         & \verb+[+, \verb+[[+, \verb+$+, \verb+as.data.frame+, \verb+as.long.df+, \ldots & \verb+[<-+, \verb+[[<-+, \verb+$<-+ \\ %] emacs font lock gets confused otherwise
     @label        & \verb+labels+                                                                  & \verb+labels<-+                     \\
     \bottomrule
@@ -286,7 +288,7 @@ ncol (chondro)
 dim (chondro)
 @
 
-The names of the columns in \Rcode{@data} are accessed by\mFun{colnames, rownames, dimnames, wl} 
+The names of the columns in \Rcode{@data} are accessed by\mFun{colnames, rownames, dimnames, wl}
 <<names>>=
 colnames (chondro)
 @
@@ -323,7 +325,7 @@ The most frequently needed arguments are:
   \Rcode{\$.wavelength} and the spectral intensity axis label in \Rcode{\$spc}.
 \end{labeling}
 
-More information about converting existing data into \chy objects can be found in \Rcode{vignette ("fileio")}. 
+More information about converting existing data into \chy objects can be found in \Rcode{vignette ("fileio")}.
 
 \subsection{Creating Random Spectra}
 If \Rpackage{mvtnorm} is available, multivariate normally distributed spectra can be generated from
@@ -335,11 +337,11 @@ Mean spectra and pooled covariance matrix can be calculated using
 <<>>=
 pcov <- pooled.cov (chondro, chondro$clusters)
 rnd <- rmmvnorm (rep (10, 3), mean = pcov$mean, sigma = pcov$COV)
-@ 
+@
 <<simspc, fig = TRUE, width = 10, height = 5, include=FALSE>>=
 cluster.cols <- c ("dark blue", "orange", "#C02020")
 plot (rnd, col = cluster.cols [rnd$.group])
-@ 
+@
 \begin{figure}[t]
 \subfloat[\label{fig:sim:spc} \Rfunction{rmmvnorm}]{\includegraphics[width=.66\linewidth]{introduction-fig--simspc}}
 \subfloat[\label{fig:sim:lda} LDA of simulated spectra. Crosses mark real spectra.]{\includegraphics[width=.33\linewidth]{introduction-fig--simlda}}
@@ -353,10 +355,10 @@ fig.~\ref{fig:sim:lda} shows the linear discriminant analysis (LDA) scores of su
 require ("MASS")
 rnd <- rmmvnorm (rep (200, 3), mean = pcov$mean, sigma = pcov$COV)
 lda <- lda (clusters ~ spc, rnd)
- 
+
 pred.chondro <- predict (lda, chondro)
 pred.sim     <- predict (lda)
-@ 
+@
 <<simlda, fig = TRUE, pnr  width = 5, height = 5, include=FALSE>>=
 colors <- c("#00008040", "#FFA50040", "#C0202040")
 plot (pred.chondro$x, col = colors [chondro$clusters], pch = 3)
@@ -414,7 +416,7 @@ given to \Rfunction{[]} will be treated as a vector.
 <<selspc, fig = TRUE>>=
 plot (flu, col = "gray")
 plot (flu [1 : 3], add = TRUE)
-@ 
+@
 
 <<delspc, fig = TRUE>>=
 plot (flu, col = "gray")
@@ -573,12 +575,12 @@ possibilities of specifying wavelengths.
 
 \subsubsection{Deleting Wavelength Ranges}
 \label{sec:del-wavelengths}
-Deleting wavelength ranges may be accomplished using negative index vectors together with \Rcode{wl.index = TRUE}. 
+Deleting wavelength ranges may be accomplished using negative index vectors together with \Rcode{wl.index = TRUE}.
 <<fig = TRUE>>=
 plot (paracetamol [,, -(500 : 1000), wl.index = TRUE])
 @
 \\
-However, this mechanism works only if the proper indices are known. 
+However, this mechanism works only if the proper indices are known.
 
 If the range to be cut out is rather known in the units of the wavelength axis, it is easier to
 select the remainder of the spectrum instead. To delete the spectral range from 1750 to
@@ -641,7 +643,7 @@ flu <- flu [,,400 ~ 407] # make a small and handy version of the flu data set
 as.data.frame (flu)
 colnames (as.data.frame (flu))
 as.data.frame (flu) $ spc
-@ 
+@
 Note that the spectra matrix is still a matrix inside column \Rcode{\$spc}.
 
 \Rfunction{as.data.frame} and the abbreviations \mFun{\Rfunction{\$.},
@@ -653,7 +655,7 @@ flu$..
 If another subset of colums needs to be extracted, use \mFun{\Rfunction{[[]]}}\Rfunction{[[]]}:
 <<>>=
 flu [[, c ("c", "spc")]]
-@ 
+@
 %
 This can be combined with extracting certain spectra and wavelengths, see below in subsection
 ``\nameref{sec:conv-matrix}'' on page \pageref{sec:conv-matrix}.
@@ -693,7 +695,7 @@ rm (flu)
 @
 
 
-\section{Combining and Decomposing \chy Objects} 
+\section{Combining and Decomposing \chy Objects}
 \label{sec:combine}
 
 \subsection{Binding Objects together}
@@ -705,7 +707,7 @@ new spectra:
 dim (flu)
 dim (cbind (flu, flu))
 dim (rbind (flu, flu))
-@ 
+@
 
 There is also a more general function, \Rfunction{bind}, taking the direction
 (\Rcode{\textquotedbl{}r\textquotedbl{}} or \Rcode{\textquotedbl{}c\textquotedbl{}}) as first
@@ -714,7 +716,7 @@ argument followed by the objects to bind either in separate arguments or in a li
 As usual for \Rfunction{rbind} and \Rfunction{cbind}, the objects that should be bound together must
 have the same rows and columns, respectively.
 
-For binding row-wise (\Rfunction{rbind}), \Rfunction{collapse}\mFun{\Rfunction{collapse}} is 
+For binding row-wise (\Rfunction{rbind}), \Rfunction{collapse}\mFun{\Rfunction{collapse}} is
 more flexible but also faster.
 
 \subsection{Binding Objects that do not Share the Same Extra Data and/or Wavelength Axis}
@@ -727,11 +729,11 @@ a particular column or wavelength, its value in the resulting object is \Rcode{N
 
 The \Robject{barbiturates} data is a list of \Sexpr{length (barbiturates)} \chy objects, each
 containing one mass spectrum. The spectra have between \Sexpr{(min (sapply (barbiturates, nwl)))} and
-\Sexpr{(max (sapply (barbiturates, nwl)))} data points each. 
+\Sexpr{(max (sapply (barbiturates, nwl)))} data points each.
 <<collapse>>=
 barb <- collapse (barbiturates)
 wl (barb) [1 : 25]
-@ 
+@
 The resulting object does not have an ordered wavelength axis. This can be obtained in a second step:
 <<collapse-orderwl>>=
 barb <- orderwl (barb)
@@ -755,7 +757,7 @@ chondro.low <- sample (chondro [,, 600 ~ 1200], 700)
 nrow (chondro.low)
 chondro.high <- sample (chondro [,, 1400 ~ 1800], 700)
 nrow (chondro.high)
-@ 
+@
 
 As all extra data columns are the same, no special declarations are needed for merging the data:
 <<merge>>=
@@ -773,10 +775,10 @@ nrow (chondro.merged)
 \setkeys{Gin}{width = .66\textwidth}
 \subfloat[\label{fig-merge-map}]{
 <<missing, fig = TRUE, width = 10, height = 4.25, echo = FALSE>>=
-print (levelplot (spc ~ x * y | as.factor (paste (.wavelength, "  1/cm")), 
-                  chondro.merged [,,c(1000, 1650)], 
+print (levelplot (spc ~ x * y | as.factor (paste (.wavelength, "  1/cm")),
+                  chondro.merged [,,c(1000, 1650)],
                   aspect = "iso", col.regions = matlab.palette ()))
-@ 
+@
 }
 \setkeys{Gin}{width = .33\textwidth}
 \subfloat[\label{fig-merge-mat}]{
@@ -785,11 +787,11 @@ png ("introduction-fig--merged.png", width = 500, height = 425, res=100)
 plot (chondro.merged [1 : 100], "mat")
 dev.off()
 rm (chondro)
-@ 
+@
 \includegraphics[width = .33\textwidth]{introduction-fig--merged}
 }
 \caption[]{\label{fig:merge}
-  \subref{fig-merge-map} For both spectral ranges some spectra are missing.  
+  \subref{fig-merge-map} For both spectral ranges some spectra are missing.
   \subref{fig-merge-mat} The missing parts of the spectra are filled with \Rcode{NA}.}
 \end{figure}
 
@@ -819,8 +821,8 @@ approxfun <- function (y, wl, new.wl){
 %
 which can be applied to the spectra:
 <<>>=
-merged <- apply (merged, 1, approxfun, 
-                 wl = wl (merged), new.wl = unique (wl (merged)), 
+merged <- apply (merged, 1, approxfun,
+                 wl = wl (merged), new.wl = unique (wl (merged)),
                  new.wavelength = "new.wl")
 merged$.
 @
@@ -870,7 +872,7 @@ flu [[,, c (min ~ min + 2i, max - 2i ~ max)]]
 \label{sec:shifting-spectra}
 Sometimes, spectra need to be aligned along the spectral axis.
 
-In general, two options are available for shifting spectra along the wavelength axis. 
+In general, two options are available for shifting spectra along the wavelength axis.
 \begin{enumerate}
 \item The wavelength axis can be shifted, while the intensities stay unaffected.
 \item the spectra are interpolated onto a new wavelength axis, while the nominal wavelengths stay.
@@ -960,7 +962,7 @@ find.max <- function (y, x){
   pos <- which.max (y) + (-1:1)
   X <- x [pos] - x [pos [2]]
   Y <- y [pos] - y [pos [2]]
-  
+
   X <- cbind (1, X, X^2)
   coef <- qr.solve (X, Y)
 
@@ -991,7 +993,7 @@ shift2 <- numeric (nrow (chondro))
 tmp <- chondro [[]]
 target <- colMeans (chondro [[]])
 for (i in 1 : nrow (chondro))
-  shift2 [i] <- unlist (optimize (targetfn, interval = c (-5, 5), wl = chondro@wavelength, 
+  shift2 [i] <- unlist (optimize (targetfn, interval = c (-5, 5), wl = chondro@wavelength,
                                  spc = tmp[i,], targetspc = target)$minimum)
 @
 
@@ -1001,8 +1003,8 @@ other.
 \begin{figure}[t]
   \centering
 <<shift-fit, fig = TRUE, echo = FALSE>>=
-df <- data.frame (shift = c (shifts, shifts + shift1, shifts + shift2), 
-                method = rep (c ("original", "find maximum", "interpolation"), 
+df <- data.frame (shift = c (shifts, shifts + shift1, shifts + shift2),
+                method = rep (c ("original", "find maximum", "interpolation"),
                   each = nrow (chondro)))
 plot (histogram (~ shift | method, data = df, breaks = do.breaks(range (df$shift), 25),
            layout = c (3,1)))
@@ -1016,7 +1018,7 @@ plot (histogram (~ shift | method, data = df, breaks = do.breaks(range (df$shift
 
 \subsubsection{Bad Spectra}
 \label{sec:bad-spectra}
-Occasionally, one may want to remove spectra because of too low or too high signal. 
+Occasionally, one may want to remove spectra because of too low or too high signal.
 
 E.g. for infrared spectra one may state that the absorbance maximum should be, say, between 0.1 and
 1. \chy's comparison operators return a logical matrix of the size of the spectra that is suitable
@@ -1025,20 +1027,20 @@ for later indexing:
 ir.spc <- chondro / 1500 ## fake IR data
 high.int <- apply (ir.spc > 1, 1, any) # any point above 1 is bad
 low.int <- apply (ir.spc, 1, max) < 0.1 # the maximum should be at least 0.1
-ir.spc <- ir.spc [! high.int & ! low.int] 
+ir.spc <- ir.spc [! high.int & ! low.int]
 @
 
 \subsubsection{Removing Spectra outside mean $\pm$ $n$ sd}
 <<>>=
 mean_sd_filter <- function (x, n  = 5) {
   x <- x - mean (x)
-  s <- n * sd (x) 
+  s <- n * sd (x)
   (x <= s) & (x > -s)
 }
 
 OK <- apply (chondro [[]], 2, mean_sd_filter, n = 4) # logical matrix
 
-spc.OK <- chondro [apply (OK, 1, all)] 
+spc.OK <- chondro [apply (OK, 1, all)]
 @
 
 <<filter, fig = TRUE, width = 10, height = 5, include = FALSE>>=
@@ -1071,12 +1073,12 @@ spc [[]]
 
 Depending on the type of analysis, one may wants to replace the \Rcode{NA}s by interpolating the
 neighbour values. So far, \phy provides three functions that can interpolate the \Rcode{NA}s:
-\mFun{\Rfunction{spc.NA.linapprox}, \Rfunction{spc.loess}, \Rfunction{spc.bin}}:
-\Rfunction{spc.NA.linapprox}, \Rfunction{spc.loess}, and \Rfunction{spc.bin} with \Rcode{na.rm =
+\mFun{\Rfunction{spc.NA.approx}, \Rfunction{spc.loess}, \Rfunction{spc.bin}}:
+\Rfunction{spc.NA.approx}, \Rfunction{spc.loess}, and \Rfunction{spc.bin} with \Rcode{na.rm =
   TRUE} (the latter two are discussed below).
 
 <<>>=
-spc.corrected <- spc.NA.linapprox (spc)
+spc.corrected <- spc.NA.approx (spc)
 spc.corrected [[]]
 @
 
@@ -1084,7 +1086,7 @@ spc.corrected [[]]
 spc [[is.na (spc)]] <- 0
 plot (spc)
 spc [[spc < 1e-4]] <- NA
-plot (spc.NA.linapprox (spc), add = TRUE, col = "blue", lines.args = list (type = "b", pch = 19, cex = 0.5))
+plot (spc.NA.approx (spc), add = TRUE, col = "blue", lines.args = list (type = "b", pch = 19, cex = 0.5))
 @
 
 
@@ -1109,7 +1111,7 @@ plot (paracetamol, wl.range = c (300 ~ 1800, 2800 ~ max), xoffset = 850)
 p <- spc.loess (paracetamol, c(seq (300, 1800, 2), seq (2850, 3150, 2)))
 plot (p, wl.range = c (300 ~ 1800, 2800 ~ max), xoffset = 850, col = "red", add = TRUE)
 b <- spc.bin (paracetamol, 4)
-plot (b, wl.range = c (300 ~ 1800, 2800 ~ max), xoffset = 850, 
+plot (b, wl.range = c (300 ~ 1800, 2800 ~ max), xoffset = 850,
       lines.args = list (pch = 20, cex = .3, type = "p"), col = "blue", add = TRUE)
 @
 <<fig-loess-kl, fig = TRUE, width = 5, height = 5, include = FALSE, echo = FALSE>>=
@@ -1152,7 +1154,7 @@ use \Rcode{sweep (spectra, 2, background.spectrum, \textquotedbl{}-\textquotedbl
 <<ofs>>=
 offsets <- apply (chondro, 1, min)
 chondro.offset.corrected <- sweep (chondro, 1, offsets, "-")
-@ 
+@
 If the offset is calculated by a function, as here with the \Rfunction{min}, \chy's
 \Rfunction{sweep} method offers a shortcut: \Rfunction{sweep}'s \Rfunarg{STATS} argument may be the
 function instead of a numeric vector:
@@ -1192,12 +1194,12 @@ corrected <- hyperSpec::chondro [1] # start with the unchanged data set
 require ("baseline")
 bl <- baseline (corrected [[]], method = "modpolyfit", degree = 4)
 corrected [[]] <- getCorrected (bl)
-@ 
+@
 Fig.~\ref{fig:bl-baseline} shows the result for the first spectrum of \Robject{chondro}.
 \begin{figure}[tb]
 \subfloat[Raw data with baseline]{
 <<fig = TRUE, include = TRUE, width = 10, height = 5, echo = FALSE, results = hide>>=
-baseline <- corrected 
+baseline <- corrected
 baseline [[]] <- getBaseline (bl)
 plot (hyperSpec::chondro [1], plot.args = list (ylim = range (hyperSpec::chondro [1], 0)))
 plot (baseline, add = TRUE, col = "red")
@@ -1252,7 +1254,7 @@ illumination while collecting imaging data, differing optical path length, etc.)
 choice. E.\,g. for area normalization, use:
 <<normalize1>>=
 chondro <- sweep (chondro, 1, mean, "/")
-@ 
+@
 (using the mean instead of the sum results in conveniently scaled spectra with intensities around 1.)
 
 If the calculation of the normalization factors is more elaborate, use a two step procedure:
@@ -1273,13 +1275,13 @@ For the special case of area normalization using the \Rcode{mean} spectra, the f
 factors <- 1 / rowMeans (chondro [, , 1600 ~ 1700])
 @
 
-and instead of \Rcode{sweep} the arithmetic operators (here \Rcode{*}) can be used directly with the normalization factor: 
+and instead of \Rcode{sweep} the arithmetic operators (here \Rcode{*}) can be used directly with the normalization factor:
 
 <<norm>>=
 chondro <- chondro * factors
 @
 
-Put together, this results in: 
+Put together, this results in:
 <<areanorm-shortcut>>=
 chondro <- chondro / rowMeans (chondro [, , 1600 ~ 1700])
 @
@@ -1301,7 +1303,7 @@ fact that for wavelengths with low signal the noise level will ``explode'' by va
 scaling. Scaling usually makes sense only for centered data.
 
 Both tasks are carried out by the same method in \R, \Rfunction{scale}, which will by default both
-mean center and variance scale the spectra matrix. 
+mean center and variance scale the spectra matrix.
 
 To center the \Robject{flu} data set, use:
 <<centre-flu, fig = TRUE, width = 10, height = 5>>=
@@ -1381,14 +1383,14 @@ Results of such a \mFun{\Rfunction{decomposition}} decomposition can be put agai
 figure~\ref{fig:pca}.
 
 <<decomp>>=
-scores <- decomposition (chondro, pca$x, label.wavelength = "PC", 
+scores <- decomposition (chondro, pca$x, label.wavelength = "PC",
                          label.spc = "score / a.u.")
 scores
-@ 
+@
 
 The loadings can be similarly re-imported:
 <<loadings>>=
-loadings <- decomposition (chondro, t(pca$rotation), scores = FALSE, 
+loadings <- decomposition (chondro, t(pca$rotation), scores = FALSE,
                            label.spc = "loading I / a.u.")
 loadings
 @
@@ -1401,14 +1403,14 @@ above).
 \Rfunarg{retain.columns} triggers whether columns that contain different values should be dropped. If
 it is set to \Rcode{TRUE}, the columns are retained, but contain \Rcode{NA}s:
 <<retain.col>>=
-loadings <- decomposition (chondro, t(pca$rotation), scores = FALSE, 
+loadings <- decomposition (chondro, t(pca$rotation), scores = FALSE,
                            retain.columns = TRUE, label.spc = "loading I / a.u.")
 loadings[1]$..
 @
 If an extra data column does contain only one unique value, it is retained anyways:
 <<retain>>=
 chondro$measurement <- 1
-loadings <- decomposition (chondro, t(pca$rotation), scores = FALSE, 
+loadings <- decomposition (chondro, t(pca$rotation), scores = FALSE,
                            label.spc = "loading I / a.u.")
 loadings[1]$..
 @
@@ -1425,7 +1427,7 @@ plotmap (scores [,,3], col.regions = div.palette (20))
 @
 }
 \caption[]{\label{fig:pca}
-  \subref{fig-pca-load} The first three loadings: \Rcode{plot (loadings [1 : 3], stacked = TRUE)}.  
+  \subref{fig-pca-load} The first three loadings: \Rcode{plot (loadings [1 : 3], stacked = TRUE)}.
   \subref{fig-pca-score} The third score map: \Rcode{plotmap (scores [, , 3])}.}
 \end{figure}
 
@@ -1445,7 +1447,7 @@ If we decide that only the first 10 components actually carry spectroscopic info
 <<pca-smooth>>=
 smoothed <- scores [,, 1:10] %*% loadings [1:10]
 @
-Keep in mind, though, that we cannot be sure how much \emph{useful} information was discarded with the higher components. This kind of noise reduction may influence further modeling of the data. Mathematically speaking, the rank of the new 
+Keep in mind, though, that we cannot be sure how much \emph{useful} information was discarded with the higher components. This kind of noise reduction may influence further modeling of the data. Mathematically speaking, the rank of the new
 \Sexpr{nrow (chondro)} $\times$ \Sexpr{nwl (chondro)} spectra matrix is only 10.
 
 \subsection{Data Analysis using long-format \df\\ \eg plotting with ggplot2}
@@ -1453,7 +1455,7 @@ Keep in mind, though, that we cannot be sure how much \emph{useful} information 
 Some functions need the data being an \emph{unstacked} or \emph{long-format} \df. \mFun{\Rfunction{as.long.df}}\Rfunction{as.long.df} is the appropriate conversion function.
 <<ggplot, eval = FALSE>>=
 require (ggplot2)
-ggplot (as.long.df (chondro [1]), aes (x = .wavelength, y = spc)) + geom_line ()                           
+ggplot (as.long.df (chondro [1]), aes (x = .wavelength, y = spc)) + geom_line ()
 @
 <<ggplot-do, echo = FALSE>>=
 if (require (ggplot2)){
@@ -1464,7 +1466,7 @@ if (require (ggplot2)){
   ploterrormsg (NULL, "ggplot2")
   dev.off()
 }
-@ 
+@
 \includegraphics[width=.5\linewidth]{introduction-fig--ggplot-do.pdf}
 
 \subsection{Data Analysis Methods using a matrix \\
@@ -1474,12 +1476,12 @@ Some functions expect their input data in a matrix, so either \Rcode{as.matrix (
 abbreviation \Rcode{object [[]]} can be used:
 <<hca>>=
 dist <- pearson.dist (chondro [[]])
-@ 
+@
 
 Again, many such functions coerce the data to a matrix automatically, so the \chy object can be
-handed over: 
-<<hca-asmatrix>>= 
-dist <- pearson.dist (chondro) 
+handed over:
+<<hca-asmatrix>>=
+dist <- pearson.dist (chondro)
 dendrogram <- hclust (dist, method = "ward")
 @
 <<dend, fig = TRUE, width = 5, height = 5, include = FALSE>>=
@@ -1514,7 +1516,7 @@ the mean spectra.}
 e.\,g. Cluster Mean Spectra}
 
 \Rfunction{aggregate}\mFun{\Rfunction{aggregate}} applies the function given in \Rfunarg{FUN}
-to each of the groups of spectra specified in \Rfunarg{by}. 
+to each of the groups of spectra specified in \Rfunarg{by}.
 
 So we may plot the cluster mean spectra:
 
@@ -1553,7 +1555,7 @@ system.time ({
   for (i in seq_len (nrow (tmp)))
     tmp [[i]] <- interpolate (tmp [[i]], shifts [i], wl = wl (tmp))
 })
-@ 
+@
 
 Calculations that involve a lot of subsetting (\ie extracting or changing the spectra matrix or extra
 data) can be sped up considerably if the required parts of the \chy object are extracted
@@ -1571,7 +1573,7 @@ system.time ({
 })
 @
 
-\paragraph{Additional packages.} 
+\paragraph{Additional packages.}
 
 \begin{description}
 \item[\Rpackage{matrixStats}] implements fast functions to calculate summary statistics for each row
@@ -1596,7 +1598,7 @@ can consume large amounts of memory. At certain points, \phy provides switches t
 with data sets that are actually close to this memory limit.
 
 \mFun{\Rcode{new ("hyperSpec")}, \Rfunction{read.ENVI*},
-\Rfunction{scan.txt.Renishaw}}\index{options!gc} 
+\Rfunction{scan.txt.Renishaw}}\index{options!gc}
 The initialization method \Rcode{new ("hyperSpec", \ldots)} takes particular care to avoid
 unneccessary copies of the spectra matrix. In addition, frequent calls to \Rcode{gc ()} can be
 requested by \Rcode{hy.setOption (gc = TRUE)}. The same behaviour is triggered in
@@ -1653,8 +1655,8 @@ make.fn.table()
 make.bib (c ("baseline", "compiler", "Rcpp", "inline"), file = "introduction-pkg.bib")
 print (as.matrix(Sys.info()))
 <<cleanup>>
-#for (f in Sys.glob ("fig/*.pdf")) 
-#  compactPDF ('$@', qpdf = '', gs_quality = 'screen', gs_extras = '-dDownsampleColorImages=false') 
+#for (f in Sys.glob ("fig/*.pdf"))
+#  compactPDF ('$@', qpdf = '', gs_quality = 'screen', gs_extras = '-dDownsampleColorImages=false')
 @
 %
 \end{footnotesize}
