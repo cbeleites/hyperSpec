@@ -1,4 +1,4 @@
-all: roxygenize pkg-data pkg-doc vignettes
+all: roxygenize pkg-data pkg-doc vignettes pkg-vignettes
 
 superclean: .FORCE
 	git clean -q -f
