@@ -33,6 +33,10 @@ check.req.pkg ("rgl", donothing = "")
 \end{labeling}
 }
 
+<<loadlaser, echo = FALSE, include = FALSE>>=
+laser <- scan.txt.Renishaw ("rawdata/laser.txt.gz", data = "ts")
+@
+
 \section{Introduction}
 This data set consists of a time series of \Sexpr{nrow (laser)} spectra of an
 unstable laser emission at 405 nm recorded during ca. 1.5 h. 

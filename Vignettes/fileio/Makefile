@@ -263,7 +263,7 @@ RAWFILES = $(asc.Andor) \
            $(WIP.Witec)
 
 fileio.pdf: fileio.Rnw vignettes.defs barbiturates.rda | $(RAWFILES)
-	R CMD Sweave fileio.Rnw --clean --pdf --compact="both"
+	R CMD Sweave fileio.Rnw --pdf --compact="both" 
 
 vignettes.defs: ../vignettes.defs
 	cp -av $< $@

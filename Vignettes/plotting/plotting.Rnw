@@ -644,7 +644,7 @@ mark.missing <- function (x, y, z, ...){
   panel.xyplot (miss [, 1], miss [, 2], pch = 4, ...)
 }
 
-plotmap (sample (chondro, 865), 
+plotmap (sample (chondro, length(chondro) - 20),
          col.regions = matlab.palette(20),
          col = "black",
          panel = mark.missing)

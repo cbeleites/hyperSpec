@@ -143,10 +143,10 @@ The baselines and respective supporting points for each iteration of
 are shown in figure~\ref{fig:iter}.
 
 <<trace, echo = FALSE, results = hide>>=
-trace (spc.fit.poly.below, quote ({
+trace (spc.fit.poly.below, exit = quote ({
   plot (fit.to[,, use.old], col = cl, add = TRUE, lines.args = list (pch = 20, type = "p"));
   lines (fit.to@wavelength, bl, col = cl);
-}), at = 12, print = FALSE)
+}), print = FALSE)
 @
 <<fig1, fig=TRUE, pdf = TRUE, echo = FALSE, results = hide, eps = FALSE, width = 12, height = 4, include = FALSE>>=
 cols <- matlab.dark.palette (8) 
@@ -186,13 +186,10 @@ plot (chondro [1], add = TRUE)
 
 
 \subsection{Specifying the spectral range}
-<<trace, echo = FALSE, results = hide>>=
-	trace (spc.fit.poly.below, quote ({ls ();
-	plot (fit.to[,, use.old], col = cl, add = TRUE, lines.args = list (pch = pch, type = "p"), zeroline = NA);
-	}), at = 12, print = FALSE)
-@
 <<figspcrange, fig=TRUE, pdf = TRUE, echo = FALSE, results = hide, eps = FALSE, width = 8, height = 4, include = FALSE>>=
+untrace(spc.fit.poly.below)
 plot (chondro [3,,1700 ~ 1750], plot.args = list (ylim = range (chondro [3,,1700 ~ 1750]) + c(-50, 0)))
+plot (chondro [3,,1705 ~ 1742], lines.args = list(type = "b"), add=T)
 cl <- "black"
 pch = 1
 bl <- spc.fit.poly.below (chondro [3,,1700 ~ 1750], NULL, poly.order = 1)
@@ -207,7 +204,7 @@ abline (bl[[]], col = "blue")
 \begin{center}
 \includegraphics[width = .66\textwidth]{baseline-fig--figspcrange}
 \caption{Influence of \Rcode{fit.to} on the baseline polynomial. The black baseline is fit to the
-  spectral range \rcm{1700 - 1800}, the blue to \rcm{1715 - 1800} only (dots \& circles: supporting
+  spectral range \rcm{1700 - 1750}, the blue to \rcm{1720 - 1750} only (dots \& circles: supporting
   points).}
 \label{fig:spectralrange}
 \end{center}
@@ -219,9 +216,6 @@ essential for \Rfunction{spc.fit.poly}. But also \Rfunction{spc.fit.poly.below} 
 narrower spectral ranges: the fitting gains speed. The default value for \Rfunarg{npts.min} depends
 on the number of data points per spectrum. Thus one should also consider requiring more support points than
 the default value suggests.
-<<untrace1, echo = FALSE, results = hide>>=
-untrace (spc.fit.poly.below)
-@ 
 <<fit-apply>>=
 system.time (spc.fit.poly.below (chondro, NULL, npts.min = 20))
 system.time (spc.fit.poly.below (chondro [,, c (min ~ 700, 1700 ~ max)], NULL, npts.min = 20))
@@ -232,10 +226,10 @@ extent, as becomes clear from figure~\ref{fig:spectralrange}.
 
 \subsection{Fitting  polynomials of different orders}
 <<trace2, echo = FALSE, results = hide>>=
-	trace (spc.fit.poly.below, quote ({ls ();
+	trace (spc.fit.poly.below, exit = quote ({ls ();
 	plot (fit.to[,, use.old], col = cl, add = TRUE, lines.args = list (pch = pch, type = "p"), zeroline = NA);
 	lines (fit.to@wavelength, bl, col = cl);
-	}), at = 12, print = FALSE)
+	}), print = FALSE)
 @
 <<figorder, fig=TRUE, pdf = TRUE, echo = FALSE, results = hide, eps = FALSE, width = 12, height = 4, include = FALSE>>=
 plot (chondro [1], lines.args = list (type = "n"))
@@ -244,7 +238,7 @@ for (o in 0 : 3){
 		cl <- cols [o + 1]
 		bl <- spc.fit.poly.below (chondro [1], poly.order = o)
 	}
-	plot (chondro [1], add = TRUE)
+plot (chondro [1], add = TRUE)
 @
 <<untrace2, echo = FALSE, results = hide>>=
 untrace (spc.fit.poly.below)
@@ -268,11 +262,11 @@ with \Rcode{order} $=$ 0 to 3 for the first spectrum of the chondro data set.
 spc <- new ("hyperSpec", spc = matrix (rnorm (30, mean = 100, sd = 2), ncol = 30))
 noise <- 10
 plot (spc)
-trace (spc.fit.poly.below, quote ({
+trace (spc.fit.poly.below, exit = quote ({
 					plot (fit.to[,, use.old], col = cl, add = TRUE, lines.args = list (pch = 20, type = "p"), zeroline = NA);
 					lines (fit.to@wavelength, bl, col = cl);
 					lines (fit.to@wavelength, bl + noise, col = cl, lty = 2)
-				}), at = 12, print = FALSE)
+				}), print = FALSE)
 
 cols <- matlab.dark.palette (2)
 
@@ -285,18 +279,18 @@ for (iter in seq_along (cols)){
 			pos = 1, col = cols [iter], offset = iter - 1)
 }
 cl <- "black"
-trace (spc.fit.poly.below, quote ({
+trace (spc.fit.poly.below, exit = quote ({
 					plot (fit.to[,, use.old], col = cl, add = TRUE, lines.args = list (type = "p"), zeroline = NA);
 					lines (fit.to@wavelength, bl, col = cl);
-				}), at = 12, print = FALSE)
+				}), print = FALSE)
 bl <- spc.fit.poly.below (spc, poly.order = 0)
 @
 <<fig4, fig=TRUE, pdf = TRUE, echo = FALSE, results = hide, eps = FALSE, width = 12, height = 4, include = FALSE>>=
-trace (spc.fit.poly.below, quote ({
+trace (spc.fit.poly.below, exit = quote ({
 					plot (fit.to[,, use.old], col = cl, add = TRUE, lines.args = list (pch = 20, type = "p"), zeroline = NA);
 					lines (fit.to@wavelength, bl, col = cl);
 					lines (fit.to@wavelength, bl + noise, col = cl, lty = 2)
-				}), at = 12, print = FALSE)
+				}), print = FALSE)
 cols <- matlab.dark.palette (10)
 
 bl <- chondro [1] + 15
@@ -311,11 +305,11 @@ for (iter in seq_along (cols)){
 plot (chondro [1], add = TRUE)
 @
 <<fig5, fig=TRUE, pdf = TRUE, echo = FALSE, results = hide, eps = FALSE, width = 12, height = 2.5, include = FALSE>>=
-trace (spc.fit.poly.below, quote ({
+trace (spc.fit.poly.below, exit = quote ({
 					plot (fit.to[,, use.old], col = cl, add = TRUE, lines.args = list (pch = 20, type = "p"));
 					lines (fit.to@wavelength, bl, col = cl);
 					lines (fit.to@wavelength, bl + noise, col = cl, lty = 2)
-				}), at = 12, print = FALSE)
+				}), print = FALSE)
 cols <- matlab.dark.palette (10)
 
 bl <- chondro [1] + 15
@@ -422,6 +416,5 @@ plot (paracetamol [,, 175 ~ 1800] - bl)
 <<echo = FALSE>>=
 make.bib ("baseline", file = "baseline-pkg.bib")
 print (as.matrix(Sys.info()))
-<<cleanup>>
 @ 
 \end{document}

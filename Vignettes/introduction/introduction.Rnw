@@ -1077,6 +1077,12 @@ neighbour values. So far, \phy provides three functions that can interpolate the
 \Rfunction{spc.NA.approx}, \Rfunction{spc.loess}, and \Rfunction{spc.bin} with \Rcode{na.rm =
   TRUE} (the latter two are discussed below).
 
+<<include = FALSE>>=
+if (!exists("spc.NA.approx")){
+  spc.NA.approx <- spc.NA.linapprox
+}
+@
+
 <<>>=
 spc.corrected <- spc.NA.approx (spc)
 spc.corrected [[]]
