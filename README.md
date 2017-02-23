@@ -1,5 +1,5 @@
 # hyperSpec
-this is going to be the new home for R package hyperSpec very soon.
+This is a new home for R package hyperSpec.
 
 right now, I'm working in the background ...
 
@@ -15,21 +15,19 @@ an old version from CRAN
 
 ## Preparations
 1. [Install git-lfs](https://packagecloud.io/github/git-lfs/install) if you don't have it
-1. You will need an **old version of *hyperSpec***, as well as package *R.matlab*. Open **R** and exec `install.packages(c("hyperSpec", "R.matlab")`. You can install other suggested packages as well (see below)
-1. Clone [new hyperSpec from github](https://github.com/cbeleites/hyperSpec)
-1. Essential big data are not here yet. Execute `git lfs pull`
+1. Install package *R.matlab*. Open **R** and exec `install.packages(c("hyperSpec", "R.matlab")`. You can install other suggested packages as well (see below).
+1. This could sound funny, but would need a **recent version of *hyperSpec* ** to build *hyperSpec* alongside with all documentation. It is recommended to fetch release [v0.98-20170223](https://github.com/cbeleites/hyperSpec/releases/tag/v0.98-20170223) from gitHub.
+1. Clone [hyperSpec source code from github](https://github.com/cbeleites/hyperSpec)
+1. Essential big data are not here yet. Execute `git lfs pull` to get them.
 
 ## Building *hyperSpec*
 1. Use git branch `issue-Makefile-31`
-1. execute `make`
-1. execute `make install`. This will install a bare version without documentation. We would need it to re-create vignettes.
 1. execute `make build`. It would create a new tar.gz package with everything inside. Copy the the filename and install with `install.packages(<filename>, repos=NULL)`
 1. Restart **R** in case of troubles
 
 #### Suggested packages
 Install suggested packages in **R** session with command
 `install.packages(c(
-    "hyperSpec",
     "R.matlab",
     "tripack",
     "deldir",
