@@ -27,3 +27,21 @@
 ##' 
 ##' plot (quantile (chondro))
 setMethod ("quantile", signature = signature (x = "hyperSpec"), .quantile)
+
+
+##' Median spectrum
+##' 
+##' Calculate median spectrum out of all spectra present in a hyperSpec object
+##' 
+##' These function is provided for convenience.
+##'
+##' @rdname median
+##' @return For hyperSpec object, \code{median} returns a hyperSpec object containing 
+##' median of all spectra
+##' @seealso  \code{\link[hyperSpec]{quantile}}
+##' @export
+##' @examples
+##' 
+##' plot (median (chondro))
+setMethod ("median", signature = signature (x = "hyperSpec"),
+           function(x) quantile(x, 0.5))
