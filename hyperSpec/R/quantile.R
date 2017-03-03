@@ -44,4 +44,8 @@ setMethod ("quantile", signature = signature (x = "hyperSpec"), .quantile)
 ##' 
 ##' plot (median (chondro))
 setMethod ("median", signature = signature (x = "hyperSpec"),
-           function(x) quantile(x, 0.5))
+           function(x){
+             spc <- quantile(x, 0.5)
+             rownames(spc) <- "median"
+             spc
+           })
