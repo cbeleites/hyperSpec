@@ -1,4 +1,4 @@
-% -*- mode: noweb; noweb-default-code-mode: R-mode; -*- 
+% -*- mode: noweb; noweb-default-code-mode: R-mode; -*-
 \documentclass[english, a4paper, 10pt, headings=small, DIV11]{scrartcl}
 \pdfcompresslevel0
 \usepackage{makeidx}
@@ -7,7 +7,7 @@
 \SweaveInput{vignettes.defs}
 \SweaveOpts{prefix.string=fileio-fig-}
 \setkeys{Gin}{width = \textwidth}
-\hypersetup{pdftitle={fileio}, 
+\hypersetup{pdftitle={fileio},
  pdfauthor={C. Beleites},
  pdfsubject={Vignette File Import and Export for R package hyperSpec},
  pdfkeywords={hyperSpec, data format, file, import, export}}
@@ -39,15 +39,15 @@
   \item Documentation, particularly the description of the data format
   \end{itemize}
 
-  If you need help finding out how to import your data, please search and eventually ask on 
-  \href{http://stackoverflow.com/questions/tagged/r+spectroscopy}{Stackexchange} 
-  with tags [r] and [spectroscopy]. While I reqularly check these tags, consder dropping ma \mailme 
+  If you need help finding out how to import your data, please search and eventually ask on
+  \href{http://stackoverflow.com/questions/tagged/r+spectroscopy}{Stackexchange}
+  with tags [r] and [spectroscopy]. While I reqularly check these tags, consder dropping ma \mailme
   an email in addition.
 }\\[1cm]
 \warnbox{Reproducing the Examples in this Vignette}{The source code of this vignette including the
   spectra files are available as .zip file at \phy's home page:
   \url{http://hyperspec.r-forge.r-project.org/blob/fileio.zip}
- 
+
  Note that some definitions are in file \texttt{vignettes.defs}.
 }
 
@@ -67,7 +67,7 @@ test_file_keep <- function (file, reporter, tests) {
   result <- capture.output(test_file(file, reporter = reporter, start_end_reporter = FALSE))
   result <- paste (result, collapse = "\n")
   names (result) <- file
-  
+
   cat (result)
   c (tests, result)
 }
@@ -103,13 +103,13 @@ p.~\pageref{sec:spectroscopy}).
 To create a \Rclass{hyperSpec} object from data in R's workspace, use:
 <<eval=FALSE>>=
 spc <- new ("hyperSpec", spc, wavelength, data, labels)
-@ 
+@
 
 With the arguments:
 \begin{labeling}{\Rcode{wavelength}}
 \item [\Rcode{spc}] the spectra matrix (may also be given as matrix inside column \Rcode{\$spc} of \Rcode{data})
 \item [\Rcode{wavelength}] the wavelength axis vector
-\item [\Rcode{data}] the extra data (possibly already including the spectra matrix in column  
+\item [\Rcode{data}] the extra data (possibly already including the spectra matrix in column
 \texttt{spc})
 \item [\Rcode{labels}] a list with the proper labels. Do not forget the
 wavelength axis label in \Rcode{\$.wavelength} and the spectral intensity
@@ -125,7 +125,7 @@ more than welcome to contribute such import code to \phy. Secion~\ref{sec:writin
 As spectra matices are the internal format of \chy, the consructor can directly be used:
 <<eval=FALSE>>=
 spc <- new ("hyperSpec", spc, wavelength, data, labels)
-@ 
+@
 
 \subsection{Creating a \chy Object from a Data Cube (Spectra Array)}
 Roberto Moscetti asked how to convert a hyperspectral data cube into a \chy object:
@@ -150,7 +150,7 @@ wl <- c (550, 630)
 x <- c (1000, 1200, 1400)
 y <- c (1800, 1600, 1400, 1200)
 data
-@ 
+@
 
 Such data can be converted into a \chy object by:
 <<array-import>>=
@@ -160,9 +160,9 @@ dim (data) <- c (d [1] * d [2], d [3])
 x <- rep (x, each = d [1])
 y <- rep (y, d [2])
 
-spectra <- new ("hyperSpec", spc = data, 
+spectra <- new ("hyperSpec", spc = data,
    data = data.frame (x, y), wavelength = wl)
-@ 
+@
 
 If no proper coordinates (vectors \Rcode{x}, \Rcode{y} and \Rcode{wl}) are available, they can be left
 out. In the case of $x$ and $y$, map plotting will then be impossible, missing \Rfunarg{wavelength}s
@@ -172,7 +172,7 @@ such sequences (the row/column/pixel numbers) can be used instead of the origina
 <<>>=
 y <- seq_len (d [1])
 x <- seq_len (d [2])
-@ 
+@
 
 Data cubes often come from spectral imaging systems that use an ``image'' coordinate system counting
 $y$ from top to bottom. Note that this should accounted for in the decreasing order of the original
@@ -197,7 +197,7 @@ length (spc)
 spc [[1]]
 spc <- collapse (spc)
 spc
-@ 
+@
 
 Note that in this particular case, the spectra are more efficiently read by
 \Rfunction{read.spc.KaiserMap} (see section~\ref{sec:read.spc.KaiserMap},
@@ -261,7 +261,7 @@ file <- read.table ("txt.t/Triazine 5_31.txt", header = TRUE, dec = ",", sep = "
 
 triazine <- new ("hyperSpec", wavelength = file [,1], spc = t (file [, -1]),
                  data = data.frame (sample = colnames (file [, -1])),
-                 labels = list (.wavelength = expression (2 * theta / degree), 
+                 labels = list (.wavelength = expression (2 * theta / degree),
                                spc = "I / a.u."))
 triazine
 @
@@ -280,7 +280,7 @@ Witec also saves ASCII data with spectra in columns (Export $\rightarrow$ Table)
 %
 \label{sec:read.jdx}
 \index{JCAMP-DX!Shimadzu} \index{Shimadzu!GC-MS}
-\index{Shimadzu!JCAMP-DX} \index{JCAMP-DX!PerkinElmer} \index{PerkinElmer!JCAMP-DX} 
+\index{Shimadzu!JCAMP-DX} \index{JCAMP-DX!PerkinElmer} \index{PerkinElmer!JCAMP-DX}
 \index{PerkinElmer!Infrared} \index{Infrared!PerkinElmer}
 \index{JCAMP-DX!Infrared} \index{Infrared!JCAMP-DX}
 %
@@ -290,25 +290,25 @@ Limited import of JCAMP-DX files v. 4.24 \cite{McDonald1988} is available in fun
 <<>>=
 read.jdx ("jcamp-dx/shimadzu.jdx", encoding = "latin1", keys.hdr2data=TRUE)
 read.jdx ("jcamp-dx/virgilio.jdx")
-@ 
+@
 
-The last file has a slight inconsistenty between its meta data and spectroscopic data, 
+The last file has a slight inconsistenty between its meta data and spectroscopic data,
 causing a message.
-However, the difference is minute compared to the intensities. If this is known in advance, an 
+However, the difference is minute compared to the intensities. If this is known in advance, an
 appropriate tolerance can be chosen:
 <<>>=
 read.jdx ("jcamp-dx/virgilio.jdx", ytol = 1e-9)
-@ 
+@
 
 \warnbox{Note}{\Rfunction{read.jdx.Shimadzu} is deprecated.}
-\warnbox{Note}{An R package dedicated to importing JCAMP-DX is currently under development by Bryan Hanson 
+\warnbox{Note}{An R package dedicated to importing JCAMP-DX is currently under development by Bryan Hanson
 (\url{https://github.com/bryanhanson/readJDX}).
-\phy will use that package once it is available on CRAN. Maintenance of \phy's \Rfunction{read.jdx} function 
+\phy will use that package once it is available on CRAN. Maintenance of \phy's \Rfunction{read.jdx} function
 is limited from now on in favor of Bryan's pacakge.}
 
 <<test-read.jdx, echo = FALSE, results=hide>>=
 tests <- test_file_keep ("test-read.jdx.R", reporter, tests)
-@ 
+@
 
 \subsection{Basic Atomic Spectra from NIST Tables}
 \label{sec:aes-nist}
@@ -359,13 +359,13 @@ for (s in levels (tables$Spectrum))
                                       spc = "I"))
 
 plot (collapse (Hg.AES), lines.args = list (type = "h"), col = 1 : 2)
-@ 
-\subsection{Further ASCII Formats} 
+@
+\subsection{Further ASCII Formats}
 Further import filters are provided for manufacturer/software specific ASCII formats,
-see table~\ref{sec:format} (p.~\pageref{sec:format}) and section~\ref{sec:manuf-spec-import} 
-(p.~\pageref{sec:manuf-spec-import}). 
+see table~\ref{sec:format} (p.~\pageref{sec:format}) and section~\ref{sec:manuf-spec-import}
+(p.~\pageref{sec:manuf-spec-import}).
 
-\subsection{ASCII Export} 
+\subsection{ASCII Export}
 ASCII export can be done in wide and long format using \Rfunction{write.txt.long} and
 \Rfunction{write.txt.wide}. If you need a specific header or footer, use R's functions for writing
 files: \Rfunction{write.table}, \Rfunction{write}, \Rfunction{cat} and so on offer fine-grained
@@ -387,7 +387,7 @@ spc.mat <- readMat ("spectra.mat")
 \end{Schunk}
 
 If the .mat file was saved with compression, the additional package \Rpackage{Rcompression} is
-needed. It can be installed from omegahat: 
+needed. It can be installed from omegahat:
 \begin{Schunk}
   \begin{Sinput}
 install.packages("Rcompression", repos = "http://www.omegahat.org/R")
@@ -427,7 +427,7 @@ a list:
 
 <<read.mat.Cytospec-blocks>>=
 read.mat.Cytospec ("mat.cytospec/cytospec.mat", blocks = TRUE)
-@ 
+@
 
 otherwise, select a block:
 <<read.mat.Cytospec>>=
@@ -437,8 +437,8 @@ read.mat.Cytospec ("mat.cytospec/cytospec.mat", blocks = 1)
 
 
 \warnbox{\Rcode{read.cytomat} is \textbf{deprecated}.}{%
-\Rcode{read.cytomat} has been renamed to  \Rcode{read.mat.Cytospec} to be more 
-consistent with the general naming scheme of the file import functions. 
+\Rcode{read.cytomat} has been renamed to  \Rcode{read.mat.Cytospec} to be more
+consistent with the general naming scheme of the file import functions.
 
 Please use \Rcode{read.mat.Cytospec} instead.
 }
@@ -498,10 +498,10 @@ Use package \Rpackage{caTools} or \Rpackage{rgdal} with GDAL for writing ENVI fi
 \index{LabRam!spc}
 \index{Kaiser!spc}
 
-Thermo Galactic's .spc file format can be imported by \Rfunction{read.spc}. 
+Thermo Galactic's .spc file format can be imported by \Rfunction{read.spc}.
 
-\warnbox[blue]{Official File Format Documentation}{The specification used to be available at Thermo Scientific. Anyone knowing where it moved 
-please contact me (\mailme) --- I'm looking for a reasonably official website (i.e. at Thermo) 
+\warnbox[blue]{Official File Format Documentation}{The specification used to be available at Thermo Scientific. Anyone knowing where it moved
+please contact me (\mailme) --- I'm looking for a reasonably official website (i.e. at Thermo)
 rather than some random site with a copy.}
 % TODO: find out via Massimiliano
 
@@ -534,11 +534,11 @@ Here's how to find out what extra information could be read from the header and 
 <<>>=
 read.spc ("spc.Kaisermap/ebroAVII.spc", keys.hdr2data = TRUE)
 read.spc ("spc.Kaisermap/ebroAVII.spc", keys.log2data = TRUE)
-@ 
+@
 
 <<test-hdr2data, echo=FALSE, results=hide>>=
 read.spc ("spc/BARBITUATES.SPC", keys.hdr2data = TRUE)
-@ 
+@
 
 
 .spc files may contain multiple spectra that do \emph{not} share a common wavelength axis. In this
@@ -622,7 +622,7 @@ mm. Thus a flag \Rfunarg{nicolet.correction} is provided that divides the pixel 
 Alternatively, the correct offset and pixel size values may be given as function arguments.
 
 <<readENVINicolet>>=
-spc <- read.ENVI.Nicolet ("ENVI/example2.img", nicolet.correction = TRUE) 
+spc <- read.ENVI.Nicolet ("ENVI/example2.img", nicolet.correction = TRUE)
 spc ## dummy sample with all intensities zero
 @
 
@@ -669,7 +669,7 @@ wavenumber region. See the example for .spc import.
 \index{Kaiser!ASCII long}
 
 The ASCII files are long format that can be imported by \Rfunction{read.txt.long} (see
-section~\ref{sec:read.txt.long}, p.~\pageref{sec:read.txt.long}). 
+section~\ref{sec:read.txt.long}, p.~\pageref{sec:read.txt.long}).
 
 We experienced two different problems with these files:
 \begin{compactenum}
@@ -779,12 +779,12 @@ paracetamol <- scan.txt.Renishaw ("txt.Renishaw/paracetamol.txt", "spc")
 paracetamol
 save (paracetamol, file = "paracetamol.rda")
 scan.txt.Renishaw ("txt.Renishaw/laser.txt.gz", "ts")
-@ 
+@
 
 Very large files can  be read in chunks to save  memory:
 <<scan.txt.Renishaw>>=
 scan.txt.Renishaw ("txt.Renishaw/chondro.txt", nlines = 1e5, nspc = 875)
-@ 
+@
 
 R accepts a variety of compressed file formats for ASCII files:
 <<scan.txt.Renishaw-compressed, results = hide>>=
@@ -799,7 +799,7 @@ scan.zip.Renishaw ("txt.Renishaw/chondro.zip")
 
 \subsection{Horiba / Jobin Yvon (e.g. LabRAM) }
 \label{sec:read.txt.Horiba}
-\index{Horiba Jobin Yvon!ASCII!wide} 
+\index{Horiba Jobin Yvon!ASCII!wide}
 \index{ASCII!wide!Horiba Jobin Yvon}
 \index{Raman!Horiba Jobin Yvon!ASCII wide}
 \index{Horiba!ASCII!wide}
@@ -812,8 +812,8 @@ scan.zip.Renishaw ("txt.Renishaw/chondro.zip")
 Horiba's Labspec software (e.\,g. LabRAM spectrometers) saves spectra in a wide ASCII format which is
 read by \Rfunction{read.txt.Horiba}, e.\,g.:
 <<Horiba>>=
-spc <- read.txt.Horiba ("txt.HoribaJobinYvon/ts.txt", 
-                      cols = list (t = "t / s", spc = "I / a.u.", 
+spc <- read.txt.Horiba ("txt.HoribaJobinYvon/ts.txt",
+                      cols = list (t = "t / s", spc = "I / a.u.",
                         .wavelength = expression (Delta * tilde (nu) / cm^-1))
                       )
 spc
@@ -828,26 +828,26 @@ time series (\Rfunction{read.txt.Horiba.t}) are provided.
 
 <<testHoriba, echo=FALSE, results=hide>>=
 spc <- read.txt.Horiba.xy ("txt.HoribaJobinYvon/map.txt")
-if (any (dim (spc) != c (141, 4, 616)) || 
+if (any (dim (spc) != c (141, 4, 616)) ||
     any (abs (spc) < .Machine$double.eps^.5) ||
-    is.null (spc$x) || any (is.na (spc$x)) || 
+    is.null (spc$x) || any (is.na (spc$x)) ||
     is.null (spc$y) || any (is.na (spc$y)) ||
     length (setdiff (wl (spc), 1 : 616)) == 0L)
   stop ("error in testing read.txt.Horiba.xy. Please contact ", maintainer ("hyperSpec"))
 
 spc <- read.txt.Horiba.t ("txt.HoribaJobinYvon/ts.txt")
-if (any (dim (spc) != c (100, 3, 1024)) || 
+if (any (dim (spc) != c (100, 3, 1024)) ||
     is.null (spc$t) || any (is.na (spc$t)) ||
     length (setdiff (wl (spc), 1 : 1024)) == 0L)
   stop ("error in testing read.txt.Horiba.xy. Please contact ", maintainer ("hyperSpec"))
 
 rm (spc)
-@  
+@
 \subsection{Andor Solis}
 \label{sec:scan.asc.Andor}
 \index{Andor Solis!ASCII}
 \index{ASCII!Andor Solis}
-\index{Raman!Andor Solis!ASCII} 
+\index{Raman!Andor Solis!ASCII}
 
 Andor Solis exports ASCII files that can be read with \Rfunction{scan.asc.Andor}:
 <<>>=
@@ -860,14 +860,14 @@ scan.asc.Andor("asc.Andor/ASCII-Andor-Solis.asc")
 \index{ASCII!Witec}
 \index{Graph ASCII!Witec}
 \index{Witec!Graph ASCII}
-\index{Raman!Witec!ASCII} 
+\index{Raman!Witec!ASCII}
 \index{Raman!Witec!Save ASCII X, Save ASCII Y}
 \index{Raman!Witec!Export Table}
 \index{Raman!Witec!spc}
 \index{Raman!Witec!Graph ASCII}
 \index{spc!Witec}
 
-The Witec project software supports exporting spectra as Thermo Galactic \texttt{.spc} files.  
+The Witec project software supports exporting spectra as Thermo Galactic \texttt{.spc} files.
 <<witec-spc, results=hide>>=
 read.spc ("spc.Witec/Witec-timeseries.spc")
 read.spc ("spc.Witec/Witec-Map.spc")
@@ -877,7 +877,7 @@ read.spc ("spc.Witec/Witec-Map.spc")
 Imaging data (but also single spectra and time series) can be exported as ASCII X and Y files (Save ASCII X and Save ASCII Y, not supported in version 4). These can be read by \Rfunction{scan.dat.Witec}:
 <<witec-dat, results=hide>>=
 scan.dat.Witec ("txt.Witec/Witec-timeseries-x.dat")
-scan.dat.Witec (filex = "txt.Witec/Witec-Map-x.dat", 
+scan.dat.Witec (filex = "txt.Witec/Witec-Map-x.dat",
                 points.per.line = 5, lines.per.image = 5, type = "map")
 @
 Note that the Y data files also contain a wavelength information, but (at least Witec Project 2.10) this information is always wavelength in nm, not Raman shift in wavenumbers: this is provided by the X data file only.
@@ -885,12 +885,12 @@ Note that the Y data files also contain a wavelength information, but (at least 
 Another option is Witec's txt table ASCII export (Export $\rightarrow$ Table), which produces ASCII files with each row corresponding to one wavelength. The first column contains the wavelength axis, all further columns contain one spectrum each column. Such files can be read with \Rfunction{scan.txt.Witec}:
 <<witec-txt, results=hide>>=
 scan.txt.Witec ("txt.Witec/Witec-timeseries_no.txt")
-@ 
-\Rfunction{scan.txt.Witec} determines the number of wavelengths automaticallly. 
+@
+\Rfunction{scan.txt.Witec} determines the number of wavelengths automaticallly.
 
-Note that there are several Export Filter Options. Here you can determine, which units should be used for the export (see XUnits tab). In addition, it is possible to export two additional header lines containing information about spectra labels and units. Therefore parameters \Rfunarg{hdr.label} and \Rfunarg{hdr.units} have to be set properly. Otherwise, either an error will be displayed like 
+Note that there are several Export Filter Options. Here you can determine, which units should be used for the export (see XUnits tab). In addition, it is possible to export two additional header lines containing information about spectra labels and units. Therefore parameters \Rfunarg{hdr.label} and \Rfunarg{hdr.units} have to be set properly. Otherwise, either an error will be displayed like
 <<witec-txt-error, echo=FALSE>>=
-cat ("Error in scan(file, what, nmax, sep, dec, quote, skip, nlines, na.strings,  : 
+cat ("Error in scan(file, what, nmax, sep, dec, quote, skip, nlines, na.strings,  :
   scan() expected 'a real', got 'rel.'")
 @
 or the one or two wavelengths will be skipped.
@@ -921,7 +921,7 @@ scan.txt.Witec ("txt.Witec/Witec-Map_label.txt", type = "map", hdr.label = TRUE,
 
 scan.txt.Witec ("txt.Witec/Witec-Map_unit.txt", type = "map", hdr.label = FALSE, hdr.units = TRUE)
 
-scan.txt.Witec ("txt.Witec/Witec-Map_unit.txt", type = "map", hdr.label = FALSE, hdr.units = TRUE, 
+scan.txt.Witec ("txt.Witec/Witec-Map_unit.txt", type = "map", hdr.label = FALSE, hdr.units = TRUE,
                 points.per.line = 5)
 
 scan.txt.Witec ("txt.Witec/Witec-Map_no.txt", type = "map", hdr.label = FALSE, hdr.units = FALSE)
@@ -938,6 +938,7 @@ Since version 4 WITec Project offers the Graph ASCII export (Export $\rightarrow
 <<witec-txt-Graph, results=hide>>=
 scan.txt.Witec.Graph ("txt.Witec/Witec-timeseries (Header).txt")
 scan.txt.Witec.Graph ("txt.Witec/Witec-Map (Header).txt", type = "map")
+scan.txt.Witec.Graph ("txt.Witec/nofilename (Header).txt", encoding = "latin1")
 @
 This function reads the spectra files automatically, if they are named properly and extracts additional information of the header file. As for the other Witec functions it is possible to read image data by by selecting \Rfunarg{type = "map"}. Line scans and z-stacks should be read as single spectra.
 
@@ -955,15 +956,15 @@ more details for an already existing import filter.
 \index{Fluorescence!PerkinElmer!ASCII}
 \index{PerkinElmer!Fluorescence}
 \index{PerkinElmer!ASCII long}
-The raw spectra of the \Robject{flu} data set (see also the respective vignette) are in PerkinElmer's ASCII file format, one spectrum per file. 
+The raw spectra of the \Robject{flu} data set (see also the respective vignette) are in PerkinElmer's ASCII file format, one spectrum per file.
 
 We need a function that automatically reads all files specified by a pattern, such as \texttt{*.txt}.
-In order to gain speed, the spectra matrix should be preallocated after the first file is read. 
+In order to gain speed, the spectra matrix should be preallocated after the first file is read.
 
 A short examination of the files (\texttt{flu*.txt} in directory \texttt{txt.PerkinElmer}) reveals
 that the actual spectrum starts at line 55, after a line containing \texttt{\#DATA}.
 For now, no other information of the files is to be extracted. It is thus easier to skip the first 54
-lines than searching for the line after \texttt{\#DATA}. 
+lines than searching for the line after \texttt{\#DATA}.
 
 A fully featured import function should support:
 \begin{itemize}
@@ -1016,7 +1017,7 @@ These information can be used to reconstruct the $x$ and $y$ axes of the images.
 spectra are saved as well.
 
 \Rfunction{read.ENVI.Nicolet} thus first adjusts the parameters for \Rfunction{read.ENVI}. Then
-\Rfunction{read.ENVI} does the main work of importing the file. The resulting \chy object is 
+\Rfunction{read.ENVI} does the main work of importing the file. The resulting \chy object is
 post-processed according to the special header entries.
 
 For using the function, see section~\ref{sec:read.ENVI.Nicolet}~(p.~\pageref{sec:read.ENVI.Nicolet}).
@@ -1024,7 +1025,7 @@ For using the function, see section~\ref{sec:read.ENVI.Nicolet}~(p.~\pageref{sec
 formatcom=\footnotesize]{read.ENVI.Nicolet.R}
 
 \subsection{Deriving import filters for spc files}
-Please note that future changes inside the read.spc function are likely to occur. 
+Please note that future changes inside the read.spc function are likely to occur.
 However, if you just post-process the \chy object returned by \Rfunction{read.spc}, you should be fine.
 
 \bibliographystyle{unsrtnat}
@@ -1040,10 +1041,10 @@ make.bib ("R.matlab", file = "fileio-pkg.bib")
 \renewcommand{\arraystretch}{1.5}
 \begin{footnotesize}
   \begin{tabular}{@{} l l l l >{\raggedright}p{3.4cm}}
-  \textbf{Format} & 
-  \textbf{Manufacturer} & 
-  \textbf{Function} & 
-  \textbf{section}  & 
+  \textbf{Format} &
+  \textbf{Manufacturer} &
+  \textbf{Function} &
+  \textbf{section}  &
   \textbf{Notes}\tabularnewline
   \multicolumn{4}{@{}l}{\emph{\textbf{ASCII file formats}}}\tabularnewline
 <<results=tex, echo = FALSE>>=
@@ -1051,24 +1052,24 @@ fileformats <- read.table ("fileformats.org", header = TRUE, sep = "|", strip.wh
 fileformats <- fileformats [, ! apply (is.na (fileformats), 2, all)]
 
 i <- order (fileformats$Name)
-res <- apply (fileformats [i,][fileformats$Type [i] == "ASCII",], 1, 
+res <- apply (fileformats [i,][fileformats$Type [i] == "ASCII",], 1,
        function (x) {
          cat (x [2], "&", x [3])
          if (nchar (x [4]) > 0)
            cat (" (", x[4],  ")", sep = "")
-         cat (" & \\Rfunction{", x[5], "} & \\ref{sec:", x[6], "}, p. \\pageref{sec:", 
+         cat (" & \\Rfunction{", x[5], "} & \\ref{sec:", x[6], "}, p. \\pageref{sec:",
               x[6],"} & ", x [7], "\\tabularnewline\n",
               sep = "")
        })
 @
 \multicolumn{4}{@{}l}{\emph{\textbf{binary file formats}}}\tabularnewline
 <<results=tex, echo = FALSE>>=
-res <- apply (fileformats [i,][fileformats$Type [i] == "binary",], 1, 
+res <- apply (fileformats [i,][fileformats$Type [i] == "binary",], 1,
        function (x) {
          cat (x [2], "&", x [3])
          if (nchar (x [4]) > 0)
            cat (" (", x[4],  ")", sep = "")
-         cat (" & \\Rfunction{", x[5], "} & \\ref{sec:", x[6], "}, p. \\pageref{sec:", 
+         cat (" & \\Rfunction{", x[5], "} & \\ref{sec:", x[6], "}, p. \\pageref{sec:",
               x[6],"} & ", x [7], "\\tabularnewline\n",
               sep = "")
        })
@@ -1080,20 +1081,20 @@ res <- apply (fileformats [i,][fileformats$Type [i] == "binary",], 1,
 \label{sec:manufacturer}
 \begin{footnotesize}
 \begin{tabular}{@{} l l l l >{\raggedright}p{3.4cm}}
-  \textbf{Manufacturer} & 
-  \textbf{Format} & 
-  \textbf{Function} & 
-  \textbf{section}  & 
+  \textbf{Manufacturer} &
+  \textbf{Format} &
+  \textbf{Function} &
+  \textbf{section}  &
   \textbf{Notes}\tabularnewline
 \multicolumn{4}{l}{\emph{\textbf{Manufacturers}}}\tabularnewline
 <<results=tex, echo = FALSE>>=
 i <- order (fileformats$Manufacturer)
-res <- apply (fileformats [i,][fileformats$Manufacturer [i] != "",], 1, 
+res <- apply (fileformats [i,][fileformats$Manufacturer [i] != "",], 1,
        function (x) {
          cat (x [3])
          if (nchar (x [4]) > 0)
            cat (" (", x[4],  ")", sep = "")
-         cat ("&", x [2], " & \\Rfunction{", x[5], "} & \\ref{sec:", x[6], 
+         cat ("&", x [2], " & \\Rfunction{", x[5], "} & \\ref{sec:", x[6],
               "}, p. \\pageref{sec:", x[6],"} & ", x [7], "\\tabularnewline\n",
               sep = "")
        })
@@ -1104,19 +1105,19 @@ res <- apply (fileformats [i,][fileformats$Manufacturer [i] != "",], 1,
 \label{sec:spectroscopy}
 \begin{footnotesize}
 \begin{tabular}{@{} l l l l l >{\raggedright}p{2.7cm}}
-  \textbf{Spectroscopy} & 
-  \textbf{Format} & 
-  \textbf{Manufacturer} & 
-  \textbf{Function} & 
-  \textbf{section}  & 
+  \textbf{Spectroscopy} &
+  \textbf{Format} &
+  \textbf{Manufacturer} &
+  \textbf{Function} &
+  \textbf{section}  &
   \textbf{Notes}\tabularnewline
 <<results=tex, echo = FALSE>>=
 i <- order (fileformats$Spectroscopy, tolower (fileformats$Name))
-res <- apply (fileformats [i,][fileformats$Spectroscopy [i] != "",], 1, 
+res <- apply (fileformats [i,][fileformats$Spectroscopy [i] != "",], 1,
        function (x) {
          if (nchar (x [4]) > 0) cat (x[4])
          cat ( "&", x [2], "&", x [3])
-         cat (" & \\Rfunction{", x[5], "} & \\ref{sec:", x[6], "}, p. \\pageref{sec:", 
+         cat (" & \\Rfunction{", x[5], "} & \\ref{sec:", x[6], "}, p. \\pageref{sec:",
               x[6],"} & ", x [7], "\\tabularnewline\n",
               sep = "")
        })
@@ -1142,14 +1143,14 @@ reporter$end_reporter()
 @
 
 \begin{footnotesize}
-\printindex  
+\printindex
 \end{footnotesize}
 
 \section*{Session Info}
 \begin{footnotesize}
 <<echo = FALSE>>=
 <<cleanup>>
-@ 
+@
 \end{footnotesize}
 \end{document}
 
