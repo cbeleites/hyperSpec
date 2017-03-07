@@ -1,8 +1,8 @@
 context ("test-read.jdx")
 
-files <- c (Sys.glob ("jcamp-dx/*.DX"), Sys.glob ("jcamp-dx/*.dx"), 
-            Sys.glob ("jcamp-dx/*.jdx"), Sys.glob ("jcamp-dx/*.JCM"), 
-            Sys.glob ("jcamp-dx/PE-IR/*.DX"), 
+files <- c (Sys.glob ("jcamp-dx/*.DX"), Sys.glob ("jcamp-dx/*.dx"),
+            Sys.glob ("jcamp-dx/*.jdx"), Sys.glob ("jcamp-dx/*.JCM"),
+            Sys.glob ("jcamp-dx/PE-IR/*.DX"),
             "jcamp-dx/GMD_20111121_MDN35_ALK_JCAMP.txt" # MPI Golm
 )
 
@@ -10,27 +10,27 @@ files <- c (Sys.glob ("jcamp-dx/*.DX"), Sys.glob ("jcamp-dx/*.dx"),
 files <- setdiff (files, c ("jcamp-dx/shimadzu.jdx", "jcamp-dx/virgilio.jdx"))
 
 test_that ("JCAMP-DX examples that need particular parameter sets",{
-  expect_equivalent (digest (read.jdx ("jcamp-dx/shimadzu.jdx", encoding = "latin1", keys.hdr2data=TRUE)), 
-                     "25566b86c0c16398d66922fdbd62f8cc")
+  expect_equivalent (digest (read.jdx ("jcamp-dx/shimadzu.jdx", encoding = "latin1", keys.hdr2data=TRUE)),
+                     "4b5567753e773ad3ddeaec5a64e25ee0")
   expect_equivalent (digest (read.jdx ("jcamp-dx/virgilio.jdx", ytol = 1e-9)),
                      "ecc9f4b5c70fe7162abe89ccbd9f7692")
 })
 
-unsupported <- c ("jcamp-dx/BRUKER2.JCM", 
-                  "jcamp-dx/BRUKER1.JCM", 
-                  "jcamp-dx/TESTSPEC.DX",  
-                  "jcamp-dx/TEST32.DX", 
-                  "jcamp-dx/SPECFILE.DX",  
-                  "jcamp-dx/ISAS_MS2.DX", 
+unsupported <- c ("jcamp-dx/BRUKER2.JCM",
+                  "jcamp-dx/BRUKER1.JCM",
+                  "jcamp-dx/TESTSPEC.DX",
+                  "jcamp-dx/TEST32.DX",
+                  "jcamp-dx/SPECFILE.DX",
+                  "jcamp-dx/ISAS_MS2.DX",
                   "jcamp-dx/ISAS_MS3.DX", # NTUPLES
-                  "jcamp-dx/BRUKSQZ.DX", 
+                  "jcamp-dx/BRUKSQZ.DX",
                   "jcamp-dx/BRUKDIF.DX",
                   "jcamp-dx/BRUKNTUP.DX", # NTUPLES
                   "jcamp-dx/ISAS_CDX.DX", # PEAK ASSIGNMENTS= (XYMA)
                   "jcamp-dx/TESTFID.DX", # NTUPLES
                   "jcamp-dx/TESTNTUP.DX" # NTUPLES
 )
-  
+
 checksums <- c (`jcamp-dx/AMA1.DX` = '296b8b12cd14479473968875e71217f3',
                 `jcamp-dx/AMA2.DX` = '9ba9917980cb359249cf5bbea03549d8',
                 `jcamp-dx/AMA3.DX` = '7c59426f2851053dcbdd7093eaffbe5b',
@@ -57,13 +57,13 @@ checksums <- c (`jcamp-dx/AMA1.DX` = '296b8b12cd14479473968875e71217f3',
                 `jcamp-dx/PE-IR/lp_3.DX` = '9d005ebdb0e3063764a230c25bf944cd',
                 `jcamp-dx/PE-IR/lp_4.DX` = '8ff957598616afbddf99c79304d916cb',
                 `jcamp-dx/PE-IR/lp_5.DX` = '688969a513254095ef551dd6b323be61',
-                `jcamp-dx/GMD_20111121_MDN35_ALK_JCAMP.txt` = 'a118914f132ba4f02c7cdf2b939ba513')
+                `jcamp-dx/GMD_20111121_MDN35_ALK_JCAMP.txt` = '3c0970681191257e583e74a7382c66eb',
+                `jcamp-dx/IR_S_1.DX` =  "73978fd8fd2c3f2975c4d0cfab67d542")
 
 
 test_that("JCAMP-DX example files", {
   for (f in files [! files %in% unsupported]) {
     spc <- read.jdx (f, ytol = 1e-6)
-    print (c (f, dim (spc)))
     # cat (sprintf ("`%s` = '%s',\n", f, digest (spc)))
     expect_equivalent (digest (spc), checksums [f], label = f)
   }
