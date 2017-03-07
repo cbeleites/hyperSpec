@@ -1,7 +1,7 @@
 all: flu.pdf
 
 flu.pdf: flu.Rnw vignettes.defs scan.txt.PerkinElmer.R fludata
-	R CMD Sweave flu.Rnw --clean --pdf --compact="both" 
+	R CMD Sweave flu.Rnw --pdf --compact="both" 
 
 vignettes.defs: ../vignettes.defs
 	cp -av $< $@
