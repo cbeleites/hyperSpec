@@ -120,7 +120,8 @@ read.jdx <- function(filename = stop ("filename is needed"), encoding = "",
 
   hdr <- sub ("^[[:blank:]]*##.*=[[:blank:]]*(.*)[[:blank:]]*$", "\\1", hdr)
   hdr <-   gsub ("^[\"'[:blank:]]*([^\"'[:blank:]].*[^\"'[:blank:]])[\"'[:blank:]]*$", "\\1", hdr)
-  i <- grepl ("^[[:blank:]]*[-+]?[.[:digit:]]*[eE]?[-+]?[.[:digit:]]*[[:blank:]]*$", hdr)
+  i <- grepl ("^[[:blank:]]*[-+]?[.[:digit:]]*[eE]?[-+]?[.[:digit:]]*[[:blank:]]*$", hdr) &
+       ! names %in% c ("title", "datatype", "owner")
   hdr <- as.list (hdr)
   hdr [i] <- as.numeric (hdr [i])
   names (hdr) <- names
@@ -223,7 +224,7 @@ read.jdx <- function(filename = stop ("filename is needed"), encoding = "",
 }
 
 .jdx.TABULAR.AFFN <- function (hdr, data, ...){
-  
+
   data <- strsplit (data, "[,;[:blank:]]+")
   data <- unlist (data)
   data <- matrix (as.numeric (data), nrow = 2)
