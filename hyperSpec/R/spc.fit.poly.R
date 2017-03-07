@@ -61,7 +61,8 @@ spc.fit.poly <- function (fit.to, apply.to = NULL, poly.order = 1, offset.wl = !
   if (is.null (apply.to)){
     colnames (p@data$spc) <- paste0 ("(x - minx)^", 0 : poly.order)
 
-    list (coef = p, min.x = minx)
+    p$min.x = minx
+    return (p)
 
   } else {
     wl <- apply.to@wavelength - minx
@@ -101,7 +102,7 @@ spc.fit.poly <- function (fit.to, apply.to = NULL, poly.order = 1, offset.wl = !
 ##' ranges of the spectra in \code{fit.to}.  For details, see the
 ##' \code{vignette ("baseline")}.
 ##' @rdname baselines
-##' @param npts.min minmal number of points used for fitting the polynomial
+##' @param npts.min minimal number of points used for fitting the polynomial
 ##' @param noise noise level to be considered during the fit. It may be given
 ##'   as one value for all the spectra, or for each spectrum separately.
 ##' @export
@@ -111,7 +112,8 @@ spc.fit.poly <- function (fit.to, apply.to = NULL, poly.order = 1, offset.wl = !
 ##' plot (spc - baselines)
 ##'
 spc.fit.poly.below <- function (fit.to, apply.to = fit.to, poly.order = 1,
-                                npts.min = NULL, noise = 0, offset.wl = FALSE){
+                                npts.min = NULL, noise = 0, offset.wl = FALSE,
+                                debuglevel = hy.getOption("debuglevel")){
   chk.hy (fit.to)
   if (! is.null (apply.to))
     chk.hy (apply.to)
@@ -146,7 +148,13 @@ spc.fit.poly.below <- function (fit.to, apply.to = fit.to, poly.order = 1,
   for (i in row.seq (fit.to)){
     use.old <- logical (nwl (fit.to))
     use <- !use.old
-
+    
+    if (debuglevel > 0) {
+      plot(fit.to [i], title.args = list (main = paste ("spectrum", i)))
+      cl <- matlab.dark.palette(25)
+      iter <- 0
+    }
+    
     repeat {
       p[i,] <- qr.solve (vdm[use,], y[use, i])
       bl <- vdm %*% p [i,]
@@ -154,8 +162,9 @@ spc.fit.poly.below <- function (fit.to, apply.to = fit.to, poly.order = 1,
       use <- y[, i] < bl + noise [i]
 
       if (debuglevel > 0) {
-        plot (fit.to[,, use.old], col = cl, add = TRUE, lines.args = list (pch = 20, type = "p"));
-        lines (fit.to@wavelength, bl, col = cl);
+        plot (fit.to[,, use.old], add = TRUE, lines.args = list (pch = 20, type = "p"), col= (iter %% 8) + 1);
+        lines (fit.to@wavelength, bl, col=(iter %% 8) + 1);
+        iter <- iter + 1
       }
 
       if ((sum (use, na.rm=TRUE) < npts.min) || all (use == use.old, na.rm = TRUE))
@@ -163,13 +172,14 @@ spc.fit.poly.below <- function (fit.to, apply.to = fit.to, poly.order = 1,
     }
   }
   if (is.null (apply.to)){
-    fit.to@data$spc <- p
-    .wl (fit.to) <- 0 : poly.order
+    fit.to <- new("hyperSpec", spc=p, wavelength=0 : poly.order)
     colnames (fit.to@data$spc) <- paste0 ("(x - minx)^", 0 : poly.order)
 
     validObject (fit.to)
 
-    list (coef = fit.to, min.x = minx)
+    fit.to$min.x = minx
+    return (fit.to)
+
   } else {
     x <- apply.to@wavelength - minx
 
