@@ -1,10 +1,7 @@
 # hyperSpec
-This is a new home for R package hyperSpec.
+This is the new home for R package hyperSpec.
 
-right now, I'm working in the background ...
-
-Issues and feature requests should already go here!
-
+Issues and feature requests should go [here](https://github.com/cbeleites/hyperSpec/issues)!
 
 # Installation instructions
 
