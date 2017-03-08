@@ -15,7 +15,7 @@ fludata: ../../../Vignettes/flu/rawdata | rawdata
 	cp -av $^ .
 
 laserdata: ../../../Vignettes/fileio/txt.Renishaw/laser.txt.gz | rawdata
-	cp $< $@ 
+	cp $< rawdata/laser.txt.gz
 
 rawdata:
 	mkdir $@
