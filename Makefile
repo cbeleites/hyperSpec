@@ -1,9 +1,25 @@
 all: roxygenize pkg-data pkg-doc vignettes pkg-vignettes
 
-superclean: .FORCE
+superclean: 
 	git clean -q -f
 
-install: roxygenize installdev vignettes 
+# TODO: add dependency `clean`
+
+## bootstrap target does the required processing immediately after cloning, superclean, or
+## if the installed version of hyperSpec is too old for building the vignettes
+
+bootstrap: bootstrapI chondro flu laser pkg-data
+	R CMD build --no-build-vignettes hyperSpec/
+	R CMD INSTALL hyperSpec_*-`date +%Y%m%d`.tar.gz
+
+bootstrapI: roxygenize
+	R CMD build --no-build-vignettes hyperSpec/
+	R CMD INSTALL hyperSpec_*-`date +%Y%m%d`.tar.gz
+
+## installation targets
+
+install: build
+	R CMD INSTALL hyperSpec_*-`date +%Y%m%d`.tar.gz
 
 installdev: roxygenize pkg-vignettes
 	R CMD INSTALL hyperSpec --with.keep-source --fake --no-docs --no-build-vignettes
@@ -15,8 +31,6 @@ build: all
 roxygenize: DESCRIPTION hyperSpec/R/*.R 
 	Rscript --vanilla -e "library (roxygen2); roxygenize ('hyperSpec')" 
 
-# TODO: add dependency `clean`
-
 DESCRIPTION: $(shell find hyperSpec -maxdepth 1 -daystart -not -ctime 0 -name "DESCRIPTION") #only if not modified today
 	@echo update DESCRIPTION
 	sed "s/\(^Version: .*-\)20[0-9][0-9][0-1][0-9][0-3][0-9]\(.*\)$$/\1`date +%Y%m%d`\2/" hyperSpec/DESCRIPTION > .DESCRIPTION
@@ -25,7 +39,7 @@ DESCRIPTION: $(shell find hyperSpec -maxdepth 1 -daystart -not -ctime 0 -name "D
 
 # VIGNETTES ########################################################################################
 
-vignettes: baseline chondro flu laser plotting introduction fileio laser plotting
+vignettes: chondro flu laser plotting introduction fileio laser plotting baseline
 
 # in subdirs ---------------------------------------------------------------------------------------
 
