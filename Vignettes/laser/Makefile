@@ -1,5 +1,9 @@
 all: laser.pdf
 
+clean:
+	rm -f *-fig-*.pdf *.aux *.bbl *.blg *.out *.log *-pkg.bib *.toc *.idx *.ilg *.ind *.rda
+	rm -f *~ .*~ \#*\#
+
 laser.pdf: laser.Rnw vignettes.defs  rawdata/laser.txt.gz fig-3D.png
 	R CMD Sweave laser.Rnw --pdf --compact="both" 
 

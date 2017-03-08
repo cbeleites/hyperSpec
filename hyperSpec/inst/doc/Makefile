@@ -1,5 +1,8 @@
 all: vignettes.defs fileio.pdf chondro.pdf fludata laserdata
 
+clean:
+	rm -f *~ .*~ \#*\#
+
 vignettes.defs: ../../../Vignettes/vignettes.defs
 	cp -av $< $@
 

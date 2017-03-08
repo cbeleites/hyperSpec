@@ -1,5 +1,9 @@
 all: chondro.pdf
 
+clean:
+	rm -f *-fig-*.pdf *.aux *.bbl *.blg *.out *.log *-pkg.bib *.toc *.idx *.ilg *.ind *.rda
+	rm -f *~ .*~ \#*\#
+
 chondro.pdf: chondro.Rnw vignettes.defs rawdata/chondro.txt
 	R CMD Sweave chondro.Rnw --pdf --compact="both" 
 
