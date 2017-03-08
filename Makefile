@@ -1,10 +1,10 @@
 all: roxygenize pkg-data pkg-doc vignettes pkg-vignettes
 
-DATE = `date +%Y%m%d`
+DATE = $(shell date +%Y%m%d)
 
 clean:
-	rm -f *~ .*~ \#*\#
-	mv hyperSpec_*-$(DATE).tar.gz ~keep~ &&rm -f hyperSpec_*.tar.gz &&mv ~keep~ hyperSpec_*-$(DATE).tar.gz ||rm -f hyperSpec_*.tar.gz
+	@rm -f *~ .*~ \#*\#
+	@rm -f hyperSpec_*.tar.gz
 	$(MAKE) -C Vignettes/baseline     clean
 	$(MAKE) -C Vignettes/chondro      clean
 	$(MAKE) -C Vignettes/fileio       clean
@@ -16,7 +16,7 @@ clean:
 	$(MAKE) -C hyperSpec/vignettes -f Makefile-local clean
 
 superclean:
-	git clean -q -f
+	@git clean -q -f
 
 # TODO: add dependency `clean`
 
@@ -24,12 +24,12 @@ superclean:
 ## if the installed version of hyperSpec is too old for building the vignettes
 
 bootstrap: installdeps bootstrapI chondro flu laser pkg-data
-	R CMD build --no-build-vignettes hyperSpec/
-	R CMD INSTALL hyperSpec_*-$(DATE).tar.gz
+	@R CMD build --no-build-vignettes hyperSpec/
+	@R CMD INSTALL hyperSpec_*-$(DATE).tar.gz
 
 bootstrapI: roxygenize
-	R CMD build --no-build-vignettes hyperSpec/
-	R CMD INSTALL hyperSpec_*-$(DATE).tar.gz
+	@R CMD build --no-build-vignettes hyperSpec/
+	@R CMD INSTALL hyperSpec_*-$(DATE).tar.gz
 
 installdeps:
 	@echo -n "checking required & suggested packages ... "
@@ -49,23 +49,24 @@ installdeps:
 ## installation targets
 
 install: build
-	R CMD INSTALL hyperSpec_*-$(DATE).tar.gz
+	@R CMD INSTALL hyperSpec_*-$(DATE).tar.gz
 
 installdev: roxygenize pkg-vignettes
-	R CMD INSTALL hyperSpec --with.keep-source --fake --no-docs --no-build-vignettes
+	@R CMD INSTALL hyperSpec --with.keep-source --fake --no-docs --no-build-vignettes
 
 # Code building
 build: all
 	R CMD build hyperSpec
 
 roxygenize: DESCRIPTION hyperSpec/R/*.R
-	Rscript --vanilla -e "library (roxygen2); roxygenize ('hyperSpec')"
+	@echo "Roxygenize"
+	@Rscript --vanilla -e "library (roxygen2, quietly=TRUE, verbose = FALSE); roxygenize ('hyperSpec')"
 
 DESCRIPTION: $(shell find hyperSpec -maxdepth 1 -daystart -not -ctime 0 -name "DESCRIPTION") #only if not modified today
 	@echo update DESCRIPTION
-	sed "s/\(^Version: .*-\)20[0-9][0-9][0-1][0-9][0-3][0-9]\(.*\)$$/\1$(DATE)\2/" hyperSpec/DESCRIPTION > .DESCRIPTION
-	sed "s/\(^Date: .*\)20[0-9][0-9]-[0-1][0-9]-[0-3][0-9]\(.*\)$$/\1`date +%F`\2/" .DESCRIPTION > hyperSpec/DESCRIPTION
-	rm .DESCRIPTION
+	@sed "s/\(^Version: .*-\)20[0-9][0-9][0-1][0-9][0-3][0-9]\(.*\)$$/\1$(DATE)\2/" hyperSpec/DESCRIPTION > .DESCRIPTION
+	@sed "s/\(^Date: .*\)20[0-9][0-9]-[0-1][0-9]-[0-3][0-9]\(.*\)$$/\1`date +%F`\2/" .DESCRIPTION > hyperSpec/DESCRIPTION
+	@rm .DESCRIPTION
 
 # VIGNETTES ########################################################################################
 
