@@ -23,13 +23,28 @@ superclean:
 ## bootstrap target does the required processing immediately after cloning, superclean, or
 ## if the installed version of hyperSpec is too old for building the vignettes
 
-bootstrap: bootstrapI chondro flu laser pkg-data
+bootstrap: installdeps bootstrapI chondro flu laser pkg-data
 	R CMD build --no-build-vignettes hyperSpec/
 	R CMD INSTALL hyperSpec_*-$(DATE).tar.gz
 
 bootstrapI: roxygenize
 	R CMD build --no-build-vignettes hyperSpec/
 	R CMD INSTALL hyperSpec_*-$(DATE).tar.gz
+
+installdeps:
+	@echo -n "checking required & suggested packages ... "
+	@Rscript --vanilla -e 'pkgs <- packageDescription("hyperSpec", lib.loc = "./", fields = c ("Depends", "Suggests", "Imports"))'\
+                           -e 'pkgs <- gsub (pattern = "\n", replacement = "", pkgs)'\
+	                   -e 'pkgs <- gsub (pattern = "[ ]?[(][^)]*[)]", "", pkgs) '\
+	                   -e 'pkgs <- strsplit(pkgs, ",")'\
+	                   -e 'pkgs <- unlist (pkgs)'\
+	                   -e 'pkgs <- setdiff (pkgs, c (installed.packages()[, 1], "R"))'\
+	                   -e 'if (length (pkgs) == 0L){'\
+	                   -e 'cat ("OK\n")'\
+	                   -e '} else {'\
+	                   -e 'cat ("\n   installing: ", pkgs, "\n")'\
+	                   -e 'install.packages(pkgs, repos = "https://cran.rstudio.com/")  '\
+	                   -e '}'
 
 ## installation targets
 
