@@ -266,7 +266,7 @@ RAWFILES = $(asc.Andor) \
            $(wdf.Renishaw) \
            $(WIP.Witec)
 
-fileio.pdf: fileio.Rnw vignettes.defs barbiturates.rda $(RAWFILES)
+fileio.pdf: fileio.Rnw vignettes.defs barbiturates.rda | $(RAWFILES)
 	R CMD Sweave fileio.Rnw --pdf --compact="both" 
 
 vignettes.defs: ../vignettes.defs
