@@ -302,7 +302,7 @@ setMethod ("as.hyperSpec", "data.frame", .as.hyperSpec.matrix)
     })
     
     test_that("spc is given as a data.frame", { 
-        expect_equal(new("hyperSpec", spc = as.data.frame(spc),wavelength=1:3), 
+        expect_equal(new("hyperSpec", spc = as.data.frame(spc),wavelength=1:ncol(spc)), 
                      as.hyperSpec(X = as.data.frame(spc)))
     })
     
