@@ -1,5 +1,8 @@
 all: barbiturates.rda paracetamol.rda fileio.pdf
 
+clean:
+	rm -f *-fig-*.pdf *.aux *.bbl *.blg *.out *.log *-pkg.bib *.toc *.idx *.ilg *.ind *.rda
+	rm -f *~ .*~ \#*\#
 
 .SECONDARY: barbiturates.rda paracetamol.rda
 .PRECIOUS: barbiturates.rda paracetamol.rda
