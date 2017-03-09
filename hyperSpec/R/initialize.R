@@ -288,6 +288,7 @@ setGeneric ("as.hyperSpec",
 #' guess.wavelength (wl)
 
 setMethod ("as.hyperSpec", "matrix", .as.hyperSpec.matrix)
+setMethod ("as.hyperSpec", "data.frame", .as.hyperSpec.matrix)
 
 ##' @include unittest.R
 .test (.as.hyperSpec.matrix) <- function (){
@@ -301,14 +302,15 @@ setMethod ("as.hyperSpec", "matrix", .as.hyperSpec.matrix)
     })
     
     test_that("spc is given as a data.frame", { 
-        expect_identical (new ("hyperSpec", spc = spc), as.hyperSpec(X = as.data.frame(spc)))
+        expect_equal(new("hyperSpec", spc = as.data.frame(spc),wavelength=1:3), 
+                     as.hyperSpec(X = as.data.frame(spc)))
     })
     
     test_that("spc with characters in colnames", {
         colnames(spc) <- make.names(wl)
         h <- as.hyperSpec(X = spc)
         expect_equal (h@data$spc, spc)
-        expect_equivalent (dim (h), c (3L, 1L, 4L)) 
+        expect_equivalent (dim (h), c (nrow(spc), 1L, ncol(spc))) 
         expect_equal (h@wavelength, wl)
     })
     
