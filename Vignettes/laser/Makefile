@@ -16,6 +16,6 @@ fig-3D.png: rawdata/laser.txt.gz vignettes.defs
 rawdata:
 	mkdir rawdata
 
-rawdata/laser.txt.gz: rawdata
+rawdata/laser.txt.gz: | rawdata
 	$(MAKE) -C ../fileio txt.Renishaw/laser.txt.gz
 	cp ../fileio/txt.Renishaw/laser.txt.gz $@ 

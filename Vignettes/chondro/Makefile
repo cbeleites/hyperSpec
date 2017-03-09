@@ -10,7 +10,7 @@ chondro.pdf: chondro.Rnw vignettes.defs rawdata/chondro.txt
 vignettes.defs: ../vignettes.defs
 	cp -av $< $@
 
-rawdata/chondro.txt: ../fileio/txt.Renishaw/chondro.txt rawdata 
+rawdata/chondro.txt: ../fileio/txt.Renishaw/chondro.txt | rawdata 
 	$(MAKE) -C ../fileio txt.Renishaw/chondro.txt
 	cp -av $< $@
 
