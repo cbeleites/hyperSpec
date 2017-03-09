@@ -24,7 +24,6 @@ guess.wavelength <- function (X) {
   if (is.null (wl) || length (wl) == 0L || any (is.na (wl))){
     if (hy.getOption("debuglevel") >= 1L)
       message("could not guess wavelengths")
-    
     wl <- NULL
   }
 
