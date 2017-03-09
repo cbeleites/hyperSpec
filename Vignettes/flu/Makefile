@@ -16,7 +16,7 @@ scan.txt.PerkinElmer.R: ../fileio/scan.txt.PerkinElmer.R
 FLU = rawdata/flu1.txt rawdata/flu2.txt rawdata/flu3.txt rawdata/flu4.txt rawdata/flu5.txt \
           rawdata/flu6.txt
 
-fludata: $(FLU) | rawdata 
+fludata: $(FLU) rawdata 
 
 
 $(FLU):

@@ -28,15 +28,16 @@ fileio.pdf:
 
 # flu
 
-flu.Rnw:  ../../Vignettes/flu/flu.Rnw scan.txt.PerkinElmer.R fludata | rawdata 
+flu.Rnw:  ../../Vignettes/flu/flu.Rnw scan.txt.PerkinElmer.R fludata rawdata 
 #	$(MAKE) -C ../../Vignettes/flu 
 	cp -av $< $@
 
 scan.txt.PerkinElmer.R: ../../Vignettes/fileio/scan.txt.PerkinElmer.R
 	cp -av $< $@
 
-fludata: ../../Vignettes/flu/rawdata/flu*.txt | rawdata
-	cp -av $^ rawdata/
+fludata: ../../Vignettes/flu/rawdata rawdata
+	cp -av $< .
+	rm -f rawdata/Makefile
 
 rawdata:
 	mkdir $@
@@ -54,7 +55,7 @@ laser.Rnw: ../../Vignettes/laser/laser.Rnw rawdata/laser.txt.gz
 #	$(MAKE) -C ../../Vignettes/laser 
 	cp -av $< $@
 
-rawdata/laser.txt.gz: ../../Vignettes/fileio/txt.Renishaw/laser.txt.gz | rawdata
+rawdata/laser.txt.gz: ../../Vignettes/fileio/txt.Renishaw/laser.txt.gz rawdata
 #	$(MAKE) -C ../../Vignettes/fileio  txt.Renishaw/laser.txt.gz
 	cp $< $@ 
 

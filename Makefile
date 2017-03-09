@@ -16,7 +16,7 @@ clean:
 	$(MAKE) -C hyperSpec/vignettes -f Makefile-local clean
 
 superclean:
-	@git clean -q -f
+	@git clean -q -f -x -d
 
 # TODO: add dependency `clean`
 
