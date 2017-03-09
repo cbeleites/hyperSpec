@@ -24,6 +24,9 @@ open `R` and use command `install.packages("hyperSpec")`. This installs the late
 
 #### Troubleshooting
 
+* Vignette building fails and you suspect that this is due to the *installed* version of hyperSpec being too old:  
+  `make bootstrap` should take care of this situation.
+
 * Vignette *fileio* needs lots of example files for testing import functions. These are managed by `git lfs`. If they are missing, execute `git lfs pull` to get them.
 
 * `Rtools` on *Windows* ships `make` version 3.79 which does not provide order-prerequisites. You need to update make in order to build hyperSpec. 
