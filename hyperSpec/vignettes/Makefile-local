@@ -1,5 +1,10 @@
 all: vignettes.defs baseline.Rnw flu.Rnw introduction.Rnw chondro.pdf fileio.pdf
 
+clean:
+	rm -f *~ .*~ \#*\#
+	rm -f *-fig-*.pdf *.aux *.bbl *.blg *.out *.log *-pkg.bib *.toc *.idx *.ilg *.ind *.rda
+
+
 vignettes.defs: ../../Vignettes/vignettes.defs 
 	cp -av $< $@
 

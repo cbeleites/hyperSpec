@@ -539,3 +539,4 @@ Vignettes/fileio/uxd/VCA0106703(1).UXD filter=lfs diff=lfs merge=lfs -text
 Vignettes/fileio/txt.Witec/nofilename[[:space:]](Header).txt filter=lfs diff=lfs merge=lfs -text
 Vignettes/fileio/txt.Witec/nofilename[[:space:]](X-Axis).txt filter=lfs diff=lfs merge=lfs -text
 Vignettes/fileio/txt.Witec/nofilename[[:space:]](Y-Axis).txt filter=lfs diff=lfs merge=lfs -text
+Vignettes/fileio/jcamp-dx/IR_S_1.DX filter=lfs diff=lfs merge=lfs -text
