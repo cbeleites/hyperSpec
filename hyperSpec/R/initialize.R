@@ -275,7 +275,7 @@ setGeneric ("as.hyperSpec",
 
 #' @include guesswavelength.R
 .as.hyperSpec.matrix <- function (X, wl = guess.wavelength (colnames (X)), ...){
-  new ("hyperSpec", spc = X, wavlength = wl, ...)
+  new ("hyperSpec", spc = X, wavelength = wl, ...)
 }
 
 #' @rdname as.hyperSpec
@@ -288,3 +288,40 @@ setGeneric ("as.hyperSpec",
 #' guess.wavelength (wl)
 
 setMethod ("as.hyperSpec", "matrix", .as.hyperSpec.matrix)
+setMethod ("as.hyperSpec", "data.frame", .as.hyperSpec.matrix)
+
+##' @include unittest.R
+.test (.as.hyperSpec.matrix) <- function (){
+    context ("as.hyperSpec")
+    
+    spc <- matrix(1:12,ncol = 3)
+    wl <- seq(600, 601, length.out = ncol(spc))
+    
+    test_that("only spc is given", { 
+        expect_identical (new ("hyperSpec", spc = spc), as.hyperSpec(X = spc))
+    })
+    
+    test_that("spc is given as a data.frame", { 
+        expect_equal(new("hyperSpec", spc = as.data.frame(spc),wavelength=1:ncol(spc)), 
+                     as.hyperSpec(X = as.data.frame(spc)))
+    })
+    
+    test_that("spc with characters in colnames", {
+        colnames(spc) <- make.names(wl)
+        h <- as.hyperSpec(X = spc)
+        expect_equal (h@data$spc, spc)
+        expect_equivalent (dim (h), c (nrow(spc), 1L, ncol(spc))) 
+        expect_equal (h@wavelength, wl)
+    })
+    
+    test_that("ignore colnames if wl is set", { 
+        colnames(spc) <- c(601,602,603)
+        expect_identical (new ("hyperSpec", spc = spc, wavelength = wl), as.hyperSpec(X = spc, wl = wl))
+    })
+    
+    test_that("set additional parameters", { 
+        dt <- data.frame(x=1:4,y=letters[1:4])
+        lbs <-  list (spc = "I / a.u.", .wavelength = expression (tilde (nu) / cm^-1))
+        expect_identical (new ("hyperSpec", spc = spc, data = dt, label = lbs), as.hyperSpec(X = spc, data = dt, label = lbs))
+    })
+}

@@ -24,9 +24,28 @@ guess.wavelength <- function (X) {
   if (is.null (wl) || length (wl) == 0L || any (is.na (wl))){
     if (hy.getOption("debuglevel") >= 1L)
       message("could not guess wavelengths")
-    
-    wl <- seq_len (X)  
+    wl <- NULL
   }
 
   wl  
+}
+
+##' @include regexps.R
+##' @include options.R
+.test (guess.wavelength) <- function (){
+  context ("guess.wavelength")
+      
+  test_that("simple test", { 
+      expect_equal (guess.wavelength(1:5), 1:5)
+  }) 
+  
+  test_that("wavelengths containing characters", { 
+      wl <- seq(600,602,length.out = 11)
+      expect_equal (guess.wavelength(make.names(wl)), wl)
+  }) 
+  
+  test_that("return NULL if could not guess wavelenths", { 
+      expect_equal (guess.wavelength(colnames(matrix(1:12,3))), NULL)
+      expect_equal (guess.wavelength(letters[1:4]), NULL)
+  }) 
 }
