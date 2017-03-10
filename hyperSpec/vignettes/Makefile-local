@@ -35,8 +35,9 @@ flu.Rnw:  ../../Vignettes/flu/flu.Rnw scan.txt.PerkinElmer.R fludata | rawdata
 scan.txt.PerkinElmer.R: ../../Vignettes/fileio/scan.txt.PerkinElmer.R
 	cp -av $< $@
 
-fludata: ../../Vignettes/flu/rawdata/flu*.txt | rawdata
-	cp -av $^ rawdata/
+fludata: ../../Vignettes/flu/rawdata | rawdata
+	cp -av $< .
+	rm -f rawdata/Makefile
 
 rawdata:
 	mkdir $@
