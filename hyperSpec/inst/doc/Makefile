@@ -15,10 +15,11 @@ fileio.pdf: ../../../Vignettes/fileio/fileio.pdf
 	cp -av ../../../Vignettes/fileio/fileio.pdf $@
 
 fludata: ../../../Vignettes/flu/rawdata | rawdata
-	cp -av $^ .
+	cp -av $< .
+	rm -f rawdata/Makefile
 
 laserdata: ../../../Vignettes/fileio/txt.Renishaw/laser.txt.gz | rawdata
-	cp $< rawdata/laser.txt.gz
+	cp $< rawdata/
 
 rawdata:
 	mkdir $@
