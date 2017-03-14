@@ -6,7 +6,7 @@
 
   packageStartupMessage ("Package ",  desc$Package, ", version ", desc$Version, "\n\n",
        "To get started, try\n",
-       '   vignette ("introduction", package = "hyperSpec")\n',
+       '   vignette ("hyperspec")\n',
        '   package?hyperSpec \n',
        '   vignette (package = "hyperSpec")\n\n',
        "If you use this package please cite it appropriately.\n",

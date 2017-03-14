@@ -17,7 +17,7 @@ hyperSpec/vignettes/*.Rnw
 hyperSpec/vignettes/vignettes.defs
 hyperSpec/vignettes/scan.txt.PerkinElmer.R
 hyperSpec/vignettes/fig-3D.png
-hyperSpec/vignettes/introduction.bib
+hyperSpec/vignettes/hyperspec.bib
 hyperSpec/vignettes/functions.RData
 hyperSpec/vignettes/rawdata
 hyperSpec/inst/doc/*.pdf

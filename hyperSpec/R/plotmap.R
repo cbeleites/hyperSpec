@@ -69,7 +69,7 @@
 ##' 
 ##' The other functions return a lattice object.
 ##' @author C. Beleites
-##' @seealso \code{vignette (plotting)}, \code{vignette (introduction)}
+##' @seealso \code{vignette (plotting)}, \code{vignette (hyperspec)}
 ##' 
 ##' \code{\link{plot}}
 ##' @export
@@ -78,7 +78,7 @@
 ##' 
 ##' \dontrun{
 ##' vignette (plotting)
-##' vignette (introduction)
+##' vignette (hyperspec)
 ##' }
 ##' 
 ##' levelplot (spc ~ y * x, chondro [,,1003]) # properly rotated
