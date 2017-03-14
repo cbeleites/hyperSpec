@@ -23,7 +23,7 @@
 ##' @slot log deprecated.
 ##' @note Please note that the logbook is now removed. 
 ##' @author C. Beleites
-##' @seealso See the vignette "introduction" for an introduction to hyperSpec
+##' @seealso See the vignette "hyperspec" for an introduction to hyperSpec
 ##'   from a spectroscopic point of view.
 ##' @keywords classes
 ##' @export
@@ -31,7 +31,7 @@
 ##' @examples
 ##' 
 ##' showClass("hyperSpec")
-##' \dontrun{vignette ("introduction")}
+##' \dontrun{vignette ("hyperspec")}
 setClass ("hyperSpec",
           representation = representation (
             wavelength = "numeric",     # spectral abscissa
