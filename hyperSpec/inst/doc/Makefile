@@ -1,5 +1,8 @@
 all: vignettes.defs fileio.pdf chondro.pdf fludata laserdata
 
+clean:
+	rm -f *~ .*~ \#*\#
+
 vignettes.defs: ../../../Vignettes/vignettes.defs
 	cp -av $< $@
 
@@ -12,10 +15,11 @@ fileio.pdf: ../../../Vignettes/fileio/fileio.pdf
 	cp -av ../../../Vignettes/fileio/fileio.pdf $@
 
 fludata: ../../../Vignettes/flu/rawdata | rawdata
-	cp -av $^ .
+	cp -av $< .
+	rm -f rawdata/Makefile
 
 laserdata: ../../../Vignettes/fileio/txt.Renishaw/laser.txt.gz | rawdata
-	cp $< $@ 
+	cp $< rawdata/
 
 rawdata:
 	mkdir $@

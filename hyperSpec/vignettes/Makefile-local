@@ -1,5 +1,10 @@
 all: vignettes.defs baseline.Rnw flu.Rnw introduction.Rnw chondro.pdf fileio.pdf
 
+clean:
+	rm -f *~ .*~ \#*\#
+	rm -f *-fig-*.pdf *.aux *.bbl *.blg *.out *.log *-pkg.bib *.toc *.idx *.ilg *.ind *.rda
+
+
 vignettes.defs: ../../Vignettes/vignettes.defs 
 	cp -av $< $@
 
@@ -30,8 +35,9 @@ flu.Rnw:  ../../Vignettes/flu/flu.Rnw scan.txt.PerkinElmer.R fludata | rawdata
 scan.txt.PerkinElmer.R: ../../Vignettes/fileio/scan.txt.PerkinElmer.R
 	cp -av $< $@
 
-fludata: ../../Vignettes/flu/rawdata/flu*.txt | rawdata
-	cp -av $^ rawdata/
+fludata: ../../Vignettes/flu/rawdata | rawdata
+	cp -av $< .
+	rm -f rawdata/Makefile
 
 rawdata:
 	mkdir $@

@@ -1488,7 +1488,7 @@ Again, many such functions coerce the data to a matrix automatically, so the \ch
 handed over:
 <<hca-asmatrix>>=
 dist <- pearson.dist (chondro)
-dendrogram <- hclust (dist, method = "ward")
+dendrogram <- hclust (dist, method = "ward.D")
 @
 <<dend, fig = TRUE, width = 5, height = 5, include = FALSE>>=
 plot (dendrogram)
