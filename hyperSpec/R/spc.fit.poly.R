@@ -216,3 +216,25 @@ spc.fit.poly.below <- function (fit.to, apply.to = fit.to, poly.order = 1,
 }
 
 
+##'
+##' \code{spc.rm.poly.below} is a convenience wrap around function \code{spc.fit.poly.below}.
+##' It removes a baseline from the spectra in \code{fit.to}. The
+##' baseline is calculated using \code{spc.fit.poly.below} and subtracted from \code{apply.to}.
+##' For details, see the \code{vignette ("baseline")}.
+##' @rdname baselines
+##' 
+##' @param fit.to \code{hyperSpec} object on which the baselines are fitted
+##' @param apply.to \code{hyperSpec} object on which the baselines are evaluted
+##'   If \code{NULL}, a \code{hyperSpec} object containing the polynomial
+##'   coefficients rather than evaluted baselines is returned.
+##' 
+##' @export
+##' @examples
+##'
+##' plot(spc.rm.poly.below(chondro[1:4]))
+##'
+spc.rm.poly.below <- function (fit.to, apply.to = fit.to, ...){
+  apply.to - spc.fit.poly.below(fit.to = fit.to, apply.to = apply.to, ...)
+}
+
+
