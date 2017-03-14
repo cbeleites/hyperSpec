@@ -9,7 +9,7 @@ clean:
 	$(MAKE) -C Vignettes/chondro      clean
 	$(MAKE) -C Vignettes/fileio       clean
 	$(MAKE) -C Vignettes/flu          clean
-	$(MAKE) -C Vignettes/introduction clean
+	$(MAKE) -C Vignettes/hyperspec clean
 	$(MAKE) -C Vignettes/laser        clean
 	$(MAKE) -C Vignettes/plotting     clean
 	$(MAKE) -C hyperSpec/inst/doc     clean
@@ -70,7 +70,7 @@ DESCRIPTION: $(shell find hyperSpec -maxdepth 1 -daystart -not -ctime 0 -name "D
 
 # VIGNETTES ########################################################################################
 
-vignettes: chondro flu laser plotting introduction fileio laser plotting baseline
+vignettes: chondro flu laser plotting hyperspec fileio laser plotting baseline
 
 # in subdirs ---------------------------------------------------------------------------------------
 
@@ -100,11 +100,11 @@ flu:
 	$(MAKE) -C Vignettes/flu
 	$(MAKE) -C hyperSpec/vignettes -f Makefile-local flu.Rnw
 
-# introduction .....................................................................................
+# hyperspec vignette (aka introduction) ............................................................
 
-introduction:
-	$(MAKE) -C Vignettes/introduction
-	$(MAKE) -C hyperSpec/vignettes -f Makefile-local introduction.Rnw
+hyperspec:
+	$(MAKE) -C Vignettes/hyperspec
+	$(MAKE) -C hyperSpec/vignettes -f Makefile-local hyperspec.Rnw
 
 # laser ............................................................................................
 

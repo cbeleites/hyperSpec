@@ -28,7 +28,7 @@ then piecewise linear or (smoothing) splines through the support points.
 Please note that a specialized package for baseline fitting,
 \Rpackage{baseline}\Sexpr{cite.pkg("baseline")}, exists that provides many more methods to fit
 baselines to spectroscopic data. Using \Rpackage{baseline} with \chy objects is demonstrated in
-\Rcode{vignette ("introduction")}.
+\Rcode{vignette ("hyperspec")}.
 
 \section{Polynomial Baselines}
 \label{sec:polynomial-baselines}
