@@ -1,4 +1,5 @@
 ##' Polynomial Baseline Fitting
+##' 
 ##' These functions fit polynomal baselines.
 ##'
 ##' Both functions fit polynomials to be used as baselines. If \code{apply.to}
@@ -13,7 +14,7 @@
 ##' @rdname baselines
 ##' @concept baseline
 ##' @param fit.to \code{hyperSpec} object on which the baselines are fitted
-##' @param apply.to \code{hyperSpec} object on which the baselines are evaluted
+##' @param apply.to \code{hyperSpec} object on which the baselines are evaluted.
 ##'   If \code{NULL}, a \code{hyperSpec} object containing the polynomial
 ##'   coefficients rather than evaluted baselines is returned.
 ##' @param poly.order order of the polynomial to be used
@@ -223,22 +224,23 @@ spc.fit.poly.below <- function (fit.to, apply.to = fit.to, poly.order = 1,
 }
 
 
-##'
-##' \code{spc.rm.poly.below} is a convenience wrap around function \code{spc.fit.poly.below}.
-##' It removes a baseline from the spectra in \code{fit.to}. The
-##' baseline is calculated using \code{spc.fit.poly.below} and subtracted from \code{apply.to}.
-##' For details, see the \code{vignette ("baseline")}.
-##' @rdname baselines
+##' Remove polynomial baseline
 ##' 
-##' @param fit.to \code{hyperSpec} object on which the baselines are fitted
-##' @param apply.to \code{hyperSpec} object on which the baselines are evaluted
-##'   If \code{NULL}, a \code{hyperSpec} object containing the polynomial
-##'   coefficients rather than evaluted baselines is returned.
+##' \code{spc.rm.poly.below} is a convenience wrapper around the function
+##' \code{spc.fit.poly.below}. It removes a baseline from the spectra in
+##' the argument \code{fit.to}. The baseline itself is calculated using
+##' function \code{spc.fit.poly.below} and subtracted from the spectra given
+##' in \code{apply.to}. For details, see the \code{vignette ("baseline")}.
 ##' 
-##' @export
+##' @inheritParams spc.fit.poly.below
+##' 
+##' @return A hyperSpec object with subtracted polynomial baseline
+##' @export spc.rm.poly.below
 ##' @examples
 ##'
-##' plot(spc.rm.poly.below(chondro[1:4]))
+##' spc <- chondro[1:4]
+##' plot (spc.rm.poly.below (spc, poly.order = 3))
+##' plot (spc.rm.poly.below (spc [ , , 800~1200], spc))
 ##'
 spc.rm.poly.below <- function (fit.to, apply.to = fit.to, ...){
   apply.to - spc.fit.poly.below(fit.to = fit.to, apply.to = apply.to, ...)
