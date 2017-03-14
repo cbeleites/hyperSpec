@@ -96,3 +96,21 @@ spc.rubberband <- function (spc, ..., upper = FALSE, noise = 0, spline = TRUE){
   
   y  
 }
+
+
+##' 
+##' Convenience wrapper around function \code{spc.rubberband} to remove baseline from spectra.
+##' Baseline with support points determined from a convex hull of the spectrum and subtracted from it.
+##' 
+##' @rdname baselines
+##' 
+##' @param spc hyperSpec object
+##' @return hyperSpec object with subtracted baselines
+##' 
+##' @export
+##' @examples
+##' plot (spc.rm.rubberband(chondro[1:5]))
+
+spc.rm.rubberband <- function (spc, ...){
+  spc - spc.rubberband(spc, ...)
+}
