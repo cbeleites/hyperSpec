@@ -1,5 +1,8 @@
 all: barbiturates.rda paracetamol.rda fileio.pdf
 
+clean:
+	rm -f *-fig-*.pdf *.aux *.bbl *.blg *.out *.log *-pkg.bib *.toc *.idx *.ilg *.ind *.rda
+	rm -f *~ .*~ \#*\#
 
 .SECONDARY: barbiturates.rda paracetamol.rda
 .PRECIOUS: barbiturates.rda paracetamol.rda
@@ -34,7 +37,8 @@ jcamp-dx = jcamp-dx/2934luana.JDX jcamp-dx/2934luana-nolinkblock.JDX \
           jcamp-dx/testjose.dx \
           jcamp-dx/TESTNTUP.DX \
           jcamp-dx/TESTSPEC.DX \
-          jcamp-dx/virgilio.jdx
+          jcamp-dx/virgilio.jdx \
+          jcamp-dx/IR_S_1.DX
 
 mat.cytospec = mat.cytospec/cytospec.mat
 

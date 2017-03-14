@@ -1,5 +1,9 @@
 all: flu.pdf
 
+clean:
+	rm -f *-fig-*.pdf *.aux *.bbl *.blg *.out *.log *-pkg.bib *.toc *.idx *.ilg *.ind *.rda
+	rm -f *~ .*~ \#*\#
+
 flu.pdf: flu.Rnw vignettes.defs scan.txt.PerkinElmer.R fludata
 	R CMD Sweave flu.Rnw --pdf --compact="both" 
 

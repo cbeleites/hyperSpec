@@ -337,7 +337,7 @@ also for the distance matrix :
 
 <<hca>>=
 dist <- dist (chondro)
-dendrogram <- hclust (dist, method = "ward")
+dendrogram <- hclust (dist, method = "ward.D")
 @
 
 <<denddummy, eval = FALSE>>=
