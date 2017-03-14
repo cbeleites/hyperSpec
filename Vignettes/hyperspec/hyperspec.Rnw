@@ -3,7 +3,7 @@
 \usepackage{longtable}
 
 \SweaveInput{vignettes.defs}
-\SweaveOpts{prefix.string=introduction-fig-}
+\SweaveOpts{prefix.string=hyperspec-fig}
 \hypersetup{pdftitle={hyperSpec Manual},
  pdfauthor={C. Beleites},
  pdfsubject={Introduction on the R package hyperSpec},
@@ -343,8 +343,8 @@ cluster.cols <- c ("dark blue", "orange", "#C02020")
 plot (rnd, col = cluster.cols [rnd$.group])
 @
 \begin{figure}[t]
-\subfloat[\label{fig:sim:spc} \Rfunction{rmmvnorm}]{\includegraphics[width=.66\linewidth]{introduction-fig--simspc}}
-\subfloat[\label{fig:sim:lda} LDA of simulated spectra. Crosses mark real spectra.]{\includegraphics[width=.33\linewidth]{introduction-fig--simlda}}
+\subfloat[\label{fig:sim:spc} \Rfunction{rmmvnorm}]{\includegraphics[width=.66\linewidth]{hyperspec-fig-simspc}}
+\subfloat[\label{fig:sim:lda} LDA of simulated spectra. Crosses mark real spectra.]{\includegraphics[width=.33\linewidth]{hyperspec-fig-simlda}}
   \caption{Multivariate normally distributed random spectra.}
   \label{fig:sim}
 \end{figure}
@@ -456,9 +456,9 @@ numeric, logical, or by a vector of the column names:
 <<data>>=
 colnames (chondro)
 chondro [[1 : 3, 1]]
-chondro [[1 : 3, -4]]
+chondro [[1 : 3, -5]]
 chondro [[1 : 3, "x"]]
-chondro [[1 : 3, c (TRUE, FALSE)]]      # note the recycling!
+chondro [[1 : 3, c (FALSE, TRUE)]]      # note the recycling!
 @
 
 To select one column, the \Rfunction{\$} operator is more convenient\mFun{\Rfunction{\$}}:
@@ -783,12 +783,12 @@ print (levelplot (spc ~ x * y | as.factor (paste (.wavelength, "  1/cm")),
 \setkeys{Gin}{width = .33\textwidth}
 \subfloat[\label{fig-merge-mat}]{
 <<echo = FALSE, results = hide>>=
-png ("introduction-fig--merged.png", width = 500, height = 425, res=100)
+png ("hyperspec-fig-merged.png", width = 500, height = 425, res=100)
 plot (chondro.merged [1 : 100], "mat")
 dev.off()
 rm (chondro)
 @
-\includegraphics[width = .33\textwidth]{introduction-fig--merged}
+\includegraphics[width = .33\textwidth]{hyperspec-fig-merged}
 }
 \caption[]{\label{fig:merge}
   \subref{fig-merge-map} For both spectral ranges some spectra are missing.
@@ -938,9 +938,9 @@ chondro [[]] <- tmp
 @
 
 \begin{figure}[t]
-  \subfloat[\label{fig:shift:wl} \Rfunction{wl<-}]{\includegraphics[width=.33\linewidth]{introduction-fig--shift-wl}}
-  \subfloat[\label{fig:shift:interp} interpolation]{\includegraphics[width=.33\linewidth]{introduction-fig--shift-interp}}
-  \subfloat[\label{fig:shift:untsch} ]{\includegraphics[width=.33\linewidth]{introduction-fig--shift-untsch}}
+  \subfloat[\label{fig:shift:wl} \Rfunction{wl<-}]{\includegraphics[width=.33\linewidth]{hyperspec-fig-shift-wl}}
+  \subfloat[\label{fig:shift:interp} interpolation]{\includegraphics[width=.33\linewidth]{hyperspec-fig-shift-interp}}
+  \subfloat[\label{fig:shift:untsch} ]{\includegraphics[width=.33\linewidth]{hyperspec-fig-shift-untsch}}
   \caption[]{Shifting the Spectra along the Wavelength Axis. \subref{fig:shift:wl} Changing the
     wavelength values. \subref{fig:shift:interp} Interpolation. \subref{fig:shift:untsch} Detail view
     of the phenylalanine band: shifting by \Rfunction{wl<-} (red) does not affect the intensities,
@@ -1050,8 +1050,8 @@ i <- which (! OK, arr.ind = TRUE)
 points (wl (chondro) [i [,2]], chondro[[!OK]], pch = 19, col = "red", cex = 0.5)
 @
 \begin{figure}[tb]
-  \subfloat[mean $\pm$ sd filter]{\includegraphics[width=0.49\textwidth]{introduction-fig--filter}}
-  \subfloat[remove bad points]{\includegraphics[width=0.49\textwidth]{introduction-fig--bad}}
+  \subfloat[mean $\pm$ sd filter]{\includegraphics[width=0.49\textwidth]{hyperspec-fig-filter}}
+  \subfloat[remove bad points]{\includegraphics[width=0.49\textwidth]{hyperspec-fig-bad}}
   \caption{filtering data}
   \label{fig:filter}
 \end{figure}
@@ -1128,8 +1128,8 @@ plot (b [, , 1600 ~ 1670], col = "blue", add = TRUE)
 
 %
 \begin{figure}
-\includegraphics[width=0.33\textwidth]{introduction-fig--fig-loess}
-\includegraphics[width=0.33\textwidth]{introduction-fig--fig-loess-kl}
+\includegraphics[width=0.33\textwidth]{hyperspec-fig-fig-loess}
+\includegraphics[width=0.33\textwidth]{hyperspec-fig-fig-loess-kl}
 \caption{\label{fig-spcloess}Smoothing interpolation by \Rfunction{spc.loess} with new data point
   spacing of 2 cm\textsuperscript{-1} (red) and \Rfunction{spc.bin} (blue). The magnification on the
   right shows how interpolation may cause a loss in signal height.}
@@ -1466,14 +1466,14 @@ ggplot (as.long.df (chondro [1]), aes (x = .wavelength, y = spc)) + geom_line ()
 <<ggplot-do, echo = FALSE>>=
 if (require (ggplot2)){
 <<ggplot>>
-  ggsave (file = "introduction-fig--ggplot-do.pdf", width = 8, height = 4)
+  ggsave (file = "hyperspec-fig-ggplot-do.pdf", width = 8, height = 4)
 } else {
-  pdf ("introduction-fig--ggplot-do.pdf", width = 8, height = 4)
+  pdf ("hyperspec-fig-ggplot-do.pdf", width = 8, height = 4)
   ploterrormsg (NULL, "ggplot2")
   dev.off()
 }
 @
-\includegraphics[width=.5\linewidth]{introduction-fig--ggplot-do.pdf}
+\includegraphics[width=.5\linewidth]{hyperspec-fig-ggplot-do.pdf}
 
 \subsection{Data Analysis Methods using a matrix \\
 \eg Hierarchical Cluster Analysis}
@@ -1510,9 +1510,9 @@ Then the result may be plotted (figure~\ref{fig:clust:map}):
 plotmap (chondro, clusters ~ x * y, col.regions = cluster.cols)
 @
 \begin{figure}
-\subfloat[\label{fig:clust:dend}]{\includegraphics[width=0.33\textwidth]{introduction-fig--dend}}
-\subfloat[\label{fig:clust:map}]{\includegraphics[width=0.33\textwidth]{introduction-fig--clustmap}}
-\subfloat[\label{fig:clust:spc}]{\includegraphics[width=0.33\textwidth]{introduction-fig--clustmean}}
+\subfloat[\label{fig:clust:dend}]{\includegraphics[width=0.33\textwidth]{hyperspec-fig-dend}}
+\subfloat[\label{fig:clust:map}]{\includegraphics[width=0.33\textwidth]{hyperspec-fig-clustmap}}
+\subfloat[\label{fig:clust:spc}]{\includegraphics[width=0.33\textwidth]{hyperspec-fig-clustmean}}
 \caption[]{The results of the cluster analysis: \subref{fig:clust:dend} the
 dendrogram \subref{fig:clust:map} the map of the 3 clusters \subref{fig:clust:spc}
 the mean spectra.}
@@ -1615,7 +1615,7 @@ of \Rfunction{scan.txt.Renishaw} can be lowered by importing the data in chunks 
 \printindex
 
 \bibliographystyle{unsrtnat}
-\bibliography{introduction-pkg,introduction}
+\bibliography{hyperspec-pkg,hyperspec}
 
 \appendix
 \section{Overview of the functions provided by \phy}
@@ -1658,7 +1658,7 @@ make.fn.table()
 \section*{Session Info}
 \begin{footnotesize}
 <<echo = FALSE>>=
-make.bib (c ("baseline", "compiler", "Rcpp", "inline"), file = "introduction-pkg.bib")
+make.bib (c ("baseline", "compiler", "Rcpp", "inline"), file = "hyperspec-pkg.bib")
 print (as.matrix(Sys.info()))
 <<cleanup>>
 #for (f in Sys.glob ("fig/*.pdf"))
