@@ -353,6 +353,7 @@ figure~\ref{fig:noise}
 \Rcode{noise} may be a single value for all spectra, or a vector with the noise level for each of the
 spectra separately.
 
+
 \section{Rubberband Method}
 Particularly Raman spectra often show increasing background towards $\Delta\tilde\nu = 0$. In this
 case, polynomial baselines often either need high order or residual background is left in the
@@ -407,6 +408,21 @@ plot (paracetamol [,, 175 ~ 1800] - bl)
   \caption{Rubberband baselines for the paracetamol spectrum after bending.}
   \label{fig:rubberband-bent}
 \end{figure}
+
+\section{Convenience functions \Rcode{spc.rm.poly.below} and \Rcode{spc.rm.rubberband}}
+In a normal use case we don't need the baseline itself, but the corrected spectrum. So there
+are two convenience functions that save some typing. They calculate baselines
+as described above and return already corrected spectra.
+<< results = hide >>=
+# Two lines below give identical results
+paracetamol - spc.fit.poly.below(paracetamol[,, 400~2000], paracetamol)
+spc.rm.poly.below(paracetamol, wl.range = c(400~2000))
+@
+<< results = hide >>=
+# Two lines below give identical results
+paracetamol - spc.rubberband(paracetamol)
+spc.rm.rubberband(paracetamol)
+@
 
 
 \bibliographystyle{unsrtnat}
