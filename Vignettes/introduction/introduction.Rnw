@@ -456,9 +456,9 @@ numeric, logical, or by a vector of the column names:
 <<data>>=
 colnames (chondro)
 chondro [[1 : 3, 1]]
-chondro [[1 : 3, -4]]
+chondro [[1 : 3, -5]]
 chondro [[1 : 3, "x"]]
-chondro [[1 : 3, c (TRUE, FALSE)]]      # note the recycling!
+chondro [[1 : 3, c (FALSE, TRUE)]]      # note the recycling!
 @
 
 To select one column, the \Rfunction{\$} operator is more convenient\mFun{\Rfunction{\$}}:
