@@ -258,10 +258,17 @@ spc.fit.poly.below <- function (fit.to, apply.to = fit.to, poly.order = 1,
 ##' spc <- chondro[1:4]
 ##' plot (spc.rm.poly.below (spc, poly.order = 3))
 ##' plot (spc.rm.poly.below (spc [ , , 800~1200], spc))
+##' plot (spc.rm.poly.below(paracetamol, wl.range = 300~1000))
 ##'
 spc.rm.poly.below <- function (fit.to, apply.to = fit.to, ...){
   apply.to - spc.fit.poly.below(fit.to = fit.to, apply.to = apply.to, ...)
 }
 
-
+.test (spc.rm.poly.below) <- function (){
+  context ("spc.rm.poly.below")
+  
+  test_that ("Same result as spc.fit.poly.below",
+    expect_equal (spc.rm.poly.below(flu),
+                  flu - spc.fit.poly.below(flu))
+  )
 }
