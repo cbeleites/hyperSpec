@@ -103,6 +103,8 @@ spc.fit.poly <- function (fit.to, apply.to = NULL, poly.order = 1, offset.wl = !
 ##' @param npts.min minimal number of points used for fitting the polynomial
 ##' @param noise noise level to be considered during the fit. It may be given
 ##'   as one value for all the spectra, or for each spectrum separately.
+##' @param wl.range range of wavelength in which fitting is carried out, for
+##'   example \code{c(min~1200, 2600~3200)}.
 ##' @param debuglevel  additional output:
 ##'    \code{1} show \code{npts.min}, \code{2} plots support points for 1st spectrum,
 ##'    \code{3} plots support points for all spectra.
@@ -117,6 +119,7 @@ spc.fit.poly <- function (fit.to, apply.to = NULL, poly.order = 1, offset.wl = !
 ##' spc.fit.poly.below(chondro [1:3], debuglevel = 2)
 ##' spc.fit.poly.below(chondro [1:3], debuglevel = 3, noise = sqrt (rowMeans (chondro [[1:3]])))
 spc.fit.poly.below <- function (fit.to, apply.to = fit.to, poly.order = 1,
+                                wl.range = NULL,
                                 npts.min = max (round (nwl (fit.to) * 0.05), 3 * (poly.order + 1)),
                                 noise = 0, offset.wl = FALSE,
                                 debuglevel = hy.getOption("debuglevel")){
@@ -126,7 +129,14 @@ spc.fit.poly.below <- function (fit.to, apply.to = fit.to, poly.order = 1,
 
   validObject (fit.to)
   validObject (apply.to)
-
+  
+  if (! missing(wl.range)){
+    if (! identical(wl(fit.to), wl(apply.to)))
+      stop("Please specify wavelength range only once, either in the
+            'fit.to' argument or in 'wl.range'")
+    fit.to <- fit.to[,, wl.range]
+  }
+  
   if (missing (npts.min) && debuglevel >= 1L)
     message ("Fitting with npts.min = ",  npts.min, "\n")
 
@@ -203,7 +213,14 @@ spc.fit.poly.below <- function (fit.to, apply.to = fit.to, poly.order = 1,
 
 .test (spc.fit.poly.below) <- function (){
   context ("spc.fit.poly.below")
-
+  
+  test_that ("Wavelength range specification for polynomial baseline", {
+    expect_equal (spc.fit.poly.below (chondro[1:10 , , c(min~1000, 1200~1300)], chondro[1:10]),
+                  spc.fit.poly.below (chondro[1:10], wl.range = c(min~1000, 1200~1300)))
+    expect_error (spc.fit.poly.below (chondro[,,1000~1200],
+                                      chondro, wl.range = 1000~1200))
+  })
+  
   test_that("no normalization",
             bl.nonorm <- spc.fit.poly.below (flu, flu, poly.order = 3, offset.wl = FALSE, npts.min = 25)
   )
@@ -247,3 +264,4 @@ spc.rm.poly.below <- function (fit.to, apply.to = fit.to, ...){
 }
 
 
+}
