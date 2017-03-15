@@ -571,7 +571,7 @@ If the colour-coded variable is a factor, each level gets its own colour, and th
 accordingly.
 \\
 \plottab{different palette}{plotmap-col} 
-To plot with a different palette, use \Rcode{trellis.args = list (col.regions = palette)}.
+To plot with a different palette, use argument \Rcode{col.regions}.
 <<plotmap-col, fig = TRUE, width = 4, height = 2.6,include = FALSE >>=
 print (plotmap (chondro, clusters ~ x * y,
                 col.regions = cluster.cols))
