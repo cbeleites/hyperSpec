@@ -139,13 +139,13 @@ levelplot (spc ~ x * y, chondro, aspect = "iso")
 Warning: \verb+Only first wavelength is used for plotting+
 \\
 \plottab{plotmap}{plotmap}
-  plotmap is a specialized version of levelplot. It uses a single value (\eg average intensity or cluster membership) over two data columns (default \Rcode{\$x} and \Rcode{\$y})
+  \Rfunction{plotmap} is a specialized version of \Rfunction{levelplot}. It uses a single value (\eg average intensity or cluster membership) over two data columns (default \Rcode{\$x} and \Rcode{\$y})
 <<plotmap, fig = TRUE, width = 4, height = 2.6,include = FALSE >>=
 plotmap (chondro)
 @
 \\
 \plottab{plotvoronoi}{voronoi}
-  plotmap is a specialized version of levelplot. It uses a single value (\eg average intensity or cluster membership) over two data columns (default \Rcode{\$x} and \Rcode{\$y})
+  Function \Rfunction{plotvoronoi} is a special version of \Rfunction{plotmap} that produces Voronoi diagram of the hyperSpec object.
 <<voronoi, fig = TRUE, width = 4, height = 2.6,include = FALSE >>=
 plotvoronoi (sample (chondro, 300), clusters ~ x * y)
 @
