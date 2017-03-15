@@ -115,9 +115,9 @@ plots the spectra, \ie the intensities \Rcode{\$spc} over the wavelengths \Rcode
 plotspc (flu)
 @ 
 \\
-\plottab{plotmat}{plotmat}
+\plottab{plotmat}{plotmat-flu}
 plots the spectra, \ie the colour coded intensities \Rcode{\$spc} over the wavelengths \Rcode{@wavelength} and the row number.
-<<plotspc, fig = TRUE, width = 4, height = 2.6, include = FALSE >>=
+<<plotmat-flu, fig = TRUE, width = 4, height = 2.6, include = FALSE >>=
 plotmat (flu)
 @ 
 \\\plottab{plotc}{plotflu}
