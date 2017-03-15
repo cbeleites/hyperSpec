@@ -72,9 +72,9 @@ used in this vignette.
 For some plots of the \Robject{chondro} dataset, the pre-processed spectra and their cluster
 averages $\pm$ one standard deviation are more suitable:
 <<preproc-chondro>>=
-chondro.preproc <- chondro - spc.fit.poly.below (chondro)
+chondro.preproc <- spc.rm.poly.below (chondro)
 chondro.preproc <- chondro.preproc / rowMeans (chondro)
-chondro.preproc <- chondro.preproc - quantile (chondro, 0.05)
+chondro.preproc <- chondro.preproc - quantile (chondro.preproc, 0.05)
 
 cluster.cols <- c ("dark blue", "orange", "#C02020")
 cluster.meansd <- aggregate (chondro.preproc, chondro$clusters, mean_pm_sd)
