@@ -38,7 +38,7 @@ open `R` and use command `install.packages("hyperSpec")`. This installs the late
    
    ***Typical erros:*** `No rule to make target '|', needed by 'fileio.pdf'. Stop.`
 
-   ***Solution:*** Update version of `GNU make`. *For Linux*, just downloand last version from the link above. *For Windows*, run `system('where make')` and replace that file by make.exe from [here] (http://www.equation.com/servlet/equation.cmd?fa=make). Too check version of `GNU make` use `make -v`.
+   ***Solution:*** Update version of `GNU make`. *For Linux*, just downloand last version from the link above. *For Windows*, run `system('where make')` and replace that file by make.exe from [here] (http://www.equation.com/servlet/equation.cmd?fa=make). To check version of `GNU make` use `make -v`.
 * Issues of new versions(> 5.0.1) of roxygen2.
 
    ***Typical error:*** `unable to find required package 'roxygen_devtest'`
