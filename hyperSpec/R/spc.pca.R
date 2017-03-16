@@ -10,6 +10,7 @@
 #' @param spc A hyperSpec object
 #' @param ncomps Number of components to keep after the PCA, default to keep all
 #'
+#' @importFrom stats prcomp
 #' @seealso prcomp
 #' @author Roman Kiselev
 #' @return A list with class "prcomp" with additional components
