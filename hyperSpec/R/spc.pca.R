@@ -16,9 +16,23 @@
 #' \code{scores} and \code{loadings}, both hyperSpec objects.
 #' @export spc.pca
 #' @examples
-#' pca <- spc.pca(chondro)
-#' plot(pca$loadings[1:3], stacked=TRUE)
-#' xy
+#' pca <- spc.pca(chondro, 4)
+#' plot(pca$loadings, stacked = TRUE)
+#' splom(pca$scores[[,,1:3]], col = pca$scores$clusters)
+#' 
+#' # Example of PCA-based filtering
+#' noisy <- chondro +  matrix(rnorm(chondro$spc, sd=100), nrow=nrow(chondro))
+#' 
+#' pca.filter <- function(spc, ncomps){
+#'   pca <- spc.pca(spc, ncomps=ncomps, center = FALSE)
+#'   pca$scores %*% pca$loadings
+#' }
+#' 
+#' mfrow = par()$mfrow
+#' par(mfrow=c(2,1))
+#' plot(noisy, col=alpha(1, 0.3)); title("noisy data")
+#' plot(pca.filter(noisy, 7), col=alpha(1, 0.3)); title("PCA-filtered data")
+#' par(mfrow = mfrow)
 spc.pca <- function(spc, ncomps = min(dim(spc$spc)), ...){
   chk.hy (spc)
   validObject (spc)
@@ -43,6 +57,18 @@ spc.pca <- function(spc, ncomps = min(dim(spc$spc)), ...){
     expect_error (spc.pca(chondro[[]]))
     expect_error (spc.pca(1:100))
     expect_error (spc.pca(TRUE))
+  })
+
+  test_that("dimensions of scores and loadings after spc.pca", {
+    nmax = min(nrow(chondro), nwl(chondro))
+    for (ncomps in 1:nmax){
+      pca <- spc.pca(chondro, ncomps)
+      expect_equal(nwl(pca$scores), ncomps)
+      expect_equal(nrow(pca$scores), nrow(chondro))
+
+      expect_equal(nwl(pca$loadings), nwl(chondro))
+      expect_equal(nrow(pca$loadings), ncomps)
+    }
   })
   
   test_that("ncomps is numerical and does not exceed biggest dimension of the spectral matrix", {
