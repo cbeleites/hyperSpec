@@ -2,8 +2,8 @@ Package: hyperSpec
 Type: Package
 Title: Work with Hyperspectral Data, i.e. Spectra + Meta Information (Spatial,
     Time, Concentration, ...)
-Version: 0.98-20170315
-Date: 2017-03-15
+Version: 0.98-20170322
+Date: 2017-03-22
 Author: Claudia Beleites
 Maintainer: Claudia Beleites <chemometrie@beleites.de>
 Description: Comfortable ways to work with hyperspectral data sets.
@@ -133,6 +133,7 @@ Collate:
     'spc.fit.poly.R'
     'spc.identify.R'
     'spc.loess.R'
+    'spc.pca.R'
     'spc.rubberband.R'
     'spc.spline.R'
     'split.R'
