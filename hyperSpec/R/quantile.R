@@ -35,10 +35,11 @@ setMethod ("quantile", signature = signature (x = "hyperSpec"), .quantile)
 ##' 
 ##' These function is provided for convenience.
 ##'
+##' @param x hyperSpec object
 ##' @rdname median
 ##' @return For hyperSpec object, \code{median} returns a hyperSpec object containing 
 ##' median of all spectra
-##' @seealso  \code{\link[hyperSpec]{quantile}}
+##' @seealso  \code{\link{quantile}}
 ##' @export
 ##' @examples
 ##' 

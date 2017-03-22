@@ -250,6 +250,7 @@ spc.fit.poly.below <- function (fit.to, apply.to = fit.to, poly.order = 1,
 ##' in \code{apply.to}. For details, see the \code{vignette ("baseline")}.
 ##' 
 ##' @inheritParams spc.fit.poly.below
+##' @param ... further parameters passed to spc.fit.poly.below
 ##' 
 ##' @return A hyperSpec object with subtracted polynomial baseline
 ##' @export spc.rm.poly.below
