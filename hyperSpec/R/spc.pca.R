@@ -83,15 +83,16 @@ spc.pca <- function(spc, ncomps = min(dim(spc$spc)), ...){
   })
   
   test_that("Extra data propagates to scores", {
-    pca <- spc.pca (chondro, center = FALSE)
+    pca <- spc.pca (chondro)
     expect_identical (chondro$.., pca$scores$..)
   })
   
-  test_that("Reconstructed from PCA object is almost identical to the original one", {
+  test_that("Reconstructed from PCA object is equal to the original one", {
+    pca <- spc.pca (chondro, center = FALSE)
     chondro.new <- pca$scores %*% pca$loadings
     
     expect_identical(wl(chondro.new), wl(chondro))
     expect_identical(chondro.new$.., chondro$..)
-    expect_equal(chondro.new, chondro)
+    expect_equal(chondro.new, chondro, tolerance = 1e-5)
   })
 }
