@@ -1,5 +1,4 @@
 ##' Polynomial Baseline Fitting
-##' 
 ##' These functions fit polynomal baselines.
 ##'
 ##' Both functions fit polynomials to be used as baselines. If \code{apply.to}
@@ -14,7 +13,7 @@
 ##' @rdname baselines
 ##' @concept baseline
 ##' @param fit.to \code{hyperSpec} object on which the baselines are fitted
-##' @param apply.to \code{hyperSpec} object on which the baselines are evaluted.
+##' @param apply.to \code{hyperSpec} object on which the baselines are evaluted
 ##'   If \code{NULL}, a \code{hyperSpec} object containing the polynomial
 ##'   coefficients rather than evaluted baselines is returned.
 ##' @param poly.order order of the polynomial to be used
@@ -103,8 +102,6 @@ spc.fit.poly <- function (fit.to, apply.to = NULL, poly.order = 1, offset.wl = !
 ##' @param npts.min minimal number of points used for fitting the polynomial
 ##' @param noise noise level to be considered during the fit. It may be given
 ##'   as one value for all the spectra, or for each spectrum separately.
-##' @param wl.range range of wavelength in which fitting is carried out, for
-##'   example \code{c(min~1200, 2600~3200)}.
 ##' @param debuglevel  additional output:
 ##'    \code{1} show \code{npts.min}, \code{2} plots support points for 1st spectrum,
 ##'    \code{3} plots support points for all spectra.
@@ -119,7 +116,6 @@ spc.fit.poly <- function (fit.to, apply.to = NULL, poly.order = 1, offset.wl = !
 ##' spc.fit.poly.below(chondro [1:3], debuglevel = 2)
 ##' spc.fit.poly.below(chondro [1:3], debuglevel = 3, noise = sqrt (rowMeans (chondro [[1:3]])))
 spc.fit.poly.below <- function (fit.to, apply.to = fit.to, poly.order = 1,
-                                wl.range = NULL,
                                 npts.min = max (round (nwl (fit.to) * 0.05), 3 * (poly.order + 1)),
                                 noise = 0, offset.wl = FALSE,
                                 debuglevel = hy.getOption("debuglevel")){
@@ -129,14 +125,7 @@ spc.fit.poly.below <- function (fit.to, apply.to = fit.to, poly.order = 1,
 
   validObject (fit.to)
   validObject (apply.to)
-  
-  if (! missing(wl.range)){
-    if (! identical(wl(fit.to), wl(apply.to)))
-      stop("Please specify wavelength range only once, either in the
-            'fit.to' argument or in 'wl.range'")
-    fit.to <- fit.to[,, wl.range]
-  }
-  
+
   if (missing (npts.min) && debuglevel >= 1L)
     message ("Fitting with npts.min = ",  npts.min, "\n")
 
@@ -213,14 +202,7 @@ spc.fit.poly.below <- function (fit.to, apply.to = fit.to, poly.order = 1,
 
 .test (spc.fit.poly.below) <- function (){
   context ("spc.fit.poly.below")
-  
-  test_that ("Wavelength range specification for polynomial baseline", {
-    expect_equal (spc.fit.poly.below (chondro[1:10 , , c(min~1000, 1200~1300)], chondro[1:10]),
-                  spc.fit.poly.below (chondro[1:10], wl.range = c(min~1000, 1200~1300)))
-    expect_error (spc.fit.poly.below (chondro[,,1000~1200],
-                                      chondro, wl.range = 1000~1200))
-  })
-  
+
   test_that("no normalization",
             bl.nonorm <- spc.fit.poly.below (flu, flu, poly.order = 3, offset.wl = FALSE, npts.min = 25)
   )
@@ -241,35 +223,3 @@ spc.fit.poly.below <- function (fit.to, apply.to = fit.to, poly.order = 1,
 }
 
 
-##' Remove polynomial baseline
-##' 
-##' \code{spc.rm.poly.below} is a convenience wrapper around the function
-##' \code{spc.fit.poly.below}. It removes a baseline from the spectra in
-##' the argument \code{fit.to}. The baseline itself is calculated using
-##' function \code{spc.fit.poly.below} and subtracted from the spectra given
-##' in \code{apply.to}. For details, see the \code{vignette ("baseline")}.
-##' 
-##' @inheritParams spc.fit.poly.below
-##' @param ... further parameters passed to spc.fit.poly.below
-##' 
-##' @return A hyperSpec object with subtracted polynomial baseline
-##' @export spc.rm.poly.below
-##' @examples
-##'
-##' spc <- chondro[1:4]
-##' plot (spc.rm.poly.below (spc, poly.order = 3))
-##' plot (spc.rm.poly.below (spc [ , , 800~1200], spc))
-##' plot (spc.rm.poly.below(paracetamol, wl.range = 300~1000))
-##'
-spc.rm.poly.below <- function (fit.to, apply.to = fit.to, ...){
-  apply.to - spc.fit.poly.below(fit.to = fit.to, apply.to = apply.to, ...)
-}
-
-.test (spc.rm.poly.below) <- function (){
-  context ("spc.rm.poly.below")
-  
-  test_that ("Same result as spc.fit.poly.below",
-    expect_equal (spc.rm.poly.below(flu),
-                  flu - spc.fit.poly.below(flu))
-  )
-}
