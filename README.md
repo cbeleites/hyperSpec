@@ -49,3 +49,9 @@ open `R` and use command `install.packages("hyperSpec")`. This installs the late
    ***Typical error:*** `inputenc Error: Unicode char \u8:árq not set up for use with LaTeX`
    
    ***Solution:*** Set language of the session to English as suggested [here](http://stackoverflow.com/questions/13575180/how-to-change-language-settings-in-r).
+
+* After update to `R 3.4.0` building fails, typically on the `flu` vignette.
+
+   ***Typical error:*** Command `make` successfully buils a vignette and then simply stops with something like `make[1]: *** [flu.pdf] Error 1`
+   
+   ***Solution:*** This is a bug in new R. Rollback to R 3.3.x, this is the only option right now. See Issue #45 for more details
