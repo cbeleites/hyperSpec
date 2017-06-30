@@ -32,6 +32,12 @@ open `R` and use command `install.packages("hyperSpec")`. This installs the late
    
    ***Solution:*** Run `make bootstrap` to fix it.
 * Vignette *fileio* needs lots of example files for testing import functions. These are managed by `git lfs`.
+
+   ***Typical error:*** e.g. when building vignette `chondro`, import function complains `Error in scan(file, what, nmax, sep, dec, quote, skip, nlines, na.strings,  :   scan() expected 'a real', found 'version'`  
+   or in vignette `flu`: `Error in .spc.filehdr(f) : 
+  Wrong spc file format version (or no spc file at all).
+Only 'new' spc files (1996 file format) with LSB word order are supported.`
+  
    
    ***Solution:*** Execute `git lfs pull` to get them.
 * Old versions of `GNU make` don't support order-only prerequisites (|).
@@ -55,3 +61,4 @@ open `R` and use command `install.packages("hyperSpec")`. This installs the late
    ***Typical error:*** Command `make` successfully buils a vignette and then simply stops with something like `make[1]: *** [flu.pdf] Error 1`
    
    ***Solution:*** This is a bug in new R. Rollback to R 3.3.x, this is the only option right now. See Issue #45 for more details
+     
