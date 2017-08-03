@@ -2,8 +2,8 @@ Package: hyperSpec
 Type: Package
 Title: Work with Hyperspectral Data, i.e. Spectra + Meta Information (Spatial,
     Time, Concentration, ...)
-Version: 0.98-20170315
-Date: 2017-03-15
+Version: 0.98-20170803
+Date: 2017-08-03
 Author: Claudia Beleites
 Maintainer: Claudia Beleites <chemometrie@beleites.de>
 Description: Comfortable ways to work with hyperspectral data sets.
@@ -37,7 +37,8 @@ Suggests:
     pls,
     mvtnorm,
     digest,
-    reshape
+    reshape,
+    devtools
 Imports:
     testthat,
     methods,
@@ -150,4 +151,4 @@ Collate:
     'write.txt.wide.R'
     'y-pastenames.R'
     'zzz.R'
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1
