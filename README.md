@@ -60,5 +60,5 @@ Only 'new' spc files (1996 file format) with LSB word order are supported.`
 
    ***Typical error:*** Command `make` successfully buils a vignette and then simply stops with something like `make[1]: *** [flu.pdf] Error 1`
    
-   ***Solution:*** This is a bug in R 3.4.0. Rollback to R 3.3.x or update to R 3.4.1. See Issue #45 for more details
+   ***Solution:*** This is a bug in R 3.4.0. Rollback to R 3.3.x or update to R 3.4.1. See Issue [#45](https://github.com/cbeleites/hyperSpec/issues/45) for more details
      
