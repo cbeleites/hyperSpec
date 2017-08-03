@@ -60,7 +60,7 @@ build: all
 
 roxygenize: DESCRIPTION hyperSpec/R/*.R
 	@echo "Roxygenize"
-	@Rscript --vanilla -e "library (roxygen2, quietly=TRUE, verbose = FALSE); roxygenize ('hyperSpec')"
+	@Rscript --vanilla -e "library (methods, quietly=TRUE, verbose = FALSE); library (devtools, quietly=TRUE, verbose = FALSE); document ('hyperSpec')"
 
 DESCRIPTION: $(shell find hyperSpec -maxdepth 1 -daystart -not -ctime 0 -name "DESCRIPTION") #only if not modified today
 	@echo update DESCRIPTION
