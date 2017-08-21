@@ -374,17 +374,19 @@ plotspc <- function  (object,
 
     tmp <- title.args [! names (title.args) %in% c ("x","y", "ylab", "main", "sub")]
     tmp <- modifyList (tmp, as.list (title.args$x))
-    tmp <- modifyList (list (xlab = I(object@label$.wavelength), line = 2.5), tmp)
+    
+    tmp <- modifyList (list (xlab = object@label$.wavelength, line = 2.5), tmp)
     do.call (title, tmp)
+    tmp$xlab <- NULL
 
     tmp <- title.args [! names (title.args) %in% c ("x","y", "xlab", "main", "sub")]
     tmp <- modifyList (tmp, as.list (title.args$y))
-    tmp <- modifyList (list (ylab = I(object@label$spc)), tmp)
+    tmp <- modifyList (list (ylab = object@label$spc), tmp)
     do.call (title, tmp)
-
+    tmp$ylab <- NULL
+    
     tmp <- title.args [! names (title.args) %in% c ("x","y", "xlab", "ylab")]
     tmp <- modifyList (tmp, as.list (title.args [c ("main", "sub")]))
-    tmp <- modifyList (list (ylab = I(object@label$spc)), tmp)
     do.call (title, tmp)
   }
 
