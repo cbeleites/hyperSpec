@@ -9,6 +9,10 @@
 *.bbl
 *.blg
 *.toc
+*.ilg
+*.out
+*.idx
+*.ind
 
 hyperSpec/NAMESPACE
 hyperSpec/data/*.rda
@@ -54,3 +58,10 @@ hyperSpec_*.tar.gz
 # RStudio files
 .Rproj.user
 *.Rproj
+
+Vignettes/*/*-pkg.bib
+Vignettes/chondro/chondro-internal.rda
+Vignettes/fileio/barbiturates.rda
+Vignettes/fileio/paracetamol.rda
+Vignettes/flu/flu.rda
+Vignettes/laser/laser.rda
