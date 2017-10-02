@@ -84,7 +84,8 @@ baseline:
 
 chondro:
 	$(MAKE) -C Vignettes/chondro
-	$(MAKE) -C hyperSpec/inst/doc  chondro.pdf
+	$(MAKE) -C hyperSpec/vignettes  -f Makefile-local chondro.pdf
+	$(MAKE) -C hyperSpec/vignettes  -f Makefile-local chondro.pdf.asis
 
 #	cd $(dir $<) &&	R CMD Sweave chondro.Rnw --clean --pdf --compact="both" --quiet
 
@@ -92,7 +93,8 @@ chondro:
 
 fileio:
 	$(MAKE) -C Vignettes/fileio
-	$(MAKE) -C hyperSpec/inst/doc  fileio.pdf
+	$(MAKE) -C hyperSpec/vignettes  -f Makefile-local fileio.pdf
+	$(MAKE) -C hyperSpec/vignettes  -f Makefile-local fileio.pdf.asis
 
 # flu ..............................................................................................
 

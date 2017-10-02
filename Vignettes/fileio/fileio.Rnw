@@ -1,5 +1,8 @@
 % -*- mode: noweb; noweb-default-code-mode: R-mode; -*-
 \documentclass[english, a4paper, 10pt, headings=small, DIV11]{scrartcl}
+% \VignetteIndexEntry{fileio: Vignette on spectra file import and export for hyperSpec}
+% \VignetteKeywords{hyperSpec, file, spectra, spectrum, import, export}
+% \VignettePackage{hyperSpec}
 \pdfcompresslevel0
 \usepackage{makeidx}
 \makeindex
@@ -11,10 +14,6 @@
  pdfauthor={C. Beleites},
  pdfsubject={Vignette File Import and Export for R package hyperSpec},
  pdfkeywords={hyperSpec, data format, file, import, export}}
-
-% \VignetteIndexEntry{fileio: Import and Export of Spectra into R/hyperSpec}
-% \VignetteKeywords{hyperSpec, import, export, .spc, ENVI, ASCII}
-% \VignettePackage{hyperSpec}
 
 \begin{document}
 \SweaveOpts{concordance=TRUE}
@@ -45,8 +44,8 @@
   an email in addition.
 }\\[1cm]
 \warnbox{Reproducing the Examples in this Vignette}{The source code of this vignette including the
-  spectra files are available as .zip file at \phy's home page:
-  \url{http://hyperspec.r-forge.r-project.org/blob/fileio.zip}
+  spectra files are available at \phy's github page:
+  \url{https://github.com/cbeleites/hyperSpec/tree/master/Vignettes/fileio}
 
  Note that some definitions are in file \texttt{vignettes.defs}.
 }

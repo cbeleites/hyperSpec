@@ -39,6 +39,9 @@ Vignettes/fileio/wdf.Renishaw/WdfAccess
 Vignettes/flu/rawdata/flu*.txt
 Vignettes/plotting/plotting-pkg.bib
 Vignettes/laser/rawdata/*
+hyperSpec/vignettes/chondro.pdf*
+hyperSpec/vignettes/fileio.pdf*
+
 
 hyperSpec_*.tar.gz
 *.Rcheck

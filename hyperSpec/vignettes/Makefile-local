@@ -1,3 +1,5 @@
+# this Makefile is for local use, i.e. building from source. It is not used by R CMD build.
+
 all: vignettes.defs baseline.Rnw flu.Rnw hyperspec.Rnw chondro.pdf fileio.pdf
 
 clean:
@@ -16,15 +18,24 @@ baseline.Rnw: ../../Vignettes/baseline/baseline.Rnw
 
 # chondro
 # for chondro, the vignette is not built as the rawdata is too big for distributing.
-# The .Rnw is a stub and the .pdf is provided in inst/doc
-chondro.pdf: 
-	$(MAKE) -C ../inst/doc/  chondro.pdf
+# Instead we use a static pdf (prebuilt in ../../Vignettes/chondro/) 
+chondro.pdf: ../../Vignettes/chondro/chondro.pdf 
+#	$(MAKE) -C ../../Vignettes/chondro/ chondro.pdf
+	cp -av $< $@
+chondro.pdf.asis: ../../Vignettes/chondro/chondro.Rnw 
+#	$(MAKE) -C ../../Vignettes/chondro/ chondro.pdf
+	cp -av $< $@
+	echo "% \VignetteEngine{R.rsp::asis}" >> $@
 
 # fileio
 # for fileio, the vignette is not built as the rawdata is too big for distributing.
-# The .Rnw is a stub and the .pdf is provided in inst/doc
+# Instead we use a static pdf (prebuilt in ../../Vignettes/fileio/) 
 fileio.pdf: 
 	$(MAKE) -C ../inst/doc/  fileio.pdf
+fileio.pdf.asis: ../../Vignettes/fileio/fileio.Rnw 
+#	$(MAKE) -C ../../Vignettes/fileio/ fileio.pdf
+	cp -av $< $@
+	echo "% \VignetteEngine{R.rsp::asis}" >> $@
 
 # flu
 

@@ -1,4 +1,8 @@
 \documentclass[english, a4paper, 10pt, headings=small, DIV11]{scrartcl}
+% \VignetteIndexEntry{chondro: Vignette demonstrating example workflow using the chondro data set.}
+% \VignetteKeywords{chondro, hyperSpec, cluster analysis, preprocessing, Raman, principal component analysis, PCA}
+% \VignettePackage{hyperSpec}
+
 \SweaveInput{vignettes.defs}
 \hypersetup{pdftitle={Chondro},
  pdfauthor={C. Beleites},
@@ -15,10 +19,9 @@
 \Rpackage{hyperSpec}'s \texttt{chondro} data set }
 \maketitle
 
-\warnbox{Reproducing this vignette}{ The data set and source file of this vignette are available as a
-  zipped archive at \Rpackage{hyperSpec}'s homepage,
-  \url{http://hyperspec.r-forge.r-project.org/blob/chondro.zip} (ca. 9 MB).  The original data file
-  (ca. 31 MB) is far too large to be included in the package.
+\warnbox{Reproducing this vignette}{ The data set and source file of this vignette are available at \Rpackage{hyperSpec}'s github page at 
+ \url{https://github.com/cbeleites/hyperSpec/blob/master/Vignettes/chondro/chondro.Rnw} and 
+  \url{https://github.com/cbeleites/hyperSpec/tree/master/Vignettes/fileio/txt.Renishaw/chondro.txt} (ca. 31 MB). The .Rnw looks for \texttt{rawdata/chondro.txt}, so please save the data file in subdirectory  \texttt{rawdata} of your working directory.
 
   In order to reproduce the examples by typing in the commands, have a look at the definitions of
   color palettes used in this document are defined in \texttt{vignettes.defs}. Also, the package \phy

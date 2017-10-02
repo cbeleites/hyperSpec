@@ -42,7 +42,8 @@ Suggests:
     mvtnorm,
     digest,
     reshape,
-    devtools
+    devtools,
+    R.rsp
 Imports:
     testthat,
     methods,
@@ -50,6 +51,7 @@ Imports:
     latticeExtra
 URL: http://hyperSpec.r-forge.r-project.org/
 BugReports: https://github.com/cbeleites/hyperSpec/issues
+VignetteBuilder: R.rsp
 Collate: 
     'validate.R'
     'hyperspec-class.R'
