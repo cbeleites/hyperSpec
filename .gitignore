@@ -9,6 +9,10 @@
 *.bbl
 *.blg
 *.toc
+*.ilg
+*.out
+*.idx
+*.ind
 
 hyperSpec/NAMESPACE
 hyperSpec/data/*.rda
@@ -17,7 +21,7 @@ hyperSpec/vignettes/*.Rnw
 hyperSpec/vignettes/vignettes.defs
 hyperSpec/vignettes/scan.txt.PerkinElmer.R
 hyperSpec/vignettes/fig-3D.png
-hyperSpec/vignettes/introduction.bib
+hyperSpec/vignettes/hyperspec.bib
 hyperSpec/vignettes/functions.RData
 hyperSpec/vignettes/rawdata
 hyperSpec/inst/doc/*.pdf
@@ -54,3 +58,10 @@ hyperSpec_*.tar.gz
 # RStudio files
 .Rproj.user
 *.Rproj
+
+Vignettes/*/*-pkg.bib
+Vignettes/chondro/chondro-internal.rda
+Vignettes/fileio/barbiturates.rda
+Vignettes/fileio/paracetamol.rda
+Vignettes/flu/flu.rda
+Vignettes/laser/laser.rda

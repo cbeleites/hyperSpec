@@ -9,14 +9,14 @@ clean:
 	$(MAKE) -C Vignettes/chondro      clean
 	$(MAKE) -C Vignettes/fileio       clean
 	$(MAKE) -C Vignettes/flu          clean
-	$(MAKE) -C Vignettes/introduction clean
+	$(MAKE) -C Vignettes/hyperspec clean
 	$(MAKE) -C Vignettes/laser        clean
 	$(MAKE) -C Vignettes/plotting     clean
 	$(MAKE) -C hyperSpec/inst/doc     clean
 	$(MAKE) -C hyperSpec/vignettes -f Makefile-local clean
 
 superclean:
-	@git clean -q -f
+	@git clean -q -f -x -d
 
 # TODO: add dependency `clean`
 
@@ -60,7 +60,7 @@ build: all
 
 roxygenize: DESCRIPTION hyperSpec/R/*.R
 	@echo "Roxygenize"
-	@Rscript --vanilla -e "library (roxygen2, quietly=TRUE, verbose = FALSE); roxygenize ('hyperSpec')"
+	@Rscript --vanilla -e "library (methods, quietly=TRUE, verbose = FALSE); library (devtools, quietly=TRUE, verbose = FALSE); document ('hyperSpec')"
 
 DESCRIPTION: $(shell find hyperSpec -maxdepth 1 -daystart -not -ctime 0 -name "DESCRIPTION") #only if not modified today
 	@echo update DESCRIPTION
@@ -70,7 +70,7 @@ DESCRIPTION: $(shell find hyperSpec -maxdepth 1 -daystart -not -ctime 0 -name "D
 
 # VIGNETTES ########################################################################################
 
-vignettes: chondro flu laser plotting introduction fileio laser plotting baseline
+vignettes: chondro flu laser plotting hyperspec fileio laser plotting baseline
 
 # in subdirs ---------------------------------------------------------------------------------------
 
@@ -100,11 +100,11 @@ flu:
 	$(MAKE) -C Vignettes/flu
 	$(MAKE) -C hyperSpec/vignettes -f Makefile-local flu.Rnw
 
-# introduction .....................................................................................
+# hyperspec vignette (aka introduction) ............................................................
 
-introduction:
-	$(MAKE) -C Vignettes/introduction
-	$(MAKE) -C hyperSpec/vignettes -f Makefile-local introduction.Rnw
+hyperspec:
+	$(MAKE) -C Vignettes/hyperspec
+	$(MAKE) -C hyperSpec/vignettes -f Makefile-local hyperspec.Rnw
 
 # laser ............................................................................................
 

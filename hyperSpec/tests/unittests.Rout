@@ -24,7 +24,7 @@ Lade nötiges Paket: grid
 Package hyperSpec, version 0.98-20120821
 
 To get started, try
-   vignette ("introduction", package = "hyperSpec")
+   vignette ("hyperspec")
    package?hyperSpec 
    vignette (package = "hyperSpec")
 

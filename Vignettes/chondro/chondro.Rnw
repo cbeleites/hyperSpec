@@ -239,10 +239,10 @@ are put again into \Rclass{hyperSpec} objects by \Rfunction{decomposition}:
 pca <- prcomp (chondro, center = TRUE)
 
 scores <- decomposition (chondro, pca$x, label.wavelength = "PC",
-												 label.spc = "score / a.u.")
+                         label.spc = "score / a.u.")
 
 loadings <- decomposition (chondro, t(pca$rotation), scores = FALSE,
-													 label.spc = "loading I / a.u.")
+                           label.spc = "loading I / a.u.")
 @
 
 Plotting the scores of each PC against all other gives a good idea
@@ -337,7 +337,7 @@ also for the distance matrix :
 
 <<hca>>=
 dist <- dist (chondro)
-dendrogram <- hclust (dist, method = "ward")
+dendrogram <- hclust (dist, method = "ward.D")
 @
 
 <<denddummy, eval = FALSE>>=

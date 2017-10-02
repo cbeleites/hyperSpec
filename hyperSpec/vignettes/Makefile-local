@@ -1,4 +1,4 @@
-all: vignettes.defs baseline.Rnw flu.Rnw introduction.Rnw chondro.pdf fileio.pdf
+all: vignettes.defs baseline.Rnw flu.Rnw hyperspec.Rnw chondro.pdf fileio.pdf
 
 clean:
 	rm -f *~ .*~ \#*\#
@@ -35,17 +35,18 @@ flu.Rnw:  ../../Vignettes/flu/flu.Rnw scan.txt.PerkinElmer.R fludata | rawdata
 scan.txt.PerkinElmer.R: ../../Vignettes/fileio/scan.txt.PerkinElmer.R
 	cp -av $< $@
 
-fludata: ../../Vignettes/flu/rawdata/flu*.txt | rawdata
-	cp -av $^ rawdata/
+fludata: ../../Vignettes/flu/rawdata | rawdata
+	cp -av $< .
+	rm -f rawdata/Makefile
 
 rawdata:
 	mkdir $@
 
-# introduction
+# hyperspec vignette (aka introduction)
 
-introduction.Rnw: ../../Vignettes/introduction/introduction.Rnw ../../Vignettes/introduction/strukturhyperspec.pdf \
-                  ../../Vignettes/introduction/functions.RData ../../Vignettes/introduction/introduction.bib
-#	$(MAKE) -C ../../Vignettes/introduction 
+hyperspec.Rnw: ../../Vignettes/hyperspec/hyperspec.Rnw ../../Vignettes/hyperspec/strukturhyperspec.pdf \
+                  ../../Vignettes/hyperspec/functions.RData ../../Vignettes/hyperspec/hyperspec.bib
+#	$(MAKE) -C ../../Vignettes/hyperspec 
 	cp -av $^ ./
 
 # laser

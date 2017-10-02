@@ -2,10 +2,14 @@ Package: hyperSpec
 Type: Package
 Title: Work with Hyperspectral Data, i.e. Spectra + Meta Information (Spatial,
     Time, Concentration, ...)
-Version: 0.98-20170308
-Date: 2017-03-08
+Version: 0.98-20170803
+Date: 2017-08-03
 Author: Claudia Beleites
 Maintainer: Claudia Beleites <chemometrie@beleites.de>
+Authors@R: c(
+    person("Claudia", "Beleites", role = c("aut","cre"), email = "chemometrie@beleites.de"),
+    person("Valter", "Sergo", role = c("aut"))
+    )
 Description: Comfortable ways to work with hyperspectral data sets.
     I.e. spatially or time-resolved spectra, or spectra with any other kind
     of information associated with each of the spectra. The spectra can be data
@@ -37,13 +41,15 @@ Suggests:
     pls,
     mvtnorm,
     digest,
-    reshape
+    reshape,
+    devtools
 Imports:
     testthat,
     methods,
     utils,
     latticeExtra
 URL: http://hyperSpec.r-forge.r-project.org/
+BugReports: https://github.com/cbeleites/hyperSpec/issues
 Collate:
     'validate.R'
     'hyperspec-class.R'
@@ -152,4 +158,4 @@ Collate:
     'write.txt.wide.R'
     'y-pastenames.R'
     'zzz.R'
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1

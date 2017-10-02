@@ -74,7 +74,7 @@ averages $\pm$ one standard deviation are more suitable:
 <<preproc-chondro>>=
 chondro.preproc <- chondro - spc.fit.poly.below (chondro)
 chondro.preproc <- chondro.preproc / rowMeans (chondro)
-chondro.preproc <- chondro.preproc - quantile (chondro, 0.05)
+chondro.preproc <- chondro.preproc - quantile (chondro.preproc, 0.05)
 
 cluster.cols <- c ("dark blue", "orange", "#C02020")
 cluster.meansd <- aggregate (chondro.preproc, chondro$clusters, mean_pm_sd)
@@ -115,9 +115,9 @@ plots the spectra, \ie the intensities \Rcode{\$spc} over the wavelengths \Rcode
 plotspc (flu)
 @ 
 \\
-\plottab{plotmat}{plotmat}
+\plottab{plotmat}{plotmat-flu}
 plots the spectra, \ie the colour coded intensities \Rcode{\$spc} over the wavelengths \Rcode{@wavelength} and the row number.
-<<plotspc, fig = TRUE, width = 4, height = 2.6, include = FALSE >>=
+<<plotmat-flu, fig = TRUE, width = 4, height = 2.6, include = FALSE >>=
 plotmat (flu)
 @ 
 \\\plottab{plotc}{plotflu}
@@ -139,13 +139,13 @@ levelplot (spc ~ x * y, chondro, aspect = "iso")
 Warning: \verb+Only first wavelength is used for plotting+
 \\
 \plottab{plotmap}{plotmap}
-  plotmap is a specialized version of levelplot. It uses a single value (\eg average intensity or cluster membership) over two data columns (default \Rcode{\$x} and \Rcode{\$y})
+  \Rfunction{plotmap} is a specialized version of \Rfunction{levelplot}. It uses a single value (\eg average intensity or cluster membership) over two data columns (default \Rcode{\$x} and \Rcode{\$y})
 <<plotmap, fig = TRUE, width = 4, height = 2.6,include = FALSE >>=
 plotmap (chondro)
 @
 \\
 \plottab{plotvoronoi}{voronoi}
-  plotmap is a specialized version of levelplot. It uses a single value (\eg average intensity or cluster membership) over two data columns (default \Rcode{\$x} and \Rcode{\$y})
+  Function \Rfunction{plotvoronoi} is a special version of \Rfunction{plotmap} that produces Voronoi diagram of the hyperSpec object.
 <<voronoi, fig = TRUE, width = 4, height = 2.6,include = FALSE >>=
 plotvoronoi (sample (chondro, 300), clusters ~ x * y)
 @
@@ -571,12 +571,61 @@ If the colour-coded variable is a factor, each level gets its own colour, and th
 accordingly.
 \\
 \plottab{different palette}{plotmap-col} 
-To plot with a different palette, use \Rcode{trellis.args = list (col.regions = palette)}.
+To plot with a different palette, use argument \Rcode{col.regions}.
 <<plotmap-col, fig = TRUE, width = 4, height = 2.6,include = FALSE >>=
-print (plotmap (chondro, clusters ~ x * y,
-                col.regions = cluster.cols))
+plotmap (chondro, clusters ~ x * y,
+                col.regions = cluster.cols)
 @
-\\
+\end{longtable}
+
+\textbf{Fine tuning \Rfunction{lattice} parameters}\\
+
+The plotting of color maps is done via R package \Rfunction{lattice} (aka Trellis graphic approach),
+which is highly customizable. Use \Rfunction{trellis.par.get} and
+\Rfunction{trellis.par.set} to get/set the settings for the current graphics device.
+
+<<lattice-params, fig = FALSE >>=
+my.theme = trellis.par.get()
+names(my.theme)       # note how many parameters are tunable
+@
+
+Any of these parameters can be fine-tuned to produce the desired output. For example,
+parameter \Rcode{my.theme\$region} is responsible for the appearance of color maps,
+and it contains elements \Rcode{\$alpha} and \Rcode{\$col}. By changing this parameters
+you can create your own theme for plotting and pass it to the plotting function
+via \Rcode{par.settings}.
+
+\begin{longtable}{@{}p{\plotcol} p{\textcol}}
+\plottab{changed palette}{plotmap-col-default}
+This plot uses a customized lattice theme.
+<<plotmap-col-default, fig = TRUE, width = 4, height = 2.6, include = FALSE >>=
+my.theme$regions$col = grDevices::terrain.colors
+plotmap (chondro, par.settings = my.theme)
+@
+\end{longtable}
+
+It is possible to \textbf{persistently} (i.e. inside of the current R session) set
+\Rfunction{lattice} parameters, so they would apply to all further plots.
+This is done via a call to \Rcode{trellis.par.set}, for example
+\Rcode{trellis.par.set(my.theme)}.
+
+The current settings can be visualized via a call to \Rfunction{show.settings()}
+
+\begin{longtable}{@{}p{\plotcol} p{\textcol}}
+\plottab{show current lattice settings}{lattice-settings}
+<<lattice-settings, fig = TRUE, width = 8, height = 6, include = FALSE, echo = FALSE >>=
+show.settings(my.theme)
+@
+<<lattice-settings-dummy, fig = FALSE >>=
+# Display current trellis parameters
+show.settings()
+@
+\end{longtable}
+
+An overview of different color palettes, and ways to create your own, can be found
+in the \textbf{R color cheatsheet}.
+
+\begin{longtable}{@{}p{\plotcol} p{\textcol}}
 \plottab{defined wavelengths}{plotmap-wave}
 To plot a map of the average intensity at particular wavelengths use extraction:  
 <<plotmap-wave, fig = TRUE, width = 4, height = 2.6,include = FALSE >>=
