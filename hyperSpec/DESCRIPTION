@@ -2,8 +2,8 @@ Package: hyperSpec
 Type: Package
 Title: Work with Hyperspectral Data, i.e. Spectra + Meta Information (Spatial,
     Time, Concentration, ...)
-Version: 0.98-20170803
-Date: 2017-08-03
+Version: 0.98-20171002
+Date: 2017-10-02
 Author: Claudia Beleites
 Maintainer: Claudia Beleites <chemometrie@beleites.de>
 Authors@R: c(
@@ -50,7 +50,7 @@ Imports:
     latticeExtra
 URL: http://hyperSpec.r-forge.r-project.org/
 BugReports: https://github.com/cbeleites/hyperSpec/issues
-Collate:
+Collate: 
     'validate.R'
     'hyperspec-class.R'
     'unittest.R'
@@ -83,6 +83,8 @@ Collate:
     'fileio.optional.R'
     'flu.R'
     'getbynames.R'
+    'options.R'
+    'regexps.R'
     'guesswavelength.R'
     'paracetamol.R'
     'laser.R'
@@ -101,7 +103,6 @@ Collate:
     'merge.R'
     'mvtnorm.R'
     'normalize01.R'
-    'options.R'
     'orderwl.R'
     'pearson.dist.R'
     'plot.R'
@@ -127,7 +128,6 @@ Collate:
     'read.txt.Shimadzu.R'
     'read.txt.long.R'
     'read.txt.wide.R'
-    'regexps.R'
     'replace.R'
     'sample.R'
     'scale.R'
