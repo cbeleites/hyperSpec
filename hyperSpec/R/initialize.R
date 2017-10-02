@@ -263,9 +263,10 @@ setMethod ("initialize", "hyperSpec", .initialize)
 #' These functions are shortcuts to convert other objects into hypeSpec objects. 
 #'
 #' @param X the object to convert
-#' @param ... additional parameters that should be handed over to \code{new ("hyperSpec")}
+#' @param ... additional parameters that should be handed over to \code{new ("hyperSpec")} (initialize)
 #'
 #' @return hyperSpec object
+#' @seealso \code{\link[hyperSpec]{initialize}}
 #' @export
 setGeneric ("as.hyperSpec", 
             function (X, ...){
@@ -279,7 +280,7 @@ setGeneric ("as.hyperSpec",
 }
 
 #' @rdname as.hyperSpec
-#' @param wl wavelength vector. Defaults to guessing from the column names \code{X}
+#' @param wl wavelength vector. Defaults to guessing from the column names in \code{X}
 #' @export
 #' 
 #' @examples
@@ -288,6 +289,7 @@ setGeneric ("as.hyperSpec",
 #' guess.wavelength (wl)
 
 setMethod ("as.hyperSpec", "matrix", .as.hyperSpec.matrix)
+#' @rdname as.hyperSpec
 setMethod ("as.hyperSpec", "data.frame", .as.hyperSpec.matrix)
 
 ##' @include unittest.R
