@@ -230,7 +230,7 @@ a header or it is not important and can safely be skipped, you may want to impor
 \Rfunction{scan}.
 
 Note that R allows to use a variety of compressed file formats directly as ASCII files (for example,
-see section \ref{sec:scan.txt.Renishaw} on p.~\pageref{sec:scan.txt.Renishaw}). Also, both
+see section \ref{sec:read.txt.Renishaw} on p.~\pageref{sec:read.txt.Renishaw}). Also, both
 \Rfunction{read.txt.long} and \Rfunction{read.txt.wide} accept connections instead of file names.
 
 \subsection{ASCII files with samples in columns}
@@ -268,7 +268,7 @@ triazine
 plot (triazine [1])
 @
 
-Witec also saves ASCII data with spectra in columns (Export $\rightarrow$ Table), see \ref{sec:scan.txt.Witec}.
+Witec also saves ASCII data with spectra in columns (Export $\rightarrow$ Table), see \ref{sec:read.txt.Witec}.
 
 \subsection{JCAMP-DX}
 \label{sec:jcamp-dx}
@@ -721,7 +721,7 @@ spc
 @
 
 \subsection{Renishaw Raman}
-\label{sec:scan.txt.renishaw}
+\label{sec:read.txt.renishaw}
 \index{Raman!Renishaw!spc}
 \index{Renishaw!Raman}
 \index{Renishaw!spc}
@@ -737,7 +737,7 @@ although this was de-selected in the converter. We therefore recommend using the
 Otherwise the import using \Rfunction{read.spc} worked.
 
 \subsubsection{Renishaw ASCII data}
-\label{sec:scan.txt.Renishaw}
+\label{sec:read.txt.Renishaw}
 \index{ASCII!long!Raman}
 \index{ASCII!long!Renishaw}
 \index{ASCII!compressed}
@@ -747,21 +747,21 @@ Otherwise the import using \Rfunction{read.spc} worked.
 \index{Renishaw!Raman}
 \index{Renishaw!ASCII long}
 %
-An optimized import function for the ASCII files is available: \Rfunction{scan.txt.Renishaw}. The
+An optimized import function for the ASCII files is available: \Rfunction{read.txt.Renishaw}. The
 file may be compressed via gzip, bzip2, xz or lzma. zip compressed files are read via
-\Rfunction{scan.zip.Renishaw}.  The ASCII files can easily become very large, particularly with
-linefocus- or streamline imaging.  \Rfunction{scan.txt.Renishaw} provides two mechanisms to avoid
+\Rfunction{read.zip.Renishaw}.  The ASCII files can easily become very large, particularly with
+linefocus- or streamline imaging.  \Rfunction{read.txt.Renishaw} provides two mechanisms to avoid
 running out of memory during data import. The file may be imported in chunks of a given number of
-lines (see the last example). \Rfunction{scan.txt.Renishaw} can calculate the correct number of
+lines (see the last example). \Rfunction{read.txt.Renishaw} can calculate the correct number of
 wavelengths (\ie data points per spectrum) if the system command \texttt{wc} is available on your
 computer.
 
 In addition, the processing of the long ASCII format into the spectra matrix is done by reshaping the
 vector of intensities into a matrix. This process does not allow any missing values in the data.
 \emph{Therefore it is not possible to import multi-spectra files with individually ``zapped'' spectra
-  using \Rfunction{scan.txt.Renishaw}.}
+  using \Rfunction{read.txt.Renishaw}.}
 
-The second argument to  \Rfunction{scan.txt.Renishaw} decides what type of experiment is imported.
+The second argument to  \Rfunction{read.txt.Renishaw} decides what type of experiment is imported.
 Supported types are:
 \begin{labeling}{\Rcode{\textquotedbl depth\textquotedbl}, \Rcode{\textquotedbl zspc\textquotedbl}}
 \item[\Rcode{\textquotedbl xyspc\textquotedbl}] maps, images, multiple spectra with $x$ and $y$
@@ -771,29 +771,29 @@ coordinates (default)
 \item[\Rcode{\textquotedbl ts\textquotedbl}] time series
 \end{labeling}
 
-Instead of a file name, \Rfunction{scan.txt.Renishaw} accepts also a connection.
+Instead of a file name, \Rfunction{read.txt.Renishaw} accepts also a connection.
 
-<<scan.txt.Renishaw>>=
-paracetamol <- scan.txt.Renishaw ("txt.Renishaw/paracetamol.txt", "spc")
+<<read.txt.Renishaw>>=
+paracetamol <- read.txt.Renishaw ("txt.Renishaw/paracetamol.txt", "spc")
 paracetamol
 save (paracetamol, file = "paracetamol.rda")
-scan.txt.Renishaw ("txt.Renishaw/laser.txt.gz", "ts")
+read.txt.Renishaw ("txt.Renishaw/laser.txt.gz", "ts")
 @
 
 Very large files can  be read in chunks to save  memory:
-<<scan.txt.Renishaw>>=
-scan.txt.Renishaw ("txt.Renishaw/chondro.txt", nlines = 1e5, nspc = 875)
+<<read.txt.Renishaw>>=
+read.txt.Renishaw ("txt.Renishaw/chondro.txt", nlines = 1e5, nspc = 875)
 @
 
 R accepts a variety of compressed file formats for ASCII files:
-<<scan.txt.Renishaw-compressed, results = hide>>=
-scan.txt.Renishaw ("txt.Renishaw/chondro.gz")
-scan.txt.Renishaw ("txt.Renishaw/chondro.xz")
-scan.txt.Renishaw ("txt.Renishaw/chondro.lzma")
-scan.txt.Renishaw ("txt.Renishaw/chondro.gz")
-scan.txt.Renishaw ("txt.Renishaw/chondro.bz2")
+<<read.txt.Renishaw-compressed, results = hide>>=
+read.txt.Renishaw ("txt.Renishaw/chondro.gz")
+read.txt.Renishaw ("txt.Renishaw/chondro.xz")
+read.txt.Renishaw ("txt.Renishaw/chondro.lzma")
+read.txt.Renishaw ("txt.Renishaw/chondro.gz")
+read.txt.Renishaw ("txt.Renishaw/chondro.bz2")
 
-scan.zip.Renishaw ("txt.Renishaw/chondro.zip")
+read.zip.Renishaw ("txt.Renishaw/chondro.zip")
 @
 
 \subsection{Horiba / Jobin Yvon (e.g. LabRAM) }
@@ -843,18 +843,18 @@ if (any (dim (spc) != c (100, 3, 1024)) ||
 rm (spc)
 @
 \subsection{Andor Solis}
-\label{sec:scan.asc.Andor}
+\label{sec:read.asc.Andor}
 \index{Andor Solis!ASCII}
 \index{ASCII!Andor Solis}
 \index{Raman!Andor Solis!ASCII}
 
-Andor Solis exports ASCII files that can be read with \Rfunction{scan.asc.Andor}:
+Andor Solis exports ASCII files that can be read with \Rfunction{read.asc.Andor}:
 <<>>=
-scan.asc.Andor("asc.Andor/ASCII-Andor-Solis.asc")
+read.asc.Andor("asc.Andor/ASCII-Andor-Solis.asc")
 @
 
 \subsection{Witec}
-\label{sec:scan.txt.Witec}
+\label{sec:read.txt.Witec}
 \index{Witec!ASCII}
 \index{ASCII!Witec}
 \index{Graph ASCII!Witec}
@@ -873,19 +873,19 @@ read.spc ("spc.Witec/Witec-Map.spc")
 @
 \texttt{.spc} is in general the recommended format for \phy import. For imaging data no spatial information for the set of spectra is provided (in version 2.10 this export option is not supported).
 
-Imaging data (but also single spectra and time series) can be exported as ASCII X and Y files (Save ASCII X and Save ASCII Y, not supported in version 4). These can be read by \Rfunction{scan.dat.Witec}:
+Imaging data (but also single spectra and time series) can be exported as ASCII X and Y files (Save ASCII X and Save ASCII Y, not supported in version 4). These can be read by \Rfunction{read.dat.Witec}:
 <<witec-dat, results=hide>>=
-scan.dat.Witec ("txt.Witec/Witec-timeseries-x.dat")
-scan.dat.Witec (filex = "txt.Witec/Witec-Map-x.dat",
+read.dat.Witec ("txt.Witec/Witec-timeseries-x.dat")
+read.dat.Witec (filex = "txt.Witec/Witec-Map-x.dat",
                 points.per.line = 5, lines.per.image = 5, type = "map")
 @
 Note that the Y data files also contain a wavelength information, but (at least Witec Project 2.10) this information is always wavelength in nm, not Raman shift in wavenumbers: this is provided by the X data file only.
 
-Another option is Witec's txt table ASCII export (Export $\rightarrow$ Table), which produces ASCII files with each row corresponding to one wavelength. The first column contains the wavelength axis, all further columns contain one spectrum each column. Such files can be read with \Rfunction{scan.txt.Witec}:
+Another option is Witec's txt table ASCII export (Export $\rightarrow$ Table), which produces ASCII files with each row corresponding to one wavelength. The first column contains the wavelength axis, all further columns contain one spectrum each column. Such files can be read with \Rfunction{read.txt.Witec}:
 <<witec-txt, results=hide>>=
-scan.txt.Witec ("txt.Witec/Witec-timeseries_no.txt")
+read.txt.Witec ("txt.Witec/Witec-timeseries_no.txt")
 @
-\Rfunction{scan.txt.Witec} determines the number of wavelengths automaticallly.
+\Rfunction{read.txt.Witec} determines the number of wavelengths automaticallly.
 
 Note that there are several Export Filter Options. Here you can determine, which units should be used for the export (see XUnits tab). In addition, it is possible to export two additional header lines containing information about spectra labels and units. Therefore parameters \Rfunarg{hdr.label} and \Rfunarg{hdr.units} have to be set properly. Otherwise, either an error will be displayed like
 <<witec-txt-error, echo=FALSE>>=
@@ -914,30 +914,30 @@ for (f in seq_along(files)){
 For imaging data set parameter \Rfunarg{type} to "map". If the label header is exported, the spatial information can be extracted from this line. Otherwise, at least one, \Rfunarg{points.per.line} or \Rfunarg{lines.per.image}, has to be given manually, if not, a warning will be shown.
 
 <<witec-txt-map, results=hide, echo = FALSE>>=
-scan.txt.Witec ("txt.Witec/Witec-Map_full.txt", type = "map", hdr.label = TRUE, hdr.units = TRUE)
+read.txt.Witec ("txt.Witec/Witec-Map_full.txt", type = "map", hdr.label = TRUE, hdr.units = TRUE)
 
-scan.txt.Witec ("txt.Witec/Witec-Map_label.txt", type = "map", hdr.label = TRUE, hdr.units = FALSE)
+read.txt.Witec ("txt.Witec/Witec-Map_label.txt", type = "map", hdr.label = TRUE, hdr.units = FALSE)
 
-scan.txt.Witec ("txt.Witec/Witec-Map_unit.txt", type = "map", hdr.label = FALSE, hdr.units = TRUE)
+read.txt.Witec ("txt.Witec/Witec-Map_unit.txt", type = "map", hdr.label = FALSE, hdr.units = TRUE)
 
-scan.txt.Witec ("txt.Witec/Witec-Map_unit.txt", type = "map", hdr.label = FALSE, hdr.units = TRUE,
+read.txt.Witec ("txt.Witec/Witec-Map_unit.txt", type = "map", hdr.label = FALSE, hdr.units = TRUE,
                 points.per.line = 5)
 
-scan.txt.Witec ("txt.Witec/Witec-Map_no.txt", type = "map", hdr.label = FALSE, hdr.units = FALSE)
+read.txt.Witec ("txt.Witec/Witec-Map_no.txt", type = "map", hdr.label = FALSE, hdr.units = FALSE)
 
-scan.txt.Witec ("txt.Witec/Witec-Map_no.txt", type = "map", hdr.label = FALSE, hdr.units = FALSE,
+read.txt.Witec ("txt.Witec/Witec-Map_no.txt", type = "map", hdr.label = FALSE, hdr.units = FALSE,
                 lines.per.image = 5)
 
-scan.txt.Witec ("txt.Witec/Witec-Map_no.txt", type = "map", hdr.label = FALSE, hdr.units = FALSE,
+read.txt.Witec ("txt.Witec/Witec-Map_no.txt", type = "map", hdr.label = FALSE, hdr.units = FALSE,
                 points.per.line = 5, lines.per.image = 5)
 @
 For line scans and z-stacks use \Rfunarg{type = "single"} because the provided information are looking the same like for timeseries, so no further information can be extracted from the header files.
 
-Since version 4 WITec Project offers the Graph ASCII export (Export $\rightarrow$ Graph ASCII) which produces three ASCII files, named Header containing additional information, X-Axis containing the wavelength values and Y-Axis containing the spectra one spectrum in each column. Data exported in this way can be read with \Rfunction{scan.txt.Witec.Graph}:
+Since version 4 WITec Project offers the Graph ASCII export (Export $\rightarrow$ Graph ASCII) which produces three ASCII files, named Header containing additional information, X-Axis containing the wavelength values and Y-Axis containing the spectra one spectrum in each column. Data exported in this way can be read with \Rfunction{read.txt.Witec.Graph}:
 <<witec-txt-Graph, results=hide>>=
-scan.txt.Witec.Graph ("txt.Witec/Witec-timeseries (Header).txt")
-scan.txt.Witec.Graph ("txt.Witec/Witec-Map (Header).txt", type = "map")
-scan.txt.Witec.Graph ("txt.Witec/nofilename (Header).txt", encoding = "latin1")
+read.txt.Witec.Graph ("txt.Witec/Witec-timeseries (Header).txt")
+read.txt.Witec.Graph ("txt.Witec/Witec-Map (Header).txt", type = "map")
+read.txt.Witec.Graph ("txt.Witec/nofilename (Header).txt", encoding = "latin1")
 @
 This function reads the spectra files automatically, if they are named properly and extracts additional information of the header file. As for the other Witec functions it is possible to read image data by by selecting \Rfunarg{type = "map"}. Line scans and z-stacks should be read as single spectra.
 
@@ -947,7 +947,7 @@ This section gives examples how to write import functions. The first example imp
 filter for an ASCII file format basically from scratch. The second example shows how to implement
 more details for an already existing import filter.
 
-\subsection{A new ASCII Import Function: scan.txt.PerkinElmer}
+\subsection{A new ASCII Import Function: read.txt.PerkinElmer}
 \label{sec:read.txt.PerkinElmer}
 \index{ASCII!long!Fluorescence}
 \index{ASCII!long!PerkinElmer}
@@ -981,17 +981,17 @@ wavelength axis as the others.
 to stop with an error, but it is polite to issue an additional warning.
 \end{itemize}
 
-\VerbatimInput[frame=single, label={scan.txt.PerkinElmer.R},
-formatcom=\footnotesize]{scan.txt.PerkinElmer.R}
+\VerbatimInput[frame=single, label={read.txt.PerkinElmer.R},
+formatcom=\footnotesize]{read.txt.PerkinElmer.R}
 
 Note how the labels are set. The label with the special name \Rcode{.wavelength} corresponds to the
 wavelength axis, all data columns should have a label with the same name. The spectra are always in a
 data column called \Rcode{spc}.
 
 Thus,
-<<scan.txt.PerkinElmer>>=
-source ("scan.txt.PerkinElmer.R")
-scan.txt.PerkinElmer ("txt.PerkinElmer/flu?.txt", skip = 54)
+<<read.txt.PerkinElmer>>=
+source ("read.txt.PerkinElmer.R")
+read.txt.PerkinElmer ("txt.PerkinElmer/flu?.txt", skip = 54)
 @
 imports the spectra.
 

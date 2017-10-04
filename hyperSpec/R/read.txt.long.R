@@ -59,7 +59,7 @@
 ##'
 ##' \code{\link[hyperSpec]{read.spc}} for .spc files
 ##'
-##' Manufacturer specific file formats: \code{\link{scan.txt.Renishaw}}
+##' Manufacturer specific file formats: \code{\link{read.txt.Renishaw}}
 ##' @rdname textio
 ##' @keywords IO file
 ##' @export

@@ -1,4 +1,4 @@
-scan.txt.PerkinElmer <- function (files = "*.txt",  ..., label = list ()) {
+read.txt.PerkinElmer <- function (files = "*.txt",  ..., label = list ()) {
   ##  set some defaults
   long <- list (files = files, ..., label = label)
 

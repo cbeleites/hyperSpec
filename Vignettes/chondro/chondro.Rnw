@@ -89,14 +89,14 @@ The measurement parameters were:
 Renishaw provides a converter to export their proprietary data in a so-called long format ASCII
 file. Raman maps are exported having four columns, \emph{y}, \emph{x}, \emph{raman shift}, and
 \emph{intensity}.  \Rpackage{hyperSpec} comes with a function to import such files,
-\Rfunction{scan.txt.Renishaw}. The function assumes a map as default, but can also handle single
+\Rfunction{read.txt.Renishaw}. The function assumes a map as default, but can also handle single
 spectra (\Rcode{data = \textquotedbl{}spc\textquotedbl{}}), time series (\Rcode{data =
   \textquotedbl{}ts\textquotedbl{}}), and depth profiles (\Rcode{data =
 \textquotedbl{}depth\textquotedbl{}}).  In addition, large files may be processed in chunks. In order
-to speed up the reading \Rfunction{scan.txt.Renishaw} does not allow missing values, but it does work
+to speed up the reading \Rfunction{read.txt.Renishaw} does not allow missing values, but it does work
 with \Rcode{NA}.
 <<import>>=
-chondro <- scan.txt.Renishaw ("rawdata/chondro.txt", data = "xyspc")
+chondro <- read.txt.Renishaw ("rawdata/chondro.txt", data = "xyspc")
 chondro
 @
 

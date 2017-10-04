@@ -1628,12 +1628,12 @@ can consume large amounts of memory. At certain points, \phy provides switches t
 with data sets that are actually close to this memory limit.
 
 \mFun{\Rcode{new ("hyperSpec")}, \Rfunction{read.ENVI*},
-\Rfunction{scan.txt.Renishaw}}\index{options!gc}
+\Rfunction{read.txt.Renishaw}}\index{options!gc}
 The initialization method \Rcode{new ("hyperSpec", \ldots)} takes particular care to avoid
 unneccessary copies of the spectra matrix. In addition, frequent calls to \Rcode{gc ()} can be
 requested by \Rcode{hy.setOption (gc = TRUE)}. The same behaviour is triggered in
 \Rfunction{read.ENVI} and its derivatives (\Sexpr{texListFun("read.ENVI")}). The memory consumption
-of \Rfunction{scan.txt.Renishaw} can be lowered by importing the data in chunks (argument
+of \Rfunction{read.txt.Renishaw} can be lowered by importing the data in chunks (argument
 \Rfunarg{nlines}).
 
 \printindex

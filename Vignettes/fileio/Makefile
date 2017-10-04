@@ -47,7 +47,7 @@ mat.Witec = mat.Witec/LineX.mat mat.Witec/LineY.mat mat.Witec/Map.mat mat.Witec/
 
 NIST      = NIST/mercurytable2.htm
 
-pz2       = pz2/handyspec_soilplant.PZ2 pz2/scan.txt.pz2.R
+pz2       = pz2/handyspec_soilplant.PZ2 pz2/read.txt.pz2.R
 
 spc       = spc/BARBITUATES.SPC spc/barbsvd.spc spc/BENZENE.SPC spc/CONTOUR.SPC spc/DEMO\ 3D.SPC \
           spc/DRUG\ SAMPLE_PEAKS.SPC spc/DRUG\ SAMPLE.SPC spc/FID.SPC spc/HCL.SPC spc/HOLMIUM.SPC \

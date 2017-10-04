@@ -1,7 +1,7 @@
 ##' Import Raman Spectra/Maps from Witec Instrument via ASCII files
 ##'
-##' \code{scan.txt.Witec} reads Witec ASCII files where the first column gives the wavelength
-##' axes and the other columns the spectra. \code{scan.dat.Witec} reads Witec's ASCII exported data
+##' \code{read.txt.Witec} reads Witec ASCII files where the first column gives the wavelength
+##' axes and the other columns the spectra. \code{read.dat.Witec} reads Witec's ASCII exported data
 ##' which comes in separate files with x and y data.
 ##' @title File Import Witec Raman
 ##' @param file filename or connection to ASCII file
@@ -21,7 +21,7 @@
 ##' \code{\link{options}} for details on options.
 ##' @export
 ##' @importFrom utils head
-scan.txt.Witec <- function (file = stop ("filename or connection needed"),
+read.txt.Witec <- function (file = stop ("filename or connection needed"),
                             points.per.line = NULL,
                             lines.per.image = NULL,
                             nwl = NULL,
@@ -77,11 +77,11 @@ scan.txt.Witec <- function (file = stop ("filename or connection needed"),
 }
 
 
-##' @rdname scan.txt.Witec
+##' @rdname read.txt.Witec
 ##' @param filex filename wavelength axis file
 ##' @param filey filename intensity file
 ##' @export
-scan.dat.Witec <- function (filex = stop ("filename or connection needed"),
+read.dat.Witec <- function (filex = stop ("filename or connection needed"),
                             filey = sub ("-x", "-y", filex),
                             points.per.line = NULL,
                             lines.per.image = NULL,
@@ -112,10 +112,10 @@ scan.dat.Witec <- function (filex = stop ("filename or connection needed"),
     .fileio.optional (spc, filey)
 }
 
-##' @rdname scan.txt.Witec
+##' @rdname read.txt.Witec
 ##' @param headerfile filename or connection to ASCII file with header information
 ##' @export
-scan.txt.Witec.Graph <- function (headerfile = stop ("filename or connection needed"),
+read.txt.Witec.Graph <- function (headerfile = stop ("filename or connection needed"),
                                   filex = gsub ("Header", "X-Axis", headerfile),
                                   filey = gsub ("Header", "Y-Axis", headerfile),
                                   type = c ("single", "map"), encoding = "unknown",

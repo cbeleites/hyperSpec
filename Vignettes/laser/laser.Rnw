@@ -34,7 +34,7 @@ check.req.pkg ("rgl", donothing = "")
 }
 
 <<loadlaser, echo = FALSE, include = FALSE>>=
-laser <- scan.txt.Renishaw ("rawdata/laser.txt.gz", data = "ts")
+laser <- read.txt.Renishaw ("rawdata/laser.txt.gz", data = "ts")
 @
 
 \section{Introduction}
@@ -55,7 +55,7 @@ This document shows
 \section{Loading the Data and Preprocessing}
 
 <<rawspc, fig = TRUE, width = 5, height = 3, include = FALSE>>=
-laser <- scan.txt.Renishaw ("rawdata/laser.txt.gz", data = "ts")
+laser <- read.txt.Renishaw ("rawdata/laser.txt.gz", data = "ts")
 plot (laser, "spcprctl5") 
 @
 

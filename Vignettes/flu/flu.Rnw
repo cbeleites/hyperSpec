@@ -43,12 +43,12 @@ Perkin Elmer LS50-B fluorescence spectrometer at 350 nm excitation.
 \section{Writing an Import Function}
 The raw spectra are in Perkin Elmer's ASCII file format, one spectrum per file. The files are completely ASCII text, with the actual spectra starting at line 55.
 
-The function to import these files,  \Rfunction{scan.txt.PerkinElmer}, is discussed in the ``FileIO'' vignette, please refer to that document for details.
+The function to import these files,  \Rfunction{read.txt.PerkinElmer}, is discussed in the ``FileIO'' vignette, please refer to that document for details.
 
 It  needs to be \Rfunction{source}d before use:
 <<read.txt.PE>>=
-source ("scan.txt.PerkinElmer.R")
-flu <- scan.txt.PerkinElmer ("rawdata/flu?.txt", skip = 54)
+source ("read.txt.PerkinElmer.R")
+flu <- read.txt.PerkinElmer ("rawdata/flu?.txt", skip = 54)
 @
 Now the spectra are in a \Rclass{hyperSpec} object and can be examined e.g. by
 <<rawspc>>=
@@ -75,7 +75,7 @@ flu$c
 
 \section{Dropping data columns}
 \label{sec:dropp-data-columns}
-\Rfunction{scan.txt.PerkinElmer} added a column with the file names that we don't need.
+\Rfunction{read.txt.PerkinElmer} added a column with the file names that we don't need.
 It is therefore deleted:
 <<delcol>>=
 flu$file <- NULL
