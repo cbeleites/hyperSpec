@@ -704,14 +704,15 @@ head (as.long.df (flu), 20)
 <<>>=
 flu [[]]
 class (flu [[]])
-@ \Rfunction{[[]]} takes the same arguments as \Rfunction{[]}, and can be used to extract a matrix
+@ 
+\Rfunction{[[]]} takes the same arguments as \Rfunction{[]}, and can be used to extract a matrix
 containing parts of the spectra matrix:
 <<>>=
 flu [[1:3,, 406 ~ 407]]
 @
 If indices for the columns to extract are given, a \df is returned instead of a matrix:
 <<>>=
-flu [[1:3, c ("file", "spc"), 406 ~ 407]]
+flu [[1:3, c ("filename", "spc"), 406 ~ 407]]
 @
 
 <<>>=
