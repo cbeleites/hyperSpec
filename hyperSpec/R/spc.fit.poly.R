@@ -102,6 +102,9 @@ spc.fit.poly <- function (fit.to, apply.to = NULL, poly.order = 1, offset.wl = !
 ##' @param npts.min minimal number of points used for fitting the polynomial
 ##' @param noise noise level to be considered during the fit. It may be given
 ##'   as one value for all the spectra, or for each spectrum separately.
+##' @param max.iter stop at the latest after so many iterations. 
+##' @param stop.on.increase additional stopping rule: stop if the number of support points would increase, 
+##' regardless whether npts.min was reached or not.
 ##' @param debuglevel  additional output:
 ##'    \code{1} show \code{npts.min}, \code{2} plots support points for 1st spectrum,
 ##'    \code{3} plots support points for all spectra.
@@ -115,10 +118,15 @@ spc.fit.poly <- function (fit.to, apply.to = NULL, poly.order = 1, offset.wl = !
 ##' spc.fit.poly.below(chondro [1:3], debuglevel = 1)
 ##' spc.fit.poly.below(chondro [1:3], debuglevel = 2)
 ##' spc.fit.poly.below(chondro [1:3], debuglevel = 3, noise = sqrt (rowMeans (chondro [[1:3]])))
+##' 
 spc.fit.poly.below <- function (fit.to, apply.to = fit.to, poly.order = 1,
                                 npts.min = max (round (nwl (fit.to) * 0.05), 3 * (poly.order + 1)),
-                                noise = 0, offset.wl = FALSE,
+                                noise = 0, offset.wl = FALSE, max.iter = nwl (fit.to), 
+                                stop.on.increase = FALSE,
                                 debuglevel = hy.getOption("debuglevel")){
+  ## for debuglevel >= 2L
+  cols <- matlab.dark.palette(max.iter)
+  
   chk.hy (fit.to)
   if (! is.null (apply.to))
     chk.hy (apply.to)
@@ -156,10 +164,9 @@ spc.fit.poly.below <- function (fit.to, apply.to = fit.to, poly.order = 1,
 
     if (debuglevel == 2L && i == 1L || debuglevel >= 3L) {
       plot(fit.to [i], title.args = list (main = paste ("spectrum", i)))
-      iter <- 0
     }
 
-    repeat {
+    for (iter in 1 : max.iter) {
       p[i,] <- qr.solve (vdm[use,], y[use, i])
       bl <- vdm %*% p [i,]
       use.old <- use
@@ -167,13 +174,26 @@ spc.fit.poly.below <- function (fit.to, apply.to = fit.to, poly.order = 1,
 
       if (debuglevel == 2L && i == 1L || debuglevel >= 3L) {
         plot (fit.to[i,, use], add = TRUE, lines.args = list (pch = 20, type = "p"), col= (iter %% 8) + 2);
-        lines (fit.to@wavelength, bl, col=(iter %% 8) + 1);
+        lines (fit.to@wavelength, bl, col= cols [iter]);
         iter <- iter + 1
       }
 
       if ((sum (use, na.rm=TRUE) < npts.min) || all (use == use.old, na.rm = TRUE))
         break
+      
+      if (sum (use, na.rm=TRUE) > sum (use.old, na.rm=TRUE) && stop.on.increase){
+        warning("Iteration ", iter, ": Number of support points is about to increase again. Stopping with ", 
+                sum (use.old, na.rm=TRUE), " support points, but this is a local minimum only.")
+        break
+      }
     }
+    
+    if (iter == max.iter)
+      if (sum (use.old, na.rm = TRUE) == npts.min){
+        warning("Reached npts.min, but the solution is not stable. Stopped after ", iter, " iterations.")
+      } else {
+        warning ("Stopped after ", iter, " iterations with ", sum (use.old, na.rm = TRUE), " support points.")
+      }
 
     if (debuglevel >= 1L)
       message (sprintf ("spectrum % 6i: % 5i support points, noise = %0.1f", i, sum (use.old, na.rm = TRUE), noise [i]))
@@ -219,6 +239,11 @@ spc.fit.poly.below <- function (fit.to, apply.to = fit.to, poly.order = 1,
     bl.nonorm <- spc.fit.poly.below (flu, flu, poly.order = 3, offset.wl = FALSE, npts.min = 25)
 
     expect_equal (bl.nonorm [[]], bl.1e4 [[]])
+  })
+  
+  test_that("requesting 2 support points working - issue #58", {
+    expect_warning (spc.fit.poly.below(chondro[103], npts.min = 2), "Stopped after")
+    expect_warning (spc.fit.poly.below(chondro[103], npts.min = 2, stop.on.increase = TRUE), "about to increase again")
   })
 }
 
