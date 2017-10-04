@@ -5,6 +5,7 @@ DATE = $(shell date +%Y%m%d)
 clean:
 	@rm -f *~ .*~ \#*\#
 	@rm -f hyperSpec_*.tar.gz
+	@rm -rf hyperSpec.Rcheck
 	$(MAKE) -C Vignettes/baseline     clean
 	$(MAKE) -C Vignettes/chondro      clean
 	$(MAKE) -C Vignettes/fileio       clean
