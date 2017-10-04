@@ -1,14 +1,24 @@
 Package: hyperSpec
+Encoding: UTF-8
 Type: Package
 Title: Work with Hyperspectral Data, i.e. Spectra + Meta Information (Spatial,
     Time, Concentration, ...)
-Version: 0.98-20171004
+Version: 0.99-20171004
 Date: 2017-10-04
-Author: Claudia Beleites
 Maintainer: Claudia Beleites <chemometrie@beleites.de>
 Authors@R: c(
-    person("Claudia", "Beleites", role = c("aut","cre"), email = "chemometrie@beleites.de"),
-    person("Valter", "Sergo", role = c("aut"))
+    person("Claudia",   "Beleites",  role = c("aut","cre", "dtc"), email = "chemometrie@beleites.de"),
+    person("Valter",    "Sergo",     role = c("aut")),
+    person("Alois",     "Bonifacio", role = c ("ctb", "dtc")),
+    person("Marcel",    "Dahms",     role = "ctb"),
+    person("Björn",     "Egert",     role = "ctb"),
+    person("Simon",     "Fuller",    role = "ctb"),
+    person("Rustam",    "Guliev",    role = "ctb"),
+    person("Bryan",     "Hanson",    role = "ctb"),
+    person("Michael",   "Hermes",    role = "ctb"),
+    person("Martin",    "Kammer",    role = "dtc"),
+    person("Roman",     "Kiselev",   role = "ctb"),
+    person("Sebastian", "Mellor",    role = "ctb")
     )
 Description: Comfortable ways to work with hyperspectral data sets.
     I.e. spatially or time-resolved spectra, or spectra with any other kind
