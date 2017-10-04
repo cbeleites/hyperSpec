@@ -340,9 +340,9 @@ make.bib <- function (..., file = NULL) {
 
 <<mailme, results = tex, echo = FALSE, strip.white=true>>=
 cat ("\\newcommand{\\mailme}{\\href{mailto:",
-     packageDescription ("hyperSpec")$Maintainer,
+     maintainer ("hyperSpec"),
 	  "}{\\texttt{",
-	  packageDescription ("hyperSpec")$Maintainer,
+	  maintainer ("hyperSpec"),
 	  "}}}\n",
 	  sep = "")
 @

@@ -26,6 +26,12 @@ All spectra used in this manual are installed automatically with \phy.
 Note that some definitions are executed in \texttt{vignette.defs}.
 }
 
+\warnbox[blue!50!black]{Reporting Issues and Suggesting Enhancements}{
+\Rcode{bug.report (package = "hyperSpec")}
+will take you to \phy's issue tracking page at 
+\url{https://github.com/cbeleites/hyperSpec/issues} where you can report issues you encounter, suggest features and comment on issues or suggested features.
+}
+
 \tableofcontents
 
 \warnbox[blue!50!black]{Suggested Packages}{
@@ -78,7 +84,6 @@ R's help system using \Rcode{?~command}.
 A complete list of the functions available in \phy is given in
 appendix~\ref{tab:functions}~(p.~\pageref{tab:functions}).
 
-
 \subsection{Notation and Terms}
 Throughout the documentation of the package, the following terms are used:
 \begin{labeling}{wavelength: }
@@ -101,6 +106,27 @@ abbreviation for \emph{``column xxx of the \df in slot data of the object''} (th
 objects is discussed in section~\ref{sec:structure-chy}, p.~\pageref{sec:structure-chy}).
 
 \section{Remarks on R}
+\subsection{Reporting an Issue with a package}
+\R packages include contact information of the package maintainer, which you can 
+access \eg by:
+<<>>=
+maintainer ("hyperSpec")
+@
+
+In case you want to report an issue, \R provides a function to do so. 
+\Rfunction{bug.report} will either open an email to the package maintainer or
+the issue tracker URL given in the package \texttt{DESCRIPTION}. 
+
+<<eval = FALSE>>=
+bug.report (package = "hyperSpec")
+@
+will take you to \phy's issue tracking page at 
+\url{https://github.com/cbeleites/hyperSpec/issues}. It also displays essential 
+information about your installation which can help in tracking down the bug.
+
+We're always happy about contributions and tag issues that may be tackled immediately by ``help wanted''. Please note that I (Claudia, the official maintainer) may be rather slow in answering pull requests: at the moment I'm travelig a lot professionally so it may take several weeks until I can find some calm chunk of time to do more for hyperSpec than emergency fixes. However, this does not mean that I won't do so: I can tell quickly if a pull request won't fit at all into \phy.
+
+
 \subsection{Generic Functions}
 
 \emph{\index{Generic Functions}Generic Functions} are functions that apply to a wide range of data
@@ -367,9 +393,7 @@ points (pred.sim$x, col = colors [rnd$clusters], pch = 20, cex = 0.5)
 
 If individual covariance matrices should be used for each group, \Rfunarg{sigma} should be an array
 with the 3rd dimension corresponding to the group.
-\section{The Logbook}
-\label{sec:logbook}
-\warnbox{Deprecated}{The logbook has now been REMOVED.}
+
 
 \section{Access to the data}
 \label{sec:access-parts}
