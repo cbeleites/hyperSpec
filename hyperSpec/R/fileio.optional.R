@@ -21,6 +21,9 @@
 
   if (file.keep.name & nrow (spc) > 0L){
     if (is.null (spc@data$filename)){
+      if (is (filename, "connection"))
+        filename <- summary(filename)$description
+
       spc@data$filename <- filename
       spc@label$filename <- "filename"
     } else {

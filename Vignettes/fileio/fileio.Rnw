@@ -977,8 +977,9 @@ fluorescence spectra, but it should be possible to change them if needed.
 \item The usual log entry arguments should be supplied.
 \item A sanity check should be implemented: stop with an error if a file does not have the same
 wavelength axis as the others.
-\item Finally, if no file can be found, an empty \chy object is a reasonable result: There is no need
+\item If no file can be found, an empty \chy object is a reasonable result: There is no need
 to stop with an error, but it is polite to issue an additional warning.
+\item Finally, \phy does some optional common post-processing for all imported files such as attaching the filename (or connection description) to the \chy object (column \Rcode{filename}) and deleting empty spectra. These options can be globally switched on or off by options. 
 \end{itemize}
 
 \VerbatimInput[frame=single, label={read.txt.PerkinElmer.R},
@@ -991,12 +992,12 @@ data column called \Rcode{spc}.
 Thus,
 <<read.txt.PerkinElmer>>=
 source ("read.txt.PerkinElmer.R")
-read.txt.PerkinElmer ("txt.PerkinElmer/flu?.txt", skip = 54)
+read.txt.PerkinElmer (Sys.glob("txt.PerkinElmer/flu?.txt"), skip = 54)
 @
 imports the spectra.
 
-This function is not exported by \phy. While it is already useful for importing files, it is not yet
-general enough to work immediately with new data: the the file header is completely ignored. Thus
+This function is not exported by \phy: while it is already useful for importing files, it is not yet
+general enough to work immediately with new data, \eg the the file header is completely ignored. Thus
 information like the excitation wavelength is lost.
 
 \subsection{Deriving a More Specific Function: read.ENVI.Nicolet}

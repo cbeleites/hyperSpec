@@ -48,7 +48,7 @@ The function to import these files,  \Rfunction{read.txt.PerkinElmer}, is discus
 It  needs to be \Rfunction{source}d before use:
 <<read.txt.PE>>=
 source ("read.txt.PerkinElmer.R")
-flu <- read.txt.PerkinElmer ("rawdata/flu?.txt", skip = 54)
+flu <- read.txt.PerkinElmer (Sys.glob ("rawdata/flu?.txt"), skip = 54)
 @
 Now the spectra are in a \Rclass{hyperSpec} object and can be examined e.g. by
 <<rawspc>>=
