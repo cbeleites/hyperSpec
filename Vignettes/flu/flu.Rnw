@@ -78,7 +78,7 @@ flu$c
 \Rfunction{read.txt.PerkinElmer} added a column with the file names that we don't need.
 It is therefore deleted:
 <<delcol>>=
-flu$file <- NULL
+flu$filename <- NULL
 @
 
 \section{Linear Calibration}
@@ -183,14 +183,6 @@ panel.ci <-  function (x, y, ...,
 
 plotc (flu, panel = panel.ci,
        intensity = int$spc, ci.lwr = ci [, 2], ci.upr = ci [, 3])
-## # extrapolate to lower intensities
-## int <- list (spc = as.matrix(0 : min (flu)))
-## ci <- predict (calibration, newdata = int, interval = "confidence", level = 0.99)
-## matlines (ci, int$spc, col = c ("red","#606060","#606060"), lty = 3)
-
-# our example
-#lines (conc[-1], rep(I, 2), col = "blue")
-#points (conc[1], I, col = "blue", pch = 4, cex = 0.5)
 @
 
 Or, we can add the respective data to the \chy object. The meaning of the data can be saved in a new extra data column that acts as grouping variable for the plot.
@@ -208,7 +200,7 @@ tmp <- tmp [rep (seq (tmp, index = TRUE), 3)]
 tmp$c <- as.numeric (ci)
 tmp$type <- rep (colnames (ci), each = 25)
 
-flu <- rbind (flu, tmp)
+flu <- collapse (flu, tmp)
 @
 
 Finally, the resulting object is plotted. Our prediction example is handled by another customized panel function:
