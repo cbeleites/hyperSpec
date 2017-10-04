@@ -49,6 +49,7 @@
   })
 
   test_that ("filenames", {
+    flu$filename <- NULL
     tmp <- .fileio.optional (flu, filename = "test", file.remove.emptyspc = FALSE, file.keep.name = TRUE)
     expect_true (all (tmp$filename == "test"))
 

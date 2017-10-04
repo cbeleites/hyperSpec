@@ -35,21 +35,23 @@
   )
 
   test_that ("fill in missing labels", {
-    tmp <- c (flu@label, file = "file")
-    expect_equal (.sort (labels (flu)), .sort (tmp))
+    tmp <- flu
+    tmp@label$filename <- NULL
+    expect_equal (.sort (labels (flu)), 
+                  .sort (c (tmp@label , filename = "filename")))
   })
 
 
   test_that ("labels for specified columns", {
     tmp <- flu
-    tmp@label$file <- NULL
-    expect_equal (labels (tmp, c ("c", "file", "fil"), use.colnames = FALSE),
+    tmp@label$filename <- NULL
+    expect_equal (labels (tmp, c ("c", "filename", "file"), use.colnames = FALSE),
                   structure(list(c = "c / (mg / l)", `NA` = NULL, `NA` = NULL),
                             .Names = c("c", NA, NA)))
 
-    expect_equal (labels (tmp, c ("c", "file", "fil")),
-                  structure(list(c = "c / (mg / l)", file = "file", `NA` = NULL),
-                            .Names = c("c", "file", NA)))
+    expect_equal (labels (flu, c ("c", "filename", "file")),
+                  structure(list(c = "c / (mg / l)", filename = "filename", `NA` = NULL),
+                            .Names = c("c", "filename", NA)))
   })
 }
 
