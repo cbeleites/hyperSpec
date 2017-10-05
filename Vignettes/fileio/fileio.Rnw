@@ -21,6 +21,9 @@
 \subtitle{Vignette for the R package \Rpackage{hyperSpec}}
 \maketitle
 
+\warnbox{Consistent naming of file import functions in version >= 0.99}{ 
+From now on, all import functions have names starting with \texttt{read.}. All functions previously named \texttt{scan.*} have been renamed accordingly. 
+}
 \warnbox{Supported File Formats}{ \phy supports a number of file formats relevant for different types
   of spectroscopy. This is naturally only a subset of the file formats produced by different
   spectroscopic equipment.
@@ -44,7 +47,7 @@
   an email in addition.
 }\\[1cm]
 \warnbox{Reproducing the Examples in this Vignette}{The source code of this vignette including the
-  spectra files are available at \phy's github page:
+  spectra files (via \texttt{git-lfs}) are available at \phy's github page:
   \url{https://github.com/cbeleites/hyperSpec/tree/master/Vignettes/fileio}
 
  Note that some definitions are in file \texttt{vignettes.defs}.
@@ -299,7 +302,7 @@ appropriate tolerance can be chosen:
 read.jdx ("jcamp-dx/virgilio.jdx", ytol = 1e-9)
 @
 
-\warnbox{Note}{\Rfunction{read.jdx.Shimadzu} is deprecated.}
+\warnbox{Note}{\Rfunction{read.jdx.Shimadzu} has been removed.}
 \warnbox{Note}{An R package dedicated to importing JCAMP-DX is currently under development by Bryan Hanson
 (\url{https://github.com/bryanhanson/readJDX}).
 \phy will use that package once it is available on CRAN. Maintenance of \phy's \Rfunction{read.jdx} function
@@ -435,7 +438,7 @@ read.mat.Cytospec ("mat.cytospec/cytospec.mat", blocks = 1)
 
 
 
-\warnbox{\Rcode{read.cytomat} is \textbf{deprecated}.}{%
+\warnbox{\Rcode{read.cytomat} is now \textbf{defunct}.}{%
 \Rcode{read.cytomat} has been renamed to  \Rcode{read.mat.Cytospec} to be more
 consistent with the general naming scheme of the file import functions.
 
