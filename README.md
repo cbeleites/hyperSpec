@@ -45,11 +45,6 @@ Only 'new' spc files (1996 file format) with LSB word order are supported.`
    ***Typical erros:*** `No rule to make target '|', needed by 'fileio.pdf'. Stop.`
 
    ***Solution:*** Update version of `GNU make`. *For Linux*, just downloand last version from the link above. *For Windows*, run `system('where make')` and replace that file by make.exe from [here] (http://www.equation.com/servlet/equation.cmd?fa=make). To check version of `GNU make` use `make -v`.
-* Issues of new versions(> 5.0.1) of roxygen2.
-
-   ***Typical error:*** `unable to find required package 'roxygen_devtest'`
-   
-   ***Solution:*** In order to avoid it use roxygen2 of version 5.0.1: run in **R** `devtools::install_version(package = 'roxygen2', version = '5.0.1')`.
 * Default language of your R enviroment is not English.
 
    ***Typical error:*** `inputenc Error: Unicode char \u8:árq not set up for use with LaTeX`
@@ -62,3 +57,8 @@ Only 'new' spc files (1996 file format) with LSB word order are supported.`
    
    ***Solution:*** This is a bug in R 3.4.0. Rollback to R 3.3.x or update to R 3.4.1. See Issue [#45](https://github.com/cbeleites/hyperSpec/issues/45) for more details
      
+* Issues of versions 5.0.1 - 6.0.0(?) of roxygen2.
+
+   ***Typical error:*** `unable to find required package 'roxygen_devtest'`
+   
+   ***Solution:*** In order to avoid it update roxygen2 (version 6.0.1 works) or downgrade to version 5.0.1: run in **R** `devtools::install_version(package = 'roxygen2', version = '5.0.1')`.
