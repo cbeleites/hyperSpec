@@ -1149,12 +1149,6 @@ reporter$end_reporter()
 \printindex
 \end{footnotesize}
 
-\section*{Session Info}
-\begin{footnotesize}
-<<echo = FALSE>>=
-<<cleanup>>
-@
-\end{footnotesize}
 \end{document}
 
 
