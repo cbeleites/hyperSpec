@@ -313,5 +313,6 @@ plot (paracetamol [,, 175 ~ 1800] - bl)
 \section*{Session Info}
 <<echo = FALSE>>=
 make.bib ("baseline", file = "baseline-pkg.bib")
+<<cleanup>>
 @ 
 \end{document}

@@ -357,5 +357,9 @@ texListFun <- function (pattern){
 }
 @
 
-
+<<cleanup, eval=FALSE, echo=FALSE>>=
+sessionInfo ()
+rm (list = ls ())
+library (tools)
+@
 

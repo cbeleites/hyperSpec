@@ -445,5 +445,8 @@ This is the file distributed with \phy as example data set.
 
 \section*{Session Info}
 \begin{footnotesize}
+<<echo = FALSE>>=
+<<cleanup>>
+@
 \end{footnotesize}
 \end{document}

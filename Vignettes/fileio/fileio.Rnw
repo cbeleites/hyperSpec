@@ -1145,7 +1145,11 @@ cat (tests, sep = "\n")
 reporter$end_reporter()
 @
 
+\section*{Session Info}
 \begin{footnotesize}
+<<echo = FALSE>>=
+<<cleanup>>
+@
 \printindex
 \end{footnotesize}
 
