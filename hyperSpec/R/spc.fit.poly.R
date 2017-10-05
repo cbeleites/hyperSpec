@@ -106,8 +106,10 @@ spc.fit.poly <- function (fit.to, apply.to = NULL, poly.order = 1, offset.wl = !
 ##' @param stop.on.increase additional stopping rule: stop if the number of support points would increase, 
 ##' regardless whether npts.min was reached or not.
 ##' @param debuglevel  additional output:
-##'    \code{1} show \code{npts.min}, \code{2} plots support points for 1st spectrum,
-##'    \code{3} plots support points for all spectra.
+##'    \code{1} shows \code{npts.min}, 
+##'    \code{2} plots support points for the final baseline of 1st spectrum, 
+##'    \code{3} plots support points for 1st spectrum,
+##'    \code{4} plots support points for all spectra.
 ##' @seealso  see \code{\link[hyperSpec]{options}} for more on \code{debuglevel}
 ##' @export
 ##' @examples
@@ -162,8 +164,9 @@ spc.fit.poly.below <- function (fit.to, apply.to = fit.to, poly.order = 1,
     use.old <- logical (nwl (fit.to))
     use <- !use.old
 
-    if (debuglevel == 2L && i == 1L || debuglevel >= 3L) {
+    if (debuglevel %in% c(2L, 3L) && i == 1L || debuglevel >= 4L) {
       plot(fit.to [i], title.args = list (main = paste ("spectrum", i)))
+      message ("start: ", sum (use, na.rm=TRUE), " support points")
     }
 
     for (iter in 1 : max.iter) {
@@ -172,10 +175,11 @@ spc.fit.poly.below <- function (fit.to, apply.to = fit.to, poly.order = 1,
       use.old <- use
       use <- y[, i] < bl + noise [i]
 
-      if (debuglevel == 2L && i == 1L || debuglevel >= 3L) {
-        plot (fit.to[i,, use], add = TRUE, lines.args = list (pch = 20, type = "p"), col= (iter %% 8) + 2);
-        lines (fit.to@wavelength, bl, col= cols [iter]);
-        iter <- iter + 1
+      if (debuglevel == 3L && i == 1L || debuglevel >= 4L) {
+        plot (fit.to[i,, use], add = TRUE, lines.args = list (pch = 20, type = "p"), col= cols [iter])
+        lines (fit.to@wavelength, bl, col = cols [iter])
+        lines (fit.to@wavelength, bl + noise, col = cols [iter], lty = 2)
+        message ("Iteration ", iter, ": ", sum (use, na.rm=TRUE), " support points")
       }
 
       if ((sum (use, na.rm=TRUE) < npts.min) || all (use == use.old, na.rm = TRUE))
@@ -189,14 +193,22 @@ spc.fit.poly.below <- function (fit.to, apply.to = fit.to, poly.order = 1,
     }
     
     if (iter == max.iter)
-      if (sum (use.old, na.rm = TRUE) == npts.min){
+      if ((sum (use.old, na.rm = TRUE) == npts.min) && 
+          ! all (use == use.old, na.rm = TRUE) && 
+          ! sum (use, na.rm = TRUE) < npts.min){
         warning("Reached npts.min, but the solution is not stable. Stopped after ", iter, " iterations.")
-      } else {
+      } else if (sum (use, na.rm=TRUE) >= npts.min) {
         warning ("Stopped after ", iter, " iterations with ", sum (use.old, na.rm = TRUE), " support points.")
       }
 
     if (debuglevel >= 1L)
-      message (sprintf ("spectrum % 6i: % 5i support points, noise = %0.1f", i, sum (use.old, na.rm = TRUE), noise [i]))
+      message (sprintf ("spectrum % 6i: % 5i support points, noise = %0.1f, %3i iterations", i, sum (use.old, na.rm = TRUE), noise [i], iter))
+    if ((debuglevel == 2L) && (i == 1L)){
+      plot (fit.to[i,, use.old], add = TRUE, lines.args = list (pch = 20, type = "p"), col= cols [iter])
+      lines (fit.to@wavelength, bl, col = cols [iter])
+      lines (fit.to@wavelength, bl + noise, col = cols [iter], lty = 2)
+    }
+      
   }
   if (is.null (apply.to)){
     fit.to <- new("hyperSpec", spc=p, wavelength=0 : poly.order)

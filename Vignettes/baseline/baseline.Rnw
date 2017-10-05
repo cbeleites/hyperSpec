@@ -142,44 +142,13 @@ The baselines and respective supporting points for each iteration of
 \Rcode{spc.fit.poly.below (chondro [1], poly.order = 1)}
 are shown in figure~\ref{fig:iter}.
 
-<<trace, echo = FALSE, results = hide>>=
-trace (spc.fit.poly.below, exit = quote ({
-  plot (fit.to[,, use.old], col = cl, add = TRUE, lines.args = list (pch = 20, type = "p"));
-  lines (fit.to@wavelength, bl, col = cl);
-}), print = FALSE)
-@
 <<fig1, fig=TRUE, pdf = TRUE, echo = FALSE, results = hide, eps = FALSE, width = 12, height = 4, include = FALSE>>=
-cols <- matlab.dark.palette (8) 
-
-bl <- chondro [1] + 1
-plot (chondro [1])
-npts <- numeric (length (cols))
-
-for (iter in seq_along (cols)){
-	npts [iter] <- sum (chondro [[1]] < bl [[]])
-	cl <- cols [iter]
-	text (750, max (chondro [1]), paste ("Iter. ", iter, ": ", npts [iter], " support pts.", sep = ""),
-			 pos = 1, col = cols [iter], offset = iter - 1)
-	bl <- spc.fit.poly.below (chondro [1], poly.order = 1, npts.min = npts[iter]  - 1)
-}
-plot (chondro [1], add = TRUE)
-@
-<<fig2, fig=TRUE, pdf = TRUE, echo = FALSE, results = hide, eps = FALSE, width = 12, height = 2.5, include = FALSE>>=
-bl <- chondro [1] + 1
-plot (chondro [1], plot.args = list (ylim = range (chondro [1,, c(600 ~ 650, 1730 ~ 1800)])))
-for (iter in seq_along (cols)){
-	npts <- sum (chondro [[1]] < bl [[]])
-	cl <- cols [iter]
-	bl <- spc.fit.poly.below (chondro [1], poly.order = 1, npts.min = npts - 1)
-}
-plot (chondro [1], add = TRUE)
+bl <- spc.fit.poly.below (chondro [1], poly.order = 1, max.iter = 8, npts.min = 2, debuglevel = 3L)
 @
 \begin{figure}
 \begin{center}
   \includegraphics[width=\textwidth]{baseline-fig--fig1}
-  \includegraphics[width=\textwidth]{baseline-fig--fig2}
-  \caption{Iterative fitting of the baseline. The dots give the supporting points for the baselines
-    in the same colour.  The lower part is a magnification of the intensity axis.}
+  \caption{Iterative fitting of the baseline. The dots give the supporting points for the next iteration's baseline, color: iterations.}
   \label{fig:iter}
 \end{center}
 \end{figure}
@@ -187,25 +156,19 @@ plot (chondro [1], add = TRUE)
 
 \subsection{Specifying the spectral range}
 <<figspcrange, fig=TRUE, pdf = TRUE, echo = FALSE, results = hide, eps = FALSE, width = 8, height = 4, include = FALSE>>=
-untrace(spc.fit.poly.below)
-plot (chondro [3,,1700 ~ 1750], plot.args = list (ylim = range (chondro [3,,1700 ~ 1750]) + c(-50, 0)))
-plot (chondro [3,,1705 ~ 1742], lines.args = list(type = "b"), add=T)
-cl <- "black"
-pch = 1
+plot (chondro [3,,1700 ~ 1750], lines.args = list(type = "b"), plot.args = list (ylim = range (chondro [3,,1700 ~ 1750]) + c(-50, 0)))
 bl <- spc.fit.poly.below (chondro [3,,1700 ~ 1750], NULL, poly.order = 1)
-pch = 20
-plot (chondro [3,,1720 ~ 1750], col = "blue", add = TRUE, lines.args = list (lwd = 2))
-abline (bl[[]], col = "black")
-cl <- "blue"
+abline (bl[[]], col ="black")
+
+plot (chondro [3,,1720 ~ 1750], lines.args = list(type = "p", pch = 19, cex = .6), col = "blue", add=T)
 bl <- spc.fit.poly.below (chondro [3,,1720 ~ 1750], NULL, poly.order = 1)
-abline (bl[[]], col = "blue")
+abline (bl[[]], col ="blue")
 @
 \begin{figure}
 \begin{center}
 \includegraphics[width = .66\textwidth]{baseline-fig--figspcrange}
 \caption{Influence of \Rcode{fit.to} on the baseline polynomial. The black baseline is fit to the
-  spectral range \rcm{1700 - 1750}, the blue to \rcm{1720 - 1750} only (dots \& circles: supporting
-  points).}
+  spectral range \rcm{1700 - 1750}, the blue to \rcm{1720 - 1750} only.}
 \label{fig:spectralrange}
 \end{center}
 \end{figure}
@@ -225,29 +188,21 @@ The choice of the spectral range in \Rcode{fit.to} influences the resulting base
 extent, as becomes clear from figure~\ref{fig:spectralrange}.
 
 \subsection{Fitting  polynomials of different orders}
-<<trace2, echo = FALSE, results = hide>>=
-	trace (spc.fit.poly.below, exit = quote ({ls ();
-	plot (fit.to[,, use.old], col = cl, add = TRUE, lines.args = list (pch = pch, type = "p"), zeroline = NA);
-	lines (fit.to@wavelength, bl, col = cl);
-	}), print = FALSE)
+<<figorder0, fig=TRUE, pdf = TRUE, echo = FALSE, results = hide, eps = FALSE, width = 5, height = 4, include = FALSE>>=
+bl <- spc.fit.poly.below (chondro [1], poly.order = 0, debuglevel = 2, max.iter = 5)
 @
-<<figorder, fig=TRUE, pdf = TRUE, echo = FALSE, results = hide, eps = FALSE, width = 12, height = 4, include = FALSE>>=
-plot (chondro [1], lines.args = list (type = "n"))
-cols <- c ("black", "blue", "#008000", "red")
-for (o in 0 : 3){
-		cl <- cols [o + 1]
-		bl <- spc.fit.poly.below (chondro [1], poly.order = o)
-	}
-plot (chondro [1], add = TRUE)
+<<figorder1, fig=TRUE, pdf = TRUE, echo = FALSE, results = hide, eps = FALSE, width = 5, height = 4, include = FALSE>>=
+bl <- spc.fit.poly.below (chondro [1], poly.order = 1, debuglevel = 2, max.iter = 5)
 @
-<<untrace2, echo = FALSE, results = hide>>=
-untrace (spc.fit.poly.below)
-@ 
+<<figorder2, fig=TRUE, pdf = TRUE, echo = FALSE, results = hide, eps = FALSE, width = 5, height = 4, include = FALSE>>=
+bl <- spc.fit.poly.below (chondro [1], poly.order = 2, debuglevel = 2, max.iter = 5)
+@
 \begin{figure}
 \begin{center}
-\includegraphics[width=\textwidth]{baseline-fig--figorder}
-\caption{Baseline polynomial fit to the first spectrum of the chondro data set of order 0 (black), 1
-  (blue), 2 (green), and 3 (red). The dots indicate the points used for the fitting of the
+\includegraphics[width=.3\textwidth]{baseline-fig--figorder0}
+\includegraphics[width=.3\textwidth]{baseline-fig--figorder1}
+\includegraphics[width=.3\textwidth]{baseline-fig--figorder2}
+\caption{Baseline polynomial fit to the first spectrum of the chondro data set of order 0 -- 2 (left to right). The dots indicate the points used for the fitting of the
   polynomial.}
 \label{fig:order}
 \end{center}
@@ -259,82 +214,25 @@ with \Rcode{order} $=$ 0 to 3 for the first spectrum of the chondro data set.
 
 \subsection{The noise level}
 <<fig3, fig=TRUE, pdf = TRUE, echo = FALSE, results = hide, eps = FALSE, width = 8, height = 3, include = FALSE>>=
-spc <- new ("hyperSpec", spc = matrix (rnorm (30, mean = 100, sd = 2), ncol = 30))
-noise <- 10
-plot (spc)
-trace (spc.fit.poly.below, exit = quote ({
-					plot (fit.to[,, use.old], col = cl, add = TRUE, lines.args = list (pch = 20, type = "p"), zeroline = NA);
-					lines (fit.to@wavelength, bl, col = cl);
-					lines (fit.to@wavelength, bl + noise, col = cl, lty = 2)
-				}), print = FALSE)
-
-cols <- matlab.dark.palette (2)
-
-bl <- spc + 15
-for (iter in seq_along (cols)){
-	npts <- sum (spc [[]] < (bl [[]] + noise))
-	cl <- cols [iter]
-	bl <- spc.fit.poly.below (spc, poly.order = 0, npts.min = npts, noise = noise)
-	text (5, max (spc[]), paste ("Iter. ", iter, ": ", npts, " support pts.", sep = ""),
-			pos = 1, col = cols [iter], offset = iter - 1)
-}
-cl <- "black"
-trace (spc.fit.poly.below, exit = quote ({
-					plot (fit.to[,, use.old], col = cl, add = TRUE, lines.args = list (type = "p"), zeroline = NA);
-					lines (fit.to@wavelength, bl, col = cl);
-				}), print = FALSE)
-bl <- spc.fit.poly.below (spc, poly.order = 0)
+spc <- new ("hyperSpec", spc = matrix (rnorm (100, mean = 100, sd = 2), ncol = 100))
+noise = 4
+spc.fit.poly.below (spc, poly.order = 0, noise = noise, debuglevel = 2)
+plot (spc.fit.poly.below (spc, poly.order = 0), col = "black", add = T)
 @
 <<fig4, fig=TRUE, pdf = TRUE, echo = FALSE, results = hide, eps = FALSE, width = 12, height = 4, include = FALSE>>=
-trace (spc.fit.poly.below, exit = quote ({
-					plot (fit.to[,, use.old], col = cl, add = TRUE, lines.args = list (pch = 20, type = "p"), zeroline = NA);
-					lines (fit.to@wavelength, bl, col = cl);
-					lines (fit.to@wavelength, bl + noise, col = cl, lty = 2)
-				}), print = FALSE)
-cols <- matlab.dark.palette (10)
-
-bl <- chondro [1] + 15
-plot (chondro [1])
-for (iter in seq_along (cols)){
-	npts <- sum (chondro [[1]] < bl [[]] + noise)
-	cl <- cols [iter]
-	text (750, max (chondro [1]), paste ("Iter. ", iter, ": ", npts, " support pts.", sep = ""),
-			pos = 1, offset = iter-1, col = cols [iter])
-	bl <- spc.fit.poly.below (chondro [1], poly.order = 1, npts.min = npts - 1, noise = noise)
-}
-plot (chondro [1], add = TRUE)
-@
-<<fig5, fig=TRUE, pdf = TRUE, echo = FALSE, results = hide, eps = FALSE, width = 12, height = 2.5, include = FALSE>>=
-trace (spc.fit.poly.below, exit = quote ({
-					plot (fit.to[,, use.old], col = cl, add = TRUE, lines.args = list (pch = 20, type = "p"));
-					lines (fit.to@wavelength, bl, col = cl);
-					lines (fit.to@wavelength, bl + noise, col = cl, lty = 2)
-				}), print = FALSE)
-cols <- matlab.dark.palette (10)
-
-bl <- chondro [1] + 15
-plot (chondro [1], plot.args = list (ylim = range (chondro [1,, c(600 ~ 650, 1730 ~ 1800)])))
-for (iter in seq_along (cols)){
-	npts <- sum (chondro [[1]] < bl [[]] + noise)
-	cl <- cols [iter]
-	cat ("Iteration", iter, ":", npts, "supporting points\n")
-	bl <- spc.fit.poly.below (chondro [1], poly.order = 1, npts.min = npts - 1, noise = noise)
-}
-plot (chondro [1], add = TRUE)
-untrace (spc.fit.poly.below)
+bl <- spc.fit.poly.below (chondro [1], poly.order = 1, noise = 15, max.iter = 8, debuglevel = 3L)
 @
 \begin{figure}[t]
 \begin{center}
   \includegraphics[width=.66\textwidth]{baseline-fig--fig3}
   \includegraphics[width=\textwidth]{baseline-fig--fig4}
-  \includegraphics[width=\textwidth]{baseline-fig--fig5}
   \caption{Iterative fitting of the baseline with noise level. Upper part: effects of the noise
     parameter on the baseline of a spectrum consisting only of noise and offset: without giving
-    \Rcode{noise} the resulting baseline (black) is clearly too low. A noise level of 10 results in
-    the red baseline.  The middle and lower part show the baseline fitting with noise level on the
-    complete spectrum.  Colour: iterations, dots/circles: supporting points for the respective
-    baselines. Dashed: baseline plus noise. All points above this line are excluded from the next
-    iteration.  }
+    \Rcode{noise} the resulting baseline (black) is clearly too low. A noise level of 4 results in
+    the blue baseline.  The lower part show the baseline fitting with noise level on the
+    complete spectrum.  Colour: iterations, dots: supporting points for the respectively next
+    baseline. Dashed: baseline plus noise. All points above this line are excluded from the next
+    iteration.}
   \label{fig:noise}
 \end{center}
 \end{figure}
@@ -415,6 +313,5 @@ plot (paracetamol [,, 175 ~ 1800] - bl)
 \section*{Session Info}
 <<echo = FALSE>>=
 make.bib ("baseline", file = "baseline-pkg.bib")
-print (as.matrix(Sys.info()))
 @ 
 \end{document}
