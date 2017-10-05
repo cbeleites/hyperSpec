@@ -48,7 +48,7 @@ installdeps:
 	                   -e '}'
 
 fileio-tests: 
-	ln -s Vignettes/fileio/ hyperSpec/tests/testthat/fileio
+	$(MAKE) -C  hyperSpec/tests/testthat fileio
 
 ## installation targets
 
