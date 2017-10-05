@@ -81,9 +81,3 @@ read.mat.Cytospec <- function (file, keys2data = FALSE, blocks = TRUE) {
                     filename = file)
 }
 
-##' @export
-##' @rdname read.mat.Cytospec
-read.cytomat <- function (...){
-  warning("read.cytomat has been renamed and is now deprecated.\nPlease use read.mat.Cytospec instead.")
-  read.mat.Cytospec (...)
-}
