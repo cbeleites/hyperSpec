@@ -133,7 +133,6 @@ Collate:
     'read.asc.Andor.R'
     'read.ini.R'
     'read.jdx.R'
-    'read.jdx.Shimadzu.R'
     'read.mat.Cytospec.R'
     'read.mat.Witec.R'
     'read.spc.Kaiser.R'
