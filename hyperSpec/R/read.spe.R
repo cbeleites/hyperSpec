@@ -121,6 +121,15 @@ read.spe <- function(filename, xaxis="file", acc2avg=F, cts_sec=F,
   .fileio.optional (spc, filename)
 }
 
+.test (read.spe) <- function (){
+  context ("read.spe")
+  
+  test_that ("filename column returned with xaxis = 'px' (issue #60)", {
+    skip_if_not_fileio_available ()
+    tmp <- read.spe ("fileio/spe/polystyrene.SPE", xaxis = "px")
+    expect_equal(tmp$filename, "fileio/spe/polystyrene.SPE")
+  })
+}
 
 ##' @describeIn read.spe Read only header of a WinSpec SPE file (version 2.5)
 ##' @return hdr list with \code{key=value} pairs

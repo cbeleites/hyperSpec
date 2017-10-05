@@ -1,4 +1,4 @@
-all: roxygenize pkg-data pkg-doc vignettes pkg-vignettes
+all: roxygenize pkg-data pkg-doc vignettes pkg-vignettes | fileio-tests
 
 DATE = $(shell date +%Y%m%d)
 
@@ -24,7 +24,7 @@ superclean:
 ## bootstrap target does the required processing immediately after cloning, superclean, or
 ## if the installed version of hyperSpec is too old for building the vignettes
 
-bootstrap: installdeps bootstrapI chondro flu laser pkg-data
+bootstrap: installdeps bootstrapI chondro flu laser pkg-data | fileio-tests
 	@R CMD build --no-build-vignettes hyperSpec/
 	@R CMD INSTALL hyperSpec_*-$(DATE).tar.gz
 
@@ -46,6 +46,9 @@ installdeps:
 	                   -e 'cat ("\n   installing: ", pkgs, "\n")'\
 	                   -e 'install.packages(pkgs, repos = "https://cran.rstudio.com/")  '\
 	                   -e '}'
+
+fileio-tests: 
+	ln -s Vignettes/fileio/ hyperSpec/tests/testthat/fileio
 
 ## installation targets
 
