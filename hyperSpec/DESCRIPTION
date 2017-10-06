@@ -18,7 +18,8 @@ Authors@R: c(
     person("Michael",   "Hermes",    role = "ctb"),
     person("Martin",    "Kammer",    role = "dtc"),
     person("Roman",     "Kiselev",   role = "ctb"),
-    person("Sebastian", "Mellor",    role = "ctb")
+    person("Sebastian", "Mellor",    role = "ctb"),
+	person("Vilmantas", "Gegzna",    role = "ctb")      
     )
 Description: Comfortable ways to work with hyperspectral data sets.
     I.e. spatially or time-resolved spectra, or spectra with any other kind
