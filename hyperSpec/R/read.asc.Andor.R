@@ -1,6 +1,6 @@
 ##' Import Raman Spectra/Maps from Andor Cameras/Solis ASCII files
 ##'
-##' \code{scan.asc.Andor} reads Andor Solis ASCII (\code{.asc}) files where the first column gives the wavelength
+##' \code{read.asc.Andor} reads Andor Solis ASCII (\code{.asc}) files where the first column gives the wavelength
 ##' axes and the other columns the spectra. 
 ##' 
 ##' @title File Import Andor Solis
@@ -11,10 +11,10 @@
 ##' @seealso \code{vignette ("fileio")} for more information on file import and
 ##'
 ##' \code{\link{options}} for details on options.
-##' @include scan.txt.Witec.R
+##' @include read.txt.Witec.R
 ##' @include fileio.optional.R
 ##' @export
-scan.asc.Andor <- function (file = stop ("filename or connection needed"),
+read.asc.Andor <- function (file = stop ("filename or connection needed"),
                             ..., quiet = TRUE, dec = ".", sep = ","){
   
   ## check for valid data connection

@@ -26,6 +26,12 @@ All spectra used in this manual are installed automatically with \phy.
 Note that some definitions are executed in \texttt{vignette.defs}.
 }
 
+\warnbox[blue!50!black]{Reporting Issues and Suggesting Enhancements}{
+\Rcode{bug.report (package = "hyperSpec")}
+will take you to \phy's issue tracking page at 
+\url{https://github.com/cbeleites/hyperSpec/issues} where you can report issues you encounter, suggest features and comment on issues or suggested features.
+}
+
 \tableofcontents
 
 \warnbox[blue!50!black]{Suggested Packages}{
@@ -78,7 +84,6 @@ R's help system using \Rcode{?~command}.
 A complete list of the functions available in \phy is given in
 appendix~\ref{tab:functions}~(p.~\pageref{tab:functions}).
 
-
 \subsection{Notation and Terms}
 Throughout the documentation of the package, the following terms are used:
 \begin{labeling}{wavelength: }
@@ -101,6 +106,27 @@ abbreviation for \emph{``column xxx of the \df in slot data of the object''} (th
 objects is discussed in section~\ref{sec:structure-chy}, p.~\pageref{sec:structure-chy}).
 
 \section{Remarks on R}
+\subsection{Reporting an Issue with a package}
+\R packages include contact information of the package maintainer, which you can 
+access \eg by:
+<<>>=
+maintainer ("hyperSpec")
+@
+
+In case you want to report an issue, \R provides a function to do so. 
+\Rfunction{bug.report} will either open an email to the package maintainer or
+the issue tracker URL given in the package \texttt{DESCRIPTION}. 
+
+<<eval = FALSE>>=
+bug.report (package = "hyperSpec")
+@
+will take you to \phy's issue tracking page at 
+\url{https://github.com/cbeleites/hyperSpec/issues}. It also displays essential 
+information about your installation which can help in tracking down the bug.
+
+We're always happy about contributions and tag issues that may be tackled immediately by ``help wanted''. Please note that I (Claudia, the official maintainer) may be rather slow in answering pull requests: at the moment I'm travelig a lot professionally so it may take several weeks until I can find some calm chunk of time to do more for hyperSpec than emergency fixes. However, this does not mean that I won't do so: I can tell quickly if a pull request won't fit at all into \phy.
+
+
 \subsection{Generic Functions}
 
 \emph{\index{Generic Functions}Generic Functions} are functions that apply to a wide range of data
@@ -367,9 +393,7 @@ points (pred.sim$x, col = colors [rnd$clusters], pch = 20, cex = 0.5)
 
 If individual covariance matrices should be used for each group, \Rfunarg{sigma} should be an array
 with the 3rd dimension corresponding to the group.
-\section{The Logbook}
-\label{sec:logbook}
-\warnbox{Deprecated}{The logbook has now been REMOVED.}
+
 
 \section{Access to the data}
 \label{sec:access-parts}
@@ -680,14 +704,15 @@ head (as.long.df (flu), 20)
 <<>>=
 flu [[]]
 class (flu [[]])
-@ \Rfunction{[[]]} takes the same arguments as \Rfunction{[]}, and can be used to extract a matrix
+@ 
+\Rfunction{[[]]} takes the same arguments as \Rfunction{[]}, and can be used to extract a matrix
 containing parts of the spectra matrix:
 <<>>=
 flu [[1:3,, 406 ~ 407]]
 @
 If indices for the columns to extract are given, a \df is returned instead of a matrix:
 <<>>=
-flu [[1:3, c ("file", "spc"), 406 ~ 407]]
+flu [[1:3, c ("filename", "spc"), 406 ~ 407]]
 @
 
 <<>>=
@@ -1604,12 +1629,12 @@ can consume large amounts of memory. At certain points, \phy provides switches t
 with data sets that are actually close to this memory limit.
 
 \mFun{\Rcode{new ("hyperSpec")}, \Rfunction{read.ENVI*},
-\Rfunction{scan.txt.Renishaw}}\index{options!gc}
+\Rfunction{read.txt.Renishaw}}\index{options!gc}
 The initialization method \Rcode{new ("hyperSpec", \ldots)} takes particular care to avoid
 unneccessary copies of the spectra matrix. In addition, frequent calls to \Rcode{gc ()} can be
 requested by \Rcode{hy.setOption (gc = TRUE)}. The same behaviour is triggered in
 \Rfunction{read.ENVI} and its derivatives (\Sexpr{texListFun("read.ENVI")}). The memory consumption
-of \Rfunction{scan.txt.Renishaw} can be lowered by importing the data in chunks (argument
+of \Rfunction{read.txt.Renishaw} can be lowered by importing the data in chunks (argument
 \Rfunarg{nlines}).
 
 \printindex

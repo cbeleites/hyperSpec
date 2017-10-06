@@ -22,7 +22,7 @@
   })
 
   test_that("expansion on missing pattern", {
-    expect_equal(.DollarNames (flu, "f"), "file")
+    expect_equal(.DollarNames (flu, "f"), "filename")
     expect_equal(.DollarNames (flu, "c"), c ("spc", "c"))
   })
 

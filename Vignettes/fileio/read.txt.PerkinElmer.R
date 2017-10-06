@@ -1,13 +1,8 @@
-scan.txt.PerkinElmer <- function (files = "*.txt",  ..., label = list ()) {
-  ##  set some defaults
-  long <- list (files = files, ..., label = label)
-
+read.txt.PerkinElmer <- function (files = stop ("filenames needed"),  ..., label = list ()) {
+  ##  set default labels
   label <-  modifyList (list (.wavelength = expression (lambda / nm),
                               spc = expression (I[fl] / "a.u.")),
                         label)
-  
-  ## find the files
-  files <- Sys.glob (files)
 
   if (length (files) == 0){
     warning ("No files found.")
@@ -39,7 +34,9 @@ scan.txt.PerkinElmer <- function (files = "*.txt",  ..., label = list ()) {
   }
 
   ## make the hyperSpec object
-  new ("hyperSpec", wavelength = wavelength, spc = spc,
-       data = data.frame (file = files), label = label)
+  spc <- new ("hyperSpec", wavelength = wavelength, spc = spc, label = label)
+  
+  ## consistent file import behaviour across import functions
+  hyperSpec:::.fileio.optional (spc, files)
 }
 

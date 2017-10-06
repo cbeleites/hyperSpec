@@ -69,16 +69,15 @@ read.txt.wide <- function (file = stop ("file is required"),
   txtfile <- read.table (file = file, check.names = check.names, row.names = row.names,
                          sep = sep, ...)
 
-  spc <- 0 : (ncol (txtfile) - length (cols) + 1) + spc
+  ispc <- 0 : (ncol (txtfile) - length (cols) + 1) + spc
 
-  spc.data <- as.matrix (txtfile[, spc])
-  txtfile <- txtfile [, -spc, drop = FALSE]
-  txtfile$spc <- I (spc.data)
-
+  spc.data <- as.matrix (txtfile[, ispc])
+  txtfile <- txtfile [, -ispc, drop = FALSE]
+  
   ## enforce colnames given by cols
-  colnames (txtfile) <- head (names (cols), -1)
+  colnames (txtfile) <- head (names (cols) [-spc], -1)
 
-  spc <- new ("hyperSpec", data = txtfile, labels = cols)
+  spc <- new ("hyperSpec", spc = spc.data, data = txtfile, labels = cols)
 
   ## consistent file import behaviour across import functions
   .fileio.optional (spc, filename = file)

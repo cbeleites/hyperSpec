@@ -59,7 +59,7 @@
 ##'
 ##' \code{\link[hyperSpec]{read.spc}} for .spc files
 ##'
-##' Manufacturer specific file formats: \code{\link{scan.txt.Renishaw}}
+##' Manufacturer specific file formats: \code{\link{read.txt.Renishaw}}
 ##' @rdname textio
 ##' @keywords IO file
 ##' @export
@@ -98,7 +98,10 @@
 ##' write.txt.wide (flu,  file = "flu.txt", col.labels = FALSE, row.names = FALSE)
 ##'
 ##' read.txt.wide (file = "flu.txt",
-##'       cols = list (c=expression ("/"("c", "mg/l")), spc="I / a.u", .wavelength = "lambda / nm"),
+##'     # give columns in same order as they are in the file
+##'     cols = list (spc = "I / a.u", c = expression ("/"("c", "mg/l")), filename = "filename", 
+##'     # plus wavelength label last
+##'     .wavelength = "lambda / nm"),
 ##' 		header = TRUE)
 ##'
 ##'

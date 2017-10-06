@@ -1,9 +1,10 @@
 ##' import Raman measurements from Renishaw ASCII-files
+##'
 ##' import Raman measurements from Renishaw (possibly compressed) .txt file.
 ##'
 ##' The file may be of any file type that can be read by
 ##' \code{\link[base]{gzfile}} (i.e. text, or zipped by gzip, bzip2, xz or
-##' lzma). .zip zipped files need to be read using \code{scan.zip.Renishaw}.
+##' lzma). .zip zipped files need to be read using \code{read.zip.Renishaw}.
 ##'
 ##' Renishaw .wxd files are converted to .txt ASCII files by their batch
 ##' converter. They come in a "long" format with columns (y x | time | z)?
@@ -19,10 +20,10 @@
 ##' on files with missing values (\code{NA}s are allowed).
 ##'
 ##' If the file is so large that it sould be read in chunks and \code{nspc} is
-##' not given, \code{scan.txt.Renishaw} tries to guess it by using \code{wc}
+##' not given, \code{read.txt.Renishaw} tries to guess it by using \code{wc}
 ##' (if installed).
 ##'
-##' @aliases scan.txt.Renishaw scan.zip.Renishaw
+##' @aliases read.txt.Renishaw read.zip.Renishaw
 ##' @param file file name or connection
 ##' @param data type of file, one of "spc", "xyspc", "zspc", "depth", "ts", see
 ##'   details.
@@ -33,16 +34,15 @@
 ##'   must be at least the number of data points per spectrum. Reasonable
 ##'   values start at \code{1e6}.
 ##' @param nspc number of spectra in the file
-##' @param ... Arguments for \code{scan.txt.Renishaw}
+##' @param ... Arguments for \code{read.txt.Renishaw}
 ##' @return the \code{hyperSpec} object
-##' @rdname scan-txt-Renishaw
 ##' @export
 ##' @author C. Beleites
 ##' @seealso \code{\link{read.txt.long}}, \code{\link{read.txt.wide}},
 ##'   \code{\link[base]{scan}}
 ##' @keywords IO file
 ##' @importFrom utils head
-scan.txt.Renishaw <- function (file = stop ("file is required"),
+read.txt.Renishaw <- function (file = stop ("file is required"),
                                data = "xyspc", nlines = 0, nspc = NULL){
   cols <- switch (data,
                   spc = NULL,
@@ -136,7 +136,7 @@ scan.txt.Renishaw <- function (file = stop ("file is required"),
 ##' @export
 ##' @param txt.file name of the .txt file in the .zip archive. Defaults to zip
 ##'   file's name with suffix .txt instead of .zip
-##' @rdname scan-txt-Renishaw
-scan.zip.Renishaw <- function (file = stop ("filename is required"),
+##' @rdname read.txt.Renishaw
+read.zip.Renishaw <- function (file = stop ("filename is required"),
                                txt.file = sub ("[.]zip", ".txt", basename (file)), ...)
-  scan.txt.Renishaw (file = unz (file, filename = txt.file, "r"), ...)
+  read.txt.Renishaw (file = unz (file, filename = txt.file, "r"), ...)

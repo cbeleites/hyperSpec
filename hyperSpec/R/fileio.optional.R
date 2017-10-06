@@ -21,6 +21,9 @@
 
   if (file.keep.name & nrow (spc) > 0L){
     if (is.null (spc@data$filename)){
+      if (is (filename, "connection"))
+        filename <- summary(filename)$description
+
       spc@data$filename <- filename
       spc@label$filename <- "filename"
     } else {
@@ -46,6 +49,7 @@
   })
 
   test_that ("filenames", {
+    flu$filename <- NULL
     tmp <- .fileio.optional (flu, filename = "test", file.remove.emptyspc = FALSE, file.keep.name = TRUE)
     expect_true (all (tmp$filename == "test"))
 

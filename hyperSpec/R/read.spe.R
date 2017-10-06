@@ -70,11 +70,8 @@ read.spe <- function(filename, xaxis="file", acc2avg=F, cts_sec=F,
     extra_data <- cbind (extra_data, hdr2data)
 
   # Create hyperSpec object
-  spc <- new("hyperSpec", spc=t(spc), data=extra_data)
-
-  # Modify hyperSpec object
-  spc@label$spc <- expression("counts")
-  spc@label$.wavelength <- expression("pixel number")
+  spc <- new("hyperSpec", spc=t(spc), data=extra_data, 
+             labels = list (spc = "counts", .wavelength = "pixel number"))
 
   # Check if we should use display units specified in the SPE file
   if (xaxis == "file")
@@ -83,7 +80,7 @@ read.spe <- function(filename, xaxis="file", acc2avg=F, cts_sec=F,
   # Create a new x-axis, if required
   xaxis <- .fixunitname(xaxis)
   if (xaxis == "px")
-    return(spc)
+    return(.fileio.optional(spc, filename))
 
 
   if (! hdr$xCalValid)
@@ -124,6 +121,15 @@ read.spe <- function(filename, xaxis="file", acc2avg=F, cts_sec=F,
   .fileio.optional (spc, filename)
 }
 
+.test (read.spe) <- function (){
+  context ("read.spe")
+  
+  test_that ("filename column returned with xaxis = 'px' (issue #60)", {
+    skip_if_not_fileio_available ()
+    tmp <- read.spe ("fileio/spe/polystyrene.SPE", xaxis = "px")
+    expect_equal(tmp$filename, "fileio/spe/polystyrene.SPE")
+  })
+}
 
 ##' @describeIn read.spe Read only header of a WinSpec SPE file (version 2.5)
 ##' @return hdr list with \code{key=value} pairs

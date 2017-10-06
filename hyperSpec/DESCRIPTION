@@ -1,11 +1,25 @@
 Package: hyperSpec
+Encoding: UTF-8
 Type: Package
 Title: Work with Hyperspectral Data, i.e. Spectra + Meta Information (Spatial,
     Time, Concentration, ...)
-Version: 0.98-20170803
-Date: 2017-08-03
-Author: Claudia Beleites
+Version: 0.99-171005
+Date: 2017-10-05
 Maintainer: Claudia Beleites <chemometrie@beleites.de>
+Authors@R: c(
+    person("Claudia",   "Beleites",  role = c("aut","cre", "dtc"), email = "chemometrie@beleites.de"),
+    person("Valter",    "Sergo",     role = c("aut")),
+    person("Alois",     "Bonifacio", role = c ("ctb", "dtc")),
+    person("Marcel",    "Dahms",     role = "ctb"),
+    person("Björn",     "Egert",     role = "ctb"),
+    person("Simon",     "Fuller",    role = "ctb"),
+    person("Rustam",    "Guliev",    role = "ctb"),
+    person("Bryan",     "Hanson",    role = "ctb"),
+    person("Michael",   "Hermes",    role = "ctb"),
+    person("Martin",    "Kammer",    role = "dtc"),
+    person("Roman",     "Kiselev",   role = "ctb"),
+    person("Sebastian", "Mellor",    role = "ctb")
+    )
 Description: Comfortable ways to work with hyperspectral data sets.
     I.e. spatially or time-resolved spectra, or spectra with any other kind
     of information associated with each of the spectra. The spectra can be data
@@ -38,14 +52,17 @@ Suggests:
     mvtnorm,
     digest,
     reshape,
-    devtools
+    devtools,
+    R.rsp
 Imports:
     testthat,
     methods,
     utils,
     latticeExtra
 URL: http://hyperSpec.r-forge.r-project.org/
-Collate:
+BugReports: https://github.com/cbeleites/hyperSpec/issues
+VignetteBuilder: R.rsp
+Collate: 
     'validate.R'
     'hyperspec-class.R'
     'unittest.R'
@@ -68,6 +85,7 @@ Collate:
     'collapse.R'
     'cov.R'
     'decomposition.R'
+    'deprecated.R'
     'dim.R'
     'dimnames.R'
     'droplevels.R'
@@ -78,6 +96,9 @@ Collate:
     'fileio.optional.R'
     'flu.R'
     'getbynames.R'
+    'options.R'
+    'regexps.R'
+    'guesswavelength.R'
     'paracetamol.R'
     'laser.R'
     'hyperspec-package.R'
@@ -95,7 +116,6 @@ Collate:
     'merge.R'
     'mvtnorm.R'
     'normalize01.R'
-    'options.R'
     'orderwl.R'
     'pearson.dist.R'
     'plot.R'
@@ -109,24 +129,23 @@ Collate:
     'rbind.fill.R'
     'read.ENVI.Nicolet.R'
     'read.ENVI.R'
+    'read.txt.Witec.R'
+    'read.asc.Andor.R'
     'read.ini.R'
     'read.jdx.R'
-    'read.jdx.Shimadzu.R'
     'read.mat.Cytospec.R'
     'read.mat.Witec.R'
     'read.spc.Kaiser.R'
     'read.spc.R'
     'read.spe.R'
     'read.txt.Horiba.R'
+    'read.txt.Renishaw.R'
     'read.txt.Shimadzu.R'
     'read.txt.long.R'
     'read.txt.wide.R'
     'replace.R'
     'sample.R'
     'scale.R'
-    'scan.txt.Witec.R'
-    'scan.asc.Andor.R'
-    'scan.txt.Renishaw.R'
     'seq.R'
     'show.R'
     'spc.NA.approx.R'

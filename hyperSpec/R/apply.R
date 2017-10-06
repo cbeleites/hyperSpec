@@ -195,7 +195,7 @@ setMethod ("apply", signature = signature (X = "hyperSpec"),
     expect_equal (is.na (tmp),
                  structure(c (TRUE, TRUE, FALSE),
                            .Dim = c(1L, 3L),
-                           .Dimnames = list (NULL, c("file", "c", "equal")))
+                           .Dimnames = list (NULL, c("filename", "c", "equal")))
     )
     expect_equal (tmp$equal, 1)
   })

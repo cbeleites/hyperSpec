@@ -97,12 +97,14 @@
 \newcommand{\R}{\texorpdfstring{\texttt{R}}{R}\xspace}
 
 \author{%
-\Sexpr{sub ("[<].*$", "", packageDescription ("hyperSpec")$Maintainer)}%
+\Sexpr{sub ("[<].*$", "", maintainer ("hyperSpec"))}%
   \url{%
-\Sexpr{sub ("^.*[<]", "<", packageDescription ("hyperSpec")$Maintainer)}%
+\Sexpr{sub ("^.*[<]", "<", maintainer ("hyperSpec"))}%
 }\\
-\large DIA Raman Spectroscopy Group, University of Trieste/Italy\\
-\large Spectroscopy $\cdot$ Imaging, IPHT, Jena/Germany%
+\large DIA Raman Spectroscopy Group, University of Trieste/Italy (2005\,--\,2008)\\
+\large Spectroscopy $\cdot$ Imaging, IPHT, Jena/Germany (2008\,--\,2016)\\
+\large ÖPV, JKI, Berlin/Germany\\
+\large Chemometric Consulting and Chemometrix GmbH, Wölfersheim/Germany%
 }
 
 \SweaveOpts{pgf = FALSE, eps = FALSE, external = FALSE, pdf = TRUE, ps = FALSE}
@@ -340,9 +342,9 @@ make.bib <- function (..., file = NULL) {
 
 <<mailme, results = tex, echo = FALSE, strip.white=true>>=
 cat ("\\newcommand{\\mailme}{\\href{mailto:",
-     packageDescription ("hyperSpec")$Maintainer,
+     maintainer ("hyperSpec"),
 	  "}{\\texttt{",
-	  packageDescription ("hyperSpec")$Maintainer,
+	  maintainer ("hyperSpec"),
 	  "}}}\n",
 	  sep = "")
 @
@@ -354,7 +356,6 @@ texListFun <- function (pattern){
   nice.paste (funs)
 }
 @
-
 
 <<cleanup, eval=FALSE, echo=FALSE>>=
 sessionInfo ()

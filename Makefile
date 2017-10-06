@@ -1,10 +1,11 @@
-all: roxygenize pkg-data pkg-doc vignettes pkg-vignettes
+all: roxygenize pkg-data pkg-doc vignettes pkg-vignettes | fileio-tests
 
-DATE = $(shell date +%Y%m%d)
+DATE = $(shell date +%y%m%d)
 
 clean:
 	@rm -f *~ .*~ \#*\#
 	@rm -f hyperSpec_*.tar.gz
+	@rm -rf hyperSpec.Rcheck
 	$(MAKE) -C Vignettes/baseline     clean
 	$(MAKE) -C Vignettes/chondro      clean
 	$(MAKE) -C Vignettes/fileio       clean
@@ -23,7 +24,7 @@ superclean:
 ## bootstrap target does the required processing immediately after cloning, superclean, or
 ## if the installed version of hyperSpec is too old for building the vignettes
 
-bootstrap: installdeps bootstrapI chondro flu laser pkg-data
+bootstrap: installdeps bootstrapI chondro flu laser pkg-data | fileio-tests
 	@R CMD build --no-build-vignettes hyperSpec/
 	@R CMD INSTALL hyperSpec_*-$(DATE).tar.gz
 
@@ -46,6 +47,9 @@ installdeps:
 	                   -e 'install.packages(pkgs, repos = "https://cran.rstudio.com/")  '\
 	                   -e '}'
 
+fileio-tests: 
+	$(MAKE) -C  hyperSpec/tests/testthat fileio
+
 ## installation targets
 
 install: build
@@ -64,7 +68,7 @@ roxygenize: DESCRIPTION hyperSpec/R/*.R
 
 DESCRIPTION: $(shell find hyperSpec -maxdepth 1 -daystart -not -ctime 0 -name "DESCRIPTION") #only if not modified today
 	@echo update DESCRIPTION
-	@sed "s/\(^Version: .*-\)20[0-9][0-9][0-1][0-9][0-3][0-9]\(.*\)$$/\1$(DATE)\2/" hyperSpec/DESCRIPTION > .DESCRIPTION
+	@sed "s/\(^Version: .*-\)[0-9][0-9][0-1][0-9][0-3][0-9]\(.*\)$$/\1$(DATE)\2/" hyperSpec/DESCRIPTION > .DESCRIPTION
 	@sed "s/\(^Date: .*\)20[0-9][0-9]-[0-1][0-9]-[0-3][0-9]\(.*\)$$/\1`date +%F`\2/" .DESCRIPTION > hyperSpec/DESCRIPTION
 	@rm .DESCRIPTION
 
@@ -84,7 +88,8 @@ baseline:
 
 chondro:
 	$(MAKE) -C Vignettes/chondro
-	$(MAKE) -C hyperSpec/inst/doc  chondro.pdf
+	$(MAKE) -C hyperSpec/vignettes  -f Makefile-local chondro.pdf
+	$(MAKE) -C hyperSpec/vignettes  -f Makefile-local chondro.pdf.asis
 
 #	cd $(dir $<) &&	R CMD Sweave chondro.Rnw --clean --pdf --compact="both" --quiet
 
@@ -92,7 +97,8 @@ chondro:
 
 fileio:
 	$(MAKE) -C Vignettes/fileio
-	$(MAKE) -C hyperSpec/inst/doc  fileio.pdf
+	$(MAKE) -C hyperSpec/vignettes  -f Makefile-local fileio.pdf
+	$(MAKE) -C hyperSpec/vignettes  -f Makefile-local fileio.pdf.asis
 
 # flu ..............................................................................................
 
