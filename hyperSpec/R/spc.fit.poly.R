@@ -53,7 +53,13 @@ spc.fit.poly <- function (fit.to, apply.to = NULL, poly.order = 1, offset.wl = !
 
   x <- vanderMonde (x, poly.order)          # Vandermonde matrix of x
 
-  p <- apply (fit.to, 1, function (y, x){qr.solve (x, y)}, x)
+  p <- apply (fit.to, 1, 
+              function (y, x){
+                x <- x [! is.na (y),,drop = FALSE]
+                y <- y [! is.na (y)]
+                qr.solve (x, y)
+              }, 
+              x)
 
   if (is.null (apply.to)){
     colnames (p@data$spc) <- paste0 ("(x - minx)^", 0 : poly.order)
@@ -92,7 +98,22 @@ spc.fit.poly <- function (fit.to, apply.to = NULL, poly.order = 1, offset.wl = !
     bl.nonorm <- spc.fit.poly (flu, flu, poly.order = 3, offset.wl = FALSE)
     expect_equal (bl.nonorm [[]], bl.1e4 [[]])
   })
-  }
+  
+  test_that("spectrum containing NA", {
+    tmp <- chondro [1]
+    tmp [[,, 1600]] <- NA
+    
+    coefs <- spc.fit.poly (tmp, apply.to = NULL) [[]]
+    expect_equal(
+      coefs,
+      spc.fit.poly(chondro [1,, !is.na (tmp)], apply.to = NULL) [[]]
+    )
+    
+    ## bug was: all coefficients were silently 0 
+    expect_true (all (abs (coefs) > sqrt (.Machine$double.eps)))
+  })
+  
+}
 
 ##'
 ##' \code{spc.fit.poly.below} tries to fit the baseline on appropriate spectral
@@ -162,7 +183,7 @@ spc.fit.poly.below <- function (fit.to, apply.to = fit.to, poly.order = 1,
   p <- matrix (nrow = nrow(fit.to) , ncol = poly.order + 1)
   for (i in row.seq (fit.to)){
     use.old <- logical (nwl (fit.to))
-    use <- !use.old
+    use <- !is.na (y [, i])
 
     if (debuglevel %in% c(2L, 3L) && i == 1L || debuglevel >= 4L) {
       plot(fit.to [i], title.args = list (main = paste ("spectrum", i)))
@@ -173,7 +194,7 @@ spc.fit.poly.below <- function (fit.to, apply.to = fit.to, poly.order = 1,
       p[i,] <- qr.solve (vdm[use,], y[use, i])
       bl <- vdm %*% p [i,]
       use.old <- use
-      use <- y[, i] < bl + noise [i]
+      use <- y[, i] < bl + noise [i] & !is.na (y [, i])
 
       if (debuglevel == 3L && i == 1L || debuglevel >= 4L) {
         plot (fit.to[i,, use], add = TRUE, lines.args = list (pch = 20, type = "p"), col= cols [iter])
@@ -256,6 +277,20 @@ spc.fit.poly.below <- function (fit.to, apply.to = fit.to, poly.order = 1,
   test_that("requesting 2 support points working - issue #58", {
     expect_warning (spc.fit.poly.below(chondro[103], npts.min = 2), "Stopped after")
     expect_warning (spc.fit.poly.below(chondro[103], npts.min = 2, stop.on.increase = TRUE), "about to increase again")
+  })
+  
+  test_that("spectrum containing NA", {
+    tmp <- chondro [1]
+    tmp [[,, 1600]] <- NA
+    
+    coefs <- spc.fit.poly.below(tmp, apply.to = NULL) [[]]
+    expect_equal(
+      coefs,
+      spc.fit.poly.below(chondro [1,, !is.na (tmp)], apply.to = NULL) [[]]
+    )
+    
+    ## bug was: all coefficients were silently 0 
+    expect_true (all (abs (coefs) > sqrt (.Machine$double.eps)))
   })
 }
 

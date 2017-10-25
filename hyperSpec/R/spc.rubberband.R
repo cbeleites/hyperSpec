@@ -44,7 +44,10 @@ spc.rubberband <- function (spc, ..., upper = FALSE, noise = 0, spline = TRUE){
 ##' @importFrom grDevices chull
 .rubberband <- function (x, y, noise, spline, ..., debuglevel = hy.getOption ("debuglevel")){
   for (s in seq_len (nrow (y))){
-    pts <- chull (x, y [s,])
+    use <- which (!is.na (y [s,]))
+    
+    pts <- chull (x [use], y [s,use])
+    pts <- use [pts]
     
     if (debuglevel >= 1L){
     	plot (x, y [s, ], type = "l")
@@ -95,4 +98,22 @@ spc.rubberband <- function (spc, ..., upper = FALSE, noise = 0, spline = TRUE){
   }
   
   y  
+}
+
+.test (spc.rubberband) <- function (){
+  context ("spc.rubberband")
+  
+  test_that("spectrum containing NA", {
+    tmp <- chondro [1]
+    tmp [[,, 1600]] <- NA
+    
+    coefs <- spc.rubberband (tmp)
+    expect_equal(
+      coefs [[,, !is.na (tmp)]],
+      spc.rubberband(chondro [1,, !is.na (tmp)]) [[]]
+    )
+    
+    ## bug was: all coefficients were silently 0 
+    expect_true (all (abs (coefs [[]]) > sqrt (.Machine$double.eps)))
+  })
 }
