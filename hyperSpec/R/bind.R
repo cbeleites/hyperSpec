@@ -1,14 +1,15 @@
 ##' Binding hyperSpec Objects
 ##'
-##' Two S3 functions \code{cbind.hyperSpec} and \code{rbind.hyperSpec} act as
-##' an interfaces to \code{cbind2} and \code{rbind2} because neither
-##' \code{\link[Matrix]{rBind}} and \code{\link[Matrix]{cBind}} nor S4 versions
-##' of \code{cbind} and \code{rbind} do work at the moment.
-##'
-##' While it is now possible to do S4 despatch on \code{\dots{}}, defining such
-##' S4 methods for \code{cbind} and \code{rbind} breaks the binding of
-##' \code{Matrix} objects. Therefore, two S3 methods \code{rbind.hyperSpec} and
-##' \code{cbind.hyperSpec} are defined.
+##' The difficulties with binding S4 objects described in \code{Matrix::\link[Matrix]{cbind}} 
+##' are resolved since R version 3.2.0 and \code{cbind} and \code{rbind} now work as intended and 
+##' expected for hyperSpec objects. 
+##' 
+##' Therefore, calling \code{rbind.hyperSpec} and
+##' \code{cbind.hyperSpec} is now depecated: \code{cbind} and \code{rbind} should now be called 
+##' directly.
+##' 
+##' However, in consequence it is no longer possible to call \code{cbind} or \code{rbind} with a 
+##' list of hyperSpec objects. In that case, use \code{bind} or \code{\link[base]{do.call}} (see example).
 ##'
 ##' \code{bind} does the common work for both column- and row-wise binding.
 ##'
@@ -27,7 +28,7 @@
 ##'   do not have rownames and/or colnames.
 ##' @author C. Beleites
 ##' @export
-##' @seealso \code{\link[Matrix]{rBind}}, \code{\link[Matrix]{cBind}}
+##' @seealso 
 ##' \code{\link[methods]{rbind2}}, \code{\link[methods]{cbind2}}
 ##' \code{\link[base]{rbind}}, \code{\link[base]{cbind}}
 ##'
@@ -54,7 +55,11 @@
 ##' y$y[3] <- 5
 ##' try (cbind2 (x, y)) # error
 ##'
-##'
+##' # list of hyperSpec objects
+##' 
+##' lhy <- list (flu, flu)
+##' do.call ("rbind", lhy)
+##' bind ("r", lhy)
 bind <- function (direction = stop ("direction ('c' or 'r') required"), ...,
 									wl.tolerance = hy.getOption ("wl.tolerance")){
 
@@ -149,6 +154,18 @@ rbind.hyperSpec <- function (...) bind ("r", ...)
                             flu [rep (row.seq (flu), 3)],
                             check.label = TRUE))
   })
+  
+  test_that ("correct rbinding", {
+    expect_equal(nrow (rbind (flu, flu)), 2 * nrow (flu))
+    expect_error(rbind (flu, flu [,, min ~ min + 3i]))
+  })
+  
+  test_that ("list of hyperSpec objects", {
+    
+    expect_equal(nrow (rbind (flu, flu)), 2 * nrow (flu))
+    expect_error(rbind (flu, flu [,, min ~ min + 3i]))
+  })
+  
 }
 
 

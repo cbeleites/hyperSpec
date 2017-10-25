@@ -981,6 +981,8 @@ best with spectrally oversampled data that allows accurate determination of the 
 For the \Robject{chondro} data, let's use the maximum of the phenylalanine band between 990 and
 \rcm{1020}. As just the very maximum is too coarse, we'll use the maximum of a square polynomial
 fitted to the maximum and its two neighbours.
+
+%TODO: use vanderMonde 
 <<>>=
 
 find.max <- function (y, x){
