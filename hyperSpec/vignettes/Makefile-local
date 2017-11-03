@@ -13,34 +13,29 @@ vignettes.defs: ../../Vignettes/vignettes.defs
 # baseline
 
 baseline.Rnw: ../../Vignettes/baseline/baseline.Rnw
-#	$(MAKE) -C ../../Vignettes/baseline 
 	cp -av $< $@
 
 # chondro
 # for chondro, the vignette is not built as the rawdata is too big for distributing.
 # Instead we use a static pdf (prebuilt in ../../Vignettes/chondro/) 
 chondro.pdf: ../../Vignettes/chondro/chondro.pdf 
-#	$(MAKE) -C ../../Vignettes/chondro/ chondro.pdf
 	cp -av $< $@
 chondro.pdf.asis: ../../Vignettes/chondro/chondro.Rnw 
-#	$(MAKE) -C ../../Vignettes/chondro/ chondro.pdf
 	cp -av $< $@
 	echo "% \VignetteEngine{R.rsp::asis}" >> $@
 
 # fileio
 # for fileio, the vignette is not built as the rawdata is too big for distributing.
 # Instead we use a static pdf (prebuilt in ../../Vignettes/fileio/) 
-fileio.pdf: 
-	$(MAKE) -C ../inst/doc/  fileio.pdf
+fileio.pdf: ../../Vignettes/fileio/fileio.pdf
+		cp -av $< $@
 fileio.pdf.asis: ../../Vignettes/fileio/fileio.Rnw 
-#	$(MAKE) -C ../../Vignettes/fileio/ fileio.pdf
 	cp -av $< $@
 	echo "% \VignetteEngine{R.rsp::asis}" >> $@
 
 # flu
 
 flu.Rnw:  ../../Vignettes/flu/flu.Rnw read.txt.PerkinElmer.R fludata | rawdata 
-#	$(MAKE) -C ../../Vignettes/flu 
 	cp -av $< $@
 
 read.txt.PerkinElmer.R: ../../Vignettes/fileio/read.txt.PerkinElmer.R
@@ -57,22 +52,18 @@ rawdata:
 
 hyperspec.Rnw: ../../Vignettes/hyperspec/hyperspec.Rnw ../../Vignettes/hyperspec/strukturhyperspec.pdf \
                   ../../Vignettes/hyperspec/functions.RData ../../Vignettes/hyperspec/hyperspec.bib
-#	$(MAKE) -C ../../Vignettes/hyperspec 
 	cp -av $^ ./
 
 # laser
 
 laser.Rnw: ../../Vignettes/laser/laser.Rnw rawdata/laser.txt.gz 
-#	$(MAKE) -C ../../Vignettes/laser 
 	cp -av $< $@
 
 rawdata/laser.txt.gz: ../../Vignettes/fileio/txt.Renishaw/laser.txt.gz | rawdata
-#	$(MAKE) -C ../../Vignettes/fileio  txt.Renishaw/laser.txt.gz
 	cp $< $@ 
 
 # plotting
 
 plotting.Rnw: ../../Vignettes/plotting/plotting.Rnw 
-#	$(MAKE) -C ../../Vignettes/plotting 
 	cp -av $^ ./
 

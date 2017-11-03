@@ -127,7 +127,7 @@ plotting:
 # vignettes in package folder ----------------------------------------------------------------------
 
 pkg-vignettes:
-	$(MAKE) -C hyperSpec/inst/doc  # for fileio.pdf and chondro.pdf
+	$(MAKE) -C hyperSpec/inst/doc  # provide vignettes.defs in the packge
 	$(MAKE) -C hyperSpec/vignettes -f Makefile-local # do not use Makefile here as
 	                                                 # tools::buildVignettes will attempt to use it.
 	                                                 # (even if .Rbuildignore lists the Makefile!)
