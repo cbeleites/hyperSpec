@@ -198,10 +198,10 @@ read.spe.header <- function(filename){
   )
 
   # Convert magic numbers into human-readable unit strings
-  spe_units <-  c("pixel", "data", "user units", "nm", "cm-1", "Raman shift")
-  hdr$xCalDisplayUnit <- spe_units[hdr$xCalDisplayUnit]
-  hdr$xCalInputUnit   <- spe_units[hdr$xCalInputUnit]
-  hdr$xCalPolyUnit    <- spe_units[hdr$xCalPolyUnit]
+  spe_units <-  c("pixel", "pixel", "data", "user units", "nm", "cm-1", "Raman shift")
+  hdr$xCalDisplayUnit <- spe_units[hdr$xCalDisplayUnit + 1]
+  hdr$xCalInputUnit   <- spe_units[hdr$xCalInputUnit + 1]
+  hdr$xCalPolyUnit    <- spe_units[hdr$xCalPolyUnit + 1]
 
   return(hdr)
 }
