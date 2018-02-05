@@ -8,7 +8,7 @@
 
 ##' Import WinSpec SPE file
 ##'
-##' Import function for WinSpec SPE files (file version 2.5). The calibration
+##' Import function for WinSpec SPE files (file version up to 3.0). The calibration
 ##' data (polynome and calibration data pairs) for x-axis are automatically
 ##' read and applied to the spectra. Note that the y-calibration data structure
 ##' is not extracted from the file since it is not saved there by WinSpec and is
@@ -46,8 +46,12 @@ read.spe <- function(filename, xaxis="file", acc2avg=F, cts_sec=F,
 
   hdr <- read.spe.header(filename)
 
+  # This is the size of one data point in bytes. WinSpec uses 2 bytes or 4 bytes only
+  data_size <- ifelse(hdr$datatype > 2, 2L, 4L)
+  data_chunk_size <- hdr$xdim * hdr$ydim * hdr$numFrames * data_size
+  
   # Read the part of file that contains actual experimental data
-  raw.data <- readBin(filename, "raw", file.info(filename)$size, 1)[- (1:4100)]
+  raw.data <- readBin(filename, "raw", data_chunk_size + 4100, 1)[- (1:4100)]
 
   # Convert raw spectral data according to the datatype defined in the header
   spc <- switch(hdr$datatype + 1,
@@ -56,8 +60,8 @@ read.spe <- function(filename, xaxis="file", acc2avg=F, cts_sec=F,
                 readBin(raw.data, "integer", length(raw.data)/2, 2, signed=TRUE), # int
                 readBin(raw.data, "integer", length(raw.data)/2, 2, signed=FALSE) # uint
   )
-
-  # Create a structured data.frame that will accomodate spectral data
+  
+  # Create a structured data.frame that accomodates spectral data
   dim(spc) <- c(hdr$xdim, hdr$ydim * hdr$numFrames)
   extra_data <- data.frame (
     px.y  = rep(seq_len(hdr$ydim), hdr$numFrames),
@@ -176,7 +180,8 @@ read.spe.header <- function(filename){
     kinWindowSize  = readBin(raw.data[1483:1484], "integer", 1, 2, signed=TRUE ), # int16
     clkSpeed       = readBin(raw.data[1485:1486], "integer", 1, 2, signed=TRUE ), # int16
     computerIface  = readBin(raw.data[1487:1488], "integer", 1, 2, signed=TRUE ), # int16
-
+    fileFormatVer  = readBin(raw.data[1993:1996], "double",  1, 4, signed=TRUE ), # float32
+    
     # X Calibration Structure
     xCalOffset     = readBin(raw.data[3001:3008], "double",  1, 8, signed=TRUE ), # float64
     xCalFactor     = readBin(raw.data[3009:3016], "double",  1, 8, signed=TRUE ), # float64
