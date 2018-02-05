@@ -135,6 +135,67 @@ read.spe <- function(filename, xaxis="file", acc2avg=F, cts_sec=F,
   })
 }
 
+#' Read XML footer from SPE file format version 3.0
+#' 
+#' The new SPE file format, introduced in 2012, was designed to be backwards compatible with the
+#' previous format 2.5. The most prominent change is the new plain text XML footer holding vast
+#' experimental metadata that gets attached at the end of the file. Thus, the file contains 3
+#' blocks: a 4100-bytes long binary header, a chunk with spectral data, and the XML footer.
+#' This function retrieves the XML footer, if it is available, and by default throws error otherwise.
+#'
+#' @param filename - SPE filename
+#'
+#' @return xml data, as is in the file
+#' @export
+#' @example 
+#' read.spe.xml("fileio/spe/spe_format_3.0.SPE")
+read.spe.xml <- function(filename, stop_if_old_fmt = TRUE){
+  hdr <- read.spe.header(filename)
+  
+  if (hdr$fileFormatVer < 3.0){
+    if (stop_if_old_fmt)
+      stop(paste("This SPE file contains no XML data: file format version",
+                 round(hdr$fileFormatVer, digits = 3), "< 3.0"))
+    return()
+  }
+
+  data_size <- ifelse(hdr$datatype > 2, 2L, 4L)
+  data_chunk_size <- hdr$xdim * hdr$ydim * hdr$numFrames * data_size
+  
+  # Read the part of file that contains actual experimental data
+  raw_bytes <- readBin(filename, "raw", file.info(filename)$size, 1)[- (1:(4100+data_chunk_size))]
+  readChar(raw_bytes, length(raw_bytes))
+}  
+
+.test (read.spe.xml) <- function(){
+  context("read.spe.xml")
+
+  test_that ("We can correctly extract XML footer from SPE 3.0", {
+    skip_if_not_fileio_available ()
+    fname <- "fileio/spe/spe_format_3.0.SPE"
+    
+    actual <- read.spe.xml(fname)
+    fname <- paste0(fname, "_metadata.xml")
+    expected <- readChar(fname, file.info(fname)$size)
+    expect_equal(actual, expected)
+  })
+
+  test_that ("Function throws error on old SPE format", {
+    skip_if_not_fileio_available ()
+    fname <- "fileio/spe/blut2.SPE"
+    expect_true(file.exists(fname))
+    expect_error(read.spe.xml(fname))
+  })
+  
+  test_that ("Function returns NULL error on old SPE format if second arg is F", {
+    skip_if_not_fileio_available ()
+    fname <- "fileio/spe/blut2.SPE"
+    expect_true(file.exists(fname))
+    expect_true(is.null(read.spe.xml(fname, FALSE)))
+  })
+  
+}
+
 ##' @describeIn read.spe Read only header of a WinSpec SPE file (version 2.5)
 ##' @return hdr list with \code{key=value} pairs
 ##' @export
