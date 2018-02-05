@@ -144,16 +144,20 @@ read.spe <- function(filename, xaxis="file", acc2avg=F, cts_sec=F,
 #' This function retrieves the XML footer, if it is available, and by default throws error otherwise.
 #'
 #' @param filename - SPE filename
+#' @param as.xml.object - whether the result should be a pretty-printed XML object. Requires
+#' package \code{XML}.
+#' @param stop.if.old.fmt - determines behavior when file does not
+#' contain XML footer. By default throws error message
 #'
-#' @return xml data, as is in the file
+#' @return xml data from the file. If package XML package is available, a pretty-printed XML object is returned
 #' @export
 #' @example 
 #' read.spe.xml("fileio/spe/spe_format_3.0.SPE")
-read.spe.xml <- function(filename, stop_if_old_fmt = TRUE){
+read.spe.xml <- function(filename, as.xml.object=require(XML), stop.if.old.fmt = TRUE){
   hdr <- read.spe.header(filename)
   
   if (hdr$fileFormatVer < 3.0){
-    if (stop_if_old_fmt)
+    if (stop.if.old.fmt)
       stop(paste("This SPE file contains no XML data: file format version",
                  round(hdr$fileFormatVer, digits = 3), "< 3.0"))
     return()
@@ -164,7 +168,16 @@ read.spe.xml <- function(filename, stop_if_old_fmt = TRUE){
   
   # Read the part of file that contains actual experimental data
   raw_bytes <- readBin(filename, "raw", file.info(filename)$size, 1)[- (1:(4100+data_chunk_size))]
-  readChar(raw_bytes, length(raw_bytes))
+  xml_footer <- readChar(raw_bytes, length(raw_bytes))
+  rm(raw_bytes)
+
+  if (as.xml.object){
+    if (require(XML)){
+      return(xml(xml_footer))
+    }
+      stop("as.xml.object = TRUE; Please install package 'XML' for this to work")
+  }
+  xml_footer
 }  
 
 .test (read.spe.xml) <- function(){
@@ -174,7 +187,7 @@ read.spe.xml <- function(filename, stop_if_old_fmt = TRUE){
     skip_if_not_fileio_available ()
     fname <- "fileio/spe/spe_format_3.0.SPE"
     
-    actual <- read.spe.xml(fname)
+    actual <- read.spe.xml(fname, as.xml.object = FALSE)
     fname <- paste0(fname, "_metadata.xml")
     expected <- readChar(fname, file.info(fname)$size)
     expect_equal(actual, expected)
@@ -187,11 +200,11 @@ read.spe.xml <- function(filename, stop_if_old_fmt = TRUE){
     expect_error(read.spe.xml(fname))
   })
   
-  test_that ("Function returns NULL error on old SPE format if second arg is F", {
+  test_that ("Function returns NULL error on old SPE format if `stop.if.old.fmt` is F", {
     skip_if_not_fileio_available ()
     fname <- "fileio/spe/blut2.SPE"
     expect_true(file.exists(fname))
-    expect_true(is.null(read.spe.xml(fname, FALSE)))
+    expect_true(is.null(read.spe.xml(fname, stop.if.old.fmt=FALSE)))
   })
   
 }
