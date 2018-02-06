@@ -173,7 +173,7 @@ read.spe.xml <- function(filename, as.xml.object=require(XML), stop.if.old.fmt =
 
   if (as.xml.object){
     if (require(XML)){
-      return(xml(xml_footer))
+      return(xmlParse(xml_footer))
     }
       stop("as.xml.object = TRUE; Please install package 'XML' for this to work")
   }
