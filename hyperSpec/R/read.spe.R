@@ -200,7 +200,7 @@ read.spe.xml <- function(filename, as.xml.object=require(XML), stop.if.old.fmt =
     expect_error(read.spe.xml(fname))
   })
   
-  test_that ("Function returns NULL error on old SPE format if `stop.if.old.fmt` is F", {
+  test_that ("Function returns NULL with old SPE format if argument `stop.if.old.fmt` is FALSE", {
     skip_if_not_fileio_available ()
     fname <- "fileio/spe/blut2.SPE"
     expect_true(file.exists(fname))
