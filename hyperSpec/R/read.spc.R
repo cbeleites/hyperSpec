@@ -390,13 +390,17 @@ raw.split.nul <- function (raw, trunc = c (TRUE, TRUE), firstonly = FALSE, paste
 
 	## the w values
 	if (hdr$fwplanes > 0) {
-		if (subhdr$subwlevel != 0) {
-			subhdr$w <- subhdr$subwlevel
+	  if (hdr$fwinc == 0) { ## unevenly spaced w planes
 
-		} else if (subhdr$subindx %% hdr$fwplanes == 1)
-			subhdr$w <- hdr$subhdr$w +  hdr$fwinc
-		else
-			subhdr$w <- hdr$subhdr$w
+	  }
+
+		# if (subhdr$subwlevel != 0) {
+		# 	subhdr$w <- subhdr$subwlevel
+		#
+		# } else if (subhdr$subindx %% hdr$fwplanes == 1)
+		# 	subhdr$w <- hdr$subhdr$w +  hdr$fwinc
+		# else
+		# 	subhdr$w <- hdr$subhdr$w
 	}
 
 
