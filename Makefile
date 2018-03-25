@@ -1,6 +1,6 @@
 all: roxygenize pkg-data pkg-doc vignettes pkg-vignettes | fileio-tests
 
-DATE = $(shell date +%y%m%d)
+DATE = $(shell date +%Y%m%d)
 
 clean:
 	@rm -f *~ .*~ \#*\#
@@ -47,7 +47,7 @@ installdeps:
 	                   -e 'install.packages(pkgs, repos = "https://cran.rstudio.com/")  '\
 	                   -e '}'
 
-fileio-tests: 
+fileio-tests:
 	$(MAKE) -C  hyperSpec/tests/testthat fileio
 
 ## installation targets

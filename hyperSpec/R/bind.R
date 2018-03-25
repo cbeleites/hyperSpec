@@ -1,14 +1,14 @@
 ##' Binding hyperSpec Objects
 ##'
-##' The difficulties with binding S4 objects described in \code{Matrix::\link[Matrix]{cbind}} 
-##' are resolved since R version 3.2.0 and \code{cbind} and \code{rbind} now work as intended and 
-##' expected for hyperSpec objects. 
-##' 
+##' The former difficulties with binding S4 objects
+##' are resolved since R version 3.2.0 and \code{cbind} and \code{rbind} now work as intended and
+##' expected for hyperSpec objects.
+##'
 ##' Therefore, calling \code{rbind.hyperSpec} and
-##' \code{cbind.hyperSpec} is now depecated: \code{cbind} and \code{rbind} should now be called 
+##' \code{cbind.hyperSpec} is now depecated: \code{cbind} and \code{rbind} should now be called
 ##' directly.
-##' 
-##' However, in consequence it is no longer possible to call \code{cbind} or \code{rbind} with a 
+##'
+##' However, in consequence it is no longer possible to call \code{cbind} or \code{rbind} with a
 ##' list of hyperSpec objects. In that case, use \code{bind} or \code{\link[base]{do.call}} (see example).
 ##'
 ##' \code{bind} does the common work for both column- and row-wise binding.
@@ -28,7 +28,7 @@
 ##'   do not have rownames and/or colnames.
 ##' @author C. Beleites
 ##' @export
-##' @seealso 
+##' @seealso
 ##' \code{\link[methods]{rbind2}}, \code{\link[methods]{cbind2}}
 ##' \code{\link[base]{rbind}}, \code{\link[base]{cbind}}
 ##'
@@ -56,7 +56,7 @@
 ##' try (cbind2 (x, y)) # error
 ##'
 ##' # list of hyperSpec objects
-##' 
+##'
 ##' lhy <- list (flu, flu)
 ##' do.call ("rbind", lhy)
 ##' bind ("r", lhy)
@@ -154,18 +154,18 @@ rbind.hyperSpec <- function (...) bind ("r", ...)
                             flu [rep (row.seq (flu), 3)],
                             check.label = TRUE))
   })
-  
+
   test_that ("correct rbinding", {
     expect_equal(nrow (rbind (flu, flu)), 2 * nrow (flu))
     expect_error(rbind (flu, flu [,, min ~ min + 3i]))
   })
-  
+
   test_that ("list of hyperSpec objects", {
-    
+
     expect_equal(nrow (rbind (flu, flu)), 2 * nrow (flu))
     expect_error(rbind (flu, flu [,, min ~ min + 3i]))
   })
-  
+
 }
 
 
