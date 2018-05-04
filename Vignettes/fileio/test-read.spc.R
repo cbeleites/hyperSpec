@@ -1,6 +1,7 @@
 context ("read.spc")
 old.spc <- paste0 ("spc/", c ('CONTOUR.SPC', 'DEMO 3D.SPC', 'LC DIODE ARRAY.SPC'))
-other.spc <- setdiff (Sys.glob ("spc/*.[sS][pP][cC]"), old.spc)
+wplanes <- "spc/wplanes.spc"
+other.spc <- setdiff (Sys.glob ("spc/*.[sS][pP][cC]"), c (old.spc, wplanes))
 
 test_that ("old file format -> error", {
   for (f in old.spc)
@@ -46,3 +47,8 @@ test_that("LabRam spc files", {
   expect_equal (digest (read.spc("spc.LabRam/LabRam-2.spc")), "4f37d25a94cfb0fa4ea56aa83f318e0a")
 })
 
+
+test_that("wplanes",{
+  skip ("wplanes do not yet work")
+  # wplanes
+})
