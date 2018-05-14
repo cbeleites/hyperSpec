@@ -8,6 +8,8 @@
 \makeindex
 
 \SweaveInput{vignettes.defs}
+\DeclareUnicodeCharacter{2550}{=}
+
 \SweaveOpts{prefix.string=fileio-fig-}
 \setkeys{Gin}{width = \textwidth}
 \hypersetup{pdftitle={fileio},
