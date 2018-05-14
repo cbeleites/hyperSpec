@@ -110,6 +110,7 @@ setMethod ("merge", signature = signature (x = "hyperSpec", y = "hyperSpec"),
   x
 }
 
+##' @rdname merge
 setMethod ("merge", signature = signature (x = "hyperSpec", y = "data.frame"),
            function (x, y, ...){
              validObject (x)
@@ -125,6 +126,7 @@ setMethod ("merge", signature = signature (x = "hyperSpec", y = "data.frame"),
            }
 )
 
+##' @rdname merge
 setMethod ("merge", signature = signature (x = "data.frame", y = "hyperSpec"),
            function (x, y, ...){
              validObject (y)
