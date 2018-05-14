@@ -27,6 +27,7 @@ superclean:
 bootstrap: installdeps bootstrapI chondro flu laser pkg-data | fileio-tests
 	@R CMD build --no-build-vignettes hyperSpec/
 	@R CMD INSTALL hyperSpec_*-$(DATE).tar.gz
+	$(MAKE) -C hyperspec/vignettes -f Makefile-local 
 
 bootstrapI: roxygenize
 	@R CMD build --no-build-vignettes hyperSpec/
