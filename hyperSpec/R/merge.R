@@ -47,7 +47,7 @@
 ##' merged$.
 ##'
 ##' ## merging data.frame into hyperSpec object => hyperSpec object
-##' y <- data.frame (file = sample (flu$file, 4, replace = TRUE), cpred = 1:4)
+##' y <- data.frame (filename = sample (flu$filename, 4, replace = TRUE), cpred = 1:4)
 ##' y
 ##' tmp <- merge (flu, y)
 ##' tmp$..
@@ -143,53 +143,53 @@ setMethod ("merge", signature = signature (x = "data.frame", y = "hyperSpec"),
   context ("merge")
 
   test_that ("correct number of rows", {
-    expect_equal (nrow (merge (chondro [1:10], chondro [5:15], all = TRUE)), 15)
-    expect_equal (nrow (merge (chondro [1:10], chondro [5:15])), 6)
+    expect_equivalent (nrow (merge (chondro [1:10], chondro [5:15], all = TRUE)), 15)
+    expect_equivalent (nrow (merge (chondro [1:10], chondro [5:15])), 6)
   })
 
   test_that("merging hyperSpec object with data.frame", {
 
     ## y has multiple rows for each x row
-    y <- data.frame (file = rep (flu$file, 2), cpred = 1:12)
+    y <- data.frame (filename = rep (flu$filename, 2), cpred = 1:12)
     tmp <- merge (flu, y)
 
     expect_s4_class(tmp, "hyperSpec")
 
-    expect_equal (nrow (tmp), 12L)
-    expect_equal (sort (unique (c (colnames (flu), colnames (y)))), sort (colnames (tmp)))
+    expect_equivalent (nrow (tmp), 12L)
+    expect_equivalent (sort (unique (c (colnames (flu), colnames (y)))), sort (colnames (tmp)))
 
     ## y has rows x does not have
     tmp <- merge (flu [1:2], y)
-    expect_equal (nrow (tmp), 4L)
+    expect_equivalent (nrow (tmp), 4L)
 
     ## all.y = TRUE
     tmp <- merge (flu [1:2], y, all.y = TRUE)
-    expect_equal (nrow (tmp), 12L)
-    expect_equal(sum (is.na (tmp$c)), 8)
+    expect_equivalent (nrow (tmp), 12L)
+    expect_equivalent(sum (is.na (tmp$c)), 8)
 
     ## x has rows y does not have
     tmp <- merge (flu, y [1:2,])
-    expect_equal (nrow (tmp), 2L)
+    expect_equivalent (nrow (tmp), 2L)
 
     ## all.x = TRUE
     tmp <- merge (flu, y [c (1,7),], all.x = TRUE)
-    expect_equal (nrow (tmp), 7L)
-    expect_equal(sum (is.na (tmp$cpred)), 5)
+    expect_equivalent (nrow (tmp), 7L)
+    expect_equivalent(sum (is.na (tmp$cpred)), 5)
   })
 
   test_that("merge hyperSpec object with tibble", {
     skip_if_not (require ("tibble"))
-    y <- data.frame (file = rep (flu$file, 2), cpred = 1:12)
+    y <- data.frame (filename = rep (flu$filename, 2), cpred = 1:12)
     y <- as_tibble (y)
 
     tmp <- merge (flu, y)
-    expect_equal (nrow (tmp), 12L)
-    expect_equal (sort (unique (c (colnames (flu), colnames (y)))), sort (colnames (tmp)))
+    expect_equivalent (nrow (tmp), 12L)
+    expect_equivalent (sort (unique (c (colnames (flu), colnames (y)))), sort (colnames (tmp)))
   })
 
   test_that("merge hyperSpec object into data.frame", {
 
-    y <- data.frame (file = rep (flu$file, 2), cpred = 1:12)
+    y <- data.frame (filename = rep (flu$filename, 2), cpred = 1:12)
     tmp <- merge (y, flu)
 
     expect_s3_class(tmp, "data.frame")
