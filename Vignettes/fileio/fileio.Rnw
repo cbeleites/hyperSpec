@@ -8,6 +8,8 @@
 \makeindex
 
 \SweaveInput{vignettes.defs}
+\DeclareUnicodeCharacter{2550}{=}
+
 \SweaveOpts{prefix.string=fileio-fig-}
 \setkeys{Gin}{width = \textwidth}
 \hypersetup{pdftitle={fileio},
@@ -638,8 +640,7 @@ spc ## dummy sample with all intensities zero
 \index{Agilent!ENVI}
 \index{Varian|see{Agilent}}
 
-Agilent (Varian) uses a variant of ENVI (with binary header). A specialized form of read.ENVI will be
-coming soon.
+Agilent (Varian) uses a variant of ENVI (with binary header). 
 
 \subsection{Kaiser Optical Systems Raman}
 \label{sec:Kaiser}

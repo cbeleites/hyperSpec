@@ -340,7 +340,7 @@ raw.split.nul <- function (raw, trunc = c (TRUE, TRUE), firstonly = FALSE, paste
 	hdr$.last.read <- pos + .spc.size ['subhdr']
 
 	## checking
-	if (subhdr$subexp == -128 && hdr$fexp != -128) 
+	if (subhdr$subexp == -128 && hdr$fexp != -128)
 		message ("subfile ", subhdr$subindx,  " specifies data type float, but file header doesn't.",
 				"\n=> Data will be interpreted as float unless TMULTI is set.")
 
@@ -390,13 +390,17 @@ raw.split.nul <- function (raw, trunc = c (TRUE, TRUE), firstonly = FALSE, paste
 
 	## the w values
 	if (hdr$fwplanes > 0) {
-		if (subhdr$subwlevel != 0) {
-			subhdr$w <- subhdr$subwlevel
+	  if (hdr$fwinc == 0) { ## unevenly spaced w planes
 
-		} else if (subhdr$subindx %% hdr$fwplanes == 1)
-			subhdr$w <- hdr$subhdr$w +  hdr$fwinc
-		else
-			subhdr$w <- hdr$subhdr$w
+	  }
+
+		# if (subhdr$subwlevel != 0) {
+		# 	subhdr$w <- subhdr$subwlevel
+		#
+		# } else if (subhdr$subindx %% hdr$fwplanes == 1)
+		# 	subhdr$w <- hdr$subhdr$w +  hdr$fwinc
+		# else
+		# 	subhdr$w <- hdr$subhdr$w
 	}
 
 
@@ -633,11 +637,11 @@ read.spc <- function (filename,
 	## otherwise (TXYXYS set) hdr$fnpts gives offset to subfile directory if that exists
 
 	## obtain labels from file hdr or from parameter
-	if (hdr$fwplanes > 0)
-		label <- modifyList (list (w = hdr$fwtype), label)
-
 	label <- list (.wavelength = hdr$fxtype, spc = hdr$fytype,
 					z = hdr$fztype, z.end = hdr$fztype)
+
+	if (hdr$fwplanes > 0)
+	  label$w <- hdr$fwtype
 
 	## prepare list for hyperSpec log and data.frame for extra data
 
@@ -652,15 +656,15 @@ read.spc <- function (filename,
 	## TODO: remove keys.log2log data2log
 
 	data <- c (data, tmp$extra.data, getbynames (hdr, keys.hdr2data))
-	
+
 	## preallocate spectra matrix or list for multispectra file with separate wavelength axes
 	## populate extra data
 	if (hdr$ftflgs ['TXYXYS'] && hdr$ftflgs ['TMULTI']) {
 		spc <- list ()
-		data <- .prepare.hdr.df (data, nsubfiles = 1L)	
+		data <- .prepare.hdr.df (data, nsubfiles = 1L)
 	} else {
 	  spc <- matrix (NA, nrow = hdr$fnsub, ncol = hdr$fnpts)
-	  data <- .prepare.hdr.df (data, nsubfiles = hdr$fnsub)	
+	  data <- .prepare.hdr.df (data, nsubfiles = hdr$fnsub)
 	}
 
 	## read subfiles
@@ -704,7 +708,7 @@ read.spc <- function (filename,
 			fpos <- tmp$.last.read
 
 			spc [s, ] <- tmp$y
-			
+
 			data [s, c('z', 'z.end')] <- unlist (hdr$subhdr [c('subtime', 'subnext')])
 
 			if (hdr$fwplanes > 0)
@@ -739,19 +743,19 @@ read.spc <- function (filename,
     else
       x
   })
-  
+
   ## convert vectors to matrix, otherwise the data.frame will contain one  row per element.
   ## matrices need to be protected during as.data.frame
 
   vector.entries <- which (sapply (data, length) > 1L)
-  for (v in vector.entries) 
+  for (v in vector.entries)
     data [[v]] <- I (t (as.matrix (data [[v]])))
-  
+
   data <- as.data.frame (data, stringsAsFactors = FALSE)
   data <- data [rep (1L, nsubfiles), ]
-  
-  for (v in vector.entries) 
+
+  for (v in vector.entries)
     data [[v]] <- unclass (data [[v]]) # remove AsIs protection
-  
+
   data
 }

@@ -1,6 +1,6 @@
 all: roxygenize pkg-data pkg-doc vignettes pkg-vignettes | fileio-tests
 
-DATE = $(shell date +%y%m%d)
+DATE = $(shell date +%Y%m%d)
 
 clean:
 	@rm -f *~ .*~ \#*\#
@@ -27,6 +27,7 @@ superclean:
 bootstrap: installdeps bootstrapI chondro flu laser pkg-data | fileio-tests
 	@R CMD build --no-build-vignettes hyperSpec/
 	@R CMD INSTALL hyperSpec_*-$(DATE).tar.gz
+	$(MAKE) -C hyperspec/vignettes -f Makefile-local 
 
 bootstrapI: roxygenize
 	@R CMD build --no-build-vignettes hyperSpec/
@@ -47,7 +48,7 @@ installdeps:
 	                   -e 'install.packages(pkgs, repos = "https://cran.rstudio.com/")  '\
 	                   -e '}'
 
-fileio-tests: 
+fileio-tests:
 	$(MAKE) -C  hyperSpec/tests/testthat fileio
 
 ## installation targets
@@ -68,7 +69,7 @@ roxygenize: DESCRIPTION hyperSpec/R/*.R
 
 DESCRIPTION: $(shell find hyperSpec -maxdepth 1 -daystart -not -ctime 0 -name "DESCRIPTION") #only if not modified today
 	@echo update DESCRIPTION
-	@sed "s/\(^Version: .*-\)[0-9][0-9][0-1][0-9][0-3][0-9]\(.*\)$$/\1$(DATE)\2/" hyperSpec/DESCRIPTION > .DESCRIPTION
+	@sed "s/\(^Version: .*-\)20[0-9][0-9][0-1][0-9][0-3][0-9]\(.*\)$$/\1$(DATE)\2/" hyperSpec/DESCRIPTION > .DESCRIPTION
 	@sed "s/\(^Date: .*\)20[0-9][0-9]-[0-1][0-9]-[0-3][0-9]\(.*\)$$/\1`date +%F`\2/" .DESCRIPTION > hyperSpec/DESCRIPTION
 	@rm .DESCRIPTION
 
