@@ -60,6 +60,7 @@ Imports:
     methods,
     utils,
     latticeExtra,
+    lazyeval,
     XML
 URL: http://hyperSpec.r-forge.r-project.org/
 BugReports: https://github.com/cbeleites/hyperSpec/issues

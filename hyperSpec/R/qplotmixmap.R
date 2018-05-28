@@ -18,17 +18,21 @@
 ##' qplotmixmap (chondro [,,c (940, 1002, 1440)],
 ##'              purecol = c (colg = "red", Phe = "green", Lipid = "blue"))
 ##' 
-##' qplotmixmap (chondro [,,c (940, 1002, 1440)],
-##'              purecol = c (colg = "red", Phe = "green", Lipid = "blue"))
-##' 
+##' @importFrom lazyeval f_rhs
 qplotmixmap <- function (object, ...){
 
 	p <- qmixtile (object@data, ...) +
        coord_equal ()
   
+	## ggplot2 transition to lazyeval of mappings. Use `tmp.cnv` conversion function depending on ggplot2 behaviour
+	if (is.name (p$mapping$x)) # old ggplot2
+	  tmp.cnv <- as.character
+	else # new ggplot2 -> lazyeval 
+	  tmp.cnv <- f_rhs	  
+	  
   p <- p +
-       xlab (labels (object)[[as.character (p$mapping$x)]]) + 
-       ylab (labels (object)[[as.character (p$mapping$y)]]) 
+       xlab (labels (object)[[tmp.cnv (p$mapping$x)]]) + 
+       ylab (labels (object)[[tmp.cnv (p$mapping$y)]]) 
 
   l <- qmixlegend (object@data$spc, ...)
 
@@ -76,9 +80,16 @@ qmixtile <- function (object,
                       ...,
                       map.tileonly = FALSE) {
 
+  ## ggplot2 transition to lazyeval of mappings. Use `tmp.cnv` conversion function depending on ggplot2 behaviour
+  if (is.name (mapping$fill)) # old ggplot2
+    tmp.cnv <- as.character
+  else # new ggplot2 -> lazyeval 
+    tmp.cnv <- f_rhs	  
+  
+  
   ## calculate fill colours
-  fill <- colmix.rgb (object  [[as.character (mapping$fill)]], purecol, ...)
-  object [[as.character (mapping$fill)]] <- fill
+  fill <- colmix.rgb (object  [[tmp.cnv (mapping$fill)]], purecol, ...)
+  object [[tmp.cnv (mapping$fill)]] <- fill
 
   if (map.tileonly)
       p <- ggplot (object) + geom_tile (mapping = mapping, data = object)
