@@ -151,8 +151,6 @@ read.spe <- function(filename, xaxis="file", acc2avg=F, cts_sec=F,
 #'
 #' @return xml data from the file. If package XML package is available, a pretty-printed XML object is returned
 #' @export
-#' @example 
-#' read.spe.xml("fileio/spe/spe_format_3.0.SPE")
 #' @importFrom XML xmlParse
 read.spe.xml <- function(filename, as.xml.object=require(XML), stop.if.old.fmt = TRUE){
   hdr <- read.spe.header(filename)
