@@ -3,8 +3,8 @@ Encoding: UTF-8
 Type: Package
 Title: Work with Hyperspectral Data, i.e. Spectra + Meta Information (Spatial,
     Time, Concentration, ...)
-Version: 0.99-20180514
-Date: 2018-05-14
+Version: 0.99-20180528
+Date: 2018-05-28
 Maintainer: Claudia Beleites <chemometrie@beleites.de>
 Authors@R: c(
     person("Claudia",   "Beleites",  role = c("aut","cre", "dtc"), email = "chemometrie@beleites.de"),
@@ -54,13 +54,13 @@ Suggests:
     digest,
     reshape,
     devtools,
-    R.rsp,
-    XML
+    R.rsp
 Imports:
     testthat,
     methods,
     utils,
-    latticeExtra
+    latticeExtra,
+    XML
 URL: http://hyperSpec.r-forge.r-project.org/
 BugReports: https://github.com/cbeleites/hyperSpec/issues
 VignetteBuilder: R.rsp

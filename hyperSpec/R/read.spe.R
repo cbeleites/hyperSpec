@@ -153,6 +153,7 @@ read.spe <- function(filename, xaxis="file", acc2avg=F, cts_sec=F,
 #' @export
 #' @example 
 #' read.spe.xml("fileio/spe/spe_format_3.0.SPE")
+#' @importFrom XML xmlParse
 read.spe.xml <- function(filename, as.xml.object=require(XML), stop.if.old.fmt = TRUE){
   hdr <- read.spe.header(filename)
   
@@ -172,10 +173,7 @@ read.spe.xml <- function(filename, as.xml.object=require(XML), stop.if.old.fmt =
   rm(raw_bytes)
 
   if (as.xml.object){
-    if (require(XML)){
       return(xmlParse(xml_footer))
-    }
-      stop("as.xml.object = TRUE; Please install package 'XML' for this to work")
   }
   xml_footer
 }  
