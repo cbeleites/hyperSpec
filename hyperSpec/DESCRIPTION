@@ -3,8 +3,8 @@ Encoding: UTF-8
 Type: Package
 Title: Work with Hyperspectral Data, i.e. Spectra + Meta Information (Spatial,
     Time, Concentration, ...)
-Version: 0.99-20180528
-Date: 2018-05-28
+Version: 0.99-20180529
+Date: 2018-05-29
 Maintainer: Claudia Beleites <chemometrie@beleites.de>
 Authors@R: c(
     person("Claudia",   "Beleites",  role = c("aut","cre", "dtc"), email = "chemometrie@beleites.de"),
@@ -65,7 +65,7 @@ Imports:
 URL: http://hyperSpec.r-forge.r-project.org/
 BugReports: https://github.com/cbeleites/hyperSpec/issues
 VignetteBuilder: R.rsp
-Collate: 
+Collate:
     'validate.R'
     'hyperspec-class.R'
     'unittest.R'
@@ -118,6 +118,7 @@ Collate:
     'mean_sd.R'
     'merge.R'
     'mvtnorm.R'
+    'normalize.R'
     'normalize01.R'
     'orderwl.R'
     'pearson.dist.R'
@@ -173,4 +174,4 @@ Collate:
     'write.txt.wide.R'
     'y-pastenames.R'
     'zzz.R'
-RoxygenNote: 6.0.1
+RoxygenNote: 5.0.1
