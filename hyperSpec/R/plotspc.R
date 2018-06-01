@@ -159,7 +159,7 @@
 ##' @importFrom grDevices rgb col2rgb
 plotspc <- function  (object,
                        ## what wavelengths to plot
-                      wl.range = NULL, wl.index = FALSE,  wl.reverse = FALSE,
+                      wl.range = TRUE, wl.index = FALSE,  wl.reverse = FALSE,
                       ## what spectra to plot
                       spc.nmax = hy.getOption("plot.spc.nmax"),
                       func = NULL, func.args = list (),
@@ -186,19 +186,20 @@ plotspc <- function  (object,
 
   ## prepare wavelengths ............................................................................
   ## somewhat more complicated here because of plotting with cut wavelength axis
-  if (is.null (wl.range)) {
-    wl.range <- seq_along (object@wavelength)
-    wl.index <- TRUE
-  }
+#  wl.range <- lazy (wl.range)
+#  browser ()
+#  if (is.null (wl.range$expr)) {
+#    wl.range <- seq_along (object@wavelength)
+#    wl.index <- TRUE
+#  } 
 
-  if (!is.list (wl.range))
-    wl.range <- list (wl.range)
+#  if (!is.list (wl.range$expr))
+#    wl.range <- list (wl.range)
 
-  if (!wl.index)
-    wl.range <- lapply (wl.range, function (w) {
-      tmp <- unique (wl2i (object, w))
-      tmp [! is.na (tmp)]
-    })
+  if (!wl.index){
+    wl.range <- wl2i (object, wl.range, unlist = FALSE)
+    wl.range <- lapply (wl.range, function (r) r [! is.na (r)])
+    }
 
   ## xoffset ........................................................................................
   ## may be
