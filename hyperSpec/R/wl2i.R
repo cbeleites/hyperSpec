@@ -93,7 +93,8 @@ wl2i <- function (x, wavelength = stop ("wavelengths are required."), unlist = T
     wavelength <- lazy (wavelength)
     
     wavelength <- lazy_eval (wavelength, 
-                        data = list (max = max (x@wavelength), min = min (x@wavelength)))
+                             data = list (max = max (x@wavelength),   min = min (x@wavelength),
+                                          maxwl = max (x@wavelength), minwl = min (x@wavelength)))
   }, silent = TRUE)
 
   ## make sure we have a list of ranges to be converted
