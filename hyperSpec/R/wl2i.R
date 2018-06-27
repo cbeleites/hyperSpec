@@ -85,10 +85,16 @@ wl2i <- function (x, wavelength = stop ("wavelengths are required."), unlist = T
   chk.hy (x)
   validObject (x)
   
-  wavelength <- lazy (wavelength)
-
-  wavelength <- lazy_eval (wavelength, 
+  ## wavelength may have been forced already before.
+  ## in that case, no special evaluation can be done.
+  ## However, we cannot know whether we have the experession forced already or not, 
+  ## so we have to try
+  try ({
+    wavelength <- lazy (wavelength)
+    
+    wavelength <- lazy_eval (wavelength, 
                         data = list (max = max (x@wavelength), min = min (x@wavelength)))
+  }, silent = TRUE)
 
   ## make sure we have a list of ranges to be converted
   if (! is.list (wavelength))
