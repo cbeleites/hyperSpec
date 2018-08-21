@@ -38,7 +38,7 @@ split.line <- function (x, separator, trim.blank = TRUE) {
 
 ### some ENVI-specific helper functions .............................................................
 
-
+### guesses ENVI header file name
 .find.ENVI.header  <- function (file, headerfilename) {
   if (is.null (headerfilename)) {
     headerfilename <- paste (dirname (file),
@@ -53,17 +53,15 @@ split.line <- function (x, separator, trim.blank = TRUE) {
     	headerfilename <- headerfilename [grepl ("[.][hH][dD][rR]$", headerfilename)]
 
     	if (length (headerfilename == 1L))
-        message (".read.ENVI.header: Guessing header file name ", headerfilename)
+        message (".find.ENVI.header: Guessing header file name ", headerfilename)
     }
 
     if (length (headerfilename) != 1L)
       stop ("Cannot guess header file name")
-    else
-      message (".read.ENVI.header: Guessing header file name ", headerfilename)
   }
 
   if (!file.exists(headerfilename))
-    stop("Could not open header file: ", headerfilename)
+    stop("ENVI header file: ", headerfilename, " not found.")
 
   headerfilename
 }
