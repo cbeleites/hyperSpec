@@ -68,7 +68,7 @@ split.line <- function (x, separator, trim.blank = TRUE) {
 
 # ...................................................................................................
 
-.read.ENVI.split.header <- function (header) {
+.read.ENVI.split.header <- function (header, pull.lines = TRUE) {
 
   ## check ENVI at beginning of file
   if (!grepl ("ENVI", header[1]))
@@ -91,6 +91,7 @@ split.line <- function (x, separator, trim.blank = TRUE) {
   header[l] <- sub ("\\{", "", header[l])
   header[r] <- sub ("\\}", "", header[r])
 
+  if (pull.lines)
     for (i in rev (seq_along (l)))
       header <- c (header [seq_len (l [i] - 1)],
                    paste (header [l [i] : r [i]], collapse = " "),
@@ -298,6 +299,9 @@ split.line <- function (x, separator, trim.blank = TRUE) {
 ##'
 ##' To specify certain entries, give character vectors containing the lowercase
 ##'   names of the header file entries.
+##' @param ... currently unused
+##' @param pull.header.lines (internal) flag whether multi-line header entries grouped by curly
+##'   braces should be pulled into one line each.
 ##' @return a \code{hyperSpec} object
 ##' @author C. Beleites, testing for the Nicolet files C. Dicko
 ##' @seealso \code{\link[caTools]{read.ENVI}}
@@ -316,7 +320,8 @@ read.ENVI <- function (file = stop ("read.ENVI: file name needed"), headerfile =
 							  keys.hdr2data = FALSE,
 							  x = 0 : 1, y = x,
 							  wavelength = NULL, label = list (),
-							  block.lines.skip = 0, block.lines.size = NULL) {
+							  block.lines.skip = 0, block.lines.size = NULL, ...,
+							  pull.header.lines = TRUE) {
   force (y)
 
   if (! file.exists (file))
@@ -332,7 +337,7 @@ read.ENVI <- function (file = stop ("read.ENVI: file name needed"), headerfile =
   	headerfile <- .find.ENVI.header (file, headerfile)
 
   tmp <- readLines (headerfile)
-  tmp <- .read.ENVI.split.header (tmp)
+  tmp <- .read.ENVI.split.header (tmp, pull.lines = pull.header.lines)
   header <- modifyList (tmp, header)
 
   ## read the binary file
@@ -376,7 +381,6 @@ read.ENVI <- function (file = stop ("read.ENVI: file name needed"), headerfile =
   ## consistent file import behaviour across import functions
   .fileio.optional (spc, file)
 }
-
 
 .test (read.ENVI) <- function (){
   context ("read.ENVI")
