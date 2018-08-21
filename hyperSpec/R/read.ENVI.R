@@ -376,3 +376,40 @@ read.ENVI <- function (file = stop ("read.ENVI: file name needed"), headerfile =
   ## consistent file import behaviour across import functions
   .fileio.optional (spc, file)
 }
+
+
+.test (read.ENVI) <- function (){
+  context ("read.ENVI")
+
+  test_that ("full spectrum BIL", {
+    skip_if_not_fileio_available ()
+    tmp <- read.ENVI ("fileio/ENVI/toy.bil")
+    expect_equal(tmp$filename [1], "fileio/ENVI/toy.bil")
+    expect_equal(nrow (tmp), 21913)
+    expect_equal(ncol (tmp), 4)
+    expect_equal(nwl (tmp), 4)
+    expect_equal(range (tmp$x), c (0, 149))
+    expect_equal(range (tmp$y), c (0, 166))
+  })
+
+  test_that ("block reading BIL", {
+    skip_if_not_fileio_available ()
+    tmp <- read.ENVI ("fileio/ENVI/toy.bil", block.lines.skip = 50, block.lines.size = 40)
+    expect_equal(nrow (tmp), 40*150)
+    expect_equal(ncol (tmp), 4)
+    expect_equal(nwl (tmp), 4)
+    expect_equal(range (tmp$x), c (0, 149))
+    expect_equal(range (tmp$y), c (50, 89))
+  })
+
+  test_that ("block reading BIL: block longer than file", {
+    skip_if_not_fileio_available ()
+    tmp <- read.ENVI ("fileio/ENVI/toy.bil", block.lines.skip = 150, block.lines.size = 50)
+    expect_equal(tmp$filename [1], "fileio/ENVI/toy.bil")
+    expect_equal(nrow (tmp), 870) # ! not simple lines x samples multiplication as empty spectra are removed !
+    expect_equal(ncol (tmp), 4)
+    expect_equal(nwl (tmp), 4)
+    expect_equal(range (tmp$x), c (86, 149))
+    expect_equal(range (tmp$y), c (150, 166))
+  })
+}
