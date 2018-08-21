@@ -91,10 +91,10 @@ split.line <- function (x, separator, trim.blank = TRUE) {
   header[l] <- sub ("\\{", "", header[l])
   header[r] <- sub ("\\}", "", header[r])
 
-  for (i in rev (seq_along (l)))
-    header <- c (header [seq_len (l [i] - 1)],
-                paste (header [l [i] : r [i]], collapse = " "),
-                header [-seq_len (r [i])])
+    for (i in rev (seq_along (l)))
+      header <- c (header [seq_len (l [i] - 1)],
+                   paste (header [l [i] : r [i]], collapse = " "),
+                   header [-seq_len (r [i])])
 
   ## split key = value constructs into list with keys as names
   header <- sapply (header, split.line, "=", USE.NAMES = FALSE)
@@ -109,7 +109,12 @@ split.line <- function (x, separator, trim.blank = TRUE) {
 
 ### .................................................................................................
 
-.read.ENVI.bin <- function (file, header) {
+.read.ENVI.bin <- function (file, header, block.lines.skip = NULL, block.lines.size = NULL) {
+
+  DATA_TYPE_SIZES <- as.integer (c (1, 2, 4, 4, 8, NA, NA, NA, 16, NA, NA, 2))
+
+  if (is.null (header$interleave))
+    header$interleave <- "bsq"
 
   if (any (is.null (header [c ("samples", "lines", "bands", "data type")]) ||
            is.na   (header [c ("samples", "lines", "bands", "data type")]) ))
@@ -143,34 +148,53 @@ split.line <- function (x, separator, trim.blank = TRUE) {
       header$`byte order` <- "big"
   }
 
-  n <- header$samples * header$lines * header$bands
-
   if (!file.exists (file))
     stop("Binary file not found: ", file)
 
   f <- file (file, "rb")
   if (! is.null (header$`header offset`))
-    readBin (f, raw(), n = header$`header offset`)
+    seek (f, where = header$`header offset`, origin = "start")
+
+  ## size of data point in bytes
+  size <- DATA_TYPE_SIZES [header$`data type`]
+
+  ## read blocks of data
+  if (block.lines.skip > 0) {
+    skip <- switch (tolower (header$interleave),
+                    bil = header$samples * header$bands * block.lines.skip,
+                    bip = header$bands * header$samples * block.lines.skip,
+                    bsq = stop ('skipping of band sequential (BSQ) ENVI files not yet supported. Please contact the maintainer (',
+                                maintainer (pkg = "hyperSpec"), ")."),
+                    stop ("Unknown interleave (", header$interleave, ") - should be one of 'BSQ', 'BIL', 'BIP'.")
+    )
+
+    skip <- skip * size
+    seek (f, where = skip, start = "current")
+  }
+
+  if (!is.null (block.lines.size)) {
+    header$lines <- min (block.lines.size, header$lines - block.lines.skip)
+  }
+
+  ## number of data points to read
+  n <- header$samples * header$lines * header$bands
 
   switch(header$`data type`,
-         spc <- readBin(f, integer (), n = n, size =  1, signed = FALSE),
-         spc <- readBin(f, integer (), n = n, size =  2, endian = header$`byte order`),
-         spc <- readBin(f, integer (), n = n, size =  4, endian = header$`byte order`),
-         spc <- readBin(f, double (),  n = n, size =  4, endian = header$`byte order`),
-         spc <- readBin(f, double (),  n = n, size =  8, endian = header$`byte order`),
-         , # 6 unused
-         , # 7 unused
-         , # 8 unused
-         spc <- readBin (f, complex(), n = n, size = 16, endian = header$`byte order`),
-         , # 10 unused
-         , # 11 unused
-         spc <- readBin (f, integer(), n = n, size =  2, endian = header$`byte order`, signed = FALSE)
+         spc <- readBin(f, integer (), n = n, size = size, signed = FALSE),
+         spc <- readBin(f, integer (), n = n, size = size, endian = header$`byte order`),
+         spc <- readBin(f, integer (), n = n, size = size, endian = header$`byte order`),
+         spc <- readBin(f, double (),  n = n, size = size, endian = header$`byte order`),
+         spc <- readBin(f, double (),  n = n, size = size, endian = header$`byte order`),
+         stop ("ENVI data type (", header$`data type`, ") unknown"), # 6 unused
+         stop ("ENVI data type (", header$`data type`, ") unknown"), # 7 unused
+         stop ("ENVI data type (", header$`data type`, ") unknown"), # 8 unused
+         spc <- readBin (f, complex(), n = n, size = size, endian = header$`byte order`),
+         stop ("ENVI data type (", header$`data type`, ") unknown"), # 10 unused
+         stop ("ENVI data type (", header$`data type`, ") unknown"), # 11 unused
+         spc <- readBin (f, integer(), n = n, size = size, endian = header$`byte order`, signed = FALSE)
          )
 
   close(f)
-
-  if (is.null (header$interleave))
-    header$interleave <- "bsq"
 
   switch (tolower (header$interleave),
           bil = {
@@ -217,7 +241,7 @@ split.line <- function (x, separator, trim.blank = TRUE) {
 ##' contents) produced by Bruker Opus' ENVI export.
 ##'
 ##' In this case the necessary information can be given as a list in parameter
-##' \code{header} instead. The elements of header are then:
+##' \code{header} instead:
 ##'
 ##' \tabular{lll}{
 ##' \code{header$}          \tab values        \tab meaning\cr
@@ -254,17 +278,21 @@ split.line <- function (x, separator, trim.blank = TRUE) {
 ##' Thus, the object's \code{$x} colum is: \code{(0 : header$samples - 1) * x
 ##' [2] + x [1]}.  The \code{$y} colum is calculated analogously.
 ##'
-##' @aliases read.ENVI read.ENVI.Nicolet
+##' @aliases read.ENVI read.ENVI.Nicolet read.ENVI.HySpex
 ##' @param file complete name of the binary file
 ##' @param headerfile name of the ASCII header file. If \code{NULL}, the name
 ##'   of the header file is guessed by looking for a second file with the same
-##'   basename but different suffix as \code{file}.
-##' @param header list with the respective information, see details.
+##'   basename as \code{file} but \code{hdr} or \code{HDR} suffix.
+##' @param header list with header information, see details. Overwrites information extracted from the header file.
 ##' @param x,y vectors of form c(offset, step size) for the position vectors,
 ##'   see details.
 ##' @param wavelength,label lists that overwrite the respective information
 ##'   from the ENVI header file. These data is then handed to
 ##'   \code{\link[hyperSpec]{initialize}}
+##' @param block.lines.skip,block.lines.size BIL and BIP ENVI files may be read in blocks of lines:
+##'   skip the first \code{block.lines.skip} lines, then read a block of \code{block.lines.size}
+##'   lines. If \code{block.lines.NULL}, the whole file is read.
+##'   Blocks are silently truncated at the end of the file (more precisely: to \code{header$lines}).
 ##' @param keys.hdr2data determines which fields of the header file should be
 ##'   put into the extra data. Defaults to none.
 ##'
@@ -287,7 +315,8 @@ read.ENVI <- function (file = stop ("read.ENVI: file name needed"), headerfile =
 							  header = list (),
 							  keys.hdr2data = FALSE,
 							  x = 0 : 1, y = x,
-							  wavelength = NULL, label = list ()) {
+							  wavelength = NULL, label = list (),
+							  block.lines.skip = 0, block.lines.size = NULL) {
   force (y)
 
   if (! file.exists (file))
@@ -307,7 +336,7 @@ read.ENVI <- function (file = stop ("read.ENVI: file name needed"), headerfile =
   header <- modifyList (tmp, header)
 
   ## read the binary file
-  spc <- .read.ENVI.bin (file, header)
+  spc <- .read.ENVI.bin (file, header, block.lines.skip = block.lines.skip, block.lines.size = block.lines.size)
 
   ## wavelength should contain the mean wavelength of the respective band
   if (! is.null (header$wavelength)) {
@@ -318,8 +347,14 @@ read.ENVI <- function (file = stop ("read.ENVI: file name needed"), headerfile =
   }
 
   ## set up spatial coordinates
-  x <- rep (seq (0, header$samples - 1), each = header$lines)   * x [2] + x [1]
-  y <- rep (seq (0, header$lines   - 1),        header$samples) * y [2] + y [1]
+  x <- seq (0, header$samples - 1) * x [2] + x [1]
+  y <- seq (0, header$lines   - 1) * y [2] + y [1]
+
+  block.lines.size <- min (block.lines.size, nrow (spc) / header$samples)
+  x <- rep (x, each = block.lines.size)
+
+  y <- y [block.lines.skip + seq_len (block.lines.size)]
+  y <- rep (y,        header$samples)
 
   ## header lines => extra data columns
   extra.data <- header [keys.hdr2data]
@@ -341,4 +376,3 @@ read.ENVI <- function (file = stop ("read.ENVI: file name needed"), headerfile =
   ## consistent file import behaviour across import functions
   .fileio.optional (spc, file)
 }
-
