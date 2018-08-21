@@ -3,8 +3,8 @@ Encoding: UTF-8
 Type: Package
 Title: Work with Hyperspectral Data, i.e. Spectra + Meta Information (Spatial,
     Time, Concentration, ...)
-Version: 0.99-20180325
-Date: 2018-03-25
+Version: 0.99-20180821
+Date: 2018-08-21
 Maintainer: Claudia Beleites <chemometrie@beleites.de>
 Authors@R: c(
     person("Claudia",   "Beleites",  role = c("aut","cre", "dtc"), email = "chemometrie@beleites.de"),
@@ -128,6 +128,7 @@ Collate:
     'qplotmixmap.R'
     'quantile.R'
     'rbind.fill.R'
+    'read.ENVI.HySpex.R'
     'read.ENVI.Nicolet.R'
     'read.ENVI.R'
     'read.txt.Witec.R'
@@ -144,6 +145,7 @@ Collate:
     'read.txt.Shimadzu.R'
     'read.txt.long.R'
     'read.txt.wide.R'
+    'readascPE.R'
     'replace.R'
     'sample.R'
     'scale.R'
@@ -171,4 +173,4 @@ Collate:
     'write.txt.wide.R'
     'y-pastenames.R'
     'zzz.R'
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.0
