@@ -10,6 +10,7 @@
  pdfkeywords={chondro, hyperSpec, cluster analysis, preprocessing, Raman, principal component analysis, PCA}}
 \SweaveOpts{prefix.string=chondro-fig-}
 %\VignetteDepends{latticeExtra}
+%\VignetteSuggests{akima}
 \usepackage{fourier}
 \usepackage[]{helvet}
 
@@ -408,17 +409,68 @@ look at the nucleic acid distribution, using the DNA bands at 728,
 782, 1098, 1240, 1482, and 1577~cm\textsuperscript{-1}:
 
 <<DNA, fig = TRUE, width = 7.5, height = 5, include = FALSE>>=
+DNAcols <- colorRampPalette (c("white", "gold", "dark green"), space = "Lab") (20)
 plotmap (chondro[, , c( 728, 782, 1098, 1240, 1482, 1577)],
-       col.regions = colorRampPalette (c("white", "gold", "dark green"), space = "Lab") (20))
+       col.regions = DNAcols)
 @
 \begin{figure}[tbh]
-\includegraphics[width=0.495\textwidth]{chondro-fig--DNA}
-\caption{\label{fig:DNA} False colour map of the DNA band intensities.}
+\subfloat[\label{fig:DNA} False color map of DNA.]{\includegraphics[width=0.495\textwidth]{chondro-fig--DNA}}
+\subfloat[\label{fig:DNAsm} Smoothed DNA abundance.]{\includegraphics[width=0.495\textwidth]{chondro-fig--DNAsm}}
+\caption{False colour map of the DNA band intensities.}
 \end{figure}
 
 The result is shown in figure~\ref{fig:DNA}. While the nucleus of
-the right cell shows up nicely, nothing is detected in the remainders
+the right cell shows up nicely, only low concentration remainders are detected
 of the left cell.
+
+\section{Smoothed False-Colour Maps and Interpolation}
+As we plotted only a few selected wavelenths, figure~\ref{fig:DNA} is quite noisy. Smoothing interpolation could help. 
+In R, such a smoother is mostly seen as a model, whose predictions are then displayed as smooth map (fig.~\ref{fig:DNAsm}). This smoothing model can be calculated on the fly, 
+e.g. by using the \Rfunction{panel.2dsmoother} wrapper provided by \Rpackage{latticeExtra}:
+
+<<DNAsm, fig = TRUE, width = 7.5, height = 5, include = FALSE>>=
+plotmap (chondro[, , c( 728, 782, 1098, 1240, 1482, 1577)],
+       col.regions = DNAcols,
+       panel = panel.2dsmoother, args = list (span = 0.05))
+@
+
+For interpolation (i.e. no smoothing at the available data points), a Voronoi plot  (a.k.a. Delaunay triangulation) is basically a 2d constant interpolation: each point in space has the same z/color value as its closest available point. For a full rectangular grid, this corresponds to the usual square/rectangular pixel plot. With missing points, differences become clear (fig.~\ref{fig:DNAmissing}):
+
+<<DNAmissing, fig = TRUE, width = 7.5, height = 5, include = FALSE>>=
+tmp <- sample (chondro[, , c( 728, 782, 1098, 1240, 1482, 1577)], 500)
+plotmap (tmp, col.regions = DNAcols)
+@
+<<DNAvoronoi, fig = TRUE, width = 7.5, height = 5, include = FALSE>>=
+plotmap (tmp, col.regions = DNAcols,
+        panel = panel.voronoi, pch = 19, col = "black", cex = 0.1)
+@
+\begin{figure}[tbh]
+\subfloat[Omitting missing data points.]{\includegraphics[width=0.495\textwidth]{chondro-fig--DNAmissing}}
+\subfloat[Delaunay triangulation / Voronoi plot.]{\includegraphics[width=0.495\textwidth]{chondro-fig--DNAvoronoi}}
+\caption{\label{fig:DNAmissing} 2d "constant" interpolation with missing values.}
+\end{figure}
+
+2d linear interpolation can be done e.g. by the functions provided by package \Rpackage{akima}. However, they do not follow the model-predict paradigm, but instead do directly return an object suitable for base plotting with \Rfunction{image} (\ref{fig:akima}):
+
+<<DNAinterp, fig = TRUE, width = 7.5, height = 5, include = FALSE>>=
+if (require ("akima")){
+
+tmp <- rowMeans (chondro[[, , c( 728, 782, 1098, 1240, 1482, 1577)]])
+chondro.bilinear <- interp (chondro$x, chondro$y, as.numeric (tmp), nx = 100, ny = 100)
+
+image (chondro.bilinear, 
+  xlab = labels (chondro, "x"), ylab = labels (chondro, "y"), 
+  col = DNAcols)
+}
+@
+\begin{figure}[tbh]
+%\subfloat[Omitting missing data points.]{\includegraphics[width=0.495\textwidth]{chondro-fig--DNAmissing}}
+%\subfloat[Delaunay triangulation / Voronoi plot.]{\includegraphics[width=0.495\textwidth]{chondro-fig--DNAvoronoi}}
+\includegraphics[width=0.495\textwidth]{chondro-fig--DNAinterp}
+\caption{\label{fig:akima} 2d interpolation.}
+\end{figure}
+
+
 
 \section{Saving the data set}
 \label{sec:saving-data-set}

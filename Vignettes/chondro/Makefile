@@ -7,6 +7,9 @@ clean:
 chondro.pdf: chondro.Rnw vignettes.defs rawdata/chondro.txt
 	R CMD Sweave chondro.Rnw --pdf --compact="both" 
 
+chondro-internal.rda: chondro.pdf
+	touch chondro-internal.rda
+
 vignettes.defs: ../vignettes.defs
 	cp -av $< $@
 

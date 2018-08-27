@@ -9,15 +9,15 @@
 
 .getindex <- function (x, wavelength, extrapolate = TRUE){
     if (! extrapolate) {
-        wavelength [wavelength < min (x@wavelength)] <- NA
-        wavelength [wavelength > max (x@wavelength)] <- NA
+        wavelength [wavelength < min (x@wavelength)] <- -Inf
+        wavelength [wavelength > max (x@wavelength)] <- +Inf
     }
-    tmp <- wavelength [! is.na (wavelength)]
+    tmp <- wavelength [is.finite (wavelength)]
     if (length (tmp) > 0) {
         tmp <- sapply (tmp,
                          function (x, y) which.min (abs (x  - y)),
                          x@wavelength)
-        wavelength [! is.na (wavelength)] <- tmp
+        wavelength [is.finite (wavelength)] <- tmp
     }
     wavelength
 }
@@ -49,6 +49,7 @@
 ##'   either numeric or a formula, see details.
 ##' @param i the column indices into the spectra matrix for which the
 ##'   wavelength is to be computed
+##' @param unlist if multiple wavelength ranges are given, should the indices be unlisted or kept in a list?
 ##' @return A numeric containing the resulting indices for \code{wl2i}
 ##' @author C. Beleites
 ##' @export
@@ -79,48 +80,140 @@
 ##' wl2i (flu, 300 : 400) ## all NA: 
 ##' wl2i (flu, 600 ~ 700) ## NULL: completely outside flu's wavelength range
 ##' 
-wl2i <- function (x, wavelength = stop ("wavelengths are required.")){
+##' @importFrom lazyeval lazy lazy_eval is_formula f_eval_lhs f_eval_rhs
+wl2i <- function (x, wavelength = stop ("wavelengths are required."), unlist = TRUE){
   chk.hy (x)
   validObject (x)
+  
+  ## wavelength may have been forced already before.
+  ## in that case, no special evaluation can be done.
+  ## However, we cannot know whether we have the experession forced already or not, 
+  ## so we have to try
+  try ({
+    wavelength <- lazy (wavelength)
+    
+    wavelength <- lazy_eval (wavelength, 
+                             data = list (max = max (x@wavelength),   min = min (x@wavelength),
+                                          maxwl = max (x@wavelength), minwl = min (x@wavelength)))
+  }, silent = TRUE)
 
-  ## special in formula
-  max <- max (x@wavelength)
-  min <- min (x@wavelength)
+  ## make sure we have a list of ranges to be converted
+  if (! is.list (wavelength))
+    wavelength <- list (wavelength)
+  
+  results <- list ()
+  
+  for (r in seq_along (wavelength)){
+   
+    ## ~ sequence vs. scalars and : sequences
+    if (is_formula (wavelength [[r]])){
+      from <- f_eval_lhs(wavelength [[r]])
+      to <- f_eval_rhs(wavelength [[r]])
+    } else { 
+      ## sequence with : or scalar
+      from <- NULL
+      to <- wavelength [[r]]
+    }
+    
+    ## conversion to indices
+    if (is.logical (to))
+      to <- seq_len (nwl (x)) [to]
+    else
+      to <- .getindex (x, Re (to), extrapolate = FALSE) + Im (to)
 
-  envir <- attr (wavelength, ".Environment")
-
-  `~` <- function (e1, e2){
-    if (missing (e2))              # happens with formula ( ~ end)
-      stop ("wavelength must be a both-sided formula")
-
-    if ((Re (e1) < min (x@wavelength) && Re (e2) < min (x@wavelength)) ||
-        (Re (e1) > max (x@wavelength) && Re (e2) > max (x@wavelength))){
-      NULL                       # wavelengths completely outside the wl. range of x
+    if (is.null (from)) { 
+      results [[r]] <- to
+      results [[r]][! is.finite(results [[r]])] <- NA
     } else {
-      e1 <- .getindex (x, Re (e1)) + Im (e1)
-      e2 <- .getindex (x, Re (e2)) + Im (e2)
+      from <- .getindex (x, Re (from), extrapolate = FALSE) + Im (from)
 
-      if (e1 <= 0 || e2 <= 0|| e1 > length (x@wavelength) || e2 > length (x@wavelength))
-        warning ("wl2i: formula yields indices outside the object.")
-
-      seq (e1, e2)
+      ## completely outside range
+      results [[r]] <- NULL    
+      
+      ## start outside left
+      if (from == -Inf) from <- 1
+      
+      ## end outside right
+      if (to   ==  Inf) to <- nwl (x)      
+      
+      if (is.finite(from) && is.finite(to)){
+        ## crop indices to range: 
+        ## outside range indices can happen with complex wavelength specifications like min - 1i
+        if (from < 1L) from <- 1L
+        if (to > nwl (x)) to <- nwl (x)
+        
+        results [[r]] <- seq (from, to)    
+      }
     }
   }
 
-  .conv.range <- function (range){
-    if (is.numeric (range)){
-      .getindex (x, range, extrapolate = FALSE)
-    } else
-    eval (range)
-  }
-
-  if (is.list (wavelength)) {
-    unlist (lapply (wavelength, .conv.range))
-  } else {
-    .conv.range (wavelength)
-  }
+  if (unlist)
+    unlist (results)
+  else 
+    results
 }
 
+.test (wl2i) <- function (){
+  context ("wl2i")
+  test_that(": sequence of wavelengths", {
+    skip ("skip")
+    expect_equal(wl2i (flu, 405 : 407), c (1, 3, 5))
+  })
+  
+  test_that("~ sequence of indices", {
+    expect_equal(wl2i (flu, 405 ~ 407), 1 : 5)
+  })
+  
+  test_that("min special variables", {
+    expect_equal(wl2i (flu, min ~ 407), 1 : 5)
+    expect_equal(wl2i (flu, min + 2i ~ 407), 3 : 5)
+    expect_equal(wl2i (flu, min ~ min + 2i), 1 : 3)
+  })
+  
+  test_that("max special variables", {
+    expect_equal(wl2i (flu, 493 ~ max), 177 : 181)
+    expect_equal(wl2i (flu, max - 7i ~ max - 2i), 174 : 179)
+  })
+  
+  test_that("complex numbers for indices", {
+    expect_equal(wl2i (flu, 450 - 3i ~ 450 + 3i), 88 : 94)
+    
+    ## hitting range
+    expect_equal (wl2i (flu, min - 1i ~ max + 1i), seq_len (nwl (flu)))
+    
+  })
+
+  test_that("logical indices", {
+    expect_equal(wl2i (flu, c (TRUE, TRUE, TRUE, rep (FALSE, nwl (flu) - 3))), 1 : 3)
+  })
+  
+  
+  test_that("behavior outside spectral range", {
+    ## completely outside range
+    tmp <- wl2i (flu, 300 : 400)
+    expect_true (all (is.na (tmp)))
+    expect_equal(length (tmp), 101)
+
+    expect_true (is.null (wl2i (flu, 600 ~ 700)))
+    
+    ## one side outside
+    expect_equal (wl2i (flu, 400 ~ 407), 1 : 5)
+    expect_equal (wl2i (flu, 490 ~ 500), 171 : 181)
+    
+    ## enclosing range
+    expect_equal (wl2i (flu, 400 ~ 500), seq_len (nwl (flu)))
+  })
+  
+  test_that("list of ranges", {
+    expect_equal(wl2i (flu, c (300 : 400,             405 ~ 407,             min ~ min + 2i)),
+                 c (wl2i (flu, 300 : 400), wl2i (flu, 405 ~ 407), wl2i (flu, min ~ min + 2i)))
+    
+    expect_equal (wl2i (flu, c (min ~ min + 5i, 405 ~ 407), unlist = TRUE), c (1:6, 1:5))
+    expect_equal (wl2i (flu, c (min ~ min + 5i, 405 ~ 407), unlist = FALSE), list (1:6, 1:5))
+  })
+  
+  test_that ("inside extraction", {})
+}
 
 ##' @rdname wl2i
 ##' @aliases i2wl

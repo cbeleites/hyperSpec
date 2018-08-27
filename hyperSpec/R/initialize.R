@@ -119,6 +119,7 @@
 }
 
 ##' Creating a hyperSpec Object
+##' 
 ##' Like other S4 objects, a hyperSpec object can be created by \code{new}. The
 ##' hyperSpec object is then \code{initialize}d using the given parameters.
 ##'

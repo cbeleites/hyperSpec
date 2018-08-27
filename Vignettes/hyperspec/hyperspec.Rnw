@@ -28,7 +28,7 @@ Note that some definitions are executed in \texttt{vignette.defs}.
 
 \warnbox[blue!50!black]{Reporting Issues and Suggesting Enhancements}{
 \Rcode{bug.report (package = "hyperSpec")}
-will take you to \phy's issue tracking page at 
+will take you to \phy's issue tracking page at
 \url{https://github.com/cbeleites/hyperSpec/issues} where you can report issues you encounter, suggest features and comment on issues or suggested features.
 }
 
@@ -107,21 +107,21 @@ objects is discussed in section~\ref{sec:structure-chy}, p.~\pageref{sec:structu
 
 \section{Remarks on R}
 \subsection{Reporting an Issue with a package}
-\R packages include contact information of the package maintainer, which you can 
+\R packages include contact information of the package maintainer, which you can
 access \eg by:
 <<>>=
 maintainer ("hyperSpec")
 @
 
-In case you want to report an issue, \R provides a function to do so. 
+In case you want to report an issue, \R provides a function to do so.
 \Rfunction{bug.report} will either open an email to the package maintainer or
-the issue tracker URL given in the package \texttt{DESCRIPTION}. 
+the issue tracker URL given in the package \texttt{DESCRIPTION}.
 
 <<eval = FALSE>>=
 bug.report (package = "hyperSpec")
 @
-will take you to \phy's issue tracking page at 
-\url{https://github.com/cbeleites/hyperSpec/issues}. It also displays essential 
+will take you to \phy's issue tracking page at
+\url{https://github.com/cbeleites/hyperSpec/issues}. It also displays essential
 information about your installation which can help in tracking down the bug.
 
 We're always happy about contributions and tag issues that may be tackled immediately by ``help wanted''. Please note that I (Claudia, the official maintainer) may be rather slow in answering pull requests: at the moment I'm travelig a lot professionally so it may take several weeks until I can find some calm chunk of time to do more for hyperSpec than emergency fixes. However, this does not mean that I won't do so: I can tell quickly if a pull request won't fit at all into \phy.
@@ -704,7 +704,7 @@ head (as.long.df (flu), 20)
 <<>>=
 flu [[]]
 class (flu [[]])
-@ 
+@
 \Rfunction{[[]]} takes the same arguments as \Rfunction{[]}, and can be used to extract a matrix
 containing parts of the spectra matrix:
 <<>>=
@@ -852,6 +852,38 @@ merged <- apply (merged, 1, approxfun,
 merged$.
 @
 
+\subsection{Merging extra data to objects that do not (necessarily) share the same spectra}
+\label{sec:merge-df}
+
+Assume we obtained duplicate reference measurements for some of the concentrations in \Rcode{flu}:
+
+<<>>=
+flu.ref <- data.frame (filename = rep (flu$filename[1:2], each = 2), cref = rep (flu$c [1:2], each = 2) + rnorm (4, sd = 0.01))
+flu.ref
+@
+
+This information can be \Rfunction{merge}d into the extra data of \Rcode{flu} by:
+
+<<>>=
+flu.merged <- merge (flu, flu.ref)
+flu.merged$..
+@
+
+The usual rules for \Rfunction{merge} apply. E.\,g., if to preserver all spectra of flu, use \Rcode{all.x = TRUE}:
+
+<<>>=
+flu.merged <- merge (flu, flu.ref, all.x = TRUE)
+flu.merged$..
+@
+
+The class of the first object (\Rcode{x}) determines the resulting class:
+
+<<>>=
+merge (flu, flu.ref)
+merge (flu.ref, flu)
+@
+
+
 \subsection{Matrix Multiplication}
 \label{sec:matmult}
 
@@ -982,7 +1014,7 @@ For the \Robject{chondro} data, let's use the maximum of the phenylalanine band 
 \rcm{1020}. As just the very maximum is too coarse, we'll use the maximum of a square polynomial
 fitted to the maximum and its two neighbours.
 
-%TODO: use vanderMonde 
+%TODO: use vanderMonde
 <<>>=
 
 find.max <- function (y, x){

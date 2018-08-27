@@ -8,7 +8,7 @@
 
 ##' Import WinSpec SPE file
 ##'
-##' Import function for WinSpec SPE files (file version 2.5). The calibration
+##' Import function for WinSpec SPE files (file version up to 3.0). The calibration
 ##' data (polynome and calibration data pairs) for x-axis are automatically
 ##' read and applied to the spectra. Note that the y-calibration data structure
 ##' is not extracted from the file since it is not saved there by WinSpec and is
@@ -46,8 +46,12 @@ read.spe <- function(filename, xaxis="file", acc2avg=F, cts_sec=F,
 
   hdr <- read.spe.header(filename)
 
+  # This is the size of one data point in bytes. WinSpec uses 2 bytes or 4 bytes only
+  data_size <- ifelse(hdr$datatype > 2, 2L, 4L)
+  data_chunk_size <- hdr$xdim * hdr$ydim * hdr$numFrames * data_size
+  
   # Read the part of file that contains actual experimental data
-  raw.data <- readBin(filename, "raw", file.info(filename)$size, 1)[- (1:4100)]
+  raw.data <- readBin(filename, "raw", data_chunk_size + 4100, 1)[- (1:4100)]
 
   # Convert raw spectral data according to the datatype defined in the header
   spc <- switch(hdr$datatype + 1,
@@ -56,8 +60,8 @@ read.spe <- function(filename, xaxis="file", acc2avg=F, cts_sec=F,
                 readBin(raw.data, "integer", length(raw.data)/2, 2, signed=TRUE), # int
                 readBin(raw.data, "integer", length(raw.data)/2, 2, signed=FALSE) # uint
   )
-
-  # Create a structured data.frame that will accomodate spectral data
+  
+  # Create a structured data.frame that accomodates spectral data
   dim(spc) <- c(hdr$xdim, hdr$ydim * hdr$numFrames)
   extra_data <- data.frame (
     px.y  = rep(seq_len(hdr$ydim), hdr$numFrames),
@@ -131,6 +135,76 @@ read.spe <- function(filename, xaxis="file", acc2avg=F, cts_sec=F,
   })
 }
 
+#' Read XML footer from SPE file format version 3.0
+#' 
+#' The new SPE file format, introduced in 2012, was designed to be backwards compatible with the
+#' previous format 2.5. The most prominent change is the new plain text XML footer holding vast
+#' experimental metadata that gets attached at the end of the file. Thus, the file contains 3
+#' blocks: a 4100-bytes long binary header, a chunk with spectral data, and the XML footer.
+#' This function retrieves the XML footer, if it is available, and by default throws error otherwise.
+#'
+#' @param filename - SPE filename
+#' @param as.xml.object - whether the result should be a pretty-printed XML object. Requires
+#' package \code{XML}.
+#' @param stop.if.old.fmt - determines behavior when file does not
+#' contain XML footer. By default throws error message
+#'
+#' @return xml data from the file. If package XML package is available, a pretty-printed XML object is returned
+#' @export
+#' @importFrom XML xmlParse
+read.spe.xml <- function(filename, as.xml.object=require(XML), stop.if.old.fmt = TRUE){
+  hdr <- read.spe.header(filename)
+  
+  if (hdr$fileFormatVer < 3.0){
+    if (stop.if.old.fmt)
+      stop(paste("This SPE file contains no XML data: file format version",
+                 round(hdr$fileFormatVer, digits = 3), "< 3.0"))
+    return()
+  }
+
+  data_size <- ifelse(hdr$datatype > 2, 2L, 4L)
+  data_chunk_size <- hdr$xdim * hdr$ydim * hdr$numFrames * data_size
+  
+  # Read the part of file that contains actual experimental data
+  raw_bytes <- readBin(filename, "raw", file.info(filename)$size, 1)[- (1:(4100+data_chunk_size))]
+  xml_footer <- readChar(raw_bytes, length(raw_bytes))
+  rm(raw_bytes)
+
+  if (as.xml.object){
+      return(xmlParse(xml_footer))
+  }
+  xml_footer
+}  
+
+.test (read.spe.xml) <- function(){
+  context("read.spe.xml")
+
+  test_that ("We can correctly extract XML footer from SPE 3.0", {
+    skip_if_not_fileio_available ()
+    fname <- "fileio/spe/spe_format_3.0.SPE"
+    
+    actual <- read.spe.xml(fname, as.xml.object = FALSE)
+    fname <- paste0(fname, "_metadata.xml")
+    expected <- readChar(fname, file.info(fname)$size)
+    expect_equal(actual, expected)
+  })
+
+  test_that ("Function throws error on old SPE format", {
+    skip_if_not_fileio_available ()
+    fname <- "fileio/spe/blut2.SPE"
+    expect_true(file.exists(fname))
+    expect_error(read.spe.xml(fname))
+  })
+  
+  test_that ("Function returns NULL with old SPE format if argument `stop.if.old.fmt` is FALSE", {
+    skip_if_not_fileio_available ()
+    fname <- "fileio/spe/blut2.SPE"
+    expect_true(file.exists(fname))
+    expect_true(is.null(read.spe.xml(fname, stop.if.old.fmt=FALSE)))
+  })
+  
+}
+
 ##' @describeIn read.spe Read only header of a WinSpec SPE file (version 2.5)
 ##' @return hdr list with \code{key=value} pairs
 ##' @export
@@ -176,7 +250,8 @@ read.spe.header <- function(filename){
     kinWindowSize  = readBin(raw.data[1483:1484], "integer", 1, 2, signed=TRUE ), # int16
     clkSpeed       = readBin(raw.data[1485:1486], "integer", 1, 2, signed=TRUE ), # int16
     computerIface  = readBin(raw.data[1487:1488], "integer", 1, 2, signed=TRUE ), # int16
-
+    fileFormatVer  = readBin(raw.data[1993:1996], "double",  1, 4, signed=TRUE ), # float32
+    
     # X Calibration Structure
     xCalOffset     = readBin(raw.data[3001:3008], "double",  1, 8, signed=TRUE ), # float64
     xCalFactor     = readBin(raw.data[3009:3016], "double",  1, 8, signed=TRUE ), # float64
@@ -193,10 +268,10 @@ read.spe.header <- function(filename){
   )
 
   # Convert magic numbers into human-readable unit strings
-  spe_units <-  c("pixel", "data", "user units", "nm", "cm-1", "Raman shift")
-  hdr$xCalDisplayUnit <- spe_units[hdr$xCalDisplayUnit]
-  hdr$xCalInputUnit   <- spe_units[hdr$xCalInputUnit]
-  hdr$xCalPolyUnit    <- spe_units[hdr$xCalPolyUnit]
+  spe_units <-  c("pixel", "pixel", "data", "user units", "nm", "cm-1", "Raman shift")
+  hdr$xCalDisplayUnit <- spe_units[hdr$xCalDisplayUnit + 1]
+  hdr$xCalInputUnit   <- spe_units[hdr$xCalInputUnit + 1]
+  hdr$xCalPolyUnit    <- spe_units[hdr$xCalPolyUnit + 1]
 
   return(hdr)
 }

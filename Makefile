@@ -27,6 +27,7 @@ superclean:
 bootstrap: installdeps bootstrapI chondro flu laser pkg-data | fileio-tests
 	@R CMD build --no-build-vignettes hyperSpec/
 	@R CMD INSTALL hyperSpec_*-$(DATE).tar.gz
+	$(MAKE) -C hyperspec/vignettes -f Makefile-local 
 
 bootstrapI: roxygenize
 	@R CMD build --no-build-vignettes hyperSpec/
@@ -68,7 +69,11 @@ roxygenize: DESCRIPTION hyperSpec/R/*.R
 
 DESCRIPTION: $(shell find hyperSpec -maxdepth 1 -daystart -not -ctime 0 -name "DESCRIPTION") #only if not modified today
 	@echo update DESCRIPTION
+<<<<<<< HEAD
 	@sed "s/\(^Version: .*-\)\(20\)\?[0-9][0-9][0-1][0-9][0-3][0-9]\(.*\)$$/\1$(DATE)\3/" hyperSpec/DESCRIPTION > .DESCRIPTION
+=======
+	@sed "s/\(^Version: .*-\)20[0-9][0-9][0-1][0-9][0-3][0-9]\(.*\)$$/\1$(DATE)\2/" hyperSpec/DESCRIPTION > .DESCRIPTION
+>>>>>>> 894fff704ce9583c1fd22578f7d5052c3c297547
 	@sed "s/\(^Date: .*\)20[0-9][0-9]-[0-1][0-9]-[0-3][0-9]\(.*\)$$/\1`date +%F`\2/" .DESCRIPTION > hyperSpec/DESCRIPTION
 	@rm .DESCRIPTION
 

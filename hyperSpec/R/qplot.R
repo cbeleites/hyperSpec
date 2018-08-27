@@ -30,7 +30,7 @@
 ##'             mapping = aes (x = .wavelength, y = spc, colour = clusters, group = .rownames)) +
 ##'     facet_grid (clusters ~ .)
 qplotspc <- function (x,
-                      wl.range, ...,
+                      wl.range = TRUE, ...,
                       mapping = aes_string (x = ".wavelength", y = "spc", group = ".rownames"),
                       spc.nmax = hy.getOption("ggplot.spc.nmax"),
                       map.lineonly = FALSE,
@@ -45,22 +45,22 @@ qplotspc <- function (x,
     x <- x [seq_len (spc.nmax)]
   }
 
-  if (!missing (wl.range))
-    x <- x [,, wl.range]
-
+  wl.range <- wl2i (x, wl.range, unlist = FALSE)
+  
+  x <- x [,, unlist (wl.range), wl.index = TRUE]
+  
   df <- as.long.df (x, rownames = TRUE, na.rm = FALSE) # with na.rm trouble with wl.range
 
-  # different spectral ranges go into facets
-  if (!missing (wl.range)){
-    ranges <- integer (nwl (x))
-    for (r in seq_along (wl.range))
-      ranges [wl2i (x, wl.range [r])] <- r
-    if (any (ranges == 0))
-      stop ("internal error in qplotspc: 0 range. Please contact the package maintainer.")
-    ranges <- as.factor (ranges)
-    df$.wl.range <- rep (ranges, each = nrow (x))
+  ## ranges go into facets
+  if (length (wl.range) > 1L){
+    tmp <- wl.range
+    for (r in seq_along(tmp))
+      tmp [[r]][TRUE] <- r
+    
+    df$.wl.range <- rep (unlist (tmp), each = nrow (x))
   }
-
+  
+  
   df <- df [! is.na (df$spc),, drop = FALSE]
   if (map.lineonly)
       p <- ggplot (df) + geom_line (mapping = mapping, ...)
@@ -69,7 +69,7 @@ qplotspc <- function (x,
 
   p <- p + xlab (labels (x, ".wavelength")) + ylab (labels (x, "spc"))
 
-  if (!missing (wl.range))
+  if (! is.null (df$.wl.range))
     p <- p + facet_grid (. ~ .wl.range,
                          labeller = as_labeller (rep (NA, nlevels (df$.wl.range))),
                          scales = "free", space = "free") +
@@ -101,9 +101,6 @@ qplotspc <- function (x,
 ##' @examples
 ##' qplotmap (chondro)
 ##' qplotmap (chondro) + scale_fill_gradientn (colours = alois.palette ())
-##'
-##' ## works also with discrete x or y axis:
-##' qplotmap (chondro, mapping = aes (x = x, y = as.factor (y), fill = spc))
 ##' @importFrom utils tail
 qplotmap <- function (object, mapping = aes_string (x = "x", y = "y", fill = "spc"), ...,
                       func = mean, func.args = list (),

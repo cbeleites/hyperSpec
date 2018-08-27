@@ -59,7 +59,9 @@ Imports:
     testthat,
     methods,
     utils,
-    latticeExtra
+    latticeExtra,
+    lazyeval,
+    XML
 URL: http://hyperSpec.r-forge.r-project.org/
 BugReports: https://github.com/cbeleites/hyperSpec/issues
 VignetteBuilder: R.rsp

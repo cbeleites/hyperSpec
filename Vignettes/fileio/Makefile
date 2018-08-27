@@ -266,7 +266,7 @@ RAWFILES = $(asc.Andor) \
            $(wdf.Renishaw) \
            $(WIP.Witec)
 
-fileio.pdf: fileio.Rnw vignettes.defs barbiturates.rda | $(RAWFILES)
+fileio.pdf: fileio.Rnw vignettes.defs | $(RAWFILES)
 	R CMD Sweave fileio.Rnw --pdf --compact="both" 
 
 vignettes.defs: ../vignettes.defs
@@ -275,8 +275,8 @@ vignettes.defs: ../vignettes.defs
 $(RAWFILES):
 	$(error $@ does not exist. Try running git lfs sync.)
 
-barbiturates.rda:
+barbiturates.rda: fileio.pdf
 	touch barbiturates.rda
 
-paracetamol.rda:
+paracetamol.rda: fileio.pdf
 	touch paracetamol.rda
