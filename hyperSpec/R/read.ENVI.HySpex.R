@@ -1,3 +1,5 @@
+##' @describeIn  read.ENVI
+##' @include read.ENVI.R
 read.ENVI.HySpex <- function (file = stop ("read.ENVI.HySpex: file name needed"),
                               headerfile = NULL, header = list (), keys.hdr2data = NULL, ...) {
 

@@ -299,7 +299,8 @@ split.line <- function (x, separator, trim.blank = TRUE) {
 ##'
 ##' To specify certain entries, give character vectors containing the lowercase
 ##'   names of the header file entries.
-##' @param ... currently unused
+##' @param ... currently unused by \code{read.ENVI},
+##'   \code{read.ENVI.Nicolet} hands those arguements over to \code{read.ENVI}
 ##' @param pull.header.lines (internal) flag whether multi-line header entries grouped by curly
 ##'   braces should be pulled into one line each.
 ##' @return a \code{hyperSpec} object
