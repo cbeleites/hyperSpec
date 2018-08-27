@@ -6,6 +6,7 @@
 #' @param ... further parameters are handed to \code{\link[hyperSpec]{read.txt.long}}
 #'
 #' @return hyperSpec object
+#' @importFrom utils packageDescription
 #' @export
 #'
 read.asc.PerkinElmer <- function (file = stop ("filename or connection needed"), ...){
