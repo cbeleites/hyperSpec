@@ -21,8 +21,8 @@
 \subtitle{Vignette for the R package \Rpackage{hyperSpec}}
 \maketitle
 
-\warnbox{Consistent naming of file import functions in version >= 0.99}{ 
-From now on, all import functions have names starting with \texttt{read.}. All functions previously named \texttt{scan.*} have been renamed accordingly. 
+\warnbox{Consistent naming of file import functions in version >= 0.99}{
+From now on, all import functions have names starting with \texttt{read.}. All functions previously named \texttt{scan.*} have been renamed accordingly.
 }
 \warnbox{Supported File Formats}{ \phy supports a number of file formats relevant for different types
   of spectroscopy. This is naturally only a subset of the file formats produced by different
@@ -982,7 +982,7 @@ fluorescence spectra, but it should be possible to change them if needed.
 wavelength axis as the others.
 \item If no file can be found, an empty \chy object is a reasonable result: There is no need
 to stop with an error, but it is polite to issue an additional warning.
-\item Finally, \phy does some optional common post-processing for all imported files such as attaching the filename (or connection description) to the \chy object (column \Rcode{filename}) and deleting empty spectra. These options can be globally switched on or off by options. 
+\item Finally, \phy does some optional common post-processing for all imported files such as attaching the filename (or connection description) to the \chy object (column \Rcode{filename}) and deleting empty spectra. These options can be globally switched on or off by options.
 \end{itemize}
 
 \VerbatimInput[frame=single, label={read.txt.PerkinElmer.R},
@@ -1129,7 +1129,7 @@ res <- apply (fileformats [i,][fileformats$Spectroscopy [i] != "",], 1,
 \end{footnotesize}
 
 \section{Unit Test Results}
-<<catch-missing-tests, echo=FALSE>>=
+<<catch-missing-tests, echo=FALSE, eval = FALSE>>=
 test_files <- find_test_scripts(".")
 not_done <- setdiff (basename (test_files), names (tests))
 
@@ -1140,7 +1140,7 @@ for (f in not_done)
   tests <- test_file_keep (f, reporter, tests)
 @
 
-<<unittest-summary, echo = FALSE>>=
+<<unittest-summary, echo = FALSE, eval = FALSE>>=
 cat (tests, sep = "\n")
 reporter$end_reporter()
 @
