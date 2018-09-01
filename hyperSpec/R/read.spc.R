@@ -12,9 +12,7 @@
 .spc.size <- c (hdr = 512, subhdr = 32, subfiledir = 12, loghdr = 64)
 
 .spc.default.keys.hdr2data <- c('fexper', 'fres', 'fsource')
-.spc.default.keys.hdr2log  <- c('fdate', 'fpeakpt')
 .spc.default.keys.log2data <- FALSE
-.spc.default.keys.log2log  <- TRUE
 
 ## axis labeling ------------------------------------------------------------------------------------
 
@@ -436,7 +434,7 @@ raw.split.nul <- function (raw, trunc = c (TRUE, TRUE), firstonly = FALSE, paste
 ## read log block header ............................................................................
 ##
 ##' @importFrom utils head tail
-.spc.log <- function (raw.data, pos, log.bin, log.disk, log.txt, keys.log2data,  keys.log2log,
+.spc.log <- function (raw.data, pos, log.bin, log.disk, log.txt, keys.log2data,
                       replace.nul = as.raw (255), iconv.from = "latin1", iconv.to = "utf8") {
 
 	if (pos == 0) # no log block exists
@@ -477,13 +475,9 @@ raw.split.nul <- function (raw, trunc = c (TRUE, TRUE), firstonly = FALSE, paste
       log.txt <- readChar (log.txt, length (log.txt), useBytes=T)
       log.txt <- gsub (rawToChar (replace.nul), '\r\n', log.txt)
       log.txt <- iconv (log.txt, iconv.from, iconv.to)
-#		log.txt <- paste (rawToChar (log.txt, multiple = TRUE), collapse = "")
 		log.txt <- split.string (log.txt, "\r\n") ## spc file spec says \r\n regardless of OS
 		log.txt <- split.line (log.txt, "=")
-		## lapply (keys, function (x)
-      ##         gsub (sprintf ("^.*\r\n%s\\s*=([^\r\n]+)\r\n.*$", x), "\\1", log.txt))
 		data <- getbynames (log.txt, keys.log2data)
-		log <- c (log, getbynames (log.txt, keys.log2log))
 	}
 
 	list (log.long = log, extra.data = data)
@@ -551,7 +545,6 @@ raw.split.nul <- function (raw, trunc = c (TRUE, TRUE), firstonly = FALSE, paste
 ##'
 ##' All header fields specified in the .spc file format specification (see
 ##'   below) are imported and can be referred to by their de-capitalized names.
-##' @param keys.hdr2log,keys.log2log deprecated
 ##' @param log.txt Should the text part of the .spc file's log block be read?
 ##' @param log.bin,log.disk Should the normal and on-disk binary parts of the
 ##'   .spc file's log block be read?  If so, they will be put as raw vectors
@@ -604,8 +597,7 @@ raw.split.nul <- function (raw, trunc = c (TRUE, TRUE), firstonly = FALSE, paste
 ##'
 ##' @importFrom utils modifyList
 read.spc <- function (filename,
-		keys.hdr2data = FALSE, keys.hdr2log = FALSE,
-		keys.log2data = FALSE, keys.log2log = FALSE,
+		keys.hdr2data = FALSE, keys.log2data = FALSE,
 		log.txt = TRUE, log.bin = FALSE, log.disk = FALSE,
 		hdr = list (),
 		no.object = FALSE){
@@ -652,8 +644,8 @@ read.spc <- function (filename,
 	## process the log block
 	tmp <- .spc.log (f, hdr$flogoff,
 			log.bin, log.disk, log.txt,
-			keys.log2data,  keys.log2log)
-	## TODO: remove keys.log2log data2log
+			keys.log2data)
+	## TODO: remove data2log
 
 	data <- c (data, tmp$extra.data, getbynames (hdr, keys.hdr2data))
 
@@ -732,6 +724,148 @@ read.spc <- function (filename,
 		## consistent file import behaviour across import functions
 		.fileio.optional (spc, filename)
 	}
+}
+
+
+.test (read.spc) <- function (){
+  context ("read.spc")
+
+  old.spc <- paste0 ("fileio/spc/", c ('CONTOUR.SPC', 'DEMO 3D.SPC', 'LC DIODE ARRAY.SPC'))
+  wplanes <- "fileio/spc/wplanes.spc"
+  other.spc <- setdiff (Sys.glob ("fileio/spc/*.[sS][pP][cC]"), c (old.spc, wplanes))
+
+  test_that ("old file format -> error", {
+    skip_if_not_fileio_available()
+    for (f in old.spc)
+      expect_error (read.spc (f))
+  })
+
+  test_that("SPC SDK example files", {
+    skip_if_not_fileio_available()
+
+    checksums <-  c (`fileio/spc/BARBITUATES.SPC` = '357db6741807faf13c72941672c8d27c',
+                     `fileio/spc/barbsvd.spc` = '80350422d0c7762916111b385ab0e8f5',
+                     `fileio/spc/BENZENE.SPC` = '9b9e13fd1f57a261bc65232f94f17a6c',
+                     `fileio/spc/DRUG SAMPLE_PEAKS.SPC` = 'ecbce2a103b416581e421a51a4a3d322',
+                     `fileio/spc/DRUG SAMPLE.SPC` = '1cd9439ea7fa6e71d0c95c51d686a587',
+                     `fileio/spc/FID.SPC` = 'e325c8acea7d390208a3c053eeba5842',
+                     `fileio/spc/HCL.SPC` = 'e8b9cded1c87f8921b9628701987f82b',
+                     `fileio/spc/HOLMIUM.SPC` = '35de7dc014844e6c1479c0916acd2646',
+                     `fileio/spc/IG_BKGND.SPC` = '4d40060d3bcbbe037c67e035a77c7a45',
+                     `fileio/spc/IG_MULTI.SPC` = '43e2bcabddcadf05f37ad0f9c6d44239',
+                     `fileio/spc/IG_SAMP.SPC` = 'e09c8feade3d1be1596197a6be00bf47',
+                     `fileio/spc/KKSAM.SPC` = '130f7fb841b34a7ca5a047876877b866',
+                     `fileio/spc/POLYR.SPC` = '82237a69c77f8820831cac6f60c9674a',
+                     `fileio/spc/POLYS.SPC` = '0f3dcfe30f1f28be496c210638592789',
+                     `fileio/spc/SINGLE POLYMER FILM.SPC` = '318ea71af5add2bbde13fbe383e49bd1',
+                     `fileio/spc/SPECTRUM WITH BAD BASELINE.SPC` = 'f5ce36f9f3fec9f5c6ff3f724ef3f5ab',
+                     `fileio/spc/time.spc` = '6e09ae4e55fdce404ecb7b0e75319afe',
+                     `fileio/spc/TOLUENE.SPC` = '22d1c82a31d2d9e5c70f13ccffb72cd4',
+                     `fileio/spc/TriVista-linear.spc` = 'b58cfda92a4e72f27218a7b6b69c4f77',
+                     `fileio/spc/TriVista-normal.spc` = '6119bcabc1cb5ede5396a427702dd55f',
+                     `fileio/spc/TUMIX.SPC` = 'a1e26a7e57df27dba7c0cb20663899da',
+                     `fileio/spc/TWO POLYMER FILMS.SPC` = '43a9a60619027014341e22ff12defada',
+                     `fileio/spc/Witec-timeseries.spc` = '76e5bf20312a8f208877d13cd3c41db3',
+                     `fileio/spc/XYTRACE.SPC` = '2d8db7c1acce8d9f7841b3eff3177374')
+
+    for (f in other.spc) {
+      spc <- read.spc (f)
+  #    cat (sprintf ("                   `%s` = '%s',\n", f, digest::digest (spc)))
+      expect_equivalent (digest::digest (spc), checksums [f])
+    }
+  })
+
+  test_that("LabRam spc files", {
+    skip_if_not_fileio_available()
+    expect_equal (digest::digest (read.spc("fileio/spc.LabRam/LabRam-1.spc")), "ed13625dbd16b8644898bf87269a94b8")
+    expect_equal (digest::digest (read.spc("fileio/spc.LabRam/LabRam-2.spc")), "6f38fc345ec5cefbb98f58e5d9490475")
+  })
+
+  test_that ("Shimadzu spc files do not yet work", {
+    skip_if_not_fileio_available()
+    expect_error (read.spc("fileio/spc.Shimadzu/F80A20-1.SPC"))
+  })
+
+  test_that("Witec: some files supported", {
+
+    expect_error (read.spc("fileio/spc.Witec/P_A32_006_Spec.Data 1.spc"))
+    expect_error (read.spc("fileio/spc.Witec/P_A32_007_Spec.Data 1.spc"))
+
+    tmp <- read.spc("fileio/spc.Witec/Witec-Map.spc")
+    expect_equal (digest::digest (tmp), "d1f792733a1d8f1a95fa36202142bc70")
+    ## no spatial information
+    expect_null(tmp$x)
+    expect_null(tmp$y)
+
+    ## spectra numbered in z
+    tmp <- read.spc("fileio/spc.Witec/Witec-timeseries.spc")
+    expect_equal (digest::digest (tmp), "846b360fbe76d33466c7e0296bf0df2a")
+  })
+
+
+  ## Kaiser spc files tested mostly in Kaiser-specific read.spc.Kaiser* unit tests
+
+
+  test_that("wplanes",{
+    skip ("wplanes do not yet work")
+    # wplanes
+  })
+
+  test_that("option file.keep.name", {
+    skip_if_not_fileio_available()
+    file.keep.name <- hy.getOption("file.keep.name")
+
+    hy.setOptions(file.keep.name = FALSE)
+    expect_null (read.spc("fileio/spc.LabRam/LabRam-2.spc")$filename)
+    hy.setOptions(file.keep.name = TRUE)
+    expect_equal (read.spc("fileio/spc.LabRam/LabRam-2.spc")$filename, "fileio/spc.LabRam/LabRam-2.spc")
+
+    hy.setOptions(file.keep.name = file.keep.name)
+  })
+
+  test_that("option file.remove.emptyspc", {
+    skip ("no spc files with empty spectra available so far")
+        skip_if_not_fileio_available()
+    file.remove.emptyspc <- hy.getOption("file.remove.emptyspc")
+
+    hy.setOptions(file.remove.emptyspc = FALSE)
+    expect_equal (nrow (read.spc("")), NA)
+    hy.setOptions(file.remove.emptyspc = TRUE)
+    expect_equal (nrow (read.spc("")), NA)
+
+    hy.setOptions(file.keep.name = file.remove.emptyspc)
+  })
+
+  test_that ("hdr2data", {
+    expect_equal (colnames (read.spc("fileio/spc.LabRam/LabRam-2.spc", keys.hdr2data = TRUE)),
+                  c("z", "z.end", "ftflgs", "fexper", "fexp", "fnpts", "ffirst",
+                    "flast", "fnsub", "fxtype", "fytype", "fztype", "fpost", "fdate",
+                    "fres", "fsource", "fspare", "fcmnt", "fcatxt", "flogoff", "fmods",
+                    "fprocs", "flevel", "fsampin", "ffactor", "fmethod", "fzinc",
+                    "fwplanes", "fwinc", "fwtype", ".last.read", "subfiledir", "spc",
+                    "filename")
+    )
+  })
+
+
+  test_that ("log2data", {
+    expect_equal(colnames (read.spc ("fileio/spc.Kaisermap/ebroAVII.spc", keys.log2data = TRUE)),
+                 c("z", "z.end", "Grams_File_Name", "HoloGRAMS_File_Name", "Acquisition_Date_Time",
+                   "Lambda", "Accuracy_Mode", "Dark_subtracted", "Dark_File_Name",
+                   "Auto_New_Dark_Curve", "Background_subtracted", "Background_File_Name",
+                   "Intensity_Corrected", "Intensity_Calibration_Available", "Intensity_Correction_File",
+                   "Intensity_Correction_Threshold", "Intensity_Source_Correction",
+                   "Intensity_Source_Correction_File", "Comment", "Cosmic_Ray_Filtering",
+                   "Total_Cosmic_Count", "Exposure_Length", "Accumulations", "Accumulation_Method",
+                   "Calibration_File", "Comment.1", "Temperature_Status", "Temperature",
+                   "HoloGRAMS_File_Version", "File_Type", "Operator", "Stage_X_Position",
+                   "Stage_Y_Position", "Stage_Z_Position", "AutoFocusUsed", "WLInterval",
+                   "CalInterval", "FFTFillFactor", "FFTApT", "SamplingMethod", "Has_MultiPlex_Laser",
+                   "External_Trigger", "Laser_Wavelength", "Default_Laser_Wavelength",
+                   "Laser_Tracking", "Laser_Block_Active", "Pixel_Fill_minimum",
+                   "Pixel_Fill_maximum", "Binning_Start", "Binning_End", "NumPoints",
+                   "First", "last", "spc", "filename"))
+  })
 }
 
 
