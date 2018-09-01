@@ -13,7 +13,7 @@
 
   ## the wavelength axis
   if (! is.null (wavelength) && ! is.numeric (wavelength))
-    warning ("wavelength is not numeric but ", class (wavelength), ".")
+    stop ("wavelength is not numeric but ", class (wavelength), ".")
 
   if (!is.null (spc)){
     if (is.null (dim (spc))){
@@ -40,6 +40,8 @@
 
     if (length (wavelength) == 0L || any (is.na (wavelength)))
       wavelength <- seq_len (nwl) # guessing didn't work
+  } else if (! is.numeric (wavelength)) {
+      stop ("wavelength must be numeric.")
   }
   .Object@wavelength <- wavelength
 
@@ -83,6 +85,18 @@
         spc <- t (spc)
   }
 
+
+  if (!is.null (spc) && !is.numeric(spc) && !all (is.na (spc))){
+    dim <- dim (spc)
+    spc <- suppressWarnings (as.numeric(spc))
+    if (all (is.na (spc)))
+      stop ("spectra matrix needs to be numeric or convertable to numeric")
+    else
+      warning ("spectra matrix is converted from ", class (data$spc), " to numeric.")
+
+    dim (spc) <- dim
+  }
+
   if (.options$gc) gc ()
 
   if (! is.null (spc)){
@@ -109,8 +123,6 @@
   .Object@data <- data
   if (.options$gc) gc ()
 
-  if (! is.null (data$spc) && ! is.numeric (data$spc))
-    warning ("spectra matrix is not numeric but ", class (data$spc), ".")
 
   ## finally: check whether we got a valid hyperSpec object
   validObject (.Object)
@@ -119,7 +131,7 @@
 }
 
 ##' Creating a hyperSpec Object
-##' 
+##'
 ##' Like other S4 objects, a hyperSpec object can be created by \code{new}. The
 ##' hyperSpec object is then \code{initialize}d using the given parameters.
 ##'
@@ -255,13 +267,37 @@ setMethod ("initialize", "hyperSpec", .initialize)
     expect_equal (h@data$spc, spc)
     expect_equivalent (dim (h), c (3L, 1L, 4L))
   })
+
+  test_that("uncommon spectra matrix class that can be converted to numeric", {
+    expect_warning (new ("hyperSpec", flu > 100))
+  })
+
+  test_that("spectra matrix class cannot be converted to numeric", {
+    expect_error (new ("hyperSpec", matrix (letters [1:6], 3)))
+  })
+
+  test_that ("error if wavelength is not numeric", {
+    expect_error(new ("hyperSpec", spc = NA, wavelength = letters [1:3]))
+  })
+
+
+  test_that("gc option", {
+    option <- hy.getOption("gc")
+    on.exit(hy.setOptions(gc = option))
+    hy.setOptions(gc = TRUE)
+
+    spc <- new ("hyperSpec", spc = flu [[]])
+    expect_equal(spc [[]], flu [[]])
+  })
+
+
 }
 
 
 
 #' as.hyperSpec: convenience conversion functions
 #'
-#' These functions are shortcuts to convert other objects into hypeSpec objects. 
+#' These functions are shortcuts to convert other objects into hypeSpec objects.
 #'
 #' @param X the object to convert
 #' @param ... additional parameters that should be handed over to \code{new ("hyperSpec")} (initialize)
@@ -269,7 +305,7 @@ setMethod ("initialize", "hyperSpec", .initialize)
 #' @return hyperSpec object
 #' @seealso \code{\link[hyperSpec]{initialize}}
 #' @export
-setGeneric ("as.hyperSpec", 
+setGeneric ("as.hyperSpec",
             function (X, ...){
               stop ("as.hyperSpec is not available for objects of class ", class (X))
             }
@@ -283,7 +319,7 @@ setGeneric ("as.hyperSpec",
 #' @rdname as.hyperSpec
 #' @param wl wavelength vector. Defaults to guessing from the column names in \code{X}
 #' @export
-#' 
+#'
 #' @examples
 #' tmp <- data.frame(flu [[,, 400 ~ 410]])
 #' (wl <- colnames (tmp))
@@ -294,37 +330,47 @@ setMethod ("as.hyperSpec", "matrix", .as.hyperSpec.matrix)
 setMethod ("as.hyperSpec", "data.frame", .as.hyperSpec.matrix)
 
 ##' @include unittest.R
-.test (.as.hyperSpec.matrix) <- function (){
+.test (as.hyperSpec) <- function (){
     context ("as.hyperSpec")
-    
+
     spc <- matrix(1:12,ncol = 3)
     wl <- seq(600, 601, length.out = ncol(spc))
-    
-    test_that("only spc is given", { 
+
+    test_that("only spc is given", {
         expect_identical (new ("hyperSpec", spc = spc), as.hyperSpec(X = spc))
     })
-    
-    test_that("spc is given as a data.frame", { 
-        expect_equal(new("hyperSpec", spc = as.data.frame(spc),wavelength=1:ncol(spc)), 
+
+    test_that("spc is given as a data.frame", {
+        expect_equal(new("hyperSpec", spc = as.data.frame(spc),wavelength=1:ncol(spc)),
                      as.hyperSpec(X = as.data.frame(spc)))
     })
-    
+
     test_that("spc with characters in colnames", {
         colnames(spc) <- make.names(wl)
         h <- as.hyperSpec(X = spc)
         expect_equal (h@data$spc, spc)
-        expect_equivalent (dim (h), c (nrow(spc), 1L, ncol(spc))) 
+        expect_equivalent (dim (h), c (nrow(spc), 1L, ncol(spc)))
         expect_equal (h@wavelength, wl)
     })
-    
-    test_that("ignore colnames if wl is set", { 
+
+    test_that("ignore colnames if wl is set", {
         colnames(spc) <- c(601,602,603)
         expect_identical (new ("hyperSpec", spc = spc, wavelength = wl), as.hyperSpec(X = spc, wl = wl))
     })
-    
-    test_that("set additional parameters", { 
+
+    test_that("set additional parameters", {
         dt <- data.frame(x=1:4,y=letters[1:4])
         lbs <-  list (spc = "I / a.u.", .wavelength = expression (tilde (nu) / cm^-1))
         expect_identical (new ("hyperSpec", spc = spc, data = dt, label = lbs), as.hyperSpec(X = spc, data = dt, label = lbs))
     })
+
+
+    test_that ("error on unknown class", {
+      tmp <- NA
+      class (tmp) <- "foo"
+      expect_error (as.hyperSpec(tmp))
+    })
+
 }
+
+
