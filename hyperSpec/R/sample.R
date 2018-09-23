@@ -109,16 +109,20 @@ isample <- function (x, size = nrow (x), replace = FALSE, prob = NULL) {
 
 }
 
+<<<<<<< HEAD
 .sample.data.frame <- function (x, size, replace = FALSE, prob = NULL, drop = FALSE) {
   if (missing (size)) size <- nrow (x)
   x [sample.int (nrow (x), size = size, replace = replace, prob = prob), , drop = drop]
 }
+=======
+>>>>>>> f7b29d778a3976665254903677b3f5801fa5d473
 
 ##' @rdname sample
 ##' @param drop see \code{\link[base]{drop}}: by default, do not drop dimensions of the result
 ##' @export
 ##' @examples
 ##' sample (cars, 2)
+<<<<<<< HEAD
 setMethod ("sample", signature = signature (x = "data.frame"), .sample.data.frame)
 
 .test (.sample.data.frame) <- function (){
@@ -153,14 +157,56 @@ setMethod ("sample", signature = signature (x = "data.frame"), .sample.data.fram
   x [sample.int (nrow (x), size = size, replace = replace, prob = prob), , drop = drop]
 }
 
+=======
+setMethod ("sample", signature = signature (x = "data.frame"),
+           function (x, size, replace = FALSE, prob = NULL, drop = FALSE) {
+             if (missing (size)) size <- nrow (x)
+             x [sample.int (nrow (x), size = size, replace = replace, prob = prob), , drop = drop]
+           }
+           )
+>>>>>>> f7b29d778a3976665254903677b3f5801fa5d473
 ##' @rdname sample
 ##' @export
 ##' @examples
 ##' sample (matrix (1:24, 6), 2)
+<<<<<<< HEAD
 setMethod ("sample", signature = signature (x = "matrix"), .sample.matrix)
 
 .test (.sample.matrix) <- function (){
   context (".sample.matrix")
+=======
+setMethod ("sample", signature = signature (x = "matrix"),
+           function (x, size, replace = FALSE, prob = NULL, drop = FALSE) {
+             if (missing (size)) size <- nrow (x)
+             x [sample.int (nrow (x), size = size, replace = replace, prob = prob), , drop = drop]
+           }
+           )
+
+.test (sample) <- function (){
+  context ("sample")
+  test_that ("data.frame", {
+    set.seed (101)
+    tmp <- sample (iris)
+    expect_equal (rownames (tmp), c("56", "7", "106", "97", "37", "44", "85", "48", "89", "77",
+                                    "124", "99", "102", "128", "62", "80", "110", "30", "55", "6",
+                                    "92", "140", "28", "84", "117", "100", "9", "143", "50", "135",
+                                    "51", "39", "24", "20", "61", "148", "118", "93", "3", "103",
+                                    "123", "49", "83", "36", "42", "25", "8", "95", "79", "11", "104",
+                                    "43", "67", "72", "145", "75", "64", "109", "94", "54", "74",
+                                    "73", "91", "87", "142", "116", "2", "26", "86", "141", "19",
+                                    "90", "45", "65", "63", "21", "4", "17", "113", "69", "134",
+                                    "88", "53", "66", "1", "136", "111", "27", "129", "127", "40",
+                                    "71", "115", "101", "14", "47", "130", "13", "138", "52", "149",
+                                    "144", "121", "41", "34", "16", "120", "147", "33", "132", "131",
+                                    "139", "22", "58", "32", "35", "133", "82", "57", "126", "12",
+                                    "5", "112", "15", "122", "59", "150", "107", "76", "119", "114",
+                                    "125", "29", "60", "81", "70", "108", "68", "146", "38", "10",
+                                    "137", "23", "78", "46", "98", "105", "96", "18", "31"))
+    expect_equal(dim (tmp),dim (iris))
+    expect_equal(tmp, iris [as.numeric (rownames (tmp)),])
+  })
+
+>>>>>>> f7b29d778a3976665254903677b3f5801fa5d473
   test_that ("matrix", {
     set.seed (101)
     tmp <- sample (flu [[]])
@@ -168,4 +214,9 @@ setMethod ("sample", signature = signature (x = "matrix"), .sample.matrix)
     expect_equal(tmp [c(2L, 4L, 1L, 6L, 5L, 3L),], flu [[]])
 
   })
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> f7b29d778a3976665254903677b3f5801fa5d473
 }
