@@ -743,42 +743,41 @@ read.spc <- function (filename,
   test_that("SPC SDK example files", {
     skip_if_not_fileio_available()
 
-    checksums <-  c (`fileio/spc/BARBITUATES.SPC` = '357db6741807faf13c72941672c8d27c',
-                     `fileio/spc/barbsvd.spc` = '80350422d0c7762916111b385ab0e8f5',
-                     `fileio/spc/BENZENE.SPC` = '9b9e13fd1f57a261bc65232f94f17a6c',
-                     `fileio/spc/DRUG SAMPLE_PEAKS.SPC` = 'ecbce2a103b416581e421a51a4a3d322',
-                     `fileio/spc/DRUG SAMPLE.SPC` = '1cd9439ea7fa6e71d0c95c51d686a587',
-                     `fileio/spc/FID.SPC` = 'e325c8acea7d390208a3c053eeba5842',
-                     `fileio/spc/HCL.SPC` = 'e8b9cded1c87f8921b9628701987f82b',
-                     `fileio/spc/HOLMIUM.SPC` = '35de7dc014844e6c1479c0916acd2646',
-                     `fileio/spc/IG_BKGND.SPC` = '4d40060d3bcbbe037c67e035a77c7a45',
-                     `fileio/spc/IG_MULTI.SPC` = '43e2bcabddcadf05f37ad0f9c6d44239',
-                     `fileio/spc/IG_SAMP.SPC` = 'e09c8feade3d1be1596197a6be00bf47',
-                     `fileio/spc/KKSAM.SPC` = '130f7fb841b34a7ca5a047876877b866',
-                     `fileio/spc/POLYR.SPC` = '82237a69c77f8820831cac6f60c9674a',
-                     `fileio/spc/POLYS.SPC` = '0f3dcfe30f1f28be496c210638592789',
-                     `fileio/spc/SINGLE POLYMER FILM.SPC` = '318ea71af5add2bbde13fbe383e49bd1',
-                     `fileio/spc/SPECTRUM WITH BAD BASELINE.SPC` = 'f5ce36f9f3fec9f5c6ff3f724ef3f5ab',
-                     `fileio/spc/time.spc` = '6e09ae4e55fdce404ecb7b0e75319afe',
-                     `fileio/spc/TOLUENE.SPC` = '22d1c82a31d2d9e5c70f13ccffb72cd4',
-                     `fileio/spc/TriVista-linear.spc` = 'b58cfda92a4e72f27218a7b6b69c4f77',
-                     `fileio/spc/TriVista-normal.spc` = '6119bcabc1cb5ede5396a427702dd55f',
-                     `fileio/spc/TUMIX.SPC` = 'a1e26a7e57df27dba7c0cb20663899da',
-                     `fileio/spc/TWO POLYMER FILMS.SPC` = '43a9a60619027014341e22ff12defada',
-                     `fileio/spc/Witec-timeseries.spc` = '76e5bf20312a8f208877d13cd3c41db3',
-                     `fileio/spc/XYTRACE.SPC` = '2d8db7c1acce8d9f7841b3eff3177374')
+    checksums <-  c (`fileio/spc/BARBITUATES.SPC` = '357db67418',
+                     `fileio/spc/barbsvd.spc` = '80350422d0',
+                     `fileio/spc/BENZENE.SPC` = '9b9e13fd1f',
+                     `fileio/spc/DRUG SAMPLE_PEAKS.SPC` = 'ecbce2a103',
+                     `fileio/spc/DRUG SAMPLE.SPC` = '1cd9439ea7',
+                     `fileio/spc/FID.SPC` = 'e325c8acea',
+                     `fileio/spc/HCL.SPC` = 'e8b9cded1c',
+                     `fileio/spc/HOLMIUM.SPC` = '35de7dc014',
+                     `fileio/spc/IG_BKGND.SPC` = '4d40060d3b',
+                     `fileio/spc/IG_MULTI.SPC` = '43e2bcabdd',
+                     `fileio/spc/IG_SAMP.SPC` = 'e09c8feade',
+                     `fileio/spc/KKSAM.SPC` = '130f7fb841',
+                     `fileio/spc/POLYR.SPC` = '82237a69c7',
+                     `fileio/spc/POLYS.SPC` = '0f3dcfe30f',
+                     `fileio/spc/SINGLE POLYMER FILM.SPC` = '318ea71af5',
+                     `fileio/spc/SPECTRUM WITH BAD BASELINE.SPC` = 'f5ce36f9f3',
+                     `fileio/spc/time.spc` = '6e09ae4e55',
+                     `fileio/spc/TOLUENE.SPC` = '22d1c82a31',
+                     `fileio/spc/TriVista-linear.spc` = 'b58cfda92a',
+                     `fileio/spc/TriVista-normal.spc` = '6119bcabc1',
+                     `fileio/spc/TUMIX.SPC` = 'a1e26a7e57',
+                     `fileio/spc/TWO POLYMER FILMS.SPC` = '43a9a60619',
+                     `fileio/spc/Witec-timeseries.spc` = '76e5bf2031',
+                     `fileio/spc/XYTRACE.SPC` = '2d8db7c1ac')
 
-    for (f in other.spc) {
-      spc <- read.spc (f)
-  #    cat (sprintf ("                   `%s` = '%s',\n", f, digest::digest (spc)))
-      expect_equivalent (digest::digest (spc), checksums [f])
+    for (f in other.spc ) {
+      #warning (f)
+      expect_known_hash (read.spc (f), checksums [f])
     }
   })
 
   test_that("LabRam spc files", {
     skip_if_not_fileio_available()
-    expect_equal (digest::digest (read.spc("fileio/spc.LabRam/LabRam-1.spc")), "ed13625dbd16b8644898bf87269a94b8")
-    expect_equal (digest::digest (read.spc("fileio/spc.LabRam/LabRam-2.spc")), "6f38fc345ec5cefbb98f58e5d9490475")
+    expect_known_hash (read.spc("fileio/spc.LabRam/LabRam-1.spc"), "ed13625dbd")
+    expect_known_hash (read.spc("fileio/spc.LabRam/LabRam-2.spc"), "6f38fc345e")
   })
 
   test_that ("Shimadzu spc files do not yet work", {
@@ -792,14 +791,14 @@ read.spc <- function (filename,
     expect_error (read.spc("fileio/spc.Witec/P_A32_007_Spec.Data 1.spc"))
 
     tmp <- read.spc("fileio/spc.Witec/Witec-Map.spc")
-    expect_equal (digest::digest (tmp), "d1f792733a1d8f1a95fa36202142bc70")
+    expect_known_hash (tmp, "d1f792733a")
     ## no spatial information
     expect_null(tmp$x)
     expect_null(tmp$y)
 
     ## spectra numbered in z
     tmp <- read.spc("fileio/spc.Witec/Witec-timeseries.spc")
-    expect_equal (digest::digest (tmp), "846b360fbe76d33466c7e0296bf0df2a")
+    expect_known_hash (tmp, "846b360fbe")
   })
 
 

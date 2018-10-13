@@ -540,10 +540,6 @@ read.spc ("spc.Kaisermap/ebroAVII.spc", keys.hdr2data = TRUE)
 read.spc ("spc.Kaisermap/ebroAVII.spc", keys.log2data = TRUE)
 @
 
-<<test-hdr2data, echo=FALSE, results=hide>>=
-read.spc ("spc/BARBITUATES.SPC", keys.hdr2data = TRUE)
-@
-
 
 .spc files may contain multiple spectra that do \emph{not} share a common wavelength axis. In this
 case, \Rfunction{read.spc} returns a list of \chy objects with one spectrum
@@ -557,15 +553,6 @@ barbiturates <- do.call (collapse, barbiturates)
 barbiturates <- orderwl (barbiturates)
 barbiturates
 barbiturates [[1:10, , 25 ~ 30]]
-@
-
-\paragraph{Unit Tests}
-<<spc-tests, echo = FALSE>>=
-tests <- test_file_keep ("test-read.spc.R", reporter, tests)
-@
-<<Horiba-spc, echo=FALSE, results=hide>>=
-read.spc("spc.LabRam/LabRam-1.spc")
-read.spc("spc.LabRam/LabRam-2.spc")
 @
 
 \paragraph{Deriving manufacturer specific import filters.}
@@ -640,7 +627,7 @@ spc ## dummy sample with all intensities zero
 \index{Agilent!ENVI}
 \index{Varian|see{Agilent}}
 
-Agilent (Varian) uses a variant of ENVI (with binary header). 
+Agilent (Varian) uses a variant of ENVI (with binary header).
 
 \subsection{Kaiser Optical Systems Raman}
 \label{sec:Kaiser}
