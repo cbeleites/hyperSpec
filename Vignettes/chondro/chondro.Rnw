@@ -461,6 +461,8 @@ chondro.bilinear <- interp (chondro$x, chondro$y, as.numeric (tmp), nx = 100, ny
 image (chondro.bilinear, 
   xlab = labels (chondro, "x"), ylab = labels (chondro, "y"), 
   col = DNAcols)
+} else {
+  plot (NULL)
 }
 @
 \begin{figure}[tbh]
