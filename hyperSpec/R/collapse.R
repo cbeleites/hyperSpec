@@ -50,6 +50,8 @@ collapse <- function (..., wl.tolerance = hy.getOption ("wl.tolerance")){
   lapply (dots, chk.hy)
   lapply (dots, validObject)
 
+  dots <- lapply (dots, orderwl)
+
   ## names cause problems with unlisting labels.
   ## preserve them in column .name
   if (! is.null (names (dots))){
