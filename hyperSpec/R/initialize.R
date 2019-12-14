@@ -289,8 +289,6 @@ setMethod ("initialize", "hyperSpec", .initialize)
     spc <- new ("hyperSpec", spc = flu [[]])
     expect_equal(spc [[]], flu [[]])
   })
-
-
 }
 
 
@@ -329,7 +327,7 @@ setGeneric ("as.hyperSpec",
 
 setMethod ("as.hyperSpec", "matrix", .as.hyperSpec.matrix)
 
-.as.hyperSpec.data.frame <- function (X, spc = NULL, wl = guess.wavelength (spc), ...){
+.as.hyperSpec.data.frame <- function (X, spc = NULL, wl = guess.wavelength (spc), labels = attr (X, "labels"), ...){
   # TODO: remove after 31.12.2020
   if (!all (!is.na (guess.wavelength(colnames(X)))))
     warning ("as.hyperSpec.data.frame has changed its behaviour. Use as.hyperSpec (as.matrix (X)) instead.")
@@ -339,7 +337,7 @@ setMethod ("as.hyperSpec", "matrix", .as.hyperSpec.matrix)
     wl <- numeric (0)
   }
 
-  new ("hyperSpec", data = X, wavelength = wl, spc = spc, ...)
+  new ("hyperSpec", data = X, wavelength = wl, spc = spc, labels = labels, ...)
 }
 
 #' @rdname as.hyperSpec
@@ -363,6 +361,19 @@ setMethod ("as.hyperSpec", "data.frame", .as.hyperSpec.data.frame)
         expect_equal(tmp$.., flu$..)
         expect_equal(dim (tmp), c (nrow = 6L, ncol = 3L, nwl = 0L))
         expect_equal(wl (tmp), numeric (0))
+    })
+
+    test_that("data.frame with labels attribute", {
+      tmp <- flu$..
+      attr (tmp, "labels") <- labels (flu)
+
+      tmp <- as.hyperSpec(tmp)
+
+      expect_equal(tmp$.., flu$..)
+      expect_equal(dim (tmp), c (nrow = 6L, ncol = 3L, nwl = 0L))
+      expect_equal(wl (tmp), numeric (0))
+      expect_equal(labels (tmp) [order (names (labels (tmp)))],
+                   lapply (labels (flu) [order (names (labels (flu)))], as.expression))
     })
 
     test_that("spc with characters in colnames", {
