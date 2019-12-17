@@ -45,7 +45,6 @@ qplotmixmap <- function (object, ...){
 ##'
 ##' plot graph with legend right of it
 ##'
-##' @rdname qplotmix
 ##' @param p plot object
 ##' @param l legend object
 ##' @param legend.width,legend.unit size of legend part

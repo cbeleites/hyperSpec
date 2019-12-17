@@ -98,7 +98,6 @@
 ##' @rdname extractreplace
 ##' @docType methods
 ##' @aliases [ [,hyperSpec-method
-##' @rdname extractreplace
 ##' @param x a \code{hyperSpec} Object
 ##' @param i row index: selects spectra
 ##'
