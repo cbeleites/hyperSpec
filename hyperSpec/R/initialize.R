@@ -289,8 +289,6 @@ setMethod ("initialize", "hyperSpec", .initialize)
     spc <- new ("hyperSpec", spc = flu [[]])
     expect_equal(spc [[]], flu [[]])
   })
-
-
 }
 
 
@@ -299,7 +297,9 @@ setMethod ("initialize", "hyperSpec", .initialize)
 #'
 #' These functions are shortcuts to convert other objects into hypeSpec objects.
 #'
-#' @param X the object to convert
+#' @param X the object to convert.
+#' A matrix is assumed to contain the spectra matrix,
+#' a data.frame is assumed to contain extra data.
 #' @param ... additional parameters that should be handed over to \code{new ("hyperSpec")} (initialize)
 #'
 #' @return hyperSpec object
@@ -326,8 +326,24 @@ setGeneric ("as.hyperSpec",
 #' guess.wavelength (wl)
 
 setMethod ("as.hyperSpec", "matrix", .as.hyperSpec.matrix)
+
+.as.hyperSpec.data.frame <- function (X, spc = NULL, wl = guess.wavelength (spc), labels = attr (X, "labels"), ...){
+  # TODO: remove after 31.12.2020
+  if (!all (!is.na (guess.wavelength(colnames(X)))))
+    warning ("as.hyperSpec.data.frame has changed its behaviour. Use as.hyperSpec (as.matrix (X)) instead.")
+
+  if (is.null (spc)){
+    spc <- matrix (ncol = 0, nrow = nrow (X))
+    wl <- numeric (0)
+  }
+
+  new ("hyperSpec", data = X, wavelength = wl, spc = spc, labels = labels, ...)
+}
+
 #' @rdname as.hyperSpec
-setMethod ("as.hyperSpec", "data.frame", .as.hyperSpec.matrix)
+#' @note \emph{Note that the behaviour of \code{as.hyperSpec (X)} was changed: it now assumes \code{X} to be extra data,
+#' and returns a hyperSpec object with 0 wavelengths. To get the old behaviour}
+setMethod ("as.hyperSpec", "data.frame", .as.hyperSpec.data.frame)
 
 ##' @include unittest.R
 .test (as.hyperSpec) <- function (){
@@ -340,9 +356,24 @@ setMethod ("as.hyperSpec", "data.frame", .as.hyperSpec.matrix)
         expect_identical (new ("hyperSpec", spc = spc), as.hyperSpec(X = spc))
     })
 
-    test_that("spc is given as a data.frame", {
-        expect_equal(new("hyperSpec", spc = as.data.frame(spc),wavelength=1:ncol(spc)),
-                     as.hyperSpec(X = as.data.frame(spc)))
+    test_that("data.frame", {
+        tmp <- as.hyperSpec(flu$..)
+        expect_equal(tmp$.., flu$..)
+        expect_equal(dim (tmp), c (nrow = 6L, ncol = 3L, nwl = 0L))
+        expect_equal(wl (tmp), numeric (0))
+    })
+
+    test_that("data.frame with labels attribute", {
+      tmp <- flu$..
+      attr (tmp, "labels") <- labels (flu)
+
+      tmp <- as.hyperSpec(tmp)
+
+      expect_equal(tmp$.., flu$..)
+      expect_equal(dim (tmp), c (nrow = 6L, ncol = 3L, nwl = 0L))
+      expect_equal(wl (tmp), numeric (0))
+      expect_equal(labels (tmp) [order (names (labels (tmp)))],
+                   lapply (labels (flu) [order (names (labels (flu)))], as.expression))
     })
 
     test_that("spc with characters in colnames", {

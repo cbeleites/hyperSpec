@@ -3,8 +3,8 @@ Encoding: UTF-8
 Type: Package
 Title: Work with Hyperspectral Data, i.e. Spectra + Meta Information (Spatial,
     Time, Concentration, ...)
-Version: 0.99-20180827
-Date: 2018-08-27
+Version: 0.99-20191214
+Date: 2019-12-14
 Maintainer: Claudia Beleites <chemometrie@beleites.de>
 Authors@R: c(
     person("Claudia",   "Beleites",  role = c("aut","cre", "dtc"), email = "chemometrie@beleites.de"),
@@ -32,7 +32,7 @@ License: GPL (>= 3)
 LazyLoad: yes
 LazyData: yes
 Depends:
-    R (>= 2.15),
+    R (>= 3.6.0),
     lattice,
     grid,
     ggplot2 (>= 2.2.0)
@@ -176,4 +176,4 @@ Collate:
     'write.txt.wide.R'
     'y-pastenames.R'
     'zzz.R'
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
