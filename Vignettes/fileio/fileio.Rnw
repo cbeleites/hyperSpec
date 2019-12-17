@@ -549,8 +549,7 @@ barbiturates <- read.spc ("spc/BARBITUATES.SPC")
 save (barbiturates, file = "barbiturates.rda")
 class (barbiturates)
 length (barbiturates)
-barbiturates <- do.call (collapse, barbiturates)
-barbiturates <- orderwl (barbiturates)
+barbiturates <- collapse (barbiturates, collapse.equal = FALSE)
 barbiturates
 barbiturates [[1:10, , 25 ~ 30]]
 @

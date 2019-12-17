@@ -86,7 +86,6 @@ Collate:
     'chk.hy.R'
     'chondro.R'
     'colMeans.R'
-    'collapse-helper.R'
     'collapse.R'
     'cov.R'
     'decomposition.R'
