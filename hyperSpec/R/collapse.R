@@ -256,7 +256,8 @@ collapse <- function (..., wl.tolerance = hy.getOption ("wl.tolerance"), collaps
   })
 
   test_that ("clustering with last window being long", {
-    collapse (barbiturates [c (180:200)])
+    expect_equal (dim (collapse (barbiturates [c (180:200)], collapse.equal = FALSE)), 
+                  c (21L, 4L, 375L))
   })
   
   test_that ("factor behaviour of collapse", {
