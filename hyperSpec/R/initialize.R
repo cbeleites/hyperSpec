@@ -68,7 +68,7 @@
 
   .Object@label <- labels
 
-  rm (labels, wavelength)
+  rm (labels)
   if (.options$gc) gc ()
 
   if (! is.null (data$spc) && ! (is.null (spc)))
@@ -103,7 +103,7 @@
     attr (spc, "class") <- "AsIs"       # I seems to make more than one copy
     if (.options$gc) gc ()
   }
-
+  
   ## deal with extra data
   if (is.null (data)){
     data <- data.frame (spc = spc)
@@ -120,6 +120,8 @@
   attr (data$spc, "class") <- NULL      # more than one copy!?
   if (.options$gc) gc ()
 
+  colnames (data$spc) <- signif (wavelength, digits = 6) # for consistency with .wl<-
+  
   .Object@data <- data
   if (.options$gc) gc ()
 
@@ -213,7 +215,8 @@ setMethod ("initialize", "hyperSpec", .initialize)
 
   test_that("vector for spc", {
     h <- new ("hyperSpec", spc = 1 : 4)
-    expect_equal (h@data$spc, matrix (1 : 4, nrow = 1))
+    expect_equivalent (h@data$spc, matrix (1 : 4, nrow = 1))
+    expect_equal (as.numeric (colnames (h@data$spc)), 1:4)
     expect_equivalent (dim (h), c (1L, 1L, 4L))
     expect_equal (h@wavelength, 1 : 4)
   })
@@ -287,7 +290,7 @@ setMethod ("initialize", "hyperSpec", .initialize)
     hy.setOptions(gc = TRUE)
 
     spc <- new ("hyperSpec", spc = flu [[]])
-    expect_equal(spc [[]], flu [[]])
+    expect_equivalent(spc [[]], flu [[]]) # due to wavelength "guessing" -> colnames of $spc => only equivalent
   })
 }
 
@@ -379,9 +382,10 @@ setMethod ("as.hyperSpec", "data.frame", .as.hyperSpec.data.frame)
     test_that("spc with characters in colnames", {
         colnames(spc) <- make.names(wl)
         h <- as.hyperSpec(X = spc)
-        expect_equal (h@data$spc, spc)
+        expect_equivalent (h@data$spc, spc)
         expect_equivalent (dim (h), c (nrow(spc), 1L, ncol(spc)))
         expect_equal (h@wavelength, wl)
+        expect_equal (as.numeric (colnames (h@data$spc)), wl)
     })
 
     test_that("ignore colnames if wl is set", {
@@ -402,6 +406,10 @@ setMethod ("as.hyperSpec", "data.frame", .as.hyperSpec.data.frame)
       expect_error (as.hyperSpec(tmp))
     })
 
+    test_that ("colnames of spectra matrix correctly set (as done by wl<-)", {
+      tmp <- new ("hyperSpec", spc = spc, wavelength = wl)
+      expect_equal (colnames (tmp$spc), as.character (signif (wl, 6)))
+    })
 }
 
 

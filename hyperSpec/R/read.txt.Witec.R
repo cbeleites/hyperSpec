@@ -77,20 +77,20 @@ read.txt.Witec <- function (file = stop ("filename or connection needed"),
     expect_warning (read.txt.Witec("fileio/txt.Witec/Witec-Map_no.txt", type = "map"))
 
     spc <- read.txt.Witec("fileio/txt.Witec/Witec-Map_no.txt", type = "map", points.per.line = 5, lines.per.image = 5)
-    expect_known_hash (spc, hash = "1d543091ea")
+    expect_known_hash (spc, hash = "6816a87cf3")
   })
 
   test_that("Map: one of points.per.line and lines.per.image is sufficient", {
     spc <- read.txt.Witec("fileio/txt.Witec/Witec-Map_no.txt", type = "map", lines.per.image = 5)
-    expect_known_hash (spc, hash = "1d543091ea")
+    expect_known_hash (spc, hash = "6816a87cf3")
 
     spc <- read.txt.Witec("fileio/txt.Witec/Witec-Map_no.txt", type = "map", points.per.line = 5)
-    expect_known_hash (spc, hash = "1d543091ea")
+    expect_known_hash (spc, hash = "6816a87cf3")
   })
 
   test_that("Map with label line but no units header", {
     spc <- read.txt.Witec("fileio/txt.Witec/Witec-Map_label.txt", type = "map", hdr.units = FALSE, hdr.label = TRUE)
-    expect_known_hash(spc, "9c2390a429")
+    expect_known_hash(spc, "c4a384d6b2")
   })
 
   test_that("Map with units header line but no labels", {
@@ -100,17 +100,17 @@ read.txt.Witec <- function (file = stop ("filename or connection needed"),
 
     spc <- read.txt.Witec("fileio/txt.Witec/Witec-Map_unit.txt", type = "map", hdr.units = TRUE, hdr.label = FALSE,
                           points.per.line = 5, lines.per.image = 5)
-    expect_known_hash(spc, "3a93f8d117")
+    expect_known_hash(spc, "86ecc17360")
   })
 
   test_that("Map with header and label lines", {
     spc <- read.txt.Witec("fileio/txt.Witec/Witec-Map_full.txt", type = "map", hdr.units = TRUE, hdr.label = TRUE)
-    expect_known_hash(spc, "2ce92cbde5")
+    expect_known_hash(spc, "76db6397fc")
   })
 
   test_that ("Map can be read as time series", {
     spc <- read.txt.Witec("fileio/txt.Witec/Witec-Map_no.txt")
-    expect_known_hash(spc, "d5eaeb8259")
+    expect_known_hash(spc, "6213aefc6b")
     expect_null(spc$x)
     expect_null(spc$y)
   })
@@ -118,36 +118,36 @@ read.txt.Witec <- function (file = stop ("filename or connection needed"),
 
   test_that ("parameter default type = 'single'", {
     spc <- read.txt.Witec("fileio/txt.Witec/Witec-timeseries_no.txt")
-    expect_known_hash(spc, "3e359c7b8f")
+    expect_known_hash(spc, "1a8c3be079")
   })
 
   test_that("Time series with neither header nor label lines", {
     spc <- read.txt.Witec("fileio/txt.Witec/Witec-timeseries_no.txt")
-    expect_known_hash(spc, "3e359c7b8f")
+    expect_known_hash(spc, "1a8c3be079")
   })
 
   test_that("Time series with label line but no units header", {
     spc <- read.txt.Witec("fileio/txt.Witec/Witec-timeseries_label.txt", hdr.units = FALSE, hdr.label = TRUE)
-    expect_known_hash(spc, "3cfde12fb0")
+    expect_known_hash(spc, "4cb098a671")
   })
 
   test_that("Time series with units header line but no labels", {
     spc <- read.txt.Witec("fileio/txt.Witec/Witec-timeseries_unit.txt",  hdr.units = TRUE, hdr.label = FALSE)
 
-    expect_known_hash(spc, "2b29600c31")
+    expect_known_hash(spc, "6b6abac4e8")
   })
 
   test_that("Time series with header and label lines", {
     expect_error (spc <- read.txt.Witec("fileio/txt.Witec/Witec-timeseries_full.txt"))
 
     spc <- read.txt.Witec("fileio/txt.Witec/Witec-timeseries_full.txt", hdr.units = TRUE, hdr.label = TRUE)
-    expect_known_hash(spc, "ed45138daf")
+    expect_known_hash(spc, "db5b1a5db0")
   })
 
   test_that("encoding", {
     spc <- read.txt.Witec("fileio/txt.Witec/Witec-timeseries_full.txt", hdr.units = TRUE, hdr.label = TRUE,
                           encoding = "ascii")
-    expect_known_hash(spc, "ed45138daf")
+    expect_known_hash(spc, "db5b1a5db0")
   })
 }
 
@@ -191,24 +191,24 @@ read.dat.Witec <- function (filex = stop ("filename or connection needed"),
 
   test_that ("-y file guessing", {
     spc <- read.dat.Witec("fileio/txt.Witec/Witec-timeseries-x.dat")
-    expect_known_hash(spc, "a777fd816a")
+    expect_known_hash(spc, "9562f59323")
   })
 
   test_that ("encoding", {
     spc <- read.dat.Witec("fileio/txt.Witec/Witec-timeseries-x.dat", encoding = "ascii")
-    expect_known_hash(spc, "a777fd816a")
+    expect_known_hash(spc, "9562f59323")
   })
 
     test_that ("Time series", {
     spc <- read.dat.Witec("fileio/txt.Witec/Witec-timeseries-x.dat", "fileio/txt.Witec/Witec-timeseries-y.dat")
-    expect_known_hash(spc, "a777fd816a")
+    expect_known_hash(spc, "9562f59323")
   })
 
   test_that ("Map: .dat does not have spatial information", {
     spc <- read.dat.Witec("fileio/txt.Witec/Witec-Map-x.dat", "fileio/txt.Witec/Witec-Map-y.dat")
     expect_null(spc$x)
     expect_null(spc$y)
-    expect_known_hash(spc, "1601fbea08")
+    expect_known_hash(spc, "8a7ed06b0b")
   })
 
   test_that ("Map", {
@@ -219,7 +219,7 @@ read.dat.Witec <- function (filex = stop ("filename or connection needed"),
 
     spc <- read.dat.Witec("fileio/txt.Witec/Witec-Map-x.dat", "fileio/txt.Witec/Witec-Map-y.dat",
                           type = "map", points.per.line = 5, lines.per.image = 5)
-    expect_known_hash(spc, "02881af0dc")
+    expect_known_hash(spc, "3d6339675b")
   })
 
 
@@ -275,19 +275,19 @@ read.txt.Witec.Graph <- function (headerfile = stop ("filename or connection nee
 
   test_that ("defaults and (X-Axis)/(Y-Axis) file guessing", {
     spc <- read.txt.Witec.Graph("fileio/txt.Witec/Witec-timeseries (Header).txt")
-    expect_known_hash(spc, "1576d6d0e7")
+    expect_known_hash(spc, "295499c43c")
   })
 
   test_that ("encoding", {
     expect_warning(read.txt.Witec.Graph("fileio/txt.Witec/nofilename (Header).txt"))
 
     spc <- read.txt.Witec.Graph("fileio/txt.Witec/nofilename (Header).txt", encoding = "latin1")
-    expect_known_hash(spc, "b8b9cebca0")
+    expect_known_hash(spc, "2bad36adb3")
   })
 
   test_that ("Time Series", {
     spc <- read.txt.Witec.Graph("fileio/txt.Witec/Witec-timeseries (Header).txt", type = "single")
-    expect_known_hash(spc, "1576d6d0e7")
+    expect_known_hash(spc, "295499c43c")
   })
 
   test_that ("Map", {
@@ -295,12 +295,12 @@ read.txt.Witec.Graph <- function (headerfile = stop ("filename or connection nee
     expect_warning (read.txt.Witec.Graph("fileio/txt.Witec/Witec-Map (Header).txt", type = "single"))
 
     spc <- read.txt.Witec.Graph("fileio/txt.Witec/Witec-Map (Header).txt", type = "map")
-    expect_known_hash(spc, "a3da142152")
+    expect_known_hash(spc, "cb9cd9757a")
   })
 
   test_that("missing filename", {
     spc <- read.txt.Witec.Graph("fileio/txt.Witec/nofilename (Header).txt", encoding = "latin1")
-    expect_known_hash(spc, "b8b9cebca0")
+    expect_known_hash(spc, "2bad36adb3")
   })
 
   test_that ("wrong combination of file names", {

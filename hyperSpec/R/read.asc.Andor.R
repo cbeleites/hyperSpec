@@ -41,6 +41,6 @@ read.asc.Andor <- function (file = stop ("filename or connection needed"),
   context ("read.asc.Andor")
   test_that("Andor Solis .asc text files", {
     skip_if_not_fileio_available()
-    expect_known_hash (read.asc.Andor("fileio/asc.Andor/ASCII-Andor-Solis.asc"), "a0e42b968f")
+    expect_known_hash (read.asc.Andor("fileio/asc.Andor/ASCII-Andor-Solis.asc"), "9ead937f51")
   })
 }
