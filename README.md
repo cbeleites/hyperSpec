@@ -1,4 +1,7 @@
 # hyperSpec
+
+![CRAN version badge](https://www.r-pkg.org/badges/version/{package})
+
 This is the new home for R package hyperSpec.
 
 Issues and feature requests should go [here](https://github.com/cbeleites/hyperSpec/issues)!
@@ -7,7 +10,7 @@ Issues and feature requests should go [here](https://github.com/cbeleites/hyperS
 
 ## Option A, simple: Installation from CRAN
 
-open `R` and use command `install.packages("hyperSpec")`. This installs the latest version available on CRAN.
+open `R` and use command `install.packages("hyperSpec")`. This installs the latest version available on CRAN. ![CRAN version badge](https://www.r-pkg.org/badges/version/{package})
 
 ## Option B – build it yourself from source in this repo
 
