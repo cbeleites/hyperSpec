@@ -120,6 +120,7 @@ decomposition <- function (object, x, wavelength = seq_len (ncol (x)),
     }
 
     object@data <- object@data[rep(1, nrow(x)), , drop = FALSE]
+    colnames (x) <- colnames (object@data$spc)
     object@data$spc <- x
 
   } else {
