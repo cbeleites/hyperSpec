@@ -210,22 +210,26 @@ setMethod ("initialize", "hyperSpec", .initialize)
   context (".initialize / new (\"hyperSpec\")")
 
   test_that("empty hyperSpec object", {
-    expect_equivalent (dim (new ("hyperSpec")), c (0L, 1L, 0L))
+    expect_equal (dim (new ("hyperSpec")), c (nrow = 0L, ncol = 1L, nwl = 0L))
   })
 
   test_that("vector for spc", {
     h <- new ("hyperSpec", spc = 1 : 4)
-    expect_equivalent (h@data$spc, matrix (1 : 4, nrow = 1))
+    expect_equal (h@data$spc, matrix (1 : 4, nrow = 1, dimnames = list (NULL, 1:4)))
     expect_equal (as.numeric (colnames (h@data$spc)), 1:4)
-    expect_equivalent (dim (h), c (1L, 1L, 4L))
+    expect_equal (dim (h), c (nrow = 1L, ncol = 1L, nwl = 4L))
     expect_equal (h@wavelength, 1 : 4)
   })
 
   test_that("matrix for spc", {
     spc <- matrix (c(1 : 12), nrow = 3)
     h <- new ("hyperSpec", spc = spc)
+    
     expect_equivalent (h@data$spc, spc)
-    expect_equivalent (dim (h), c (3L, 1L, 4L))
+    expect_equal (dimnames (h@data$spc), list (NULL, as.character (1:4)))
+    expect_equal (dim (h@data$spc), dim (spc))
+    
+    expect_equal (dim (h), c (nrow = 3L, ncol = 1L, nwl = 4L))
     expect_equal (h@wavelength, 1 : 4)
   })
 
@@ -233,8 +237,8 @@ setMethod ("initialize", "hyperSpec", .initialize)
   test_that("matrix with numbers in colnames for spc", {
     colnames(spc) <- c(600, 601, 602, 603)
     h <- new ("hyperSpec", spc = spc)
-    expect_equivalent (h@data$spc, spc)
-    expect_equivalent (dim (h), c (3L, 1L, 4L))
+    expect_equal (h@data$spc, spc)
+    expect_equal (dim (h), c (nrow = 3L, ncol = 1L, nwl = 4L))
     expect_equal (h@wavelength, c(600, 601, 602, 603))
   })
 
@@ -242,7 +246,7 @@ setMethod ("initialize", "hyperSpec", .initialize)
   test_that("spc and data given", {
     h <- new ("hyperSpec", spc = spc, data = data.frame (x = 3))
     expect_equal (h@data$spc, spc)
-    expect_equivalent (dim (h), c (3L, 2L, 4L))
+    expect_equal (dim (h), c (nrow = 3L, ncol = 2L, nwl = 4L))
     expect_equal (h@wavelength, c(600, 601, 602, 603))
     expect_equal (h@data$x, rep (3, 3L))
   })
@@ -250,7 +254,7 @@ setMethod ("initialize", "hyperSpec", .initialize)
   test_that("spc and data given, data has $spc column (which should be overwritten with warning)", {
     expect_warning(h <- new ("hyperSpec", spc = spc, data = data.frame (spc = 11:13)))
     expect_equal (h@data$spc, spc)
-    expect_equivalent (dim (h), c (3L, 1L, 4L))
+    expect_equal (dim (h), c (nrow = 3L, ncol = 1L, nwl = 4L))
     expect_equal (h@wavelength, c(600, 601, 602, 603))
   })
 
@@ -261,14 +265,14 @@ setMethod ("initialize", "hyperSpec", .initialize)
   test_that("only data given, data has $spc column with `I()`-protected matrix", {
     h <- new ("hyperSpec", data = data.frame (spc = I (spc)))
     expect_equal (h@data$spc, spc)
-    expect_equivalent (dim (h), c (3L, 1L, 4L))
+    expect_equal (dim (h), c (nrow = 3L, ncol = 1L, nwl = 4L))
     expect_equal (h@wavelength, c(600, 601, 602, 603))
   })
 
   test_that("spc is data.frame", {
     h <- new ("hyperSpec", spc = as.data.frame (spc))
     expect_equal (h@data$spc, spc)
-    expect_equivalent (dim (h), c (3L, 1L, 4L))
+    expect_equal (dim (h), c (nrow = 3L, ncol = 1L, nwl = 4L))
   })
 
   test_that("uncommon spectra matrix class that can be converted to numeric", {
@@ -290,7 +294,7 @@ setMethod ("initialize", "hyperSpec", .initialize)
     hy.setOptions(gc = TRUE)
 
     spc <- new ("hyperSpec", spc = flu [[]])
-    expect_equivalent(spc [[]], flu [[]]) # due to wavelength "guessing" -> colnames of $spc => only equivalent
+    expect_equal(spc [[]], flu [[]]) 
   })
 }
 
@@ -383,7 +387,8 @@ setMethod ("as.hyperSpec", "data.frame", .as.hyperSpec.data.frame)
         colnames(spc) <- make.names(wl)
         h <- as.hyperSpec(X = spc)
         expect_equivalent (h@data$spc, spc)
-        expect_equivalent (dim (h), c (nrow(spc), 1L, ncol(spc)))
+        expect_equal (dim (h@data$spc), dim (spc))
+        expect_equal (dim (h), c (nrow = nrow(spc), ncol = 1L, nwl = ncol(spc)))
         expect_equal (h@wavelength, wl)
         expect_equal (as.numeric (colnames (h@data$spc)), wl)
     })

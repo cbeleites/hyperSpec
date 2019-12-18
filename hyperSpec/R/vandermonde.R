@@ -66,11 +66,13 @@ setMethod ("vanderMonde", signature = signature (x = "hyperSpec"),
     expect_true (chk.hy (vanderMonde (flu, 0)))
     expect_true (validObject (vanderMonde (flu, 0)))
 
-    expect_equivalent (vanderMonde (paracetamol, 3, normalize.wl = I)[[]],
-                       t (vanderMonde (wl (paracetamol), 3)))
+    tmp <- vanderMonde (paracetamol, 3, normalize.wl = I)
+    dimnames (tmp$spc) <- NULL
+    expect_equal (tmp [[]], t (vanderMonde (wl (paracetamol), 3)))
 
-    expect_equivalent (vanderMonde (paracetamol, 3, normalize.wl = normalize01)[[]],
-                       t (vanderMonde (normalize01 (wl (paracetamol)), 3)))
+    tmp <- vanderMonde (paracetamol, 3, normalize.wl = normalize01)     
+    dimnames (tmp$spc) <- NULL
+    expect_equal (tmp[[]], t (vanderMonde (normalize01 (wl (paracetamol)), 3)))
   })
 }
 
