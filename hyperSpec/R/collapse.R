@@ -70,11 +70,10 @@ collapse <- function (..., wl.tolerance = hy.getOption ("wl.tolerance"), collaps
   
   ## check: wl.tolerance should be smaller than *half* of the smallest wavelength difference within each object
   ## half because we later check for distance <= wl.tolerance, so ± => window size is 2 wl.tolerance
-  wl.diff <- sapply (dots, function (x) if (nwl (x) < 2L) NA else min (diff (wl (x)))) # wavelengths are ordered => no abs needed
-  i.warn <- wl.diff < 2 * wl.tolerance
-  if (any (isTRUE (i.warn)))
-    warning (sprintf ("object %i: wl.tolerance (%g) too large compared to smallest wavelength difference within object (%f).", 
-             which (i.warn) , wl.tolerance, wl.diff [i.warn]))
+  .assert.suitable.tolerance (dots, wl.tolerance)
+
+  ## make sure there aren't any NAs in wavelength
+  dots <- .assert.noNA.wl (dots)
   
   ## names cause problems with unlisting labels.
   ## preserve them in column .name
@@ -224,19 +223,6 @@ collapse <- function (..., wl.tolerance = hy.getOption ("wl.tolerance"), collaps
     expect_equal(wl (tmp), wl (flu) + 0.01)
   })
 
-  test_that ("new wavelengths are weighted mean of wavelength bin", {
-    a <- barbiturates [[1]][,,min ~ 30]
-    b <- barbiturates [[2]][,,min ~ 30]
-    wl (b) <- wl (b) + 0.03/2
-
-    expect_equal (wl (collapse (a, b, a, wl.tolerance = 0.03)),
-                  sort (c(27.0499992370605, 28.1499996185303, 30.0499992370605,
-                          27.1649996185303, 28.0649992370605, 30.1649996185303,
-                          mean (c (29.0499992370605, 29.0499992370605, 29.0649992370605))
-                  ))
-    )
-  })
-
   test_that ("names of wavelength kept", {
     a <- barbiturates[[1]]
     b <- barbiturates[[2]]
@@ -255,11 +241,7 @@ collapse <- function (..., wl.tolerance = hy.getOption ("wl.tolerance"), collaps
     expect_true (all (grepl ("Mass [AB]", names (wl (tmp)))))
   })
 
-  test_that ("clustering with last window being long", {
-    expect_equal (dim (collapse (barbiturates [c (180:200)], collapse.equal = FALSE)), 
-                  c (21L, 4L, 375L))
-  })
-  
+
   test_that ("factor behaviour of collapse", {
     a <- chondro [chondro$clusters == "lacuna"]
     a$clusters <- droplevels(a$clusters)
@@ -273,7 +255,72 @@ collapse <- function (..., wl.tolerance = hy.getOption ("wl.tolerance"), collaps
                  sort (levels (chondro$clusters))
     )
   })
+  
+  test_that ("hyperSpec objects with 1 wavelength", {
+    expect_equivalent (collapse (flu [,,450], flu [,,450]), 
+                       flu [rep (1: nrow (flu), 2),,450],
+                       check.labels = TRUE)
+
+    tmp <- flu [rep (1: nrow (flu), 2)]
+    tmp [[7:12]] <- NA
+    tmp [[7:12,,450]] <- flu [[,,450]]
+    expect_equivalent (collapse (flu [,,450], flu), 
+                       tmp,
+                       check.labels = TRUE)
+  })
+
+  test_that ("hyperSpec objects with 0 wavelengths", {
+    expect_equivalent (collapse (flu [,,FALSE], flu [,,FALSE]), 
+                       flu [rep (1: nrow (flu), 2),,FALSE],
+                       check.labels = TRUE)
+    
+    tmp <- collapse (flu [,,FALSE], flu [,"spc", 405 ~ 406])
+    expect_equal (tmp$c, c(flu$c, rep (NA, nrow (flu))))
+    expect_equal (tmp$spc, rbind(flu[[,, 405 ~ 406]] + NA, flu[[,, 405 ~ 406]]))
+    expect_equal (labels (tmp), lapply (labels (flu), as.expression))
+  })
+  
+  test_that ("hyperSpec objects with wavelength being/containing NA", {
+
+    expect_warning(collapse (flu [,, 0]))
+      
+    
+    expect_equal (suppressWarnings (collapse (flu [,, 0], flu)),
+                  collapse (flu [,, FALSE], flu))
+  
+    expect_equal (suppressWarnings (collapse (flu [,, c(0, 405)], flu)),
+                                    collapse (flu [,, 405], flu)
+    )
+    
+  })
+
 }
+
+## warn if wl.tolerance is too large, i.e. it would lead to cluster multiple wavelengths of the same object together.
+.assert.suitable.tolerance <- function (dots, wl.tolerance){
+
+  wl.diff <- sapply (dots, function (x) if (nwl (x) < 2L) NA else min (diff (wl (x)))) # wavelengths are ordered => no abs needed
+
+  i.warn <- wl.diff < 2 * wl.tolerance
+
+  if (any (isTRUE (i.warn)))
+    warning (sprintf ("object %i: wl.tolerance (%g) too large compared to smallest wavelength difference within object (%f). Columns will be lost.", 
+                      which (i.warn) , wl.tolerance, wl.diff [i.warn]))
+}
+
+.assert.noNA.wl <- function (dots){
+
+  i.NA <- sapply (dots, function (x) any (is.na (wl (x)))) 
+  
+  if (any (i.NA)){
+    warning (sprintf ("object %i: wavelength vector contains NAs: these columns will be dropped", 
+                      which (i.NA)))
+    dots [i.NA] <- lapply (dots [i.NA], function (x) x [,, !is.na (wl (x))])
+  }
+
+  dots  
+}
+
 
 
 #' Try finding groups of hyperSpec objects with (approximately) equal wavelength axes 
@@ -336,6 +383,9 @@ collapse <- function (..., wl.tolerance = hy.getOption ("wl.tolerance"), collaps
   
   # set up data.frame to hold relevant information
   wl.df <- lapply (seq_along (dots), function (i){
+    if (nwl (dots [[i]]) == 0L)
+      return (data.frame ())
+      
     data.frame (wl = wl (dots [[i]]),
                 iobj = i,
                 nspc = nrow (dots [[i]]),
@@ -405,4 +455,31 @@ collapse <- function (..., wl.tolerance = hy.getOption ("wl.tolerance"), collaps
   wl.df$wlcluster <- as.numeric (factor (wl.df$wlcluster, levels = unique (wl.df$wlcluster)))
 
   wl.df  
+}
+
+.test (.cluster.wavelengths) <- function() {
+  context (".cluster.wavelengths")
+  
+  test_that ("clustering with last window being long", {
+    
+    a <- as.hyperSpec (matrix(1:6, ncol = 3), wl = c(0, 2, 4))
+    b <- as.hyperSpec (matrix(1:6, ncol = 3), wl = c(0, 2, 5))
+    
+    expect_equal (wl (collapse (a, b, wl.tolerance = 0.25)), c (0, 2, 4, 5))
+    expect_equal (wl (collapse (a, b, wl.tolerance = 0.5 )), c (0, 2, 4.5))
+  })
+
+  test_that ("new wavelengths are weighted mean of wavelength bin", {
+    a <- barbiturates [[1]][,,min ~ 30]
+    b <- barbiturates [[2]][,,min ~ 30]
+    wl (b) <- wl (b) + 0.03/2
+    
+    expect_equal (wl (collapse (a, b, a, wl.tolerance = 0.03)),
+                  sort (c(27.0499992370605, 28.1499996185303, 30.0499992370605,
+                          27.1649996185303, 28.0649992370605, 30.1649996185303,
+                          mean (c (29.0499992370605, 29.0499992370605, 29.0649992370605))
+                  ))
+    )
+  })
+  
 }
