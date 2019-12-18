@@ -206,14 +206,20 @@ setMethod ("%*%", signature (x = "matrix", y = "hyperSpec"),
   context ("Arith")
 
   test_that("binary -", {
-    expect_equal (as.matrix (flu - flu), matrix (0, nrow = nrow (flu), ncol = nwl (flu)))
+    expect_equal (as.matrix (flu - flu), 
+                  matrix (0, nrow = nrow (flu), ncol = nwl (flu), dimnames = dimnames (flu [[]])))
+    
     expect_equal (as.matrix (flu - flu [1]), as.matrix (sweep (flu, 2, flu [1], `-`)))
+    
     expect_equal (as.matrix (flu - flu [,, 450]), as.matrix (sweep (flu, 1, flu [,, 450], `-`)))
   })
 
   test_that("binary /", {
-    expect_equal (as.matrix (flu / flu), matrix (1, nrow = nrow (flu), ncol = nwl (flu)))
+    expect_equal (as.matrix (flu / flu), 
+                  matrix (1, nrow = nrow (flu), ncol = nwl (flu), dimnames = dimnames (flu [[]])))
+    
     expect_equal (as.matrix (flu / flu [1]), as.matrix (sweep (flu, 2, flu [1], `/`)))
+    
     expect_equal (as.matrix (flu / flu [,, 450]), as.matrix (sweep (flu, 1, flu [,, 450], `/`)))
   })
 
