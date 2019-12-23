@@ -14,7 +14,7 @@
 ##' barbiturates [1:3]
 ##' length (barbiturates)
 ##' 
-##' barb <- collapse (barbiturates)
+##' barb <- collapse (barbiturates, collapse.equal = FALSE)
 ##' barb <- orderwl (barb)
 ##' 
 ##' plot (barb [1:3], lines.args = list (type = "h"),
