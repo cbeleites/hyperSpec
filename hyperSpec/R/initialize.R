@@ -325,6 +325,8 @@ setGeneric ("as.hyperSpec",
 
 #' @rdname as.hyperSpec
 #' @param wl wavelength vector. Defaults to guessing from the column names in \code{X}
+#' @param spc spectra matrix
+#' @param labels list with labels
 #' @export
 #'
 #' @examples

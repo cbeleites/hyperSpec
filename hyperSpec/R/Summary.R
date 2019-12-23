@@ -60,6 +60,8 @@ setMethod ("is.na", signature (x = "hyperSpec"),
 ##' any or all intensities fulfill the condition per spectrum. 
 ##' \code{na.rm} behaviour is like \code{\link[base]{all}} and \code{\link[base]{any}}.
 ##' 
+##' @param expression expression that evaluates to a logical matrix of the same size as the spectra matrix
+##' 
 ##' @rdname summary
 ##' @export
 ##' @examples

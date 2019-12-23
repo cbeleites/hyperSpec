@@ -46,7 +46,7 @@ as.data.frame.hyperSpec <- function (x, row.names = TRUE, optional =  NULL, ...)
 ##' @md
 ##' @seealso and [base::as.matrix()]
 ##' 
-##' [extractreplace()] (`[[]]`) for a shortcut to `as.matrix`
+##' [`[[`()] (`[[]]`) for a shortcut to `as.matrix`
 as.matrix.hyperSpec <- function (x, ...){
   validObject (x)
 
