@@ -16,6 +16,7 @@
 ##' @param keys.hdr2data index vector indicating which header entries should be tranfered into the
 ##' extra data. Usually a character vector of labels (lowercase, without and dashes, blanks,
 ##' underscores). If \code{TRUE}, all header entries are read.
+##' @param 
 ##' @param ... further parameters handed to the data import function, e.g.
 ##' \tabular{ll}{
 ##' \code{xtol} \tab tolerance for checking calculated x values against checkpoints at beginning
@@ -24,15 +25,18 @@
 ##' }
 ##' @param NA.symbols character vector of text values that should be converted to \code{NA}
 ##' @param collapse.multi should hyperSpec objects from multispectra files be collapsed into one
-##' hyperSpec object (if \code{FALSE}, a list of hyperSpec objects is returned).
+##' hyperSpec object (if `FALSE`, a list of hyperSpec objects is returned).
+##' @param wl.tolerance,collapse.equal see [collapse]
 ##' @return hyperSpec object
 ##' @author C. Beleites with contributions by Bryan Hanson
+##' @md
 ##' @export
 ##' @importFrom utils head modifyList maintainer
 read.jdx <- function(filename = stop ("filename is needed"), encoding = "",
                      header = list (), keys.hdr2data = FALSE, ...,
                      NA.symbols = c ("NA", "N/A", "N.A."),
-                     collapse.multi = TRUE){
+                     collapse.multi = TRUE, #collapse.after = Inf,
+                     wl.tolerance = hy.getOption("wl.tolerance"), collapse.equal = TRUE){
 
   ## see readLines help: this way, encoding is translated to standard encoding on current system.
   file <- file (filename, "r", encoding = encoding, blocking = FALSE)
@@ -94,7 +98,7 @@ read.jdx <- function(filename = stop ("filename is needed"), encoding = "",
   if (length (spc) == 1L)
     spc <- spc [[1]]
   else if (collapse.multi)
-    spc <- collapse (spc)
+    spc <- collapse (spc, wl.tolerance = wl.tolerance, collapse.equal = collapse.equal)
 
   ## consistent file import behaviour across import functions
   .fileio.optional (spc, filename)
@@ -299,4 +303,89 @@ read.jdx <- function(filename = stop ("filename is needed"), encoding = "",
 
 .key2names <- function (key){
   gsub ("[[:blank:]_-]", "", tolower (key))
+}
+
+
+.test (read.jdx) <- function (){
+  context ("test-read.jdx")
+  
+  files <- c (Sys.glob ("fileio/jcamp-dx/*.DX"), Sys.glob ("fileio/jcamp-dx/*.dx"),
+              Sys.glob ("fileio/jcamp-dx/*.jdx"), Sys.glob ("fileio/jcamp-dx/*.JCM"),
+              Sys.glob ("fileio/jcamp-dx/PE-IR/*.DX"),
+              "fileio/jcamp-dx/GMD_20111121_MDN35_ALK_JCAMP-shortened.txt" # MPI Golm, long version one is *slow* to read and exceeds memory limit
+  )
+  
+  ## these files need special parameters:
+  files <- setdiff (files, c ("fileio/jcamp-dx/shimadzu.jdx", "fileio/jcamp-dx/virgilio.jdx"))
+  
+  test_that ("JCAMP-DX examples that need particular parameter sets",{
+    skip_if_not_fileio_available ()
+    
+    expect_known_hash(read.jdx ("fileio/jcamp-dx/shimadzu.jdx", encoding = "latin1", keys.hdr2data=TRUE),
+                       "55c392d767f7a7f268e55540d4496fb1")
+    expect_known_hash(read.jdx ("fileio/jcamp-dx/virgilio.jdx", ytol = 1e-9),
+                       "da4a725d23efe4a1888496f1739294c2")
+  })
+  
+  unsupported <- c ("fileio/jcamp-dx/BRUKER2.JCM",
+                    "fileio/jcamp-dx/BRUKER1.JCM",
+                    "fileio/jcamp-dx/TESTSPEC.DX",
+                    "fileio/jcamp-dx/TEST32.DX",
+                    "fileio/jcamp-dx/SPECFILE.DX",
+                    "fileio/jcamp-dx/ISAS_MS2.DX",
+                    "fileio/jcamp-dx/ISAS_MS3.DX", # NTUPLES
+                    "fileio/jcamp-dx/BRUKSQZ.DX",
+                    "fileio/jcamp-dx/BRUKDIF.DX",
+                    "fileio/jcamp-dx/BRUKNTUP.DX", # NTUPLES
+                    "fileio/jcamp-dx/ISAS_CDX.DX", # PEAK ASSIGNMENTS= (XYMA)
+                    "fileio/jcamp-dx/TESTFID.DX", # NTUPLES
+                    "fileio/jcamp-dx/TESTNTUP.DX" # NTUPLES
+  )
+  
+  checksums <- c (`fileio/jcamp-dx/AMA1.DX` = '5e8523b7022ec26cfb2541fdf929e997',
+                  `fileio/jcamp-dx/AMA2.DX` = 'b336f71c592bc81de04d27bbbb9ede52',
+                  `fileio/jcamp-dx/AMA3.DX` = '34344a42a232227c14ab5de5dc04e096',
+                  `fileio/jcamp-dx/br_154_1.DX` = '232ef45bf818221c05927e311ac407a3',
+                  `fileio/jcamp-dx/BRUKAFFN.DX` = '2498cac17635ad21e4998a3e3e7eebfa',
+                  `fileio/jcamp-dx/BRUKPAC.DX` = '401cbaa375b79323ed0dcc30a135d11d',
+                  `fileio/jcamp-dx/IR_S_1.DX` = '8d7032508efaf79fcc955f888d60cd8f',
+                  `fileio/jcamp-dx/ISAS_MS1.DX` = '43017647aa339d8e7aaf3fadbdbbf065',
+                  `fileio/jcamp-dx/LABCALC.DX` = '55ffdb250279aee967b2f65bbbf7dd5e',
+                  `fileio/jcamp-dx/PE1800.DX` = '31ac39a5db243c3aa01e1978b9ab1aa3',
+                  `fileio/jcamp-dx/testjose.dx` = '3b229eb9b8f229acd57783328d36a697',
+                  `fileio/jcamp-dx/sign-rustam.jdx` = '386bf0b94baa5007e11e6af294895012',
+                  `fileio/jcamp-dx/PE-IR/br_1.DX` = 'ab5fa92227625c287871d9e95091c364',
+                  `fileio/jcamp-dx/PE-IR/br_2.DX` = 'eff5a1b37121a8902c0e62ebb5de0013',
+                  `fileio/jcamp-dx/PE-IR/br_3.DX` = '2762712b1317631d32969624c97fa940',
+                  `fileio/jcamp-dx/PE-IR/br_4.DX` = '11ddb20e9f6676f709827ececda360ab',
+                  `fileio/jcamp-dx/PE-IR/br_5.DX` = 'ffa08204bfb2521dd8caa9d286eba519',
+                  `fileio/jcamp-dx/PE-IR/fort_1.DX` = 'e808e243ae646c0526ba009f3ac3f80a',
+                  `fileio/jcamp-dx/PE-IR/fort_2.DX` = 'df90e70f203294c8bfeac7a6141a552d',
+                  `fileio/jcamp-dx/PE-IR/fort_3.DX` = 'd43a2c4fbb2598a5028a1406f83e3c3d',
+                  `fileio/jcamp-dx/PE-IR/fort_4.DX` = '5382afba5c8b7fffdc26f00e129035c7',
+                  `fileio/jcamp-dx/PE-IR/fort_5.DX` = '745c8b0fdad48a945e084d6e6cb9f0c6',
+                  `fileio/jcamp-dx/PE-IR/lp_1.DX` = 'bcb0a1e1150bcd038a3e0e0e5a896b2b',
+                  `fileio/jcamp-dx/PE-IR/lp_2.DX` = '7bc1c53f1363b2b02374442a1e8baa74',
+                  `fileio/jcamp-dx/PE-IR/lp_3.DX` = 'eaa58c46360be604169e979c0fe2caeb',
+                  `fileio/jcamp-dx/PE-IR/lp_4.DX` = '3b8d54eca48095d3f6c3eafc7b903a25',
+                  `fileio/jcamp-dx/PE-IR/lp_5.DX` = 'a0eaa3ca11fb5a0dde83fa01296d72db',
+                  `fileio/jcamp-dx/GMD_20111121_MDN35_ALK_JCAMP-shortened.txt` = 'fd2e686f5dc78691c22033805ed56463'
+                  )
+  
+  
+  test_that("JCAMP-DX example files", {
+    skip_if_not_fileio_available ()
+    for (f in files [! files %in% unsupported]) {
+      spc <- read.jdx (f, ytol = 1e-6)
+      ## for wholesale updating of hashes (e.g. due to changes in initialize) 
+      ## output filename hash pairs:
+      #cat (sprintf ("`%s` = '%s',\n", f, digest (spc))) 
+      expect_known_hash(spc, checksums [f])
+    }
+  })
+  
+  test_that("intermediate collapsing", {
+    skip ("not yet implemented")  
+    # test with fileio/jcamp-dx/GMD_20111121_MDN35_ALK_JCAMP.txt
+  })
 }
