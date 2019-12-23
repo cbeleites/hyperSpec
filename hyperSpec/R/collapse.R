@@ -408,52 +408,49 @@ collapse <- function (..., wl.tolerance = hy.getOption ("wl.tolerance"), collaps
   wl.df <- wl.df [order (wl.df$wl),]
   
   ## computational shortcut: 
-  ## wavelengths that are > 2 * wl.tolerance apart must be clusters of their own,
-  ## no cluster analysis needed
+  ## wavelengths that are > 2 * wl.tolerance apart must be in different clusters,
+  ## so cluster analysis can be split there
   
   wl.diff <- diff (wl.df$wl) > 2 * wl.tolerance
+
+  ## assign preliminary clusters  
+  wl.df$wlcluster <- c (1, 1 + cumsum (wl.diff))
   
-  ## first difference sufficiently large => first wavelength is its own cluster
-  if (wl.diff [1]) 
-    wl.df$wlcluster [1] <- 1
+  maxcluster <- tail (wl.df$wlcluster, 1)
   
-  ## last difference sufficiently large => last wavelength is its own cluster
-  if (wl.diff [nrow (wl.df) - 1L]) 
-    wl.df$wlcluster [nrow (wl.df)] <- max (wl.df$wlcluster, 0, na.rm = TRUE) + 1L
-  
-  ## for all other wavlengths, difference before and difference after must be sufficiently large:
-  wl.diff <- tail (wl.diff, -1) + head (wl.diff, -1)
-  
-  wl.df$wlcluster [which (wl.diff == 2L) + 1L] <- 
-    seq_len (sum (wl.diff == 2L)) + max (wl.df$wlcluster, 0, na.rm = TRUE)
-  
-  ## everything else needs to be clustered
-  ## consider consecutive series of NAs (windows) at a time: 
-  ## only within such a window need the wavelengths be sorted into clusters,
-  ## everything outside must be in different clusters
-  
-  i <- which (is.na (wl.df$wlcluster)) [1L] # first not-yet assigned wavelength index
-  while (! is.na (i)){ 
+  ## preliminary clusters may need to be split further
+  for (i in seq_len (tail (wl.df$wlcluster, 1))){
+    tmp <- wl.df [wl.df$wlcluster == i,]
     
-    i.window <- which (! is.na (wl.df$wlcluster [-(1:i)]))[1L] # first point after end of window
-    if (! is.na (i.window))
-      i.window <- i + seq_len (i.window) - 1L
-    else # window to end of table
-      i.window <- i : nrow (wl.df)
+    ## only 1 wavelength in cluster => nothing to do
+    if (length (tmp) <= 1L)
+      next
+    
+    ## all wavelengths within 2 * wl.tolerance => nothing to do
+    if (tail (tmp$wl, 1) - tmp$wl [1] <= 2 * wl.tolerance)
+      next
+  
+    ## clustering needs to be done on actually unique wavelengths only
+    unique.wl <- unique (tmp$wl)
     
     # make clusters that span at most 2 * wl.tolerance 
-    dist <- dist (wl.df$wl [i.window])
+    dist <- dist (unique.wl)
     dend <- hclust (dist, method = "complete")
+
+    u <- data.frame (wl = unique.wl, 
+                     wlcluster = cutree (dend, h = 2 * wl.tolerance) + maxcluster
+    )
+    maxcluster <- tail (u$wlcluster, 1)
+
+    ## "expand" unique wavelengths => wavelengths per object    
+    tmp <- merge (tmp, u, by = "wl", suffixes = c (".prelim", ""))
+    tmp$wlcluster.prelim <- NULL
     
-    wl.df$wlcluster [i.window] <- cutree (dend, h = 2 * wl.tolerance) +  
-      max (wl.df$wlcluster, 0, na.rm = TRUE)
-    
-    i <- which (is.na (wl.df$wlcluster)) [1L] # first not-yet assigned wavelength index
-    # evaluates to NA if no more unassigned wavelengths
+    wl.df$wlcluster [wl.df$wlcluster == i] <- tmp$wlcluster
   }
-  
+
   ## cluster numbers so far are in no particular order => rename them so they correspond to increasing wavelengths
-  ## this save one call to orderwl () later on.
+  ## this saves one call to orderwl () later on.
   wl.df$wlcluster <- as.numeric (factor (wl.df$wlcluster, levels = unique (wl.df$wlcluster)))
 
   wl.df  
