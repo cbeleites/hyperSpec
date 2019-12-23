@@ -787,7 +787,8 @@ read.spc <- function (filename,
   })
 
   test_that("Witec: some files supported", {
-
+    skip_if_not_fileio_available()
+    
     expect_error (read.spc("fileio/spc.Witec/P_A32_006_Spec.Data 1.spc"))
     expect_error (read.spc("fileio/spc.Witec/P_A32_007_Spec.Data 1.spc"))
 
@@ -807,6 +808,7 @@ read.spc <- function (filename,
 
 
   test_that("wplanes",{
+    skip_if_not_fileio_available()
     skip ("wplanes do not yet work")
     # wplanes
   })
@@ -837,6 +839,7 @@ read.spc <- function (filename,
   })
 
   test_that ("hdr2data", {
+    skip_if_not_fileio_available()
     expect_equal (colnames (read.spc("fileio/spc.LabRam/LabRam-2.spc", keys.hdr2data = TRUE)),
                   c("z", "z.end", "ftflgs", "fexper", "fexp", "fnpts", "ffirst",
                     "flast", "fnsub", "fxtype", "fytype", "fztype", "fpost", "fdate",
@@ -849,6 +852,7 @@ read.spc <- function (filename,
 
 
   test_that ("log2data", {
+    skip_if_not_fileio_available()
     expect_equal(colnames (read.spc ("fileio/spc.Kaisermap/ebroAVII.spc", keys.log2data = TRUE)),
                  c("z", "z.end", "Grams_File_Name", "HoloGRAMS_File_Name", "Acquisition_Date_Time",
                    "Lambda", "Accuracy_Mode", "Dark_subtracted", "Dark_File_Name",
