@@ -35,7 +35,7 @@
 read.jdx <- function(filename = stop ("filename is needed"), encoding = "",
                      header = list (), keys.hdr2data = FALSE, ...,
                      NA.symbols = c ("NA", "N/A", "N.A."),
-                     collapse.multi = TRUE, #collapse.after = Inf,
+                     collapse.multi = TRUE, 
                      wl.tolerance = hy.getOption("wl.tolerance"), collapse.equal = TRUE){
 
   ## see readLines help: this way, encoding is translated to standard encoding on current system.
@@ -65,7 +65,7 @@ read.jdx <- function(filename = stop ("filename is needed"), encoding = "",
   stopifnot (all (hdrstart < spcend))
   stopifnot (all (datastart < dataend))
 
-  spc <- list ()
+  spc <- vector ("list", length (datastart))
 
   for (s in seq_along (datastart)){
     ## look for header data
@@ -94,7 +94,7 @@ read.jdx <- function(filename = stop ("filename is needed"), encoding = "",
     ## process according to header entries
     spc [[s]] <- .jdx.processhdr (spc [[s]], hdr, keys.hdr2data, ..., NA.symbols = NA.symbols)
   }
-
+  
   if (length (spc) == 1L)
     spc <- spc [[1]]
   else if (collapse.multi)
@@ -382,10 +382,5 @@ read.jdx <- function(filename = stop ("filename is needed"), encoding = "",
       #cat (sprintf ("`%s` = '%s',\n", f, digest (spc))) 
       expect_known_hash(spc, checksums [f])
     }
-  })
-  
-  test_that("intermediate collapsing", {
-    skip ("not yet implemented")  
-    # test with fileio/jcamp-dx/GMD_20111121_MDN35_ALK_JCAMP.txt
   })
 }
