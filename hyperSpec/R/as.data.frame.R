@@ -58,6 +58,7 @@ as.matrix.hyperSpec <- function (x, ...){
 ##' data together with this data is returned. The column names of the spectra
 ##' matrix are retained (if they are numbers, without preceeding letters).
 ##' 
+##' @param wl.prefix prefix to prepend wavelength column names
 ##' @rdname asdataframe
 ##' @aliases  as.wide.df
 ##' @export
@@ -72,7 +73,7 @@ as.matrix.hyperSpec <- function (x, ...){
 ##' as.wide.df (chondro [1:5,, 600 ~ 610])
 ##' summary (as.wide.df (chondro [1:5,, 600 ~ 610]))
 
-as.wide.df <- function (x) {
+as.wide.df <- function (x, wl.prefix = "") {
   chk.hy (x)
   validObject (x)
 
@@ -85,7 +86,7 @@ as.wide.df <- function (x) {
 
   ## colnames should be preserved
   cols <- c (colnames (x@data)  [before],
-             colnames (x@data$spc),
+             paste0 (wl.prefix, colnames (x@data$spc)),
              colnames (x@data) [after])
 
   x <- cbind (x@data [, before],
@@ -114,7 +115,12 @@ as.wide.df <- function (x) {
     )
     
     expect_true(! any (is.na (colnames(as.wide.df (barbiturates [[1]])))))
-    
+  })
+  
+  test_that ("column names with wl.prefix", {
+    expect_equal(colnames (as.wide.df (chondro, wl.prefix = "wl")),
+                 c (grep ("spc", colnames (chondro), value = TRUE, invert = TRUE), paste0 ("wl", colnames (chondro$spc)))
+    )
   })
   
 }
