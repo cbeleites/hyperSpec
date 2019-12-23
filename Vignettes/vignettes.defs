@@ -102,9 +102,10 @@
 \Sexpr{sub ("^.*[<]", "<", maintainer ("hyperSpec"))}%
 }\\
 \large DIA Raman Spectroscopy Group, University of Trieste/Italy (2005\,--\,2008)\\
-\large Spectroscopy $\cdot$ Imaging, IPHT, Jena/Germany (2008\,--\,2016)\\
-\large ÖPV, JKI, Berlin/Germany\\
-\large Chemometric Consulting and Chemometrix GmbH, Wölfersheim/Germany%
+\large Spectroscopy $\cdot$ Imaging, IPHT, Jena/Germany (2008\,--\,2017)\\
+\large ÖPV, JKI, Berlin/Germany (2017\,--\,2019)\\
+\large Arbeitskreis Lebensmittelmikrobiologie und Biotechnologie, Hamburg University, Hamburg/Germany (2019\,--\,2020)\\
+\large Chemometric Consulting and Chemometrix GmbH, Wölfersheim/Germany (since 2016)%
 }
 
 \SweaveOpts{pgf = FALSE, eps = FALSE, external = FALSE, pdf = TRUE, ps = FALSE}
