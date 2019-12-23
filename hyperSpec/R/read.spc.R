@@ -769,7 +769,8 @@ read.spc <- function (filename,
                      `fileio/spc/XYTRACE.SPC` = '28594b6078')
 
     for (f in other.spc ) {
-      #warning (f) # keep this here to enable easier checking/updating on errors
+      ## for wholesale output of current hashes:
+      # cat (sprintf ("`%s` = '%s',\n", f, digest (read.spc (f)))) 
       expect_known_hash (read.spc (f), checksums [f])
     }
   })
