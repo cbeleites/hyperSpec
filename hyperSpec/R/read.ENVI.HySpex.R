@@ -1,5 +1,6 @@
 ##' @describeIn  read.ENVI
 ##' @include read.ENVI.R
+##' @export
 read.ENVI.HySpex <- function (file = stop ("read.ENVI.HySpex: file name needed"),
                               headerfile = NULL, header = list (), keys.hdr2data = NULL, ...) {
 
@@ -21,4 +22,13 @@ read.ENVI.HySpex <- function (file = stop ("read.ENVI.HySpex: file name needed")
   labels (spc) <- label
 
   spc
+}
+
+.test (read.ENVI.HySpex) <- function (){
+  context ("read.ENVI.HySpex")
+  
+  test_that ("Hyspex ENVI file", {
+    skip_if_not_fileio_available ()
+    expect_known_hash(read.ENVI.HySpex("fileio/ENVI/HySpexNIR.hyspex"), "cf35ba92334f22513486f25c5d8ebe32")
+  })
 }
