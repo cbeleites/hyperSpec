@@ -1590,6 +1590,16 @@ means <- aggregate (chondro, by = chondro$clusters, mean_pm_sd)
 plot (means, col = cluster.cols, stacked = ".aggregate", fill = ".aggregate")
 @
 
+\subsection{Factor columns in \chy Objects: dropping factor levels that are not needed}
+
+For subsections of \chy objects that do not contain all levels of a factor column, \mFun{\Rfunction{droplevels}}\Rfunction{droplevels} drops the ``unpopulated'' levels: 
+<<droplevels>>=
+tmp <- chondro [1 : 50]
+table (tmp$clusters)
+tmp <- droplevels (tmp)
+table (tmp$clusters)
+@
+
 
 \subsection{Splitting an Object, and Binding a List of \chy Objects}
 
@@ -1605,6 +1615,19 @@ Splitting can be reversed by \Rfunction{rbind}\mFun{\Rfunction{rbind}} (see sect
 page~\pageref{sec:bind}).  Another, similar way to combine a number of \chy objects with different
 wavelength axes or extra data columns is \Rfunction{collapse}\mFun{\Rfunction{collapse}} (see
 section~\ref{sec:collapse}, page~\pageref{sec:collapse}).
+
+Both \Rfunction{rbind} and \Rfunction{collapse} take care that factor levels are expanded as necessary:
+
+<<>>=
+lacunae <- droplevels (chondro [chondro$clusters == "lacuna" & ! is.na (chondro$clusters)])
+summary (lacunae$clusters)
+cells <- droplevels (chondro [chondro$clusters == "cell" & ! is.na (chondro$clusters)])
+summary (cells$clusters)
+
+summary (rbind (cells, lacunae)$clusters)
+summary (collapse (cells, lacunae)$clusters)
+@
+
 
 \section{Speed and Memory Considerations}
 \label{sec:speed-considerations}
@@ -1645,8 +1668,6 @@ system.time ({
   or each column of a matrix. This functionality can be enabled for \phy by installing package
   \Rpackage{hyperSpec.matrixStats} which is available in \phy's development repository at
   \url{http://hyperSpec.r-forge.r-project.org/}
-\item[\Rpackage{scale}] implements a fast replacement for \Rfunction{base::scale} implemented in
-  C++. It is not yet publicly available, but you can email me (\mailme) for the source package.
 \end{description}
 
 \paragraph{Compiled code.} R provides interfaces to Fortran and C code,
