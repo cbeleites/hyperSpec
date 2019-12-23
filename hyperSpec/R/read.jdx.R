@@ -9,21 +9,21 @@
 ##' DIF, DUF, DIFDUP and SQZ data formats are not (yet) supported.
 ##'
 ##' @note JCAMP-DX support is incomplete and the functions may change without notice. See
-##' \code{vignette ("fileio")}  and the details section.
+##' `vignette ("fileio")`  and the details section.
 ##' @param filename file name and path of the .jdx file
-##' @param encoding encoding of the JCAMP-DX file (used by \code{\link[base]{readLines}})
+##' @param encoding encoding of the JCAMP-DX file (used by [base::readLines()])
 ##' @param header list with manually set header values
 ##' @param keys.hdr2data index vector indicating which header entries should be tranfered into the
 ##' extra data. Usually a character vector of labels (lowercase, without and dashes, blanks,
-##' underscores). If \code{TRUE}, all header entries are read.
-##' @param 
+##' underscores). If `TRUE`, all header entries are read.
 ##' @param ... further parameters handed to the data import function, e.g.
-##' \tabular{ll}{
-##' \code{xtol} \tab tolerance for checking calculated x values against checkpoints at beginning
-##'                  of line, defaults to XFACTOR\cr
-##' \code{ytol} \tab tolerance for checking Y values against MINY and MAXY, defaults to YFACTOR\cr
-##' }
-##' @param NA.symbols character vector of text values that should be converted to \code{NA}
+##' 
+##' | parameter | meaning                                                                             | default |
+##' | --------- | ----------------------------------------------------------------------------------- | ------- |
+##' | `xtol`    | tolerance for checking calculated x values against checkpoints at beginning of line | XFACTOR |
+##' | `ytol`    | tolerance for checking Y values against MINY and MAXY                               | YFACTOR |
+##' 
+##' @param NA.symbols character vector of text values that should be converted to `NA`
 ##' @param collapse.multi should hyperSpec objects from multispectra files be collapsed into one
 ##' hyperSpec object (if `FALSE`, a list of hyperSpec objects is returned).
 ##' @param wl.tolerance,collapse.equal see [collapse]
