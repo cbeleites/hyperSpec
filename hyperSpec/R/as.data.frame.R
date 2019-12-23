@@ -43,9 +43,10 @@ as.data.frame.hyperSpec <- function (x, row.names = TRUE, optional =  NULL, ...)
 ##' @param ... ignored 
 ##' @aliases as.matrix as.matrix,hyperSpec-method
 ##' @export
-##' @seealso and \code{\link[base]{as.matrix}}
+##' @md
+##' @seealso and [base::as.matrix()]
 ##' 
-##' \code{\link[hyperSpec:extractreplace]{[}} for a shortcut to \code{as.matrix}
+##' [extractreplace()] (`[[]]`) for a shortcut to `as.matrix`
 as.matrix.hyperSpec <- function (x, ...){
   validObject (x)
 
@@ -53,18 +54,19 @@ as.matrix.hyperSpec <- function (x, ...){
 }
 
 
-##' \code{as.wide.df} converts the spectra matrix to a data.frame. The extra
+##' `as.wide.df` converts the spectra matrix to a data.frame. The extra
 ##' data together with this data is returned. The column names of the spectra
 ##' matrix are retained (if they are numbers, without preceeding letters).
 ##' 
 ##' @rdname asdataframe
 ##' @aliases  as.wide.df
 ##' @export
+##' @md
 ##' @return 
 ##' 
-##' \code{as.wide.df} returns a data.frame that consists of the extra data and
+##' `as.wide.df` returns a data.frame that consists of the extra data and
 ##'   the spectra matrix converted to a data.frame. The spectra matrix is
-##'   expanded \emph{in place}.
+##'   expanded *in place*.
 ##' @examples
 ##' 
 ##' as.wide.df (chondro [1:5,, 600 ~ 610])
@@ -82,7 +84,6 @@ as.wide.df <- function (x) {
   after <- seq_len (ncol (x@data)) > ispc
 
   ## colnames should be preserved
-
   cols <- c (colnames (x@data)  [before],
              colnames (x@data$spc),
              colnames (x@data) [after])
@@ -94,6 +95,29 @@ as.wide.df <- function (x) {
   x
 }
 
+.test (as.wide.df) <- function() {
+  context ("as.wide.df")
+  
+  test_that("chondro", {
+    expect_equal (as.wide.df (chondro [1:5,, 600 ~ 610]),
+                  cbind (chondro [1:5]$.., chondro [[1:5,, 600 ~ 610]])
+    )
+  })
+  
+  test_that ("column names", {
+    expect_equal(colnames(as.wide.df (chondro)),  
+                 c (grep ("spc", colnames (chondro), value = TRUE, invert = TRUE), colnames (chondro$spc))
+    )
+    
+    expect_equal(colnames(as.wide.df (chondro)),  
+                 c (grep ("spc", colnames (chondro), value = TRUE, invert = TRUE), wl (chondro))
+    )
+    
+    expect_true(! any (is.na (colnames(as.wide.df (barbiturates [[1]])))))
+    
+  })
+  
+}
 
 ##' \code{as.long.df} returns a long-format data.frame.
 ##' 
