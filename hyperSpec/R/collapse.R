@@ -40,7 +40,7 @@
 ##' @keywords manip
 ##' @examples
 ##' barbiturates [1:3]
-##' collapse (barbiturates [1:3]
+##' collapse (barbiturates [1:3])
 ##'
 ##' a <- barbiturates [[1]]
 ##' b <- barbiturates [[2]]
@@ -114,10 +114,10 @@ collapse <- function (..., wl.tolerance = hy.getOption ("wl.tolerance"), collaps
   dots$spc <- dots$spc [, order (as.numeric (colnames (dots$spc)))]
   
   ## we now need summarized wl.df data:
-  wl.df <- group_by (wl.df, wlcluster)
+  wl.df <- group_by (wl.df, .data$wlcluster)
   wl.df <- summarise (wl.df, 
-                      wl = sum (wl*nspc) / sum (nspc), # weighted average
-                      old.wlnames = old.wlnames [1L])
+                      wl = sum (.data$wl*.data$nspc) / sum (.data$nspc), # weighted average
+                      old.wlnames = .data$old.wlnames [1L])
   
   ## prepare wavelength vector & restore old names (as far as possible)
   wl <- wl.df$wl
@@ -328,6 +328,7 @@ collapse <- function (..., wl.tolerance = hy.getOption ("wl.tolerance"), collaps
 #' ... and directly rbind.fill them.
 #'
 #' @param dots list with hyperSpec object to collapse
+#' @param wl.tolerance wavelength difference tolerance
 #'
 #' @return possible shorter list of dots
 .collapse.equal <- function (dots, wl.tolerance){
@@ -377,6 +378,7 @@ collapse <- function (..., wl.tolerance = hy.getOption ("wl.tolerance"), collaps
 #' Find clusters of approximately equal wavelengths
 #'
 #' @param dots list of hyperSpec objects to collapse
+#' @param wl.tolerance wavelength difference tolerance
 #'
 #' @return data.frame with information about suitable wavelength bins
 .cluster.wavelengths <- function (dots, wl.tolerance){
