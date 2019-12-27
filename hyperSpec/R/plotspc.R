@@ -398,7 +398,7 @@ plotspc <- function  (object,
 
 
   ## should the intensity zero be marked?
-  if (!is.logical (zeroline) && !is.na (zeroline)){
+  if (!(is.logical (zeroline) && is.na (zeroline))){
     zeroline <- modifyList (list (h = unique (yoffset)), as.list (zeroline))
     do.call (abline, zeroline)
   }
