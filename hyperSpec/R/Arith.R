@@ -202,7 +202,7 @@ setMethod ("%*%", signature (x = "matrix", y = "hyperSpec"),
            }
            )
 
-.test (Arith) <- function (){
+.test (.arithx) <- function (){
   context ("Arith")
 
   test_that("binary -", {
