@@ -178,9 +178,9 @@ setMethod ("merge", signature = signature (x = "data.frame", y = "hyperSpec"),
   })
 
   test_that("merge hyperSpec object with tibble", {
-    skip_if_not (require ("tibble"))
+    skip_if_not (requireNamespace ("tibble", quietly = TRUE))
     y <- data.frame (filename = rep (flu$filename, 2), cpred = 1:12)
-    y <- as_tibble (y)
+    y <- tibble::as_tibble (y)
 
     tmp <- merge (flu, y)
     expect_equivalent (nrow (tmp), 12L)
