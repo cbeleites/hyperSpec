@@ -35,7 +35,10 @@ wc <- function (file, flags = c("lines", "words", "bytes")){
   if (is.null (res)) skip ("wc not available")
 
   test_that("wc defaults",
-    expect_equal(res,  data.frame (lines = 2, words = 2, bytes = 13, file = tmpfile))
+    expect_equal(res,  data.frame (lines = 2, 
+                                   words = 2, 
+                                   bytes = 13 + 2 * (.Platform$OS.type == "windows"), ## additional CR byte on windows.
+                                   file = tmpfile))
   )
 
   test_that("wc --lines",
