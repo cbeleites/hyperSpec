@@ -686,10 +686,6 @@ stacked.offsets <- function (x, stacked = TRUE,
     )
   })
 
-  test_that ("no warnings with multiple cuts", {
-    expect_silent (plotspc(paracetamol, wl.range = c(min~900, 1100~1800, 2800~max), xoffset = c(0, 750)))  
-  })
-
   test_that ("correct calculations",{
   
   labels = c(seq (1, 2, 0.5),
