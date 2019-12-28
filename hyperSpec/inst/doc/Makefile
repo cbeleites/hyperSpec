@@ -1,3 +1,6 @@
+# NOTE: This file is automatically and erroneously deleted when running the package check from RStudio (instead of R CMD check from command line).
+# REVERT ANY SUCH DELETION
+
 all: vignettes.defs fludata laserdata
 
 clean:
