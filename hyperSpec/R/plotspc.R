@@ -656,11 +656,11 @@ stacked.offsets <- function (x, stacked = TRUE,
 
   ## make sure that the ticks are not too close
   for (i in seq_along (delta)) {
-    keep         <- at [[i]] < end.ranges [i] + delta / 4
+    keep         <- at [[i]] < end.ranges [i] + delta [i] / 4
     at [[i]]     <- at     [[i]][keep]
     labels [[i]] <- labels [[i]][keep]
 
-    keep             <- at [[i + 1]] > start.ranges [i + 1] - delta / 4
+    keep             <- at [[i + 1]] > start.ranges [i + 1] - delta [i] / 4
     at [[i + 1]]     <- at     [[i + 1]][keep]
     labels [[i + 1]] <- labels [[i + 1]][keep]
   }
@@ -685,4 +685,34 @@ stacked.offsets <- function (x, stacked = TRUE,
                   c (seq (0, 1800, 200), seq (2800, 3400, 200))
     )
   })
+
+  test_that ("no warnings with multiple cuts", {
+    expect_silent (plotspc(paracetamol, wl.range = c(min~900, 1100~1800, 2800~max), xoffset = c(0, 750)))  
+  })
+
+  test_that ("correct calculations",{
+  
+  labels = c(seq (1, 2, 0.5),
+             seq (3, 4, 0.5),
+             seq (7, 9, 0.5))
+
+  expect_equal(
+    .cut.ticks(start.ranges = c (1, 3, 7), 
+               end.ranges   = c (2, 4, 9), 
+               nticks = 10, 
+               offsets = c (0, 0, 1)),
+    list (labels = labels,
+          at = labels - c (0, 0, 0,
+                           0, 0, 0,
+                           1, 1, 1, 1, 1),
+          cut = c (mean (c (3, 2)),
+                   mean (c (7 - 1, 4)))
+    )
+  )
+  })
+  
+  
 }
+
+
+
