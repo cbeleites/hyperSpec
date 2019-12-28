@@ -268,12 +268,13 @@ pkg.or.base <- function (pkg){
 }
 
 citation.or.file <- function (pkg, svd.cit = sprintf ("%s.CITATION", pkg)){
-  if (pkg.exists (pkg))
+  if (pkg.exists (pkg)){
     citation (pkg)
-  else if (file.exists (svd.cit))
+  } else if (file.exists (svd.cit)) {
     readCitationFile (file = svd.cit)
-  else
+  } else {
     NULL
+  }
 }
 
 make.cite.keys <- function (pkg, entries){
@@ -334,7 +335,8 @@ make.bib <- function (..., file = NULL) {
     if (is.null (l))
       cat (NULL, file = file)           # touches file
     else
-      cat (toBibtex (l), file = file, sep = "\n")
+      cat (iconv (toBibtex (l), to = "UTF-8"), 
+           file = file, sep = "\n")
 
   invisible (l)
 }
