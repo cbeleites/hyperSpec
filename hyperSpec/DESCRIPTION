@@ -3,8 +3,8 @@ Encoding: UTF-8
 Type: Package
 Title: Work with Hyperspectral Data, i.e. Spectra + Meta Information (Spatial,
     Time, Concentration, ...)
-Version: 0.99-20191228
-Date: 2019-12-28
+Version: 0.99-20200109
+Date: 2020-01-09
 Maintainer: Claudia Beleites <chemometrie@beleites.de>
 Authors@R: c(
     person("Claudia",   "Beleites",  role = c("aut","cre", "dtc"), email = "chemometrie@beleites.de"),
