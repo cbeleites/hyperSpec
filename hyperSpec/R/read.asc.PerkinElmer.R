@@ -10,14 +10,14 @@
 #' @export
 #'
 read.asc.PerkinElmer <- function (file = stop ("filename or connection needed"), ...){
-  file <- readLines(con = file)
+  content <- readLines(con = file)
 
   message ("read.asc.PerkinElmer is experimental, hyperSpec so far has no test data for PE .asc files.",
            " Please consider submitting your spectrum in an enhancement request to ", packageDescription("hyperSpec")$BugReports,
            " in order to help the development of hyperSpec.")
 
   ## find beginning of DATA section
-  startDATA <- grep ("DATA", file)
+  startDATA <- grep ("DATA", content)
 
   if (length (startDATA) != 1L)
     stop ("read.asc.PerkinElmer so far can deal with single spectra files only.",
@@ -26,9 +26,10 @@ read.asc.PerkinElmer <- function (file = stop ("filename or connection needed"),
           maintainer ("hyperSpec"), ").")
 
   ## Spectra values are stored
-  file <- file [- seq_len(startDATA)]
+  content <- content [- seq_len(startDATA)]
 
-  spc <- read.txt.long (textConnection(file), header = FALSE, sep = "\t", ...)
+  spc <- read.txt.long (textConnection(content), header = FALSE, sep = "\t", ...)
+  spc$filename <- NULL # not meaningful due to textConnection use
 
   ## consistent file import behaviour across import functions
   .fileio.optional (spc, file)
