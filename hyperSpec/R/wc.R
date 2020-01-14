@@ -34,12 +34,21 @@ wc <- function (file, flags = c("lines", "words", "bytes")){
   ## wc does not exist on all systems
   if (is.null (res)) skip ("wc not available")
 
-  test_that("wc defaults",
-    expect_equal(res,  data.frame (lines = 2, 
-                                   words = 2, 
-                                   bytes = 13 + 2 * (.Platform$OS.type == "windows"), ## additional CR byte on windows.
-                                   file = tmpfile))
+  test_that("wc defaults", {
+    if (.Platform$OS.type == "windows")
+      expect_equal(res,  data.frame (lines = 2,
+                                     words = 2, 
+                                     bytes = 15, ## additional CR bytes on windows.
+                                     file = tmpfile))
+    else
+      expect_equal(res,  data.frame (lines = 2, 
+                                     words = 2, 
+                                     bytes = 13,
+                                     file = tmpfile))
+  }
   )
+  
+  
 
   test_that("wc --lines",
             expect_equal(wc (file = tmpfile, flags = "lines"),  data.frame (lines = 2, file = tmpfile))
