@@ -67,7 +67,7 @@ spc.rubberband <- function (spc, ..., upper = FALSE, noise = 0, spline = TRUE){
     
     ## check whether first and last point are minima, 
     ## if not remove them.
-    ## If they are minima, points 2 and ncol (y) - 1 do not appear
+    ## If they are minima, 2nd and 2nd last point do not appear in pts
     ## last point: 
     if (pts [2] == pts [1] - 1) pts <- pts [-1]
     
