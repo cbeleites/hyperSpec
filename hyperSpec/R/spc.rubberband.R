@@ -56,14 +56,14 @@ spc.rubberband <- function (spc, ..., upper = FALSE, noise = 0, spline = TRUE){
 
     ## `chull` returns points in cw order
     ## => points between ncol (y) and 1 are lower part of hull
-    imax <- which (pts == ncol (y)) - 1
+    imax <- which.max (pts) - 1
     
     ## if necessary, rotate pts so that ncol (y) is at position 1
     if (imax > 0L)
     	pts <- c (pts [- seq_len (imax)], pts [seq_len (imax)])
 
     ## now keep only pts until column index 1
-    pts <- pts [1 : which (pts == 1)]
+    pts <- pts [1 : which.min (pts)]
     
     ## check whether first and last point are minima, 
     ## if not remove them.
@@ -75,7 +75,7 @@ spc.rubberband <- function (spc, ..., upper = FALSE, noise = 0, spline = TRUE){
     pts <- rev (pts)
     
     ## fist point:
-    if (pts [2] == 2) pts <- pts [-1]
+    if (pts [2] == pts [1] + 1) pts <- pts [-1]
     
     if (debuglevel >= 1L){
     	points (x [pts], y [s, pts], pch = 19, col = matlab.dark.palette (length (pts)), cex = 0.7)
@@ -103,17 +103,43 @@ spc.rubberband <- function (spc, ..., upper = FALSE, noise = 0, spline = TRUE){
 .test (spc.rubberband) <- function (){
   context ("spc.rubberband")
   
-  test_that("spectrum containing NA", {
-    tmp <- chondro [1]
-    tmp [[,, 1600]] <- NA
+  ## use data that yields fairly stable baseline solution
+  paracetamol <- paracetamol [,, 300 ~ 550]
+  
+  test_that("spectrum containing NA inside", {
+    tmp <- paracetamol
+    tmp [[,, 400]] <- NA
     
     coefs <- spc.rubberband (tmp)
     expect_equal(
       coefs [[,, !is.na (tmp)]],
-      spc.rubberband(chondro [1,, !is.na (tmp)]) [[]]
+      spc.rubberband(paracetamol [,, !is.na (tmp)]) [[]]
     )
     
     ## bug was: all coefficients were silently 0 
     expect_true (all (abs (coefs [[]]) > sqrt (.Machine$double.eps)))
   })
+  
+  test_that ("spectrum containing NA at first wavelength (issue #95)", {
+    tmp <- paracetamol
+    tmp [[,, 1, wl.index = TRUE]] <- NA
+
+    coefs <- spc.rubberband (tmp)
+    expect_equal(
+      coefs [[,, !is.na (tmp)]],
+      spc.rubberband(paracetamol [,, !is.na (tmp)]) [[]]
+    )
+  })
+
+  test_that ("spectrum containing NA at end", {
+    tmp <- paracetamol [1]
+    tmp [[,, nwl (paracetamol), wl.index = TRUE]] <- NA
+    
+    coefs <- spc.rubberband (tmp)
+    expect_equal(
+      coefs [[,, !is.na (tmp)]],
+      spc.rubberband(paracetamol [1,, !is.na (tmp)]) [[]]
+    )
+  })
+  
 }
