@@ -85,13 +85,12 @@ read.txt.Renishaw <- function (file = stop ("file is required"),
   ## try to find out how many lines it has
   if (is.null (nspc))
     if (nlines > 0){
-      nspc <- wc (summary(file)$description, "lines")
+      nspc <- count_lines (summary(file)$description, nlines)
       if (is.null (nspc))
-        stop ("failed guessing nspc.")
+        stop ("Failed guessing nspc.")
       else {
-        cat ("Counted", nspc[1,1], "lines or ")
-        nspc <- nspc[1,1] / length (wl)
-        cat (nspc, "spectra.\n")
+        message ("Counted ", nspc, " lines = ", nspc / length (wl), " spectra.")
+        nspc <- nspc / length (wl)
       }
     } else {
       nspc <- nrow (fbuf) / length (wl)
@@ -118,8 +117,8 @@ read.txt.Renishaw <- function (file = stop ("file is required"),
                     byrow = TRUE)
 
     if (length (fbuf > 0) & ! all(unique (fbuf[, ncol - 1]) %in% wl))
-      stop ("Wavelengths do not correspond to that of the other chunks.",
-            "Is the size of the first chunk large enough to cover a complete",
+      stop ("Wavelengths do not correspond to that of the other chunks. ",
+            "Is the size of the first chunk large enough to cover a complete ",
             "spectrum?")
   }
   if (nlines > 0) cat ("\n")
@@ -133,10 +132,71 @@ read.txt.Renishaw <- function (file = stop ("file is required"),
   .fileio.optional (spc, file)
 }
 
+.test (read.txt.Renishaw) <- function(){
+  context("read.txt.Renishaw")
+  
+  test_that("single spectrum", {
+    skip_if_not_fileio_available ()
+    tmp <- read.txt.Renishaw ("fileio/txt.Renishaw/paracetamol.txt", "spc")
+    expect_equal(dim (tmp), c(nrow = 1L, ncol = 2L, nwl = 4064L))    
+  })
+
+  test_that("time series spectrum, gzipped", {
+    skip_if_not_fileio_available ()
+    tmp <- read.txt.Renishaw ("fileio/txt.Renishaw/laser.txt.gz", "ts")
+    expect_equal(dim (tmp), c(nrow = 84L, ncol = 3L, nwl = 140L))
+    expect_equal(colnames (tmp), c("t", "spc", "filename"))
+  })
+  
+  test_that("map (= default)", {
+    skip_if_not_fileio_available ()
+    tmp <- read.txt.Renishaw ("fileio/txt.Renishaw/chondro.txt", "xyspc")
+    expect_equal(dim (tmp), c(nrow = 875L, ncol = 4L, nwl = 1272L))    
+    expect_equal(colnames (tmp), c("y", "x", "spc", "filename"))
+
+    tmp <- read.txt.Renishaw ("fileio/txt.Renishaw/chondro.txt")
+    expect_equal(dim (tmp), c(nrow = 875L, ncol = 4L, nwl = 1272L))    
+    expect_equal(colnames (tmp), c("y", "x", "spc", "filename"))
+    
+  })
+  
+  test_that("chunked reading", {
+    skip_if_not_fileio_available ()
+    
+    ## error on too small chunk size
+    expect_error (read.txt.Renishaw ("fileio/txt.Renishaw/chondro.txt", nlines = 10),
+                  "Wavelengths do not correspond")
+    
+    tmp <- read.txt.Renishaw ("fileio/txt.Renishaw/chondro.txt", nlines = 1e5)
+    expect_equal(dim (tmp), c(nrow = 875L, ncol = 4L, nwl = 1272L))    
+  })
+  
+  test_that("compressed files",{
+    skip_if_not_fileio_available ()
+    
+    files <- Sys.glob("fileio/txt.Renishaw/chondro.*")
+    files <- grep ("[.]zip", files, invert = TRUE, value = TRUE) # .zip is tested with read.zip.Renishaw
+    for (f in files){
+      expect_equal(dim (read.txt.Renishaw (!!f)), c(nrow = 875L, ncol = 4L, nwl = 1272L))    
+    }
+  })
+}
+
 ##' @export
 ##' @param txt.file name of the .txt file in the .zip archive. Defaults to zip
 ##'   file's name with suffix .txt instead of .zip
 ##' @rdname read.txt.Renishaw
 read.zip.Renishaw <- function (file = stop ("filename is required"),
-                               txt.file = sub ("[.]zip", ".txt", basename (file)), ...)
+                               txt.file = sub ("[.]zip", ".txt", basename (file)), ...){
   read.txt.Renishaw (file = unz (file, filename = txt.file, "r"), ...)
+}
+
+.test (read.zip.Renishaw) <- function(){
+  context("read.zip.Renishaw")
+
+  test_that("compressed files",{
+    skip_if_not_fileio_available ()
+    
+    expect_equal(dim (read.zip.Renishaw ("fileio/txt.Renishaw/chondro.zip")), c(nrow = 875L, ncol = 4L, nwl = 1272L))    
+  })
+}

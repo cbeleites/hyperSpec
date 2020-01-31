@@ -34,11 +34,6 @@ wc <- function (file, flags = c("lines", "words", "bytes")){
   on.exit (unlink (tmpfile))
   writeLines("blabla\nblubb", con = tmpfile)
 
-
-  test_that ("depreciation warning", 
-             expect_warning(wc (tmpfile), "soft-deprecated")
-  )
-    
   test_that("wc defaults", {
     skip_if_not_fileio_available() # see issue #97
 
