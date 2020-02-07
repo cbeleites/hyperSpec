@@ -43,7 +43,7 @@ read.spe <- function(filename, xaxis="file", acc2avg=F, cts_sec=F,
                                      "numFrames",
                                      "darkSubtracted")){
 
-  hdr <- read.spe.header(filename)
+  hdr <- .read.spe.header(filename)
 
   # This is the size of one data point in bytes. WinSpec uses 2 bytes or 4 bytes only
   data_size <- ifelse(hdr$datatype > 2, 2L, 4L)
@@ -160,7 +160,7 @@ read.spe <- function(filename, xaxis="file", acc2avg=F, cts_sec=F,
 #'
 #' @return string containing XML footer
 .read.spe.xml_string <- function(filename){
-  hdr <- read.spe.header(filename)
+  hdr <- .read.spe.header(filename)
   
   if (hdr$fileFormatVer < 3.0){
     if (stop.if.old.fmt)
@@ -183,8 +183,7 @@ read.spe <- function(filename, xaxis="file", acc2avg=F, cts_sec=F,
 
 ##' @describeIn read.spe Read only header of a WinSpec SPE file (version 2.5)
 ##' @return hdr list with \code{key=value} pairs
-##' @export
-read.spe.header <- function(filename){
+.read.spe.header <- function(filename){
   # Read the 4100-byte long binary header from the SPE file and parse it
 
   # Load the header
@@ -258,7 +257,7 @@ read.spe.header <- function(filename){
 ##' @export
 spe.showcalpoints <- function(filename, xaxis="file", acc2avg=F, cts_sec=F){
 
-  hdr <- read.spe.header(filename)
+  hdr <- .read.spe.header(filename)
   xaxis <- .fixunitname(xaxis)
 
   # Check if we should use display units specified in the SPE file
