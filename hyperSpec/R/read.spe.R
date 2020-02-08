@@ -76,6 +76,11 @@ read.spe <- function(filename, xaxis="file", acc2avg=F, cts_sec=F,
   spc <- new("hyperSpec", spc=t(spc), data=extra_data, 
              labels = list (spc = "counts", .wavelength = "pixel number"))
 
+  # For SPE 3.0 and above we need to read the XML header
+  if (hdr$fileFormatVer >= 3.0){
+    spc@data$xml <- .read.spe.xml(filename)
+  }
+
   # Check if we should use display units specified in the SPE file
   if (xaxis == "file")
     xaxis = .fixunitname(hdr$xCalDisplayUnit)
@@ -140,12 +145,8 @@ read.spe <- function(filename, xaxis="file", acc2avg=F, cts_sec=F,
 #'
 #' @return xml data from the file converted to R list
 #' @importFrom xml2 as_list read_xml
-.read.spe.xml <- function(filename, as.list=require(xml2), stop.if.old.fmt = TRUE){
-
-  if (as.xml.object){
-      return(as_list(read_xml(xml_footer)))
-  }
-  xml_footer
+.read.spe.xml <- function(filename){
+  as_list(read_xml(.read.spe.xml_string(filename)))
 }
 
 
@@ -174,9 +175,7 @@ read.spe <- function(filename, xaxis="file", acc2avg=F, cts_sec=F,
   
   # Read the part of file that contains actual experimental data
   raw_bytes <- readBin(filename, "raw", file.info(filename)$size, 1)[- (1:(4100+data_chunk_size))]
-  xml_footer <- readChar(raw_bytes, length(raw_bytes))
-  rm(raw_bytes)
-  
+  readChar(raw_bytes, length(raw_bytes))
 }
 
 
@@ -372,8 +371,8 @@ spe.showcalpoints <- function(filename, xaxis="file", acc2avg=F, cts_sec=F){
     expect_true('SpeFormat' %in% names(x))
 
     # Check file format version and namespace URL
-    expect_equal(attr(x, 'version'), "3.0")
-    expect_equal(attr(x, 'xmlns'), "http://www.princetoninstruments.com/spe/2009")
+    expect_equal(attr(x$SpeFormat, 'version'), "3.0")
+    expect_equal(attr(x$SpeFormat, 'xmlns'), "http://www.princetoninstruments.com/spe/2009")
     
     # Check that some children are present
     expect_true('DataFormat' %in% names(x$SpeFormat))
