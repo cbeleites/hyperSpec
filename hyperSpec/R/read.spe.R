@@ -43,8 +43,7 @@ read.spe <- function(filename, xaxis="file", acc2avg=F, cts_sec=F,
                                      "numFrames",
                                      "darkSubtracted")){
 
-
-  hdr <- read.spe.header(filename)
+  hdr <- .read.spe.header(filename)
 
   # This is the size of one data point in bytes. WinSpec uses 2 bytes or 4 bytes only
   data_size <- ifelse(hdr$datatype > 2, 2L, 4L)
@@ -76,6 +75,11 @@ read.spe <- function(filename, xaxis="file", acc2avg=F, cts_sec=F,
   # Create hyperSpec object
   spc <- new("hyperSpec", spc=t(spc), data=extra_data, 
              labels = list (spc = "counts", .wavelength = "pixel number"))
+
+  # For SPE 3.0 and above we need to read the XML header
+  if (hdr$fileFormatVer >= 3.0){
+    spc@data$xml <- .read.spe.xml(filename)
+  }
 
   # Check if we should use display units specified in the SPE file
   if (xaxis == "file")
@@ -125,35 +129,39 @@ read.spe <- function(filename, xaxis="file", acc2avg=F, cts_sec=F,
   .fileio.optional (spc, filename)
 }
 
-.test (read.spe) <- function (){
-  context ("read.spe")
-  
-  test_that ("filename column returned with xaxis = 'px' (issue #60)", {
-    skip_if_not_fileio_available ()
-    tmp <- read.spe ("fileio/spe/polystyrene.SPE", xaxis = "px")
-    expect_equal(tmp$filename, "fileio/spe/polystyrene.SPE")
-  })
-}
-
 #' Read XML footer from SPE file format version 3.0
 #' 
 #' The new SPE file format, introduced in 2012, was designed to be backwards compatible with the
 #' previous format 2.5. The most prominent change is the new plain text XML footer holding vast
 #' experimental metadata that gets attached at the end of the file. Thus, the file contains 3
 #' blocks: a 4100-bytes long binary header, a chunk with spectral data, and the XML footer.
-#' This function retrieves the XML footer, if it is available, and by default throws error otherwise.
+#' This function retrieves the XML footer converted to R list, and throws error if it is not available.
+#' The file format specification is available at Princeton Instruments FTP server under name
+#' 'SPE 3.0 File Format Specification'.
+#' 
+#' This function relies on R package xml2 to work correctly
 #'
 #' @param filename - SPE filename
-#' @param as.xml.object - whether the result should be a pretty-printed XML object. Requires
-#' package \code{XML}.
-#' @param stop.if.old.fmt - determines behavior when file does not
-#' contain XML footer. By default throws error message
 #'
-#' @return xml data from the file. If package XML package is available, a pretty-printed XML object is returned
-#' @export
-#' @importFrom XML xmlParse
-read.spe.xml <- function(filename, as.xml.object=require(XML), stop.if.old.fmt = TRUE){
-  hdr <- read.spe.header(filename)
+#' @return xml data from the file converted to R list
+#' @importFrom xml2 as_list read_xml
+.read.spe.xml <- function(filename){
+  as_list(read_xml(.read.spe.xml_string(filename)))
+}
+
+
+#' .read.spe.xml_string
+#' 
+#' Read XML footer from SPE file format version 3.0 and return it as a long string
+#' for subsequent parsing. Basically the purpose of this function is to check
+#' that the file format version is 3.0 or above, and to find and read the
+#' correct part of this file.
+#'
+#' @param filename - SPE filename
+#'
+#' @return string containing XML footer
+.read.spe.xml_string <- function(filename){
+  hdr <- .read.spe.header(filename)
   
   if (hdr$fileFormatVer < 3.0){
     if (stop.if.old.fmt)
@@ -161,54 +169,20 @@ read.spe.xml <- function(filename, as.xml.object=require(XML), stop.if.old.fmt =
                  round(hdr$fileFormatVer, digits = 3), "< 3.0"))
     return()
   }
-
+  
   data_size <- ifelse(hdr$datatype > 2, 2L, 4L)
   data_chunk_size <- hdr$xdim * hdr$ydim * hdr$numFrames * data_size
   
   # Read the part of file that contains actual experimental data
   raw_bytes <- readBin(filename, "raw", file.info(filename)$size, 1)[- (1:(4100+data_chunk_size))]
-  xml_footer <- readChar(raw_bytes, length(raw_bytes))
-  rm(raw_bytes)
-
-  if (as.xml.object){
-      return(xmlParse(xml_footer))
-  }
-  xml_footer
-}  
-
-.test (read.spe.xml) <- function(){
-  context("read.spe.xml")
-
-  test_that ("We can correctly extract XML footer from SPE 3.0", {
-    skip_if_not_fileio_available ()
-    fname <- "fileio/spe/spe_format_3.0.SPE"
-    
-    actual <- read.spe.xml(fname, as.xml.object = FALSE)
-    fname <- paste0(fname, "_metadata.xml")
-    expected <- readChar(fname, file.info(fname)$size)
-    expect_equal(actual, expected)
-  })
-
-  test_that ("Function throws error on old SPE format", {
-    skip_if_not_fileio_available ()
-    fname <- "fileio/spe/blut2.SPE"
-    expect_true(file.exists(fname))
-    expect_error(read.spe.xml(fname))
-  })
-  
-  test_that ("Function returns NULL with old SPE format if argument `stop.if.old.fmt` is FALSE", {
-    skip_if_not_fileio_available ()
-    fname <- "fileio/spe/blut2.SPE"
-    expect_true(file.exists(fname))
-    expect_true(is.null(read.spe.xml(fname, stop.if.old.fmt=FALSE)))
-  })
-  
+  readChar(raw_bytes, length(raw_bytes))
 }
+
+
 
 ##' @describeIn read.spe Read only header of a WinSpec SPE file (version 2.5)
 ##' @return hdr list with \code{key=value} pairs
-##' @export
-read.spe.header <- function(filename){
+.read.spe.header <- function(filename){
   # Read the 4100-byte long binary header from the SPE file and parse it
 
   # Load the header
@@ -282,7 +256,7 @@ read.spe.header <- function(filename){
 ##' @export
 spe.showcalpoints <- function(filename, xaxis="file", acc2avg=F, cts_sec=F){
 
-  hdr <- read.spe.header(filename)
+  hdr <- .read.spe.header(filename)
   xaxis <- .fixunitname(xaxis)
 
   # Check if we should use display units specified in the SPE file
@@ -316,3 +290,102 @@ spe.showcalpoints <- function(filename, xaxis="file", acc2avg=F, cts_sec=F){
                        laser=hdr$LaserWavelen))
 }
 
+
+
+############# UNIT TESTS ################
+.test (read.spe) <- function (){
+
+  # Filenames
+  polystyrene <- "fileio/spe/polystyrene.SPE"
+  blut1       <- "fileio/spe/blut1.SPE"
+  spe3        <- "fileio/spe/spe_format_3.0.SPE"
+
+  # unit tests for `read.spe` itself
+  ##################################
+  test_that("read.spe correctly extracts spectral data from SPE file", {
+    skip_if_not_fileio_available ()
+    fname <- blut1
+    expect_true(file.exists(fname))
+    spc <- read.spe(fname)
+
+    # We check that specific values are correctly read from a particular file
+    # This test is not generic and works with this and only this SPE file
+    expect_equal(spc$spc[[5, 77]], 1484)
+    expect_equal(spc$spc[[2, 811]], 606)
+    expect_equal(spc@wavelength[621], 2618.027)
+    })
+
+
+  test_that("read.spe detects an XML footer in SPE 3.0 file", {
+    skip_if_not_fileio_available ()
+    fname <- spe3
+    expect_true(file.exists(fname))
+    spc <- read.spe(fname)
+
+    expect_true('xml' %in% names(spc@data))
+  })
+
+
+  test_that("read.spe correctly parses XML footer with SPE 3.0 file and saves metadata in hyperSpec object", {
+    skip_if_not_fileio_available ()
+    fname <- spe3
+    expect_true(file.exists(fname))
+    spc <- read.spe(fname)
+
+    expect_equal(attr(spc$xml$SpeFormat$DataFormat$DataBlock, "pixelFormat"), "MonochromeFloating32")
+  })
+
+
+  # unit tests for helper functions of `read.spe` (whose name starts with .)
+  ##########################################################################
+  test_that (".read.spe.xml_string throws error on SPE format below v3.0", {
+    skip_if_not_fileio_available ()
+    fname <- blut1
+    expect_true(file.exists(fname))
+
+    expect_error(.read.spe.xml_string(fname))
+  })
+
+
+  test_that ("We can correctly read XML footer from SPE3.0 file", {
+    skip_if_not_fileio_available ()
+    expect_true(file.exists(spe3))
+
+    xml_file <- paste0(spe3, "_metadata.xml")
+    actual_xml_footer <- .read.spe.xml_string(spe3)
+    expected_xml_footer <- readChar(xml_file, file.info(xml_file)$size)
+    expect_equal(actual_xml_footer, expected_xml_footer)
+  })
+
+
+  test_that (".read.spe.xml correctly parses the XML footer and can extract the actual data", {
+    skip_if_not_fileio_available ()
+    expect_true(file.exists(spe3))
+
+    # Read XML footer and convert it to R list
+    x <- .read.spe.xml(spe3)
+    expect_true(is.list(x))
+
+    # Check values of some elements
+    expect_true(is.list(x))
+    expect_true('SpeFormat' %in% names(x))
+
+    # Check file format version and namespace URL
+    expect_equal(attr(x$SpeFormat, 'version'), "3.0")
+    expect_equal(attr(x$SpeFormat, 'xmlns'), "http://www.princetoninstruments.com/spe/2009")
+    
+    # Check that some children are present
+    expect_true('DataFormat' %in% names(x$SpeFormat))
+    expect_true('Calibrations' %in% names(x$SpeFormat))
+    expect_true('DataHistories' %in% names(x$SpeFormat))
+    expect_true('GeneralInformation' %in% names(x$SpeFormat))
+
+    # Check that we can correctly extract file creation date
+    info <- x$SpeFormat$GeneralInformation$FileInformation
+    expect_equal(attr(info, 'created'), "2018-01-26T16:31:09.0979397+01:00")
+    
+    # Check that we can correctly extract pixel format and laser line
+    expect_equal(attr(x$SpeFormat$DataFormat$DataBlock, "pixelFormat"), "MonochromeFloating32")
+    expect_equal(attr(x$SpeFormat$Calibrations$WavelengthMapping, "laserLine"), "785")
+  })
+}

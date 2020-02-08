@@ -206,7 +206,6 @@ Vignettes/fileio/spe/manuals.txt filter=lfs diff=lfs merge=lfs -text
 Vignettes/fileio/spe/noise.spe filter=lfs diff=lfs merge=lfs -text
 Vignettes/fileio/spe/polystyrene.SPE filter=lfs diff=lfs merge=lfs -text
 Vignettes/fileio/spe/readspe.h filter=lfs diff=lfs merge=lfs -text
-Vignettes/fileio/spe/read.spe.R filter=lfs diff=lfs merge=lfs -text
 Vignettes/fileio/spe/winspec.pdf filter=lfs diff=lfs merge=lfs -text
 Vignettes/fileio/sp.PerkinElmer/A1701001.SP filter=lfs diff=lfs merge=lfs -text
 Vignettes/fileio/sp.PerkinElmer/A1702001.SP filter=lfs diff=lfs merge=lfs -text
