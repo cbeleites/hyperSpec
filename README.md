@@ -54,12 +54,6 @@ Only 'new' spc files (1996 file format) with LSB word order are supported.`
    ***Typical error:*** `inputenc Error: Unicode char \u8:árq not set up for use with LaTeX`
    
    ***Solution:*** Set language of the session to English as suggested [here](http://stackoverflow.com/questions/13575180/how-to-change-language-settings-in-r).
-
-* After update to `R 3.4.0` building fails, typically on the `flu` vignette.
-
-   ***Typical error:*** Command `make` successfully buils a vignette and then simply stops with something like `make[1]: *** [flu.pdf] Error 1`
-   
-   ***Solution:*** This is a bug in R 3.4.0. Rollback to R 3.3.x or update to R 3.4.1. See Issue [#45](https://github.com/cbeleites/hyperSpec/issues/45) for more details
      
 * Issues of versions 5.0.1 - 6.0.0(?) of roxygen2.
 
