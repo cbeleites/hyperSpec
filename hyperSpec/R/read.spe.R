@@ -164,9 +164,8 @@ read.spe <- function(filename, xaxis="file", acc2avg=F, cts_sec=F,
   hdr <- .read.spe.header(filename)
   
   if (hdr$fileFormatVer < 3.0){
-    if (stop.if.old.fmt)
-      stop(paste("This SPE file contains no XML data: file format version",
-                 round(hdr$fileFormatVer, digits = 3), "< 3.0"))
+    stop(paste("This SPE file contains no XML data: file format version",
+               round(hdr$fileFormatVer, digits = 3), "< 3.0"))
     return()
   }
   
