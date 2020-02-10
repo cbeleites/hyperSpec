@@ -342,7 +342,7 @@ spe.showcalpoints <- function(filename, xaxis="file", acc2avg=F, cts_sec=F){
     fname <- blut1
     expect_true(file.exists(fname))
 
-    expect_error(.read.spe.xml_string(fname))
+    expect_error(.read.spe.xml_string(fname), regexp = '*no XML*')
   })
 
 
