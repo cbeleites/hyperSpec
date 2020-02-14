@@ -158,6 +158,15 @@ raw.split.nul <- function (raw, trunc = c (TRUE, TRUE), firstonly = FALSE, paste
 ##' @importFrom utils maintainer
 .spc.filehdr <- function (raw.data) {
 	## check file format
+
+  ## Detect Shimadzu SPC (which is effectively a variant of OLE CF format)
+  if (isTRUE (all.equal (
+       raw.data[1:4],
+       as.raw(c('0xD0', '0xCF', '0x11', '0xE0'))
+       ))){
+    stop ('Support for Shimadzu SPC file format (OLE CF) is not yet implemented')
+  }
+  
 	## NEW.LSB = 75 supported,
 	## NEW.MSB = 76 not supported (neither by many Grams software according to spc doc)
 	## OLD     = 77 not supported (replaced by new format in 1996)
@@ -784,7 +793,25 @@ read.spc <- function (filename,
   test_that ("Shimadzu spc files do not yet work", {
     skip_if_not_fileio_available()
     expect_error (read.spc("fileio/spc.Shimadzu/F80A20-1.SPC"))
+    
+    fname <- "fileio/spc.Shimadzu/UV-2600_labeled_DNA"
+    # TODO #102 - implement support for Shimadzu files
+    SHIMADZU_SPC_IMPLEMENTED <- F
+    if (SHIMADZU_SPC_IMPLEMENTED){
+      # Compare data from SPC file and from CSV file. They should be equal
+      spc      <- read.spc(     paste0(fname, ".spc"))
+      expected <- read.txt.long(paste0(fname, '.csv'), sep=',')
+      expect_true(all.equal(spc$spc, expected$spc))
+    }else{
+      # IF NOT IMPLEMENTED
+      #expect_error (read.spc("fileio/spc.Shimadzu/F80A20-1.SPC"), regexp = 'Shimadzu SPC')
+      expect_error (read.spc(paste0(fname, ".spc")),
+                    regexp = 'Support for Shimadzu SPC file format (OLE CF) is not yet implemented',
+                    fixed = T)
+    }
   })
+  
+  
 
   test_that("Witec: some files supported", {
     skip_if_not_fileio_available()
