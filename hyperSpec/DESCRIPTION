@@ -3,8 +3,8 @@ Encoding: UTF-8
 Type: Package
 Title: Work with Hyperspectral Data, i.e. Spectra + Meta Information (Spatial,
     Time, Concentration, ...)
-Version: 0.99-20200131
-Date: 2020-01-31
+Version: 0.99-20200319
+Date: 2020-03-19
 Maintainer: Claudia Beleites <Claudia.Beleites@chemometrix.gmbh>
 Authors@R: c(
     person("Claudia",   "Beleites",  role = c("aut","cre", "dtc"), email = "Claudia.Beleites@chemometrix.gmbh"),
@@ -145,6 +145,7 @@ Collate:
     'read.mat.Witec.R'
     'read.spc.Kaiser.R'
     'read.spc.R'
+    'read.spc.Shimadzu.R'
     'read.spe.R'
     'read.txt.Horiba.R'
     'read.txt.Renishaw.R'
