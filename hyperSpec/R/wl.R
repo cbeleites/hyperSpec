@@ -45,9 +45,9 @@ wl <- function (x){
 ###  .wl
 ###
 ###
-".wl<-" <- function (x, digits = 6, value){
+".wl<-" <- function (x, value){
   x@wavelength <- value
-  colnames (x@data$spc) <- signif (value, digits)
+  spc <- .fix_spc_colnames (x)
 
   x
 }

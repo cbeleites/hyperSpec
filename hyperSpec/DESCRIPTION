@@ -100,6 +100,7 @@ Collate:
     'extract.R'
     'factor2num.R'
     'fileio.optional.R'
+    'fix_spc_colnames.R'
     'flu.R'
     'getbynames.R'
     'options.R'

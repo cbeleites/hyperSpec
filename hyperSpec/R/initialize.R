@@ -119,13 +119,13 @@
 
   attr (data$spc, "class") <- NULL      # more than one copy!?
   if (.options$gc) gc ()
-
-  colnames (data$spc) <- signif (wavelength, digits = 6) # for consistency with .wl<-
   
   .Object@data <- data
   if (.options$gc) gc ()
 
-
+  
+  .Object <- .fix_spc_colnames (.Object) # for consistency with .wl<-
+  
   ## finally: check whether we got a valid hyperSpec object
   validObject (.Object)
 
