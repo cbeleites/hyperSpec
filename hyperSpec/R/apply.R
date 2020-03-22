@@ -1,49 +1,49 @@
-.na.if.different <- function (x) {
-  if (length (unique (x)) > 1) NA else x[1]
+.na_if_different <- function(x) {
+  if(length(unique (x)) > 1) NA else x[1]
 }
 
 
-.apply <- function (data, MARGIN, FUN, ...){
+.apply <- function(data, MARGIN, FUN, ...) {
 
-  if (length (data$spc) == 0)
-    stop ("empty spectra matrix.")
+  if(length (data$spc) == 0)
+    stop("empty spectra matrix.")
 
-  spc <- apply (data [, "spc", drop = FALSE], MARGIN, FUN, ...)
+  spc <- apply(data [, "spc", drop = FALSE], MARGIN, FUN, ...)
 
-  if (MARGIN == 1){
-    if (is.null (spc))
-      spc <- matrix (ncol = 0, nrow = nrow (data))
-    else if (is.vector (spc))
-      dim (spc) <- c(length (spc), 1)
-    else if (is.matrix (spc))
-      spc <- t (spc)
+  if (MARGIN == 1) {
+    if(is.null (spc))
+      spc <- matrix(ncol = 0, nrow = nrow(data))
+    else if(is.vector (spc))
+      dim(spc) <- c(length(spc), 1)
+    else if(is.matrix (spc))
+      spc <- t(spc)
 
     data$spc <- I(spc)
-  } else if (MARGIN == 2){
-    if (is.null (spc))
-      return (data [0, ])
-    if (is.null (dim (spc)))
-      dim (spc) <- c(1, ncol (data$spc))
+  } else if(MARGIN == 2){
+    if(is.null (spc))
+      return(data [0, ])
+    if(is.null(dim (spc)))
+      dim(spc) <- c(1, ncol(data$spc))
 
-    if (all(dim (spc) == dim (data$spc))){
+    if(all(dim(spc) == dim(data$spc))) {
       data$spc <- spc
     }  else {
-      nrow <- nrow (spc)
+      nrow <- nrow(spc)
 
-      cols <- colnames (data)
-      cols <- which (cols != "spc")
-      if (length (cols) > 0) {
-        data [1,cols] <- lapply (data [,cols,drop = FALSE], .na.if.different)
+      cols <- colnames(data)
+      cols <- which(cols != "spc")
+      if(length (cols) > 0) {
+        data [1, cols] <- lapply(data [, cols, drop = FALSE], .na.if.different)
       }
 
-      data <- data [rep (1, nrow), , drop = FALSE]
+      data <- data [rep(1, nrow), , drop = FALSE]
 
-      data$spc <- I (spc)
-      rownames (data) <- rownames (spc)
+      data$spc <- I(spc)
+      rownames(data) <- rownames(spc)
     }
   }
 
-  data$spc <- unclass (data$spc)
+  data$spc <- unclass(data$spc)
   data
 }
 
@@ -116,97 +116,98 @@
 ##' ## whereas MARGIN = 1 : 2 leads to FUN being called for each element separately
 ##' apply (flu [,,405:407], 1 : 2, print) [[]]
 ##'
-setMethod ("apply", signature = signature (X = "hyperSpec"),
-           function (X, MARGIN, FUN, ...,
-                     label.wl = NULL, label.spc = NULL, new.wavelength = NULL){
-  validObject (X)
+setMethod("apply", signature = signature(X = "hyperSpec"),
+           function(X, MARGIN, FUN, ...,
+                     label_wl = NULL, label_spc = NULL, new_wavelength = NULL) {
+  validObject(X)
 
-  if (missing (MARGIN)){                # apply for functions that the complete spectra matrix
+  if(missing (MARGIN)) { # apply for functions that the complete spectra matrix
     ## is easier: tmp <- apply (x, , FUN, ...)
     ## does:
-    ## tmp <- x
-    ## tmp [[]] <- FUN (x [[]], ...)
 
-    X@data$spc <- do.call (FUN, list (X@data$spc, ...))
+    
 
-  } else if (all (MARGIN == 1 : 2)){    # apply for functions that take scalar arguments.
+    X@data$spc <- do.call(FUN, list(X@data$spc, ...))
 
-    tmp <- apply (X@data$spc, MARGIN = MARGIN, FUN, ...)
-    tmp <- as.numeric (tmp)             # otherwise surprises will be waiting
+  } else if(all(MARGIN == 1 : 2)) {# apply for functions that take scalar arguments.
 
-    dim (tmp) <- dim (X@data$spc)
+    tmp <- apply(X@data$spc, MARGIN = MARGIN, FUN, ...)
+    tmp <- as.numeric(tmp) # otherwise surprises will be waiting
+
+    dim(tmp) <- dim(X@data$spc)
 
     X@data$spc <- tmp
 
   } else {
     ## the usual: for each row / for each column
 
-    X@data <- .apply (X@data, MARGIN = MARGIN, FUN = FUN, ...)
+    X@data <- .apply(X@data, MARGIN = MARGIN, FUN = FUN, ...)
 
-    if (all (MARGIN == 1)) {
+    if(all (MARGIN == 1)) {
 
-      ## if the number of data points per spectrum is changed, the wavelength vector needs to be
-      ## adapted, too
+## if the number of data points per spectrum is changed, 
+## the wavelength vector needs to be adapted, too
 
-      if (ncol (X@data$spc) != length (X@wavelength)) {
+      if(ncol (X@data$spc) != length(X@wavelength)) {
 
-        ## only internal functions here: the validation will fail until the wavelength axis is
-        ## adjusted
+## only internal functions here: the validation will fail until 
+## the wavelength axis is adjusted
 
-        if (!is.null (new.wavelength)){    # vector with new wavelength is given
-          if (is.numeric (new.wavelength)) # either directly,
-            .wl (X) <- new.wavelength
-          else {
+        if(!is.null (new.wavelength)) {    # vector with new wavelength is given
+          if(is.numeric (new.wavelength)) # either directly,
+            .wl(X) <- new.wavelength
+          else{
             dots <- list (...)
-            .wl (X) <- dots [[new.wavelength]] # or as name of the argument that becomes the new
-                                               # wavelength vector
-          }
-        } else if (ncol (X@data$spc) != length (X@wavelength)){
-          wl <- as.numeric (colnames (X@data$spc)) # if not given, try to make from colnames of the
-                                                   # spectra matrix
+            .wl (X) <- dots [[new.wavelength]] 
+# or as name of the argument that becomes the new wavelength vector
+}
+        } else if (ncol (X@data$spc) != length (X@wavelength)) {
+          wl <- as.numeric(colnames(X@data$spc)) 
+          # if not given, try to make from colnames of the spectra matrix
+                                                   
 
-          if (length (wl) != ncol (X@data$spc) || any (is.na (wl)))
-            wl <- seq_len (ncol (X@data$spc)) # or just number sequentially
+          if(length(wl) != ncol(X@data$spc) || any(is.na (wl)))
+            wl <- seq_len(ncol(X@data$spc)) # or just number sequentially
 
-          .wl (X) <- wl
+          .wl(X) <- wl
         }
       }
     }
   }
 
-  if (!is.null (label.wl))
+  if(!is.null (label.wl))
     X@label$.wavelength <- label.wl
 
-  if (!is.null (label.spc))
+  if(!is.null (label.spc))
     X@label$spc <- label.spc
 
-  validObject (X)
+  validObject(X)
 
   X
 })
 
 ##' @include unittest.R
-.test (.apply) <- function (){
-  context ("apply")
+.test(.apply) <- function() {
+  context("apply")
 
-  test_that ("check whether .na.if.different is working correctly", {
+  test_that("check whether .na.if.different is working correctly", {
     flu$equal <- 1
-    tmp <- apply (flu, 2, mean)$..
-    expect_equal (is.na (tmp),
-                 structure(c (TRUE, TRUE, FALSE),
+    tmp <- apply(flu, 2, mean)$..
+    expect_equal(is.na (tmp),
+                 structure(c(TRUE, TRUE, FALSE),
                            .Dim = c(1L, 3L),
-                           .Dimnames = list (NULL, c("filename", "c", "equal")))
+                           .Dimnames = list(NULL, c("filename", "c", "equal")))
     )
-    expect_equal (tmp$equal, 1)
+    expect_equal(tmp$equal, 1)
   })
 
-  test_that ("POSIXct", {
+  test_that("POSIXct", {
     flu$ct <- as.POSIXct(Sys.time())
-    expect_equal (apply (flu, 2, mean)$ct, flu$ct [1])
+    expect_equal(apply(flu, 2, mean)$ct, flu$ct [1])
   })
 
-  test_that ("POSIXlt", {
+  test_that("POSIXlt", {
     flu$lt <- as.POSIXlt(Sys.time())
-    expect_equal (apply (flu, 2, mean)$lt, flu$lt [1])
+    expect_equal(apply(flu, 2, mean)$lt, flu$lt [1])
   })
 }

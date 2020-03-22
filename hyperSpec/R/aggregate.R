@@ -1,44 +1,48 @@
-.aggregate <- function (x, by = stop ("by is needed"), FUN = stop ("FUN is needed."),
-                        ..., out.rows = NULL, append.rows = NULL,
-                        by.isindex = FALSE){
-  validObject (x)
+.aggregate <- function(x, by = stop("by is needed"), 
+                        FUN = stop("FUN is needed."),
+                        ..., out_rows = NULL, append_rows = NULL,
+                        by_isindex = FALSE) {
+  validObject(x)
 
-  if (!is.list (by) || ! by.isindex)
-    by <- split (seq (x, index = TRUE), by, drop = TRUE)
+  if(!is.list(by) || ! by.isindex)
+    by <- split(seq (x, index = TRUE), by, drop = TRUE)
 
   ## main work here is to avoid calling stats::aggregate as there splitting and
   ## rearranging is involved. That is slow with the spectra.
 
   # try a guess how many rows the result will have
-  if (is.null (out.rows)){
-    tmp <- .apply (data = x@data[by [[1]], , drop = FALSE], MARGIN = 2, FUN = FUN, ...)
+  if(is.null (out.rows)) {
+    tmp <- .apply(data = x@data[by [[1]], , 
+                                 drop = FALSE], MARGIN = 2, FUN = FUN, ...)
 
-    out.rows <- nrow (tmp) * length (by)
+    out_rows <- nrow(tmp) * length(by)
   }
 
-  data  <- x@data[rep (1, out.rows), , drop = FALSE] # preallocate memory
-  data <- cbind (data, .aggregate = NA)
-  col.aggregate <- ncol (data)
+  data  <- x@data[rep(1, out.rows), , drop = FALSE] # preallocate memory
+  data <- cbind(data, .aggregate = NA)
+  col.aggregate <- ncol(data)
 
   r <- 1 # keeping track of the actually filled rows
 
-  for (i in seq (along = by)){
-    tmp <- .apply (data = x@data[by [[i]], , drop  = FALSE], MARGIN = 2, FUN = FUN, ...)
+  for(i in seq (along = by)) {
+    tmp <- .apply(data = x@data[by [[i]], , drop  = FALSE], 
+                   MARGIN = 2, FUN = FUN, ...)
 
-    prows <- nrow (tmp) - 1
+    prows <- nrow(tmp) - 1
 
     ## TODO: try out whether this really helps
     if (r + prows > out.rows) {
-      if (is.null (append.rows))
-        append.rows <- max (100, ceiling (1 - (i / length (by)) * out.rows))
-      out.rows <- max (append.rows + out.rows, r + prows)
-      data  <- rbind (data, data [rep (1, out.rows - nrow (data)), , drop = FALSE])
-      warning ("At", i, "of", length (by),
+      if(is.null (append.rows))
+        append.rows <- max(100, ceiling(1 - (i / length(by)) * out.rows))
+      out_rows <- max(append_rows + out_rows, r + prows)
+      data  <- rbind(data, data [rep(1, out.rows - nrow(data)),
+                                 , drop = FALSE])
+      warning("At", i, "of", length(by),
                "levels: Output data.frame too small. Consider using an",
                "appropriate value for out.rows to speed up calculations.")
     }
 
-    if (prows >= 0){
+    if (prows >= 0) {
       data[r : (r + prows), -col.aggregate] <- tmp
       data[r : (r + prows),  col.aggregate] <- i
 
@@ -46,11 +50,12 @@
     }
   }
 
-  x@data <- data[seq_len (r - 1), , drop = FALSE]
-  x@data[, col.aggregate] <- factor (x@data[, col.aggregate], levels = seq_along (by))
+  x@data <- data[seq_len(r - 1), , drop = FALSE]
+  x@data[, col.aggregate] <- factor(x@data[, col.aggregate],
+                                    levels = seq_along(by))
 
-  if (!is.null (names (by)) && !any (is.na (names (by))))
-    levels (x@data[, col.aggregate]) <- names (by)
+  if (!is.null(names(by)) && !any(is.na(names(by))))
+    levels(x@data[, col.aggregate]) <- names(by)
 
   x
 }
@@ -110,7 +115,8 @@
 ##'      col = matlab.dark.palette (3))
 ##'
 ##' ## make some "spectra"
-##' spc <- new ("hyperSpec", spc = sweep (matrix (rnorm (10*20), ncol = 20), 1, (1:10)*5, "+"))
+##' spc <- new("hyperSpec", spc = sweep(matrix(rnorm(10*20), ncol = 20),
+##'  1, (1:10)*5, "+"))
 ##'
 ##' ## 3 groups
 ##' color <- c("red", "blue", "black")
@@ -144,41 +150,42 @@
 ##' plot (agg, "spc",  add = TRUE, col = color[agg$.aggregate],
 ##'       lines.args = list (lwd = 3, lty = 2))
 ##'
-setMethod ("aggregate", signature = signature (x = "hyperSpec"), .aggregate)
+setMethod("aggregate", signature = signature(x = "hyperSpec"), .aggregate)
 
 
-.test (.aggregate) <- function (){
-  context ("aggregate")
+.test(.aggregate) <- function() {
+  context("aggregate")
   test_that("chondro cluster means", {
-    cluster.means <- aggregate (chondro, chondro$clusters, mean_pm_sd)
-    expect_true(all (is.na (cluster.means$y)))
-    expect_true(all (is.na (cluster.means$x)))
+    cluster_means <- aggregate(chondro, chondro$clusters, mean_pm_sd)
+    expect_true(all(is.na(cluster.means$y)))
+    expect_true(all(is.na(cluster.means$x)))
 
-    expect_equal (cluster.means$clusters, cluster.means$.aggregate)
+    expect_equal(cluster.means$clusters, cluster.means$.aggregate)
 
-    for (cluster in levels (chondro$clusters))
-      expect_equivalent (cluster.means [[cluster.means$clusters == cluster,]],
-                         apply (chondro [[chondro$clusters == cluster,]],2, mean_pm_sd))
-  })
+    for(cluster in levels (chondro$clusters))
+      expect_equivalent(cluster.means [[cluster.means$clusters == cluster, ]],
+                         apply(chondro [[chondro$clusters == cluster, ]],
+                                2, mean_pm_sd))})
 
-  test_that ("FUN returning different numbers of values for different groups", {
-    spc <- new ("hyperSpec", spc = sweep (matrix (rnorm (10*20), ncol = 20), 1, (1:10)*5
+  test_that("FUN returning different numbers of values for different groups", {
+    spc <- new("hyperSpec", spc = sweep(matrix(rnorm(10 * 20), ncol = 20),
+                                        1, (1:10) * 5
                                           , "+"))
-    by <- as.factor (c (1, 1, 1, 1, 1, 1, 5, 1, 2, 2))
+    by <- as.factor(c(1, 1, 1, 1, 1, 1, 5, 1, 2, 2))
 
-    weird.function <- function (x){
-      if (length (x) == 1)
+    weird_function <- function(x) {
+      if(length (x) == 1)
         x + 1 : 10
-      else if (length (x) == 2)
+      else if(length (x) == 2)
         NULL
       else
         x [1]
     }
 
-    expect_warning(agg <- aggregate (spc, by, weird.function))
-    agg <- aggregate (spc, by, weird.function, out.rows = 20L)
+    expect_warning(agg <- aggregate(spc, by, weird.function))
+    agg <- aggregate(spc, by, weird.function, out.rows = 20L)
 
-    expect_equal (agg$.aggregate,
+    expect_equal(agg$.aggregate,
                   structure(c(1L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L),
                             .Label = c("1", "2", "5"), class = "factor"))
   })
