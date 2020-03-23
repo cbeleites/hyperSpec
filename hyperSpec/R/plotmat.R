@@ -29,81 +29,82 @@
 ##'
 ##' plotmat (laser, laser$t / 3600, ylab = "t / h")
 ##' @importFrom utils modifyList
-plotmat <- function (object, y = ".row", ylab, col = alois.palette (20), ...,
-                     contour = FALSE){
+plotmat <- function(object, y = ".row", ylab, col = alois.palette(20), ...,
+                    contour = FALSE) {
+  chk.hy(object)
+  validObject(object)
+  object <- orderwl(object)
 
-  chk.hy (object)
-  validObject (object)
-  object <- orderwl (object)
-
-  if (is.character (y)) {
-    if (missing (ylab))
-      ylab <- switch (y,
-                      .row = "row",
-                      labels (object, y))
-
-    y <- switch (y,
-                 .row = seq_len (nrow (object)),
-                 object@data [[y]])
-  }
-
-  dots <- modifyList (list (x = wl (object),
-                            y = y,
-                            z = t (object [[]]),
-                            xlab = labels (object, ".wavelength"),
-                            ylab = ylab,
-                            col = col
-                            ),
-                      list (...))
-
-
-  if (contour)
-    do.call ("contour", dots)
-  else {
-    ## leave at least 4 lines right margin
-    mar <- par()$ mar
-    if (mar [4] < 5)
-      par (mar = c (mar [1 : 3], 5))
-
-    do.call ("image", dots)
-    par (mar = mar)
-
-    ## color legend
-    if (requireNamespace ("plotrix", quietly = TRUE)){
-
-      usr <- par()$usr
-
-      dx <- diff (usr [1 : 2])
-
-      plotrix::color.legend (usr [2] + 0.05 * dx,
-      											 usr [3],
-      											 usr [2] + 0.10 * dx,
-      											 usr [4],
-      											 pretty (range (object, na.rm = TRUE)),
-      											 col,
-      											 align="rb",gradient="y")
-    } else {
-      warning ("package 'plotrix' not available: omitting legend.")
+  if (is.character(y)) {
+    if (missing(ylab)) {
+      ylab <- switch(y,
+        .row = "row",
+        labels(object, y)
+      )
     }
 
+    y <- switch(y,
+      .row = seq_len(nrow(object)),
+      object@data [[y]]
+    )
   }
 
+  dots <- modifyList(
+    list(
+      x = wl(object),
+      y = y,
+      z = t(object [[]]),
+      xlab = labels(object, ".wavelength"),
+      ylab = ylab,
+      col = col
+    ),
+    list(...)
+  )
 
+
+  if (contour) {
+    do.call("contour", dots)
+  } else {
+    ## leave at least 4 lines right margin
+    mar <- par()$ mar
+    if (mar [4] < 5) {
+      par(mar = c(mar [1:3], 5))
+    }
+
+    do.call("image", dots)
+    par(mar = mar)
+
+    ## color legend
+    if (requireNamespace("plotrix", quietly = TRUE)) {
+      usr <- par()$usr
+
+      dx <- diff(usr [1:2])
+
+      plotrix::color.legend(usr [2] + 0.05 * dx,
+        usr [3],
+        usr [2] + 0.10 * dx,
+        usr [4],
+        pretty(range(object, na.rm = TRUE)),
+        col,
+        align = "rb", gradient = "y"
+      )
+    } else {
+      warning("package 'plotrix' not available: omitting legend.")
+    }
+  }
 }
 
 ##' @include unittest.R
-.test (plotmat) <- function (){
-  context ("plotmat")
+.test(plotmat) <- function() {
+  context("plotmat")
 
-  test_that ("non-increasing wavelength axis", {
+  test_that("non-increasing wavelength axis", {
     tmp <- flu
-    tmp [[]] <- tmp [[,, max ~ min]]
-    tmp@wavelength <- rev (tmp@wavelength)
+    tmp [[]] <- tmp [[, , max ~ min]]
+    tmp@wavelength <- rev(tmp@wavelength)
 
-    expect_silent (plotmat (tmp))
+    expect_silent(plotmat(tmp))
   })
 
   ## TODO vdiffr
-
-
 }

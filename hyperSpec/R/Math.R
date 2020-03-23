@@ -40,42 +40,44 @@
 ##' 	log (flu)
 ##'
 
-setMethod ("Math2", signature (x = "hyperSpec"),
-           function (x, digits){
-             validObject (x)
+setMethod(
+  "Math2", signature(x = "hyperSpec"),
+  function(x, digits) {
+    validObject(x)
 
-             x [[]] <- callGeneric (x[[]], digits)
+    x [[]] <- callGeneric(x[[]], digits)
 
-             x
-           }
-           )
+    x
+  }
+)
 
 ##' @rdname math
 ##' @param ... ignored
 ##' @param base base of logarithm
 ##' @export
 ##' @aliases log log,hyperSpec-method
-setMethod ("log", signature (x = "hyperSpec"),
-					 function (x, base = exp (1), ...){
-					 	validObject (x)
+setMethod(
+  "log", signature(x = "hyperSpec"),
+  function(x, base = exp(1), ...) {
+    validObject(x)
 
-					 	x [[]] <-  log (x[[]], base = base)
-					 	x
-					 }
+    x [[]] <- log(x[[]], base = base)
+    x
+  }
 )
 
 ##' @rdname math
 ##' @export
-setMethod ("Math", signature (x = "hyperSpec"),
-					 function (x){
-					 	validObject (x)
+setMethod(
+  "Math", signature(x = "hyperSpec"),
+  function(x) {
+    validObject(x)
 
-					 	if (grepl ("^cum", .Generic) || grepl ("gamma$", .Generic))
-					 		warning (paste ("Do you really want to use", .Generic, "on a hyperSpec object?"))
+    if (grepl("^cum", .Generic) || grepl("gamma$", .Generic)) {
+      warning(paste("Do you really want to use", .Generic, "on a hyperSpec object?"))
+    }
 
-					 	x [[]] <- callGeneric (x[[]])
-					 	x
-					 }
+    x [[]] <- callGeneric(x[[]])
+    x
+  }
 )
-
-

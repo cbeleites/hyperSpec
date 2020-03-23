@@ -42,142 +42,160 @@
 ##'   \code{\link[base]{scan}}
 ##' @keywords IO file
 ##' @importFrom utils head
-read.txt.Renishaw <- function (file = stop ("file is required"),
-                               data = "xyspc", nlines = 0, nspc = NULL){
-  cols <- switch (data,
-                  spc = NULL,
-                  xyspc = list (y = expression ("/" (y, mu * m)),
-                    x = expression ("/" (x, mu * m))),
-                  zspc = ,
-                  depth = list (z = expression ("/" (z, mu * m))),
-                  ts = 	list (t = "t / s"),
-                  stop ("unknown format for Renishaw .txt files.")
-                  )
-  cols <- c  (cols, list (.wavelength = expression (Delta * tilde(nu) / cm^-1) ,
-                          spc = "I / a.u."))
+read.txt.Renishaw <- function(file = stop("file is required"),
+                              data = "xyspc", nlines = 0, nspc = NULL) {
+  cols <- switch(data,
+    spc = NULL,
+    xyspc = list(
+      y = expression("/"(y, mu * m)),
+      x = expression("/"(x, mu * m))
+    ),
+    zspc = ,
+    depth = list(z = expression("/"(z, mu * m))),
+    ts = list(t = "t / s"),
+    stop("unknown format for Renishaw .txt files.")
+  )
+  cols <- c(cols, list(
+    .wavelength = expression(Delta * tilde(nu) / cm^-1),
+    spc = "I / a.u."
+  ))
 
-  if (!is (file, "connection"))
-    file <- gzfile (file, "r")
+  if (!is(file, "connection")) {
+    file <- gzfile(file, "r")
+  }
 
   on.exit(close(file))
 
   first <- scan(file, nlines = 1, quiet = TRUE)
 
-  ncol <- length (first)
+  ncol <- length(first)
 
-  if (ncol == 0)
-    return (new ("hyperSpec"))
+  if (ncol == 0) {
+    return(new("hyperSpec"))
+  }
 
-  if (ncol != length (cols))
-    stop (paste ("File has", ncol, "columns, while 'cols' gives", length (cols)))
+  if (ncol != length(cols)) {
+    stop(paste("File has", ncol, "columns, while 'cols' gives", length(cols)))
+  }
 
-  fbuf <- matrix (c (first, scan (file, quiet = TRUE, nlines = nlines)),
-                     ncol = ncol,  byrow = TRUE)
+  fbuf <- matrix(c(first, scan(file, quiet = TRUE, nlines = nlines)),
+    ncol = ncol, byrow = TRUE
+  )
 
   ## wavelength axis
-  wl <- rep (TRUE,  nrow (fbuf))
-  for (i in seq_len (ncol (fbuf) - 2))
+  wl <- rep(TRUE, nrow(fbuf))
+  for (i in seq_len(ncol(fbuf) - 2)) {
     wl [wl] <- fbuf [wl, i] == fbuf [1, i]
+  }
 
   wl <- fbuf[wl, ncol - 1]
 
   ## if the file is to be read in chunks
   ## try to find out how many lines it has
-  if (is.null (nspc))
-    if (nlines > 0){
-      nspc <- count_lines (summary(file)$description, nlines)
-      if (is.null (nspc))
-        stop ("Failed guessing nspc.")
-      else {
-        message ("Counted ", nspc, " lines = ", nspc / length (wl), " spectra.")
-        nspc <- nspc / length (wl)
+  if (is.null(nspc)) {
+    if (nlines > 0) {
+      nspc <- count_lines(summary(file)$description, nlines)
+      if (is.null(nspc)) {
+        stop("Failed guessing nspc.")
+      } else {
+        message("Counted ", nspc, " lines = ", nspc / length(wl), " spectra.")
+        nspc <- nspc / length(wl)
       }
     } else {
-      nspc <- nrow (fbuf) / length (wl)
+      nspc <- nrow(fbuf) / length(wl)
     }
+  }
 
-  data <- matrix (NA, ncol = ncol - 2, nrow = nspc)
-  colnames (data) <- head (names (cols), -2)
+  data <- matrix(NA, ncol = ncol - 2, nrow = nspc)
+  colnames(data) <- head(names(cols), -2)
   pos.data <- 0
 
-  spc <- numeric (nspc * length (wl))
+  spc <- numeric(nspc * length(wl))
   pos.spc <- 0
 
-  while (length (fbuf > 0)){
-    if (nlines > 0) cat (".")
-    spc [pos.spc + seq_len (nrow (fbuf))] <- fbuf [, ncol]
-    pos.spc <- pos.spc + nrow (fbuf)
+  while (length(fbuf > 0)) {
+    if (nlines > 0) cat(".")
+    spc [pos.spc + seq_len(nrow(fbuf))] <- fbuf [, ncol]
+    pos.spc <- pos.spc + nrow(fbuf)
 
-    tmp <- fbuf [fbuf[, ncol - 1] == wl [1], seq_len (ncol - 2), drop = FALSE]
+    tmp <- fbuf [fbuf[, ncol - 1] == wl [1], seq_len(ncol - 2), drop = FALSE]
 
-    data [pos.data + seq_len (nrow (tmp)), ] <- tmp
-    pos.data <- pos.data + nrow (tmp)
+    data [pos.data + seq_len(nrow(tmp)), ] <- tmp
+    pos.data <- pos.data + nrow(tmp)
 
-    fbuf <- matrix (scan (file, quiet = TRUE, nlines = nlines), ncol = ncol,
-                    byrow = TRUE)
+    fbuf <- matrix(scan(file, quiet = TRUE, nlines = nlines),
+      ncol = ncol,
+      byrow = TRUE
+    )
 
-    if (length (fbuf > 0) & ! all(unique (fbuf[, ncol - 1]) %in% wl))
-      stop ("Wavelengths do not correspond to that of the other chunks. ",
-            "Is the size of the first chunk large enough to cover a complete ",
-            "spectrum?")
+    if (length(fbuf > 0) & !all(unique(fbuf[, ncol - 1]) %in% wl)) {
+      stop(
+        "Wavelengths do not correspond to that of the other chunks. ",
+        "Is the size of the first chunk large enough to cover a complete ",
+        "spectrum?"
+      )
+    }
   }
-  if (nlines > 0) cat ("\n")
+  if (nlines > 0) cat("\n")
 
-  spc <- matrix (spc, ncol = length (wl), nrow = nspc, byrow = TRUE)
+  spc <- matrix(spc, ncol = length(wl), nrow = nspc, byrow = TRUE)
 
-  spc <- orderwl (new ("hyperSpec", spc = spc, data = as.data.frame (data),
-  										 wavelength = wl, label = cols))
+  spc <- orderwl(new("hyperSpec",
+    spc = spc, data = as.data.frame(data),
+    wavelength = wl, label = cols
+  ))
 
   ## consistent file import behaviour across import functions
-  .fileio.optional (spc, file)
+  .fileio.optional(spc, file)
 }
 
-.test (read.txt.Renishaw) <- function(){
+.test(read.txt.Renishaw) <- function() {
   context("read.txt.Renishaw")
-  
+
   test_that("single spectrum", {
-    skip_if_not_fileio_available ()
-    tmp <- read.txt.Renishaw ("fileio/txt.Renishaw/paracetamol.txt", "spc")
-    expect_equal(dim (tmp), c(nrow = 1L, ncol = 2L, nwl = 4064L))    
+    skip_if_not_fileio_available()
+    tmp <- read.txt.Renishaw("fileio/txt.Renishaw/paracetamol.txt", "spc")
+    expect_equal(dim(tmp), c(nrow = 1L, ncol = 2L, nwl = 4064L))
   })
 
   test_that("time series spectrum, gzipped", {
-    skip_if_not_fileio_available ()
-    tmp <- read.txt.Renishaw ("fileio/txt.Renishaw/laser.txt.gz", "ts")
-    expect_equal(dim (tmp), c(nrow = 84L, ncol = 3L, nwl = 140L))
-    expect_equal(colnames (tmp), c("t", "spc", "filename"))
+    skip_if_not_fileio_available()
+    tmp <- read.txt.Renishaw("fileio/txt.Renishaw/laser.txt.gz", "ts")
+    expect_equal(dim(tmp), c(nrow = 84L, ncol = 3L, nwl = 140L))
+    expect_equal(colnames(tmp), c("t", "spc", "filename"))
   })
-  
-  test_that("map (= default)", {
-    skip_if_not_fileio_available ()
-    tmp <- read.txt.Renishaw ("fileio/txt.Renishaw/chondro.txt", "xyspc")
-    expect_equal(dim (tmp), c(nrow = 875L, ncol = 4L, nwl = 1272L))    
-    expect_equal(colnames (tmp), c("y", "x", "spc", "filename"))
 
-    tmp <- read.txt.Renishaw ("fileio/txt.Renishaw/chondro.txt")
-    expect_equal(dim (tmp), c(nrow = 875L, ncol = 4L, nwl = 1272L))    
-    expect_equal(colnames (tmp), c("y", "x", "spc", "filename"))
-    
+  test_that("map (= default)", {
+    skip_if_not_fileio_available()
+    tmp <- read.txt.Renishaw("fileio/txt.Renishaw/chondro.txt", "xyspc")
+    expect_equal(dim(tmp), c(nrow = 875L, ncol = 4L, nwl = 1272L))
+    expect_equal(colnames(tmp), c("y", "x", "spc", "filename"))
+
+    tmp <- read.txt.Renishaw("fileio/txt.Renishaw/chondro.txt")
+    expect_equal(dim(tmp), c(nrow = 875L, ncol = 4L, nwl = 1272L))
+    expect_equal(colnames(tmp), c("y", "x", "spc", "filename"))
   })
-  
+
   test_that("chunked reading", {
-    skip_if_not_fileio_available ()
-    
+    skip_if_not_fileio_available()
+
     ## error on too small chunk size
-    expect_error (read.txt.Renishaw ("fileio/txt.Renishaw/chondro.txt", nlines = 10),
-                  "Wavelengths do not correspond")
-    
-    tmp <- read.txt.Renishaw ("fileio/txt.Renishaw/chondro.txt", nlines = 1e5)
-    expect_equal(dim (tmp), c(nrow = 875L, ncol = 4L, nwl = 1272L))    
+    expect_error(
+      read.txt.Renishaw("fileio/txt.Renishaw/chondro.txt", nlines = 10),
+      "Wavelengths do not correspond"
+    )
+
+    tmp <- read.txt.Renishaw("fileio/txt.Renishaw/chondro.txt", nlines = 1e5)
+    expect_equal(dim(tmp), c(nrow = 875L, ncol = 4L, nwl = 1272L))
   })
-  
-  test_that("compressed files",{
-    skip_if_not_fileio_available ()
-    
+
+  test_that("compressed files", {
+    skip_if_not_fileio_available()
+
     files <- Sys.glob("fileio/txt.Renishaw/chondro.*")
-    files <- grep ("[.]zip", files, invert = TRUE, value = TRUE) # .zip is tested with read.zip.Renishaw
-    for (f in files){
-      expect_equal(dim (read.txt.Renishaw (!!f)), c(nrow = 875L, ncol = 4L, nwl = 1272L))    
+    files <- grep("[.]zip", files, invert = TRUE, value = TRUE) # .zip is tested with read.zip.Renishaw
+    for (f in files) {
+      expect_equal(dim(read.txt.Renishaw(!!f)), c(nrow = 875L, ncol = 4L, nwl = 1272L))
     }
   })
 }
@@ -186,17 +204,17 @@ read.txt.Renishaw <- function (file = stop ("file is required"),
 ##' @param txt.file name of the .txt file in the .zip archive. Defaults to zip
 ##'   file's name with suffix .txt instead of .zip
 ##' @rdname read.txt.Renishaw
-read.zip.Renishaw <- function (file = stop ("filename is required"),
-                               txt.file = sub ("[.]zip", ".txt", basename (file)), ...){
-  read.txt.Renishaw (file = unz (file, filename = txt.file, "r"), ...)
+read.zip.Renishaw <- function(file = stop("filename is required"),
+                              txt.file = sub("[.]zip", ".txt", basename(file)), ...) {
+  read.txt.Renishaw(file = unz(file, filename = txt.file, "r"), ...)
 }
 
-.test (read.zip.Renishaw) <- function(){
+.test(read.zip.Renishaw) <- function() {
   context("read.zip.Renishaw")
 
-  test_that("compressed files",{
-    skip_if_not_fileio_available ()
-    
-    expect_equal(dim (read.zip.Renishaw ("fileio/txt.Renishaw/chondro.zip")), c(nrow = 875L, ncol = 4L, nwl = 1272L))    
+  test_that("compressed files", {
+    skip_if_not_fileio_available()
+
+    expect_equal(dim(read.zip.Renishaw("fileio/txt.Renishaw/chondro.zip")), c(nrow = 875L, ncol = 4L, nwl = 1272L))
   })
 }

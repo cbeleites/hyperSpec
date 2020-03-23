@@ -1,57 +1,72 @@
 ##' @importFrom utils modifyList
-.labels <- function (object, which = bquote(), drop = TRUE, ..., use.colnames = TRUE){
-  validObject (object)
+.labels <- function(object, which = bquote(), drop = TRUE, ..., use.colnames = TRUE) {
+  validObject(object)
 
-  if (! missing (which) & ! is.character (which))
-    warning ("labels are not guaranteed to have the same order as columns.",
-             "Consider using indexing by name.")
+  if (!missing(which) & !is.character(which)) {
+    warning(
+      "labels are not guaranteed to have the same order as columns.",
+      "Consider using indexing by name."
+    )
+  }
 
   ## fill in colnames?
-  if (use.colnames){
-    label <- structure (as.list (c(colnames (object@data), ".wavelength")),
-                        names = c(colnames (object@data), ".wavelength"))
-    label <- modifyList (label, object@label)
+  if (use.colnames) {
+    label <- structure(as.list(c(colnames(object@data), ".wavelength")),
+      names = c(colnames(object@data), ".wavelength")
+    )
+    label <- modifyList(label, object@label)
 
     label <- label [which]
   } else {
     label <- object@label [which]
   }
 
-  if (drop && length (label) == 1L)
+  if (drop && length(label) == 1L) {
     label <- label [[1]]
+  }
 
   label
 }
 
 ##' @include unittest.R
-.test (.labels) <- function (){
-  context (".labels")
+.test(.labels) <- function() {
+  context(".labels")
 
-  .sort <- function (x)
-    x [order (names (x))]
+  .sort <- function(x) {
+    x [order(names(x))]
+  }
 
-  test_that ("return exactly @label with use.colnames == FALSE",
-            expect_equal(.sort (labels (flu, use.colnames = FALSE)), .sort (flu@label))
+  test_that(
+    "return exactly @label with use.colnames == FALSE",
+    expect_equal(.sort(labels(flu, use.colnames = FALSE)), .sort(flu@label))
   )
 
-  test_that ("fill in missing labels", {
+  test_that("fill in missing labels", {
     tmp <- flu
     tmp@label$filename <- NULL
-    expect_equal (.sort (labels (flu)), 
-                  .sort (c (tmp@label , filename = "filename")))
+    expect_equal(
+      .sort(labels(flu)),
+      .sort(c(tmp@label, filename = "filename"))
+    )
   })
 
 
-  test_that ("labels for specified columns", {
+  test_that("labels for specified columns", {
     tmp <- flu
     tmp@label$filename <- NULL
-    expect_equal (labels (tmp, c ("c", "filename", "file"), use.colnames = FALSE),
-                  structure(list(c = "c / (mg / l)", `NA` = NULL, `NA` = NULL),
-                            .Names = c("c", NA, NA)))
+    expect_equal(
+      labels(tmp, c("c", "filename", "file"), use.colnames = FALSE),
+      structure(list(c = "c / (mg / l)", `NA` = NULL, `NA` = NULL),
+        .Names = c("c", NA, NA)
+      )
+    )
 
-    expect_equal (labels (flu, c ("c", "filename", "file")),
-                  structure(list(c = "c / (mg / l)", filename = "filename", `NA` = NULL),
-                            .Names = c("c", "filename", NA)))
+    expect_equal(
+      labels(flu, c("c", "filename", "file")),
+      structure(list(c = "c / (mg / l)", filename = "filename", `NA` = NULL),
+        .Names = c("c", "filename", NA)
+      )
+    )
   })
 }
 
@@ -67,26 +82,26 @@
 ##'
 ##' labels (flu, "c") <- expression ("/" ("c", "mg / l"))
 ##'
-`labels<-` <- function (object, which = NULL, ..., value){
-  chk.hy (object)
-  validObject (object)
+`labels<-` <- function(object, which = NULL, ..., value) {
+  chk.hy(object)
+  validObject(object)
 
-  if (is.null (which))
+  if (is.null(which)) {
     object@label <- value
-  else {
-    if ((is.character (which) && !which %in% colnames (object@data)) &&
-         which != ".wavelength" ||      # neither a colname nor .wavelength
-        (is.numeric (which) && (which < 1 || which > ncol (object@data) + 1)) ||
-        (is.logical (which) && length (which) != ncol (object@data) + 1)
-                                        # or outside valid indices
-        )
-      stop ("Column to label does not exist!")
+  } else {
+    if ((is.character(which) && !which %in% colnames(object@data)) &&
+      which != ".wavelength" || # neither a colname nor .wavelength
+      (is.numeric(which) && (which < 1 || which > ncol(object@data) + 1)) ||
+      (is.logical(which) && length(which) != ncol(object@data) + 1)
+    # or outside valid indices
+    ) {
+      stop("Column to label does not exist!")
+    }
 
     object@label [[which]] <- value
-
   }
 
-  validObject (object)
+  validObject(object)
   object
 }
 
@@ -122,5 +137,4 @@
 ##'
 ##' labels (chondro)
 ##'
-setMethod ("labels", signature = signature (object = "hyperSpec"), .labels)
-
+setMethod("labels", signature = signature(object = "hyperSpec"), .labels)

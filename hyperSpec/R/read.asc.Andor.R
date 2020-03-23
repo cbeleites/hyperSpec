@@ -14,33 +14,34 @@
 ##' @include read.txt.Witec.R
 ##' @include fileio.optional.R
 ##' @export
-read.asc.Andor <- function (file = stop ("filename or connection needed"),
-                            ..., quiet = TRUE, dec = ".", sep = ","){
+read.asc.Andor <- function(file = stop("filename or connection needed"),
+                           ..., quiet = TRUE, dec = ".", sep = ",") {
 
   ## check for valid data connection
-  .check.con (file = file)
+  .check.con(file = file)
 
   ## read spectra
-  tmp <- readLines (file)
-  nwl <- length (tmp)
-  txt <- scan (text = tmp, dec = dec, sep = sep, quiet = quiet, ...)
+  tmp <- readLines(file)
+  nwl <- length(tmp)
+  txt <- scan(text = tmp, dec = dec, sep = sep, quiet = quiet, ...)
 
-  dim (txt) <- c (length (txt) / nwl, nwl)
+  dim(txt) <- c(length(txt) / nwl, nwl)
 
   ## fix: Andor Solis may have final comma without values
-  if (all (is.na (txt [nrow (txt), ])))
-    txt <- txt [- nrow (txt), ]
+  if (all(is.na(txt [nrow(txt), ]))) {
+    txt <- txt [-nrow(txt), ]
+  }
 
-  spc <- new ("hyperSpec", wavelength = txt [1, ], spc = txt [-1, ])
+  spc <- new("hyperSpec", wavelength = txt [1, ], spc = txt [-1, ])
 
-   ## consistent file import behaviour across import functions
-  .fileio.optional (spc, file)
+  ## consistent file import behaviour across import functions
+  .fileio.optional(spc, file)
 }
 
-.test (read.asc.Andor) <- function (){
-  context ("read.asc.Andor")
+.test(read.asc.Andor) <- function() {
+  context("read.asc.Andor")
   test_that("Andor Solis .asc text files", {
     skip_if_not_fileio_available()
-    expect_known_hash (read.asc.Andor("fileio/asc.Andor/ASCII-Andor-Solis.asc"), "9ead937f51")
+    expect_known_hash(read.asc.Andor("fileio/asc.Andor/ASCII-Andor-Solis.asc"), "9ead937f51")
   })
 }

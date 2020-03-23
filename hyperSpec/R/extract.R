@@ -1,31 +1,32 @@
-###-----------------------------------------------------------------------------
+### -----------------------------------------------------------------------------
 ###
 ### .extract - internal function doing the work for extracting with [] and [[]]
 ###
 
 ##' @include wl2i.R
 ##' @noRd
-.extract <- function (x, i, j, l,
-                      ...,
-                      wl.index = FALSE
-){
-  if (! missing (i))
-    x@data <- x@data[i,, drop = FALSE]
-
-  if (!missing (j)){
-    x@data <- x@data[, j, drop = FALSE]
-    x@label <- x@label [c (".wavelength", colnames (x@data))]
+.extract <- function(x, i, j, l,
+                     ...,
+                     wl.index = FALSE) {
+  if (!missing(i)) {
+    x@data <- x@data[i, , drop = FALSE]
   }
 
-  if (!missing (l)) {
-    if (is.null (x@data$spc))
-      warning ("Selected columns do not contain specta. l ignored.")
-    else {
-      if (!wl.index)
-        l <- wl2i (x, l)
+  if (!missing(j)) {
+    x@data <- x@data[, j, drop = FALSE]
+    x@label <- x@label [c(".wavelength", colnames(x@data))]
+  }
 
-      x@data$spc <- x@data$spc[,l, drop = FALSE]
-      .wl (x) <- x@wavelength[l]
+  if (!missing(l)) {
+    if (is.null(x@data$spc)) {
+      warning("Selected columns do not contain specta. l ignored.")
+    } else {
+      if (!wl.index) {
+        l <- wl2i(x, l)
+      }
+
+      x@data$spc <- x@data$spc[, l, drop = FALSE]
+      .wl(x) <- x@wavelength[l]
     }
   }
 
@@ -195,78 +196,91 @@
 ##'
 ##' @include call.list.R
 ##' @export
-setMethod ("[", signature = signature (x = "hyperSpec"),
-           function (x, i, j, l, ...,
-                     wl.index = FALSE,
-                     drop = FALSE  # drop has to be at end
-                     ){
-  validObject (x)
+setMethod("[",
+  signature = signature(x = "hyperSpec"),
+  function(x, i, j, l, ...,
+           wl.index = FALSE,
+           drop = FALSE # drop has to be at end
+  ) {
+    validObject(x)
 
-  if (drop)
-    warning ("Ignoring drop = TRUE.")
+    if (drop) {
+      warning("Ignoring drop = TRUE.")
+    }
 
-  dots <- list (...)
-  if (length (dots) > 0L)
-    warning ("Ignoring additional parameters: ", .pastenames (dots))
+    dots <- list(...)
+    if (length(dots) > 0L) {
+      warning("Ignoring additional parameters: ", .pastenames(dots))
+    }
 
-  x <- .extract (x, i, j, l, wl.index = wl.index)
+    x <- .extract(x, i, j, l, wl.index = wl.index)
 
-  if (is.null (x@data$spc)){
-    x@data$spc <- matrix (NA, nrow (x@data), 0)
-    x@wavelength <- numeric (0)
+    if (is.null(x@data$spc)) {
+      x@data$spc <- matrix(NA, nrow(x@data), 0)
+      x@wavelength <- numeric(0)
+    }
+
+    x
   }
-
-  x
-})
+)
 
 ##' @rdname extractreplace
 ##' @export
 ##' @aliases [[ [[,hyperSpec-method
 ## ' @name [[
-setMethod ("[[", signature = signature (x = "hyperSpec"),
-           function (x, i, j, l, ...,
-                     wl.index = FALSE,
-                     drop = FALSE){
-  validObject (x)
+setMethod("[[",
+  signature = signature(x = "hyperSpec"),
+  function(x, i, j, l, ...,
+           wl.index = FALSE,
+           drop = FALSE) {
+    validObject(x)
 
-  dots <- list (...)
-  if (length (dots) > 0L)
-    warning ("Ignoring additional parameters: ", .pastenames (dots))
+    dots <- list(...)
+    if (length(dots) > 0L) {
+      warning("Ignoring additional parameters: ", .pastenames(dots))
+    }
 
-  ## check wheter a index matrix is used
-  if (! missing (i) && is.matrix (i)){
-    if (! is.logical (i) && ! (is.numeric (i) && ncol (i) == 2))
-      stop ("Index matrix i  must either be logical of the size of x$spc,",
-            "or a n by 2 matrix.")
+    ## check wheter a index matrix is used
+    if (!missing(i) && is.matrix(i)) {
+      if (!is.logical(i) && !(is.numeric(i) && ncol(i) == 2)) {
+        stop(
+          "Index matrix i  must either be logical of the size of x$spc,",
+          "or a n by 2 matrix."
+        )
+      }
 
-    if (is.numeric (i) && ! wl.index)
-      i [, 2] <- .getindex (x, i [, 2], extrapolate = FALSE)
+      if (is.numeric(i) && !wl.index) {
+        i [, 2] <- .getindex(x, i [, 2], extrapolate = FALSE)
+      }
 
-    x@data$spc [i]                      # return value
-
-  } else {                              # index by row and columns
-    x <- .extract (x, i, j, l, wl.index = wl.index)
-    if (missing (j))
-      unclass (x@data$spc[,, drop = drop]) # retrun value; removes the "AsIs"
-    else {
-      x@data[,, drop = drop]            # return value: data.frame
+      x@data$spc [i] # return value
+    } else { # index by row and columns
+      x <- .extract(x, i, j, l, wl.index = wl.index)
+      if (missing(j)) {
+        unclass(x@data$spc[, , drop = drop])
+      } # retrun value; removes the "AsIs"
+      else {
+        x@data[, , drop = drop] # return value: data.frame
+      }
     }
   }
-})
+)
 
 ##' @rdname extractreplace
 ##' @param name name of the data column to extract. \code{$spc} yields the spectra matrix.
 ##' @aliases $ $,hyperSpec-method
 ##' @export
-setMethod ("$", signature = signature (x = "hyperSpec"),
-           function (x, name){
-  validObject (x)
+setMethod("$",
+  signature = signature(x = "hyperSpec"),
+  function(x, name) {
+    validObject(x)
 
-  if (name == ".") ## shortcut
-    x@data [, , drop = FALSE]
-  else if (name == "..")
-    x@data[, -match ("spc", colnames (x@data)), drop = FALSE]
-  else
-    x@data[[name]]
-})
-
+    if (name == ".") { ## shortcut
+      x@data [, , drop = FALSE]
+    } else if (name == "..") {
+      x@data[, -match("spc", colnames(x@data)), drop = FALSE]
+    } else {
+      x@data[[name]]
+    }
+  }
+)

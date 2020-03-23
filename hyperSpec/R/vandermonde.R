@@ -12,15 +12,16 @@
 ##' @author C. Beleites
 ##' @export
 ##' @include unittest.R
-vanderMonde <- function (x, order, ...){
-  if (nargs () > 2)
-    stop ('Unknown arguments: ', names (c (...)))
+vanderMonde <- function(x, order, ...) {
+  if (nargs() > 2) {
+    stop("Unknown arguments: ", names(c(...)))
+  }
 
-  outer (x, 0 : order, `^`)
+  outer(x, 0:order, `^`)
 }
 
 ##' @noRd
-setGeneric ("vanderMonde")
+setGeneric("vanderMonde")
 
 ##' @param normalize.wl function to transorm the wavelengths before evaluating the polynomial (or
 ##' other function). \code{\link[hyperSpec]{normalize01}} maps the wavelength range to the interval
@@ -37,44 +38,44 @@ setGeneric ("vanderMonde")
 ##' plot (vanderMonde (flu, 2, normalize.wl = I))
 ##'
 ##'
-setMethod ("vanderMonde", signature = signature (x = "hyperSpec"),
-           function (x, order, ..., normalize.wl = normalize01){
-  validObject (x)
+setMethod("vanderMonde",
+  signature = signature(x = "hyperSpec"),
+  function(x, order, ..., normalize.wl = normalize01) {
+    validObject(x)
 
-  wl <- normalize.wl (x@wavelength)
+    wl <- normalize.wl(x@wavelength)
 
-  x <- decomposition (x, t (vanderMonde (wl, order)), scores = FALSE, ...)
-  x$.vdm.order <- 0 : order
-  x
-})
+    x <- decomposition(x, t(vanderMonde(wl, order)), scores = FALSE, ...)
+    x$.vdm.order <- 0:order
+    x
+  }
+)
 
 
-.test (vanderMonde) <- function (){
-  context ("vanderMonde")
+.test(vanderMonde) <- function() {
+  context("vanderMonde")
 
-  test_that("vector against manual calculation",{
-    expect_equal (vanderMonde (c (1 : 3, 5), 2),
-                  matrix (c (1, 1, 1, 1, 1, 2, 3, 5, 1, 4, 9, 25), nrow = 4)
+  test_that("vector against manual calculation", {
+    expect_equal(
+      vanderMonde(c(1:3, 5), 2),
+      matrix(c(1, 1, 1, 1, 1, 2, 3, 5, 1, 4, 9, 25), nrow = 4)
     )
   })
 
-  test_that("default method doesn't provide normalization",{
-    expect_error (vanderMonde (1, 0, normalize.wl = normalize01))
+  test_that("default method doesn't provide normalization", {
+    expect_error(vanderMonde(1, 0, normalize.wl = normalize01))
   })
 
-  test_that ("hyperSpec objects", {
-    expect_true (chk.hy (vanderMonde (flu, 0)))
-    expect_true (validObject (vanderMonde (flu, 0)))
+  test_that("hyperSpec objects", {
+    expect_true(chk.hy(vanderMonde(flu, 0)))
+    expect_true(validObject(vanderMonde(flu, 0)))
 
-    tmp <- vanderMonde (paracetamol, 3, normalize.wl = I)
-    dimnames (tmp$spc) <- NULL
-    expect_equal (tmp [[]], t (vanderMonde (wl (paracetamol), 3)))
+    tmp <- vanderMonde(paracetamol, 3, normalize.wl = I)
+    dimnames(tmp$spc) <- NULL
+    expect_equal(tmp [[]], t(vanderMonde(wl(paracetamol), 3)))
 
-    tmp <- vanderMonde (paracetamol, 3, normalize.wl = normalize01)     
-    dimnames (tmp$spc) <- NULL
-    expect_equal (tmp[[]], t (vanderMonde (normalize01 (wl (paracetamol)), 3)))
+    tmp <- vanderMonde(paracetamol, 3, normalize.wl = normalize01)
+    dimnames(tmp$spc) <- NULL
+    expect_equal(tmp[[]], t(vanderMonde(normalize01(wl(paracetamol)), 3)))
   })
 }
-
-
-

@@ -1,10 +1,10 @@
 
-.subset <- function (x, ...){
-  validObject (x)
-  x@data <- subset (x@data, ...)
-  validObject (x)
-  
-	x
+.subset <- function(x, ...) {
+  validObject(x)
+  x@data <- subset(x@data, ...)
+  validObject(x)
+
+  x
 }
 
 
@@ -19,5 +19,5 @@
 ##' @return hyperSpec object containing the respective subset of spectra.
 ##' @author Claudia Beleites
 ##' @seealso \code{\link[base]{subset}}
-##' @export 
-setMethod ("subset", signature = signature (x = "hyperSpec"), .subset)
+##' @export
+setMethod("subset", signature = signature(x = "hyperSpec"), .subset)

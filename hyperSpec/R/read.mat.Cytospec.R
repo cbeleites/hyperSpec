@@ -19,47 +19,49 @@
 ##' @seealso \code{R.matlab::readMat}
 ##' @export
 ##' @keywords IO file
-read.mat.Cytospec <- function (file, keys2data = FALSE, blocks = TRUE) {
-  if (! requireNamespace ("R.matlab"))
-      stop ("package 'R.matlab' needed.")
+read.mat.Cytospec <- function(file, keys2data = FALSE, blocks = TRUE) {
+  if (!requireNamespace("R.matlab")) {
+    stop("package 'R.matlab' needed.")
+  }
 
   tmp <- R.matlab::readMat(file)
 
   ## read spectra matrix
   spc <- tmp$C
-  d <- dim (spc)
+  d <- dim(spc)
 
   ## get wavelength information
-  fileinfo<-(tmp$Info[[1]])
-  lwn <- as.numeric (fileinfo [grep ("LWN", fileinfo) - 1])
-  hwn <- as.numeric (fileinfo [grep ("VWN", fileinfo) - 1])
-  wn <- seq (lwn, hwn, length.out = dim (spc)[3])
+  fileinfo <- (tmp$Info[[1]])
+  lwn <- as.numeric(fileinfo [grep("LWN", fileinfo) - 1])
+  hwn <- as.numeric(fileinfo [grep("VWN", fileinfo) - 1])
+  wn <- seq(lwn, hwn, length.out = dim(spc)[3])
 
   ## x + y coordinates
-  x <- rep (1 : d [1], d [2])
-  y <- rep (1 : d [2], each = d [1])
+  x <- rep(1:d [1], d [2])
+  y <- rep(1:d [2], each = d [1])
 
-  extra.data <- data.frame (x = x, y = y)
+  extra.data <- data.frame(x = x, y = y)
 
   nblocks <- d [4]
-  if (is.na (nblocks)) { # only one block => 3d array
+  if (is.na(nblocks)) { # only one block => 3d array
     nblocks <- 1
-    dim (spc) <- c (dim (spc), 1L)
+    dim(spc) <- c(dim(spc), 1L)
   }
 
-  blocks <- seq (nblocks) [blocks]
+  blocks <- seq(nblocks) [blocks]
 
-  if (any (is.na (blocks))) {
-    warning ("Dropping requests to unavailable blocks.")
-    blocks <- blocks [! is.na (blocks)]
+  if (any(is.na(blocks))) {
+    warning("Dropping requests to unavailable blocks.")
+    blocks <- blocks [!is.na(blocks)]
   }
 
-  if (length (blocks) == 1L) {
-    result <- .block2hyperSpec (spc, extra.data, wn, blocks, file)
+  if (length(blocks) == 1L) {
+    result <- .block2hyperSpec(spc, extra.data, wn, blocks, file)
   } else {
-    result <- list ()
-    for (b in blocks)
-        result [[b]] <- .block2hyperSpec (spc, extra.data, wn, b, file)
+    result <- list()
+    for (b in blocks) {
+      result [[b]] <- .block2hyperSpec(spc, extra.data, wn, b, file)
+    }
   }
 
   ## consistent file import behaviour across import functions
@@ -68,16 +70,16 @@ read.mat.Cytospec <- function (file, keys2data = FALSE, blocks = TRUE) {
   result
 }
 
-.block2hyperSpec <- function (spc, df, wn, block, file) {
-  spc <- spc [,,, block]
+.block2hyperSpec <- function(spc, df, wn, block, file) {
+  spc <- spc [, , , block]
 
-  d <- dim (spc)
-  dim (spc) <- c (d [1] * d[2], d [3])
+  d <- dim(spc)
+  dim(spc) <- c(d [1] * d[2], d [3])
 
   df$block <- block
 
   ## consistent file import behaviour across import functions
-  .fileio.optional (new ("hyperSpec", spc = spc, wavelength = wn, data = df),
-                    filename = file)
+  .fileio.optional(new("hyperSpec", spc = spc, wavelength = wn, data = df),
+    filename = file
+  )
 }
-
