@@ -60,3 +60,4 @@ Only 'new' spc files (1996 file format) with LSB word order are supported.`
    ***Typical error:*** `unable to find required package 'roxygen_devtest'`
 
    ***Solution:*** In order to avoid it update roxygen2 (version 6.0.1 works) or downgrade to version 5.0.1: run in **R** `devtools::install_version(package = 'roxygen2', version = '5.0.1')`.
+
