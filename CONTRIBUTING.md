@@ -71,4 +71,8 @@ Commit often, try to make small atomic commits. An atomic commit addresses only 
 * Reference issues and pull requests liberally after the first line
 
 
+## Versioning
+
+The project adheres to the semantic versioning guidelines, as outlined at https://semver.org/.
+
 Thanks! :heart:
