@@ -10,10 +10,10 @@ clean:
 ## bootstrap target does the required processing immediately after cloning, clean, or
 ## if the installed version of hyperSpec is too old for building the vignettes
 
-bootstrap: installdeps bootstrapI chondro flu laser pkg-data | fileio-tests
+bootstrap: installdeps pkg-data bootstrapI chondro flu laser  | fileio-tests
 	@R CMD build --no-build-vignettes hyperSpec/
 	@R CMD INSTALL hyperSpec_*-$(DATE).tar.gz
-	$(MAKE) -C hyperspec/vignettes -f Makefile-local
+	$(MAKE) -C hyperSpec/vignettes -f Makefile-local
 
 bootstrapI: roxygenize
 	@R CMD build --no-build-vignettes hyperSpec/
@@ -97,7 +97,7 @@ flu:
 
 hyperspec:
 	$(MAKE) -C Vignettes/hyperspec
-	$(MAKE) -C hyperSpec/vignettes -f Makefile-local hyperspec.Rnw
+	$(MAKE) -C hyperSpec/vignettes -f Makefile-local all
 
 # laser ............................................................................................
 
