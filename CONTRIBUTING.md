@@ -39,7 +39,7 @@ Instead, for any new feature or bugfix, please create a separate supporting bran
 * `bugfix/###-<bugfix_name>` for bugfixes
 * `release/x.y.z` for release preparation, where `x.y.z.` is the version to be released.
 
-It is recommended to use the `git flow` tool to streamline the process (see [Cheatsheet for git flow](https://danielkummer.github.io/git-flow-cheatsheet/)). However, do not call `git flow xxx finish` as it avoids the code review - [finish your branch by opening a pull request instead](https://softwareengineering.stackexchange.com/a/189062/302312).
+It is recommended to use the `git flow` tool to streamline the process (see [Cheatsheet for git flow](https://danielkummer.github.io/git-flow-cheatsheet/)). However, do not call `git flow xxx finish` as it makes a merge *without* the code review - instead, [finish your branch by opening a pull request](https://softwareengineering.stackexchange.com/a/189062/302312).
 
 #### Wait, What if I'm not Allowed to Create a Branch in the Main Repository?
 
@@ -50,6 +50,10 @@ After a successfull code review the pull request gets accepted, and your changes
 ### Pull Requests
 
 Open a pull request via GitHub interface to let others see your work and review it. It is a collaborative tool, so we encourage you to open a ['draft pull request'](https://github.blog/2019-02-14-introducing-draft-pull-requests/) as soon as you start working on your part. This provides a place for the community to discuss your work and correct it as you go. Once your part is completed, change the status to “Ready for review”.
+
+    The project maintainer may want to merge your pull request when your work is usable, even before it is 100% complete. In such a case, the brunch must be deleted and a new one created off the `develop`. You can use the same name for it to indicate that this is a continuation. It will be merged, as usual, via a new pull request. This may seem to be an overhead at first glance, but it leads to a faster integration and makes the the pull requests smaller and less overwhelming.
+
+The merged support branches [should be deleted - they're clutter](https://ardalis.com/why-delete-old-git-branches). If you want to keep their name for reference, just apply a `git tag` after the merge. Never reuse merged branches, [it can lead to problems](https://stackoverflow.com/a/29319178).
 
 
 ### Git Commits
