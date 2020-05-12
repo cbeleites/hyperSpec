@@ -4,7 +4,8 @@
 The following is a set of guidelines for contributing to the `R` package `hyperSpec`.
 
 ## Code Licensing
-You understand that your work becomes the part of the `hyperSpec` project and is going to be licensed under the GNU GPL v3.
+You understand that your work becomes the part of the `hyperSpec` project and is going to be licensed under the [GNU GPL v3](https://github.com/cbeleites/hyperSpec/blob/master/LICENSE).
+
 
 ## Reporting Bugs and Submitting Suggestions
 
