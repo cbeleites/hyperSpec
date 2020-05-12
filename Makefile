@@ -3,31 +3,17 @@ all: roxygenize pkg-data pkg-doc vignettes pkg-vignettes | fileio-tests
 DATE = $(shell date +%Y%m%d)
 
 clean:
-	@rm -f *~ .*~ \#*\#
-	@rm -f hyperSpec_*.tar.gz
-	@rm -rf hyperSpec.Rcheck
-	$(MAKE) -C Vignettes/baseline     clean
-	$(MAKE) -C Vignettes/chondro      clean
-	$(MAKE) -C Vignettes/fileio       clean
-	$(MAKE) -C Vignettes/flu          clean
-	$(MAKE) -C Vignettes/hyperspec clean
-	$(MAKE) -C Vignettes/laser        clean
-	$(MAKE) -C Vignettes/plotting     clean
-	$(MAKE) -C hyperSpec/inst/doc     clean
-	$(MAKE) -C hyperSpec/vignettes -f Makefile-local clean
-
-superclean:
-	@git clean -q -f -x -d
+	@git clean -q -f -x -d  --exclude .Rproj.user/ --exclude hyperSpec.Rproj
 
 # TODO: add dependency `clean`
 
-## bootstrap target does the required processing immediately after cloning, superclean, or
+## bootstrap target does the required processing immediately after cloning, clean, or
 ## if the installed version of hyperSpec is too old for building the vignettes
 
-bootstrap: installdeps bootstrapI chondro flu laser pkg-data | fileio-tests
+bootstrap: installdeps pkg-data bootstrapI chondro flu laser  | fileio-tests
 	@R CMD build --no-build-vignettes hyperSpec/
 	@R CMD INSTALL hyperSpec_*-$(DATE).tar.gz
-	$(MAKE) -C hyperspec/vignettes -f Makefile-local
+	$(MAKE) -C hyperSpec/vignettes -f Makefile-local
 
 bootstrapI: roxygenize
 	@R CMD build --no-build-vignettes hyperSpec/
@@ -111,7 +97,7 @@ flu:
 
 hyperspec:
 	$(MAKE) -C Vignettes/hyperspec
-	$(MAKE) -C hyperSpec/vignettes -f Makefile-local hyperspec.Rnw
+	$(MAKE) -C hyperSpec/vignettes -f Makefile-local all
 
 # laser ............................................................................................
 
