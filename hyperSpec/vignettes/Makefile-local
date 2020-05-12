@@ -50,6 +50,9 @@ rawdata:
 
 # hyperspec vignette (aka introduction)
 
+../../Vignettes/hyperspec/strukturhyperspec.pdf:
+	@$(MAKE) -C ../../Vignettes/hyperspec strukturhyperspec.pdf
+
 hyperspec.Rnw: ../../Vignettes/hyperspec/hyperspec.Rnw ../../Vignettes/hyperspec/strukturhyperspec.pdf \
                   ../../Vignettes/hyperspec/functions.RData ../../Vignettes/hyperspec/hyperspec.bib
 	cp -av $^ ./
