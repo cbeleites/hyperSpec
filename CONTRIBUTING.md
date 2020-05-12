@@ -13,11 +13,14 @@ You understand that your work becomes the part of the `hyperSpec` project and is
 * If you're unable to find an open issue addressing the problem, open a new one. Be sure to include a title and clear description, as much relevant information as possible, and a code sample or an executable test case demonstrating the expected behavior that is not occurring.
 Refer to the [Bug Reporting in R article](https://www.r-project.org/bugs.html) for guidance.
 
-## Code Styleguide
-TO BE WRITTEN
 
-## Documentation Styleguide
-TO BE WRITTEN
+## Code and Documentation Styleguide
+As agreed upon in #96, this project adheres to the [Tidyverse styleguide](https://style.tidyverse.org/).
+
+This guide applies both to the code and the [`roxygen2` documentation](https://style.tidyverse.org/documentation.html).
+
+Use package [styler](http://styler.r-lib.org/) with RStudio add-in to easily re-style your code to comply with the guidelines.
+
 
 ## Working With Git
 
