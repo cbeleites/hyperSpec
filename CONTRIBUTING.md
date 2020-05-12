@@ -25,7 +25,7 @@ TO BE WRITTEN
 ### Branches
 This project follows the [`git flow` branching model](https://nvie.com/posts/a-successful-git-branching-model/).
 
-![](https://nvie.com/img/git-model@2x.png | width=400)
+<img src='https://nvie.com/img/git-model@2x.png' width='400px'>
 
 #### Briefly
 
