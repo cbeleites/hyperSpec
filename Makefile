@@ -53,7 +53,7 @@ roxygenize: DESCRIPTION hyperSpec/R/*.R
 	@echo "Roxygenize"
 	@Rscript --vanilla -e "library (methods, quietly=TRUE, verbose = FALSE); library (devtools, quietly=TRUE, verbose = FALSE); document ('hyperSpec')"
 
-DESCRIPTION: $(shell find hyperSpec -maxdepth 1 -daystart -not -ctime 0 -name "DESCRIPTION") #only if not modified today
+DESCRIPTION: $(shell find hyperSpec -maxdepth 1 -not -ctime 1 -name "DESCRIPTION") # only if not modified in the past 24 hrs
 	@echo update DESCRIPTION
 	@sed "s/\(^Version: .*-\)\(20\)\?[0-9][0-9][0-1][0-9][0-3][0-9]\(.*\)$$/\1$(DATE)\3/" hyperSpec/DESCRIPTION > .DESCRIPTION
 	@sed "s/\(^Date: .*\)20[0-9][0-9]-[0-1][0-9]-[0-3][0-9]\(.*\)$$/\1`date +%F`\2/" .DESCRIPTION > hyperSpec/DESCRIPTION
