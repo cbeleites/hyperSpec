@@ -18,9 +18,15 @@ open `R` and use command `install.packages("hyperSpec")`. This installs the late
 ### Preparations
 1. You will need [git](https://git-scm.com/), [git-lfs](https://packagecloud.io/github/git-lfs/install) and [GNU make (>= **3.80**)](https://www.gnu.org/software/make/)
 
-   **NOTE:** Windows users need to download and install Rtools(see this [instructions](https://cran.r-project.org/bin/windows/Rtools/)). ***`GNU make` is included to Rtools, so you don't need to install it.*** See Troubleshooting below to check version of `GNU make` and update it if needed. 
-1. Clone or download [hyperSpec source code from github](https://github.com/cbeleites/hyperSpec)  
+   **NOTE:** Windows users need to download and install Rtools(see this [instructions](https://cran.r-project.org/bin/windows/Rtools/)). 
+   ***`GNU make` is included to Rtools, so you don't need to install it.*** 
+   See Troubleshooting below to check version of `GNU make` and update it if needed. 
+   
+1. Clone [hyperSpec source code from github](https://github.com/cbeleites/hyperSpec)  
    `git clone git@github.com:cbeleites/hyperSpec.git`
+
+   **NOTE:** the hyperSpec repository uses `git lfs` for more efficient storage and handling of our collection of spectra files in various formats. 
+   *Downloading* a zip of the repository will leave you with so-called [pointer files]() only. These are not sufficient to build **hyperSpec**. 
 
 ### Building *hyperSpec*
 1. If you build hyperSpec for the first time, or run into trouble as the installed version on your computer is too old, run `make bootstrap`
