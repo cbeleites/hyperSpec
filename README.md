@@ -25,7 +25,7 @@ open `R` and use command `install.packages("hyperSpec")`. This installs the late
 1. Clone [hyperSpec source code from github](https://github.com/cbeleites/hyperSpec)  
    `git clone git@github.com:cbeleites/hyperSpec.git`
 
-   **NOTE:** the hyperSpec repository uses `git lfs` for a more efficient storage and handling of our collection of spectra files in various formats. 
+   **NOTE:** the hyperSpec repository uses `git lfs` for a more efficient storage and handling of our collection of spectra files in various formats. Please ensure that you have `git lfs` installed.
    *Downloading* a zip archive of the repository will leave you with so-called [pointer files](https://github.com/git-lfs/git-lfs/blob/master/docs/spec.md#the-pointer) only. These are *not* sufficient to build **hyperSpec**. 
 
 ### Building *hyperSpec*
