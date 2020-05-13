@@ -67,6 +67,6 @@ Commit often, try to make small atomic commits. An atomic commit addresses only 
 
 ## Versioning
 
-The project adheres to the semantic versioning guidelines, as outlined at https://semver.org/. THIS IS NOT WHAT THE Makefile  DOES; NEED TO RESOLVE.
+The project adheres to the semantic versioning guidelines, as outlined at https://semver.org/ (Work in progress, see #123).
 
 Thanks! :heart:
