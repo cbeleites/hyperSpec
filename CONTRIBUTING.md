@@ -39,7 +39,7 @@ You *should not* directly contribute to `develop`, unless the change is trivial 
 
 It is recommended to use the `git flow` tool to streamline the process (see [Cheatsheet for git flow](https://danielkummer.github.io/git-flow-cheatsheet/)). However, do not call `git flow xxx finish` as it makes a merge *without* the code review - instead, [finish your branch by opening a pull request](https://softwareengineering.stackexchange.com/a/189062/302312).
 
-Please make sure that the package can be built and and that all unit tests are passed before merging back into `develop`.
+Please make sure that the package can be built and and that all checks and unit tests are passed before merging back into `develop`. The shortcut in RStudio for that is `Ctrl`+`Shift`+`E`.
 
 #### Wait, What if I'm not Allowed to Create a Branch in the Main Repository?
 
