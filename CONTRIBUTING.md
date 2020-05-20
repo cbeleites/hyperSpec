@@ -41,6 +41,8 @@ It is recommended to use the `git flow` tool to streamline the process (see [Che
 
 Please make sure that the package can be built and and that all checks and unit tests are passed before merging back into `develop`. The shortcut in RStudio for that is `Ctrl`+`Shift`+`E`.
 
+If you are making a significant change, please also add an entry to `NEWS.md`.
+
 #### Wait, What if I'm not Allowed to Create a Branch in the Main Repository?
 
 If you are not a member of the project then you cannot create a branch in the main repository. But this is not a problem! In this case, you simply fork the main repository, make the changes starting off the `develop` branch, and merge it back into the `develop` branch of the main repository via a pull request.
