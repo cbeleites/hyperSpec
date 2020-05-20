@@ -2207,7 +2207,8 @@ make.fn.table()
 
 ```{r}
 # TODO: a better version of this table could be created if `pkgdown` website 
-#       (documentation) is created
+#       (documentation) is used. The index/list of functions could be created
+#       automatically
 ```
 
 : **(\#tab:functions)** Overview of the functions provided by package **_hyperSpec_**
