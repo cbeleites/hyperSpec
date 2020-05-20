@@ -640,7 +640,8 @@ if (require("akima")) {
     col = DNAcols
   )
 } else {
-  plot(NULL)
+  plot(NULL, xlim = c(0, 1), ylim = c(0, 1))
+  text(0.5, 0.5, 'Package "akima" is required to create this plot')
 }
 ```
 \begin{figure}[tbh]
