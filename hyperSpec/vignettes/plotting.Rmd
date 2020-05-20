@@ -77,8 +77,36 @@ make_bib(
 
 # Suggested Packages and Setup {-}
 
-> **Reproducing the examples in this vignette.**  
-> All spectra used in this manual are installed automatically with package **hyperSpec**.
+<!-- ======================================================================= -->
+```{block, type="note-t", echo=TRUE}
+**Translator's notes** `plotting-1`
+
+
+1. All reproducible code must be presented in the vignette (and it ir possible to do with R Markdown). And the sentences like:
+
+    > Note that some definitions are executed in `vignette.defs`,
+
+    must be avoided. As new users might think "What is "vignette.defs"? I'm just begginer R user?. There are no explanations on it!"
+
+```
+
+***
+
+<!-- ======================================================================= -->
+
+
+
+
+
+```{block, type="note", echo=TRUE}
+**Reproducing the examples in this vignette.**  
+
+All spectra used in this manual are installed automatically with package **hyperSpec**.
+
+```
+
+
+
 
 <!-- Note that some definitions are executed in `vignette.defs`, and others invisibly at the beginning of the file to have the code as similar as possible to interactive sessions. -->
 
@@ -182,10 +210,15 @@ Package **hyperSpec** comes with 6 major predefined plotting functions:
    (`plotvoronoi()`{.r} is a package **lattice** function) 
   
 
-> **NOTE.**
-> Functions `plotmap()`{.r}, `plotvoronoi()`{.r}, and `levelplot()`{.r} are package **lattice** functions.
-> Therefore, in loops, functions, R Markdown chunks, etc. lattice objects need to be printed explicitly by, e.g., `print(plotmap(object))`{.r} 
-> ([R FAQ: Why do lattice/trellis graphics not work?](http://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-do-lattice_002ftrellis-graphics-not-work_003f)).
+
+```{block, type="note", echo=TRUE}
+**NOTE.**
+
+Functions `plotmap()`{.r}, `plotvoronoi()`{.r}, and `levelplot()`{.r} are package **lattice** functions.
+Therefore, in loops, functions, R Markdown chunks, etc. lattice objects need to be printed explicitly by, e.g., `print(plotmap(object))`{.r} 
+([R FAQ: Why do lattice/trellis graphics not work?](http://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-do-lattice_002ftrellis-graphics-not-work_003f)).
+```
+
 
 
 
@@ -226,6 +259,7 @@ CAPTION = "Calibration plot: an intensity over concentration.  "
 ```{r plotflu, width=4, height=2.6, fig.cap=CAPTION}
 plotc(flu)
 ```
+
 > The following warning is expected: `Intensity at first wavelengh only is used.`
 
 
@@ -614,18 +648,25 @@ plotspc(cluster.means,
 ### Stacking Groups of Spectra
 
 
-```{r FIXME-2}
-# FIXME: grammatical structure of these sentences makes them difficult to understand:
-# 
-# The spectra to be stacked can be grouped: `stacked = "factor"`{.r}. 
-# Alternatively, the name of an extra data column can be used for grouping (Fig. \@ref(fig:stacked2)).
+
+<!-- ======================================================================= -->
+```{block2, type="note-t", echo=TRUE}
+**Translator's notes** `plotting-2`
 
 
-# Would this alternative formulation reflect the idea of the sub-chapter well enough:
+1. `FIXME:`{.r} grammatical structure of these sentences makes them difficult to understand:
 
-# Argument `stacked = "factor"`{.r} can be used to stack groups of spectra (Fig. \@ref(fig:stacked2)).
-# Here `"factor"`{.r} is a column name of factor variable in extra data. 
+    > The spectra to be stacked can be grouped: `stacked = "factor"`{.r}.
+    > Alternatively, the name of an extra data column can be used for grouping (Fig. \@ref(fig:stacked2)).
+
+    Would this alternative formulation reflect the idea of the sub-chapter well enough:
+
+    > Argument `stacked = "factor"`{.r} can be used to stack groups of spectra (Fig. \@ref(fig:stacked2)).
+    > Here `"factor"`{.r} is a column name of factor variable in extra data.
+
 ```
+<!-- ======================================================================= -->
+
 
 
 The spectra to be stacked can be grouped: `stacked = "factor"`{.r}. 
@@ -1303,7 +1344,19 @@ knitr::include_graphics("man/plotting--fig-3D-01.png")
 ```
 
 
-```{r rgl-do, echo=FALSE, results='hide', eval=FALSE}
+
+<!-- ======================================================================= -->
+```{block, type="note-t", echo=TRUE}
+**Translator's notes** `plotting-3`
+
+
+1. `FIXME:`{.r} Is the block below needed?
+```
+<!-- ======================================================================= -->
+
+
+
+```{r rgl-do, echo=TRUE, results='hide', eval=FALSE}
 # FIXME: is this code block still needed?
 
 if (require(rgl)) {
@@ -1410,6 +1463,17 @@ qplotspc(paracetamol / 1e4, wl.range = c(min ~ 1800, 2800 ~ max)) +
 ```
 
 
+<!-- ======================================================================= -->
+```{block, type="note-t", echo=TRUE}
+**Translator's notes** `plotting-4`
+
+
+1. `FIXME:`{.r} Is the block below needed?
+```
+<!-- ======================================================================= -->
+
+
+
 ```{r ggplot2-do, echo=FALSE, results='hide', eval=FALSE}
 
 # FIXME: is this code block needed at all?
@@ -1500,19 +1564,26 @@ Therefore, in loops, functions, Sweave chunks, etc. the lattice object needs to 
 ([R FAQ: Why do lattice/trellis graphics not work?](http://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-do-lattice_002ftrellis-graphics-not-work_003f)).
 The same holds for package **ggplot2** graphics.
 
-```{r FIXME-4}
-# FIXME: in my opinion, "vignettes.defs" shouldn't be mentioned at all
+
+
+<!-- ======================================================================= -->
+```{block, type="note-t", echo=TRUE}
+**Translator's notes** `plotting-5`
+
+
+1. `FIXME:`{.r} in my opinion, "vignettes.defs" shouldn't be mentioned at all
 ```
+<!-- ======================================================================= -->
+
+
+
 For suggestions on how the lattice functions can be redefined so that the result is printed without external print command, see the file `vignettes.defs`.
 
 
 # Session Info {-}
 
-```{r r-session, echo=FALSE, paged.print=FALSE}
-sessioninfo::session_info()
-
-# print(as.matrix(Sys.info()))
-# <<cleanup>>
+```{r session-info-hyperspec, echo=FALSE, paged.print=FALSE}
+sessioninfo::session_info("hyperSpec")
 ```
 
 # References {-}
