@@ -70,21 +70,51 @@ make_bib(
 ```
 
 
+<!-- ======================================================================= -->
+```{block, type="note-t", echo=TRUE}
+**Translator's notes** `hyperspec-1`
+
+
+1. I suggest keeping tags `\mFun{}` and `\index{}`.
+They are not useful for HTML format yet, but in the future we can come up with useful ideas how to create an index of functions.
+But they are ignored by HTML rendering engine (as they are LaTeX tags) and removed from the output.
+ 
+2. I general, it seems that this tutorial could be split into several smaller tutorials. I think, there should be one additional short tutorial "Quick-start".
+
+3. Some ideas should be more clearly explained for beginner-level users without assuming that they know technical details.
+```
+
+<br><br><br><br><br>
+
+***
+
+<!-- ======================================================================= -->
+
+
+
+
+
 
 <!-- \SweaveOpts{concordance=TRUE} -->
 <!-- \title{package **hyperSpec** Introduction } -->
 
 
-> **Reproducing the Examples in this Vignette**  
-> All spectra used in this manual are installed automatically with package **hyperSpec**.
-> 
+```{block, type="note", echo=TRUE}
+**Reproducing the Examples in this Vignette**  
+
+All spectra used in this manual are installed automatically with package **hyperSpec**.
+```
+
+ 
 
 <!-- > Note that some definitions are executed in `vignette.defs`. -->
 
-
-> **Reporting Issues and Suggesting Enhancements**
-> `bug.report(package = "hyperSpec")`{.r} will take you to package **hyperSpec**'s issue tracking page at
+```{block, type="greenbox", echo=TRUE}
+**Reporting Issues and Suggesting Enhancements**
+ 
+`bug.report(package = "hyperSpec")`{.r} will take you to package **hyperSpec**'s issue tracking page at
 <https://github.com/cbeleites/hyperSpec/issues> where you can report issues you encounter, suggest features and comment on issues or suggested features.
+```
 
 
 <!-- \tableofcontents -->
@@ -173,13 +203,21 @@ This document describes how to accomplish typical tasks in the analysis of spect
 It does not give a complete reference on particular functions. 
 It is therefore recommended to look up the methods in **R**'s help system using `?command`{.r}.
 
-```{r}
-# FIXME: Is Appendix supported by Rmd? 
-```
-A complete list of the functions available in package **hyperSpec** is given in
+A complete list of the functions that are available in package **hyperSpec** is given in
 appendix \@ref(tab:functions).
 
+
+<!-- ======================================================================= -->
+```{block, type="note-t", echo=TRUE}
+**Translator's notes** `hyperspec-2`
+
+1. `# FIXME`{.r} Is Appendix supported in single Rmd files? I'm not sure. 
+```
+<!-- ======================================================================= -->
+
+
 ## Notation and Terms
+
 Throughout the documentation of the package, the following terms are used:
 
 
@@ -232,9 +270,16 @@ However, this does not mean that I won't do so: I can tell quickly if a pull req
 \index{Generic Functions} *Generic Functions* are functions that apply to a wide range of data types or classes, e.g., `plot()`{.r}, `print()`{.r}, mathematical operators, etc. These functions can be implemented in a specialized way by each class.  
 Package **hyperSpec** implements with a variety of such functions, see appendix \@ref(tab:functions).
 
-```{r}
-# FIXME:  Appendix is mentioned. Possible issue.
+<!-- ======================================================================= -->
+```{block, type="note-t", echo=TRUE}
+**Translator's notes** `hyperspec-3`
+
+1. `# FIXME`{.r} Appendix is mentioned (above). Possible issue. 
 ```
+<!-- ======================================================================= -->
+
+
+
 
 ## Functionality Can be Extended at Runtime
 
@@ -363,9 +408,17 @@ Four slots contain the parts of the object:
 -  **`@data`{.r}**       a `data.frame`{.r} with the spectra and all further information belonging to the spectra.
 -  **`@label`{.r}**      a list with appropriate labels (particularly for axis annotations).
 
-```{r}
-# FIXME: "Four slots contain the parts..." only 3 slots are mentioned in the list!
+
+<!-- ======================================================================= -->
+```{block, type="note-t", echo=TRUE}
+**Translator's notes** `hyperspec-4`
+
+1. `# FIXME`{.r} "Four slots contain the parts..." only 3 slots are mentioned in the list!
+And, as far as I know, the `@log`{.r} slot will be removed in the new version.
 ```
+<!-- ======================================================================= -->
+
+
 
 <!-- --- -->
 
@@ -404,18 +457,32 @@ To get familiar with expressions for axis annotation, see `?plotmath`{.r} and `d
 
 # Functions Provided by **hyperSpec** {#sec:funct-prov-phy}
 
-```{r}
-# FIXME: "appendix" is mentioned. Possible issue.
+
+<!-- ======================================================================= -->
+```{block, type="note-t", echo=TRUE}
+**Translator's notes** `hyperspec-5`
+
+1. "appendix" is mentioned. Possible issue.
 ```
+<!-- ======================================================================= -->
+
 Table \@ref(tab:functions) in the appendix gives an overview of the functions implemented by package **hyperSpec**.
 
 
 
 # Obtaining Basic Information about `hyperSpec`{.r} Objects {#info-hyperspec-objs}
 
-```{r}
-# FIXME: Output of print() and summary() is identical. Is it expected?
+
+<!-- ======================================================================= -->
+```{block, type="note-t", echo=TRUE}
+**Translator's notes** `hyperspec-6`
+
+1. The output of print() and summary() is identical. Is it expected?
+I think, the `print()`{.r} method should give less details than it does now.
 ```
+<!-- ======================================================================= -->
+
+
 
 \mFun{print, show, summary}
 As usual, the `print()`{.r} and `show()`{.r} methods display information about the object, and `summary()`{.r} yields some additional details about the data handling done so far:
@@ -536,11 +603,18 @@ pred.sim <- predict(lda)
 ```
 
 
-```{r}
-# FIXME: 
-# pred.chondro <- predict(lda, newdata = chondro)
-# #> Warning in predict.lda(lda, chondro): variable names in 'newdata' do not match those in 'object'
+<!-- ======================================================================= -->
+```{block, type="note-t", echo=TRUE}
+**Translator's notes** `hyperspec-7`
+
+1. `# FIXME: `{.r}
+
+    # pred.chondro <- predict(lda, newdata = chondro)
+    # #> Warning in predict.lda(lda, chondro): variable names in 'newdata' do not match those in 'object'
 ```
+<!-- ======================================================================= -->
+
+
 
 ```{r include=FALSE}
 CAPTION <- "LDA of simulated spectra. Crosses mark real spectra. "
@@ -754,9 +828,9 @@ wl2i(chondro, 1000:1010)
 ```{r wl2ivec4}
 wl2i(chondro, 1000 ~ 1010)
 ```
--  If the object's wavelength axis is not ordered, the formula approach will give weird
-  results. In that (probably rare) case, use `orderwl()`{.r} first to obtain an object with
-  ordered wavelength axis.
+
+- If the object's wavelength axis is not ordered, the formula approach will give weird results. 
+  In that (probably rare) case, use `orderwl()`{.r} first to obtain an object with ordered wavelength axis.
 
 Values *start* and *end* may contain the special variables `min`{.r} and `max`{.r} that
 correspond to the lowest and highest wavelengths of the object:
@@ -841,8 +915,7 @@ CAPTION <- "Spectra of `paracetamol` with range from 1750 to 2800 cm^-1^ removed
 plot(paracetamol[, , c(min ~ 1750, 2800 ~ max)])
 ```
 
-(It is possible to produce a plot of this data where the cut range is actually omitted and the
-wavelength axis is optionally cut in order to save space.
+(It is possible to produce a plot of this data where the cut range is actually omitted and the wavelength axis is optionally cut in order to save space.
 For details see the "Plotting" vignette).
 
 
@@ -996,26 +1069,27 @@ dim(rbind(flu, flu))
 
 There is also a more general function, `bind()`{.r}, taking the direction (`"r"`{.r} or `"c"`{.r}) as first argument followed by the objects to bind either in separate arguments or in a list.
 
-```{r}
-# FIXME: the sentence "must have the same rows and columns, respectively." seems 
-#        to be confusing and should be fixed.
-#        
-# Maybe: "the same column names" or "the same number of columns (for 
-#        `rbind()`{.r}) and the same number of rows (for `cbind()`{.r})"?
+
+<!-- ======================================================================= -->
+```{block, type="note-t", echo=TRUE}
+**Translator's notes** `hyperspec-8`
+
+1. `# FIXME: `{.r}
+the sentence `"must have the same rows and columns, respectively."` seems to be 
+confusing and should be fixed.
+
+**Maybe:** "the same column names" or "the same number of columns (for
+       `rbind()`{.r}) and the same number of rows (for `cbind()`{.r})"?
 ```
+<!-- ======================================================================= -->
+
 
 As usual for `rbind()`{.r} and `cbind()`{.r}, the objects that should be bound together must
 have the same rows and columns, respectively.
 
 \mFun{`collapse()`{.r}}
-For binding row-wise (`rbind()`{.r}), `collapse()`{.r} is more flexible but also faster.
-```{r}
-# FIXME: I think, "but" is an incorrect preposition:
-#        "is more flexible BUT also faster". 
-# 
-# Maybe: "not only is more flexible but also faster" or
-#        "is more flexible as well as faster"
-```
+For binding row-wise (`rbind()`{.r}), `collapse()`{.r} is more flexible and faster as well.
+
 
 ## Binding Objects that do not Share the Same Extra Data and/or Wavelength Axis {#sec:collapse}
 
@@ -1333,6 +1407,15 @@ As just the very maximum is too coarse, we'll use the maximum of a square polyno
 #  TODO: use vanderMonde
 ```
 
+<!-- ======================================================================= -->
+```{block, type="note-t", echo=TRUE}
+**Translator's notes** `hyperspec-9`
+
+1. `# TODO: `{.r} use vanderMonde
+```
+<!-- ======================================================================= -->
+
+
 ```{r}
 find.max <- function(y, x) {
   pos <- which.max(y) + (-1:1)
@@ -1384,7 +1467,8 @@ This was expected, as the spectra are hardly or not oversampled, but are very si
 
 
 ```{r include=FALSE}
-CAPTION <- "The shifts used to disturb the chondrocyte data (original), and the remaining shift after correction with the two methods discussed here.  "
+CAPTION <- 
+  "The shifts used to disturb the chondrocyte data (original), and the remaining shift after correction with the two methods discussed here.  "
 ```
 
 ```{r fit-shift, fig.cap=CAPTION, fig.width=7}
@@ -1504,6 +1588,18 @@ plot(spc.NA.approx(spc), add = TRUE, col = "blue",
 ```{r}
 # TODO: ...coming soon...
 ```
+
+<!-- ======================================================================= -->
+```{block, type="note-t", echo=TRUE}
+**Translator's notes** `hyperspec-10`
+
+
+1. Empty chapter. What to do with it?
+ 
+```
+<!-- ======================================================================= -->
+
+
 
 ## Smoothing Interpolation
 
@@ -1820,7 +1916,7 @@ Be careful: **R**'s `log()`{.r} function calculates the *natural* logarithm if n
 The basic arithmetic operators work element-wise in **R**.
 Thus they all need either a scalar, or a matrix (or `hyperSpec`{.r} object) of the correct size.
 
-Matrix multiplication is done by `\%*%` \mFun{`\%*\%`}, again each of the operands may be a matrix or a `hyperSpec`{.r} object, and must have the correct dimensions.
+Matrix multiplication is done by `\%*%`\mFun{`\%*\%`}, again each of the operands may be a matrix or a `hyperSpec`{.r} object, and must have the correct dimensions.
 
 
 # Data Analysis 
@@ -1975,6 +2071,17 @@ library(ggplot2)
 ggplot(as.long.df(chondro[1]), aes(x = .wavelength, y = spc)) + geom_line()
 ```
 
+
+<!-- ======================================================================= -->
+```{block, type="note-t", echo=TRUE}
+**Translator's notes** `hyperspec-11`
+
+1. `# FIXME: `{.r} Is the chunk below still needed?
+```
+<!-- ======================================================================= -->
+
+
+
 ```{r ggplot-do, include=FALSE, eval=FALSE}
 
 # FIXME: is this chunk still needed?
@@ -2059,6 +2166,7 @@ CAPTION <- "The results of the cluster analysis: the the mean spectra.  "
 means <- aggregate(chondro, by = chondro$clusters, mean_pm_sd)
 plot(means, col = cluster.cols, stacked = ".aggregate", fill = ".aggregate")
 ```
+
 
 ## Factor columns in `hyperSpec`{.r} Objects: dropping factor levels that are not needed
 
@@ -2198,18 +2306,24 @@ make.fn.table <- function() {
 make.fn.table()
 ```
 
-```{r}
-# FIXME: The following functions are deprecated
-# 
-# `logbook`{.r}                        | logging the data treatment
-# `logentry`{.r}                       | make a logbook entry
-```
 
-```{r}
-# TODO: a better version of this table could be created if `pkgdown` website 
-#       (documentation) is used. The index/list of functions could be created
-#       automatically
+<!-- ======================================================================= -->
+```{block, type="note-t", echo=TRUE}
+**Translator's notes** `hyperspec-12`
+
+
+1. `# FIXME`{.r} The following functions are deprecated:
+     
+     `logbook`{.r}                        | logging the data treatment
+     `logentry`{.r}                       | make a logbook entry
+
+2. `# TODO`{.r}  A better version of the table could be created if `pkgdown` website 
+ (documentation) is used. The index/list of functions could be created automatically.
+ 
 ```
+<!-- ======================================================================= -->
+
+
 
 : **(\#tab:functions)** Overview of the functions provided by package **_hyperSpec_**
 
@@ -2321,27 +2435,14 @@ make.fn.table()
 `scan.zip.Renishaw`{.r}              | directly read zip packed ASCII files produced by Renishaw spectrometers
 `write.txt.long`{.r}                 | export as long-type ASCII file
 `write.txt.wide`{.r}                 | export as wide-type ASCII file
-<!-- \bottomrule -->
-<!-- \end{longtable} -->
-<!-- \end{small} -->
 
 
 # Session Info {-}
 
-```{r echo=FALSE}
-sessioninfo::session_info()
-# print (as.matrix(Sys.info()))
-# <<cleanup>>
-# for (f in Sys.glob ("fig/*.pdf"))
-#  compactPDF ('$@', qpdf = '', gs_quality = 'screen', gs_extras = '-dDownsampleColorImages=false')
+```{r session-info-hyperspec, echo=FALSE, paged.print=FALSE}
+sessioninfo::session_info("hyperSpec")
 ```
-
 
 
 # References {-}
 
-<!-- ```{r include=FALSE} -->
-<!-- # FIXME: Remove after manual translation ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-<!-- knitr::opts_chunk$set(eval = FALSE) -->
-<!-- # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-<!-- ``` -->
