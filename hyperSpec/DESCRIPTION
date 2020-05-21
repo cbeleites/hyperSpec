@@ -3,8 +3,8 @@ Encoding: UTF-8
 Type: Package
 Title: Work with Hyperspectral Data, i.e. Spectra + Meta Information (Spatial,
     Time, Concentration, ...)
-Version: 0.99-20200319
-Date: 2020-03-19
+Version: 0.99-20200521
+Date: 2020-05-21
 Maintainer: Claudia Beleites <Claudia.Beleites@chemometrix.gmbh>
 Authors@R: c(
     person("Claudia",   "Beleites",  role = c("aut","cre", "dtc"), email = "Claudia.Beleites@chemometrix.gmbh"),
@@ -180,4 +180,4 @@ Collate:
     'write.txt.wide.R'
     'y-pastenames.R'
     'zzz.R'
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.0
