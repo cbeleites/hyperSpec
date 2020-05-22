@@ -45,13 +45,13 @@
 
   pts_in_cell <- in_ellipse(xy[c("x", "y")],
                             center = c(10, 10),
-                            scale = c(6, 10), a = -pi/8)
+                            scale = c(6, 10), a = -pi / 8)
   xy$region[pts_in_cell] <- "cell"
 
 
   pts_in_nucleus <- in_ellipse(xy[c("x", "y")],
                                center = c(12.5, 8),
-                               scale = c(3, 4), a = pi/6)
+                               scale = c(3, 4), a = pi / 6)
   xy$region[pts_in_nucleus] <- "nucleus"
 
   xy$region <- as.factor(xy$region)
@@ -73,19 +73,19 @@
   ## 3. generate fake spectra
 
   # generate "spectra" and and fill the object with copies
-  tmp <- 5000*dnorm(wavelength, mean = 800, sd = 10)
-  spc[[spc$region == "matrix",,]] <- rep(tmp, each = sum(spc$region == "matrix"))
+  tmp <- 5000 * dnorm(wavelength, mean = 800, sd = 10)
+  spc[[spc$region == "matrix", , ]] <- rep(tmp, each = sum(spc$region == "matrix"))
 
-  tmp <- 7000*dnorm(wavelength, mean = 1200, sd = 15)
-  spc[[spc$region == "cell",,]] <- rep(tmp, each = sum(spc$region == "cell"))
+  tmp <- 7000 * dnorm(wavelength, mean = 1200, sd = 15)
+  spc[[spc$region == "cell", , ]] <- rep(tmp, each = sum(spc$region == "cell"))
 
-  tmp <- 3000*dnorm(wavelength, mean = 1500, sd =  5)
-  spc[[spc$region == "nucleus",,]] <- rep(tmp, each = sum(spc$region == "nucleus"))
+  tmp <- 3000 * dnorm(wavelength, mean = 1500, sd =  5)
+  spc[[spc$region == "nucleus", , ]] <- rep(tmp, each = sum(spc$region == "nucleus"))
 
   # add baselines
   terms <- vanderMonde(spc, order = 1)
   coefs <- matrix(runif(nrow(spc) * 2), ncol = 2)
-  coefs <- scale(coefs, center = FALSE, scale = c(1/200, 1/30))
+  coefs <- scale(coefs, center = FALSE, scale = c(1 / 200, 1 / 30))
   spc <- spc + coefs %*% terms[[]]
 
   # generate shot noise
