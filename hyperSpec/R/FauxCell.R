@@ -1,93 +1,4 @@
-#'
-#' Create Faux Cell Data Set for Testing & Demonstration
-#'
-#' This is a utility function to create a synthetic data set intended for testing
-#' and demonstration. It is small so that it processes quickly.
-#'
-#' @return A \code{hyperSpec} object.  The object contains 875 Raman-like spectra, allocated
-#' to three groups/regions: the matrix/background, the cell and the cell nucleus.
-#' Each spectrum is composed of 300 data points.  The spectrum of each region is unique and
-#' simple, with a single peak at a particular frequency and line width.  A small amount of noise
-#' has been added.  The data is indexed along the x and y dimensions, simulating data
-#' collected on a grid.  Historical note: this data set resembles the \code{chondro} data
-#' set but is entirely synthetic.
-#'
-#' @Rdname FauxCell
-#' @export
-#' @importFrom splancs inout
-#' @author Bryan A. Hanson
-#' @examples
-#'
-#' # Create & summarize
-#' FC <- FauxCell()
-#' FauxCell
-#'
-#' # Plot mean spectra
-#' FCgrps <- aggregate(FC, FC$origin, mean)
-#' plotspc(FCgrps, stacked = ".aggregate", col = c("red", "green", "blue"))
-#'
-#' # Create a dendrogram to define clusters for mapping
-#' D <- dist(FC)
-#' dend <- hclust(D)
-#' FC$clusters <- as.factor (cutree (dend, k = 3))
-#' levels(FC$clusters) <- c("matrix", "cell", "nucleus")
-#' mapcols <- c("aliceblue", "aquamarine", "dodgerblue")
-#' plotmap(FC, clusters ~ x * y, col.regions = mapcols)
-#'
-#' # PCA
-#' pca <- prcomp(FC)
-#' plot(pca)
-#' pcacols <- mapcols[as.numeric(as.factor(unlist(FC[[, "origin", ]], use.names = FALSE)))]
-#' plot(pca$x[,1], pca$x[,2],
-#'   xlab = "PC 1", ylab = "PC 2",
-#'   bg = pcacols, col = "black", pch = 21)
-#'
-#'
-
-FauxCell <- function() {
-
-  if (!requireNamespace("splancs", quietly = TRUE)) {
-    stop("You need to install package splancs to use this function")
-  }
-
-  # Helper Functions (from SpecHelpers, available on CRAN)
-  # Documentation & comments stripped out here, plus a few deletions of irrelevant stuff
-
-  gaussCurve <- function(x, area, mu, sigma, tail) {
-    m <- mu
-    if (is.na(tail)) s <- sigma
-    if (!is.na(tail)) s <- sigma*tail*x
-    numerator <- exp(-1.0 * ((x - m)^2)/(2*s^2))
-    denominator <- s*sqrt(2*pi)
-    y <- area*numerator/denominator
-  }
-
-  makeSpec <- function(peak.list, x.range, type = "gauss", dd = 1, ...) {
-    ndp <- floor(dd*abs(diff(x.range)))
-
-    if (type == "gauss") {
-      pl <- peak.list
-      ns <- length(pl$mu) # ns = no. of spec
-      if (is.null(pl$tail)) pl$tail <- rep(NA, ns)
-      x <- seq(from = x.range[1], to = x.range[2], length.out = ndp)
-      y.mat <- matrix(data = NA_real_, nrow = ns, ncol = ndp)
-
-      for (n in 1:ns) {
-        y.mat[n,] <- gaussCurve(x = x, area = pl$area[n], mu = pl$mu[n],
-                                sigma = pl$sd[n], tail = pl$tail[n])
-      }
-
-      rn <- list()
-      for (n in 1:ns) {
-        rn[n] <- paste("area", pl$area[n], "mu", pl$mu[n], "sigma", pl$sd[n], "tail", pl$tail[n], sep = " ")
-      }
-    }
-
-    dimnames(y.mat)[[1]] <- rn
-    y.sum <- colSums(y.mat)
-    all <- rbind(x, y.sum, y.mat)
-	return(all)
-  }
+.fauxCell <- function() {
 
 
   #' Check for points inside ellipse
@@ -117,14 +28,13 @@ FauxCell <- function() {
     pt_in
   }
 
-  # Now for FauxCell() itself
+  # Now for fauxCell() itself
 
   # Create a matrix containing a faux cell image
   # The matrix contains a cell which in turn contains a nucleus.
-  # Use circles and ellipses to define the regions.
+  # Use ellipses to define the regions.
 
-  # Parametric form of an ellipse:
-  # x = a cos(t) + h, y = b cos(t) + k
+  ## 1. Set up the scanned region & needed coordinates
 
   xy <- expand.grid(
     x = seq(-11.55, 22.45, by = 1),
@@ -178,3 +88,47 @@ FauxCell <- function() {
   spc
 }
 
+#' Faux Cell Data Set for Testing & Demonstration
+#'
+#' This is a synthetic data set intended for testing and demonstration.
+#'
+#' The data set resembles the `chondro` data set but is entirely synthetic.
+#'
+#' @format The object contains 875 Raman-like spectra, allocated to three
+#'   groups/regions in column region: the matrix/background, the cell and the
+#'   cell nucleus. Each spectrum is composed of 300 data points.  The spectrum
+#'   of each region is unique and simple, with a single peak at a particular
+#'   frequency and line width.  Poisson noise has been added.  The data is
+#'   indexed along the x and y dimensions, simulating data collected on a grid.
+#'
+#' @Rdname fauxCell
+#' @docType data
+#' @include hyperSpec-class.R
+#' @export
+#' @author Bryan A. Hanson
+#' @examples
+#'
+#' fauxCell
+#'
+#' # Plot mean spectra
+#' FCgrps <- aggregate(fauxCell, fauxCell$origin, mean)
+#' plotspc(FCgrps, stacked = ".aggregate", col = c("red", "green", "blue"))
+#'
+#' # Create a dendrogram to define clusters for mapping
+#' D <- dist(FC)
+#' dend <- hclust(D)
+#' FC$clusters <- as.factor (cutree (dend, k = 3))
+#' levels(FC$clusters) <- c("matrix", "cell", "nucleus")
+#' mapcols <- c("aliceblue", "aquamarine", "dodgerblue")
+#' plotmap(FC, clusters ~ x * y, col.regions = mapcols)
+#'
+#' # PCA
+#' pca <- prcomp(FC)
+#' plot(pca)
+#' pcacols <- mapcols[as.numeric(as.factor(unlist(FC[[, "origin", ]], use.names = FALSE)))]
+#' plot(pca$x[,1], pca$x[,2],
+#'   xlab = "PC 1", ylab = "PC 2",
+#'   bg = pcacols, col = "black", pch = 21)
+#'
+#'
+fauxCell <- .fauxCell()
