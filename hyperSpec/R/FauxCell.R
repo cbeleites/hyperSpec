@@ -87,7 +87,35 @@ FauxCell <- function() {
     y.sum <- colSums(y.mat)
     all <- rbind(x, y.sum, y.mat)
 	return(all)
-	}
+  }
+
+
+  #' Check for points inside ellipse
+  #'
+  #' An ellipse is a unit circle that is squeezed, rotated and translated
+  #' -> do these transformations backwards and
+  #' check whether points are within radius 1 of origin
+  #' @param xy points to be checked for position inside the ellipse
+  #' @param center center of the ellipse
+  #' @param scale length of the main axes
+  #' @param rot rotation angle
+  #' @return logical indicating points inside the ellipse
+  in_ellipse <- function(xy, center = c(0, 0), scale = c(1, 1), a = 0,
+                         debuglevel = 0L
+  ) {
+    xy <- as.matrix(xy)
+    xy <- scale(xy, center = center, scale = FALSE)
+    xy <- xy %*% matrix(c(cos(a), -sin(a), sin(a), cos(a)), ncol = 2)
+    xy <- scale(xy, center = FALSE, scale = scale)
+
+    pt_in <- xy[, 1] ^ 2 + xy[, 2] ^ 2 <= 1
+
+    if (debuglevel >= 1L)
+      plot(xy[, 1], xy[, 2], asp = 1, pch = 19, col = pt_in + 1)
+
+    ## backtransformed points within unit circle?
+    pt_in
+  }
 
   # Now for FauxCell() itself
 
