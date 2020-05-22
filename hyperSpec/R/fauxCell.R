@@ -130,6 +130,9 @@
 #' pca <- prcomp(fauxCell)
 #' plot(pca)
 #'
+#' loadings <- decomposition(fauxCell, t(pca$rotation), scors = FALSE)
+#' plot(loadings[1 : 5], stacked = TRUE)
+#'
 #' plot(pca$x[,2], pca$x[,3], xlab = "PC 1", ylab = "PC 2",
 #'   bg = mapcols[fauxCell$region], col = "black", pch = 21)
 #'
