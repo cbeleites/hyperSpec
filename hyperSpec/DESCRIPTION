@@ -4,7 +4,7 @@ Type: Package
 Title: Work with Hyperspectral Data, i.e. Spectra + Meta Information (Spatial,
     Time, Concentration, ...)
 Version: 0.99-20200319
-Date: 2020-03-19
+Date: 2020-05-20
 Maintainer: Claudia Beleites <Claudia.Beleites@chemometrix.gmbh>
 Authors@R: c(
     person("Claudia",   "Beleites",  role = c("aut","cre", "dtc"), email = "Claudia.Beleites@chemometrix.gmbh"),
@@ -21,8 +21,8 @@ Authors@R: c(
     person("Roman",     "Kiselev",   role = "ctb"),
     person("Sebastian", "Mellor",    role = "ctb")
     )
-Description: Comfortable ways to work with hyperspectral data sets.
-    I.e. spatially or time-resolved spectra, or spectra with any other kind
+Description: Comfortable ways to work with hyperspectral data sets,
+    i.e. spatially or time-resolved spectra, or spectra with any other kind
     of information associated with each of the spectra. The spectra can be data
     as obtained in XRF, UV/VIS, Fluorescence, AES, NIR, IR, Raman, NMR, MS,
     etc. More generally, any data that is recorded over a discretized variable,
@@ -67,7 +67,7 @@ Imports:
 URL: https://github.com/cbeleites/hyperSpec
 BugReports: https://github.com/cbeleites/hyperSpec/issues
 VignetteBuilder: R.rsp
-Collate: 
+Collate:
     'validate.R'
     'hyperspec-class.R'
     'unittest.R'
@@ -180,4 +180,4 @@ Collate:
     'write.txt.wide.R'
     'y-pastenames.R'
     'zzz.R'
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.0
