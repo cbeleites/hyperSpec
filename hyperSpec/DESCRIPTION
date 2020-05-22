@@ -3,8 +3,8 @@ Encoding: UTF-8
 Type: Package
 Title: Work with Hyperspectral Data, i.e. Spectra + Meta Information (Spatial,
     Time, Concentration, ...)
-Version: 0.99-20200319
-Date: 2020-05-19
+Version: 0.99-20200522
+Date: 2020-05-22
 Maintainer: Claudia Beleites <Claudia.Beleites@chemometrix.gmbh>
 Authors@R: c(
     person("Claudia",   "Beleites",  role = c("aut","cre", "dtc"), email = "Claudia.Beleites@chemometrix.gmbh"),
@@ -63,8 +63,7 @@ Imports:
     utils,
     latticeExtra,
     lazyeval,
-    dplyr,
-    splancs
+    dplyr
 URL: https://github.com/cbeleites/hyperSpec
 BugReports: https://github.com/cbeleites/hyperSpec/issues
 VignetteBuilder: R.rsp
@@ -76,7 +75,6 @@ Collate:
     'Arith.R'
     'Compare.R'
     'DollarNames.R'
-    'FauxCell.R'
     'Math.R'
     'Summary.R'
     'aggregate.R'
@@ -101,17 +99,18 @@ Collate:
     'wl2i.R'
     'extract.R'
     'factor2num.R'
+    'options.R'
+    'regexps.R'
+    'guesswavelength.R'
+    'initialize.R'
+    'fauxCell.R'
     'fileio.optional.R'
     'fix_spc_colnames.R'
     'flu.R'
     'getbynames.R'
-    'options.R'
-    'regexps.R'
-    'guesswavelength.R'
     'paracetamol.R'
     'laser.R'
     'hyperspec-package.R'
-    'initialize.R'
     'labels.R'
     'plotmap.R'
     'levelplot.R'
