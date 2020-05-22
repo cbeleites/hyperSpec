@@ -131,4 +131,4 @@
 #'   bg = pcacols, col = "black", pch = 21)
 #'
 #'
-fauxCell <- .fauxCell()
+delayedAssign("fauxCell", .fauxCell())
