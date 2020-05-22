@@ -110,25 +110,21 @@
 #'
 #' fauxCell
 #'
-#' # Plot mean spectra
-#' FCgrps <- aggregate(fauxCell, fauxCell$origin, mean)
-#' plotspc(FCgrps, stacked = ".aggregate", col = c("red", "green", "blue"))
+#' plot (sample (fauxCell, 10), stacked = TRUE)
 #'
-#' # Create a dendrogram to define clusters for mapping
-#' D <- dist(FC)
-#' dend <- hclust(D)
-#' FC$clusters <- as.factor (cutree (dend, k = 3))
-#' levels(FC$clusters) <- c("matrix", "cell", "nucleus")
-#' mapcols <- c("aliceblue", "aquamarine", "dodgerblue")
-#' plotmap(FC, clusters ~ x * y, col.regions = mapcols)
+#' # Plot mean spectra
+#' FCgrps <- aggregate(fauxCell, fauxCell$region, mean_pm_sd)
+#' plotspc(FCgrps, stacked = ".aggregate",
+#'         col = c("red", "green", "blue"), fill = ".aggregate")
+#'
+#' mapcols <- c(cell = "aquamarine", matrix = "aliceblue", nucleus = "dodgerblue")
+#' plotmap(fauxCell, region ~ x * y, col.regions = mapcols)
 #'
 #' # PCA
-#' pca <- prcomp(FC)
+#' pca <- prcomp(fauxCell)
 #' plot(pca)
-#' pcacols <- mapcols[as.numeric(as.factor(unlist(FC[[, "origin", ]], use.names = FALSE)))]
-#' plot(pca$x[,1], pca$x[,2],
-#'   xlab = "PC 1", ylab = "PC 2",
-#'   bg = pcacols, col = "black", pch = 21)
 #'
+#' plot(pca$x[,1], pca$x[,2], xlab = "PC 1", ylab = "PC 2",
+#'   bg = mapcols[fauxCell$region], col = "black", pch = 21)
 #'
 delayedAssign("fauxCell", .fauxCell())
