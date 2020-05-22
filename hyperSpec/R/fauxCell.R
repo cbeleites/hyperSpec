@@ -111,7 +111,7 @@
 #' @docType data
 #' @include initialize.R
 #' @export
-#' @author Bryan A. Hanson
+#' @author Claudia Beleites, Bryan A. Hanson
 #' @examples
 #'
 #' fauxCell
