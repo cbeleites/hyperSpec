@@ -108,7 +108,7 @@ FauxCell <- function() {
     xy <- xy %*% matrix(c(cos(a), -sin(a), sin(a), cos(a)), ncol = 2)
     xy <- scale(xy, center = FALSE, scale = scale)
 
-    pt_in <- xy[, 1] ^ 2 + xy[, 2] ^ 2 <= 1
+    pt_in <- rowSums(xy^2) <= 1
 
     if (debuglevel >= 1L)
       plot(xy[, 1], xy[, 2], asp = 1, pch = 19, col = pt_in + 1)
