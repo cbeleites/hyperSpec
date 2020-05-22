@@ -82,6 +82,12 @@
   tmp <- 3000*dnorm(wavelength, mean = 1500, sd =  5)
   spc[[spc$region == "nucleus",,]] <- rep(tmp, each = sum(spc$region == "nucleus"))
 
+  # add baselines
+  terms <- vanderMonde(spc, order = 1)
+  coefs <- matrix(runif(nrow(spc) * 2), ncol = 2)
+  coefs <- scale(coefs, center = FALSE, scale = c(1/200, 1/30))
+  spc <- spc + coefs %*% terms[[]]
+
   # generate shot noise
   spc[[]] <- rpois(n = length(spc[[]]), lambda = spc[[]])
 
@@ -124,7 +130,7 @@
 #' pca <- prcomp(fauxCell)
 #' plot(pca)
 #'
-#' plot(pca$x[,1], pca$x[,2], xlab = "PC 1", ylab = "PC 2",
+#' plot(pca$x[,2], pca$x[,3], xlab = "PC 1", ylab = "PC 2",
 #'   bg = mapcols[fauxCell$region], col = "black", pch = 21)
 #'
 delayedAssign("fauxCell", .fauxCell())
