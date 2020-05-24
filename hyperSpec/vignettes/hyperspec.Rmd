@@ -1980,7 +1980,7 @@ This reconstruction is in fact a matrix multiplication:
 <!-- Equation ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  -->
 \begin{equation}
 
-  spectra^{(nrow × nwl)} = scores^{(nrow × p)} loadings^{(p × nwl)}
+  \mathrm{spectra}^{\mathrm{~nrow} ~×~ \mathrm{nwl}} = \mathrm{scores}^{\mathrm{~nrow} ~×~ p} \;\cdot\; \mathrm{loadings}^{~p ~×~ \mathrm{nwl}}
   (\#eq:equation-1)
 
 \end{equation}
@@ -1991,7 +1991,7 @@ Note that this corresponds to a model based on the Beer-Lambert law:
 <!-- Equation ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  -->
 \begin{equation}
 
-  A_n (\lambda) = c_{n,i} \epsilon (i, \lambda) + error
+  A_n (\lambda) = c_{n,i} \epsilon (i, \lambda) + \mathrm{error}
   (\#eq:equation-2)
 
 \end{equation}
