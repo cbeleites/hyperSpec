@@ -204,16 +204,7 @@ It does not give a complete reference on particular functions.
 It is therefore recommended to look up the methods in **R**'s help system using `?command`{.r}.
 
 A complete list of the functions that are available in package **hyperSpec** is given in
-appendix \@ref(tab:functions).
-
-
-<!-- ======================================================================= -->
-```{block, type="note-t", echo=TRUE}
-**Translator's notes** `hyperspec-2`
-
-1. `# FIXME`{.r} Is Appendix supported in single Rmd files? I'm not sure. 
-```
-<!-- ======================================================================= -->
+Table \@ref(tab:functions).
 
 
 ## Notation and Terms
@@ -268,15 +259,7 @@ However, this does not mean that I won't do so: I can tell quickly if a pull req
 ## Generic Functions
 
 \index{Generic Functions} *Generic Functions* are functions that apply to a wide range of data types or classes, e.g., `plot()`{.r}, `print()`{.r}, mathematical operators, etc. These functions can be implemented in a specialized way by each class.  
-Package **hyperSpec** implements with a variety of such functions, see appendix \@ref(tab:functions).
-
-<!-- ======================================================================= -->
-```{block, type="note-t", echo=TRUE}
-**Translator's notes** `hyperspec-3`
-
-1. `# FIXME`{.r} Appendix is mentioned (above). Possible issue. 
-```
-<!-- ======================================================================= -->
+Package **hyperSpec** implements with a variety of such functions, see Table \@ref(tab:functions).
 
 
 
@@ -457,16 +440,7 @@ To get familiar with expressions for axis annotation, see `?plotmath`{.r} and `d
 
 # Functions Provided by **hyperSpec** {#sec:funct-prov-phy}
 
-
-<!-- ======================================================================= -->
-```{block, type="note-t", echo=TRUE}
-**Translator's notes** `hyperspec-5`
-
-1. "appendix" is mentioned. Possible issue.
-```
-<!-- ======================================================================= -->
-
-Table \@ref(tab:functions) in the appendix gives an overview of the functions implemented by package **hyperSpec**.
+Table \@ref(tab:functions) in gives an overview of the functions implemented by package **hyperSpec**.
 
 
 
@@ -2276,7 +2250,6 @@ The memory consumption of `read.txt.Renishaw()`{.r} can be lowered by importing 
 
 \printindex
 
-\appendix
 
 # Overview of the functions provided by package **hyperSpec** 
 
