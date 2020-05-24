@@ -1543,7 +1543,14 @@ plot(spc.NA.approx(spc), add = TRUE, col = "blue",
 
 
 1. Empty chapter. What to do with it?
- 
+
+Comment from Roman: I suggest for now to write the following:
+
+Correction of cosmic spikes is not a part of `hyperSpec` package, and can be addressed with algorithms presented in these papers:
+
+* [A Simple Algorithm for Despiking Raman Spectra](https://chemrxiv.org/articles/A_Simple_Algorithm_for_Despiking_Raman_Spectra/5993011/2)
+* [Automatization of spike correction in Raman spectra of biological samples](https://www.sciencedirect.com/science/article/abs/pii/S0169743916300600)
+
 ```
 <!-- ======================================================================= -->
 
