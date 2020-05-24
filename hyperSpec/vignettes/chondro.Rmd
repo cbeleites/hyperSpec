@@ -96,7 +96,7 @@ make_bib(
 The .Rnw looks for `rawdata/chondro.txt`, so please save the data file in subdirectory `rawdata` of your working directory.
 In order to reproduce the examples by typing in the commands, have a look at the definitions of   color palettes used in this document are defined in `vignettes.defs`.
 
-Also, the package package **hyperSpec** needs to be loaded first via `library(hyperSpec)`{.r}.  
+Also, the package **hyperSpec** needs to be loaded first via `library(hyperSpec)`{.r}.  
 
 ```
 
