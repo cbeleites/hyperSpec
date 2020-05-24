@@ -75,7 +75,7 @@ make_bib(
 **Translator's notes** `hyperspec-1`
 
 
-1. I suggest keeping tags `\mFun{}` and `\index{}`.
+1. I suggest keeping tags `\\mFun{}` and `\\index{}`.
 They are not useful for HTML format yet, but in the future we can come up with useful ideas how to create an index of functions.
 But they are ignored by HTML rendering engine (as they are LaTeX tags) and removed from the output.
  
