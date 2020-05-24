@@ -1031,23 +1031,9 @@ dim(rbind(flu, flu))
 
 There is also a more general function, `bind()`{.r}, taking the direction (`"r"`{.r} or `"c"`{.r}) as first argument followed by the objects to bind either in separate arguments or in a list.
 
-
-<!-- ======================================================================= -->
-```{block, type="note-t", echo=TRUE}
-**Translator's notes** `hyperspec-8`
-
-1. `# FIXME: `{.r}
-the sentence `"must have the same rows and columns, respectively."` seems to be 
-confusing and should be fixed.
-
-**Maybe:** "the same column names" or "the same number of columns (for
-       `rbind()`{.r}) and the same number of rows (for `cbind()`{.r})"?
-```
-<!-- ======================================================================= -->
-
-
-As usual for `rbind()`{.r} and `cbind()`{.r}, the objects that should be bound together must
-have the same rows and columns, respectively.
+As usual for `rbind()`{.r} and `cbind()`{.r}, the objects that should be bound together must have
+the same number of columns (for `rbind()`{.r}) and the same number of rows (for `cbind()`{.r}),
+respectively.
 
 \mFun{`collapse()`{.r}}
 For binding row-wise (`rbind()`{.r}), `collapse()`{.r} is more flexible and faster as well.
