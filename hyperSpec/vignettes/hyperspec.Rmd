@@ -2027,29 +2027,6 @@ ggplot(as.long.df(chondro[1]), aes(x = .wavelength, y = spc)) + geom_line()
 ```
 
 
-<!-- ======================================================================= -->
-```{block, type="note-t", echo=TRUE}
-**Translator's notes** `hyperspec-11`
-
-1. `# FIXME: `{.r} Is the chunk below still needed?
-```
-<!-- ======================================================================= -->
-
-
-
-```{r ggplot-do, include=FALSE, eval=FALSE}
-
-# FIXME: is this chunk still needed?
-
-if (require(ggplot2)) {
-  # <<ggplot>>
-  ggsave(file = "hyperspec-fig-ggplot-do.pdf", width = 8, height = 4)
-} else {
-  pdf("hyperspec-fig-ggplot-do.pdf", width = 8, height = 4)
-  ploterrormsg(NULL, "ggplot2")
-  dev.off()
-}
-```
 
 
 ## Data Analysis Methods using a matrix e.g., Hierarchical Cluster Analysis {#HCA}
