@@ -170,12 +170,11 @@ In addition, large files may be processed in chunks.
 In order to speed up the reading `read.txt.Renishaw()`{.r} does not allow missing values, but it does work with `NA`{.r}.
 
 ```{r chondro-import}
-# FIXME: is there an R function, that can download the file correctly? 
 # Download file from:
-# "https://github.com/cbeleites/hyperSpec/tree/master/Vignettes/fileio/txt.Renishaw/chondro.txt"
-# To:
-# "rawdata/chondro.txt
-# Then:
+raw_data_url <- 'https://media.githubusercontent.com/media/cbeleites/hyperSpec/master/Vignettes/fileio/txt.Renishaw/chondro.txt'
+dir.create('rawdata', F)
+download.file(raw_data_url, 'rawdata/chondro.txt')
+# Read the raw data and make a hyperSpec object
 chondro <- read.txt.Renishaw("rawdata/chondro.txt", data = "xyspc")
 chondro
 ```
