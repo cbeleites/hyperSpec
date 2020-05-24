@@ -537,7 +537,7 @@ and thus grouped together.
 
 The first step in HCA is the choice of the distance.
 The R function `dist()`{.r} offers a variety of distance measures to be computed.
-The so-called **Pearson** distance $D^2_{Pearson}=\frac{1-\COR\left(X\right)}{2}$ is popular in data analysis of vibrational spectra and is provided by package **hyperSpec**'s `pearson.dist()`{.r} function.
+The so-called **Pearson** distance $D^2_{Pearson}=\frac{1-\mathrm{COR}\left(X\right)}{2}$ is popular in data analysis of vibrational spectra and is provided by package **hyperSpec**'s `pearson.dist()`{.r} function.
 
 Also for computing the dendrogram, a number of choices are available.
 Here we choose **Ward**'s method, and, as it uses **Euclid**ean distance for calculating the dendrogram, **Euclid**ean distance also for the distance matrix:
