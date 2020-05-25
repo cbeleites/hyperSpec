@@ -96,7 +96,7 @@ make_bib(
 The .Rnw looks for `rawdata/chondro.txt`, so please save the data file in subdirectory `rawdata` of your working directory.
 In order to reproduce the examples by typing in the commands, have a look at the definitions of   color palettes used in this document are defined in `vignettes.defs`.
 
-Also, the package package **hyperSpec** needs to be loaded first via `library(hyperSpec)`{.r}.  
+Also, the package **hyperSpec** needs to be loaded first via `library(hyperSpec)`{.r}.  
 
 ```
 
@@ -170,12 +170,11 @@ In addition, large files may be processed in chunks.
 In order to speed up the reading `read.txt.Renishaw()`{.r} does not allow missing values, but it does work with `NA`{.r}.
 
 ```{r chondro-import}
-# FIXME: is there an R function, that can download the file correctly? 
 # Download file from:
-# "https://github.com/cbeleites/hyperSpec/tree/master/Vignettes/fileio/txt.Renishaw/chondro.txt"
-# To:
-# "rawdata/chondro.txt
-# Then:
+raw_data_url <- 'https://media.githubusercontent.com/media/cbeleites/hyperSpec/master/Vignettes/fileio/txt.Renishaw/chondro.txt'
+dir.create('rawdata', F)
+download.file(raw_data_url, 'rawdata/chondro.txt')
+# Read the raw data and make a hyperSpec object
 chondro <- read.txt.Renishaw("rawdata/chondro.txt", data = "xyspc")
 chondro
 ```
@@ -538,7 +537,7 @@ and thus grouped together.
 
 The first step in HCA is the choice of the distance.
 The R function `dist()`{.r} offers a variety of distance measures to be computed.
-The so-called **Pearson** distance $D^2_{Pearson}=\frac{1-\COR\left(X\right)}{2}$ is popular in data analysis of vibrational spectra and is provided by package **hyperSpec**'s `pearson.dist()`{.r} function.
+The so-called **Pearson** distance $D^2_{Pearson}=\frac{1-\mathrm{COR}\left(X\right)}{2}$ is popular in data analysis of vibrational spectra and is provided by package **hyperSpec**'s `pearson.dist()`{.r} function.
 
 Also for computing the dendrogram, a number of choices are available.
 Here we choose **Ward**'s method, and, as it uses **Euclid**ean distance for calculating the dendrogram, **Euclid**ean distance also for the distance matrix:
