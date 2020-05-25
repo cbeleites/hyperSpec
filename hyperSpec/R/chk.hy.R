@@ -9,12 +9,13 @@
 ##' error.
 ##' @keywords methods
 ##' @export
-##' @examples 
+##' @examples
 ##' chk.hy (chondro)
 ##' validObject (chondro)
-chk.hy <- function (object){
-  if (! is (object, "hyperSpec"))
-    stop ("no hyperSpec object")
+chk.hy <- function(object) {
+  if (!is(object, "hyperSpec")) {
+    stop("no hyperSpec object")
+  }
 
   TRUE
 }

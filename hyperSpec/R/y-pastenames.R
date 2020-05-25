@@ -1,17 +1,21 @@
-.pastenames <- function (...){
-  if (nargs () == 1L & is.list (..1))
+.pastenames <- function(...) {
+  if (nargs() == 1L & is.list(..1)) {
     dots <- ..1
-  else
-    dots <- list (...)
+  } else {
+    dots <- list(...)
+  }
 
-  names <- names (dots)
-  names <- sapply (names,
-                   function (x){
-                     if (nchar (x) > 0L)
-                       sprintf ("%s = ", x)
-                     else
-                       ""
-                     })
+  names <- names(dots)
+  names <- sapply(
+    names,
+    function(x) {
+      if (nchar(x) > 0L) {
+        sprintf("%s = ", x)
+      } else {
+        ""
+      }
+    }
+  )
 
-  paste (names, dots, collapse = ", ", sep = "")
+  paste(names, dots, collapse = ", ", sep = "")
 }

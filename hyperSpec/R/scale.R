@@ -3,7 +3,7 @@
 ##' \code{link[base]{scale}}s the spectra matrix. \code{scale (x, scale = FALSE)} centers the data.
 ##'
 ##' Package \code{scale} provides a fast alternative for \code{base::\link[base]{scale}}
-##' 
+##'
 ##' @name scale,hyperSpec-method
 ##' @rdname scale
 ##' @aliases scale scale-methods scale,hyperSpec-method
@@ -40,15 +40,17 @@
 ##' tmp <- sweep (chondro, 1, mean, `/`)
 ##' plot (tmp, "spcmeansd")
 ##' tmp <- scale (tmp, center = quantile (tmp, .05), scale = FALSE)
-##' 
-setMethod ("scale", signature = signature (x = "hyperSpec"),
-           function (x, center = TRUE, scale = TRUE){
-  validObject (x)
+##'
+setMethod("scale",
+  signature = signature(x = "hyperSpec"),
+  function(x, center = TRUE, scale = TRUE) {
+    validObject(x)
 
-  if (! is.logical (center)) center <- as.matrix (center)
-  if (! is.logical (scale))  scale  <- as.matrix (scale)
-  
-  x@data$spc <- scale (x@data$spc, center, scale)
+    if (!is.logical(center)) center <- as.matrix(center)
+    if (!is.logical(scale)) scale <- as.matrix(scale)
 
-  x
-})
+    x@data$spc <- scale(x@data$spc, center, scale)
+
+    x
+  }
+)

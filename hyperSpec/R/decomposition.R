@@ -73,126 +73,127 @@
 ##' plot (pca.loadings, col = c ("red", "gray50"))
 ##' plotc (pca.scores, groups = .wavelength)
 ##' @export
-decomposition <- function (object, x, wavelength = seq_len (ncol (x)),
-                           label.wavelength, label.spc,
-                           scores = TRUE, retain.columns = FALSE,
-                           ...){
-#  message ("decomposition will be deprecated: please change your code to use `loadings` or `scores` instead.")
+decomposition <- function(object, x, wavelength = seq_len(ncol(x)),
+                          label.wavelength, label.spc,
+                          scores = TRUE, retain.columns = FALSE,
+                          ...) {
+  #  message ("decomposition will be deprecated: please change your code to use `loadings` or `scores` instead.")
 
-  validObject (object)
+  validObject(object)
 
-  if (is.vector (x))
-    if (nrow (object) == length (x))
-      dim (x) <- c(length (x), 1)
-    else
-      dim (x) <- c(1, length (x))
+  if (is.vector(x)) {
+    if (nrow(object) == length(x)) {
+      dim(x) <- c(length(x), 1)
+    } else {
+      dim(x) <- c(1, length(x))
+    }
+  }
 
-  if ((nrow (x) == nrow (object)) && scores){
+  if ((nrow(x) == nrow(object)) && scores) {
     ## scores-like object?
 
     object@data$spc <- x
-    .wl (object) <- wavelength
+    .wl(object) <- wavelength
 
-    if (!missing (label.wavelength))
+    if (!missing(label.wavelength)) {
       object@label$.wavelength <- label.wavelength
-
-  } else if (ncol (x) == nwl (object)){
+    }
+  } else if (ncol(x) == nwl(object)) {
 
     ## loadings-like object
-    spc <- match ("spc", colnames(object@data))
+    spc <- match("spc", colnames(object@data))
 
     ## apply changes type of retained columns to character!!!
     ## must be done in a loop one column after the other otherwise a matrix or a list in a column
     ## (e.g. for the independent variate of PLS, POSIXlt) will cause an error
 
-    cols <- rep (TRUE, ncol (object@data)) # columns to keep
+    cols <- rep(TRUE, ncol(object@data)) # columns to keep
 
-    for (i in seq_len (ncol (object@data)) [-spc]) {
-      tmp <- as.data.frame (lapply (object@data[, i, drop = FALSE], .na.if.different))
+    for (i in seq_len(ncol(object@data)) [-spc]) {
+      tmp <- as.data.frame(lapply(object@data[, i, drop = FALSE], .na.if.different))
       object@data [1, i] <- tmp
-      if (all (is.na (tmp)))
+      if (all(is.na(tmp))) {
         cols [i] <- FALSE
+      }
     }
 
     if (!retain.columns) {
-      object@label [colnames (object@data) [!cols]] <- NULL
+      object@label [colnames(object@data) [!cols]] <- NULL
       object@data <- object@data[, cols, drop = FALSE]
     }
 
     object@data <- object@data[rep(1, nrow(x)), , drop = FALSE]
-    colnames (x) <- colnames (object@data$spc)
+    colnames(x) <- colnames(object@data$spc)
     object@data$spc <- x
-
   } else {
-    stop ("Either rows (if scores == TRUE) or columns (if scores == FALSE) of",
-          " x and object must correspond")
+    stop(
+      "Either rows (if scores == TRUE) or columns (if scores == FALSE) of",
+      " x and object must correspond"
+    )
   }
 
-  rownames (object@data) <- rownames (x)
+  rownames(object@data) <- rownames(x)
 
-  if (!missing (label.spc)) object@label$spc <- label.spc
+  if (!missing(label.spc)) object@label$spc <- label.spc
 
-  object@data$spc <- unclass (object@data$spc)   # remove AsIs
+  object@data$spc <- unclass(object@data$spc) # remove AsIs
 
   object <- .fix_spc_colnames(object)
-  
-  validObject (object)
+
+  validObject(object)
 
   object
 }
 
 ##' @include unittest.R
-.test (decomposition) <- function (){
-context ("decomposition")
+.test(decomposition) <- function() {
+  context("decomposition")
 
-  test_that ("scores-like", {
-    flu$matrix <- cbind (flu$c, flu$c)
-    expect_true (is.matrix (flu$matrix))
+  test_that("scores-like", {
+    flu$matrix <- cbind(flu$c, flu$c)
+    expect_true(is.matrix(flu$matrix))
 
-    tmp <- flu [,, 405 ~ 410]
-    tmp@wavelength <- seq_len (nwl (tmp))
-    colnames (tmp@data$spc) <- seq_len (nwl (tmp))
+    tmp <- flu [, , 405 ~ 410]
+    tmp@wavelength <- seq_len(nwl(tmp))
+    colnames(tmp@data$spc) <- seq_len(nwl(tmp))
 
-    scores <- decomposition (flu, flu [[,, 405 ~ 410]])
-    expect_equal (scores, tmp)
+    scores <- decomposition(flu, flu [[, , 405 ~ 410]])
+    expect_equal(scores, tmp)
   })
 
-  test_that ("spc labels", {
-    scores <- decomposition (flu, flu [[,, 405 ~ 410]], label.spc = "bla")
-    expect_equal (labels (scores, "spc"), "bla")
+  test_that("spc labels", {
+    scores <- decomposition(flu, flu [[, , 405 ~ 410]], label.spc = "bla")
+    expect_equal(labels(scores, "spc"), "bla")
   })
 
-  test_that ("wl labels", {
-    scores <- decomposition (flu, flu [[,, 405 ~ 410]], label.wavelength = "bla")
-    expect_equal (labels (scores, ".wavelength"),	"bla")
+  test_that("wl labels", {
+    scores <- decomposition(flu, flu [[, , 405 ~ 410]], label.wavelength = "bla")
+    expect_equal(labels(scores, ".wavelength"), "bla")
   })
 
-  test_that ("check loadings-like", {
-
-    tmp <- flu [1, c ("spc"),]
-    loadings <- decomposition (flu, flu [[1,,]])
-    expect_equal (loadings, tmp)
+  test_that("check loadings-like", {
+    tmp <- flu [1, c("spc"), ]
+    loadings <- decomposition(flu, flu [[1, , ]])
+    expect_equal(loadings, tmp)
   })
 
-  test_that ("POSIXct", {
+  test_that("POSIXct", {
     flu$ct <- as.POSIXct(Sys.time())
-    expect_equal (decomposition (flu, flu [[]], scores = FALSE)$ct, flu$ct)
+    expect_equal(decomposition(flu, flu [[]], scores = FALSE)$ct, flu$ct)
   })
 
-  test_that ("POSIXlt", {
+  test_that("POSIXlt", {
     flu$lt <- as.POSIXlt(Sys.time())
-    expect_equal (decomposition (flu, flu [[]], scores = FALSE)$lt, flu$lt)
+    expect_equal(decomposition(flu, flu [[]], scores = FALSE)$lt, flu$lt)
   })
 
-  test_that ("spc labels", {
-    tmp <- decomposition (flu, flu [[]], scores = FALSE, label.spc = "bla")
-    expect_equal (labels (tmp, "spc"),	"bla")
+  test_that("spc labels", {
+    tmp <- decomposition(flu, flu [[]], scores = FALSE, label.spc = "bla")
+    expect_equal(labels(tmp, "spc"), "bla")
   })
 
-  test_that ("wl labels: should *not* be changed for loadings-like decomposition", {
-    tmp <- decomposition (flu, flu [[]], scores = FALSE, label.wavelength = "bla")
-    expect_equal (labels (tmp, ".wavelength"),	labels (flu, ".wavelength"))
+  test_that("wl labels: should *not* be changed for loadings-like decomposition", {
+    tmp <- decomposition(flu, flu [[]], scores = FALSE, label.wavelength = "bla")
+    expect_equal(labels(tmp, ".wavelength"), labels(flu, ".wavelength"))
   })
-
 }
-

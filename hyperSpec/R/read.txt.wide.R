@@ -1,4 +1,4 @@
-###-----------------------------------------------------------------------------
+### -----------------------------------------------------------------------------
 ###
 ###  read.txt.wide
 ###
@@ -45,40 +45,44 @@
 ##' the column names of the spectra are the wavelength values.
 ##' @export
 ##' @importFrom utils read.table head
-read.txt.wide <- function (file = stop ("file is required"),
-                           cols = list (
-                             spc = "I / a.u.",
-                             .wavelength = expression (lambda / nm)),
-                           sep = '\t',
-                           row.names = NULL,
-                           check.names = FALSE,
-                           ...){
-
-  .wavelength <- match (".wavelength", names (cols))
-  if (is.na (.wavelength))
-    cols <- as.list (c (cols, .wavelength = expression (lambda / nm)))
-  else
-    if (.wavelength != length (cols))   # .wavelength should be at the end of cols
-      cols <- cols [c (seq_along (cols)[-.wavelength], .wavelength)]
+read.txt.wide <- function(file = stop("file is required"),
+                          cols = list(
+                            spc = "I / a.u.",
+                            .wavelength = expression(lambda / nm)
+                          ),
+                          sep = "\t",
+                          row.names = NULL,
+                          check.names = FALSE,
+                          ...) {
+  .wavelength <- match(".wavelength", names(cols))
+  if (is.na(.wavelength)) {
+    cols <- as.list(c(cols, .wavelength = expression(lambda / nm)))
+  } else
+  if (.wavelength != length(cols)) { # .wavelength should be at the end of cols
+    cols <- cols [c(seq_along(cols)[-.wavelength], .wavelength)]
+  }
 
   ## columns containing the spectra
-  spc <- match ("spc", names (cols))
-  if (is.na (spc))
-    stop ("cols$spc must exist.")
+  spc <- match("spc", names(cols))
+  if (is.na(spc)) {
+    stop("cols$spc must exist.")
+  }
 
-  txtfile <- read.table (file = file, check.names = check.names, row.names = row.names,
-                         sep = sep, ...)
+  txtfile <- read.table(
+    file = file, check.names = check.names, row.names = row.names,
+    sep = sep, ...
+  )
 
-  ispc <- 0 : (ncol (txtfile) - length (cols) + 1) + spc
+  ispc <- 0:(ncol(txtfile) - length(cols) + 1) + spc
 
-  spc.data <- as.matrix (txtfile[, ispc])
+  spc.data <- as.matrix(txtfile[, ispc])
   txtfile <- txtfile [, -ispc, drop = FALSE]
-  
-  ## enforce colnames given by cols
-  colnames (txtfile) <- head (names (cols) [-spc], -1)
 
-  spc <- new ("hyperSpec", spc = spc.data, data = txtfile, labels = cols)
+  ## enforce colnames given by cols
+  colnames(txtfile) <- head(names(cols) [-spc], -1)
+
+  spc <- new("hyperSpec", spc = spc.data, data = txtfile, labels = cols)
 
   ## consistent file import behaviour across import functions
-  .fileio.optional (spc, filename = file)
+  .fileio.optional(spc, filename = file)
 }

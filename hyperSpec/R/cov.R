@@ -11,10 +11,10 @@
 ##' @export
 ##' @examples
 ##' image (cov (chondro))
-setMethod ("cov", signature = signature (x = "hyperSpec", y = "missing"), function (x, y, use, method){
-  validObject (x)
-  
-  cov (x@data$spc, use = use, method = method)
+setMethod("cov", signature = signature(x = "hyperSpec", y = "missing"), function(x, y, use, method) {
+  validObject(x)
+
+  cov(x@data$spc, use = use, method = method)
 })
 
 
@@ -30,24 +30,26 @@ setMethod ("cov", signature = signature (x = "hyperSpec", y = "missing"), functi
 ##' plot (pcov$means)
 ##' image (pcov$COV)
 ##'
-pooled.cov <- function (x, groups, ..., regularize = 1e-5 * max (abs (COV))){
-  chk.hy (x)
-  validObject (x)
+pooled.cov <- function(x, groups, ..., regularize = 1e-5 * max(abs(COV))) {
+  chk.hy(x)
+  validObject(x)
 
-  if (! is.factor (groups))
-    stop ("groups must be a factor")
+  if (!is.factor(groups)) {
+    stop("groups must be a factor")
+  }
 
-  x      <- x      [! is.na (groups)]
-  groups <- groups [! is.na (groups)]
-  
-  means <- aggregate (x, groups, "mean") # TODO: speed up?
+  x <- x      [!is.na(groups)]
+  groups <- groups [!is.na(groups)]
 
-  COV <- cov (x@data$spc - means@data$spc [as.numeric (groups),, drop = FALSE])
+  means <- aggregate(x, groups, "mean") # TODO: speed up?
+
+  COV <- cov(x@data$spc - means@data$spc [as.numeric(groups), , drop = FALSE])
 
   ## regularization
-  COV <- COV + diag (regularize, nrow (COV))
+  COV <- COV + diag(regularize, nrow(COV))
 
-  list (COV = COV,
-        means = means)
+  list(
+    COV = COV,
+    means = means
+  )
 }
-
