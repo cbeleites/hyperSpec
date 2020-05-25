@@ -75,7 +75,7 @@ make_bib(
 **Translator's notes** `hyperspec-1`
 
 
-1. I suggest keeping tags `\mFun{}` and `\index{}`.
+1. I suggest keeping tags `\\mFun{}` and `\\index{}`.
 They are not useful for HTML format yet, but in the future we can come up with useful ideas how to create an index of functions.
 But they are ignored by HTML rendering engine (as they are LaTeX tags) and removed from the output.
  
@@ -204,16 +204,7 @@ It does not give a complete reference on particular functions.
 It is therefore recommended to look up the methods in **R**'s help system using `?command`{.r}.
 
 A complete list of the functions that are available in package **hyperSpec** is given in
-appendix \@ref(tab:functions).
-
-
-<!-- ======================================================================= -->
-```{block, type="note-t", echo=TRUE}
-**Translator's notes** `hyperspec-2`
-
-1. `# FIXME`{.r} Is Appendix supported in single Rmd files? I'm not sure. 
-```
-<!-- ======================================================================= -->
+Table \@ref(tab:functions).
 
 
 ## Notation and Terms
@@ -268,15 +259,7 @@ However, this does not mean that I won't do so: I can tell quickly if a pull req
 ## Generic Functions
 
 \index{Generic Functions} *Generic Functions* are functions that apply to a wide range of data types or classes, e.g., `plot()`{.r}, `print()`{.r}, mathematical operators, etc. These functions can be implemented in a specialized way by each class.  
-Package **hyperSpec** implements with a variety of such functions, see appendix \@ref(tab:functions).
-
-<!-- ======================================================================= -->
-```{block, type="note-t", echo=TRUE}
-**Translator's notes** `hyperspec-3`
-
-1. `# FIXME`{.r} Appendix is mentioned (above). Possible issue. 
-```
-<!-- ======================================================================= -->
+Package **hyperSpec** implements with a variety of such functions, see Table \@ref(tab:functions).
 
 
 
@@ -401,23 +384,11 @@ stopifnot(all(names(hy.getOptions(TRUE)) %in% c(
 
 # The Structure of `hyperSpec`{.r} Objects {#sec:structure-chy}
 
-`hyperSpec`{.r} is an S4 (or new-style) class. 
-Four slots contain the parts of the object:
+`hyperSpec`{.r} is an S4 (or new-style) class. It contains the following slots:
 
 -  **`@wavelength`{.r}** containing a numeric vector with the wavelength axis of the spectra.
 -  **`@data`{.r}**       a `data.frame`{.r} with the spectra and all further information belonging to the spectra.
 -  **`@label`{.r}**      a list with appropriate labels (particularly for axis annotations).
-
-
-<!-- ======================================================================= -->
-```{block, type="note-t", echo=TRUE}
-**Translator's notes** `hyperspec-4`
-
-1. `# FIXME`{.r} "Four slots contain the parts..." only 3 slots are mentioned in the list!
-And, as far as I know, the `@log`{.r} slot will be removed in the new version.
-```
-<!-- ======================================================================= -->
-
 
 
 <!-- --- -->
@@ -457,16 +428,7 @@ To get familiar with expressions for axis annotation, see `?plotmath`{.r} and `d
 
 # Functions Provided by **hyperSpec** {#sec:funct-prov-phy}
 
-
-<!-- ======================================================================= -->
-```{block, type="note-t", echo=TRUE}
-**Translator's notes** `hyperspec-5`
-
-1. "appendix" is mentioned. Possible issue.
-```
-<!-- ======================================================================= -->
-
-Table \@ref(tab:functions) in the appendix gives an overview of the functions implemented by package **hyperSpec**.
+Table \@ref(tab:functions) in gives an overview of the functions implemented by package **hyperSpec**.
 
 
 
@@ -1069,23 +1031,9 @@ dim(rbind(flu, flu))
 
 There is also a more general function, `bind()`{.r}, taking the direction (`"r"`{.r} or `"c"`{.r}) as first argument followed by the objects to bind either in separate arguments or in a list.
 
-
-<!-- ======================================================================= -->
-```{block, type="note-t", echo=TRUE}
-**Translator's notes** `hyperspec-8`
-
-1. `# FIXME: `{.r}
-the sentence `"must have the same rows and columns, respectively."` seems to be 
-confusing and should be fixed.
-
-**Maybe:** "the same column names" or "the same number of columns (for
-       `rbind()`{.r}) and the same number of rows (for `cbind()`{.r})"?
-```
-<!-- ======================================================================= -->
-
-
-As usual for `rbind()`{.r} and `cbind()`{.r}, the objects that should be bound together must
-have the same rows and columns, respectively.
+As usual for `rbind()`{.r} and `cbind()`{.r}, the objects that should be bound together must have
+the same number of columns (for `rbind()`{.r}) and the same number of rows (for `cbind()`{.r}),
+respectively.
 
 \mFun{`collapse()`{.r}}
 For binding row-wise (`rbind()`{.r}), `collapse()`{.r} is more flexible and faster as well.
@@ -1595,7 +1543,14 @@ plot(spc.NA.approx(spc), add = TRUE, col = "blue",
 
 
 1. Empty chapter. What to do with it?
- 
+
+Comment from Roman: I suggest for now to write the following:
+
+Correction of cosmic spikes is not a part of `hyperSpec` package, and can be addressed with algorithms presented in these papers:
+
+* [A Simple Algorithm for Despiking Raman Spectra](https://chemrxiv.org/articles/A_Simple_Algorithm_for_Despiking_Raman_Spectra/5993011/2)
+* [Automatization of spike correction in Raman spectra of biological samples](https://www.sciencedirect.com/science/article/abs/pii/S0169743916300600)
+
 ```
 <!-- ======================================================================= -->
 
@@ -2025,7 +1980,7 @@ This reconstruction is in fact a matrix multiplication:
 <!-- Equation ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  -->
 \begin{equation}
 
-  spectra^{(nrow × nwl)} = scores^{(nrow × p)} loadings^{(p × nwl)}
+  \mathrm{spectra}^{\mathrm{~nrow} ~×~ \mathrm{nwl}} = \mathrm{scores}^{\mathrm{~nrow} ~×~ p} \;\cdot\; \mathrm{loadings}^{~p ~×~ \mathrm{nwl}}
   (\#eq:equation-1)
 
 \end{equation}
@@ -2036,7 +1991,7 @@ Note that this corresponds to a model based on the Beer-Lambert law:
 <!-- Equation ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  -->
 \begin{equation}
 
-  A_n (\lambda) = c_{n,i} \epsilon (i, \lambda) + error
+  A_n (\lambda) = c_{n,i} \epsilon (i, \lambda) + \mathrm{error}
   (\#eq:equation-2)
 
 \end{equation}
@@ -2072,29 +2027,6 @@ ggplot(as.long.df(chondro[1]), aes(x = .wavelength, y = spc)) + geom_line()
 ```
 
 
-<!-- ======================================================================= -->
-```{block, type="note-t", echo=TRUE}
-**Translator's notes** `hyperspec-11`
-
-1. `# FIXME: `{.r} Is the chunk below still needed?
-```
-<!-- ======================================================================= -->
-
-
-
-```{r ggplot-do, include=FALSE, eval=FALSE}
-
-# FIXME: is this chunk still needed?
-
-if (require(ggplot2)) {
-  # <<ggplot>>
-  ggsave(file = "hyperspec-fig-ggplot-do.pdf", width = 8, height = 4)
-} else {
-  pdf("hyperspec-fig-ggplot-do.pdf", width = 8, height = 4)
-  ploterrormsg(NULL, "ggplot2")
-  dev.off()
-}
-```
 
 
 ## Data Analysis Methods using a matrix e.g., Hierarchical Cluster Analysis {#HCA}
@@ -2120,7 +2052,7 @@ dendrogram <- hclust(dist, method = "ward.D")
 CAPTION <- "The results of the cluster analysis: the dendrogram.  "
 ```
 <!-- , fig.width=8, fig.height=5 -->
-```{r dend, fig.cap=CAPTION, fig.width=7}
+```{r dend, fig.cap=CAPTION, fig.width=7, fig.height=7}
 plot(dendrogram)
 ```
 
@@ -2276,7 +2208,6 @@ The memory consumption of `read.txt.Renishaw()`{.r} can be lowered by importing 
 
 \printindex
 
-\appendix
 
 # Overview of the functions provided by package **hyperSpec** 
 
@@ -2309,15 +2240,9 @@ make.fn.table()
 
 <!-- ======================================================================= -->
 ```{block, type="note-t", echo=TRUE}
-**Translator's notes** `hyperspec-12`
+**Translator's note** `hyperspec-12`
 
-
-1. `# FIXME`{.r} The following functions are deprecated:
-     
-     `logbook`{.r}                        | logging the data treatment
-     `logentry`{.r}                       | make a logbook entry
-
-2. `# TODO`{.r}  A better version of the table could be created if `pkgdown` website 
+`# TODO`{.r}  A better version of the table could be created if `pkgdown` website 
  (documentation) is used. The index/list of functions could be created automatically.
  
 ```
@@ -2400,7 +2325,7 @@ make.fn.table()
 `nwl`{.r}                            | number of data points per spectrum
 `print`{.r}                          | summary information
 `rownames`{.r}                       | 
-`summary`{.r}                        | summary information including the log 
+`summary`{.r}                        | summary information
 **Create and initialize an object**  | 
 `empty`{.r}                          | creates an hyperSpec object with 0 rows, but the same wavelengths as another object 
 **Options**                          | 
