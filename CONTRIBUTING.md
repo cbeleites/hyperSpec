@@ -71,6 +71,6 @@ Commit often, try to make small atomic commits. An atomic commit addresses only 
 
 ## Versioning
 
-The project adheres to the semantic versioning guidelines, as outlined at https://semver.org/ (Work in progress, see #123).
+The project adheres to the semantic versioning guidelines, as outlined at https://semver.org/ (Work in progress, see [#123](https://github.com/cbeleites/hyperSpec/issues/123)).
 
 Thanks! :heart:
