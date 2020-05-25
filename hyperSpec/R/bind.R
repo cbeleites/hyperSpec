@@ -60,31 +60,33 @@
 ##' lhy <- list (flu, flu)
 ##' do.call ("rbind", lhy)
 ##' bind ("r", lhy)
-bind <- function (direction = stop ("direction ('c' or 'r') required"), ...,
-									wl.tolerance = hy.getOption ("wl.tolerance")){
+bind <- function(direction = stop("direction ('c' or 'r') required"), ...,
+                 wl.tolerance = hy.getOption("wl.tolerance")) {
+  wl.tolerance <- .checkpos(wl.tolerance, "wl.tolerance")
+  dots <- list(...)
 
-	wl.tolerance <- .checkpos (wl.tolerance, "wl.tolerance")
-  dots <- list (...)
-
-  if ((length (dots) == 1) & is.list (dots [[1]]))
+  if ((length(dots) == 1) & is.list(dots [[1]])) {
     dots <- dots[[1]]
+  }
 
-  if (length (dots) == 0)
+  if (length(dots) == 0) {
     NULL
-  else if (length (dots) == 1){
-    validObject (dots[[1]])
+  } else if (length(dots) == 1) {
+    validObject(dots[[1]])
     dots[[1]]
-  } else {                              # binding is actually needed.
-    lapply (dots, chk.hy)
-    lapply (dots, validObject)
+  } else { # binding is actually needed.
+    lapply(dots, chk.hy)
+    lapply(dots, validObject)
 
-    for (i in seq_along (dots) [-1]){
-      dots[[1]] <- switch (direction,
-                           c = cbind2 (dots[[1]], dots[[i]]),
-                           r = rbind2 (dots[[1]], dots[[i]], wl.tolerance = wl.tolerance),
-                           stop ("direction must be either 'c' or 'r' for cbind",
-                                 "and rbind, respectively.")
-                           )
+    for (i in seq_along(dots) [-1]) {
+      dots[[1]] <- switch(direction,
+        c = cbind2(dots[[1]], dots[[i]]),
+        r = rbind2(dots[[1]], dots[[i]], wl.tolerance = wl.tolerance),
+        stop(
+          "direction must be either 'c' or 'r' for cbind",
+          "and rbind, respectively."
+        )
+      )
     }
 
     dots [[1]]
@@ -92,26 +94,28 @@ bind <- function (direction = stop ("direction ('c' or 'r') required"), ...,
 }
 
 ##' @include unittest.R
-.test (bind) <- function () {
-  context ("bind")
+.test(bind) <- function() {
+  context("bind")
 
   test_that("wl.tolerance for rbind", {
     tmp <- flu
-    wl (tmp) <- wl (tmp) + 0.01
-    expect_error (bind ("r", tmp, flu))
-    expect_equivalent (nwl (bind ("r", tmp, flu, tmp, flu, wl.tolerance = 0.1)), nwl (flu))
+    wl(tmp) <- wl(tmp) + 0.01
+    expect_error(bind("r", tmp, flu))
+    expect_equivalent(nwl(bind("r", tmp, flu, tmp, flu, wl.tolerance = 0.1)), nwl(flu))
 
 
-    tmp.list <- list (flu, tmp, flu)
+    tmp.list <- list(flu, tmp, flu)
 
-    expect_error (bind ("r", tmp.list))
-    expect_true (all.equal (bind ("r", tmp.list, wl.tolerance = 0.1),
-                            flu [rep (row.seq (flu), 3)],
-                            check.label = TRUE))
+    expect_error(bind("r", tmp.list))
+    expect_true(all.equal(bind("r", tmp.list, wl.tolerance = 0.1),
+      flu [rep(row.seq(flu), 3)],
+      check.label = TRUE
+    ))
 
-    expect_true (all.equal (do.call ("bind", list ("r", tmp.list, wl.tolerance = 0.1)),
-                            flu [rep (row.seq (flu), 3)],
-                            check.label = TRUE))
+    expect_true(all.equal(do.call("bind", list("r", tmp.list, wl.tolerance = 0.1)),
+      flu [rep(row.seq(flu), 3)],
+      check.label = TRUE
+    ))
   })
 }
 
@@ -128,7 +132,7 @@ bind <- function (direction = stop ("direction ('c' or 'r') required"), ...,
 ##' @aliases cbind.hyperSpec
 
 ##'
-cbind.hyperSpec <- function (...) bind ("c", ...)
+cbind.hyperSpec <- function(...) bind("c", ...)
 
 ##'
 ##' \code{rbind2} binds two \code{hyperSpec} objects by row. They need to have
@@ -138,124 +142,130 @@ cbind.hyperSpec <- function (...) bind ("c", ...)
 ##' @rdname bind
 ##' @export
 ##' @aliases rbind.hyperSpec
-rbind.hyperSpec <- function (...) bind ("r", ...)
+rbind.hyperSpec <- function(...) bind("r", ...)
 
-.test (rbind.hyperSpec) <- function () {
-  context ("rbind.hyperSpec")
+.test(rbind.hyperSpec) <- function() {
+  context("rbind.hyperSpec")
 
-  test_that("wl.tolerance",{
+  test_that("wl.tolerance", {
     tmp <- flu
-    wl (tmp) <- wl (tmp) + 0.01
-    expect_error (rbind (tmp, flu))
-    expect_equivalent (nwl (rbind (tmp, flu, flu, wl.tolerance = 0.1)), nwl (flu))
+    wl(tmp) <- wl(tmp) + 0.01
+    expect_error(rbind(tmp, flu))
+    expect_equivalent(nwl(rbind(tmp, flu, flu, wl.tolerance = 0.1)), nwl(flu))
 
-    tmp.list <- list (flu, tmp, flu)
-    expect_true (all.equal (do.call ("rbind", c (tmp.list, wl.tolerance = 0.1)),
-                            flu [rep (row.seq (flu), 3)],
-                            check.label = TRUE))
+    tmp.list <- list(flu, tmp, flu)
+    expect_true(all.equal(do.call("rbind", c(tmp.list, wl.tolerance = 0.1)),
+      flu [rep(row.seq(flu), 3)],
+      check.label = TRUE
+    ))
   })
 
-  test_that ("correct rbinding", {
-    expect_equal(nrow (rbind (flu, flu)), 2 * nrow (flu))
-    expect_error(rbind (flu, flu [,, min ~ min + 3i]))
+  test_that("correct rbinding", {
+    expect_equal(nrow(rbind(flu, flu)), 2 * nrow(flu))
+    expect_error(rbind(flu, flu [, , min ~ min + 3i]))
   })
 
-  test_that ("list of hyperSpec objects", {
-
-    expect_equal(nrow (rbind (flu, flu)), 2 * nrow (flu))
-    expect_error(rbind (flu, flu [,, min ~ min + 3i]))
+  test_that("list of hyperSpec objects", {
+    expect_equal(nrow(rbind(flu, flu)), 2 * nrow(flu))
+    expect_error(rbind(flu, flu [, , min ~ min + 3i]))
   })
-
 }
 
 
-.cbind2 <- function (x, y){
-	validObject (x)
-	validObject (y)
+.cbind2 <- function(x, y) {
+  validObject(x)
+  validObject(y)
 
-	cols <- match (colnames (x@data), colnames (y@data))
-	cols <- colnames (y@data) [cols]
-	cols <- cols [! is.na (cols)]
-	cols <- cols [- match ("spc", cols)]
+  cols <- match(colnames(x@data), colnames(y@data))
+  cols <- colnames(y@data) [cols]
+  cols <- cols [!is.na(cols)]
+  cols <- cols [-match("spc", cols)]
 
-	if (length (cols) < 0){
-		ord <- do.call (order, x@data[, cols, drop = FALSE])
-		x@data <- x@data[ord, , drop = FALSE]
+  if (length(cols) < 0) {
+    ord <- do.call(order, x@data[, cols, drop = FALSE])
+    x@data <- x@data[ord, , drop = FALSE]
 
-		ord <- do.call (order, y@data[, cols, drop = FALSE])
-		y@data <- y@data[ord, , drop = FALSE]
+    ord <- do.call(order, y@data[, cols, drop = FALSE])
+    y@data <- y@data[ord, , drop = FALSE]
 
-		if (any (x@data[, cols, drop = FALSE] != y@data[, cols, drop = FALSE]))
-			stop ("hyperSpec objects must have the same data in columns",
-						"of the same name (except data$spc)")
-	}
+    if (any(x@data[, cols, drop = FALSE] != y@data[, cols, drop = FALSE])) {
+      stop(
+        "hyperSpec objects must have the same data in columns",
+        "of the same name (except data$spc)"
+      )
+    }
+  }
 
-	## for the spectra, multiple occurences of the same wavelength are O.K.
-	x@data$spc <- cbind(x@data$spc, y@data$spc)
-	.wl (x) <- c (x@wavelength, y@wavelength)
+  ## for the spectra, multiple occurences of the same wavelength are O.K.
+  x@data$spc <- cbind(x@data$spc, y@data$spc)
+  .wl(x) <- c(x@wavelength, y@wavelength)
 
-	## cbind columns in y that are not in x
-	cols <- is.na (match (colnames (y@data), colnames (x@data)))
-	x@data <- cbind (x@data,
-									 y@data[, cols, drop = FALSE])
+  ## cbind columns in y that are not in x
+  cols <- is.na(match(colnames(y@data), colnames(x@data)))
+  x@data <- cbind(
+    x@data,
+    y@data[, cols, drop = FALSE]
+  )
 
-	x
+  x
 }
 ##' @rdname bind
 ##' @export
 ##' @aliases cbind2,hyperSpec,hyperSpec-method
-setMethod ("cbind2", signature = signature (x = "hyperSpec", y = "hyperSpec"), .cbind2)
+setMethod("cbind2", signature = signature(x = "hyperSpec", y = "hyperSpec"), .cbind2)
 
 ##' @rdname bind
 ##' @export
 ##' @aliases cbind2,hyperSpec,missing-method
-setMethod("cbind2", signature = signature (x = "hyperSpec", y = "missing"), function (x, y) x)
+setMethod("cbind2", signature = signature(x = "hyperSpec", y = "missing"), function(x, y) x)
 
-.rbind2 <- function (x, y, wl.tolerance = hy.getOption ("wl.tolerance")) {
-	validObject (x)
-	validObject (y)
-	wl.tolerance <- .checkpos (wl.tolerance, "wl.tolerance")
+.rbind2 <- function(x, y, wl.tolerance = hy.getOption("wl.tolerance")) {
+  validObject(x)
+  validObject(y)
+  wl.tolerance <- .checkpos(wl.tolerance, "wl.tolerance")
 
-	if (! isTRUE (all.equal (x@wavelength, y@wavelength, tolerance = wl.tolerance)))
-		stop ("The wavelengths of the objects differ (with respect to tolerance ", wl.tolerance, ").\n",
-					"If they are not ordered, try 'orderwl'.")
+  if (!isTRUE(all.equal(x@wavelength, y@wavelength, tolerance = wl.tolerance))) {
+    stop(
+      "The wavelengths of the objects differ (with respect to tolerance ", wl.tolerance, ").\n",
+      "If they are not ordered, try 'orderwl'."
+    )
+  }
 
-	x@data <- rbind (x@data, y@data)
+  x@data <- rbind(x@data, y@data)
 
-	x
+  x
 }
 
-.test (.rbind2) <- function () {
-  context (".rbind2")
+.test(.rbind2) <- function() {
+  context(".rbind2")
 
   test_that("flu", {
-    expect_equal (rbind (flu [ 1],  flu [-1]),  flu,              check.attributes = FALSE)
-    expect_equal (rbind (flu [-1],  flu [ 1]),  flu [c (2:6, 1)], check.attributes = FALSE)
-    expect_equal (rbind (flu [1:2], flu [3:6]), flu,              check.attributes = FALSE)
+    expect_equal(rbind(flu [1], flu [-1]), flu, check.attributes = FALSE)
+    expect_equal(rbind(flu [-1], flu [1]), flu [c(2:6, 1)], check.attributes = FALSE)
+    expect_equal(rbind(flu [1:2], flu [3:6]), flu, check.attributes = FALSE)
   })
 
   test_that("empty objects", {
-    expect_equal (rbind (flu [0], flu [0]), flu [0], check.attributes = FALSE)
-    expect_equal (rbind (flu [1], flu [0]), flu [1], check.attributes = FALSE)
-    expect_equal (rbind (flu [0], flu [1]), flu [1], check.attributes = FALSE)
+    expect_equal(rbind(flu [0], flu [0]), flu [0], check.attributes = FALSE)
+    expect_equal(rbind(flu [1], flu [0]), flu [1], check.attributes = FALSE)
+    expect_equal(rbind(flu [0], flu [1]), flu [1], check.attributes = FALSE)
   })
 
 
-	test_that("wl.tolerance", {
-	  tmp <- flu
-	  wl (tmp) <- wl (tmp) + 0.01
-	  expect_error (rbind2 (tmp, flu))
-	  expect_equivalent (nwl (rbind2 (tmp, flu, wl.tolerance = 0.1)), nwl (flu))
-	})
+  test_that("wl.tolerance", {
+    tmp <- flu
+    wl(tmp) <- wl(tmp) + 0.01
+    expect_error(rbind2(tmp, flu))
+    expect_equivalent(nwl(rbind2(tmp, flu, wl.tolerance = 0.1)), nwl(flu))
+  })
 }
 
 ##' @rdname bind
 ##' @export
 ##' @aliases  rbind2,hyperSpec,hyperSpec-method
-setMethod("rbind2", signature = signature (x = "hyperSpec", y = "hyperSpec"), .rbind2)
+setMethod("rbind2", signature = signature(x = "hyperSpec", y = "hyperSpec"), .rbind2)
 
 ##' @rdname bind
 ##' @export
 ##' @aliases rbind2,hyperSpec,missing-method
-setMethod ("rbind2", signature = signature (x = "hyperSpec", y = "missing"), function (x, y, wl.tolerance) x)
-
+setMethod("rbind2", signature = signature(x = "hyperSpec", y = "missing"), function(x, y, wl.tolerance) x)

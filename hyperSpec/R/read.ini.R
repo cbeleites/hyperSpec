@@ -19,34 +19,35 @@
 ##' for the key-value-pairs.
 ##' @keywords IO file
 
-read.ini <- function (con = stop ("Connection con needed."), skip = NULL, encoding = "unknown"){
-  Lines  <- readLines (con, encoding = encoding)
+read.ini <- function(con = stop("Connection con needed."), skip = NULL, encoding = "unknown") {
+  Lines <- readLines(con, encoding = encoding)
   ## remove leading lines, if they are not a section
-  if (!is.null (skip))
-      Lines  <- Lines [-seq_len (skip)]
+  if (!is.null(skip)) {
+    Lines <- Lines [-seq_len(skip)]
+  }
 
-  sections <- grep ("[[].*[]]", Lines)
+  sections <- grep("[[].*[]]", Lines)
 
-  content <- Lines [- sections]
-  ini <- as.list (gsub ("^.*=[[:blank:]]*", "", content)) # removes blanks behind equal sign
-  names (ini) <- .sanitize.name (gsub ("[[:blank:]]*=.*$", "", content)) # see above: removes in front of equal sign
+  content <- Lines [-sections]
+  ini <- as.list(gsub("^.*=[[:blank:]]*", "", content)) # removes blanks behind equal sign
+  names(ini) <- .sanitize.name(gsub("[[:blank:]]*=.*$", "", content)) # see above: removes in front of equal sign
 
   # try converting to numeric
-  tmp <- lapply (ini, function (x) strsplit (x, ",") [[1]])
-  tmp <- suppressWarnings (lapply (tmp, as.numeric))
-  numbers <- ! sapply (tmp, function (x) any (is.na (x)))
+  tmp <- lapply(ini, function(x) strsplit(x, ",") [[1]])
+  tmp <- suppressWarnings(lapply(tmp, as.numeric))
+  numbers <- !sapply(tmp, function(x) any(is.na(x)))
   ini [numbers] <- tmp [numbers]
 
-  tmp <- rep.int (seq_along (sections), diff (c (sections, length (Lines) + 1)) - 1)
-  ini <- split (ini, tmp)
+  tmp <- rep.int(seq_along(sections), diff(c(sections, length(Lines) + 1)) - 1)
+  ini <- split(ini, tmp)
 
   sections <- Lines [sections]
-  sections <- .sanitize.name (gsub ("^.(.*).$", "\\1", sections))
-  names (ini) <- sections
+  sections <- .sanitize.name(gsub("^.(.*).$", "\\1", sections))
+  names(ini) <- sections
 
   ini
 }
 
-.sanitize.name <- function (name){
-  gsub ("[^a-zA-Z0-9._]", ".", name)
+.sanitize.name <- function(name) {
+  gsub("[^a-zA-Z0-9._]", ".", name)
 }

@@ -1,5 +1,5 @@
 ##' @importFrom lattice latticeParseFormula
-setGeneric ("levelplot", package = "lattice")
+setGeneric("levelplot", package = "lattice")
 
 #################################################################################
 ###
@@ -10,74 +10,85 @@ setGeneric ("levelplot", package = "lattice")
 
 ### the workhorse function
 ##' @importFrom utils modifyList
-.levelplot <- function (x, data, transform.factor = TRUE, ...,
-                        contour = FALSE, useRaster = !contour) {
-  validObject (data)
+.levelplot <- function(x, data, transform.factor = TRUE, ...,
+                       contour = FALSE, useRaster = !contour) {
+  validObject(data)
 
-  data$.row <- row.seq (data)
+  data$.row <- row.seq(data)
 
   ## parse formula to find the columns to be plotted
   ## they may include also "wavelength"
-  parsed.formula <- latticeParseFormula (x,
-        as.long.df (data [1, , 1, wl.index = TRUE], rownames = TRUE),
-        dimension = 3)
+  parsed.formula <- latticeParseFormula(x,
+    as.long.df(data [1, , 1, wl.index = TRUE], rownames = TRUE),
+    dimension = 3
+  )
   use.x <- parsed.formula$right.x.name
   use.y <- parsed.formula$right.y.name
   use.z <- parsed.formula$left.name
 
-  dots <- list (..., contour = contour, useRaster = useRaster)
+  dots <- list(..., contour = contour, useRaster = useRaster)
 
   ## if spc is used as z and the data set has multiple wavelengths cut and warn
-  if (use.z == "spc" && nwl (data) > 1 &&
-      !any (grepl (".wavelength", c(as.character (x),
-                                    as.character (dots$groups),
-                                    as.character (dots$subset))))) {
+  if (use.z == "spc" && nwl(data) > 1 &&
+    !any(grepl(".wavelength", c(
+      as.character(x),
+      as.character(dots$groups),
+      as.character(dots$subset)
+    )))) {
     data <- data [, , 1, wl.index = TRUE]
-    warning ("Only first wavelength is used for plotting")
+    warning("Only first wavelength is used for plotting")
   }
 
-  dots <- modifyList (list (xlab = data@label [[use.x]],
-                            ylab = data@label [[use.y]]),
-                      dots)
+  dots <- modifyList(
+    list(
+      xlab = data@label [[use.x]],
+      ylab = data@label [[use.y]]
+    ),
+    dots
+  )
 
-  if (any (grepl ("spc", c(as.character (x),
-                           as.character (dots$groups),
-                           as.character (dots$subset))))){
-    data <- as.long.df (data, rownames = TRUE,
-                        wl.factor =  ".wavelength" %in% c (as.character (dots$groups),
-                                                           as.character (dots$subset),
-                                                           names (parsed.formula$condition))
-                        )
+  if (any(grepl("spc", c(
+    as.character(x),
+    as.character(dots$groups),
+    as.character(dots$subset)
+  )))) {
+    data <- as.long.df(data,
+      rownames = TRUE,
+      wl.factor = ".wavelength" %in% c(
+        as.character(dots$groups),
+        as.character(dots$subset),
+        names(parsed.formula$condition)
+      )
+    )
   } else {
     data <- data$..
-    data$.rownames <- as.factor (rownames (data))
+    data$.rownames <- as.factor(rownames(data))
   }
 
 
 
-  if (is.factor (data [[use.z]]) && transform.factor) {
-    dots <- trellis.factor.key (data [[use.z]], dots)
-    data [[use.z]] <- as.numeric (data [[use.z]])
+  if (is.factor(data [[use.z]]) && transform.factor) {
+    dots <- trellis.factor.key(data [[use.z]], dots)
+    data [[use.z]] <- as.numeric(data [[use.z]])
   }
 
-  do.call(levelplot, c (list (x, data), dots))
+  do.call(levelplot, c(list(x, data), dots))
 }
 
 ##' @include unittest.R
-.test (.levelplot) <- function (){
-  context (".levelplot")
+.test(.levelplot) <- function() {
+  context(".levelplot")
 
-  test_that ("no errors", {
+  test_that("no errors", {
     ## just check that no errors occur
-    expect_silent (levelplot (laser, contour = TRUE, col = "#00000080"))
+    expect_silent(levelplot(laser, contour = TRUE, col = "#00000080"))
 
     ## applying a function before plotting
-    expect_silent (plotmap (chondro, func = max, col.regions = gray (seq (0, 1, 0.05))))
+    expect_silent(plotmap(chondro, func = max, col.regions = gray(seq(0, 1, 0.05))))
 
-    expect_silent (plotmap (chondro, clusters ~ x * y, transform.factor = FALSE))
-    expect_silent (plotmap (chondro, clusters ~ x * y, col.regions = gray (seq (0, 1, 0.05))))
+    expect_silent(plotmap(chondro, clusters ~ x * y, transform.factor = FALSE))
+    expect_silent(plotmap(chondro, clusters ~ x * y, col.regions = gray(seq(0, 1, 0.05))))
   })
-
 }
 
 ##' @include plotmap.R
@@ -91,13 +102,16 @@ setGeneric ("levelplot", package = "lattice")
 ##'
 ##'  \code{\link{trellis.factor.key}} for improved color coding of factors
 ##' @importFrom lattice levelplot
-setMethod (f = "levelplot", signature = signature (x = "hyperSpec", data = "missing"),
-           definition = function (x, data, ...) {
-             .levelplot (x = formula (spc ~ .wavelength * .row), data = x, ...)
-           })
+setMethod(
+  f = "levelplot", signature = signature(x = "hyperSpec", data = "missing"),
+  definition = function(x, data, ...) {
+    .levelplot(x = formula(spc ~ .wavelength * .row), data = x, ...)
+  }
+)
 
 ##' @rdname levelplot
 ##' @export
-setMethod (f = "levelplot", signature = signature (x = "formula", data = "hyperSpec"),
-           definition = .levelplot)
-
+setMethod(
+  f = "levelplot", signature = signature(x = "formula", data = "hyperSpec"),
+  definition = .levelplot
+)

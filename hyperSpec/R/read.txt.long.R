@@ -1,4 +1,4 @@
-###-----------------------------------------------------------------------------
+### ---------------------------------------------------------------------------
 ###
 ###  read.txt.long: import measurements from .txt file
 ###
@@ -69,13 +69,14 @@
 ##' \dontrun{vignette  ("file-io")}
 ##'
 ##' ## export & import matlab files
-##' if (require (R.matlab)){
+##' if (require (R.matlab)) {
 ##'    # export to matlab file
-##'    writeMat ("test.mat", x = flu[[]], wavelength = flu@@wavelength,
+##'    writeMat (paste0 (tempdir(), "/test.mat"),
+##'              x = flu[[]], wavelength = flu@@wavelength,
 ##'              label = lapply (flu@@label, as.character))
 ##'
 ##'    # reading a matlab file
-##'    data <- readMat ("test.mat")
+##'    data <- readMat (paste0 (tempdir(), "/test.mat"))
 ##'    print (data)
 ##'    mat <- new ("hyperSpec", spc = data$x,
 ##'                wavelength = as.numeric(data$wavelength),
@@ -85,73 +86,86 @@
 ##' ## ascii export & import
 ##'
 ##'
-##' write.txt.long (flu,  file = "flu.txt", cols = c(".wavelength", "spc", "c"),
+##' write.txt.long (flu,
+##'     file = paste0 (tempdir(), "/flu.txt"),
+##'     cols = c(".wavelength", "spc", "c"),
 ##' 		order = c("c", ".wavelength"),
 ##' 		decreasing = c(FALSE, TRUE))
 ##'
-##' read.txt.long (file = "flu.txt", cols = list (.wavelength = expression (lambda / nm),
-##'       spc= "I / a.u", c = expression ("/" (c, (mg/l)))))
+##' read.txt.long (file = paste0 (tempdir(), "/flu.txt"),
+##'       cols = list (.wavelength = expression (lambda / nm),
+##'       spc = "I / a.u", c = expression ("/" (c, (mg/l)))))
 ##'
-##' write.txt.wide (flu,  file = "flu.txt", cols = c("c", "spc"),
+##' write.txt.wide (flu,  file = paste0 (tempdir(), "/flu.txt"),
+##'     cols = c("c", "spc"),
 ##' 		col.labels = TRUE, header.lines = 2, row.names = TRUE)
 ##'
-##' write.txt.wide (flu,  file = "flu.txt", col.labels = FALSE, row.names = FALSE)
+##' write.txt.wide (flu,  file = paste0 (tempdir(), "/flu.txt"),
+##'                 col.labels = FALSE, row.names = FALSE)
 ##'
-##' read.txt.wide (file = "flu.txt",
+##' read.txt.wide (file = paste0 (tempdir(), "/flu.txt"),
 ##'     # give columns in same order as they are in the file
-##'     cols = list (spc = "I / a.u", c = expression ("/"("c", "mg/l")), filename = "filename", 
-##'     # plus wavelength label last
-##'     .wavelength = "lambda / nm"),
+##'     cols = list (spc = "I / a.u",
+##'                  c = expression ("/"("c", "mg/l")),
+##'                  filename = "filename",
+##'                  # plus wavelength label last
+##'                  .wavelength = "lambda / nm"),
 ##' 		header = TRUE)
 ##'
 ##'
 ##' @importFrom utils read.table unstack
-read.txt.long <- function (file = stop ("file is required"),
-                           cols = list (
-                             .wavelength = expression (lambda / nm),
-                             spc = "I / a.u."),
-                           header = TRUE,
-                           ...){
-  txtfile <- read.table (file = file, header = header, ...)
+read.txt.long <- function(file = stop("file is required"),
+                          cols = list(
+                            .wavelength = expression(lambda / nm),
+                            spc = "I / a.u."
+                          ),
+                          header = TRUE,
+                          ...) {
+  txtfile <- read.table(file = file, header = header, ...)
 
-  if (header){
-    cln <- match (colnames (txtfile), names (cols))
+  if (header) {
+    cln <- match(colnames(txtfile), names(cols))
     cln <- cols[cln]
-    names (cln) <- colnames (txtfile)
+    names(cln) <- colnames(txtfile)
     cols <- cln
-    rm (cln)
+    rm(cln)
   } else {
-    if (ncol (txtfile) != length (cols)){
-      warning (paste ("cols does not correspond to the columns in", file,
-                      ". Guessing remaining columns."))
-      cols <- c (character (ncol (txtfile) - 2), cols)
+    if (ncol(txtfile) != length(cols)) {
+      warning(paste(
+        "cols does not correspond to the columns in", file,
+        ". Guessing remaining columns."
+      ))
+      cols <- c(character(ncol(txtfile) - 2), cols)
     }
   }
 
 
-  if (is.na (match ("spc", names (cols))))
-    stop ("cols$spc must exist.")
+  if (is.na(match("spc", names(cols)))) {
+    stop("cols$spc must exist.")
+  }
 
-  wavelength <- match (".wavelength", names (cols))
-  if (is.na (wavelength))
-    stop ("cols$.wavelength must exist.")
+  wavelength <- match(".wavelength", names(cols))
+  if (is.na(wavelength)) {
+    stop("cols$.wavelength must exist.")
+  }
 
-  colnames (txtfile) <- names (cols)
+  colnames(txtfile) <- names(cols)
 
   ## wavelength axis
-  wavelength <- as.numeric (levels (as.factor (txtfile$.wavelength)))
+  wavelength <- as.numeric(levels(as.factor(txtfile$.wavelength)))
 
-  spc <- as.matrix (unstack (txtfile, form = spc ~ .wavelength))
-  if ((nrow (spc)  == length (wavelength)) & (ncol (spc) != length (wavelength)))
-    spc <- t (spc)
+  spc <- as.matrix(unstack(txtfile, form = spc ~ .wavelength))
+  if ((nrow(spc) == length(wavelength)) & (ncol(spc) != length(wavelength))) {
+    spc <- t(spc)
+  }
 
-  colnames (spc) <- levels (txtfile$.wavelength)
+  colnames(spc) <- levels(txtfile$.wavelength)
 
   txtfile <- txtfile [txtfile$.wavelength == txtfile$.wavelength[1], ]
   txtfile$.wavelength <- NULL
-  txtfile$spc <- I (spc)
+  txtfile$spc <- I(spc)
 
-  spc <- new ("hyperSpec", wavelength = wavelength, data = txtfile, labels = cols)
+  spc <- new("hyperSpec", wavelength = wavelength, data = txtfile, labels = cols)
 
   ## consistent file import behaviour across import functions
   .fileio.optional(spc, filename = file)

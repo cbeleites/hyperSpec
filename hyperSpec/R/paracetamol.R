@@ -1,7 +1,7 @@
 ##' Paracetamol Spectrum
 ##' A Raman spectrum of a paracetamol tablet.
-##' 
-##' 
+##'
+##'
 ##' @name paracetamol
 ##' @docType data
 ##' @format The spectrum was acquired with a Renishaw InVia spectrometer from
@@ -10,12 +10,11 @@
 ##' @author C. Beleites
 ##' @keywords datasets
 ##' @examples
-##' 
+##'
 ##' paracetamol
-##' 
+##'
 ##' plot (paracetamol)
 ##' plotspc (paracetamol, c (min ~ 1750, 2800 ~ max), xoffset = 800,
 ##' wl.reverse = TRUE)
-##' 
+##'
 NULL
-

@@ -76,74 +76,78 @@
 ##' flu / flu$c
 
 
-setMethod ("Arith", signature (e1 = "hyperSpec", e2 = "hyperSpec"),
-           function (e1, e2){
-             validObject (e1)
-             validObject (e2)
+setMethod(
+  "Arith", signature(e1 = "hyperSpec", e2 = "hyperSpec"),
+  function(e1, e2) {
+    validObject(e1)
+    validObject(e2)
 
-             e1 <- .expand (e1, dim (e2) [c (1, 3)])
-             e2 <- .expand (e2, dim (e1) [c (1, 3)])
+    e1 <- .expand(e1, dim(e2) [c(1, 3)])
+    e2 <- .expand(e2, dim(e1) [c(1, 3)])
 
-             e1 [[]] <- callGeneric (e1[[]], e2[[]])
-             e1
-           }
-           )
+    e1 [[]] <- callGeneric(e1[[]], e2[[]])
+    e1
+  }
+)
 
-.arithx <- function (e1, e2){
-  validObject (e1)
+.arithx <- function(e1, e2) {
+  validObject(e1)
 
-  if (missing (e2)){
-    e1  [[]] <- callGeneric (e1 [[]])
+  if (missing(e2)) {
+    e1  [[]] <- callGeneric(e1 [[]])
     e1
   } else {
-    e2 <- as.matrix (e2)
+    e2 <- as.matrix(e2)
 
     ## called /only/ with e1 hyperSpec but e2 matrix-like
-    e1 <- .expand (e1, dim (e2))
-    e2 <- .expand (e2, dim (e1) [c (1, 3)])
+    e1 <- .expand(e1, dim(e2))
+    e2 <- .expand(e2, dim(e1) [c(1, 3)])
 
-    e1  [[]] <- callGeneric (e1 [[]], e2)
+    e1  [[]] <- callGeneric(e1 [[]], e2)
     e1
   }
 }
 ##' @rdname Arith
-setMethod ("Arith", signature (e1 = "hyperSpec", e2 = "numeric"), .arithx)
+setMethod("Arith", signature(e1 = "hyperSpec", e2 = "numeric"), .arithx)
 ##' @rdname Arith
-setMethod ("Arith", signature (e1 = "hyperSpec", e2 = "matrix"), .arithx)
+setMethod("Arith", signature(e1 = "hyperSpec", e2 = "matrix"), .arithx)
 ##' @rdname Arith
-setMethod ("Arith", signature (e1 = "hyperSpec", e2 = "missing"), .arithx)
+setMethod("Arith", signature(e1 = "hyperSpec", e2 = "missing"), .arithx)
 
-.arithy <- function (e1, e2){
-  e1 <- as.matrix (e1)
-  validObject (e2)
+.arithy <- function(e1, e2) {
+  e1 <- as.matrix(e1)
+  validObject(e2)
 
   ## called /only/ with e2 hyperSpec but e1 matrix-like
-  e1 <- .expand (e1, dim (e2) [c (1, 3)])
-  e2 <- .expand (e2, dim (e1))
+  e1 <- .expand(e1, dim(e2) [c(1, 3)])
+  e2 <- .expand(e2, dim(e1))
 
-  e2  [[]] <- callGeneric (e1, e2 [[]])
+  e2  [[]] <- callGeneric(e1, e2 [[]])
   e2
 }
 ##' @rdname Arith
-setMethod ("Arith", signature (e1 = "numeric", e2 = "hyperSpec"), .arithy)
+setMethod("Arith", signature(e1 = "numeric", e2 = "hyperSpec"), .arithy)
 ##' @rdname Arith
-setMethod ("Arith", signature (e1 = "matrix", e2 = "hyperSpec"), .arithy)
+setMethod("Arith", signature(e1 = "matrix", e2 = "hyperSpec"), .arithy)
 
 ##' @param m matrix
 ##' @param target.dim target size to expand the vector to for the sweep-shortcuts
 ##' @noRd
-.expand <- function (m, target.dim) {
-  m.dim = dim (m)
+.expand <- function(m, target.dim) {
+  m.dim <- dim(m)
 
-  if (m.dim [1]  == 1L & target.dim [1] > 1L)
-      m <- m [rep (1, target.dim [1]),, drop = FALSE]
+  if (m.dim [1] == 1L & target.dim [1] > 1L) {
+    m <- m [rep(1, target.dim [1]), , drop = FALSE]
+  }
 
-  if (is (m, "hyperSpec")) {
-    if (m.dim [3] == 1L & target.dim [2] > 1L)
-        m <- m [,, rep (1, target.dim [2]), wl.index = TRUE]
+  if (is(m, "hyperSpec")) {
+    if (m.dim [3] == 1L & target.dim [2] > 1L) {
+      m <- m [, , rep(1, target.dim [2]), wl.index = TRUE]
+    }
   } else {
-    if (m.dim [2] == 1L & target.dim [2] > 1L)
-        m <- m [, rep (1, target.dim [2]), drop = FALSE]
+    if (m.dim [2] == 1L & target.dim [2] > 1L) {
+      m <- m [, rep(1, target.dim [2]), drop = FALSE]
+    }
   }
 
   m
@@ -156,79 +160,90 @@ setMethod ("Arith", signature (e1 = "matrix", e2 = "hyperSpec"), .arithy)
 ##' %*%,hyperSpec,matrix-method
 ##' @export
 ##' @seealso  \code{\link[base]{matmult}} for matrix multiplications with \code{\%*\%}.
-setMethod ("%*%", signature (x = "hyperSpec", y = "hyperSpec"),
-           function (x, y){
-             validObject (x)
-             validObject (y)
+setMethod(
+  "%*%", signature(x = "hyperSpec", y = "hyperSpec"),
+  function(x, y) {
+    validObject(x)
+    validObject(y)
 
-             if (ncol(y) > 1)
-               warning(paste("Dropping column(s) of y:", paste(colnames(y$..),
-                                                               collapse = ", ")))
+    if (ncol(y) > 1) {
+      warning(paste("Dropping column(s) of y:", paste(colnames(y$..),
+        collapse = ", "
+      )))
+    }
 
-             x@data$spc <-  x@data$spc %*% y@data$spc
-             .wl (x) <- y@wavelength
-             x@label$.wavelength = y@label$.wavelength
+    x@data$spc <- x@data$spc %*% y@data$spc
+    .wl(x) <- y@wavelength
+    x@label$.wavelength <- y@label$.wavelength
 
-             x
-           }
-           )
-
-##' @rdname Arith
-setMethod ("%*%", signature (x = "hyperSpec", y = "matrix"),
-           function (x, y){
-             validObject (x)
-             x@data$spc <-  x@data$spc %*% y
-             .wl (x) <- seq_len (ncol (y))
-             x@label$.wavelength = NA
-             x
-           }
-           )
+    x
+  }
+)
 
 ##' @rdname Arith
-setMethod ("%*%", signature (x = "matrix", y = "hyperSpec"),
-           function (x, y){
-             validObject (y)
+setMethod(
+  "%*%", signature(x = "hyperSpec", y = "matrix"),
+  function(x, y) {
+    validObject(x)
+    x@data$spc <- x@data$spc %*% y
+    .wl(x) <- seq_len(ncol(y))
+    x@label$.wavelength <- NA
+    x
+  }
+)
 
-             if (ncol(y) > 1)
-               warning(paste("Dropping column(s) of y:", paste(colnames(y$..),
-                                                               collapse = ", ")))
-             y <- new ("hyperSpec",
-                       wavelength = y@wavelength,
-                       spc = x %*% y@data$spc,
-                       log = y@log
-                       )
+##' @rdname Arith
+setMethod(
+  "%*%", signature(x = "matrix", y = "hyperSpec"),
+  function(x, y) {
+    validObject(y)
 
-             y
-           }
-           )
+    if (ncol(y) > 1) {
+      warning(paste("Dropping column(s) of y:", paste(colnames(y$..),
+        collapse = ", "
+      )))
+    }
+    y <- new("hyperSpec",
+      wavelength = y@wavelength,
+      spc = x %*% y@data$spc,
+      log = y@log
+    )
 
-.test (.arithx) <- function (){
-  context ("Arith")
+    y
+  }
+)
+
+.test(.arithx) <- function() {
+  context("Arith")
 
   test_that("binary -", {
-    expect_equal (as.matrix (flu - flu), 
-                  matrix (0, nrow = nrow (flu), ncol = nwl (flu), dimnames = dimnames (flu [[]])))
-    
-    expect_equal (as.matrix (flu - flu [1]), as.matrix (sweep (flu, 2, flu [1], `-`)))
-    
-    expect_equal (as.matrix (flu - flu [,, 450]), as.matrix (sweep (flu, 1, flu [,, 450], `-`)))
+    expect_equal(
+      as.matrix(flu - flu),
+      matrix(0, nrow = nrow(flu), ncol = nwl(flu), dimnames = dimnames(flu [[]]))
+    )
+
+    expect_equal(as.matrix(flu - flu [1]), as.matrix(sweep(flu, 2, flu [1], `-`)))
+
+    expect_equal(as.matrix(flu - flu [, , 450]), as.matrix(sweep(flu, 1, flu [, , 450], `-`)))
   })
 
   test_that("binary /", {
-    expect_equal (as.matrix (flu / flu), 
-                  matrix (1, nrow = nrow (flu), ncol = nwl (flu), dimnames = dimnames (flu [[]])))
-    
-    expect_equal (as.matrix (flu / flu [1]), as.matrix (sweep (flu, 2, flu [1], `/`)))
-    
-    expect_equal (as.matrix (flu / flu [,, 450]), as.matrix (sweep (flu, 1, flu [,, 450], `/`)))
+    expect_equal(
+      as.matrix(flu / flu),
+      matrix(1, nrow = nrow(flu), ncol = nwl(flu), dimnames = dimnames(flu [[]]))
+    )
+
+    expect_equal(as.matrix(flu / flu [1]), as.matrix(sweep(flu, 2, flu [1], `/`)))
+
+    expect_equal(as.matrix(flu / flu [, , 450]), as.matrix(sweep(flu, 1, flu [, , 450], `/`)))
   })
 
   test_that("binary + with scalar", {
-    expect_equal (as.matrix (flu + 1), as.matrix (flu) + 1)
-    expect_equal (as.matrix (1 + flu), as.matrix (flu) + 1)
+    expect_equal(as.matrix(flu + 1), as.matrix(flu) + 1)
+    expect_equal(as.matrix(1 + flu), as.matrix(flu) + 1)
   })
 
   test_that("unary -", {
-    expect_equal (as.matrix (-flu), - as.matrix (flu))
+    expect_equal(as.matrix(-flu), -as.matrix(flu))
   })
 }

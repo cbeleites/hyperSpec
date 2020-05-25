@@ -33,21 +33,21 @@
 ##'
 ##' 	wl (laser)
 ##'
-wl <- function (x){
-  chk.hy (x)
-  validObject (x)
+wl <- function(x) {
+  chk.hy(x)
+  validObject(x)
 
   x@wavelength
 }
 
-###-----------------------------------------------------------------------------
+### -----------------------------------------------------------------------------
 ###
 ###  .wl
 ###
 ###
-".wl<-" <- function (x, digits = 6, value){
+".wl<-" <- function(x, value) {
   x@wavelength <- value
-  colnames (x@data$spc) <- signif (value, digits)
+  spc <- .fix_spc_colnames(x)
 
   x
 }
@@ -77,32 +77,31 @@ wl <- function (x){
 ##' 	wl (chondro) <- list (wl = 1e7 / (1e7/785 - wl (chondro)), label = expression (lambda / nm))
 ##' 	plot (chondro [1])
 ##'
-"wl<-" <- function (x, label = NULL, digits = 6, value){
+"wl<-" <- function(x, label = NULL, digits = 6, value) {
+  chk.hy(x)
+  validObject(x)
 
-  chk.hy (x)
-  validObject (x)
-
-  if (is.list (value)){
+  if (is.list(value)) {
     label <- value$label
     value <- value$wl
   }
 
-  .wl (x) <- value
+  .wl(x) <- value
 
   x@label$.wavelength <- label
 
-  validObject (x)
+  validObject(x)
 
   x
 }
 
 
-###-----------------------------------------------------------------------------
+### -----------------------------------------------------------------------------
 ##' Convert different wavelength units
-##' 
-##' The following units can be converted into each other: 
-##' \emph{nm}, \emph{\eqn{cm^{-1}}{inverse cm}}, \emph{eV}, \emph{THz} and 
-##' \emph{Raman shift} 
+##'
+##' The following units can be converted into each other:
+##' \emph{nm}, \emph{\eqn{cm^{-1}}{inverse cm}}, \emph{eV}, \emph{THz} and
+##' \emph{Raman shift}
 ##'
 ##' @param points data for conversion
 ##' @param src source unit
@@ -110,18 +109,20 @@ wl <- function (x){
 ##' @param laser laser wavelength (required for work with Raman shift)
 ##' @author R. Kiselev
 ##' @export
-##' @examples 
+##' @examples
 ##' wlconv (3200, "Raman shift", "nm", laser = 785.04)
 ##' wlconv( 785, "nm", "invcm")
-wlconv <- function(points, src, dst, laser=NULL){
+wlconv <- function(points, src, dst, laser = NULL) {
   SRC <- .fixunitname(src)
   DST <- .fixunitname(dst)
 
-  if (SRC == DST)
+  if (SRC == DST) {
     return(points)
+  }
 
-  if ((SRC == "raman" | DST == "raman") & is.null(laser))
+  if ((SRC == "raman" | DST == "raman") & is.null(laser)) {
     stop("Working with Raman shift requires knowledge of laser wavelength")
+  }
 
   f <- paste0(SRC, "2", DST)
   f <- get(f)
@@ -132,127 +133,133 @@ wlconv <- function(points, src, dst, laser=NULL){
 ##' @param ... ignored
 ##' @describeIn wlconv conversion \strong{nanometers} -> \strong{Raman shift (relative wavenumber)}
 ##' @export
-nm2raman    <- function(x, laser)  1e7*(1/laser - 1/x)
+nm2raman <- function(x, laser) 1e7 * (1 / laser - 1 / x)
 
 
 ##' @describeIn wlconv conversion \strong{nanometers} -> \strong{inverse cm (absolute wavenumber)}
 ##' @export
-nm2invcm    <- function(x, ...) 1e7/x
+nm2invcm <- function(x, ...) 1e7 / x
 
 
 ##' @describeIn wlconv conversion \strong{nanometers} -> \strong{electronvolt}
 ##' @export
-nm2ev       <- function(x, ...) 1e9*h*c/(q*x)
+nm2ev <- function(x, ...) 1e9 * h * c / (q * x)
 
 
 ##' @describeIn wlconv conversion \strong{nm} -> \strong{frequency in THz}
 ##' @export
-nm2freq     <- function(x, ...) 1e-3*c/x
+nm2freq <- function(x, ...) 1e-3 * c / x
 
 
 ##' @describeIn wlconv conversion \strong{inverse cm (absolute wavenumber)} -> \strong{Raman shift (relative wavenumber)}
 ##' @export
-invcm2raman <- function(x, laser)  1e7/laser - x
+invcm2raman <- function(x, laser) 1e7 / laser - x
 
 
 ##' @describeIn wlconv conversion \strong{inverse cm (absolute wavenumber)} -> \strong{nanometers}
 ##' @export
-invcm2nm    <- function(x, ...) 1e7/x
+invcm2nm <- function(x, ...) 1e7 / x
 
 
 ##' @describeIn wlconv conversion \strong{inverse cm (absolute wavenumber)} -> \strong{electronvolt}
 ##' @export
-invcm2ev    <- function(x, ...) 100*x*c*h/q
+invcm2ev <- function(x, ...) 100 * x * c * h / q
 
 
 ##' @describeIn wlconv conversion \strong{inverse cm (absolute wavenumber)} -> \strong{frequency in THz}
 ##' @export
-invcm2freq  <- function(x, ...) nm2freq(invcm2nm(x))
+invcm2freq <- function(x, ...) nm2freq(invcm2nm(x))
 
 
 ##' @describeIn wlconv conversion \strong{Raman shift (relative wavenumber)} -> \strong{inverse cm (absolute wavenumber)}
 ##' @export
-raman2invcm <- function(x, laser)  1e7/laser - x
+raman2invcm <- function(x, laser) 1e7 / laser - x
 
 
 ##' @describeIn wlconv conversion \strong{Raman shift (relative wavenumber)} -> \strong{nanometers}
 ##' @export
-raman2nm    <- function(x, laser)  1e7/(1e7/laser - x)
+raman2nm <- function(x, laser) 1e7 / (1e7 / laser - x)
 
 
 ##' @describeIn wlconv conversion \strong{Raman shift (relative wavenumber)} -> \strong{electronvolt}
 ##' @export
-raman2ev    <- function(x, laser)  100*h*c*(1e7/laser - x)/q
+raman2ev <- function(x, laser) 100 * h * c * (1e7 / laser - x) / q
 
 
 ##' @describeIn wlconv conversion \strong{Raman shift (relative wavenumber)} -> \strong{frequency in THz}
 ##' @export
-raman2freq  <- function(x, laser)  nm2freq(raman2nm(x, laser))
+raman2freq <- function(x, laser) nm2freq(raman2nm(x, laser))
 
 
 ##' @describeIn wlconv conversion \strong{electronvolt} -> \strong{Raman shift (relative wavenumber)}
 ##' @export
-ev2raman    <- function(x, laser)  1e7/laser - x*q/(100*h*c)
+ev2raman <- function(x, laser) 1e7 / laser - x * q / (100 * h * c)
 
 
 ##' @describeIn wlconv conversion \strong{electronvolt} -> \strong{inverse cm (absolute wavenumber)}
 ##' @export
-ev2invcm    <- function(x, ...) q*x/(100*h*c)
+ev2invcm <- function(x, ...) q * x / (100 * h * c)
 
 
 ##' @describeIn wlconv conversion \strong{electronvolt} -> \strong{nanometers}
 ##' @export
-ev2nm       <- function(x, ...) 1e9*h*c/(q*x)
+ev2nm <- function(x, ...) 1e9 * h * c / (q * x)
 
 
 ##' @describeIn wlconv conversion \strong{electronvolt} -> \strong{frequency in THz}
 ##' @export
-ev2freq     <- function(x, ...) nm2freq(ev2nm(x))
+ev2freq <- function(x, ...) nm2freq(ev2nm(x))
 
 
 ##' @describeIn wlconv conversion \strong{frequency in THz} -> \strong{nanometers}
 ##' @export
-freq2nm     <- function(x, ...) 1e-3*c/x
+freq2nm <- function(x, ...) 1e-3 * c / x
 
 
 ##' @describeIn wlconv conversion \strong{frequency in THz} -> \strong{inverse cm (absolute wavenumber)}
 ##' @export
-freq2invcm  <- function(x, ...) nm2invcm(freq2nm(x))
+freq2invcm <- function(x, ...) nm2invcm(freq2nm(x))
 
 
 ##' @describeIn wlconv conversion \strong{frequency in THz} -> \strong{electronvolt}
 ##' @export
-freq2ev     <- function(x, ...) nm2ev(freq2nm(x))
+freq2ev <- function(x, ...) nm2ev(freq2nm(x))
 
 
 ##' @describeIn wlconv conversion \strong{frequency in THz} -> \strong{Raman shift (relative wavenumber)}
 ##' @export
-freq2raman  <- function(x, laser)  nm2raman(freq2nm(x), laser)
+freq2raman <- function(x, laser) nm2raman(freq2nm(x), laser)
 
 
 # Bring the argument to a conventional name
-.fixunitname <- function(unit){
+.fixunitname <- function(unit) {
   unit <- gsub(" .*$", "", tolower(unit))
-  if (unit %in% c("raman", "stokes", "rel", "rel.", "relative", "rel.cm-1", "rel.cm"))
+  if (unit %in% c("raman", "stokes", "rel", "rel.", "relative", "rel.cm-1", "rel.cm")) {
     return("raman")
-  if (unit %in% c("invcm", "energy", "wavenumber", "cm-1", "inverted", "cm"))
+  }
+  if (unit %in% c("invcm", "energy", "wavenumber", "cm-1", "inverted", "cm")) {
     return("invcm")
-  if (unit %in% c("nm", "nanometer", "wavelength"))
+  }
+  if (unit %in% c("nm", "nanometer", "wavelength")) {
     return("nm")
-  if (unit %in% c("ev", "electronvolt"))
+  }
+  if (unit %in% c("ev", "electronvolt")) {
     return("ev")
-  if (unit %in% c("freq", "frequency", "thz", "terahertz"))
+  }
+  if (unit %in% c("freq", "frequency", "thz", "terahertz")) {
     return("freq")
-  if (unit %in% c("pixel", "px", "sensor"))
+  }
+  if (unit %in% c("pixel", "px", "sensor")) {
     return("px")
-  if (unit == "file")
+  }
+  if (unit == "file") {
     return(unit)
+  }
   stop(paste0("'", unit, "': Unknown unit type"))
 }
 
 
 # Some physical constants
-q <- 1.60217656535e-19  # elementary charge
-h <- 6.6260695729e-34   # Planck's constant
-c <- 299792458          # speed of light
-
+q <- 1.60217656535e-19 # elementary charge
+h <- 6.6260695729e-34 # Planck's constant
+c <- 299792458 # speed of light

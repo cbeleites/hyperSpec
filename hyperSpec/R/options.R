@@ -1,14 +1,15 @@
 
 
-.options <- list (debuglevel = 0L,
-                  gc = FALSE,
-                  file.remove.emptyspc = TRUE,
-                  file.keep.name = TRUE,
-                  tolerance = sqrt (.Machine$double.eps),
-									wl.tolerance = sqrt (.Machine$double.eps),
-									plot.spc.nmax = 25,
-									ggplot.spc.nmax = 10
-                  )
+.options <- list(
+  debuglevel = 0L,
+  gc = FALSE,
+  file.remove.emptyspc = TRUE,
+  file.keep.name = TRUE,
+  tolerance = sqrt(.Machine$double.eps),
+  wl.tolerance = sqrt(.Machine$double.eps),
+  plot.spc.nmax = 25,
+  ggplot.spc.nmax = 10
+)
 
 ##' Options for package hyperSpec
 ##' Functions to access and set hyperSpec's options.
@@ -48,127 +49,131 @@
 ##'
 ##' hy.getOptions ()
 ##'
-hy.getOptions <- function (...){
-  dots <- c (...)
-  if (length (dots) == 0L)
+hy.getOptions <- function(...) {
+  dots <- c(...)
+  if (length(dots) == 0L) {
     .options
-  else
-  .options [dots]
+  } else {
+    .options [dots]
+  }
 }
 
 ##' @include unittest.R
-.test (hy.getOptions) <- function (){
+.test(hy.getOptions) <- function() {
   context("hy.getOptions")
 
   test_that("proper return", {
-    hy.opts <- get (".options", asNamespace("hyperSpec"))
-    expect_equal (hy.getOptions (), hy.opts)
+    hy.opts <- get(".options", asNamespace("hyperSpec"))
+    expect_equal(hy.getOptions(), hy.opts)
 
-    expect_equal (hy.getOptions ("debuglevel"),
-                 hy.opts["debuglevel"])
+    expect_equal(
+      hy.getOptions("debuglevel"),
+      hy.opts["debuglevel"]
+    )
 
-    .options <- list ()
-    expect_equal (hy.getOptions (), hy.opts)
+    .options <- list()
+    expect_equal(hy.getOptions(), hy.opts)
   })
 }
 
 ##' @rdname options
 ##' @export
 ##' @param name the name of the option
-hy.getOption <- function (name){
+hy.getOption <- function(name) {
   .options [[name]]
 }
 
 ##' @rdname options
 ##' @export
 ##' @importFrom utils modifyList
-hy.setOptions <- function (...){
-  new <- list (...)
+hy.setOptions <- function(...) {
+  new <- list(...)
 
   ## if called with list in 1st argument, use that list
-  if (length (new) == 1 && is.list (new [[1]]))
+  if (length(new) == 1 && is.list(new [[1]])) {
     new <- new [[1]]
+  }
 
-  names <- nzchar (names (new))
+  names <- nzchar(names(new))
 
-  if (! all (names) || length (names) != length (new))
-    warning ("options without name are discarded: ", which (! names))
+  if (!all(names) || length(names) != length(new)) {
+    warning("options without name are discarded: ", which(!names))
+  }
 
-  opts <- modifyList (.options, new [names])
+  opts <- modifyList(.options, new [names])
 
-  opts$tolerance <- .checkpos (opts$tolerance, "tolerance")
-  opts$wl.tolerance <- .checkpos (opts$wl.tolerance, "wl.tolerance")
+  opts$tolerance <- .checkpos(opts$tolerance, "tolerance")
+  opts$wl.tolerance <- .checkpos(opts$wl.tolerance, "wl.tolerance")
 
-  assign(".options", opts, envir = asNamespace ("hyperSpec"))
+  assign(".options", opts, envir = asNamespace("hyperSpec"))
 
-  invisible (opts)
+  invisible(opts)
 }
 
 ## check particular options that should exist and be finite and strictly positive
-.checkpos <- function (opt, name){
-	if (length (opt) != 1L || ! is.finite (opt) || opt < .Machine$double.eps){
-		warning (name, " must be a strictly positive finite number => set to .Machine$double.eps (", .Machine$double.eps, ").")
-		opt <- .Machine$double.eps
-	}
+.checkpos <- function(opt, name) {
+  if (length(opt) != 1L || !is.finite(opt) || opt < .Machine$double.eps) {
+    warning(name, " must be a strictly positive finite number => set to .Machine$double.eps (", .Machine$double.eps, ").")
+    opt <- .Machine$double.eps
+  }
 
-	opt
+  opt
 }
 
-.test (hy.setOptions) <- function (){
-  context ("hy.setOptions")
+.test(hy.setOptions) <- function() {
+  context("hy.setOptions")
 
-  old <- hy.getOptions ()
-  on.exit(hy.setOptions (old))
+  old <- hy.getOptions()
+  on.exit(hy.setOptions(old))
 
   test_that("new option and proper return value", {
-    expect_equal(hy.setOptions (bla = 1)$bla, 1)
-    expect_equal (hy.getOption ("bla"), 1)
+    expect_equal(hy.setOptions(bla = 1)$bla, 1)
+    expect_equal(hy.getOption("bla"), 1)
   })
 
   test_that("setting", {
-    tmp <- hy.setOptions (debuglevel = 27)
+    tmp <- hy.setOptions(debuglevel = 27)
     expect_equal(tmp$debuglevel, 27)
 
-    tmp <- hy.setOptions (list (debuglevel = 20))
+    tmp <- hy.setOptions(list(debuglevel = 20))
     expect_equal(tmp$debuglevel, 20)
 
-    tmp <- hy.setOptions (debuglevel = 27, tolerance = 4)
+    tmp <- hy.setOptions(debuglevel = 27, tolerance = 4)
     expect_equal(tmp$debuglevel, 27)
     expect_equal(tmp$tolerance, 4)
 
-    tmp <- hy.setOptions (list (debuglevel = 20, tolerance = 5))
+    tmp <- hy.setOptions(list(debuglevel = 20, tolerance = 5))
     expect_equal(tmp$debuglevel, 20)
     expect_equal(tmp$tolerance, 5)
   })
 
-  test_that ("restrictions on tolerances", {
-    for (o in c ("tolerance", "wl.tolerance")){
-      expect_warning(hy.setOptions (structure (list (0), .Names = o)))
-      expect_equal(hy.getOption (o), .Machine$double.eps, label = o)
+  test_that("restrictions on tolerances", {
+    for (o in c("tolerance", "wl.tolerance")) {
+      expect_warning(hy.setOptions(structure(list(0), .Names = o)))
+      expect_equal(hy.getOption(o), .Machine$double.eps, label = o)
 
-      hy.setOptions (structure (list (1), .Names = o))
-      expect_equal(hy.getOption (o), 1)
-      expect_warning(hy.setOptions (structure (list (-1), .Names = o)))
-      expect_equal(hy.getOption (o), .Machine$double.eps, label = o)
+      hy.setOptions(structure(list(1), .Names = o))
+      expect_equal(hy.getOption(o), 1)
+      expect_warning(hy.setOptions(structure(list(-1), .Names = o)))
+      expect_equal(hy.getOption(o), .Machine$double.eps, label = o)
 
-      hy.setOptions (structure (list (1), .Names = o))
-      expect_equal(hy.getOption (o), 1)
-      expect_warning(hy.setOptions (structure (list (NA), .Names = o)))
-      expect_equal(hy.getOption (o), .Machine$double.eps, label = o)
+      hy.setOptions(structure(list(1), .Names = o))
+      expect_equal(hy.getOption(o), 1)
+      expect_warning(hy.setOptions(structure(list(NA), .Names = o)))
+      expect_equal(hy.getOption(o), .Machine$double.eps, label = o)
     }
 
-    expect_warning(hy.setOptions (tolerance = NULL))
-    expect_equal(hy.getOption ("tolerance"), .Machine$double.eps)
+    expect_warning(hy.setOptions(tolerance = NULL))
+    expect_equal(hy.getOption("tolerance"), .Machine$double.eps)
 
-    expect_warning(hy.setOptions (wl.tolerance = NULL))
-    expect_equal(hy.getOption ("wl.tolerance"), .Machine$double.eps)
+    expect_warning(hy.setOptions(wl.tolerance = NULL))
+    expect_equal(hy.getOption("wl.tolerance"), .Machine$double.eps)
   })
 
 
   test_that("options must be named", {
-    tmp.a <- hy.getOptions ()
-    expect_warning (tmp.b <- hy.setOptions (1))
+    tmp.a <- hy.getOptions()
+    expect_warning(tmp.b <- hy.setOptions(1))
     expect_equal(tmp.a, tmp.b)
   })
-
 }

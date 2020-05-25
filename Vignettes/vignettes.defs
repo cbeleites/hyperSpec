@@ -331,13 +331,26 @@ make.bib <- function (..., file = NULL) {
   l <- lapply (pkg, citation.with.key)
   l <- do.call ("c", l [! sapply (l, is.null)])
 
+
+  l <- iconv (toBibtex (l), to = "UTF-8")
+  l <- gsub ("ø", "{\\\\o}", l)
+  l <- gsub ("á", "{\\\\'a}", l)
+  l <- gsub ("é", "{\\\\'e}", l)
+  l <- gsub ("í", "{\\\\'i}", l)
+  l <- gsub ("ó", "{\\\\'o}", l)
+  l <- gsub ("ú", "{\\\\'u}", l)
+  l <- gsub ("ä", '{\\\\"a}', l)
+  l <- gsub ("ö", '{\\\\"o}', l)
+  l <- gsub ("ü", '{\\\\"u}', l)
+  l <- gsub ("ç", '{\\\\cc}', l)
+  
   if (!is.null (file))
     if (is.null (l))
       cat (NULL, file = file)           # touches file
-    else
-      cat (iconv (toBibtex (l), to = "UTF-8"), 
-           file = file, sep = "\n")
-
+    else {
+      cat (l, file = file, sep = "\n")
+    }
+    
   invisible (l)
 }
 

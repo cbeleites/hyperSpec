@@ -1,7 +1,7 @@
 ##' Rubberband baseline
 ##'
 ##' Baseline with support points determined from a convex hull of the spectrum.
-##' 
+##'
 ##' Use \code{debuglevel >= 1} to obtain debug plots, either directly via function argument or by setting hyperSpec's \code{debuglevel} option.
 ##' @title Rubberband baseline correction
 ##' @param spc hyperSpec object
@@ -14,9 +14,9 @@
 ##' @rdname spc-rubberband
 ##' @author Claudia Beleites
 ##' @seealso \code{\link[hyperSpec]{spc.fit.poly}}, \code{\link[hyperSpec]{spc.fit.poly.below}}
-##' 
+##'
 ##' \code{vignette ("baseline")}
-##' 
+##'
 ##' \code{\link[hyperSpec]{hy.setOptions}}
 ##'
 ##' @note This function is still experimental
@@ -25,16 +25,17 @@
 ##' plot (paracetamol [,, 175 ~ 1800])
 ##' bl <- spc.rubberband (paracetamol [,, 175 ~ 1800], noise = 300, df = 20)
 ##' plot (bl, add = TRUE, col = 2)
-##' 
+##'
 ##' plot (paracetamol [,, 175 ~ 1800] - bl)
 
-spc.rubberband <- function (spc, ..., upper = FALSE, noise = 0, spline = TRUE){
-  spc <- orderwl (spc)
+spc.rubberband <- function(spc, ..., upper = FALSE, noise = 0, spline = TRUE) {
+  spc <- orderwl(spc)
 
   if (upper) spc@data$spc <- -spc@data$spc
-  
-  spc@data$spc <- .rubberband (spc@wavelength, spc@data$spc, 
-                               noise = noise, spline = spline, ...)
+
+  spc@data$spc <- .rubberband(spc@wavelength, spc@data$spc,
+    noise = noise, spline = spline, ...
+  )
 
   if (upper) spc@data$spc <- -spc@data$spc
 
@@ -42,78 +43,103 @@ spc.rubberband <- function (spc, ..., upper = FALSE, noise = 0, spline = TRUE){
 }
 
 ##' @importFrom grDevices chull
-.rubberband <- function (x, y, noise, spline, ..., debuglevel = hy.getOption ("debuglevel")){
-  for (s in seq_len (nrow (y))){
-    use <- which (!is.na (y [s,]))
-    
-    pts <- chull (x [use], y [s,use])
+.rubberband <- function(x, y, noise, spline, ..., debuglevel = hy.getOption("debuglevel")) {
+  for (s in seq_len(nrow(y))) {
+    use <- which(!is.na(y [s, ]))
+
+    pts <- chull(x [use], y [s, use])
     pts <- use [pts]
-    
-    if (debuglevel >= 1L){
-    	plot (x, y [s, ], type = "l")
-    	points (x [pts], y [s, pts], pch = 1, col = matlab.dark.palette (length (pts)))
+
+    if (debuglevel >= 1L) {
+      plot(x, y [s, ], type = "l")
+      points(x [pts], y [s, pts], pch = 1, col = matlab.dark.palette(length(pts)))
     }
 
     ## `chull` returns points in cw order
     ## => points between ncol (y) and 1 are lower part of hull
-    imax <- which (pts == ncol (y)) - 1
-    
+    imax <- which.max(pts) - 1
+
     ## if necessary, rotate pts so that ncol (y) is at position 1
-    if (imax > 0L)
-    	pts <- c (pts [- seq_len (imax)], pts [seq_len (imax)])
+    if (imax > 0L) {
+      pts <- c(pts [-seq_len(imax)], pts [seq_len(imax)])
+    }
 
     ## now keep only pts until column index 1
-    pts <- pts [1 : which (pts == 1)]
-    
-    ## check whether first and last point are minima, 
+    pts <- pts [1:which.min(pts)]
+
+    ## check whether first and last point are minima,
     ## if not remove them.
-    ## If they are minima, points 2 and ncol (y) - 1 do not appear
-    ## last point: 
+    ## If they are minima, 2nd and 2nd last point do not appear in pts
+    ## last point:
     if (pts [2] == pts [1] - 1) pts <- pts [-1]
-    
+
     ## now sort ascending (anyways needed later on)
-    pts <- rev (pts)
-    
+    pts <- rev(pts)
+
     ## fist point:
-    if (pts [2] == 2) pts <- pts [-1]
-    
-    if (debuglevel >= 1L){
-    	points (x [pts], y [s, pts], pch = 19, col = matlab.dark.palette (length (pts)), cex = 0.7)
+    if (pts [2] == pts [1] + 1) pts <- pts [-1]
+
+    if (debuglevel >= 1L) {
+      points(x [pts], y [s, pts], pch = 19, col = matlab.dark.palette(length(pts)), cex = 0.7)
     }
 
-    tmp <- approx (x = x [pts], y = y [s, pts], xout= x, method="linear")$y
-    
-    if (spline){
-      pts <- which (y [s,] <= tmp + noise)
+    tmp <- approx(x = x [pts], y = y [s, pts], xout = x, method = "linear")$y
 
-      if (length (pts) > 3)
-        tmp <- predict (smooth.spline (x[pts], y[s, pts], ...)$fit, x, 0)$y 
-      else 
-        tmp <- spline (x [pts], y [s, pts], xout = x)$y
-        
+    if (spline) {
+      pts <- which(y [s, ] <= tmp + noise)
+
+      if (length(pts) > 3) {
+        tmp <- predict(smooth.spline(x[pts], y[s, pts], ...)$fit, x, 0)$y
+      } else {
+        tmp <- spline(x [pts], y [s, pts], xout = x)$y
+      }
     }
-    
+
     y [s, ] <- tmp
-    
   }
-  
-  y  
+
+  y
 }
 
-.test (spc.rubberband) <- function (){
-  context ("spc.rubberband")
-  
-  test_that("spectrum containing NA", {
-    tmp <- chondro [1]
-    tmp [[,, 1600]] <- NA
-    
-    coefs <- spc.rubberband (tmp)
+.test(spc.rubberband) <- function() {
+  context("spc.rubberband")
+
+  ## use data that yields fairly stable baseline solution
+  paracetamol <- paracetamol [, , 300 ~ 550]
+
+  test_that("spectrum containing NA inside", {
+    tmp <- paracetamol
+    tmp [[, , 400]] <- NA
+
+    coefs <- spc.rubberband(tmp)
     expect_equal(
-      coefs [[,, !is.na (tmp)]],
-      spc.rubberband(chondro [1,, !is.na (tmp)]) [[]]
+      coefs [[, , !is.na(tmp)]],
+      spc.rubberband(paracetamol [, , !is.na(tmp)]) [[]]
     )
-    
-    ## bug was: all coefficients were silently 0 
-    expect_true (all (abs (coefs [[]]) > sqrt (.Machine$double.eps)))
+
+    ## bug was: all coefficients were silently 0
+    expect_true(all(abs(coefs [[]]) > sqrt(.Machine$double.eps)))
+  })
+
+  test_that("spectrum containing NA at first wavelength (issue #95)", {
+    tmp <- paracetamol
+    tmp [[, , 1, wl.index = TRUE]] <- NA
+
+    coefs <- spc.rubberband(tmp)
+    expect_equal(
+      coefs [[, , !is.na(tmp)]],
+      spc.rubberband(paracetamol [, , !is.na(tmp)]) [[]]
+    )
+  })
+
+  test_that("spectrum containing NA at end", {
+    tmp <- paracetamol [1]
+    tmp [[, , nwl(paracetamol), wl.index = TRUE]] <- NA
+
+    coefs <- spc.rubberband(tmp)
+    expect_equal(
+      coefs [[, , !is.na(tmp)]],
+      spc.rubberband(paracetamol [1, , !is.na(tmp)]) [[]]
+    )
   })
 }
