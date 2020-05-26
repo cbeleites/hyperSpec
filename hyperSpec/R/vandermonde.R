@@ -1,80 +1,82 @@
 ##' Function evaluation on hyperSpec objects
 ##'
-##' vandermonde generates van der Monde matrices, the hyperSpec method generates a hyperSpec object
-##' containing the van der Monde matrix of the wavelengths of a hyperSpec object.
+##' `vandermonde()` generates Vandermonde matrices, the hyperSpec method
+##' generates a hyperSpec object containing the van der Monde matrix of the
+##' wavelengths of a hyperSpec object.
 ##'
-##' It is often numerically preferrable to map \code{wl (x)} to [0, 1], see the example.
+##' It is often numerically preferrable to map `wl(x)` to [0, 1], see the
+##' example.
 ##'
 ##' @param x object to evaluate the polynomial on
 ##' @param order of the polynomial
+##' @md
 ##' @rdname vanderMonde
-##' @return van der Monde matrix
+##' @return Vandermonde matrix
 ##' @author C. Beleites
 ##' @export
 ##' @include unittest.R
-vanderMonde <- function (x, order, ...){
-  if (nargs () > 2)
-    stop ('Unknown arguments: ', names (c (...)))
+vanderMonde <- function(x, order, ...) {
+  if (nargs() > 2)
+    stop('Unknown arguments: ', names(c (...)))
 
-  outer (x, 0 : order, `^`)
+  outer(x, 0:order, `^`)
 }
 
 ##' @noRd
 setGeneric ("vanderMonde")
 
 ##' @param normalize.wl function to transorm the wavelengths before evaluating the polynomial (or
-##' other function). \code{\link[hyperSpec]{normalize01}} maps the wavelength range to the interval
-##' [0, 1]. Use \code{\link[base]{I}} to turn off.
-##' @param ... hyperSpec method: further arguments to \code{\link{decomposition}}
-##' @return hyperSpec method: hyperSpec object containing van der Monde matrix as spectra and an additional column ".vdm.order" giving the order of each spectrum (term).
+##' other function). `hyperSpec::normalize01()` maps the wavelength range to the interval
+##' [0, 1]. Use `base::I()` to turn off.
+##' @param ... hyperSpec method: further arguments to `hyperSpec::decomposition()`
+##' @return hyperSpec method: hyperSpec object containing van der Monde matrix as spectra and an additional column `$.vdm.order$ giving the order of each spectrum (term).
 ##' @rdname vanderMonde
-##' @seealso \code{\link[hyperSpec]{wl.eval}} for calculating arbitrary functions of the wavelength,
+##' @seealso `hyperSpec::wl.eval()` for calculating arbitrary functions of the wavelength,
 ##'
-##' \code{\link[hyperSpec]{normalize01}}
+##' `hyperSpec::normalize01()`
 ##' @export
 ##' @examples
-##' plot (vanderMonde (flu, 2))
-##' plot (vanderMonde (flu, 2, normalize.wl = I))
+##' plot(vanderMonde(flu, 2))
+##' plot(vanderMonde(flu, 2, normalize.wl = I))
 ##'
-##'
-setMethod ("vanderMonde", signature = signature (x = "hyperSpec"),
-           function (x, order, ..., normalize.wl = normalize01){
-  validObject (x)
+setMethod("vanderMonde", signature = signature (x = "hyperSpec"),
+           function(x, order, ..., normalize.wl = normalize01) {
+             validObject (x)
 
-  wl <- normalize.wl (x@wavelength)
+             wl <- normalize.wl(x@wavelength)
 
-  x <- decomposition (x, t (vanderMonde (wl, order)), scores = FALSE, ...)
-  x$.vdm.order <- 0 : order
-  x
-})
+             x <- decomposition(x, t(vanderMonde(wl, order)),
+                                scores = FALSE, ...)
+             x$.vdm.order <- 0:order
+             x
+           })
 
-
-.test (vanderMonde) <- function (){
+.test (vanderMonde) <- function () {
   context ("vanderMonde")
 
-  test_that("vector against manual calculation",{
-    expect_equal (vanderMonde (c (1 : 3, 5), 2),
-                  matrix (c (1, 1, 1, 1, 1, 2, 3, 5, 1, 4, 9, 25), nrow = 4)
-    )
+  test_that("vector against manual calculation", {
+    expect_equal(vanderMonde(c (1:3, 5), 2),
+                  matrix(c(1, 1, 1, 1, 1, 2, 3, 5, 1, 4, 9, 25), nrow = 4))
   })
 
-  test_that("default method doesn't provide normalization",{
-    expect_error (vanderMonde (1, 0, normalize.wl = normalize01))
+  test_that("default method doesn't provide normalization", {
+    expect_error(vanderMonde(1, 0, normalize.wl = normalize01))
   })
 
-  test_that ("hyperSpec objects", {
-    expect_true (chk.hy (vanderMonde (flu, 0)))
-    expect_true (validObject (vanderMonde (flu, 0)))
+  test_that("hyperSpec objects", {
+    expect_true(chk.hy (vanderMonde (flu, 0)))
+    expect_true(validObject (vanderMonde (flu, 0)))
 
     tmp <- vanderMonde (paracetamol, 3, normalize.wl = I)
     dimnames (tmp$spc) <- NULL
     expect_equal (tmp [[]], t (vanderMonde (wl (paracetamol), 3)))
 
-    tmp <- vanderMonde (paracetamol, 3, normalize.wl = normalize01)     
+    tmp <- vanderMonde (paracetamol, 3, normalize.wl = normalize01)
     dimnames (tmp$spc) <- NULL
-    expect_equal (tmp[[]], t (vanderMonde (normalize01 (wl (paracetamol)), 3)))
+    expect_equal (tmp[[]], t (vanderMonde (normalize01 (
+      wl (paracetamol)
+    ), 3)))
   })
 }
-
 
 
