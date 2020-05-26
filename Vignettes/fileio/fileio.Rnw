@@ -322,7 +322,7 @@ tableend   <- c (tablestart [-1] - 2, length (file))
 tables <- list ()
 for (t in seq_along (tablestart)){
   tmp <- file [tablestart [t] : tableend [t]]
-  tables [[t]] <- read.fwf (textConnection (tmp), c (5, 8, 12, 15, 9))
+  tables [[t]] <- read.fwf (textConnection (tmp), c (5, 8, 12, 15, 9), stringsAsFactors = TRUE)
   colnames (tables [[t]]) <- c("Intensity", "persistent", "Wavelength", "Spectrum", "Ref. ")
   tables [[t]]$type <- gsub ("[[:space:]]", "", file [tablestart [t] - 1])
 }
