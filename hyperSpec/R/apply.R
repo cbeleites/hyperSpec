@@ -120,20 +120,12 @@
 ##' ## whereas MARGIN = 1 : 2 leads to FUN being called for each element separately
 ##' apply (flu [,,405:407], 1 : 2, print) [[]]
 ##'
-<<<<<<< HEAD
-setMethod("apply",
-  signature = signature(X = "hyperSpec"),
-  function(X, MARGIN, FUN, ...,
-           label.wl = NULL, label.spc = NULL, new.wavelength = NULL) {
-    validObject(X)
-=======
 setMethod ("apply", signature = signature (X = "hyperSpec"),
            function (X, MARGIN, FUN, ...,
                      label.wl = NULL, label.spc = NULL, new.wavelength = NULL,
                      simplify
            ){
   validObject (X)
->>>>>>> origin/master
 
     if (missing(MARGIN)) { # apply for functions that the complete spectra matrix
       ## is easier: tmp <- apply (x, , FUN, ...)
