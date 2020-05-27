@@ -86,6 +86,7 @@
 ##'   \code{FUN}, see also the examples.
 ##' @param FUN function to compute the summary statistics
 ##' @param ... further arguments passed to \code{FUN}
+##' @param simplify ignored: apply for hyperSpec results are always simplified
 ##' @param label.wl,label.spc new labels for wavelength and spectral intensity
 ##'   axes
 ##' @param new.wavelength for \code{MARGIN = 2}: numeric vector or name of the
@@ -118,7 +119,9 @@
 ##'
 setMethod ("apply", signature = signature (X = "hyperSpec"),
            function (X, MARGIN, FUN, ...,
-                     label.wl = NULL, label.spc = NULL, new.wavelength = NULL){
+                     label.wl = NULL, label.spc = NULL, new.wavelength = NULL,
+                     simplify
+           ){
   validObject (X)
 
   if (missing (MARGIN)){                # apply for functions that the complete spectra matrix
