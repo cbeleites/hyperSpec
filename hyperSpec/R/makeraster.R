@@ -36,30 +36,31 @@
 ##' points (which (onraster), raster$x [onraster], col = "blue", pch = 20)
 ##'
 ##' @importFrom utils tail
-makeraster <- function (x, startx, d, newlevels, tol = 0.1){
-
-  if (missing (newlevels))
+makeraster <- function(x, startx, d, newlevels, tol = 0.1) {
+  if (missing(newlevels)) {
     ## make sure to cover the whole data range + 1 point
-    newlevels <- c (rev (seq (startx, min (x, na.rm = TRUE) - d, by = -d) [-1]),
-                         seq (startx, max (x, na.rm = TRUE) + d, by =  d)
-                    )
-  
-  inew <- approx (newlevels, seq_along (newlevels), x)$y
+    newlevels <- c(
+      rev(seq(startx, min(x, na.rm = TRUE) - d, by = -d) [-1]),
+      seq(startx, max(x, na.rm = TRUE) + d, by = d)
+    )
+  }
 
-  ## rounding 
-  rinew <- round (inew)
-  wholenum <- abs (inew - rinew) < tol
+  inew <- approx(newlevels, seq_along(newlevels), x)$y
+
+  ## rounding
+  rinew <- round(inew)
+  wholenum <- abs(inew - rinew) < tol
 
   xnew <- x
   xnew [wholenum] <- newlevels [rinew [wholenum]]
 
 
-  list (x = xnew,
+  list(
+    x = xnew,
 
-        ## usually: drop outside levels 1 and length (newlevels)
-        levels = newlevels [min (rinew [wholenum]) : max (rinew [wholenum])]
-        )
-  
+    ## usually: drop outside levels 1 and length (newlevels)
+    levels = newlevels [min(rinew [wholenum]):max(rinew [wholenum])]
+  )
 }
 
 ##' @rdname makeraster
@@ -93,43 +94,45 @@ makeraster <- function (x, startx, d, newlevels, tol = 0.1){
 ##' onraster <- raster$x %in% raster$levels
 ##' points (which (onraster), raster$x [onraster], col = "blue", pch = 20)
 ##'
-fitraster <- function (x, tol = 0.1){
-  levels <- sort (unique (x))
+fitraster <- function(x, tol = 0.1) {
+  levels <- sort(unique(x))
 
-  if (length (levels) == 1L)
-    return (list (x = x, levels = levels))
-  
-  dx <- sort (unique (diff (levels)))
-  
+  if (length(levels) == 1L) {
+    return(list(x = x, levels = levels))
+  }
+
+  dx <- sort(unique(diff(levels)))
+
   ## reduce by rounding?
-  dx <- c (dx [! diff (dx) < tol], tail (dx, 1))
+  dx <- c(dx [!diff(dx) < tol], tail(dx, 1))
 
-  dx <- rev (dx)
+  dx <- rev(dx)
 
   max.covered <- 0
-    
-  for (d in dx){
-    totry <- order (x)
-    while (length (totry) > 0L){
-      ## cat ("totry: ", totry, "\n")      
+
+  for (d in dx) {
+    totry <- order(x)
+    while (length(totry) > 0L) {
+      ## cat ("totry: ", totry, "\n")
       startx <- x [totry [1]]
       ## cat ("startx: ", startx, "\n")
 
       ## cat ("fit: ", c (startx, d), "\n")
-      raster <- makeraster (x, startx, d, tol = tol)
-      tmp <- sum (raster$x %in% raster$levels, na.rm = TRUE)
+      raster <- makeraster(x, startx, d, tol = tol)
+      tmp <- sum(raster$x %in% raster$levels, na.rm = TRUE)
       ## cat ("     ", tmp, "\n")
       if (tmp > max.covered) {
         max.covered <- tmp
         fit <- raster
       }
-      
-      if (max.covered == length (x))
-        break
 
-      totry <- totry [! raster$x [totry] %in% raster$levels]
-     }
+      if (max.covered == length(x)) {
+        break
+      }
+
+      totry <- totry [!raster$x [totry] %in% raster$levels]
+    }
   }
-    
+
   fit
 }

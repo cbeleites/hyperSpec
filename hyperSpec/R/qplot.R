@@ -29,51 +29,58 @@
 ##'   qplotspc (aggregate (chondro, chondro$clusters, mean_pm_sd),
 ##'             mapping = aes (x = .wavelength, y = spc, colour = clusters, group = .rownames)) +
 ##'     facet_grid (clusters ~ .)
-qplotspc <- function (x,
-                      wl.range = TRUE, ...,
-                      mapping = aes_string (x = ".wavelength", y = "spc", group = ".rownames"),
-                      spc.nmax = hy.getOption("ggplot.spc.nmax"),
-                      map.lineonly = FALSE,
-                      debuglevel = hy.getOption("debuglevel")){
-  chk.hy (x)
-  validObject (x)
+qplotspc <- function(x,
+                     wl.range = TRUE, ...,
+                     mapping = aes_string(x = ".wavelength", y = "spc", group = ".rownames"),
+                     spc.nmax = hy.getOption("ggplot.spc.nmax"),
+                     map.lineonly = FALSE,
+                     debuglevel = hy.getOption("debuglevel")) {
+  chk.hy(x)
+  validObject(x)
 
   ## cut away everything that isn't asked for _before_ transforming to data.frame
-  if (nrow (x) > spc.nmax) {
-    if (debuglevel >= 1L)
-      message ("Number of spectra exceeds spc.nmax. Only the first ", spc.nmax, " are plotted.")
-    x <- x [seq_len (spc.nmax)]
+  if (nrow(x) > spc.nmax) {
+    if (debuglevel >= 1L) {
+      message("Number of spectra exceeds spc.nmax. Only the first ", spc.nmax, " are plotted.")
+    }
+    x <- x [seq_len(spc.nmax)]
   }
 
-  wl.range <- wl2i (x, wl.range, unlist = FALSE)
-  
-  x <- x [,, unlist (wl.range), wl.index = TRUE]
-  
-  df <- as.long.df (x, rownames = TRUE, na.rm = FALSE) # with na.rm trouble with wl.range
+  wl.range <- wl2i(x, wl.range, unlist = FALSE)
+
+  x <- x [, , unlist(wl.range), wl.index = TRUE]
+
+  df <- as.long.df(x, rownames = TRUE, na.rm = FALSE) # with na.rm trouble with wl.range
 
   ## ranges go into facets
-  if (length (wl.range) > 1L){
+  if (length(wl.range) > 1L) {
     tmp <- wl.range
-    for (r in seq_along(tmp))
+    for (r in seq_along(tmp)) {
       tmp [[r]][TRUE] <- r
-    
-    df$.wl.range <- rep (unlist (tmp), each = nrow (x))
+    }
+
+    df$.wl.range <- rep(unlist(tmp), each = nrow(x))
   }
-  
-  
-  df <- df [! is.na (df$spc),, drop = FALSE]
-  if (map.lineonly)
-      p <- ggplot (df) + geom_line (mapping = mapping, ...)
-  else
-      p <- ggplot (df, mapping = mapping) + geom_line (...)
 
-  p <- p + xlab (labels (x, ".wavelength")) + ylab (labels (x, "spc"))
 
-  if (! is.null (df$.wl.range))
-    p <- p + facet_grid (. ~ .wl.range,
-                         labeller = as_labeller (rep (NA, nlevels (df$.wl.range))),
-                         scales = "free", space = "free") +
-    theme (strip.text.x = element_text (size = 0))
+  df <- df [!is.na(df$spc), , drop = FALSE]
+  if (map.lineonly) {
+    p <- ggplot(df) +
+      geom_line(mapping = mapping, ...)
+  } else {
+    p <- ggplot(df, mapping = mapping) +
+      geom_line(...)
+  }
+
+  p <- p + xlab(labels(x, ".wavelength")) + ylab(labels(x, "spc"))
+
+  if (!is.null(df$.wl.range)) {
+    p <- p + facet_grid(. ~ .wl.range,
+      labeller = as_labeller(rep(NA, nlevels(df$.wl.range))),
+      scales = "free", space = "free"
+    ) +
+      theme(strip.text.x = element_text(size = 0))
+  }
 
   p
 }
@@ -102,48 +109,54 @@ qplotspc <- function (x,
 ##' qplotmap (chondro)
 ##' qplotmap (chondro) + scale_fill_gradientn (colours = alois.palette ())
 ##' @importFrom utils tail
-qplotmap <- function (object, mapping = aes_string (x = "x", y = "y", fill = "spc"), ...,
-                      func = mean, func.args = list (),
-                      map.tileonly = FALSE){
-  chk.hy (object)
-  validObject (object)
+qplotmap <- function(object, mapping = aes_string(x = "x", y = "y", fill = "spc"), ...,
+                     func = mean, func.args = list(),
+                     map.tileonly = FALSE) {
+  chk.hy(object)
+  validObject(object)
 
-  if (nwl (object) > 1 & ! is.null (func))
-    object <- do.call (apply, c (list (object, 1, func), func.args))
+  if (nwl(object) > 1 & !is.null(func)) {
+    object <- do.call(apply, c(list(object, 1, func), func.args))
+  }
 
-  if (map.tileonly)
-      p <- ggplot (as.long.df (object)) + geom_tile (mapping = mapping)
-  else
-      p <- ggplot (as.long.df (object), mapping = mapping) + geom_tile ()
+  if (map.tileonly) {
+    p <- ggplot(as.long.df(object)) +
+      geom_tile(mapping = mapping)
+  } else {
+    p <- ggplot(as.long.df(object), mapping = mapping) +
+      geom_tile()
+  }
 
-  p <- p + coord_equal ()
+  p <- p + coord_equal()
 
   ## set expand to c(0, 0) to suppress the gray backgroud
-  if (is.factor (with (p$data, eval (p$mapping$x))))
-        p <- p + scale_x_discrete (expand = c(0, 0))
-  else
-        p <- p + scale_x_continuous (expand = c(0, 0))
+  if (is.factor(with(p$data, eval(p$mapping$x)))) {
+    p <- p + scale_x_discrete(expand = c(0, 0))
+  } else {
+    p <- p + scale_x_continuous(expand = c(0, 0))
+  }
 
-  if (is.factor (with (p$data, eval (p$mapping$y))))
-        p <- p + scale_y_discrete (expand = c(0, 0))
-  else
-      p <- p + scale_y_continuous (expand = c(0, 0))
+  if (is.factor(with(p$data, eval(p$mapping$y)))) {
+    p <- p + scale_y_discrete(expand = c(0, 0))
+  } else {
+    p <- p + scale_y_continuous(expand = c(0, 0))
+  }
 
   ## generate axis/scale labels
   ## TODO: own function
-  x <- as.character (mapping$x)
-  xlabel <- labels (object)[[tail (x, 1)]]
-  if (is.null (xlabel)) xlabel <- x
+  x <- as.character(mapping$x)
+  xlabel <- labels(object)[[tail(x, 1)]]
+  if (is.null(xlabel)) xlabel <- x
 
-  y <- as.character (mapping$y)
-  ylabel <- labels (object)[[tail (y, 1)]]
-  if (is.null (ylabel)) ylabel <- y
+  y <- as.character(mapping$y)
+  ylabel <- labels(object)[[tail(y, 1)]]
+  if (is.null(ylabel)) ylabel <- y
 
-  f <- as.character (mapping$fill)
-  flabel <- labels (object)[[tail (f, 1)]]
-  if (is.null (flabel)) flabel <- f
+  f <- as.character(mapping$fill)
+  flabel <- labels(object)[[tail(f, 1)]]
+  if (is.null(flabel)) flabel <- f
 
-  p + labs (x = xlabel, y = ylabel, fill = flabel)
+  p + labs(x = xlabel, y = ylabel, fill = flabel)
 }
 
 
@@ -167,72 +180,82 @@ qplotmap <- function (object, mapping = aes_string (x = "x", y = "y", fill = "sp
 ##' @examples
 ##' qplotc (flu)
 ##' qplotc (flu) + geom_smooth (method = "lm")
-qplotc <- function (object, mapping = aes_string(x = "c", y = "spc"), ...,
-                    func = NULL, func.args = list (),
-                    map.pointonly = FALSE){
-  chk.hy (object)
-  validObject (object)
+qplotc <- function(object, mapping = aes_string(x = "c", y = "spc"), ...,
+                   func = NULL, func.args = list(),
+                   map.pointonly = FALSE) {
+  chk.hy(object)
+  validObject(object)
 
-  dots <- list (...)
+  dots <- list(...)
 
-  if (! is.null (func))
-    object <- do.call (apply, c (list (object, 1, func), func.args))
+  if (!is.null(func)) {
+    object <- do.call(apply, c(list(object, 1, func), func.args))
+  }
 
   ## allow to plot against the row number
-  object$.row <- seq (object, index = TRUE)
+  object$.row <- seq(object, index = TRUE)
 
   ## find out whether the wavelengths are needed individually,
   ## if not, use only the first wavelength and issue a warning
 
-  if (any (grepl ("spc", as.character (mapping))) && # use intensities
-      nwl (object) > 1 &&                            # has > 1 wavelength
-      is.null (func) &&                              # no stats function
-      ! any (grepl ("[.]wavelength", as.character (mapping)))) {
-    object <- object [,, 1, wl.index = TRUE]
-    warning ("Intensity at first wavelengh only is used.")
+  if (any(grepl("spc", as.character(mapping))) && # use intensities
+    nwl(object) > 1 && # has > 1 wavelength
+    is.null(func) && # no stats function
+    !any(grepl("[.]wavelength", as.character(mapping)))) {
+    object <- object [, , 1, wl.index = TRUE]
+    warning("Intensity at first wavelengh only is used.")
   }
 
   ## produce fancy y label
-  ylab <- labels (object, as.character (mapping$y))
-  if (! is.null (func))
-    ylab <- make.fn.expr (substitute (func), c (ylab, func.args))
-  ylab <- as.expression (ylab)
+  ylab <- labels(object, as.character(mapping$y))
+  if (!is.null(func)) {
+    ylab <- make.fn.expr(substitute(func), c(ylab, func.args))
+  }
+  ylab <- as.expression(ylab)
 
   ## expand the data.frame
-  df <- as.long.df (object, rownames = TRUE, wl.factor = TRUE)
+  df <- as.long.df(object, rownames = TRUE, wl.factor = TRUE)
 
   ## if plots should be grouped, faceted, etc. by wavelength, it is better to have a factor
-  if (any (grepl ("[.]wavelength", mapping [! names (mapping) %in% c("x", "y")])))
-    df$.wavelength <- as.factor (df$.wavelength)
+  if (any(grepl("[.]wavelength", mapping [!names(mapping) %in% c("x", "y")]))) {
+    df$.wavelength <- as.factor(df$.wavelength)
+  }
 
-  if (map.pointonly)
-      p <- ggplot (df) + geom_point (mapping = mapping)
-  else
-      p <- ggplot (df, mapping = mapping) + geom_point ()
+  if (map.pointonly) {
+    p <- ggplot(df) +
+      geom_point(mapping = mapping)
+  } else {
+    p <- ggplot(df, mapping = mapping) +
+      geom_point()
+  }
 
-  p + ylab (ylab) +
-      xlab (labels (object, as.character (mapping$x)))
+  p + ylab(ylab) +
+    xlab(labels(object, as.character(mapping$x)))
 }
 
-make.fn.expr <- function (fn, l = list ()){
-
-  if (length (fn) > 1L)
+make.fn.expr <- function(fn, l = list()) {
+  if (length(fn) > 1L) {
     fn <- "f"
+  }
 
-  l <- lapply (l, function (x) if (is.logical (x)) as.character (x) else x)
+  l <- lapply(l, function(x) if (is.logical(x)) as.character(x) else x)
 
-  if (is.null (names (l)))
-    names (l) <- rep ("", length (l))
+  if (is.null(names(l))) {
+    names(l) <- rep("", length(l))
+  }
 
-  tmp <- mapply (function (x, y) if (nzchar (x) > 0L) bquote (.(x) == .(y)) else y,
-                 names (l), l)
+  tmp <- mapply(
+    function(x, y) if (nzchar(x) > 0L) bquote(.(x) == .(y)) else y,
+    names(l), l
+  )
 
-  e <- expression (f (x))
+  e <- expression(f(x))
   e [[1]][[1]] <- fn
-  if (length (tmp) > 0L)
-    e [[1]][seq_along (tmp) + 1] <- tmp
-  else
+  if (length(tmp) > 0L) {
+    e [[1]][seq_along(tmp) + 1] <- tmp
+  } else {
     e [[1]][2] <- NULL
+  }
 
   e
 }

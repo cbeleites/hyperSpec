@@ -11,7 +11,7 @@ Authors@R: c(
     person("Valter",    "Sergo",     role = c("aut")),
     person("Alois",     "Bonifacio", role = c ("ctb", "dtc")),
     person("Marcel",    "Dahms",     role = "ctb"),
-    person("Bj<U+00F6>rn",     "Egert",     role = "ctb"),
+    person("Björn",     "Egert",     role = "ctb"),
     person("Simon",     "Fuller",    role = "ctb"),
     person("Vilmantas", "Gegzna",    role = "ctb"),
     person("Rustam",    "Guliev",    role = "ctb"),
@@ -21,8 +21,8 @@ Authors@R: c(
     person("Roman",     "Kiselev",   role = "ctb"),
     person("Sebastian", "Mellor",    role = "ctb")
     )
-Description: Comfortable ways to work with hyperspectral data sets.
-    I.e. spatially or time-resolved spectra, or spectra with any other kind
+Description: Comfortable ways to work with hyperspectral data sets,
+    i.e. spatially or time-resolved spectra, or spectra with any other kind
     of information associated with each of the spectra. The spectra can be data
     as obtained in XRF, UV/VIS, Fluorescence, AES, NIR, IR, Raman, NMR, MS,
     etc. More generally, any data that is recorded over a discretized variable,
@@ -56,7 +56,7 @@ Suggests:
     reshape,
     devtools,
     R.rsp,
-    tibble,
+    tibble
 Imports:
     testthat,
     methods,
@@ -99,18 +99,18 @@ Collate:
     'wl2i.R'
     'extract.R'
     'factor2num.R'
-    'options.R'
-    'regexps.R'
-    'guesswavelength.R'
-    'initialize.R'
     'fauxCell.R'
     'fileio.optional.R'
     'fix_spc_colnames.R'
     'flu.R'
     'getbynames.R'
+    'options.R'
+    'regexps.R'
+    'guesswavelength.R'
     'paracetamol.R'
     'laser.R'
     'hyperspec-package.R'
+    'initialize.R'
     'labels.R'
     'plotmap.R'
     'levelplot.R'
@@ -181,4 +181,4 @@ Collate:
     'write.txt.wide.R'
     'y-pastenames.R'
     'zzz.R'
-RoxygenNote: 7.1.0
+RoxygenNote: 7.0.2

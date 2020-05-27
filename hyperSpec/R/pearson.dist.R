@@ -18,34 +18,34 @@
 ##'
 ##' pearson.dist (flu [[]])
 ##' pearson.dist (flu)
-pearson.dist <- function (x) {
-
-  x <- as.matrix (x)
+pearson.dist <- function(x) {
+  x <- as.matrix(x)
 
   ## center & scale *row*s
   ## (n - 1) factor cancels out between variance scaling and calculating correlation
-  x <- x - rowMeans (x)
-  x <- x / sqrt (rowSums (x^2))
+  x <- x - rowMeans(x)
+  x <- x / sqrt(rowSums(x^2))
 
-  if (hy.getOption("gc")) gc ()
-  x <-  tcrossprod (x)
+  if (hy.getOption("gc")) gc()
+  x <- tcrossprod(x)
 
   ## keep only lower triagonal
-  if (hy.getOption("gc")) gc ()
-  x <- as.dist (x)
+  if (hy.getOption("gc")) gc()
+  x <- as.dist(x)
 
-  if (hy.getOption("gc")) gc ()
+  if (hy.getOption("gc")) gc()
   0.5 - x / 2
 }
 
 ##' @include unittest.R
-.test (pearson.dist) <- function (){
-  context ("pearson.dist")
+.test(pearson.dist) <- function() {
+  context("pearson.dist")
 
   test_that("pearson.dist against manual calculation", {
-    expect_equivalent (
-      pearson.dist (flu),
-      as.dist (0.5 - cor (t (as.matrix (flu))) / 2))
+    expect_equivalent(
+      pearson.dist(flu),
+      as.dist(0.5 - cor(t(as.matrix(flu))) / 2)
+    )
   })
 }
 

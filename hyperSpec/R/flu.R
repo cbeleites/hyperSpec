@@ -1,9 +1,9 @@
 ##' Quinine Fluorescence Spectra
 ##' Fluorescence spectra of different dilutions of quinine forming a
 ##' calibration set.
-##' 
+##'
 ##' See the vignette: \code{vignette ("flu", package = "hyperSpec")}
-##' 
+##'
 ##' @name flu
 ##' @docType data
 ##' @format The data set has 6 fluorescence emission spectra measured on
@@ -12,22 +12,21 @@
 ##' @author M. Kammer and C. Beleites
 ##' @keywords datasets
 ##' @examples
-##' 
+##'
 ##' flu
-##' 
+##'
 ##' plot (flu)
-##' 
+##'
 ##' plotc (flu)
-##' 
+##'
 NULL
 
-.make.fluNA <- function (){
-	
-	fluNA <- hyperSpec::flu
-	fluNA [[2,]] <- NA
-	fluNA [[,,406]] <- NA
-	
-	fluNA
+.make.fluNA <- function() {
+  fluNA <- hyperSpec::flu
+  fluNA [[2, ]] <- NA
+  fluNA [[, , 406]] <- NA
+
+  fluNA
 }
 
-delayedAssign ("fluNA", .make.fluNA ())
+delayedAssign("fluNA", .make.fluNA())

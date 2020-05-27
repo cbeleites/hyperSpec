@@ -2,7 +2,7 @@
 ##'
 ##' hyperSpec objects can have row- and column names like data.frames. The "names" of the wavelengths
 ##' are treated separately: see \code{\link{wl}}
-##' 
+##'
 ##' @param x the hyperSpec object
 ##' @aliases dimnames
 ##' @keywords methods
@@ -15,11 +15,13 @@
 ##' @export
 ##' @examples
 ##' dimnames (flu)
-setMethod ("dimnames", signature = signature (x = "hyperSpec"), function (x){
-  validObject (x)
+setMethod("dimnames", signature = signature(x = "hyperSpec"), function(x) {
+  validObject(x)
 
-  list (row = rownames (x@data), data = colnames (x@data),
-        wl = colnames (x@data$spc))
+  list(
+    row = rownames(x@data), data = colnames(x@data),
+    wl = colnames(x@data$spc)
+  )
 })
 
 ##' @rdname dimnames
@@ -31,10 +33,10 @@ setMethod ("dimnames", signature = signature (x = "hyperSpec"), function (x){
 ##' @export
 ##' @examples
 ##' rownames (flu)
-setMethod ("rownames", signature = signature (x = "hyperSpec"), function (x, do.NULL = TRUE, prefix = "row"){
-  validObject (x)
-  
-  rownames (x@data, do.NULL = do.NULL, prefix = prefix)
+setMethod("rownames", signature = signature(x = "hyperSpec"), function(x, do.NULL = TRUE, prefix = "row") {
+  validObject(x)
+
+  rownames(x@data, do.NULL = do.NULL, prefix = prefix)
 })
 
 ##' @param value the new names
@@ -44,10 +46,10 @@ setMethod ("rownames", signature = signature (x = "hyperSpec"), function (x, do.
 ##' @rdname dimnames
 ##' @name rownames<-
 ##' @export "rownames<-"
-setReplaceMethod ("rownames", signature = signature (x = "hyperSpec"), function (x, value){
-  validObject (x)
-  
-  rownames (x@data) <- value
+setReplaceMethod("rownames", signature = signature(x = "hyperSpec"), function(x, value) {
+  validObject(x)
+
+  rownames(x@data) <- value
   x
 })
 
@@ -58,11 +60,13 @@ setReplaceMethod ("rownames", signature = signature (x = "hyperSpec"), function 
 ##' @examples
 ##' colnames (chondro)
 
-setMethod ("colnames", signature = signature (x = "hyperSpec"),
-           function (x, do.NULL = TRUE, prefix = "col"){
-  validObject (x)
-  colnames (x@data, do.NULL = do.NULL, prefix = prefix)
-})
+setMethod("colnames",
+  signature = signature(x = "hyperSpec"),
+  function(x, do.NULL = TRUE, prefix = "col") {
+    validObject(x)
+    colnames(x@data, do.NULL = do.NULL, prefix = prefix)
+  }
+)
 
 ##' @rdname dimnames
 ##' @usage
@@ -70,13 +74,15 @@ setMethod ("colnames", signature = signature (x = "hyperSpec"),
 ##' @aliases colnames<-,hyperSpec-method
 ##' @name colnames<-
 ##' @export "colnames<-"
-setReplaceMethod ("colnames", signature = signature (x = "hyperSpec"),
-                  function (x, value){
-  validObject (x)
+setReplaceMethod("colnames",
+  signature = signature(x = "hyperSpec"),
+  function(x, value) {
+    validObject(x)
 
-  names (x@label [colnames (x@data)]) <- value
-  colnames (x@data) <- value
-  
-  validObject (x)                       # necessary: $spc could be renamed!
-  x
-})
+    names(x@label [colnames(x@data)]) <- value
+    colnames(x@data) <- value
+
+    validObject(x) # necessary: $spc could be renamed!
+    x
+  }
+)
