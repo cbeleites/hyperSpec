@@ -58,7 +58,7 @@ hyperSpec_*.tar.gz
 # Example code in package build process
 *-Ex.R
 
-# Mac files
+# Mac directory files
 *.DS_Store
 
 # RStudio files
