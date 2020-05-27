@@ -4,7 +4,7 @@
 ##' generates a hyperSpec object containing the van der Monde matrix of the
 ##' wavelengths of a hyperSpec object.
 ##'
-##' It is often numerically preferrable to map `wl(x)` to [0, 1], see the
+##' It is often numerically preferrable to map `wl(x)` to \[0, 1\], see the
 ##' example.
 ##'
 ##' @param x object to evaluate the polynomial on
