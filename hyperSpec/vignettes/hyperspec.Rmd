@@ -1,5 +1,9 @@
 ---
-title:       "Introduction to Package **_hyperSpec_**"  
+# For bookdown ---------------------------------------------------------------
+# (PART\*) I Principles {-}
+# `hyperspec`: Introduction to Package **_hyperSpec_** {#hyperspec}
+# For vignette ---------------------------------------------------------------
+title:       "Introduction to Package **_hyperSpec_**"
 # subtitle:  Introduction on the R package hyperSpec
 # file_name: hyperSpec Manual
 # Authors --------------------------------------------------------------------
@@ -8,10 +12,10 @@ author:
     email: chemometrie@beleites.de
     corresponding : yes
     affiliation   : |
-        1. DIA Raman Spectroscopy Group, University of Trieste/Italy (2005--2008)  
-        2. Spectroscopy $\cdot$ Imaging, IPHT, Jena/Germany (2008--2017)  
-        3. ÖPV, JKI, Berlin/Germany (2017--2019)  
-        4. Arbeitskreis Lebensmittelmikrobiologie und Biotechnologie, Hamburg University, Hamburg/Germany (2019 -- 2020)  
+        1. DIA Raman Spectroscopy Group, University of Trieste/Italy (2005--2008)
+        2. Spectroscopy $\cdot$ Imaging, IPHT, Jena/Germany (2008--2017)
+        3. ÖPV, JKI, Berlin/Germany (2017--2019)
+        4. Arbeitskreis Lebensmittelmikrobiologie und Biotechnologie, Hamburg University, Hamburg/Germany (2019 -- 2020)
         5. Chemometric Consulting and Chemometrix GmbH, Wölfersheim/Germany (since 2016)
 # Document -------------------------------------------------------------------
 date:        "`r Sys.Date()`"
@@ -38,7 +42,7 @@ csl: man/elsevier-with-titles.csl
 ---
 
 
-```{r setup, include=FALSE}
+```{r setup-main, include=FALSE}
 # Packages -------------------------------------------------------------------
 library(hyperSpec)
 
@@ -413,7 +417,7 @@ It is the column that actually contains the spectra. The spectra are stored in a
 Even if there are no spectra, `$spc`{.r} must still be present.
 It is then a matrix with zero columns.
 
-```{r structure, echo=FALSE, fig.cap=CAPTION}
+```{r structure, echo=FALSE, fig.cap=CAPTION, out.width="400"}
 knitr::include_graphics("man/intro--strukturhyperspec.png")
 CAPTION = "The structure of the data in a `hyperSpec` object.  "
 ```
@@ -1224,7 +1228,7 @@ A demonstration can be found in the principal component analysis example (sectio
 
 
 
-# Plotting
+# Plotting {#plotting-hyperspec}
 
 Package **hyperSpec** offers a variety of possibilities to plot spectra, spectral maps, the spectra matrix, time
 series, depth profiles, etc. 
@@ -2364,7 +2368,7 @@ make.fn.table()
 
 # Session Info {-}
 
-```{r session-info-hyperspec, echo=FALSE, paged.print=FALSE}
+```{r session-info-hyperspec, echo=FALSE, paged.print=FALSE, eval=FALSE}
 sessioninfo::session_info("hyperSpec")
 ```
 
