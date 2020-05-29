@@ -1,5 +1,8 @@
 ---
-title:     "**_hyperSpec_** Plotting Functions" 
+# For bookdown ---------------------------------------------------------------
+# `plotting`: **_hyperSpec_** Plotting Functions {#plotting}
+# For vignette ---------------------------------------------------------------
+title:     "**_hyperSpec_** Plotting Functions"
 # subtitle:  "Introduction to the **_hyperSpec_** plotting functions"
 # file_name: plotting
 # Authors --------------------------------------------------------------------
@@ -8,10 +11,10 @@ author:
     email: chemometrie@beleites.de
     corresponding : yes
     affiliation   : |
-        1. DIA Raman Spectroscopy Group, University of Trieste/Italy (2005--2008)  
-        2. Spectroscopy $\cdot$ Imaging, IPHT, Jena/Germany (2008--2017)  
-        3. ÖPV, JKI, Berlin/Germany (2017--2019)  
-        4. Arbeitskreis Lebensmittelmikrobiologie und Biotechnologie, Hamburg University, Hamburg/Germany (2019 -- 2020)  
+        1. DIA Raman Spectroscopy Group, University of Trieste/Italy (2005--2008)
+        2. Spectroscopy $\cdot$ Imaging, IPHT, Jena/Germany (2008--2017)
+        3. ÖPV, JKI, Berlin/Germany (2017--2019)
+        4. Arbeitskreis Lebensmittelmikrobiologie und Biotechnologie, Hamburg University, Hamburg/Germany (2019 -- 2020)
         5. Chemometric Consulting and Chemometrix GmbH, Wölfersheim/Germany (since 2016)
 # Document -------------------------------------------------------------------
 date:      "`r Sys.Date()`"
@@ -37,7 +40,8 @@ biblio-style: plain
 csl: man/elsevier-with-titles.csl
 ---
 
-```{r setup, include = FALSE}
+
+```{r setup-plotting, include = FALSE}
 # Packages -------------------------------------------------------------------
 library(hyperSpec)
 library(latticeExtra)
@@ -71,7 +75,6 @@ make_bib(
   file = "man/plotting-pkg.bib"
 )
 ```
-
 
 
 
@@ -1582,7 +1585,7 @@ For suggestions on how the lattice functions can be redefined so that the result
 
 # Session Info {-}
 
-```{r session-info-hyperspec, echo=FALSE, paged.print=FALSE}
+```{r session-info-hyperspec, echo=FALSE, paged.print=FALSE, eval=FALSE}
 sessioninfo::session_info("hyperSpec")
 ```
 
