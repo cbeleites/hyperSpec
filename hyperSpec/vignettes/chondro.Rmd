@@ -1,4 +1,8 @@
 ---
+# For bookdown ---------------------------------------------------------------
+# (PART\*) II Case studies {-}
+# `chondro`: Raman Spectra of Chondrocytes in Cartilage {#chondro}
+# For vignette ---------------------------------------------------------------
 title:       "Raman Spectra of Chondrocytes in Cartilage"
 subtitle:    "Package **hyperSpec**'s `chondro` Data Set"
 # subtitle:  Vignette on hyperSpec's chondro data set
@@ -38,7 +42,7 @@ csl: man/elsevier-with-titles.csl
 ---
 
 
-```{r setup, include=FALSE}
+```{r setup-chondro, include=FALSE}
 # Packages -------------------------------------------------------------------
 library(hyperSpec)
 require(latticeExtra)
@@ -64,10 +68,6 @@ make_bib(
   file = "man/Chondro-pkg.bib"
 )
 ```
-
-
-<!-- \SweaveOpts{concordance=TRUE} -->
-<!-- \title{Raman Spectra of Chondrocytes in Cartilage: package **hyperSpec**'s `chondro` data set } -->
 
 
 <!-- ======================================================================= -->
@@ -141,7 +141,7 @@ Raman spectra of a cartilage section were measured on each point of a grid, resu
 Figure \@ref(fig:vis-all) shows a microscope picture of the measured area and its
 surroundings.
 
-```{r vis-all, echo=FALSE, fig.cap=CAPTION}
+```{r vis-all, echo=FALSE, fig.cap=CAPTION, out.width="400"}
 CAPTION = "
 Microphotograph of the cartilage section.
 The frame indicates the measurement area of $35×25 \\mu m.$
@@ -169,11 +169,13 @@ The function assumes a map as default, but can also handle single spectra (`data
 In addition, large files may be processed in chunks. 
 In order to speed up the reading `read.txt.Renishaw()`{.r} does not allow missing values, but it does work with `NA`{.r}.
 
-```{r chondro-import}
+```{r chondro-import, cache=TRUE}
 # Download file from:
-raw_data_url <- 'https://media.githubusercontent.com/media/cbeleites/hyperSpec/master/Vignettes/fileio/txt.Renishaw/chondro.txt'
+raw_data_url <-
+  'https://media.githubusercontent.com/media/cbeleites/hyperSpec/master/Vignettes/fileio/txt.Renishaw/chondro.txt'
 dir.create('rawdata', F)
 download.file(raw_data_url, 'rawdata/chondro.txt')
+
 # Read the raw data and make a hyperSpec object
 chondro <- read.txt.Renishaw("rawdata/chondro.txt", data = "xyspc")
 chondro
@@ -742,11 +744,11 @@ This is the file distributed with package **hyperSpec** as example data set.
 
 # Session Info {-}
 
-```{r session-info-chondro, echo=FALSE, paged.print=FALSE}
+```{r session-info-chondro, echo=FALSE, paged.print=FALSE, eval=FALSE}
 sessioninfo::session_info("hyperSpec")
 ```
 
-<!-- # References {-} -->
+# References {-}
 
 
 
