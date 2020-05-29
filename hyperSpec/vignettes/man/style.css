@@ -1,4 +1,10 @@
 
+#index > h1 {
+    color: transparent;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
 /* --- Info boxes --------------------------------------------------------- */
 
 div.redbox {
@@ -19,17 +25,17 @@ div.greenbox {
   background-color: #DFF2BF;
 }
 
-div.redbox, div.note, div.yellowbox,  div.greenbox{
-  width:       650px;
+div.redbox, div.note, div.yellowbox, div.greenbox{
+  /* width:       650px; */
   padding:     10px;
   margin:      0;
   /*
   font-size:   1.5em;
   font-weight: bold;
   */
-  text-align:  center;
-  margin-top:    5em;
-  margin-bottom: 5em;
+  margin-top:    1em;
+  margin-bottom: 1em;
+  text-align:  justify;
   border-radius: 10px;
 }
 
@@ -46,13 +52,96 @@ div.note-t {
   color:            #D8000C;
   border: 5px solid #C8000C;
   background-color: #FEEF83;
-  width:       650px;
+  width:       100%;
+  max-width:   650px;
   padding:     10px;
-  margin:      0;
+  margin:      auto;
   margin-top:    5em;
   margin-bottom: 5em;
   border-radius: 10px;
 }
+
+
+/* Code  ------------------------------------------------------------------ */
+
+/* Inline code */
+.book .book-body .page-wrapper .page-inner section.normal code {
+    background-color: inherit;
+    overflow-x: auto;
+    padding: 0;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal table code {
+    white-space: pre;
+}
+
+.book.color-theme-1 .book-body .page-wrapper .page-inner section.normal code {
+    background-color: inherit;
+    overflow-x: auto;
+}
+
+.book.color-theme-1 .book-body .page-wrapper .page-inner section.normal pre {
+    /*
+    border: 2px solid #f8df9c; 
+    padding: .25em 1em;
+    */
+    border-radius: 5px;
+    line-height: 1.3em;
+}
+
+code span.ot {
+    color: #990000;
+}
+
+code span.output {
+    color: #666;
+}
+
+p code {
+  white-space: inherit;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal code:after,
+.book .book-body .page-wrapper .page-inner section.normal code:before {
+    content: "";
+}
+
+/* Inherits background color for the box or code from the main theme
+and avoids the stripe beneeth the box: */
+
+
+
+.book .book-body .page-wrapper .page-inner section.normal div.div.note-t code,
+.book .book-body .page-wrapper .page-inner section.normal div.redbox     code,
+.book .book-body .page-wrapper .page-inner section.normal div.yellowbox  code,
+.book .book-body .page-wrapper .page-inner section.normal div.note       code,
+.book .book-body .page-wrapper .page-inner section.normal div.greenbox   code {
+  color: black;
+}
+
+div.sourceCode {
+  background-color: inherit !important;
+}
+
+pre {
+  word-break: normal;
+  word-wrap: normal;
+}
+
+pre code {
+  white-space: inherit;
+}
+
+code span.rez {
+    color: #454545;
+    /* font-weight: bold; */
+}
+
+
+
+
 
 /* --- Other --------------------------------------------------------------- */
 
