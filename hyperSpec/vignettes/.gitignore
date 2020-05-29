@@ -1,2 +1,5 @@
 /*.html
 /*.R
+old/
+*_cache/
+*_files/
