@@ -14,7 +14,7 @@
 ##' -x }
 ##' The arithmetical operators \code{+}, \code{-}, \code{*}, \code{/}, \code{^}, \code{\%\%},
 ##' \code{\%/\%}, and \code{\%*\%} work on the  spectra matrix of the \code{hyperSpec} object. They
-##' have their usual meaning (see \code{\link[base]{Arithmetic}}).  The operators work also with one
+##' have their usual meaning (see \link[base]{Arithmetic}).  The operators work also with one
 ##' \code{hyperSpec} object and a numeric object or a matrices of the same size as the spectra matrix
 ##' of the \code{hyperSpec} object.
 ##'
@@ -192,26 +192,21 @@ setMethod(
   }
 )
 
-##' @rdname Arith
-setMethod(
-  "%*%", signature(x = "matrix", y = "hyperSpec"),
-  function(x, y) {
-    validObject(y)
+## matrix multiplication matrix %*% hyperSpec object
 
-    if (ncol(y) > 1) {
-      warning(paste("Dropping column(s) of y:", paste(colnames(y$..),
-        collapse = ", "
-      )))
-    }
-    y <- new("hyperSpec",
-      wavelength = y@wavelength,
-      spc = x %*% y@data$spc,
-      log = y@log
-    )
+.matmul_mh <- function(x, y) {
+  validObject(y)
 
-    y
+  if (ncol(y) > 1) {
+    warning("Dropping column(s) of y: ", paste(colnames(y$..), collapse = ", "))
   }
-)
+
+  new("hyperSpec", wavelength = y@wavelength, spc = x %*% y@data$spc)
+}
+
+
+##' @rdname Arith
+setMethod("%*%", signature(x = "matrix", y = "hyperSpec"), .matmul_mh)
 
 .test(.arithx) <- function() {
   context("Arith")
