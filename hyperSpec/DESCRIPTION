@@ -4,7 +4,7 @@ Type: Package
 Title: Work with Hyperspectral Data, i.e. Spectra + Meta Information (Spatial,
     Time, Concentration, ...)
 Version: 0.99-20200522
-Date: 2020-05-22
+Date: 2020-05-28
 Maintainer: Claudia Beleites <Claudia.Beleites@chemometrix.gmbh>
 Authors@R: c(
     person("Claudia",   "Beleites",  role = c("aut","cre", "dtc"), email = "Claudia.Beleites@chemometrix.gmbh"),
@@ -99,18 +99,18 @@ Collate:
     'wl2i.R'
     'extract.R'
     'factor2num.R'
+    'options.R'
+    'regexps.R'
+    'guesswavelength.R'
+    'initialize.R'
     'fauxCell.R'
     'fileio.optional.R'
     'fix_spc_colnames.R'
     'flu.R'
     'getbynames.R'
-    'options.R'
-    'regexps.R'
-    'guesswavelength.R'
     'paracetamol.R'
     'laser.R'
     'hyperspec-package.R'
-    'initialize.R'
     'labels.R'
     'plotmap.R'
     'levelplot.R'
@@ -173,6 +173,7 @@ Collate:
     'sweep.R'
     'trellis.factor.key.R'
     'units.R'
+    'update.examples.R'
     'vandermonde.R'
     'wc.R'
     'wl.R'
@@ -181,4 +182,4 @@ Collate:
     'write.txt.wide.R'
     'y-pastenames.R'
     'zzz.R'
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.0
