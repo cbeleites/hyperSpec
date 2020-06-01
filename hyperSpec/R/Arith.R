@@ -154,46 +154,84 @@ setMethod("Arith", signature(e1 = "matrix", e2 = "hyperSpec"), .arithy)
 }
 
 
-##' @rdname Arith
+## matrix multiplication two hyperSpec objects
+.matmul_hh <- function(x, y) {
+  validObject(x)
+  validObject(y)
+
+  if (ncol(y) > 1) {
+    warning("Dropping column(s) of y: ", paste(colnames(y$..), collapse = ", "))
+  }
+
+  x@data$spc <- x@data$spc %*% y@data$spc
+  .wl(x) <- y@wavelength
+  x@label$.wavelength <- y@label$.wavelength
+
+  x
+}
+
+.test(.matmul_hh) <- function(){
+  context("matrix multiplication: 2 hyperSpec objects")
+  h <- flu[,,1:nrow(flu), wl.index = TRUE]
+  h$filename <- NULL
+
+  test_that("correct result", {
+    expect_warning(res <- h %*% flu, "Dropping column")
+
+    expect_s4_class(res, "hyperSpec")
+
+    expect_equal(dim(res), c(nrow = nrow(h), ncol = ncol(h), nwl = nwl(flu)))
+
+    expect_equal(res[[]], h[[]] %*% flu[[]])
+
+    expect_equal(res$.., h$..)
+
+        expect_equal(wl(res), wl(flu))
+  })
+}
+
+
 ##' @concept hyperSpec matrix multiplication
-##' @aliases %*% %*%,hyperSpec,hyperSpec-method %*%,matrix,hyperSpec-method
-##' %*%,hyperSpec,matrix-method
 ##' @export
-##' @seealso  \code{\link[base]{matmult}} for matrix multiplications with \code{\%*\%}.
-setMethod(
-  "%*%", signature(x = "hyperSpec", y = "hyperSpec"),
-  function(x, y) {
-    validObject(x)
-    validObject(y)
+##' @md
+##' @seealso  [base::matmult] for matrix multiplications with `%*%`.
+setMethod("%*%", signature(x = "hyperSpec", y = "hyperSpec"), .matmul_hh)
 
-    if (ncol(y) > 1) {
-      warning(paste("Dropping column(s) of y:", paste(colnames(y$..),
-        collapse = ", "
-      )))
-    }
+## matrix multiplication hyperSpec object %*% matrix
+.matmul_hm <- function(x, y) {
+  validObject(x)
 
-    x@data$spc <- x@data$spc %*% y@data$spc
-    .wl(x) <- y@wavelength
-    x@label$.wavelength <- y@label$.wavelength
+  x@data$spc <- x@data$spc %*% y
 
-    x
-  }
-)
+  .wl(x) <- seq_len(ncol(y))
+  x@label$.wavelength <- NA
+
+  x
+}
+
+.test(.matmul_hm) <- function() {
+  context("matrix multiplication hyperSpec x matrix")
+
+  m <- matrix(1:(2 * nwl(flu)), nrow = nwl(flu))
+
+  test_that("correct result", {
+    res <- flu %*% m
+
+    expect_s4_class(res, "hyperSpec")
+
+    expect_equal(dim(res), c(nrow = nrow(flu), ncol = ncol(flu), nwl = ncol(m)))
+
+    expect_equal(res[[]], flu[[]] %*% m)
+
+    expect_equal(res$.., flu$.., )
+  })
+
+}
 
 ##' @rdname Arith
-setMethod(
-  "%*%", signature(x = "hyperSpec", y = "matrix"),
-  function(x, y) {
-    validObject(x)
-    x@data$spc <- x@data$spc %*% y
-    .wl(x) <- seq_len(ncol(y))
-    x@label$.wavelength <- NA
-    x
-  }
-)
+setMethod("%*%", signature(x = "hyperSpec", y = "matrix"), .matmul_hm)
 
 ## matrix multiplication matrix %*% hyperSpec object
-
 .matmul_mh <- function(x, y) {
   validObject(y)
 
@@ -207,17 +245,18 @@ setMethod(
 .test(.matmul_mh) <- function(){
   context("matrix multiplication: matrix x hyperSpec")
 
-  test_that("dropping hyperSpec object columns",{
+  m <- matrix(1:(2 * nrow(flu)), ncol = nrow(flu))
 
-    m <- matrix(1:(2 * nrow(flu)), ncol = nrow(flu))
-
+  test_that("correct result", {
     expect_warning(res <- m %*% flu, "Dropping column")
 
     expect_s4_class(res, "hyperSpec")
 
     expect_equal(dim(res), c(nrow = nrow(m), ncol = 1, nwl = nwl(flu)))
 
-    expect_equal(m %*% flu[[]], res[[]])
+    expect_equal(res[[]], m %*% flu[[]])
+
+    expect_equal(wl(res), wl(flu))
   })
 }
 
