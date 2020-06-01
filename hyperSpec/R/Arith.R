@@ -204,6 +204,23 @@ setMethod(
   new("hyperSpec", wavelength = y@wavelength, spc = x %*% y@data$spc)
 }
 
+.test(.matmul_mh) <- function(){
+  context("matrix multiplication: matrix x hyperSpec")
+
+  test_that("dropping hyperSpec object columns",{
+
+    m <- matrix(1:(2 * nrow(flu)), ncol = nrow(flu))
+
+    expect_warning(res <- m %*% flu, "Dropping column")
+
+    expect_s4_class(res, "hyperSpec")
+
+    expect_equal(dim(res), c(nrow = nrow(m), ncol = 1, nwl = nwl(flu)))
+
+    expect_equal(m %*% flu[[]], res[[]])
+  })
+}
+
 
 ##' @rdname Arith
 setMethod("%*%", signature(x = "matrix", y = "hyperSpec"), .matmul_mh)
