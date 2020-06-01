@@ -110,7 +110,7 @@
 ##' @import stats
 ##' @include hyperspec-class.R
 ##' @examples
-##' cluster.means <- aggregate (chondro, chondro$clusters, mean_pm_sd)
+##' cluster.means <- aggregate (fauxCell, fauxCell$region, mean_pm_sd)
 ##' plot(cluster.means, stacked = ".aggregate", fill = ".aggregate",
 ##'      col = matlab.dark.palette (3))
 ##'
@@ -154,17 +154,17 @@ setMethod("aggregate", signature = signature(x = "hyperSpec"), .aggregate)
 
 .test(.aggregate) <- function() {
   context("aggregate")
-  test_that("chondro cluster means", {
-    cluster.means <- aggregate(chondro, chondro$clusters, mean_pm_sd)
+  test_that("fauxCell cluster means", {
+    cluster.means <- aggregate(fauxCell, fauxCell$region, mean_pm_sd)
     expect_true(all(is.na(cluster.means$y)))
     expect_true(all(is.na(cluster.means$x)))
 
     expect_equal(cluster.means$clusters, cluster.means$.aggregate)
 
-    for (cluster in levels(chondro$clusters)) {
+    for (cluster in levels(fauxCell$region)) {
       expect_equivalent(
         cluster.means [[cluster.means$clusters == cluster, ]],
-        apply(chondro [[chondro$clusters == cluster, ]], 2, mean_pm_sd)
+        apply(fauxCell [[fauxCell$region == cluster, ]], 2, mean_pm_sd)
       )
     }
   })
