@@ -1,52 +1,44 @@
-##' Arithmetical Operators: +, -, *, /, ^, \%\%, \%/\%, \%*\% for hyperSpec objects
+##' Arithmetical Operators: +, -, *, /, ^, %%, %/%, %*% for hyperSpec objects
 ##'
-##' The arithmetical operators \code{+}, \code{-}, \code{*}, \code{/}, \code{\^}, \code{\%\%},
-##' \code{\%/\%},  and \code{\%*\%} for \code{hyperSpec} objects.
+##' The arithmetical operators `+`, `-`, `*`, `/`, `^`, `%%`, `%/%`, and `%*%`
+##' hyperSpec objects.
 ##'
 ##' You can use these operators in different ways:
 ##' \preformatted{
 ##' e1 + e2
-##' `+` (e1, e2)
 ##'
-##' x \%*\% y
-##' `\%*\%`(x, y)
+##' `+`(e1, e2)
+##'
+##' x %*% y `%*%`(x, y)
 ##'
 ##' -x }
-##' The arithmetical operators \code{+}, \code{-}, \code{*}, \code{/}, \code{^}, \code{\%\%},
-##' \code{\%/\%}, and \code{\%*\%} work on the  spectra matrix of the \code{hyperSpec} object. They
-##' have their usual meaning (see \link[base]{Arithmetic}).  The operators work also with one
-##' \code{hyperSpec} object and a numeric object or a matrices of the same size as the spectra matrix
-##' of the \code{hyperSpec} object.
 ##'
-##' With numeric vectors \code{\link[hyperSpec]{sweep}} is most probably more appropriate.
+##' The arithmetical operators `+`, `-`, `*`, `/`, `^`, `%%`, `%/%`, and
+##' `%*%` work on the  spectra matrix of the hyperSpec object. They have their
+##' usual meaning (see [base::Arithmetic]).  The operators work also with
+##' one hyperSpec object and a numeric object or a matrix of the same
+##' size as the spectra matrix of the hyperSpec object.
 ##'
-##' If you want to calculate on the extra data as well, use the data.frame \code{hyperSpec@@data}
-##' directly or \code{\link[hyperSpec]{as.data.frame} (x)}.
+##' With numeric vectors [sweep()] may be more explicit.
+##'
+##' If you want to calculate on the extra data as well, use the data.frame
+##' `hyperSpec@data` directly or [`as.data.frame(x)`][as.data.frame()].
 ##' @author C. Beleites
 ##' @title Arithmetical Operators for hyperSpec objects
 ##' @name Arith
+##' @md
 ##' @rdname Arith
 ##' @docType methods
-##' @aliases Arith Arith,hyperSpec-method Arith,hyperSpec,hyperSpec-method
-##' +,hyperSpec,hyperSpec-method -,hyperSpec,hyperSpec-method *,hyperSpec,hyperSpec-method
-##' ^,hyperSpec,hyperSpec-method %%,hyperSpec,hyperSpec-method %/%,hyperSpec,hyperSpec-method
-##' /,hyperSpec,hyperSpec-method
-##' Arith,hyperSpec,matrix-method
-##' Arith,hyperSpec,numeric-method
-##' Arith,hyperSpec,missing-method
-##' Arith,matrix,hyperSpec-method
-##' Arith,numeric,hyperSpec-method
-##' %*% %*%,hyperSpec,hyperSpec-method %*%,matrix,hyperSpec-method %*%,hyperSpec,matrix-method
 ##' @param e1,e2 or
-##' @param x,y either two \code{hyperSpec} objects or
+##' @param x,y either two hyperSpec objects or
 ##'
-##' one \code{hyperSpec} object and  matrix of same size as \code{hyperSpec[[]]} or
+##'   one hyperSpec object and  matrix of same size as `x[[]]` or
 ##'
-##' a vector which length equalling either the number of rows or the number of wavelengths
-##' of the hyperSpec object, or
+##'   a vector which length equalling either the number of rows or the number of
+##'   wavelengths of the hyperSpec object, or
 ##'
-##' a scalar (numeric of length 1).
-##' @return \code{hyperSpec} object with the new spectra matrix.
+##'   a scalar (numeric of length 1).
+##' @return hyperSpec object with the new spectra matrix.
 ##' @export
 ##' @keywords methods arith
 ##' @include paste.row.R
@@ -57,17 +49,15 @@
 ##' @concept hyperSpec plus
 ##' @concept hyperSpec division
 ##' @concept hyperSpec spectra conversion
-##' @seealso
-##' \code{\link[hyperSpec]{sweep-methods}} for calculations involving a vector and
-##'   the spectral matrix.
+##' @seealso [sweep()] for calculations with a vector and the spectra matrix.
 ##'
-##'   \code{\link[methods]{S4groupGeneric}} for group generic methods.
+##' [methods::S4groupGeneric] for group generic methods.
 ##'
-##'   \code{\link[base]{Arithmetic}} for the base arithmetic functions.
+##' [base::Arithmetic] for the base arithmetic functions.
 ##'
-##'   \code{\link[hyperSpec]{Comparison}} for comparison operators,
-##'   \code{\link[hyperSpec]{Math}} for mathematical group generic
-##'   functions (Math and Math2 groups) working on \code{hyperSpec} objects.
+##' [hyperSpec::Comparison] for comparison operators,
+##' [hyperSpec::Math] for mathematical group generic functions (Math
+##' and Math2 groups) working on hyperSpec objects.
 ##' @examples
 ##' flu + flu
 ##' 1 / flu
@@ -142,10 +132,10 @@ setMethod("Arith", signature(e1 = "matrix", e2 = "hyperSpec"), .arithy)
 
   if (is(m, "hyperSpec")) {
     if (m.dim [3] == 1L & target.dim [2] > 1L) {
-      m <- m [, , rep(1, target.dim [2]), wl.index = TRUE]
+      m <- m [, , rep(1, target.dim[2]), wl.index = TRUE]
     }
   } else {
-    if (m.dim [2] == 1L & target.dim [2] > 1L) {
+    if (m.dim [2] == 1L & target.dim[2] > 1L) {
       m <- m [, rep(1, target.dim [2]), drop = FALSE]
     }
   }
@@ -191,6 +181,7 @@ setMethod("Arith", signature(e1 = "matrix", e2 = "hyperSpec"), .arithy)
 }
 
 
+##' @rdname Arith
 ##' @concept hyperSpec matrix multiplication
 ##' @export
 ##' @md
