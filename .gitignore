@@ -73,3 +73,4 @@ Vignettes/flu/flu.rda
 Vignettes/laser/laser.rda
 hyperSpec/tests/testthat/Rplots.pdf
 hyperSpec/tests/testthat/fileio
+hyperSpec/vignettes/man/*.bib

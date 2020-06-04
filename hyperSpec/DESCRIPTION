@@ -7,9 +7,9 @@ Version: 0.99-20200522
 Date: 2020-05-22
 Maintainer: Claudia Beleites <Claudia.Beleites@chemometrix.gmbh>
 Authors@R: c(
-    person("Claudia",   "Beleites",  role = c("aut","cre", "dtc"), email = "Claudia.Beleites@chemometrix.gmbh"),
+    person("Claudia",   "Beleites",  role = c("aut", "cre", "dtc"), email = "Claudia.Beleites@chemometrix.gmbh"),
     person("Valter",    "Sergo",     role = c("aut")),
-    person("Alois",     "Bonifacio", role = c ("ctb", "dtc")),
+    person("Alois",     "Bonifacio", role = c("ctb", "dtc")),
     person("Marcel",    "Dahms",     role = "ctb"),
     person("Björn",     "Egert",     role = "ctb"),
     person("Simon",     "Fuller",    role = "ctb"),
@@ -56,7 +56,9 @@ Suggests:
     reshape,
     devtools,
     R.rsp,
-    tibble
+    knitr,
+    rmarkdown,
+    bookdown
 Imports:
     testthat,
     methods,
@@ -66,7 +68,7 @@ Imports:
     dplyr
 URL: https://github.com/cbeleites/hyperSpec
 BugReports: https://github.com/cbeleites/hyperSpec/issues
-VignetteBuilder: R.rsp
+VignetteBuilder: knitr
 Collate:
     'validate.R'
     'hyperspec-class.R'
