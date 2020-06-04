@@ -244,89 +244,15 @@ setMethod("Arith", signature(e1 = "hyperSpec", e2 = "missing"), .arithx)
   e1 <- .expand(e1, dim(e2) [c(1, 3)])
   e2 <- .expand(e2, dim(e1))
 
-  e2[[]] <- callGeneric(e1,e2 [[]])
+  e2[[]] <- callGeneric(e1,e2[[]])
   e2
 }
+
 ##' @rdname Arith
 setMethod("Arith", signature(e1 = "numeric", e2 = "hyperSpec"), .arithy)
+
 ##' @rdname Arith
 setMethod("Arith", signature(e1 = "matrix", e2 = "hyperSpec"), .arithy)
-
-##' expand a row- or column vector (or matrix of size 1 x n or n x 1)
-##' along the size-1-dimension.
-##'
-##' Dimensions that have size > 1 are ignored (they lead to an error in the
-##' arithmetic function since the size does not match)
-##'
-##' @param m matrix, vector or scalar
-##' @param target.dim target size to expand the vector to for the sweep-shortcuts
-##' @noRd
-.expand <- function(m, target.dim) {
-
-  ## vector corresponding to a single row
-  if (is.vector(m) & length(m) > 1 & length(m) == target.dim[2]) {
-    if (length(m) == target.dim[1]) {
-      message("Square target: recycling by column.")
-    } else {
-      m <- t(m)
-    }
-  }
-  m <- as.matrix(m)
-  m.dim <- dim(m)
-
-  if (m.dim[1] == 1L & target.dim[1] > 1L) {
-    m <- m[rep(1, target.dim[1]), , drop = FALSE]
-  }
-
-  if (is(m, "hyperSpec")) {
-    if (m.dim[3] == 1L & target.dim[2] > 1L) {
-      m <- m[, , rep(1, target.dim[2]), wl.index = TRUE]
-    }
-  } else {
-    if (m.dim[2] == 1L & target.dim[2] > 1L) {
-      m <- m[, rep(1, target.dim[2]), drop = FALSE]
-    }
-  }
-
-  m
-}
-
-.test(.expand) <- function(){
-  context(".expand helper function for sweep shortcut operators")
-
-    test_that("scalar", {
-      expect_equal(.expand(1, c(1, 3)), matrix(rep(1, 3), nrow = 1, ncol = 3))
-      expect_equal(.expand(1, c(3, 1)), matrix(rep(1, 3), nrow = 3, ncol = 1))
-      expect_equal(.expand(1, c(3, 5)), matrix(rep(1, 3*5), nrow = 3, ncol = 5))
-      expect_equal(.expand(1, c(1, 1)), matrix(1))
-    })
-
-    test_that("matrix with > 1 row / > 1 column: leave unchanged", {
-      m <- matrix(1:15, ncol = 5)
-
-      expect_equal(.expand(m, c(1, 5)), m)
-      expect_equal(.expand(m, c(3, 1)), m)
-    })
-
-    test_that("matrix with 1 row", {
-      m <- matrix(1:5, ncol = 5)
-
-      expect_equal(.expand(m, c(1, 5)), m)
-      expect_equal(.expand(m, c(3, 5)), m[rep(1, 3),])
-      expect_equal(.expand(m, c(3, 4)), m[rep(1, 3),])  # ignore request of ncol = 4 !!!
-    })
-
-    test_that("matrix with 1 column", {
-      m <- matrix(1:5, nrow = 5)
-
-      expect_equal(.expand(m, c(5, 3)), m[,rep(1, 3)])
-      expect_equal(.expand(m, c(5, 1)), m)
-      expect_equal(.expand(m, c(4, 3)), m[rep(1, 3),]) # ignore request of nrow = 4 !!!
-    })
-
-
-
-}
 
 
 ## matrix multiplication two hyperSpec objects
