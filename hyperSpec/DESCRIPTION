@@ -57,7 +57,8 @@ Suggests:
     devtools,
     R.rsp,
     knitr,
-    rmarkdown
+    rmarkdown,
+    bookdown
 Imports:
     testthat,
     methods,
