@@ -83,8 +83,10 @@ make_bib(
 They are not useful for HTML format yet, but in the future we can come up with useful ideas how to create an index of functions.
 But they are ignored by HTML rendering engine (as they are LaTeX tags) and removed from the output.
  
-2. I general, it seems that this tutorial could be split into several smaller tutorials. I think, there should be one additional short tutorial "Quick-start".
-
+2. I general, it seems that this tutorial could be split into several smaller tutorials:
+    a. I think, there should be one additional short tutorial "Quick-start". 
+    b. I suggest moving sections such as `Spectral (Pre)processing`, `Data Analysis` to separate vignettes.
+    
 3. Some ideas should be more clearly explained for beginner-level users without assuming that they know technical details.
 ```
 
