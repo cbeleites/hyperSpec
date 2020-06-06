@@ -100,10 +100,10 @@ But they are ignored by HTML rendering engine (as they are LaTeX tags) and remov
 
 # Introduction
 
-Package **hyperSpec** is a R package that allows convenient handling of \index{hyperspectral data sets} hyperspectral data sets, i.e., data sets combining spectra with further data on a per-spectrum basis.
+Package **hyperSpec** is a `R` package that allows convenient handling of \index{hyperspectral data sets} hyperspectral data sets, i.e., data sets combining spectra with further data on a per-spectrum basis.
 The spectra can be anything that is recorded over a common discretized axis.
 
-This vignette gives an introduction on basic working techniques using the R package package **hyperSpec**.
+This vignette gives an introduction on basic working techniques using the `R` package package **hyperSpec**.
 This is done mostly from a spectroscopic point of view: rather than going through the functions provided by
 package **hyperSpec**, it is organized in spectroscopic tasks.
 However, the functions discussed are printed on the margin for a quick overview.
@@ -203,7 +203,7 @@ Package **hyperSpec** implements with a variety of such functions, see Table \@r
 **R**'s concept of functions offers much flexibility.
 Functions may be added or changed by the user in his *workspace* at any time.
 This is also true for methods belonging to a certain class.
-Neither restart of R nor reloading of the package or anything the like is needed.
+Neither restart of `R` nor reloading of the package or anything the like is needed.
 If the original function resides in a namespace (as it is the case for all functions in package **hyperSpec**), the original function is not deleted.
 It is just masked by the user's new function but stays accessible via the `::`{.r} operator.
 
@@ -2099,7 +2099,7 @@ system.time({
 ```
 
 Calculations that involve a lot of subsetting (i.e., extracting or changing the spectra matrix or extra data) can be sped up considerably if the required parts of the `hyperSpec`{.r} object are extracted beforehand.
-This is somewhat similar to model fitting in R in general: many model fitting functions in **R** are much faster if the formula interface is avoided and the appropriate `data.frame`{.r}s or matrices are handed over directly.
+This is somewhat similar to model fitting in `R` in general: many model fitting functions in **R** are much faster if the formula interface is avoided and the appropriate `data.frame`{.r}s or matrices are handed over directly.
 
 ```{r speed3}
 tmp <- chondro[1:50]
@@ -2122,10 +2122,10 @@ This functionality can be enabled for package **hyperSpec** by installing packag
 
 ## Compiled code
 
-R provides interfaces to Fortran and C code, see the manual "Writing R Extensions" package **Rcpp**`r cite_pkg("Rcpp")` allows to conveniently integrate C++ code.
+R provides interfaces to Fortran and C code, see the manual "Writing `R` Extensions" package **Rcpp**`r cite_pkg("Rcpp")` allows to conveniently integrate C++ code.
 Package **inline**`r cite_pkg("inline")` adds another layer of convenience: inline definition of functions in C, C++, or Fortran.
 
-An intermediate level is byte compilation of R code, which is done by package **compiler**`r cite_pkg("compiler")`.
+An intermediate level is byte compilation of `R` code, which is done by package **compiler**`r cite_pkg("compiler")`.
 
 ## Memory usage
 
