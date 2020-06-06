@@ -50,6 +50,10 @@ rm(list = ls())
 
 # Packages -------------------------------------------------------------------
 library(hyperSpec)
+library(mvtnorm)
+library(MASS)
+library(plotrix)
+library(pls)
 
 # Functions ------------------------------------------------------------------
 #
@@ -57,10 +61,6 @@ source("resources/vignette-functions.R", encoding = "UTF-8")
 
 # Settings -------------------------------------------------------------------
 source("resources/vignette-default-settingsR.R", encoding = "UTF-8")
-
-# knitr::opts_chunk$set(
-#   fig.path   = "resources/figures/intro--"
-# )
 
 ```
 
@@ -80,10 +80,8 @@ make_bib(
 ```
 
 
-<!-- ======================================================================= -->
 ```{block, type="note-t", echo=TRUE}
 **V. Gegzna's notes** `hyperspec-1`
-
 
 1. I suggest keeping tags `\\mFun{}` and `\\index{}`.
 They are not useful for HTML format yet, but in the future we can come up with useful ideas how to create an index of functions.
@@ -96,87 +94,11 @@ But they are ignored by HTML rendering engine (as they are LaTeX tags) and remov
 3. Some ideas should be more clearly explained for beginner-level users without assuming that they know technical details.
 ```
 
-<br><br><br><br><br>
-
-***
-
-<!-- ======================================================================= -->
-
-
-
-
-
-
-<!-- \SweaveOpts{concordance=TRUE} -->
-<!-- \title{package **hyperSpec** Introduction } -->
-
-
-```{block, type="note", echo=TRUE}
-**Reproducing the Examples in this Vignette**
-
-All spectra used in this manual are installed automatically with package **hyperSpec**.
-```
-
-
-
 <!-- > Note that some definitions are executed in `vignette.defs`. -->
-
-```{block, type="greenbox", echo=TRUE}
-**Reporting Issues and Suggesting Enhancements**
-
-`bug.report(package = "hyperSpec")`{.r} will take you to package **hyperSpec**'s issue tracking page at
-<https://github.com/cbeleites/hyperSpec/issues> where you can report issues you encounter, suggest features and comment on issues or suggested features.
-```
-
 
 <!-- \tableofcontents -->
 
-# Suggested Packages and Setup {-}
-
-To build this vignette, some packages are suggested but not strictly needed:
-<!-- latticeExtra -->
-
-```{r check-required, echo=FALSE, results='tex', eval=FALSE}
-check.req.pkg("pls", special = list(msc = function(x) {
-  texterrormsg("msc", "pls")
-  x
-}))
-check.req.pkg("baseline",
-  special = list(
-    baseline = function(x) {
-      texterrormsg("baseline", "baseline")
-      x
-    },
-    getCorrected = function(x) {
-      texterrormsg("getCorrected", "baseline")
-      x
-    }
-  )
-)
-check.req.pkg("ggplot2",  donothing = "")
-check.req.pkg("compiler", donothing = "")
-check.req.pkg("inline",   donothing = "")
-```
-
-
-```{r packages}
-library(hyperSpec)
-
-library(mvtnorm)
-library(MASS)
-library(plotrix)
-library(pls)
-
-
-par(mar = c(4.1, 4.1, 1, .6))
-
-set.seed(2020)
-```
-
-
-
 # Introduction
-
 
 Package **hyperSpec** is a R package that allows convenient handling of \index{hyperspectral data sets} hyperspectral data sets, i.e., data sets combining spectra with further data on a per-spectrum basis.
 The spectra can be anything that is recorded over a common discretized axis.
@@ -2373,6 +2295,13 @@ make.fn.table()
 `write.txt.long`{.r}                 | export as long-type ASCII file
 `write.txt.wide`{.r}                 | export as wide-type ASCII file
 
+
+```{block, type="greenbox", echo=TRUE}
+**Reporting Issues and Suggesting Enhancements**
+
+`bug.report(package = "hyperSpec")`{.r} will take you to package **hyperSpec**'s issue tracking page at
+<https://github.com/cbeleites/hyperSpec/issues> where you can report issues you encounter, suggest features and comment on issues or suggested features.
+```
 
 # Session Info {-}
 
