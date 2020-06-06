@@ -95,6 +95,22 @@ But they are ignored by HTML rendering engine (as they are LaTeX tags) and remov
 3. Some ideas should be more clearly explained for beginner-level users without assuming that they know technical details.
 ```
 
+```{block, type = "note", echo = TRUE}
+**B Hansons's notes** `Some remaining issues`
+
+There is still a lot of work and polishing to be done.  Here are some of the remaining organizational and document processing issues as I see it:
+
+1. I think we can greatly simplify the bibliography processing by just letting `markdown` take care of it.
+
+2. For all vignettes we should probably settle on one or two color schemes for plots.
+
+3.  I'm not sure if any of the `\index ` and related items do anything in this type of document.  Remove if possible.  html files can be search via the browser.
+
+4.  Some maintenance simplification might be gained by putting the contents of all tables into data frames and using `kableExtra` to print them.
+
+5.  I think `vignette.defs` which is basically a \LaTeX file is not doing anything for this document.
+```
+
 <!-- > Note that some definitions are executed in `vignette.defs`. -->
 
 <!-- \tableofcontents -->
