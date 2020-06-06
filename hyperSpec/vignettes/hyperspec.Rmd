@@ -52,6 +52,7 @@ rm(list = ls())
 library(hyperSpec)
 
 # Functions ------------------------------------------------------------------
+#
 source("resources/vignette-functions.R", encoding = "UTF-8")
 
 # Settings -------------------------------------------------------------------

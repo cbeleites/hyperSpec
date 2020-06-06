@@ -17,7 +17,7 @@ trellis.pars <- trellis.par.get("layout.widths")
 trellis.pars[grep("padding", names(trellis.pars))] <- 0
 trellis.par.set(layout.widths = trellis.pars)
 
-# Settings ===================================================================
+# knitr Settings ===================================================================
 knitr::opts_chunk$set(
   echo       = TRUE,     # Should blocks with program code be shown in knitted documents?
   eval       = TRUE,     # Should program code be evaluated?
@@ -28,6 +28,7 @@ knitr::opts_chunk$set(
   comment    = "#>"
 )
 
+# R Settings ==========================================================
 options("width" = 100, "digits" = 5)
 options(rmarkdown.html_vignette.check_title = FALSE) # Vig index entry ne document title
 set.seed(2020)
