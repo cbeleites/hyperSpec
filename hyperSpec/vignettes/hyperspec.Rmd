@@ -64,6 +64,7 @@ source("resources/vignette-default-settingsR.R", encoding = "UTF-8")
 
 ```
 
+
 ```{r bib, echo=FALSE, paged.print=FALSE}
 make_bib(
   c("hyperSpec",
@@ -98,15 +99,76 @@ But they are ignored by HTML rendering engine (as they are LaTeX tags) and remov
 
 <!-- \tableofcontents -->
 
-# Introduction
+# Things to Know About **_hyperSpec_** As You Get Started
 
 Package **hyperSpec** is a `R` package that allows convenient handling of \index{hyperspectral data sets} hyperspectral data sets, i.e., data sets combining spectra with further data on a per-spectrum basis.
 The spectra can be anything that is recorded over a common discretized axis.
-
 This vignette gives an introduction on basic working techniques using the `R` package package **hyperSpec**.
-This is done mostly from a spectroscopic point of view: rather than going through the functions provided by
-package **hyperSpec**, it is organized in spectroscopic tasks.
-However, the functions discussed are printed on the margin for a quick overview.
+This is done mostly from a spectroscopic point of view: rather than going through the functions provided by package **hyperSpec**, it is organized by spectroscopic tasks.
+
+## Terms & Notations Used Here
+
+Throughout the documentation of the package, the following terms are used:
+
+
+**wavelength** \index{wavelength}
+: spectral abscissa
+frequency, typical units are wavenumbers, chemical shift, Raman shift, $\frac{m}{z}$, etc.
+
+**intensity** \index{intensity}
+: spectral ordinate
+transmission, absorbance, $\frac{e^{-}}{s}$, intensity, etc.
+
+**extra data** \index{extra data}
+: further information/data belonging to each spectrum such as
+spatial information (spectral images, maps, or profiles), temporal information (kinetics, time series), concentrations (calibration  series), class membership information, etc.
+Class `hyperSpec`{.r} object may contain arbitrary numbers of extra data columns.
+
+In R, slots of an S4 class are accessed by the \index{`"@`{.r} operator}`@`{.r} operator.
+In this vignette, the notation `@xxx`{.r} will thus mean *"slot xxx of an object"*.
+Likewise, named elements of a `list`{.r} and columns of a `data.frame`{.r} are accessed by the \index{`$`{.r} operator} `$`{.r} operator, and `$xxx`{.r} will be used for *"column xxx"*, and as an
+abbreviation for *"column xxx of the `data.frame`{.r} in slot data of the object"* (the structure of `hyperSpec`{.r} objects is discussed in section \@ref(sec:structure-chy)).
+
+## The Structure of `hyperSpec`{.r} Objects {#sec:structure-chy}
+
+`hyperSpec`{.r} objects are defined using an S4 class. It contains the following slots:
+
+-  **`@wavelength`{.r}** containing a numeric vector with the wavelength axis of the spectra.
+-  **`@data`{.r}**       a `data.frame`{.r} with the spectra and all further information belonging to the spectra.
+-  **`@label`{.r}**      a list with appropriate labels (particularly for axis annotations).
+
+While the parts of the `hyperSpec`{.r} object can be accessed directly, it is good practice to use the functions provided by package **hyperSpec** to handle the objects rather than accessing the slots directly (Table \@ref(tab:getset)).
+This also ensures that proper (i.e. *valid*) objects are returned.
+In some cases, however, direct access to the slots can considerably speed up calculations (see section \@ref(sec:speed-considerations)).
+
+
+<!-- ---------------------------------------------------------------------- -->
+: **(\#tab:getset)** Get and set functions for the slots of `hyperSpec`{.r} objects
+
+slot              | get                      | set
+----------------- | ------------------------ | ------------------------
+`@wavelength`{.r} | `wl()`{.r}               | `wl<-`{.r}
+`@data`{.r}       | `[`, `[[`, `$`, `as.data.frame()`{.r}, `as.long.df()`{.r}, ... | `[<-`, `[[<-`, `$<-`
+`@label`{.r}      | `labels()`{.r}           | `labels<-`{.r}
+<!-- ---------------------------------------------------------------------- -->
+
+Most of the data is stored in `@data`{.r}. This `data.frame`{.r} has one special column, `$spc`{.r}.
+It is the column that actually contains the spectra. The spectra are stored in a matrix inside this column, as illustrated in Figure \@ref(fig:structure).
+Even if there are no spectra, `$spc`{.r} must still be present.
+It is then a matrix with zero columns.
+
+```{r structure, echo=FALSE, fig.cap=CAPTION, out.width="400"}
+knitr::include_graphics("resources/intro--strukturhyperspec.png")
+CAPTION = "The structure of the data in a `hyperSpec` object.  In this example the 'extra data' are the `x` and `y` columns in `@data`."
+```
+
+Slot `@label`{.r} contains an element for each of the columns in `@data`{.r} plus one holding the
+label for the wavelength axis, `.wavelength`{.r}.
+They are accessed by their names which must be the same for columns of `@data`{.r} and the list elements.
+The elements of the list may be anything suitable for axis annotations, i.e., they should be either character strings or expressions for "pretty" axis annotations (see, e.g., Figure \@ref(fig:loess-kl)).
+To get familiar with expressions for axis annotation, see `?plotmath`{.r} and `demo(plotmath)`{.r}.
+
+## Data Sets
 
 Package **hyperSpec** comes with five data sets:
 
@@ -122,12 +184,12 @@ Package **hyperSpec** comes with five data sets:
                    A time series of an unstable laser emission.
 
 **`paracetamol`**  \index{data sets!paracetamol}
-                   A Raman spectrum of paracetamol (acetaminophene) ranging
+                   A Raman spectrum of paracetamol (acetaminophen) ranging
                    from 100 to 3200 cm^-1^ with overlapping wavelength ranges.
 
 **`barbiturates`** \index{data sets!barbiturates}
                    GC-MS spectra with differing wavelength axes as a list of
-                   `r length(barbiturates)` `hyperSpec`{.r} objects.
+                   `r length(barbiturates)` **hyperSpec** objects.
 -----------------  ----------------------------------------------------------------------
 
 In this vignette, the data sets are used to illustrate appropriate procedures for different tasks and different spectra.
@@ -135,35 +197,26 @@ In addition, the first three data sets are accompanied by their own vignettes sh
 
 This document describes how to accomplish typical tasks in the analysis of spectra.
 It does not give a complete reference on particular functions.
-It is therefore recommended to look up the methods in **R**'s help system using `?command`{.r}.
+It is therefore recommended to look up the methods in the `R` help system using `?command`{.r}.
 
-A complete list of the functions that are available in package **hyperSpec** is given in
-Table \@ref(tab:functions).
+## User-Facing Functions
 
+A complete list of the user-facing functions that are available in package **hyperSpec** is given in Table \@ref(tab:functions).
 
-## Notation and Terms
+## Launching **_hyperSpec_** {#sec:loading-package}
 
-Throughout the documentation of the package, the following terms are used:
+To \index{loading} load package **hyperSpec**, use
 
+```{r init, eval = FALSE}
+library("hyperSpec")
+```
 
-**wavelength** \index{wavelength}
-: spectral abscissa
-frequency, wavenumbers, chemical shift, Raman shift, $\frac{m}{z}$, etc.
-
-**intensity** \index{intensity}
-: spectral ordinate
-transmission, absorbance, $\frac{e^{-}}{s}$, intensity, ...
-
-**extra data** \index{extra data}
-: further information/data belonging to each spectrum
-spatial information (spectral images, maps, or profiles), temporal information (kinetics, time series), concentrations (calibration  series), class membership information, etc.
-Class `hyperSpec`{.r} object may contain arbitrary numbers of extra data columns.
-
-In R, slots of an S4 class are accessed by the \index{`"@`{.r} operator}`@`{.r} operator.
-In this vignette, the notation `@xxx`{.r} will thus mean *"slot xxx of an objec"*.
-Likewise, named elements of a `list`{.r} and columns of a `data.frame`{.r} are accessed by the \index{`$`{.r} operator} `$`{.r} operator, and `$xxx`{.r} will be used for *"column xxx"*, and as an
-abbreviation for *"column xxx of the `data.frame`{.r} in slot data of the objec"* (the structure of `hyperSpec`{.r} objects is discussed in section \@ref(sec:structure-chy)).
-
+\index{options|textbf}
+\index{options!debuglevel}
+\index{options!gc}
+The global behaviour of package **hyperSpec** can be configured via options.
+The values of the options are retrieved with `hy.getOptions()`{.r} and `hy.getOption()`{.r}, and changed with `hy.setOptions()`{.r}.
+Table \@ref(tab:options) gives an overview of the options.  You should not worry about these at the start of your exploration of **hyperSpec**.
 
 
 # Remarks on R
@@ -274,95 +327,7 @@ The actual name of the function is `wl<-` and must be quoted in order to avoid c
 ```
 
 
-# Loading the Package and Configuration {#sec:loading-package}
 
-To \index{loading} load package **hyperSpec**, use \nopagebreak
-
-```{r init}
-library("hyperSpec")
-```
-
-\index{options|textbf}
-\index{options!debuglevel}
-\index{options!gc}
-The global behaviour of package **hyperSpec** can be configured via options.
-The values of the options are retrieved with `hy.getOptions()`{.r} and `hy.getOption()`{.r}, and changed with `hy.setOptions()`{.r}.
-Table \@ref(tab:options) gives an overview.
-
-<!-- ----------------------------------------------------------------------- -->
-: **(\#tab:options)** Package **hyperSpec**'s options.
-  Please refer to the documentation of the respective functions for details about the effect of the options.
-
-name  | default value (range)  | description | used by
------ | :---:                  |-------------| -----
-`debuglevel`           | `0`{.r} (`1L`{.r}, `2L`{.r}) | Amount of debugging information produced | `spc.identify()`{.r}, `map.identify()`{.r}, `spc.rubberband()`{.r},<br> various file import functions.
-`gc`                   | `FALSE`{.r} | Triggers frequent calling of `gc()`{.r} | `read.ENVI()`{.r}, <br>\newline`new("hyperSpec")`{.r}
-`tolerance`            | `sqrt(.Machine$.double.eps)`{.r} | Tolerance for numerical comparisons   | File import functions (removing empty spectra), `normalize01()`{.r}
-`wl.tolerance`         | `sqrt(.Machine$.double.eps)`{.r} | Tolerance for comparisons of the wavelength axis | `rbind()`{.r}, `rbind2()`{.r}, `bind("r", ...)`{.r}, `all.equal()`{.r}, `collapse()`{.r}
-`file.remove.emptyspc` | `TRUE`{.r} | Automatic removing of empty spectra                         | File import functions, see `vignette("fileio")`{.r}
-`file.keep.name`       | `TRUE`{.r} | Automatic recording of file name in column `filename`{.r}   | File import functions, see `vignette("fileio")`{.r}
-`plot.spc.nmax`        | `25`{.r}   | Number of spectra to be plotted by default                  | `plotspc()`{.r}
-`ggplot.spc.nmax`      | `10`{.r}   |                                                             | `qplotspc()`{.r}
-
-<!-- ----------------------------------------------------------------------- -->
-
-
-```{r checkCompleteOptionTable, echo=FALSE, results='hide'}
-stopifnot(all(names(hy.getOptions(TRUE)) %in% c(
-  "debuglevel", "gc", "file.remove.emptyspc",
-  "file.keep.name", "tolerance", "wl.tolerance", "plot.spc.nmax", "ggplot.spc.nmax"
-)))
-```
-
-
-
-# The Structure of `hyperSpec`{.r} Objects {#sec:structure-chy}
-
-`hyperSpec`{.r} is an S4 (or new-style) class. It contains the following slots:
-
--  **`@wavelength`{.r}** containing a numeric vector with the wavelength axis of the spectra.
--  **`@data`{.r}**       a `data.frame`{.r} with the spectra and all further information belonging to the spectra.
--  **`@label`{.r}**      a list with appropriate labels (particularly for axis annotations).
-
-
-<!-- --- -->
-
-While the parts of the `hyperSpec`{.r} object can be accessed directly, it is good practice to use the functions provided by package **hyperSpec** to handle the objects rather than accessing the slots directly (Table \@ref(tab:getset)).
-This also ensures that proper (*valid*) objects are returned.
-In some cases, however, direct access to the slots can considerably speed up calculations (see section \@ref(sec:speed-considerations)).
-
-
-<!-- ---------------------------------------------------------------------- -->
-: **(\#tab:getset)** Get and set functions for the slots of `hyperSpec`{.r} objects
-
-slot              | get                      | set
------------------ | ------------------------ | ------------------------
-`@wavelength`{.r} | `wl()`{.r}               | `wl<-`{.r}
-`@data`{.r}       | `[`, `[[`, `$`, `as.data.frame()`{.r}, `as.long.df()`{.r}, ... | `[<-`, `[[<-`, `$<-`
-`@label`{.r}      | `labels()`{.r}           | `labels<-`{.r}
-<!-- ---------------------------------------------------------------------- -->
-
-Most of the data is stored in `@data`{.r}. This `data.frame`{.r} has one special column, `$spc`{.r}.
-It is the column that actually contains the spectra. The spectra are stored in a matrix inside this column, as illustrated in figure \@ref(fig:structure).
-Even if there are no spectra, `$spc`{.r} must still be present.
-It is then a matrix with zero columns.
-
-```{r structure, echo=FALSE, fig.cap=CAPTION, out.width="400"}
-knitr::include_graphics("resources/intro--strukturhyperspec.png")
-CAPTION = "The structure of the data in a `hyperSpec` object.  "
-```
-
-
-Slot `@label`{.r} contains an element for each of the columns in `@data`{.r} plus one holding the
-label for the wavelength axis, `.wavelength`{.r}.
-They are accessed by their names which must be the same for columns of `@data`{.r} and the list elements.
-The elements of the list may be anything suitable for axis annotations, i.e., they should be either character strings or expressions for "pretty" axis annotations (see, e.g., figure \@ref(fig:loess-kl)).
-To get familiar with expressions for axis annotation, see `?plotmath`{.r} and `demo(plotmath)`{.r}.
-
-
-# Functions Provided by **hyperSpec** {#sec:funct-prov-phy}
-
-Table \@ref(tab:functions) in gives an overview of the functions implemented by package **hyperSpec**.
 
 
 
@@ -1828,7 +1793,7 @@ pca <- prcomp(~spc, data = chondro, center = FALSE)
 ```
 
 Results of such a \mFun{`decomposition()`{.r}} decomposition can be put again into `hyperSpec`{.r} objects.
-This allows to plot, e.g., the loading like spectra, or score maps, see figures \@ref(fig:pca-load) and  \@ref(fig:pca-score).
+This allows to plot, e.g., the loading like spectra, or score maps, see Figures \@ref(fig:pca-load) and  \@ref(fig:pca-score).
 
 ```{r decomp}
 scores <- decomposition(chondro, pca$x,
@@ -2002,7 +1967,7 @@ As the cluster membership was stored as factor, the levels can be meaningful nam
 ```{r clustname}
 levels(chondro$clusters) <- c("matrix", "lacuna", "cell")
 ```
-Then the result may be plotted (figure \@ref(fig:clust-map)):
+Then the result may be plotted (Figure \@ref(fig:clust-map)):
 
 
 
@@ -2295,6 +2260,32 @@ make.fn.table()
 `write.txt.long`{.r}                 | export as long-type ASCII file
 `write.txt.wide`{.r}                 | export as wide-type ASCII file
 
+
+
+<!-- ----------------------------------------------------------------------- -->
+: **(\#tab:options)** Package **hyperSpec**'s options.
+  Please refer to the documentation of the respective functions for details about the effect of the options.
+
+name  | default value (range)  | description | used by
+----- | :---:                  |-------------| -----
+`debuglevel`           | `0`{.r} (`1L`{.r}, `2L`{.r}) | Amount of debugging information produced | `spc.identify()`{.r}, `map.identify()`{.r}, `spc.rubberband()`{.r},<br> various file import functions.
+`gc`                   | `FALSE`{.r} | Triggers frequent calling of `gc()`{.r} | `read.ENVI()`{.r}, <br>\newline`new("hyperSpec")`{.r}
+`tolerance`            | `sqrt(.Machine$.double.eps)`{.r} | Tolerance for numerical comparisons   | File import functions (removing empty spectra), `normalize01()`{.r}
+`wl.tolerance`         | `sqrt(.Machine$.double.eps)`{.r} | Tolerance for comparisons of the wavelength axis | `rbind()`{.r}, `rbind2()`{.r}, `bind("r", ...)`{.r}, `all.equal()`{.r}, `collapse()`{.r}
+`file.remove.emptyspc` | `TRUE`{.r} | Automatic removing of empty spectra                         | File import functions, see `vignette("fileio")`{.r}
+`file.keep.name`       | `TRUE`{.r} | Automatic recording of file name in column `filename`{.r}   | File import functions, see `vignette("fileio")`{.r}
+`plot.spc.nmax`        | `25`{.r}   | Number of spectra to be plotted by default                  | `plotspc()`{.r}
+`ggplot.spc.nmax`      | `10`{.r}   |                                                             | `qplotspc()`{.r}
+
+<!-- ----------------------------------------------------------------------- -->
+
+
+```{r checkCompleteOptionTable, echo=FALSE, results='hide'}
+stopifnot(all(names(hy.getOptions(TRUE)) %in% c(
+  "debuglevel", "gc", "file.remove.emptyspc",
+  "file.keep.name", "tolerance", "wl.tolerance", "plot.spc.nmax", "ggplot.spc.nmax"
+)))
+```
 
 ```{block, type="greenbox", echo=TRUE}
 **Reporting Issues and Suggesting Enhancements**
