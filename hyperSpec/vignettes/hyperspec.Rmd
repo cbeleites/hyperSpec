@@ -2177,10 +2177,9 @@ sessionInfo()
 
 # Appendix 5. Speed and Memory Considerations {#sec:speed-considerations} {-}
 
-While most of package **hyperSpec**'s functions work at a decent speed for interactive sessions (of course depending on the size of the object), iterated (repeated) calculations as for bootstrapping or iterated cross
-validation may ask for special speed considerations.
+While most of package **hyperSpec**'s functions work at a decent speed for interactive sessions (of course depending on the size of the object), iterated (repeated) calculations as for bootstrapping or iterated cross validation may ask for special speed considerations.
 
-As an example, let's again consider the code for shifting the spectra:
+As an example, consider the code for shifting the spectra:
 
 ```{r speed1}
 tmp <- chondro[1:50]
@@ -2206,7 +2205,7 @@ system.time({
   tmp[[]] <- tmp.matrix
 })
 ```
-
+<!--
 ## Additional packages
 
 
@@ -2221,9 +2220,9 @@ Package **inline**`r cite_pkg("inline")` adds another layer of convenience: inli
 
 An intermediate level is byte compilation of `R` code, which is done by package **compiler**`r cite_pkg("compiler")`.
 
-## Memory usage
+## Memory usage -->
 
-In general, it is recommended not to work with variables that are more than approximately a third of the available RAM in size. Particularly the import of raw spectroscopic data can consume large amounts of memory.
+In general, it is not recommended to work with variables that are more than approximately a third of the available RAM in size. Particularly the import of raw spectroscopic data can consume large amounts of memory.
 At certain points, package **hyperSpec** provides switches that allow working with data sets that are actually close to this memory limit.
 
 \mFun{`new ("hyperSpec")`{.r}, `read.ENVI*()`{.r},`read.txt.Renishaw()`{.r}}
@@ -2235,12 +2234,18 @@ The memory consumption of `read.txt.Renishaw()`{.r} can be lowered by importing 
 
 # Appendix 6. Remarks on R, or How **_hyperSpec_** Works Under the Hood {-}
 
+```{block, type= "note", echo = TRUE}
+**B. Hanson's notes**
+
+* This is more of an explanation of how R works, I don't think it is needed here at all.
+```
+
+`hyperSpec`{.r} objects are defined using an S4 class. Much of **hyperSpec** is devoted to manipulating these objects using the methods instrinsic to `R`.
+
 ## Generic Functions
 
 \index{Generic Functions} *Generic Functions* are functions that apply to a wide range of data types or classes, e.g., `plot()`{.r}, `print()`{.r}, mathematical operators, etc. These functions can be implemented in a specialized way by each class.
-Package **hyperSpec** implements with a variety of such functions, see Table \@ref(tab:functions).
-
-
+Package **hyperSpec** implements a variety of such functions, see Table \@ref(tab:functions).
 
 
 ## Functionality Can be Extended at Runtime
