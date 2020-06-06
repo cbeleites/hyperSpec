@@ -139,7 +139,7 @@ abbreviation for *"column xxx of the `data.frame`{.r} in slot data of the object
 
 While the parts of the `hyperSpec`{.r} object can be accessed directly, it is good practice to use the functions provided by package **hyperSpec** to handle the objects rather than accessing the slots directly (Table \@ref(tab:getset)).
 This also ensures that proper (i.e. *valid*) objects are returned.
-In some cases, however, direct access to the slots can considerably speed up calculations (see section \@ref(sec:speed-considerations)).
+In some cases, however, direct access to the slots can considerably speed up calculations (see section the appendicies).
 
 
 <!-- ---------------------------------------------------------------------- -->
@@ -217,96 +217,6 @@ library("hyperSpec")
 The global behaviour of package **hyperSpec** can be configured via options.
 The values of the options are retrieved with `hy.getOptions()`{.r} and `hy.getOption()`{.r}, and changed with `hy.setOptions()`{.r}.
 Table \@ref(tab:options) gives an overview of the options.  You should not worry about these at the start of your exploration of **hyperSpec**.
-
-
-# Remarks on R
-
-
-
-## Generic Functions
-
-\index{Generic Functions} *Generic Functions* are functions that apply to a wide range of data types or classes, e.g., `plot()`{.r}, `print()`{.r}, mathematical operators, etc. These functions can be implemented in a specialized way by each class.
-Package **hyperSpec** implements with a variety of such functions, see Table \@ref(tab:functions).
-
-
-
-
-## Functionality Can be Extended at Runtime
-
-`R`'s concept of functions offers much flexibility.
-Functions may be added or changed by the user in his *workspace* at any time.
-This is also true for methods belonging to a certain class.
-Neither restart of `R` nor reloading of the package or anything the like is needed.
-If the original function resides in a namespace (as it is the case for all functions in package **hyperSpec**), the original function is not deleted.
-It is just masked by the user's new function but stays accessible via the `::`{.r} operator.
-
-The same is true for "normal" variables: you may create changed copies of the example data sets, work with these and then "reset" to package **hyperSpec**'s version of the data set by removing the object in your workspace.
-
-This offers the opportunity of easily writing specialized functions that are adapted to specific
-tasks.
-Package **hyperSpec**'s vignettes use this to set up special versions of the lattice graphics functions that are already wrapped in `print()`{.r} (see also [R FAQ: Why do lattice/trellis graphics not work?](http://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-do-lattice_002ftrellis-graphics-not-work_003f)) and allow the code in the code chunks of the vignettes to be exactly what one would type during an interactive `R` session.
-For the code, check the `vignettes.defs` file accompanying all package **hyperSpec** vignettes.
-
-
-## Validity Checking
-
-S4 classes have a mechanism to define and enforce that the data actually stored in the object is appropriate for this class.
-In other words, there is a mechanism of \index{validity checking} *validity checking*.
-
-The functions provided by package **hyperSpec** check the validity of `hyperSpec`{.r} objects at the beginning, and -- if the validity could be broken by inappropriate arguments -- also before leaving the function.
-\index{validObject|texttt}
-\index{chk.hy|texttt}
-\mFun{validObject, chk.hy}
-
-It is highly recommended to use validity checking also for user-defined functions.
-In addition, non-generic functions should first ensure that the argument actually is a `hyperSpec`{.r} object.
-The two tasks are accomplished by:
-
-```{r eval=FALSE}
-chk.hy(object)
-validObject(object)
-```
-
-The first line checks whether `object`{.r} is a `hyperSpec`{.r} object, the second checks its validity.
-Both functions return `TRUE`{.r} if the checks succeed, otherwise they raise an error and stop.
-
-
-## Special Function Names {#sec:spec-funct-names}
-
-### The Names of Operators {#sec:names-operators}
-
-\index{operators}Operators such as `+`, `-`,`*`, `%%`, etc. are, in fact, functions in `R`.
-Thus they can be handed over as arguments to other functions (particularly to the vectorization functions `*apply()`{.r}, `sweep()`{.r}, etc.).
-In this case, the name of the function must be quoted: \`-\` is the recommended style (although `"-"` will often work as well), e.g.,:
-
-```{r eval=FALSE}
-sweep(flu, 2, mean, `-`)
-```
-
-
-These functions can also be called in a more function-like style (prefix notation):
-
-```{r}
-`+`(3, 5)
-```
-
-
-### Assignment Functions {#sec:assignment-functions}
-
-\index{assignment functions}
-\index{<-@see assignment functions}
-`R` allows the definition of functions that do an assignment (set some part of the object), such as:
-
-```{r eval=FALSE}
-wl(flu) <- new.wavelength.values
-```
-
-The actual name of the function is `wl<-` and must be quoted in order to avoid confusion with an assignment to variable `wl`:
-```{r eval=FALSE}
-`wl<-`
-```
-
-
 
 
 
@@ -1711,7 +1621,7 @@ chondro <- scale(chondro, center = quantile(chondro, 0.05), scale = FALSE)
 plot(chondro, "spcprctl5")
 ```
 
-See section \@ref(sec:speed-considerations) for some tips to speed up these calculations.
+See section the appendices for some tips to speed up these calculations.
 
 
 ## Multiplicative Scatter Correction
@@ -2030,7 +1940,7 @@ summary(collapse(cells, lacunae)$clusters)
 \printindex
 
 
-# Appendix 1. Overview of the functions provided by package **hyperSpec**
+# Appendix 1. Overview of the functions provided by package **hyperSpec** {-}
 
 
 
@@ -2183,7 +2093,7 @@ make.fn.table()
 `write.txt.wide`{.r}                 | export as wide-type ASCII file
 
 
-# Appendix 2.  Package Options
+# Appendix 2.  Package Options {-}
 
 <!-- ----------------------------------------------------------------------- -->
 : **(\#tab:options)** Package **hyperSpec**'s options.
@@ -2210,7 +2120,7 @@ stopifnot(all(names(hy.getOptions(TRUE)) %in% c(
 )))
 ```
 
-# Appendix 3. Reporting Bugs and Getting Help
+# Appendix 3. Reporting Bugs and Getting Help {-}
 
 ```{block, type= "note", echo = TRUE}
 **B. Hanson's notes**
@@ -2242,14 +2152,14 @@ You can also make suggestions in this manner.
 This section needs to be written.
 
 
-# Appendix 4. Session Info
+# Appendix 4. Session Info {-}
 
 ```{r session-info-hyperspec, echo=FALSE, paged.print=FALSE}
 #sessioninfo::session_info("hyperSpec")
 sessionInfo()
 ```
 
-# Appendix 5. Speed and Memory Considerations {#sec:speed-considerations}
+# Appendix 5. Speed and Memory Considerations {#sec:speed-considerations} {-}
 
 While most of package **hyperSpec**'s functions work at a decent speed for interactive sessions (of course depending on the size of the object), iterated (repeated) calculations as for bootstrapping or iterated cross
 validation may ask for special speed considerations.
@@ -2307,5 +2217,89 @@ In addition, frequent calls to `gc()`{.r} can be requested by `hy.setOption(gc =
 The same behaviour is triggered in `read.ENVI()`{.r} and its derivatives (`r list_funs_rmd("read.ENVI")`).
 The memory consumption of `read.txt.Renishaw()`{.r} can be lowered by importing the data in chunks (argument `nlines`{.r}).
 
+# Appendix 6. Remarks on R, or How **_hyperSpec_** Works Under the Hood {-}
+
+## Generic Functions
+
+\index{Generic Functions} *Generic Functions* are functions that apply to a wide range of data types or classes, e.g., `plot()`{.r}, `print()`{.r}, mathematical operators, etc. These functions can be implemented in a specialized way by each class.
+Package **hyperSpec** implements with a variety of such functions, see Table \@ref(tab:functions).
+
+
+
+
+## Functionality Can be Extended at Runtime
+
+`R`'s concept of functions offers much flexibility.
+Functions may be added or changed by the user in his *workspace* at any time.
+This is also true for methods belonging to a certain class.
+Neither restart of `R` nor reloading of the package or anything the like is needed.
+If the original function resides in a namespace (as it is the case for all functions in package **hyperSpec**), the original function is not deleted.
+It is just masked by the user's new function but stays accessible via the `::`{.r} operator.
+
+The same is true for "normal" variables: you may create changed copies of the example data sets, work with these and then "reset" to package **hyperSpec**'s version of the data set by removing the object in your workspace.
+
+This offers the opportunity of easily writing specialized functions that are adapted to specific
+tasks.
+Package **hyperSpec**'s vignettes use this to set up special versions of the lattice graphics functions that are already wrapped in `print()`{.r} (see also [R FAQ: Why do lattice/trellis graphics not work?](http://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-do-lattice_002ftrellis-graphics-not-work_003f)) and allow the code in the code chunks of the vignettes to be exactly what one would type during an interactive `R` session.
+For the code, check the `vignettes.defs` file accompanying all package **hyperSpec** vignettes.
+
+
+## Validity Checking
+
+S4 classes have a mechanism to define and enforce that the data actually stored in the object is appropriate for this class.
+In other words, there is a mechanism of \index{validity checking} *validity checking*.
+
+The functions provided by package **hyperSpec** check the validity of `hyperSpec`{.r} objects at the beginning, and -- if the validity could be broken by inappropriate arguments -- also before leaving the function.
+\index{validObject|texttt}
+\index{chk.hy|texttt}
+\mFun{validObject, chk.hy}
+
+It is highly recommended to use validity checking also for user-defined functions.
+In addition, non-generic functions should first ensure that the argument actually is a `hyperSpec`{.r} object.
+The two tasks are accomplished by:
+
+```{r eval=FALSE}
+chk.hy(object)
+validObject(object)
+```
+
+The first line checks whether `object`{.r} is a `hyperSpec`{.r} object, the second checks its validity.
+Both functions return `TRUE`{.r} if the checks succeed, otherwise they raise an error and stop.
+
+
+## Special Function Names {#sec:spec-funct-names}
+
+### The Names of Operators {#sec:names-operators}
+
+\index{operators}Operators such as `+`, `-`,`*`, `%%`, etc. are, in fact, functions in `R`.
+Thus they can be handed over as arguments to other functions (particularly to the vectorization functions `*apply()`{.r}, `sweep()`{.r}, etc.).
+In this case, the name of the function must be quoted: \`-\` is the recommended style (although `"-"` will often work as well), e.g.,:
+
+```{r eval=FALSE}
+sweep(flu, 2, mean, `-`)
+```
+
+
+These functions can also be called in a more function-like style (prefix notation):
+
+```{r}
+`+`(3, 5)
+```
+
+
+### Assignment Functions {#sec:assignment-functions}
+
+\index{assignment functions}
+\index{<-@see assignment functions}
+`R` allows the definition of functions that do an assignment (set some part of the object), such as:
+
+```{r eval=FALSE}
+wl(flu) <- new.wavelength.values
+```
+
+The actual name of the function is `wl<-` and must be quoted in order to avoid confusion with an assignment to variable `wl`:
+```{r eval=FALSE}
+`wl<-`
+```
 
 # References {-}
