@@ -82,7 +82,7 @@ make_bib(
 
 <!-- ======================================================================= -->
 ```{block, type="note-t", echo=TRUE}
-**Translator's notes** `hyperspec-1`
+**V. Gegzna's notes** `hyperspec-1`
 
 
 1. I suggest keeping tags `\\mFun{}` and `\\index{}`.
@@ -449,7 +449,7 @@ Table \@ref(tab:functions) in gives an overview of the functions implemented by 
 
 <!-- ======================================================================= -->
 ```{block, type="note-t", echo=TRUE}
-**Translator's notes** `hyperspec-6`
+**V. Gegzna's notes** `hyperspec-6`
 
 1. The output of print() and summary() is identical. Is it expected?
 I think, the `print()`{.r} method should give less details than it does now.
@@ -579,7 +579,7 @@ pred.sim <- predict(lda)
 
 <!-- ======================================================================= -->
 ```{block, type="note-t", echo=TRUE}
-**Translator's notes** `hyperspec-7`
+**V. Gegzna's notes** `hyperspec-7`
 
 1. `# FIXME: `{.r}
 
@@ -1369,7 +1369,7 @@ As just the very maximum is too coarse, we'll use the maximum of a square polyno
 
 <!-- ======================================================================= -->
 ```{block, type="note-t", echo=TRUE}
-**Translator's notes** `hyperspec-9`
+**V. Gegzna's notes** `hyperspec-9`
 
 1. `# TODO: `{.r} use vanderMonde
 ```
@@ -1551,7 +1551,7 @@ plot(spc.NA.approx(spc), add = TRUE, col = "blue",
 
 <!-- ======================================================================= -->
 ```{block, type="note-t", echo=TRUE}
-**Translator's notes** `hyperspec-10`
+**V. Gegzna's notes** `hyperspec-10`
 
 
 1. Empty chapter. What to do with it?
@@ -2252,7 +2252,7 @@ make.fn.table()
 
 <!-- ======================================================================= -->
 ```{block, type="note-t", echo=TRUE}
-**Translator's note** `hyperspec-12`
+**V. Gegzna's note** `hyperspec-12`
 
 `# TODO`{.r}  A better version of the table could be created if `pkgdown` website
  (documentation) is used. The index/list of functions could be created automatically.
