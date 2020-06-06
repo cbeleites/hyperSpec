@@ -29,5 +29,5 @@ knitr::opts_chunk$set(
 )
 
 options("width" = 100, "digits" = 5)
-
+options(rmarkdown.html_vignette.check_title = FALSE) # Vig index entry ne document title
 set.seed(2020)

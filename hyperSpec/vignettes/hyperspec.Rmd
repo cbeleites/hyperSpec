@@ -17,6 +17,8 @@ author:
         3. ÖPV, JKI, Berlin/Germany (2017--2019)
         4. Arbeitskreis Lebensmittelmikrobiologie und Biotechnologie, Hamburg University, Hamburg/Germany (2019 -- 2020)
         5. Chemometric Consulting and Chemometrix GmbH, Wölfersheim/Germany (since 2016)
+  - name: Vilmantas Gegzna
+  - name: Bryan A. Hanson
 # Document -------------------------------------------------------------------
 date:        "`r Sys.Date()`"
 output:
@@ -28,12 +30,12 @@ output:
         - man/vignette.css
         - man/style.css
 vignette: >
-    % \VignetteIndexEntry{introduction: hyperSpec's main manual}
+    % \VignetteIndexEntry{Introduction: hyperSpec's main manual}
     % \VignetteKeywords{hyperspec}
     % \VignettePackage{hyperSpec}
     % \VignetteDepends{MASS}
-    %\VignetteEngine{knitr::rmarkdown}
-    %\VignetteEncoding{UTF-8}
+    % \VignetteEngine{knitr::rmarkdown}
+    % \VignetteEncoding{UTF-8}
 # Citations/References -------------------------------------------------------
 link-citations: yes
 bibliography: man/intro-pkg.bib
