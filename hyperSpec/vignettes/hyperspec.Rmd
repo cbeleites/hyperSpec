@@ -221,26 +221,6 @@ Table \@ref(tab:options) gives an overview of the options.  You should not worry
 
 # Remarks on R
 
-## Reporting an Issue with a package
-**R** packages include contact information of the package maintainer, which you can
-access e.g., by:
-
-```{r}
-maintainer("hyperSpec")
-```
-
-In case you want to report an issue, **R** provides a function to do so:
-`bug.report()`{.r} will either open an email to the package maintainer or the issue tracker URL given in the package `DESCRIPTION`.
-
-```{r eval=FALSE}
-bug.report(package = "hyperSpec")
-```
-Will take you to package **hyperSpec**'s issue tracking page at <https://github.com/cbeleites/hyperSpec/issues>.
-It also displays essential information about your installation which can help in tracking down the bug.
-
-We're always happy about contributions and tag issues that may be tackled immediately by "Help wanted".
-Please note that I (Claudia, the official maintainer) may be rather slow in answering pull requests: at the moment I'm travelig a lot professionally so it may take several weeks until I can find some calm chunk of time to do more for **hyperSpec** than emergency fixes.
-However, this does not mean that I won't do so: I can tell quickly if a pull request won't fit at all into package **hyperSpec**.
 
 
 ## Generic Functions
@@ -253,7 +233,7 @@ Package **hyperSpec** implements with a variety of such functions, see Table \@r
 
 ## Functionality Can be Extended at Runtime
 
-**R**'s concept of functions offers much flexibility.
+`R`'s concept of functions offers much flexibility.
 Functions may be added or changed by the user in his *workspace* at any time.
 This is also true for methods belonging to a certain class.
 Neither restart of `R` nor reloading of the package or anything the like is needed.
@@ -264,7 +244,7 @@ The same is true for "normal" variables: you may create changed copies of the ex
 
 This offers the opportunity of easily writing specialized functions that are adapted to specific
 tasks.
-Package **hyperSpec**'s vignettes use this to set up special versions of the lattice graphics functions that are already wrapped in `print()`{.r} (see also [R FAQ: Why do lattice/trellis graphics not work?](http://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-do-lattice_002ftrellis-graphics-not-work_003f)) and allow the code in the code chunks of the vignettes to be exactly what one would type during an interactive **R** session.
+Package **hyperSpec**'s vignettes use this to set up special versions of the lattice graphics functions that are already wrapped in `print()`{.r} (see also [R FAQ: Why do lattice/trellis graphics not work?](http://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-do-lattice_002ftrellis-graphics-not-work_003f)) and allow the code in the code chunks of the vignettes to be exactly what one would type during an interactive `R` session.
 For the code, check the `vignettes.defs` file accompanying all package **hyperSpec** vignettes.
 
 
@@ -295,7 +275,7 @@ Both functions return `TRUE`{.r} if the checks succeed, otherwise they raise an 
 
 ### The Names of Operators {#sec:names-operators}
 
-\index{operators}Operators such as `+`, `-`,`*`, `%%`, etc. are, in fact, functions in **R**.
+\index{operators}Operators such as `+`, `-`,`*`, `%%`, etc. are, in fact, functions in `R`.
 Thus they can be handed over as arguments to other functions (particularly to the vectorization functions `*apply()`{.r}, `sweep()`{.r}, etc.).
 In this case, the name of the function must be quoted: \`-\` is the recommended style (although `"-"` will often work as well), e.g.,:
 
@@ -315,7 +295,7 @@ These functions can also be called in a more function-like style (prefix notatio
 
 \index{assignment functions}
 \index{<-@see assignment functions}
-**R** allows the definition of functions that do an assignment (set some part of the object), such as:
+`R` allows the definition of functions that do an assignment (set some part of the object), such as:
 
 ```{r eval=FALSE}
 wl(flu) <- new.wavelength.values
@@ -1179,7 +1159,7 @@ plot(tmp[135, , ], add = TRUE, col = "red")
 
 But the method cannot be used if each spectrum (or groups of spectra) are shifted individually.
 In that case, interpolation is needed.
-**R** offers many possibilities to interpolate (e.g., `approx()`{.r} for constant / linear approximation, `spline()`{.r} for spline interpolation, `loess()`{.r} can be used to obtain smoothed approximations, etc.).
+`R` offers many possibilities to interpolate (e.g., `approx()`{.r} for constant / linear approximation, `spline()`{.r} for spline interpolation, `loess()`{.r} can be used to obtain smoothed approximations, etc.).
 The appropriate interpolation strategy will depend on the spectra, and package **hyperSpec** therefore leaves it up to the user to select a sensible interpolation function.
 
 As an example, we will use natural splines to do the interpolation.
@@ -1698,7 +1678,7 @@ However, spectra already do have the same scale of the same physical value.
 Thus one has to trade off the the expected numeric benefit with the fact that for wavelengths with low signal the noise level will"xplod"by variance scaling.
 Scaling usually makes sense only for centered data.
 
-Both tasks are carried out by the same method in **R**, `scale()`{.r}, which will by default both mean center and variance scale the spectra matrix.
+Both tasks are carried out by the same method in `R`, `scale()`{.r}, which will by default both mean center and variance scale the spectra matrix.
 
 To center the `flu`{.r} data set, use:
 
@@ -1765,9 +1745,9 @@ In this case, do not forget to adapt the label:
 labels(absorbance.spectra)$spc <- "A"
 ```
 
-Be careful: **R**'s `log()`{.r} function calculates the *natural* logarithm if no base is given.
+Be careful: `R`'s `log()`{.r} function calculates the *natural* logarithm if no base is given.
 
-The basic arithmetic operators work element-wise in **R**.
+The basic arithmetic operators work element-wise in `R`.
 Thus they all need either a scalar, or a matrix (or `hyperSpec`{.r} object) of the correct size.
 
 Matrix multiplication is done by `\%*%`\mFun{`\%*\%`}, again each of the operands may be a matrix or a `hyperSpec`{.r} object, and must have the correct dimensions.
@@ -2046,69 +2026,11 @@ summary(collapse(cells, lacunae)$clusters)
 ```
 
 
-# Speed and Memory Considerations {#sec:speed-considerations}
-
-While most of package **hyperSpec**'s functions work at a decent speed for interactive sessions (of course depending on the size of the object), iterated (repeated) calculations as for bootstrapping or iterated cross
-validation may ask for special speed considerations.
-
-As an example, let's again consider the code for shifting the spectra:
-
-```{r speed1}
-tmp <- chondro[1:50]
-shifts <- rnorm(nrow(tmp))
-system.time({
-  for (i in seq_len(nrow(tmp))) {
-    tmp[[i]] <- interpolate(tmp[[i]], shifts[i], wl = wl(tmp))
-  }
-})
-```
-
-Calculations that involve a lot of subsetting (i.e., extracting or changing the spectra matrix or extra data) can be sped up considerably if the required parts of the `hyperSpec`{.r} object are extracted beforehand.
-This is somewhat similar to model fitting in `R` in general: many model fitting functions in **R** are much faster if the formula interface is avoided and the appropriate `data.frame`{.r}s or matrices are handed over directly.
-
-```{r speed3}
-tmp <- chondro[1:50]
-system.time({
-  tmp.matrix <- tmp[[]]
-  wl <- wl(tmp)
-  for (i in seq_len(nrow(tmp))) {
-    tmp.matrix[i, ] <- interpolate(tmp.matrix[i, ], shifts[i], wl = wl)
-  }
-  tmp[[]] <- tmp.matrix
-})
-```
-
-## Additional packages
-
-
-Package **matrixStats** implements fast functions to calculate summary statistics for each row  or each column of a matrix.
-This functionality can be enabled for package **hyperSpec** by installing package package **hyperSpec.matrixStats** which is available in package **hyperSpec**'s development repository at <http://hyperSpec.r-forge.r-project.org/>
-
-
-## Compiled code
-
-R provides interfaces to Fortran and C code, see the manual "Writing `R` Extensions" package **Rcpp**`r cite_pkg("Rcpp")` allows to conveniently integrate C++ code.
-Package **inline**`r cite_pkg("inline")` adds another layer of convenience: inline definition of functions in C, C++, or Fortran.
-
-An intermediate level is byte compilation of `R` code, which is done by package **compiler**`r cite_pkg("compiler")`.
-
-## Memory usage
-
-In general, it is recommended not to work with variables that are more than approximately a third of the available RAM in size. Particularly the import of raw spectroscopic data can consume large amounts of memory.
-At certain points, package **hyperSpec** provides switches that allow working with data sets that are actually close to this memory limit.
-
-\mFun{`new ("hyperSpec")`{.r}, `read.ENVI*()`{.r},`read.txt.Renishaw()`{.r}}
-\index{options!gc}
-The initialization method `new("hyperSpec", ...)`{.r} takes particular care to avoid unneccessary copies of the spectra matrix.
-In addition, frequent calls to `gc()`{.r} can be requested by `hy.setOption(gc = TRUE)`{.r}.
-The same behaviour is triggered in `read.ENVI()`{.r} and its derivatives (`r list_funs_rmd("read.ENVI")`).
-The memory consumption of `read.txt.Renishaw()`{.r} can be lowered by importing the data in chunks (argument `nlines`{.r}).
-
 
 \printindex
 
 
-# Overview of the functions provided by package **hyperSpec**
+# Appendix 1. Overview of the functions provided by package **hyperSpec**
 
 
 
@@ -2261,6 +2183,7 @@ make.fn.table()
 `write.txt.wide`{.r}                 | export as wide-type ASCII file
 
 
+# Appendix 2.  Package Options
 
 <!-- ----------------------------------------------------------------------- -->
 : **(\#tab:options)** Package **hyperSpec**'s options.
@@ -2287,18 +2210,102 @@ stopifnot(all(names(hy.getOptions(TRUE)) %in% c(
 )))
 ```
 
-```{block, type="greenbox", echo=TRUE}
-**Reporting Issues and Suggesting Enhancements**
+# Appendix 3. Reporting Bugs and Getting Help
 
-`bug.report(package = "hyperSpec")`{.r} will take you to package **hyperSpec**'s issue tracking page at
-<https://github.com/cbeleites/hyperSpec/issues> where you can report issues you encounter, suggest features and comment on issues or suggested features.
+```{block, type= "note", echo = TRUE}
+**B. Hanson's notes**
+
+* This material probably belongs elsewhere.
+* Should also add something about using StackOverflow etc.
 ```
 
-# Session Info {-}
+## Reporting an issue
 
-```{r session-info-hyperspec, echo=FALSE, paged.print=FALSE, eval=FALSE}
-sessioninfo::session_info("hyperSpec")
+`R` packages include contact information of the package maintainer, which you can access e.g., by:
+
+```{r}
+maintainer("hyperSpec")
 ```
+
+In case you want to report an issue, `R` provides a function to do so:
+`bug.report()`{.r} will either open an e-mail to the package maintainer or the issue tracker URL given in the package `DESCRIPTION`.
+
+```{r eval=FALSE}
+bug.report(package = "hyperSpec")
+```
+Will take you to package **hyperSpec**'s issue tracking page at <https://github.com/cbeleites/hyperSpec/issues>.
+It also displays essential information about your installation which can help in tracking down the bug.
+You can also make suggestions in this manner.
+
+## Getting Help
+
+This section needs to be written.
+
+
+# Appendix 4. Session Info
+
+```{r session-info-hyperspec, echo=FALSE, paged.print=FALSE}
+#sessioninfo::session_info("hyperSpec")
+sessionInfo()
+```
+
+# Appendix 5. Speed and Memory Considerations {#sec:speed-considerations}
+
+While most of package **hyperSpec**'s functions work at a decent speed for interactive sessions (of course depending on the size of the object), iterated (repeated) calculations as for bootstrapping or iterated cross
+validation may ask for special speed considerations.
+
+As an example, let's again consider the code for shifting the spectra:
+
+```{r speed1}
+tmp <- chondro[1:50]
+shifts <- rnorm(nrow(tmp))
+system.time({
+  for (i in seq_len(nrow(tmp))) {
+    tmp[[i]] <- interpolate(tmp[[i]], shifts[i], wl = wl(tmp))
+  }
+})
+```
+
+Calculations that involve a lot of subsetting (i.e., extracting or changing the spectra matrix or extra data) can be sped up considerably if the required parts of the `hyperSpec`{.r} object are extracted beforehand.
+This is somewhat similar to model fitting in `R` in general: many model fitting functions in `R` are much faster if the formula interface is avoided and the appropriate `data.frame`{.r}s or matrices are handed over directly.
+
+```{r speed3}
+tmp <- chondro[1:50]
+system.time({
+  tmp.matrix <- tmp[[]]
+  wl <- wl(tmp)
+  for (i in seq_len(nrow(tmp))) {
+    tmp.matrix[i, ] <- interpolate(tmp.matrix[i, ], shifts[i], wl = wl)
+  }
+  tmp[[]] <- tmp.matrix
+})
+```
+
+## Additional packages
+
+
+Package **matrixStats** implements fast functions to calculate summary statistics for each row  or each column of a matrix.
+This functionality can be enabled for package **hyperSpec** by installing package package **hyperSpec.matrixStats** which is available in package **hyperSpec**'s development repository at <http://hyperSpec.r-forge.r-project.org/>
+
+
+## Compiled code
+
+R provides interfaces to Fortran and C code, see the manual "Writing `R` Extensions" package **Rcpp**`r cite_pkg("Rcpp")` allows to conveniently integrate C++ code.
+Package **inline**`r cite_pkg("inline")` adds another layer of convenience: inline definition of functions in C, C++, or Fortran.
+
+An intermediate level is byte compilation of `R` code, which is done by package **compiler**`r cite_pkg("compiler")`.
+
+## Memory usage
+
+In general, it is recommended not to work with variables that are more than approximately a third of the available RAM in size. Particularly the import of raw spectroscopic data can consume large amounts of memory.
+At certain points, package **hyperSpec** provides switches that allow working with data sets that are actually close to this memory limit.
+
+\mFun{`new ("hyperSpec")`{.r}, `read.ENVI*()`{.r},`read.txt.Renishaw()`{.r}}
+\index{options!gc}
+The initialization method `new("hyperSpec", ...)`{.r} takes particular care to avoid unneccessary copies of the spectra matrix.
+In addition, frequent calls to `gc()`{.r} can be requested by `hy.setOption(gc = TRUE)`{.r}.
+The same behaviour is triggered in `read.ENVI()`{.r} and its derivatives (`r list_funs_rmd("read.ENVI")`).
+The memory consumption of `read.txt.Renishaw()`{.r} can be lowered by importing the data in chunks (argument `nlines`{.r}).
 
 
 # References {-}
