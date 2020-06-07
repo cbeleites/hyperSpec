@@ -1,10 +1,13 @@
+#' @include expand.R
 ## arithmetic function called with both parameters hyperSpec
 .arith <- function(e1, e2) {
   validObject(e1)
   validObject(e2)
 
-  e1 <- .expand(e1, dim(e2) [c(1, 3)])
-  e2 <- .expand(e2, dim(e1) [c(1, 3)])
+  if (length(e2[[]]) > length(e1[[]]))
+    e1 <- .expand(e1, dim(e2) [c(1, 3)])
+  if (length(e1[[]]) > length(e2[[]]))
+    e2 <- .expand(e2, dim(e1) [c(1, 3)])
 
   if (ncol(e2) > 1) {
     warning("Dropping column(s) of e2: ",
@@ -120,9 +123,12 @@ setMethod("Arith", signature(e1 = "hyperSpec", e2 = "hyperSpec"), .arith)
     e1[[]] <- callGeneric(e1[[]])
     e1
   } else {
-    ## called /only/ with e1 hyperSpec but e2 numeric
-    e1 <- .expand(e1, dim(e2))
-    e2 <- .expand(e2, dim(e1) [c(1, 3)])
+    ## called /only/ with e1 hyperSpec and e2 numeric
+
+    if (length(e2) > length(e1[[]]))
+      e1 <- .expand(e1, dim(e2))
+    if (length(e1[[]]) > length(e2))
+      e2 <- .expand(e2, dim(e1) [c(1, 3)])
 
     e1[[]] <- callGeneric(e1[[]], e2)
     e1
@@ -241,8 +247,10 @@ setMethod("Arith", signature(e1 = "hyperSpec", e2 = "missing"), .arithx)
   validObject(e2)
 
   ## called /only/ with e2 hyperSpec but e1 numeric
-  e1 <- .expand(e1, dim(e2) [c(1, 3)])
-  e2 <- .expand(e2, dim(e1))
+  if (length(e2[[]]) > length(e1))
+    e1 <- .expand(e1, dim(e2) [c(1, 3)])
+  if (length(e1) > length(e2[[]]))
+    e2 <- .expand(e2, dim(e1))
 
   e2[[]] <- callGeneric(e1,e2[[]])
   e2
