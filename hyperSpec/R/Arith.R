@@ -9,12 +9,10 @@
   if (length(e1[[]]) > length(e2[[]]))
     e2 <- .expand(e2, dim(e1) [c(1, 3)])
 
-  if (ncol(e2) > 1) {
-    warning("Dropping column(s) of e2: ",
-            paste(colnames(e2$..), collapse = ", "))
-  }
-
   e1[[]] <- callGeneric(e1[[]], e2[[]])
+
+  e1 <- mergeextra(e1, e2)
+
   e1
 }
 
@@ -28,12 +26,10 @@
   test_that("correct results for 2 equal-sized objects", {
     for (operator in c(`+`, `-`, `*`, `/`, `^`, `%%`, `%/%`)) {
 
-      expect_warning(res <- operator(flu, tmp),
-                     "Dropping column[(]s[)] of e2: testcolumn")
-
+      res <- operator(flu, tmp)
       expect_equal(res[[]], operator(flu[[]], tmp[[]]))
-      expect_equal(res$.., flu$..)
-      expect_equal(dim(res), dim(flu))
+      expect_equal(res$.., cbind(flu$.., tmp$..))
+      expect_equal(dim(res), dim(flu) + c(0, 1, 0))
       expect_equal(wl(res), wl(flu))
     }
   })
@@ -88,6 +84,11 @@
 ##'
 ##'   a scalar (numeric of length 1).
 ##' @return hyperSpec object with the new spectra matrix.
+##'
+##' If
+##' If the `e2` is a hyperSpec objects, its extra data columns will silently be
+##' dropped silently.
+##'
 ##' @export
 ##' @keywords methods arith
 ##' @include paste.row.R
@@ -115,24 +116,58 @@
 ##' flu / flu$c
 setMethod("Arith", signature(e1 = "hyperSpec", e2 = "hyperSpec"), .arith)
 
+## unary operators
+
+.arith_unary_h <- function(e1, e2) {
+  validObject(e1)
+
+  if (!missing(e2))
+    stop("e2 must be missing")
+
+  e1[[]] <- callGeneric(e1[[]])
+  e1
+}
+.test(.arith_unary_h) <- function(){
+  context("Unary arithmetic operators")
+
+  test_that("correct results", {
+    for (operator in c(`+`, `-`)) {
+      res <- operator(flu)
+      expect_equal(res[[]], operator(flu[[]]))
+      expect_equal(res$.., flu$..)
+      expect_equal(dim(res), dim(flu))
+      expect_equal(wl(res), wl(flu))
+    }
+
+    for (operator in c(`*`, `/`, `^`, `%%`, `%/%`))
+      expect_error(operator(flu))
+  })
+
+  test_that("unary -", {
+    expect_equal(as.matrix(-flu), -as.matrix(flu))
+  })
+
+  test_that("unary +", {
+    expect_equal(as.matrix(+flu), as.matrix(flu))
+  })
+}
+
+##' @rdname Arith
+setMethod("Arith", signature(e1 = "hyperSpec", e2 = "missing"), .arith_unary_h)
+
+
 ## arithmetic function called with first parameter hyperSpec
 .arithx <- function(e1, e2) {
   validObject(e1)
 
-  if (missing(e2)) {
-    e1[[]] <- callGeneric(e1[[]])
-    e1
-  } else {
-    ## called /only/ with e1 hyperSpec and e2 numeric
+  if (length(e2) > length(e1[[]]))
+    e1 <- .expand(e1, dim(e2))
+  if (length(e1[[]]) > length(e2))
+    e2 <- .expand(e2, dim(e1) [c(1, 3)])
 
-    if (length(e2) > length(e1[[]]))
-      e1 <- .expand(e1, dim(e2))
-    if (length(e1[[]]) > length(e2))
-      e2 <- .expand(e2, dim(e1) [c(1, 3)])
+  e1[[]] <- callGeneric(e1[[]], e2)
 
-    e1[[]] <- callGeneric(e1[[]], e2)
-    e1
-  }
+  e1
 }
 
 .test(.arithx) <- function(){
@@ -181,54 +216,37 @@ setMethod("Arith", signature(e1 = "hyperSpec", e2 = "hyperSpec"), .arith)
     }
   })
 
-  test_that("correct results with missing 2nd parameter/unary operators", {
-    for (operator in c(`+`, `-`)) {
-      res <- operator(flu)
-      expect_equal(res[[]], operator(flu[[]]))
-      expect_equal(res$.., flu$..)
-      expect_equal(dim(res), dim(flu))
-      expect_equal(wl(res), wl(flu))
-    }
-    for (operator in c(`*`, `/`, `^`, `%%`, `%/%`))
-      expect_error(operator(flu))
-  })
-
-
   test_that("binary -", {
-    expect_warning(res <- flu - flu)
+    res <- flu - flu
     expect_equal(
       as.matrix(res),
       matrix(0, nrow = nrow(flu), ncol = nwl(flu), dimnames = dimnames(flu[[]]))
     )
 
-    expect_warning(res <- flu - flu[1])
+    res <- flu - flu[1]
     expect_equal(as.matrix(res), as.matrix(sweep(flu, 2, flu[1], `-`)))
 
-    expect_warning(res <- flu - flu[, , 450])
+    res <- flu - flu[, , 450]
     expect_equal(as.matrix(res), as.matrix(sweep(flu, 1, flu[, , 450], `-`)))
   })
 
   test_that("binary /", {
-    expect_warning(res <- flu / flu)
+    res <- flu / flu
     expect_equal(
       as.matrix(res),
       matrix(1, nrow = nrow(flu), ncol = nwl(flu), dimnames = dimnames(flu[[]]))
     )
 
-    expect_warning(res <- flu / flu[1])
+    res <- flu / flu[1]
     expect_equal(as.matrix(res), as.matrix(sweep(flu, 2, flu[1], `/`)))
 
-    expect_warning(res <- flu / flu[, , 450])
-    expect_equal(as.matrix(res), as.matrix(sweep(flu, 1, flu [, , 450], `/`)))
+    res <- flu / flu[, , 450]
+    expect_equal(as.matrix(res), as.matrix(sweep(flu, 1, flu[, , 450], `/`)))
   })
 
   test_that("binary + with scalar", {
     expect_equal(as.matrix(flu + 1), as.matrix(flu) + 1)
     expect_equal(as.matrix(1 + flu), as.matrix(flu) + 1)
-  })
-
-  test_that("unary -", {
-    expect_equal(as.matrix(-flu), -as.matrix(flu))
   })
 
 }
@@ -238,8 +256,6 @@ setMethod("Arith", signature(e1 = "hyperSpec", e2 = "hyperSpec"), .arith)
 setMethod("Arith", signature(e1 = "hyperSpec", e2 = "numeric"), .arithx)
 ##' @rdname Arith
 setMethod("Arith", signature(e1 = "hyperSpec", e2 = "matrix"), .arithx)
-##' @rdname Arith
-setMethod("Arith", signature(e1 = "hyperSpec", e2 = "missing"), .arithx)
 
 ## arithmetic function called with second parameter hyperSpec
 .arithy <- function(e1, e2) {
@@ -268,10 +284,6 @@ setMethod("Arith", signature(e1 = "matrix", e2 = "hyperSpec"), .arithy)
   validObject(x)
   validObject(y)
 
-  if (ncol(y) > 1) {
-    warning("Dropping column(s) of y: ", paste(colnames(y$..), collapse = ", "))
-  }
-
   x@data$spc <- x@data$spc %*% y@data$spc
   .wl(x) <- y@wavelength
   x@label$.wavelength <- y@label$.wavelength
@@ -285,7 +297,7 @@ setMethod("Arith", signature(e1 = "matrix", e2 = "hyperSpec"), .arithy)
   h$filename <- NULL
 
   test_that("correct result", {
-    expect_warning(res <- h %*% flu, "Dropping column")
+    res <- h %*% flu
 
     expect_s4_class(res, "hyperSpec")
 
@@ -345,10 +357,6 @@ setMethod("%*%", signature(x = "hyperSpec", y = "matrix"), .matmul_hm)
 .matmul_mh <- function(x, y) {
   validObject(y)
 
-  if (ncol(y) > 1) {
-    warning("Dropping column(s) of y: ", paste(colnames(y$..), collapse = ", "))
-  }
-
   new("hyperSpec", wavelength = y@wavelength, spc = x %*% y@data$spc)
 }
 
@@ -358,14 +366,10 @@ setMethod("%*%", signature(x = "hyperSpec", y = "matrix"), .matmul_hm)
   m <- matrix(1:(2 * nrow(flu)), ncol = nrow(flu))
 
   test_that("correct result", {
-    expect_warning(res <- m %*% flu, "Dropping column")
-
+    res <- m %*% flu
     expect_s4_class(res, "hyperSpec")
-
     expect_equal(dim(res), c(nrow = nrow(m), ncol = 1, nwl = nwl(flu)))
-
     expect_equal(res[[]], m %*% flu[[]])
-
     expect_equal(wl(res), wl(flu))
   })
 }
