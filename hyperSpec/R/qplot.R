@@ -109,6 +109,7 @@ qplotspc <- function(x,
 ##' qplotmap (chondro)
 ##' qplotmap (chondro) + scale_fill_gradientn (colours = alois.palette ())
 ##' @importFrom utils tail
+##' @importFrom rlang as_label
 qplotmap <- function(object, mapping = aes_string(x = "x", y = "y", fill = "spc"), ...,
                      func = mean, func.args = list(),
                      map.tileonly = FALSE) {
@@ -144,15 +145,15 @@ qplotmap <- function(object, mapping = aes_string(x = "x", y = "y", fill = "spc"
 
   ## generate axis/scale labels
   ## TODO: own function
-  x <- as.character(mapping$x)
+  x <- as_label(mapping$x)
   xlabel <- labels(object)[[tail(x, 1)]]
   if (is.null(xlabel)) xlabel <- x
 
-  y <- as.character(mapping$y)
+  y <- as_label(mapping$y)
   ylabel <- labels(object)[[tail(y, 1)]]
   if (is.null(ylabel)) ylabel <- y
 
-  f <- as.character(mapping$fill)
+  f <- as_label(mapping$fill)
   flabel <- labels(object)[[tail(f, 1)]]
   if (is.null(flabel)) flabel <- f
 
@@ -198,16 +199,16 @@ qplotc <- function(object, mapping = aes_string(x = "c", y = "spc"), ...,
   ## find out whether the wavelengths are needed individually,
   ## if not, use only the first wavelength and issue a warning
 
-  if (any(grepl("spc", as.character(mapping))) && # use intensities
+  if (any(grepl("spc", sapply(mapping, as_label))) && # use intensities
     nwl(object) > 1 && # has > 1 wavelength
     is.null(func) && # no stats function
-    !any(grepl("[.]wavelength", as.character(mapping)))) {
+    !any(grepl("[.]wavelength", sapply(mapping, as_label)))) {
     object <- object [, , 1, wl.index = TRUE]
     warning("Intensity at first wavelengh only is used.")
   }
 
   ## produce fancy y label
-  ylab <- labels(object, as.character(mapping$y))
+  ylab <- labels(object, as_label(mapping$y))
   if (!is.null(func)) {
     ylab <- make.fn.expr(substitute(func), c(ylab, func.args))
   }
@@ -217,7 +218,11 @@ qplotc <- function(object, mapping = aes_string(x = "c", y = "spc"), ...,
   df <- as.long.df(object, rownames = TRUE, wl.factor = TRUE)
 
   ## if plots should be grouped, faceted, etc. by wavelength, it is better to have a factor
-  if (any(grepl("[.]wavelength", mapping [!names(mapping) %in% c("x", "y")]))) {
+  if (any(grepl("[.]wavelength",
+                sapply(mapping[!names(mapping) %in% c("x", "y")], as_label)
+                )
+          )
+      ) {
     df$.wavelength <- as.factor(df$.wavelength)
   }
 
@@ -230,7 +235,7 @@ qplotc <- function(object, mapping = aes_string(x = "c", y = "spc"), ...,
   }
 
   p + ylab(ylab) +
-    xlab(labels(object, as.character(mapping$x)))
+    xlab(labels(object, as_label(mapping$x)))
 }
 
 make.fn.expr <- function(fn, l = list()) {

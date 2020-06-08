@@ -63,7 +63,8 @@ Imports:
     utils,
     latticeExtra,
     lazyeval,
-    dplyr
+    dplyr,
+    rlang
 URL: https://github.com/cbeleites/hyperSpec
 BugReports: https://github.com/cbeleites/hyperSpec/issues
 VignetteBuilder: R.rsp
