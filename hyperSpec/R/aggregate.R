@@ -110,8 +110,8 @@
 ##' @import stats
 ##' @include hyperspec-class.R
 ##' @examples
-##' region.means <- aggregate (fauxCell, fauxCell$region, mean_pm_sd)
-##' plot(region.means, stacked = ".aggregate", fill = ".aggregate",
+##' cluster.means <- aggregate (fauxCell, fauxCell$region, mean_pm_sd)
+##' plot(cluster.means, stacked = ".aggregate", fill = ".aggregate",
 ##'      col = matlab.dark.palette (3))
 ##'
 ##' ## make some "spectra"
@@ -154,17 +154,17 @@ setMethod("aggregate", signature = signature(x = "hyperSpec"), .aggregate)
 
 .test(.aggregate) <- function() {
   context("aggregate")
-  test_that("fauxCell region means", {
-    region.means <- aggregate(fauxCell, fauxCell$region, mean_pm_sd)
+  test_that("fauxCell cluster means", {
+    cluster.means <- aggregate(fauxCell, fauxCell$region, mean_pm_sd)
     expect_true(all(is.na(cluster.means$y)))
     expect_true(all(is.na(cluster.means$x)))
 
-    expect_equal(region.means$region, region.means$.aggregate)
+    expect_equal(cluster.means$clusters, cluster.means$.aggregate)
 
-    for (region in levels(fauxCell$region)) {
+    for (cluster in levels(fauxCell$region)) {
       expect_equivalent(
-        region.means [[cluster.means$region == region, ]],
-        apply(fauxCell [[fauxCell$region == region, ]], 2, mean_pm_sd)
+        cluster.means [[cluster.means$clusters == cluster, ]],
+        apply(fauxCell [[fauxCell$region == cluster, ]], 2, mean_pm_sd)
       )
     }
   })
