@@ -7,6 +7,8 @@
 #' Columns with different content than a column in `x` with the same name will
 #' get `".y"` appended to its name.
 #'
+#' **`mergeextra()` relies on `x` and `y` having the same row order.**
+#'
 #' @param x hyperSpec object into which extra data columns of y are to be merged
 #' @param y hyperSpec object with further extra data columns
 #'
@@ -14,6 +16,11 @@
 #' @export
 #'
 #' @examples
+#' tmp <- flu [,FALSE,]
+#' tmp$prediction <- 1:6
+#' tmp
+#'
+#' mergeextra(flu, tmp)
 mergeextra <- function(x, y) {
 
   validObject(x)
