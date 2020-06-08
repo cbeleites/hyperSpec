@@ -14,8 +14,8 @@
 ##' @md
 ##' @examples
 ##' chondro <- chondro - spc.fit.poly.below (chondro)
-##' chondro <- sweep (chondro, 1, apply (chondro, 1, mean), "/")
-##' chondro <- sweep (chondro, 2, apply (chondro, 2, quantile, 0.05), "-")
+##' chondro <- chondro / rowMeans(chondro)
+##' chondro <- chondro - quantile (chondro, 0.05)
 ##'
 ##' qplotmixmap (chondro [,,c (940, 1002, 1440)],
 ##'              purecol = c (colg = "red", Phe = "green", Lipid = "blue"))
@@ -25,17 +25,17 @@ qplotmixmap <- function(object, ...) {
   p <- qmixtile(object@data, ...) +
     coord_equal()
 
-  ## ggplot2 transition to lazyeval of mappings. Use `tmp.cnv` conversion
-  ## function depending on ggplot2 behaviour
-  if (is.name(p$mapping$x)) { # old ggplot2
-    tmp.cnv <- as.character
-  } else { # new ggplot2 -> lazyeval
-    tmp.cnv <- f_rhs
-  }
+  xlabel <- labels(object)[[f_rhs(p$mapping$x)]]
+  if (is.null(xlabel))
+    xlabel <- f_rhs(p$mapping$x)
+
+  ylabel <- labels(object)[[f_rhs(p$mapping$y)]]
+  if (is.null(ylabel))
+    ylabel <- f_rhs(p$mapping$y)
 
   p <- p +
-    xlab(labels(object)[[tmp.cnv(p$mapping$x)]]) +
-    ylab(labels(object)[[tmp.cnv(p$mapping$y)]])
+    xlab(xlabel) +
+    ylab(ylabel)
 
   l <- qmixlegend(object@data$spc, ...)
 
@@ -83,18 +83,9 @@ qmixtile <- function(object,
                      ...,
                      map.tileonly = FALSE) {
 
-  ## ggplot2 transition to lazyeval of mappings. Use `tmp.cnv` conversion
-  ## function depending on ggplot2 behaviour
-  if (is.name(mapping$fill)) { # old ggplot2
-    tmp.cnv <- as.character
-  } else { # new ggplot2 -> lazyeval
-    tmp.cnv <- f_rhs
-  }
-
-
   ## calculate fill colours
-  fill <- colmix.rgb(object[[tmp.cnv(mapping$fill)]], purecol, ...)
-  object[[tmp.cnv(mapping$fill)]] <- fill
+  fill <- colmix.rgb(object[[f_rhs(mapping$fill)]], purecol, ...)
+  object[[f_rhs(mapping$fill)]] <- fill
 
   if (map.tileonly) {
     p <- ggplot(object) +
