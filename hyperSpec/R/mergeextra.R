@@ -41,11 +41,12 @@ mergeextra <- function(x, y) {
     if (!colname %in% colnames(x))
       next
 
-    if (is.null(ylabels[[colname]]) |                      # no label or
-        as.character(ylabels[[colname]]) == colname |      # default label or
-        as.character(ylabels[[colname]]) == as.character(x@label[[colname]]) &
-                                                           # same label and
-        all(y[[col]] == x[[, colname, ]])                  # content equal
+    if ((is.null(ylabels[[colname]]) |                      # no label or
+         as.character(ylabels[[colname]]) == colname |      # default label or
+         as.character(ylabels[[colname]]) == as.character(x@label[[colname]])) &
+                                                            # same label
+                                                            # AND
+        identical(y[[col]],  x@data[[colname]])            # content identical
         ) {
 
       y[[col]] <- NULL
@@ -117,6 +118,23 @@ mergeextra <- function(x, y) {
                  .sortbyname(c(labels(flu), list(c.y = labels(flu, "c")))))
   })
 
+  test_that("different content type, same label", {
+    tmp <- flu
+    tmp$filename <- as.factor(tmp$filename)
+
+    res <- mergeextra(flu, tmp)
+
+    expect_equal(res$spc, flu$spc)
+    expect_equal(sort(colnames(res)), sort(c(colnames(flu), "filename.y")))
+    expect_equal(res$c, flu$c)
+    expect_equal(res$filename, flu$filename)
+    expect_equal(res$filename.y, tmp$filename)
+    expect_equal(.sortbyname(labels(res)),
+                 .sortbyname(c(labels(flu),
+                               list(filename.y = labels(flu, "filename")))))
+
+  })
+
   test_that("different label, same content", {
     tmp <- flu[, , 405]
     tmp$c <- flu$c
@@ -131,6 +149,5 @@ mergeextra <- function(x, y) {
     expect_equal(.sortbyname(labels(res)),
                  .sortbyname(c(labels(flu), list(c.y = expression(c / mg * l)))))
   })
-
 
 }
