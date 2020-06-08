@@ -14,7 +14,7 @@
     label <- structure(as.list(c(colnames(object@data), ".wavelength")),
       names = c(colnames(object@data), ".wavelength")
     )
-    label <- modifyList(label, object@label)
+    label <- modifyList(label, object@label[!sapply(object@label, is.null)])
 
     label <- label [which]
   } else {
