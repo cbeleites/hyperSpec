@@ -163,7 +163,7 @@ setMethod("aggregate", signature = signature(x = "hyperSpec"), .aggregate)
 
     for (region in levels(fauxCell$region)) {
       expect_equivalent(
-        region.means [[cluster.means$region == region, ]],
+        region.means [[region.means$region == region, ]],
         apply(fauxCell [[fauxCell$region == region, ]], 2, mean_pm_sd)
       )
     }
