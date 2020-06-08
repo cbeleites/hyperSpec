@@ -156,8 +156,8 @@ setMethod("aggregate", signature = signature(x = "hyperSpec"), .aggregate)
   context("aggregate")
   test_that("fauxCell region means", {
     region.means <- aggregate(fauxCell, fauxCell$region, mean_pm_sd)
-    expect_true(all(is.na(cluster.means$y)))
-    expect_true(all(is.na(cluster.means$x)))
+    expect_true(all(is.na(region.means$y)))
+    expect_true(all(is.na(region.means$x)))
 
     expect_equal(region.means$region, region.means$.aggregate)
 
