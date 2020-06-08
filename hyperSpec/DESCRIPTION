@@ -4,7 +4,7 @@ Type: Package
 Title: Work with Hyperspectral Data, i.e. Spectra + Meta Information (Spatial,
     Time, Concentration, ...)
 Version: 0.99-20200522
-Date: 2020-05-28
+Date: 2020-06-08
 Maintainer: Claudia Beleites <Claudia.Beleites@chemometrix.gmbh>
 Authors@R: c(
     person("Claudia",   "Beleites",  role = c("aut","cre", "dtc"), email = "Claudia.Beleites@chemometrix.gmbh"),
@@ -173,7 +173,7 @@ Collate:
     'sweep.R'
     'trellis.factor.key.R'
     'units.R'
-    'update.examples.R'
+    'update.dataset.R'
     'vandermonde.R'
     'wc.R'
     'wl.R'
