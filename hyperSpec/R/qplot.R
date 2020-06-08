@@ -219,11 +219,14 @@ qplotc <- function(object, mapping = aes_string(x = "c", y = "spc"), ...,
   }
 
   ## produce fancy y label
-  ylab <- labels(object, as_label(mapping$y))
+  ylabel <- labels(object, as_label(mapping$y))
+  if (is.null(ylabel))
+    ylabel <- as_label(mapping$y)
+
   if (!is.null(func)) {
-    ylab <- make.fn.expr(substitute(func), c(ylab, func.args))
+    ylabel <- make.fn.expr(substitute(func), c(ylabel, func.args))
   }
-  ylab <- as.expression(ylab)
+  ylabel <- as.expression(ylabel)
 
   ## expand the data.frame
   df <- as.long.df(object, rownames = TRUE, wl.factor = TRUE)
@@ -246,8 +249,12 @@ qplotc <- function(object, mapping = aes_string(x = "c", y = "spc"), ...,
       geom_point(...)
   }
 
-  p + ylab(ylab) +
-    xlab(labels(object, as_label(mapping$x)))
+  xlabel <- labels(object)[[as_label(mapping$x)]]
+  if (is.null(xlabel))
+    xlabel <- as_label(mapping$x)
+
+  p + ylab(ylabel) +
+    xlab(xlabel)
 }
 
 make.fn.expr <- function(fn, l = list()) {

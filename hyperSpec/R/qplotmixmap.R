@@ -25,13 +25,13 @@ qplotmixmap <- function(object, ...) {
   p <- qmixtile(object@data, ...) +
     coord_equal()
 
-  xlabel <- labels(object)[[f_rhs(p$mapping$x)]]
+  xlabel <- labels(object)[[as_label(p$mapping$x)]]
   if (is.null(xlabel))
-    xlabel <- f_rhs(p$mapping$x)
+    xlabel <- as_label(p$mapping$x)
 
-  ylabel <- labels(object)[[f_rhs(p$mapping$y)]]
+  ylabel <- labels(object)[[as_label(p$mapping$y)]]
   if (is.null(ylabel))
-    ylabel <- f_rhs(p$mapping$y)
+    ylabel <- as_label(p$mapping$y)
 
   p <- p +
     xlab(xlabel) +
