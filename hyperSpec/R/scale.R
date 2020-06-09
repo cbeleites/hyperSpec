@@ -27,17 +27,17 @@
 ##' @examples
 ##'
 ##' ## mean center & variance scale
-##' tmp <- scale (chondro)
+##' tmp <- scale (fauxCell)
 ##' plot (tmp, "spcmeansd")
 ##' plot (sample (tmp, 5), add = TRUE, col = 2)
 ##'
 ##' ## mean center only
-##' tmp <- scale (chondro, scale = FALSE)
+##' tmp <- scale (fauxCell, scale = FALSE)
 ##' plot (tmp, "spcmeansd")
 ##' plot (sample (tmp, 5), add = TRUE, col = 2)
 ##'
 ##' ## custom center
-##' tmp <- sweep (chondro, 1, mean, `/`)
+##' tmp <- sweep (fauxCell, 1, mean, `/`)
 ##' plot (tmp, "spcmeansd")
 ##' tmp <- scale (tmp, center = quantile (tmp, .05), scale = FALSE)
 ##'
