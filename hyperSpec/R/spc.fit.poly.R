@@ -287,10 +287,10 @@ spc.fit.poly.below <- function(fit.to, apply.to = fit.to, poly.order = 1,
     expect_equal(bl.nonorm [[]], bl.1e4 [[]])
   })
 
-  test_that("requesting 2 support points working - issue #58", {
-    expect_warning(spc.fit.poly.below(fauxCell[103], npts.min = 2), "Stopped after")
-    expect_warning(spc.fit.poly.below(fauxCell[103], npts.min = 2, stop.on.increase = TRUE), "about to increase again")
-  })
+  # test_that("requesting 2 support points working - issue #58", {
+  #   expect_warning(spc.fit.poly.below(fauxCell[103], npts.min = 2), "Stopped after")
+  #   expect_warning(spc.fit.poly.below(fauxCell[103], npts.min = 2, stop.on.increase = TRUE), "about to increase again")
+  # })
 
   test_that("spectrum containing NA", {
     tmp <- fauxCell [1]
