@@ -10,8 +10,8 @@
 ##' @keywords methods
 ##' @export
 ##' @examples
-##' chk.hy (chondro)
-##' validObject (chondro)
+##' chk.hy (fauxCell)
+##' validObject (fauxCell)
 chk.hy <- function(object) {
   if (!is(object, "hyperSpec")) {
     stop("no hyperSpec object")
