@@ -269,9 +269,10 @@ spc.fit.poly.below <- function(fit.to, apply.to = fit.to, poly.order = 1,
   context("spc.fit.poly.below")
 
   test_that(
-    "no normalization",
-    bl.nonorm <- spc.fit.poly.below(flu, flu, poly.order = 3, offset.wl = FALSE, npts.min = 25)
-  )
+    "no normalization", {
+    bl.nonorm <- spc.fit.poly.below(flu, flu, poly.order = 3, offset.wl = FALSE,
+                                    npts.min = 25)
+  })
 
   # test effect of wavelength axis normalization
   # was issue 1 on github
@@ -279,18 +280,38 @@ spc.fit.poly.below <- function(fit.to, apply.to = fit.to, poly.order = 1,
   wl(tmp) <- wl(tmp) + 1e4
 
   test_that("normalization/offset wavelengths", {
-    expect_error(spc.fit.poly.below(tmp, poly.order = 3, offset.wl = FALSE, npts.min = 25))
+    expect_error(spc.fit.poly.below(tmp, poly.order = 3, offset.wl = FALSE,
+                                    npts.min = 25))
 
-    bl.1e4 <- spc.fit.poly.below(tmp, tmp, poly.order = 3, offset.wl = TRUE, npts.min = 25)
-    bl.nonorm <- spc.fit.poly.below(flu, flu, poly.order = 3, offset.wl = FALSE, npts.min = 25)
+    bl.1e4 <- spc.fit.poly.below(tmp, tmp, poly.order = 3, offset.wl = TRUE,
+                                 npts.min = 25)
 
-    expect_equal(bl.nonorm [[]], bl.1e4 [[]])
+    bl.nonorm <- spc.fit.poly.below(flu, flu, poly.order = 3, offset.wl = FALSE,
+                                    npts.min = 25)
+
+    expect_equal(bl.nonorm[[]], bl.1e4[[]])
   })
 
-  test_that("requesting 2 support points working - issue #58", {
-    skip("fauxCell does not produce any warnings")
-    expect_warning(spc.fit.poly.below(fauxCell[103], npts.min = 2), "Stopped after")
-    expect_warning(spc.fit.poly.below(fauxCell[103], npts.min = 2, stop.on.increase = TRUE), "about to increase again")
+  test_that("stoppng rules for unstable solutions - issue #58", {
+    # test object origninally created from chondro:
+    # tmp <- chondro [103,,c(600 ~ 700, 1650 ~ 1800)]
+    # tmp[[]] <- round(tmp[[]], digits = 1)
+
+    tmp <- t(c(331.8, 336.7, 325.3, 313.2, 328.6, 348.5, 304.6, 286.8, 283.9,
+               294.2, 323.3, 312.2, 298.8, 299.8, 299.7, 301.8, 305.2, 308.4,
+               311.2, 318.2, 321, 322.1, 323, 336.7, 362.1, 776.9, 835.3, 902,
+               967, 1019.3, 1020.5, 942.3, 848.8, 774.8, 701.1, 612.1, 514.4,
+               420.8, 340.1, 282.5, 242.7, 220, 206, 196.8, 192.1, 189.1, 185.3,
+               184, 181.8, 178.7, 178.8, 174.8, 175.6, 173.2, 174.3, 173.1,
+               173.2, 171.4, 171.5, 171.9, 171.3, 171.1, 171.8))
+    tmp <- as.hyperSpec(tmp)
+    wl(tmp) <- c(seq(602, 698, by = 4), seq(1650, 1798, by = 4))
+
+    expect_warning(spc.fit.poly.below(tmp, npts.min = 2),
+                   "Reached npts.min, but the solution is not stable.")
+    expect_warning(spc.fit.poly.below(tmp, npts.min = 2,
+                                      stop.on.increase = TRUE),
+                   "Number of support points is about to increase again.")
   })
 
   test_that("spectrum containing NA", {
