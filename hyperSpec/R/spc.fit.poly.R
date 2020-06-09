@@ -1,29 +1,30 @@
 ##' Polynomial Baseline Fitting
 ##' These functions fit polynomal baselines.
 ##'
-##' Both functions fit polynomials to be used as baselines. If \code{apply.to}
-##' is \code{NULL}, a \code{hyperSpec} object with the polynomial coefficients
+##' Both functions fit polynomials to be used as baselines. If `apply.to`
+##' is `NULL`, a hyperSpec object with the polynomial coefficients
 ##' is returned, otherwise the polynomials are evaluated on the spectral range
-##' of \code{apply.to}.
+##' of `apply.to`.
 ##'
-##' \code{spc.fit.poly} calculates the least squares fit of order
-##' \code{poly.order} to the \emph{complete} spectra given in \code{fit.to}.
-##' Thus \code{fit.to} needs to be cut appropriately.
+##' `spc.fit.poly()` calculates the least squares fit of order
+##' `poly.order` to the *complete* spectra given in `fit.to`.
+##' Thus `fit.to` needs to be cut appropriately.
 ##'
 ##' @rdname baselines
 ##' @concept baseline
-##' @param fit.to \code{hyperSpec} object on which the baselines are fitted
-##' @param apply.to \code{hyperSpec} object on which the baselines are evaluted
-##'   If \code{NULL}, a \code{hyperSpec} object containing the polynomial
+##' @param fit.to hyperSpec object on which the baselines are fitted
+##' @param apply.to hyperSpec object on which the baselines are evaluted
+##'   If `NULL`, a hyperSpec object containing the polynomial
 ##'   coefficients rather than evaluted baselines is returned.
 ##' @param poly.order order of the polynomial to be used
 ##' @param offset.wl should the wavelength range be mapped to -> [0, delta wl]?
 ##' This enhances numerical stability.
-##' @return \code{hyperspec} object containing the baselines in the spectra
+##' @return hyperSpec object containing the baselines in the spectra
 ##'   matrix, either as polynomial coefficients or as polynomials evaluted on
-##'   the spectral range of \code{apply.to}
+##'   the spectral range of `apply.to`
 ##' @author C. Beleites
-##' @seealso \code{vignette ("baseline", package = "hyperSpec")}
+##' @md
+##' @seealso `vignette ("baseline", package = "hyperSpec")`
 ##' @keywords manip datagen
 ##' @export
 ##' @examples
@@ -121,9 +122,9 @@ spc.fit.poly <- function(fit.to, apply.to = NULL, poly.order = 1,
 }
 
 ##'
-##' \code{spc.fit.poly.below} tries to fit the baseline on appropriate spectral
-##' ranges of the spectra in \code{fit.to}.  For details, see the \code{vignette
-##' ("baseline")}.
+##' `spc.fit.poly.below()` tries to fit the baseline on appropriate spectral
+##' ranges of the spectra in `fit.to`.  For details, see the `vignette
+##' ("baseline")`.
 ##' @rdname baselines
 ##' @param npts.min minimal number of points used for fitting the polynomial
 ##' @param noise noise level to be considered during the fit. It may be given as
@@ -132,11 +133,11 @@ spc.fit.poly <- function(fit.to, apply.to = NULL, poly.order = 1,
 ##' @param stop.on.increase additional stopping rule: stop if the number of
 ##'   support points would increase, regardless whether npts.min was reached or
 ##'   not.
-##' @param debuglevel  additional output: \code{1} shows \code{npts.min},
-##'   \code{2} plots support points for the final baseline of 1st spectrum,
-##'   \code{3} plots support points for 1st spectrum, \code{4} plots support
+##' @param debuglevel  additional output: `1` shows `npts.min`,
+##'   `2` plots support points for the final baseline of 1st spectrum,
+##'   `3` plots support points for 1st spectrum, `4` plots support
 ##'   points for all spectra.
-##' @seealso  see \code{\link[hyperSpec]{options}} for more on \code{debuglevel}
+##' @seealso  see [hyperSpec::options()] for more on `debuglevel`
 ##' @export
 ##' @examples
 ##'
