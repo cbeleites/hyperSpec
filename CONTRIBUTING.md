@@ -11,6 +11,7 @@ By contributing, you understand and agree that your work becomes the part of the
 * Ensure the bug was not already reported by searching on GitHub under [Issues](https://github.com/cbeleites/hyperSpec/issues).
 * If you're unable to find an open issue addressing the problem, open a new one. Be sure to include a title and clear description, as much relevant information as possible, and a code sample or an executable test case demonstrating the expected behavior that is not occurring.
 * Refer to the [Bug Reporting in R article](https://www.r-project.org/bugs.html) for guidance.
+* The ideal minimal working example is a unit test.
 
 ## Code and Documentation Styleguide
 
@@ -90,6 +91,11 @@ The process starts when the package is in a stable state that can be released to
 * Ensure that all check are passed on the tarballs you build (either on your machine or using CI) with `R CMD check --as-cran <package.tar.gz>`. The checks must pass for `R` versions `R-oldrel`, `R-release`, `R-patched`, and `R-devel`.
 * If any bugs are found, they must be fixed in the very same branch (see [here](https://stackoverflow.com/a/57507373/6029703) for details)
 * Once everything works use `git flow release finish <x.y.z>`. It will merge the release branch into both `master` and `develop`, and will assign a tag to the newly created commit in the `master` branch.
+
+### Unit Tests
+
+* If a unit test needs to be disabled temporarily, please use `skip("reason for switching off")`. 
+  This way, we'll be reminded that the test is switched off whenever the unit tests are run.
 
 <hr>
 
