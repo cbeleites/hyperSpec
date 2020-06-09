@@ -17,7 +17,7 @@
 ##'   If `NULL`, a hyperSpec object containing the polynomial
 ##'   coefficients rather than evaluted baselines is returned.
 ##' @param poly.order order of the polynomial to be used
-##' @param offset.wl should the wavelength range be mapped to -> [0, delta wl]?
+##' @param offset.wl should the wavelength range be mapped to -> \[0, delta wl\]?
 ##' This enhances numerical stability.
 ##' @return hyperSpec object containing the baselines in the spectra
 ##'   matrix, either as polynomial coefficients or as polynomials evaluted on
