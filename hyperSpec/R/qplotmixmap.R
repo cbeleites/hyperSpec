@@ -11,11 +11,11 @@
 ##' @import ggplot2
 ##' @export
 ##' @examples
-##' chondro <- chondro - spc.fit.poly.below (chondro)
-##' chondro <- sweep (chondro, 1, apply (chondro, 1, mean), "/")
-##' chondro <- sweep (chondro, 2, apply (chondro, 2, quantile, 0.05), "-")
+##' fauxCell <- fauxCell - spc.fit.poly.below (fauxCell)
+##' fauxCell <- sweep (fauxCell, 1, apply (fauxCell, 1, mean), "/")
+##' fauxCell <- sweep (fauxCell, 2, apply (fauxCell, 2, quantile, 0.05), "-")
 ##'
-##' qplotmixmap (chondro [,,c (940, 1002, 1440)],
+##' qplotmixmap (fauxCell [,,c (940, 1002, 1440)],
 ##'              purecol = c (colg = "red", Phe = "green", Lipid = "blue"))
 ##'
 ##' @importFrom lazyeval f_rhs
