@@ -33,15 +33,15 @@
 ##' @export
 ##' @examples
 ##'
-##' dist <- pearson.dist (chondro[[]])
+##' dist <- pearson.dist (fauxCell[[]])
 ##' dend <- hclust (dist, method = "ward")
 ##' z <- cutree (dend, h = 0.15)
 ##'
-##' clusters <- split (chondro, z)
-##' length (clusters)
+##' region <- split (fauxCell, z)
+##' length (region)
 ##'
 ##' # difference in cluster mean spectra
-##' plot (apply (clusters[[2]], 2, mean) - apply (clusters[[1]], 2, mean))
+##' plot (apply (region[[2]], 2, mean) - apply (region[[1]], 2, mean))
 ##'
 ##'
 
