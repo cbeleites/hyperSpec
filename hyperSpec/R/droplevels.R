@@ -18,8 +18,8 @@
 #'
 #' @examples
 #'
-#' fauxCell[1:3]$clusters
-#' droplevels(fauxCell [1:3])$clusters
+#' fauxCell[1:3]$region
+#' droplevels(fauxCell [1:3])$region
 setMethod("droplevels", signature = "hyperSpec", definition = .droplevels)
 
 .test(.droplevels) <- function() {
