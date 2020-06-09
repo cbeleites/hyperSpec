@@ -151,10 +151,10 @@
 ##' plot (flu[!index], "spc", add = TRUE, col = "blue") # select spectra
 ##'
 ##' ## index into the data columns ---------------------------------------
-##' range (chondro[[,"x"]])
-##' colnames (chondro[[,1]])
-##' dim (chondro[[,c(TRUE, FALSE, FALSE)]])
-##' chondro$x
+##' range (fauxCell[[,"x"]])
+##' colnames (fauxCell[[,1]])
+##' dim (fauxCell[[,c(TRUE, FALSE, FALSE)]])
+##' fauxCell$x
 ##'
 ##'
 ##' ## the shortcut functions --------------------------------------------
