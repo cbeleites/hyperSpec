@@ -41,7 +41,7 @@ makeraster <- function(x, startx, d, newlevels, tol = 0.1) {
     ## make sure to cover the whole data range + 1 point
     newlevels <- c(
       rev(seq(startx, min(x, na.rm = TRUE) - d, by = -d) [-1]),
-      seq(startx, max(x, na.rm = TRUE) + d, by = d)
+          seq(startx, max(x, na.rm = TRUE) + d, by =  d)
     )
   }
 
