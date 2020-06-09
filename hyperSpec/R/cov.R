@@ -10,7 +10,7 @@
 ##' @rdname cov
 ##' @export
 ##' @examples
-##' image (cov (chondro))
+##' image (cov (fauxCell))
 setMethod("cov", signature = signature(x = "hyperSpec", y = "missing"), function(x, y, use, method) {
   validObject(x)
 
@@ -26,7 +26,7 @@ setMethod("cov", signature = signature(x = "hyperSpec", y = "missing"), function
 ##' @rdname cov
 ##' @export
 ##' @examples
-##' pcov <-  pooled.cov (chondro, chondro$clusters)
+##' pcov <-  pooled.cov (fauxCell, fauxCell$region)
 ##' plot (pcov$means)
 ##' image (pcov$COV)
 ##'
