@@ -43,10 +43,10 @@ mergeextra <- function(x, y) {
 
     if ((is.null(ylabels[[colname]]) |                      # no label or
          as.character(ylabels[[colname]]) == colname |      # default label or
-         as.character(ylabels[[colname]]) == as.character(x@label[[colname]])) &
                                                             # same label
+         as.character(ylabels[[colname]]) == as.character(labels(x, colname))) &
                                                             # AND
-        identical(y[[col]],  x@data[[colname]])            # content identical
+        identical(y[[col]],  x@data[[colname]])             # content identical
         ) {
 
       y[[col]] <- NULL
@@ -148,6 +148,12 @@ mergeextra <- function(x, y) {
     expect_equal(res$c.y, flu$c)
     expect_equal(.sortbyname(labels(res)),
                  .sortbyname(c(labels(flu), list(c.y = expression(c / mg * l)))))
+  })
+
+  test_that("x missing labels", {
+    spc <- fauxCell[1:3]
+    spc@label$region <- NULL
+    spc - spc
   })
 
 }
