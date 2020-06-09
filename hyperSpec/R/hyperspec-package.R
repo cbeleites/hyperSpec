@@ -25,7 +25,7 @@
 ##'   package.
 ##' @rdname hyperSpec-package
 ##' @include flu.R
-##' @include chondro.R
+##' @include fauxCell.R
 ##' @include laser.R
 ##' @include paracetamol.R
 ##' @include barbiturates.R
