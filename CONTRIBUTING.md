@@ -16,8 +16,17 @@ By contributing, you understand and agree that your work becomes the part of the
 ## Code and Documentation Styleguide
 
 * This project adheres to the [Tidyverse styleguide](https://style.tidyverse.org/).
-* This guide applies both to the code and the [`roxygen2` documentation](https://style.tidyverse.org/documentation.html).
+* This guide applies both to the code and the [`roxygen2` documentation](https://style.tidyverse.org/documentation.html).  
+
+  We're currently transitioning the documentation to markdown. 
+  - Please write any new documentation in markdown already.
+  - Enable markdown for a particular help page with `#' @md`.
+  - Whenever touching a function whose documentation is still LaTeX-style, please take the time to convert it to markdown.  
+    [Here are some regexps to help with search and replace of `\code{}` and `\link[]{}`.](https://gist.github.com/cbeleites/cc1c964bc5416ca285acf24f1d4e30ef)
+  
 * Use package [styler](http://styler.r-lib.org/) with RStudio add-in to easily re-style your code to comply with the guidelines.
+* If a unit test needs to be disabled temporarily, please use `skip("reason for switching off")`. 
+  This way, we'll be reminded that the test is switched off whenever the unit tests are run.
 
 ## Working With Git
 
@@ -91,11 +100,6 @@ The process starts when the package is in a stable state that can be released to
 * Ensure that all check are passed on the tarballs you build (either on your machine or using CI) with `R CMD check --as-cran <package.tar.gz>`. The checks must pass for `R` versions `R-oldrel`, `R-release`, `R-patched`, and `R-devel`.
 * If any bugs are found, they must be fixed in the very same branch (see [here](https://stackoverflow.com/a/57507373/6029703) for details)
 * Once everything works use `git flow release finish <x.y.z>`. It will merge the release branch into both `master` and `develop`, and will assign a tag to the newly created commit in the `master` branch.
-
-### Unit Tests
-
-* If a unit test needs to be disabled temporarily, please use `skip("reason for switching off")`. 
-  This way, we'll be reminded that the test is switched off whenever the unit tests are run.
 
 <hr>
 
