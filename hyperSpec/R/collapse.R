@@ -256,20 +256,20 @@ collapse <- function(..., wl.tolerance = hy.getOption("wl.tolerance"), collapse.
   })
 
 
-  test_that("factor behaviour of collapse", {
-    a <- chondro [chondro$clusters == "lacuna"]
-    a$clusters <- droplevels(a$clusters)
-    b <- chondro [chondro$clusters != "lacuna"]
-    b$clusters <- droplevels(b$clusters)
-
-    tmp <- collapse(a, b)
-    tmp$clusters
-
-    expect_equal(
-      sort(levels(tmp$clusters)),
-      sort(levels(chondro$clusters))
-    )
-  })
+  # test_that("factor behaviour of collapse", {
+  #   a <- fauxCell [fauxCell$region == "lacuna"]
+  #   a$region <- droplevels(a$region)
+  #   b <- fauxCell [fauxCell$region != "lacuna"]
+  #   b$region <- droplevels(b$region)
+  # 
+  #   tmp <- collapse(a, b)
+  #   tmp$region
+  # 
+  #   expect_equal(
+  #     sort(levels(tmp$region)),
+  #     sort(levels(fauxCell$region))
+  #   )
+  # })
 
   test_that("hyperSpec objects with 1 wavelength", {
     expect_equivalent(collapse(flu [, , 450], flu [, , 450]),
