@@ -233,7 +233,7 @@ wl2i <- function(x, wavelength = stop("wavelengths are required."), unlist = TRU
 ##' @export
 ##' @examples
 ##'
-##' i2wl (chondro, 17:20)
+##' i2wl (fauxCell, 17:20)
 ##'
 i2wl <- function(x, i) {
   chk.hy(x)
