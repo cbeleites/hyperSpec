@@ -38,7 +38,7 @@ pooled.cov <- function(x, groups, ..., regularize = 1e-5 * max(abs(COV))) {
     stop("groups must be a factor")
   }
 
-  x <- x      [!is.na(groups)]
+  x      <- x      [!is.na(groups)]
   groups <- groups [!is.na(groups)]
 
   means <- aggregate(x, groups, "mean") # TODO: speed up?
