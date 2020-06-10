@@ -41,7 +41,7 @@ jobs:
           r-version: ${{ matrix.config.r }}
 
       - uses: r-lib/actions/setup-pandoc@master
-
+        
       - name: Query dependencies
         run: |
           install.packages('remotes')
@@ -65,7 +65,11 @@ jobs:
           Rscript -e "remotes::install_github('r-hub/sysreqs')"
           sysreqs=$(Rscript -e "cat(sysreqs::sysreq_commands('DESCRIPTION'))")
           sudo -s eval "$sysreqs"
-
+          
+      - name: Install XQuartz on macOS
+        if: runner.os == 'macOS'
+        run: brew cask install xquartz
+        
       - name: Install dependencies
         run: |
           remotes::install_deps(dependencies = TRUE)

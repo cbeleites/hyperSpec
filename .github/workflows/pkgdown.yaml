@@ -18,7 +18,11 @@ jobs:
       - uses: r-lib/actions/setup-r@master
 
       - uses: r-lib/actions/setup-pandoc@master
-
+      
+      - name: Install XQuartz on macOS
+        if: runner.os == 'macOS'
+        run: brew cask install xquartz
+        
       - name: Query dependencies
         run: |
           install.packages('remotes')
