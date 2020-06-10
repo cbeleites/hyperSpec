@@ -2,3 +2,21 @@ template:
   params:
     bootswatch: cerulean
     noindex: true
+
+
+articles:
+  - title: "Principles"
+    desc: >
+      The main functionality of "hyperSpec".
+    contents:
+    - hyperspec
+    - fileio
+    - plotting
+    - baseline
+  - title: "Case studies"
+    desc: >
+      The example workflows.
+    contents:
+    - chondro
+    - flu
+    - laser
