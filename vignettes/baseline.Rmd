@@ -37,6 +37,9 @@ link-citations: yes
 bibliography: resources/baseline-pkg.bib
 biblio-style: plain
 csl: resources/elsevier-with-titles.csl
+# Pkgdown --------------------------------------------------------------------
+pkgdown:
+  as_is: true
 ---
 
 

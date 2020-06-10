@@ -38,6 +38,9 @@ link-citations: yes
 bibliography: resources/plotting-pkg.bib
 biblio-style: plain
 csl: resources/elsevier-with-titles.csl
+# Pkgdown --------------------------------------------------------------------
+pkgdown:
+  as_is: true
 ---
 
 
