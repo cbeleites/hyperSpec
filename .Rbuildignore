@@ -4,3 +4,4 @@ Makefile
 tests/testthat/fileio
 Rplots.pdf
 ^CONTRIBUTING\.md$
+vignettes/resources/fileio/
