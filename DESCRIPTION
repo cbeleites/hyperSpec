@@ -28,7 +28,7 @@ Description: Comfortable ways to work with hyperspectral data sets,
     etc. More generally, any data that is recorded over a discretized variable,
     e.g. absorbance = f (wavelength), stored as a vector of absorbance values
     for discrete wavelengths is suitable.
-License: GPL (>= 3)
+License: GPL (>= 3) + file LICENSE
 LazyLoad: yes
 LazyData: yes
 Depends:
