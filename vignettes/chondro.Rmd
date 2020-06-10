@@ -480,7 +480,7 @@ cols <- rep("black", nrow(chondro))
 cols[out] <- outcols
 ```
 
-We can check our findings by comparing the spectra to the bulk of spectra (figure \@ref(pca-outspc)):
+We can check our findings by comparing the spectra to the bulk of spectra (figure \@ref(fig:pca-outspc)):
 
 
 ```{r include=FALSE}
@@ -503,7 +503,7 @@ for (i in seq(along = out)) {
 }
 ```
 
-and also by looking where these spectra appear in the scores `pairs()`{.r} plot (figure \@ref(pca-pairs-2)):
+and also by looking where these spectra appear in the scores `pairs()`{.r} plot (figure \@ref(fig:pca-pairs-2)):
 
 ```{r include=FALSE}
 CAPTION <- "The `pairs()`{.r} plot of the first 7 scores with suspected outliers. "
