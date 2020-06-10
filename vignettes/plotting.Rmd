@@ -46,10 +46,9 @@ csl: resources/elsevier-with-titles.csl
 library(hyperSpec)
 library(latticeExtra)
 library(deldir)
-library(rgl)
 library(ggplot2)
-library(rgl)
 library(tripack)
+# library(rgl)
 
 # Functions ------------------------------------------------------------------
 source("resources/vignette-functions.R", encoding = "UTF-8")
@@ -148,8 +147,8 @@ for (p in required.pkgs [!required.pkgs %in% c("latticeExtra", "deldir")]) {
 library(hyperSpec)
 library(latticeExtra)
 library(deldir)
-library(rgl)
 library(ggplot2)
+# library(rgl)
 
 par(mar = c(4.1, 4.1, 1, .6))
 
