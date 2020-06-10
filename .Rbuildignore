@@ -5,3 +5,6 @@ tests/testthat/fileio
 Rplots.pdf
 ^CONTRIBUTING\.md$
 ^\.github$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
