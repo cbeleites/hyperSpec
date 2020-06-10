@@ -1,2 +1,0 @@
-P_A32_006_Spec.Data 1	16	17	Sepsis	batch_1	20140115
-P_A32_007_Spec.Data 1	13	17	Healthy	batch_2	20140116

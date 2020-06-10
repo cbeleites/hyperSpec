@@ -1,0 +1,85 @@
+﻿<!--TriVista-File. (c) S&I GmbH, all rights reserved. -->
+<XmlMain Version="1.0.1" Filename="C:\Dokumente und Einstellungen\Isabel\Eigene Dateien\Claudia\aspirin.tvf" DateTime="05/22/2012 18:05:36" PlugInName="" PlugInData="">
+  <FileInfo>
+    <Objects Count="4">
+      <Object Type="Experiment" />
+      <Object Type="Spectrometer" Serialnumber="0815" Model="LS785" Stage_Number="1" Focallength="85" Inclusion_Angle="8.6" Detector_Angle="0.68" Groove_Density="830 g/mm" Slit_Entrance-Front="0" Slit_Entrance-Side="0" Slit_Exit-Front="0" Slit_Exit-Side="0" />
+      <Object Type="Camera" Name="Camera1" Serialnumber="1711110006" Detector_Size="1024;256" Detector_Temperature="-79,50" Exposure_Time="75" Unit="msec" Exposure_Mode="TIMED_MODE" No_of_Accumulations="1" No_of_Frames="1" ADC__Readout_Port="Normal" ADC__Rate_Resolution="100 KHz, 16 Bits" ADC__Gain="1" Clearing__Mode="Clear Never" Clearing__No_of_Cleans="1" Region_of_Interest__ROIs="1|0;1023;1;132;146;15|" />
+      <Object Type="Calibration" Center_Wavelength="1E-07" Laser_Wavelength="784.8" />
+    </Objects>
+  </FileInfo>
+  <Hardware>
+    <Spectrometers Count="1">
+      <Spectrometer GUID="bce6472b-a6ec-4bfc-bcb1-e9732a3f1e8a" StageNumber="0" Model="LS785" Serialnumber="0815" FocalLength="85" InclusionAngle="8.600" InclusionAngleAdditive="39.000" DetectorAngle="0.680" PixelWidthExitFront="-1.000" PixelWidthExitSide="26.000" Backlash="ScanUp" DriveDirection="Normal" ComPortSpec="Manual" ComPortEntrance="" ComPortExit="" DemoMode="False" Wavelength="0.000" Grating="0" Activated="False" IsFixedCalibration="True" FixedCalibrationPoints="7|14;794.818|65;811.531|164;842.465|403;912.297|599;965.779|786;1014.608|919;1052.06">
+        <Gratings Count="1">
+          <Grating GrooveDensity="830 g/mm" Blaze="785NM" Turret="1">
+            <Offsets Count="0" />
+          </Grating>
+        </Gratings>
+        <MirrorEntrance Name="M1" State="isFixed" Position="notAvailable" />
+        <MirrorExit Name="M2" State="isFixed" Position="notAvailable" />
+        <SlitEntranceSide Name="S1" State="disabled" Position="0" />
+        <SlitEntranceFront Name="S2" State="disabled" Position="0" />
+        <SlitExitFront Name="S3" State="disabled" Position="0" />
+        <SlitExitSide Name="S4" State="disabled" Position="0" />
+        <FilterWheel Name="" State="disabled" Position="0" FilterStrings="6|#1|#2|#3|#4|#5|#6" />
+        <Shutter Name="" State="disabled" Position="open" />
+      </Spectrometer>
+    </Spectrometers>
+    <Cameras Count="1">
+      <Camera GUID="d8a88f77-0b6e-4815-9b0d-c425e10d223f" IsDemoCamera="False" Driver="PvCam32" Name="Camera1" SerialNumber="1711110006" Type="SpectroscopyImaging" OpenAtStartup="False" XPixels="1024" YPixels="256" XPixelSize="26.000" YPixelSize="26.000" Temperatur="0.000" Activated="False" Direction="" />
+    </Cameras>
+    <SinglePointDetectors Count="0" />
+    <LightSources Count="3">
+      <LightSource GUID="8bc027d6-941d-4ac8-ba28-fb32f8912453" Name="Calibration Lamp" Serialnumber="" FixedWavelength="True">
+        <Wavelengths Count="1" Value_0="0.000" />
+      </LightSource>
+      <LightSource GUID="001900f2-f21b-4f4d-8178-37f71060620f" Name="Calibration Lamp2" Serialnumber="" FixedWavelength="True">
+        <Wavelengths Count="1" Value_0="0.000" />
+      </LightSource>
+      <LightSource GUID="193fdf6e-1011-4e1a-8ffe-9e1c4de208d1" Name="Calibration Lamp3" Serialnumber="" FixedWavelength="True">
+        <Wavelengths Count="1" Value_0="784.800" />
+      </LightSource>
+    </LightSources>
+    <ArduinoHardware Count="0" />
+    <Additionals Count="0" />
+    <TemperatureControllers Count="0" />
+    <MotorizedStages Count="1">
+      <MotorizedStage GUID="9aecca06-8a22-4b82-837b-8b836c824c02" StageType="TANGO" Manufacturer="Märzhäuser Wetzler" Type="Motorized Stage" CommunicationPort="Demo" Model="TANGO" Serialnumber="" xIsAvailable="True" xClosedLoopMode="False" xFactor="0" xRange1="-100000000" xRange2="100000000" xLimitSwitch="None" xUnit="microm" xSpeedNormal="5" xSpeedFast="10" xSpeedJoystick="1" yIsAvailable="True" yClosedLoopMode="False" yFactor="0" yRange1="-100000000" yRange2="100000000" yLimitSwitch="None" yUnit="microm" ySpeedNormal="5" ySpeedFast="10" ySpeedJoystick="1" zIsAvailable="False" zClosedLoopMode="False" zFactor="0" zRange1="-100000000" zRange2="100000000" zLimitSwitch="None" zUnit="microm" zSpeedNormal="2" zSpeedFast="2" zSpeedJoystick="1" />
+    </MotorizedStages>
+    <Microscopes Count="1">
+      <Microscope GUID="4d3b46fc-36b9-4466-8425-f5cabe36270f" StageID="9aecca06-8a22-4b82-837b-8b836c824c02" ObjectiveMagnifications="8|0|0|0|0|0|0|0|0" ObjectiveWorkingDistance="8|0|0|0|0|0|0|0|0" RamanBoxAvailable="False" RamanBoxLinearStage.Available="False" RamanBoxLinearStage.ConnectedHarwareID="" RamanBoxFilterWheel.Available="False" RamanBoxFilterWheel.ConnectedHarwareID="" RamanBoxBeamSplitter.Available="False" RamanBoxBeamSplitter.ConnectedHarwareID="" RamanBoxNotchFilter.Available="False" RamanBoxNotchFilter.ConnectedHarwareID="" />
+    </Microscopes>
+  </Hardware>
+  <Setup GUID="63f5a488-6bf7-44ef-bdc7-cf10e0014d9c" Name="test" Mode="Stage_1" Method="CCD" LightSource="Calibration Lamp3 (772,376)" DetectorName="Camera1" Wavelength="0.000">
+    <Objects Count="3">
+      <Object ObjectType="LightsourceObject" HardwareID="Calibration Lamp3" />
+      <Object ObjectType="SpectrometerObject" HardwareID="0815;Manual" StageNumber="0" GratingIndex="0" Order="1" Offset="0" MirrorEntranceState="side" MirrorExitState="side" SlitEntranceFrontValue="0" SlitEntranceSideValue="0" SlitExitFrontValue="0" SlitExitSideValue="0" FilterIndex="0" />
+      <Object ObjectType="CameraObject" HardwareID="Pixis" />
+    </Objects>
+    <Calibrations Count="1">
+      <Calibration Wavelength="0.000" CalibPoints="5|-1;149.253861878545|-1;74.6269309392725|0;0|-1;-74.6269309392725|-1;-149.253861878545" />
+    </Calibrations>
+    <Offsets Count="0" />
+  </Setup>
+  <Documents Count="1">
+    <Document Version="2" Label="" DocType="Spectra" RecordTime="01/25/2012 13:20:37.234" ModeName="" DataSource="nothing" Encoding="Ascii" ColorMode="Grayscale" ViewDisplayMode="Graph" ViewImageColorMode="False">
+      <Comments Count="0" />
+      <Peaks Count="0" />
+      <Experiment Type="CCD" Wavelength="0.000" ExposureTime="0.000" DetectorWidth="1024.000" />
+      <xDim Length="1024">
+        <Calibration Label="Rel. Wavenumbers" Unit="Nanometer" DisplayUnit="relWavenumber" Type="Polynomial" LaserWave="784.800" InterpolationPointArray="7|14;794.818|65;811.531|164;842.465|403;912.297|599;965.779|786;1014.608|919;1052.06" />
+      </xDim>
+      <yDim Length="1">
+        <Calibration Label="Auto" Unit="Nanometer" DisplayUnit="Nanometer" Type="ValueArray" LaserWave="0.000" ValueArray="0" />
+      </yDim>
+      <zDim Length="1">
+        <Calibration Label="" Unit="Nanometer" DisplayUnit="Nanometer" Type="ValueArray" LaserWave="0.000" ValueArray="0" />
+      </zDim>
+      <Data DataType="Double" Color="Magenta">
+        <Frame xDim="1024" yDim="1" TimeStamp="0" Type="Number">595;598;596;596;599;597;596;596;596;598;596;599;597;597;597;598;602;605;616;641;680;738;816;888;953;989;1015;1035;1051;1075;1092;1131;1181;1197;1196;1200;1254;1366;1526;1542;1466;1334;1236;1237;1313;1390;1377;1317;1222;1142;1098;1082;1103;1102;1130;1157;1152;1132;1099;1079;1038;1047;1093;1179;1363;1522;1617;1602;1500;1365;1237;1153;1088;1044;1023;1012;1020;1015;1018;1001;989;994;985;1012;1036;1038;1048;1068;1156;1334;1601;1879;2024;1919;1690;1405;1177;1047;1004;987;976;963;944;946;928;930;919;928;957;1052;1184;1305;1300;1248;1117;1016;961;944;936;923;908;894;911;971;1077;1169;1181;1128;1062;963;920;911;959;1116;1419;1726;1840;1752;1460;1164;997;1069;1236;1361;1384;1288;1128;1000;931;910;895;875;858;880;908;932;934;919;889;858;855;861;863;876;893;905;912;911;906;876;866;861;894;921;962;966;946;905;862;848;835;825;812;814;820;830;844;844;840;841;829;832;833;859;897;954;1035;1086;1116;1133;1157;1267;1462;1745;1898;1884;1675;1378;1074;927;881;871;867;873;883;905;914;915;917;913;892;893;902;887;902;917;931;967;1007;1103;1242;1333;1362;1316;1190;1055;1000;1026;1171;1404;1570;1636;1569;1350;1110;996;957;996;1008;1020;1006;980;948;947;991;1057;1173;1278;1354;1333;1260;1158;1117;1111;1241;1441;1677;1842;1868;1745;1533;1313;1114;997;950;917;903;895;870;854;853;845;837;848;848;866;886;893;881;868;852;838;828;830;821;826;836;849;862;886;945;975;1011;1039;1018;996;948;919;895;885;881;882;873;860;841;836;842;838;837;827;809;793;782;790;782;791;789;784;788;787;785;789;793;785;788;793;802;813;812;836;864;914;934;962;969;951;957;986;1150;1520;1960;2218;2298;2237;1880;1592;1527;1523;1537;1528;1498;1446;1357;1237;1123;1036;951;894;855;828;810;797;781;778;763;756;745;745;737;727;720;725;722;718;715;714;708;709;711;721;729;762;786;811;812;800;766;739;725;716;702;694;686;677;673;673;668;672;665;667;663;664;662;661;660;661;661;664;661;661;663;663;658;659;657;655;654;653;659;652;655;649;650;653;650;649;652;648;651;648;646;648;646;646;643;647;644;646;645;642;642;645;645;644;645;644;640;641;640;644;642;639;639;644;640;639;637;637;641;639;640;635;638;634;637;638;638;638;636;638;636;637;636;632;632;634;634;633;634;633;635;634;628;630;632;631;633;630;629;633;628;630;629;631;629;633;629;626;628;629;628;627;630;625;627;625;623;628;625;626;625;626;626;626;621;624;625;625;623;626;625;624;625;626;623;620;624;623;623;623;623;623;624;621;622;619;619;624;622;624;620;621;620;622;621;622;620;620;619;621;619;618;617;619;619;622;620;619;619;619;618;616;618;617;616;618;618;618;617;617;615;618;621;618;616;614;618;617;615;619;616;620;618;619;616;617;619;618;614;615;616;616;616;617;615;617;616;614;614;617;616;616;613;617;614;612;616;617;615;618;618;615;615;612;613;615;611;616;612;614;615;614;616;614;613;615;614;614;614;614;613;613;612;610;613;611;615;611;615;610;614;612;613;613;612;613;611;612;613;611;615;612;613;613;612;613;612;615;615;614;612;613;616;617;615;617;617;615;618;617;618;612;615;616;615;613;615;613;610;610;611;611;609;611;608;609;609;611;610;608;608;610;609;610;609;608;608;608;606;608;608;609;608;610;609;608;609;609;608;608;611;612;609;610;607;611;606;607;609;606;607;606;606;607;606;608;609;605;607;607;604;606;606;605;605;605;604;606;605;605;605;607;604;609;607;607;605;606;606;607;606;608;608;609;608;607;609;609;609;611;608;608;611;610;612;612;612;611;612;613;613;613;611;612;617;615;614;614;616;617;617;614;618;616;614;618;619;617;616;618;618;617;618;621;624;625;629;637;646;651;658;657;648;647;636;625;622;619;614;612;614;608;608;608;609;608;607;610;610;608;610;612;610;612;609;612;607;607;607;607;605;606;608;607;609;611;609;609;609;607;607;605;607;606;608;607;609;608;609;610;609;610;613;615;619;622;631;637;641;636;633;627;627;622;625;623;618;614;608;605;603;604;602;601;601;602;599;600;600;600;598;599;599;598;600;598;600;600;601;599;599;599;600;599;599;597;597;599;600;599;598;598;599;598;599;596;598;598;598;598;598;598;598;597;598;599;598;599;597;600;599;598;598;597;597;596;598;596;596;598;599;596;597;597;598;598;597;599;598;597;597;598;597;596;598;597;597;598;597;598;596;597;599;597;597;597;598;597;598;596;597;596;597;596;596;596;596;597;596;596;598;597;597;597;597;597;596;597;597;595;598;597;595;597;597;597;597;598;597;599;595;597;597;597;596;597;597;595;598;596;596;597;597;597;596;597;597;596;598;597;597;596;596;597</Frame>
+      </Data>
+      <Childs Count="0" />
+    </Document>
+  </Documents>
+</XmlMain>

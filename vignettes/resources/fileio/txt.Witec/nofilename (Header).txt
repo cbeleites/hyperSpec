@@ -1,0 +1,13 @@
+//Exported ASCII-File
+[Header]
+FileName = 
+GraphName = Silicon-new_003_Spec.Data 1
+SizeX = 1
+SizeY = 1
+SizeGraph = 1024
+PositionUnit = µm
+PositionX = -76.3
+PositionY = 36.1
+PositionZ = 0
+XAxisUnit = rel. 1/cm
+DataUnit = CCD cts

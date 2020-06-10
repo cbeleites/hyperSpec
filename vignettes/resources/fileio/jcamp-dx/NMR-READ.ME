@@ -1,0 +1,36 @@
+                        JCAMP-DX for NMR
+                       Test files (4/8/92)
+
+                          Dr. P.Lampen
+   Institut fuer Spektrochemie und Angewandte Spektroskopie (ISAS)
+         Bunsen-Kirchhoff-Str. 11, 44139 Dortmund, Germany
+
+Enclosed in this floppy are test files of a spectrum and the corresponding FID
+measured on a Jeol GX 400 spectrometer and written by our JCAMP program. The
+files are in the following format:
+
+ 1) TestSpec.DX:  Real spectrum with ordinate-values normalized to +/- 32767.
+ 2) Test32.DX:    Real spectrum with unscaled 32 bit ordinate-values.
+ 3) TestNTup.DX:  Complex spectrum in the NTuple format with scaled ordinates.
+ 4) TestFid.DX:   FID in the NTuple format with scaled y-values.
+
+All of these files are using the DIF/DUP data compression format.
+We sent these files to Dr. U.Klauck at Bruker, Rheinstetten in Germany and he
+read the data into his program and produced new JCAMP files in the format:
+
+ 5) BrukDif.DX:  Real spectrum in DIF/DUP form.
+ 6) BrukSqz.DX:  Real spectrum in squeezed form.
+ 7) BrukPac.DX:  Real spectrum in packed form.
+ 8) BrukAffn.DX: Real spectrum in AFFN (ASCII free format numeric) form.
+ 9) BrukNTup.DX: Complex spectrum in DIF/DUP form.
+
+His ordinate values are unscaled 32 bit data.
+Additionally an example of a compound JCAMP file consisting of multiple data
+blocks with structure data and NMR peak assignments (Peak.Txt) is enclosed.
+We hope, these test files will help you in the development of your own JCAMP
+program. Please send us examples of your files when your program is ready.
+
+
+Yours sincerely
+
+Peter Lampen
