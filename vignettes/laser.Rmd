@@ -24,8 +24,8 @@ output:
       toc: yes
       fig_caption: yes
       css:
-        - man/vignette.css
-        - man/style.css
+        - resources/vignette.css
+        - resources/style.css
 vignette: >
     % \VignetteIndexEntry{laser: Vignette on hyperSpec's laser data set.}
     % \VignetteKeywords{hyperSpec, laser, time series}
@@ -34,9 +34,9 @@ vignette: >
     %\VignetteEncoding{UTF-8}
 # Citations/References -------------------------------------------------------
 link-citations: yes
-bibliography: man/laser-pkg.bib
+bibliography: resources/laser-pkg.bib
 biblio-style: plain
-csl: man/elsevier-with-titles.csl
+csl: resources/elsevier-with-titles.csl
 ---
 
 
@@ -46,13 +46,13 @@ library(hyperSpec)
 library(rgl)
 
 # Functions ------------------------------------------------------------------
-source("man/vignette-functions.R", encoding = "UTF-8")
+source("resources/vignette-functions.R", encoding = "UTF-8")
 
 # Settings -------------------------------------------------------------------
-source("man/vignette-default-settingsR.R", encoding = "UTF-8")
+source("resources/vignette-default-settingsR.R", encoding = "UTF-8")
 
 # knitr::opts_chunk$set(
-#   fig.path   = "man/figures/laser--"
+#   fig.path   = "resources/figures/laser--"
 # )
 ```
 
@@ -62,7 +62,7 @@ make_bib(
     "hyperSpec",
     "rgl"
   ),
-  file = "man/laser-pkg.bib"
+  file = "resources/laser-pkg.bib"
 )
 ```
 
@@ -135,7 +135,7 @@ library(hyperSpec)
 Read the data files:
 
 ```{r}
-file  <- system.file("doc/rawdata/laser.txt.gz", package = "hyperSpec")
+file  <- "resources/fileio/txt.Renishaw/laser.txt.gz"
 laser <- read.txt.Renishaw(file, data = "ts")
 ```
 
@@ -159,7 +159,7 @@ The results are shown in figure \@ref(fig:cutspc).
 CAPTION <- "The cut spectra laser emission spectra.   "
 ```
 
-```{r cutspc, fig.cap=CAPTION, fig.width=5, fig.height=3, include=FALSE}
+```{r cutspc, fig.cap=CAPTION, fig.width=5, fig.height=3}
 laser <- laser[, , -75 ~ 0]
 plot(laser, "spcprctl5")
 ```
@@ -214,7 +214,7 @@ wl(laser) <- list(
 CAPTION <- "The spectra with wavelength axis. "
 ```
 
-```{r wlspc, fig.cap=CAPTION, fig.width=5, fig.height=3, include=FALSE}
+```{r wlspc, fig.cap=CAPTION, fig.width=5, fig.height=3}
 plot(laser, "spcprctl5")
 ```
 
@@ -311,7 +311,7 @@ CAPTION <- "The spectra matrix of the `laser`{.r} data set.
 The ordinate of the plot may be the number of the spectrum accessed by `$.row`{.r} (here) or any other extra data column, as, e.g., `$t`{.r} in fig. \\@ref(fig:plotmatt).  "
 ```
 
-```{r plotmatr, fig.cap=CAPTION, include=FALSE}
+```{r plotmatr, fig.cap=CAPTION}
 plot(laser, "mat", contour = TRUE, col = "#00000060")
 ```
 
@@ -325,7 +325,7 @@ CAPTION <- "The spectra matrix of the `laser`{.r} data set.
 The ordinate of the plot may be any extra data column, here `$t`{.r}.  "
 ```
 
-```{r plotmatt, fig.cap=CAPTION, include=FALSE}
+```{r plotmatt, fig.cap=CAPTION}
 levelplot(spc ~ .wavelength * t, laser, contour = TRUE, col = "#00000080")
 ```
 
@@ -386,7 +386,7 @@ if (require(rgl)) {
   rgl.snapshot("fig-3D.png", fmt = "png", top = TRUE)
   rgl.quit()
 } else {
-  png("man/laser-fig-3D.png")
+  png("resources/laser-fig-3D.png")
   ploterrormsg("", "rgl")
   dev.off()
 }
@@ -394,7 +394,7 @@ if (require(rgl)) {
 
 ```{r laser3d, echo=FALSE, fig.cap=CAPTION, out.width="400"}
 CAPTION = "The 3d plot of the laser data.  "
-knitr::include_graphics("man/laser-rgl-3d.png")
+knitr::include_graphics("resources/laser-rgl-3d.png")
 ```
 
 

@@ -26,8 +26,8 @@ output:
       toc: yes
       fig_caption: yes
       css:
-        - man/vignette.css
-        - man/style.css
+        - resources/vignette.css
+        - resources/style.css
 vignette: >
     % \VignetteIndexEntry{chondro: Vignette demonstrating example workflow using the chondro data set.}
     % \VignetteKeywords{chondro, hyperSpec, cluster analysis, preprocessing, Raman, principal component analysis, PCA}
@@ -36,9 +36,9 @@ vignette: >
     %\VignetteEncoding{UTF-8}
 # Citations/References -------------------------------------------------------
 link-citations: yes
-bibliography: man/Chondro-pkg.bib
+bibliography: resources/Chondro-pkg.bib
 biblio-style: plain
-csl: man/elsevier-with-titles.csl
+csl: resources/elsevier-with-titles.csl
 ---
 
 
@@ -50,13 +50,13 @@ library(ggplotify)    # To convert plots to necessary class for alignment
 library(ggpubr)       # To align plots
 
 # Functions ------------------------------------------------------------------
-source("man/vignette-functions.R", encoding = "UTF-8")
+source("resources/vignette-functions.R", encoding = "UTF-8")
 
 # Settings -------------------------------------------------------------------
-source("man/vignette-default-settingsR.R", encoding = "UTF-8")
+source("resources/vignette-default-settingsR.R", encoding = "UTF-8")
 
 # knitr::opts_chunk$set(
-#   fig.path   = "man/figures/Chondro--"
+#   fig.path   = "resources/figures/Chondro--"
 # )
 ```
 
@@ -65,7 +65,7 @@ make_bib(
   c(
     "hyperSpec"
   ),
-  file = "man/Chondro-pkg.bib"
+  file = "resources/Chondro-pkg.bib"
 )
 ```
 
@@ -147,7 +147,7 @@ Microphotograph of the cartilage section.
 The frame indicates the measurement area of $35×25 \\mu m.$
 "
 
-knitr::include_graphics("man/080606d-flip-ausw.jpg")
+knitr::include_graphics("resources/080606d-flip-ausw.jpg")
 ```
 
 
