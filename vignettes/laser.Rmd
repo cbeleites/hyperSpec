@@ -43,7 +43,7 @@ csl: resources/elsevier-with-titles.csl
 ```{r setup-laser, include=FALSE}
 # Packages -------------------------------------------------------------------
 library(hyperSpec)
-library(rgl)
+# library(rgl)
 
 # Functions ------------------------------------------------------------------
 source("resources/vignette-functions.R", encoding = "UTF-8")
@@ -340,7 +340,7 @@ Class `hyperSpec`{.r} objects  can easily be drawn with package **rgl**`r cite_p
 Package **rgl**'s function `persp3d()`{.r} plots a surface in 3d defined by points in x, y, and z. 
 Handing over the appropriate data columns of the `hyperSpec`{.r} object is easy (fig. \@ref(fig:laser3d)).
 
-```{r}
+```{r, eval=FALSE}
 library(rgl)
 ```
 ```{r rgl-plot, eval=FALSE}
