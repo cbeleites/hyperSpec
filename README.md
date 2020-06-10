@@ -3,6 +3,7 @@
 
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/hyperSpec)](https://cran.r-project.org/package=hyperSpec)
+[![R-CMD-check](https://github.com/GegznaV/hyperSpec/workflows/R-CMD-check/badge.svg?branch=change-package-structure)](https://github.com/GegznaV/hyperSpec/actions)
 <!-- badges: end -->
 
 The goal of **hyperSpec** package is to work confortably with hyperspectral data sets, i.e. spatially or time-resolved spectra, or spectra with any other kind of information associated with each of the spectra.
