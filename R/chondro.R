@@ -13,7 +13,6 @@
 ##' @author A. Bonifacio and C. Beleites
 ##' @keywords datasets
 ##' @references The raw data is available at \url{http://hyperspec.r-forge.r-project.org/blob/chondro.zip}
-##' @export chondro
 ##' @examples
 ##'
 ##'
