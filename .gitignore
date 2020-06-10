@@ -65,12 +65,7 @@ hyperSpec_*.tar.gz
 .Rproj.user
 *.Rproj
 
-Vignettes/*/*-pkg.bib
-Vignettes/chondro/chondro-internal.rda
-Vignettes/fileio/barbiturates.rda
-Vignettes/fileio/paracetamol.rda
-Vignettes/flu/flu.rda
-Vignettes/laser/laser.rda
-hyperSpec/tests/testthat/Rplots.pdf
-hyperSpec/tests/testthat/fileio
-hyperSpec/vignettes/man/*.bib
+tests/testthat/Rplots.pdf
+tests/testthat/fileio
+vignettes/*-pkg.bib
+vignettes/resources/*.bib
