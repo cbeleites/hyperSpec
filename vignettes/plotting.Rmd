@@ -56,10 +56,10 @@ library(tripack)
 # library(rgl)
 
 # Functions ------------------------------------------------------------------
-source("resources/vignette-functions.R", encoding = "UTF-8")
+source("vignette-functions.R", encoding = "UTF-8")
 
 # Settings -------------------------------------------------------------------
-source("resources/vignette-default-settingsR.R", encoding = "UTF-8")
+source("vignette-default-settingsR.R", encoding = "UTF-8")
 
 # knitr::opts_chunk$set(
 #   fig.path   = "resources/figures/plotting--"

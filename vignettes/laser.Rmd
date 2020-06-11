@@ -53,12 +53,12 @@ library(hyperSpec)
 
 ```{r setup-laser-2, include=FALSE}
 # Functions ------------------------------------------------------------------
-source("resources/vignette-functions.R", encoding = "UTF-8")
+source("vignette-functions.R", encoding = "UTF-8")
 ```
 
 ```{r setup-laser-3, include=FALSE}
 # Settings -------------------------------------------------------------------
-source("resources/vignette-default-settingsR.R", encoding = "UTF-8")
+source("vignette-default-settingsR.R", encoding = "UTF-8")
 
 # knitr::opts_chunk$set(
 #   fig.path   = "resources/figures/laser--"
