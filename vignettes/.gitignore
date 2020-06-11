@@ -3,6 +3,7 @@
 !resources/*.R
 !vignette-functions.R
 !vignette-default-settingsR.R
+!read.txt.PerkinElmer.R
 old/
 *_cache/
 *_files/
