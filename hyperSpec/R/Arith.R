@@ -1,6 +1,13 @@
+# naming scheme for the internal functions:
+# .<generic>_<x><y> with <x> and <y> the first and second parameter/operand:
+# h ... hyperSpec object
+# n ... numeric (scalar, vector, or matrix)
+# m ... matrix
+# _ ... missing
+
 #' @include expand.R
 ## arithmetic function called with both parameters hyperSpec
-.arith <- function(e1, e2) {
+.arith_hh <- function(e1, e2) {
   validObject(e1)
   validObject(e2)
 
@@ -16,7 +23,7 @@
   e1
 }
 
-.test(.arith) <- function(){
+.test(.arith_hh) <- function(){
   context("Arithmetic operators, 2 hyperSpec objects")
 
   tmp <- as.hyperSpec(matrix(1:length(flu[[]]), nrow = nrow(flu)))
@@ -114,11 +121,11 @@
 ##' all((flu + flu - 2 * flu)[[]] == 0)
 ##' -flu
 ##' flu / flu$c
-setMethod("Arith", signature(e1 = "hyperSpec", e2 = "hyperSpec"), .arith)
+setMethod("Arith", signature(e1 = "hyperSpec", e2 = "hyperSpec"), .arith_hh)
 
 ## unary operators
 
-.arith_unary_h <- function(e1, e2) {
+.arith_h_ <- function(e1, e2) {
   validObject(e1)
 
   if (!missing(e2))
@@ -127,7 +134,7 @@ setMethod("Arith", signature(e1 = "hyperSpec", e2 = "hyperSpec"), .arith)
   e1[[]] <- callGeneric(e1[[]])
   e1
 }
-.test(.arith_unary_h) <- function(){
+.test(.arith_h_) <- function(){
   context("Unary arithmetic operators")
 
   test_that("correct results", {
@@ -153,11 +160,11 @@ setMethod("Arith", signature(e1 = "hyperSpec", e2 = "hyperSpec"), .arith)
 }
 
 ##' @rdname Arith
-setMethod("Arith", signature(e1 = "hyperSpec", e2 = "missing"), .arith_unary_h)
+setMethod("Arith", signature(e1 = "hyperSpec", e2 = "missing"), .arith_h_)
 
 
 ## arithmetic function called with first parameter hyperSpec
-.arithx <- function(e1, e2) {
+.arith_hn <- function(e1, e2) {
   validObject(e1)
 
   if (length(e2) > length(e1[[]]))
@@ -170,7 +177,7 @@ setMethod("Arith", signature(e1 = "hyperSpec", e2 = "missing"), .arith_unary_h)
   e1
 }
 
-.test(.arithx) <- function(){
+.test(.arith_hn) <- function(){
   context("Arithmetic operators, hyperSpec object x")
 
   test_that("correct results with scalar", {
@@ -253,12 +260,12 @@ setMethod("Arith", signature(e1 = "hyperSpec", e2 = "missing"), .arith_unary_h)
 
 
 ##' @rdname Arith
-setMethod("Arith", signature(e1 = "hyperSpec", e2 = "numeric"), .arithx)
+setMethod("Arith", signature(e1 = "hyperSpec", e2 = "numeric"), .arith_hn)
 ##' @rdname Arith
-setMethod("Arith", signature(e1 = "hyperSpec", e2 = "matrix"), .arithx)
+setMethod("Arith", signature(e1 = "hyperSpec", e2 = "matrix"), .arith_hn)
 
 ## arithmetic function called with second parameter hyperSpec
-.arithy <- function(e1, e2) {
+.arith_nh <- function(e1, e2) {
   #e1 <- as.matrix(e1)
   validObject(e2)
 
@@ -273,10 +280,10 @@ setMethod("Arith", signature(e1 = "hyperSpec", e2 = "matrix"), .arithx)
 }
 
 ##' @rdname Arith
-setMethod("Arith", signature(e1 = "numeric", e2 = "hyperSpec"), .arithy)
+setMethod("Arith", signature(e1 = "numeric", e2 = "hyperSpec"), .arith_nh)
 
 ##' @rdname Arith
-setMethod("Arith", signature(e1 = "matrix", e2 = "hyperSpec"), .arithy)
+setMethod("Arith", signature(e1 = "matrix", e2 = "hyperSpec"), .arith_nh)
 
 
 ## matrix multiplication two hyperSpec objects
