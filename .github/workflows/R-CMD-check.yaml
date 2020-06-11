@@ -4,6 +4,9 @@ on:
       - release
       - master
       - develop
+      - change-package-structure
+      - change-package-structure-2
+      - change-package-structure-devel
   pull_request:
     branches:
       - release
