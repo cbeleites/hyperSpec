@@ -90,7 +90,7 @@ reference:
 - contents:
   - has_keyword("misc")
 - title: All functions
-  desc: "All functions including those that are mentioned above."
+  desc: "All functions including those that are not mentioned above."
 - contents:
   - lacks_concepts("not-in-hyperSpec")
 
