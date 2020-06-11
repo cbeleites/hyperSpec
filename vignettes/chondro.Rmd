@@ -1,0 +1,761 @@
+---
+# For bookdown ---------------------------------------------------------------
+# (PART\*) II Case studies {-}
+# `chondro`: Raman Spectra of Chondrocytes in Cartilage {#chondro}
+# For vignette ---------------------------------------------------------------
+title:       "Raman Spectra of Chondrocytes in Cartilage"
+subtitle:    "Package **hyperSpec**'s `chondro` Data Set"
+# subtitle:  Vignette on hyperSpec's chondro data set
+description:  "chondro: Tutorial demonstrating example workflow using the chondro data set."
+# file_name: Chondro
+# Authors --------------------------------------------------------------------
+author:
+  - name: Claudia Beleites^1,2,3,4,5^
+    email: chemometrie@beleites.de
+    corresponding : yes
+    affiliation   : |
+        1. DIA Raman Spectroscopy Group, University of Trieste/Italy (2005--2008)
+        2. Spectroscopy $\cdot$ Imaging, IPHT, Jena/Germany (2008--2017)
+        3. ÖPV, JKI, Berlin/Germany (2017--2019)
+        4. Arbeitskreis Lebensmittelmikrobiologie und Biotechnologie, Hamburg University, Hamburg/Germany (2019 -- 2020)
+        5. Chemometric Consulting and Chemometrix GmbH, Wölfersheim/Germany (since 2016)
+# Document -------------------------------------------------------------------
+date:        "`r Sys.Date()`"
+output:
+    bookdown::html_document2:
+      base_format: rmarkdown::html_vignette
+      toc: yes
+      fig_caption: yes
+      css:
+        - vignette.css
+        - style.css
+vignette: >
+    % \VignetteIndexEntry{Raman Spectra of Chondrocytes in Cartilage}
+    % \VignetteKeywords{chondro, hyperSpec, cluster analysis, preprocessing, Raman, principal component analysis, PCA}
+    % \VignettePackage{hyperSpec}
+    %\VignetteEngine{knitr::rmarkdown}
+    %\VignetteEncoding{UTF-8}
+# Citations/References -------------------------------------------------------
+link-citations: yes
+bibliography: resources/Chondro-pkg.bib
+biblio-style: plain
+csl: elsevier-with-titles.csl
+# Pkgdown --------------------------------------------------------------------
+pkgdown:
+  as_is: true
+  set_null_theme: no
+---
+
+
+```{r setup-chondro, include=FALSE}
+# Packages -------------------------------------------------------------------
+library(hyperSpec)
+require(latticeExtra)
+library(ggplotify)    # To convert plots to necessary class for alignment
+library(ggpubr)       # To align plots
+
+# Functions ------------------------------------------------------------------
+source("vignette-functions.R", encoding = "UTF-8")
+
+# Settings -------------------------------------------------------------------
+source("vignette-default-settingsR.R", encoding = "UTF-8")
+
+# knitr::opts_chunk$set(
+#   fig.path   = "figures/Chondro--"
+# )
+```
+
+```{r bib, echo=FALSE, paged.print=FALSE}
+dir.create("resources", showWarnings = FALSE)
+
+make_bib(
+  c(
+    "hyperSpec"
+  ),
+  file = "resources/Chondro-pkg.bib"
+)
+```
+
+
+<!-- ======================================================================= -->
+```{block, type="note-t", echo=TRUE}
+**Translator's notes** `chondro-1`
+
+
+1. `FIXME:`{.r} After the translation is completed, the contents in the box below must be fixed.
+```
+<!-- ======================================================================= -->
+
+
+
+```{block, type="note", echo=TRUE}
+
+`# FIXME. Fix the contents of this box:`{.r}
+
+**Reproducing this vignette.**
+
+ The data set and source file of this vignette are available at package 
+**hyperSpec**'s github page at <https://github.com/cbeleites/hyperSpec/blob/master/Vignettes/chondro/chondro.Rnw> and 
+<https://github.com/cbeleites/hyperSpec/tree/master/Vignettes/fileio/txt.Renishaw/chondro.txt> 
+(ca. 31 MB).
+
+<!-- FIXME:  -->
+The .Rnw looks for `rawdata/chondro.txt`, so please save the data file in subdirectory `rawdata` of your working directory.
+In order to reproduce the examples by typing in the commands, have a look at the definitions of   color palettes used in this document are defined in `vignettes.defs`.
+
+Also, the package **hyperSpec** needs to be loaded first via `library(hyperSpec)`{.r}.  
+
+```
+
+
+
+<!-- \tableofcontents -->
+
+
+
+# Introduction
+
+This vignette describes the `chondro`{.r} data set.
+It shows a complete data analysis work flow on a Raman map demonstrating frequently needed preprocessing methods:
+
+-  baseline correction,
+-  normalization,
+-  smoothing / interpolating spectra,
+-  preprocessing the spatial grid,
+
+as well as other basic work techniques:
+
+-  plotting spectra,
+-  plotting false color maps,
+-  cutting the spectral range,
+-  selecting (extracting) or deleting spectra, and
+-  *aggregating* spectra (e.g. calculating cluster mean spectra).
+
+
+The chemometric methods used are:
+ 
+-  Principal Component Analysis (PCA) and
+-  Hierarchical Cluster Analysis,
+
+showing how to use data analysis procedures provided by R and other
+packages.
+
+
+# The Data Set
+
+Raman spectra of a cartilage section were measured on each point of a grid, resulting in a so-called
+*Raman map*. 
+Figure \@ref(fig:vis-all) shows a microscope picture of the measured area and its
+surroundings.
+
+```{r vis-all, echo=FALSE, fig.cap=CAPTION, out.width="400"}
+CAPTION = "
+Microphotograph of the cartilage section.
+The frame indicates the measurement area of $35×25 \\mu m.$
+"
+
+knitr::include_graphics("chondro--080606d-flip-ausw.jpg")
+```
+
+
+
+The measurement parameters were:
+
+-  **Excitation wavelength:** 633 nm
+-  **Exposure time:** 10 s per spectrum
+-  **Objective:** 100×, NA 0.85
+-  **Measurement grid:** 35 × 25 $\mu m$, 1 $\mu m$ step size
+-  **Spectrometer:** Renishaw InVia
+
+
+# Data Import
+
+Renishaw provides a converter to export their proprietary data in a so-called long format ASCII file. Raman maps are exported having four columns, *y*, *x*, *raman shift*, and *intensity*. 
+Package **hyperSpec** comes with a function to import such files, `read.txt.Renishaw()`{.r}. 
+The function assumes a map as default, but can also handle single spectra (`data = "spc"`{.r}), time series (`data = "ts"`{.r}), and depth profiles (`data = "depth"`{.r}).
+In addition, large files may be processed in chunks. 
+In order to speed up the reading `read.txt.Renishaw()`{.r} does not allow missing values, but it does work with `NA`{.r}.
+
+```{r chondro-import, cache=TRUE}
+# Download file from:
+raw_data_url <-
+  'https://media.githubusercontent.com/media/cbeleites/hyperSpec/master/Vignettes/fileio/txt.Renishaw/chondro.txt'
+dir.create('rawdata', F)
+download.file(raw_data_url, 'rawdata/chondro.txt')
+
+# Read the raw data and make a hyperSpec object
+chondro <- read.txt.Renishaw("rawdata/chondro.txt", data = "xyspc")
+chondro
+```
+
+
+To get an overview of the spectra (figure \@ref(fig:rawspc)):
+
+
+```{r include=FALSE}
+CAPTION <- "The raw spectra: median, 16^th^ and 84^th^, and 5^th^ and 95^th^ percentile
+spectra."
+```
+
+```{r rawspc, fig.cap=CAPTION}
+plot(chondro, "spcprctl5")
+```
+
+A mean intensity map (figure \@ref(fig:rawmap)) is produced by:
+
+```{r include=FALSE}
+CAPTION <- "The sum intensity of the raw spectra."
+```
+
+```{r rawmap, fig.cap=CAPTION}
+plotmap(chondro, func.args = list(na.rm = TRUE), col.regions = seq_palette(20))
+```
+
+Function `plotmap()`{.r} squeezes all spectral intensities into a summary characteristic for the whole spectrum.
+This function defaults to the `mean()`{.r}.
+Further arguments that should be handed to this function can be given in list `func.args`{.r}.
+As the raw data contains `NA`{.r}s due to deleting cosmic ray spikes, this argument is needed here.
+
+
+
+# Preprocessing
+
+As usual in Raman spectroscopy of biological tissues, the spectra need some preprocessing.
+
+
+## Aligning the Spatial Grid 
+
+The spectra were acquired on a regular square grid of measurement positions over the sample.
+The `hyperSpec`{.r} object, however, does not store the data on this grid but rather stores the position where the spectra were taken. 
+This allows more handling of irregular point patterns, and of sparse measurements where not a
+complete (square) is retained but only few positions on this grid.
+
+Occasionally, numeric or rounding errors will lead to seemingly irregular spacing of the data
+points. 
+This is most obvious in false-colour maps of the sample (fig. \@ref(fig:rawmap), as `plotmap`{.r} by default uses `panel.levelplot.raster`{.r}, which assumes a regular grid is underlying the data.
+The symptoms are warnings "`'x' values are not equispaced; output may be wrong`" and white stripes in the false colour map (fig. \@ref(fig:irregular-a)), which occur even thought the points are almost at their correct place (fig. \@ref(fig:irregular-b)).
+
+
+```{r}
+## disturb a few points
+chondro$x[500] <- chondro$x[500] + rnorm(1, sd = 0.01)
+chondro$y[660] <- chondro$y[660] + rnorm(1, sd = 0.01)
+```
+
+
+<!-- irregular-grid ------------------------------------------------------ -->
+```{r include=FALSE}
+CAPTION = "
+Rounding erros in the point coordinates of lateral measurement grid:
+**(A)** off-grid points cause stripes.
+"
+```
+
+```{r irregular-a, fig.cap=CAPTION}
+plotmap(chondro, col.regions = seq_palette(20))
+```
+
+```{r irregular-a-sub, fig.height=3, fig.width=5, include=FALSE}
+# For subplot A
+irregular_grid_a <- as.ggplot(plotmap(chondro, col.regions = seq_palette(20)))
+```
+<!-- --------------------------------------------------------------------- -->
+
+
+<!-- irregular-pts ------------------------------------------------------- -->
+```{r include=FALSE}
+CAPTION = "
+Rounding erros in the point coordinates of lateral measurement grid:
+**(B)** slightly wrong coordinages.
+"
+```
+
+```{r irregular-b, fig.cap=CAPTION}
+require("latticeExtra")
+plotmap(chondro,
+  col.regions = seq_palette(20), panel = panel.levelplot.points,
+  col = NA, pch = 22, cex = 1.9
+)
+```
+
+```{r irregular-b-sub, fig.height=3, fig.width=5, include=FALSE}
+# For subplot B
+irregular_grid_b <- as.ggplot(
+  plotmap(chondro, col.regions = seq_palette(20), panel = panel.levelplot.points,
+    col = NA, pch = 22, cex = 1.9)
+)
+```
+<!-- --------------------------------------------------------------------- -->
+
+
+Such slight rounding errors can be corrected by `fitraster()`{.r} or `makeraster()`{.r}.
+Function `fitraster()`{.r} needs the step size of the raster and a starting coordinate, whereas `makeraster()`{.r} tries to guess these parameters for `fitraster()`{.r}.
+As long as just a few points are affected by rounding errors, `makeraster()`{.r} works fine:
+
+```{r}
+chondro$x <- fitraster(chondro$x)$x
+chondro$y <- fitraster(chondro$y)$x
+```
+the result is shown in figure \@ref(fig:irregular-c). 
+
+<!-- irregular-corr  ------------------------------------------------------ -->
+```{r include=FALSE}
+CAPTION = "
+Rounding erros in the point coordinates of lateral measurement grid:
+**(C)** corrected grid.  
+"
+```
+
+```{r irregular-c, fig.cap=CAPTION}
+plotmap(chondro, col.regions = seq_palette(20))
+```
+
+```{r irregular-c-sub, fig.height=3, fig.width=5, include=FALSE}
+# For subplot C
+irregular_grid_c <- as.ggplot(plotmap(chondro, col.regions = seq_palette(20)))
+```
+<!-- --------------------------------------------------------------------- -->
+
+
+
+
+<!-- The subplots -------------------------------------------------------- -->
+
+```{r irregular, fig.cap=CAPTION, fig.height=3, fig.width=12, echo=FALSE, out.width="98%"}
+CAPTION = "
+Rounding erros in the point coordinates of lateral measurement grid.
+**(A)** Off-grid points cause stripes.
+**(B)** Slightly wrong coordinages.
+**(C)** Corrected grid.  "
+
+# Arrange the subplots
+ggpubr::ggarrange(
+  irregular_grid_a, irregular_grid_b, irregular_grid_c, ncol = 3, 
+  labels = LETTERS[1:3]
+)
+```
+<!-- --------------------------------------------------------------------- -->
+
+
+<!-- ===================================================================== -->
+```{block2, type="note-t", echo=TRUE}
+**Translator's notes** `chondro-2`
+
+1. Which is better: separate plots \@ref(fig:irregular-a), \@ref(fig:irregular-b), \@ref(fig:irregular-c) or single plot with subplots \@ref(fig:irregular)? 
+
+2. The narration and plots do not seem to indicate the same ideas.
+E.g., \@ref(fig:irregular-b) looks totally OK, and \@ref(fig:irregular-c) have while pixels.
+In the pdf vignettes these two plots look identically.
+Has something changed in R or **hyperSpec**?
+```
+<!-- ===================================================================== -->
+
+
+
+## Spectral Smoothing
+
+As the overview shows that the spectra contain `NA`{.r}s (from cosmic spike removal that was done previously), the first step is to remove these.
+Also, the wavelength axis of the raw spectra is not evenly spaced (the data points are between `r signif(min(diff(wl(chondro))), 2)` and `r signif(max(diff(wl(chondro))), 2)` $cm^{-1}$ apart from each other).
+Furthermore, it would be good to trade some spectral resolution for higher signal to noise ratio.
+All three of these issues are tackled by interpolating and smoothing of the wavelength axis by `spc.loess()`{.r}.
+The resolution is to be reduced to 8 $cm^{-1}$, or 4 $cm^{-1}$ data point spacing.
+
+
+```{r interp}
+chondro <- spc.loess(chondro, seq(602, 1800, 4))
+chondro
+```
+   
+
+The spectra are now the same as in the data set `chondro`{.r}.
+However, the data set also contains the clustering results (see at the very end of this document).
+They are stored for saving as the distributed demo data:
+
+```{r save_chondro}
+spectra.to.save <- chondro
+```
+
+
+## Baseline Correction
+
+The next step is a linear baseline correction. `spc.fit.poly.below()`{.r} tries to automatically find appropriate support points for polynomial baselines.
+The default is a linear baseline, which is appropriate in our case:
+
+```{r bl}
+baselines <- spc.fit.poly.below(chondro)
+chondro <- chondro - baselines
+```
+
+
+## Normalization
+
+As the spectra are quite similar, area normalization should work well:
+
+```{r include=FALSE}
+# The preprocessed spectra.
+CAPTION <- "The spectra after smoothing, baseline correction, and normalization.  "
+```
+
+```{r bl-norm, fig.cap=CAPTION, fig.width=6, fig.height=3}
+chondro <- chondro / rowMeans(chondro)
+plot(chondro, "spcprctl5")
+```
+
+Note that normalization effectively cancels the information of one variate (wavelength), it introduces a collinearity. 
+If needed, this collinearity can be broken by removing one of the variates involved in the normalization.
+Note that the `chondro`{.r} object shipped with package **hyperSpec** set has multiple collinearities as only the first 10 principal components are shipped (see below).
+
+For the results of these preprocessing steps, see figure \@ref(fig:bl-norm).
+
+
+
+## Subtracting the Overall Composition
+
+The spectra are very homogeneous, but I'm interested in the differences between the different regions of the sample. 
+Subtracting the minimum spectrum cancels out the matrix composition that is common to all spectra.
+But the minimum spectrum also picks up a lot of noise.
+So instead, the 5^th^ percentile spectrum is subtracted:
+
+
+
+```{r include=FALSE}
+# The preprocessed spectra.
+CAPTION <- "The spectra after subtracting the 5^th^ percentile spectrum.  "
+```
+
+```{r bl-perc, fig.cap=CAPTION, fig.width=6, fig.height=3}
+chondro <- chondro - quantile(chondro, 0.05)
+plot(chondro, "spcprctl5")
+```
+
+The resulting data set is shown in figure \@ref(fig:bl-perc).
+Some interesting differences start to show up: there are distinct lipid bands in some but not all of the spectra.
+
+
+
+## Outlier Removal by Principal Component Analysis (PCA)
+
+PCA is a technique that decomposes the data into scores and loadings (virtual spectra).
+It is known to be quite sensitive to outliers.
+Thus, I use it for outlier detection. The resulting scores and loadings are put again into `hyperSpec`{.r} objects by `decomposition()`{.r}:
+
+```{r pca}
+pca <- prcomp(chondro, center = TRUE)
+
+scores <- decomposition(chondro, pca$x,
+  label.wavelength = "PC",
+  label.spc = "score / a.u."
+)
+
+loadings <- decomposition(chondro, t(pca$rotation),
+  scores = FALSE,
+  label.spc = "loading I / a.u."
+)
+```
+
+Plotting the scores of each PC against all other gives a good idea where to look for outliers.
+
+
+
+```{r include=FALSE}
+CAPTION <- "The `pairs()`{.r} plot of the first 7 scores. "
+```
+
+```{r pca-pairs, fig.cap=CAPTION, fig.height=6, fig.width=6}
+pairs(scores[[, , 1:7]], pch = 19, cex = 0.5)
+```
+
+Now the spectra can be found either by plotting two scores against each other (by `plot()`{.r}) and identifying with `identify()`{.r}, or they can be identified in the score map by `map.identify()`{.r}.
+There is also a function to identify spectra in a spectra plot, `spc.identify()`{.r}, which could be used to identify principal components that are heavily influenced, e.g., by cosmic ray spikes.
+
+```{r pca-identify, eval=FALSE}
+## omit the first 4 PCs
+out <- map.identify(scores [, , 5])
+out <- c(out, map.identify(scores [, , 6]))
+out <- c(out, map.identify(scores [, , 7]))
+```
+
+```{r pca-out, echo=FALSE, results='hide'}
+out <- c(105, 140, 216, 289, 75, 69)
+```
+
+```{r pca-cols}
+out
+outcols <- c("red", "blue", "#800080", "orange", "magenta", "brown")
+
+cols <- rep("black", nrow(chondro))
+cols[out] <- outcols
+```
+
+We can check our findings by comparing the spectra to the bulk of spectra (figure \@ref(fig:pca-outspc)):
+
+
+```{r include=FALSE}
+CAPTION <- "The suspected outlier spectra. "
+```
+
+```{r pca-outspc, fig.cap=CAPTION, fig.width=6, fig.height=4.5, small.mar=TRUE}
+plot(chondro[1],
+  plot.args = list(ylim = c(1, length(out) + .7)),
+  lines.args = list(type = "n")
+)
+
+for (i in seq(along = out)) {
+  plot(chondro, "spcprctl5", yoffset = i, add = TRUE, col = "gray")
+  plot(chondro[out[i]],
+    yoffset = i, col = outcols[i], add = TRUE,
+    lines.args = list(lwd = 2)
+  )
+  text(600, i + .33, out[i])
+}
+```
+
+and also by looking where these spectra appear in the scores `pairs()`{.r} plot (figure \@ref(fig:pca-pairs-2)):
+
+```{r include=FALSE}
+CAPTION <- "The `pairs()`{.r} plot of the first 7 scores with suspected outliers. "
+```
+
+```{r pca-pairs-2, fig.cap=CAPTION, fig.height=6, fig.width=6}
+pch <- rep(46L, nrow(chondro))
+pch[out] <- 19L
+
+pairs(scores[[, , 1:7]], pch = pch, cex = 1, col = cols)
+```
+
+<!-- ```{r pca-pairs2} -->
+<!-- png("chondro-fig--pca-pairs2.png", width = 500, height = 500) -->
+<!-- pch <- rep(46L, nrow(chondro)) -->
+<!-- pch[out] <- 19L -->
+<!-- pairs(scores[[, , 1:7]], pch = pch, cex = 1, col = cols) -->
+<!-- dev.off() -->
+<!-- ``` -->
+
+Finally, the outliers are removed:
+
+```{r outdel}
+chondro <- chondro[-out]
+```
+
+
+# Hierarchical Cluster Analysis (HCA)
+
+HCA merges objects according to their (dis)similarity into clusters. The result is
+a dendrogram, a graph stating at which level two objects are similar
+and thus grouped together.
+
+The first step in HCA is the choice of the distance.
+The R function `dist()`{.r} offers a variety of distance measures to be computed.
+The so-called **Pearson** distance $D^2_{Pearson}=\frac{1-\mathrm{COR}\left(X\right)}{2}$ is popular in data analysis of vibrational spectra and is provided by package **hyperSpec**'s `pearson.dist()`{.r} function.
+
+Also for computing the dendrogram, a number of choices are available.
+Here we choose **Ward**'s method, and, as it uses **Euclid**ean distance for calculating the dendrogram, **Euclid**ean distance also for the distance matrix:
+
+
+```{r hca}
+dist <- dist(chondro)
+dendrogram <- hclust(dist, method = "ward.D2")
+```
+
+```{r include=FALSE}
+CAPTION <- "Dendogram. "
+```
+```{r denddummy, fig.cap=CAPTION, fig.width=6, fig.height=3}
+plot(dendrogram, labels = FALSE)
+```
+
+In order to get clusters, the dendrogram is cut at a level specified either by height or by the number of clusters.
+
+```{r dendcut}
+chondro$clusters <- as.factor(cutree(dendrogram, k = 3))
+cols <- c("dark blue", "orange", "#C02020")
+```
+
+
+The result for $k$ = 3 clusters is plotted as a map (figure \@ref(fig:clustmap)). 
+If the color-coded variate (left hand side of the formula) is a factor, the legend bar does not show intermediate colors, and `hyperSpec`{.r}'s `levelplot()`{.r} method uses the levels of the factor for the legend.
+
+Thus  meaningful names are assigned
+
+```{r clustname}
+levels(chondro$clusters) <- c("matrix", "lacuna", "cell")
+```
+and the cluster membership map is plotted:
+
+
+
+```{r include=FALSE}
+CAPTION <- "Hierarchical cluster analysis: the cluster map for $k=3$ clusters. "
+```
+
+```{r clustmap, fig.cap=CAPTION}
+print(plotmap(chondro, clusters ~ x * y, col.regions = cols))
+```
+
+The cluster membership can also be marked in the dendrogram:
+
+
+```{r include=FALSE}
+CAPTION <- "Hierarchical cluster analysis: the dendrogram."
+```
+
+```{r dend, fig.cap=CAPTION, fig.width=6, fig.height=3}
+par(xpd = TRUE) # allow plotting the markers into the margin
+plot(dendrogram, labels = FALSE, hang = -1)
+mark.dendrogram(dendrogram, chondro$clusters, col = cols)
+```
+
+Figure \@ref(fig:dend) shows the dendrogram and \@ref(fig:clustmap) the resulting cluster map. 
+The three clusters correspond to the cartilage matrix, the lacuna and the cells. 
+The left cell is destroyed and its contents are leaking into the matrix, while the right cells looks intact.
+
+We can plot the cluster mean spectra $\pm$ 1 standard deviation using `aggregate()`{.r} (see figure \@ref(fig:clustmeans)):
+
+
+
+```{r include=FALSE}
+CAPTION <- "The cluster mean $\\pm$ 1 standard deviation spectra.
+The blue cluster shows distinct lipid bands, the yellow cluster collagen, and the red cluster proteins and nucleic acids.  "
+```
+
+```{r clustmeans, fig.cap=CAPTION, fig.width=6, fig.height=3}
+cluster.means <- aggregate(chondro, chondro$clusters, mean_pm_sd)
+plot(cluster.means, stacked = ".aggregate", fill = ".aggregate", col = cols)
+```
+
+
+# Plotting a False-Colour Map of Certain Spectral Regions
+
+Package `hyperSpec`{.r} comes with a sophisticated interface for specifying spectral ranges.
+Expressing things like 1000$cm^{-1}$ $\pm$ 1 data points is easily possible.
+Thus, we can have a fast look at the nucleic acid distribution, using the DNA bands at 728, 782, 1098, 1240, 1482, and 1577 $cm^{-1}:$
+
+
+
+```{r include=FALSE}
+CAPTION <- "False color map of DNA.  "
+```
+
+```{r DNA, fig.cap=CAPTION}
+DNAcols <- colorRampPalette(c("white", "gold", "dark green"), space = "Lab")(20)
+plotmap(chondro[, , c(728, 782, 1098, 1240, 1482, 1577)],
+  col.regions = DNAcols
+)
+```
+
+The result is shown in figure \@ref(fig:DNA). 
+While the nucleus of the right cell shows up nicely, only low concentration remainders are detected of the left cell.
+
+
+
+# Smoothed False-Colour Maps and Interpolation
+
+As we plotted only a few selected wavelenths, figure \@ref(fig:DNA) is quite noisy.
+Smoothing interpolation could help. 
+In R, such a smoother is mostly seen as a model, whose predictions are then displayed as smooth map (fig. \@ref(fig:DNAsm)). 
+This smoothing model can be calculated on the fly, e.g., by using the `panel.2dsmoother()`{.r} wrapper provided by package **latticeExtra**:
+
+
+```{r include=FALSE}
+CAPTION <- "False colour map of the DNA band intensities: smoothed DNA abundance. "
+```
+
+```{r DNAsm, fig.cap=CAPTION, width=7.5, height=5}
+plotmap(chondro[, , c(728, 782, 1098, 1240, 1482, 1577)],
+  col.regions = DNAcols,
+  panel = panel.2dsmoother, args = list(span = 0.05)
+)
+```
+
+For interpolation (i.e., no smoothing at the available data points), a Voronoi plot (a.k.a. Delaunay triangulation) is basically a 2d constant interpolation: each point in space has the same z/color value as its closest available point.
+For a full rectangular grid, this corresponds to the usual square/rectangular pixel plot.
+With missing points, differences become clear (fig. \@ref(fig:DNAmissing)):
+
+```{r}
+tmp <- sample(chondro[, , c(728, 782, 1098, 1240, 1482, 1577)], 500)
+```
+
+
+```{r include=FALSE}
+CAPTION <- 'Two-dimesional (2D) "constant" interpolation with missing values: omitting missing data points. '
+```
+
+```{r DNAmissing, fig.cap=CAPTION, width=7.5, height=5}
+plotmap(tmp, col.regions = DNAcols)
+```
+
+
+
+```{r include=FALSE}
+CAPTION <- 'Two-dimesional (2D) "constant" interpolation with missing values: Delaunay triangulation / Voronoi plot.  '
+```
+
+```{r DNAvoronoi, fig.cap=CAPTION, width=7.5, height=5}
+plotmap(tmp,
+  col.regions = DNAcols,
+  panel = panel.voronoi, pch = 19, col = "black", cex = 0.1
+)
+```
+
+
+The 2D linear interpolation can be done, e.g., by the functions provided by package package **akima**.
+However, they do not follow the model-predict paradigm, but instead do directly return an object suitable for base plotting with `image()`{.r} (fig. \@ref(fig:DNAinterp)):
+
+
+```{r include=FALSE}
+CAPTION <- "Two-dimensional (2D) interpolation.  "
+```
+
+```{r DNAinterp, fig.cap=CAPTION, width=7.5, height=5}
+if (require("akima")) {
+  tmp <- rowMeans(chondro[[, , c(728, 782, 1098, 1240, 1482, 1577)]])
+  chondro.bilinear <- interp(chondro$x, chondro$y, as.numeric(tmp), nx = 100, ny = 100)
+
+  image(chondro.bilinear,
+    xlab = labels(chondro, "x"), ylab = labels(chondro, "y"),
+    col = DNAcols
+  )
+  
+} else {
+  plot(NULL, xlim = c(0, 1), ylim = c(0, 1))
+  text(0.5, 0.5, 'Package "akima" is required to create this plot')
+}
+```
+
+
+# Saving the data set {#sec:saving-data-set}
+
+Finally, the example data set is put together and saved.
+In order to keep the package size small, only a PCA-compressed version with 10 PCs is shipped as example data set of the package.
+
+```{r save-chondro, eval=FALSE}
+spectra.to.save$clusters <- factor (NA, levels = levels (chondro$clusters))
+spectra.to.save$clusters[- out] <- chondro$clusters
+
+pca <- prcomp (spectra.to.save)
+.chondro.scores   <- pca$x      [, seq_len (10)]
+.chondro.loadings <- pca$rot    [, seq_len (10)]
+.chondro.center   <- pca$center
+.chondro.wl       <- wl (chondro)
+.chondro.labels   <- lapply (labels (chondro), as.expression)
+.chondro.extra    <- spectra.to.save$..
+
+save(.chondro.scores, .chondro.loadings, .chondro.center,
+  .chondro.wl, .chondro.labels, .chondro.extra,
+  file = "chondro-internal.rda")
+```
+
+
+This is the file distributed with package **hyperSpec** as example data set.
+
+
+# Session Info {-}
+
+```{r session-info-chondro, echo=FALSE, paged.print=FALSE, eval=FALSE}
+sessioninfo::session_info("hyperSpec")
+```
+
+# References {-}
+
+
+
