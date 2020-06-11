@@ -25,8 +25,8 @@ output:
       toc: yes
       fig_caption: yes
       css:
-        - resources/vignette.css
-        - resources/style.css
+        - vignette.css
+        - style.css
 vignette: >
     % \VignetteIndexEntry{Fitting Baselines to Spectra}
     % \VignetteKeywords{hyperspec, baseline}
@@ -37,7 +37,7 @@ vignette: >
 link-citations: yes
 bibliography: resources/baseline-pkg.bib
 biblio-style: plain
-csl: resources/elsevier-with-titles.csl
+csl: elsevier-with-titles.csl
 # Pkgdown --------------------------------------------------------------------
 pkgdown:
   as_is: true
@@ -56,7 +56,7 @@ source("vignette-functions.R", encoding = "UTF-8")
 source("vignette-default-settingsR.R", encoding = "UTF-8")
 
 # knitr::opts_chunk$set(
-#   fig.path   = "resources/figures/baseline--"
+#   fig.path   = "figures/baseline--"
 # )
 ```
 

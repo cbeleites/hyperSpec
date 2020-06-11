@@ -29,8 +29,8 @@ output:
       toc: yes
       fig_caption: yes
       css:
-        - resources/vignette.css
-        - resources/style.css
+        - vignette.css
+        - style.css
 vignette: >
     % \VignetteIndexEntry{Introduction to Package "hyperSpec"}
     % \VignetteKeywords{hyperspec}
@@ -42,7 +42,7 @@ vignette: >
 link-citations: yes
 bibliography: resources/intro-pkg.bib
 biblio-style: plain
-csl: resources/elsevier-with-titles.csl
+csl: elsevier-with-titles.csl
 # Pkgdown --------------------------------------------------------------------
 pkgdown:
   as_is: true
@@ -182,7 +182,7 @@ Even if there are no spectra, `$spc`{.r} must still be present.
 It is then a matrix with zero columns.
 
 ```{r structure, echo=FALSE, fig.cap=CAPTION, out.width="400"}
-knitr::include_graphics("resources/intro--strukturhyperspec.png")
+knitr::include_graphics("intro--strukturhyperspec.png")
 CAPTION = "The structure of the data in a `hyperSpec` object.  In this example the 'extra data' are the `x` and `y` columns in `@data`."
 ```
 
@@ -1970,7 +1970,7 @@ summary(collapse(cells, lacunae)$clusters)
 
 ```{r tab-fn, results='asis', echo=FALSE, eval=FALSE}
 make.fn.table <- function() {
-  load("resources/intro--functions.RData")
+  load("intro--functions.RData")
   functions <- subset(functions, !internal)
   functions$group <- functions$group[, drop = TRUE]
 

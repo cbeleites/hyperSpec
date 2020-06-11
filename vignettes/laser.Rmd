@@ -25,8 +25,8 @@ output:
       toc: yes
       fig_caption: yes
       css:
-        - resources/vignette.css
-        - resources/style.css
+        - vignette.css
+        - style.css
 vignette: >
     % \VignetteIndexEntry{Unstable Laser Emission}
     % \VignetteKeywords{hyperSpec, laser, time series}
@@ -37,7 +37,7 @@ vignette: >
 link-citations: yes
 bibliography: resources/laser-pkg.bib
 biblio-style: plain
-csl: resources/elsevier-with-titles.csl
+csl: elsevier-with-titles.csl
 # Pkgdown --------------------------------------------------------------------
 pkgdown:
   as_is: true
@@ -61,7 +61,7 @@ source("vignette-functions.R", encoding = "UTF-8")
 source("vignette-default-settingsR.R", encoding = "UTF-8")
 
 # knitr::opts_chunk$set(
-#   fig.path   = "resources/figures/laser--"
+#   fig.path   = "figures/laser--"
 # )
 ```
 
@@ -146,7 +146,8 @@ library(hyperSpec)
 Read the data files:
 
 ```{r}
-file  <- "resources/fileio/txt.Renishaw/laser.txt.gz"
+# Renishaw file
+file  <- system.file("extdata/laser.txt.gz", package = "hyperSpec")
 laser <- read.txt.Renishaw(file, data = "ts")
 ```
 
@@ -397,7 +398,7 @@ if (require(rgl)) {
   rgl.snapshot("fig-3D.png", fmt = "png", top = TRUE)
   rgl.quit()
 } else {
-  png("resources/laser-fig-3D.png")
+  png("laser--fig-3D.png")
   ploterrormsg("", "rgl")
   dev.off()
 }
@@ -405,7 +406,7 @@ if (require(rgl)) {
 
 ```{r laser3d, echo=FALSE, fig.cap=CAPTION, out.width="400"}
 CAPTION = "The 3d plot of the laser data.  "
-knitr::include_graphics("resources/laser-rgl-3d.png")
+knitr::include_graphics("laser--rgl-3d.png")
 ```
 
 
