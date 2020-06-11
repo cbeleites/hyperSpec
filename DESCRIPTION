@@ -62,7 +62,8 @@ Suggests:
     sessioninfo,
     ggplotify,
     akima,
-    ggpubr
+    ggpubr,
+    caTools
 Imports:
     testthat,
     methods,
