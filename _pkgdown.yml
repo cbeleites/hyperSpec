@@ -73,6 +73,6 @@ reference:
 - title: Methods
 - contents:
   - has_keyword("methods")
-- title: Miscelaneous functions
+- title: Miscellaneous functions
 - contents:
   - has_keyword("misc")
