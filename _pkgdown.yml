@@ -3,9 +3,12 @@ template:
     bootswatch: cerulean
     noindex: true
 
+development:
+  mode: auto
 
 articles:
   - title: "Principles"
+    navbar: ~
     desc: >
       The main functionality of "hyperSpec".
     contents:
@@ -20,3 +23,5 @@ articles:
     - chondro
     - flu
     - laser
+
+
