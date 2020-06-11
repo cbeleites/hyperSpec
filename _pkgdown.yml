@@ -29,3 +29,50 @@ authors:
   Vilmantas Gegzna:
     href: https://orcid.org/0000-0002-9500-5167
 
+reference:
+- title: Package
+- contents:
+  - has_keyword("package")
+- title: Classes
+- contents:
+  - has_keyword("classes")
+- title: Datasets
+- contents:
+  - has_keyword("datasets")
+- title: Data generation
+- contents:
+  - has_keyword("datagen")
+- title: Input and output
+- contents:
+  - has_keyword("IO")
+  - has_keyword("file")
+- title: Plots
+- contents:
+  - has_keyword("aplot")
+  - has_keyword("dplot")
+  - has_keyword("hplot")
+  - has_keyword("iplot")
+  - has_keyword("color")
+- title: Data manipulation
+- contents:
+  - has_keyword("mainp")
+  - has_keyword("array")
+  - has_keyword("arith")
+  - has_keyword("math")
+- title: Utilities
+- contents:
+  - has_keyword("utilities")
+  - has_keyword("programming")
+  - has_keyword("iteration")
+- title: Summary and data analysis
+- contents:
+  - has_keyword("multivar")
+  - has_keyword("univar")
+  - has_keyword("cluster")
+  - has_keyword("distribution")
+- title: Methods
+- contents:
+  - has_keyword("methods")
+- title: Miscelaneous functions
+- contents:
+  - has_keyword("misc")
