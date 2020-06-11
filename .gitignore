@@ -37,7 +37,13 @@ hyperSpec_*.tar.gz
 .Rproj.user
 *.Rproj
 
+# Local pkgdown files
+docs
+
+# Unit tests
 tests/testthat/Rplots.pdf
 tests/testthat/fileio
+
+# Vignettes
 vignettes/*-pkg.bib
 vignettes/resources/*.bib
