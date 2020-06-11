@@ -11,12 +11,22 @@ By contributing, you understand and agree that your work becomes the part of the
 * Ensure the bug was not already reported by searching on GitHub under [Issues](https://github.com/cbeleites/hyperSpec/issues).
 * If you're unable to find an open issue addressing the problem, open a new one. Be sure to include a title and clear description, as much relevant information as possible, and a code sample or an executable test case demonstrating the expected behavior that is not occurring.
 * Refer to the [Bug Reporting in R article](https://www.r-project.org/bugs.html) for guidance.
+* The ideal minimal working example is a unit test.
 
 ## Code and Documentation Styleguide
 
 * This project adheres to the [Tidyverse styleguide](https://style.tidyverse.org/).
-* This guide applies both to the code and the [`roxygen2` documentation](https://style.tidyverse.org/documentation.html).
+* This guide applies both to the code and the [`roxygen2` documentation](https://style.tidyverse.org/documentation.html).  
+
+  We're currently transitioning the documentation to markdown. 
+  - Please write any new documentation in markdown already.
+  - Enable markdown for a particular help page with `#' @md`.
+  - Whenever touching a function whose documentation is still LaTeX-style, please take the time to convert it to markdown.  
+    [Here are some regexps to help with search and replace of `\code{}` and `\link[]{}`.](https://gist.github.com/cbeleites/cc1c964bc5416ca285acf24f1d4e30ef)
+  
 * Use package [styler](http://styler.r-lib.org/) with RStudio add-in to easily re-style your code to comply with the guidelines.
+* If a unit test needs to be disabled temporarily, please use `skip("reason for switching off")`. 
+  This way, we'll be reminded that the test is switched off whenever the unit tests are run.
 
 ## Working With Git
 

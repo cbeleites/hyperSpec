@@ -3,7 +3,7 @@ Encoding: UTF-8
 Type: Package
 Title: Work with Hyperspectral Data, i.e. Spectra + Meta Information (Spatial,
     Time, Concentration, ...)
-Version: 0.99.99
+Version: 0.99-20200611
 Date: 2020-06-11
 Maintainer: Claudia Beleites <Claudia.Beleites@chemometrix.gmbh>
 Authors@R: c(
@@ -56,6 +56,7 @@ Suggests:
     reshape,
     devtools,
     R.rsp,
+    tibble,
     knitr,
     rmarkdown,
     bookdown,
@@ -79,6 +80,7 @@ Collate:
     'hyperspec-class.R'
     'unittest.R'
     'paste.row.R'
+    'expand.R'
     'Arith.R'
     'Compare.R'
     'DollarNames.R'
@@ -129,6 +131,7 @@ Collate:
     'matlab.palette.R'
     'mean_sd.R'
     'merge.R'
+    'mergeextra.R'
     'mvtnorm.R'
     'normalize01.R'
     'orderwl.R'
