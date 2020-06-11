@@ -61,6 +61,8 @@ source("vignette-default-settingsR.R", encoding = "UTF-8")
 ```
 
 ```{r bib, echo=FALSE, paged.print=FALSE}
+dir.create("resources", showWarnings = FALSE)
+
 make_bib(
   c(
     "hyperSpec",
