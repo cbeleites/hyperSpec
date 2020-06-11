@@ -95,3 +95,15 @@ reference:
   - lacks_concepts("not-in-hyperSpec")
 
 # -------------------------------------------------------------------------
+
+figures:
+  dev: grDevices::png
+  dpi: 96
+  dev.args: []
+  fig.ext: png
+  fig.width: 5
+  fig.height: ~
+  fig.retina: 2
+  fig.asp: 1.618
+
+# -------------------------------------------------------------------------
