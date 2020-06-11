@@ -1,11 +1,13 @@
 on:
   push:
     branches:
+      - release
       - master
       - develop
       - change-package-structure
   pull_request:
     branches:
+      - release
       - master
       - develop
 
