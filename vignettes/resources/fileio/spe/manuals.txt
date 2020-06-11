@@ -1,7 +1,0 @@
-Princeton Instruments publishes their manuals at
-
-ftp://ftp.princetoninstruments.com/public/Manuals/Princeton%20Instruments/
-
-For SPE file format 3.0, see document called 'SPE 3.0 File Format Specification'
-For SPE file format 2.5, see document called 'WinSpec 2.6 Spectroscopy Software User Manual Issue 2.6', appendix 'Data Structure'
-
