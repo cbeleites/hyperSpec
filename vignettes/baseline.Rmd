@@ -5,6 +5,7 @@
 title:       Fitting Baselines to Spectra
 # subtitle:  Vignette on hyperSpec's baselinebelow data set
 # file_name: baseline
+description: "baseline: Tutorial explaining hyperSpec's baseline fitting functions."
 # Authors --------------------------------------------------------------------
 author:
   - name: Claudia Beleites^1,2,3,4,5^
@@ -27,7 +28,7 @@ output:
         - resources/vignette.css
         - resources/style.css
 vignette: >
-    % \VignetteIndexEntry{baseline: Vignette explaining hyperSpec's baseline fitting functions.}
+    % \VignetteIndexEntry{Fitting Baselines to Spectra}
     % \VignetteKeywords{hyperspec, baseline}
     % \VignettePackage{hyperSpec}
     %\VignetteEngine{knitr::rmarkdown}

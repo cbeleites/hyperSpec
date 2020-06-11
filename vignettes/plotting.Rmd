@@ -2,8 +2,9 @@
 # For bookdown ---------------------------------------------------------------
 # `plotting`: **_hyperSpec_** Plotting Functions {#plotting}
 # For vignette ---------------------------------------------------------------
-title:     "**_hyperSpec_** Plotting Functions"
+title:     'Plotting Functions in "hyperSpec"'
 # subtitle:  "Introduction to the **_hyperSpec_** plotting functions"
+description: "plotting: Manual of hyperSpec's plotting functions"
 # file_name: plotting
 # Authors --------------------------------------------------------------------
 author:
@@ -27,7 +28,7 @@ output:
         - resources/vignette.css
         - resources/style.css
 vignette: >
-    % \VignetteIndexEntry{plotting: manual of hyperSpec's plotting functions}
+    % \VignetteIndexEntry{Plotting Functions in "hyperSpec"'}
     % \VignetteKeywords{hyperspec}
     % \VignettePackage{hyperSpec}
     % \VignetteDepends{latticeExtra, tripack, deldir, rgl, ggplot2, sessioninfo}

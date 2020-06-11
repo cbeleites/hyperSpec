@@ -3,8 +3,10 @@
 # (PART\*) I Principles {-}
 # `hyperspec`: Introduction to Package **_hyperSpec_** {#hyperspec}
 # For vignette ---------------------------------------------------------------
-title:       "Introduction to Package **_hyperSpec_**"
+title:       'Introduction to Package "hyperSpec"'
+# title:     "Introduction to Package **_hyperSpec_**"
 # subtitle:  Introduction on the R package hyperSpec
+description:  "Introduction: hyperSpec's main manual."
 # file_name: hyperSpec Manual
 # Authors --------------------------------------------------------------------
 author:
@@ -30,7 +32,7 @@ output:
         - resources/vignette.css
         - resources/style.css
 vignette: >
-    % \VignetteIndexEntry{Introduction: hyperSpec's main manual}
+    % \VignetteIndexEntry{Introduction to Package "hyperSpec"}
     % \VignetteKeywords{hyperspec}
     % \VignettePackage{hyperSpec}
     % \VignetteDepends{MASS}

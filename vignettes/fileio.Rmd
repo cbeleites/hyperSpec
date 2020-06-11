@@ -4,6 +4,7 @@
 # For vignette ---------------------------------------------------------------
 title:       Import and Export of Spectra Files
 # subtitle:  Vignette File Import and Export for R package hyperSpec
+description: "fileio: Tutorial on spectra file import and export for hyperSpec."
 # file_name: fileio
 # Authors --------------------------------------------------------------------
 author:
@@ -27,7 +28,7 @@ output:
         - resources/vignette.css
         - resources/style.css
 vignette: >
-    % \VignetteIndexEntry{fileio: Vignette on spectra file import and export for hyperSpec}
+    % \VignetteIndexEntry{Import and Export of Spectra Files}
     % \VignetteKeywords{hyperSpec, file, spectra, spectrum, import, export}
     % \VignettePackage{hyperSpec}
     %\VignetteEngine{knitr::rmarkdown}

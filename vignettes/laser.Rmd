@@ -3,8 +3,9 @@
 # `laser`: Unstable Laser Emission {#laser}
 # For vignette ---------------------------------------------------------------
 title:       Unstable Laser Emission
-subtitle:    Vignette for the Data Set `laser` of the R package package **hyperSpec**
+subtitle:    Vignette for the Data Set `laser` of the R package **hyperSpec**
 # subtitle:  Vignette on hyperSpec's laser data set
+description: "laser: Tutorial on hyperSpec's `laser` data set."
 # Authors --------------------------------------------------------------------
 author:
   - name: Claudia Beleites^1,2,3,4,5^
@@ -27,7 +28,7 @@ output:
         - resources/vignette.css
         - resources/style.css
 vignette: >
-    % \VignetteIndexEntry{laser: Vignette on hyperSpec's laser data set.}
+    % \VignetteIndexEntry{Unstable Laser Emission}
     % \VignetteKeywords{hyperSpec, laser, time series}
     % \VignettePackage{hyperSpec}
     %\VignetteEngine{knitr::rmarkdown}

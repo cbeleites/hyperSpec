@@ -3,8 +3,9 @@
 # `flu`: Calibration of Quinine Fluorescence Emission {#flu}
 # For vignette ---------------------------------------------------------------
 title:       Calibration of Quinine Fluorescence Emission
-subtitle:    Vignette for the Data Set `flu` of the R package package **hyperSpec**
+subtitle:    Vignette for the Data Set `flu` of the R package **hyperSpec**
 # subtitle:  Vignette on hyperSpec's flu data set
+description: "flu: Example work flow for hyperSpec's fluorescence example data set `flu`."
 # file_name: flu
 # Authors --------------------------------------------------------------------
 author:
@@ -28,7 +29,7 @@ output:
         - resources/vignette.css
         - resources/style.css
 vignette: >
-    % \VignetteIndexEntry{flu: example work flow for hyperSpec's fluorescence example data set `flu`}
+    % \VignetteIndexEntry{Calibration of Quinine Fluorescence Emission}
     % \VignetteKeywords{hyperSpec, flu, calibration}
     % \VignettePackage{hyperSpec}
     %\VignetteEngine{knitr::rmarkdown}

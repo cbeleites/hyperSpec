@@ -6,6 +6,7 @@
 title:       "Raman Spectra of Chondrocytes in Cartilage"
 subtitle:    "Package **hyperSpec**'s `chondro` Data Set"
 # subtitle:  Vignette on hyperSpec's chondro data set
+description:  "chondro: Tutorial demonstrating example workflow using the chondro data set."
 # file_name: Chondro
 # Authors --------------------------------------------------------------------
 author:
@@ -29,7 +30,7 @@ output:
         - resources/vignette.css
         - resources/style.css
 vignette: >
-    % \VignetteIndexEntry{chondro: Vignette demonstrating example workflow using the chondro data set.}
+    % \VignetteIndexEntry{Raman Spectra of Chondrocytes in Cartilage}
     % \VignetteKeywords{chondro, hyperSpec, cluster analysis, preprocessing, Raman, principal component analysis, PCA}
     % \VignettePackage{hyperSpec}
     %\VignetteEngine{knitr::rmarkdown}
