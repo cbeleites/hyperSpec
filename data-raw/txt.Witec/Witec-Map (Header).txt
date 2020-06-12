@@ -1,0 +1,8 @@
+//Exported ASCII-File
+[Header]
+FileName = F:\Si-Testdaten.WIP
+GraphName = Map_000_Spec.Data 1_F
+SizeX = 5
+SizeY = 5
+SizeGraph = 1024
+DataUnit = CCD cts

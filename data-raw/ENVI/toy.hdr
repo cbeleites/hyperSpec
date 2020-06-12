@@ -1,0 +1,19 @@
+ENVI
+description = {
+toy.bil}
+samples = 150
+lines   = 167
+bands   = 4
+header offset = 0
+file type = ENVI Standard
+data type = 12
+interleave = bil
+byte order = 0
+map info = {Transverse Mercator, 1, 1, 411999, 142701, 3, 3,Ordnance Survey of Great Britain '36}
+projection info = {3, 6377563.396, 6356256.909237285, 49, -2, 400000, -100000, 0.9996012717,Ordnance Survey of Great Britain '36, Transverse Mercator}
+coordinate system string = {PROJCS["Transverse_Mercator",GEOGCS["GCS_OSGB 1936",DATUM["D_OSGB_1936",SPHEROID["Airy_1830",6377563.396,299.3249646]],PRIMEM["Greenwich",0],UNIT["Degree",0.017453292519943295]],PROJECTION["Transverse_Mercator"],PARAMETER["latitude_of_origin",49],PARAMETER["central_meridian",-2],PARAMETER["scale_factor",0.9996012717],PARAMETER["false_easting",400000],PARAMETER["false_northing",-100000],UNIT["Meter",1]]}
+band names = {
+422.16 (423.84),
+464.59 (466.29),
+507.14 (508.84),
+549.73 (551.44)}

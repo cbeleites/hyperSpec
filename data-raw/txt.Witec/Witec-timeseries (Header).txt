@@ -1,0 +1,8 @@
+//Exported ASCII-File
+[Header]
+FileName = F:\Si-Testdaten.WIP
+GraphName = Time Series_000_Spec.Data 1
+SizeX = 100
+SizeY = 1
+SizeGraph = 1024
+DataUnit = CCD cts

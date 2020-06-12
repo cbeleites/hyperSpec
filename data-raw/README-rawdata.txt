@@ -1,0 +1,1 @@
+This folder contains contents (raw data) for "fileio" vignette.
