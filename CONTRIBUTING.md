@@ -16,8 +16,34 @@ By contributing, you understand and agree that your work becomes the part of the
 ## Code and Documentation Styleguide
 
 * This project adheres to the [Tidyverse styleguide](https://style.tidyverse.org/).
-* This guide applies both to the code and the [`roxygen2` documentation](https://style.tidyverse.org/documentation.html).
+* This guide applies both to the code and the [`roxygen2` documentation](https://style.tidyverse.org/documentation.html).  
+
+  We're currently transitioning the documentation to markdown.
+  - Please write any new documentation in markdown already.
+  - Enable markdown for a particular help page with `#' @md`.
+  - Whenever touching a function whose documentation is still LaTeX-style, please take the time to convert it to markdown.  
+    [Here are some regexps to help with search and replace of `\code{}` and `\link[]{}`.](https://gist.github.com/cbeleites/cc1c964bc5416ca285acf24f1d4e30ef)
+
 * Use package [styler](http://styler.r-lib.org/) with RStudio add-in to easily re-style your code to comply with the guidelines.
+* If a unit test needs to be disabled temporarily, please use `skip("reason for switching off")`.
+  This way, we'll be reminded that the test is switched off whenever the unit tests are run.
+
+
+## Vignette Style and Standards
+* No multi-line sentences (enter/return after each sentence, extra return starts a new paragraph).  This facilitates comparison via version control.
+* Package names in text are written in **bold**.
+* Package names in section headings are in **_bold italic_**.
+* In section headings main words should be capitalized.
+* Use the British English variant and corresponding spell checker.
+* Function names should be written between backticks with the parentheses and followed by a signal to use syntax formatting (not simply for example `texttt` or `code` if one was using pure LaTeX), for example `fun()`{.r}.  The CSS file controls the exact appearance.
+* Figures should have captions.
+* Every figure should be mentioned in text via reference.  This will give automatic numbering.
+* Figure and Table should be capitalized when mentioned in text, e.g. Figure 1.
+* Mention of the software `R` should be formatted with backticks.
+* Sourced files should make vignette authors' life easier, and should not contain anything important to end users/readers.
+* The first code block should start with `rm(list = ls())` to ensure a clean, reproducible workspace.
+* NEED TO DISCUSS: formatting of code blocks. Could use `tidy = TRUE` as one option.
+
 
 ## Working With Git
 
@@ -76,7 +102,7 @@ The project adheres to the semantic versioning guidelines, as outlined at https:
 
 Briefly, the version string has the form `x.y.z` (or `major.minor.patch`), where the major number gets incremeted if a release introduces breaking changes, the minor one after any changes in functionality (new features of bugfixes), and the patch number is increased after any trivial change. If a major or minor number is incremented, all subsequent ones are set to zero.
 
-The version numbers refer only to commits in the `master` branch, and get incremented in one of two cases: 
+The version numbers refer only to commits in the `master` branch, and get incremented in one of two cases:
 * during the release preparation, when a `release/x.y.z` branch buds off `develop` and merges into `master`.
 * after a hotfix, which also results in a new commit on `master`.
 
@@ -91,11 +117,6 @@ The process starts when the package is in a stable state that can be released to
 * Ensure that all check are passed on the tarballs you build (either on your machine or using CI) with `R CMD check --as-cran <package.tar.gz>`. The checks must pass for `R` versions `R-oldrel`, `R-release`, `R-patched`, and `R-devel`.
 * If any bugs are found, they must be fixed in the very same branch (see [here](https://stackoverflow.com/a/57507373/6029703) for details)
 * Once everything works use `git flow release finish <x.y.z>`. It will merge the release branch into both `master` and `develop`, and will assign a tag to the newly created commit in the `master` branch.
-
-### Unit Tests
-
-* If a unit test needs to be disabled temporarily, please use `skip("reason for switching off")`. 
-  This way, we'll be reminded that the test is switched off whenever the unit tests are run.
 
 <hr>
 
