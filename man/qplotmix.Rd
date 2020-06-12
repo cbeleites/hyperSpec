@@ -59,26 +59,29 @@ colmix.rgb(
 
 \item{purecol}{pure component colours, names determine legend labels}
 
-\item{mapping}{see \code{\link[ggplot2]{geom_tile}}}
+\item{mapping}{see [ggplot2::geom_tile()]}
 
-\item{...}{\code{qmixtile}: handed to \link[hyperSpec]{colmix.rgb}
+\item{...}{`qmixtile`: handed to [colmix.rgb()]
 
-\code{qmixlegend} and \code{colmix.rgb} hand further arguments to the \code{normalize} function}
+  `qmixlegend()` and `colmix.rgb()` hand further arguments to the
+  `normalize` function}
 
-\item{map.tileonly}{if \code{TRUE}, \code{mapping} will be handed to
-\code{\link[ggplot2]{geom_tile}} instead of \code{\link[ggplot2]{ggplot}}.}
+\item{map.tileonly}{if `TRUE`, `mapping` will be handed to
+[ggplot2::geom_tile()] instead of [ggplot2::ggplot()].}
 
 \item{x}{matrix with component intensities in columns}
 
-\item{na.rm}{see \code{link[base]{min}}}
+\item{na.rm}{see [base::min()]}
 
 \item{legend}{should a legend be produced instead of normalized values?}
 
 \item{n}{of colours to produce in legend}
 
-\item{min}{numeric with value corresponding to "lowest" colour for each column}
+\item{min}{numeric with value corresponding to "lowest" colour for each
+column}
 
-\item{max}{numeric with value corresponding to "hightest" colour for each column}
+\item{max}{numeric with value corresponding to "hightest" colour for each
+column}
 
 \item{dx}{width of label bar}
 
@@ -88,15 +91,17 @@ colmix.rgb(
 
 \item{normalize}{function to normalize the values.}
 
-\item{against}{value to mix against (for \code{sub = TRUE} only, 1 = white, 0 = black)}
+\item{against}{value to mix against
+(for `sub = TRUE` only, 1 = white, 0 = black)}
 
 \item{sub}{subtractive color mixing?}
 }
 \value{
-invisible \code{NULL}
+invisible `NULL`
 
-list with components ymin, max and fill to specify value and fill colour value (still
-numeric!) for the legend, otherwise the normalized values
+list with components `ymin`, `max` and `fill` to specify value and
+  fill colour value (still numeric!) for the legend, otherwise the
+  normalized values
 
 ggplot object with legend
 

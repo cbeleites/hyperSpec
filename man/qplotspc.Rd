@@ -19,44 +19,46 @@ qplotspc(
 
 \item{wl.range}{wavelength ranges to plot}
 
-\item{...}{handed to \code{\link[ggplot2]{geom_line}}}
+\item{...}{handed to \code{\link[ggplot2:geom_line]{ggplot2::geom_line()}}}
 
-\item{mapping}{see  \code{\link[ggplot2]{geom_line}}}
+\item{mapping}{see  \code{\link[ggplot2:geom_line]{ggplot2::geom_line()}}}
 
 \item{spc.nmax}{maximum number of spectra to plot}
 
 \item{map.lineonly}{if \code{TRUE}, \code{mapping} will be handed to
-\code{\link[ggplot2]{geom_line}} instead of \code{\link[ggplot2]{ggplot}}.}
+\code{\link[ggplot2:geom_line]{ggplot2::geom_line()}} instead of \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}}.}
 
 \item{debuglevel}{if > 0, additional debug output is produced}
 }
 \value{
-a \code{\link[ggplot2]{ggplot}} object
+a \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object
 }
 \description{
 Spectra plotting with ggplot2
 }
 \details{
-These functions are still experimental and may change substantially in future.
+These functions are still experimental and may change in future.
 }
 \examples{
 
   qplotspc (chondro)
 
-  qplotspc (paracetamol, c (2800 ~ max, min ~ 1800)) + scale_x_reverse (breaks = seq (0, 3200, 400))
+  qplotspc (paracetamol, c (2800 ~ max, min ~ 1800)) +
+     scale_x_reverse (breaks = seq (0, 3200, 400))
 
   qplotspc (aggregate (chondro, chondro$clusters, mean),
             mapping = aes (x = .wavelength, y = spc, colour = clusters)) +
     facet_grid (clusters ~ .)
 
   qplotspc (aggregate (chondro, chondro$clusters, mean_pm_sd),
-            mapping = aes (x = .wavelength, y = spc, colour = clusters, group = .rownames)) +
+            mapping = aes (x = .wavelength, y = spc, colour = clusters,
+            group = .rownames)) +
     facet_grid (clusters ~ .)
 }
 \seealso{
-\code{\link{plotspc}}
+\code{\link[=plotspc]{plotspc()}}
 
-\code{\link[ggplot2]{ggplot}}\code{\link[ggplot2]{geom_line}}
+\code{\link[ggplot2:ggplot]{ggplot2::ggplot()}}, \code{\link[ggplot2:geom_line]{ggplot2::geom_line()}}
 }
 \author{
 Claudia Beleites
