@@ -35,7 +35,7 @@ Depends:
     R (>= 3.6.0),
     lattice,
     grid,
-    ggplot2 (>= 2.2.0),
+    ggplot2 (>= 2.3.0),
     xml2
 Suggests:
     R.matlab,
@@ -71,7 +71,8 @@ Imports:
     utils,
     latticeExtra,
     lazyeval,
-    dplyr
+    dplyr,
+    rlang
 URL: https://github.com/cbeleites/hyperSpec
 BugReports: https://github.com/cbeleites/hyperSpec/issues
 VignetteBuilder: knitr
