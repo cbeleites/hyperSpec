@@ -1,0 +1,9 @@
+Princeton Instruments has TriVista Manuals on their website.
+
+ftp://ftp.princetoninstruments.com/public/Manuals/Princeton%20Instruments/TriVista%20System%20Manual.pdf
+
+ftp://ftp.princetoninstruments.com/public/Manuals/Princeton%20Instruments/TriVista%20CRS%20System%20Manual.pdf
+
+The manuals claim that S&I TriVista saves the data as .spe. 
+At least for our software, .spe is only an export option (=> produces .spe version 2.2). 
+.tvf is an XML-file format.

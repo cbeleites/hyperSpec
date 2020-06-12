@@ -1,0 +1,82 @@
+**********************************************************************
+1. Structure of a COMPOUND JCAMP-DX File. Consisting of multiple
+DATA BLOCKS with structure data and NMR peak assignments.
+
+All labeled data records (LDRs) not marked as OPTIONAL are REQUIRED
+Please replace the text in '' with your actual values.
+**********************************************************************
+
+##TITLE='title of the whole COMPOUND file'
+##JCAMP-DX=4.24   $$ 'Program, Version No.'
+##DATA TYPE=LINK
+##BLOCKS='n'      $$ n is the number of the DATA BLOCKS
+##ORIGIN='name of the contributor, organization, address, telephone'
+##OWNER=COPYRIGHT (C) 'year' by 'name'   $$ or PUBLIC DOMAIN
+
+##TITLE='title of the first DATA BLOCK with structure data'
+##JCAMP-CS=3.7
+##BLOCK_ID=1
+##ORIGIN='name of the contributor, organization, address, telephone'
+##OWNER=COPYRIGHT (C) 'year' by 'name'  $$ or PUBLIC DOMAIN
+...
+##CROSS REFERENCE=NMR PEAK ASSIGNMENTS:BLOCK_ID=2
+...      $$ structure info
+##END=   $$ end of the first DATA BLOCK
+
+##TITLE='title of the second DATA BLOCK with peak assignments'
+##JCAMP-DX=5.00
+##DATA TYPE=NMR PEAK ASSIGNMENTS
+##DATA CLASS=ASSIGNMENTS
+##BLOCK_ID=2
+##ORIGIN='name of the contributor, organization, address, telephone'
+##OWNER=COPYRIGHT (C) 'year' by 'name'  $$ or PUBLIC DOMAIN
+...
+##CROSS REFERENCE=STRUCTURE:BLOCK_ID=1
+...      $$ peak assignment info
+##END=   $$ end of the second DATA BLOCK
+
+...      $$ further structure and peak assignment blocks
+##END=   $$ end of the last DATA BLOCK
+##END=   $$ end of the COMPOUND JCAMP-DX FILE
+
+**********************************************************************
+2. Example of a peak assignment DATA BLOCK in a COMPOUND JCAMP-DX file
+**********************************************************************
+
+##TITLE='title of the peak assignments block'
+##JCAMP-DX=5.00
+##DATA TYPE=NMR PEAK ASSIGNMENTS
+##DATA CLASS=ASSIGNMENTS
+##BLOCK_ID='n'                               $$ only used in COMPOUND files
+##ORIGIN='name of the contributor, organization, address, telephone'
+##OWNER=COPYRIGHT (C) 'year' by 'name'       $$ or PUBLIC DOMAIN
+##.OBSERVE FREQUENCY='frequency in MHz'
+##.OBSERVE NUCLEUS='^1H, ^13C etc.'
+##.SOLVENT REFERENCE='solvent lock signal in ppm'
+##DATE='YY/MM/DD'                            $$ OPTIONAL
+##TIME='HH:MM:SS'                            $$ OPTIONAL
+##SOURCE REFERENCE='your spectrum identification' $$ OPTIONAL
+##CROSS REFERENCE='other associated block IDs' $$ only used in COMPOUND Files
+$$ e.g. STRUCTURE:BLOCK_ID='m'
+$$ e.g. INFRARED SPECTRUM:BLOCK_ID='l'
+##SAMPLE DESCRIPTION='sample information'    $$ OPTIONAL
+$$ e.g. SOLVENT='solvent'
+##NAMES='sample names'                       $$ OPTIONAL
+##SPECTROMETER/DATA SYSTEM='spectrometer'    $$ OPTIONAL
+##TEMPERATURE='temperature in degrees C'     $$ OPTIONAL
+##XUNITS='HZ or PPM'
+##YUNITS=ARBITRARY UNITS
+##NPOINTS='number of the peak assignments'
+##PEAK ASSIGNMENTS=(XYMA)
+('x-value 1', 'y-value 1', 'multiplicity 1', <'assignment 1'>)
+('x-value 2', 'y-value 2', 'multiplicity 2', <'assignment 2'>)
+...
+##.COUPLING CONSTANTS=J(A,B)                  $$ OPTIONAL
+'coupling constant 1' ('atom number 1', 'hetero-atom number 1')
+'coupling constant 2' ('atom number 2', 'hetero-atom number 2')
+...
+##.RELAXATION TIMES=(XYR)                    $$ OPTIONAL
+'x-value 1', 'y-value 1', 'relaxation time 1 in s'
+'x-value 2', 'y-value 2', 'relaxation time 2 in s'
+...
+##END=   $$ end of this DATA BLOCK
