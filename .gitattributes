@@ -544,3 +544,5 @@ Vignettes/fileio/spc/wplanes.txt filter=lfs diff=lfs merge=lfs -text
 Vignettes/fileio/ENVI/HySpexNIR.hdr filter=lfs diff=lfs merge=lfs -text
 Vignettes/fileio/ENVI/HySpexNIR.hyspex filter=lfs diff=lfs merge=lfs -text
 Vignettes/fileio/jcamp-dx/GMD_20111121_MDN35_ALK_JCAMP-shortened.txt filter=lfs diff=lfs merge=lfs -text
+# Make LFS track files in directory "raw-data/" 
+raw-data/** filter=lfs diff=lfs merge=lfs -text
