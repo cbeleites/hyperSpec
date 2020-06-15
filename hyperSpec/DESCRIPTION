@@ -3,8 +3,8 @@ Encoding: UTF-8
 Type: Package
 Title: Work with Hyperspectral Data, i.e. Spectra + Meta Information (Spatial,
     Time, Concentration, ...)
-Version: 0.99-20200608
-Date: 2020-06-08
+Version: 0.99-20200615
+Date: 2020-06-15
 Maintainer: Claudia Beleites <Claudia.Beleites@chemometrix.gmbh>
 Authors@R: c(
     person("Claudia",   "Beleites",  role = c("aut", "cre", "dtc"), email = "Claudia.Beleites@chemometrix.gmbh"),
@@ -28,7 +28,7 @@ Description: Comfortable ways to work with hyperspectral data sets,
     etc. More generally, any data that is recorded over a discretized variable,
     e.g. absorbance = f (wavelength), stored as a vector of absorbance values
     for discrete wavelengths is suitable.
-License: GPL (>= 3)
+License: GPL (>= 3) + file LICENSE
 LazyLoad: yes
 LazyData: yes
 Depends:
@@ -56,9 +56,15 @@ Suggests:
     reshape,
     devtools,
     R.rsp,
+    tibble,
     knitr,
     rmarkdown,
-    bookdown
+    bookdown,
+    sessioninfo,
+    ggplotify,
+    akima,
+    ggpubr,
+    caTools
 Imports:
     testthat,
     methods,
