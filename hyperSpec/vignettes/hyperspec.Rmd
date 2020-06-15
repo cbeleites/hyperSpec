@@ -3,8 +3,10 @@
 # (PART\*) I Principles {-}
 # `hyperspec`: Introduction to Package **_hyperSpec_** {#hyperspec}
 # For vignette ---------------------------------------------------------------
-title:       "Introduction to Package **_hyperSpec_**"
+title:       'Introduction to Package "hyperSpec"'
+# title:     "Introduction to Package **_hyperSpec_**"
 # subtitle:  Introduction on the R package hyperSpec
+description:  "Introduction: hyperSpec's main manual."
 # file_name: hyperSpec Manual
 # Authors --------------------------------------------------------------------
 author:
@@ -27,10 +29,10 @@ output:
       toc: yes
       fig_caption: yes
       css:
-        - resources/vignette.css
-        - resources/style.css
+        - vignette.css
+        - style.css
 vignette: >
-    % \VignetteIndexEntry{Introduction: hyperSpec's main manual}
+    % \VignetteIndexEntry{Introduction to Package "hyperSpec"}
     % \VignetteKeywords{hyperspec}
     % \VignettePackage{hyperSpec}
     % \VignetteDepends{MASS}
@@ -40,7 +42,11 @@ vignette: >
 link-citations: yes
 bibliography: resources/intro-pkg.bib
 biblio-style: plain
-csl: resources/elsevier-with-titles.csl
+csl: elsevier-with-titles.csl
+# Pkgdown --------------------------------------------------------------------
+pkgdown:
+  as_is: true
+  set_null_theme: no
 ---
 
 
@@ -57,15 +63,17 @@ library(pls)
 
 # Functions ------------------------------------------------------------------
 #
-source("resources/vignette-functions.R", encoding = "UTF-8")
+source("vignette-functions.R", encoding = "UTF-8")
 
 # Settings -------------------------------------------------------------------
-source("resources/vignette-default-settingsR.R", encoding = "UTF-8")
+source("vignette-default-settingsR.R", encoding = "UTF-8")
 
 ```
 
 
 ```{r bib, echo=FALSE, paged.print=FALSE}
+dir.create("resources", showWarnings = FALSE)
+
 make_bib(
   c("hyperSpec",
     "baseline",
@@ -174,7 +182,7 @@ Even if there are no spectra, `$spc`{.r} must still be present.
 It is then a matrix with zero columns.
 
 ```{r structure, echo=FALSE, fig.cap=CAPTION, out.width="400"}
-knitr::include_graphics("resources/intro--strukturhyperspec.png")
+knitr::include_graphics("intro--strukturhyperspec.png")
 CAPTION = "The structure of the data in a `hyperSpec` object.  In this example the 'extra data' are the `x` and `y` columns in `@data`."
 ```
 
@@ -1962,7 +1970,7 @@ summary(collapse(cells, lacunae)$clusters)
 
 ```{r tab-fn, results='asis', echo=FALSE, eval=FALSE}
 make.fn.table <- function() {
-  load("resources/intro--functions.RData")
+  load("intro--functions.RData")
   functions <- subset(functions, !internal)
   functions$group <- functions$group[, drop = TRUE]
 
