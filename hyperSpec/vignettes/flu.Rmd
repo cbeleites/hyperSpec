@@ -3,8 +3,9 @@
 # `flu`: Calibration of Quinine Fluorescence Emission {#flu}
 # For vignette ---------------------------------------------------------------
 title:       Calibration of Quinine Fluorescence Emission
-subtitle:    Vignette for the Data Set `flu` of the R package package **hyperSpec**
+subtitle:    Vignette for the Data Set `flu` of the R package **hyperSpec**
 # subtitle:  Vignette on hyperSpec's flu data set
+description: "flu: Example work flow for hyperSpec's fluorescence example data set `flu`."
 # file_name: flu
 # Authors --------------------------------------------------------------------
 author:
@@ -25,10 +26,10 @@ output:
       toc: yes
       fig_caption: yes
       css:
-        - man/vignette.css
-        - man/style.css
+        - vignette.css
+        - style.css
 vignette: >
-    % \VignetteIndexEntry{flu: example work flow for hyperSpec's fluorescence example data set `flu`}
+    % \VignetteIndexEntry{Calibration of Quinine Fluorescence Emission}
     % \VignetteKeywords{hyperSpec, flu, calibration}
     % \VignettePackage{hyperSpec}
     %\VignetteEngine{knitr::rmarkdown}
@@ -36,9 +37,13 @@ vignette: >
 
 # Citations/References -------------------------------------------------------
 link-citations: yes
-bibliography: man/flu-pkg.bib
+bibliography: resources/flu-pkg.bib
 biblio-style: plain
-csl: man/elsevier-with-titles.csl
+csl: elsevier-with-titles.csl
+# Pkgdown --------------------------------------------------------------------
+pkgdown:
+  as_is: true
+  set_null_theme: no
 ---
 
 
@@ -47,22 +52,24 @@ csl: man/elsevier-with-titles.csl
 library(hyperSpec)
 
 # Functions ------------------------------------------------------------------
-source("man/vignette-functions.R", encoding = "UTF-8")
+source("vignette-functions.R", encoding = "UTF-8")
 
 # Settings -------------------------------------------------------------------
-source("man/vignette-default-settingsR.R", encoding = "UTF-8")
+source("vignette-default-settingsR.R", encoding = "UTF-8")
 
 # knitr::opts_chunk$set(
-#   fig.path   = "man/figures/flu--"
+#   fig.path   = "figures/flu--"
 # )
 ```
 
 ```{r bib, echo=FALSE, paged.print=FALSE}
+dir.create("resources", showWarnings = FALSE)
+
 make_bib(
   c(
     "hyperSpec"
   ),
-  file = "man/flu-pkg.bib"
+  file = "resources/flu-pkg.bib"
 )
 ```
 
@@ -138,7 +145,7 @@ The function to import these files, `read.txt.PerkinElmer()`{.r}, is discussed i
 
 1. `# FIXME:`{.r} Why do we need `source("read.txt.PerkinElmer.R")`? 
 Why is `read.txt.PerkinElmer()` not a function of package **hyperSpec**.
-This part (`source("man/read.txt.PerkinElmer.R")`) is not user-friendly and must be fixed.
+This part (`source("read.txt.PerkinElmer.R")`) is not user-friendly and must be fixed.
 
 **Selfnote**: review after `fileio` vignette is translated.
 ```
@@ -198,10 +205,11 @@ It needs to be `source()`{.r}d before use:
 
 ```{r read.txt.PE}
 # FIXME: this code is not user-fiendly.
-source("man/read.txt.PerkinElmer.R")
+source("read.txt.PerkinElmer.R")
 
-files <- Sys.glob(paste0(system.file("doc/rawdata", package = "hyperSpec"),"/flu?.txt"))
-flu   <- read.txt.PerkinElmer(files, skip = 54)
+folder <- system.file("extdata/flu", package = "hyperSpec")
+files  <- Sys.glob(paste0(folder, "/flu?.txt"))
+flu    <- read.txt.PerkinElmer(files, skip = 54)
 ```
 Now the spectra are in a `hyperSpec`{.r} object and can be examined, e.g., by:
 
