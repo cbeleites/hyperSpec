@@ -4,6 +4,7 @@
 # For vignette ---------------------------------------------------------------
 title:       Import and Export of Spectra Files
 # subtitle:  Vignette File Import and Export for R package hyperSpec
+description: "fileio: Tutorial on spectra file import and export for hyperSpec."
 # file_name: fileio
 # Authors --------------------------------------------------------------------
 author:
@@ -24,19 +25,25 @@ output:
       toc: yes
       fig_caption: yes
       css:
-        - man/vignette.css
-        - man/style.css
+        - vignette.css
+        - style.css
 vignette: >
-    % \VignetteIndexEntry{fileio: Vignette on spectra file import and export for hyperSpec}
+    % \VignetteIndexEntry{Import and Export of Spectra Files}
     % \VignetteKeywords{hyperSpec, file, spectra, spectrum, import, export}
     % \VignettePackage{hyperSpec}
     %\VignetteEngine{knitr::rmarkdown}
     %\VignetteEncoding{UTF-8}
 # Citations/References -------------------------------------------------------
 link-citations: yes
-bibliography: man/fileio-pkg.bib
+bibliography:
+  - resources/fileio-pkg.bib
+  - fileio.bib
 biblio-style: plain
-csl: man/elsevier-with-titles.csl
+csl: elsevier-with-titles.csl
+# Pkgdown --------------------------------------------------------------------
+pkgdown:
+  as_is: true
+  set_null_theme: no
 ---
 
 
@@ -46,23 +53,25 @@ library(hyperSpec)
 library(R.matlab)
 
 # Functions ------------------------------------------------------------------
-source("man/vignette-functions.R", encoding = "UTF-8")
+source("vignette-functions.R", encoding = "UTF-8")
 
 # Settings -------------------------------------------------------------------
-source("man/vignette-default-settingsR.R", encoding = "UTF-8")
+source("vignette-default-settingsR.R", encoding = "UTF-8")
 
 # knitr::opts_chunk$set(
-#   fig.path   = "man/figures/fileio--"
+#   fig.path   = "figures/fileio--"
 # )
 ```
 
 ```{r bib, echo=FALSE, paged.print=FALSE}
+dir.create("resources", showWarnings = FALSE)
+
 make_bib(
   c(
     "hyperSpec",
     "R.matlab"
   ),
-  file = "man/fileio-pkg.bib"
+  file = "resources/fileio-pkg.bib"
 )
 ```
 
@@ -434,7 +443,7 @@ Maintenance of package **hyperSpec**'s `read.jdx()`{.r} function is limited from
 \index{reference!NIST!atomic emission}
 
 The NIST (National Institute of Standards and Technology) has published a data base of basic atomic
-emission spectra (see <http://physics.nist.gov/PhysRefData/Handbook/periodictable.htm>)[@HandbookofBasicAtomicSpectroscopicData] with emission lines tabulated in ASCII (HTML) files.
+emission spectra see <http://physics.nist.gov/PhysRefData/Handbook/periodictable.htm> with emission lines tabulated in ASCII (HTML) files.
 
 Here's an example how to extract the data of the Hg strong lines file:
 
