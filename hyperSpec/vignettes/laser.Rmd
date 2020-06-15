@@ -3,8 +3,9 @@
 # `laser`: Unstable Laser Emission {#laser}
 # For vignette ---------------------------------------------------------------
 title:       Unstable Laser Emission
-subtitle:    Vignette for the Data Set `laser` of the R package package **hyperSpec**
+subtitle:    Vignette for the Data Set `laser` of the R package **hyperSpec**
 # subtitle:  Vignette on hyperSpec's laser data set
+description: "laser: Tutorial on hyperSpec's `laser` data set."
 # Authors --------------------------------------------------------------------
 author:
   - name: Claudia Beleites^1,2,3,4,5^
@@ -24,45 +25,52 @@ output:
       toc: yes
       fig_caption: yes
       css:
-        - man/vignette.css
-        - man/style.css
+        - vignette.css
+        - style.css
 vignette: >
-    % \VignetteIndexEntry{laser: Vignette on hyperSpec's laser data set.}
+    % \VignetteIndexEntry{Unstable Laser Emission}
     % \VignetteKeywords{hyperSpec, laser, time series}
     % \VignettePackage{hyperSpec}
     %\VignetteEngine{knitr::rmarkdown}
     %\VignetteEncoding{UTF-8}
 # Citations/References -------------------------------------------------------
 link-citations: yes
-bibliography: man/laser-pkg.bib
+bibliography: resources/laser-pkg.bib
 biblio-style: plain
-csl: man/elsevier-with-titles.csl
+csl: elsevier-with-titles.csl
+# Pkgdown --------------------------------------------------------------------
+pkgdown:
+  as_is: true
+  set_null_theme: no
 ---
 
 
 ```{r setup-laser, include=FALSE}
 # Packages -------------------------------------------------------------------
 library(hyperSpec)
-library(rgl)
+# library(rgl)
+```
 
 # Functions ------------------------------------------------------------------
-source("man/vignette-functions.R", encoding = "UTF-8")
+source("vignette-functions.R", encoding = "UTF-8")
 
 # Settings -------------------------------------------------------------------
-source("man/vignette-default-settingsR.R", encoding = "UTF-8")
+source("vignette-default-settingsR.R", encoding = "UTF-8")
 
 # knitr::opts_chunk$set(
-#   fig.path   = "man/figures/laser--"
+#   fig.path   = "figures/laser--"
 # )
 ```
 
 ```{r bib, echo=FALSE, paged.print=FALSE}
+dir.create("resources", showWarnings = FALSE)
+
 make_bib(
   c(
     "hyperSpec",
     "rgl"
   ),
-  file = "man/laser-pkg.bib"
+  file = "resources/laser-pkg.bib"
 )
 ```
 
@@ -135,7 +143,8 @@ library(hyperSpec)
 Read the data files:
 
 ```{r}
-file  <- system.file("doc/rawdata/laser.txt.gz", package = "hyperSpec")
+# Renishaw file
+file  <- system.file("extdata/laser.txt.gz", package = "hyperSpec")
 laser <- read.txt.Renishaw(file, data = "ts")
 ```
 
@@ -159,7 +168,7 @@ The results are shown in figure \@ref(fig:cutspc).
 CAPTION <- "The cut spectra laser emission spectra.   "
 ```
 
-```{r cutspc, fig.cap=CAPTION, fig.width=5, fig.height=3, include=FALSE}
+```{r cutspc, fig.cap=CAPTION, fig.width=5, fig.height=3}
 laser <- laser[, , -75 ~ 0]
 plot(laser, "spcprctl5")
 ```
@@ -214,7 +223,7 @@ wl(laser) <- list(
 CAPTION <- "The spectra with wavelength axis. "
 ```
 
-```{r wlspc, fig.cap=CAPTION, fig.width=5, fig.height=3, include=FALSE}
+```{r wlspc, fig.cap=CAPTION, fig.width=5, fig.height=3}
 plot(laser, "spcprctl5")
 ```
 
@@ -311,7 +320,7 @@ CAPTION <- "The spectra matrix of the `laser`{.r} data set.
 The ordinate of the plot may be the number of the spectrum accessed by `$.row`{.r} (here) or any other extra data column, as, e.g., `$t`{.r} in fig. \\@ref(fig:plotmatt).  "
 ```
 
-```{r plotmatr, fig.cap=CAPTION, include=FALSE}
+```{r plotmatr, fig.cap=CAPTION}
 plot(laser, "mat", contour = TRUE, col = "#00000060")
 ```
 
@@ -325,7 +334,7 @@ CAPTION <- "The spectra matrix of the `laser`{.r} data set.
 The ordinate of the plot may be any extra data column, here `$t`{.r}.  "
 ```
 
-```{r plotmatt, fig.cap=CAPTION, include=FALSE}
+```{r plotmatt, fig.cap=CAPTION}
 levelplot(spc ~ .wavelength * t, laser, contour = TRUE, col = "#00000080")
 ```
 
@@ -340,7 +349,7 @@ Class `hyperSpec`{.r} objects  can easily be drawn with package **rgl**`r cite_p
 Package **rgl**'s function `persp3d()`{.r} plots a surface in 3d defined by points in x, y, and z. 
 Handing over the appropriate data columns of the `hyperSpec`{.r} object is easy (fig. \@ref(fig:laser3d)).
 
-```{r}
+```{r, eval=FALSE}
 library(rgl)
 ```
 ```{r rgl-plot, eval=FALSE}
@@ -386,7 +395,7 @@ if (require(rgl)) {
   rgl.snapshot("fig-3D.png", fmt = "png", top = TRUE)
   rgl.quit()
 } else {
-  png("man/laser-fig-3D.png")
+  png("laser--fig-3D.png")
   ploterrormsg("", "rgl")
   dev.off()
 }
@@ -394,7 +403,7 @@ if (require(rgl)) {
 
 ```{r laser3d, echo=FALSE, fig.cap=CAPTION, out.width="400"}
 CAPTION = "The 3d plot of the laser data.  "
-knitr::include_graphics("man/laser-rgl-3d.png")
+knitr::include_graphics("laser--rgl-3d.png")
 ```
 
 
