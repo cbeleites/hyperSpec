@@ -1,0 +1,109 @@
+# -------------------------------------------------------------------------
+
+template:
+  params:
+    bootswatch: cerulean
+    noindex: true
+    
+# -------------------------------------------------------------------------
+
+development:
+  mode: auto
+  
+# -------------------------------------------------------------------------
+
+articles:
+  - title: "Principles"
+    navbar: ~
+    desc: >
+      The main functionality of "hyperSpec".
+    contents:
+    - hyperspec
+    - fileio
+    - plotting
+    - baseline
+  - title: "Case studies"
+    desc: >
+      The example workflows.
+    contents:
+    - chondro
+    - flu
+    - laser
+    
+# -------------------------------------------------------------------------
+
+authors:
+  Vilmantas Gegzna:
+    href: https://orcid.org/0000-0002-9500-5167
+
+# -------------------------------------------------------------------------
+
+reference:
+- title: 'Package and class "hyperSpec"'
+- contents:
+  - has_keyword("package")
+  - has_keyword("classes")
+- title: Datasets
+  desc: "Datasets to try functionality of **hyperSpec** functions."
+- contents:
+  - has_keyword("datasets")
+- title: Input and output
+- contents:  
+  - "initialize"
+  - has_keyword("IO")
+  - has_keyword("file")
+- title: Plots
+- contents:
+  - "plot-methods"
+  - has_keyword("aplot")
+  - has_keyword("dplot")
+  - has_keyword("hplot")
+  - has_keyword("iplot")
+  - has_keyword("color")
+- title: Data manipulation
+- subtitle: Arithmetics and comparison
+- contents:
+  - has_keyword("array")
+  - has_keyword("arith")
+  - has_keyword("math")
+- subtitle: Manipulation
+- contents:
+  - has_keyword("manip")
+- subtitle: Methods
+- contents:
+  - has_keyword("methods")
+- subtitle: Utilities
+- contents:
+  - has_keyword("utilities")
+  - has_keyword("programming")
+  - has_keyword("iteration")
+- subtitle: Data generation
+- contents:
+  - has_keyword("datagen")
+  - has_keyword("distribution")
+- title: Summary and data analysis
+- contents:
+  - has_keyword("multivar")
+  - has_keyword("univar")
+  - has_keyword("cluster")
+- title: Miscellaneous functions
+- contents:
+  - has_keyword("misc")
+- title: All functions
+  desc: "All functions including those that are not mentioned above."
+- contents:
+  - lacks_concepts("not-in-hyperSpec")
+
+# -------------------------------------------------------------------------
+
+figures:
+  dev: grDevices::png
+  dpi: 96
+  dev.args: []
+  fig.ext: png
+  fig.width: 4.854
+  fig.height: 3
+  fig.retina: 2
+  fig.asp: 1.618
+
+# -------------------------------------------------------------------------
