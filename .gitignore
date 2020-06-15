@@ -15,7 +15,7 @@
 *.ind
 
 hyperSpec/NAMESPACE
-hyperSpec/data/*.rda
+# hyperSpec/data/*.rda
 hyperSpec/R/sysdata.rda
 hyperSpec/vignettes/*.Rnw
 hyperSpec/vignettes/vignettes.defs
