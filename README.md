@@ -1,8 +1,12 @@
 # hyperSpec
 
+<!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/hyperSpec)](https://cran.r-project.org/package=hyperSpec)
+[![R build status](https://github.com/cbeleites/hyperSpec/workflows/R-CMD-check/badge.svg)](https://github.com/cbeleites/hyperSpec/actions)
+<!-- badges: end -->
 
-This is the new home for R package hyperSpec.
+
+This is the new home for R package **hyperSpec**.
 
 Issues and feature requests should go [here](https://github.com/cbeleites/hyperSpec/issues)!
 
