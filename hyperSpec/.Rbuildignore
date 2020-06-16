@@ -9,3 +9,4 @@ Rplots.pdf
 ^docs$
 ^pkgdown$
 ^data-raw$
+^codecov\.yml$
