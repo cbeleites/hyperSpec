@@ -58,7 +58,7 @@ library(ggpubr)       # To align plots
 source("vignette-functions.R", encoding = "UTF-8")
 
 # Settings -------------------------------------------------------------------
-source("vignette-default-settingsR.R", encoding = "UTF-8")
+source("vignette-default-settings.R", encoding = "UTF-8")
 
 # knitr::opts_chunk$set(
 #   fig.path   = "figures/Chondro--"
@@ -94,16 +94,16 @@ make_bib(
 
 **Reproducing this vignette.**
 
- The data set and source file of this vignette are available at package 
-**hyperSpec**'s github page at <https://github.com/cbeleites/hyperSpec/blob/master/Vignettes/chondro/chondro.Rnw> and 
-<https://github.com/cbeleites/hyperSpec/tree/master/Vignettes/fileio/txt.Renishaw/chondro.txt> 
+ The data set and source file of this vignette are available at package
+**hyperSpec**'s github page at <https://github.com/cbeleites/hyperSpec/blob/master/Vignettes/chondro/chondro.Rnw> and
+<https://github.com/cbeleites/hyperSpec/tree/master/Vignettes/fileio/txt.Renishaw/chondro.txt>
 (ca. 31 MB).
 
 <!-- FIXME:  -->
 The .Rnw looks for `rawdata/chondro.txt`, so please save the data file in subdirectory `rawdata` of your working directory.
 In order to reproduce the examples by typing in the commands, have a look at the definitions of   color palettes used in this document are defined in `vignettes.defs`.
 
-Also, the package **hyperSpec** needs to be loaded first via `library(hyperSpec)`{.r}.  
+Also, the package **hyperSpec** needs to be loaded first via `library(hyperSpec)`{.r}.
 
 ```
 
@@ -133,7 +133,7 @@ as well as other basic work techniques:
 
 
 The chemometric methods used are:
- 
+
 -  Principal Component Analysis (PCA) and
 -  Hierarchical Cluster Analysis,
 
@@ -144,7 +144,7 @@ packages.
 # The Data Set
 
 Raman spectra of a cartilage section were measured on each point of a grid, resulting in a so-called
-*Raman map*. 
+*Raman map*.
 Figure \@ref(fig:vis-all) shows a microscope picture of the measured area and its
 surroundings.
 
@@ -170,10 +170,10 @@ The measurement parameters were:
 
 # Data Import
 
-Renishaw provides a converter to export their proprietary data in a so-called long format ASCII file. Raman maps are exported having four columns, *y*, *x*, *raman shift*, and *intensity*. 
-Package **hyperSpec** comes with a function to import such files, `read.txt.Renishaw()`{.r}. 
+Renishaw provides a converter to export their proprietary data in a so-called long format ASCII file. Raman maps are exported having four columns, *y*, *x*, *raman shift*, and *intensity*.
+Package **hyperSpec** comes with a function to import such files, `read.txt.Renishaw()`{.r}.
 The function assumes a map as default, but can also handle single spectra (`data = "spc"`{.r}), time series (`data = "ts"`{.r}), and depth profiles (`data = "depth"`{.r}).
-In addition, large files may be processed in chunks. 
+In addition, large files may be processed in chunks.
 In order to speed up the reading `read.txt.Renishaw()`{.r} does not allow missing values, but it does work with `NA`{.r}.
 
 ```{r chondro-import, cache=TRUE}
@@ -223,15 +223,15 @@ As the raw data contains `NA`{.r}s due to deleting cosmic ray spikes, this argum
 As usual in Raman spectroscopy of biological tissues, the spectra need some preprocessing.
 
 
-## Aligning the Spatial Grid 
+## Aligning the Spatial Grid
 
 The spectra were acquired on a regular square grid of measurement positions over the sample.
-The `hyperSpec`{.r} object, however, does not store the data on this grid but rather stores the position where the spectra were taken. 
+The `hyperSpec`{.r} object, however, does not store the data on this grid but rather stores the position where the spectra were taken.
 This allows more handling of irregular point patterns, and of sparse measurements where not a
 complete (square) is retained but only few positions on this grid.
 
 Occasionally, numeric or rounding errors will lead to seemingly irregular spacing of the data
-points. 
+points.
 This is most obvious in false-colour maps of the sample (fig. \@ref(fig:rawmap), as `plotmap`{.r} by default uses `panel.levelplot.raster`{.r}, which assumes a regular grid is underlying the data.
 The symptoms are warnings "`'x' values are not equispaced; output may be wrong`" and white stripes in the false colour map (fig. \@ref(fig:irregular-a)), which occur even thought the points are almost at their correct place (fig. \@ref(fig:irregular-b)).
 
@@ -296,13 +296,13 @@ As long as just a few points are affected by rounding errors, `makeraster()`{.r}
 chondro$x <- fitraster(chondro$x)$x
 chondro$y <- fitraster(chondro$y)$x
 ```
-the result is shown in figure \@ref(fig:irregular-c). 
+the result is shown in figure \@ref(fig:irregular-c).
 
 <!-- irregular-corr  ------------------------------------------------------ -->
 ```{r include=FALSE}
 CAPTION = "
 Rounding erros in the point coordinates of lateral measurement grid:
-**(C)** corrected grid.  
+**(C)** corrected grid.
 "
 ```
 
@@ -330,7 +330,7 @@ Rounding erros in the point coordinates of lateral measurement grid.
 
 # Arrange the subplots
 ggpubr::ggarrange(
-  irregular_grid_a, irregular_grid_b, irregular_grid_c, ncol = 3, 
+  irregular_grid_a, irregular_grid_b, irregular_grid_c, ncol = 3,
   labels = LETTERS[1:3]
 )
 ```
@@ -341,7 +341,7 @@ ggpubr::ggarrange(
 ```{block2, type="note-t", echo=TRUE}
 **Translator's notes** `chondro-2`
 
-1. Which is better: separate plots \@ref(fig:irregular-a), \@ref(fig:irregular-b), \@ref(fig:irregular-c) or single plot with subplots \@ref(fig:irregular)? 
+1. Which is better: separate plots \@ref(fig:irregular-a), \@ref(fig:irregular-b), \@ref(fig:irregular-c) or single plot with subplots \@ref(fig:irregular)?
 
 2. The narration and plots do not seem to indicate the same ideas.
 E.g., \@ref(fig:irregular-b) looks totally OK, and \@ref(fig:irregular-c) have while pixels.
@@ -365,7 +365,7 @@ The resolution is to be reduced to 8 $cm^{-1}$, or 4 $cm^{-1}$ data point spacin
 chondro <- spc.loess(chondro, seq(602, 1800, 4))
 chondro
 ```
-   
+
 
 The spectra are now the same as in the data set `chondro`{.r}.
 However, the data set also contains the clustering results (see at the very end of this document).
@@ -401,7 +401,7 @@ chondro <- chondro / rowMeans(chondro)
 plot(chondro, "spcprctl5")
 ```
 
-Note that normalization effectively cancels the information of one variate (wavelength), it introduces a collinearity. 
+Note that normalization effectively cancels the information of one variate (wavelength), it introduces a collinearity.
 If needed, this collinearity can be broken by removing one of the variates involved in the normalization.
 Note that the `chondro`{.r} object shipped with package **hyperSpec** set has multiple collinearities as only the first 10 principal components are shipped (see below).
 
@@ -411,7 +411,7 @@ For the results of these preprocessing steps, see figure \@ref(fig:bl-norm).
 
 ## Subtracting the Overall Composition
 
-The spectra are very homogeneous, but I'm interested in the differences between the different regions of the sample. 
+The spectra are very homogeneous, but I'm interested in the differences between the different regions of the sample.
 Subtracting the minimum spectrum cancels out the matrix composition that is common to all spectra.
 But the minimum spectrum also picks up a lot of noise.
 So instead, the 5^th^ percentile spectrum is subtracted:
@@ -572,7 +572,7 @@ cols <- c("dark blue", "orange", "#C02020")
 ```
 
 
-The result for $k$ = 3 clusters is plotted as a map (figure \@ref(fig:clustmap)). 
+The result for $k$ = 3 clusters is plotted as a map (figure \@ref(fig:clustmap)).
 If the color-coded variate (left hand side of the formula) is a factor, the legend bar does not show intermediate colors, and `hyperSpec`{.r}'s `levelplot()`{.r} method uses the levels of the factor for the legend.
 
 Thus  meaningful names are assigned
@@ -605,8 +605,8 @@ plot(dendrogram, labels = FALSE, hang = -1)
 mark.dendrogram(dendrogram, chondro$clusters, col = cols)
 ```
 
-Figure \@ref(fig:dend) shows the dendrogram and \@ref(fig:clustmap) the resulting cluster map. 
-The three clusters correspond to the cartilage matrix, the lacuna and the cells. 
+Figure \@ref(fig:dend) shows the dendrogram and \@ref(fig:clustmap) the resulting cluster map.
+The three clusters correspond to the cartilage matrix, the lacuna and the cells.
 The left cell is destroyed and its contents are leaking into the matrix, while the right cells looks intact.
 
 We can plot the cluster mean spectra $\pm$ 1 standard deviation using `aggregate()`{.r} (see figure \@ref(fig:clustmeans)):
@@ -643,7 +643,7 @@ plotmap(chondro[, , c(728, 782, 1098, 1240, 1482, 1577)],
 )
 ```
 
-The result is shown in figure \@ref(fig:DNA). 
+The result is shown in figure \@ref(fig:DNA).
 While the nucleus of the right cell shows up nicely, only low concentration remainders are detected of the left cell.
 
 
@@ -651,8 +651,8 @@ While the nucleus of the right cell shows up nicely, only low concentration rema
 # Smoothed False-Colour Maps and Interpolation
 
 As we plotted only a few selected wavelenths, figure \@ref(fig:DNA) is quite noisy.
-Smoothing interpolation could help. 
-In R, such a smoother is mostly seen as a model, whose predictions are then displayed as smooth map (fig. \@ref(fig:DNAsm)). 
+Smoothing interpolation could help.
+In R, such a smoother is mostly seen as a model, whose predictions are then displayed as smooth map (fig. \@ref(fig:DNAsm)).
 This smoothing model can be calculated on the fly, e.g., by using the `panel.2dsmoother()`{.r} wrapper provided by package **latticeExtra**:
 
 
@@ -715,7 +715,7 @@ if (require("akima")) {
     xlab = labels(chondro, "x"), ylab = labels(chondro, "y"),
     col = DNAcols
   )
-  
+
 } else {
   plot(NULL, xlim = c(0, 1), ylim = c(0, 1))
   text(0.5, 0.5, 'Package "akima" is required to create this plot')
@@ -756,6 +756,3 @@ sessioninfo::session_info("hyperSpec")
 ```
 
 # References {-}
-
-
-

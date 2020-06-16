@@ -55,7 +55,7 @@ library(hyperSpec)
 source("vignette-functions.R", encoding = "UTF-8")
 
 # Settings -------------------------------------------------------------------
-source("vignette-default-settingsR.R", encoding = "UTF-8")
+source("vignette-default-settings.R", encoding = "UTF-8")
 
 # knitr::opts_chunk$set(
 #   fig.path   = "figures/flu--"
@@ -143,7 +143,7 @@ The function to import these files, `read.txt.PerkinElmer()`{.r}, is discussed i
 **Translator's notes** `flu-3`
 
 
-1. `# FIXME:`{.r} Why do we need `source("read.txt.PerkinElmer.R")`? 
+1. `# FIXME:`{.r} Why do we need `source("read.txt.PerkinElmer.R")`?
 Why is `read.txt.PerkinElmer()` not a function of package **hyperSpec**.
 This part (`source("read.txt.PerkinElmer.R")`) is not user-friendly and must be fixed.
 
@@ -241,7 +241,7 @@ flu
 ```{block, type="note-t", echo=TRUE}
 **Translator's notes** `flu-4`
 
-1. `# FIXME:`{.r} why file saving is needed?  
+1. `# FIXME:`{.r} why file saving is needed?
 `save(flu, file = "flu.rda")`
 ```
 <!-- ======================================================================= -->
@@ -325,7 +325,7 @@ The function `lm()`{.r} needs a *formula* that specifies which data columns are 
 The normal calibration plot gives the emission intensity as a function of the concentration, and the calibration function thus models $I = f (c)$, i. e.  $I = m c + b$ for a linear calibration.
 This is then solved for $c$ when the calibration is used.
 
-However, R's linear model is a quite strict in predicting: a model set up as $I = f (c)$ will predict the intensity as a function of the concentration but not the other way round. 
+However, R's linear model is a quite strict in predicting: a model set up as $I = f (c)$ will predict the intensity as a function of the concentration but not the other way round.
 Thus we set up an inverse calibration model[^As we can safely assume that the error on the concentrations is far larger than the error on the instrument signal, it is actually the correct type of model from the least squares fit point of view.]: $c = f (I)$.
 The corresponding \R formula is `c ~ I`, or in our case `c ~ spc`, as the intensities are stored in the data column `$spc`{.r}:
 
@@ -337,7 +337,7 @@ There are three abbreviations that help to get the parts  of the `hyperSpec`{.r}
  - **`flu[[]]`{.r}** returns the spectra matrix. It takes the same indices as `[]`{.r}.
  - **`flu\$.`{.r}** returns the data as a `data.frame`{.r}.
  - **`flu\$..`{.r}** returns a  `data.frame`{.r} that has all data columns but the spectra.
- 
+
 
 ```{r abbrev-1}
 flu[[]]
@@ -377,7 +377,7 @@ conc <- predict(calibration,
 conc
 ```
 
-Finally, we can draw the calibration function and its 99% confidence interval (also via `predict()`{.r}) together with the prediction example. 
+Finally, we can draw the calibration function and its 99% confidence interval (also via `predict()`{.r}) together with the prediction example.
 In order to draw the confidence interval into the calibration graph, we can either use a customized panel function:
 
 
@@ -433,9 +433,9 @@ CAPTION <- "calibration function and its 99% confidence interval and predicted p
 ```
 
 ```{r calplot4, fig.cap=CAPTION, pdf=TRUE, eps=FALSE, fig.width=6, fig.height=3}
-panel.predict <- 
+panel.predict <-
   function(x, y, ..., intensity, ci, pred.col = "red", pred.pch = 19, pred.cex = 1) {
-    
+
     panel.xyplot(x, y, ...)
     mapply(function(i, lwr, upr, ...) {
       panel.lines(c(lwr, upr), rep(i, 2), ...)

@@ -59,7 +59,7 @@ library(tripack)
 source("vignette-functions.R", encoding = "UTF-8")
 
 # Settings -------------------------------------------------------------------
-source("vignette-default-settingsR.R", encoding = "UTF-8")
+source("vignette-default-settings.R", encoding = "UTF-8")
 
 # knitr::opts_chunk$set(
 #   fig.path   = "figures/plotting--"
@@ -110,7 +110,7 @@ make_bib(
 
 
 ```{block, type="note", echo=TRUE}
-**Reproducing the examples in this vignette.**  
+**Reproducing the examples in this vignette.**
 
 All spectra used in this manual are installed automatically with package **hyperSpec**.
 
@@ -122,10 +122,10 @@ All spectra used in this manual are installed automatically with package **hyper
 <!-- Note that some definitions are executed in `vignette.defs`, and others invisibly at the beginning of the file to have the code as similar as possible to interactive sessions. -->
 
 
-> **Terminology**  
+> **Terminology**
 > Throughout the documentation of the package, the following terms are used:
-> 
-> - **wavelength** indicates any type of spectral abscissa. 
+>
+> - **wavelength** indicates any type of spectral abscissa.
 > - **intensity**  indicates any type of spectral ordinate.
 > - **extra data** indicates non-spectroscopic data.
 
@@ -189,44 +189,44 @@ For details about the pre-processing, please refer to the example workflow in `v
 
 Package **hyperSpec** comes with 6 major predefined plotting functions:
 
-**`plot()`{.r}** 
+**`plot()`{.r}**
 :  main switchyard for most plotting tasks.
    More details in section \@ref(fun-plot).
-  
-**`plotspc()`{.r}** 
+
+**`plotspc()`{.r}**
 :  plots spectra.
    More details in sections \@ref(exm-plotspc), \@ref(arg-spc), and \@ref(fun-plotspc).
 
-**`plotc()`{.r}** 
+**`plotc()`{.r}**
 :  calibration plot, time series, depth profile.
-   More details in sections \@ref(exm-plotc), \@ref(arg-c), \@ref(arg-ts), \@ref(arg-depth), and \@ref(fun-plotc).  
+   More details in sections \@ref(exm-plotc), \@ref(arg-c), \@ref(arg-ts), \@ref(arg-depth), and \@ref(fun-plotc).
    (`plotc()`{.r} is a package **lattice** function)
 
-**`levelplot()`{.r}** 
+**`levelplot()`{.r}**
 :  package **hyperSpec** has a method for package **lattice**`r cite_pkg("lattice")` function `levelplot()`{.r}.
    More details in sections \@ref(exm-levelplot), and \@ref(fun-levelplot).
 
-**`plotmat()`{.r}** 
+**`plotmat()`{.r}**
 :  plots the spectra matrix.
    More details in sections \@ref(exm-plotmat), \@ref(arg-mat), and \@ref(fun-plotmat).
 
-**`plotmap()`{.r}** 
+**`plotmap()`{.r}**
 :  more specialized version of `levelplot()`{.r} for map or image plots.
    More details in sections \@ref(exm-plotmap), \@ref(arg-map), and \@ref(fun-plotmap).
    (`plotmap()`{.r} is a package **lattice** function)
-  
-**`plotvoronoi()`{.r}** 
-:  more specialized version of `plotmap()`{.r} that produces Voronoi tesselations.  
-   More details in sections \@ref(exm-plotvoronoi), and \@ref(arg-voronoi).      
-   (`plotvoronoi()`{.r} is a package **lattice** function) 
-  
+
+**`plotvoronoi()`{.r}**
+:  more specialized version of `plotmap()`{.r} that produces Voronoi tesselations.
+   More details in sections \@ref(exm-plotvoronoi), and \@ref(arg-voronoi).
+   (`plotvoronoi()`{.r} is a package **lattice** function)
+
 
 
 ```{block, type="note", echo=TRUE}
 **NOTE.**
 
 Functions `plotmap()`{.r}, `plotvoronoi()`{.r}, and `levelplot()`{.r} are package **lattice** functions.
-Therefore, in loops, functions, R Markdown chunks, etc. lattice objects need to be printed explicitly by, e.g., `print(plotmap(object))`{.r} 
+Therefore, in loops, functions, R Markdown chunks, etc. lattice objects need to be printed explicitly by, e.g., `print(plotmap(object))`{.r}
 ([R FAQ: Why do lattice/trellis graphics not work?](http://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-do-lattice_002ftrellis-graphics-not-work_003f)).
 ```
 
@@ -319,7 +319,7 @@ plotvoronoi(sample(chondro, 300), clusters ~ x * y)
 
 # Arguments for `plot()`{.r} {#fun-plot}
 
-The **hyperSpec**'s `plot()`{.r} method uses its second argument to determine which of the specialized plots to produce. 
+The **hyperSpec**'s `plot()`{.r} method uses its second argument to determine which of the specialized plots to produce.
 This allows some handy abbreviations.
 All further arguments are handed over to the function actually producing the plot.
 
@@ -354,8 +354,8 @@ plot(chondro.preproc, "spcmeansd")
 
 Code `plot(x, "spcprctile")`{.r} plots median, 16^th^ and 84^th^ percentile for each wavelength (Fig. \@ref(fig:plotchoprctl)).
 For Gaussian distributed data, 16^th^, 50^th^ and 84^th^ percentile are equal to mean $\pm$ standard deviation.
-Spectroscopic data frequently are not Gaussian distributed. 
-The percentiles give a better idea of the true distribution. 
+Spectroscopic data frequently are not Gaussian distributed.
+The percentiles give a better idea of the true distribution.
 They are also less sensitive to outliers.
 
 ```{r include=FALSE}
@@ -499,7 +499,7 @@ CAPTION = "Plot of wavelength (wavenumber) range from 700 to 1200 $cm^{-1}.$  "
 ```{r wavelength, width=4, height=2.6, fig.cap=CAPTION}
 plotspc(paracetamol[, , 700 ~ 1200])
 ```
-Numbers connected with the tilde (`~`) are interpreted as having the same units as the wavelengths. 
+Numbers connected with the tilde (`~`) are interpreted as having the same units as the wavelengths.
 If `wl.range`{.r} already contains indices use `wl.index = TRUE`{.r}.
 For more details refer to `vignette("hyperspec", package = "hyperSpec")`{.r}.
 
@@ -536,7 +536,7 @@ plotspc(paracetamol, wl.reverse = TRUE)
 
 
 ## Plot in Different Colours
- 
+
 To have different colours of spectra (Fig. \@ref(fig:colours)), use `col = vector_of_colours`{.r}.
 
 ```{r include=FALSE}
@@ -548,7 +548,7 @@ plotspc(flu, col = matlab.dark.palette(6))
 ```
 
 ## Plot Dots Instead of Lines
- 
+
 To plot dots instead of lines (Fig. \@ref(fig:dots)), use, e.g., `lines.args = list (pch = 20, type = "p")`{.r}
 
 ```{r include=FALSE}
@@ -576,7 +576,7 @@ plot(barbiturates[[1]], lines.args = list(type = "h"))
 
 
 ## Add More Spectra into an Existing Plot
- 
+
 To plot additional spectra onto an existing plot (Fig. \@ref(fig:add)), use `add = TRUE`{.r}
 
 ```{r include=FALSE}
@@ -591,7 +591,7 @@ plotspc(chondro[300, , ], add = TRUE, col = "blue")
 
 ## Plot Summary Characteristics
 
-Argument `func`{.r} may be used to calculate summary characteristics before plotting. 
+Argument `func`{.r} may be used to calculate summary characteristics before plotting.
 To plot, e.g., the standard deviation of the spectra, use `plotspc(..., func = sd)`{.r} (Fig. \@ref(fig:sd)).
 
 ```{r include=FALSE}
@@ -621,7 +621,7 @@ plotspc(paracetamol,
 
 
 ## Adding Annotations to a Spectra Plot
- 
+
 Function `plotspc()`{.r} uses base graphics.
 After plotting the spectra, more content may be added to the graphic by `abline()`{.r}, `lines()`{.r}, `points()`{.r}, etc. (Fig. \@ref(fig:add-line)).
 
@@ -680,7 +680,7 @@ plotspc(cluster.means,
 
 
 
-The spectra to be stacked can be grouped: `stacked = "factor"`{.r}. 
+The spectra to be stacked can be grouped: `stacked = "factor"`{.r}.
 Alternatively, the name of an extra data column can be used for grouping (Fig. \@ref(fig:stacked2)).
 
 ```{r include=FALSE}
@@ -699,7 +699,7 @@ plot(cluster.meansd,
 
 
 ### Manually Giving `yoffset`
- 
+
 Stacking values can also be given manually as numeric values in `yoffset`{.r} (Fig. \@ref(fig:stacked3)).
 
 ```{r include=FALSE}
@@ -734,7 +734,7 @@ plot(cluster.means,
 
 ### Elaborate Example
 
-Function `plotspc()`{.r} allows fine grained customization of almost all aspects of the plot (see example in Fig. \@ref(fig:stacked5)). 
+Function `plotspc()`{.r} allows fine grained customization of almost all aspects of the plot (see example in Fig. \@ref(fig:stacked5)).
 This is possible by giving arguments to the functions that actually perform the plotting `plot()`{.r} for setting up the plot area, `lines()`{.r} for the plotting of the lines, `axis()`{.r} for the axes, etc.
 The arguments for these functions should be given in lists as `plot.args`{.r}, `lines.args`{.r}, `axis.args`{.r}, etc.
 
@@ -1073,7 +1073,7 @@ plotmap(chondro, clusters ~ x * y,
 
 # Fine-Tuning **_lattice_** Parameters
 
-The plotting of colour maps is done via R package **lattice** (aka Trellis graphic approach), which is highly customizable. 
+The plotting of colour maps is done via R package **lattice** (aka Trellis graphic approach), which is highly customizable.
 Use function `trellis.par.get()`{.r} and `trellis.par.set()`{.r} to get/set the settings for the current graphics device.
 
 ```{r lattice-params}
@@ -1209,8 +1209,8 @@ levelplot(spc ~ y * x | as.factor(.wavelength),
 
 Fig. \@ref(fig:voronoi-2) shows an example of a Voronoi plot.
 Voronoi uses `panel.voronoi()`{.r} from package **latticeExtra**`r cite_pkg("latticeExtra")`.
-The tesselation is calculated by default using package **deldir**`r cite_pkg("deldir")`, but package **tripack**`r cite_pkg("tripack")` can also be used. 
-Package **tripack** seems to be faster in general, but may "hang" with certain data sets (particularly regular grids with missing spectra as in this example). 
+The tesselation is calculated by default using package **deldir**`r cite_pkg("deldir")`, but package **tripack**`r cite_pkg("tripack")` can also be used.
+Package **tripack** seems to be faster in general, but may "hang" with certain data sets (particularly regular grids with missing spectra as in this example).
 Furthermore, it is not FOSS (free and open-source software), so users are kindly asked to review package **tripack**'s license before using it.
 
 
@@ -1268,7 +1268,7 @@ uneven$y <- uneven$y + round(rnorm(nrow(uneven), sd = 0.05), digits = 1)
 ```
 
 ```{r include=FALSE}
-CAPTION = "Unevenly spaced measurement grid: example I. 
+CAPTION = "Unevenly spaced measurement grid: example I.
 Note warnings `values are not equispaced; output may be wrong`."
 ```
 
@@ -1323,7 +1323,7 @@ plotmap(uneven)
 
 # 3D Plots (with package **_rgl_**) {#plots-3d}
 
-Package **rgl**`r cite_pkg("rgl")` offers fast 3d plotting in R. 
+Package **rgl**`r cite_pkg("rgl")` offers fast 3d plotting in R.
 As package **rgl**'s axis annotations are sometimes awkward, they may better be set manually:
 
 
@@ -1387,7 +1387,7 @@ if (require(rgl)) {
   )
   rgl.snapshot("fig-3D.png", fmt = "png", top = TRUE)
   rgl.quit()
-  
+
 } else {
   png("fig-3D.png")
   ploterrormsg("", "rgl")
@@ -1400,7 +1400,7 @@ if (require(rgl)) {
 
 
 Class `hyperSpec`{.r} objects do not yet directly support plotting with package **ggplot2**`r cite_pkg("ggplot2")`.
-Nevertheless, package **ggplot2** graphics can easily be obtained, and `qplot*`{.r} equivalents to `plotspc()`{.r} and `plotmap()`{.r}. 
+Nevertheless, package **ggplot2** graphics can easily be obtained, and `qplot*`{.r} equivalents to `plotspc()`{.r} and `plotmap()`{.r}.
 
 
 ## Function `qplotspc()`{.r} {#qplotspc}
@@ -1436,9 +1436,9 @@ The two special columns `.wavelength`{.r} and `.rownames`{.r} contain the wavele
 ## More General Plotting with **_ggplot2_** {#general-plotting-ggplot2}
 
 
-For more general plotting, `as.long.df()`{.r} transforms a `hyperSpec`{.r} object into a long-form `data.frame`{.r} that is suitable for `qplot()`{.r}, while `as.t.df()`{.r} produces a `data.frame`{.r} where each spectrum is one column, and an additional first column gives the wavelength. 
+For more general plotting, `as.long.df()`{.r} transforms a `hyperSpec`{.r} object into a long-form `data.frame`{.r} that is suitable for `qplot()`{.r}, while `as.t.df()`{.r} produces a `data.frame`{.r} where each spectrum is one column, and an additional first column gives the wavelength.
 Long `data.frame`{.r}s can be *very* memory consuming as they are of size $nrow · nwl × (ncol + 2)$ with respect to the dimensions of the `hyperSpec`{.r} object.
-Thus, e.g., the `chondro`{.r} data set (`r round (object.size (chondro) / 1048576, digits = 0)` MB) as `hyperSpec`{.r} object) needs `r round (object.size (as.long.df (chondro, rownames = TRUE)) / 1048576, digits = 0)` MB as long-format `data.frame`{.r}. 
+Thus, e.g., the `chondro`{.r} data set (`r round (object.size (chondro) / 1048576, digits = 0)` MB) as `hyperSpec`{.r} object) needs `r round (object.size (as.long.df (chondro, rownames = TRUE)) / 1048576, digits = 0)` MB as long-format `data.frame`{.r}.
 It is therefore highly recommended to calculate the particular data to be plotted beforehand<!-- (Fig. \@ref(fig:ggplotmeansd))-->.
 
 
@@ -1498,7 +1498,7 @@ if (require(ggplot2)) {
   ggsave("plotting-fig--ggplotmeansd.pdf", width = 4, height = 2.6)
   # <<ggplotspccut>>
   ggsave("plotting-fig--ggplotspccut.pdf", width = 4, height = 2.6)
-  
+
 } else {
   for (f in c("ggplotspc", "ggplotmap", "ggplotmeansd", "ggplotspccut")) {
     pdf(sprintf("plotting-fig--%s.pdf", f), width = 4, height = 2.6)
@@ -1511,7 +1511,7 @@ if (require(ggplot2)) {
 
 # Interactive Graphics {#interactive-plots}
 
-Package **hyperSpec** offers basic interaction, `spc.identify()`{.r} for spectra plots, and `map.identify()`{.r} and `map.sel.poly()`{.r} for maps. 
+Package **hyperSpec** offers basic interaction, `spc.identify()`{.r} for spectra plots, and `map.identify()`{.r} and `map.sel.poly()`{.r} for maps.
 The first two identify points in spectra plots and map plots, respectively.
 Function `map.sel.poly()`{.r} selects the part of a `hyperSpec`{.r} object that lies inside the user defined polygon.
 
@@ -1552,7 +1552,7 @@ map.sel.poly(chondro)
 For base graphics (as produced by `plotspc()`{.r}), `locator()`{.r} may be useful as well.
 It returns the clicked coordinates. Note that these are *not* transformed according to `xoffset` & Co.
 
-For lattice graphics, `grid.locator()`{.r} may be used instead. 
+For lattice graphics, `grid.locator()`{.r} may be used instead.
 If it is not called in the panel function, a preceding call to `trellis.focus()`{.r} is needed:
 
 
@@ -1571,7 +1571,7 @@ Note that the returned indices correspond to the plotted object.
 ## No Output Is Produced {#sec:no-output-produced}
 
 Methods `plotmap`{.r}, `plotvoronoi`{.r}, `levelplot`{.r}, and `plotc`{.r} use package **lattice** functions.
-Therefore, in loops, functions, Sweave chunks, etc. the lattice object needs to be printed explicitly by `print(plotmap(object))`{.r} 
+Therefore, in loops, functions, Sweave chunks, etc. the lattice object needs to be printed explicitly by `print(plotmap(object))`{.r}
 ([R FAQ: Why do lattice/trellis graphics not work?](http://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-do-lattice_002ftrellis-graphics-not-work_003f)).
 The same holds for package **ggplot2** graphics.
 
@@ -1598,4 +1598,3 @@ sessioninfo::session_info("hyperSpec")
 ```
 
 # References {-}
-
