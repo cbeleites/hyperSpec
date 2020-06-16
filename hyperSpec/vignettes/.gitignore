@@ -2,7 +2,7 @@
 /*.R
 !resources/*.R
 !vignette-functions.R
-!vignette-default-settingsR.R
+!vignette-default-settings.R
 !read.txt.PerkinElmer.R
 old/
 *_cache/
