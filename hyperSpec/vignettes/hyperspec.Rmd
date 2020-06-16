@@ -187,12 +187,15 @@ To get familiar with expressions for axis annotation, see `?plotmath` and `demo(
 
 ## Data Sets
 
-Package **hyperSpec** comes with five data sets:
+Package **hyperSpec** comes with several data sets:
 
 
 -----------------  ----------------------------------------------------------------------
 **`chondro`**      \index{data sets!chondro}
                    A Raman map of chondrocytes in cartilage.
+
+**`fauxCell`**      \index{data sets!fauxCell}
+                    A synthetic data set similar to `chondro`.
 
 **`flu`**          \index{data sets!flu}
                    A set of fluorescence spectra of a calibration series.
@@ -210,33 +213,19 @@ Package **hyperSpec** comes with five data sets:
 -----------------  ----------------------------------------------------------------------
 
 In this vignette, the data sets are used to illustrate appropriate procedures for different tasks and different spectra.
-In addition, the first three data sets are accompanied by their own vignettes showing exemplary work flows for the respective data type.
+In addition, `chondro`, `laser` and `flue` are accompanied by their own vignettes showing sample work flows for the respective data type.
 
 This document describes how to accomplish typical tasks in the analysis of spectra.
 It does not give a complete reference on particular functions.
 It is therefore recommended to look up the methods in the `R` help system using `?command`{.r}.
 
-## User-Facing Functions
-
-A complete list of the user-facing functions that are available in package **hyperSpec** is given in Table \@ref(tab:functions).
-
-## Launching **_hyperSpec_** {#sec:loading-package}
-
-To \index{loading} load package **hyperSpec**, use
-
-```{r init, eval = FALSE}
-library("hyperSpec")
-```
-
+## Options
 \index{options|textbf}
 \index{options!debuglevel}
 \index{options!gc}
 The global behaviour of package **hyperSpec** can be configured via options.
 The values of the options are retrieved with `hy.getOptions()`{.r} and `hy.getOption()`{.r}, and changed with `hy.setOptions()`{.r}.
 Table \@ref(tab:options) gives an overview of the options.  You should not worry about these at the start of your exploration of **hyperSpec**.
-
-
-
 
 # Obtaining Basic Information about `hyperSpec`{.r} Objects {#info-hyperspec-objs}
 
