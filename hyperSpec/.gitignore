@@ -28,6 +28,4 @@ vignettes/resources/*.bib
 
 # Documentation
 man/*.Rd
-
-# Documentation
 NAMESPACE
