@@ -230,40 +230,38 @@ Table \@ref(tab:options) gives an overview of the options.  You should not worry
 # Obtaining Basic Information about `hyperSpec`{.r} Objects {#info-hyperspec-objs}
 
 
-<!-- ======================================================================= -->
 ```{block, type = "note-t", echo = TRUE}
 **V. Gegzna's notes** `hyperspec-6`
 
 1. The output of print() and summary() is identical. Is it expected?
 I think, the `print()`{.r} method should give less details than it does now.
 ```
-<!-- ======================================================================= -->
 
 
 
 \mFun{print, show, summary}
-As usual, the `print()`{.r} and `show()`{.r} methods display information about the object, and `summary()`{.r} yields some additional details about the data handling done so far:
+As usual, the `print()`{.r}, `show()`{.r} and `summary()`{.r} methods provide an overview of the object (only `print` is shown here):
 
 ```{r print}
 chondro
 ```
-```{r print-summary}
-summary(chondro)
-```
 
 \mFun{nrow, ncol, nwl, dim}
 The data set `chondro`{.r} consists of `r nrow(chondro)` spectra with `r nwl(chondro)` data points each, and `r ncol(chondro)` data columns: two for the spatial information, one factor with the results of a cluster analysis plus `$spc`{.r}.
-These information can be directly obtained by
+These details can be directly obtained by
 
 ```{r nwl}
 nrow(chondro)
 ```
+
 ```{r nwl2}
 nwl(chondro)
 ```
+
 ```{r nwl3}
 ncol(chondro)
 ```
+
 ```{r nwl4}
 dim(chondro)
 ```
@@ -282,17 +280,22 @@ The column names of the spectra matrix contain the wavelengths as character, whi
 Extra data column names and rownames of the object may be set by `colnames<-`{.r} and `rownames<-`{.r}, respectively.
 Function `colnames<-`{.r} renames the labels as well.
 
+```{block, type = "note", echo = TRUE}
+**B Hansons's notes** `This is not clear`
+
+This line: _Function `colnames<-`{.r} renames the labels as well._ is not clear and the documentation doesn't seem to say anything about it.
+```
 
 
 # Creating a `hyperSpec`{.r} Object, Data Import and Export {#sec:create}
 
 Package **hyperSpec** comes with filters for a variety of file formats.
-These are discussed in detail in a separate vignette accessible via `vignette("fileio")`.
+These are discussed in detail in a separate vignette accessible via `vignette("fileio")`.  Here we just mention a couple of basic operations.
 
 
 ## Creating a `hyperSpec`{.r} Object from Spectra Matrix and Wavelength Vector
 
-If the data is in R's workspace, a `hyperSpec`{.r} object is created by:
+If the data is in `R`'s workspace, a `hyperSpec` object is created by:
 
 ```{r eval = FALSE}
 spc <- new("hyperSpec", spc = spectra.matrix, wavelength = wavelength.vector, data = extra.data)
@@ -301,13 +304,13 @@ spc <- new("hyperSpec", spc = spectra.matrix, wavelength = wavelength.vector, da
 The most frequently needed arguments are:
 
 -------------------- ---------------------------------------------------------------------------------
-**`spc`{.r}**        The spectra matrix.
+**`spc`**        The spectra matrix; may be a matrix or a `data.frame`.
 
-**`wavelength`{.r}** The wavelength axis vector.
+**`wavelength`** The wavelength axis as a numeric vector.
 
-**`data`{.r}**       The extra data (can already contain the spectra matrix in column `$spc`{.r}).
+**`data`**       Any extra data as a `data.frame`.  It is possible to pass `spc` via this argument if the data frame has a column `$spc`{.r}.
 
-**`label`{.r}**      A list with the proper labels.
+**`label`**      A list with the proper labels.
                      Do not forget the wavelength axis label in  `$.wavelength`{.r} and the
                      spectral intensity axis label in `$spc`{.r}.
 -------------------- ---------------------------------------------------------------------------------
@@ -316,6 +319,14 @@ More information about converting existing data into `hyperSpec`{.r} objects can
 
 
 ## Creating Random Spectra
+
+```{block, type = "note", echo = TRUE}
+**B Hansons's notes** `Clarifications`
+
+1. Need more explanation of the pooled covariance approach.
+2. Here's a place that we should standardize the color scheme.
+3. Why not generate `rnd` only once here, and use it for the plot and LDA?  As it stands now it seemed like the first set of spectra were somehow related to the 2nd set.
+```
 
 \mFun{rmmvnorm}
 If package **mvtnorm**`r cite_pkg("mvtnorm")` is available, multivariate normally distributed spectra can be generated from mean and covariance matrix using `rmmvnorm()`{.r} (Fig. \@ref(fig:sim-spc)).
@@ -327,8 +338,6 @@ pcov <- pooled.cov(chondro, chondro$clusters)
 rnd  <- rmmvnorm(rep(10, 3), mean = pcov$mean, sigma = pcov$COV)
 ```
 
-
-
 ```{r include = FALSE}
 CAPTION <- "Multivariate normally distributed random spectra generated with `rmmvnorm()`{.r}."
 ```
@@ -338,14 +347,7 @@ cluster.cols <- c("dark blue", "orange", "#C02020")
 plot(rnd, col = cluster.cols[rnd$.group])
 ```
 
-<!-- \begin{figure}[t] -->
-<!-- \subfloat[ {#fig:sim:spc} `rmmvnorm()`{.r}]{\includegraphics[width=.66\linewidth]{hyperspec-fig-simspc}} -->
-<!-- \subfloat[ {#fig:sim:lda} LDA of simulated spectra. Crosses mark real spectra.]{\includegraphics[width=.33\linewidth]{hyperspec-fig-simlda}} -->
-<!--   \caption{Multivariate normally distributed random spectra.} -->
-<!--    {#fig:sim} -->
-<!-- \end{figure} -->
-
-Fig. \@ref(fig:sim-lda) shows the linear discriminant analysis (LDA) scores of such  simulated specta in comparison to the real spectra in the `chondro`{.r} object:
+Fig. \@ref(fig:sim-lda) shows the linear discriminant analysis (LDA) scores of simulated spectra in comparison to the real spectra in the `chondro`{.r} object:
 
 
 
@@ -358,7 +360,6 @@ lda <- lda(clusters ~ spc, rnd)
 pred.chondro <- predict(lda, newdata = chondro)
 pred.sim <- predict(lda)
 ```
-
 
 <!-- ======================================================================= -->
 ```{block, type = "note-t", echo = TRUE}
