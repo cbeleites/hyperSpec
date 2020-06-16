@@ -53,7 +53,7 @@ library(hyperSpec)
 source("vignette-functions.R", encoding = "UTF-8")
 
 # Settings -------------------------------------------------------------------
-source("vignette-default-settingsR.R", encoding = "UTF-8")
+source("vignette-default-settings.R", encoding = "UTF-8")
 
 # knitr::opts_chunk$set(
 #   fig.path   = "figures/baseline--"
@@ -77,8 +77,8 @@ make_bib(
 
 # Introduction {#sec:introduction}
 
-This document discusses baseline correction methods that can be used with package **hyperSpec**. 
-Package **hyperSpec** provides two fitting functions for polynomial baselines, `spc.fit.poly()`{.r} and `spc.fit.poly.below()`{.r}. 
+This document discusses baseline correction methods that can be used with package **hyperSpec**.
+Package **hyperSpec** provides two fitting functions for polynomial baselines, `spc.fit.poly()`{.r} and `spc.fit.poly.below()`{.r}.
 Another possibility is `spc.rubberband()`{.r}, a "rubberband" method that determines support points by finding the convex hull of each spectrum.
 The baselines are then piecewise linear or (smoothing) splines through the support points.
 
@@ -110,7 +110,7 @@ spc.fit.poly.below(fit.to, apply.to = fit.to, poly.order = 1, npts.min = NULL, n
 - **`apply.to`{.r}:** `hyperSpec`{.r} object giving the spectral range, on which the  baselines should be evaluated.
   If `apply()`{.r} is `NULL`{.r}, a `hyperSpec`{.r} object with the polynomial coefficients is returned instead of evaluated baselines.
 - **`poly.order`{.r}:** polynomial order of the baselines.
-- **`npts.min`{.r}:** minimal number of data points per spectrum to be used for the fit. 
+- **`npts.min`{.r}:** minimal number of data points per spectrum to be used for the fit.
   Argument `npts.min`{.r} defaults to the larger of 3 times (`poly.order + 1`{.r}) or  $\frac{1}{20th}$ of the number of data points per spectrum.
   If `npts.min`{.r} $\leq$ `poly.order`, a warning is issued and `npts.min <- poly.order + 1`{.r} is used.
 - **`noise`{.r}:** a vector giving the amount of noise, see below.
@@ -128,7 +128,7 @@ Subtracting the baseline is up to the user, it is easily done as `hyperSpec`{.r}
 ## Fitting polynomial baselines using least squares  {#sec:fitt-polyn-basel}
 
 Commonly, baselines are fit using (single) support points that are specified by the user.
-Also, usually $n + 1$ support point is used for a polynomial of order $n$. 
+Also, usually $n + 1$ support point is used for a polynomial of order $n$.
 This approach is appropriate for spectra with high signal to noise ratio.
 
 Such a baseline can be obtained by restricting the spectra in `fit.to`{.r} to the respective points (see figure \@ref(fig:classical)):
@@ -167,8 +167,8 @@ It is up to the user to decide whether this should be corrected for by selecting
 
 ## The mechanism of automatically fitting the baseline in `spc.fit.poly.below()`{.r}↨
 
-Function `spc.fit.poly.below()`{.r} tries to automatically find appropriate spectral regions for baseline fitting. 
-This is done by excluding spectral regions that contain signals from the baseline fitting. 
+Function `spc.fit.poly.below()`{.r} tries to automatically find appropriate spectral regions for baseline fitting.
+This is done by excluding spectral regions that contain signals from the baseline fitting.
 The idea is that all data points that lie above a fitted polynomial (initially through the whole spectrum, then through the remaining parts of the spectrum) will be treated as signal and thus be excluded from the baseline fitting.
 
 The supporting points for the baseline polynomials are calculated iteratively:
@@ -223,8 +223,8 @@ abline(bl[[]], col = "blue")
 ```
 
 
-It is possible to exclude spectral regions that do not contribute to the baseline from the fitting, while the baseline is used for the whole spectrum. 
-This selection of appropriate spectral regions is essential for `spc.fit.poly()`{.r}. 
+It is possible to exclude spectral regions that do not contribute to the baseline from the fitting, while the baseline is used for the whole spectrum.
+This selection of appropriate spectral regions is essential for `spc.fit.poly()`{.r}.
 But also `spc.fit.poly.below()`{.r} can benefit from narrower spectral ranges: the fitting gains speed.
 The default value for `npts.min`{.r} depends on the number of data points per spectrum.
 Thus one should also consider requiring more support points than the default value suggests.
@@ -288,8 +288,8 @@ Figures \@ref(fig:figorder0), \@ref(fig:figorder1), \@ref(fig:figorder2) show th
 
 <!-- Upper part: -->
 ```{r include=FALSE}
-CAPTION <- "Iterative fitting of the baseline with noise level. 
-Effects of the noise parameter on the baseline of a spectrum consisting only of noise and offset: without giving `noise`{.r} the resulting baseline (black) is clearly too low. 
+CAPTION <- "Iterative fitting of the baseline with noise level.
+Effects of the noise parameter on the baseline of a spectrum consisting only of noise and offset: without giving `noise`{.r} the resulting baseline (black) is clearly too low.
 A noise level of 4 results in the blue baseline. "
 ```
 
@@ -305,7 +305,7 @@ plot(spc.fit.poly.below(spc, poly.order = 0), col = "black", add = T)
 CAPTION <- "Iterative fitting of the baseline with noise level.
 The baseline fitting with noise level on the complete spectrum.
 Colour: iterations, dots: supporting points for the respectively next baseline.
-Dashed: baseline plus noise. 
+Dashed: baseline plus noise.
 All points above this line are excluded from the next iteration.  "
 ```
 
@@ -319,7 +319,7 @@ Consider a spectral range consisting only of noise.
 The upper part of figures \@ref(fig:fig3), \@ref(fig:fig4) illustrate the problem.
 As the baseline fitting algorithm cannot distinguish between noise and real bands appearing above the fitted polynomial, the resulting baseline (black) is too low if the `noise`{.r} parameter is not given.
 
-Setting the noise level to `r noise` (2 standard deviations), the fitting converges immediately with a much better result. 
+Setting the noise level to `r noise` (2 standard deviations), the fitting converges immediately with a much better result.
 The resulting baselines for `spc.fit.poly.below (chondro [1], poly.order = 1, noise = 12)`{.r} of the whole spectrum are shown in the middle and lower part of figure \@ref(fig:fig4).
 
 The `noise`{.r} may be a single value for all spectra, or a vector with the noise level for each of the spectra separately.
@@ -357,7 +357,7 @@ CAPTION <- "Rubberband baselines for the paracetamol spectrum: corrected spectru
 plot(paracetamol[, , 175 ~ 1800] - bl)
 ```
 
-However, there is possibly some background left between 1200 and 1750 cm^-1^ where the original spectrum is slightly concave. 
+However, there is possibly some background left between 1200 and 1750 cm^-1^ where the original spectrum is slightly concave.
 This can be corrected by bending the spectrum before applying the rubberband correction (fig. \@ref(fig:rubberband-bent-raw), \@ref(fig:rubberband-bent-corrected)):
 
 ```{r bent-rubberband}
