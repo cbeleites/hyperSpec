@@ -110,20 +110,17 @@ There is still a lot of work and polishing to be done.  Here are some of the rem
 
 1. I think we can greatly simplify the bibliography processing by just letting `markdown` take care of it.
 
-2. For all vignettes we should probably settle on one or two color schemes for plots.
+2. For all vignettes we should probably settle on one or two color schemes for plots.  At least some are defined in `vignette-functions.R`.
 
-3.  I'm not sure if any of the `\index ` and related items do anything in this type of document.  Remove if possible.  html files can be search via the browser.
+3.  I'm not sure if any of the `\index ` and related items do anything in this type of document.  Remove if possible.  html files can be search via the browser.  Note: **VG wants to keep for now.**
 
 4.  Some maintenance simplification might be gained by putting the contents of all tables into data frames and using `kableExtra` to print them.
 
-5.  I think `vignette.defs` which is basically a \LaTeX file is not doing anything for this document.
 ```
-
-<!-- > Note that some definitions are executed in `vignette.defs`. -->
 
 <!-- \tableofcontents -->
 
-# Things to Know About **_hyperSpec_** As You Get Started
+# Things to Know About **_hyperSpec_**
 
 Package **hyperSpec** is a `R` package that allows convenient handling of \index{hyperspectral data sets} hyperspectral data sets, i.e., data sets combining spectra with further data on a per-spectrum basis.
 The spectra can be anything that is recorded over a common discretized axis.
@@ -145,23 +142,21 @@ transmission, absorbance, $\frac{e^{-}}{s}$, intensity, etc.
 
 **extra data** \index{extra data}
 : further information/data belonging to each spectrum such as
-spatial information (spectral images, maps, or profiles), temporal information (kinetics, time series), concentrations (calibration  series), class membership information, etc.
-Class `hyperSpec`{.r} object may contain arbitrary numbers of extra data columns.
+spatial information (spectral images, maps, or profiles), temporal information (kinetics, time series), concentrations (calibration  series), class membership information, etc. Class `hyperSpec` object may contain arbitrary numbers of extra data columns.
 
 In R, slots of an S4 class are accessed by the \index{`"@`{.r} operator}`@`{.r} operator.
 In this vignette, the notation `@xxx`{.r} will thus mean *"slot xxx of an object"*.
-Likewise, named elements of a `list`{.r} and columns of a `data.frame`{.r} are accessed by the \index{`$`{.r} operator} `$`{.r} operator, and `$xxx`{.r} will be used for *"column xxx"*, and as an
-abbreviation for *"column xxx of the `data.frame`{.r} in slot data of the object"* (the structure of `hyperSpec`{.r} objects is discussed in section \@ref(sec:structure-chy)).
+Likewise, named elements of a `list` and columns of a `data.frame` are accessed by the \index{`$`{.r} operator} `$`{.r} operator, and `$xxx`{.r} will be used for *"column xxx"*, and as an abbreviation for *"column xxx of the `data.frame` in slot data of the object"* (the structure of `hyperSpec` objects is discussed in section \@ref(sec:structure-chy)).
 
-## The Structure of `hyperSpec`{.r} Objects {#sec:structure-chy}
+## The Structure of `hyperSpec` Objects {#sec:structure-chy}
 
-`hyperSpec`{.r} objects are defined using an S4 class. It contains the following slots:
+`hyperSpec` objects are defined using an S4 class. It contains the following slots:
 
 -  **`@wavelength`{.r}** containing a numeric vector with the wavelength axis of the spectra.
--  **`@data`{.r}**       a `data.frame`{.r} with the spectra and all further information belonging to the spectra.
+-  **`@data`{.r}**       a `data.frame` with the spectra and all further information belonging to the spectra.
 -  **`@label`{.r}**      a list with appropriate labels (particularly for axis annotations).
 
-While the parts of the `hyperSpec`{.r} object can be accessed directly, it is good practice to use the functions provided by package **hyperSpec** to handle the objects rather than accessing the slots directly (Table \@ref(tab:getset)).
+While the parts of the `hyperSpec` object can be accessed directly, it is good practice to use the functions provided by package **hyperSpec** to handle the objects rather than accessing the slots directly (Table \@ref(tab:getset)).
 This also ensures that proper (i.e. *valid*) objects are returned.
 In some cases, however, direct access to the slots can considerably speed up calculations (see section the appendicies).
 
@@ -176,21 +171,19 @@ slot              | get                      | set
 `@label`{.r}      | `labels()`{.r}           | `labels<-`{.r}
 <!-- ---------------------------------------------------------------------- -->
 
-Most of the data is stored in `@data`{.r}. This `data.frame`{.r} has one special column, `$spc`{.r}.
-It is the column that actually contains the spectra. The spectra are stored in a matrix inside this column, as illustrated in Figure \@ref(fig:structure).
+Most of the data is stored in `@data`{.r}. This `data.frame` has one special column, `$spc`{.r}. This is the column that actually contains the spectra. The spectra are stored in a matrix inside this column, as illustrated in Figure \@ref(fig:structure).
 Even if there are no spectra, `$spc`{.r} must still be present.
 It is then a matrix with zero columns.
 
-```{r structure, echo = FALSE, fig.cap = CAPTION, out.width = "400"}
-knitr::include_graphics("intro--strukturhyperspec.png")
-CAPTION = "The structure of the data in a `hyperSpec` object.  In this example the 'extra data' are the `x` and `y` columns in `@data`."
+```{r structure, echo = FALSE, fig.cap = CAPTION, out.width = "600"}
+knitr::include_graphics("intro--structure--hyperSpec--objects.png")
+CAPTION = "The structure of the data in a `hyperSpec` object.  In this example the 'extra data' are the `x`, `y` and `c` columns in `@data`."
 ```
 
-Slot `@label`{.r} contains an element for each of the columns in `@data`{.r} plus one holding the
-label for the wavelength axis, `.wavelength`{.r}.
+Slot `@label`{.r} contains an element for each of the columns in `@data`{.r} plus one holding the label for the wavelength axis, `.wavelength`.
 They are accessed by their names which must be the same for columns of `@data`{.r} and the list elements.
 The elements of the list may be anything suitable for axis annotations, i.e., they should be either character strings or expressions for "pretty" axis annotations (see, e.g., Figure \@ref(fig:loess-kl)).
-To get familiar with expressions for axis annotation, see `?plotmath`{.r} and `demo(plotmath)`{.r}.
+To get familiar with expressions for axis annotation, see `?plotmath` and `demo(plotmath)`{.r}.
 
 ## Data Sets
 
