@@ -29,7 +29,3 @@ vignettes/resources/*.bib
 # Documentation
 man/*.Rd
 NAMESPACE
-
-# Package datasets
-data/*.rda
-R/sysdata.rda
