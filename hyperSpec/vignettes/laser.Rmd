@@ -49,7 +49,6 @@ pkgdown:
 # Packages -------------------------------------------------------------------
 library(hyperSpec)
 # library(rgl)
-```
 
 # Functions ------------------------------------------------------------------
 source("vignette-functions.R", encoding = "UTF-8")
