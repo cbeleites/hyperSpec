@@ -99,8 +99,7 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Plotting Functions in “hyperSpec”</h1>
-                        <h4 class="author">Claudia Beleites<sup>1,2,3,4,5</sup>
-</h4>
+                        <h4 class="author">Claudia Beleites<sup>1,2,3,4,5</sup>, Vilmantas Gegzna</h4>
             <address class="author_afil">
       <ol style="list-style-type: decimal">
 <li>DIA Raman Spectroscopy Group, University of Trieste/Italy (2005–2008)</li>
@@ -125,29 +124,7 @@
 <div id="suggested-packages-and-setup" class="section level1 unnumbered">
 <h1 class="hasAnchor">
 <a href="#suggested-packages-and-setup" class="anchor"></a>Suggested Packages and Setup</h1>
-<!-- ======================================================================= -->
-<div class="note-t">
-<p>
-<strong>Translator’s notes</strong> <code>plotting-1</code>
-</p>
-<ol style="list-style-type: decimal">
-<li>
-<p>
-All reproducible code must be presented in the vignette (and it ir possible to do with R Markdown). And the sentences like:
-</p>
-<blockquote>
-<p>
-Note that some definitions are executed in <code>vignette.defs</code>,
-</p>
-</blockquote>
-<p>
-must be avoided. As new users might think “What is”vignette.defs“? I’m just begginer R user?. There are no explanations on it!”
-</p>
-</li>
-</ol>
-</div>
-<hr>
-<!-- ======================================================================= --><div class="note">
+<div class="note">
 <p>
 <strong>Reproducing the examples in this vignette.</strong>
 </p>
@@ -155,7 +132,7 @@ must be avoided. As new users might think “What is”vignette.defs“? I’m j
 All spectra used in this manual are installed automatically with package <strong>hyperSpec</strong>.
 </p>
 </div>
-<!-- Note that some definitions are executed in `vignette.defs`, and others invisibly at the beginning of the file to have the code as similar as possible to interactive sessions. -->
+<hr>
 <blockquote>
 <p><strong>Terminology</strong>
 Throughout the documentation of the package, the following terms are used:</p>
@@ -233,10 +210,7 @@ More details in sections <a href="#exm-plotvoronoi">1.6</a>, and <a href="#arg-v
 </dl>
 <div class="note">
 <p>
-<strong>NOTE.</strong>
-</p>
-<p>
-Functions <code class="sourceCode r"><span class="kw">plotmap</span>()</code>, <code class="sourceCode r"><span class="kw">plotvoronoi</span>()</code>, and <code class="sourceCode r"><span class="kw">levelplot</span>()</code> are package <strong>lattice</strong> functions. Therefore, in loops, functions, R Markdown chunks, etc. lattice objects need to be printed explicitly by, e.g., <code class="sourceCode r"><span class="kw">print</span>(<span class="kw">plotmap</span>(object))</code> (<a href="http://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-do-lattice_002ftrellis-graphics-not-work_003f">R FAQ: Why do lattice/trellis graphics not work?</a>).
+<strong>NOTE.</strong> Functions <code class="sourceCode r"><span class="kw">plotmap</span>()</code>, <code class="sourceCode r"><span class="kw">plotvoronoi</span>()</code>, and <code class="sourceCode r"><span class="kw">levelplot</span>()</code> are package <strong>lattice</strong> functions. Therefore, in loops, functions, R Markdown chunks, etc. lattice objects need to be printed explicitly by, e.g., <code class="sourceCode r"><span class="kw">print</span>(<span class="kw">plotmap</span>(object))</code> (<a href="http://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-do-lattice_002ftrellis-graphics-not-work_003f">R FAQ: Why do lattice/trellis graphics not work?</a>).
 </p>
 </div>
 <div id="exm-plotspc" class="section level2">
@@ -665,25 +639,6 @@ Figure 3.11: Stacked spectra of means.
 <h3 class="hasAnchor">
 <a href="#stacking-groups-of-spectra" class="anchor"></a><span class="header-section-number">3.11.2</span> Stacking Groups of Spectra</h3>
 <!-- ======================================================================= -->
-
-<div class="note-t">
-<p><strong>Translator’s notes</strong> <code>plotting-2</code></p>
-<ol style="list-style-type: decimal">
-<li>
-<p><code class="sourceCode r">FIXME<span class="op">:</span></code> grammatical structure of these sentences makes them difficult to understand:</p>
-<blockquote>
-<p>The spectra to be stacked can be grouped: <code class="sourceCode r">stacked =<span class="st"> "factor"</span></code>.
-Alternatively, the name of an extra data column can be used for grouping (Fig. <a href="#fig:stacked2">3.12</a>).</p>
-</blockquote>
-<p>Would this alternative formulation reflect the idea of the sub-chapter well enough:</p>
-<blockquote>
-<p>Argument <code class="sourceCode r">stacked =<span class="st"> "factor"</span></code> can be used to stack groups of spectra (Fig. <a href="#fig:stacked2">3.12</a>).
-Here <code class="sourceCode r"><span class="st">"factor"</span></code> is a column name of factor variable in extra data.</p>
-</blockquote>
-</li>
-</ol>
-</div>
-
 <!-- ======================================================================= -->
 <p>The spectra to be stacked can be grouped: <code class="sourceCode r">stacked =<span class="st"> "factor"</span></code>.
 Alternatively, the name of an extra data column can be used for grouping (Fig. <a href="#fig:stacked2">3.12</a>).</p>
@@ -1295,42 +1250,7 @@ Figure 9.1: A snapshot of an <strong>rgl</strong> plot.
 </p>
 </div>
 <!-- ======================================================================= -->
-<div class="note-t">
-<p>
-<strong>Translator’s notes</strong> <code>plotting-3</code>
-</p>
-<ol style="list-style-type: decimal">
-<li>
-<code class="sourceCode r">FIXME<span class="op">:</span></code> Is the block below needed?
-</li>
-</ol>
-</div>
 <!-- ======================================================================= -->
-<div class="sourceCode" id="cb74"><html><body><pre class="r"><span class="co"># FIXME: is this code block still needed?</span>
-
-<span class="kw">if</span> (<span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="no">rgl</span>)) {
-  <span class="fu"><a href="https://rdrr.io/pkg/rgl/man/par3d.html">open3d</a></span>(<span class="kw">windowRect</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">20</span>, <span class="fl">20</span>, <span class="fl">600</span>, <span class="fl">350</span>)) <span class="co"># this is needed only for automatically</span>
-  <span class="co"># producing the snapshot</span>
-  <span class="co"># &lt;&lt;rgl-plot&gt;&gt;</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/rgl/man/par3d.html">par3d</a></span>(
-    <span class="kw">userMatrix</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(
-      -<span class="fl">0.52</span>, <span class="fl">0.4</span>, -<span class="fl">0.75</span>, <span class="fl">0</span>,
-      -<span class="fl">0.85</span>, -<span class="fl">0.28</span>, <span class="fl">0.44</span>, <span class="fl">0</span>,
-      -<span class="fl">0.04</span>, <span class="fl">0.87</span>, <span class="fl">0.49</span>, <span class="fl">0</span>,
-      -<span class="fl">0.75</span>, <span class="fl">0.75</span>, <span class="fl">0</span>, <span class="fl">1</span>
-    ), <span class="kw">ncol</span> <span class="kw">=</span> <span class="fl">4L</span>),
-    <span class="kw">scale</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">2.75</span>, <span class="fl">5</span>, <span class="fl">0.175</span>),
-    <span class="kw">windowRect</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">20L</span>, <span class="fl">50L</span>, <span class="fl">520L</span>, <span class="fl">330L</span>),
-    <span class="kw">zoom</span> <span class="kw">=</span> <span class="fl">0.75</span>
-  )
-  <span class="fu"><a href="https://rdrr.io/pkg/rgl/man/snapshot.html">rgl.snapshot</a></span>(<span class="st">"fig-3D.png"</span>, <span class="kw">fmt</span> <span class="kw">=</span> <span class="st">"png"</span>, <span class="kw">top</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
-  <span class="fu"><a href="https://rdrr.io/pkg/rgl/man/rgl.open.html">rgl.quit</a></span>()
-
-} <span class="kw">else</span> {
-  <span class="fu"><a href="https://rdrr.io/r/grDevices/png.html">png</a></span>(<span class="st">"fig-3D.png"</span>)
-  <span class="fu">ploterrormsg</span>(<span class="st">""</span>, <span class="st">"rgl"</span>)
-  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html">dev.off</a></span>()
-}</pre></body></html></div>
 </div>
 <div id="plots-ggplot2" class="section level1">
 <h1 class="hasAnchor">
@@ -1342,7 +1262,7 @@ Nevertheless, package <strong>ggplot2</strong> graphics can easily be obtained, 
 <a href="#qplotspc" class="anchor"></a><span class="header-section-number">10.1</span> Function <code class="sourceCode r"><span class="kw">qplotspc</span>()</code>
 </h2>
 <p>Plot spectra with <code class="sourceCode r"><span class="kw">qplotspc</span>()</code> (Fig. <a href="#fig:ggplotspc">10.1</a>).<!-- `as.long.df()`{.r}" --></p>
-<div class="sourceCode" id="cb75"><html><body><pre class="r"><span class="fu"><a href="../reference/qplotspc.html">qplotspc</a></span>(<span class="no">flu</span>) + <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">colour</span> <span class="kw">=</span> <span class="no">c</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb74"><html><body><pre class="r"><span class="fu"><a href="../reference/qplotspc.html">qplotspc</a></span>(<span class="no">flu</span>) + <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">colour</span> <span class="kw">=</span> <span class="no">c</span>)</pre></body></html></div>
 <div class="figure" style="text-align: center">
 <span id="fig:ggplotspc"></span>
 <img src="plotting_files/figure-html/ggplotspc-1.png" alt="Plot spectra with `as.long.df()`{.r}  "><p class="caption">
@@ -1355,7 +1275,7 @@ Figure 10.1: Plot spectra with <code class="sourceCode r"><span class="kw">as.lo
 <a href="#ggplotmap" class="anchor"></a><span class="header-section-number">10.2</span> Function <code class="sourceCode r"><span class="kw">ggplotmap</span>()</code>
 </h2>
 <p>Fig. <a href="#fig:ggplotmap">10.2</a> shows a map created with package <strong>ggplot2</strong>.</p>
-<div class="sourceCode" id="cb76"><html><body><pre class="r"><span class="fu"><a href="../reference/qplotmap.html">qplotmap</a></span>(<span class="no">chondro</span>) +
+<div class="sourceCode" id="cb75"><html><body><pre class="r"><span class="fu"><a href="../reference/qplotmap.html">qplotmap</a></span>(<span class="no">chondro</span>) +
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_gradient.html">scale_fill_gradientn</a></span>(<span class="st">"spc"</span>, <span class="kw">colours</span> <span class="kw">=</span> <span class="fu"><a href="../reference/palettes.html">matlab.palette</a></span>())</pre></body></html></div>
 <div class="figure" style="text-align: center">
 <span id="fig:ggplotmap"></span>
@@ -1373,7 +1293,7 @@ Figure 10.2: False-colour map with package <strong>ggplot2</strong>
 Long <code class="sourceCode r">data.frame</code>s can be <em>very</em> memory consuming as they are of size <span class="math inline">\(nrow · nwl × (ncol + 2)\)</span> with respect to the dimensions of the <code class="sourceCode r">hyperSpec</code> object.
 Thus, e.g., the <code class="sourceCode r">chondro</code> data set (2 MB) as <code class="sourceCode r">hyperSpec</code> object) needs 28 MB as long-format <code class="sourceCode r">data.frame</code>.
 It is therefore highly recommended to calculate the particular data to be plotted beforehand<!-- (Fig. \@ref(fig:ggplotmeansd))-->.</p>
-<div class="sourceCode" id="cb77"><html><body><pre class="r"><span class="fu"><a href="../reference/qplotspc.html">qplotspc</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="no">chondro</span>)) +
+<div class="sourceCode" id="cb76"><html><body><pre class="r"><span class="fu"><a href="../reference/qplotspc.html">qplotspc</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="no">chondro</span>)) +
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_ribbon.html">geom_ribbon</a></span>(<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(
     <span class="kw">ymin</span> <span class="kw">=</span> <span class="no">mean</span> + <span class="no">sd</span>,
     <span class="kw">ymax</span> <span class="kw">=</span> <span class="no">mean</span> - <span class="no">sd</span>,
@@ -1387,7 +1307,7 @@ It is therefore highly recommended to calculate the particular data to be plotte
 These aesthetics must therefore be set manually in the aesthetics definition in <code class="sourceCode r"><span class="kw">geom_ribbon</span>()</code> (or any other <code class="sourceCode r">geom_<span class="op">*</span>()</code> that uses <code class="sourceCode r"><span class="kw">as.t.df</span>()</code>).
 Otherwise, errors occur that object <code>spc</code> (and/or <code>.rownames</code>) cannot be found.
 Cut axes can be implemented by faceting (Fig. <a href="#fig:ggplotspccut">10.3</a>).</p>
-<div class="sourceCode" id="cb78"><html><body><pre class="r"><span class="fu"><a href="../reference/qplotspc.html">qplotspc</a></span>(<span class="no">paracetamol</span> / <span class="fl">1e4</span>, <span class="kw">wl.range</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="no">min</span> ~ <span class="fl">1800</span>, <span class="fl">2800</span> ~ <span class="no">max</span>)) +
+<div class="sourceCode" id="cb77"><html><body><pre class="r"><span class="fu"><a href="../reference/qplotspc.html">qplotspc</a></span>(<span class="no">paracetamol</span> / <span class="fl">1e4</span>, <span class="kw">wl.range</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="no">min</span> ~ <span class="fl">1800</span>, <span class="fl">2800</span> ~ <span class="no">max</span>)) +
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span>(<span class="kw">breaks</span> <span class="kw">=</span> <span class="fu"><a href="../reference/seq.html">seq</a></span>(<span class="fl">0</span>, <span class="fl">3200</span>, <span class="fl">400</span>))</pre></body></html></div>
 <div class="figure" style="text-align: center">
 <span id="fig:ggplotspccut"></span>
@@ -1396,16 +1316,6 @@ Figure 10.3: Cut spectra with package <strong>ggplot2</strong>.
 </p>
 </div>
 <!-- ======================================================================= -->
-<div class="note-t">
-<p>
-<strong>Translator’s notes</strong> <code>plotting-4</code>
-</p>
-<ol style="list-style-type: decimal">
-<li>
-<code class="sourceCode r">FIXME<span class="op">:</span></code> Is the block below needed?
-</li>
-</ol>
-</div>
 <!-- ======================================================================= -->
 </div>
 </div>
@@ -1420,20 +1330,20 @@ Function <code class="sourceCode r"><span class="kw">map.sel.poly</span>()</code
 <a href="#sec:spc-identify" class="anchor"></a><span class="header-section-number">11.1</span> <code class="sourceCode r"><span class="kw">spc.identify</span>()</code> Finding Out Wavelength, Intensity and Spectrum</h2>
 <p>Function <code class="sourceCode r"><span class="kw">spc.identify</span>()</code> allows to measure points in graphics produced by <code class="sourceCode r"><span class="kw">plotspc</span>()</code>.
 It works correctly with reversed and cut wavelength axes.</p>
-<div class="sourceCode" id="cb79"><html><body><pre class="r"><span class="fu"><a href="../reference/spc-identify.html">spc.identify</a></span>(<span class="fu"><a href="../reference/plotspc.html">plotspc</a></span>(<span class="no">paracetamol</span>, <span class="kw">wl.range</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">600</span> ~ <span class="fl">1800</span>, <span class="fl">2800</span> ~ <span class="fl">3200</span>), <span class="kw">xoffset</span> <span class="kw">=</span> <span class="fl">800</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb78"><html><body><pre class="r"><span class="fu"><a href="../reference/spc-identify.html">spc.identify</a></span>(<span class="fu"><a href="../reference/plotspc.html">plotspc</a></span>(<span class="no">paracetamol</span>, <span class="kw">wl.range</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">600</span> ~ <span class="fl">1800</span>, <span class="fl">2800</span> ~ <span class="fl">3200</span>), <span class="kw">xoffset</span> <span class="kw">=</span> <span class="fl">800</span>))</pre></body></html></div>
 <p>The result is a data.frame with the indices of the spectra, the wavelength, and its intensity.</p>
 </div>
 <div id="sec:map-identify" class="section level2">
 <h2 class="hasAnchor">
 <a href="#sec:map-identify" class="anchor"></a><span class="header-section-number">11.2</span> <code class="sourceCode r"><span class="kw">map.identify</span>()</code> finding a spectrum in a map plot</h2>
 <p>Function <code class="sourceCode r"><span class="kw">map.identify</span>()</code> returns the spectra indices of the clicked points.</p>
-<div class="sourceCode" id="cb80"><html><body><pre class="r"><span class="fu"><a href="../reference/levelplot.html">map.identify</a></span>(<span class="no">chondro</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb79"><html><body><pre class="r"><span class="fu"><a href="../reference/levelplot.html">map.identify</a></span>(<span class="no">chondro</span>)</pre></body></html></div>
 </div>
 <div id="sec:map-sel-poly" class="section level2">
 <h2 class="hasAnchor">
 <a href="#sec:map-sel-poly" class="anchor"></a><span class="header-section-number">11.3</span> <code class="sourceCode r"><span class="kw">map.sel.poly</span>()</code> selecting spectra inside a polygon in a map plot</h2>
 <p>Function <code class="sourceCode r"><span class="kw">map.sel.poly</span>()</code> returns a logical indicating which spectra are inside the polygon drawn by the user:</p>
-<div class="sourceCode" id="cb81"><html><body><pre class="r"><span class="fu"><a href="../reference/map-sel-poly.html">map.sel.poly</a></span>(<span class="no">chondro</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb80"><html><body><pre class="r"><span class="fu"><a href="../reference/map-sel-poly.html">map.sel.poly</a></span>(<span class="no">chondro</span>)</pre></body></html></div>
 </div>
 <div id="sec:identify-other" class="section level2">
 <h2 class="hasAnchor">
@@ -1443,7 +1353,7 @@ It works correctly with reversed and cut wavelength axes.</p>
 It returns the clicked coordinates. Note that these are <em>not</em> transformed according to <code>xoffset</code> &amp; Co.</p>
 <p>For lattice graphics, <code class="sourceCode r"><span class="kw">grid.locator</span>()</code> may be used instead.
 If it is not called in the panel function, a preceding call to <code class="sourceCode r"><span class="kw">trellis.focus</span>()</code> is needed:</p>
-<div class="sourceCode" id="cb82"><html><body><pre class="r"><span class="fu"><a href="../reference/plot.html">plot</a></span>(<span class="no">laser</span>, <span class="st">"mat"</span>)
+<div class="sourceCode" id="cb81"><html><body><pre class="r"><span class="fu"><a href="../reference/plot.html">plot</a></span>(<span class="no">laser</span>, <span class="st">"mat"</span>)
 <span class="fu">trellis.focus</span>()
 <span class="fu">grid.locator</span>()</pre></body></html></div>
 <p>Function <code class="sourceCode r"><span class="kw">identify</span>()</code> (or <code class="sourceCode r"><span class="kw">panel.identify</span>()</code> for lattice graphics) allows to identify points of the plot directly.
@@ -1457,22 +1367,9 @@ Note that the returned indices correspond to the plotted object.</p>
 <h2 class="hasAnchor">
 <a href="#sec:no-output-produced" class="anchor"></a><span class="header-section-number">12.1</span> No Output Is Produced</h2>
 <p>Methods <code class="sourceCode r">plotmap</code>, <code class="sourceCode r">plotvoronoi</code>, <code class="sourceCode r">levelplot</code>, and <code class="sourceCode r">plotc</code> use package <strong>lattice</strong> functions.
-Therefore, in loops, functions, Sweave chunks, etc. the lattice object needs to be printed explicitly by <code class="sourceCode r"><span class="kw">print</span>(<span class="kw">plotmap</span>(object))</code>
+Therefore, in loops, functions, Sweave, R Markdown chunks, etc. the lattice object needs to be printed explicitly by <code class="sourceCode r"><span class="kw">print</span>(<span class="kw">plotmap</span>(object))</code>
 (<a href="http://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-do-lattice_002ftrellis-graphics-not-work_003f">R FAQ: Why do lattice/trellis graphics not work?</a>).
 The same holds for package <strong>ggplot2</strong> graphics.</p>
-<!-- ======================================================================= -->
-<div class="note-t">
-<p>
-<strong>Translator’s notes</strong> <code>plotting-5</code>
-</p>
-<ol style="list-style-type: decimal">
-<li>
-<code class="sourceCode r">FIXME<span class="op">:</span></code> in my opinion, “vignettes.defs” shouldn’t be mentioned at all
-</li>
-</ol>
-</div>
-<!-- ======================================================================= -->
-<p>For suggestions on how the lattice functions can be redefined so that the result is printed without external print command, see the file <code>vignettes.defs</code>.</p>
 </div>
 </div>
 <div id="session-info" class="section level1 unnumbered">
