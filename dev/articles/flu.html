@@ -215,7 +215,7 @@ The files are completely ASCII text, with the actual spectra starting at line 55
 <span class="co">#&gt; wavelength: lambda/nm [numeric] 405.0 405.5 ... 495 </span>
 <span class="co">#&gt; data:  (6 rows x 2 columns)</span>
 <span class="co">#&gt;    1. spc: I[fl]/"a.u." [matrix, array181] 27.150 66.801 ... 294.65 </span>
-<span class="co">#&gt;    2. filename: filename [character] /Users/runner/runners/2.263.0/work/_temp/Library/hyperSpec/extdata/flu/flu1.txt /Users/runner/runners/2.263.0/work/_temp/Library/hyperSpec/extdata/flu/flu2.txt ... /Users/runner/runners/2.263.0/work/_temp/Library/hyperSpec/extdata/flu/flu6.txt</span></pre></body></html></div>
+<span class="co">#&gt;    2. filename: filename [character] /Users/runner/runners/2.169.1/work/_temp/Library/hyperSpec/extdata/flu/flu1.txt /Users/runner/runners/2.169.1/work/_temp/Library/hyperSpec/extdata/flu/flu2.txt ... /Users/runner/runners/2.169.1/work/_temp/Library/hyperSpec/extdata/flu/flu6.txt</span></pre></body></html></div>
 <div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="fu"><a href="../reference/plot.html">plot</a></span>(<span class="no">flu</span>)</pre></body></html></div>
 <div class="figure" style="text-align: center">
 <span id="fig:rawfig"></span>
@@ -240,7 +240,7 @@ This information can be stored together with the spectra, and also gets an appro
 <span class="co">#&gt; wavelength: lambda/nm [numeric] 405.0 405.5 ... 495 </span>
 <span class="co">#&gt; data:  (6 rows x 3 columns)</span>
 <span class="co">#&gt;    1. spc: I[fl]/"a.u." [matrix, array181] 27.150 66.801 ... 294.65 </span>
-<span class="co">#&gt;    2. filename: filename [character] /Users/runner/runners/2.263.0/work/_temp/Library/hyperSpec/extdata/flu/flu1.txt /Users/runner/runners/2.263.0/work/_temp/Library/hyperSpec/extdata/flu/flu2.txt ... /Users/runner/runners/2.263.0/work/_temp/Library/hyperSpec/extdata/flu/flu6.txt </span>
+<span class="co">#&gt;    2. filename: filename [character] /Users/runner/runners/2.169.1/work/_temp/Library/hyperSpec/extdata/flu/flu1.txt /Users/runner/runners/2.169.1/work/_temp/Library/hyperSpec/extdata/flu/flu2.txt ... /Users/runner/runners/2.169.1/work/_temp/Library/hyperSpec/extdata/flu/flu6.txt </span>
 <span class="co">#&gt;    3. c: c, mg/l [numeric] 0.05 0.10 ... 0.3</span></pre></body></html></div>
 <!-- ======================================================================= -->
 <div class="note-t">
@@ -265,12 +265,12 @@ This information can be stored together with the spectra, and also gets an appro
 <p>Function <code class="sourceCode r"><span class="kw">read.txt.PerkinElmer</span>()</code> added a column with the file names that we don’t need.</p>
 <div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="no">flu</span>$<span class="no">..</span>
 <span class="co">#&gt;                                                                          filename    c</span>
-<span class="co">#&gt; 1 /Users/runner/runners/2.263.0/work/_temp/Library/hyperSpec/extdata/flu/flu1.txt 0.05</span>
-<span class="co">#&gt; 2 /Users/runner/runners/2.263.0/work/_temp/Library/hyperSpec/extdata/flu/flu2.txt 0.10</span>
-<span class="co">#&gt; 3 /Users/runner/runners/2.263.0/work/_temp/Library/hyperSpec/extdata/flu/flu3.txt 0.15</span>
-<span class="co">#&gt; 4 /Users/runner/runners/2.263.0/work/_temp/Library/hyperSpec/extdata/flu/flu4.txt 0.20</span>
-<span class="co">#&gt; 5 /Users/runner/runners/2.263.0/work/_temp/Library/hyperSpec/extdata/flu/flu5.txt 0.25</span>
-<span class="co">#&gt; 6 /Users/runner/runners/2.263.0/work/_temp/Library/hyperSpec/extdata/flu/flu6.txt 0.30</span></pre></body></html></div>
+<span class="co">#&gt; 1 /Users/runner/runners/2.169.1/work/_temp/Library/hyperSpec/extdata/flu/flu1.txt 0.05</span>
+<span class="co">#&gt; 2 /Users/runner/runners/2.169.1/work/_temp/Library/hyperSpec/extdata/flu/flu2.txt 0.10</span>
+<span class="co">#&gt; 3 /Users/runner/runners/2.169.1/work/_temp/Library/hyperSpec/extdata/flu/flu3.txt 0.15</span>
+<span class="co">#&gt; 4 /Users/runner/runners/2.169.1/work/_temp/Library/hyperSpec/extdata/flu/flu4.txt 0.20</span>
+<span class="co">#&gt; 5 /Users/runner/runners/2.169.1/work/_temp/Library/hyperSpec/extdata/flu/flu5.txt 0.25</span>
+<span class="co">#&gt; 6 /Users/runner/runners/2.169.1/work/_temp/Library/hyperSpec/extdata/flu/flu6.txt 0.30</span></pre></body></html></div>
 <p>It is therefore deleted:</p>
 <div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="no">flu</span>$<span class="no">filename</span> <span class="kw">&lt;-</span> <span class="kw">NULL</span></pre></body></html></div>
 </div>
