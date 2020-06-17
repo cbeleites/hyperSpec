@@ -1111,15 +1111,15 @@ The current settings can be visualized via a call to `show.settings()`{.r}
 Graphical parameters for *trellis* may be displayed via `show.settings()`{.r} (Fig. \@ref(fig:lattice-settings)).
 
 ```{r include=FALSE}
-CAPTION = "Show *lattice** settings.  "
+CAPTION = "Show **lattice** settings.  "
 ```
 
-```{r lattice-settings-2, fig.width=8, fig.height=6, fig.cap=CAPTION, eval=FALSE}
+```{r lattice-settings-2, fig.width=7, fig.height=4, fig.cap=CAPTION, eval=FALSE}
 # Display current trellis parameters
 show.settings()
 ```
 
-```{r lattice-settings, fig.width=8, fig.height=6, fig.cap=CAPTION}
+```{r lattice-settings, fig.width=7, fig.height=4, fig.cap=CAPTION}
 show.settings(my.theme)
 ```
 
