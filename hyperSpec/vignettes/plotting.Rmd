@@ -8,7 +8,7 @@ description: "plotting: Manual of hyperSpec's plotting functions"
 # file_name: plotting
 # Authors --------------------------------------------------------------------
 author:
-  - name: Claudia Beleites^1,2,3,4,5^
+  - name: Claudia Beleites^1,2,3,4,5^, Vilmantas Gegzna
     email: chemometrie@beleites.de
     corresponding : yes
     affiliation   : |
@@ -64,6 +64,9 @@ source("vignette-default-settings.R", encoding = "UTF-8")
 # knitr::opts_chunk$set(
 #   fig.path   = "figures/plotting--"
 # )
+
+
+reviewers_notes = FALSE
 ```
 
 ```{r bib, echo=FALSE, paged.print=FALSE}
@@ -88,26 +91,6 @@ make_bib(
 
 # Suggested Packages and Setup {-}
 
-<!-- ======================================================================= -->
-```{block, type="note-t", echo=TRUE}
-**Translator's notes** `plotting-1`
-
-
-1. All reproducible code must be presented in the vignette (and it ir possible to do with R Markdown). And the sentences like:
-
-    > Note that some definitions are executed in `vignette.defs`,
-
-    must be avoided. As new users might think "What is "vignette.defs"? I'm just begginer R user?. There are no explanations on it!"
-
-```
-
-***
-
-<!-- ======================================================================= -->
-
-
-
-
 
 ```{block, type="note", echo=TRUE}
 **Reproducing the examples in this vignette.**
@@ -116,11 +99,7 @@ All spectra used in this manual are installed automatically with package **hyper
 
 ```
 
-
-
-
-<!-- Note that some definitions are executed in `vignette.defs`, and others invisibly at the beginning of the file to have the code as similar as possible to interactive sessions. -->
-
+***
 
 > **Terminology**
 > Throughout the documentation of the package, the following terms are used:
@@ -224,7 +203,6 @@ Package **hyperSpec** comes with 6 major predefined plotting functions:
 
 ```{block, type="note", echo=TRUE}
 **NOTE.**
-
 Functions `plotmap()`{.r}, `plotvoronoi()`{.r}, and `levelplot()`{.r} are package **lattice** functions.
 Therefore, in loops, functions, R Markdown chunks, etc. lattice objects need to be printed explicitly by, e.g., `print(plotmap(object))`{.r}
 ([R FAQ: Why do lattice/trellis graphics not work?](http://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-do-lattice_002ftrellis-graphics-not-work_003f)).
@@ -661,8 +639,8 @@ plotspc(cluster.means,
 
 
 <!-- ======================================================================= -->
-```{block2, type="note-t", echo=TRUE}
-**Translator's notes** `plotting-2`
+```{block2, type="note-t", echo=reviewers_notes}
+**V. Gegzna's notes** `plotting-2`
 
 
 1. `FIXME:`{.r} grammatical structure of these sentences makes them difficult to understand:
@@ -1114,6 +1092,10 @@ Graphical parameters for *trellis* may be displayed via `show.settings()`{.r} (F
 CAPTION = "Show **lattice** settings.  "
 ```
 
+```{r, echo=reviewers_notes, type="note-t"}
+# FIXME: padding in these figures must be fixed
+```
+
 ```{r lattice-settings-2, fig.width=7, fig.height=4, fig.cap=CAPTION, eval=FALSE}
 # Display current trellis parameters
 show.settings()
@@ -1357,17 +1339,15 @@ knitr::include_graphics("plotting--fig-3D-01.png")
 
 
 <!-- ======================================================================= -->
-```{block, type="note-t", echo=TRUE}
-**Translator's notes** `plotting-3`
+```{block, type="note-t", echo=reviewers_notes}
+**V. Gegzna's notes** `plotting-3`
 
 
 1. `FIXME:`{.r} Is the block below needed?
 ```
 <!-- ======================================================================= -->
 
-
-
-```{r rgl-do, echo=TRUE, results='hide', eval=FALSE}
+```{r rgl-do, echo=reviewers_notes, results='hide', eval=FALSE}
 # FIXME: is this code block still needed?
 
 if (require(rgl)) {
@@ -1475,17 +1455,15 @@ qplotspc(paracetamol / 1e4, wl.range = c(min ~ 1800, 2800 ~ max)) +
 
 
 <!-- ======================================================================= -->
-```{block, type="note-t", echo=TRUE}
-**Translator's notes** `plotting-4`
+```{block, type="note-t", echo=reviewers_notes}
+**V. Gegzna's notes** `plotting-4`
 
 
 1. `FIXME:`{.r} Is the block below needed?
 ```
 <!-- ======================================================================= -->
 
-
-
-```{r ggplot2-do, echo=FALSE, results='hide', eval=FALSE}
+```{r ggplot2-do, echo=reviewers_notes, results='hide', eval=FALSE}
 
 # FIXME: is this code block needed at all?
 
@@ -1571,24 +1549,9 @@ Note that the returned indices correspond to the plotted object.
 ## No Output Is Produced {#sec:no-output-produced}
 
 Methods `plotmap`{.r}, `plotvoronoi`{.r}, `levelplot`{.r}, and `plotc`{.r} use package **lattice** functions.
-Therefore, in loops, functions, Sweave chunks, etc. the lattice object needs to be printed explicitly by `print(plotmap(object))`{.r}
+Therefore, in loops, functions, Sweave, R Markdown chunks, etc. the lattice object needs to be printed explicitly by `print(plotmap(object))`{.r}
 ([R FAQ: Why do lattice/trellis graphics not work?](http://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-do-lattice_002ftrellis-graphics-not-work_003f)).
 The same holds for package **ggplot2** graphics.
-
-
-
-<!-- ======================================================================= -->
-```{block, type="note-t", echo=TRUE}
-**Translator's notes** `plotting-5`
-
-
-1. `FIXME:`{.r} in my opinion, "vignettes.defs" shouldn't be mentioned at all
-```
-<!-- ======================================================================= -->
-
-
-
-For suggestions on how the lattice functions can be redefined so that the result is printed without external print command, see the file `vignettes.defs`.
 
 
 # Session Info {-}
