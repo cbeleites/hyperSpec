@@ -73,7 +73,9 @@ Imports:
     lazyeval,
     dplyr,
     rlang
-URL: https://github.com/cbeleites/hyperSpec
+URL: 
+    https://cbeleites.github.io/hyperSpec,
+    https://github.com/cbeleites/hyperSpec
 BugReports: https://github.com/cbeleites/hyperSpec/issues
 VignetteBuilder: knitr
 Collate:
