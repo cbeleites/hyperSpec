@@ -114,7 +114,7 @@
                               <h4 class="author">Vilmantas Gegzna</h4>
                                     <h4 class="author">Bryan A. Hanson</h4>
                         
-            <h4 class="date">2020-06-16</h4>
+            <h4 class="date">2020-06-17</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/cbeleites/hyperSpec/blob/master/../vignettes/hyperspec.Rmd"><code>../vignettes/hyperspec.Rmd</code></a></small>
       <div class="hidden name"><code>hyperspec.Rmd</code></div>
@@ -2653,7 +2653,7 @@ You can also make suggestions in this manner.</p>
   }
 })
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.045   0.002   0.048</span></pre></body></html></div>
+<span class="co">#&gt;   0.044   0.002   0.046</span></pre></body></html></div>
 <p>Calculations that involve a lot of subsetting (i.e., extracting or changing the spectra matrix or extra data) can be sped up considerably if the required parts of the <code class="sourceCode r">hyperSpec</code> object are extracted beforehand.
 This is somewhat similar to model fitting in <code>R</code> in general: many model fitting functions in <code>R</code> are much faster if the formula interface is avoided and the appropriate <code class="sourceCode r">data.frame</code>s or matrices are handed over directly.</p>
 <div class="sourceCode" id="cb152"><html><body><pre class="r"><span class="no">tmp</span> <span class="kw">&lt;-</span> <span class="no">chondro</span>[<span class="fl">1</span>:<span class="fl">50</span>]
@@ -2666,7 +2666,7 @@ This is somewhat similar to model fitting in <code>R</code> in general: many mod
   <span class="no">tmp</span><span class="kw">[[</span>]] <span class="kw">&lt;-</span> <span class="no">tmp.matrix</span>
 })
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;    0.01    0.00    0.01</span></pre></body></html></div>
+<span class="co">#&gt;   0.009   0.000   0.009</span></pre></body></html></div>
 <!--
 ## Additional packages
 
