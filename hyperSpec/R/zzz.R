@@ -2,16 +2,24 @@
   unlockBinding(".options", asNamespace("hyperSpec"))
 
   desc <- utils::packageDescription("hyperSpec")
-  vers <- paste("V. ", desc$Version)
+  first_url <- sub(",.*$", "", desc$URL) # To use the first URL only
 
-  packageStartupMessage("Package ",  desc$Package, ", version ", desc$Version, "\n\n",
-    "To get started, try\n",
-    '   vignette ("hyperspec")\n',
-    "   package?hyperSpec \n",
-    '   vignette (package = "hyperSpec")\n\n',
-    "If you use this package please cite it appropriately.\n",
-    "   citation(\"hyperSpec\")\nwill give you the correct reference.", "\n\n",
-    "The project homepage is http://hyperspec.r-forge.r-project.org\n\n",
+  packageStartupMessage(
+    '\n\n',
+    'Package ',  desc$Package, ' (version ', desc$Version, ')\n\n',
+
+    'To get started, try: \n',
+    '   vignette("', desc$Package, '")',       '\n',
+    '   package?', desc$Package,               '\n',
+    '   vignette(package = "', desc$Package, '")\n',
+    # '   browseURL("', first_url, '") # Online documentation \n',
+    '\n',
+
+    'If you use this package, please cite it appropriately.\n',
+    'The correct reference is given by:\n',
+    '   citation("', desc$Package, '")\n\n',
+
+    "The project's website:\n   ", first_url, "\n\n",
     sep = ""
   )
 }
