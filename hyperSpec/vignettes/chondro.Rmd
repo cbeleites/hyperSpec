@@ -56,7 +56,9 @@ pkgdown:
 ```{r setup-chondro, include=FALSE}
 # Packages -------------------------------------------------------------------
 library(hyperSpec)
-require(latticeExtra)
+library(latticeExtra)
+library(akima)
+
 library(ggplotify)    # To convert plots to necessary class for alignment
 library(ggpubr)       # To align plots
 
@@ -114,10 +116,6 @@ In order to reproduce the examples by typing in the commands, have a look at the
 Also, the package **hyperSpec** needs to be loaded first via `library(hyperSpec)`{.r}.
 
 ```
-
-
-
-<!-- \tableofcontents -->
 
 
 
@@ -188,7 +186,7 @@ In order to speed up the reading `read.txt.Renishaw()`{.r} does not allow missin
 # Download file from:
 raw_data_url <-
   'https://media.githubusercontent.com/media/cbeleites/hyperSpec/master/Vignettes/fileio/txt.Renishaw/chondro.txt'
-dir.create('rawdata', F)
+dir.create('rawdata', showWarnings = FALSE)
 download.file(raw_data_url, 'rawdata/chondro.txt')
 
 # Read the raw data and make a hyperSpec object
@@ -279,7 +277,7 @@ Rounding erros in the point coordinates of lateral measurement grid:
 ```
 
 ```{r irregular-b, fig.cap=CAPTION}
-require("latticeExtra")
+library("latticeExtra")
 plotmap(chondro,
   col.regions = seq_palette(20), panel = panel.levelplot.points,
   col = NA, pch = 22, cex = 1.9
@@ -380,7 +378,7 @@ However, the data set also contains the clustering results (see at the very end 
 They are stored for saving as the distributed demo data:
 
 ```{r save_chondro}
-spectra.to.save <- chondro
+spectra_to_save <- chondro
 ```
 
 
@@ -740,21 +738,28 @@ Finally, the example data set is put together and saved.
 In order to keep the package size small, only a PCA-compressed version with 10 PCs is shipped as example data set of the package.
 
 ```{r save-chondro, eval=FALSE}
-spectra.to.save$clusters <- factor (NA, levels = levels (chondro$clusters))
-spectra.to.save$clusters[- out] <- chondro$clusters
+spectra_to_save$clusters <- factor(NA, levels = levels(chondro$clusters))
+spectra_to_save$clusters[-out] <- chondro$clusters
 
-pca <- prcomp (spectra.to.save)
-.chondro.scores   <- pca$x      [, seq_len (10)]
-.chondro.loadings <- pca$rot    [, seq_len (10)]
-.chondro.center   <- pca$center
-.chondro.wl       <- wl (chondro)
-.chondro.labels   <- lapply (labels (chondro), as.expression)
-.chondro.extra    <- spectra.to.save$..
+pca <- prcomp(spectra_to_save)
 
-save(.chondro.scores, .chondro.loadings, .chondro.center,
-  .chondro.wl, .chondro.labels, .chondro.extra,
-  file = "chondro-internal.rda")
+.chondro_scores <- pca$x[, seq_len(10)]
+.chondro_loadings <- pca$rot[, seq_len(10)]
+.chondro_center <- pca$center
+.chondro_wl <- wl(chondro)
+.chondro_labels <- lapply(labels(chondro), as.expression)
+.chondro_extra <- spectra_to_save$..
+
+chondro <- new("hyperSpec",
+  spc = tcrossprod(.chondro_scores, .chondro_loadings) +
+      rep(.chondro_center, each = nrow(.chondro_scores)),
+  wavelength = .chondro_wl,
+  data = .chondro_extra,
+  labels = .chondro_labels
+)
+
 ```
+
 
 
 This is the file distributed with package **hyperSpec** as example data set.
