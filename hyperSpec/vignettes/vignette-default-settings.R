@@ -84,6 +84,17 @@ options(rmarkdown.html_vignette.check_title = FALSE) # Vig index entry not docum
 set.seed(2020)
 
 # Temporaty options ==========================================================
-# This option controls if reviewers/translator's notes are visible
-# in the vignettes
+# This option controls if reviewer's/translator's notes are visible in vignettes
 options(show_reviewers_notes = FALSE)
+
+# Example (template) of reviever's notes block that could be hidden:
+
+# <!-- ======================================================================= -->
+# ```{block, type="note-t", echo=show_reviewers_notes}
+# **Reviewer's notes**:
+#
+# 1. `FIXME:`{.r} ...
+# 2. `TODO:`{.r} ...
+# 3. `NOTE:`{.r} ...
+# ```
+# <!-- ======================================================================= -->
