@@ -2165,7 +2165,7 @@ This section needs to be written.
 sessionInfo()
 ```
 
-# Appendix 5. Speed and Memory Considerations {#sec:speed-considerations} {-}
+# Appendix 5. Speed and Memory Considerations {- #sec:speed-considerations}
 
 While most of package **hyperSpec**'s functions work at a decent speed for interactive sessions (of course depending on the size of the object), iterated (repeated) calculations as for bootstrapping or iterated cross validation may ask for special speed considerations.
 
