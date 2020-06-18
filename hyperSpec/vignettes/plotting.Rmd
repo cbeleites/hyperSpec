@@ -1,6 +1,7 @@
 ---
 # For bookdown ---------------------------------------------------------------
-# `plotting`: **_hyperSpec_** Plotting Functions {#plotting}
+bookdown_titles: |
+  # `plotting`: **_hyperSpec_** Plotting Functions {#plotting}
 # For vignette ---------------------------------------------------------------
 title:     'Plotting Functions in "hyperSpec"'
 # subtitle:  "Introduction to the **_hyperSpec_** plotting functions"

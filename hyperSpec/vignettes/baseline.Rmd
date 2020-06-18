@@ -1,6 +1,7 @@
 ---
 # For bookdown ---------------------------------------------------------------
-# `baseline`: Fitting Baselines to Spectra {#baseline}
+bookdown_titles: |
+  # `baseline`: Fitting Baselines to Spectra {#baseline}
 # For vignette ---------------------------------------------------------------
 title:       Fitting Baselines to Spectra
 # subtitle:  Vignette on hyperSpec's baselinebelow data set

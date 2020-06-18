@@ -1,6 +1,7 @@
 ---
 # For bookdown ---------------------------------------------------------------
-# `laser`: Unstable Laser Emission {#laser}
+bookdown_titles: |
+  # `laser`: Unstable Laser Emission {#laser}
 # For vignette ---------------------------------------------------------------
 title:       Unstable Laser Emission
 subtitle:    Vignette for the Data Set `laser` of the R package **hyperSpec**

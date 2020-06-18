@@ -1,7 +1,8 @@
 ---
 # For bookdown ---------------------------------------------------------------
-# (PART\*) I Principles {-}
-# `hyperspec`: Introduction to Package **_hyperSpec_** {#hyperspec}
+bookdown_titles: |
+  # (PART\*) I Principles {-}
+  # `hyperspec`: Introduction to Package **_hyperSpec_** {#hyperspec}
 # For vignette ---------------------------------------------------------------
 title:       'Introduction to Package "hyperSpec"'
 # title:     "Introduction to Package **_hyperSpec_**"

@@ -1,7 +1,8 @@
 ---
 # For bookdown ---------------------------------------------------------------
-# (PART\*) II Case studies {-}
-# `chondro`: Raman Spectra of Chondrocytes in Cartilage {#chondro}
+bookdown_titles: |
+  # (PART\*) II Case studies {-}
+  # `chondro`: Raman Spectra of Chondrocytes in Cartilage {#chondro}
 # For vignette ---------------------------------------------------------------
 title:       "Raman Spectra of Chondrocytes in Cartilage"
 subtitle:    "Package **hyperSpec**'s `chondro` Data Set"

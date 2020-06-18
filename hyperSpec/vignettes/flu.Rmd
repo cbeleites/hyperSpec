@@ -1,6 +1,7 @@
 ---
 # For bookdown ---------------------------------------------------------------
-# `flu`: Calibration of Quinine Fluorescence Emission {#flu}
+bookdown_titles: |
+  # `flu`: Calibration of Quinine Fluorescence Emission {#flu}
 # For vignette ---------------------------------------------------------------
 title:       Calibration of Quinine Fluorescence Emission
 subtitle:    Vignette for the Data Set `flu` of the R package **hyperSpec**
