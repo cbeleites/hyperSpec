@@ -1639,7 +1639,7 @@ Multiplicative scatter correction (MSC) can be done using `msc()`{.r} from packa
 It operates on the spectra matrix:
 
 ```{r msc, eval = FALSE}
-require(pls)
+library(pls)
 chondro.msc <- chondro
 chondro.msc[[]] <- msc(chondro[[]])
 ```
