@@ -185,12 +185,12 @@ In order to speed up the reading `read.txt.Renishaw()`{.r} does not allow missin
 ```{r chondro-import, cache=TRUE}
 # Download file from:
 raw_data_url <-
-  'https://media.githubusercontent.com/media/cbeleites/hyperSpec/master/Vignettes/fileio/txt.Renishaw/chondro.txt'
+  'https://media.githubusercontent.com/media/cbeleites/hyperSpec/master/Vignettes/fileio/txt.Renishaw/chondro.gz'
 dir.create('rawdata', showWarnings = FALSE)
-download.file(raw_data_url, 'rawdata/chondro.txt')
+download.file(raw_data_url, 'rawdata/chondro.gz')
 
 # Read the raw data and make a hyperSpec object
-chondro <- read.txt.Renishaw("rawdata/chondro.txt", data = "xyspc")
+chondro <- read.txt.Renishaw("rawdata/chondro.gz", data = "xyspc")
 chondro
 ```
 
