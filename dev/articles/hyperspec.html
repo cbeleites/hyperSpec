@@ -2422,48 +2422,12 @@ You can also make suggestions in this manner.</p>
 <p>This section needs to be written.</p>
 </div>
 </div>
-<div id="appendix-4--session-info" class="section level1 unnumbered">
-<h1 class="hasAnchor">
-<a href="#appendix-4--session-info" class="anchor"></a>Appendix 4. Session Info</h1>
-<pre><code>#&gt; R version 4.0.1 (2020-06-06)
-#&gt; Platform: x86_64-apple-darwin17.0 (64-bit)
-#&gt; Running under: macOS Catalina 10.15.5
-#&gt; 
-#&gt; Matrix products: default
-#&gt; BLAS:   /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRblas.dylib
-#&gt; LAPACK: /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRlapack.dylib
-#&gt; 
-#&gt; locale:
-#&gt; [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
-#&gt; 
-#&gt; attached base packages:
-#&gt; [1] grid      stats     graphics  grDevices utils     datasets  methods   base     
-#&gt; 
-#&gt; other attached packages:
-#&gt; [1] baseline_1.3-0          pls_2.7-2               plotrix_3.7-8           MASS_7.3-51.6          
-#&gt; [5] mvtnorm_1.1-1           hyperSpec_0.99-20200615 xml2_1.3.2              ggplot2_3.3.1          
-#&gt; [9] lattice_0.20-41        
-#&gt; 
-#&gt; loaded via a namespace (and not attached):
-#&gt;  [1] highr_0.8           pillar_1.4.4        compiler_4.0.1      RColorBrewer_1.1-2 
-#&gt;  [5] tools_4.0.1         testthat_2.3.2      digest_0.6.25       evaluate_0.14      
-#&gt;  [9] lifecycle_0.2.0     tibble_3.0.1        gtable_0.3.0        pkgconfig_2.0.3    
-#&gt; [13] png_0.1-7           rlang_0.4.6         yaml_2.2.1          SparseM_1.78       
-#&gt; [17] xfun_0.14           withr_2.2.0         stringr_1.4.0       dplyr_1.0.0        
-#&gt; [21] knitr_1.28          generics_0.0.2      vctrs_0.3.1         tidyselect_1.1.0   
-#&gt; [25] limSolve_1.5.6      glue_1.4.1          R6_2.4.1            jpeg_0.1-8.1       
-#&gt; [29] rmarkdown_2.3       bookdown_0.19       latticeExtra_0.6-29 farver_2.0.3       
-#&gt; [33] purrr_0.3.4         magrittr_1.5        scales_1.1.1        ellipsis_0.3.1     
-#&gt; [37] htmltools_0.5.0     lpSolve_5.6.15      colorspace_1.4-1    labeling_0.3       
-#&gt; [41] quadprog_1.5-8      stringi_1.4.6       lazyeval_0.2.2      munsell_0.5.0      
-#&gt; [45] crayon_1.3.4</code></pre>
-</div>
 <div id="sec:speed-considerations" class="section level1 unnumbered">
 <h1 class="hasAnchor">
-<a href="#sec:speed-considerations" class="anchor"></a>Appendix 5. Speed and Memory Considerations</h1>
+<a href="#sec:speed-considerations" class="anchor"></a>Appendix 4. Speed and Memory Considerations</h1>
 <p>While most of package <strong>hyperSpec</strong>’s functions work at a decent speed for interactive sessions (of course depending on the size of the object), iterated (repeated) calculations as for bootstrapping or iterated cross validation may ask for special speed considerations.</p>
 <p>As an example, consider the code for shifting the spectra:</p>
-<div class="sourceCode" id="cb151"><html><body><pre class="r"><span class="no">tmp</span> <span class="kw">&lt;-</span> <span class="no">chondro</span>[<span class="fl">1</span>:<span class="fl">50</span>]
+<div class="sourceCode" id="cb150"><html><body><pre class="r"><span class="no">tmp</span> <span class="kw">&lt;-</span> <span class="no">chondro</span>[<span class="fl">1</span>:<span class="fl">50</span>]
 <span class="no">shifts</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="no">tmp</span>))
 <span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span>({
   <span class="kw">for</span> (<span class="no">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="no">tmp</span>))) {
@@ -2471,10 +2435,10 @@ You can also make suggestions in this manner.</p>
   }
 })
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.047   0.002   0.050</span></pre></body></html></div>
+<span class="co">#&gt;   0.047   0.002   0.048</span></pre></body></html></div>
 <p>Calculations that involve a lot of subsetting (i.e., extracting or changing the spectra matrix or extra data) can be sped up considerably if the required parts of the <code class="sourceCode r">hyperSpec</code> object are extracted beforehand.
 This is somewhat similar to model fitting in <code>R</code> in general: many model fitting functions in <code>R</code> are much faster if the formula interface is avoided and the appropriate <code class="sourceCode r">data.frame</code>s or matrices are handed over directly.</p>
-<div class="sourceCode" id="cb152"><html><body><pre class="r"><span class="no">tmp</span> <span class="kw">&lt;-</span> <span class="no">chondro</span>[<span class="fl">1</span>:<span class="fl">50</span>]
+<div class="sourceCode" id="cb151"><html><body><pre class="r"><span class="no">tmp</span> <span class="kw">&lt;-</span> <span class="no">chondro</span>[<span class="fl">1</span>:<span class="fl">50</span>]
 <span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span>({
   <span class="no">tmp.matrix</span> <span class="kw">&lt;-</span> <span class="no">tmp</span><span class="kw">[[</span>]]
   <span class="no">wl</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/wl.html">wl</a></span>(<span class="no">tmp</span>)
@@ -2484,7 +2448,7 @@ This is somewhat similar to model fitting in <code>R</code> in general: many mod
   <span class="no">tmp</span><span class="kw">[[</span>]] <span class="kw">&lt;-</span> <span class="no">tmp.matrix</span>
 })
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.012   0.000   0.013</span></pre></body></html></div>
+<span class="co">#&gt;   0.010   0.000   0.009</span></pre></body></html></div>
 <!--
 ## Additional packages
 
@@ -2510,9 +2474,9 @@ In addition, frequent calls to <code class="sourceCode r"><span class="kw">gc</s
 The same behaviour is triggered in <code class="sourceCode r"><span class="kw">read.ENVI</span>()</code> and its derivatives (<code class="sourceCode r"><span class="kw">read.ENVI</span>()</code>, <code class="sourceCode r"><span class="kw">read.ENVI.HySpex</span>()</code>, and <code class="sourceCode r"><span class="kw">read.ENVI.Nicolet</span>()</code>).
 The memory consumption of <code class="sourceCode r"><span class="kw">read.txt.Renishaw</span>()</code> can be lowered by importing the data in chunks (argument <code class="sourceCode r">nlines</code>).</p>
 </div>
-<div id="appendix-6--remarks-on-r-or-how-hyperspec-works-under-the-hood" class="section level1 unnumbered">
+<div id="appendix-5--remarks-on-r-or-how-hyperspec-works-under-the-hood" class="section level1 unnumbered">
 <h1 class="hasAnchor">
-<a href="#appendix-6--remarks-on-r-or-how-hyperspec-works-under-the-hood" class="anchor"></a>Appendix 6. Remarks on R, or How <strong><em>hyperSpec</em></strong> Works Under the Hood</h1>
+<a href="#appendix-5--remarks-on-r-or-how-hyperspec-works-under-the-hood" class="anchor"></a>Appendix 5. Remarks on R, or How <strong><em>hyperSpec</em></strong> Works Under the Hood</h1>
 <p><code class="sourceCode r">hyperSpec</code> objects are defined using an S4 class. Much of <strong>hyperSpec</strong> is devoted to manipulating these objects using the methods instrinsic to <code>R</code>.</p>
 <div id="generic-functions" class="section level2">
 <h2 class="hasAnchor">
@@ -2547,7 +2511,7 @@ In other words, there is a mechanism of  <em>validity checking</em>.</p>
 <p>It is highly recommended to use validity checking also for user-defined functions.
 In addition, non-generic functions should first ensure that the argument actually is a <code class="sourceCode r">hyperSpec</code> object.
 The two tasks are accomplished by:</p>
-<div class="sourceCode" id="cb153"><html><body><pre class="r"><span class="fu"><a href="../reference/chk.hy.html">chk.hy</a></span>(<span class="no">object</span>)
+<div class="sourceCode" id="cb152"><html><body><pre class="r"><span class="fu"><a href="../reference/chk.hy.html">chk.hy</a></span>(<span class="no">object</span>)
 <span class="fu"><a href="../reference/chk.hy.html">validObject</a></span>(<span class="no">object</span>)</pre></body></html></div>
 <p>The first line checks whether <code class="sourceCode r">object</code> is a <code class="sourceCode r">hyperSpec</code> object, the second checks its validity.
 Both functions return <code class="sourceCode r"><span class="ot">TRUE</span></code> if the checks succeed, otherwise they raise an error and stop.</p>
@@ -2561,9 +2525,9 @@ Both functions return <code class="sourceCode r"><span class="ot">TRUE</span></c
 <p>Operators such as <code><a href="https://rdrr.io/r/base/Arithmetic.html">+</a></code>, <code><a href="https://rdrr.io/r/base/Arithmetic.html">-</a></code>,<code><a href="https://rdrr.io/r/base/Arithmetic.html">*</a></code>, <code><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></code>, etc. are, in fact, functions in <code>R</code>.
 Thus they can be handed over as arguments to other functions (particularly to the vectorization functions <code class="sourceCode r"><span class="op">*</span><span class="kw">apply</span>()</code>, <code class="sourceCode r"><span class="kw">sweep</span>()</code>, etc.).
 In this case, the name of the function must be quoted: `-` is the recommended style (although <code><a href="https://rdrr.io/r/base/Arithmetic.html">"-"</a></code> will often work as well), e.g.,:</p>
-<div class="sourceCode" id="cb154"><html><body><pre class="r"><span class="fu"><a href="../reference/sweep.html">sweep</a></span>(<span class="no">flu</span>, <span class="fl">2</span>, <span class="no">mean</span>, <span class="no">`-`</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb153"><html><body><pre class="r"><span class="fu"><a href="../reference/sweep.html">sweep</a></span>(<span class="no">flu</span>, <span class="fl">2</span>, <span class="no">mean</span>, <span class="no">`-`</span>)</pre></body></html></div>
 <p>These functions can also be called in a more function-like style (prefix notation):</p>
-<div class="sourceCode" id="cb155"><html><body><pre class="r"><span class="fu">`+`</span>(<span class="fl">3</span>, <span class="fl">5</span>)
+<div class="sourceCode" id="cb154"><html><body><pre class="r"><span class="fu">`+`</span>(<span class="fl">3</span>, <span class="fl">5</span>)
 <span class="co">#&gt; [1] 8</span></pre></body></html></div>
 </div>
 <div id="sec:assignment-functions" class="section level3">
@@ -2572,9 +2536,84 @@ In this case, the name of the function must be quoted: `-` is the recommended st
 <p>
 
 <code>R</code> allows the definition of functions that do an assignment (set some part of the object), such as:</p>
-<div class="sourceCode" id="cb156"><html><body><pre class="r"><span class="fu"><a href="../reference/wl.html">wl</a></span>(<span class="no">flu</span>) <span class="kw">&lt;-</span> <span class="no">new.wavelength.values</span></pre></body></html></div>
+<div class="sourceCode" id="cb155"><html><body><pre class="r"><span class="fu"><a href="../reference/wl.html">wl</a></span>(<span class="no">flu</span>) <span class="kw">&lt;-</span> <span class="no">new.wavelength.values</span></pre></body></html></div>
 <p>The actual name of the function is <code>wl&lt;-</code> and must be quoted in order to avoid confusion with an assignment to variable <code>wl</code>:</p>
-<div class="sourceCode" id="cb157"><html><body><pre class="r"><span class="no">`wl&lt;-`</span></pre></body></html></div>
+<div class="sourceCode" id="cb156"><html><body><pre class="r"><span class="no">`wl&lt;-`</span></pre></body></html></div>
+<p>Session Info {-}</p>
+<div class="sourceCode" id="cb157"><html><body><pre class="r"><span class="kw pkg">sessioninfo</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/sessioninfo/man/session_info.html">session_info</a></span>(<span class="st">"hyperSpec"</span>)
+<span class="co">#&gt; ─ Session info ───────────────────────────────────────────────────────────────────────────────────</span>
+<span class="co">#&gt;  setting  value                       </span>
+<span class="co">#&gt;  version  R version 4.0.1 (2020-06-06)</span>
+<span class="co">#&gt;  os       macOS Catalina 10.15.5      </span>
+<span class="co">#&gt;  system   x86_64, darwin17.0          </span>
+<span class="co">#&gt;  ui       X11                         </span>
+<span class="co">#&gt;  language (EN)                        </span>
+<span class="co">#&gt;  collate  en_US.UTF-8                 </span>
+<span class="co">#&gt;  ctype    en_US.UTF-8                 </span>
+<span class="co">#&gt;  tz       UTC                         </span>
+<span class="co">#&gt;  date     2020-06-18                  </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; ─ Packages ───────────────────────────────────────────────────────────────────────────────────────</span>
+<span class="co">#&gt;  package      * version       date       lib source        </span>
+<span class="co">#&gt;  assertthat     0.2.1         2019-03-21 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  backports      1.1.8         2020-06-17 [1] CRAN (R 4.0.1)</span>
+<span class="co">#&gt;  callr          3.4.3         2020-03-28 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  cli            2.0.2         2020-02-28 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  colorspace     1.4-1         2019-03-18 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  crayon         1.3.4         2017-09-16 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  desc           1.2.0         2018-05-01 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  digest         0.6.25        2020-02-23 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  dplyr          1.0.0         2020-05-29 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  ellipsis       0.3.1         2020-05-15 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  evaluate       0.14          2019-05-28 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  fansi          0.4.1         2020-01-08 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  farver         2.0.3         2020-01-16 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  generics       0.0.2         2018-11-29 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  ggplot2      * 3.3.1         2020-05-28 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  glue           1.4.1         2020-05-13 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  gtable         0.3.0         2019-03-25 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  hyperSpec    * 0.99-20200615 2020-06-18 [1] local         </span>
+<span class="co">#&gt;  isoband        0.2.1         2020-04-12 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  jpeg           0.1-8.1       2019-10-24 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  labeling       0.3           2014-08-23 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  lattice      * 0.20-41       2020-04-02 [2] CRAN (R 4.0.1)</span>
+<span class="co">#&gt;  latticeExtra   0.6-29        2019-12-19 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  lazyeval       0.2.2         2019-03-15 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  lifecycle      0.2.0         2020-03-06 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  magrittr       1.5           2014-11-22 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  MASS         * 7.3-51.6      2020-04-26 [2] CRAN (R 4.0.1)</span>
+<span class="co">#&gt;  Matrix         1.2-18        2019-11-27 [2] CRAN (R 4.0.1)</span>
+<span class="co">#&gt;  mgcv           1.8-31        2019-11-09 [2] CRAN (R 4.0.1)</span>
+<span class="co">#&gt;  munsell        0.5.0         2018-06-12 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  nlme           3.1-148       2020-05-24 [2] CRAN (R 4.0.1)</span>
+<span class="co">#&gt;  pillar         1.4.4         2020-05-05 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  pkgbuild       1.0.8         2020-05-07 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  pkgconfig      2.0.3         2019-09-22 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  pkgload        1.1.0         2020-05-29 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  png            0.1-7         2013-12-03 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  praise         1.0.0         2015-08-11 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  prettyunits    1.1.1         2020-01-24 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  processx       3.4.2         2020-02-09 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  ps             1.3.3         2020-05-08 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  purrr          0.3.4         2020-04-17 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  R6             2.4.1         2019-11-12 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  RColorBrewer   1.1-2         2014-12-07 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  Rcpp           1.0.4.6       2020-04-09 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  rlang          0.4.6         2020-05-02 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  rprojroot      1.3-2         2018-01-03 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  rstudioapi     0.11          2020-02-07 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  scales         1.1.1         2020-05-11 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  testthat       2.3.2         2020-03-02 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  tibble         3.0.1         2020-04-20 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  tidyselect     1.1.0         2020-05-11 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  utf8           1.1.4         2018-05-24 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  vctrs          0.3.1         2020-06-05 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  viridisLite    0.3.0         2018-02-01 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  withr          2.2.0         2020-04-20 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  xml2         * 1.3.2         2020-04-23 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [1] /Users/runner/runners/2.169.1/work/_temp/Library</span>
+<span class="co">#&gt; [2] /Library/Frameworks/R.framework/Versions/4.0/Resources/library</span></pre></body></html></div>
 </div>
 </div>
 </div>
