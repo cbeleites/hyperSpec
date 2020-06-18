@@ -1,13 +1,12 @@
 ---
 # For bookdown ---------------------------------------------------------------
+bookdown_file_name: flu
 bookdown_titles: |
   # `flu`: Calibration of Quinine Fluorescence Emission {#flu}
 # For vignette ---------------------------------------------------------------
 title:       Calibration of Quinine Fluorescence Emission
-subtitle:    Vignette for the Data Set `flu` of the R package **hyperSpec**
-# subtitle:  Vignette on hyperSpec's flu data set
-description: "flu: Example work flow for hyperSpec's fluorescence example data set `flu`."
-# file_name: flu
+subtitle:    "Example Workflow for Fluorescence Emission Dataset `flu`"
+description: "flu: Example workflow for fluorescence emission dataset `flu`."
 # Authors --------------------------------------------------------------------
 author:
   - name: Claudia Beleites^1,2,3,4,5^, Vilmantas Gegzna

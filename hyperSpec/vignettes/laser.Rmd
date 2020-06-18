@@ -1,12 +1,12 @@
 ---
 # For bookdown ---------------------------------------------------------------
+bookdown_file_name: laser
 bookdown_titles: |
   # `laser`: Unstable Laser Emission {#laser}
 # For vignette ---------------------------------------------------------------
 title:       Unstable Laser Emission
-subtitle:    Vignette for the Data Set `laser` of the R package **hyperSpec**
-# subtitle:  Vignette on hyperSpec's laser data set
-description: "laser: Tutorial on hyperSpec's `laser` data set."
+subtitle:    "Example Workflow for Unstable Laser Emission Dataset `laser`"
+description: "laser: Example workflow for unstable laser emission dataset `laser`."
 # Authors --------------------------------------------------------------------
 author:
   - name: Claudia Beleites^1,2,3,4,5^, Vilmantas Gegzna

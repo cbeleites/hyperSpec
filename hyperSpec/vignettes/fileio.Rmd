@@ -1,12 +1,12 @@
 ---
 # For bookdown ---------------------------------------------------------------
+bookdown_file_name: fileio
 bookdown_titles: |
-  # `fileio`: Import and Export of Spectra Files {#fileio}
+  # `fileio`: Import and Export Files with Spectra {#fileio}
 # For vignette ---------------------------------------------------------------
-title:       Import and Export of Spectra Files
-# subtitle:  Vignette File Import and Export for R package hyperSpec
-description: "fileio: Tutorial on spectra file import and export for hyperSpec."
-# file_name: fileio
+title:       Import and Export Files with Spectra
+subtitle:    'Tutorial on Spectra File Import and Export for "hyperSpec"'
+description: 'fileio: Tutorial on spectra file import and export for "hyperSpec".'
 # Authors --------------------------------------------------------------------
 author:
   - name: Claudia Beleites^1,2,3,4,5^, Vilmantas Gegzna

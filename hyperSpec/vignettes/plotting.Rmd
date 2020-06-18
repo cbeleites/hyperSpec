@@ -1,12 +1,12 @@
 ---
 # For bookdown ---------------------------------------------------------------
+bookdown_file_name: plotting
 bookdown_titles: |
   # `plotting`: **_hyperSpec_** Plotting Functions {#plotting}
 # For vignette ---------------------------------------------------------------
-title:     'Plotting Functions in "hyperSpec"'
-# subtitle:  "Introduction to the **_hyperSpec_** plotting functions"
+title:       Plotting Functions in "hyperSpec"
+sutitle:     "Manual of hyperSpec's Plotting Functions"
 description: "plotting: Manual of hyperSpec's plotting functions"
-# file_name: plotting
 # Authors --------------------------------------------------------------------
 author:
   - name: Claudia Beleites^1,2,3,4,5^, Vilmantas Gegzna

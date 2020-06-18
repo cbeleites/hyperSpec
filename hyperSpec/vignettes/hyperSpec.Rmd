@@ -1,14 +1,13 @@
 ---
 # For bookdown ---------------------------------------------------------------
+bookdown_file_name: hyperspec
 bookdown_titles: |
   # (PART\*) I Principles {-}
   # `hyperspec`: Introduction to Package **_hyperSpec_** {#hyperspec}
 # For vignette ---------------------------------------------------------------
-title:       'Introduction to Package "hyperSpec"'
-# title:     "Introduction to Package **_hyperSpec_**"
-# subtitle:  Introduction on the R package hyperSpec
+title:        Introduction to Package "hyperSpec"
+subtitle:     'The Main Manual of Package "hyperSpec"'
 description:  "Introduction: hyperSpec's main manual."
-# file_name: hyperSpec Manual
 # Authors --------------------------------------------------------------------
 author:
   - name: Claudia Beleites^1,2,3,4,5^, Vilmantas Gegzna, Bryan A. Hanson

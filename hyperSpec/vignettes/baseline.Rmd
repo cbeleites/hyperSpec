@@ -1,11 +1,11 @@
 ---
 # For bookdown ---------------------------------------------------------------
+bookdown_file_name: baseline
 bookdown_titles: |
   # `baseline`: Fitting Baselines to Spectra {#baseline}
 # For vignette ---------------------------------------------------------------
 title:       Fitting Baselines to Spectra
-# subtitle:  Vignette on hyperSpec's baselinebelow data set
-# file_name: baseline
+subtitle:    "Tutorial Explaining hyperSpec's Baseline Fitting Functions"
 description: "baseline: Tutorial explaining hyperSpec's baseline fitting functions."
 # Authors --------------------------------------------------------------------
 author:

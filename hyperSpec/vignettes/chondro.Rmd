@@ -1,14 +1,13 @@
 ---
 # For bookdown ---------------------------------------------------------------
+bookdown_file_name: chondro
 bookdown_titles: |
   # (PART\*) II Case studies {-}
   # `chondro`: Raman Spectra of Chondrocytes in Cartilage {#chondro}
 # For vignette ---------------------------------------------------------------
-title:       "Raman Spectra of Chondrocytes in Cartilage"
-subtitle:    "Package **hyperSpec**'s `chondro` Data Set"
-# subtitle:  Vignette on hyperSpec's chondro data set
-description:  "chondro: Tutorial demonstrating example workflow using the chondro data set."
-# file_name: Chondro
+title:       Raman Spectra of Chondrocytes in Cartilage
+subtitle:    "Example Workflow for 2D Raman Spectra Dataset `chondro`"
+description: "chondro: Example workflow for 2D Raman spectra dataset `chondro`."
 # Authors --------------------------------------------------------------------
 author:
   - name: Claudia Beleites^1,2,3,4,5^, Vilmantas Gegzna
@@ -91,7 +90,9 @@ make_bib(
 
 ```{block, type="note", echo=TRUE}
 
-`# FIXME. Fix the contents of this box:`{.r}
+`# FIXME. Fix the contents of this box:`{.r}  
+
+`# FIXME. This box should be removed`{.r}
 
 **Reproducing this vignette.**
 
