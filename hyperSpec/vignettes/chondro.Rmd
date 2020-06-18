@@ -11,7 +11,7 @@ description:  "chondro: Tutorial demonstrating example workflow using the chondr
 # file_name: Chondro
 # Authors --------------------------------------------------------------------
 author:
-  - name: Claudia Beleites^1,2,3,4,5^
+  - name: Claudia Beleites^1,2,3,4,5^, Vilmantas Gegzna
     email: chemometrie@beleites.de
     corresponding : yes
     affiliation   : |

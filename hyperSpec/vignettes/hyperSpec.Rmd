@@ -11,7 +11,7 @@ description:  "Introduction: hyperSpec's main manual."
 # file_name: hyperSpec Manual
 # Authors --------------------------------------------------------------------
 author:
-  - name: Claudia Beleites^1,2,3,4,5^
+  - name: Claudia Beleites^1,2,3,4,5^, Vilmantas Gegzna, Bryan A. Hanson
     email: chemometrie@beleites.de
     corresponding : yes
     affiliation   : |
@@ -20,8 +20,6 @@ author:
         3. ÖPV, JKI, Berlin/Germany (2017--2019)
         4. Arbeitskreis Lebensmittelmikrobiologie und Biotechnologie, Hamburg University, Hamburg/Germany (2019 -- 2020)
         5. Chemometric Consulting and Chemometrix GmbH, Wölfersheim/Germany (since 2016)
-  - name: Vilmantas Gegzna
-  - name: Bryan A. Hanson
 # Document -------------------------------------------------------------------
 date:        "`r Sys.Date()`"
 output:

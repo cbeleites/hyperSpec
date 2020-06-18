@@ -10,7 +10,7 @@ description: "flu: Example work flow for hyperSpec's fluorescence example data s
 # file_name: flu
 # Authors --------------------------------------------------------------------
 author:
-  - name: Claudia Beleites^1,2,3,4,5^
+  - name: Claudia Beleites^1,2,3,4,5^, Vilmantas Gegzna
     email: chemometrie@beleites.de
     corresponding : yes
     affiliation   : |

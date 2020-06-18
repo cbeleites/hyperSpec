@@ -9,7 +9,7 @@ subtitle:    Vignette for the Data Set `laser` of the R package **hyperSpec**
 description: "laser: Tutorial on hyperSpec's `laser` data set."
 # Authors --------------------------------------------------------------------
 author:
-  - name: Claudia Beleites^1,2,3,4,5^
+  - name: Claudia Beleites^1,2,3,4,5^, Vilmantas Gegzna
     email: chemometrie@beleites.de
     corresponding : yes
     affiliation   : |

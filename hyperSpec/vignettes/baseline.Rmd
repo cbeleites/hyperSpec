@@ -9,7 +9,7 @@ title:       Fitting Baselines to Spectra
 description: "baseline: Tutorial explaining hyperSpec's baseline fitting functions."
 # Authors --------------------------------------------------------------------
 author:
-  - name: Claudia Beleites^1,2,3,4,5^
+  - name: Claudia Beleites^1,2,3,4,5^, Vilmantas Gegzna
     email: chemometrie@beleites.de
     corresponding : yes
     affiliation   : |
