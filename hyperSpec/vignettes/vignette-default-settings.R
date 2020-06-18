@@ -86,4 +86,4 @@ set.seed(2020)
 # Temporaty options ==========================================================
 # This option controls if reviewers/translator's notes are visible
 # in the vignettes
-options(show_show_reviewers_notes = FALSE)
+options(show_reviewers_notes = FALSE)
