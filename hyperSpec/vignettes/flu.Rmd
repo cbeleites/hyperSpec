@@ -30,10 +30,12 @@ output:
         - style.css
 vignette: >
     % \VignetteIndexEntry{Calibration of Quinine Fluorescence Emission}
-    % \VignetteKeywords{hyperSpec, flu, calibration}
+    % \VignetteKeyword{calibration}
+    % \VignetteKeyword{flu}
+    % \VignetteKeyword{hyperSpec}
     % \VignettePackage{hyperSpec}
-    %\VignetteEngine{knitr::rmarkdown}
-    %\VignetteEncoding{UTF-8}
+    % \VignetteEngine{knitr::rmarkdown}
+    % \VignetteEncoding{UTF-8}
 
 # Citations/References -------------------------------------------------------
 link-citations: yes

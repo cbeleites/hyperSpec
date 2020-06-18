@@ -31,7 +31,7 @@ output:
         - style.css
 vignette: >
     % \VignetteIndexEntry{Introduction to Package "hyperSpec"}
-    % \VignetteKeywords{hyperSpec}
+    % \VignetteKeyword{hyperSpec}
     % \VignettePackage{hyperSpec}
     % \VignetteDepends{MASS}
     % \VignetteEngine{knitr::rmarkdown}

@@ -31,10 +31,16 @@ output:
         - style.css
 vignette: >
     % \VignetteIndexEntry{Raman Spectra of Chondrocytes in Cartilage}
-    % \VignetteKeywords{chondro, hyperSpec, cluster analysis, preprocessing, Raman, principal component analysis, PCA}
+    % \VignetteKeyword{chondro}
+    % \VignetteKeyword{cluster analysis}
+    % \VignetteKeyword{preprocessing}
+    % \VignetteKeyword{Raman}
+    % \VignetteKeyword{principal component analysis}
+    % \VignetteKeyword{PCA}
+    % \VignetteKeyword{hyperSpec}
     % \VignettePackage{hyperSpec}
-    %\VignetteEngine{knitr::rmarkdown}
-    %\VignetteEncoding{UTF-8}
+    % \VignetteEngine{knitr::rmarkdown}
+    % \VignetteEncoding{UTF-8}
 # Citations/References -------------------------------------------------------
 link-citations: yes
 bibliography: resources/Chondro-pkg.bib

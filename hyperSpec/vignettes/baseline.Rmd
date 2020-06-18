@@ -30,10 +30,11 @@ output:
         - style.css
 vignette: >
     % \VignetteIndexEntry{Fitting Baselines to Spectra}
-    % \VignetteKeywords{hyperspec, baseline}
+    % \VignetteKeyword{baseline}
+    % \VignetteKeyword{hyperSpec}
     % \VignettePackage{hyperSpec}
-    %\VignetteEngine{knitr::rmarkdown}
-    %\VignetteEncoding{UTF-8}
+    % \VignetteEngine{knitr::rmarkdown}
+    % \VignetteEncoding{UTF-8}
 # Citations/References -------------------------------------------------------
 link-citations: yes
 bibliography: resources/baseline-pkg.bib

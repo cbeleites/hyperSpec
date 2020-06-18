@@ -30,10 +30,15 @@ output:
         - style.css
 vignette: >
     % \VignetteIndexEntry{Import and Export of Spectra Files}
-    % \VignetteKeywords{hyperSpec, file, spectra, spectrum, import, export}
+    % \VignetteKeyword{file}
+    % \VignetteKeyword{spectra}
+    % \VignetteKeyword{spectrum}
+    % \VignetteKeyword{import}
+    % \VignetteKeyword{export}
+    % \VignetteKeyword{hyperSpec}
     % \VignettePackage{hyperSpec}
-    %\VignetteEngine{knitr::rmarkdown}
-    %\VignetteEncoding{UTF-8}
+    % \VignetteEngine{knitr::rmarkdown}
+    % \VignetteEncoding{UTF-8}
 # Citations/References -------------------------------------------------------
 link-citations: yes
 bibliography:

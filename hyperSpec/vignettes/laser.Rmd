@@ -30,10 +30,12 @@ output:
         - style.css
 vignette: >
     % \VignetteIndexEntry{Unstable Laser Emission}
-    % \VignetteKeywords{hyperSpec, laser, time series}
+    % \VignetteKeyword{laser}
+    % \VignetteKeyword{time series}
+    % \VignetteKeyword{hyperSpec}
     % \VignettePackage{hyperSpec}
-    %\VignetteEngine{knitr::rmarkdown}
-    %\VignetteEncoding{UTF-8}
+    % \VignetteEngine{knitr::rmarkdown}
+    % \VignetteEncoding{UTF-8}
 # Citations/References -------------------------------------------------------
 link-citations: yes
 bibliography: resources/laser-pkg.bib
@@ -149,7 +151,7 @@ laser <- read.txt.Renishaw(file, data = "ts")
 ```
 
 ```{r include=FALSE}
-CAPTION <- "The raw spectra laser emission spectra.  "
+CAPTION <- "The raw laser emission spectra.  "
 ```
 
 ```{r rawspc, fig.cap=CAPTION, fig.width=5, fig.height=3}

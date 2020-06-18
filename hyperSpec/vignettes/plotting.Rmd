@@ -30,11 +30,12 @@ output:
         - style.css
 vignette: >
     % \VignetteIndexEntry{Plotting Functions in "hyperSpec"'}
-    % \VignetteKeywords{hyperspec}
+    % \VignetteKeyword{plotting}
+    % \VignetteKeyword{hyperSpec}
     % \VignettePackage{hyperSpec}
     % \VignetteDepends{latticeExtra, tripack, deldir, rgl, ggplot2, sessioninfo}
-    %\VignetteEngine{knitr::rmarkdown}
-    %\VignetteEncoding{UTF-8}
+    % \VignetteEngine{knitr::rmarkdown}
+    % \VignetteEncoding{UTF-8}
 # Citations/References -------------------------------------------------------
 link-citations: yes
 bibliography: resources/plotting-pkg.bib
