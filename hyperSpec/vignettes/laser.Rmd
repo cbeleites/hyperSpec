@@ -154,7 +154,7 @@ laser <- read.txt.Renishaw(file, data = "ts")
 CAPTION <- "The raw laser emission spectra.  "
 ```
 
-```{r rawspc, fig.cap=CAPTION, fig.width=5, fig.height=3}
+```{r rawspc, fig.cap=CAPTION}
 plot(laser, "spcprctl5")
 ```
 
@@ -170,7 +170,7 @@ The results are shown in figure \@ref(fig:cutspc).
 CAPTION <- "The cut spectra laser emission spectra.   "
 ```
 
-```{r cutspc, fig.cap=CAPTION, fig.width=5, fig.height=3}
+```{r cutspc, fig.cap=CAPTION}
 laser <- laser[, , -75 ~ 0]
 plot(laser, "spcprctl5")
 ```
@@ -225,7 +225,7 @@ wl(laser) <- list(
 CAPTION <- "The spectra with wavelength axis. "
 ```
 
-```{r wlspc, fig.cap=CAPTION, fig.width=5, fig.height=3}
+```{r wlspc, fig.cap=CAPTION}
 plot(laser, "spcprctl5")
 ```
 
@@ -276,7 +276,7 @@ wls <- c(405.0063, 405.1121, 405.2885, 405.3591)
 CAPTION <- "The spectral position of the bands in the laser emission time series. "
 ```
 
-```{r markspc, fig.cap=CAPTION, fig.width=5, fig.height=3}
+```{r markspc, fig.cap=CAPTION}
 plot(laser, "spcmeansd")
 
 cols <- c("black", "blue", "red", "darkgreen")
@@ -294,7 +294,7 @@ CAPTION <- "The time series data.
 The colors in this plot correspond to colors in fig. \\@ref(fig:ts).  "
 ```
 
-```{r ts, fig.cap=CAPTION, fig.width=10, fig.height=3}
+```{r ts, fig.cap=CAPTION, fig.width=7}
 plotc(laser[, , wls], spc ~ t, groups = .wavelength, type = "b", cex = 0.3, col = cols)
 ```
 
@@ -306,7 +306,7 @@ Another option is to condition the plot on $\lambda$ \@ref(fig:tsextra).
 CAPTION <- "The time series plots can also be conditioned on `$.wavelength`{.r}. "
 ```
 
-```{r tsextra, fig.cap=CAPTION, fig.height=3, fig.width=8}
+```{r tsextra, fig.cap=CAPTION, fig.width=7}
 plotc(laser[, , wls], spc ~ t | .wavelength, type = "b", cex = 0.3, col = "black")
 ```
 

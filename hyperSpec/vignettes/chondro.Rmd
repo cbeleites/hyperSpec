@@ -263,7 +263,7 @@ Rounding erros in the point coordinates of lateral measurement grid:
 plotmap(chondro, col.regions = seq_palette(20))
 ```
 
-```{r irregular-a-sub, fig.height=3, fig.width=5, include=FALSE}
+```{r irregular-a-sub, include=FALSE}
 # For subplot A
 irregular_grid_a <- as.ggplot(plotmap(chondro, col.regions = seq_palette(20)))
 ```
@@ -286,7 +286,7 @@ plotmap(chondro,
 )
 ```
 
-```{r irregular-b-sub, fig.height=3, fig.width=5, include=FALSE}
+```{r irregular-b-sub, include=FALSE}
 # For subplot B
 irregular_grid_b <- as.ggplot(
   plotmap(chondro, col.regions = seq_palette(20), panel = panel.levelplot.points,
@@ -318,7 +318,7 @@ Rounding erros in the point coordinates of lateral measurement grid:
 plotmap(chondro, col.regions = seq_palette(20))
 ```
 
-```{r irregular-c-sub, fig.height=3, fig.width=5, include=FALSE}
+```{r irregular-c-sub, include=FALSE}
 # For subplot C
 irregular_grid_c <- as.ggplot(plotmap(chondro, col.regions = seq_palette(20)))
 ```
@@ -404,7 +404,7 @@ As the spectra are quite similar, area normalization should work well:
 CAPTION <- "The spectra after smoothing, baseline correction, and normalization.  "
 ```
 
-```{r bl-norm, fig.cap=CAPTION, fig.width=6, fig.height=3}
+```{r bl-norm, fig.cap=CAPTION}
 chondro <- chondro / rowMeans(chondro)
 plot(chondro, "spcprctl5")
 ```
@@ -431,7 +431,7 @@ So instead, the 5^th^ percentile spectrum is subtracted:
 CAPTION <- "The spectra after subtracting the 5^th^ percentile spectrum.  "
 ```
 
-```{r bl-perc, fig.cap=CAPTION, fig.width=6, fig.height=3}
+```{r bl-perc, fig.cap=CAPTION}
 chondro <- chondro - quantile(chondro, 0.05)
 plot(chondro, "spcprctl5")
 ```
@@ -469,7 +469,7 @@ Plotting the scores of each PC against all other gives a good idea where to look
 CAPTION <- "The `pairs()`{.r} plot of the first 7 scores. "
 ```
 
-```{r pca-pairs, fig.cap=CAPTION, fig.height=6, fig.width=6}
+```{r pca-pairs, fig.cap=CAPTION, fig.height=5, fig.width=5}
 pairs(scores[[, , 1:7]], pch = 19, cex = 0.5)
 ```
 
@@ -502,7 +502,7 @@ We can check our findings by comparing the spectra to the bulk of spectra (figur
 CAPTION <- "The suspected outlier spectra. "
 ```
 
-```{r pca-outspc, fig.cap=CAPTION, fig.width=6, fig.height=4.5, small.mar=TRUE}
+```{r pca-outspc, fig.cap=CAPTION, fig.width=5, fig.height=4.5, small.mar=TRUE}
 plot(chondro[1],
   plot.args = list(ylim = c(1, length(out) + .7)),
   lines.args = list(type = "n")
@@ -524,7 +524,7 @@ and also by looking where these spectra appear in the scores `pairs()`{.r} plot 
 CAPTION <- "The `pairs()`{.r} plot of the first 7 scores with suspected outliers. "
 ```
 
-```{r pca-pairs-2, fig.cap=CAPTION, fig.height=6, fig.width=6}
+```{r pca-pairs-2, fig.cap=CAPTION, fig.height=5, fig.width=5}
 pch <- rep(46L, nrow(chondro))
 pch[out] <- 19L
 
@@ -568,7 +568,7 @@ dendrogram <- hclust(dist, method = "ward.D2")
 ```{r include=FALSE}
 CAPTION <- "Dendogram. "
 ```
-```{r denddummy, fig.cap=CAPTION, fig.width=6, fig.height=3}
+```{r denddummy, fig.cap=CAPTION}
 plot(dendrogram, labels = FALSE)
 ```
 
@@ -607,7 +607,7 @@ The cluster membership can also be marked in the dendrogram:
 CAPTION <- "Hierarchical cluster analysis: the dendrogram."
 ```
 
-```{r dend, fig.cap=CAPTION, fig.width=6, fig.height=3}
+```{r dend, fig.cap=CAPTION}
 par(xpd = TRUE) # allow plotting the markers into the margin
 plot(dendrogram, labels = FALSE, hang = -1)
 mark.dendrogram(dendrogram, chondro$clusters, col = cols)
@@ -626,9 +626,12 @@ CAPTION <- "The cluster mean $\\pm$ 1 standard deviation spectra.
 The blue cluster shows distinct lipid bands, the yellow cluster collagen, and the red cluster proteins and nucleic acids.  "
 ```
 
-```{r clustmeans, fig.cap=CAPTION, fig.width=6, fig.height=3}
+```{r clustmeans, fig.cap=CAPTION, fig.width=7}
 cluster.means <- aggregate(chondro, chondro$clusters, mean_pm_sd)
+
+op <- par(las = 1, mar = c(4, 6, 1, 1), mgp = c(4, 1, 0))
 plot(cluster.means, stacked = ".aggregate", fill = ".aggregate", col = cols)
+par(op)
 ```
 
 
@@ -668,7 +671,7 @@ This smoothing model can be calculated on the fly, e.g., by using the `panel.2ds
 CAPTION <- "False colour map of the DNA band intensities: smoothed DNA abundance. "
 ```
 
-```{r DNAsm, fig.cap=CAPTION, width=7.5, height=5}
+```{r DNAsm, fig.cap=CAPTION}
 plotmap(chondro[, , c(728, 782, 1098, 1240, 1482, 1577)],
   col.regions = DNAcols,
   panel = panel.2dsmoother, args = list(span = 0.05)
@@ -688,7 +691,7 @@ tmp <- sample(chondro[, , c(728, 782, 1098, 1240, 1482, 1577)], 500)
 CAPTION <- 'Two-dimesional (2D) "constant" interpolation with missing values: omitting missing data points. '
 ```
 
-```{r DNAmissing, fig.cap=CAPTION, width=7.5, height=5}
+```{r DNAmissing, fig.cap=CAPTION}
 plotmap(tmp, col.regions = DNAcols)
 ```
 
@@ -698,7 +701,7 @@ plotmap(tmp, col.regions = DNAcols)
 CAPTION <- 'Two-dimesional (2D) "constant" interpolation with missing values: Delaunay triangulation / Voronoi plot.  '
 ```
 
-```{r DNAvoronoi, fig.cap=CAPTION, width=7.5, height=5}
+```{r DNAvoronoi, fig.cap=CAPTION}
 plotmap(tmp,
   col.regions = DNAcols,
   panel = panel.voronoi, pch = 19, col = "black", cex = 0.1
@@ -714,7 +717,7 @@ However, they do not follow the model-predict paradigm, but instead do directly 
 CAPTION <- "Two-dimensional (2D) interpolation.  "
 ```
 
-```{r DNAinterp, fig.cap=CAPTION, width=7.5, height=5}
+```{r DNAinterp, fig.cap=CAPTION}
 if (require("akima")) {
   tmp <- rowMeans(chondro[[, , c(728, 782, 1098, 1240, 1482, 1577)]])
   chondro.bilinear <- interp(chondro$x, chondro$y, as.numeric(tmp), nx = 100, ny = 100)

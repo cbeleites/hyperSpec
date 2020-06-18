@@ -342,7 +342,7 @@ rnd  <- rmmvnorm(rep(10, 3), mean = pcov$mean, sigma = pcov$COV)
 ```{r include = FALSE}
 CAPTION <- "Multivariate normally distributed random spectra generated with `rmmvnorm()`{.r}."
 ```
-<!-- , fig.width=10, fig.height=5 -->
+
 ```{r sim-spc, fig.cap = CAPTION}
 cluster.cols <- c("dark blue", "orange", "#C02020")
 plot(rnd, col = cluster.cols[rnd$.group])
@@ -378,7 +378,7 @@ pred.sim <- predict(lda)
 ```{r include = FALSE}
 CAPTION <- "LDA of simulated spectra. Crosses mark real spectra. "
 ```
-<!-- , width=5, fig.height=5 -->
+
 ```{r sim-lda, fig.cap = CAPTION}
 colors <- c("#00008040", "#FFA50040", "#C0202040")
 plot(pred.chondro$x, col = colors[chondro$clusters], pch = 3)
@@ -899,7 +899,7 @@ nrow(chondro.merged)
 ```{r include = FALSE}
 CAPTION <- "For both spectral ranges some spectra are missing. "
 ```
-<!-- , fig.width=10, fig.height=4.25 -->
+
 ```{r merge-map, fig.cap = CAPTION, fig.width = 7}
 levelplot(spc ~ x * y | as.factor(paste(.wavelength, "  1/cm")),
   chondro.merged[, , c(1000, 1650)],
@@ -1264,7 +1264,7 @@ spc.OK <- chondro[apply(OK, 1, all)]
 ```{r include = FALSE}
 CAPTION <- "Filtering data: mean $\\pm$ sd filter.  "
 ```
-<!-- , fig.width=10, fig.height=5 -->
+
 ```{r filter, fig.cap = CAPTION, fig.width = 7}
 plot(chondro[!apply(OK, 1, all)])
 i <- which(!OK, arr.ind = TRUE)
@@ -1315,7 +1315,7 @@ spc.corrected[[]]
 ```{r include = FALSE}
 CAPTION <- "Filtering data: remove bad points.  "
 ```
-<!-- , fig.width=10, fig.height=5 -->
+
 ```{r bad, fig.cap = CAPTION, fig.width=7}
 spc[[is.na(spc)]] <- 0
 plot(spc)
@@ -1368,7 +1368,7 @@ Function `spc.bin()`{.r} bins the spectral axis by averaging every `by`{.r} data
 ```{r include = FALSE}
 CAPTION <- "Smoothing interpolation by `spc.loess()`{.r} with new data point spacing of 2 cm^-1^ (red) and `spc.bin()`{.r} (blue).  "
 ```
-<!-- , fig.width=10, fig.height=5 -->
+
 ```{r fig-loess, fig.cap = CAPTION, fig.width = 7}
 plot(paracetamol, wl.range = c(300 ~ 1800, 2800 ~ max), xoffset = 850)
 p <- spc.loess(paracetamol, c(seq(300, 1800, 2), seq(2850, 3150, 2)))
@@ -1386,7 +1386,7 @@ plot(b,
 ```{r include = FALSE}
 CAPTION <- "The magnification of Fig. \\@ref(fig:fig-loess) shows how interpolation may cause a loss in signal height.  "
 ```
-<!-- , fig.width=5, fig.height=5 -->
+
 ```{r loess-kl, fig.cap = CAPTION}
 plot(paracetamol[, , 1600 ~ 1670])
 plot(p[, , 1600 ~ 1670], col = "red", add = TRUE)
@@ -1476,7 +1476,7 @@ Fig. \@ref(fig:bl-baseline) and \@ref(fig:bl-baseline-2) show raw data and the r
 ```{r include = FALSE}
 CAPTION <- "The first spectrum of `chondro`{.r} (raw data) with baseline.  "
 ```
-<!-- , fig.width=10, fig.height=5 -->
+
 ```{r bl-baseline, fig.cap = CAPTION}
 baseline <- corrected
 baseline[[]] <- getBaseline(bl)
@@ -1490,7 +1490,7 @@ plot(baseline, add = TRUE, col = "red")
 CAPTION <- 'Baseline correction using the **baseline** package:
 the first spectrum of `chondro`{.r}  after baseline correction with method "odpolyfi".  '
 ```
-<!-- , fig.width=10, fig.height=5 -->
+
 ```{r bl-baseline-2, fig.cap = CAPTION}
 plot(corrected, plot.args = list(ylim = range(hyperSpec::chondro[1], 0)))
 ```
@@ -1605,7 +1605,7 @@ To center the `flu`{.r} data set, use:
 ```{r include = FALSE}
 CAPTION <- "Mean-centered spectra of `flu`.  "
 ```
-<!-- , fig.width=10, fig.height=5 -->
+
 ```{r centre-flu, fig.cap = CAPTION}
 flu.centered <- scale(flu, scale = FALSE)
 plot(flu.centered)
@@ -1623,7 +1623,7 @@ In order to avoid that, using, e.g., the 5^th^ percentile spectrum is more suita
 ```{r include = FALSE}
 CAPTION <- "The summary spectra of `chondro` with 5^th^ percentile subtracted.  "
 ```
-<!-- , fig.width=10, fig.height=5 -->
+
 ```{r perc, fig.cap = CAPTION, include=TRUE}
 chondro <- scale(chondro, center = quantile(chondro, 0.05), scale = FALSE)
 plot(chondro, "spcprctl5")
@@ -1741,7 +1741,7 @@ loadings[1]$..
 ```{r include = FALSE}
 CAPTION <- "The first three loadings.  "
 ```
-<!-- , fig.width=8, fig.height=4 -->
+
 ```{r pca-load, fig.cap = CAPTION}
 plot(loadings[1:3], stacked = TRUE)
 ```
@@ -1759,7 +1759,7 @@ div_palette <- colorRampPalette(c(
 ```{r include = FALSE}
 CAPTION <- "The third score map.  "
 ```
-<!-- , fig.width=8, fig.height=4 -->
+
 ```{r pca-score, fig.cap = CAPTION}
 plotmap(scores[, , 3], col.regions = div_palette(20))
 ```
@@ -1848,8 +1848,8 @@ dendrogram <- hclust(dist, method = "ward.D")
 ```{r include = FALSE}
 CAPTION <- "The results of the cluster analysis: the dendrogram.  "
 ```
-<!-- , fig.width=8, fig.height=5 -->
-```{r dend, fig.cap = CAPTION, fig.width = 7, fig.height = 7}
+
+```{r dend, fig.cap = CAPTION, fig.width = 7}
 plot(dendrogram)
 ```
 
@@ -1872,7 +1872,7 @@ Then the result may be plotted (Figure \@ref(fig:clust-map)):
 ```{r include = FALSE}
 CAPTION <- "The results of the cluster analysis: the map of the 3 clusters.  "
 ```
-<!-- , fig.width=7.5, fig.height=5 -->
+
 ```{r clust-map, fig.cap = CAPTION}
 plotmap(chondro, clusters ~ x * y, col.regions = cluster.cols)
 ```
@@ -1890,7 +1890,7 @@ So we may plot the cluster mean spectra:
 ```{r include = FALSE}
 CAPTION <- "The results of the cluster analysis: the the mean spectra.  "
 ```
-<!-- , fig.width=7.5, fig.height=5 -->
+
 ```{r clustmean, fig.cap = CAPTION}
 means <- aggregate(chondro, by = chondro$clusters, mean_pm_sd)
 plot(means, col = cluster.cols, stacked = ".aggregate", fill = ".aggregate")

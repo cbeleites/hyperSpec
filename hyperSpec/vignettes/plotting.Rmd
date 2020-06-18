@@ -218,7 +218,7 @@ Function `plotspc()`{.r} plots the spectra (Fig. \@ref(fig:plotspc)), i.e., the 
 CAPTION = "Spectra in dataset `flu`.  "
 ```
 
-```{r plotspc, width=4, height=2.6, fig.cap=CAPTION}
+```{r plotspc, fig.cap=CAPTION}
 plotspc(flu)
 ```
 
@@ -231,7 +231,7 @@ Function `plotmat()`{.r} plots the spectra, i.e., the colour coded intensities (
 CAPTION = "Matrix of spectra: the colour coded intensities over the wavelengths and the row number.  "
 ```
 
-```{r plotmat-flu, width=4, height=2.6, fig.cap=CAPTION}
+```{r plotmat-flu, fig.cap=CAPTION}
 plotmat(flu)
 ```
 
@@ -244,7 +244,7 @@ Function `plotc()`{.r} plots an intensity over a single other data column, e.g.,
 CAPTION = "Calibration plot: an intensity over concentration.  "
 ```
 
-```{r plotflu, width=4, height=2.6, fig.cap=CAPTION}
+```{r plotflu, fig.cap=CAPTION}
 plotc(flu)
 ```
 
@@ -259,7 +259,7 @@ Function `levelplot()`{.r} plots a false colour map, defined by a formula (Fig. 
 CAPTION = "False colour map (1).  "
 ```
 
-```{r levelplot-1, width=4, height=2.6, fig.cap=CAPTION}
+```{r levelplot-1, fig.cap=CAPTION}
 levelplot(spc ~ x * y, chondro, aspect = "iso")
 ```
 
@@ -275,7 +275,7 @@ It uses a single value (e.g., average intensity or cluster membership) over two 
 CAPTION = "False colour map created with `plotmap()`{.r}.  "
 ```
 
-```{r plotmap, width=4, height=2.6, fig.cap=CAPTION}
+```{r plotmap, fig.cap=CAPTION}
 plotmap(chondro)
 ```
 
@@ -288,7 +288,7 @@ Function `plotvoronoi()`{.r} is a special version of `plotmap()`{.r} that produc
 CAPTION = "Voronoi diagram: an example with `chondro` dataset.  "
 ```
 
-```{r voronoi, width=4, height=2.6, fig.cap=CAPTION}
+```{r voronoi, fig.cap=CAPTION}
 plotvoronoi(sample(chondro, 300), clusters ~ x * y)
 ```
 
@@ -309,7 +309,7 @@ Command `plot(x, "spc")`{.r} is equivalent to `plotspc(flu)`{.r} (Fig. \@ref(fig
 CAPTION = "All spectra of dataset `flu`.  "
 ```
 
-```{r plotspcflu, width=4, height=2.6, fig.cap=CAPTION}
+```{r plotspcflu, fig.cap=CAPTION}
 plot(flu, "spc")
 ```
 
@@ -322,7 +322,7 @@ Command `plot(x, "spcmeansd")`{.r} plots mean spectrum $\pm$ 1 standard deviatio
 CAPTION = "Summary spectra: mean $\\pm$ one standard deviation at each wavelength (wavenumber).  "
 ```
 
-```{r plotchomean, width=4, height=2.6, fig.cap=CAPTION}
+```{r plotchomean, fig.cap=CAPTION}
 plot(chondro.preproc, "spcmeansd")
 ```
 
@@ -339,7 +339,7 @@ They are also less sensitive to outliers.
 CAPTION = "Summary spectra: median, 16^th^ and 84^th^ percentiles at each wavelength (wavenumber).  "
 ```
 
-```{r plotchoprctl, width=4, height=2.6, fig.cap=CAPTION}
+```{r plotchoprctl, fig.cap=CAPTION}
 plot(chondro.preproc, "spcprctile")
 ```
 
@@ -352,7 +352,7 @@ The code `plot(x, "spcprctl5")`{.r} is like `"spcprctile"`{.r} plus 5^th^ and 95
 CAPTION = "Summary spectra: median, 5^th^, 16^th^, 84^th^, 95^th^ percentiles at each wavelength (wavenumber).  "
 ```
 
-```{r plotchoprctl5, width=4, height=2.6, fig.cap=CAPTION}
+```{r plotchoprctl5, fig.cap=CAPTION}
 plot(chondro.preproc, "spcprctl5")
 ```
 
@@ -365,7 +365,7 @@ Command `plot(x, "c")`{.r} is equivalent to `plotc(flu)`{.r} (Fig. \@ref(fig:plo
 CAPTION = "Calibration plot: spectra intensities over concentration.  "
 ```
 
-```{r plotflu2, width=4, height=2.6, fig.cap=CAPTION}
+```{r plotflu2, fig.cap=CAPTION}
 plot(flu, "c")
 ```
 
@@ -378,7 +378,7 @@ Function `plot(x, "ts")`{.r} plots a time series plot and is equivalent to `plot
 CAPTION = "Time series plot: spectra intensities over time.  "
 ```
 
-```{r plotts, width=4, height=2.6, fig.cap=CAPTION}
+```{r plotts, fig.cap=CAPTION}
 plot(laser[, , 405], "ts")
 ```
 
@@ -391,7 +391,7 @@ Code `plot(x, "depth")`{.r} plots a depth profile plot and is the same as `plotc
 CAPTION = "Depth profile plot.  "
 ```
 
-```{r plotdepth, width=4, height=2.6, fig.cap=CAPTION}
+```{r plotdepth, fig.cap=CAPTION}
 depth.profile <- new("hyperSpec",
   spc    = as.matrix(rnorm(20) + 1:20),
   data   = data.frame(z = 1:20),
@@ -414,7 +414,7 @@ Code `plot(x, "mat")`{.r} plots the spectra matrix (Fig. \@ref(fig:plotmat)).
 CAPTION = "Spectra matrix.  "
 ```
 
-```{r plotmat, width=4, height=2.6, fig.cap=CAPTION}
+```{r plotmat, fig.cap=CAPTION}
 plot(laser, "mat")
 ```
 
@@ -439,7 +439,7 @@ Code `plot(x, "map")`{.r} is equivalent to `plotmap(chondro)`{.r} (Fig. \@ref(fi
 CAPTION = "False color map: alternative R syntax.   "
 ```
 
-```{r plotmapcho2, width=4, height=2.6, fig.cap=CAPTION}
+```{r plotmapcho2, fig.cap=CAPTION}
 plot(chondro, "map")
 ```
 
@@ -452,7 +452,7 @@ Use `plot(x, "voronoi")`{.r} for a Voronoi plot (Fig. \@ref(fig:plotvoronoi)).
 CAPTION = "Voronoi plot: alternative R syntax.  "
 ```
 
-```{r plotvoronoi, width=4, height=2.6, fig.cap=CAPTION}
+```{r plotvoronoi, fig.cap=CAPTION}
 plot(sample(chondro, 300), "voronoi")
 ```
 
@@ -473,7 +473,7 @@ If only one wavelength range is needed (Fig. \@ref(fig:wavelength)), the extract
 CAPTION = "Plot of wavelength (wavenumber) range from 700 to 1200 $cm^{-1}.$  "
 ```
 
-```{r wavelength, width=4, height=2.6, fig.cap=CAPTION}
+```{r wavelength, fig.cap=CAPTION}
 plotspc(paracetamol[, , 700 ~ 1200])
 ```
 Numbers connected with the tilde (`~`) are interpreted as having the same units as the wavelengths.
@@ -491,7 +491,7 @@ If available, the package package **plotrix**`r cite_pkg("plotrix")` is used to 
 CAPTION = "Plot of several wavelength (wavenumber) ranges.  "
 ```
 
-```{r wavelength-2, width=4, height=2.6, fig.cap=CAPTION}
+```{r wavelength-2, fig.cap=CAPTION}
 plotspc(paracetamol,
   wl.range = c(300 ~ 1800, 2800 ~ max),
   xoffset = 750
@@ -507,7 +507,7 @@ To create a plot with reversed abscissa (Fig. \@ref(fig:abscissa)), use `wl.reve
 CAPTION = "Plot with reversed/descending wavelength (wavenumber) range.  "
 ```
 
-```{r abscissa, width=4, height=2.6, fig.cap=CAPTION}
+```{r abscissa, fig.cap=CAPTION}
 plotspc(paracetamol, wl.reverse = TRUE)
 ```
 
@@ -520,7 +520,7 @@ To have different colours of spectra (Fig. \@ref(fig:colours)), use `col = vecto
 CAPTION = "Spectra plotted in different colours.  "
 ```
 
-```{r colours, width=4, height=2.6, fig.cap=CAPTION}
+```{r colours, fig.cap=CAPTION}
 plotspc(flu, col = matlab.dark.palette(6))
 ```
 
@@ -532,7 +532,7 @@ To plot dots instead of lines (Fig. \@ref(fig:dots)), use, e.g., `lines.args = l
 CAPTION = "Spectrum with dots instead of lines.  "
 ```
 
-```{r dots, width=4, height=2.6, fig.cap=CAPTION}
+```{r dots, fig.cap=CAPTION}
 plotspc(paracetamol[, , 2800 ~ 3200],
   lines.args = list(pch = 20, type = "p")
 )
@@ -547,7 +547,7 @@ TO plot mass spectra (Fig. \@ref(fig:mass)), use `lines.args = list(type = "h")`
 CAPTION = "An example of mass spectrum.  "
 ```
 
-```{r mass, width=4, height=2.6, fig.cap=CAPTION}
+```{r mass, fig.cap=CAPTION}
 plot(barbiturates[[1]], lines.args = list(type = "h"))
 ```
 
@@ -560,7 +560,7 @@ To plot additional spectra onto an existing plot (Fig. \@ref(fig:add)), use `add
 CAPTION = "A spectrum added to an existing plot.  "
 ```
 
-```{r add, width=4, height=2.6, fig.cap=CAPTION}
+```{r add, fig.cap=CAPTION}
 plotspc(chondro[ 30, , ])
 plotspc(chondro[300, , ], add = TRUE, col = "blue")
 ```
@@ -576,7 +576,7 @@ CAPTION = "A spectrum of summary statistics calculated via `func` parameter.
 In the example, the standard deviation is used.  "
 ```
 
-```{r sd, width=4, height=2.6, fig.cap=CAPTION}
+```{r sd, fig.cap=CAPTION}
 plotspc(chondro.preproc, func = sd)
 ```
 
@@ -590,7 +590,7 @@ Argument `zeroline`{.r} takes a list with parameters that are passed to function
 CAPTION = "Spectrum with added zero-intensity line.  "
 ```
 
-```{r diffline, width=4, height=2.6, fig.cap=CAPTION}
+```{r diffline, fig.cap=CAPTION}
 plotspc(paracetamol,
   zeroline = list(col = "red")
 )
@@ -606,7 +606,7 @@ After plotting the spectra, more content may be added to the graphic by `abline(
 CAPTION = "A summary spectrum with annotation lines.  "
 ```
 
-```{r add-line, width=4, height=2.6, fig.cap=CAPTION}
+```{r add-line, fig.cap=CAPTION}
 plot(laser, "spcmeansd")
 abline(
   v = c(405.0063, 405.1121, 405.2885, 405.3591),
@@ -625,7 +625,7 @@ To stack spectra, use `stacked = TRUE`{.r} (Fig. \@ref(fig:stacked1)).
 CAPTION = "Stacked spectra of means.  "
 ```
 
-```{r stacked1, width=4, height=2.6, fig.cap=CAPTION}
+```{r stacked1, fig.cap=CAPTION}
 plotspc(cluster.means,
   col = cluster.cols,
   stacked = TRUE
@@ -664,7 +664,7 @@ Alternatively, the name of an extra data column can be used for grouping (Fig. \
 CAPTION = "Stacked summary spectra (mean $\\pm$ one standard deviation).  "
 ```
 
-```{r stacked2, width=4, height=2.6, fig.cap=CAPTION}
+```{r stacked2, fig.cap=CAPTION}
 op <- par(las = 1, mgp = c(3.1, .7, 0))
 
 plot(cluster.meansd,
@@ -683,7 +683,7 @@ Stacking values can also be given manually as numeric values in `yoffset`{.r} (F
 CAPTION = "Stacked spectra with customized y offset.  "
 ```
 
-```{r stacked3, width=4, height=2.6, fig.cap=CAPTION}
+```{r stacked3, fig.cap=CAPTION}
 plotspc(cluster.meansd,
   yoffset = rep(0:2, each = 3),
   col = rep(cluster.cols, each = 3)
@@ -699,7 +699,7 @@ It is possible to obtain a denser stacking (Fig. \@ref(fig:stacked4)).
 CAPTION = "Dense-stacked spectra.  "
 ```
 
-```{r stacked4, width=4, height=2.6, fig.cap=CAPTION}
+```{r stacked4, fig.cap=CAPTION}
 yoffsets <- apply(cluster.means[[]], 2, diff)
 yoffsets <- -apply(yoffsets, 1, min)
 plot(cluster.means,
@@ -719,7 +719,7 @@ The arguments for these functions should be given in lists as `plot.args`{.r}, `
 CAPTION = "An example of highly customized spectra.  "
 ```
 
-```{r stacked5, width=4, height=2.6, fig.cap=CAPTION}
+```{r stacked5, fig.cap=CAPTION}
 yoffset <- apply(chondro.preproc, 2, quantile, c(0.05, 0.95))
 yoffset <- range(yoffset)
 plot(chondro.preproc[1],
@@ -752,7 +752,7 @@ Spectra intensities of one wavelength can be plotted over the concentration for 
 CAPTION = "Intensities at 450 nm over concentration.  "
 ```
 
-```{r lin-cal-1, width=4, height=2.6, fig.cap=CAPTION}
+```{r lin-cal-1, fig.cap=CAPTION}
 plotc(flu[, , 450])
 ```
 The default is to use the first intensity only.
@@ -766,7 +766,7 @@ A function to compute a summary of the intensities before the drawing can be use
 CAPTION = "The summary (minimum and maximum) of intensities at each measured concentration.  "
 ```
 
-```{r lin-cal-3, width=4, height=2.6, fig.cap=CAPTION}
+```{r lin-cal-3, fig.cap=CAPTION}
 plotc(flu, func = range, groups = .wavelength)
 ```
 
@@ -781,7 +781,7 @@ If `func()`{.r} returns more than one value, the different results are accessibl
 CAPTION = "Conditioning: several calibration spectra on separate subplots.  "
 ```
 
-```{r plotc2, width=4, height=2.6, fig.cap=CAPTION}
+```{r plotc2, fig.cap=CAPTION}
 plotc(flu[, , c(405, 445)], spc ~ c | .wavelength,
   cex = .3, scales = list(alternating = c(1, 1))
 )
@@ -796,7 +796,7 @@ Argument `groups`{.r} may be used as a grouping parameter to plot more traces in
 CAPTION = "Grouping: several calibration spectra on one plot.  "
 ```
 
-```{r plotc3, width=4, height=2.6, fig.cap=CAPTION}
+```{r plotc3, fig.cap=CAPTION}
 plotc(flu[, , c(405, 445)], groups = .wavelength)
 ```
 
@@ -809,7 +809,7 @@ Arguments of **lattice** function `xyplot()`{.r} can be given to `plotc()`{.r} (
 CAPTION = "Modified axis labels and point characters.  "
 ```
 
-```{r lin-cal-4, width=4, height=2.6, fig.cap=CAPTION}
+```{r lin-cal-4, fig.cap=CAPTION}
 plotc(flu[, , 450],
   ylab = expression(I["450 nm"] / a.u.),
   xlim = range(0, flu$c + .01),
@@ -844,7 +844,7 @@ panelcalibration <- function(x, y, ..., clim = range(x), level = .95) {
 CAPTION = "Plot that uses a customized paanel function.  "
 ```
 
-```{r lin-cal-5, width=4, height=2.6, fig.cap=CAPTION}
+```{r lin-cal-5, fig.cap=CAPTION}
 plotc(flu[, , 405],
   panel = panelcalibration,
   pch = 4, clim = c(0, 0.35), level = .99
@@ -860,7 +860,7 @@ Abscissae other than `c` may be specified by explicitly giving the model formula
 CAPTION = "Plot with abscissae explicitly indicated by model formula.  "
 ```
 
-```{r plotc4, width=4, height=2.6, fig.cap=CAPTION}
+```{r plotc4, fig.cap=CAPTION}
 plotc(laser[, , c(405.0063, 405.1121, 405.2885, 405.3591)],
   spc ~ t,
   groups = .wavelength,
@@ -885,7 +885,7 @@ Particularly, the data is given as the *second* argument (Fig. \@ref(fig:levelpl
 CAPTION = "An example of a levelplot.  "
 ```
 
-```{r levelplot, width=4, height=2.6, fig.cap=CAPTION}
+```{r levelplot, fig.cap=CAPTION}
 levelplot(spc ~ x * y, data = chondro)
 ```
 
@@ -896,7 +896,7 @@ If the colour-coded value is a factor, the display is adjusted to this fact (Fig
 CAPTION = "Levelplot when colour-coded value is a factor.  "
 ```
 
-```{r levelplot-factor, width=4, height=2.6, fig.cap=CAPTION}
+```{r levelplot-factor, fig.cap=CAPTION}
 levelplot(clusters ~ x * y, data = chondro)
 ```
 
@@ -918,7 +918,7 @@ Argument `col` can be used to provide a different colour palette (Fig. \@ref(fig
 CAPTION = "Spectra matrix with non-default palette.  "
 ```
 
-```{r plotmat1, width=4, height=2.6, fig.cap=CAPTION}
+```{r plotmat1, fig.cap=CAPTION}
 plot(laser, "mat", col = heat.colors(20))
 ```
 This is the same as:
@@ -936,7 +936,7 @@ Different extra data column can be used as y-axis (Fig. \@ref(fig:plotmat2)).
 CAPTION = "Spectra matrix with time (in column `t`) on y axis.    "
 ```
 
-```{r plotmat2, width=4, height=2.6, fig.cap=CAPTION}
+```{r plotmat2, fig.cap=CAPTION}
 plotmat(laser, y = "t")
 ```
 
@@ -956,7 +956,7 @@ Contour lines may also be added (Fig. \@ref(fig:plotmat3)).
 CAPTION = "Spectra matrix with added contour lines.  "
 ```
 
-```{r plotmat3, width=4, height=2.6, fig.cap=CAPTION}
+```{r plotmat3, fig.cap=CAPTION}
 plotmat(flu, col = matlab.dark.palette(20))
 plotmat(flu, col = "white", contour = TRUE, add = TRUE)
 ```
@@ -977,7 +977,7 @@ barb <- orderwl(barb)
 CAPTION = "Colour-coded points via special panel function.  "
 ```
 
-```{r plotmap-barb, width=4, height=2.6, fig.cap=CAPTION}
+```{r plotmap-barb, fig.cap=CAPTION}
 levelplot(spc ~ .wavelength * z, barb,
   panel = panel.levelplot.points,
   cex = .33, col.symbol = NA,
@@ -999,7 +999,7 @@ The same scale is used for x and y axes (`aspect = "iso"`{.r}).
 CAPTION = "An example of a false colour map.  "
 ```
 
-```{r plotmap-chondro, width=4, height=2.6, fig.cap=CAPTION}
+```{r plotmap-chondro, fig.cap=CAPTION}
 plotmap(chondro)
 ```
 
@@ -1013,7 +1013,7 @@ Specify the colour-coded variable, abscissa and ordinate as formula: `colour.cod
 CAPTION = "False colour map with an explicit specification of x and y axes.  "
 ```
 
-```{r plotmap-yx, width=4, height=2.6, fig.cap=CAPTION}
+```{r plotmap-yx, fig.cap=CAPTION}
 plotmap(chondro, spc ~ y * x)
 ```
 
@@ -1026,7 +1026,7 @@ Factor variables may be used for discrete colour coding (Fig. \@ref(fig:plotmap-
 CAPTION = "False colour map with colours defined by a factor variable.  "
 ```
 
-```{r plotmap-clu, width=4, height=2.6, fig.cap=CAPTION}
+```{r plotmap-clu, fig.cap=CAPTION}
 plotmap(chondro, clusters ~ x * y)
 ```
 
@@ -1041,7 +1041,7 @@ To use a different palette, use argument `col.regions`{.r} (Fig. \@ref(fig:plotm
 CAPTION = "False colour map with non-default colour palette.  "
 ```
 
-```{r plotmap-col, width=4, height=2.6, fig.cap=CAPTION}
+```{r plotmap-col, fig.cap=CAPTION}
 plotmap(chondro, clusters ~ x * y,
   col.regions = cluster.cols
 )
@@ -1071,7 +1071,7 @@ Fig. \@ref(fig:plotmap-col-default) uses a customized **lattice** theme.
 CAPTION = "A false-colour map that uses `terrain.colors` palette.   "
 ```
 
-```{r plotmap-col-default, width=4, height=2.6, fig.cap=CAPTION}
+```{r plotmap-col-default, fig.cap=CAPTION}
 my.theme$regions$col <- grDevices::terrain.colors
 plotmap(chondro, par.settings = my.theme)
 ```
@@ -1119,7 +1119,7 @@ A map of the average intensity at particular wavelengths can be plotted if the w
 CAPTION = "A map of average intensity at explicitly indicated wavelengths.  "
 ```
 
-```{r plotmap-wave, width=4, height=2.6, fig.cap=CAPTION}
+```{r plotmap-wave, fig.cap=CAPTION}
 plotmap(chondro.preproc[, , c(
    728,  782, 1098,
   1240, 1482, 1577
@@ -1137,7 +1137,7 @@ Logical conditions may be used to create subplots (Fig. \@ref(fig:plotmap-pca)).
 CAPTION = "Subplots created by logical conditions.  "
 ```
 
-```{r plotmap-pca, width=4, height=2.6, fig.cap=CAPTION}
+```{r plotmap-pca, fig.cap=CAPTION}
 plotmap(chondro,
   spc ~ y * x | x > 5,
   col.regions = matlab.palette(20)
@@ -1158,7 +1158,7 @@ Fig. \@ref(fig:plotmap-pca2) demonstrates an example to plot the maps of princip
 CAPTION = "The maps of the scores of the first two principal components (I).  "
 ```
 
-```{r plotmap-pca2, width=4, height=2.6, fig.cap=CAPTION}
+```{r plotmap-pca2, fig.cap=CAPTION}
 pca <- prcomp(~spc, data = chondro.preproc$.)
 
 scores <- decomposition(chondro, pca$x,
@@ -1179,7 +1179,7 @@ Alternatively, use `levelplot()`{.r} directly (Fig. \@ref(fig:plotmap-pca3)).
 CAPTION = "The maps of the scores of the first two principal components (II).  "
 ```
 
-```{r plotmap-pca3, width=4, height=2.6, fig.cap=CAPTION}
+```{r plotmap-pca3, fig.cap=CAPTION}
 levelplot(spc ~ y * x | as.factor(.wavelength),
   scores[, , 1:2],
   aspect = "iso",
@@ -1201,7 +1201,7 @@ Furthermore, it is not FOSS (free and open-source software), so users are kindly
 CAPTION = "Voronoi plot that uses non-default discrette colour palette.  "
 ```
 
-```{r voronoi-2, width=4, height=2.6, fig.cap=CAPTION}
+```{r voronoi-2, fig.cap=CAPTION}
 plotvoronoi(sample(chondro, 300), clusters ~ x * y,
   col.regions = matlab.palette(20)
 )
@@ -1229,7 +1229,7 @@ Fig. \@ref(fig:missing) shows the result.
 CAPTION = "Marks of missing spectra in a false-colour map.  "
 ```
 
-```{r missing, width=4, height=2.6, fig.cap=CAPTION}
+```{r missing, fig.cap=CAPTION}
 plotmap(sample(chondro, length(chondro) - 20),
   col.regions = matlab.palette(20),
   col = "black",
@@ -1255,7 +1255,7 @@ CAPTION = "Unevenly spaced measurement grid: example I.
 Note warnings `values are not equispaced; output may be wrong`."
 ```
 
-```{r uneven-I, width=4, height=2.6, fig.cap=CAPTION}
+```{r uneven-I, fig.cap=CAPTION}
 plotmap(uneven)
 ```
 The symptom of this situation are warnings about values in x and/or y not being equispaced; and that the output, therefore, may be wrong.
@@ -1267,7 +1267,7 @@ One possibility to obtain a correct map is using `plotvoronoi()`{.r} instead whi
 CAPTION = "Unevenly spaced measurement grid: example II.  "
 ```
 
-```{r uneven-II, width=4, height=2.6, fig.cap=CAPTION}
+```{r uneven-II, fig.cap=CAPTION}
 plotvoronoi(uneven)
 ```
 
@@ -1278,7 +1278,7 @@ Another possibility that underlines a point shape of the measurements is switchi
 CAPTION = "Unevenly spaced measurement grid: example III.  "
 ```
 
-```{r uneven-III, width=4, height=2.6, fig.cap=CAPTION}
+```{r uneven-III, fig.cap=CAPTION}
 plotmap(uneven,
   panel = panel.levelplot.points,
   cex = 0.75,
@@ -1293,7 +1293,7 @@ Alternatively, the measurement raster positions can be rounded to their nominal 
 CAPTION = "Unevenly spaced measurement grid: example IV.  "
 ```
 
-```{r uneven-IV, width=4, height=2.6, fig.cap=CAPTION}
+```{r uneven-IV, fig.cap=CAPTION}
 rx <- makeraster(uneven$x, startx = -11.55, d = 1, tol = 0.3)
 uneven$x <- rx$x
 

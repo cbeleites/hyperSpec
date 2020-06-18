@@ -228,7 +228,7 @@ flu
 CAPTION <- "Six spectra of `flu` dataset.  "
 ```
 
-```{r rawfig, fig.cap=CAPTION, fig.width=6, fig.height=3}
+```{r rawfig, fig.cap=CAPTION}
 plot(flu)
 ```
 
@@ -298,7 +298,7 @@ Plotting them over the concentration is done by:
 CAPTION <- "Spectra intensities at 450 nm. "
 ```
 
-```{r calplot1, fig.cap=CAPTION, fig.width=4, fig.height=3}
+```{r calplot1, fig.cap=CAPTION}
 plotc(flu[, , 450])
 ```
 
@@ -320,7 +320,7 @@ Also the axes should start at the origin, so that it is easier to see whether th
 CAPTION <- "Spectra intensities at 450 nm with updated labels. "
 ```
 
-```{r calplot2, fig.cap=CAPTION, fig.width=4, fig.height=3}
+```{r calplot2, fig.cap=CAPTION}
 plotc(flu, xlim = range(0, flu$c), ylim = range(0, flu$spc))
 ```
 
@@ -392,7 +392,7 @@ In order to draw the confidence interval into the calibration graph, we can eith
 CAPTION <- "Calibration function and its 99% confidence interval.  "
 ```
 
-```{r calplot3, fig.cap=CAPTION, pdf=TRUE, eps=FALSE, fig.width=6, fig.height=3}
+```{r calplot3, fig.cap=CAPTION}
 int <- list(spc = as.matrix(seq(min(flu), max(flu), length.out = 25)))
 ci <- predict(calibration, newdata = int, interval = "confidence", level = 0.99)
 
@@ -439,7 +439,7 @@ Our prediction example is handled by another customized panel function:
 CAPTION <- "calibration function and its 99% confidence interval and predicted points. "
 ```
 
-```{r calplot4, fig.cap=CAPTION, pdf=TRUE, eps=FALSE, fig.width=6, fig.height=3}
+```{r calplot4, fig.cap=CAPTION}
 panel.predict <-
   function(x, y, ..., intensity, ci, pred.col = "red", pred.pch = 19, pred.cex = 1) {
 
