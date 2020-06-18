@@ -1570,7 +1570,7 @@ Figure 7.12: The summary spectra of <code>chondro</code> with 5<sup>th</sup> per
 
 <p>Multiplicative scatter correction (MSC) can be done using <code class="sourceCode r"><span class="kw">msc</span>()</code> from package package <strong>pls</strong> <span class="citation">[<a href="#ref-pls" role="doc-biblioref">3</a>]</span>.
 It operates on the spectra matrix:</p>
-<div class="sourceCode" id="cb120"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="no">pls</span>)
+<div class="sourceCode" id="cb120"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">pls</span>)
 <span class="no">chondro.msc</span> <span class="kw">&lt;-</span> <span class="no">chondro</span>
 <span class="no">chondro.msc</span><span class="kw">[[</span>]] <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/pls/man/msc.html">msc</a></span>(<span class="no">chondro</span><span class="kw">[[</span>]])</pre></body></html></div>
 </div>
@@ -2435,7 +2435,7 @@ You can also make suggestions in this manner.</p>
   }
 })
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.047   0.002   0.048</span></pre></body></html></div>
+<span class="co">#&gt;   0.046   0.002   0.048</span></pre></body></html></div>
 <p>Calculations that involve a lot of subsetting (i.e., extracting or changing the spectra matrix or extra data) can be sped up considerably if the required parts of the <code class="sourceCode r">hyperSpec</code> object are extracted beforehand.
 This is somewhat similar to model fitting in <code>R</code> in general: many model fitting functions in <code>R</code> are much faster if the formula interface is avoided and the appropriate <code class="sourceCode r">data.frame</code>s or matrices are handed over directly.</p>
 <div class="sourceCode" id="cb151"><html><body><pre class="r"><span class="no">tmp</span> <span class="kw">&lt;-</span> <span class="no">chondro</span>[<span class="fl">1</span>:<span class="fl">50</span>]
@@ -2448,7 +2448,7 @@ This is somewhat similar to model fitting in <code>R</code> in general: many mod
   <span class="no">tmp</span><span class="kw">[[</span>]] <span class="kw">&lt;-</span> <span class="no">tmp.matrix</span>
 })
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.010   0.000   0.009</span></pre></body></html></div>
+<span class="co">#&gt;    0.01    0.00    0.01</span></pre></body></html></div>
 <!--
 ## Additional packages
 

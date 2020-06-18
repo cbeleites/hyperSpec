@@ -124,7 +124,6 @@
     
 <!-- ======================================================================= -->
 <!-- ======================================================================= -->
-<!-- \tableofcontents -->
 <div id="introduction" class="section level1">
 <h1 class="hasAnchor">
 <a href="#introduction" class="anchor"></a><span class="header-section-number">1</span> Introduction</h1>
@@ -196,7 +195,7 @@ In order to speed up the reading <code class="sourceCode r"><span class="kw">rea
 <div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="co"># Download file from:</span>
 <span class="no">raw_data_url</span> <span class="kw">&lt;-</span>
   <span class="st">'https://media.githubusercontent.com/media/cbeleites/hyperSpec/master/Vignettes/fileio/txt.Renishaw/chondro.txt'</span>
-<span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.create</a></span>(<span class="st">'rawdata'</span>, <span class="no">F</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.create</a></span>(<span class="st">'rawdata'</span>, <span class="kw">showWarnings</span> <span class="kw">=</span> <span class="fl">FALSE</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/download.file.html">download.file</a></span>(<span class="no">raw_data_url</span>, <span class="st">'rawdata/chondro.txt'</span>)
 
 <span class="co"># Read the raw data and make a hyperSpec object</span>
@@ -272,7 +271,7 @@ Rounding erros in the point coordinates of lateral measurement grid:
 </div>
 <!-- --------------------------------------------------------------------- -->
 <!-- irregular-pts ------------------------------------------------------- -->
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="st">"latticeExtra"</span>)
+<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"latticeExtra"</span>)
 <span class="fu"><a href="../reference/levelplot.html">plotmap</a></span>(<span class="no">chondro</span>,
   <span class="kw">col.regions</span> <span class="kw">=</span> <span class="fu">seq_palette</span>(<span class="fl">20</span>), <span class="kw">panel</span> <span class="kw">=</span> <span class="no">panel.levelplot.points</span>,
   <span class="kw">col</span> <span class="kw">=</span> <span class="fl">NA</span>, <span class="kw">pch</span> <span class="kw">=</span> <span class="fl">22</span>, <span class="kw">cex</span> <span class="kw">=</span> <span class="fl">1.9</span>
@@ -351,7 +350,7 @@ The resolution is to be reduced to 8 <span class="math inline">\(cm^{-1}\)</span
 <p>The spectra are now the same as in the data set <code class="sourceCode r">chondro</code>.
 However, the data set also contains the clustering results (see at the very end of this document).
 They are stored for saving as the distributed demo data:</p>
-<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="no">spectra.to.save</span> <span class="kw">&lt;-</span> <span class="no">chondro</span></pre></body></html></div>
+<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="no">spectra_to_save</span> <span class="kw">&lt;-</span> <span class="no">chondro</span></pre></body></html></div>
 </div>
 <div id="baseline-correction" class="section level2">
 <h2 class="hasAnchor">
@@ -618,8 +617,7 @@ However, they do not follow the model-predict paradigm, but instead do directly 
 } <span class="kw">else</span> {
   <span class="fu"><a href="../reference/plot.html">plot</a></span>(<span class="kw">NULL</span>, <span class="kw">xlim</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>, <span class="fl">1</span>), <span class="kw">ylim</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>, <span class="fl">1</span>))
   <span class="fu"><a href="https://rdrr.io/r/graphics/text.html">text</a></span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="st">'Package "akima" is required to create this plot'</span>)
-}
-<span class="co">#&gt; Loading required package: akima</span></pre></body></html></div>
+}</pre></body></html></div>
 <div class="figure" style="text-align: center">
 <span id="fig:DNAinterp"></span>
 <img src="chondro_files/figure-html/DNAinterp-1.png" alt="Two-dimensional (2D) interpolation.  "><p class="caption">
@@ -632,20 +630,25 @@ Figure 7.4: Two-dimensional (2D) interpolation.
 <a href="#sec:saving-data-set" class="anchor"></a><span class="header-section-number">8</span> Saving the data set</h1>
 <p>Finally, the example data set is put together and saved.
 In order to keep the package size small, only a PCA-compressed version with 10 PCs is shipped as example data set of the package.</p>
-<div class="sourceCode" id="cb35"><html><body><pre class="r"><span class="no">spectra.to.save</span>$<span class="no">clusters</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span> (<span class="fl">NA</span>, <span class="kw">levels</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span> (<span class="no">chondro</span>$<span class="no">clusters</span>))
-<span class="no">spectra.to.save</span>$<span class="no">clusters</span>[- <span class="no">out</span>] <span class="kw">&lt;-</span> <span class="no">chondro</span>$<span class="no">clusters</span>
+<div class="sourceCode" id="cb35"><html><body><pre class="r"><span class="no">spectra_to_save</span>$<span class="no">clusters</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(<span class="fl">NA</span>, <span class="kw">levels</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span>(<span class="no">chondro</span>$<span class="no">clusters</span>))
+<span class="no">spectra_to_save</span>$<span class="no">clusters</span>[-<span class="no">out</span>] <span class="kw">&lt;-</span> <span class="no">chondro</span>$<span class="no">clusters</span>
 
-<span class="no">pca</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/prcomp.html">prcomp</a></span> (<span class="no">spectra.to.save</span>)
-<span class="no">.chondro.scores</span>   <span class="kw">&lt;-</span> <span class="no">pca</span>$<span class="no">x</span>      [, <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span> (<span class="fl">10</span>)]
-<span class="no">.chondro.loadings</span> <span class="kw">&lt;-</span> <span class="no">pca</span>$<span class="no">rot</span>    [, <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span> (<span class="fl">10</span>)]
-<span class="no">.chondro.center</span>   <span class="kw">&lt;-</span> <span class="no">pca</span>$<span class="no">center</span>
-<span class="no">.chondro.wl</span>       <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/wl.html">wl</a></span> (<span class="no">chondro</span>)
-<span class="no">.chondro.labels</span>   <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span> (<span class="fu"><a href="https://rdrr.io/r/base/labels.html">labels</a></span> (<span class="no">chondro</span>), <span class="no">as.expression</span>)
-<span class="no">.chondro.extra</span>    <span class="kw">&lt;-</span> <span class="no">spectra.to.save</span>$<span class="no">..</span>
+<span class="no">pca</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/prcomp.html">prcomp</a></span>(<span class="no">spectra_to_save</span>)
 
-<span class="fu"><a href="https://rdrr.io/r/base/save.html">save</a></span>(<span class="no">.chondro.scores</span>, <span class="no">.chondro.loadings</span>, <span class="no">.chondro.center</span>,
-  <span class="no">.chondro.wl</span>, <span class="no">.chondro.labels</span>, <span class="no">.chondro.extra</span>,
-  <span class="kw">file</span> <span class="kw">=</span> <span class="st">"chondro-internal.rda"</span>)</pre></body></html></div>
+<span class="no">.chondro_scores</span> <span class="kw">&lt;-</span> <span class="no">pca</span>$<span class="no">x</span>[, <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span>(<span class="fl">10</span>)]
+<span class="no">.chondro_loadings</span> <span class="kw">&lt;-</span> <span class="no">pca</span>$<span class="no">rot</span>[, <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span>(<span class="fl">10</span>)]
+<span class="no">.chondro_center</span> <span class="kw">&lt;-</span> <span class="no">pca</span>$<span class="no">center</span>
+<span class="no">.chondro_wl</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/wl.html">wl</a></span>(<span class="no">chondro</span>)
+<span class="no">.chondro_labels</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/labels.html">labels</a></span>(<span class="no">chondro</span>), <span class="no">as.expression</span>)
+<span class="no">.chondro_extra</span> <span class="kw">&lt;-</span> <span class="no">spectra_to_save</span>$<span class="no">..</span>
+
+<span class="no">chondro</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/initialize.html">new</a></span>(<span class="st">"hyperSpec"</span>,
+  <span class="kw">spc</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/crossprod.html">tcrossprod</a></span>(<span class="no">.chondro_scores</span>, <span class="no">.chondro_loadings</span>) +
+      <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="no">.chondro_center</span>, <span class="kw">each</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="no">.chondro_scores</span>)),
+  <span class="kw">wavelength</span> <span class="kw">=</span> <span class="no">.chondro_wl</span>,
+  <span class="kw">data</span> <span class="kw">=</span> <span class="no">.chondro_extra</span>,
+  <span class="kw">labels</span> <span class="kw">=</span> <span class="no">.chondro_labels</span>
+)</pre></body></html></div>
 <p>This is the file distributed with package <strong>hyperSpec</strong> as example data set.</p>
 </div>
 <div id="session-info" class="section level1 unnumbered">
