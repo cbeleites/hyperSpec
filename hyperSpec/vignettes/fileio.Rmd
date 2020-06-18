@@ -1353,7 +1353,7 @@ res <- apply(
 
 # Session Info {-}
 
-```{r echo=FALSE, eval=FALSE}
+```{r session-info-fileio, paged.print=FALSE}
 sessioninfo::session_info()
 ```
 

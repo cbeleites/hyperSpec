@@ -390,8 +390,8 @@ plot(paracetamol[, , 175 ~ 1800] - bl)
 
 # Session Info {-}
 
-```{r echo=FALSE, eval=FALSE}
-sessioninfo::session_info()
+```{r session-info-baseline, paged.print=FALSE}
+sessioninfo::session_info("hyperSpec")
 ```
 
 # References {-}

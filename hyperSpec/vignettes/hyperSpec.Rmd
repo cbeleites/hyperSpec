@@ -2160,14 +2160,7 @@ You can also make suggestions in this manner.
 This section needs to be written.
 
 
-# Appendix 4. Session Info {-}
-
-```{r session-info-hyperspec, echo = FALSE, paged.print = FALSE}
-#sessioninfo::session_info("hyperSpec")
-sessionInfo()
-```
-
-# Appendix 5. Speed and Memory Considerations {- #sec:speed-considerations}
+# Appendix 4. Speed and Memory Considerations {- #sec:speed-considerations}
 
 While most of package **hyperSpec**'s functions work at a decent speed for interactive sessions (of course depending on the size of the object), iterated (repeated) calculations as for bootstrapping or iterated cross validation may ask for special speed considerations.
 
@@ -2224,7 +2217,7 @@ In addition, frequent calls to `gc()`{.r} can be requested by `hy.setOption(gc =
 The same behaviour is triggered in `read.ENVI()`{.r} and its derivatives (`r list_funs_rmd("read.ENVI")`).
 The memory consumption of `read.txt.Renishaw()`{.r} can be lowered by importing the data in chunks (argument `nlines`{.r}).
 
-# Appendix 6. Remarks on R, or How **_hyperSpec_** Works Under the Hood {-}
+# Appendix 5. Remarks on R, or How **_hyperSpec_** Works Under the Hood {-}
 
 ```{block, type= "note-t", echo = show_reviewers_notes}
 **B. Hanson's notes**
@@ -2233,6 +2226,7 @@ The memory consumption of `read.txt.Renishaw()`{.r} can be lowered by importing 
 ```
 
 `hyperSpec`{.r} objects are defined using an S4 class. Much of **hyperSpec** is devoted to manipulating these objects using the methods instrinsic to `R`.
+
 
 ## Generic Functions
 
@@ -2313,6 +2307,13 @@ wl(flu) <- new.wavelength.values
 The actual name of the function is `wl<-` and must be quoted in order to avoid confusion with an assignment to variable `wl`:
 ```{r eval = FALSE}
 `wl<-`
+```
+
+
+Session Info {-}
+
+```{r session-info-hyperspec, paged.print = FALSE}
+sessioninfo::session_info("hyperSpec")
 ```
 
 # References {-}

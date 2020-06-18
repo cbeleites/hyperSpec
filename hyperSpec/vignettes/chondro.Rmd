@@ -762,7 +762,7 @@ This is the file distributed with package **hyperSpec** as example data set.
 
 # Session Info {-}
 
-```{r session-info-chondro, echo=FALSE, paged.print=FALSE, eval=FALSE}
+```{r session-info-chondro, paged.print=FALSE}
 sessioninfo::session_info("hyperSpec")
 ```
 

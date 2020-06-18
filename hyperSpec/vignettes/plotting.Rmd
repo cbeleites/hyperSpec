@@ -1557,7 +1557,7 @@ The same holds for package **ggplot2** graphics.
 
 # Session Info {-}
 
-```{r session-info-hyperspec, echo=FALSE, paged.print=FALSE, eval=FALSE}
+```{r session-info-plotting, paged.print=FALSE}
 sessioninfo::session_info("hyperSpec")
 ```
 

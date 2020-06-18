@@ -468,7 +468,7 @@ plotc(flu,
 
 # Session Info {-}
 
-```{r session-info-flu, echo=FALSE, paged.print=FALSE, eval=FALSE}
+```{r session-info-flu, paged.print=FALSE}
 sessioninfo::session_info("hyperSpec")
 ```
 

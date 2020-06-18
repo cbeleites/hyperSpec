@@ -414,8 +414,8 @@ knitr::include_graphics("laser--rgl-3d.png")
 
 # Session Info {-}
 
-```{r echo=FALSE, eval=FALSE}
-sessioninfo::session_info()
+```{r session-info-laser, paged.print = FALSE}
+sessioninfo::session_info("hyperSpec")
 ```
 
 # References {-}
