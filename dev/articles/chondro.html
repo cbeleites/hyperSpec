@@ -525,6 +525,8 @@ The three clusters correspond to the cartilage matrix, the lacuna and the cells.
 The left cell is destroyed and its contents are leaking into the matrix, while the right cells looks intact.</p>
 <p>We can plot the cluster mean spectra <span class="math inline">\(\pm\)</span> 1 standard deviation using <code class="sourceCode r"><span class="kw">aggregate</span>()</code> (see figure <a href="#fig:clustmeans">5.4</a>):</p>
 <div class="sourceCode" id="cb27"><html><body><pre class="r"><span class="no">cluster.means</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/aggregate.html">aggregate</a></span>(<span class="no">chondro</span>, <span class="no">chondro</span>$<span class="no">clusters</span>, <span class="no">mean_pm_sd</span>)
+
+<span class="no">op</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="kw">las</span> <span class="kw">=</span> <span class="fl">1</span>, <span class="kw">mar</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">4</span>, <span class="fl">6</span>, <span class="fl">1</span>, <span class="fl">1</span>), <span class="kw">mgp</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">4</span>, <span class="fl">1</span>, <span class="fl">0</span>))
 <span class="fu"><a href="../reference/plot.html">plot</a></span>(<span class="no">cluster.means</span>, <span class="kw">stacked</span> <span class="kw">=</span> <span class="st">".aggregate"</span>, <span class="kw">fill</span> <span class="kw">=</span> <span class="st">".aggregate"</span>, <span class="kw">col</span> <span class="kw">=</span> <span class="no">cols</span>)</pre></body></html></div>
 <div class="figure" style="text-align: center">
 <span id="fig:clustmeans"></span>
@@ -534,6 +536,7 @@ Figure 5.4: The cluster mean <span class="math inline">\(\pm\)</span> 1 standard
 The blue cluster shows distinct lipid bands, the yellow cluster collagen, and the red cluster proteins and nucleic acids.
 </p>
 </div>
+<div class="sourceCode" id="cb28"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="no">op</span>)</pre></body></html></div>
 </div>
 <div id="plotting-a-false-colour-map-of-certain-spectral-regions" class="section level1">
 <h1 class="hasAnchor">
@@ -541,7 +544,7 @@ The blue cluster shows distinct lipid bands, the yellow cluster collagen, and th
 <p>Package <code class="sourceCode r">hyperSpec</code> comes with a sophisticated interface for specifying spectral ranges.
 Expressing things like 1000<span class="math inline">\(cm^{-1}\)</span> <span class="math inline">\(\pm\)</span> 1 data points is easily possible.
 Thus, we can have a fast look at the nucleic acid distribution, using the DNA bands at 728, 782, 1098, 1240, 1482, and 1577 <span class="math inline">\(cm^{-1}:\)</span></p>
-<div class="sourceCode" id="cb28"><html><body><pre class="r"><span class="no">DNAcols</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/colorRamp.html">colorRampPalette</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"white"</span>, <span class="st">"gold"</span>, <span class="st">"dark green"</span>), <span class="kw">space</span> <span class="kw">=</span> <span class="st">"Lab"</span>)(<span class="fl">20</span>)
+<div class="sourceCode" id="cb29"><html><body><pre class="r"><span class="no">DNAcols</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/colorRamp.html">colorRampPalette</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"white"</span>, <span class="st">"gold"</span>, <span class="st">"dark green"</span>), <span class="kw">space</span> <span class="kw">=</span> <span class="st">"Lab"</span>)(<span class="fl">20</span>)
 <span class="fu"><a href="../reference/levelplot.html">plotmap</a></span>(<span class="no">chondro</span>[, , <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">728</span>, <span class="fl">782</span>, <span class="fl">1098</span>, <span class="fl">1240</span>, <span class="fl">1482</span>, <span class="fl">1577</span>)],
   <span class="kw">col.regions</span> <span class="kw">=</span> <span class="no">DNAcols</span>
 )</pre></body></html></div>
@@ -561,7 +564,7 @@ While the nucleus of the right cell shows up nicely, only low concentration rema
 Smoothing interpolation could help.
 In R, such a smoother is mostly seen as a model, whose predictions are then displayed as smooth map (fig. <a href="#fig:DNAsm">7.1</a>).
 This smoothing model can be calculated on the fly, e.g., by using the <code class="sourceCode r"><span class="kw">panel.2dsmoother</span>()</code> wrapper provided by package <strong>latticeExtra</strong>:</p>
-<div class="sourceCode" id="cb29"><html><body><pre class="r"><span class="fu"><a href="../reference/levelplot.html">plotmap</a></span>(<span class="no">chondro</span>[, , <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">728</span>, <span class="fl">782</span>, <span class="fl">1098</span>, <span class="fl">1240</span>, <span class="fl">1482</span>, <span class="fl">1577</span>)],
+<div class="sourceCode" id="cb30"><html><body><pre class="r"><span class="fu"><a href="../reference/levelplot.html">plotmap</a></span>(<span class="no">chondro</span>[, , <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">728</span>, <span class="fl">782</span>, <span class="fl">1098</span>, <span class="fl">1240</span>, <span class="fl">1482</span>, <span class="fl">1577</span>)],
   <span class="kw">col.regions</span> <span class="kw">=</span> <span class="no">DNAcols</span>,
   <span class="kw">panel</span> <span class="kw">=</span> <span class="no">panel.2dsmoother</span>, <span class="kw">args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">span</span> <span class="kw">=</span> <span class="fl">0.05</span>)
 )</pre></body></html></div>
@@ -574,15 +577,15 @@ Figure 7.1: False colour map of the DNA band intensities: smoothed DNA abundance
 <p>For interpolation (i.e., no smoothing at the available data points), a Voronoi plot (a.k.a. Delaunay triangulation) is basically a 2d constant interpolation: each point in space has the same z/color value as its closest available point.
 For a full rectangular grid, this corresponds to the usual square/rectangular pixel plot.
 With missing points, differences become clear (fig. <a href="#fig:DNAmissing">7.2</a>):</p>
-<div class="sourceCode" id="cb30"><html><body><pre class="r"><span class="no">tmp</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="no">chondro</span>[, , <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">728</span>, <span class="fl">782</span>, <span class="fl">1098</span>, <span class="fl">1240</span>, <span class="fl">1482</span>, <span class="fl">1577</span>)], <span class="fl">500</span>)</pre></body></html></div>
-<div class="sourceCode" id="cb31"><html><body><pre class="r"><span class="fu"><a href="../reference/levelplot.html">plotmap</a></span>(<span class="no">tmp</span>, <span class="kw">col.regions</span> <span class="kw">=</span> <span class="no">DNAcols</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb31"><html><body><pre class="r"><span class="no">tmp</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="no">chondro</span>[, , <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">728</span>, <span class="fl">782</span>, <span class="fl">1098</span>, <span class="fl">1240</span>, <span class="fl">1482</span>, <span class="fl">1577</span>)], <span class="fl">500</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb32"><html><body><pre class="r"><span class="fu"><a href="../reference/levelplot.html">plotmap</a></span>(<span class="no">tmp</span>, <span class="kw">col.regions</span> <span class="kw">=</span> <span class="no">DNAcols</span>)</pre></body></html></div>
 <div class="figure" style="text-align: center">
 <span id="fig:DNAmissing"></span>
 <img src="chondro_files/figure-html/DNAmissing-1.png" alt='Two-dimesional (2D) "constant" interpolation with missing values: omitting missing data points. '><p class="caption">
 Figure 7.2: Two-dimesional (2D) “constant” interpolation with missing values: omitting missing data points.
 </p>
 </div>
-<div class="sourceCode" id="cb32"><html><body><pre class="r"><span class="fu"><a href="../reference/levelplot.html">plotmap</a></span>(<span class="no">tmp</span>,
+<div class="sourceCode" id="cb33"><html><body><pre class="r"><span class="fu"><a href="../reference/levelplot.html">plotmap</a></span>(<span class="no">tmp</span>,
   <span class="kw">col.regions</span> <span class="kw">=</span> <span class="no">DNAcols</span>,
   <span class="kw">panel</span> <span class="kw">=</span> <span class="no">panel.voronoi</span>, <span class="kw">pch</span> <span class="kw">=</span> <span class="fl">19</span>, <span class="kw">col</span> <span class="kw">=</span> <span class="st">"black"</span>, <span class="kw">cex</span> <span class="kw">=</span> <span class="fl">0.1</span>
 )
@@ -603,7 +606,7 @@ Figure 7.3: Two-dimesional (2D) “constant” interpolation with missing values
 </div>
 <p>The 2D linear interpolation can be done, e.g., by the functions provided by package package <strong>akima</strong>.
 However, they do not follow the model-predict paradigm, but instead do directly return an object suitable for base plotting with <code class="sourceCode r"><span class="kw">image</span>()</code> (fig. <a href="#fig:DNAinterp">7.4</a>):</p>
-<div class="sourceCode" id="cb33"><html><body><pre class="r"><span class="kw">if</span> (<span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="st">"akima"</span>)) {
+<div class="sourceCode" id="cb34"><html><body><pre class="r"><span class="kw">if</span> (<span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="st">"akima"</span>)) {
   <span class="no">tmp</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html">rowMeans</a></span>(<span class="no">chondro</span><span class="kw">[[</span>, , <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">728</span>, <span class="fl">782</span>, <span class="fl">1098</span>, <span class="fl">1240</span>, <span class="fl">1482</span>, <span class="fl">1577</span>)]])
   <span class="no">chondro.bilinear</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/akima/man/interp.html">interp</a></span>(<span class="no">chondro</span>$<span class="no">x</span>, <span class="no">chondro</span>$<span class="no">y</span>, <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span>(<span class="no">tmp</span>), <span class="kw">nx</span> <span class="kw">=</span> <span class="fl">100</span>, <span class="kw">ny</span> <span class="kw">=</span> <span class="fl">100</span>)
 
@@ -629,7 +632,7 @@ Figure 7.4: Two-dimensional (2D) interpolation.
 <a href="#sec:saving-data-set" class="anchor"></a><span class="header-section-number">8</span> Saving the data set</h1>
 <p>Finally, the example data set is put together and saved.
 In order to keep the package size small, only a PCA-compressed version with 10 PCs is shipped as example data set of the package.</p>
-<div class="sourceCode" id="cb34"><html><body><pre class="r"><span class="no">spectra.to.save</span>$<span class="no">clusters</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span> (<span class="fl">NA</span>, <span class="kw">levels</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span> (<span class="no">chondro</span>$<span class="no">clusters</span>))
+<div class="sourceCode" id="cb35"><html><body><pre class="r"><span class="no">spectra.to.save</span>$<span class="no">clusters</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span> (<span class="fl">NA</span>, <span class="kw">levels</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span> (<span class="no">chondro</span>$<span class="no">clusters</span>))
 <span class="no">spectra.to.save</span>$<span class="no">clusters</span>[- <span class="no">out</span>] <span class="kw">&lt;-</span> <span class="no">chondro</span>$<span class="no">clusters</span>
 
 <span class="no">pca</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/prcomp.html">prcomp</a></span> (<span class="no">spectra.to.save</span>)

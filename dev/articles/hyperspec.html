@@ -366,7 +366,6 @@ Note that the package <strong>hyperSpec</strong> function’s name has an additi
 Mean spectra and pooled covariance matrix can be calculated using <code class="sourceCode r"><span class="kw">pooled.cov</span>()</code>:</p>
 <div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="no">pcov</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cov.html">pooled.cov</a></span>(<span class="no">chondro</span>, <span class="no">chondro</span>$<span class="no">clusters</span>)
 <span class="no">rnd</span>  <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/rmmvnorm.html">rmmvnorm</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="fl">10</span>, <span class="fl">3</span>), <span class="kw">mean</span> <span class="kw">=</span> <span class="no">pcov</span>$<span class="no">mean</span>, <span class="kw">sigma</span> <span class="kw">=</span> <span class="no">pcov</span>$<span class="no">COV</span>)</pre></body></html></div>
-<!-- , fig.width=10, fig.height=5 -->
 <div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="no">cluster.cols</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"dark blue"</span>, <span class="st">"orange"</span>, <span class="st">"#C02020"</span>)
 <span class="fu"><a href="../reference/plot.html">plot</a></span>(<span class="no">rnd</span>, <span class="kw">col</span> <span class="kw">=</span> <span class="no">cluster.cols</span>[<span class="no">rnd</span>$<span class="no">.group</span>])</pre></body></html></div>
 <div class="figure" style="text-align: center">
@@ -387,7 +386,6 @@ Figure 3.1: Multivariate normally distributed random spectra generated with <cod
 <span class="no">pred.sim</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span>(<span class="no">lda</span>)</pre></body></html></div>
 <!-- ======================================================================= -->
 <!-- ======================================================================= -->
-<!-- , width=5, fig.height=5 -->
 <div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="no">colors</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"#00008040"</span>, <span class="st">"#FFA50040"</span>, <span class="st">"#C0202040"</span>)
 <span class="fu"><a href="../reference/plot.html">plot</a></span>(<span class="no">pred.chondro</span>$<span class="no">x</span>, <span class="kw">col</span> <span class="kw">=</span> <span class="no">colors</span>[<span class="no">chondro</span>$<span class="no">clusters</span>], <span class="kw">pch</span> <span class="kw">=</span> <span class="fl">3</span>)
 <span class="fu"><a href="https://rdrr.io/r/graphics/points.html">points</a></span>(<span class="no">pred.sim</span>$<span class="no">x</span>,   <span class="kw">col</span> <span class="kw">=</span> <span class="no">colors</span>[<span class="no">rnd</span>$<span class="no">clusters</span>], <span class="kw">pch</span> <span class="kw">=</span> <span class="fl">20</span>, <span class="kw">cex</span> <span class="kw">=</span> <span class="fl">0.5</span>)</pre></body></html></div>
@@ -929,7 +927,6 @@ To keep all spectra replacing missing parts by <code class="sourceCode r"><span 
 <div class="sourceCode" id="cb66"><html><body><pre class="r"><span class="no">chondro.merged</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/merge.html">merge</a></span>(<span class="no">chondro.low</span>, <span class="no">chondro.high</span>, <span class="kw">all</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="no">chondro.merged</span>)
 <span class="co">#&gt; [1] 840</span></pre></body></html></div>
-<!-- , fig.width=10, fig.height=4.25 -->
 <div class="sourceCode" id="cb67"><html><body><pre class="r"><span class="fu">levelplot</span>(<span class="no">spc</span> ~ <span class="no">x</span> * <span class="no">y</span> <span class="kw">|</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="no">.wavelength</span>, <span class="st">"  1/cm"</span>)),
   <span class="no">chondro.merged</span>[, , <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1000</span>, <span class="fl">1650</span>)],
   <span class="kw">aspect</span> <span class="kw">=</span> <span class="st">"iso"</span>, <span class="kw">col.regions</span> <span class="kw">=</span> <span class="fu"><a href="../reference/palettes.html">matlab.palette</a></span>()
@@ -1268,7 +1265,6 @@ Class <code class="sourceCode r">hyperSpec</code>’s comparison operators retur
 <span class="no">OK</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/apply.html">apply</a></span>(<span class="no">chondro</span><span class="kw">[[</span>]], <span class="fl">2</span>, <span class="no">mean_sd_filter</span>, <span class="kw">n</span> <span class="kw">=</span> <span class="fl">4</span>) <span class="co"># logical matrix</span>
 
 <span class="no">spc.OK</span> <span class="kw">&lt;-</span> <span class="no">chondro</span>[<span class="fu"><a href="../reference/apply.html">apply</a></span>(<span class="no">OK</span>, <span class="fl">1</span>, <span class="no">all</span>)]</pre></body></html></div>
-<!-- , fig.width=10, fig.height=5 -->
 <div class="sourceCode" id="cb92"><html><body><pre class="r"><span class="fu"><a href="../reference/plot.html">plot</a></span>(<span class="no">chondro</span>[!<span class="fu"><a href="../reference/apply.html">apply</a></span>(<span class="no">OK</span>, <span class="fl">1</span>, <span class="no">all</span>)])
 <span class="no">i</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span>(!<span class="no">OK</span>, <span class="kw">arr.ind</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
 <span class="fu"><a href="https://rdrr.io/r/graphics/points.html">points</a></span>(<span class="fu"><a href="../reference/wl.html">wl</a></span>(<span class="no">chondro</span>)[<span class="no">i</span>[, <span class="fl">2</span>]], <span class="no">chondro</span><span class="kw">[[</span>!<span class="no">OK</span>]], <span class="kw">pch</span> <span class="kw">=</span> <span class="fl">19</span>, <span class="kw">col</span> <span class="kw">=</span> <span class="st">"red"</span>, <span class="kw">cex</span> <span class="kw">=</span> <span class="fl">0.5</span>)</pre></body></html></div>
@@ -1323,7 +1319,6 @@ Figure 7.5: Filtering data: mean <span class="math inline">\(\pm\)</span> sd fil
 <span class="co">#&gt; [1,] 0.072297 0.020927 0.00088598 0.0088217 0.0111474 0.018159</span>
 <span class="co">#&gt; [2,] 0.073731 0.024613 0.01635186 0.0080903 0.0118944 0.020616</span>
 <span class="co">#&gt; [3,] 0.070407 0.035170 0.02055232 0.0059341 0.0077598 0.015426</span></pre></body></html></div>
-<!-- , fig.width=10, fig.height=5 -->
 <div class="sourceCode" id="cb96"><html><body><pre class="r"><span class="no">spc</span><span class="kw">[[</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span>(<span class="no">spc</span>)]] <span class="kw">&lt;-</span> <span class="fl">0</span>
 <span class="fu"><a href="../reference/plot.html">plot</a></span>(<span class="no">spc</span>)
 
@@ -1358,7 +1353,6 @@ Also, the spectra can be smoothed: reducing the spectral resolution allows to in
 For chemometric data analysis reducing the number of data points per spectrum may be crucial as it reduces the dimensionality of the data.
 Package <strong>hyperSpec</strong> provides two functions to do so: <code class="sourceCode r"><span class="kw">spc.bin</span>()</code> and <code class="sourceCode r"><span class="kw">spc.loess</span>()</code>.</p>
 <p>Function <code class="sourceCode r"><span class="kw">spc.bin</span>()</code> bins the spectral axis by averaging every <code class="sourceCode r">by</code> data points.</p>
-<!-- , fig.width=10, fig.height=5 -->
 <div class="sourceCode" id="cb98"><html><body><pre class="r"><span class="fu"><a href="../reference/plot.html">plot</a></span>(<span class="no">paracetamol</span>, <span class="kw">wl.range</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">300</span> ~ <span class="fl">1800</span>, <span class="fl">2800</span> ~ <span class="no">max</span>), <span class="kw">xoffset</span> <span class="kw">=</span> <span class="fl">850</span>)
 <span class="no">p</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/spc-loess.html">spc.loess</a></span>(<span class="no">paracetamol</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fu"><a href="../reference/seq.html">seq</a></span>(<span class="fl">300</span>, <span class="fl">1800</span>, <span class="fl">2</span>), <span class="fu"><a href="../reference/seq.html">seq</a></span>(<span class="fl">2850</span>, <span class="fl">3150</span>, <span class="fl">2</span>)))
 <span class="fu"><a href="../reference/plot.html">plot</a></span>(<span class="no">p</span>, <span class="kw">wl.range</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">300</span> ~ <span class="fl">1800</span>, <span class="fl">2800</span> ~ <span class="no">max</span>), <span class="kw">xoffset</span> <span class="kw">=</span> <span class="fl">850</span>, <span class="kw">col</span> <span class="kw">=</span> <span class="st">"red"</span>, <span class="kw">add</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
@@ -1374,7 +1368,6 @@ Package <strong>hyperSpec</strong> provides two functions to do so: <code class=
 Figure 7.7: Smoothing interpolation by <code class="sourceCode r"><span class="kw">spc.loess</span>()</code> with new data point spacing of 2 cm<sup>-1</sup> (red) and <code class="sourceCode r"><span class="kw">spc.bin</span>()</code> (blue).
 </p>
 </div>
-<!-- , fig.width=5, fig.height=5 -->
 <div class="sourceCode" id="cb99"><html><body><pre class="r"><span class="fu"><a href="../reference/plot.html">plot</a></span>(<span class="no">paracetamol</span>[, , <span class="fl">1600</span> ~ <span class="fl">1670</span>])
 <span class="fu"><a href="../reference/plot.html">plot</a></span>(<span class="no">p</span>[, , <span class="fl">1600</span> ~ <span class="fl">1670</span>], <span class="kw">col</span> <span class="kw">=</span> <span class="st">"red"</span>, <span class="kw">add</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
 <span class="fu"><a href="../reference/plot.html">plot</a></span>(<span class="no">b</span>[, , <span class="fl">1600</span> ~ <span class="fl">1670</span>], <span class="kw">col</span> <span class="kw">=</span> <span class="st">"blue"</span>, <span class="kw">add</span> <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></body></html></div>
@@ -1445,7 +1438,6 @@ The result is a <code class="sourceCode r">baseline</code> object, but can easil
 <span class="no">bl</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/baseline/man/baseline.html">baseline</a></span>(<span class="no">corrected</span><span class="kw">[[</span>]], <span class="kw">method</span> <span class="kw">=</span> <span class="st">"modpolyfit"</span>, <span class="kw">degree</span> <span class="kw">=</span> <span class="fl">4</span>)
 <span class="no">corrected</span><span class="kw">[[</span>]] <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/baseline/man/getBaseline.html">getCorrected</a></span>(<span class="no">bl</span>)</pre></body></html></div>
 <p>Fig. <a href="#fig:bl-baseline">7.9</a> and <a href="#fig:bl-baseline-2">7.10</a> show raw data and the result for the first spectrum of <code class="sourceCode r">chondro</code>.</p>
-<!-- , fig.width=10, fig.height=5 -->
 <div class="sourceCode" id="cb105"><html><body><pre class="r"><span class="no">baseline</span> <span class="kw">&lt;-</span> <span class="no">corrected</span>
 <span class="no">baseline</span><span class="kw">[[</span>]] <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/baseline/man/getBaseline.html">getBaseline</a></span>(<span class="no">bl</span>)
 <span class="fu"><a href="../reference/plot.html">plot</a></span>(<span class="kw pkg">hyperSpec</span><span class="kw ns">::</span><span class="no"><a href="../reference/chondro.html">chondro</a></span>[<span class="fl">1</span>], <span class="kw">plot.args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">ylim</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span>(<span class="kw pkg">hyperSpec</span><span class="kw ns">::</span><span class="no"><a href="../reference/chondro.html">chondro</a></span>[<span class="fl">1</span>], <span class="fl">0</span>)))
@@ -1456,7 +1448,6 @@ The result is a <code class="sourceCode r">baseline</code> object, but can easil
 Figure 7.9: The first spectrum of <code class="sourceCode r">chondro</code> (raw data) with baseline.
 </p>
 </div>
-<!-- , fig.width=10, fig.height=5 -->
 <div class="sourceCode" id="cb106"><html><body><pre class="r"><span class="fu"><a href="../reference/plot.html">plot</a></span>(<span class="no">corrected</span>, <span class="kw">plot.args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">ylim</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span>(<span class="kw pkg">hyperSpec</span><span class="kw ns">::</span><span class="no"><a href="../reference/chondro.html">chondro</a></span>[<span class="fl">1</span>], <span class="fl">0</span>)))</pre></body></html></div>
 <div class="figure" style="text-align: center">
 <span id="fig:bl-baseline-2"></span>
@@ -1550,7 +1541,6 @@ Thus one has to trade off the the expected numeric benefit with the fact that fo
 Scaling usually makes sense only for centered data.</p>
 <p>Both tasks are carried out by the same method in <code>R</code>, <code class="sourceCode r"><span class="kw">scale</span>()</code>, which will by default both mean center and variance scale the spectra matrix.</p>
 <p>To center the <code class="sourceCode r">flu</code> data set, use:</p>
-<!-- , fig.width=10, fig.height=5 -->
 <div class="sourceCode" id="cb118"><html><body><pre class="r"><span class="no">flu.centered</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/scale.html">scale</a></span>(<span class="no">flu</span>, <span class="kw">scale</span> <span class="kw">=</span> <span class="fl">FALSE</span>)
 <span class="fu"><a href="../reference/plot.html">plot</a></span>(<span class="no">flu.centered</span>)</pre></body></html></div>
 <div class="figure" style="text-align: center">
@@ -1564,7 +1554,6 @@ But what is the meaning of the “Average spectrum” of an inhomogeneous sample
 In this case it may be better to subtract the minimum spectrum (which will hopefully have almost the same benefit on the data analysis) as it is the spectrum of that chemical composition that is underlying the whole sample.</p>
 <p>One more point to consider is that the actual minimum spectrum will pick up (negative) noise.
 In order to avoid that, using, e.g., the 5<sup>th</sup> percentile spectrum is more suitable:</p>
-<!-- , fig.width=10, fig.height=5 -->
 <div class="sourceCode" id="cb119"><html><body><pre class="r"><span class="no">chondro</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/scale.html">scale</a></span>(<span class="no">chondro</span>, <span class="kw">center</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span>(<span class="no">chondro</span>, <span class="fl">0.05</span>), <span class="kw">scale</span> <span class="kw">=</span> <span class="fl">FALSE</span>)
 <span class="fu"><a href="../reference/plot.html">plot</a></span>(<span class="no">chondro</span>, <span class="st">"spcprctl5"</span>)</pre></body></html></div>
 <div class="figure" style="text-align: center">
@@ -1669,7 +1658,6 @@ If it is set to <code class="sourceCode r"><span class="ot">TRUE</span></code>, 
 <span class="no">loadings</span>[<span class="fl">1</span>]$<span class="no">..</span>
 <span class="co">#&gt;                filename measurement</span>
 <span class="co">#&gt; PC1 rawdata/chondro.txt           1</span></pre></body></html></div>
-<!-- , fig.width=8, fig.height=4 -->
 <div class="sourceCode" id="cb129"><html><body><pre class="r"><span class="fu"><a href="../reference/plot.html">plot</a></span>(<span class="no">loadings</span>[<span class="fl">1</span>:<span class="fl">3</span>], <span class="kw">stacked</span> <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></body></html></div>
 <div class="figure" style="text-align: center">
 <span id="fig:pca-load"></span>
@@ -1683,7 +1671,6 @@ Figure 8.1: The first three loadings.
   <span class="st">"#EFCFC6"</span>, <span class="st">"#E6B7AB"</span>, <span class="st">"#DCA091"</span>, <span class="st">"#D08977"</span>, <span class="st">"#C4725E"</span>, <span class="st">"#B75B46"</span>,
   <span class="st">"#A9432F"</span>, <span class="st">"#9A2919"</span>, <span class="st">"#8B0000"</span>
 ), <span class="kw">space</span> <span class="kw">=</span> <span class="st">"Lab"</span>)</pre></body></html></div>
-<!-- , fig.width=8, fig.height=4 -->
 <div class="sourceCode" id="cb131"><html><body><pre class="r"><span class="fu"><a href="../reference/levelplot.html">plotmap</a></span>(<span class="no">scores</span>[, , <span class="fl">3</span>], <span class="kw">col.regions</span> <span class="kw">=</span> <span class="fu">div_palette</span>(<span class="fl">20</span>))</pre></body></html></div>
 <div class="figure" style="text-align: center">
 <span id="fig:pca-score"></span>
@@ -1750,7 +1737,6 @@ Figure 8.3: A plot of spectrum created with <strong>ggplot2</strong>.
 handed over:</p>
 <div class="sourceCode" id="cb135"><html><body><pre class="r"><span class="no">dist</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/pearson.dist.html">pearson.dist</a></span>(<span class="no">chondro</span>)
 <span class="no">dendrogram</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span>(<span class="no">dist</span>, <span class="kw">method</span> <span class="kw">=</span> <span class="st">"ward.D"</span>)</pre></body></html></div>
-<!-- , fig.width=8, fig.height=5 -->
 <div class="sourceCode" id="cb136"><html><body><pre class="r"><span class="fu"><a href="../reference/plot.html">plot</a></span>(<span class="no">dendrogram</span>)</pre></body></html></div>
 <div class="figure" style="text-align: center">
 <span id="fig:dend"></span>
@@ -1764,7 +1750,6 @@ Figure 8.4: The results of the cluster analysis: the dendrogram.
 <p>As the cluster membership was stored as factor, the levels can be meaningful names, which are displayed in the color legend.</p>
 <div class="sourceCode" id="cb138"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span>(<span class="no">chondro</span>$<span class="no">clusters</span>) <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"matrix"</span>, <span class="st">"lacuna"</span>, <span class="st">"cell"</span>)</pre></body></html></div>
 <p>Then the result may be plotted (Figure <a href="#fig:clust-map">8.5</a>):</p>
-<!-- , fig.width=7.5, fig.height=5 -->
 <div class="sourceCode" id="cb139"><html><body><pre class="r"><span class="fu"><a href="../reference/levelplot.html">plotmap</a></span>(<span class="no">chondro</span>, <span class="no">clusters</span> ~ <span class="no">x</span> * <span class="no">y</span>, <span class="kw">col.regions</span> <span class="kw">=</span> <span class="no">cluster.cols</span>)</pre></body></html></div>
 <div class="figure" style="text-align: center">
 <span id="fig:clust-map"></span>
@@ -1779,7 +1764,6 @@ Figure 8.5: The results of the cluster analysis: the map of the 3 clusters.
 
 <p>Function <code class="sourceCode r"><span class="kw">aggregate</span>()</code> applies the function given in <code class="sourceCode r">FUN</code> to each of the groups of spectra specified in <code class="sourceCode r">by</code>.</p>
 <p>So we may plot the cluster mean spectra:</p>
-<!-- , fig.width=7.5, fig.height=5 -->
 <div class="sourceCode" id="cb140"><html><body><pre class="r"><span class="no">means</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/aggregate.html">aggregate</a></span>(<span class="no">chondro</span>, <span class="kw">by</span> <span class="kw">=</span> <span class="no">chondro</span>$<span class="no">clusters</span>, <span class="no">mean_pm_sd</span>)
 <span class="fu"><a href="../reference/plot.html">plot</a></span>(<span class="no">means</span>, <span class="kw">col</span> <span class="kw">=</span> <span class="no">cluster.cols</span>, <span class="kw">stacked</span> <span class="kw">=</span> <span class="st">".aggregate"</span>, <span class="kw">fill</span> <span class="kw">=</span> <span class="st">".aggregate"</span>)</pre></body></html></div>
 <div class="figure" style="text-align: center">
@@ -2487,7 +2471,7 @@ You can also make suggestions in this manner.</p>
   }
 })
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.046   0.002   0.048</span></pre></body></html></div>
+<span class="co">#&gt;   0.047   0.002   0.050</span></pre></body></html></div>
 <p>Calculations that involve a lot of subsetting (i.e., extracting or changing the spectra matrix or extra data) can be sped up considerably if the required parts of the <code class="sourceCode r">hyperSpec</code> object are extracted beforehand.
 This is somewhat similar to model fitting in <code>R</code> in general: many model fitting functions in <code>R</code> are much faster if the formula interface is avoided and the appropriate <code class="sourceCode r">data.frame</code>s or matrices are handed over directly.</p>
 <div class="sourceCode" id="cb152"><html><body><pre class="r"><span class="no">tmp</span> <span class="kw">&lt;-</span> <span class="no">chondro</span>[<span class="fl">1</span>:<span class="fl">50</span>]
@@ -2500,7 +2484,7 @@ This is somewhat similar to model fitting in <code>R</code> in general: many mod
   <span class="no">tmp</span><span class="kw">[[</span>]] <span class="kw">&lt;-</span> <span class="no">tmp.matrix</span>
 })
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.009   0.000   0.009</span></pre></body></html></div>
+<span class="co">#&gt;   0.012   0.000   0.013</span></pre></body></html></div>
 <!--
 ## Additional packages
 

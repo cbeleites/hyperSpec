@@ -219,7 +219,6 @@ The idea is that all data points that lie above a fitted polynomial (initially t
 <li>the next polynomial would have less than <code class="sourceCode r">npts.min</code> supporting points.</li>
 </ul>
 <p>The baselines and respective supporting points for each iteration of <code class="sourceCode r"><span class="kw">spc.fit.poly.below</span>(chondro[<span class="dv">1</span>], <span class="dt">poly.order =</span> <span class="dv">1</span>)</code> are shown in figure <a href="#fig:iter">2.2</a>.</p>
-<!-- fig1 -->
 <div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="no">bl</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/baselines.html">spc.fit.poly.below</a></span>(<span class="no">chondro</span>[<span class="fl">1</span>], <span class="kw">poly.order</span> <span class="kw">=</span> <span class="fl">1</span>, <span class="kw">max.iter</span> <span class="kw">=</span> <span class="fl">8</span>, <span class="kw">npts.min</span> <span class="kw">=</span> <span class="fl">2</span>, <span class="kw">debuglevel</span> <span class="kw">=</span> <span class="fl">3L</span>)</pre></body></html></div>
 <div class="figure" style="text-align: center">
 <span id="fig:iter"></span>
@@ -231,7 +230,6 @@ Figure 2.2: Iterative fitting of the baseline. The dots give the supporting poin
 <div id="specifying-the-spectral-range" class="section level2">
 <h2 class="hasAnchor">
 <a href="#specifying-the-spectral-range" class="anchor"></a><span class="header-section-number">2.5</span> Specifying the spectral range</h2>
-<!-- figspcrange -->
 <div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="fu"><a href="../reference/plot.html">plot</a></span>(<span class="no">chondro</span>[<span class="fl">3</span>, , <span class="fl">1700</span> ~ <span class="fl">1750</span>],
   <span class="kw">lines.args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">type</span> <span class="kw">=</span> <span class="st">"b"</span>),
   <span class="kw">plot.args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">ylim</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span>(<span class="no">chondro</span>[<span class="fl">3</span>, , <span class="fl">1700</span> ~ <span class="fl">1750</span>]) + <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(-<span class="fl">50</span>, <span class="fl">0</span>))
@@ -264,10 +262,10 @@ The default value for <code class="sourceCode r">npts.min</code> depends on the 
 Thus one should also consider requiring more support points than the default value suggests.</p>
 <div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span>(<span class="fu"><a href="../reference/baselines.html">spc.fit.poly.below</a></span>(<span class="no">chondro</span>, <span class="kw">NULL</span>, <span class="kw">npts.min</span> <span class="kw">=</span> <span class="fl">20</span>))
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.733   0.045   0.779</span>
+<span class="co">#&gt;   0.758   0.043   0.802</span>
 <span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span>(<span class="fu"><a href="../reference/baselines.html">spc.fit.poly.below</a></span>(<span class="no">chondro</span>[, , <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="no">min</span> ~ <span class="fl">700</span>, <span class="fl">1700</span> ~ <span class="no">max</span>)], <span class="kw">NULL</span>, <span class="kw">npts.min</span> <span class="kw">=</span> <span class="fl">20</span>))
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.383   0.010   0.393</span></pre></body></html></div>
+<span class="co">#&gt;   0.398   0.013   0.411</span></pre></body></html></div>
 <p>The choice of the spectral range in <code class="sourceCode r">fit.to</code> influences the resulting baselines to a certain extent, as becomes clear from figure <a href="#fig:spectralrange">2.3</a>.</p>
 </div>
 <div id="fitting-polynomials-of-different-orders" class="section level2">
@@ -320,6 +318,13 @@ The dots indicate the points used for the fitting of the polynomial.
 <div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="no">spc</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/initialize.html">new</a></span>(<span class="st">"hyperSpec"</span>, <span class="kw">spc</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">100</span>, <span class="kw">mean</span> <span class="kw">=</span> <span class="fl">100</span>, <span class="kw">sd</span> <span class="kw">=</span> <span class="fl">2</span>), <span class="kw">ncol</span> <span class="kw">=</span> <span class="fl">100</span>))
 <span class="no">noise</span> <span class="kw">&lt;-</span> <span class="fl">4</span>
 <span class="fu"><a href="../reference/baselines.html">spc.fit.poly.below</a></span>(<span class="no">spc</span>, <span class="kw">poly.order</span> <span class="kw">=</span> <span class="fl">0</span>, <span class="kw">noise</span> <span class="kw">=</span> <span class="no">noise</span>, <span class="kw">debuglevel</span> <span class="kw">=</span> <span class="fl">2</span>)
+<span class="co">#&gt; hyperSpec object</span>
+<span class="co">#&gt;    1 spectra</span>
+<span class="co">#&gt;    1 data columns</span>
+<span class="co">#&gt;    100 data points / spectrum</span>
+<span class="co">#&gt; wavelength:  [integer] 1 2 ... 100 </span>
+<span class="co">#&gt; data:  (1 rows x 1 columns)</span>
+<span class="co">#&gt;    1. spc:  [AsIs matrix x 100] 99.968 99.968 ... 99.968</span>
 <span class="fu"><a href="../reference/plot.html">plot</a></span>(<span class="fu"><a href="../reference/baselines.html">spc.fit.poly.below</a></span>(<span class="no">spc</span>, <span class="kw">poly.order</span> <span class="kw">=</span> <span class="fl">0</span>), <span class="kw">col</span> <span class="kw">=</span> <span class="st">"black"</span>, <span class="kw">add</span> <span class="kw">=</span> <span class="no">T</span>)</pre></body></html></div>
 <div class="figure" style="text-align: center">
 <span id="fig:fig3"></span>
@@ -391,7 +396,6 @@ This can be corrected by bending the spectrum before applying the rubberband cor
 Figure 3.3: Rubberband baselines for the paracetamol spectrum after bending: bent <code class="sourceCode r">paracetamol</code> spectrum and rubberband baseline.
 </p>
 </div>
-<!-- rubberband-bent-corrected -->
 <div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="fu"><a href="../reference/plot.html">plot</a></span>(<span class="no">paracetamol</span>[, , <span class="fl">175</span> ~ <span class="fl">1800</span>] - <span class="no">bl</span>)</pre></body></html></div>
 <div class="figure" style="text-align: center">
 <span id="fig:rubberband-bent-corrected"></span>
