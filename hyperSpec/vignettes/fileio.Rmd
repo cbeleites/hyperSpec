@@ -278,7 +278,14 @@ Data cubes often come from spectral imaging systems that use an "image" coordina
 Note that this should accounted for in the decreasing order of the original `y`{.r} vector.
 
 
+
+<!-- ======================================================================= -->
+```{block, type="note-t", echo=show_reviewers_notes}
+
 `# TODO:  (this was a LaTeX-commented TODO tag)`{.r}
+
+```
+<!-- ======================================================================= -->
 
 
 <!-- ======================================================================== -->
