@@ -67,7 +67,7 @@ set_trellis_layout_hw_custom <- function() {
 
 set_trellis_layout_hw_custom()
 
-# knitr Settings ===================================================================
+# knitr Settings =============================================================
 knitr::opts_chunk$set(
   echo       = TRUE,     # Should blocks with program code be shown in knitted documents?
   eval       = TRUE,     # Should program code be evaluated?
@@ -78,7 +78,12 @@ knitr::opts_chunk$set(
   comment    = "#>"
 )
 
-# R Settings ==========================================================
+# R Settings =================================================================
 options("width" = 100, "digits" = 5)
 options(rmarkdown.html_vignette.check_title = FALSE) # Vig index entry not document title
 set.seed(2020)
+
+# Temporaty options ==========================================================
+# This option controls if reviewers/translator's notes are visible
+# in the vignettes
+options(show_show_reviewers_notes = FALSE)
