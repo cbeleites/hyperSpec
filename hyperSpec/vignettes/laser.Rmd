@@ -97,14 +97,11 @@ make_bib(
 **Reproducing this vignette.**
 
 All spectra used in this manual are installed automatically with package **hyperSpec**.
-
 The source data files can be found with the command:
 
-`system.file ("doc/src/rawdata/laser.txt.gz", package = "hyperSpec")`
+`system.file("extdata/laser.txt.gz", package = "hyperSpec")`
 
-In order to reproduce the examples by typing in the commands, have a look at the definitions in `vignettes.defs`.}
 
-<!-- \tableofcontents -->
 ```
 
 
@@ -231,29 +228,12 @@ plot(laser, "spcprctl5")
 
 Note that the new wavelength axis label is immediately assigned as well.
 
-Now, save `laser`{.r} as the `laser`{.r} data set shipped with package **hyperSpec**.
-
 
 ```{r}
 laser$filename <- NULL
 laser
 ```
-
-<!-- ======================================================================= -->
-```{block, type="note-t", echo=show_reviewers_notes}
-**V. Gegzna's notes** `laser-3`
-
-
-1. `# NOTE:`{.r} It's not clear, why the data is saved at this point.
-
-```
-<!-- ======================================================================= -->
-
-```{r save, eval=FALSE}
-save(laser, file = "laser.rda")
-```
-
-
+This version of `laser`{.r} datasets is shipped with package **hyperSpec**.
 
 
 # Inspecting the time dependency of the laser emission
