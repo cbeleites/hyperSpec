@@ -29,4 +29,6 @@ vignettes/resources/*.bib
 # Documentation
 man/*.Rd
 NAMESPACE
-inst/doc
+
+# Other
+
