@@ -18,7 +18,7 @@ articles:
     desc: >
       The main functionality of "hyperSpec".
     contents:
-    - hyperspec
+    - hyperSpec
     - fileio
     - plotting
     - baseline
