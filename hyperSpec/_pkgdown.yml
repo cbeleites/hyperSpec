@@ -4,12 +4,12 @@ template:
   params:
     bootswatch: cerulean
     noindex: true
-    
+
 # -------------------------------------------------------------------------
 
 development:
   mode: auto
-  
+
 # -------------------------------------------------------------------------
 
 articles:
@@ -18,7 +18,7 @@ articles:
     desc: >
       The main functionality of "hyperSpec".
     contents:
-    - hyperspec
+    - hyperSpec
     - fileio
     - plotting
     - baseline
@@ -29,7 +29,7 @@ articles:
     - chondro
     - flu
     - laser
-    
+
 # -------------------------------------------------------------------------
 
 authors:
@@ -48,7 +48,7 @@ reference:
 - contents:
   - has_keyword("datasets")
 - title: Input and output
-- contents:  
+- contents:
   - "initialize"
   - has_keyword("IO")
   - has_keyword("file")

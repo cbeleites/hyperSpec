@@ -8,3 +8,5 @@ old/
 *_cache/
 *_files/
 rawdata/
+*.html
+*.R
