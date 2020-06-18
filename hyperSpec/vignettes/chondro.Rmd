@@ -60,9 +60,9 @@ source("vignette-functions.R", encoding = "UTF-8")
 # Settings -------------------------------------------------------------------
 source("vignette-default-settings.R", encoding = "UTF-8")
 
-# knitr::opts_chunk$set(
-#   fig.path   = "figures/Chondro--"
-# )
+# Temporaty options ----------------------------------------------------------
+# Change the value of this option in "vignette-default-settings.R"
+show_reviewers_notes = getOption("show_reviewers_notes", TRUE)
 ```
 
 ```{r bib, echo=FALSE, paged.print=FALSE}
@@ -78,8 +78,8 @@ make_bib(
 
 
 <!-- ======================================================================= -->
-```{block, type="note-t", echo=TRUE}
-**Translator's notes** `chondro-1`
+```{block, type="note-t", echo=show_reviewers_notes}
+**V. Gegzna's notes** `chondro-1`
 
 
 1. `FIXME:`{.r} After the translation is completed, the contents in the box below must be fixed.
@@ -88,7 +88,7 @@ make_bib(
 
 
 
-```{block, type="note", echo=TRUE}
+```{block, type="note", echo=show_reviewers_notes}
 
 `# FIXME. Fix the contents of this box:`{.r}  
 
@@ -340,8 +340,8 @@ ggpubr::ggarrange(
 
 
 <!-- ===================================================================== -->
-```{block2, type="note-t", echo=TRUE}
-**Translator's notes** `chondro-2`
+```{block2, type="note-t", echo=show_reviewers_notes}
+**V. Gegzna's notes** `chondro-2`
 
 1. Which is better: separate plots \@ref(fig:irregular-a), \@ref(fig:irregular-b), \@ref(fig:irregular-c) or single plot with subplots \@ref(fig:irregular)?
 

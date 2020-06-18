@@ -62,12 +62,9 @@ source("vignette-functions.R", encoding = "UTF-8")
 # Settings -------------------------------------------------------------------
 source("vignette-default-settings.R", encoding = "UTF-8")
 
-# knitr::opts_chunk$set(
-#   fig.path   = "figures/plotting--"
-# )
-
-
-reviewers_notes = FALSE
+# Temporaty options ----------------------------------------------------------
+# Change the value of this option in "vignette-default-settings.R"
+show_reviewers_notes = getOption("show_reviewers_notes", TRUE)
 ```
 
 ```{r bib, echo=FALSE, paged.print=FALSE}
@@ -640,7 +637,7 @@ plotspc(cluster.means,
 
 
 <!-- ======================================================================= -->
-```{block2, type="note-t", echo=reviewers_notes}
+```{block2, type="note-t", echo=show_reviewers_notes}
 **V. Gegzna's notes** `plotting-2`
 
 
@@ -1093,8 +1090,10 @@ Graphical parameters for *trellis* may be displayed via `show.settings()`{.r} (F
 CAPTION = "Show **lattice** settings.  "
 ```
 
-```{r, echo=reviewers_notes, type="note-t"}
-# FIXME: padding in these figures must be fixed
+```{block, type="note-t", echo=show_reviewers_notes}
+
+`# FIXME: padding in these figures must be fixed`{.r}
+
 ```
 
 ```{r lattice-settings-2, fig.width=7, fig.height=4, fig.cap=CAPTION, eval=FALSE}
@@ -1340,7 +1339,7 @@ knitr::include_graphics("plotting--fig-3D-01.png")
 
 
 <!-- ======================================================================= -->
-```{block, type="note-t", echo=reviewers_notes}
+```{block, type="note-t", echo=show_reviewers_notes}
 **V. Gegzna's notes** `plotting-3`
 
 
@@ -1348,7 +1347,7 @@ knitr::include_graphics("plotting--fig-3D-01.png")
 ```
 <!-- ======================================================================= -->
 
-```{r rgl-do, echo=reviewers_notes, results='hide', eval=FALSE}
+```{r rgl-do, echo=show_reviewers_notes, results='hide', eval=FALSE}
 # FIXME: is this code block still needed?
 
 if (require(rgl)) {
@@ -1456,7 +1455,7 @@ qplotspc(paracetamol / 1e4, wl.range = c(min ~ 1800, 2800 ~ max)) +
 
 
 <!-- ======================================================================= -->
-```{block, type="note-t", echo=reviewers_notes}
+```{block, type="note-t", echo=show_reviewers_notes}
 **V. Gegzna's notes** `plotting-4`
 
 
@@ -1464,7 +1463,7 @@ qplotspc(paracetamol / 1e4, wl.range = c(min ~ 1800, 2800 ~ max)) +
 ```
 <!-- ======================================================================= -->
 
-```{r ggplot2-do, echo=reviewers_notes, results='hide', eval=FALSE}
+```{r ggplot2-do, echo=show_reviewers_notes, results='hide', eval=FALSE}
 
 # FIXME: is this code block needed at all?
 

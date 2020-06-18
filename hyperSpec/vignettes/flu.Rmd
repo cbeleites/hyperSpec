@@ -57,9 +57,9 @@ source("vignette-functions.R", encoding = "UTF-8")
 # Settings -------------------------------------------------------------------
 source("vignette-default-settings.R", encoding = "UTF-8")
 
-# knitr::opts_chunk$set(
-#   fig.path   = "figures/flu--"
-# )
+# Temporaty options ----------------------------------------------------------
+# Change the value of this option in "vignette-default-settings.R"
+show_reviewers_notes = getOption("show_reviewers_notes", TRUE)
 ```
 
 ```{r bib, echo=FALSE, paged.print=FALSE}
@@ -77,8 +77,8 @@ make_bib(
 
 
 <!-- ======================================================================= -->
-```{block, type="note-t", echo=TRUE}
-**Translator's notes** `flu-1`
+```{block, type="note-t", echo=show_reviewers_notes}
+**V. Gegzna's notes** `flu-1`
 
 
 1. `# FIXME:`{.r} After the translation is completed, the contents in the box below must be fixed.
@@ -88,7 +88,7 @@ make_bib(
 
 
 
-```{block, type="note", echo=TRUE}
+```{block, type="note", echo=show_reviewers_notes}
 
 `# FIXME. Fix the contents of this box:`{.r}
 
@@ -125,8 +125,8 @@ The raw spectra are in Perkin Elmer's ASCII file format, one spectrum per file.
 The files are completely ASCII text, with the actual spectra starting at line 55.
 
 <!-- ======================================================================= -->
-```{block, type="note-t", echo=TRUE}
-**Translator's notes** `flu-2`
+```{block, type="note-t", echo=show_reviewers_notes}
+**V. Gegzna's notes** `flu-2`
 
 
 1. `# NOTE:`{.r} `fileIO` vignette is mentioned.
@@ -139,8 +139,8 @@ The function to import these files, `read.txt.PerkinElmer()`{.r}, is discussed i
 
 
 <!-- ======================================================================= -->
-```{block, type="note-t", echo=TRUE}
-**Translator's notes** `flu-3`
+```{block, type="note-t", echo=show_reviewers_notes}
+**V. Gegzna's notes** `flu-3`
 
 
 1. `# FIXME:`{.r} Why do we need `source("read.txt.PerkinElmer.R")`?
@@ -203,8 +203,13 @@ read.txt.PerkinElmer <- function(files = stop("filenames needed"), ..., label = 
 
 It needs to be `source()`{.r}d before use:
 
+<!-- ======================================================================= -->
+```{block, type="note-t", echo=show_reviewers_notes}
+`# FIXME: the code below is not user-fiendly.`{.r}
+```
+<!-- ======================================================================= -->
+
 ```{r read.txt.PE}
-# FIXME: this code is not user-fiendly.
 source("read.txt.PerkinElmer.R")
 
 folder <- system.file("extdata/flu", package = "hyperSpec")
@@ -238,8 +243,8 @@ flu
 ```
 
 <!-- ======================================================================= -->
-```{block, type="note-t", echo=TRUE}
-**Translator's notes** `flu-4`
+```{block, type="note-t", echo=show_reviewers_notes}
+**V. Gegzna's notes** `flu-4`
 
 1. `# FIXME:`{.r} why file saving is needed?
 `save(flu, file = "flu.rda")`

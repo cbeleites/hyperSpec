@@ -59,9 +59,9 @@ source("vignette-functions.R", encoding = "UTF-8")
 # Settings -------------------------------------------------------------------
 source("vignette-default-settings.R", encoding = "UTF-8")
 
-# knitr::opts_chunk$set(
-#   fig.path   = "figures/fileio--"
-# )
+# Temporaty options ----------------------------------------------------------
+# Change the value of this option in "vignette-default-settings.R"
+show_reviewers_notes = getOption("show_reviewers_notes", TRUE)
 ```
 
 ```{r bib, echo=FALSE, paged.print=FALSE}
@@ -111,8 +111,8 @@ If you need help finding out how to import your data, please search and eventual
 
 
 <!-- ======================================================================= -->
-```{block, type="note-t", echo=TRUE}
-**Translator's notes** `fileio-1`
+```{block, type="note-t", echo=show_reviewers_notes}
+**V. Gegzna's notes** `fileio-1`
 
 
 1. `# FIXME:`{.r} After the translation is completed, the contents in the box below must be fixed.
@@ -123,7 +123,7 @@ If you need help finding out how to import your data, please search and eventual
 
 
 
-```{block, type="note", echo=TRUE}
+```{block, type="note", echo=show_reviewers_notes}
 
 `# FIXME. Fix the contents of this box:`{.r}
 
@@ -156,9 +156,13 @@ If data export for the respective format is possible, it is discussed in the sam
 As sometimes the actual data written by the spectrometer software exhibits peculiarities, package **hyperSpec** offers several specialized import functions.
 These are in general named after the data format followed by the manufacturer (e.g., `read.ENVI.Nicolet`).
 
-
+<!-- ======================================================================= -->
+```{block, type="note-t", echo=show_reviewers_notes}
 
 `# FIXME: appendix is mentioned!`{.r}
+
+```
+<!-- ======================================================================= -->
 
 Overview lists of the directly supported file formats are in the appendix: sorted by file format (appendix \@ref(sec:format)<!--, p. \pageref{sec:format}-->), manufacturer (appendix \@ref(sec:manufacturer)<!--, p. \pageref{sec:manufacturer}-->), and by spectroscopy (appendix \@ref(sec:spectroscopy)<!--, p. \pageref{sec:spectroscopy}-->).
 
@@ -167,8 +171,8 @@ Overview lists of the directly supported file formats are in the appendix: sorte
 # Creating a `hyperSpec`{.r} object with `new()`{.r} {#sec:new}
 
 <!-- ======================================================================= -->
-```{block, type="note-t", echo=TRUE}
-**Translator's notes** `fileio-2`
+```{block, type="note-t", echo=show_reviewers_notes}
+**V. Gegzna's notes** `fileio-2`
 
 
 1. `# NOTE:`{.r} Do not remove `\index{}` tags. They might be useful in the future.
@@ -1134,8 +1138,8 @@ In order to gain speed, the spectra matrix should be preallocated after the firs
 
 
 <!-- ======================================================================= -->
-```{block, type="note-t", echo=TRUE}
-**Translator's notes** `fileio-3`
+```{block, type="note-t", echo=show_reviewers_notes}
+**V. Gegzna's notes** `fileio-3`
 
 
 1. Should it be `\\#DATA` or just `#DATA`?

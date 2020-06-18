@@ -66,6 +66,9 @@ source("vignette-functions.R", encoding = "UTF-8")
 # Settings -------------------------------------------------------------------
 source("vignette-default-settings.R", encoding = "UTF-8")
 
+# Temporaty options ----------------------------------------------------------
+# Change the value of this option in "vignette-default-settings.R"
+show_reviewers_notes = getOption("show_reviewers_notes", TRUE)
 ```
 
 
@@ -87,7 +90,7 @@ make_bib(
 ```
 
 
-```{block, type = "note-t", echo = TRUE}
+```{block, type = "note-t", echo = show_reviewers_notes}
 **V. Gegzna's notes** `hyperspec-1`
 
 1. I suggest keeping tags `\\mFun{}` and `\\index{}`.
@@ -101,8 +104,8 @@ But they are ignored by HTML rendering engine (as they are LaTeX tags) and remov
 3. Some ideas should be more clearly explained for beginner-level users without assuming that they know technical details.
 ```
 
-```{block, type = "note", echo = TRUE}
-**B Hansons's notes** `Some remaining issues`
+```{block, type = "note-t", echo = show_reviewers_notes}
+**B. Hansons's notes** `Some remaining issues`
 
 There is still a lot of work and polishing to be done.  Here are some of the remaining organizational and document processing issues as I see it:
 
@@ -228,7 +231,7 @@ Table \@ref(tab:options) gives an overview of the options.  You should not worry
 # Obtaining Basic Information about `hyperSpec`{.r} Objects {#info-hyperspec-objs}
 
 
-```{block, type = "note-t", echo = TRUE}
+```{block, type = "note-t", echo = show_reviewers_notes}
 **V. Gegzna's notes** `hyperspec-6`
 
 1. The output of print() and summary() is identical. Is it expected?
@@ -278,8 +281,8 @@ The column names of the spectra matrix contain the wavelengths as character, whi
 Extra data column names and rownames of the object may be set by `colnames<-`{.r} and `rownames<-`{.r}, respectively.
 Function `colnames<-`{.r} renames the labels as well.
 
-```{block, type = "note", echo = TRUE}
-**B Hansons's notes** `This is not clear`
+```{block, type = "note-t", echo = show_reviewers_notes}
+**B. Hansons's notes** `This is not clear`
 
 This line: _Function `colnames<-`{.r} renames the labels as well._ is not clear and the documentation doesn't seem to say anything about it.
 ```
@@ -318,8 +321,8 @@ More information about converting existing data into `hyperSpec`{.r} objects can
 
 ## Creating Random Spectra
 
-```{block, type = "note", echo = TRUE}
-**B Hansons's notes** `Clarifications`
+```{block, type = "note-t", echo = show_reviewers_notes}
+**B. Hansons's notes** `Clarifications`
 
 1. Need more explanation of the pooled covariance approach.
 2. Here's a place that we should standardize the color scheme.
@@ -360,7 +363,7 @@ pred.sim <- predict(lda)
 ```
 
 <!-- ======================================================================= -->
-```{block, type = "note-t", echo = TRUE}
+```{block, type = "note-t", echo = show_reviewers_notes}
 **V. Gegzna's notes** `hyperspec-7`
 
 1. `# FIXME: `{.r}
@@ -1150,7 +1153,7 @@ As just the very maximum is too coarse, we'll use the maximum of a square polyno
 ```
 
 <!-- ======================================================================= -->
-```{block, type= "note-t", echo = TRUE}
+```{block, type= "note-t", echo = show_reviewers_notes}
 **V. Gegzna's notes** `hyperspec-9`
 
 1. `# TODO: `{.r} use vanderMonde
@@ -1332,7 +1335,7 @@ plot(spc.NA.approx(spc), add = TRUE, col = "blue",
 ```
 
 <!-- ======================================================================= -->
-```{block, type = "note-t", echo = TRUE}
+```{block, type = "note-t", echo = show_reviewers_notes}
 **V. Gegzna's notes** `hyperspec-10`
 
 
@@ -1975,7 +1978,7 @@ make.fn.table()
 
 
 <!-- ======================================================================= -->
-```{block, type = "note-t", echo = TRUE}
+```{block, type = "note-t", echo = show_reviewers_notes}
 **V. Gegzna's note** `hyperspec-12`
 
 `# TODO`{.r}  A better version of the table could be created if `pkgdown` website
@@ -2127,7 +2130,7 @@ stopifnot(all(names(hy.getOptions(TRUE)) %in% c(
 
 # Appendix 3. Reporting Bugs and Getting Help {-}
 
-```{block, type= "note", echo = TRUE}
+```{block, type= "note-t", echo = show_reviewers_notes}
 **B. Hanson's notes**
 
 * This material probably belongs elsewhere.
@@ -2223,7 +2226,7 @@ The memory consumption of `read.txt.Renishaw()`{.r} can be lowered by importing 
 
 # Appendix 6. Remarks on R, or How **_hyperSpec_** Works Under the Hood {-}
 
-```{block, type= "note", echo = TRUE}
+```{block, type= "note-t", echo = show_reviewers_notes}
 **B. Hanson's notes**
 
 * This is more of an explanation of how R works, I don't think it is needed here at all.

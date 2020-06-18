@@ -56,9 +56,9 @@ source("vignette-functions.R", encoding = "UTF-8")
 # Settings -------------------------------------------------------------------
 source("vignette-default-settings.R", encoding = "UTF-8")
 
-# knitr::opts_chunk$set(
-#   fig.path   = "figures/baseline--"
-# )
+# Temporaty options ----------------------------------------------------------
+# Change the value of this option in "vignette-default-settings.R"
+show_reviewers_notes = getOption("show_reviewers_notes", TRUE)
 ```
 
 ```{r bib, echo=FALSE, paged.print=FALSE}
@@ -242,8 +242,8 @@ The choice of the spectral range in `fit.to`{.r} influences the resulting baseli
 ## Fitting  polynomials of different orders
 
 <!-- ======================================================================= -->
-```{block, type="note-t", echo=TRUE}
-**Translator's notes** `baseline-1`
+```{block, type="note-t", echo=show_reviewers_notes}
+**V. Gegzna's notes** `baseline-1`
 
 
 1. `# FIXME:`{.r} Merge the following figures into single plot or create correct captions.

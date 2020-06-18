@@ -57,9 +57,9 @@ source("vignette-functions.R", encoding = "UTF-8")
 # Settings -------------------------------------------------------------------
 source("vignette-default-settings.R", encoding = "UTF-8")
 
-# knitr::opts_chunk$set(
-#   fig.path   = "figures/laser--"
-# )
+# Temporaty options ----------------------------------------------------------
+# Change the value of this option in "vignette-default-settings.R"
+show_reviewers_notes = getOption("show_reviewers_notes", TRUE)
 ```
 
 ```{r bib, echo=FALSE, paged.print=FALSE}
@@ -77,8 +77,8 @@ make_bib(
 
 
 <!-- ======================================================================= -->
-```{block, type="note-t", echo=TRUE}
-**Translator's notes** `laser-1`
+```{block, type="note-t", echo=show_reviewers_notes}
+**V. Gegzna's notes** `laser-1`
 
 
 1. `# FIXME:`{.r} After the translation is completed, the contents in the box below must be fixed.
@@ -88,7 +88,7 @@ make_bib(
 
 
 
-```{block, type="note", echo=TRUE}
+```{block, type="note", echo=show_reviewers_notes}
 
 `# FIXME. Fix the contents of this box:`{.r}
 
@@ -110,8 +110,8 @@ In order to reproduce the examples by typing in the commands, have a look at the
 # Introduction
 
 <!-- ======================================================================= -->
-```{block, type="note-t", echo=TRUE}
-**Translator's notes** `laser-2`
+```{block, type="note-t", echo=show_reviewers_notes}
+**V. Gegzna's notes** `laser-2`
 
 
 1. `# NOTE:`{.r} what is "ca." in `recorded during ca. 1.5 h. `
@@ -238,8 +238,8 @@ laser
 ```
 
 <!-- ======================================================================= -->
-```{block, type="note-t", echo=TRUE}
-**Translator's notes** `laser-3`
+```{block, type="note-t", echo=show_reviewers_notes}
+**V. Gegzna's notes** `laser-3`
 
 
 1. `# NOTE:`{.r} It's not clear, why the data is saved at this point.
@@ -372,7 +372,7 @@ mtext3d("lambda / nm", "y--", line = 2.5)
 mtext3d("I / a.u.", "z--", line = 2.5)
 ```
 
-```{r rgl-do, echo=FALSE, eval=FALSE, results='hide'}
+```{r rgl-do, echo=show_reviewers_notes, eval=FALSE, results='hide'}
 # ============================================================================
 # FIXME: is this code block still needed?
 # Does not work correctly on my PC: results in white figure w/o spectra.
