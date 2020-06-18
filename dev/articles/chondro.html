@@ -13,7 +13,7 @@
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="Raman Spectra of Chondrocytes in Cartilage">
-<meta property="og:description" content="chondro: Tutorial demonstrating example workflow using the chondro data set.">
+<meta property="og:description" content="chondro: Example workflow for 2D Raman spectra dataset `chondro`.">
 <meta name="robots" content="noindex">
 <meta name="robots" content="noindex">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -60,7 +60,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/fileio.html">Import and Export of Spectra Files</a>
+      <a href="../articles/fileio.html">Import and Export Files with Spectra</a>
     </li>
     <li>
       <a href="../articles/plotting.html">Plotting Functions in "hyperSpec"</a>
@@ -95,13 +95,13 @@
 
       
 
-      </header><div class="row">
+      </header><script src="chondro_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Raman Spectra of Chondrocytes in Cartilage</h1>
-            <h3 class="subtitle">Package <strong>hyperSpec</strong>’s <code>chondro</code> Data Set</h3>
-                        <h4 class="author">Claudia Beleites<sup>1,2,3,4,5</sup>
-</h4>
+            <h3 class="subtitle">Example Workflow for 2D Raman Spectra Dataset <code>chondro</code>
+</h3>
+                        <h4 class="author">Claudia Beleites<sup>1,2,3,4,5</sup>, Vilmantas Gegzna</h4>
             <address class="author_afil">
       <ol style="list-style-type: decimal">
 <li>DIA Raman Spectroscopy Group, University of Trieste/Italy (2005–2008)</li>
@@ -123,35 +123,7 @@
     
     
 <!-- ======================================================================= -->
-<div class="note-t">
-<p>
-<strong>Translator’s notes</strong> <code>chondro-1</code>
-</p>
-<ol style="list-style-type: decimal">
-<li>
-<code class="sourceCode r">FIXME<span class="op">:</span></code> After the translation is completed, the contents in the box below must be fixed.
-</li>
-</ol>
-</div>
 <!-- ======================================================================= -->
-<div class="note">
-<p>
-<code class="sourceCode r"><span class="co"># </span><span class="al">FIXME</span><span class="co">. Fix the contents of this box:</span></code>
-</p>
-<p>
-<strong>Reproducing this vignette.</strong>
-</p>
-<p>
-The data set and source file of this vignette are available at package <strong>hyperSpec</strong>’s github page at <a href="https://github.com/cbeleites/hyperSpec/blob/master/Vignettes/chondro/chondro.Rnw" class="uri">https://github.com/cbeleites/hyperSpec/blob/master/Vignettes/chondro/chondro.Rnw</a> and <a href="https://github.com/cbeleites/hyperSpec/tree/master/Vignettes/fileio/txt.Renishaw/chondro.txt" class="uri">https://github.com/cbeleites/hyperSpec/tree/master/Vignettes/fileio/txt.Renishaw/chondro.txt</a> (ca. 31 MB).
-</p>
-<!-- FIXME:  -->
-<p>
-The .Rnw looks for <code>rawdata/chondro.txt</code>, so please save the data file in subdirectory <code>rawdata</code> of your working directory. In order to reproduce the examples by typing in the commands, have a look at the definitions of color palettes used in this document are defined in <code>vignettes.defs</code>.
-</p>
-<p>
-Also, the package <strong>hyperSpec</strong> needs to be loaded first via <code class="sourceCode r"><span class="kw">library</span>(hyperSpec)</code>.
-</p>
-</div>
 <!-- \tableofcontents -->
 <div id="introduction" class="section level1">
 <h1 class="hasAnchor">
@@ -354,21 +326,7 @@ Rounding erros in the point coordinates of lateral measurement grid.
 </div>
 <!-- --------------------------------------------------------------------- -->
 <!-- ===================================================================== -->
-
-<div class="note-t">
-<p><strong>Translator’s notes</strong> <code>chondro-2</code></p>
-<ol style="list-style-type: decimal">
-<li><p>Which is better: separate plots <a href="#fig:irregular-a">4.1</a>, <a href="#fig:irregular-b">4.2</a>, <a href="#fig:irregular-c">4.3</a> or single plot with subplots <a href="#fig:irregular">4.4</a>?</p></li>
-<li>
-<p>The narration and plots do not seem to indicate the same ideas.
-E.g., <a href="#fig:irregular-b">4.2</a> looks totally OK, and <a href="#fig:irregular-c">4.3</a> have while pixels.
-In the pdf vignettes these two plots look identically.
-Has something changed in R or <strong>hyperSpec</strong>?</p>
-</li>
-</ol>
-</div>
 <!-- ===================================================================== -->
-
 </div>
 <div id="spectral-smoothing" class="section level2">
 <h2 class="hasAnchor">

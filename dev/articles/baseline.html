@@ -60,7 +60,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/fileio.html">Import and Export of Spectra Files</a>
+      <a href="../articles/fileio.html">Import and Export Files with Spectra</a>
     </li>
     <li>
       <a href="../articles/plotting.html">Plotting Functions in "hyperSpec"</a>
@@ -95,12 +95,12 @@
 
       
 
-      </header><div class="row">
+      </header><script src="baseline_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Fitting Baselines to Spectra</h1>
-                        <h4 class="author">Claudia Beleites<sup>1,2,3,4,5</sup>
-</h4>
+            <h3 class="subtitle">Tutorial Explaining hyperSpec’s Baseline Fitting Functions</h3>
+                        <h4 class="author">Claudia Beleites<sup>1,2,3,4,5</sup>, Vilmantas Gegzna</h4>
             <address class="author_afil">
       <ol style="list-style-type: decimal">
 <li>DIA Raman Spectroscopy Group, University of Trieste/Italy (2005–2008)</li>
@@ -264,26 +264,16 @@ The default value for <code class="sourceCode r">npts.min</code> depends on the 
 Thus one should also consider requiring more support points than the default value suggests.</p>
 <div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span>(<span class="fu"><a href="../reference/baselines.html">spc.fit.poly.below</a></span>(<span class="no">chondro</span>, <span class="kw">NULL</span>, <span class="kw">npts.min</span> <span class="kw">=</span> <span class="fl">20</span>))
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.760   0.051   0.811</span>
+<span class="co">#&gt;   0.733   0.045   0.779</span>
 <span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span>(<span class="fu"><a href="../reference/baselines.html">spc.fit.poly.below</a></span>(<span class="no">chondro</span>[, , <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="no">min</span> ~ <span class="fl">700</span>, <span class="fl">1700</span> ~ <span class="no">max</span>)], <span class="kw">NULL</span>, <span class="kw">npts.min</span> <span class="kw">=</span> <span class="fl">20</span>))
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.404   0.011   0.418</span></pre></body></html></div>
+<span class="co">#&gt;   0.383   0.010   0.393</span></pre></body></html></div>
 <p>The choice of the spectral range in <code class="sourceCode r">fit.to</code> influences the resulting baselines to a certain extent, as becomes clear from figure <a href="#fig:spectralrange">2.3</a>.</p>
 </div>
 <div id="fitting-polynomials-of-different-orders" class="section level2">
 <h2 class="hasAnchor">
 <a href="#fitting-polynomials-of-different-orders" class="anchor"></a><span class="header-section-number">2.6</span> Fitting polynomials of different orders</h2>
 <!-- ======================================================================= -->
-<div class="note-t">
-<p>
-<strong>Translator’s notes</strong> <code>baseline-1</code>
-</p>
-<ol style="list-style-type: decimal">
-<li>
-<code class="sourceCode r"><span class="co"># </span><span class="al">FIXME</span><span class="co">:</span></code> Merge the following figures into single plot or create correct captions.
-</li>
-</ol>
-</div>
 <!-- ======================================================================= -->
 <div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="no">bl</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/baselines.html">spc.fit.poly.below</a></span>(<span class="no">chondro</span>[<span class="fl">1</span>], <span class="kw">poly.order</span> <span class="kw">=</span> <span class="fl">0</span>, <span class="kw">debuglevel</span> <span class="kw">=</span> <span class="fl">2</span>, <span class="kw">max.iter</span> <span class="kw">=</span> <span class="fl">5</span>)
 <span class="co">#&gt; Fitting with npts.min = 15</span>

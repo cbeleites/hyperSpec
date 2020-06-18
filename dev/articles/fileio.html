@@ -5,15 +5,15 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Import and Export of Spectra Files • hyperSpec</title>
+<title>Import and Export Files with Spectra • hyperSpec</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/cerulean/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
-<meta property="og:title" content="Import and Export of Spectra Files">
-<meta property="og:description" content="fileio: Tutorial on spectra file import and export for hyperSpec.">
+<meta property="og:title" content="Import and Export Files with Spectra">
+<meta property="og:description" content='fileio: Tutorial on spectra file import and export for "hyperSpec".'>
 <meta name="robots" content="noindex">
 <meta name="robots" content="noindex">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -60,7 +60,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/fileio.html">Import and Export of Spectra Files</a>
+      <a href="../articles/fileio.html">Import and Export Files with Spectra</a>
     </li>
     <li>
       <a href="../articles/plotting.html">Plotting Functions in "hyperSpec"</a>
@@ -95,12 +95,12 @@
 
       
 
-      </header><div class="row">
+      </header><script src="fileio_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Import and Export of Spectra Files</h1>
-                        <h4 class="author">Claudia Beleites<sup>1,2,3,4,5</sup>
-</h4>
+      <h1 data-toc-skip>Import and Export Files with Spectra</h1>
+            <h3 class="subtitle">Tutorial on Spectra File Import and Export for “hyperSpec”</h3>
+                        <h4 class="author">Claudia Beleites<sup>1,2,3,4,5</sup>, Vilmantas Gegzna</h4>
             <address class="author_afil">
       <ol style="list-style-type: decimal">
 <li>DIA Raman Spectroscopy Group, University of Trieste/Italy (2005–2008)</li>
@@ -167,37 +167,7 @@ If you need help finding out how to import your data, please search and eventual
 </p>
 </div>
 <!-- ======================================================================= -->
-<div class="note-t">
-<p>
-<strong>Translator’s notes</strong> <code>fileio-1</code>
-</p>
-<ol style="list-style-type: decimal">
-<li>
-<code class="sourceCode r"><span class="co"># </span><span class="al">FIXME</span><span class="co">:</span></code> After the translation is completed, the contents in the box below must be fixed.
-</li>
-<li>
-<code class="sourceCode r"><span class="co"># </span><span class="al">FIXME</span><span class="co">:</span></code> do not mention <code>vignettes.def</code>
-</li>
-<li>
-Check if links point to correct destitations. Links to external websites must start with <code><a href="https://" class="uri">https://</a></code> or <code><a href="http://" class="uri">http://</a></code>.
-</li>
-</ol>
-</div>
 <!-- ======================================================================= -->
-<div class="note">
-<p>
-<code class="sourceCode r"><span class="co"># </span><span class="al">FIXME</span><span class="co">. Fix the contents of this box:</span></code>
-</p>
-<p>
-<strong>Reproducing the Examples in this Vignette.</strong>
-</p>
-<p>
-The source code of this vignette including the spectra files (via <code>git-lfs</code>) are available at package <strong>hyperSpec</strong>’s github page: <a href="https://github.com/cbeleites/hyperSpec/tree/master/Vignettes/fileio" class="uri">https://github.com/cbeleites/hyperSpec/tree/master/Vignettes/fileio</a>
-</p>
-<p>
-Note that some definitions are in file <code>vignettes.defs</code>.
-</p>
-</div>
 <div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">hyperSpec</span>)</pre></body></html></div>
 <div id="introduction" class="section level1">
 <h1 class="hasAnchor">
@@ -212,7 +182,8 @@ This document divides the discussion into dealing with ASCII files (section <a h
 If data export for the respective format is possible, it is discussed in the same sections.
 As sometimes the actual data written by the spectrometer software exhibits peculiarities, package <strong>hyperSpec</strong> offers several specialized import functions.
 These are in general named after the data format followed by the manufacturer (e.g., <code>read.ENVI.Nicolet</code>).</p>
-<p><code class="sourceCode r"><span class="co"># </span><span class="al">FIXME</span><span class="co">: appendix is mentioned!</span></code></p>
+<!-- ======================================================================= -->
+<!-- ======================================================================= -->
 <p>Overview lists of the directly supported file formats are in the appendix: sorted by file format (appendix <a href="#sec:format">9</a><!--, p. \pageref{sec:format}-->), manufacturer (appendix <a href="#sec:manufacturer">10</a><!--, p. \pageref{sec:manufacturer}-->), and by spectroscopy (appendix <a href="#sec:spectroscopy">11</a><!--, p. \pageref{sec:spectroscopy}-->).</p>
 </div>
 <div id="sec:new" class="section level1">
@@ -220,19 +191,6 @@ These are in general named after the data format followed by the manufacturer (e
 <a href="#sec:new" class="anchor"></a><span class="header-section-number">2</span> Creating a <code class="sourceCode r">hyperSpec</code> object with <code class="sourceCode r"><span class="kw">new</span>()</code>
 </h1>
 <!-- ======================================================================= -->
-<div class="note-t">
-<p>
-<strong>Translator’s notes</strong> <code>fileio-2</code>
-</p>
-<ol style="list-style-type: decimal">
-<li>
-<code class="sourceCode r"><span class="co"># </span><span class="al">NOTE</span><span class="co">:</span></code> Do not remove <code></code> tags. They might be useful in the future.
-</li>
-<li>
-I suggest cheating a specialized function, e.g., <code class="sourceCode r"><span class="kw">hyperSpec</span>()</code> that wrapps functionality of <code class="sourceCode r"><span class="kw">new</span>(<span class="st">“hyperSpec”</span>, spc, wavelength, data, labels)</code>.
-</li>
-</ol>
-</div>
 <!-- ======================================================================= -->
 <p>
 
@@ -984,16 +942,6 @@ more details for an already existing import filter.</p>
 <p>We need a function that automatically reads all files specified by a pattern, such as <code class="sourceCode r"><span class="op">*</span>.txt</code>.
 In order to gain speed, the spectra matrix should be preallocated after the first file is read.</p>
 <!-- ======================================================================= -->
-<div class="note-t">
-<p>
-<strong>Translator’s notes</strong> <code>fileio-3</code>
-</p>
-<ol style="list-style-type: decimal">
-<li>
-Should it be <code>\#DATA</code> or just <code>#DATA</code>?
-</li>
-</ol>
-</div>
 <!-- ======================================================================= -->
 <p>A short examination of the files (<code class="sourceCode r">flu<span class="op">*</span>.txt</code> in directory <code>txt.PerkinElmer</code>) reveals that the actual spectrum starts at line 55, after a line containing <code>\#DATA</code>.
 For now, no other information of the files is to be extracted.

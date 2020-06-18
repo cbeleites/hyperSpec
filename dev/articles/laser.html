@@ -13,7 +13,7 @@
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="Unstable Laser Emission">
-<meta property="og:description" content="laser: Tutorial on hyperSpec's `laser` data set.">
+<meta property="og:description" content="laser: Example workflow for unstable laser emission dataset `laser`.">
 <meta name="robots" content="noindex">
 <meta name="robots" content="noindex">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -60,7 +60,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/fileio.html">Import and Export of Spectra Files</a>
+      <a href="../articles/fileio.html">Import and Export Files with Spectra</a>
     </li>
     <li>
       <a href="../articles/plotting.html">Plotting Functions in "hyperSpec"</a>
@@ -95,14 +95,13 @@
 
       
 
-      </header><div class="row">
+      </header><script src="laser_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Unstable Laser Emission</h1>
-            <h3 class="subtitle">Vignette for the Data Set <code>laser</code> of the R package <strong>hyperSpec</strong>
+            <h3 class="subtitle">Example Workflow for Unstable Laser Emission Dataset <code>laser</code>
 </h3>
-                        <h4 class="author">Claudia Beleites<sup>1,2,3,4,5</sup>
-</h4>
+                        <h4 class="author">Claudia Beleites<sup>1,2,3,4,5</sup>, Vilmantas Gegzna</h4>
             <address class="author_afil">
       <ol style="list-style-type: decimal">
 <li>DIA Raman Spectroscopy Group, University of Trieste/Italy (2005–2008)</li>
@@ -125,55 +124,11 @@
     
 <pre><code>#&gt; tweaking rgl</code></pre>
 <!-- ======================================================================= -->
-<div class="note-t">
-<p>
-<strong>Translator’s notes</strong> <code>laser-1</code>
-</p>
-<ol style="list-style-type: decimal">
-<li>
-<code class="sourceCode r"><span class="co"># </span><span class="al">FIXME</span><span class="co">:</span></code> After the translation is completed, the contents in the box below must be fixed.
-</li>
-<li>
-<code class="sourceCode r"><span class="co"># </span><span class="al">FIXME</span><span class="co">:</span></code> do not mention <code>vignettes.def</code>
-</li>
-</ol>
-</div>
 <!-- ======================================================================= -->
-<div class="note">
-<p>
-<code class="sourceCode r"><span class="co"># </span><span class="al">FIXME</span><span class="co">. Fix the contents of this box:</span></code>
-</p>
-<p>
-<strong>Reproducing this vignette.</strong>
-</p>
-<p>
-All spectra used in this manual are installed automatically with package <strong>hyperSpec</strong>.
-</p>
-<p>
-The source data files can be found with the command:
-</p>
-<p>
-<code>system.file (“doc/src/rawdata/laser.txt.gz”, package = “hyperSpec”)</code>
-</p>
-<p>
-In order to reproduce the examples by typing in the commands, have a look at the definitions in <code>vignettes.defs</code>.}
-</p>
-<!-- \tableofcontents -->
-</div>
 <div id="introduction" class="section level1">
 <h1 class="hasAnchor">
 <a href="#introduction" class="anchor"></a><span class="header-section-number">1</span> Introduction</h1>
 <!-- ======================================================================= -->
-<div class="note-t">
-<p>
-<strong>Translator’s notes</strong> <code>laser-2</code>
-</p>
-<ol style="list-style-type: decimal">
-<li>
-<code class="sourceCode r"><span class="co"># </span><span class="al">NOTE</span><span class="co">:</span></code> what is “ca.” in <code>recorded during ca. 1.5 h.</code>
-</li>
-</ol>
-</div>
 <!-- ======================================================================= -->
 <p>This data set consists of a time series of 84 spectra of an unstable laser emission at 405 nm recorded during ca. 1.5 h.</p>
 <p>The spectra were recorded during the installation of the 405 nm laser at a Raman spectrometer.
@@ -261,16 +216,6 @@ Figure 2.3: The spectra with wavelength axis.
 <span class="co">#&gt;    1. t: t / s [numeric] 0 2 ... 5722 </span>
 <span class="co">#&gt;    2. spc: I / a.u. [matrix, array36] 164.65 179.72 ... 112.09</span></pre></body></html></div>
 <!-- ======================================================================= -->
-<div class="note-t">
-<p>
-<strong>Translator’s notes</strong> <code>laser-3</code>
-</p>
-<ol style="list-style-type: decimal">
-<li>
-<code class="sourceCode r"><span class="co"># </span><span class="al">NOTE</span><span class="co">:</span></code> It’s not clear, why the data is saved at this point.
-</li>
-</ol>
-</div>
 <!-- ======================================================================= -->
 <div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/save.html">save</a></span>(<span class="no">laser</span>, <span class="kw">file</span> <span class="kw">=</span> <span class="st">"laser.rda"</span>)</pre></body></html></div>
 </div>

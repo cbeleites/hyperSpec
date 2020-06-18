@@ -13,7 +13,7 @@
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="Calibration of Quinine Fluorescence Emission">
-<meta property="og:description" content="flu: Example work flow for hyperSpec's fluorescence example data set `flu`.">
+<meta property="og:description" content="flu: Example workflow for fluorescence emission dataset `flu`.">
 <meta name="robots" content="noindex">
 <meta name="robots" content="noindex">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -60,7 +60,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/fileio.html">Import and Export of Spectra Files</a>
+      <a href="../articles/fileio.html">Import and Export Files with Spectra</a>
     </li>
     <li>
       <a href="../articles/plotting.html">Plotting Functions in "hyperSpec"</a>
@@ -95,14 +95,13 @@
 
       
 
-      </header><div class="row">
+      </header><script src="flu_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Calibration of Quinine Fluorescence Emission</h1>
-            <h3 class="subtitle">Vignette for the Data Set <code>flu</code> of the R package <strong>hyperSpec</strong>
+            <h3 class="subtitle">Example Workflow for Fluorescence Emission Dataset <code>flu</code>
 </h3>
-                        <h4 class="author">Claudia Beleites<sup>1,2,3,4,5</sup>
-</h4>
+                        <h4 class="author">Claudia Beleites<sup>1,2,3,4,5</sup>, Vilmantas Gegzna</h4>
             <address class="author_afil">
       <ol style="list-style-type: decimal">
 <li>DIA Raman Spectroscopy Group, University of Trieste/Italy (2005–2008)</li>
@@ -124,37 +123,7 @@
     
     
 <!-- ======================================================================= -->
-<div class="note-t">
-<p>
-<strong>Translator’s notes</strong> <code>flu-1</code>
-</p>
-<ol style="list-style-type: decimal">
-<li>
-<code class="sourceCode r"><span class="co"># </span><span class="al">FIXME</span><span class="co">:</span></code> After the translation is completed, the contents in the box below must be fixed.
-</li>
-<li>
-<code class="sourceCode r"><span class="co"># </span><span class="al">FIXME</span><span class="co">:</span></code> do not mention <code>vignettes.def</code>
-</li>
-</ol>
-</div>
 <!-- ======================================================================= -->
-<div class="note">
-<p>
-<code class="sourceCode r"><span class="co"># </span><span class="al">FIXME</span><span class="co">. Fix the contents of this box:</span></code>
-</p>
-<p>
-<strong>Reproducing this vignette.</strong>
-</p>
-<p>
-The spectra files are shipped with package <strong>hyperSpec</strong>. This allows reproduction of the whole vignette (source code and spectra files are in the package’s documentation directory and its <code>rawdata</code> subdirectory).
-</p>
-<p>
-For reproducing the examples in a live session, the full file names of the spectra can be found with the command:
-</p>
-<p>
-<code class="sourceCode r"><span class="kw">list.files</span>(<span class="kw">system.file</span>(<span class="st">“doc/rawdata”</span>, <span class="dt">package =</span> <span class="st">“hyperSpec”</span>), <span class="dt">pattern =</span> <span class="st">“flu[1-6][.]txt”</span>)</code>.
-</p>
-</div>
 <!-- Note that loading the package, and some definitions, e.g., of the color palettes are executed in `vignettes.def`. -->
 <p>This tutorial gives an example how to:</p>
 <ul>
@@ -172,36 +141,14 @@ Spectra were acquired with a Perkin Elmer LS50-B fluorescence spectrometer at 35
 <p>The raw spectra are in Perkin Elmer’s ASCII file format, one spectrum per file.
 The files are completely ASCII text, with the actual spectra starting at line 55.</p>
 <!-- ======================================================================= -->
-<div class="note-t">
-<p>
-<strong>Translator’s notes</strong> <code>flu-2</code>
-</p>
-<ol style="list-style-type: decimal">
-<li>
-<code class="sourceCode r"><span class="co"># </span><span class="al">NOTE</span><span class="co">:</span></code> <code>fileIO</code> vignette is mentioned. It is going to be removed from <strong>hyperSpec</strong> so a better link would be appreciated.
-</li>
-</ol>
-</div>
 <!-- ======================================================================= -->
 <p>The function to import these files, <code class="sourceCode r"><span class="kw">read.txt.PerkinElmer</span>()</code>, is discussed in the “fileIO” vignette, please refer to that document for details.</p>
 <!-- ======================================================================= -->
-<div class="note-t">
-<p>
-<strong>Translator’s notes</strong> <code>flu-3</code>
-</p>
-<ol style="list-style-type: decimal">
-<li>
-<code class="sourceCode r"><span class="co"># </span><span class="al">FIXME</span><span class="co">:</span></code> Why do we need <code>source(“read.txt.PerkinElmer.R”)</code>? Why is <code>read.txt.PerkinElmer()</code> not a function of package <strong>hyperSpec</strong>. This part (<code>source(“read.txt.PerkinElmer.R”)</code>) is not user-friendly and must be fixed.
-</li>
-</ol>
-<p>
-<strong>Selfnote</strong>: review after <code>fileio</code> vignette is translated.
-</p>
-</div>
 <!-- ======================================================================= -->
 <p>It needs to be <code class="sourceCode r"><span class="kw">source</span>()</code>d before use:</p>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="co"># FIXME: this code is not user-fiendly.</span>
-<span class="fu"><a href="https://rdrr.io/r/base/source.html">source</a></span>(<span class="st">"read.txt.PerkinElmer.R"</span>)
+<!-- ======================================================================= -->
+<!-- ======================================================================= -->
+<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/source.html">source</a></span>(<span class="st">"read.txt.PerkinElmer.R"</span>)
 
 <span class="no">folder</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata/flu"</span>, <span class="kw">package</span> <span class="kw">=</span> <span class="st">"hyperSpec"</span>)
 <span class="no">files</span>  <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.glob.html">Sys.glob</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="no">folder</span>, <span class="st">"/flu?.txt"</span>))
@@ -243,16 +190,6 @@ This information can be stored together with the spectra, and also gets an appro
 <span class="co">#&gt;    2. filename: filename [character] /Users/runner/runners/2.169.1/work/_temp/Library/hyperSpec/extdata/flu/flu1.txt /Users/runner/runners/2.169.1/work/_temp/Library/hyperSpec/extdata/flu/flu2.txt ... /Users/runner/runners/2.169.1/work/_temp/Library/hyperSpec/extdata/flu/flu6.txt </span>
 <span class="co">#&gt;    3. c: c, mg/l [numeric] 0.05 0.10 ... 0.3</span></pre></body></html></div>
 <!-- ======================================================================= -->
-<div class="note-t">
-<p>
-<strong>Translator’s notes</strong> <code>flu-4</code>
-</p>
-<ol style="list-style-type: decimal">
-<li>
-<code class="sourceCode r"><span class="co"># </span><span class="al">FIXME</span><span class="co">:</span></code> why file saving is needed? <code>save(flu, file = “flu.rda”)</code>
-</li>
-</ol>
-</div>
 <!-- ======================================================================= -->
 <div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/save.html">save</a></span>(<span class="no">flu</span>, <span class="kw">file</span> <span class="kw">=</span> <span class="st">"flu.rda"</span>)</pre></body></html></div>
 <p>Now the <code class="sourceCode r">hyperSpec</code> object <code class="sourceCode r">flu</code> contains two data columns, holding the actual spectra and the respective concentrations. The dollar operator returns such a data column:</p>

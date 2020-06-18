@@ -60,7 +60,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/fileio.html">Import and Export of Spectra Files</a>
+      <a href="../articles/fileio.html">Import and Export Files with Spectra</a>
     </li>
     <li>
       <a href="../articles/plotting.html">Plotting Functions in "hyperSpec"</a>
@@ -95,12 +95,12 @@
 
       
 
-      </header><div class="row">
+      </header><script src="hyperspec_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Introduction to Package “hyperSpec”</h1>
-                        <h4 class="author">Claudia Beleites<sup>1,2,3,4,5</sup>
-</h4>
+            <h3 class="subtitle">The Main Manual of Package “hyperSpec”</h3>
+                        <h4 class="author">Claudia Beleites<sup>1,2,3,4,5</sup>, Vilmantas Gegzna, Bryan A. Hanson</h4>
             <address class="author_afil">
       <ol style="list-style-type: decimal">
 <li>DIA Raman Spectroscopy Group, University of Trieste/Italy (2005–2008)</li>
@@ -111,9 +111,7 @@
       </ol>
 <br><a class="author_email" href="mailto:#"></a><a href="mailto:chemometrie@beleites.de" class="email">chemometrie@beleites.de</a>
       </address>
-                              <h4 class="author">Vilmantas Gegzna</h4>
-                                    <h4 class="author">Bryan A. Hanson</h4>
-                        
+                  
             <h4 class="date">2020-06-18</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/cbeleites/hyperSpec/blob/master/../vignettes/hyperSpec.Rmd"><code>../vignettes/hyperSpec.Rmd</code></a></small>
@@ -123,66 +121,6 @@
 
     
     
-<div class="note-t">
-<p>
-<strong>V. Gegzna’s notes</strong> <code>hyperspec-1</code>
-</p>
-<ol style="list-style-type: decimal">
-<li>
-<p>
-I suggest keeping tags <code>\mFun{}</code> and <code>\index{}</code>. They are not useful for HTML format yet, but in the future we can come up with useful ideas how to create an index of functions. But they are ignored by HTML rendering engine (as they are LaTeX tags) and removed from the output.
-</p>
-</li>
-<li>
-<p>
-I general, it seems that this tutorial could be split into several smaller tutorials:
-</p>
-<ol style="list-style-type: lower-alpha">
-<li>
-I think, there should be one additional short tutorial “Quick-start”.
-</li>
-<li>
-I suggest moving sections such as <code>Spectral (Pre)processing</code>, <code>Data Analysis</code> to separate vignettes.
-</li>
-</ol>
-</li>
-<li>
-<p>
-Some ideas should be more clearly explained for beginner-level users without assuming that they know technical details.
-</p>
-</li>
-</ol>
-</div>
-<div class="note">
-<p>
-<strong>B Hansons’s notes</strong> <code>Some remaining issues</code>
-</p>
-<p>
-There is still a lot of work and polishing to be done. Here are some of the remaining organizational and document processing issues as I see it:
-</p>
-<ol style="list-style-type: decimal">
-<li>
-<p>
-I think we can greatly simplify the bibliography processing by just letting <code>markdown</code> take care of it.
-</p>
-</li>
-<li>
-<p>
-For all vignettes we should probably settle on one or two color schemes for plots. At least some are defined in <code>vignette-functions.R</code>.
-</p>
-</li>
-<li>
-<p>
-I’m not sure if any of the <code></code> and related items do anything in this type of document. Remove if possible. html files can be search via the browser. Note: <strong>VG wants to keep for now.</strong>
-</p>
-</li>
-<li>
-<p>
-Some maintenance simplification might be gained by putting the contents of all tables into data frames and using <code>kableExtra</code> to print them.
-</p>
-</li>
-</ol>
-</div>
 <!-- \tableofcontents -->
 <div id="things-to-know-about-hyperspec" class="section level1">
 <h1 class="hasAnchor">
@@ -340,16 +278,6 @@ Table <a href="#tab:options">8.2</a> gives an overview of the options. You shoul
 <div id="info-hyperspec-objs" class="section level1">
 <h1 class="hasAnchor">
 <a href="#info-hyperspec-objs" class="anchor"></a><span class="header-section-number">2</span> Obtaining Basic Information about <code class="sourceCode r">hyperSpec</code> Objects</h1>
-<div class="note-t">
-<p>
-<strong>V. Gegzna’s notes</strong> <code>hyperspec-6</code>
-</p>
-<ol style="list-style-type: decimal">
-<li>
-The output of print() and summary() is identical. Is it expected? I think, the <code class="sourceCode r"><span class="kw">print</span>()</code> method should give less details than it does now.
-</li>
-</ol>
-</div>
 
 <p>As usual, the <code class="sourceCode r"><span class="kw">print</span>()</code>, <code class="sourceCode r"><span class="kw">show</span>()</code> and <code class="sourceCode r"><span class="kw">summary</span>()</code> methods provide an overview of the object (only <code>print</code> is shown here):</p>
 <div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="no">chondro</span>
@@ -385,14 +313,6 @@ The column names of the spectra matrix contain the wavelengths as character, whi
 
 <p>Extra data column names and rownames of the object may be set by <code class="sourceCode r">colnames&lt;-</code> and <code class="sourceCode r">rownames&lt;-</code>, respectively.
 Function <code class="sourceCode r">colnames&lt;-</code> renames the labels as well.</p>
-<div class="note">
-<p>
-<strong>B Hansons’s notes</strong> <code>This is not clear</code>
-</p>
-<p>
-This line: <em>Function <code class="sourceCode r">colnames&lt;-</code> renames the labels as well.</em> is not clear and the documentation doesn’t seem to say anything about it.
-</p>
-</div>
 </div>
 <div id="sec:create" class="section level1">
 <h1 class="hasAnchor">
@@ -440,22 +360,6 @@ spectral intensity axis label in <code class="sourceCode r"><span class="op">$</
 <div id="creating-random-spectra" class="section level2">
 <h2 class="hasAnchor">
 <a href="#creating-random-spectra" class="anchor"></a><span class="header-section-number">3.2</span> Creating Random Spectra</h2>
-<div class="note">
-<p>
-<strong>B Hansons’s notes</strong> <code>Clarifications</code>
-</p>
-<ol style="list-style-type: decimal">
-<li>
-Need more explanation of the pooled covariance approach.
-</li>
-<li>
-Here’s a place that we should standardize the color scheme.
-</li>
-<li>
-Why not generate <code>rnd</code> only once here, and use it for the plot and LDA? As it stands now it seemed like the first set of spectra were somehow related to the 2nd set.
-</li>
-</ol>
-</div>
 
 <p>If package <strong>mvtnorm</strong><span class="citation">[<a href="#ref-mvtnorm" role="doc-biblioref">1</a>]</span> is available, multivariate normally distributed spectra can be generated from mean and covariance matrix using <code class="sourceCode r"><span class="kw">rmmvnorm</span>()</code> (Fig. <a href="#fig:sim-spc">3.1</a>).
 Note that the package <strong>hyperSpec</strong> function’s name has an additional “m”: it already takes care of multiple groups.
@@ -482,21 +386,6 @@ Figure 3.1: Multivariate normally distributed random spectra generated with <cod
 <span class="co">#&gt; 'object'</span>
 <span class="no">pred.sim</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span>(<span class="no">lda</span>)</pre></body></html></div>
 <!-- ======================================================================= -->
-<div class="note-t">
-<p>
-<strong>V. Gegzna’s notes</strong> <code>hyperspec-7</code>
-</p>
-<ol style="list-style-type: decimal">
-<li>
-<p>
-<code class="sourceCode r"><span class="co"># </span><span class="al">FIXME</span><span class="co">:</span></code>
-</p>
-<p>
-# pred.chondro &lt;- predict(lda, newdata = chondro) # #&gt; Warning in predict.lda(lda, chondro): variable names in ‘newdata’ do not match those in ‘object’
-</p>
-</li>
-</ol>
-</div>
 <!-- ======================================================================= -->
 <!-- , width=5, fig.height=5 -->
 <div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="no">colors</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"#00008040"</span>, <span class="st">"#FFA50040"</span>, <span class="st">"#C0202040"</span>)
@@ -1298,16 +1187,6 @@ This strategy works best with spectrally oversampled data that allows accurate d
 As just the very maximum is too coarse, we’ll use the maximum of a square polynomial fitted to the maximum and its two neighbours.</p>
 <div class="sourceCode" id="cb85"><html><body><pre class="r"><span class="co">#  TODO: use vanderMonde</span></pre></body></html></div>
 <!-- ======================================================================= -->
-<div class="note-t">
-<p>
-<strong>V. Gegzna’s notes</strong> <code>hyperspec-9</code>
-</p>
-<ol style="list-style-type: decimal">
-<li>
-<code class="sourceCode r"><span class="co"># </span><span class="al">TODO</span><span class="co">:</span></code> use vanderMonde
-</li>
-</ol>
-</div>
 <!-- ======================================================================= -->
 <div class="sourceCode" id="cb86"><html><body><pre class="r"><span class="no">find.max</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">y</span>, <span class="no">x</span>) {
   <span class="no">pos</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/which.min.html">which.max</a></span>(<span class="no">y</span>) + (-<span class="fl">1</span>:<span class="fl">1</span>)
@@ -1467,30 +1346,6 @@ Figure 7.6: Filtering data: remove bad points.
 </blockquote>
 <div class="sourceCode" id="cb97"><html><body><pre class="r"><span class="co"># TODO: ...coming soon...</span></pre></body></html></div>
 <!-- ======================================================================= -->
-<div class="note-t">
-<p>
-<strong>V. Gegzna’s notes</strong> <code>hyperspec-10</code>
-</p>
-<ol style="list-style-type: decimal">
-<li>
-Empty chapter. What to do with it?
-</li>
-</ol>
-<p>
-Comment from Roman: I suggest for now to write the following:
-</p>
-<p>
-Correction of cosmic spikes is not a part of <code>hyperSpec</code> package, and can be addressed with algorithms presented in these papers:
-</p>
-<ul>
-<li>
-<a href="https://chemrxiv.org/articles/A_Simple_Algorithm_for_Despiking_Raman_Spectra/5993011/2">A Simple Algorithm for Despiking Raman Spectra</a>
-</li>
-<li>
-<a href="https://www.sciencedirect.com/science/article/abs/pii/S0169743916300600">Automatization of spike correction in Raman spectra of biological samples</a>
-</li>
-</ul>
-</div>
 <!-- ======================================================================= -->
 </div>
 </div>
@@ -2025,14 +1880,6 @@ Another, similar way to combine a number of <code class="sourceCode r">hyperSpec
 <a href="#appendix-1--overview-of-the-functions-provided-by-package-hyperspec" class="anchor"></a>Appendix 1. Overview of the functions provided by package <strong>hyperSpec</strong>
 </h1>
 <!-- ======================================================================= -->
-<div class="note-t">
-<p>
-<strong>V. Gegzna’s note</strong> <code>hyperspec-12</code>
-</p>
-<p>
-<code class="sourceCode r"><span class="co"># </span><span class="al">TODO</span></code> A better version of the table could be created if <code>pkgdown</code> website (documentation) is used. The index/list of functions could be created automatically.
-</p>
-</div>
 <!-- ======================================================================= -->
 <table class="table">
 <caption>
@@ -2572,19 +2419,6 @@ Please refer to the documentation of the respective functions for details about 
 <div id="appendix-3--reporting-bugs-and-getting-help" class="section level1 unnumbered">
 <h1 class="hasAnchor">
 <a href="#appendix-3--reporting-bugs-and-getting-help" class="anchor"></a>Appendix 3. Reporting Bugs and Getting Help</h1>
-<div class="note">
-<p>
-<strong>B. Hanson’s notes</strong>
-</p>
-<ul>
-<li>
-This material probably belongs elsewhere.
-</li>
-<li>
-Should also add something about using StackOverflow etc.
-</li>
-</ul>
-</div>
 <div id="reporting-an-issue" class="section level2">
 <h2 class="hasAnchor">
 <a href="#reporting-an-issue" class="anchor"></a><span class="header-section-number">8.7</span> Reporting an issue</h2>
@@ -2634,15 +2468,15 @@ You can also make suggestions in this manner.</p>
 #&gt; [17] xfun_0.14           withr_2.2.0         stringr_1.4.0       dplyr_1.0.0        
 #&gt; [21] knitr_1.28          generics_0.0.2      vctrs_0.3.1         tidyselect_1.1.0   
 #&gt; [25] limSolve_1.5.6      glue_1.4.1          R6_2.4.1            jpeg_0.1-8.1       
-#&gt; [29] rmarkdown_2.2       bookdown_0.19       latticeExtra_0.6-29 farver_2.0.3       
+#&gt; [29] rmarkdown_2.3       bookdown_0.19       latticeExtra_0.6-29 farver_2.0.3       
 #&gt; [33] purrr_0.3.4         magrittr_1.5        scales_1.1.1        ellipsis_0.3.1     
 #&gt; [37] htmltools_0.5.0     lpSolve_5.6.15      colorspace_1.4-1    labeling_0.3       
 #&gt; [41] quadprog_1.5-8      stringi_1.4.6       lazyeval_0.2.2      munsell_0.5.0      
 #&gt; [45] crayon_1.3.4</code></pre>
 </div>
-<div id="appendix-5--speed-and-memory-considerations-secspeed-considerations" class="section level1 unnumbered">
+<div id="sec:speed-considerations" class="section level1 unnumbered">
 <h1 class="hasAnchor">
-<a href="#appendix-5--speed-and-memory-considerations-secspeed-considerations" class="anchor"></a>Appendix 5. Speed and Memory Considerations {#sec:speed-considerations}</h1>
+<a href="#sec:speed-considerations" class="anchor"></a>Appendix 5. Speed and Memory Considerations</h1>
 <p>While most of package <strong>hyperSpec</strong>’s functions work at a decent speed for interactive sessions (of course depending on the size of the object), iterated (repeated) calculations as for bootstrapping or iterated cross validation may ask for special speed considerations.</p>
 <p>As an example, consider the code for shifting the spectra:</p>
 <div class="sourceCode" id="cb151"><html><body><pre class="r"><span class="no">tmp</span> <span class="kw">&lt;-</span> <span class="no">chondro</span>[<span class="fl">1</span>:<span class="fl">50</span>]
@@ -2653,7 +2487,7 @@ You can also make suggestions in this manner.</p>
   }
 })
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.044   0.001   0.047</span></pre></body></html></div>
+<span class="co">#&gt;   0.046   0.002   0.048</span></pre></body></html></div>
 <p>Calculations that involve a lot of subsetting (i.e., extracting or changing the spectra matrix or extra data) can be sped up considerably if the required parts of the <code class="sourceCode r">hyperSpec</code> object are extracted beforehand.
 This is somewhat similar to model fitting in <code>R</code> in general: many model fitting functions in <code>R</code> are much faster if the formula interface is avoided and the appropriate <code class="sourceCode r">data.frame</code>s or matrices are handed over directly.</p>
 <div class="sourceCode" id="cb152"><html><body><pre class="r"><span class="no">tmp</span> <span class="kw">&lt;-</span> <span class="no">chondro</span>[<span class="fl">1</span>:<span class="fl">50</span>]
@@ -2695,16 +2529,6 @@ The memory consumption of <code class="sourceCode r"><span class="kw">read.txt.R
 <div id="appendix-6--remarks-on-r-or-how-hyperspec-works-under-the-hood" class="section level1 unnumbered">
 <h1 class="hasAnchor">
 <a href="#appendix-6--remarks-on-r-or-how-hyperspec-works-under-the-hood" class="anchor"></a>Appendix 6. Remarks on R, or How <strong><em>hyperSpec</em></strong> Works Under the Hood</h1>
-<div class="note">
-<p>
-<strong>B. Hanson’s notes</strong>
-</p>
-<ul>
-<li>
-This is more of an explanation of how R works, I don’t think it is needed here at all.
-</li>
-</ul>
-</div>
 <p><code class="sourceCode r">hyperSpec</code> objects are defined using an S4 class. Much of <strong>hyperSpec</strong> is devoted to manipulating these objects using the methods instrinsic to <code>R</code>.</p>
 <div id="generic-functions" class="section level2">
 <h2 class="hasAnchor">
