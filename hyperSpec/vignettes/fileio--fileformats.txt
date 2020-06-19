@@ -1,0 +1,39 @@
+  Type   | Format                | Manufacturer      | Spectroscopy     | Function              | Link                 | html_unfriendly_link | Notes                                                     
+  ASCII  | ASCII long            |                   |                  | read.txt.long         | ascii                | read.txt.long        |                                                           
+  ASCII  | ASCII wide            |                   |                  | read.txt.wide         | ascii                | read.txt.wide        |                                                           
+  ASCII  | ASCII wide            | Horiba Jobin Yvon | Raman            | read.txt.Horiba       | read-txt-Horiba      | read.txt.Horiba      | e.g., LabRAM spectrometers                               
+  ASCII  | ASCII wide            | Horiba Jobin Yvon | Raman            | read.txt.Horiba.xy    | read-txt-Horiba      | read.txt.Horiba      | e.g., LabRAM spectrometer maps                           
+  ASCII  | ASCII wide            | Horiba Jobin Yvon | Raman            | read.txt.Horiba.t     | read-txt-Horiba      | read.txt.Horiba      | e.g., LabRAM spectrometer time series                    
+  ASCII  | ASCII long            | Renishaw          | Raman            | read.txt.Renishaw     | read-txt-Renishaw    | read.txt.Renishaw    |                                                           
+  ASCII  | ASCII long (zipped)   | Renishaw          | Raman            | read.zip.Renishaw     | read-txt-Renishaw    | read.txt.Renishaw    |                                                           
+  ASCII  | ASCII long            | Kaiser            | Raman            | read.txt.long         | KaiserASCII          | KaiserASCII          | **Not** recommended, see discussion                    
+  ASCII  | ASCII long            | Perkin Elmer      | Fluorescence     | read.txt.PerkinElmer  | read-txt-PerkinElmer | read.txt.PerkinElmer | Reads multiple files, needs to be sourced.                
+  ASCII  | JCAMP-DX              |                   |                  | read.jdx              | jcamp-dx             | jcamp-dx             |                                                           
+  ASCII  | JCAMP-DX              | Renishaw          | Raman            | read.jdx              | jcamp-dx             | jcamp-dx             |                                                           
+  ASCII  | other                 | Shimadzu          | GC,GC-MS         | read.jdx              | jcamp-dx             | jcamp-dx             | import for  subset of the JCAMP-DX standard               
+  ASCII  | JCAMP-DX              | Shimadzu          | GCxGC-MS         | read.txt.Shimadzu     |                      |                      |                                                           
+  ASCII  | JCAMP-DX              | PerkinElmer       | Infrared         | read.jdx              | jcamp-dx             | jcamp-dx             | import for subset of the JCAMP-DX standard                
+  ASCII  | Witec ASCII           | Witec             | Raman            | read.dat.Witec        | read-txt-Witec       | read.txt.Witec       | Save ASCII X, Save ASCII Y                                
+  ASCII  | ASCII wide transposed | Witec             | Raman            | read.txt.Witec        | read-txt-Witec       | read.txt.Witec       | Export Table                                              
+  ASCII  | Witec Graph ASCII     | Witec             | Raman            | read.txt.Witec.Graph  | read-txt-Witec       | read.txt.Witec       | Export Table in 3 separate files (Header, X-Axis, Y-Axis) 
+  ASCII  | Andor Solis ASCII     | Andor             | Raman            | read.asc.Andor        | read-asc-Andor       | read.asc.Andor       |                                                           
+  binary | Matlab                | Matlab            |                  | R.matlab::readMat     | readMat              | readMat              |                                                           
+  binary | Matlab                | Cytospec          |                  | read.mat.Cytospec     | read-mat-Cytospec    | read.mat.Cytospec    |                                                           
+  binary | Matlab                | Witec             | Raman            | read.mat.Witec        |                      |                      |                                                           
+  binary | hol                   | Kaiser            | Raman            |                       | Kaiser               | Kaiser               | via Matlab                                                
+  binary | ENVI                  |                   |                  | read.ENVI             | read-ENVI            | read.ENVI            |                                                           
+  binary | ENVI                  | Bruker            | Infrared Imaging | read.ENVI             | read-ENVI-Bruker     | read.ENVI.Bruker     |                                                           
+  binary | Opus                  | Bruker            | Infrared Imaging |                       | read-ENVI-Bruker     | read.ENVI.Bruker     |                                                           
+  binary | ENVI                  | Nicolet           | Infrared Imaging | read.ENVI.Nicolet     | read-ENVI-Nicolet    | read.ENVI.Nicolet    |                                                           
+  binary | spc                   |                   |                  | read.spc              | read-spc             | read.spc             |                                                           
+  binary | spc                   | Kaiser            | Raman Map        | read.spc.KaiserMap    | read-spc-KaiserMap   | read.spc.KaiserMap   | Reads multiple files                                      
+  binary | spc                   | Kaiser            | Raman            | read.spc.Kaiser       |                      |                      | Efficiently reads multiple files                          
+  binary | spc                   | Kaiser            | Raman            | read.spc.KaiserLowHigh|                      |                      | Reads multiple pairs of low and high wavenumber region spcs 
+  binary | spc                   | Kaiser            | Raman            | read.spc              | read-spc             | read.spc             |                                        
+  binary | spc                   | Renishaw          | Raman            | read.spc              | read-txt-Renishaw    | read.txt.Renishaw    | **Not** recommended, see discussion of ASCII files.    
+  binary | spc                   | Witec             | Raman            | read.spc              | read-spc             | read.spc             | spc export not available for images                       
+  binary | spc                   | Horiba            | Raman            | read.spc              | read-spc             | read.spc             |                                                           
+  binary | spe                   | Princeton Instruments | Raman        | read.spe              | read-spe             | read.spe             | WinSpec                                                   
+  binary | array                 |                   |                  |                       | new                  | new                  |                                                           
+  binary | matrix                |                   |                  |                       | new                  | new                  |                                                           
+ 
