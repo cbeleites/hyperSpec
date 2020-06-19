@@ -113,7 +113,7 @@
 <br><a class="author_email" href="mailto:#"></a><a href="mailto:chemometrie@beleites.de" class="email">chemometrie@beleites.de</a>
       </address>
                   
-            <h4 class="date">2020-06-18</h4>
+            <h4 class="date">2020-06-19</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/cbeleites/hyperSpec/blob/master/../vignettes/chondro.Rmd"><code>../vignettes/chondro.Rmd</code></a></small>
       <div class="hidden name"><code>chondro.Rmd</code></div>
@@ -194,12 +194,12 @@ In addition, large files may be processed in chunks.
 In order to speed up the reading <code class="sourceCode r"><span class="kw">read.txt.Renishaw</span>()</code> does not allow missing values, but it does work with <code class="sourceCode r"><span class="ot">NA</span></code>.</p>
 <div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="co"># Download file from:</span>
 <span class="no">raw_data_url</span> <span class="kw">&lt;-</span>
-  <span class="st">'https://media.githubusercontent.com/media/cbeleites/hyperSpec/master/Vignettes/fileio/txt.Renishaw/chondro.txt'</span>
+  <span class="st">'https://media.githubusercontent.com/media/cbeleites/hyperSpec/master/Vignettes/fileio/txt.Renishaw/chondro.gz'</span>
 <span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.create</a></span>(<span class="st">'rawdata'</span>, <span class="kw">showWarnings</span> <span class="kw">=</span> <span class="fl">FALSE</span>)
-<span class="fu"><a href="https://rdrr.io/r/utils/download.file.html">download.file</a></span>(<span class="no">raw_data_url</span>, <span class="st">'rawdata/chondro.txt'</span>)
+<span class="fu"><a href="https://rdrr.io/r/utils/download.file.html">download.file</a></span>(<span class="no">raw_data_url</span>, <span class="st">'rawdata/chondro.gz'</span>)
 
 <span class="co"># Read the raw data and make a hyperSpec object</span>
-<span class="no">chondro</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/read.txt.Renishaw.html">read.txt.Renishaw</a></span>(<span class="st">"rawdata/chondro.txt"</span>, <span class="kw">data</span> <span class="kw">=</span> <span class="st">"xyspc"</span>)
+<span class="no">chondro</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/read.txt.Renishaw.html">read.txt.Renishaw</a></span>(<span class="st">"rawdata/chondro.gz"</span>, <span class="kw">data</span> <span class="kw">=</span> <span class="st">"xyspc"</span>)
 <span class="no">chondro</span>
 <span class="co">#&gt; hyperSpec object</span>
 <span class="co">#&gt;    875 spectra</span>
@@ -210,7 +210,7 @@ In order to speed up the reading <code class="sourceCode r"><span class="kw">rea
 <span class="co">#&gt;    1. y: y/(mu * m) [numeric] -4.77 -4.77 ... 19.23 </span>
 <span class="co">#&gt;    2. x: x/(mu * m) [numeric] -11.55 -10.55 ... 22.45 </span>
 <span class="co">#&gt;    3. spc: I / a.u. [matrix, array1272] 501.72 518.53 ... 151.92 + NA</span>
-<span class="co">#&gt;    4. filename: filename [character] rawdata/chondro.txt rawdata/chondro.txt ... rawdata/chondro.txt</span></pre></body></html></div>
+<span class="co">#&gt;    4. filename: filename [character] rawdata/chondro.gz rawdata/chondro.gz ... rawdata/chondro.gz</span></pre></body></html></div>
 <p>To get an overview of the spectra (figure <a href="#fig:rawspc">3.1</a>):</p>
 <div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="fu"><a href="../reference/plot.html">plot</a></span>(<span class="no">chondro</span>, <span class="st">"spcprctl5"</span>)</pre></body></html></div>
 <div class="figure" style="text-align: center">
@@ -346,7 +346,7 @@ The resolution is to be reduced to 8 <span class="math inline">\(cm^{-1}\)</span
 <span class="co">#&gt;    1. y: y [numeric] -4.77 -4.77 ... 19.23 </span>
 <span class="co">#&gt;    2. x: x [numeric] -11.55 -10.55 ... 22.45 </span>
 <span class="co">#&gt;    3. spc: I / a.u. [matrix, array300] 517.03 499.77 ... 168.04 </span>
-<span class="co">#&gt;    4. filename: filename [character] rawdata/chondro.txt rawdata/chondro.txt ... rawdata/chondro.txt</span></pre></body></html></div>
+<span class="co">#&gt;    4. filename: filename [character] rawdata/chondro.gz rawdata/chondro.gz ... rawdata/chondro.gz</span></pre></body></html></div>
 <p>The spectra are now the same as in the data set <code class="sourceCode r">chondro</code>.
 However, the data set also contains the clustering results (see at the very end of this document).
 They are stored for saving as the distributed demo data:</p>
@@ -665,7 +665,7 @@ In order to keep the package size small, only a PCA-compressed version with 10 P
 <span class="co">#&gt;  collate  en_US.UTF-8                 </span>
 <span class="co">#&gt;  ctype    en_US.UTF-8                 </span>
 <span class="co">#&gt;  tz       UTC                         </span>
-<span class="co">#&gt;  date     2020-06-18                  </span>
+<span class="co">#&gt;  date     2020-06-19                  </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; ─ Packages ───────────────────────────────────────────────────────────────────────────────────────</span>
 <span class="co">#&gt;  package      * version       date       lib source        </span>
@@ -686,7 +686,7 @@ In order to keep the package size small, only a PCA-compressed version with 10 P
 <span class="co">#&gt;  ggplot2      * 3.3.1         2020-05-28 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  glue           1.4.1         2020-05-13 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  gtable         0.3.0         2019-03-25 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  hyperSpec    * 0.99-20200615 2020-06-18 [1] local         </span>
+<span class="co">#&gt;  hyperSpec    * 0.99-20200615 2020-06-19 [1] local         </span>
 <span class="co">#&gt;  isoband        0.2.1         2020-04-12 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  jpeg           0.1-8.1       2019-10-24 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  labeling       0.3           2014-08-23 [1] CRAN (R 4.0.0)</span>
