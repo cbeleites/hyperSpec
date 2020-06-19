@@ -696,11 +696,21 @@ Function `collapse()`{.r} may be used to combine this list into one `hyperSpec`{
 
 ```{r read.spc.list}
 barbiturates <- read.spc("spc/BARBITUATES.SPC")
-save(barbiturates, file = "barbiturates.rda")
+```
+```{r, include=FALSE}
+# save(barbiturates, file = "barbiturates.rda")
+```
+```{r}
 class(barbiturates)
+```
+```{r}
 length(barbiturates)
+```
+```{r}
 barbiturates <- collapse(barbiturates, collapse.equal = FALSE)
 barbiturates
+```
+```{r}
 barbiturates[[1:10, , 25 ~ 30]]
 ```
 
@@ -920,11 +930,15 @@ Instead of a file name, `read.txt.Renishaw()`{.r} accepts also a connection.
 ```{r read.txt.Renishaw}
 paracetamol <- read.txt.Renishaw("txt.Renishaw/paracetamol.txt", "spc")
 paracetamol
-save(paracetamol, file = "paracetamol.rda")
+```
+```{r include=FALSE}
+# save(paracetamol, file = "paracetamol.rda")
+```
+```{r}
 read.txt.Renishaw("txt.Renishaw/laser.txt.gz", "ts")
 ```
 
-Very large files can be read in chunks to save  memory:
+Very large files can be read in chunks to save memory:
 
 ```{r read.txt.Renishaw-file}
 read.txt.Renishaw("txt.Renishaw/chondro.txt", nlines = 1e5, nspc = 875)
