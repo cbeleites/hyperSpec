@@ -58,6 +58,7 @@ Suggests:
     R.rsp,
     tibble,
     knitr,
+    kableExtra,
     rmarkdown,
     bookdown,
     sessioninfo,
