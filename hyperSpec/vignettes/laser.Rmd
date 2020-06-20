@@ -5,8 +5,8 @@ bookdown_titles: |
   # `laser`: Unstable Laser Emission {#laser}
 # For vignette ---------------------------------------------------------------
 title:       Unstable Laser Emission
-subtitle:    "Example Workflow for Unstable Laser Emission Dataset `laser`"
-description: "laser: Example workflow for unstable laser emission dataset `laser`."
+subtitle:    "Example Workflow for Time-Series Spectra Dataset `laser`"
+description: "laser: Example workflow for time-series spectra dataset `laser`."
 # Authors --------------------------------------------------------------------
 author:
   - name: Claudia Beleites^1,2,3,4,5^, Vilmantas Gegzna
