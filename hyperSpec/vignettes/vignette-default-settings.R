@@ -83,7 +83,7 @@ options("width" = 100, "digits" = 5)
 options(rmarkdown.html_vignette.check_title = FALSE) # Vig index entry not document title
 set.seed(2020)
 
-# Temporaty options ==========================================================
+# Temporary options ==========================================================
 # This option controls if reviewer's/translator's notes are visible in vignettes
 options(show_reviewers_notes = FALSE)
 
