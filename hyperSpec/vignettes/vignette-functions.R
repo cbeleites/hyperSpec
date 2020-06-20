@@ -126,28 +126,6 @@ cite_pkg <- function(...) {
   paste0("[", paste0("@", keys, collapse = ";"), "]")
 }
 
-# Colors =====================================================================
-# set standardized color palettes
-seq_palette <- colorRampPalette(c("white", "dark green"), space = "Lab")
-
-YG_palette <- function(n = 20) {
-  rgb(colorRamp(c(
-    "#F7FCF5", "#E5F5E0", "#C7E9C0", "#A1D99B", "#74C476",
-    "#41AB5D", "#238B45", "#006D2C", "#00441B"
-  ), space = "Lab")
-  # was: brewer.pal (9, "Greens")
-  (seq(1 / 3, 1, length.out = n)^2), maxColorValue = 255)
-}
-
-div_palette <- colorRampPalette(c(
-  "#00008B", "#351C96", "#5235A2", "#6A4CAE", "#8164BA", "#967CC5",
-  "#AC95D1", "#C1AFDC", "#D5C9E8", "#E0E3E3", "#F8F8B0", "#F7E6C2",
-  "#EFCFC6", "#E6B7AB", "#DCA091", "#D08977", "#C4725E", "#B75B46",
-  "#A9432F", "#9A2919", "#8B0000"
-), space = "Lab")
-
-
-
 
 # Other ======================================================================
 
