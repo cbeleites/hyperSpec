@@ -20,12 +20,12 @@ navbar:
   components:
     intro:
       text: Get started
-      href: articles/hyperSpec.html
+      href: articles/hyperspec.html
     articles:
       text: Articles
       menu:
       - text: Introduction to Package "hyperSpec"
-        href: articles/hyperSpec.html
+        href: articles/hyperspec.html
       - text: Import and Export of Spectra Files
         href: articles/fileio.html
       - text: Plotting Functions in "hyperSpec"
