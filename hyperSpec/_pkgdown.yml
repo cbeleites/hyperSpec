@@ -1,3 +1,4 @@
+
 # -------------------------------------------------------------------------
 
 template:
@@ -12,13 +13,38 @@ development:
 
 # -------------------------------------------------------------------------
 
+navbar:
+  structure:
+    left:  [home, intro, articles, tutorials, reference]
+    right: [github]
+  components:
+    intro:
+      text: Get started
+      href: articles/hyperSpec.html
+    articles:
+      text: Articles
+      menu:
+      - text: Introduction to Package "hyperSpec"
+        href: articles/hyperSpec.html
+      - text: Import and Export of Spectra Files
+        href: articles/fileio.html
+      - text: Plotting Functions in "hyperSpec"
+        href: articles/plotting.html
+      - text: Fitting Baselines to Spectra
+        href: articles/baseline.html
+      - text: ----------------------------------
+      - text: More...
+        href: articles/index.html
+
+# -------------------------------------------------------------------------
+
 articles:
   - title: "Principles"
     navbar: ~
     desc: >
       The main functionality of "hyperSpec".
     contents:
-    - hyperSpec
+    - hyperspec
     - fileio
     - plotting
     - baseline
