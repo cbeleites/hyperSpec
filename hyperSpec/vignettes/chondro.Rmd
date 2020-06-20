@@ -212,7 +212,10 @@ A mean intensity map (figure \@ref(fig:rawmap)) is produced by:
 ```{r include=FALSE}
 CAPTION <- "The sum intensity of the raw spectra."
 ```
-
+```{r}
+# Set a color palette
+seq_palette <- colorRampPalette(c("white", "dark green"), space = "Lab")
+```
 ```{r rawmap, fig.cap=CAPTION}
 plotmap(chondro, func.args = list(na.rm = TRUE), col.regions = seq_palette(20))
 ```
