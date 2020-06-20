@@ -72,7 +72,7 @@ show_reviewers_notes = getOption("show_reviewers_notes", TRUE)
 knitr::opts_chunk$set(eval = FALSE)
 ```
 
-```{r bib, echo=FALSE, paged.print=FALSE}
+```{r bib, echo=FALSE, paged.print=FALSE, eval=TRUE}
 dir.create("resources", showWarnings = FALSE)
 
 make_bib(
