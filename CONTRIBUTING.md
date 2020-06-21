@@ -43,6 +43,7 @@ By contributing, you understand and agree that your work becomes the part of the
 * Sourced files should make vignette authors' life easier, and should not contain anything important to end users/readers.
 * The first code block should start with `rm(list = ls())` to ensure a clean, reproducible workspace.
 * NEED TO DISCUSS: formatting of code blocks. Could use `tidy = TRUE` as one option.
+* If you need to leave a note in a vignette, please use this [method](https://github.com/cbeleites/hyperSpec/pull/147#issuecomment-646685392).
 
 
 ## Working With Git
@@ -87,7 +88,9 @@ The merged support branches [should be deleted - they're clutter](https://ardali
 
 ### Git Commits
 
-Commit often, try to make small atomic commits. An atomic commit addresses only a small separate fix or change and is more or less self-consistent. Every commit should be related to one feature only.
+Commit often, try to make small atomic commits. 
+An atomic commit addresses only a small separate fix or change and is more or less self-consistent. 
+Every commit should be related to one feature only, but the commit should group strongly related changes together (e.g. when refactoring to rename a function, all files that are affected by this should be in the same commit).
 
 ### Commit Messages
 
@@ -95,6 +98,9 @@ Commit often, try to make small atomic commits. An atomic commit addresses only 
 * Use the imperative mood ("Move cursor to..." not "Moves cursor to...")
 * Limit the first line to 72 characters or less
 * Reference issues and pull requests liberally after the first line
+* Give a high-level description of the what and *why* of the changes 
+  (similar to good code comments) already in the first line
+* Use the most specialized verb that describes the situation
 
 ## Versioning
 

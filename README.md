@@ -11,6 +11,7 @@
 
 <!-- ---------------------------------------------------------------------- -->
 
+
 Package **hyperSpec** is an [**R**](https://www.r-project.org/) package.
 The goal of **hyperSpec** is to makethe work with hyperspectral data sets, (i.e. spatially or time-resolved spectra, or spectra with any other kind of information associated with each of the spectra) more confortable.
 The spectra can be data as obtained during XRF, UV/VIS, Fluorescence, AES, NIR, IR, Raman, NMR, MS, etc. spectroscopy measurements.
