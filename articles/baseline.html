@@ -39,6 +39,23 @@
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-book"></span>
+     
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li class="dropdown-header">Documentation for version of pacakge:</li>
+    <li>
+      <a href="https://cbeleites.github.io/hyperSpec/">Realeased</a>
+    </li>
+    <li>
+      <a href="https://cbeleites.github.io/hyperSpec/dev/">In-development</a>
+    </li>
+  </ul>
+</li>
 <li>
   <a href="../index.html">
     <span class="fas fa fas fa-home fa-lg"></span>
@@ -46,10 +63,7 @@
   </a>
 </li>
 <li>
-  <a href="../articles/hyperSpec.html">Get started</a>
-</li>
-<li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="../articles/hyperspec.html">Get started</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -59,7 +73,10 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/fileio.html">Import and Export Files with Spectra</a>
+      <a href="../articles/hyperspec.html">Introduction to Package "hyperSpec"</a>
+    </li>
+    <li>
+      <a href="../articles/fileio.html">Import and Export of Spectra Files</a>
     </li>
     <li>
       <a href="../articles/plotting.html">Plotting Functions in "hyperSpec"</a>
@@ -72,6 +89,9 @@
       <a href="../articles/index.html">More...</a>
     </li>
   </ul>
+</li>
+<li>
+  <a href="../reference/index.html">Reference</a>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
@@ -111,7 +131,7 @@
 <br><a class="author_email" href="mailto:#"></a><a href="mailto:chemometrie@beleites.de" class="email">chemometrie@beleites.de</a>
       </address>
                   
-            <h4 class="date">2020-06-19</h4>
+            <h4 class="date">2020-06-21</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/cbeleites/hyperSpec/blob/master/../vignettes/baseline.Rmd"><code>../vignettes/baseline.Rmd</code></a></small>
       <div class="hidden name"><code>baseline.Rmd</code></div>
@@ -261,10 +281,10 @@ The default value for <code class="sourceCode r">npts.min</code> depends on the 
 Thus one should also consider requiring more support points than the default value suggests.</p>
 <div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span>(<span class="fu"><a href="../reference/baselines.html">spc.fit.poly.below</a></span>(<span class="no">chondro</span>, <span class="kw">NULL</span>, <span class="kw">npts.min</span> <span class="kw">=</span> <span class="fl">20</span>))
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.817   0.069   0.886</span>
+<span class="co">#&gt;   0.734   0.049   0.783</span>
 <span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span>(<span class="fu"><a href="../reference/baselines.html">spc.fit.poly.below</a></span>(<span class="no">chondro</span>[, , <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="no">min</span> ~ <span class="fl">700</span>, <span class="fl">1700</span> ~ <span class="no">max</span>)], <span class="kw">NULL</span>, <span class="kw">npts.min</span> <span class="kw">=</span> <span class="fl">20</span>))
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.421   0.011   0.434</span></pre></body></html></div>
+<span class="co">#&gt;   0.385   0.011   0.399</span></pre></body></html></div>
 <p>The choice of the spectral range in <code class="sourceCode r">fit.to</code> influences the resulting baselines to a certain extent, as becomes clear from figure <a href="#fig:spectralrange">2.3</a>.</p>
 </div>
 <div id="fitting-polynomials-of-different-orders" class="section level2">
@@ -417,12 +437,12 @@ Figure 3.4: Rubberband baselines for the paracetamol spectrum after bendin: corr
 <span class="co">#&gt;  collate  en_US.UTF-8                 </span>
 <span class="co">#&gt;  ctype    en_US.UTF-8                 </span>
 <span class="co">#&gt;  tz       UTC                         </span>
-<span class="co">#&gt;  date     2020-06-19                  </span>
+<span class="co">#&gt;  date     2020-06-21                  </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; ─ Packages ───────────────────────────────────────────────────────────────────────────────────────</span>
 <span class="co">#&gt;  package      * version  date       lib source        </span>
 <span class="co">#&gt;  assertthat     0.2.1    2019-03-21 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  backports      1.1.8    2020-06-17 [1] CRAN (R 4.0.1)</span>
+<span class="co">#&gt;  backports      1.1.8    2020-06-17 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  callr          3.4.3    2020-03-28 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  cli            2.0.2    2020-02-28 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  colorspace     1.4-1    2019-03-18 [1] CRAN (R 4.0.0)</span>
@@ -435,11 +455,11 @@ Figure 3.4: Rubberband baselines for the paracetamol spectrum after bendin: corr
 <span class="co">#&gt;  fansi          0.4.1    2020-01-08 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  farver         2.0.3    2020-01-16 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  generics       0.0.2    2018-11-29 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  ggplot2      * 3.3.1    2020-05-28 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  ggplot2      * 3.3.2    2020-06-19 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  glue           1.4.1    2020-05-13 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  gtable         0.3.0    2019-03-25 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  hyperSpec    * 0.99.99  2020-06-19 [1] local         </span>
-<span class="co">#&gt;  isoband        0.2.1    2020-04-12 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  hyperSpec    * 0.99.99  2020-06-21 [1] local         </span>
+<span class="co">#&gt;  isoband        0.2.2    2020-06-20 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  jpeg           0.1-8.1  2019-10-24 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  labeling       0.3      2014-08-23 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  lattice      * 0.20-41  2020-04-02 [2] CRAN (R 4.0.1)</span>
@@ -464,7 +484,6 @@ Figure 3.4: Rubberband baselines for the paracetamol spectrum after bendin: corr
 <span class="co">#&gt;  purrr          0.3.4    2020-04-17 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  R6             2.4.1    2019-11-12 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  RColorBrewer   1.1-2    2014-12-07 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  Rcpp           1.0.4.6  2020-04-09 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  rlang          0.4.6    2020-05-02 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  rprojroot      1.3-2    2018-01-03 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  rstudioapi     0.11     2020-02-07 [1] CRAN (R 4.0.0)</span>

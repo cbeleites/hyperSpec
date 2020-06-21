@@ -7,6 +7,10 @@
 
 /* --- Info boxes --------------------------------------------------------- */
 
+.add-border {
+  border: 5px solid #9F6000;
+}
+
 div.redbox {
   color:            #C8000C;
   border: 5px solid #C8000C;
@@ -84,7 +88,7 @@ div.note-t {
 
 .book.color-theme-1 .book-body .page-wrapper .page-inner section.normal pre {
     /*
-    border: 2px solid #f8df9c; 
+    border: 2px solid #f8df9c;
     padding: .25em 1em;
     */
     border-radius: 5px;

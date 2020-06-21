@@ -39,6 +39,23 @@
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-book"></span>
+     
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li class="dropdown-header">Documentation for version of pacakge:</li>
+    <li>
+      <a href="https://cbeleites.github.io/hyperSpec/">Realeased</a>
+    </li>
+    <li>
+      <a href="https://cbeleites.github.io/hyperSpec/dev/">In-development</a>
+    </li>
+  </ul>
+</li>
 <li>
   <a href="../index.html">
     <span class="fas fa fas fa-home fa-lg"></span>
@@ -46,10 +63,7 @@
   </a>
 </li>
 <li>
-  <a href="../articles/hyperSpec.html">Get started</a>
-</li>
-<li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="../articles/hyperspec.html">Get started</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -59,7 +73,10 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/fileio.html">Import and Export Files with Spectra</a>
+      <a href="../articles/hyperspec.html">Introduction to Package "hyperSpec"</a>
+    </li>
+    <li>
+      <a href="../articles/fileio.html">Import and Export of Spectra Files</a>
     </li>
     <li>
       <a href="../articles/plotting.html">Plotting Functions in "hyperSpec"</a>
@@ -72,6 +89,9 @@
       <a href="../articles/index.html">More...</a>
     </li>
   </ul>
+</li>
+<li>
+  <a href="../reference/index.html">Reference</a>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
@@ -112,7 +132,7 @@
 <br><a class="author_email" href="mailto:#"></a><a href="mailto:chemometrie@beleites.de" class="email">chemometrie@beleites.de</a>
       </address>
                   
-            <h4 class="date">2020-06-19</h4>
+            <h4 class="date">2020-06-21</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/cbeleites/hyperSpec/blob/master/../vignettes/chondro.Rmd"><code>../vignettes/chondro.Rmd</code></a></small>
       <div class="hidden name"><code>chondro.Rmd</code></div>
@@ -221,7 +241,9 @@ spectra.
 </p>
 </div>
 <p>A mean intensity map (figure <a href="#fig:rawmap">3.2</a>) is produced by:</p>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="fu"><a href="../reference/levelplot.html">plotmap</a></span>(<span class="no">chondro</span>, <span class="kw">func.args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">na.rm</span> <span class="kw">=</span> <span class="fl">TRUE</span>), <span class="kw">col.regions</span> <span class="kw">=</span> <span class="fu">seq_palette</span>(<span class="fl">20</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="co"># Set a color palette</span>
+<span class="no">seq_palette</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/colorRamp.html">colorRampPalette</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"white"</span>, <span class="st">"dark green"</span>), <span class="kw">space</span> <span class="kw">=</span> <span class="st">"Lab"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="fu"><a href="../reference/levelplot.html">plotmap</a></span>(<span class="no">chondro</span>, <span class="kw">func.args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">na.rm</span> <span class="kw">=</span> <span class="fl">TRUE</span>), <span class="kw">col.regions</span> <span class="kw">=</span> <span class="fu">seq_palette</span>(<span class="fl">20</span>))</pre></body></html></div>
 <div class="figure" style="text-align: center">
 <span id="fig:rawmap"></span>
 <img src="chondro_files/figure-html/rawmap-1.png" alt="The sum intensity of the raw spectra."><p class="caption">
@@ -248,11 +270,11 @@ complete (square) is retained but only few positions on this grid.</p>
 points.
 This is most obvious in false-colour maps of the sample (fig. <a href="#fig:rawmap">3.2</a>, as <code class="sourceCode r">plotmap</code> by default uses <code class="sourceCode r">panel.levelplot.raster</code>, which assumes a regular grid is underlying the data.
 The symptoms are warnings “<code>'x' values are not equispaced; output may be wrong</code>” and white stripes in the false colour map (fig. <a href="#fig:irregular-a">4.1</a>), which occur even thought the points are almost at their correct place (fig. <a href="#fig:irregular-b">4.2</a>).</p>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="co">## disturb a few points</span>
+<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="co">## disturb a few points</span>
 <span class="no">chondro</span>$<span class="no">x</span>[<span class="fl">500</span>] <span class="kw">&lt;-</span> <span class="no">chondro</span>$<span class="no">x</span>[<span class="fl">500</span>] + <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">1</span>, <span class="kw">sd</span> <span class="kw">=</span> <span class="fl">0.01</span>)
 <span class="no">chondro</span>$<span class="no">y</span>[<span class="fl">660</span>] <span class="kw">&lt;-</span> <span class="no">chondro</span>$<span class="no">y</span>[<span class="fl">660</span>] + <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">1</span>, <span class="kw">sd</span> <span class="kw">=</span> <span class="fl">0.01</span>)</pre></body></html></div>
 <!-- irregular-grid ------------------------------------------------------ -->
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="fu"><a href="../reference/levelplot.html">plotmap</a></span>(<span class="no">chondro</span>, <span class="kw">col.regions</span> <span class="kw">=</span> <span class="fu">seq_palette</span>(<span class="fl">20</span>))
+<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="fu"><a href="../reference/levelplot.html">plotmap</a></span>(<span class="no">chondro</span>, <span class="kw">col.regions</span> <span class="kw">=</span> <span class="fu">seq_palette</span>(<span class="fl">20</span>))
 <span class="co">#&gt; Warning in (function (x, y, z, subscripts, at = pretty(z), ..., col.regions = regions$col, : 'x'</span>
 <span class="co">#&gt; values are not equispaced; output may be wrong</span>
 <span class="co">#&gt; Warning in (function (x, y, z, subscripts, at = pretty(z), ..., col.regions = regions$col, : 'y'</span>
@@ -270,7 +292,7 @@ Rounding erros in the point coordinates of lateral measurement grid:
 </div>
 <!-- --------------------------------------------------------------------- -->
 <!-- irregular-pts ------------------------------------------------------- -->
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"latticeExtra"</span>)
+<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"latticeExtra"</span>)
 <span class="fu"><a href="../reference/levelplot.html">plotmap</a></span>(<span class="no">chondro</span>,
   <span class="kw">col.regions</span> <span class="kw">=</span> <span class="fu">seq_palette</span>(<span class="fl">20</span>), <span class="kw">panel</span> <span class="kw">=</span> <span class="no">panel.levelplot.points</span>,
   <span class="kw">col</span> <span class="kw">=</span> <span class="fl">NA</span>, <span class="kw">pch</span> <span class="kw">=</span> <span class="fl">22</span>, <span class="kw">cex</span> <span class="kw">=</span> <span class="fl">1.9</span>
@@ -290,11 +312,11 @@ Rounding erros in the point coordinates of lateral measurement grid:
 <p>Such slight rounding errors can be corrected by <code class="sourceCode r"><span class="kw">fitraster</span>()</code> or <code class="sourceCode r"><span class="kw">makeraster</span>()</code>.
 Function <code class="sourceCode r"><span class="kw">fitraster</span>()</code> needs the step size of the raster and a starting coordinate, whereas <code class="sourceCode r"><span class="kw">makeraster</span>()</code> tries to guess these parameters for <code class="sourceCode r"><span class="kw">fitraster</span>()</code>.
 As long as just a few points are affected by rounding errors, <code class="sourceCode r"><span class="kw">makeraster</span>()</code> works fine:</p>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="no">chondro</span>$<span class="no">x</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/makeraster.html">fitraster</a></span>(<span class="no">chondro</span>$<span class="no">x</span>)$<span class="no">x</span>
+<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="no">chondro</span>$<span class="no">x</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/makeraster.html">fitraster</a></span>(<span class="no">chondro</span>$<span class="no">x</span>)$<span class="no">x</span>
 <span class="no">chondro</span>$<span class="no">y</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/makeraster.html">fitraster</a></span>(<span class="no">chondro</span>$<span class="no">y</span>)$<span class="no">x</span></pre></body></html></div>
 <p>the result is shown in figure <a href="#fig:irregular-c">4.3</a>.</p>
 <!-- irregular-corr  ------------------------------------------------------ -->
-<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="fu"><a href="../reference/levelplot.html">plotmap</a></span>(<span class="no">chondro</span>, <span class="kw">col.regions</span> <span class="kw">=</span> <span class="fu">seq_palette</span>(<span class="fl">20</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="fu"><a href="../reference/levelplot.html">plotmap</a></span>(<span class="no">chondro</span>, <span class="kw">col.regions</span> <span class="kw">=</span> <span class="fu">seq_palette</span>(<span class="fl">20</span>))</pre></body></html></div>
 <div class="figure" style="text-align: center">
 <span id="fig:irregular-c"></span>
 <img src="chondro_files/figure-html/irregular-c-1.png" alt="
@@ -334,7 +356,7 @@ Also, the wavelength axis of the raw spectra is not evenly spaced (the data poin
 Furthermore, it would be good to trade some spectral resolution for higher signal to noise ratio.
 All three of these issues are tackled by interpolating and smoothing of the wavelength axis by <code class="sourceCode r"><span class="kw">spc.loess</span>()</code>.
 The resolution is to be reduced to 8 <span class="math inline">\(cm^{-1}\)</span>, or 4 <span class="math inline">\(cm^{-1}\)</span> data point spacing.</p>
-<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="no">chondro</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/spc-loess.html">spc.loess</a></span>(<span class="no">chondro</span>, <span class="fu"><a href="../reference/seq.html">seq</a></span>(<span class="fl">602</span>, <span class="fl">1800</span>, <span class="fl">4</span>))
+<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="no">chondro</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/spc-loess.html">spc.loess</a></span>(<span class="no">chondro</span>, <span class="fu"><a href="../reference/seq.html">seq</a></span>(<span class="fl">602</span>, <span class="fl">1800</span>, <span class="fl">4</span>))
 <span class="no">chondro</span>
 <span class="co">#&gt; hyperSpec object</span>
 <span class="co">#&gt;    875 spectra</span>
@@ -349,21 +371,21 @@ The resolution is to be reduced to 8 <span class="math inline">\(cm^{-1}\)</span
 <p>The spectra are now the same as in the data set <code class="sourceCode r">chondro</code>.
 However, the data set also contains the clustering results (see at the very end of this document).
 They are stored for saving as the distributed demo data:</p>
-<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="no">spectra_to_save</span> <span class="kw">&lt;-</span> <span class="no">chondro</span></pre></body></html></div>
+<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="no">spectra_to_save</span> <span class="kw">&lt;-</span> <span class="no">chondro</span></pre></body></html></div>
 </div>
 <div id="baseline-correction" class="section level2">
 <h2 class="hasAnchor">
 <a href="#baseline-correction" class="anchor"></a><span class="header-section-number">4.3</span> Baseline Correction</h2>
 <p>The next step is a linear baseline correction. <code class="sourceCode r"><span class="kw">spc.fit.poly.below</span>()</code> tries to automatically find appropriate support points for polynomial baselines.
 The default is a linear baseline, which is appropriate in our case:</p>
-<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="no">baselines</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/baselines.html">spc.fit.poly.below</a></span>(<span class="no">chondro</span>)
+<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="no">baselines</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/baselines.html">spc.fit.poly.below</a></span>(<span class="no">chondro</span>)
 <span class="no">chondro</span> <span class="kw">&lt;-</span> <span class="no">chondro</span> - <span class="no">baselines</span></pre></body></html></div>
 </div>
 <div id="normalization" class="section level2">
 <h2 class="hasAnchor">
 <a href="#normalization" class="anchor"></a><span class="header-section-number">4.4</span> Normalization</h2>
 <p>As the spectra are quite similar, area normalization should work well:</p>
-<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="no">chondro</span> <span class="kw">&lt;-</span> <span class="no">chondro</span> / <span class="fu"><a href="https://rdrr.io/r/base/colSums.html">rowMeans</a></span>(<span class="no">chondro</span>)
+<div class="sourceCode" id="cb13"><html><body><pre class="r"><span class="no">chondro</span> <span class="kw">&lt;-</span> <span class="no">chondro</span> / <span class="fu"><a href="https://rdrr.io/r/base/colSums.html">rowMeans</a></span>(<span class="no">chondro</span>)
 <span class="fu"><a href="../reference/plot.html">plot</a></span>(<span class="no">chondro</span>, <span class="st">"spcprctl5"</span>)</pre></body></html></div>
 <div class="figure" style="text-align: center">
 <span id="fig:bl-norm"></span>
@@ -383,7 +405,7 @@ Note that the <code class="sourceCode r">chondro</code> object shipped with pack
 Subtracting the minimum spectrum cancels out the matrix composition that is common to all spectra.
 But the minimum spectrum also picks up a lot of noise.
 So instead, the 5<sup>th</sup> percentile spectrum is subtracted:</p>
-<div class="sourceCode" id="cb13"><html><body><pre class="r"><span class="no">chondro</span> <span class="kw">&lt;-</span> <span class="no">chondro</span> - <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span>(<span class="no">chondro</span>, <span class="fl">0.05</span>)
+<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="no">chondro</span> <span class="kw">&lt;-</span> <span class="no">chondro</span> - <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span>(<span class="no">chondro</span>, <span class="fl">0.05</span>)
 <span class="fu"><a href="../reference/plot.html">plot</a></span>(<span class="no">chondro</span>, <span class="st">"spcprctl5"</span>)</pre></body></html></div>
 <div class="figure" style="text-align: center">
 <span id="fig:bl-perc"></span>
@@ -400,7 +422,7 @@ Some interesting differences start to show up: there are distinct lipid bands in
 <p>PCA is a technique that decomposes the data into scores and loadings (virtual spectra).
 It is known to be quite sensitive to outliers.
 Thus, I use it for outlier detection. The resulting scores and loadings are put again into <code class="sourceCode r">hyperSpec</code> objects by <code class="sourceCode r"><span class="kw">decomposition</span>()</code>:</p>
-<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="no">pca</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/prcomp.html">prcomp</a></span>(<span class="no">chondro</span>, <span class="kw">center</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
+<div class="sourceCode" id="cb15"><html><body><pre class="r"><span class="no">pca</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/prcomp.html">prcomp</a></span>(<span class="no">chondro</span>, <span class="kw">center</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
 
 <span class="no">scores</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/decomposition.html">decomposition</a></span>(<span class="no">chondro</span>, <span class="no">pca</span>$<span class="no">x</span>,
   <span class="kw">label.wavelength</span> <span class="kw">=</span> <span class="st">"PC"</span>,
@@ -412,7 +434,7 @@ Thus, I use it for outlier detection. The resulting scores and loadings are put 
   <span class="kw">label.spc</span> <span class="kw">=</span> <span class="st">"loading I / a.u."</span>
 )</pre></body></html></div>
 <p>Plotting the scores of each PC against all other gives a good idea where to look for outliers.</p>
-<div class="sourceCode" id="cb15"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/pairs.html">pairs</a></span>(<span class="no">scores</span><span class="kw">[[</span>, , <span class="fl">1</span>:<span class="fl">7</span>]], <span class="kw">pch</span> <span class="kw">=</span> <span class="fl">19</span>, <span class="kw">cex</span> <span class="kw">=</span> <span class="fl">0.5</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/pairs.html">pairs</a></span>(<span class="no">scores</span><span class="kw">[[</span>, , <span class="fl">1</span>:<span class="fl">7</span>]], <span class="kw">pch</span> <span class="kw">=</span> <span class="fl">19</span>, <span class="kw">cex</span> <span class="kw">=</span> <span class="fl">0.5</span>)</pre></body></html></div>
 <div class="figure" style="text-align: center">
 <span id="fig:pca-pairs"></span>
 <img src="chondro_files/figure-html/pca-pairs-1.png" alt="The `pairs()`{.r} plot of the first 7 scores. "><p class="caption">
@@ -421,18 +443,18 @@ Figure 4.7: The <code class="sourceCode r"><span class="kw">pairs</span>()</code
 </div>
 <p>Now the spectra can be found either by plotting two scores against each other (by <code class="sourceCode r"><span class="kw">plot</span>()</code>) and identifying with <code class="sourceCode r"><span class="kw">identify</span>()</code>, or they can be identified in the score map by <code class="sourceCode r"><span class="kw">map.identify</span>()</code>.
 There is also a function to identify spectra in a spectra plot, <code class="sourceCode r"><span class="kw">spc.identify</span>()</code>, which could be used to identify principal components that are heavily influenced, e.g., by cosmic ray spikes.</p>
-<div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="co">## omit the first 4 PCs</span>
+<div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="co">## omit the first 4 PCs</span>
 <span class="no">out</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/levelplot.html">map.identify</a></span>(<span class="no">scores</span> [, , <span class="fl">5</span>])
 <span class="no">out</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="no">out</span>, <span class="fu"><a href="../reference/levelplot.html">map.identify</a></span>(<span class="no">scores</span> [, , <span class="fl">6</span>]))
 <span class="no">out</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="no">out</span>, <span class="fu"><a href="../reference/levelplot.html">map.identify</a></span>(<span class="no">scores</span> [, , <span class="fl">7</span>]))</pre></body></html></div>
-<div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="no">out</span>
+<div class="sourceCode" id="cb18"><html><body><pre class="r"><span class="no">out</span>
 <span class="co">#&gt; [1] 105 140 216 289  75  69</span>
 <span class="no">outcols</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"red"</span>, <span class="st">"blue"</span>, <span class="st">"#800080"</span>, <span class="st">"orange"</span>, <span class="st">"magenta"</span>, <span class="st">"brown"</span>)
 
 <span class="no">cols</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="st">"black"</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="no">chondro</span>))
 <span class="no">cols</span>[<span class="no">out</span>] <span class="kw">&lt;-</span> <span class="no">outcols</span></pre></body></html></div>
 <p>We can check our findings by comparing the spectra to the bulk of spectra (figure <a href="#fig:pca-outspc">4.8</a>):</p>
-<div class="sourceCode" id="cb18"><html><body><pre class="r"><span class="fu"><a href="../reference/plot.html">plot</a></span>(<span class="no">chondro</span>[<span class="fl">1</span>],
+<div class="sourceCode" id="cb19"><html><body><pre class="r"><span class="fu"><a href="../reference/plot.html">plot</a></span>(<span class="no">chondro</span>[<span class="fl">1</span>],
   <span class="kw">plot.args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">ylim</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">out</span>) + <span class="fl">.7</span>)),
   <span class="kw">lines.args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">type</span> <span class="kw">=</span> <span class="st">"n"</span>)
 )
@@ -452,7 +474,7 @@ Figure 4.8: The suspected outlier spectra.
 </p>
 </div>
 <p>and also by looking where these spectra appear in the scores <code class="sourceCode r"><span class="kw">pairs</span>()</code> plot (figure <a href="#fig:pca-pairs-2">4.9</a>):</p>
-<div class="sourceCode" id="cb19"><html><body><pre class="r"><span class="no">pch</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="fl">46L</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="no">chondro</span>))
+<div class="sourceCode" id="cb20"><html><body><pre class="r"><span class="no">pch</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="fl">46L</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="no">chondro</span>))
 <span class="no">pch</span>[<span class="no">out</span>] <span class="kw">&lt;-</span> <span class="fl">19L</span>
 
 <span class="fu"><a href="https://rdrr.io/r/graphics/pairs.html">pairs</a></span>(<span class="no">scores</span><span class="kw">[[</span>, , <span class="fl">1</span>:<span class="fl">7</span>]], <span class="kw">pch</span> <span class="kw">=</span> <span class="no">pch</span>, <span class="kw">cex</span> <span class="kw">=</span> <span class="fl">1</span>, <span class="kw">col</span> <span class="kw">=</span> <span class="no">cols</span>)</pre></body></html></div>
@@ -470,7 +492,7 @@ Figure 4.9: The <code class="sourceCode r"><span class="kw">pairs</span>()</code
 <!-- dev.off() -->
 <!-- ``` -->
 <p>Finally, the outliers are removed:</p>
-<div class="sourceCode" id="cb20"><html><body><pre class="r"><span class="no">chondro</span> <span class="kw">&lt;-</span> <span class="no">chondro</span>[-<span class="no">out</span>]</pre></body></html></div>
+<div class="sourceCode" id="cb21"><html><body><pre class="r"><span class="no">chondro</span> <span class="kw">&lt;-</span> <span class="no">chondro</span>[-<span class="no">out</span>]</pre></body></html></div>
 </div>
 </div>
 <div id="hierarchical-cluster-analysis-hca" class="section level1">
@@ -484,9 +506,9 @@ The R function <code class="sourceCode r"><span class="kw">dist</span>()</code> 
 The so-called <strong>Pearson</strong> distance <span class="math inline">\(D^2_{Pearson}=\frac{1-\mathrm{COR}\left(X\right)}{2}\)</span> is popular in data analysis of vibrational spectra and is provided by package <strong>hyperSpec</strong>’s <code class="sourceCode r"><span class="kw">pearson.dist</span>()</code> function.</p>
 <p>Also for computing the dendrogram, a number of choices are available.
 Here we choose <strong>Ward</strong>’s method, and, as it uses <strong>Euclid</strong>ean distance for calculating the dendrogram, <strong>Euclid</strong>ean distance also for the distance matrix:</p>
-<div class="sourceCode" id="cb21"><html><body><pre class="r"><span class="no">dist</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span>(<span class="no">chondro</span>)
+<div class="sourceCode" id="cb22"><html><body><pre class="r"><span class="no">dist</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span>(<span class="no">chondro</span>)
 <span class="no">dendrogram</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span>(<span class="no">dist</span>, <span class="kw">method</span> <span class="kw">=</span> <span class="st">"ward.D2"</span>)</pre></body></html></div>
-<div class="sourceCode" id="cb22"><html><body><pre class="r"><span class="fu"><a href="../reference/plot.html">plot</a></span>(<span class="no">dendrogram</span>, <span class="kw">labels</span> <span class="kw">=</span> <span class="fl">FALSE</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb23"><html><body><pre class="r"><span class="fu"><a href="../reference/plot.html">plot</a></span>(<span class="no">dendrogram</span>, <span class="kw">labels</span> <span class="kw">=</span> <span class="fl">FALSE</span>)</pre></body></html></div>
 <div class="figure" style="text-align: center">
 <span id="fig:denddummy"></span>
 <img src="chondro_files/figure-html/denddummy-1.png" alt="Dendogram. "><p class="caption">
@@ -494,14 +516,14 @@ Figure 5.1: Dendogram.
 </p>
 </div>
 <p>In order to get clusters, the dendrogram is cut at a level specified either by height or by the number of clusters.</p>
-<div class="sourceCode" id="cb23"><html><body><pre class="r"><span class="no">chondro</span>$<span class="no">clusters</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/cutree.html">cutree</a></span>(<span class="no">dendrogram</span>, <span class="kw">k</span> <span class="kw">=</span> <span class="fl">3</span>))
+<div class="sourceCode" id="cb24"><html><body><pre class="r"><span class="no">chondro</span>$<span class="no">clusters</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/cutree.html">cutree</a></span>(<span class="no">dendrogram</span>, <span class="kw">k</span> <span class="kw">=</span> <span class="fl">3</span>))
 <span class="no">cols</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"dark blue"</span>, <span class="st">"orange"</span>, <span class="st">"#C02020"</span>)</pre></body></html></div>
 <p>The result for <span class="math inline">\(k\)</span> = 3 clusters is plotted as a map (figure <a href="#fig:clustmap">5.2</a>).
 If the color-coded variate (left hand side of the formula) is a factor, the legend bar does not show intermediate colors, and <code class="sourceCode r">hyperSpec</code>’s <code class="sourceCode r"><span class="kw">levelplot</span>()</code> method uses the levels of the factor for the legend.</p>
 <p>Thus meaningful names are assigned</p>
-<div class="sourceCode" id="cb24"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span>(<span class="no">chondro</span>$<span class="no">clusters</span>) <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"matrix"</span>, <span class="st">"lacuna"</span>, <span class="st">"cell"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb25"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span>(<span class="no">chondro</span>$<span class="no">clusters</span>) <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"matrix"</span>, <span class="st">"lacuna"</span>, <span class="st">"cell"</span>)</pre></body></html></div>
 <p>and the cluster membership map is plotted:</p>
-<div class="sourceCode" id="cb25"><html><body><pre class="r"><span class="fu"><a href="../reference/show.html">print</a></span>(<span class="fu"><a href="../reference/levelplot.html">plotmap</a></span>(<span class="no">chondro</span>, <span class="no">clusters</span> ~ <span class="no">x</span> * <span class="no">y</span>, <span class="kw">col.regions</span> <span class="kw">=</span> <span class="no">cols</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb26"><html><body><pre class="r"><span class="fu"><a href="../reference/show.html">print</a></span>(<span class="fu"><a href="../reference/levelplot.html">plotmap</a></span>(<span class="no">chondro</span>, <span class="no">clusters</span> ~ <span class="no">x</span> * <span class="no">y</span>, <span class="kw">col.regions</span> <span class="kw">=</span> <span class="no">cols</span>))</pre></body></html></div>
 <div class="figure" style="text-align: center">
 <span id="fig:clustmap"></span>
 <img src="chondro_files/figure-html/clustmap-1.png" alt="Hierarchical cluster analysis: the cluster map for $k=3$ clusters. "><p class="caption">
@@ -509,7 +531,7 @@ Figure 5.2: Hierarchical cluster analysis: the cluster map for <span class="math
 </p>
 </div>
 <p>The cluster membership can also be marked in the dendrogram:</p>
-<div class="sourceCode" id="cb26"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="kw">xpd</span> <span class="kw">=</span> <span class="fl">TRUE</span>) <span class="co"># allow plotting the markers into the margin</span>
+<div class="sourceCode" id="cb27"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="kw">xpd</span> <span class="kw">=</span> <span class="fl">TRUE</span>) <span class="co"># allow plotting the markers into the margin</span>
 <span class="fu"><a href="../reference/plot.html">plot</a></span>(<span class="no">dendrogram</span>, <span class="kw">labels</span> <span class="kw">=</span> <span class="fl">FALSE</span>, <span class="kw">hang</span> <span class="kw">=</span> -<span class="fl">1</span>)
 <span class="fu"><a href="../reference/mark.dendrogram.html">mark.dendrogram</a></span>(<span class="no">dendrogram</span>, <span class="no">chondro</span>$<span class="no">clusters</span>, <span class="kw">col</span> <span class="kw">=</span> <span class="no">cols</span>)</pre></body></html></div>
 <div class="figure" style="text-align: center">
@@ -522,7 +544,7 @@ Figure 5.3: Hierarchical cluster analysis: the dendrogram.
 The three clusters correspond to the cartilage matrix, the lacuna and the cells.
 The left cell is destroyed and its contents are leaking into the matrix, while the right cells looks intact.</p>
 <p>We can plot the cluster mean spectra <span class="math inline">\(\pm\)</span> 1 standard deviation using <code class="sourceCode r"><span class="kw">aggregate</span>()</code> (see figure <a href="#fig:clustmeans">5.4</a>):</p>
-<div class="sourceCode" id="cb27"><html><body><pre class="r"><span class="no">cluster.means</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/aggregate.html">aggregate</a></span>(<span class="no">chondro</span>, <span class="no">chondro</span>$<span class="no">clusters</span>, <span class="no">mean_pm_sd</span>)
+<div class="sourceCode" id="cb28"><html><body><pre class="r"><span class="no">cluster.means</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/aggregate.html">aggregate</a></span>(<span class="no">chondro</span>, <span class="no">chondro</span>$<span class="no">clusters</span>, <span class="no">mean_pm_sd</span>)
 
 <span class="no">op</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="kw">las</span> <span class="kw">=</span> <span class="fl">1</span>, <span class="kw">mar</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">4</span>, <span class="fl">6</span>, <span class="fl">1</span>, <span class="fl">1</span>), <span class="kw">mgp</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">4</span>, <span class="fl">1</span>, <span class="fl">0</span>))
 <span class="fu"><a href="../reference/plot.html">plot</a></span>(<span class="no">cluster.means</span>, <span class="kw">stacked</span> <span class="kw">=</span> <span class="st">".aggregate"</span>, <span class="kw">fill</span> <span class="kw">=</span> <span class="st">".aggregate"</span>, <span class="kw">col</span> <span class="kw">=</span> <span class="no">cols</span>)</pre></body></html></div>
@@ -534,7 +556,7 @@ Figure 5.4: The cluster mean <span class="math inline">\(\pm\)</span> 1 standard
 The blue cluster shows distinct lipid bands, the yellow cluster collagen, and the red cluster proteins and nucleic acids.
 </p>
 </div>
-<div class="sourceCode" id="cb28"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="no">op</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb29"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="no">op</span>)</pre></body></html></div>
 </div>
 <div id="plotting-a-false-colour-map-of-certain-spectral-regions" class="section level1">
 <h1 class="hasAnchor">
@@ -542,7 +564,7 @@ The blue cluster shows distinct lipid bands, the yellow cluster collagen, and th
 <p>Package <code class="sourceCode r">hyperSpec</code> comes with a sophisticated interface for specifying spectral ranges.
 Expressing things like 1000<span class="math inline">\(cm^{-1}\)</span> <span class="math inline">\(\pm\)</span> 1 data points is easily possible.
 Thus, we can have a fast look at the nucleic acid distribution, using the DNA bands at 728, 782, 1098, 1240, 1482, and 1577 <span class="math inline">\(cm^{-1}:\)</span></p>
-<div class="sourceCode" id="cb29"><html><body><pre class="r"><span class="no">DNAcols</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/colorRamp.html">colorRampPalette</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"white"</span>, <span class="st">"gold"</span>, <span class="st">"dark green"</span>), <span class="kw">space</span> <span class="kw">=</span> <span class="st">"Lab"</span>)(<span class="fl">20</span>)
+<div class="sourceCode" id="cb30"><html><body><pre class="r"><span class="no">DNAcols</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/colorRamp.html">colorRampPalette</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"white"</span>, <span class="st">"gold"</span>, <span class="st">"dark green"</span>), <span class="kw">space</span> <span class="kw">=</span> <span class="st">"Lab"</span>)(<span class="fl">20</span>)
 <span class="fu"><a href="../reference/levelplot.html">plotmap</a></span>(<span class="no">chondro</span>[, , <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">728</span>, <span class="fl">782</span>, <span class="fl">1098</span>, <span class="fl">1240</span>, <span class="fl">1482</span>, <span class="fl">1577</span>)],
   <span class="kw">col.regions</span> <span class="kw">=</span> <span class="no">DNAcols</span>
 )</pre></body></html></div>
@@ -562,7 +584,7 @@ While the nucleus of the right cell shows up nicely, only low concentration rema
 Smoothing interpolation could help.
 In R, such a smoother is mostly seen as a model, whose predictions are then displayed as smooth map (fig. <a href="#fig:DNAsm">7.1</a>).
 This smoothing model can be calculated on the fly, e.g., by using the <code class="sourceCode r"><span class="kw">panel.2dsmoother</span>()</code> wrapper provided by package <strong>latticeExtra</strong>:</p>
-<div class="sourceCode" id="cb30"><html><body><pre class="r"><span class="fu"><a href="../reference/levelplot.html">plotmap</a></span>(<span class="no">chondro</span>[, , <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">728</span>, <span class="fl">782</span>, <span class="fl">1098</span>, <span class="fl">1240</span>, <span class="fl">1482</span>, <span class="fl">1577</span>)],
+<div class="sourceCode" id="cb31"><html><body><pre class="r"><span class="fu"><a href="../reference/levelplot.html">plotmap</a></span>(<span class="no">chondro</span>[, , <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">728</span>, <span class="fl">782</span>, <span class="fl">1098</span>, <span class="fl">1240</span>, <span class="fl">1482</span>, <span class="fl">1577</span>)],
   <span class="kw">col.regions</span> <span class="kw">=</span> <span class="no">DNAcols</span>,
   <span class="kw">panel</span> <span class="kw">=</span> <span class="no">panel.2dsmoother</span>, <span class="kw">args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">span</span> <span class="kw">=</span> <span class="fl">0.05</span>)
 )</pre></body></html></div>
@@ -575,15 +597,15 @@ Figure 7.1: False colour map of the DNA band intensities: smoothed DNA abundance
 <p>For interpolation (i.e., no smoothing at the available data points), a Voronoi plot (a.k.a. Delaunay triangulation) is basically a 2d constant interpolation: each point in space has the same z/color value as its closest available point.
 For a full rectangular grid, this corresponds to the usual square/rectangular pixel plot.
 With missing points, differences become clear (fig. <a href="#fig:DNAmissing">7.2</a>):</p>
-<div class="sourceCode" id="cb31"><html><body><pre class="r"><span class="no">tmp</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="no">chondro</span>[, , <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">728</span>, <span class="fl">782</span>, <span class="fl">1098</span>, <span class="fl">1240</span>, <span class="fl">1482</span>, <span class="fl">1577</span>)], <span class="fl">500</span>)</pre></body></html></div>
-<div class="sourceCode" id="cb32"><html><body><pre class="r"><span class="fu"><a href="../reference/levelplot.html">plotmap</a></span>(<span class="no">tmp</span>, <span class="kw">col.regions</span> <span class="kw">=</span> <span class="no">DNAcols</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb32"><html><body><pre class="r"><span class="no">tmp</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="no">chondro</span>[, , <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">728</span>, <span class="fl">782</span>, <span class="fl">1098</span>, <span class="fl">1240</span>, <span class="fl">1482</span>, <span class="fl">1577</span>)], <span class="fl">500</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb33"><html><body><pre class="r"><span class="fu"><a href="../reference/levelplot.html">plotmap</a></span>(<span class="no">tmp</span>, <span class="kw">col.regions</span> <span class="kw">=</span> <span class="no">DNAcols</span>)</pre></body></html></div>
 <div class="figure" style="text-align: center">
 <span id="fig:DNAmissing"></span>
 <img src="chondro_files/figure-html/DNAmissing-1.png" alt='Two-dimesional (2D) "constant" interpolation with missing values: omitting missing data points. '><p class="caption">
 Figure 7.2: Two-dimesional (2D) “constant” interpolation with missing values: omitting missing data points.
 </p>
 </div>
-<div class="sourceCode" id="cb33"><html><body><pre class="r"><span class="fu"><a href="../reference/levelplot.html">plotmap</a></span>(<span class="no">tmp</span>,
+<div class="sourceCode" id="cb34"><html><body><pre class="r"><span class="fu"><a href="../reference/levelplot.html">plotmap</a></span>(<span class="no">tmp</span>,
   <span class="kw">col.regions</span> <span class="kw">=</span> <span class="no">DNAcols</span>,
   <span class="kw">panel</span> <span class="kw">=</span> <span class="no">panel.voronoi</span>, <span class="kw">pch</span> <span class="kw">=</span> <span class="fl">19</span>, <span class="kw">col</span> <span class="kw">=</span> <span class="st">"black"</span>, <span class="kw">cex</span> <span class="kw">=</span> <span class="fl">0.1</span>
 )
@@ -604,7 +626,7 @@ Figure 7.3: Two-dimesional (2D) “constant” interpolation with missing values
 </div>
 <p>The 2D linear interpolation can be done, e.g., by the functions provided by package package <strong>akima</strong>.
 However, they do not follow the model-predict paradigm, but instead do directly return an object suitable for base plotting with <code class="sourceCode r"><span class="kw">image</span>()</code> (fig. <a href="#fig:DNAinterp">7.4</a>):</p>
-<div class="sourceCode" id="cb34"><html><body><pre class="r"><span class="kw">if</span> (<span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="st">"akima"</span>)) {
+<div class="sourceCode" id="cb35"><html><body><pre class="r"><span class="kw">if</span> (<span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="st">"akima"</span>)) {
   <span class="no">tmp</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html">rowMeans</a></span>(<span class="no">chondro</span><span class="kw">[[</span>, , <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">728</span>, <span class="fl">782</span>, <span class="fl">1098</span>, <span class="fl">1240</span>, <span class="fl">1482</span>, <span class="fl">1577</span>)]])
   <span class="no">chondro.bilinear</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/akima/man/interp.html">interp</a></span>(<span class="no">chondro</span>$<span class="no">x</span>, <span class="no">chondro</span>$<span class="no">y</span>, <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span>(<span class="no">tmp</span>), <span class="kw">nx</span> <span class="kw">=</span> <span class="fl">100</span>, <span class="kw">ny</span> <span class="kw">=</span> <span class="fl">100</span>)
 
@@ -629,7 +651,7 @@ Figure 7.4: Two-dimensional (2D) interpolation.
 <a href="#sec:saving-data-set" class="anchor"></a><span class="header-section-number">8</span> Saving the data set</h1>
 <p>Finally, the example data set is put together and saved.
 In order to keep the package size small, only a PCA-compressed version with 10 PCs is shipped as example data set of the package.</p>
-<div class="sourceCode" id="cb35"><html><body><pre class="r"><span class="no">spectra_to_save</span>$<span class="no">clusters</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(<span class="fl">NA</span>, <span class="kw">levels</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span>(<span class="no">chondro</span>$<span class="no">clusters</span>))
+<div class="sourceCode" id="cb36"><html><body><pre class="r"><span class="no">spectra_to_save</span>$<span class="no">clusters</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(<span class="fl">NA</span>, <span class="kw">levels</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span>(<span class="no">chondro</span>$<span class="no">clusters</span>))
 <span class="no">spectra_to_save</span>$<span class="no">clusters</span>[-<span class="no">out</span>] <span class="kw">&lt;-</span> <span class="no">chondro</span>$<span class="no">clusters</span>
 
 <span class="no">pca</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/prcomp.html">prcomp</a></span>(<span class="no">spectra_to_save</span>)
@@ -653,7 +675,7 @@ In order to keep the package size small, only a PCA-compressed version with 10 P
 <div id="session-info" class="section level1 unnumbered">
 <h1 class="hasAnchor">
 <a href="#session-info" class="anchor"></a>Session Info</h1>
-<div class="sourceCode" id="cb36"><html><body><pre class="r"><span class="kw pkg">sessioninfo</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/sessioninfo/man/session_info.html">session_info</a></span>(<span class="st">"hyperSpec"</span>)
+<div class="sourceCode" id="cb37"><html><body><pre class="r"><span class="kw pkg">sessioninfo</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/sessioninfo/man/session_info.html">session_info</a></span>(<span class="st">"hyperSpec"</span>)
 <span class="co">#&gt; ─ Session info ───────────────────────────────────────────────────────────────────────────────────</span>
 <span class="co">#&gt;  setting  value                       </span>
 <span class="co">#&gt;  version  R version 4.0.1 (2020-06-06)</span>
@@ -664,12 +686,12 @@ In order to keep the package size small, only a PCA-compressed version with 10 P
 <span class="co">#&gt;  collate  en_US.UTF-8                 </span>
 <span class="co">#&gt;  ctype    en_US.UTF-8                 </span>
 <span class="co">#&gt;  tz       UTC                         </span>
-<span class="co">#&gt;  date     2020-06-19                  </span>
+<span class="co">#&gt;  date     2020-06-21                  </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; ─ Packages ───────────────────────────────────────────────────────────────────────────────────────</span>
 <span class="co">#&gt;  package      * version  date       lib source        </span>
 <span class="co">#&gt;  assertthat     0.2.1    2019-03-21 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  backports      1.1.8    2020-06-17 [1] CRAN (R 4.0.1)</span>
+<span class="co">#&gt;  backports      1.1.8    2020-06-17 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  callr          3.4.3    2020-03-28 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  cli            2.0.2    2020-02-28 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  colorspace     1.4-1    2019-03-18 [1] CRAN (R 4.0.0)</span>
@@ -682,11 +704,11 @@ In order to keep the package size small, only a PCA-compressed version with 10 P
 <span class="co">#&gt;  fansi          0.4.1    2020-01-08 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  farver         2.0.3    2020-01-16 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  generics       0.0.2    2018-11-29 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  ggplot2      * 3.3.1    2020-05-28 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  ggplot2      * 3.3.2    2020-06-19 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  glue           1.4.1    2020-05-13 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  gtable         0.3.0    2019-03-25 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  hyperSpec    * 0.99.99  2020-06-19 [1] local         </span>
-<span class="co">#&gt;  isoband        0.2.1    2020-04-12 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  hyperSpec    * 0.99.99  2020-06-21 [1] local         </span>
+<span class="co">#&gt;  isoband        0.2.2    2020-06-20 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  jpeg           0.1-8.1  2019-10-24 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  labeling       0.3      2014-08-23 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  lattice      * 0.20-41  2020-04-02 [2] CRAN (R 4.0.1)</span>
@@ -711,7 +733,6 @@ In order to keep the package size small, only a PCA-compressed version with 10 P
 <span class="co">#&gt;  purrr          0.3.4    2020-04-17 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  R6             2.4.1    2019-11-12 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  RColorBrewer   1.1-2    2014-12-07 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  Rcpp           1.0.4.6  2020-04-09 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  rlang          0.4.6    2020-05-02 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  rprojroot      1.3-2    2018-01-03 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  rstudioapi     0.11     2020-02-07 [1] CRAN (R 4.0.0)</span>

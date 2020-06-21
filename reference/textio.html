@@ -86,17 +86,31 @@ export data into hyperSpec objects exist." />
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li>
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-book"></span>
+     
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Documentation for version of pacakge:</li>
+    <li>
+      <a href="https://cbeleites.github.io/hyperSpec/">Realeased</a>
+    </li>
+    <li>
+      <a href="https://cbeleites.github.io/hyperSpec/dev/">In-development</a>
+    </li>
+  </ul>
+</li>
+<li>
   <a href="../index.html">
     <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
 <li>
-  <a href="../articles/hyperSpec.html">Get started</a>
-</li>
-<li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="../articles/hyperspec.html">Get started</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -106,7 +120,10 @@ export data into hyperSpec objects exist." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/fileio.html">Import and Export Files with Spectra</a>
+      <a href="../articles/hyperspec.html">Introduction to Package "hyperSpec"</a>
+    </li>
+    <li>
+      <a href="../articles/fileio.html">Import and Export of Spectra Files</a>
     </li>
     <li>
       <a href="../articles/plotting.html">Plotting Functions in "hyperSpec"</a>
@@ -119,6 +136,9 @@ export data into hyperSpec objects exist." />
       <a href="../articles/index.html">More...</a>
     </li>
   </ul>
+</li>
+<li>
+  <a href="../reference/index.html">Reference</a>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
@@ -556,7 +576,7 @@ respectively</p></div>
 #&gt; 
 #&gt; attr(,"header")
 #&gt; attr(,"header")$description
-#&gt; [1] "MATLAB 5.0 MAT-file, Platform: unix, Software: R v4.0.1, Created on: Fri Jun 19 02:21:53 2020                               "
+#&gt; [1] "MATLAB 5.0 MAT-file, Platform: unix, Software: R v4.0.1, Created on: Sun Jun 21 00:42:03 2020                               "
 #&gt; 
 #&gt; attr(,"header")$version
 #&gt; [1] "5"
@@ -583,7 +603,7 @@ respectively</p></div>
 #&gt; data:  (6 rows x 3 columns)
 #&gt;    1. spc: I / a.u [matrix, array181] 27.15000 66.80133 ... 294.6495 
 #&gt;    2. c: c/(mg/l) [numeric] 0.05 0.10 ... 0.3 
-#&gt;    3. filename: filename [character] /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpvnWEpm/flu.txt /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpvnWEpm/flu.txt ... /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpvnWEpm/flu.txt </div><div class='input'>
+#&gt;    3. filename: filename [character] /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpNLyPDF/flu.txt /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpNLyPDF/flu.txt ... /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpNLyPDF/flu.txt </div><div class='input'>
 <span class='fu'>write.txt.wide</span> (<span class='no'>flu</span>,  <span class='kw'>file</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>"/flu.txt"</span>),
     <span class='kw'>cols</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"c"</span>, <span class='st'>"spc"</span>),
                 <span class='kw'>col.labels</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>header.lines</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>row.names</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
