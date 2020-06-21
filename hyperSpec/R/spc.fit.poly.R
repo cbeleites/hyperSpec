@@ -322,7 +322,7 @@ spc.fit.poly.below <- function(fit.to, apply.to = fit.to, poly.order = 1,
     expect_equal(bl.nonorm[[]], bl.1e4[[]])
   })
 
-  test_that("stoppng rules for unstable solutions - issue #58", {
+  test_that("stopping rules for unstable solutions - issue #58", {
     # test object origninally created from chondro:
     # tmp <- chondro[103,,c(600 ~ 700, 1650 ~ 1800)]
     # tmp[[]] <- round(tmp[[]], digits = 1)
