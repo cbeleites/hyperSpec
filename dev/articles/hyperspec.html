@@ -40,6 +40,23 @@
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-book"></span>
+     
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li class="dropdown-header">Documentation for version of pacakge:</li>
+    <li>
+      <a href="https://cbeleites.github.io/hyperSpec/">Realeased</a>
+    </li>
+    <li>
+      <a href="https://cbeleites.github.io/hyperSpec/dev/">In-development</a>
+    </li>
+  </ul>
+</li>
 <li>
   <a href="../index.html">
     <span class="fas fa fas fa-home fa-lg"></span>
@@ -115,7 +132,7 @@
 <br><a class="author_email" href="mailto:#"></a><a href="mailto:chemometrie@beleites.de" class="email">chemometrie@beleites.de</a>
       </address>
                   
-            <h4 class="date">2020-06-20</h4>
+            <h4 class="date">2020-06-21</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/cbeleites/hyperSpec/blob/master/../vignettes/hyperSpec.Rmd"><code>../vignettes/hyperSpec.Rmd</code></a></small>
       <div class="hidden name"><code>hyperSpec.Rmd</code></div>
@@ -2438,7 +2455,7 @@ You can also make suggestions in this manner.</p>
   }
 })
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.044   0.002   0.046</span></pre></body></html></div>
+<span class="co">#&gt;   0.044   0.001   0.045</span></pre></body></html></div>
 <p>Calculations that involve a lot of subsetting (i.e., extracting or changing the spectra matrix or extra data) can be sped up considerably if the required parts of the <code class="sourceCode r">hyperSpec</code> object are extracted beforehand.
 This is somewhat similar to model fitting in <code>R</code> in general: many model fitting functions in <code>R</code> are much faster if the formula interface is avoided and the appropriate <code class="sourceCode r">data.frame</code>s or matrices are handed over directly.</p>
 <div class="sourceCode" id="cb151"><html><body><pre class="r"><span class="no">tmp</span> <span class="kw">&lt;-</span> <span class="no">chondro</span>[<span class="fl">1</span>:<span class="fl">50</span>]
@@ -2451,7 +2468,7 @@ This is somewhat similar to model fitting in <code>R</code> in general: many mod
   <span class="no">tmp</span><span class="kw">[[</span>]] <span class="kw">&lt;-</span> <span class="no">tmp.matrix</span>
 })
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.009   0.000   0.009</span></pre></body></html></div>
+<span class="co">#&gt;   0.009   0.000   0.008</span></pre></body></html></div>
 <!--
 ## Additional packages
 
@@ -2554,7 +2571,7 @@ In this case, the name of the function must be quoted: `-` is the recommended st
 <span class="co">#&gt;  collate  en_US.UTF-8                 </span>
 <span class="co">#&gt;  ctype    en_US.UTF-8                 </span>
 <span class="co">#&gt;  tz       UTC                         </span>
-<span class="co">#&gt;  date     2020-06-20                  </span>
+<span class="co">#&gt;  date     2020-06-21                  </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; ─ Packages ───────────────────────────────────────────────────────────────────────────────────────</span>
 <span class="co">#&gt;  package      * version       date       lib source        </span>
@@ -2575,7 +2592,7 @@ In this case, the name of the function must be quoted: `-` is the recommended st
 <span class="co">#&gt;  ggplot2      * 3.3.2         2020-06-19 [1] CRAN (R 4.0.1)</span>
 <span class="co">#&gt;  glue           1.4.1         2020-05-13 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  gtable         0.3.0         2019-03-25 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  hyperSpec    * 0.99-20200615 2020-06-20 [1] local         </span>
+<span class="co">#&gt;  hyperSpec    * 0.99-20200615 2020-06-21 [1] local         </span>
 <span class="co">#&gt;  isoband        0.2.2         2020-06-20 [1] CRAN (R 4.0.1)</span>
 <span class="co">#&gt;  jpeg           0.1-8.1       2019-10-24 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  labeling       0.3           2014-08-23 [1] CRAN (R 4.0.0)</span>
