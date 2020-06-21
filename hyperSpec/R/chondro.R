@@ -1,13 +1,3 @@
-# .make.chondro <- function() {
-#   new("hyperSpec",
-#     spc = (tcrossprod(.chondro.scores, .chondro.loadings) +
-#       rep(.chondro.center, each = nrow(.chondro.scores))),
-#     wavelength = .chondro.wl,
-#     data = .chondro.extra, labels = .chondro.labels
-#   )
-# }
-# delayedAssign("chondro", .make.chondro())
-
 ##' Raman spectra of 2 Chondrocytes in Cartilage
 ##' A Raman-map (laterally resolved Raman spectra) of chondrocytes in
 ##' cartilage.
