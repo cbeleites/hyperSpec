@@ -88,9 +88,9 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-    <li class="dropdown-header">Documentation for version of pacakge:</li>
+    <li class="dropdown-header">Documentation for version of package:</li>
     <li>
-      <a href="https://cbeleites.github.io/hyperSpec/">Realeased</a>
+      <a href="https://cbeleites.github.io/hyperSpec/">Released</a>
     </li>
     <li>
       <a href="https://cbeleites.github.io/hyperSpec/dev/">In-development</a>
@@ -167,7 +167,7 @@
     <p>This is useful for generating certain types of baseline "reference spectra".</p>
     </div>
 
-    <pre class="usage"><span class='fu'>wl.eval</span>(<span class='no'>x</span>, <span class='no'>...</span>, <span class='kw'>normalize.wl</span> <span class='kw'>=</span> <span class='no'>I</span>)</pre>
+    <pre class="usage"><span class='fu'>wl.eval</span>(<span class='kw'>x</span>, <span class='kw'>...</span>, normalize.wl = <span class='kw'>I</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -183,7 +183,7 @@
     <tr>
       <th>normalize.wl</th>
       <td><p>function to transorm the wavelengths before evaluating the polynomial (or
-other function). Use <code><a href='normalize01.html'>normalize01</a></code> to map the wavelength range to the interval [0, 1].</p></td>
+other function). Use <code><a href='https://rdrr.io/pkg/hyperSpec/man/normalize01.html'>normalize01</a></code> to map the wavelength range to the interval [0, 1].</p></td>
     </tr>
     </table>
 
@@ -192,14 +192,14 @@ other function). Use <code><a href='normalize01.html'>normalize01</a></code> to 
     <p>hyperSpec object containing one spectrum for each expression</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='vanderMonde.html'>vanderMonde</a></code> for  polynomials,</p>
-<p><code><a href='normalize01.html'>normalize01</a></code> to normalize the wavenumbers before evaluating the function</p></div>
+    <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/hyperSpec/man/vanderMonde.html'>vanderMonde</a></code> for  polynomials,</p>
+<p><code><a href='https://rdrr.io/pkg/hyperSpec/man/normalize01.html'>normalize01</a></code> to normalize the wavenumbers before evaluating the function</p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>C. Beleites</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='plot.html'>plot</a></span> (<span class='fu'>wl.eval</span> (<span class='no'>laser</span>, <span class='kw'>exp</span> <span class='kw'>=</span> <span class='kw'>function</span> (<span class='no'>x</span>) <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>exp</a></span> (-<span class='no'>x</span>)))</div><div class='img'><img src='wl.eval-1.png' alt='' width='466' height='288' /></div></pre>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span> (<span class='fu'>wl.eval</span> (<span class='kw'>laser</span>, exp = <span class='fu'>function</span> (<span class='kw'>x</span>) <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>exp</a></span> (<span class='op'>-</span><span class='kw'>x</span>)))</div><div class='img'><img src='wl.eval-1.png' alt='' width='466' height='288' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

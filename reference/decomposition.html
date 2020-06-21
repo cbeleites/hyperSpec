@@ -92,9 +92,9 @@ into new hyperSpec objects." />
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-    <li class="dropdown-header">Documentation for version of pacakge:</li>
+    <li class="dropdown-header">Documentation for version of package:</li>
     <li>
-      <a href="https://cbeleites.github.io/hyperSpec/">Realeased</a>
+      <a href="https://cbeleites.github.io/hyperSpec/">Released</a>
     </li>
     <li>
       <a href="https://cbeleites.github.io/hyperSpec/dev/">In-development</a>
@@ -175,14 +175,14 @@ into new <code>hyperSpec</code> objects.</p>
     </div>
 
     <pre class="usage"><span class='fu'>decomposition</span>(
-  <span class='no'>object</span>,
-  <span class='no'>x</span>,
-  <span class='kw'>wavelength</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq_len</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>ncol</a></span>(<span class='no'>x</span>)),
-  <span class='no'>label.wavelength</span>,
-  <span class='no'>label.spc</span>,
-  <span class='kw'>scores</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>retain.columns</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='no'>...</span>
+  <span class='kw'>object</span>,
+  <span class='kw'>x</span>,
+  wavelength = <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq_len</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>ncol</a></span>(<span class='kw'>x</span>)),
+  <span class='kw'>label.wavelength</span>,
+  <span class='kw'>label.spc</span>,
+  scores = <span class='fl'>TRUE</span>,
+  retain.columns = <span class='fl'>FALSE</span>,
+  <span class='kw'>...</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -249,15 +249,15 @@ number of columns as <code>object</code> has wavelengths) is given to
 <code>decomposition</code> (also setting <code>scores = FALSE</code>), the spectra
 matrix is replaced by <code>x</code>. Moreover, all columns of <code>object@data</code>
 that did not contain the same value for all spectra are set to <code>NA</code>.
-Thus, for the resulting <code>hyperSpec</code> object, <code><a href='plotspc.html'>plotspc</a></code> and
-related functions are meaningful. <code><a href='levelplot.html'>plotmap</a></code> cannot be
+Thus, for the resulting <code>hyperSpec</code> object, <code>plotspc</code> and
+related functions are meaningful. <code><a href='https://rdrr.io/pkg/hyperSpec/man/levelplot.html'>plotmap</a></code> cannot be
 applied as the loadings are not laterally resolved.</p>
 <p>The scores matrix needs to have the same number of rows as <code>object</code> has
 spectra. If such a matrix is given, <code>decomposition</code> will replace the
 spectra matrix is replaced by <code>x</code> and <code>object@wavelength</code> by
 <code>wavelength</code>. The information related to each of the spectra is
-retained. For such a <code>hyperSpec</code> object, <code><a href='levelplot.html'>plotmap</a></code> and
-<code><a href='plotc.html'>plotc</a></code> and the like can be applied. It is also possible to use
+retained. For such a <code>hyperSpec</code> object, <code>plotmap</code> and
+<code>plotc</code> and the like can be applied. It is also possible to use
 the spectra plotting, but the interpretation is not that of the spectrum any
 longer.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
@@ -272,13 +272,13 @@ longer.</p>
     <p>C. Beleites</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>pca</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/prcomp.html'>prcomp</a></span> (<span class='no'>flu</span>)
+    <pre class="examples"><div class='input'><span class='kw'>pca</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/prcomp.html'>prcomp</a></span> (<span class='kw'>flu</span>)
 
-<span class='no'>pca.loadings</span> <span class='kw'>&lt;-</span> <span class='fu'>decomposition</span> (<span class='no'>flu</span>, <span class='fu'><a href='https://rdrr.io/r/base/t.html'>t</a></span> (<span class='no'>pca</span>$<span class='no'>rotation</span>), <span class='kw'>scores</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-<span class='no'>pca.center</span> <span class='kw'>&lt;-</span> <span class='fu'>decomposition</span> (<span class='no'>flu</span>, <span class='no'>pca</span>$<span class='no'>center</span>, <span class='kw'>scores</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-<span class='no'>pca.scores</span> <span class='kw'>&lt;-</span> <span class='fu'>decomposition</span> (<span class='no'>flu</span>, <span class='no'>pca</span>$<span class='no'>x</span>)
+<span class='kw'>pca.loadings</span> <span class='op'>&lt;-</span> <span class='fu'>decomposition</span> (<span class='kw'>flu</span>, <span class='fu'><a href='https://rdrr.io/r/base/t.html'>t</a></span> (<span class='kw'>pca</span><span class='op'>$</span><span class='kw'>rotation</span>), scores = <span class='fl'>FALSE</span>)
+<span class='kw'>pca.center</span> <span class='op'>&lt;-</span> <span class='fu'>decomposition</span> (<span class='kw'>flu</span>, <span class='kw'>pca</span><span class='op'>$</span><span class='kw'>center</span>, scores = <span class='fl'>FALSE</span>)
+<span class='kw'>pca.scores</span> <span class='op'>&lt;-</span> <span class='fu'>decomposition</span> (<span class='kw'>flu</span>, <span class='kw'>pca</span><span class='op'>$</span><span class='kw'>x</span>)
 
-<span class='fu'><a href='plot.html'>plot</a></span> (<span class='no'>pca.center</span>)</div><div class='img'><img src='decomposition-1.png' alt='' width='466' height='288' /></div><div class='input'><span class='fu'><a href='plot.html'>plot</a></span> (<span class='no'>pca.loadings</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span> (<span class='st'>"red"</span>, <span class='st'>"gray50"</span>))</div><div class='img'><img src='decomposition-2.png' alt='' width='466' height='288' /></div><div class='input'><span class='fu'><a href='plotc.html'>plotc</a></span> (<span class='no'>pca.scores</span>, <span class='kw'>groups</span> <span class='kw'>=</span> <span class='no'>.wavelength</span>)</div><div class='img'><img src='decomposition-3.png' alt='' width='466' height='288' /></div></pre>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span> (<span class='kw'>pca.center</span>)</div><div class='img'><img src='decomposition-1.png' alt='' width='466' height='288' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span> (<span class='kw'>pca.loadings</span>, col = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span> (<span class='st'>"red"</span>, <span class='st'>"gray50"</span>))</div><div class='img'><img src='decomposition-2.png' alt='' width='466' height='288' /></div><div class='input'><span class='fu'>plotc</span> (<span class='kw'>pca.scores</span>, groups = <span class='kw'>.wavelength</span>)</div><div class='img'><img src='decomposition-3.png' alt='' width='466' height='288' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

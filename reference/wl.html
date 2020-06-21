@@ -91,9 +91,9 @@ replaced with wl and wl&amp;lt;-, respectively." />
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-    <li class="dropdown-header">Documentation for version of pacakge:</li>
+    <li class="dropdown-header">Documentation for version of package:</li>
     <li>
-      <a href="https://cbeleites.github.io/hyperSpec/">Realeased</a>
+      <a href="https://cbeleites.github.io/hyperSpec/">Released</a>
     </li>
     <li>
       <a href="https://cbeleites.github.io/hyperSpec/dev/">In-development</a>
@@ -172,9 +172,9 @@ replaced with wl and wl&amp;lt;-, respectively." />
 replaced with <code>wl</code> and <code>wl&lt;-</code>, respectively.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>wl</span>(<span class='no'>x</span>)
+    <pre class="usage"><span class='fu'>wl</span>(<span class='kw'>x</span>)
 
-<span class='fu'>wl</span> (<span class='no'>x</span>, <span class='kw'>label</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>digits</span><span class='kw'>=</span><span class='fl'>6</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span></pre>
+<span class='fu'>wl</span> (<span class='kw'>x</span>, label=<span class='kw'>NULL</span>, digits=<span class='fl'>6</span>) <span class='op'>&lt;-</span> <span class='kw'>value</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -185,7 +185,7 @@ replaced with <code>wl</code> and <code>wl&lt;-</code>, respectively.</p>
     </tr>
     <tr>
       <th>label</th>
-      <td><p>The label for the new wavelength axis. See <a href='initialize.html'>initialize</a>
+      <td><p>The label for the new wavelength axis. See initialize
 for details.</p></td>
     </tr>
     <tr>
@@ -215,35 +215,34 @@ examples.  If no label is given, a warning will be issued.</p>
 
     <p><code>wl&lt;-</code> always sets the complete wavelength axis, without
   changing the columns of the spectra matrix. If you rather want to cut the
-  spectral range, use <code>[</code>, for
+  spectral range, use <code><a href='https://rdrr.io/r/base/Extract.html'>[</a></code>, for
   interpolation along the spectral axis see
-  <code><a href='spc-loess.html'>spc.loess</a></code> and for spectral binning
-  <code><a href='spc-bin.html'>spc.bin</a></code>.</p>
+  <code><a href='https://rdrr.io/pkg/hyperSpec/man/spc-loess.html'>spc.loess</a></code> and for spectral binning
+  <code><a href='https://rdrr.io/pkg/hyperSpec/man/spc-bin.html'>spc.bin</a></code>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='https://rdrr.io/r/base/Round.html'>signif</a></code></p>
-<p>cutting the spectral range: <code>[</code></p>
-<p>interpolation along the spectral axis: <code><a href='spc-loess.html'>spc.loess</a></code></p>
-<p>spectral binning: <code><a href='spc-bin.html'>spc.bin</a></code></p></div>
+<p>cutting the spectral range: <code><a href='https://rdrr.io/r/base/Extract.html'>[</a></code></p>
+<p>interpolation along the spectral axis: <code><a href='https://rdrr.io/pkg/hyperSpec/man/spc-loess.html'>spc.loess</a></code></p>
+<p>spectral binning: <code><a href='https://rdrr.io/pkg/hyperSpec/man/spc-bin.html'>spc.bin</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>C. Beleites</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-        <span class='fu'>wl</span> (<span class='no'>laser</span>)</div><div class='output co'>#&gt;  [1] 404.5828 404.6181 404.6534 404.6887 404.7240 404.7592 404.7945 404.8298
+	wl (las<span class='fu'>wl</span>)<span class='kw'>laser</span></div><div class='output co'>#&gt;  [1] 404.5828 404.6181 404.6534 404.6887 404.7240 404.7592 404.7945 404.8298
 #&gt;  [9] 404.8651 404.9004 404.9357 404.9710 405.0063 405.0416 405.0768 405.1121
 #&gt; [17] 405.1474 405.1827 405.2180 405.2532 405.2885 405.3238 405.3591 405.3944
 #&gt; [25] 405.4296 405.4649 405.5002 405.5355 405.5707 405.6060 405.6413 405.6765
 #&gt; [33] 405.7118 405.7471 405.7823 405.8176</div><div class='input'>
-        <span class='co'># convert from wavelength to frequency</span>
-        <span class='fu'><a href='plot.html'>plot</a></span> (<span class='no'>laser</span>)</div><div class='img'><img src='wl-1.png' alt='' width='466' height='288' /></div><div class='input'>        <span class='fu'>wl</span> (<span class='no'>laser</span>, <span class='st'>"f / Hz"</span>) <span class='kw'>&lt;-</span> <span class='fl'>2.998e8</span> * <span class='fu'>wl</span> (<span class='no'>laser</span>) * <span class='fl'>1e9</span>
-        <span class='fu'><a href='plot.html'>plot</a></span> (<span class='no'>laser</span>)</div><div class='img'><img src='wl-2.png' alt='' width='466' height='288' /></div><div class='input'>
-        <span class='co'># convert from Raman shift to wavelength</span>
-        <span class='co'># excitation was at 785 nm</span>
-        <span class='fu'><a href='plot.html'>plot</a></span> (<span class='no'>chondro</span> [<span class='fl'>1</span>])</div><div class='img'><img src='wl-3.png' alt='' width='466' height='288' /></div><div class='input'>        <span class='fu'>wl</span> (<span class='no'>chondro</span>) <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span> (<span class='kw'>wl</span> <span class='kw'>=</span> <span class='fl'>1e7</span> / (<span class='fl'>1e7</span>/<span class='fl'>785</span> - <span class='fu'>wl</span> (<span class='no'>chondro</span>)), <span class='kw'>label</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span> (<span class='no'>lambda</span> / <span class='no'>nm</span>))
-        <span class='fu'><a href='plot.html'>plot</a></span> (<span class='no'>chondro</span> [<span class='fl'>1</span>])</div><div class='img'><img src='wl-4.png' alt='' width='466' height='288' /></div><div class='input'>
-</div></pre>
+	# conve<span class='co'># convert from wavelength to frequency</span>
+	plot (l<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>)<span class='kw'>laser</span></div><div class='img'><img src='wl-1.png' alt='' width='466' height='288' /></div><div class='input'>	wl (las<span class='fu'>wl</span>, <span class='kw'>laser</span>Hz<span class='st'>"f / Hz"</span>99<span class='op'>&lt;-</span>8<span class='fl'>2.998e8</span>l<span class='op'>*</span>s<span class='fu'>wl</span>) <span class='kw'>laser</span><span class='op'>*</span><span class='fl'>1e9</span>
+	plot (l<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>)<span class='kw'>laser</span></div><div class='img'><img src='wl-2.png' alt='' width='466' height='288' /></div><div class='input'>
+	# conve<span class='co'># convert from Raman shift to wavelength</span>
+	# excit<span class='co'># excitation was at 785 nm</span>
+	plot (c<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>ro<span class='kw'>chondro</span><span class='fl'>1</span></div><div class='img'><img src='wl-3.png' alt='' width='466' height='288' /></div><div class='input'>	wl (cho<span class='fu'>wl</span>ro<span class='kw'>chondro</span>st<span class='op'>&lt;-</span>w<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>1e7 / (<span class='fl'>1e7</span>/<span class='op'>/</span>85<span class='fl'>1e7</span><span class='op'>/</span><span class='fl'>785</span>c<span class='op'>-</span>o<span class='fu'>wl</span>ro<span class='kw'>chondro</span>el = express<span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span>a <span class='kw'>lambda</span><span class='op'>/</span><span class='kw'>nm</span>
+	plot (c<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>ro<span class='kw'>chondro</span><span class='fl'>1</span></div><div class='img'><img src='wl-4.png' alt='' width='466' height='288' /></div><div class='input'></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

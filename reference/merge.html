@@ -89,9 +89,9 @@ matrices, or merges additional extra data into a hyperSpec object." />
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-    <li class="dropdown-header">Documentation for version of pacakge:</li>
+    <li class="dropdown-header">Documentation for version of package:</li>
     <li>
-      <a href="https://cbeleites.github.io/hyperSpec/">Realeased</a>
+      <a href="https://cbeleites.github.io/hyperSpec/">Released</a>
     </li>
     <li>
       <a href="https://cbeleites.github.io/hyperSpec/dev/">In-development</a>
@@ -170,13 +170,13 @@ matrices, or merges additional extra data into a hyperSpec object.</p>
     </div>
 
     <pre class="usage"><span class='co'># S4 method for hyperSpec,hyperSpec</span>
-<span class='fu'>merge</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='no'>...</span>)
+<span class='fu'><a href='https://rdrr.io/pkg/sp/man/merge.html'>merge</a></span>(<span class='kw'>x</span>, <span class='kw'>y</span>, <span class='kw'>...</span>)
 
 <span class='co'># S4 method for hyperSpec,data.frame</span>
-<span class='fu'>merge</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='no'>...</span>)
+<span class='fu'><a href='https://rdrr.io/pkg/sp/man/merge.html'>merge</a></span>(<span class='kw'>x</span>, <span class='kw'>y</span>, <span class='kw'>...</span>)
 
 <span class='co'># S4 method for data.frame,hyperSpec</span>
-<span class='fu'>merge</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='no'>...</span>)</pre>
+<span class='fu'><a href='https://rdrr.io/pkg/sp/man/merge.html'>merge</a></span>(<span class='kw'>x</span>, <span class='kw'>y</span>, <span class='kw'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -199,12 +199,12 @@ matrices, or merges additional extra data into a hyperSpec object.</p>
 
     <p>After merging, the spectra matrix can contain duplicates, and is not
 ordered according to the wavelength.</p>
-<p>If the wavelength axis should be ordered, use <code><a href='orderwl.html'>orderwl</a></code>.</p>
+<p>If the wavelength axis should be ordered, use <code>orderwl</code>.</p>
 <p>If a <code>hyperSpec</code> object and  a <code>data.frame</code> are merged, the result is of the class of the first (<code>x</code>) object.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='https://rdrr.io/r/base/merge.html'>merge</a></code>.</p>
-<p><code><a href='collapse.html'>collapse</a></code> combines hyperSpec objects that do not share the wavelength axis.
+<p><code>collapse</code> combines hyperSpec objects that do not share the wavelength axis.
 <code><a href='https://rdrr.io/r/base/cbind.html'>rbind</a></code>, and <code><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></code> for combining hyperSpec objects that.</p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
@@ -212,7 +212,7 @@ ordered according to the wavelength.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>merge</span> (<span class='no'>chondro</span> [<span class='fl'>1</span>:<span class='fl'>10</span>,, <span class='fl'>600</span>], <span class='no'>chondro</span> [<span class='fl'>5</span>:<span class='fl'>15</span>,, <span class='fl'>600</span>], <span class='kw'>by</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"x"</span>, <span class='st'>"y"</span>))$<span class='no'>.</span></div><div class='output co'>#&gt;       x     y          filename.x clusters.x .nx          filename.y clusters.y
+<span class='fu'><a href='https://rdrr.io/pkg/sp/man/merge.html'>merge</a></span> (<span class='kw'>chondro</span> [<span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>,, <span class='fl'>600</span>], <span class='kw'>chondro</span> [<span class='fl'>5</span><span class='op'>:</span><span class='fl'>15</span>,, <span class='fl'>600</span>], by = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"x"</span>, <span class='st'>"y"</span>))<span class='op'>$</span><span class='kw'>.</span></div><div class='output co'>#&gt;       x     y          filename.x clusters.x .nx          filename.y clusters.y
 #&gt; 1 -2.55 -4.77 rawdata/chondro.txt     lacuna  10 rawdata/chondro.txt     lacuna
 #&gt; 2 -3.55 -4.77 rawdata/chondro.txt     lacuna   9 rawdata/chondro.txt     lacuna
 #&gt; 3 -4.55 -4.77 rawdata/chondro.txt     lacuna   8 rawdata/chondro.txt     lacuna
@@ -225,9 +225,9 @@ ordered according to the wavelength.</p>
 #&gt; 3   4    NA    NA
 #&gt; 4   3    NA    NA
 #&gt; 5   2    NA    NA
-#&gt; 6   1    NA    NA</div><div class='input'><span class='no'>tmp</span> <span class='kw'>&lt;-</span> <span class='fu'>merge</span> (<span class='no'>chondro</span> [<span class='fl'>1</span>:<span class='fl'>10</span>,, <span class='fl'>610</span>], <span class='no'>chondro</span> [<span class='fl'>5</span>:<span class='fl'>15</span>,, <span class='fl'>610</span>],
-              <span class='kw'>by</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"x"</span>, <span class='st'>"y"</span>), <span class='kw'>all</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='no'>tmp</span>$<span class='no'>.</span></div><div class='output co'>#&gt;         x     y          filename.x clusters.x .nx          filename.y
+#&gt; 6   1    NA    NA</div><div class='input'><span class='kw'>tmp</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/sp/man/merge.html'>merge</a></span> (<span class='kw'>chondro</span> [<span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>,, <span class='fl'>610</span>], <span class='kw'>chondro</span> [<span class='fl'>5</span><span class='op'>:</span><span class='fl'>15</span>,, <span class='fl'>610</span>],
+              by = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"x"</span>, <span class='st'>"y"</span>), all = <span class='fl'>TRUE</span>)
+<span class='kw'>tmp</span><span class='op'>$</span><span class='kw'>.</span></div><div class='output co'>#&gt;         x     y          filename.x clusters.x .nx          filename.y
 #&gt; 1  -11.55 -4.77 rawdata/chondro.txt     matrix   1                &lt;NA&gt;
 #&gt; 2  -10.55 -4.77 rawdata/chondro.txt     matrix   2                &lt;NA&gt;
 #&gt; 3   -9.55 -4.77 rawdata/chondro.txt     matrix   3                &lt;NA&gt;
@@ -258,16 +258,16 @@ ordered according to the wavelength.</p>
 #&gt; 12     lacuna   8       NA 357.0593
 #&gt; 13     lacuna   9       NA 368.5321
 #&gt; 14     lacuna  10       NA 357.8674
-#&gt; 15     lacuna  11       NA 365.9732</div><div class='input'><span class='fu'><a href='wl.html'>wl</a></span> (<span class='no'>tmp</span>)</div><div class='output co'>#&gt; [1] 610 610</div><div class='input'>
+#&gt; 15     lacuna  11       NA 365.9732</div><div class='input'><span class='fu'>wl</span> (<span class='kw'>tmp</span>)</div><div class='output co'>#&gt; [1] 610 610</div><div class='input'>
 <span class='co'>## remove duplicated wavelengths:</span>
-<span class='no'>approxfun</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span> (<span class='no'>y</span>, <span class='no'>wl</span>, <span class='no'>new.wl</span>){
-  <span class='fu'><a href='https://rdrr.io/r/stats/approxfun.html'>approx</a></span> (<span class='no'>wl</span>, <span class='no'>y</span>, <span class='no'>new.wl</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"constant"</span>,
-          <span class='kw'>ties</span> <span class='kw'>=</span> <span class='kw'>function</span> (<span class='no'>x</span>) <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span> (<span class='no'>x</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-          )$<span class='no'>y</span>
+<span class='kw'>approxfun</span> <span class='op'>&lt;-</span> <span class='fu'>function</span> (<span class='kw'>y</span>, <span class='kw'>wl</span>, <span class='kw'>new.wl</span>){
+  <span class='fu'><a href='https://rdrr.io/r/stats/approxfun.html'>approx</a></span> (<span class='kw'>wl</span>, <span class='kw'>y</span>, <span class='kw'>new.wl</span>, method = <span class='st'>"constant"</span>,
+          ties = <span class='fu'>function</span> (<span class='kw'>x</span>) <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span> (<span class='kw'>x</span>, na.rm = <span class='fl'>TRUE</span>)
+          )<span class='op'>$</span><span class='kw'>y</span>
 }
 
-<span class='no'>merged</span> <span class='kw'>&lt;-</span> <span class='fu'>merge</span> (<span class='no'>chondro</span> [<span class='fl'>1</span>:<span class='fl'>7</span>,, <span class='fl'>610</span> ~ <span class='fl'>620</span>], <span class='no'>chondro</span> [<span class='fl'>5</span>:<span class='fl'>10</span>,, <span class='fl'>615</span> ~ <span class='fl'>625</span>], <span class='kw'>all</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='no'>merged</span>$<span class='no'>.</span></div><div class='output co'>#&gt;        y      x            filename clusters .nx .ny    spc.1    spc.2    spc.3
+<span class='kw'>merged</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/sp/man/merge.html'>merge</a></span> (<span class='kw'>chondro</span> [<span class='fl'>1</span><span class='op'>:</span><span class='fl'>7</span>,, <span class='fl'>610</span> <span class='op'>~</span> <span class='fl'>620</span>], <span class='kw'>chondro</span> [<span class='fl'>5</span><span class='op'>:</span><span class='fl'>10</span>,, <span class='fl'>615</span> <span class='op'>~</span> <span class='fl'>625</span>], all = <span class='fl'>TRUE</span>)
+<span class='kw'>merged</span><span class='op'>$</span><span class='kw'>.</span></div><div class='output co'>#&gt;        y      x            filename clusters .nx .ny    spc.1    spc.2    spc.3
 #&gt; 1  -4.77 -11.55 rawdata/chondro.txt   matrix   1  NA 488.6323 466.1774 492.0016
 #&gt; 2  -4.77 -10.55 rawdata/chondro.txt   matrix   2  NA 489.4758 465.0506 490.5329
 #&gt; 3  -4.77  -9.55 rawdata/chondro.txt   matrix   3  NA 456.0324 436.6220 458.0576
@@ -288,10 +288,10 @@ ordered according to the wavelength.</p>
 #&gt; 7  396.5000 421.2738 445.5431 382.7198
 #&gt; 8  381.9505 406.2471 429.6729 368.4599
 #&gt; 9  397.5075 423.3002 446.1478 381.8675
-#&gt; 10 377.3918 402.2349 424.1902 362.4297</div><div class='input'><span class='no'>merged</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='apply.html'>apply</a></span> (<span class='no'>merged</span>, <span class='fl'>1</span>, <span class='no'>approxfun</span>,
-                 <span class='kw'>wl</span> <span class='kw'>=</span> <span class='fu'><a href='wl.html'>wl</a></span> (<span class='no'>merged</span>), <span class='kw'>new.wl</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span> (<span class='fu'><a href='wl.html'>wl</a></span> (<span class='no'>merged</span>)),
-                 <span class='kw'>new.wavelength</span> <span class='kw'>=</span> <span class='st'>"new.wl"</span>)
-<span class='no'>merged</span>$<span class='no'>.</span></div><div class='output co'>#&gt;        y      x            filename clusters .nx .ny    spc.1    spc.2    spc.3
+#&gt; 10 377.3918 402.2349 424.1902 362.4297</div><div class='input'><span class='kw'>merged</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span> (<span class='kw'>merged</span>, <span class='fl'>1</span>, <span class='kw'>approxfun</span>,
+                 wl = <span class='fu'>wl</span> (<span class='kw'>merged</span>), new.wl = <span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span> (<span class='fu'>wl</span> (<span class='kw'>merged</span>)),
+                 new.wavelength = <span class='st'>"new.wl"</span>)
+<span class='kw'>merged</span><span class='op'>$</span><span class='kw'>.</span></div><div class='output co'>#&gt;        y      x            filename clusters .nx .ny    spc.1    spc.2    spc.3
 #&gt; 1  -4.77 -11.55 rawdata/chondro.txt   matrix   1  NA 488.6323 466.1774 492.0016
 #&gt; 2  -4.77 -10.55 rawdata/chondro.txt   matrix   2  NA 489.4758 465.0506 490.5329
 #&gt; 3  -4.77  -9.55 rawdata/chondro.txt   matrix   3  NA 456.0324 436.6220 458.0576
@@ -314,151 +314,151 @@ ordered according to the wavelength.</p>
 #&gt; 9  446.1478 381.8675
 #&gt; 10 424.1902 362.4297</div><div class='input'>
 <span class='co'>## merging data.frame into hyperSpec object =&gt; hyperSpec object</span>
-<span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span> (<span class='kw'>filename</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span> (<span class='no'>flu</span>$<span class='no'>filename</span>, <span class='fl'>4</span>, <span class='kw'>replace</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>), <span class='kw'>cpred</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>4</span>)
-<span class='no'>y</span></div><div class='output co'>#&gt;           filename cpred
-#&gt; 1 rawdata/flu2.txt     1
+<span class='kw'>y</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span> (filename = <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span> (<span class='kw'>flu</span><span class='op'>$</span><span class='kw'>filename</span>, <span class='fl'>4</span>, replace = <span class='fl'>TRUE</span>), cpred = <span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span>)
+<span class='kw'>y</span></div><div class='output co'>#&gt;           filename cpred
+#&gt; 1 rawdata/flu1.txt     1
 #&gt; 2 rawdata/flu6.txt     2
-#&gt; 3 rawdata/flu5.txt     3
-#&gt; 4 rawdata/flu6.txt     4</div><div class='input'><span class='no'>tmp</span> <span class='kw'>&lt;-</span> <span class='fu'>merge</span> (<span class='no'>flu</span>, <span class='no'>y</span>)
-<span class='no'>tmp</span>$<span class='no'>..</span></div><div class='output co'>#&gt;           filename    c cpred
-#&gt; 1 rawdata/flu2.txt 0.10     1
-#&gt; 2 rawdata/flu5.txt 0.25     3
+#&gt; 3 rawdata/flu1.txt     3
+#&gt; 4 rawdata/flu6.txt     4</div><div class='input'><span class='kw'>tmp</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/sp/man/merge.html'>merge</a></span> (<span class='kw'>flu</span>, <span class='kw'>y</span>)
+<span class='kw'>tmp</span><span class='op'>$</span><span class='kw'>..</span></div><div class='output co'>#&gt;           filename    c cpred
+#&gt; 1 rawdata/flu1.txt 0.05     1
+#&gt; 2 rawdata/flu1.txt 0.05     3
 #&gt; 3 rawdata/flu6.txt 0.30     2
 #&gt; 4 rawdata/flu6.txt 0.30     4</div><div class='input'>
 <span class='co'>## merging hyperSpec object into data.frame =&gt; data.frame</span>
-<span class='fu'>merge</span> (<span class='no'>y</span>, <span class='no'>flu</span>)</div><div class='output co'>#&gt;           filename cpred   spc.405 spc.405.5   spc.406 spc.406.5   spc.407
-#&gt; 1 rawdata/flu2.txt     1  66.80133  63.71533  66.71200  69.58233  72.52967
-#&gt; 2 rawdata/flu5.txt     3 167.26667 171.89833 177.47067 184.62467 189.75233
+<span class='fu'><a href='https://rdrr.io/pkg/sp/man/merge.html'>merge</a></span> (<span class='kw'>y</span>, <span class='kw'>flu</span>)</div><div class='output co'>#&gt;           filename cpred   spc.405 spc.405.5   spc.406 spc.406.5   spc.407
+#&gt; 1 rawdata/flu1.txt     1  27.15000  32.34467  33.37867  34.41933  36.53133
+#&gt; 2 rawdata/flu1.txt     3  27.15000  32.34467  33.37867  34.41933  36.53133
 #&gt; 3 rawdata/flu6.txt     2 198.43033 209.45800 215.78500 224.58700 232.52800
 #&gt; 4 rawdata/flu6.txt     4 198.43033 209.45800 215.78500 224.58700 232.52800
 #&gt;   spc.407.5   spc.408 spc.408.5   spc.409 spc.409.5   spc.410 spc.410.5
-#&gt; 1  74.55833  77.04800  80.25967  82.53867  84.49167  88.15167  91.08533
-#&gt; 2 198.11533 205.56267 208.41933 217.55267 224.74633 231.03567 236.35233
+#&gt; 1  37.64767  38.13700  39.17700  40.73567  41.38133  44.25133  44.12633
+#&gt; 2  37.64767  38.13700  39.17700  40.73567  41.38133  44.25133  44.12633
 #&gt; 3 240.77133 248.04667 256.89133 262.73900 270.27133 281.82867 287.70467
 #&gt; 4 240.77133 248.04667 256.89133 262.73900 270.27133 281.82867 287.70467
 #&gt;     spc.411 spc.411.5   spc.412 spc.412.5   spc.413 spc.413.5   spc.414
-#&gt; 1  95.37233  95.53033  98.99533 101.03433 103.55800 107.02667 109.54533
-#&gt; 2 244.61233 251.95000 257.34633 265.54500 272.06333 280.74133 288.10567
+#&gt; 1  46.98067  49.08167  50.27433  50.10967  52.23167  53.03967  54.51900
+#&gt; 2  46.98067  49.08167  50.27433  50.10967  52.23167  53.03967  54.51900
 #&gt; 3 297.23500 307.59333 314.99367 324.56300 330.80033 340.89667 347.62167
 #&gt; 4 297.23500 307.59333 314.99367 324.56300 330.80033 340.89667 347.62167
 #&gt;   spc.414.5   spc.415 spc.415.5   spc.416 spc.416.5   spc.417 spc.417.5
-#&gt; 1 111.67233 113.98733 117.03267 119.83500 123.49433 123.32367 127.00167
-#&gt; 2 291.88367 300.74000 307.87567 315.42967 321.89600 326.73133 334.01200
+#&gt; 1  56.22033  57.71933  59.51433  58.74500  60.09467  61.84067  62.16867
+#&gt; 2  56.22033  57.71933  59.51433  58.74500  60.09467  61.84067  62.16867
 #&gt; 3 355.02667 365.62333 374.35700 380.21733 391.40100 398.17300 405.42933
 #&gt; 4 355.02667 365.62333 374.35700 380.21733 391.40100 398.17300 405.42933
 #&gt;     spc.418 spc.418.5   spc.419 spc.419.5   spc.420 spc.420.5   spc.421
-#&gt; 1 130.68067 132.35800 136.16467 138.39933 140.22433 141.04333 143.13133
-#&gt; 2 339.59933 343.86167 351.25667 357.79733 360.36000 367.96533 374.54900
+#&gt; 1  66.04933  65.24500  65.79900  66.94333  69.13600  70.92467  73.83400
+#&gt; 2  66.04933  65.24500  65.79900  66.94333  69.13600  70.92467  73.83400
 #&gt; 3 412.48400 421.27300 429.36267 433.35767 443.18733 447.88033 461.33933
 #&gt; 4 412.48400 421.27300 429.36267 433.35767 443.18733 447.88033 461.33933
 #&gt;   spc.421.5   spc.422 spc.422.5   spc.423 spc.423.5   spc.424 spc.424.5
-#&gt; 1 147.17967 150.01200 153.69333 155.72800 158.47200 159.50067 160.81567
-#&gt; 2 381.76000 389.24100 397.79733 403.78367 408.02300 418.35533 420.61400
+#&gt; 1  74.38567  74.17333  75.53067  76.42967  76.13200  77.89067  79.36867
+#&gt; 2  74.38567  74.17333  75.53067  76.42967  76.13200  77.89067  79.36867
 #&gt; 3 467.12733 475.18967 481.66667 488.73567 494.01867 504.47333 515.40467
 #&gt; 4 467.12733 475.18967 481.66667 488.73567 494.01867 504.47333 515.40467
 #&gt;     spc.425 spc.425.5   spc.426 spc.426.5   spc.427 spc.427.5   spc.428
-#&gt; 1 163.90967 166.25500 169.59233 170.82833 172.08767 175.21133 178.47067
-#&gt; 2 427.04333 433.33900 438.43633 449.57667 449.64833 455.43800 463.33200
+#&gt; 1  79.42733  82.02833  83.87833  83.81367  85.50667  86.50233  88.93733
+#&gt; 2  79.42733  82.02833  83.87833  83.81367  85.50667  86.50233  88.93733
 #&gt; 3 521.23867 522.64633 536.03533 544.41767 551.63333 556.71267 567.61267
 #&gt; 4 521.23867 522.64633 536.03533 544.41767 551.63333 556.71267 567.61267
 #&gt;   spc.428.5   spc.429 spc.429.5   spc.430 spc.430.5   spc.431 spc.431.5
-#&gt; 1 179.68100 181.82867 184.42933 187.75600 187.93767 191.05700 192.50900
-#&gt; 2 471.47433 476.60033 480.93533 486.53833 491.91000 500.59200 502.12433
+#&gt; 1  88.99533  89.51500  90.55667  91.70633  93.57900  94.01300  94.21033
+#&gt; 2  88.99533  89.51500  90.55667  91.70633  93.57900  94.01300  94.21033
 #&gt; 3 572.54933 578.72667 587.74900 590.54867 600.42300 608.35800 614.03833
 #&gt; 4 572.54933 578.72667 587.74900 590.54867 600.42300 608.35800 614.03833
 #&gt;     spc.432 spc.432.5   spc.433 spc.433.5   spc.434 spc.434.5   spc.435
-#&gt; 1 192.80100 195.55600 197.89067 198.78200 200.99467 201.52233 200.20600
-#&gt; 2 508.40733 512.70433 515.62733 522.20267 524.72467 525.20700 529.69967
+#&gt; 1  96.44200  96.62733  98.96233  98.84767 100.56833 100.44933  99.91600
+#&gt; 2  96.44200  96.62733  98.96233  98.84767 100.56833 100.44933  99.91600
 #&gt; 3 616.95567 621.87267 629.80033 633.44500 637.13233 639.16167 642.89833
 #&gt; 4 616.95567 621.87267 629.80033 633.44500 637.13233 639.16167 642.89833
 #&gt;   spc.435.5   spc.436 spc.436.5   spc.437 spc.437.5   spc.438 spc.438.5
-#&gt; 1 204.13200 204.90433 203.98833 205.75600 204.81700 206.09100 208.60733
-#&gt; 2 531.71400 537.00600 538.20567 543.83567 544.08533 547.93633 552.15700
+#&gt; 1  99.71900 100.88633 101.44533 102.64267 104.22967 103.11133 104.75800
+#&gt; 2  99.71900 100.88633 101.44533 102.64267 104.22967 103.11133 104.75800
 #&gt; 3 648.17200 651.67900 654.53967 656.83267 659.77800 662.05633 663.12300
 #&gt; 4 648.17200 651.67900 654.53967 656.83267 659.77800 662.05633 663.12300
 #&gt;     spc.439 spc.439.5   spc.440 spc.440.5   spc.441 spc.441.5   spc.442
-#&gt; 1 210.79667 210.58400 210.19033 210.54233 209.85933 212.82733 212.52067
-#&gt; 2 550.93500 548.20333 548.14767 550.77700 550.86067 551.78767 553.30400
+#&gt; 1 103.15833 103.94267 105.37100 105.86333 103.67967 104.09000 104.65400
+#&gt; 2 103.15833 103.94267 105.37100 105.86333 103.67967 104.09000 104.65400
 #&gt; 3 663.48200 670.47567 669.88700 670.06033 671.00800 667.61233 666.30833
 #&gt; 4 663.48200 670.47567 669.88700 670.06033 671.00800 667.61233 666.30833
 #&gt;   spc.442.5   spc.443 spc.443.5   spc.444 spc.444.5   spc.445 spc.445.5
-#&gt; 1 212.41967 211.22233 215.56367 213.42467 211.15933 212.97533 213.98933
-#&gt; 2 552.57400 553.54533 551.11500 555.87400 554.84800 558.49500 556.92500
+#&gt; 1 105.22633 104.80433 105.81033 104.75800 103.88300 105.36167 105.01500
+#&gt; 2 105.22633 104.80433 105.81033 104.75800 103.88300 105.36167 105.01500
 #&gt; 3 669.97433 675.68300 675.97867 676.64200 674.73667 671.23433 673.61133
 #&gt; 4 669.97433 675.68300 675.97867 676.64200 674.73667 671.23433 673.61133
 #&gt;     spc.446 spc.446.5   spc.447 spc.447.5   spc.448 spc.448.5   spc.449
-#&gt; 1 214.17200 213.47633 212.48867 211.74100 212.70467 212.94033 212.12933
-#&gt; 2 559.01233 557.12833 555.68833 553.09200 554.96233 553.30000 555.83300
+#&gt; 1 105.05933 105.34933 103.98700 105.43867 104.19667 105.09800 104.72333
+#&gt; 2 105.05933 105.34933 103.98700 105.43867 104.19667 105.09800 104.72333
 #&gt; 3 676.73533 677.49467 674.28033 676.64567 674.89067 673.09200 674.89800
 #&gt; 4 676.73533 677.49467 674.28033 676.64567 674.89067 673.09200 674.89800
 #&gt;   spc.449.5   spc.450 spc.450.5   spc.451 spc.451.5   spc.452 spc.452.5
-#&gt; 1 213.77267 213.49733 213.46400 213.17067 212.83600 211.96333 208.79867
-#&gt; 2 555.17800 556.52367 554.77567 551.07633 553.91567 553.45200 550.76067
+#&gt; 1 106.66733 106.94967 104.75467 105.08267 105.30000 105.21300 104.78100
+#&gt; 2 106.66733 106.94967 104.75467 105.08267 105.30000 105.21300 104.78100
 #&gt; 3 671.64167 672.53167 672.28033 671.00033 672.87900 674.74300 672.72467
 #&gt; 4 671.64167 672.53167 672.28033 671.00033 672.87900 674.74300 672.72467
 #&gt;     spc.453 spc.453.5   spc.454 spc.454.5   spc.455 spc.455.5   spc.456
-#&gt; 1 211.50633 209.47700 211.85967 213.26200 212.28367 211.77333 209.39067
-#&gt; 2 551.41767 548.26100 549.39067 553.83833 549.54067 544.38700 544.44033
+#&gt; 1 104.53867 105.13267 105.16967 104.05700 106.38533 104.07967 104.40133
+#&gt; 2 104.53867 105.13267 105.16967 104.05700 106.38533 104.07967 104.40133
 #&gt; 3 669.79100 672.00433 672.33967 668.74033 662.63333 666.29700 664.63267
 #&gt; 4 669.79100 672.00433 672.33967 668.74033 662.63333 666.29700 664.63267
 #&gt;   spc.456.5   spc.457 spc.457.5   spc.458 spc.458.5   spc.459 spc.459.5
-#&gt; 1 208.85600 208.34033 206.50633 206.77733 206.64500 205.25500 201.74700
-#&gt; 2 543.01167 539.73833 538.81333 537.68600 532.22333 531.40200 527.58867
+#&gt; 1 102.18133 103.44167 101.79700 102.87167 102.38867 100.41900 101.16167
+#&gt; 2 102.18133 103.44167 101.79700 102.87167 102.38867 100.41900 101.16167
 #&gt; 3 659.91800 660.13033 656.23733 654.19500 652.31833 647.82100 643.38133
 #&gt; 4 659.91800 660.13033 656.23733 654.19500 652.31833 647.82100 643.38133
 #&gt;     spc.460 spc.460.5   spc.461 spc.461.5   spc.462 spc.462.5   spc.463
-#&gt; 1 201.98800 199.57000 200.55100 198.76767 197.03300 194.14467 193.38300
-#&gt; 2 526.91933 519.80200 518.62067 515.22900 511.55500 506.87467 503.26400
+#&gt; 1  98.61133  98.42933  98.57600  98.34100  98.46733  95.14900  94.71100
+#&gt; 2  98.61133  98.42933  98.57600  98.34100  98.46733  95.14900  94.71100
 #&gt; 3 640.79033 632.11967 633.56367 627.81900 623.21133 619.99667 613.55133
 #&gt; 4 640.79033 632.11967 633.56367 627.81900 623.21133 619.99667 613.55133
 #&gt;   spc.463.5   spc.464 spc.464.5   spc.465 spc.465.5   spc.466 spc.466.5
-#&gt; 1 193.66467 192.51267 190.63300 186.45567 186.05433 182.30533 182.33367
-#&gt; 2 498.34400 494.06167 491.78467 484.60533 486.67233 479.56767 475.90100
+#&gt; 1  95.27433  94.88433  93.62133  92.46567  92.11533  91.30867  89.53900
+#&gt; 2  95.27433  94.88433  93.62133  92.46567  92.11533  91.30867  89.53900
 #&gt; 3 606.01267 605.92100 599.88400 593.00650 587.40150 586.38900 581.49850
 #&gt; 4 606.01267 605.92100 599.88400 593.00650 587.40150 586.38900 581.49850
 #&gt;     spc.467 spc.467.5   spc.468 spc.468.5   spc.469 spc.469.5   spc.470
-#&gt; 1 180.56933 180.50633 180.21267 175.21100 171.65000 170.41667 170.37400
-#&gt; 2 472.13100 464.54333 457.90900 455.22167 449.28400 446.34567 442.75167
+#&gt; 1  88.28100  86.13633  86.16200  86.81733  85.95767  84.06700  86.21200
+#&gt; 2  88.28100  86.13633  86.16200  86.81733  85.95767  84.06700  86.21200
 #&gt; 3 574.15100 566.49250 560.29000 559.46250 550.27850 545.54350 542.76900
 #&gt; 4 574.15100 566.49250 560.29000 559.46250 550.27850 545.54350 542.76900
 #&gt;   spc.470.5   spc.471 spc.471.5   spc.472 spc.472.5   spc.473 spc.473.5
-#&gt; 1 169.40700 164.89000 164.14133 163.17333 160.98933 159.66533 157.74633
-#&gt; 2 438.25067 432.26667 427.76167 422.73000 416.02133 413.34567 408.62267
+#&gt; 1  83.68333  82.56867  82.70533  81.26033  78.75233  76.67533  77.95300
+#&gt; 2  83.68333  82.56867  82.70533  81.26033  78.75233  76.67533  77.95300
 #&gt; 3 528.92800 528.12900 519.65350 516.54950 512.45650 502.48600 499.65250
 #&gt; 4 528.92800 528.12900 519.65350 516.54950 512.45650 502.48600 499.65250
 #&gt;     spc.474 spc.474.5   spc.475 spc.475.5   spc.476 spc.476.5   spc.477
-#&gt; 1 155.13467 153.23933 151.52300 149.19667 147.49467 147.49000 145.43367
-#&gt; 2 403.80533 400.32500 393.77333 393.78567 386.53867 383.86933 378.65500
+#&gt; 1  77.50700  76.16400  75.64600  76.43700  74.57033  72.87900  72.80267
+#&gt; 2  77.50700  76.16400  75.64600  76.43700  74.57033  72.87900  72.80267
 #&gt; 3 495.00100 486.49700 481.73950 476.47200 472.37900 469.25450 466.99550
 #&gt; 4 495.00100 486.49700 481.73950 476.47200 472.37900 469.25450 466.99550
 #&gt;   spc.477.5   spc.478 spc.478.5   spc.479 spc.479.5   spc.480 spc.480.5
-#&gt; 1 144.81900 142.43867 142.68967 142.88100 139.83767 135.47933 135.25267
-#&gt; 2 373.64800 372.70233 368.87433 366.15533 362.89967 357.86333 354.96700
+#&gt; 1  71.05200  70.21367  69.60533  69.98967  68.78000  68.34233  67.68467
+#&gt; 2  71.05200  70.21367  69.60533  69.98967  68.78000  68.34233  67.68467
 #&gt; 3 457.76300 452.32300 450.48350 445.14500 444.27400 435.22800 430.33300
 #&gt; 4 457.76300 452.32300 450.48350 445.14500 444.27400 435.22800 430.33300
 #&gt;     spc.481 spc.481.5   spc.482 spc.482.5   spc.483 spc.483.5   spc.484
-#&gt; 1 135.84567 133.55900 133.31767 132.82400 128.93033 125.20300 124.73967
-#&gt; 2 352.37067 344.31567 342.10133 339.01433 336.71533 334.59300 326.09833
+#&gt; 1  67.27700  67.04833  65.31300  64.50900  63.50567  62.18367  62.04500
+#&gt; 2  67.27700  67.04833  65.31300  64.50900  63.50567  62.18367  62.04500
 #&gt; 3 424.72000 420.74800 418.46650 414.01750 408.32400 403.85400 405.00450
 #&gt; 4 424.72000 420.74800 418.46650 414.01750 408.32400 403.85400 405.00450
 #&gt;   spc.484.5   spc.485 spc.485.5   spc.486 spc.486.5   spc.487 spc.487.5
-#&gt; 1 124.71667 121.67833 120.90167 121.40600 117.66767 117.04100 115.94100
-#&gt; 2 324.69400 320.56700 315.93067 312.73200 307.94367 306.38633 298.34667
+#&gt; 1  62.02733  61.79900  60.52800  59.34200  59.12500  57.74800  57.44667
+#&gt; 2  62.02733  61.79900  60.52800  59.34200  59.12500  57.74800  57.44667
 #&gt; 3 394.33500 389.97750 384.49100 382.33700 375.08200 369.09900 366.06300
 #&gt; 4 394.33500 389.97750 384.49100 382.33700 375.08200 369.09900 366.06300
 #&gt;     spc.488 spc.488.5   spc.489 spc.489.5   spc.490 spc.490.5   spc.491
-#&gt; 1 112.22900 112.72433 111.67267 109.69833 107.64067 108.05067 105.22000
-#&gt; 2 298.57433 296.05233 292.49933 285.46933 282.62833 279.92767 273.34667
+#&gt; 1  57.74267  56.27500  55.49233  54.40933  53.83267  53.26333  52.45733
+#&gt; 2  57.74267  56.27500  55.49233  54.40933  53.83267  53.26333  52.45733
 #&gt; 3 362.45350 358.99650 352.14300 348.20000 347.10650 338.79150 335.34700
 #&gt; 4 362.45350 358.99650 352.14300 348.20000 347.10650 338.79150 335.34700
 #&gt;   spc.491.5   spc.492 spc.492.5   spc.493 spc.493.5   spc.494 spc.494.5
-#&gt; 1 102.95300 102.75833 100.62800  97.96500  97.35333  96.60167  96.20600
-#&gt; 2 267.55433 266.10100 261.76567 259.40200 256.20067 252.06567 248.06700
+#&gt; 1  52.14000  49.78433  49.62300  48.33800  47.30400  47.16267  46.41233
+#&gt; 2  52.14000  49.78433  49.62300  48.33800  47.30400  47.16267  46.41233
 #&gt; 3 330.04000 325.16200 322.06850 315.64550 312.32950 307.51850 302.32550
 #&gt; 4 330.04000 325.16200 322.06850 315.64550 312.32950 307.51850 302.32550
 #&gt;     spc.495    c
-#&gt; 1  94.61033 0.10
-#&gt; 2 246.95200 0.25
+#&gt; 1  45.25633 0.05
+#&gt; 2  45.25633 0.05
 #&gt; 3 294.64950 0.30
 #&gt; 4 294.64950 0.30</div></pre>
   </div>

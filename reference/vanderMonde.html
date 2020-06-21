@@ -90,9 +90,9 @@ wavelengths of a hyperSpec object." />
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-    <li class="dropdown-header">Documentation for version of pacakge:</li>
+    <li class="dropdown-header">Documentation for version of package:</li>
     <li>
-      <a href="https://cbeleites.github.io/hyperSpec/">Realeased</a>
+      <a href="https://cbeleites.github.io/hyperSpec/">Released</a>
     </li>
     <li>
       <a href="https://cbeleites.github.io/hyperSpec/dev/">In-development</a>
@@ -171,10 +171,10 @@ generates a hyperSpec object containing the van der Monde matrix of the
 wavelengths of a hyperSpec object.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>vanderMonde</span>(<span class='no'>x</span>, <span class='no'>order</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>vanderMonde</span>(<span class='kw'>x</span>, <span class='kw'>order</span>, <span class='kw'>...</span>)
 
 <span class='co'># S4 method for hyperSpec</span>
-<span class='fu'>vanderMonde</span>(<span class='no'>x</span>, <span class='no'>order</span>, <span class='no'>...</span>, <span class='kw'>normalize.wl</span> <span class='kw'>=</span> <span class='no'>normalize01</span>)</pre>
+<span class='fu'>vanderMonde</span>(<span class='kw'>x</span>, <span class='kw'>order</span>, <span class='kw'>...</span>, normalize.wl = <span class='kw'>normalize01</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -205,7 +205,7 @@ other function). `hyperSpec::normalize01()` maps the wavelength range to the int
 <p>hyperSpec method: hyperSpec object containing van der Monde matrix as spectra and an additional column `$.vdm.order$ giving the order of each spectrum (term).</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>It is often numerically preferrable to map <code><a href='wl.html'>wl(x)</a></code> to [0, 1], see the
+    <p>It is often numerically preferrable to map <code>wl(x)</code> to [0, 1], see the
 example.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -216,8 +216,7 @@ example.</p>
     <p>C. Beleites</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='plot.html'>plot</a></span>(<span class='fu'>vanderMonde</span>(<span class='no'>flu</span>, <span class='fl'>2</span>))</div><div class='img'><img src='vanderMonde-1.png' alt='' width='466' height='288' /></div><div class='input'><span class='fu'><a href='plot.html'>plot</a></span>(<span class='fu'>vanderMonde</span>(<span class='no'>flu</span>, <span class='fl'>2</span>, <span class='kw'>normalize.wl</span> <span class='kw'>=</span> <span class='no'>I</span>))</div><div class='img'><img src='vanderMonde-2.png' alt='' width='466' height='288' /></div><div class='input'>
-</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='fu'>vanderMonde</span>(<span class='kw'>flu</span>, <span class='fl'>2</span>))</div><div class='img'><img src='vanderMonde-1.png' alt='' width='466' height='288' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='fu'>vanderMonde</span>(<span class='kw'>flu</span>, <span class='fl'>2</span>, normalize.wl = <span class='kw'>I</span>))</div><div class='img'><img src='vanderMonde-2.png' alt='' width='466' height='288' /></div><div class='input'></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -94,9 +94,9 @@ operates substantially faster" />
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-    <li class="dropdown-header">Documentation for version of pacakge:</li>
+    <li class="dropdown-header">Documentation for version of package:</li>
     <li>
-      <a href="https://cbeleites.github.io/hyperSpec/">Realeased</a>
+      <a href="https://cbeleites.github.io/hyperSpec/">Released</a>
     </li>
     <li>
       <a href="https://cbeleites.github.io/hyperSpec/dev/">In-development</a>
@@ -180,10 +180,10 @@ operates substantially faster</p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for matrix</span>
-<span class='fu'>rbind.fill</span>(<span class='no'>...</span>)
+<span class='fu'>rbind.fill</span>(<span class='kw'>...</span>)
 
 <span class='co'># S3 method for fill</span>
-<span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>rbind</a></span>(<span class='no'>...</span>)</pre>
+<span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>rbind</a></span>(<span class='kw'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -215,26 +215,26 @@ numeric, the result will be character.</p>
     <p>C. Beleites</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'> <span class='no'>A</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span> (<span class='fl'>1</span>:<span class='fl'>4</span>, <span class='fl'>2</span>)
- <span class='no'>B</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span> (<span class='fl'>6</span>:<span class='fl'>11</span>, <span class='fl'>2</span>)
- <span class='no'>A</span></div><div class='output co'>#&gt;      [,1] [,2]
+    <pre class="examples"><div class='input'> <span class='kw'>A</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span> (<span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span>, <span class='fl'>2</span>)
+ <span class='kw'>B</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span> (<span class='fl'>6</span><span class='op'>:</span><span class='fl'>11</span>, <span class='fl'>2</span>)
+ <span class='kw'>A</span></div><div class='output co'>#&gt;      [,1] [,2]
 #&gt; [1,]    1    3
-#&gt; [2,]    2    4</div><div class='input'> <span class='no'>B</span></div><div class='output co'>#&gt;      [,1] [,2] [,3]
+#&gt; [2,]    2    4</div><div class='input'> <span class='kw'>B</span></div><div class='output co'>#&gt;      [,1] [,2] [,3]
 #&gt; [1,]    6    8   10
-#&gt; [2,]    7    9   11</div><div class='input'> <span class='kw pkg'>hyperSpec</span><span class='kw ns'>:::</span><span class='fu'>rbind.fill.matrix</span> (<span class='no'>A</span>, <span class='no'>B</span>)</div><div class='output co'>#&gt;      X1 X2 X3
+#&gt; [2,]    7    9   11</div><div class='input'> <span class='kw'>hyperSpec</span>:::<span class='fu'><a href='https://rdrr.io/pkg/hyperSpec/man/rbind.fill.html'>rbind.fill.matrix</a></span> (<span class='kw'>A</span>, <span class='kw'>B</span>)</div><div class='output co'>#&gt;      X1 X2 X3
 #&gt; [1,]  1  3 NA
 #&gt; [2,]  2  4 NA
 #&gt; [3,]  6  8 10
 #&gt; [4,]  7  9 11</div><div class='input'>
- <span class='fu'><a href='dimnames.html'>colnames</a></span> (<span class='no'>A</span>) <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span> (<span class='fl'>3</span>, <span class='fl'>1</span>)
- <span class='no'>A</span></div><div class='output co'>#&gt;      3 1
+ <span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span> (<span class='kw'>A</span>) <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span> (<span class='fl'>3</span>, <span class='fl'>1</span>)
+ <span class='kw'>A</span></div><div class='output co'>#&gt;      3 1
 #&gt; [1,] 1 3
-#&gt; [2,] 2 4</div><div class='input'> <span class='kw pkg'>hyperSpec</span><span class='kw ns'>:::</span><span class='fu'>rbind.fill.matrix</span> (<span class='no'>A</span>, <span class='no'>B</span>)</div><div class='output co'>#&gt;       3  1 X1 X2 X3
+#&gt; [2,] 2 4</div><div class='input'> <span class='kw'>hyperSpec</span>:::<span class='fu'><a href='https://rdrr.io/pkg/hyperSpec/man/rbind.fill.html'>rbind.fill.matrix</a></span> (<span class='kw'>A</span>, <span class='kw'>B</span>)</div><div class='output co'>#&gt;       3  1 X1 X2 X3
 #&gt; [1,]  1  3 NA NA NA
 #&gt; [2,]  2  4 NA NA NA
 #&gt; [3,] NA NA  6  8 10
 #&gt; [4,] NA NA  7  9 11</div><div class='input'>
- <span class='kw pkg'>hyperSpec</span><span class='kw ns'>:::</span><span class='fu'>rbind.fill.matrix</span> (<span class='no'>A</span>, <span class='fl'>99</span>)</div><div class='output co'>#&gt;       3  1 X1
+ <span class='kw'>hyperSpec</span>:::<span class='fu'><a href='https://rdrr.io/pkg/hyperSpec/man/rbind.fill.html'>rbind.fill.matrix</a></span> (<span class='kw'>A</span>, <span class='fl'>99</span>)</div><div class='output co'>#&gt;       3  1 X1
 #&gt; [1,]  1  3 NA
 #&gt; [2,]  2  4 NA
 #&gt; [3,] NA NA 99</div><div class='input'>

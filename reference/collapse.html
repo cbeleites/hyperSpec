@@ -88,9 +88,9 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-    <li class="dropdown-header">Documentation for version of pacakge:</li>
+    <li class="dropdown-header">Documentation for version of package:</li>
     <li>
-      <a href="https://cbeleites.github.io/hyperSpec/">Realeased</a>
+      <a href="https://cbeleites.github.io/hyperSpec/">Released</a>
     </li>
     <li>
       <a href="https://cbeleites.github.io/hyperSpec/dev/">In-development</a>
@@ -168,9 +168,9 @@
     </div>
 
     <pre class="usage"><span class='fu'>collapse</span>(
-  <span class='no'>...</span>,
-  <span class='kw'>wl.tolerance</span> <span class='kw'>=</span> <span class='fu'><a href='options.html'>hy.getOption</a></span>(<span class='st'>"wl.tolerance"</span>),
-  <span class='kw'>collapse.equal</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+  <span class='kw'>...</span>,
+  wl.tolerance = <span class='fu'>hy.getOption</span>(<span class='st'>"wl.tolerance"</span>),
+  collapse.equal = <span class='fl'>TRUE</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -217,13 +217,13 @@ If the wavelengths are names, names are preserved and taken from the first objec
 the same applies to possible column names of the spectra matrix.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='merge.html'>merge()</a></code>,  <code><a href='https://rdrr.io/r/base/cbind.html'>rbind()</a></code>, and <code><a href='https://rdrr.io/pkg/plyr/man/rbind.fill.html'>plyr::rbind.fill()</a></code></p></div>
+    <div class='dont-index'><p><code><a href='https://rdrr.io/r/base/merge.html'>merge()</a></code>,  <code><a href='https://rdrr.io/r/base/cbind.html'>rbind()</a></code>, and <code><a href='https://rdrr.io/pkg/plyr/man/rbind.fill.html'>plyr::rbind.fill()</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>C. Beleites</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>barbiturates</span> [<span class='fl'>1</span>:<span class='fl'>3</span>]</div><div class='output co'>#&gt; [[1]]
+    <pre class="examples"><div class='input'><span class='kw'>barbiturates</span> [<span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>]</div><div class='output co'>#&gt; [[1]]
 #&gt; hyperSpec object
 #&gt;    1 spectra
 #&gt;    4 data columns
@@ -258,7 +258,7 @@ the same applies to possible column names of the spectra matrix.</p>
 #&gt;    2. z.end: t/min [numeric] 4.04095 
 #&gt;    3. spc: I/"a. u." [matrix, array29] 735 1412 ... 638 
 #&gt;    4. filename: filename [character] spc/BARBITUATES.SPC 
-#&gt; </div><div class='input'><span class='fu'>collapse</span> (<span class='no'>barbiturates</span> [<span class='fl'>1</span>:<span class='fl'>3</span>])</div><div class='output co'>#&gt; hyperSpec object
+#&gt; </div><div class='input'><span class='fu'>collapse</span> (<span class='kw'>barbiturates</span> [<span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>])</div><div class='output co'>#&gt; hyperSpec object
 #&gt;    3 spectra
 #&gt;    4 data columns
 #&gt;    57 data points / spectrum
@@ -268,11 +268,11 @@ the same applies to possible column names of the spectra matrix.</p>
 #&gt;    2. z.end: t/min [numeric] 4.027184 4.034117 4.040950 
 #&gt;    3. spc: I/"a. u." [matrix, array57] 562 NA ... NA + NA
 #&gt;    4. filename: filename [character] spc/BARBITUATES.SPC spc/BARBITUATES.SPC spc/BARBITUATES.SPC </div><div class='input'>
-<span class='no'>a</span> <span class='kw'>&lt;-</span> <span class='no'>barbiturates</span> <span class='kw'>[[</span><span class='fl'>1</span>]]
-<span class='no'>b</span> <span class='kw'>&lt;-</span> <span class='no'>barbiturates</span> <span class='kw'>[[</span><span class='fl'>2</span>]]
-<span class='no'>c</span> <span class='kw'>&lt;-</span> <span class='no'>barbiturates</span> <span class='kw'>[[</span><span class='fl'>3</span>]]
+<span class='kw'>a</span> <span class='op'>&lt;-</span> <span class='kw'>barbiturates</span> [[<span class='fl'>1</span>]]
+<span class='kw'>b</span> <span class='op'>&lt;-</span> <span class='kw'>barbiturates</span> [[<span class='fl'>2</span>]]
+<span class='kw'>c</span> <span class='op'>&lt;-</span> <span class='kw'>barbiturates</span> [[<span class='fl'>3</span>]]
 
-<span class='no'>a</span></div><div class='output co'>#&gt; hyperSpec object
+<span class='kw'>a</span></div><div class='output co'>#&gt; hyperSpec object
 #&gt;    1 spectra
 #&gt;    4 data columns
 #&gt;    37 data points / spectrum
@@ -281,7 +281,7 @@ the same applies to possible column names of the spectra matrix.</p>
 #&gt;    1. z: t/min [numeric] 4.027184 
 #&gt;    2. z.end: t/min [numeric] 4.027184 
 #&gt;    3. spc: I/"a. u." [matrix, array37] 902 896 ... 562 
-#&gt;    4. filename: filename [character] spc/BARBITUATES.SPC </div><div class='input'><span class='no'>b</span></div><div class='output co'>#&gt; hyperSpec object
+#&gt;    4. filename: filename [character] spc/BARBITUATES.SPC </div><div class='input'><span class='kw'>b</span></div><div class='output co'>#&gt; hyperSpec object
 #&gt;    1 spectra
 #&gt;    4 data columns
 #&gt;    34 data points / spectrum
@@ -290,7 +290,7 @@ the same applies to possible column names of the spectra matrix.</p>
 #&gt;    1. z: t/min [numeric] 4.034117 
 #&gt;    2. z.end: t/min [numeric] 4.034117 
 #&gt;    3. spc: I/"a. u." [matrix, array34] 857 864 ... 618 
-#&gt;    4. filename: filename [character] spc/BARBITUATES.SPC </div><div class='input'><span class='no'>c</span></div><div class='output co'>#&gt; hyperSpec object
+#&gt;    4. filename: filename [character] spc/BARBITUATES.SPC </div><div class='input'><span class='kw'>c</span></div><div class='output co'>#&gt; hyperSpec object
 #&gt;    1 spectra
 #&gt;    4 data columns
 #&gt;    29 data points / spectrum
@@ -299,7 +299,7 @@ the same applies to possible column names of the spectra matrix.</p>
 #&gt;    1. z: t/min [numeric] 4.04095 
 #&gt;    2. z.end: t/min [numeric] 4.04095 
 #&gt;    3. spc: I/"a. u." [matrix, array29] 735 1412 ... 638 
-#&gt;    4. filename: filename [character] spc/BARBITUATES.SPC </div><div class='input'><span class='fu'>collapse</span> (<span class='no'>a</span>, <span class='no'>b</span>, <span class='no'>c</span>)</div><div class='output co'>#&gt; hyperSpec object
+#&gt;    4. filename: filename [character] spc/BARBITUATES.SPC </div><div class='input'><span class='fu'>collapse</span> (<span class='kw'>a</span>, <span class='kw'>b</span>, <span class='kw'>c</span>)</div><div class='output co'>#&gt; hyperSpec object
 #&gt;    3 spectra
 #&gt;    4 data columns
 #&gt;    57 data points / spectrum
@@ -309,7 +309,7 @@ the same applies to possible column names of the spectra matrix.</p>
 #&gt;    2. z.end: t/min [numeric] 4.027184 4.034117 4.040950 
 #&gt;    3. spc: I/"a. u." [matrix, array57] 562 NA ... NA + NA
 #&gt;    4. filename: filename [character] spc/BARBITUATES.SPC spc/BARBITUATES.SPC spc/BARBITUATES.SPC </div><div class='input'>
-<span class='fu'>collapse</span> (<span class='no'>barbiturates</span> [<span class='fl'>1</span>:<span class='fl'>3</span>], <span class='kw'>collapse.equal</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; hyperSpec object
+<span class='fu'>collapse</span> (<span class='kw'>barbiturates</span> [<span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>], collapse.equal = <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; hyperSpec object
 #&gt;    3 spectra
 #&gt;    4 data columns
 #&gt;    57 data points / spectrum
@@ -318,8 +318,7 @@ the same applies to possible column names of the spectra matrix.</p>
 #&gt;    1. z: t/min [numeric] 4.027184 4.034117 4.040950 
 #&gt;    2. z.end: t/min [numeric] 4.027184 4.034117 4.040950 
 #&gt;    3. spc: I/"a. u." [matrix, array57] 562 NA ... NA + NA
-#&gt;    4. filename: filename [character] spc/BARBITUATES.SPC spc/BARBITUATES.SPC spc/BARBITUATES.SPC </div><div class='input'>
-</div></pre>
+#&gt;    4. filename: filename [character] spc/BARBITUATES.SPC spc/BARBITUATES.SPC spc/BARBITUATES.SPC </div><div class='input'></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

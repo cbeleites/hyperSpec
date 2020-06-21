@@ -91,9 +91,9 @@ hyperSpec objects." />
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-    <li class="dropdown-header">Documentation for version of pacakge:</li>
+    <li class="dropdown-header">Documentation for version of package:</li>
     <li>
-      <a href="https://cbeleites.github.io/hyperSpec/">Realeased</a>
+      <a href="https://cbeleites.github.io/hyperSpec/">Released</a>
     </li>
     <li>
       <a href="https://cbeleites.github.io/hyperSpec/dev/">In-development</a>
@@ -173,15 +173,15 @@ Computes summary statistics for the spectra of a <code>hyperSpec</code> object.<
     </div>
 
     <pre class="usage"><span class='co'># S4 method for hyperSpec</span>
-<span class='fu'>apply</span>(
-  <span class='no'>X</span>,
-  <span class='no'>MARGIN</span>,
-  <span class='no'>FUN</span>,
-  <span class='no'>...</span>,
-  <span class='kw'>label.wl</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>label.spc</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>new.wavelength</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>simplify</span>
+<span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span>(
+  <span class='kw'>X</span>,
+  <span class='kw'>MARGIN</span>,
+  <span class='kw'>FUN</span>,
+  <span class='kw'>...</span>,
+  label.wl = <span class='kw'>NULL</span>,
+  label.spc = <span class='kw'>NULL</span>,
+  new.wavelength = <span class='kw'>NULL</span>,
+  <span class='kw'>simplify</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -199,7 +199,7 @@ Computes summary statistics for the spectra of a <code>hyperSpec</code> object.<
 <p><code>1 : 2</code> indicates that <code>FUN</code> should be applied to each single
   element of the spectra matrix. Note that many basic mathematical
   functions are already defined for hyperSpec objects (see
-  <code><a href='math.html'>Math</a></code>).</p>
+  <code><a href='https://rdrr.io/r/base/groupGeneric.html'>Math</a></code>).</p>
 <p>If <code>MARGIN</code> is missing, the whole spectra matrix is handed to
   <code>FUN</code>, see also the examples.</p></td>
     </tr>
@@ -244,7 +244,7 @@ additionally allows to set a new wavelength axis and adjust the labels.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='https://rdrr.io/r/base/apply.html'>apply</a></code>, for applying <code>FUN</code> to subgroups of
-  the <code>hyperSpec</code> object: <code><a href='aggregate.html'>aggregate</a></code>.</p></div>
+  the <code>hyperSpec</code> object: <code><a href='https://rdrr.io/pkg/hyperSpec/man/aggregate.html'>aggregate</a></code>.</p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>C. Beleites</p>
@@ -252,11 +252,11 @@ additionally allows to set a new wavelength axis and adjust the labels.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 
-<span class='fu'><a href='plotspc.html'>plotspc</a></span> (<span class='fu'>apply</span> (<span class='no'>chondro</span>, <span class='fl'>2</span>, <span class='no'>range</span>))</div><div class='img'><img src='apply-1.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='no'>avgflu</span> <span class='kw'>&lt;-</span> <span class='fu'>apply</span> (<span class='no'>flu</span>, <span class='fl'>1</span>, <span class='no'>mean</span>,
-                 <span class='kw'>label.spc</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span> (<span class='fu'><a href='https://rdrr.io/r/grDevices/plotmath.html'>bar</a></span> (<span class='no'>I</span>)),
-                 <span class='kw'>new.wavelength</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span> (<span class='fu'><a href='wl.html'>wl</a></span> (<span class='no'>flu</span>)))
-<span class='no'>avgflu</span></div><div class='output co'>#&gt; hyperSpec object
+<span class='fu'>plotspc</span> (<span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span> (<span class='kw'>chondro</span>, <span class='fl'>2</span>, <span class='kw'>range</span>))</div><div class='img'><img src='apply-1.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='kw'>avgflu</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span> (<span class='kw'>flu</span>, <span class='fl'>1</span>, <span class='kw'>mean</span>,
+                 label.spc = <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span> (<span class='fu'><a href='https://rdrr.io/r/grDevices/plotmath.html'>bar</a></span> (<span class='kw'>I</span>)),
+                 new.wavelength = <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span> (<span class='fu'>wl</span> (<span class='kw'>flu</span>)))
+<span class='kw'>avgflu</span></div><div class='output co'>#&gt; hyperSpec object
 #&gt;    6 spectra
 #&gt;    3 data columns
 #&gt;    1 data points / spectrum
@@ -265,13 +265,13 @@ additionally allows to set a new wavelength axis and adjust the labels.</p>
 #&gt;    1. spc: bar(I) [matrix, array1] 79.61862 160.88475 ... 510.623 
 #&gt;    2. filename: filename [character] rawdata/flu1.txt rawdata/flu2.txt ... rawdata/flu6.txt 
 #&gt;    3. c: c / (mg / l) [numeric] 0.05 0.10 ... 0.3 </div><div class='input'>
-<span class='no'>flu</span><span class='kw'>[[</span>,,<span class='fl'>405</span>:<span class='fl'>407</span>]]</div><div class='output co'>#&gt;            405       406       407
+<span class='kw'>flu</span>[[,,<span class='fl'>405</span><span class='op'>:</span><span class='fl'>407</span>]]</div><div class='output co'>#&gt;            405       406       407
 #&gt; [1,]  27.15000  33.37867  36.53133
 #&gt; [2,]  66.80133  66.71200  72.52967
 #&gt; [3,]  93.14433 106.19367 113.24867
 #&gt; [4,] 130.66367 143.79767 152.13267
 #&gt; [5,] 167.26667 177.47067 189.75233
-#&gt; [6,] 198.43033 215.78500 232.52800</div><div class='input'><span class='fu'>apply</span> (<span class='no'>flu</span>, <span class='fl'>1</span>:<span class='fl'>2</span>, <span class='st'>"*"</span>, -<span class='fl'>1</span>)<span class='kw'>[[</span>,,<span class='fl'>405</span>:<span class='fl'>407</span>]]</div><div class='output co'>#&gt;            [,1]       [,2]       [,3]
+#&gt; [6,] 198.43033 215.78500 232.52800</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span> (<span class='kw'>flu</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span>, <span class='st'>"*"</span>, <span class='op'>-</span><span class='fl'>1</span>)[[,,<span class='fl'>405</span><span class='op'>:</span><span class='fl'>407</span>]]</div><div class='output co'>#&gt;            [,1]       [,2]       [,3]
 #&gt; [1,]  -27.15000  -33.37867  -36.53133
 #&gt; [2,]  -66.80133  -66.71200  -72.52967
 #&gt; [3,]  -93.14433 -106.19367 -113.24867
@@ -279,7 +279,7 @@ additionally allows to set a new wavelength axis and adjust the labels.</p>
 #&gt; [5,] -167.26667 -177.47067 -189.75233
 #&gt; [6,] -198.43033 -215.78500 -232.52800</div><div class='input'>
 <span class='co'>## without MARGIN the whole matrix is handed to FUN</span>
-<span class='fu'>apply</span> (<span class='no'>flu</span> [,,<span class='fl'>405</span>:<span class='fl'>407</span>], , <span class='no'>print</span>) <span class='kw'>[[</span>]]</div><div class='output co'>#&gt;            405       406       407
+<span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span> (<span class='kw'>flu</span> [,,<span class='fl'>405</span><span class='op'>:</span><span class='fl'>407</span>], , <span class='kw'>print</span>) [[]]</div><div class='output co'>#&gt;            405       406       407
 #&gt; [1,]  27.15000  33.37867  36.53133
 #&gt; [2,]  66.80133  66.71200  72.52967
 #&gt; [3,]  93.14433 106.19367 113.24867
@@ -293,7 +293,7 @@ additionally allows to set a new wavelength axis and adjust the labels.</p>
 #&gt; [5,] 167.26667 177.47067 189.75233
 #&gt; [6,] 198.43033 215.78500 232.52800</div><div class='input'>
 <span class='co'>## whereas MARGIN = 1 : 2 leads to FUN being called for each element separately</span>
-<span class='fu'>apply</span> (<span class='no'>flu</span> [,,<span class='fl'>405</span>:<span class='fl'>407</span>], <span class='fl'>1</span> : <span class='fl'>2</span>, <span class='no'>print</span>) <span class='kw'>[[</span>]]</div><div class='output co'>#&gt; [1] 27.15
+<span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span> (<span class='kw'>flu</span> [,,<span class='fl'>405</span><span class='op'>:</span><span class='fl'>407</span>], <span class='fl'>1</span> <span class='op'>:</span> <span class='fl'>2</span>, <span class='kw'>print</span>) [[]]</div><div class='output co'>#&gt; [1] 27.15
 #&gt; [1] 66.80133
 #&gt; [1] 93.14433
 #&gt; [1] 130.6637
@@ -316,8 +316,7 @@ additionally allows to set a new wavelength axis and adjust the labels.</p>
 #&gt; [3,]  93.14433 106.19367 113.24867
 #&gt; [4,] 130.66367 143.79767 152.13267
 #&gt; [5,] 167.26667 177.47067 189.75233
-#&gt; [6,] 198.43033 215.78500 232.52800</div><div class='input'>
-</div></pre>
+#&gt; [6,] 198.43033 215.78500 232.52800</div><div class='input'></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

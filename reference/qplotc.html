@@ -88,9 +88,9 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-    <li class="dropdown-header">Documentation for version of pacakge:</li>
+    <li class="dropdown-header">Documentation for version of package:</li>
     <li>
-      <a href="https://cbeleites.github.io/hyperSpec/">Realeased</a>
+      <a href="https://cbeleites.github.io/hyperSpec/">Released</a>
     </li>
     <li>
       <a href="https://cbeleites.github.io/hyperSpec/dev/">In-development</a>
@@ -168,12 +168,12 @@
     </div>
 
     <pre class="usage"><span class='fu'>qplotc</span>(
-  <span class='no'>object</span>,
-  <span class='kw'>mapping</span> <span class='kw'>=</span> <span class='fu'>aes_string</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='st'>"c"</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='st'>"spc"</span>),
-  <span class='no'>...</span>,
-  <span class='kw'>func</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>func.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='kw'>map.pointonly</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+  <span class='kw'>object</span>,
+  mapping = <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes_.html'>aes_string</a></span>(x = <span class='st'>"c"</span>, y = <span class='st'>"spc"</span>),
+  <span class='kw'>...</span>,
+  func = <span class='kw'>NULL</span>,
+  func.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
+  map.pointonly = <span class='fl'>FALSE</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -215,14 +215,14 @@ wavelength is used</p></td>
     <p>These functions are still experimental and may change in future.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='plotc.html'>plotc()</a></code></p>
+    <div class='dont-index'><p><code>plotc()</code></p>
 <p><code><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot2::ggplot()</a></code>, <code><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>ggplot2::geom_point()</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Claudia Beleites</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>qplotc</span> (<span class='no'>flu</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Intensity at first wavelengh only is used.</span></div><div class='img'><img src='qplotc-1.png' alt='' width='466' height='288' /></div><div class='input'><span class='fu'>qplotc</span> (<span class='no'>flu</span>) + <span class='fu'>geom_smooth</span> (<span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"lm"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Intensity at first wavelengh only is used.</span></div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='img'><img src='qplotc-2.png' alt='' width='466' height='288' /></div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>qplotc</span> (<span class='kw'>flu</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Intensity at first wavelengh only is used.</span></div><div class='img'><img src='qplotc-1.png' alt='' width='466' height='288' /></div><div class='input'><span class='fu'>qplotc</span> (<span class='kw'>flu</span>) <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_smooth.html'>geom_smooth</a></span> (method = <span class='st'>"lm"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Intensity at first wavelengh only is used.</span></div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using formula 'y ~ x'</span></div><div class='img'><img src='qplotc-2.png' alt='' width='466' height='288' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

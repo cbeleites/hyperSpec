@@ -47,9 +47,9 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-<li class="dropdown-header">Documentation for version of pacakge:</li>
+<li class="dropdown-header">Documentation for version of package:</li>
     <li>
-      <a href="https://cbeleites.github.io/hyperSpec/">Realeased</a>
+      <a href="https://cbeleites.github.io/hyperSpec/">Released</a>
     </li>
     <li>
       <a href="https://cbeleites.github.io/hyperSpec/dev/">In-development</a>
@@ -167,13 +167,16 @@ The files are completely ASCII text, with the actual spectra starting at line 55
 <p>It needs to be <code class="sourceCode r"><span class="kw">source</span>()</code>d before use:</p>
 <!-- ======================================================================= -->
 <!-- ======================================================================= -->
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/source.html">source</a></span>(<span class="st">"read.txt.PerkinElmer.R"</span>)
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/source.html">source</a></span>(<span class="st">"read.txt.PerkinElmer.R"</span>)
 
-<span class="no">folder</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata/flu"</span>, <span class="kw">package</span> <span class="kw">=</span> <span class="st">"hyperSpec"</span>)
-<span class="no">files</span>  <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.glob.html">Sys.glob</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="no">folder</span>, <span class="st">"/flu?.txt"</span>))
-<span class="no">flu</span>    <span class="kw">&lt;-</span> <span class="fu">read.txt.PerkinElmer</span>(<span class="no">files</span>, <span class="kw">skip</span> <span class="kw">=</span> <span class="fl">54</span>)</pre></body></html></div>
+<span class="kw">folder</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata/flu"</span>, package = <span class="st">"hyperSpec"</span>)
+<span class="kw">files</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.glob.html">Sys.glob</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="kw">folder</span>, <span class="st">"/flu?.txt"</span>))
+<span class="kw">flu</span> <span class="op">&lt;-</span> <span class="fu">read.txt.PerkinElmer</span>(<span class="kw">files</span>, skip = <span class="fl">54</span>)
+</pre></div>
 <p>Now the spectra are in a <code class="sourceCode r">hyperSpec</code> object and can be examined, e.g., by:</p>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="no">flu</span>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="kw">flu</span>
 <span class="co">#&gt; hyperSpec object</span>
 <span class="co">#&gt;    6 spectra</span>
 <span class="co">#&gt;    2 data columns</span>
@@ -181,8 +184,11 @@ The files are completely ASCII text, with the actual spectra starting at line 55
 <span class="co">#&gt; wavelength: lambda/nm [numeric] 405.0 405.5 ... 495 </span>
 <span class="co">#&gt; data:  (6 rows x 2 columns)</span>
 <span class="co">#&gt;    1. spc: I[fl]/"a.u." [matrix, array181] 27.150 66.801 ... 294.65 </span>
-<span class="co">#&gt;    2. filename: filename [character] /Users/runner/runners/2.169.1/work/_temp/Library/hyperSpec/extdata/flu/flu1.txt /Users/runner/runners/2.169.1/work/_temp/Library/hyperSpec/extdata/flu/flu2.txt ... /Users/runner/runners/2.169.1/work/_temp/Library/hyperSpec/extdata/flu/flu6.txt</span></pre></body></html></div>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="fu"><a href="../reference/plot.html">plot</a></span>(<span class="no">flu</span>)</pre></body></html></div>
+<span class="co">#&gt;    2. filename: filename [character] /Users/runner/runners/2.169.1/work/_temp/Library/hyperSpec/extdata/flu/flu1.txt /Users/runner/runners/2.169.1/work/_temp/Library/hyperSpec/extdata/flu/flu2.txt ... /Users/runner/runners/2.169.1/work/_temp/Library/hyperSpec/extdata/flu/flu6.txt</span>
+</pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">flu</span>)
+</pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:rawfig"></span>
 <img src="flu_files/figure-html/rawfig-1.png" alt="Six spectra of `flu` dataset.  "><p class="caption">
@@ -195,10 +201,11 @@ Figure 1.1: Six spectra of <code>flu</code> dataset.
 <a href="#adding-further-data-columns" class="anchor"></a><span class="header-section-number">2</span> Adding further Data Columns</h1>
 <p>The calibration model needs the quinine concentrations for the spectra.
 This information can be stored together with the spectra, and also gets an appropriate label:</p>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="no">flu</span>$<span class="no">c</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/seq.html">seq</a></span>(<span class="kw">from</span> <span class="kw">=</span> <span class="fl">0.05</span>, <span class="kw">to</span> <span class="kw">=</span> <span class="fl">0.30</span>, <span class="kw">by</span> <span class="kw">=</span> <span class="fl">0.05</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/labels.html">labels</a></span>(<span class="no">flu</span>, <span class="st">"c"</span>) <span class="kw">&lt;-</span> <span class="st">"c, mg/l"</span>
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="kw">flu</span><span class="op">$</span><span class="kw">c</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/seq.hyperSpec.html">seq</a></span>(from = <span class="fl">0.05</span>, to = <span class="fl">0.30</span>, by = <span class="fl">0.05</span>)
+<span class="fu"><a href="https://rdrr.io/pkg/sp/man/gridlines.html">labels</a></span>(<span class="kw">flu</span>, <span class="st">"c"</span>) <span class="op">&lt;-</span> <span class="st">"c, mg/l"</span>
 
-<span class="no">flu</span>
+<span class="kw">flu</span>
 <span class="co">#&gt; hyperSpec object</span>
 <span class="co">#&gt;    6 spectra</span>
 <span class="co">#&gt;    3 data columns</span>
@@ -207,28 +214,37 @@ This information can be stored together with the spectra, and also gets an appro
 <span class="co">#&gt; data:  (6 rows x 3 columns)</span>
 <span class="co">#&gt;    1. spc: I[fl]/"a.u." [matrix, array181] 27.150 66.801 ... 294.65 </span>
 <span class="co">#&gt;    2. filename: filename [character] /Users/runner/runners/2.169.1/work/_temp/Library/hyperSpec/extdata/flu/flu1.txt /Users/runner/runners/2.169.1/work/_temp/Library/hyperSpec/extdata/flu/flu2.txt ... /Users/runner/runners/2.169.1/work/_temp/Library/hyperSpec/extdata/flu/flu6.txt </span>
-<span class="co">#&gt;    3. c: c, mg/l [numeric] 0.05 0.10 ... 0.3</span></pre></body></html></div>
+<span class="co">#&gt;    3. c: c, mg/l [numeric] 0.05 0.10 ... 0.3</span>
+</pre></div>
 <!-- ======================================================================= -->
 <!-- ======================================================================= -->
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/save.html">save</a></span>(<span class="no">flu</span>, <span class="kw">file</span> <span class="kw">=</span> <span class="st">"flu.rda"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb5"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/save.html">save</a></span>(<span class="kw">flu</span>, file = <span class="st">"flu.rda"</span>)
+</pre></div>
 <p>Now the <code class="sourceCode r">hyperSpec</code> object <code class="sourceCode r">flu</code> contains two data columns, holding the actual spectra and the respective concentrations. The dollar operator returns such a data column:</p>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="no">flu</span>$<span class="no">c</span>
-<span class="co">#&gt; [1] 0.05 0.10 0.15 0.20 0.25 0.30</span></pre></body></html></div>
+<div class="sourceCode" id="cb6"><pre class="downlit">
+<span class="kw">flu</span><span class="op">$</span><span class="kw">c</span>
+<span class="co">#&gt; [1] 0.05 0.10 0.15 0.20 0.25 0.30</span>
+</pre></div>
 </div>
 <div id="sec:dropp-data-columns" class="section level1">
 <h1 class="hasAnchor">
 <a href="#sec:dropp-data-columns" class="anchor"></a><span class="header-section-number">3</span> Dropping data columns</h1>
 <p>Function <code class="sourceCode r"><span class="kw">read.txt.PerkinElmer</span>()</code> added a column with the file names that we don’t need.</p>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="no">flu</span>$<span class="no">..</span>
+<div class="sourceCode" id="cb7"><pre class="downlit">
+<span class="kw">flu</span><span class="op">$</span><span class="kw">..</span>
 <span class="co">#&gt;                                                                          filename    c</span>
 <span class="co">#&gt; 1 /Users/runner/runners/2.169.1/work/_temp/Library/hyperSpec/extdata/flu/flu1.txt 0.05</span>
 <span class="co">#&gt; 2 /Users/runner/runners/2.169.1/work/_temp/Library/hyperSpec/extdata/flu/flu2.txt 0.10</span>
 <span class="co">#&gt; 3 /Users/runner/runners/2.169.1/work/_temp/Library/hyperSpec/extdata/flu/flu3.txt 0.15</span>
 <span class="co">#&gt; 4 /Users/runner/runners/2.169.1/work/_temp/Library/hyperSpec/extdata/flu/flu4.txt 0.20</span>
 <span class="co">#&gt; 5 /Users/runner/runners/2.169.1/work/_temp/Library/hyperSpec/extdata/flu/flu5.txt 0.25</span>
-<span class="co">#&gt; 6 /Users/runner/runners/2.169.1/work/_temp/Library/hyperSpec/extdata/flu/flu6.txt 0.30</span></pre></body></html></div>
+<span class="co">#&gt; 6 /Users/runner/runners/2.169.1/work/_temp/Library/hyperSpec/extdata/flu/flu6.txt 0.30</span>
+</pre></div>
 <p>It is therefore deleted:</p>
-<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="no">flu</span>$<span class="no">filename</span> <span class="kw">&lt;-</span> <span class="kw">NULL</span></pre></body></html></div>
+<div class="sourceCode" id="cb8"><pre class="downlit">
+<span class="kw">flu</span><span class="op">$</span><span class="kw">filename</span> <span class="op">&lt;-</span> <span class="kw">NULL</span>
+</pre></div>
 </div>
 <div id="linear-calibration" class="section level1">
 <h1 class="hasAnchor">
@@ -239,7 +255,9 @@ model are readily available.</p>
 However, the intensities at 450 nm are perfect for a univariate calibration.
 Plotting them over the concentration is done by:</p>
 <!-- \setkeys{Gin}{width = .33\textwidth} -->
-<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="fu"><a href="../reference/plotc.html">plotc</a></span>(<span class="no">flu</span>[, , <span class="fl">450</span>])</pre></body></html></div>
+<div class="sourceCode" id="cb9"><pre class="downlit">
+<span class="fu"><a href="../reference/plotc.html">plotc</a></span>(<span class="kw">flu</span>[, , <span class="fl">450</span>])
+</pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:calplot1"></span>
 <img src="flu_files/figure-html/calplot1-1.png" alt="Spectra intensities at 450 nm. "><p class="caption">
@@ -249,11 +267,15 @@ Figure 4.1: Spectra intensities at 450 nm.
 <p>The square bracket operator extracts parts of a <code class="sourceCode r">hyperSpec</code> object.
 The first coordinate defines which spectra are to be used, the second which data columns, and the third gives the spectral range.</p>
 <p>We discard all the wavelengths but 450 nm:</p>
-<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="no">flu</span> <span class="kw">&lt;-</span> <span class="no">flu</span>[, , <span class="fl">450</span>]
-<span class="fu"><a href="https://rdrr.io/r/base/labels.html">labels</a></span>(<span class="no">flu</span>, <span class="st">"spc"</span>) <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span>(<span class="no">I</span>[<span class="st">"450 nm"</span>] / <span class="no">a.u.</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb10"><pre class="downlit">
+<span class="kw">flu</span> <span class="op">&lt;-</span> <span class="kw">flu</span>[, , <span class="fl">450</span>]
+<span class="fu"><a href="https://rdrr.io/pkg/sp/man/gridlines.html">labels</a></span>(<span class="kw">flu</span>, <span class="st">"spc"</span>) <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span>(<span class="kw">I</span>[<span class="st">"450 nm"</span>] <span class="op">/</span> <span class="kw">a.u.</span>)
+</pre></div>
 <p>The plot could be enhanced by annotating the ordinate with the emission wavelength.
 Also the axes should start at the origin, so that it is easier to see whether the calibration function will go through the origin:</p>
-<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="fu"><a href="../reference/plotc.html">plotc</a></span>(<span class="no">flu</span>, <span class="kw">xlim</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span>(<span class="fl">0</span>, <span class="no">flu</span>$<span class="no">c</span>), <span class="kw">ylim</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span>(<span class="fl">0</span>, <span class="no">flu</span>$<span class="no">spc</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb11"><pre class="downlit">
+<span class="fu"><a href="../reference/plotc.html">plotc</a></span>(<span class="kw">flu</span>, xlim = <span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span>(<span class="fl">0</span>, <span class="kw">flu</span><span class="op">$</span><span class="kw">c</span>), ylim = <span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span>(<span class="fl">0</span>, <span class="kw">flu</span><span class="op">$</span><span class="kw">spc</span>))
+</pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:calplot2"></span>
 <img src="flu_files/figure-html/calplot2-1.png" alt="Spectra intensities at 450 nm with updated labels. "><p class="caption">
@@ -277,34 +299,43 @@ The corresponding formula is <code>c ~ I</code>, or in our case <code>c ~ spc</c
 <li>
 <strong><code class="sourceCode r">flu\<span class="op">$</span>..</code></strong> returns a <code class="sourceCode r">data.frame</code> that has all data columns but the spectra.</li>
 </ul>
-<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="no">flu</span><span class="kw">[[</span>]]
+<div class="sourceCode" id="cb12"><pre class="downlit">
+<span class="kw">flu</span>[[]]
 <span class="co">#&gt;         450</span>
 <span class="co">#&gt; [1,] 106.95</span>
 <span class="co">#&gt; [2,] 213.50</span>
 <span class="co">#&gt; [3,] 333.78</span>
 <span class="co">#&gt; [4,] 446.63</span>
 <span class="co">#&gt; [5,] 556.52</span>
-<span class="co">#&gt; [6,] 672.53</span></pre></body></html></div>
-<div class="sourceCode" id="cb13"><html><body><pre class="r"><span class="no">flu</span>$<span class="no">.</span>
+<span class="co">#&gt; [6,] 672.53</span>
+</pre></div>
+<div class="sourceCode" id="cb13"><pre class="downlit">
+<span class="kw">flu</span><span class="op">$</span><span class="kw">.</span>
 <span class="co">#&gt;      450    c</span>
 <span class="co">#&gt; 1 106.95 0.05</span>
 <span class="co">#&gt; 2 213.50 0.10</span>
 <span class="co">#&gt; 3 333.78 0.15</span>
 <span class="co">#&gt; 4 446.63 0.20</span>
 <span class="co">#&gt; 5 556.52 0.25</span>
-<span class="co">#&gt; 6 672.53 0.30</span></pre></body></html></div>
-<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="no">flu</span>$<span class="no">..</span>
+<span class="co">#&gt; 6 672.53 0.30</span>
+</pre></div>
+<div class="sourceCode" id="cb14"><pre class="downlit">
+<span class="kw">flu</span><span class="op">$</span><span class="kw">..</span>
 <span class="co">#&gt;      c</span>
 <span class="co">#&gt; 1 0.05</span>
 <span class="co">#&gt; 2 0.10</span>
 <span class="co">#&gt; 3 0.15</span>
 <span class="co">#&gt; 4 0.20</span>
 <span class="co">#&gt; 5 0.25</span>
-<span class="co">#&gt; 6 0.30</span></pre></body></html></div>
+<span class="co">#&gt; 6 0.30</span>
+</pre></div>
 <p>Putting this together, the calibration model is calculated:</p>
-<div class="sourceCode" id="cb15"><html><body><pre class="r"><span class="no">calibration</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(<span class="no">c</span> ~ <span class="no">spc</span>, <span class="kw">data</span> <span class="kw">=</span> <span class="no">flu</span>$<span class="no">.</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb15"><pre class="downlit">
+<span class="kw">calibration</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(<span class="kw">c</span> <span class="op">~</span> <span class="kw">spc</span>, data = <span class="kw">flu</span><span class="op">$</span><span class="kw">.</span>)
+</pre></div>
 <p>The <code class="sourceCode r"><span class="kw">summary</span>()</code> gives a good overview of our model:</p>
-<div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="fu"><a href="../reference/show.html">summary</a></span>(<span class="no">calibration</span>)
+<div class="sourceCode" id="cb16"><pre class="downlit">
+<span class="fu"><a href="../reference/as.character,hyperSpec-method.html">summary</a></span>(<span class="kw">calibration</span>)
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Call:</span>
 <span class="co">#&gt; lm(formula = c ~ spc, data = flu$.)</span>
@@ -322,36 +353,41 @@ The corresponding formula is <code>c ~ I</code>, or in our case <code>c ~ spc</c
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Residual standard error: 0.00136 on 4 degrees of freedom</span>
 <span class="co">#&gt; Multiple R-squared:     1,   Adjusted R-squared:     1 </span>
-<span class="co">#&gt; F-statistic: 2.36e+04 on 1 and 4 DF,  p-value: 1.08e-08</span></pre></body></html></div>
+<span class="co">#&gt; F-statistic: 2.36e+04 on 1 and 4 DF,  p-value: 1.08e-08</span>
+</pre></div>
 <p>In order to get predictions for new measurements, a new <code class="sourceCode r">data.frame</code> with the same independent variables (in columns with the same names) as in the calibration data are needed.
 Then the function <code class="sourceCode r"><span class="kw">predict</span>()</code> can be used.
 It can also calculate the prediction interval.
 If we observe e.g. an intensity of 125 or 400 units, the corresponding concentrations and their 99% prediction intervals are:</p>
-<div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="no">I</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">125</span>, <span class="fl">400</span>)
-<span class="no">conc</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span>(<span class="no">calibration</span>,
-  <span class="kw">newdata</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">spc</span> <span class="kw">=</span> <span class="fu"><a href="../reference/asdataframe.html">as.matrix</a></span>(<span class="no">I</span>)), <span class="kw">interval</span> <span class="kw">=</span> <span class="st">"prediction"</span>,
-  <span class="kw">level</span> <span class="kw">=</span> <span class="fl">.99</span>
+<div class="sourceCode" id="cb17"><pre class="downlit">
+<span class="kw">I</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">125</span>, <span class="fl">400</span>)
+<span class="kw">conc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span>(<span class="kw">calibration</span>,
+  newdata = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(spc = <span class="fu"><a href="../reference/as.data.frame.html">as.matrix</a></span>(<span class="kw">I</span>)), interval = <span class="st">"prediction"</span>,
+  level = <span class="fl">.99</span>
 )
-<span class="no">conc</span>
+<span class="kw">conc</span>
 <span class="co">#&gt;        fit     lwr      upr</span>
 <span class="co">#&gt; 1 0.058943 0.05133 0.066556</span>
-<span class="co">#&gt; 2 0.180149 0.17338 0.186922</span></pre></body></html></div>
+<span class="co">#&gt; 2 0.180149 0.17338 0.186922</span>
+</pre></div>
 <p>Finally, we can draw the calibration function and its 99% confidence interval (also via <code class="sourceCode r"><span class="kw">predict</span>()</code>) together with the prediction example.
 In order to draw the confidence interval into the calibration graph, we can either use a customized panel function:</p>
-<div class="sourceCode" id="cb18"><html><body><pre class="r"><span class="no">int</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">spc</span> <span class="kw">=</span> <span class="fu"><a href="../reference/asdataframe.html">as.matrix</a></span>(<span class="fu"><a href="../reference/seq.html">seq</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span>(<span class="no">flu</span>), <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span>(<span class="no">flu</span>), <span class="kw">length.out</span> <span class="kw">=</span> <span class="fl">25</span>)))
-<span class="no">ci</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span>(<span class="no">calibration</span>, <span class="kw">newdata</span> <span class="kw">=</span> <span class="no">int</span>, <span class="kw">interval</span> <span class="kw">=</span> <span class="st">"confidence"</span>, <span class="kw">level</span> <span class="kw">=</span> <span class="fl">0.99</span>)
+<div class="sourceCode" id="cb18"><pre class="downlit">
+<span class="kw">int</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(spc = <span class="fu"><a href="../reference/as.data.frame.html">as.matrix</a></span>(<span class="fu"><a href="../reference/seq.hyperSpec.html">seq</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span>(<span class="kw">flu</span>), <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span>(<span class="kw">flu</span>), length.out = <span class="fl">25</span>)))
+<span class="kw">ci</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span>(<span class="kw">calibration</span>, newdata = <span class="kw">int</span>, interval = <span class="st">"confidence"</span>, level = <span class="fl">0.99</span>)
 
-<span class="no">panel.ci</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">x</span>, <span class="no">y</span>, <span class="no">...</span>, <span class="no">intensity</span>, <span class="no">ci.lwr</span>, <span class="no">ci.upr</span>, <span class="no">ci.col</span> <span class="kw">=</span> <span class="st">"#606060"</span>) {
-  <span class="fu">panel.xyplot</span>(<span class="no">x</span>, <span class="no">y</span>, <span class="no">...</span>)
-  <span class="fu">panel.lmline</span>(<span class="no">x</span>, <span class="no">y</span>, <span class="no">...</span>)
-  <span class="fu">panel.lines</span>(<span class="no">ci.lwr</span>, <span class="no">intensity</span>, <span class="kw">col</span> <span class="kw">=</span> <span class="no">ci.col</span>)
-  <span class="fu">panel.lines</span>(<span class="no">ci.upr</span>, <span class="no">intensity</span>, <span class="kw">col</span> <span class="kw">=</span> <span class="no">ci.col</span>)
+<span class="kw">panel.ci</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">x</span>, <span class="kw">y</span>, <span class="kw">...</span>, <span class="kw">intensity</span>, <span class="kw">ci.lwr</span>, <span class="kw">ci.upr</span>, <span class="kw">ci.col</span> = <span class="st">"#606060"</span>) {
+  <span class="fu">panel.xyplot</span>(<span class="kw">x</span>, <span class="kw">y</span>, <span class="kw">...</span>)
+  <span class="fu">panel.lmline</span>(<span class="kw">x</span>, <span class="kw">y</span>, <span class="kw">...</span>)
+  <span class="fu">panel.lines</span>(<span class="kw">ci.lwr</span>, <span class="kw">intensity</span>, col = <span class="kw">ci.col</span>)
+  <span class="fu">panel.lines</span>(<span class="kw">ci.upr</span>, <span class="kw">intensity</span>, col = <span class="kw">ci.col</span>)
 }
 
-<span class="fu"><a href="../reference/plotc.html">plotc</a></span>(<span class="no">flu</span>,
-  <span class="kw">panel</span> <span class="kw">=</span> <span class="no">panel.ci</span>,
-  <span class="kw">intensity</span> <span class="kw">=</span> <span class="no">int</span>$<span class="no">spc</span>, <span class="kw">ci.lwr</span> <span class="kw">=</span> <span class="no">ci</span>[, <span class="fl">2</span>], <span class="kw">ci.upr</span> <span class="kw">=</span> <span class="no">ci</span>[, <span class="fl">3</span>]
-)</pre></body></html></div>
+<span class="fu"><a href="../reference/plotc.html">plotc</a></span>(<span class="kw">flu</span>,
+  panel = <span class="kw">panel.ci</span>,
+  intensity = <span class="kw">int</span><span class="op">$</span><span class="kw">spc</span>, ci.lwr = <span class="kw">ci</span>[, <span class="fl">2</span>], ci.upr = <span class="kw">ci</span>[, <span class="fl">3</span>]
+)
+</pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:calplot3"></span>
 <img src="flu_files/figure-html/calplot3-1.png" alt="Calibration function and its 99% confidence interval.  "><p class="caption">
@@ -360,44 +396,49 @@ Figure 4.3: Calibration function and its 99% confidence interval.
 </div>
 <p>Or, we can add the respective data to the <code class="sourceCode r">hyperSpec</code> object. The meaning of the data can be saved in a new extra data column that acts as grouping variable for the plot.</p>
 <p>First, the spectral range of <code class="sourceCode r">flu</code> is cut to contain the fluorescence emission at 450 nm only, and the new column is introduced for the original data:</p>
-<div class="sourceCode" id="cb19"><html><body><pre class="r"><span class="no">flu</span>$<span class="no">type</span> <span class="kw">&lt;-</span> <span class="st">"data points"</span></pre></body></html></div>
+<div class="sourceCode" id="cb19"><pre class="downlit">
+<span class="kw">flu</span><span class="op">$</span><span class="kw">type</span> <span class="op">&lt;-</span> <span class="st">"data points"</span>
+</pre></div>
 <p>Next, the calculated confidence intervals are appended:</p>
-<div class="sourceCode" id="cb20"><html><body><pre class="r"><span class="no">tmp</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/initialize.html">new</a></span>(<span class="st">"hyperSpec"</span>,
-  <span class="kw">spc</span> <span class="kw">=</span> <span class="fu"><a href="../reference/asdataframe.html">as.matrix</a></span>(<span class="fu"><a href="../reference/seq.html">seq</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span>(<span class="no">flu</span>), <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span>(<span class="no">flu</span>), <span class="kw">length.out</span> <span class="kw">=</span> <span class="fl">25</span>)),
-  <span class="kw">wavelength</span> <span class="kw">=</span> <span class="fl">450</span>
+<div class="sourceCode" id="cb20"><pre class="downlit">
+<span class="kw">tmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/initialize.html">new</a></span>(<span class="st">"hyperSpec"</span>,
+  spc = <span class="fu"><a href="../reference/as.data.frame.html">as.matrix</a></span>(<span class="fu"><a href="../reference/seq.hyperSpec.html">seq</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span>(<span class="kw">flu</span>), <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span>(<span class="kw">flu</span>), length.out = <span class="fl">25</span>)),
+  wavelength = <span class="fl">450</span>
 )
-<span class="no">ci</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span>(<span class="no">calibration</span>, <span class="kw">newdata</span> <span class="kw">=</span> <span class="no">tmp</span>$<span class="no">.</span>, <span class="kw">interval</span> <span class="kw">=</span> <span class="st">"confidence"</span>, <span class="kw">level</span> <span class="kw">=</span> <span class="fl">0.99</span>)
-<span class="no">tmp</span> <span class="kw">&lt;-</span> <span class="no">tmp</span>[<span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="fu"><a href="../reference/seq.html">seq</a></span>(<span class="no">tmp</span>, <span class="kw">index</span> <span class="kw">=</span> <span class="fl">TRUE</span>), <span class="fl">3</span>)]
-<span class="no">tmp</span>$<span class="no">c</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span>(<span class="no">ci</span>)
-<span class="no">tmp</span>$<span class="no">type</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="fu"><a href="../reference/dimnames.html">colnames</a></span>(<span class="no">ci</span>), <span class="kw">each</span> <span class="kw">=</span> <span class="fl">25</span>)
+<span class="kw">ci</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span>(<span class="kw">calibration</span>, newdata = <span class="kw">tmp</span><span class="op">$</span><span class="kw">.</span>, interval = <span class="st">"confidence"</span>, level = <span class="fl">0.99</span>)
+<span class="kw">tmp</span> <span class="op">&lt;-</span> <span class="kw">tmp</span>[<span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="fu"><a href="../reference/seq.hyperSpec.html">seq</a></span>(<span class="kw">tmp</span>, index = <span class="fl">TRUE</span>), <span class="fl">3</span>)]
+<span class="kw">tmp</span><span class="op">$</span><span class="kw">c</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span>(<span class="kw">ci</span>)
+<span class="kw">tmp</span><span class="op">$</span><span class="kw">type</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="fu"><a href="../reference/dimnames,hyperSpec-method.html">colnames</a></span>(<span class="kw">ci</span>), each = <span class="fl">25</span>)
 
-<span class="no">flu</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/collapse.html">collapse</a></span>(<span class="no">flu</span>, <span class="no">tmp</span>)</pre></body></html></div>
+<span class="kw">flu</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/collapse.html">collapse</a></span>(<span class="kw">flu</span>, <span class="kw">tmp</span>)
+</pre></div>
 <p>Finally, the resulting object is plotted.
 Our prediction example is handled by another customized panel function:</p>
-<div class="sourceCode" id="cb21"><html><body><pre class="r"><span class="no">panel.predict</span> <span class="kw">&lt;-</span>
-  <span class="kw">function</span>(<span class="no">x</span>, <span class="no">y</span>, <span class="no">...</span>, <span class="no">intensity</span>, <span class="no">ci</span>, <span class="no">pred.col</span> <span class="kw">=</span> <span class="st">"red"</span>, <span class="no">pred.pch</span> <span class="kw">=</span> <span class="fl">19</span>, <span class="no">pred.cex</span> <span class="kw">=</span> <span class="fl">1</span>) {
-
-    <span class="fu">panel.xyplot</span>(<span class="no">x</span>, <span class="no">y</span>, <span class="no">...</span>)
-    <span class="fu"><a href="https://rdrr.io/r/base/mapply.html">mapply</a></span>(<span class="kw">function</span>(<span class="no">i</span>, <span class="no">lwr</span>, <span class="no">upr</span>, <span class="no">...</span>) {
-      <span class="fu">panel.lines</span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="no">lwr</span>, <span class="no">upr</span>), <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="no">i</span>, <span class="fl">2</span>), <span class="no">...</span>)
+<div class="sourceCode" id="cb21"><pre class="downlit">
+<span class="kw">panel.predict</span> <span class="op">&lt;-</span>
+  <span class="fu">function</span>(<span class="kw">x</span>, <span class="kw">y</span>, <span class="kw">...</span>, <span class="kw">intensity</span>, <span class="kw">ci</span>, <span class="kw">pred.col</span> = <span class="st">"red"</span>, <span class="kw">pred.pch</span> = <span class="fl">19</span>, <span class="kw">pred.cex</span> = <span class="fl">1</span>) {
+    <span class="fu">panel.xyplot</span>(<span class="kw">x</span>, <span class="kw">y</span>, <span class="kw">...</span>)
+    <span class="fu"><a href="https://rdrr.io/r/base/mapply.html">mapply</a></span>(<span class="fu">function</span>(<span class="kw">i</span>, <span class="kw">lwr</span>, <span class="kw">upr</span>, <span class="kw">...</span>) {
+      <span class="fu">panel.lines</span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">lwr</span>, <span class="kw">upr</span>), <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="kw">i</span>, <span class="fl">2</span>), <span class="kw">...</span>)
     },
-      <span class="no">intensity</span>, <span class="no">ci</span>[, <span class="fl">2</span>], <span class="no">ci</span>[, <span class="fl">3</span>],
-      <span class="kw">MoreArgs</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">col</span> <span class="kw">=</span> <span class="no">pred.col</span>)
+    <span class="kw">intensity</span>, <span class="kw">ci</span>[, <span class="fl">2</span>], <span class="kw">ci</span>[, <span class="fl">3</span>],
+    MoreArgs = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(col = <span class="kw">pred.col</span>)
     )
-    <span class="fu">panel.xyplot</span>(<span class="no">ci</span>[, <span class="fl">1</span>], <span class="no">intensity</span>, <span class="kw">col</span> <span class="kw">=</span> <span class="no">pred.col</span>, <span class="kw">pch</span> <span class="kw">=</span> <span class="no">pred.pch</span>, <span class="kw">cex</span> <span class="kw">=</span> <span class="no">pred.cex</span>, <span class="kw">type</span> <span class="kw">=</span> <span class="st">"p"</span>)
+    <span class="fu">panel.xyplot</span>(<span class="kw">ci</span>[, <span class="fl">1</span>], <span class="kw">intensity</span>, col = <span class="kw">pred.col</span>, pch = <span class="kw">pred.pch</span>, cex = <span class="kw">pred.cex</span>, type = <span class="st">"p"</span>)
   }
 
-<span class="fu"><a href="../reference/plotc.html">plotc</a></span>(<span class="no">flu</span>,
-  <span class="kw">groups</span> <span class="kw">=</span> <span class="no">type</span>, <span class="kw">type</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"l"</span>, <span class="st">"p"</span>),
-  <span class="kw">col</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"black"</span>, <span class="st">"black"</span>, <span class="st">"#606060"</span>, <span class="st">"#606060"</span>),
-  <span class="kw">pch</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">19</span>, <span class="fl">NA</span>, <span class="fl">NA</span>, <span class="fl">NA</span>),
-  <span class="kw">cex</span> <span class="kw">=</span> <span class="fl">0.5</span>,
-  <span class="kw">lty</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">1</span>),
-  <span class="kw">panel</span> <span class="kw">=</span> <span class="no">panel.predict</span>,
-  <span class="kw">intensity</span> <span class="kw">=</span> <span class="no">I</span>,
-  <span class="kw">ci</span> <span class="kw">=</span> <span class="no">conc</span>,
-  <span class="kw">pred.cex</span> <span class="kw">=</span> <span class="fl">0.5</span>
-)</pre></body></html></div>
+<span class="fu"><a href="../reference/plotc.html">plotc</a></span>(<span class="kw">flu</span>,
+  groups = <span class="kw">type</span>, type = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"l"</span>, <span class="st">"p"</span>),
+  col = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"black"</span>, <span class="st">"black"</span>, <span class="st">"#606060"</span>, <span class="st">"#606060"</span>),
+  pch = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">19</span>, <span class="fl">NA</span>, <span class="fl">NA</span>, <span class="fl">NA</span>),
+  cex = <span class="fl">0.5</span>,
+  lty = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">1</span>),
+  panel = <span class="kw">panel.predict</span>,
+  intensity = <span class="kw">I</span>,
+  ci = <span class="kw">conc</span>,
+  pred.cex = <span class="fl">0.5</span>
+)
+</pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:calplot4"></span>
 <img src="flu_files/figure-html/calplot4-1.png" alt="calibration function and its 99% confidence interval and predicted points. "><p class="caption">
@@ -408,7 +449,8 @@ Figure 4.4: calibration function and its 99% confidence interval and predicted p
 <div id="session-info" class="section level1 unnumbered">
 <h1 class="hasAnchor">
 <a href="#session-info" class="anchor"></a>Session Info</h1>
-<div class="sourceCode" id="cb22"><html><body><pre class="r"><span class="kw pkg">sessioninfo</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/sessioninfo/man/session_info.html">session_info</a></span>(<span class="st">"hyperSpec"</span>)
+<div class="sourceCode" id="cb22"><pre class="downlit">
+<span class="kw">sessioninfo</span>::<span class="fu"><a href="https://rdrr.io/pkg/sessioninfo/man/session_info.html">session_info</a></span>(<span class="st">"hyperSpec"</span>)
 <span class="co">#&gt; ─ Session info ───────────────────────────────────────────────────────────────────────────────────</span>
 <span class="co">#&gt;  setting  value                       </span>
 <span class="co">#&gt;  version  R version 4.0.1 (2020-06-06)</span>
@@ -480,7 +522,8 @@ Figure 4.4: calibration function and its 99% confidence interval and predicted p
 <span class="co">#&gt;  xml2         * 1.3.2    2020-04-23 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [1] /Users/runner/runners/2.169.1/work/_temp/Library</span>
-<span class="co">#&gt; [2] /Library/Frameworks/R.framework/Versions/4.0/Resources/library</span></pre></body></html></div>
+<span class="co">#&gt; [2] /Library/Frameworks/R.framework/Versions/4.0/Resources/library</span>
+</pre></div>
 </div>
 <div id="references" class="section level1 unnumbered">
 <h1 class="hasAnchor">

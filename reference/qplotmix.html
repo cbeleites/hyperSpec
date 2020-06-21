@@ -88,9 +88,9 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-    <li class="dropdown-header">Documentation for version of pacakge:</li>
+    <li class="dropdown-header">Documentation for version of package:</li>
     <li>
-      <a href="https://cbeleites.github.io/hyperSpec/">Realeased</a>
+      <a href="https://cbeleites.github.io/hyperSpec/">Released</a>
     </li>
     <li>
       <a href="https://cbeleites.github.io/hyperSpec/dev/">In-development</a>
@@ -167,41 +167,41 @@
     <p>plot graph with legend right of it</p>
     </div>
 
-    <pre class="usage"><span class='fu'>legendright</span>(<span class='no'>p</span>, <span class='no'>l</span>, <span class='kw'>legend.width</span> <span class='kw'>=</span> <span class='fl'>8</span>, <span class='kw'>legend.unit</span> <span class='kw'>=</span> <span class='st'>"lines"</span>)
+    <pre class="usage"><span class='fu'>legendright</span>(<span class='kw'>p</span>, <span class='kw'>l</span>, legend.width = <span class='fl'>8</span>, legend.unit = <span class='st'>"lines"</span>)
 
 <span class='fu'>qmixtile</span>(
-  <span class='no'>object</span>,
-  <span class='kw'>purecol</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/stop.html'>stop</a></span>(<span class='st'>"pure component colors needed."</span>),
-  <span class='kw'>mapping</span> <span class='kw'>=</span> <span class='fu'>aes_string</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='st'>"x"</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='st'>"y"</span>, <span class='kw'>fill</span> <span class='kw'>=</span> <span class='st'>"spc"</span>),
-  <span class='no'>...</span>,
-  <span class='kw'>map.tileonly</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+  <span class='kw'>object</span>,
+  purecol = <span class='fu'><a href='https://rdrr.io/r/base/stop.html'>stop</a></span>(<span class='st'>"pure component colors needed."</span>),
+  mapping = <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes_.html'>aes_string</a></span>(x = <span class='st'>"x"</span>, y = <span class='st'>"y"</span>, fill = <span class='st'>"spc"</span>),
+  <span class='kw'>...</span>,
+  map.tileonly = <span class='fl'>FALSE</span>
 )
 
-<span class='fu'>normalize.colrange</span>(<span class='no'>x</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='no'>...</span>)
+<span class='fu'>normalize.colrange</span>(<span class='kw'>x</span>, na.rm = <span class='fl'>TRUE</span>, legend = <span class='fl'>FALSE</span>, n = <span class='fl'>100</span>, <span class='kw'>...</span>)
 
-<span class='fu'>normalize.range</span>(<span class='no'>x</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='no'>...</span>)
+<span class='fu'>normalize.range</span>(<span class='kw'>x</span>, na.rm = <span class='fl'>TRUE</span>, legend = <span class='fl'>FALSE</span>, n = <span class='fl'>100</span>, <span class='kw'>...</span>)
 
-<span class='fu'>normalize.null</span>(<span class='no'>x</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='no'>...</span>)
+<span class='fu'>normalize.null</span>(<span class='kw'>x</span>, na.rm = <span class='fl'>TRUE</span>, legend = <span class='fl'>FALSE</span>, n = <span class='fl'>100</span>, <span class='kw'>...</span>)
 
-<span class='fu'>normalize.minmax</span>(<span class='no'>x</span>, <span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='no'>...</span>)
+<span class='fu'>normalize.minmax</span>(<span class='kw'>x</span>, min = <span class='fl'>0</span>, max = <span class='fl'>1</span>, legend = <span class='fl'>FALSE</span>, n = <span class='fl'>100</span>, <span class='kw'>...</span>)
 
 <span class='fu'>qmixlegend</span>(
-  <span class='no'>x</span>,
-  <span class='no'>purecol</span>,
-  <span class='kw'>dx</span> <span class='kw'>=</span> <span class='fl'>0.33</span>,
-  <span class='kw'>ny</span> <span class='kw'>=</span> <span class='fl'>100</span>,
-  <span class='kw'>labels</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>purecol</span>),
-  <span class='kw'>normalize</span> <span class='kw'>=</span> <span class='no'>normalize.colrange</span>,
-  <span class='no'>...</span>
+  <span class='kw'>x</span>,
+  <span class='kw'>purecol</span>,
+  dx = <span class='fl'>0.33</span>,
+  ny = <span class='fl'>100</span>,
+  labels = <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='kw'>purecol</span>),
+  normalize = <span class='kw'>normalize.colrange</span>,
+  <span class='kw'>...</span>
 )
 
 <span class='fu'>colmix.rgb</span>(
-  <span class='no'>x</span>,
-  <span class='no'>purecol</span>,
-  <span class='kw'>against</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>sub</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>normalize</span> <span class='kw'>=</span> <span class='no'>normalize.colrange</span>,
-  <span class='no'>...</span>
+  <span class='kw'>x</span>,
+  <span class='kw'>purecol</span>,
+  against = <span class='fl'>1</span>,
+  sub = <span class='fl'>TRUE</span>,
+  normalize = <span class='kw'>normalize.colrange</span>,
+  <span class='kw'>...</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>

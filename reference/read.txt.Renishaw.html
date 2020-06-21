@@ -88,9 +88,9 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-    <li class="dropdown-header">Documentation for version of pacakge:</li>
+    <li class="dropdown-header">Documentation for version of package:</li>
     <li>
-      <a href="https://cbeleites.github.io/hyperSpec/">Realeased</a>
+      <a href="https://cbeleites.github.io/hyperSpec/">Released</a>
     </li>
     <li>
       <a href="https://cbeleites.github.io/hyperSpec/dev/">In-development</a>
@@ -167,21 +167,21 @@
     <p>import Raman measurements from Renishaw (possibly compressed) .txt file.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>scan.txt.Renishaw</span>(<span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>scan.txt.Renishaw</span>(<span class='kw'>...</span>)
 
-<span class='fu'>scan.zip.Renishaw</span>(<span class='no'>...</span>)
+<span class='fu'>scan.zip.Renishaw</span>(<span class='kw'>...</span>)
 
 <span class='fu'>read.txt.Renishaw</span>(
-  <span class='kw'>file</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/stop.html'>stop</a></span>(<span class='st'>"file is required"</span>),
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='st'>"xyspc"</span>,
-  <span class='kw'>nlines</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>nspc</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+  file = <span class='fu'><a href='https://rdrr.io/r/base/stop.html'>stop</a></span>(<span class='st'>"file is required"</span>),
+  data = <span class='st'>"xyspc"</span>,
+  nlines = <span class='fl'>0</span>,
+  nspc = <span class='kw'>NULL</span>
 )
 
 <span class='fu'>read.zip.Renishaw</span>(
-  <span class='kw'>file</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/stop.html'>stop</a></span>(<span class='st'>"filename is required"</span>),
-  <span class='kw'>txt.file</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/grep.html'>sub</a></span>(<span class='st'>"[.]zip"</span>, <span class='st'>".txt"</span>, <span class='fu'><a href='https://rdrr.io/r/base/basename.html'>basename</a></span>(<span class='no'>file</span>)),
-  <span class='no'>...</span>
+  file = <span class='fu'><a href='https://rdrr.io/r/base/stop.html'>stop</a></span>(<span class='st'>"filename is required"</span>),
+  txt.file = <span class='fu'><a href='https://rdrr.io/r/base/grep.html'>sub</a></span>(<span class='st'>"[.]zip"</span>, <span class='st'>".txt"</span>, <span class='fu'><a href='https://rdrr.io/r/base/basename.html'>basename</a></span>(<span class='kw'>file</span>)),
+  <span class='kw'>...</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -246,7 +246,7 @@ not given, <code>read.txt.Renishaw</code> tries to guess it by using <code>wc</c
 (if installed).</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='textio.html'>read.txt.long</a></code>, <code><a href='textio.html'>read.txt.wide</a></code>,
+    <div class='dont-index'><p><code>read.txt.long</code>, <code>read.txt.wide</code>,
   <code><a href='https://rdrr.io/r/base/scan.html'>scan</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 

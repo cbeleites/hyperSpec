@@ -88,9 +88,9 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-    <li class="dropdown-header">Documentation for version of pacakge:</li>
+    <li class="dropdown-header">Documentation for version of package:</li>
     <li>
-      <a href="https://cbeleites.github.io/hyperSpec/">Realeased</a>
+      <a href="https://cbeleites.github.io/hyperSpec/">Released</a>
     </li>
     <li>
       <a href="https://cbeleites.github.io/hyperSpec/dev/">In-development</a>
@@ -195,7 +195,7 @@ $(x, name) &lt;- value</pre>
     <tr>
       <th>i</th>
       <td><p>row index: selects spectra</p>
-<p><code>[[</code> and code[[&lt;- accept indexing with logical matrix or a n by 2
+<p><code><a href='https://rdrr.io/r/base/Extract.html'>[[</a></code> and code[[&lt;- accept indexing with logical matrix or a n by 2
   integer index matrix. In this case the indexing is done inside the
   spectra matrix. See the examples below.</p></td>
     </tr>
@@ -218,13 +218,13 @@ indices.</p></td>
       <td><p>If <code>TRUE</code> (default), the value(s) in <code>l</code> are
 treated as column indices for the spectral matrix. Otherwise, the numbers
 in <code>l</code> are treated as wavelengths and the corresponding column
-indices are looked up first via <code><a href='wl2i.html'>wl2i</a></code>.</p></td>
+indices are looked up first via <code>wl2i</code>.</p></td>
     </tr>
     <tr>
       <th>drop</th>
-      <td><p>For <code>[[</code>: drop unnecessary dimensions, see
+      <td><p>For <code><a href='https://rdrr.io/r/base/Extract.html'>[[</a></code>: drop unnecessary dimensions, see
 <code><a href='https://rdrr.io/r/base/drop.html'>drop</a></code> and <code><a href='https://rdrr.io/r/base/Extract.html'>Extract</a></code>. Ignored for
-<code>[</code>, as otherwise invalid <code>hyperSpec</code> objects might result.</p></td>
+<code><a href='https://rdrr.io/r/base/Extract.html'>[</a></code>, as otherwise invalid <code>hyperSpec</code> objects might result.</p></td>
     </tr>
     <tr>
       <th>name</th>
@@ -238,9 +238,9 @@ indices are looked up first via <code><a href='wl2i.html'>wl2i</a></code>.</p></
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>For <code>[</code>, <code>[&lt;-</code>, <code>[[&lt;-</code>, and <code>$&lt;-</code> a <code>hyperSpec</code> object,</p>
-<p>for <code>[[</code> a matrix or <code>data.frame</code>, and</p>
-<p>for <code>$</code> the column of the <code>data.frame</code> <code>@data</code>.</p>
+    <p>For <code><a href='https://rdrr.io/r/base/Extract.html'>[</a></code>, <code>[&lt;-</code>, <code>[[&lt;-</code>, and <code>$&lt;-</code> a <code>hyperSpec</code> object,</p>
+<p>for <code><a href='https://rdrr.io/r/base/Extract.html'>[[</a></code> a matrix or <code>data.frame</code>, and</p>
+<p>for <code><a href='https://rdrr.io/r/base/Extract.html'>$</a></code> the column of the <code>data.frame</code> <code>@data</code>.</p>
 <p><code>x[[]]</code> returns the complete spectra matrix.</p>
 <p><code>x$.</code> returns the complete slot <code>@data</code>,</p>
 <p><code>x$..</code> returns the <code>data.frame</code> in <code>@data</code> but without the column
@@ -253,12 +253,12 @@ wavelengths (columns of the spectra matrix).</p>
 or setting the data belonging to the spectra.</p>
 <p>Convenient shortcuts for access of the spectra matrix and the <code>data.frame</code> in slot
 <code>data</code> are provided.</p>
-<p><em>Extracting: <code>[</code>, <code>[[</code>, and <code>$</code></em>.</p>
-<p>The version with single square brackets (<code>[</code>) returns the resulting <code>hyperSpec</code> object.</p>
-<p><code>[[</code> yields <code>data.frame</code> of slot <code>@data</code> of that corresponding <code>hyperSpec</code>
-object returned with the same arguments by <code>[</code> if columns were selected (i.e. <code>j</code> is
+<p><em>Extracting: <code><a href='https://rdrr.io/r/base/Extract.html'>[</a></code>, <code><a href='https://rdrr.io/r/base/Extract.html'>[[</a></code>, and <code><a href='https://rdrr.io/r/base/Extract.html'>$</a></code></em>.</p>
+<p>The version with single square brackets (<code><a href='https://rdrr.io/r/base/Extract.html'>[</a></code>) returns the resulting <code>hyperSpec</code> object.</p>
+<p><code><a href='https://rdrr.io/r/base/Extract.html'>[[</a></code> yields <code>data.frame</code> of slot <code>@data</code> of that corresponding <code>hyperSpec</code>
+object returned with the same arguments by <code><a href='https://rdrr.io/r/base/Extract.html'>[</a></code> if columns were selected (i.e. <code>j</code> is
 given), otherwise the spectra <code>matrix</code> <code>x@data$spc</code>.</p>
-<p><code>$</code> returns the selected column of the <code>data.frame</code> in slot <code>@data</code>.</p>
+<p><code><a href='https://rdrr.io/r/base/Extract.html'>$</a></code> returns the selected column of the <code>data.frame</code> in slot <code>@data</code>.</p>
 <p><em>Shortcuts.</em> Three shortcuts to conveniently extract much needed parts of the object are
 defined:</p>
 <p><code>x[[]]</code> returns the spectra matrix.</p>
@@ -277,7 +277,7 @@ x$name &lt;- value
 </pre>
 
 <p><code>value</code> gives the values to be assigned.<br /></p>
-<p>For <code>$</code>, this can also be a list of the form <code><a href='https://rdrr.io/r/base/list.html'>list (value =
+<p>For <code><a href='https://rdrr.io/r/base/Extract.html'>$</a></code>, this can also be a list of the form <code><a href='https://rdrr.io/r/base/list.html'>list (value =
 value, label = label)</a></code>, with <code>label</code> containing the label for data
 column <code>name</code>.</p>
 <p><code>[[&lt;-</code> replaces parts of the spectra matrix.</p>
@@ -290,7 +290,7 @@ is changed accordingly.</p>
 spectra matrix.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='wl2i.html'>wl2i</a></code> on conversion of wavelength ranges to indices.</p>
+    <div class='dont-index'><p><code>wl2i</code> on conversion of wavelength ranges to indices.</p>
 <p><code><a href='https://rdrr.io/r/base/drop.html'>drop</a></code> and <code><a href='https://rdrr.io/r/base/Extract.html'>Extract</a></code> on <code>drop</code>.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -299,12 +299,12 @@ spectra matrix.</p>
 <span class='co'>## make some "spectra"</span>
 
 <span class='co'>## numeric index</span>
-<span class='fu'><a href='plot.html'>plot</a></span> (<span class='no'>flu</span>, <span class='st'>"spc"</span>, <span class='kw'>lines.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span> (<span class='kw'>lty</span> <span class='kw'>=</span> <span class='fl'>2</span>))</div><div class='input'><span class='fu'><a href='plot.html'>plot</a></span> (<span class='no'>flu</span>[<span class='fl'>1</span>:<span class='fl'>3</span>], <span class='st'>"spc"</span>, <span class='kw'>add</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"red"</span>)     <span class='co'># select spectra</span></div><div class='input'><span class='fu'><a href='plot.html'>plot</a></span> (<span class='no'>flu</span>[-(<span class='fl'>1</span>:<span class='fl'>3</span>)], <span class='st'>"spc"</span>, <span class='kw'>add</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"blue"</span>) <span class='co'># delete spectra</span></div><div class='img'><img src='extractreplace-1.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span> (<span class='kw'>flu</span>, <span class='st'>"spc"</span>, lines.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span> (lty = <span class='fl'>2</span>))</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span> (<span class='kw'>flu</span>[<span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>], <span class='st'>"spc"</span>, add = <span class='fl'>TRUE</span>, col = <span class='st'>"red"</span>)     <span class='co'># select spectra</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span> (<span class='kw'>flu</span>[<span class='op'>-</span>(<span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>)], <span class='st'>"spc"</span>, add = <span class='fl'>TRUE</span>, col = <span class='st'>"blue"</span>) <span class='co'># delete spectra</span></div><div class='img'><img src='extractreplace-1.png' alt='' width='466' height='288' /></div><div class='input'>
 <span class='co'>## logic index</span>
-<span class='fu'><a href='plot.html'>plot</a></span> (<span class='no'>flu</span>, <span class='st'>"spc"</span>, <span class='kw'>lines.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span> (<span class='kw'>lty</span> <span class='kw'>=</span> <span class='fl'>2</span>))</div><div class='input'><span class='no'>index</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span> (<span class='fl'>6</span>) <span class='kw'>&gt;</span> <span class='fl'>0</span>
-<span class='no'>index</span></div><div class='output co'>#&gt; [1] FALSE FALSE  TRUE FALSE FALSE  TRUE</div><div class='input'><span class='fu'><a href='plot.html'>plot</a></span> (<span class='no'>flu</span>[<span class='no'>index</span>], <span class='st'>"spc"</span>, <span class='kw'>add</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"red"</span>)   <span class='co'># select spectra</span></div><div class='input'><span class='fu'><a href='plot.html'>plot</a></span> (<span class='no'>flu</span>[!<span class='no'>index</span>], <span class='st'>"spc"</span>, <span class='kw'>add</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"blue"</span>) <span class='co'># select spectra</span></div><div class='img'><img src='extractreplace-2.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span> (<span class='kw'>flu</span>, <span class='st'>"spc"</span>, lines.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span> (lty = <span class='fl'>2</span>))</div><div class='input'><span class='kw'>index</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span> (<span class='fl'>6</span>) <span class='op'>&gt;</span> <span class='fl'>0</span>
+<span class='kw'>index</span></div><div class='output co'>#&gt; [1] FALSE FALSE  TRUE FALSE FALSE FALSE</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span> (<span class='kw'>flu</span>[<span class='kw'>index</span>], <span class='st'>"spc"</span>, add = <span class='fl'>TRUE</span>, col = <span class='st'>"red"</span>)   <span class='co'># select spectra</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span> (<span class='kw'>flu</span>[<span class='op'>!</span><span class='kw'>index</span>], <span class='st'>"spc"</span>, add = <span class='fl'>TRUE</span>, col = <span class='st'>"blue"</span>) <span class='co'># select spectra</span></div><div class='img'><img src='extractreplace-2.png' alt='' width='466' height='288' /></div><div class='input'>
 <span class='co'>## index into the data columns ---------------------------------------</span>
-<span class='fu'><a href='https://rdrr.io/r/base/range.html'>range</a></span> (<span class='no'>chondro</span><span class='kw'>[[</span>,<span class='st'>"x"</span>]])</div><div class='output co'>#&gt; [1] -11.55  22.45</div><div class='input'><span class='fu'><a href='dimnames.html'>colnames</a></span> (<span class='no'>chondro</span><span class='kw'>[[</span>,<span class='fl'>1</span>]])</div><div class='output co'>#&gt; [1] "y"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span> (<span class='no'>chondro</span><span class='kw'>[[</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>TRUE</span>, <span class='fl'>FALSE</span>, <span class='fl'>FALSE</span>)]])</div><div class='output co'>#&gt; [1] 875   2</div><div class='input'><span class='no'>chondro</span>$<span class='no'>x</span></div><div class='output co'>#&gt;   [1] -11.55 -10.55  -9.55  -8.55  -7.55  -6.55  -5.55  -4.55  -3.55  -2.55
+<span class='fu'><a href='https://rdrr.io/r/base/range.html'>range</a></span> (<span class='kw'>chondro</span>[[,<span class='st'>"x"</span>]])</div><div class='output co'>#&gt; [1] -11.55  22.45</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span> (<span class='kw'>chondro</span>[[,<span class='fl'>1</span>]])</div><div class='output co'>#&gt; [1] "y"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span> (<span class='kw'>chondro</span>[[,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>TRUE</span>, <span class='fl'>FALSE</span>, <span class='fl'>FALSE</span>)]])</div><div class='output co'>#&gt; [1] 875   2</div><div class='input'><span class='kw'>chondro</span><span class='op'>$</span><span class='kw'>x</span></div><div class='output co'>#&gt;   [1] -11.55 -10.55  -9.55  -8.55  -7.55  -6.55  -5.55  -4.55  -3.55  -2.55
 #&gt;  [11]  -1.55  -0.55   0.45   1.45   2.45   3.45   4.45   5.45   6.45   7.45
 #&gt;  [21]   8.45   9.45  10.45  11.45  12.45  13.45  14.45  15.45  16.45  17.45
 #&gt;  [31]  18.45  19.45  20.45  21.45  22.45 -11.55 -10.55  -9.55  -8.55  -7.55
@@ -396,7 +396,7 @@ spectra matrix.</p>
 <span class='co'>## the shortcut functions --------------------------------------------</span>
 
 <span class='co'>## extract the spectra matrix</span>
-<span class='no'>flu</span><span class='kw'>[[</span>]]</div><div class='output co'>#&gt;            405     405.5       406     406.5       407     407.5      408
+<span class='kw'>flu</span>[[]]</div><div class='output co'>#&gt;            405     405.5       406     406.5       407     407.5      408
 #&gt; [1,]  27.15000  32.34467  33.37867  34.41933  36.53133  37.64767  38.1370
 #&gt; [2,]  66.80133  63.71533  66.71200  69.58233  72.52967  74.55833  77.0480
 #&gt; [3,]  93.14433 103.06767 106.19367 110.18633 113.24867 119.17300 121.3133
@@ -572,24 +572,24 @@ spectra matrix.</p>
 #&gt; [5,] 259.4020 256.20067 252.06567 248.06700 246.95200
 #&gt; [6,] 315.6455 312.32950 307.51850 302.32550 294.64950</div><div class='input'>
 <span class='co'>## indexing via logical matrix</span>
-<span class='fu'><a href='show.html'>summary</a></span> (<span class='no'>flu</span> <span class='kw'>[[</span><span class='no'>flu</span> <span class='kw'>&lt;</span> <span class='fl'>125</span>]])</div><div class='output co'>#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span> (<span class='kw'>flu</span> [[<span class='kw'>flu</span> <span class='op'>&lt;</span> <span class='fl'>125</span>]])</div><div class='output co'>#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 #&gt;   27.15   66.94   90.56   85.06  104.08  124.74 </div><div class='input'>
 <span class='co'>## indexing the spectra matrix with index matrix n by 2</span>
-<span class='no'>ind</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span> (<span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>4</span>, <span class='fl'>406</span>, <span class='fl'>405.5</span>, <span class='fl'>409</span>), <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>2</span>)
-<span class='no'>ind</span></div><div class='output co'>#&gt;      [,1]  [,2]
+<span class='kw'>ind</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span> (<span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>4</span>, <span class='fl'>406</span>, <span class='fl'>405.5</span>, <span class='fl'>409</span>), ncol = <span class='fl'>2</span>)
+<span class='kw'>ind</span></div><div class='output co'>#&gt;      [,1]  [,2]
 #&gt; [1,]    1 406.0
 #&gt; [2,]    2 405.5
-#&gt; [3,]    4 409.0</div><div class='input'><span class='no'>flu</span> <span class='kw'>[[</span><span class='no'>ind</span>]]</div><div class='output co'>#&gt; [1]  33.37867  63.71533 175.45900</div><div class='input'>
-<span class='no'>ind</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span> (<span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>4</span>, <span class='fl'>4</span>:<span class='fl'>6</span>), <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>2</span>)
-<span class='no'>ind</span></div><div class='output co'>#&gt;      [,1] [,2]
+#&gt; [3,]    4 409.0</div><div class='input'><span class='kw'>flu</span> [[<span class='kw'>ind</span>]]</div><div class='output co'>#&gt; [1]  33.37867  63.71533 175.45900</div><div class='input'>
+<span class='kw'>ind</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span> (<span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>4</span>, <span class='fl'>4</span><span class='op'>:</span><span class='fl'>6</span>), ncol = <span class='fl'>2</span>)
+<span class='kw'>ind</span></div><div class='output co'>#&gt;      [,1] [,2]
 #&gt; [1,]    1    4
 #&gt; [2,]    2    5
-#&gt; [3,]    4    6</div><div class='input'><span class='no'>flu</span> <span class='kw'>[[</span><span class='no'>ind</span>, <span class='kw'>wl.index</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>]]</div><div class='output co'>#&gt; [1]  34.41933  72.52967 159.31033</div><div class='input'>
-<span class='no'>pca</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/prcomp.html'>prcomp</a></span> (<span class='no'>flu</span><span class='kw'>[[</span>]])
+#&gt; [3,]    4    6</div><div class='input'><span class='kw'>flu</span> [[<span class='kw'>ind</span>, wl.index = <span class='fl'>TRUE</span>]]</div><div class='output co'>#&gt; [1]  34.41933  72.52967 159.31033</div><div class='input'>
+<span class='kw'>pca</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/prcomp.html'>prcomp</a></span> (<span class='kw'>flu</span>[[]])
 
 <span class='co'>## result is data.frame, if j is given:</span>
-<span class='no'>result</span> <span class='kw'>&lt;-</span> <span class='no'>flu</span> <span class='kw'>[[</span>, <span class='fl'>1</span>:<span class='fl'>2</span>, <span class='fl'>405</span> ~ <span class='fl'>410</span>]]
-<span class='no'>result</span></div><div class='output co'>#&gt;     spc.405 spc.405.5   spc.406 spc.406.5   spc.407 spc.407.5   spc.408
+<span class='kw'>result</span> <span class='op'>&lt;-</span> <span class='kw'>flu</span> [[, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span>, <span class='fl'>405</span> <span class='op'>~</span> <span class='fl'>410</span>]]
+<span class='kw'>result</span></div><div class='output co'>#&gt;     spc.405 spc.405.5   spc.406 spc.406.5   spc.407 spc.407.5   spc.408
 #&gt; 1  27.15000  32.34467  33.37867  34.41933  36.53133  37.64767  38.13700
 #&gt; 2  66.80133  63.71533  66.71200  69.58233  72.52967  74.55833  77.04800
 #&gt; 3  93.14433 103.06767 106.19367 110.18633 113.24867 119.17300 121.31333
@@ -602,9 +602,9 @@ spectra matrix.</p>
 #&gt; 3 124.67533 129.56867 134.11733 139.98667 rawdata/flu3.txt
 #&gt; 4 168.68967 175.45900 181.58100 185.69233 rawdata/flu4.txt
 #&gt; 5 208.41933 217.55267 224.74633 231.03567 rawdata/flu5.txt
-#&gt; 6 256.89133 262.73900 270.27133 281.82867 rawdata/flu6.txt</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span> (<span class='no'>result</span>)</div><div class='output co'>#&gt; [1] "data.frame"</div><div class='input'><span class='fu'><a href='dimnames.html'>colnames</a></span> (<span class='no'>result</span>)</div><div class='output co'>#&gt; [1] "spc"      "filename"</div><div class='input'>
+#&gt; 6 256.89133 262.73900 270.27133 281.82867 rawdata/flu6.txt</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span> (<span class='kw'>result</span>)</div><div class='output co'>#&gt; [1] "data.frame"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span> (<span class='kw'>result</span>)</div><div class='output co'>#&gt; [1] "spc"      "filename"</div><div class='input'>
 <span class='co'>## extract the data.frame including the spectra matrix</span>
-<span class='no'>flu</span>$<span class='no'>.</span></div><div class='output co'>#&gt;     spc.405 spc.405.5   spc.406 spc.406.5   spc.407 spc.407.5   spc.408
+<span class='kw'>flu</span><span class='op'>$</span><span class='kw'>.</span></div><div class='output co'>#&gt;     spc.405 spc.405.5   spc.406 spc.406.5   spc.407 spc.407.5   spc.408
 #&gt; 1  27.15000  32.34467  33.37867  34.41933  36.53133  37.64767  38.13700
 #&gt; 2  66.80133  63.71533  66.71200  69.58233  72.52967  74.55833  77.04800
 #&gt; 3  93.14433 103.06767 106.19367 110.18633 113.24867 119.17300 121.31333
@@ -792,7 +792,7 @@ spectra matrix.</p>
 #&gt; 3 0.15
 #&gt; 4 0.20
 #&gt; 5 0.25
-#&gt; 6 0.30</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span>(<span class='no'>flu</span>$<span class='no'>.</span>)</div><div class='output co'>#&gt; [1] 6 3</div><div class='input'><span class='fu'><a href='dimnames.html'>colnames</a></span> (<span class='no'>flu</span>$<span class='no'>.</span>)</div><div class='output co'>#&gt; [1] "spc"      "filename" "c"       </div><div class='input'><span class='no'>flu</span>$<span class='no'>.</span>$<span class='no'>spc</span></div><div class='output co'>#&gt;            405     405.5       406     406.5       407     407.5      408
+#&gt; 6 0.30</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span>(<span class='kw'>flu</span><span class='op'>$</span><span class='kw'>.</span>)</div><div class='output co'>#&gt; [1] 6 3</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span> (<span class='kw'>flu</span><span class='op'>$</span><span class='kw'>.</span>)</div><div class='output co'>#&gt; [1] "spc"      "filename" "c"       </div><div class='input'><span class='kw'>flu</span><span class='op'>$</span><span class='kw'>.</span><span class='op'>$</span><span class='kw'>spc</span></div><div class='output co'>#&gt;            405     405.5       406     406.5       407     407.5      408
 #&gt; [1,]  27.15000  32.34467  33.37867  34.41933  36.53133  37.64767  38.1370
 #&gt; [2,]  66.80133  63.71533  66.71200  69.58233  72.52967  74.55833  77.0480
 #&gt; [3,]  93.14433 103.06767 106.19367 110.18633 113.24867 119.17300 121.3133
@@ -967,8 +967,8 @@ spectra matrix.</p>
 #&gt; [4,] 206.0153 204.57500 201.48433 198.86733 195.86733
 #&gt; [5,] 259.4020 256.20067 252.06567 248.06700 246.95200
 #&gt; [6,] 315.6455 312.32950 307.51850 302.32550 294.64950</div><div class='input'>
-<span class='no'>calibration</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span> (<span class='no'>spc</span> ~ <span class='no'>c</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>flu</span>[,,<span class='fl'>450</span>]$<span class='no'>.</span>)
-<span class='no'>calibration</span></div><div class='output co'>#&gt; 
+<span class='kw'>calibration</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span> (<span class='kw'>spc</span> <span class='op'>~</span> <span class='kw'>c</span>, data = <span class='kw'>flu</span>[,,<span class='fl'>450</span>]<span class='op'>$</span><span class='kw'>.</span>)
+<span class='kw'>calibration</span></div><div class='output co'>#&gt; 
 #&gt; Call:
 #&gt; lm(formula = spc ~ c, data = flu[, , 450]$.)
 #&gt; 
@@ -976,16 +976,16 @@ spectra matrix.</p>
 #&gt; (Intercept)            c  
 #&gt;      -8.666     2268.482  
 #&gt; </div><div class='input'>
-<span class='no'>flu</span>$<span class='no'>..</span></div><div class='output co'>#&gt;           filename    c
+<span class='kw'>flu</span><span class='op'>$</span><span class='kw'>..</span></div><div class='output co'>#&gt;           filename    c
 #&gt; 1 rawdata/flu1.txt 0.05
 #&gt; 2 rawdata/flu2.txt 0.10
 #&gt; 3 rawdata/flu3.txt 0.15
 #&gt; 4 rawdata/flu4.txt 0.20
 #&gt; 5 rawdata/flu5.txt 0.25
-#&gt; 6 rawdata/flu6.txt 0.30</div><div class='input'><span class='fu'><a href='dimnames.html'>colnames</a></span> (<span class='no'>flu</span>$<span class='no'>..</span>)</div><div class='output co'>#&gt; [1] "filename" "c"       </div><div class='input'>
+#&gt; 6 rawdata/flu6.txt 0.30</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span> (<span class='kw'>flu</span><span class='op'>$</span><span class='kw'>..</span>)</div><div class='output co'>#&gt; [1] "filename" "c"       </div><div class='input'>
 <span class='co'>## replacement functions</span>
-<span class='no'>spc</span> <span class='kw'>&lt;-</span> <span class='no'>flu</span>
-<span class='no'>spc</span>$<span class='no'>.</span></div><div class='output co'>#&gt;     spc.405 spc.405.5   spc.406 spc.406.5   spc.407 spc.407.5   spc.408
+<span class='kw'>spc</span> <span class='op'>&lt;-</span> <span class='kw'>flu</span>
+<span class='kw'>spc</span><span class='op'>$</span><span class='kw'>.</span></div><div class='output co'>#&gt;     spc.405 spc.405.5   spc.406 spc.406.5   spc.407 spc.407.5   spc.408
 #&gt; 1  27.15000  32.34467  33.37867  34.41933  36.53133  37.64767  38.13700
 #&gt; 2  66.80133  63.71533  66.71200  69.58233  72.52967  74.55833  77.04800
 #&gt; 3  93.14433 103.06767 106.19367 110.18633 113.24867 119.17300 121.31333
@@ -1173,18 +1173,18 @@ spectra matrix.</p>
 #&gt; 3 0.15
 #&gt; 4 0.20
 #&gt; 5 0.25
-#&gt; 6 0.30</div><div class='input'><span class='no'>spc</span>[, <span class='st'>"c"</span>] <span class='kw'>&lt;-</span> <span class='fl'>16</span> : <span class='fl'>11</span>
+#&gt; 6 0.30</div><div class='input'><span class='kw'>spc</span>[, <span class='st'>"c"</span>] <span class='op'>&lt;-</span> <span class='fl'>16</span> <span class='op'>:</span> <span class='fl'>11</span>
 <span class='co'>## be careful:</span>
-<span class='fu'><a href='plot.html'>plot</a></span> (<span class='no'>spc</span>)</div><div class='img'><img src='extractreplace-3.png' alt='' width='466' height='288' /></div><div class='input'><span class='no'>spc</span> [] <span class='kw'>&lt;-</span> <span class='fl'>6</span> : <span class='fl'>1</span>
-<span class='no'>spc</span>$<span class='no'>..</span></div><div class='output co'>#&gt;   filename c
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span> (<span class='kw'>spc</span>)</div><div class='img'><img src='extractreplace-3.png' alt='' width='466' height='288' /></div><div class='input'><span class='kw'>spc</span> [] <span class='op'>&lt;-</span> <span class='fl'>6</span> <span class='op'>:</span> <span class='fl'>1</span>
+<span class='kw'>spc</span><span class='op'>$</span><span class='kw'>..</span></div><div class='output co'>#&gt;   filename c
 #&gt; 1        6 6
 #&gt; 2        5 5
 #&gt; 3        4 4
 #&gt; 4        3 3
 #&gt; 5        2 2
-#&gt; 6        1 1</div><div class='input'><span class='fu'><a href='plot.html'>plot</a></span> (<span class='no'>spc</span>)</div><div class='img'><img src='extractreplace-4.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='no'>spc</span> <span class='kw'>&lt;-</span> <span class='no'>flu</span> [,, <span class='fl'>405</span> ~ <span class='fl'>410</span>]
-<span class='no'>spc</span> <span class='kw'>[[</span>]]</div><div class='output co'>#&gt;            405     405.5       406     406.5       407     407.5      408
+#&gt; 6        1 1</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span> (<span class='kw'>spc</span>)</div><div class='img'><img src='extractreplace-4.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='kw'>spc</span> <span class='op'>&lt;-</span> <span class='kw'>flu</span> [,, <span class='fl'>405</span> <span class='op'>~</span> <span class='fl'>410</span>]
+<span class='kw'>spc</span> [[]]</div><div class='output co'>#&gt;            405     405.5       406     406.5       407     407.5      408
 #&gt; [1,]  27.15000  32.34467  33.37867  34.41933  36.53133  37.64767  38.1370
 #&gt; [2,]  66.80133  63.71533  66.71200  69.58233  72.52967  74.55833  77.0480
 #&gt; [3,]  93.14433 103.06767 106.19367 110.18633 113.24867 119.17300 121.3133
@@ -1197,8 +1197,8 @@ spectra matrix.</p>
 #&gt; [3,] 124.67533 129.56867 134.11733 139.98667
 #&gt; [4,] 168.68967 175.45900 181.58100 185.69233
 #&gt; [5,] 208.41933 217.55267 224.74633 231.03567
-#&gt; [6,] 256.89133 262.73900 270.27133 281.82867</div><div class='input'><span class='no'>spc</span> <span class='kw'>[[</span><span class='fl'>3</span>]] <span class='kw'>&lt;-</span> -<span class='no'>spc</span><span class='kw'>[[</span><span class='fl'>3</span>]]
-<span class='no'>spc</span> <span class='kw'>[[</span>]]</div><div class='output co'>#&gt;            405      405.5        406      406.5        407      407.5       408
+#&gt; [6,] 256.89133 262.73900 270.27133 281.82867</div><div class='input'><span class='kw'>spc</span> [[<span class='fl'>3</span>]] <span class='op'>&lt;-</span> <span class='op'>-</span><span class='kw'>spc</span>[[<span class='fl'>3</span>]]
+<span class='kw'>spc</span> [[]]</div><div class='output co'>#&gt;            405      405.5        406      406.5        407      407.5       408
 #&gt; [1,]  27.15000   32.34467   33.37867   34.41933   36.53133   37.64767   38.1370
 #&gt; [2,]  66.80133   63.71533   66.71200   69.58233   72.52967   74.55833   77.0480
 #&gt; [3,] -93.14433 -103.06767 -106.19367 -110.18633 -113.24867 -119.17300 -121.3133
@@ -1211,8 +1211,8 @@ spectra matrix.</p>
 #&gt; [3,] -124.67533 -129.56867 -134.11733 -139.98667
 #&gt; [4,]  168.68967  175.45900  181.58100  185.69233
 #&gt; [5,]  208.41933  217.55267  224.74633  231.03567
-#&gt; [6,]  256.89133  262.73900  270.27133  281.82867</div><div class='input'><span class='no'>spc</span> <span class='kw'>[[</span>,,<span class='fl'>405</span> : <span class='fl'>410</span>]] <span class='kw'>&lt;-</span> -<span class='no'>spc</span><span class='kw'>[[</span>,,<span class='fl'>405</span> : <span class='fl'>410</span>]]
-<span class='no'>spc</span> <span class='kw'>[[</span>]]</div><div class='output co'>#&gt;             405      405.5        406      406.5        407      407.5
+#&gt; [6,]  256.89133  262.73900  270.27133  281.82867</div><div class='input'><span class='kw'>spc</span> [[,,<span class='fl'>405</span> <span class='op'>:</span> <span class='fl'>410</span>]] <span class='op'>&lt;-</span> <span class='op'>-</span><span class='kw'>spc</span>[[,,<span class='fl'>405</span> <span class='op'>:</span> <span class='fl'>410</span>]]
+<span class='kw'>spc</span> [[]]</div><div class='output co'>#&gt;             405      405.5        406      406.5        407      407.5
 #&gt; [1,]  -27.15000   32.34467  -33.37867   34.41933  -36.53133   37.64767
 #&gt; [2,]  -66.80133   63.71533  -66.71200   69.58233  -72.52967   74.55833
 #&gt; [3,]   93.14433 -103.06767  106.19367 -110.18633  113.24867 -119.17300
@@ -1225,18 +1225,18 @@ spectra matrix.</p>
 #&gt; [3,]  121.3133 -124.67533  129.56867 -134.11733  139.98667
 #&gt; [4,] -165.0523  168.68967 -175.45900  181.58100 -185.69233
 #&gt; [5,] -205.5627  208.41933 -217.55267  224.74633 -231.03567
-#&gt; [6,] -248.0467  256.89133 -262.73900  270.27133 -281.82867</div><div class='input'><span class='no'>spc</span> <span class='kw'>[[</span>,,<span class='fl'>405</span> ~ <span class='fl'>410</span>]] <span class='kw'>&lt;-</span> -<span class='no'>spc</span><span class='kw'>[[</span>,,<span class='fl'>405</span> ~ <span class='fl'>410</span>]]
+#&gt; [6,] -248.0467  256.89133 -262.73900  270.27133 -281.82867</div><div class='input'><span class='kw'>spc</span> [[,,<span class='fl'>405</span> <span class='op'>~</span> <span class='fl'>410</span>]] <span class='op'>&lt;-</span> <span class='op'>-</span><span class='kw'>spc</span>[[,,<span class='fl'>405</span> <span class='op'>~</span> <span class='fl'>410</span>]]
 
 <span class='co'>## indexing with logical matrix</span>
-<span class='no'>spc</span> <span class='kw'>&lt;-</span> <span class='no'>flu</span> [,, <span class='no'>min</span> ~ <span class='fl'>410</span>]
-<span class='no'>spc</span> <span class='kw'>&lt;</span> <span class='fl'>125</span></div><div class='output co'>#&gt;        405 405.5   406 406.5   407 407.5   408 408.5   409 409.5   410
+<span class='kw'>spc</span> <span class='op'>&lt;-</span> <span class='kw'>flu</span> [,, <span class='kw'>min</span> <span class='op'>~</span> <span class='fl'>410</span>]
+<span class='kw'>spc</span> <span class='op'>&lt;</span> <span class='fl'>125</span></div><div class='output co'>#&gt;        405 405.5   406 406.5   407 407.5   408 408.5   409 409.5   410
 #&gt; [1,]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
 #&gt; [2,]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
 #&gt; [3,]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE
 #&gt; [4,] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 #&gt; [5,] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-#&gt; [6,] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</div><div class='input'><span class='no'>spc</span> <span class='kw'>[[</span><span class='no'>spc</span> <span class='kw'>&lt;</span> <span class='fl'>125</span>]] <span class='kw'>&lt;-</span> <span class='fl'>NA</span>
-<span class='no'>spc</span> <span class='kw'>[[</span>]]</div><div class='output co'>#&gt;           405    405.5      406    406.5      407    407.5      408    408.5
+#&gt; [6,] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</div><div class='input'><span class='kw'>spc</span> [[<span class='kw'>spc</span> <span class='op'>&lt;</span> <span class='fl'>125</span>]] <span class='op'>&lt;-</span> <span class='fl'>NA</span>
+<span class='kw'>spc</span> [[]]</div><div class='output co'>#&gt;           405    405.5      406    406.5      407    407.5      408    408.5
 #&gt; [1,]       NA       NA       NA       NA       NA       NA       NA       NA
 #&gt; [2,]       NA       NA       NA       NA       NA       NA       NA       NA
 #&gt; [3,]       NA       NA       NA       NA       NA       NA       NA       NA
@@ -1251,12 +1251,12 @@ spectra matrix.</p>
 #&gt; [5,] 217.5527 224.7463 231.0357
 #&gt; [6,] 262.7390 270.2713 281.8287</div><div class='input'>
 <span class='co'>## indexing with n by 2 matrix</span>
-<span class='no'>ind</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span> (<span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>4</span>, <span class='fl'>406</span>, <span class='fl'>405.5</span>, <span class='fl'>409</span>), <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>2</span>)
-<span class='no'>ind</span></div><div class='output co'>#&gt;      [,1]  [,2]
+<span class='kw'>ind</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span> (<span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>4</span>, <span class='fl'>406</span>, <span class='fl'>405.5</span>, <span class='fl'>409</span>), ncol = <span class='fl'>2</span>)
+<span class='kw'>ind</span></div><div class='output co'>#&gt;      [,1]  [,2]
 #&gt; [1,]    1 406.0
 #&gt; [2,]    2 405.5
-#&gt; [3,]    4 409.0</div><div class='input'><span class='no'>spc</span> <span class='kw'>[[</span><span class='no'>ind</span>]] <span class='kw'>&lt;-</span> <span class='fl'>3</span>
-<span class='no'>spc</span> <span class='kw'>[[</span>]]</div><div class='output co'>#&gt;           405    405.5      406    406.5      407    407.5      408    408.5
+#&gt; [3,]    4 409.0</div><div class='input'><span class='kw'>spc</span> [[<span class='kw'>ind</span>]] <span class='op'>&lt;-</span> <span class='fl'>3</span>
+<span class='kw'>spc</span> [[]]</div><div class='output co'>#&gt;           405    405.5      406    406.5      407    407.5      408    408.5
 #&gt; [1,]       NA       NA   3.0000       NA       NA       NA       NA       NA
 #&gt; [2,]       NA   3.0000       NA       NA       NA       NA       NA       NA
 #&gt; [3,]       NA       NA       NA       NA       NA       NA       NA       NA
@@ -1270,12 +1270,12 @@ spectra matrix.</p>
 #&gt; [4,]   3.0000 181.5810 185.6923
 #&gt; [5,] 217.5527 224.7463 231.0357
 #&gt; [6,] 262.7390 270.2713 281.8287</div><div class='input'>
-<span class='no'>ind</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span> (<span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>4</span>, <span class='fl'>4</span>:<span class='fl'>6</span>), <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>2</span>)
-<span class='no'>ind</span></div><div class='output co'>#&gt;      [,1] [,2]
+<span class='kw'>ind</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span> (<span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>4</span>, <span class='fl'>4</span><span class='op'>:</span><span class='fl'>6</span>), ncol = <span class='fl'>2</span>)
+<span class='kw'>ind</span></div><div class='output co'>#&gt;      [,1] [,2]
 #&gt; [1,]    1    4
 #&gt; [2,]    2    5
-#&gt; [3,]    4    6</div><div class='input'><span class='no'>spc</span> <span class='kw'>[[</span><span class='no'>ind</span>, <span class='kw'>wl.index</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>]] <span class='kw'>&lt;-</span> <span class='fl'>9999</span>
-<span class='no'>spc</span> <span class='kw'>[[</span>]]</div><div class='output co'>#&gt;           405    405.5      406     406.5       407     407.5      408    408.5
+#&gt; [3,]    4    6</div><div class='input'><span class='kw'>spc</span> [[<span class='kw'>ind</span>, wl.index = <span class='fl'>TRUE</span>]] <span class='op'>&lt;-</span> <span class='fl'>9999</span>
+<span class='kw'>spc</span> [[]]</div><div class='output co'>#&gt;           405    405.5      406     406.5       407     407.5      408    408.5
 #&gt; [1,]       NA       NA   3.0000 9999.0000        NA        NA       NA       NA
 #&gt; [2,]       NA   3.0000       NA        NA 9999.0000        NA       NA       NA
 #&gt; [3,]       NA       NA       NA        NA        NA        NA       NA       NA
@@ -1289,7 +1289,7 @@ spectra matrix.</p>
 #&gt; [4,]   3.0000 181.5810 185.6923
 #&gt; [5,] 217.5527 224.7463 231.0357
 #&gt; [6,] 262.7390 270.2713 281.8287</div><div class='input'>
-<span class='no'>spc</span>$<span class='no'>.</span></div><div class='output co'>#&gt;     spc.405 spc.405.5   spc.406 spc.406.5   spc.407 spc.407.5   spc.408
+<span class='kw'>spc</span><span class='op'>$</span><span class='kw'>.</span></div><div class='output co'>#&gt;     spc.405 spc.405.5   spc.406 spc.406.5   spc.407 spc.407.5   spc.408
 #&gt; 1        NA        NA    3.0000 9999.0000        NA        NA        NA
 #&gt; 2        NA    3.0000        NA        NA 9999.0000        NA        NA
 #&gt; 3        NA        NA        NA        NA        NA        NA        NA
@@ -1302,8 +1302,8 @@ spectra matrix.</p>
 #&gt; 3        NA  129.5687  134.1173  139.9867 rawdata/flu3.txt 0.15
 #&gt; 4  168.6897    3.0000  181.5810  185.6923 rawdata/flu4.txt 0.20
 #&gt; 5  208.4193  217.5527  224.7463  231.0357 rawdata/flu5.txt 0.25
-#&gt; 6  256.8913  262.7390  270.2713  281.8287 rawdata/flu6.txt 0.30</div><div class='input'><span class='no'>spc</span>$<span class='no'>z</span> <span class='kw'>&lt;-</span> <span class='fl'>1</span> : <span class='fl'>6</span>
-<span class='no'>spc</span></div><div class='output co'>#&gt; hyperSpec object
+#&gt; 6  256.8913  262.7390  270.2713  281.8287 rawdata/flu6.txt 0.30</div><div class='input'><span class='kw'>spc</span><span class='op'>$</span><span class='kw'>z</span> <span class='op'>&lt;-</span> <span class='fl'>1</span> <span class='op'>:</span> <span class='fl'>6</span>
+<span class='kw'>spc</span></div><div class='output co'>#&gt; hyperSpec object
 #&gt;    6 spectra
 #&gt;    4 data columns
 #&gt;    11 data points / spectrum
@@ -1312,7 +1312,8 @@ spectra matrix.</p>
 #&gt;    1. spc: I[fl]/"a.u." [matrix, array11] NA NA ... 281.8287 + NA
 #&gt;    2. filename: filename [character] rawdata/flu1.txt rawdata/flu2.txt ... rawdata/flu6.txt 
 #&gt;    3. c: c / (mg / l) [numeric] 0.05 0.10 ... 0.3 
-#&gt;    4. z: z [integer] 1 2 ... 6 </div><div class='input'><span class='no'>spc</span>$<span class='no'>z</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span> (<span class='fl'>1</span> : <span class='fl'>6</span>, <span class='st'>"z / a.u."</span>)</div></pre>
+#&gt;    4. z: z [integer] 1 2 ... 6 </div><div class='input'><span class='kw'>spc</span><span class='op'>$</span><span class='kw'>z</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span> (<span class='fl'>1</span> <span class='op'>:</span> <span class='fl'>6</span>, <span class='st'>"z / a.u."</span>)
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

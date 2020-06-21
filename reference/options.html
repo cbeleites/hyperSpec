@@ -104,9 +104,9 @@ ggplot.spc.nmax10qplotspc
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-    <li class="dropdown-header">Documentation for version of pacakge:</li>
+    <li class="dropdown-header">Documentation for version of package:</li>
     <li>
-      <a href="https://cbeleites.github.io/hyperSpec/">Realeased</a>
+      <a href="https://cbeleites.github.io/hyperSpec/">Released</a>
     </li>
     <li>
       <a href="https://cbeleites.github.io/hyperSpec/dev/">In-development</a>
@@ -183,26 +183,26 @@ Functions to access and set hyperSpec's options.</h1>
     <div class="ref-description">
     <p>Currently, the following options are defined:</p><table class='table'>
 <tr><td><b>Name</b></td><td><b>Default Value (range)</b></td><td><b>Description</b></td><td><b>Used by</b></td></tr>
-<tr><td>debuglevel</td><td>0 (1L 2L 3L)</td><td>amount of debugging information produced</td><td><code><a href='spc-identify.html'>spc.identify</a></code> <code><a href='levelplot.html'>map.identify</a></code></td></tr>
+<tr><td>debuglevel</td><td>0 (1L 2L 3L)</td><td>amount of debugging information produced</td><td><code>spc.identify</code> <code>map.identify</code></td></tr>
 <tr><td></td><td></td><td></td><td>various file import functions</td></tr>
-<tr><td></td><td></td><td></td><td><code><a href='baselines.html'>spc.fit.poly.below</a></code></td></tr>
-<tr><td>gc</td><td>FALSE</td><td>triggers frequent calling of gc ()</td><td><code><a href='read.ENVI.html'>read.ENVI</a></code>, <code><a href='initialize.html'>new ("hyperSpec")</a></code></td></tr>
+<tr><td></td><td></td><td></td><td><code>spc.fit.poly.below</code></td></tr>
+<tr><td>gc</td><td>FALSE</td><td>triggers frequent calling of gc ()</td><td><code>read.ENVI</code>, <code>new ("hyperSpec")</code></td></tr>
 <tr><td>file.remove.emptyspc</td><td>TRUE</td><td>remove empty spectra directly on file import</td><td>various file import functions</td></tr>
 <tr><td>file.keep.name</td><td>TRUE</td><td>always create filename column</td><td>various file import functions</td></tr>
-<tr><td>tolerance</td><td><code><a href='https://rdrr.io/r/base/MathFun.html'>sqrt (.Machine$double.eps)</a></code></td><td>tolerance for numerical comparisons</td><td><code><a href='normalize01.html'>normalize01</a></code>, file import: <code>file.remove.emptyspc</code></td></tr>
-<tr><td>wl.tolerance</td><td><code><a href='https://rdrr.io/r/base/MathFun.html'>sqrt (.Machine$double.eps)</a></code></td><td>tolerance for comparisons of the wavelength axis</td><td><code><a href='Comparison.html'>all.equal</a></code>, <code><a href='collapse.html'>collapse</a></code>, <code><a href='https://rdrr.io/r/base/cbind.html'>rbind</a></code></td></tr>
-<tr><td>plot.spc.nmax</td><td>25</td><td>number of spectra to be plotted by default</td><td><code><a href='plotspc.html'>plotspc</a></code></td></tr>
-<tr><td>ggplot.spc.nmax</td><td>10</td><td></td><td><code><a href='qplotspc.html'>qplotspc</a></code></td></tr>
+<tr><td>tolerance</td><td><code><a href='https://rdrr.io/r/base/MathFun.html'>sqrt (.Machine$double.eps)</a></code></td><td>tolerance for numerical comparisons</td><td><code>normalize01</code>, file import: <code>file.remove.emptyspc</code></td></tr>
+<tr><td>wl.tolerance</td><td><code><a href='https://rdrr.io/r/base/MathFun.html'>sqrt (.Machine$double.eps)</a></code></td><td>tolerance for comparisons of the wavelength axis</td><td><code><a href='https://rdrr.io/r/base/all.equal.html'>all.equal</a></code>, <code>collapse</code>, <code><a href='https://rdrr.io/r/base/cbind.html'>rbind</a></code></td></tr>
+<tr><td>plot.spc.nmax</td><td>25</td><td>number of spectra to be plotted by default</td><td><code>plotspc</code></td></tr>
+<tr><td>ggplot.spc.nmax</td><td>10</td><td></td><td><code>qplotspc</code></td></tr>
 </table>
 
 
     </div>
 
-    <pre class="usage"><span class='fu'>hy.getOptions</span>(<span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>hy.getOptions</span>(<span class='kw'>...</span>)
 
-<span class='fu'>hy.getOption</span>(<span class='no'>name</span>)
+<span class='fu'>hy.getOption</span>(<span class='kw'>name</span>)
 
-<span class='fu'>hy.setOptions</span>(<span class='no'>...</span>)</pre>
+<span class='fu'>hy.setOptions</span>(<span class='kw'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -261,8 +261,7 @@ name.</p>
 #&gt; 
 #&gt; $ggplot.spc.nmax
 #&gt; [1] 10
-#&gt; </div><div class='input'>
-</div></pre>
+#&gt; </div><div class='input'></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

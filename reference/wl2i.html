@@ -93,9 +93,9 @@ Values outside the range of x@wavelength become NA." />
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-    <li class="dropdown-header">Documentation for version of pacakge:</li>
+    <li class="dropdown-header">Documentation for version of package:</li>
     <li>
-      <a href="https://cbeleites.github.io/hyperSpec/">Realeased</a>
+      <a href="https://cbeleites.github.io/hyperSpec/">Released</a>
     </li>
     <li>
       <a href="https://cbeleites.github.io/hyperSpec/dev/">In-development</a>
@@ -175,9 +175,9 @@ Index <code>wl2i</code> returns the column indices for the spectra matrix for th
 Values outside the range of <code>x@wavelength</code> become <code>NA</code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>wl2i</span>(<span class='no'>x</span>, <span class='kw'>wavelength</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/stop.html'>stop</a></span>(<span class='st'>"wavelengths are required."</span>), <span class='kw'>unlist</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+    <pre class="usage"><span class='fu'>wl2i</span>(<span class='kw'>x</span>, wavelength = <span class='fu'><a href='https://rdrr.io/r/base/stop.html'>stop</a></span>(<span class='st'>"wavelengths are required."</span>), unlist = <span class='fl'>TRUE</span>)
 
-<span class='fu'>i2wl</span>(<span class='no'>x</span>, <span class='no'>i</span>)</pre>
+<span class='fu'>i2wl</span>(<span class='kw'>x</span>, <span class='kw'>i</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -211,7 +211,7 @@ wavelength is to be computed</p></td>
     <p>If the range is given as a formula (i.e. <code>start ~ end</code>, a sequence</p>
 <p>index corresponding to start : index corresponding to end</p>
 <p>is returned. If the wavelengths are not ordered, that may lead to chaos. In this case, call
-<code><a href='orderwl.html'>orderwl</a></code> first.</p>
+<code><a href='https://rdrr.io/pkg/hyperSpec/man/orderwl.html'>orderwl</a></code> first.</p>
 <p>Two special variables can be used: <code>min</code> and <code>max</code>, corresponding to the lowest and
 highest wavelength of <code>x</code>, respectively.</p>
 <p>start and end may be complex numbers. The resulting index for a complex x is then</p>
@@ -222,7 +222,7 @@ highest wavelength of <code>x</code>, respectively.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='no'>flu</span></div><div class='output co'>#&gt; hyperSpec object
+<span class='kw'>flu</span></div><div class='output co'>#&gt; hyperSpec object
 #&gt;    6 spectra
 #&gt;    3 data columns
 #&gt;    181 data points / spectrum
@@ -230,27 +230,26 @@ highest wavelength of <code>x</code>, respectively.</p>
 #&gt; data:  (6 rows x 3 columns)
 #&gt;    1. spc: I[fl]/"a.u." [matrix, array181] 27.15000 66.80133 ... 294.6495 
 #&gt;    2. filename: filename [character] rawdata/flu1.txt rawdata/flu2.txt ... rawdata/flu6.txt 
-#&gt;    3. c: c / (mg / l) [numeric] 0.05 0.10 ... 0.3 </div><div class='input'><span class='fu'>wl2i</span> (<span class='no'>flu</span>, <span class='fl'>405</span> : <span class='fl'>407</span>)</div><div class='output co'>#&gt; [1] 1 3 5</div><div class='input'><span class='fu'>wl2i</span> (<span class='no'>flu</span>, <span class='fl'>405</span> ~ <span class='fl'>407</span>)</div><div class='output co'>#&gt; [1] 1 2 3 4 5</div><div class='input'>
+#&gt;    3. c: c / (mg / l) [numeric] 0.05 0.10 ... 0.3 </div><div class='input'><span class='fu'>wl2i</span> (<span class='kw'>flu</span>, <span class='fl'>405</span> <span class='op'>:</span> <span class='fl'>407</span>)</div><div class='output co'>#&gt; [1] 1 3 5</div><div class='input'><span class='fu'>wl2i</span> (<span class='kw'>flu</span>, <span class='fl'>405</span> <span class='op'>~</span> <span class='fl'>407</span>)</div><div class='output co'>#&gt; [1] 1 2 3 4 5</div><div class='input'>
 <span class='co'>## beginning of the spectrum to 407 nm</span>
-<span class='fu'>wl2i</span> (<span class='no'>flu</span>, <span class='no'>min</span> ~ <span class='fl'>407</span>)</div><div class='output co'>#&gt; [1] 1 2 3 4 5</div><div class='input'>
+<span class='fu'>wl2i</span> (<span class='kw'>flu</span>, <span class='kw'>min</span> <span class='op'>~</span> <span class='fl'>407</span>)</div><div class='output co'>#&gt; [1] 1 2 3 4 5</div><div class='input'>
 <span class='co'>## 2 data points from the beginning of the spectrum to 407 nm</span>
-<span class='fu'>wl2i</span> (<span class='no'>flu</span>, <span class='no'>min</span> + <span class='fl'>2i</span> ~ <span class='fl'>407</span>)</div><div class='output co'>#&gt; [1] 3 4 5</div><div class='input'>
+<span class='fu'>wl2i</span> (<span class='kw'>flu</span>, <span class='kw'>min</span> <span class='op'>+</span> <span class='fl'>2i</span> <span class='op'>~</span> <span class='fl'>407</span>)</div><div class='output co'>#&gt; [1] 3 4 5</div><div class='input'>
 <span class='co'>## the first 3 data points</span>
-<span class='fu'>wl2i</span> (<span class='no'>flu</span>, <span class='no'>min</span> ~ <span class='no'>min</span> + <span class='fl'>2i</span>)</div><div class='output co'>#&gt; [1] 1 2 3</div><div class='input'>
+<span class='fu'>wl2i</span> (<span class='kw'>flu</span>, <span class='kw'>min</span> <span class='op'>~</span> <span class='kw'>min</span> <span class='op'>+</span> <span class='fl'>2i</span>)</div><div class='output co'>#&gt; [1] 1 2 3</div><div class='input'>
 <span class='co'>## from 490 nm to end of the spectrum</span>
-<span class='fu'>wl2i</span> (<span class='no'>flu</span>, <span class='fl'>490</span> ~ <span class='no'>max</span>)</div><div class='output co'>#&gt;  [1] 171 172 173 174 175 176 177 178 179 180 181</div><div class='input'>
+<span class='fu'>wl2i</span> (<span class='kw'>flu</span>, <span class='fl'>490</span> <span class='op'>~</span> <span class='kw'>max</span>)</div><div class='output co'>#&gt;  [1] 171 172 173 174 175 176 177 178 179 180 181</div><div class='input'>
 <span class='co'>## the last 8 data points</span>
-<span class='fu'>wl2i</span> (<span class='no'>flu</span>, <span class='no'>max</span> - <span class='fl'>7i</span> ~ <span class='no'>max</span>)</div><div class='output co'>#&gt; [1] 174 175 176 177 178 179 180 181</div><div class='input'>
+<span class='fu'>wl2i</span> (<span class='kw'>flu</span>, <span class='kw'>max</span> <span class='op'>-</span> <span class='fl'>7i</span> <span class='op'>~</span> <span class='kw'>max</span>)</div><div class='output co'>#&gt; [1] 174 175 176 177 178 179 180 181</div><div class='input'>
 <span class='co'>## get 450 nm +- 3 data points</span>
-<span class='fu'>wl2i</span> (<span class='no'>flu</span>, <span class='fl'>450</span> - <span class='fl'>3i</span> ~ <span class='fl'>450</span> + <span class='fl'>3i</span>)</div><div class='output co'>#&gt; [1] 88 89 90 91 92 93 94</div><div class='input'>
-<span class='fu'>wl2i</span> (<span class='no'>flu</span>, <span class='fl'>300</span> : <span class='fl'>400</span>) <span class='co'>## all NA:</span></div><div class='output co'>#&gt;   [1] NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA
+<span class='fu'>wl2i</span> (<span class='kw'>flu</span>, <span class='fl'>450</span> <span class='op'>-</span> <span class='fl'>3i</span> <span class='op'>~</span> <span class='fl'>450</span> <span class='op'>+</span> <span class='fl'>3i</span>)</div><div class='output co'>#&gt; [1] 88 89 90 91 92 93 94</div><div class='input'>
+<span class='fu'>wl2i</span> (<span class='kw'>flu</span>, <span class='fl'>300</span> <span class='op'>:</span> <span class='fl'>400</span>) <span class='co'>## all NA:</span></div><div class='output co'>#&gt;   [1] NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA
 #&gt;  [26] NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA
 #&gt;  [51] NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA
 #&gt;  [76] NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA
-#&gt; [101] NA</div><div class='input'><span class='fu'>wl2i</span> (<span class='no'>flu</span>, <span class='fl'>600</span> ~ <span class='fl'>700</span>) <span class='co'>## NULL: completely outside flu's wavelength range</span></div><div class='output co'>#&gt; NULL</div><div class='input'>
+#&gt; [101] NA</div><div class='input'><span class='fu'>wl2i</span> (<span class='kw'>flu</span>, <span class='fl'>600</span> <span class='op'>~</span> <span class='fl'>700</span>) <span class='co'>## NULL: completely outside flu's wavelength range</span></div><div class='output co'>#&gt; NULL</div><div class='input'>
 
-<span class='fu'>i2wl</span> (<span class='no'>chondro</span>, <span class='fl'>17</span>:<span class='fl'>20</span>)</div><div class='output co'>#&gt; [1] 666 670 674 678</div><div class='input'>
-</div></pre>
+<span class='fu'>i2wl</span> (<span class='kw'>chondro</span>, <span class='fl'>17</span><span class='op'>:</span><span class='fl'>20</span>)</div><div class='output co'>#&gt; [1] 666 670 674 678</div><div class='input'></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
