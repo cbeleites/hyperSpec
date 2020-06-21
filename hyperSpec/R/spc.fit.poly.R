@@ -123,8 +123,8 @@ spc.fit.poly <- function(fit.to, apply.to = NULL, poly.order = 1,
 
 ##'
 ##' `spc.fit.poly.below()` tries to fit the baseline on appropriate spectral
-##' ranges of the spectra in `fit.to`.  For details, see the `vignette
-##' ("baseline")`.
+##' ranges of the spectra in `fit.to`.  For details, see the 
+##' `vignette("baseline")`.
 ##' @rdname baselines
 ##' @param npts.min minimal number of points used for fitting the polynomial
 ##' @param noise noise level to be considered during the fit. It may be given as
