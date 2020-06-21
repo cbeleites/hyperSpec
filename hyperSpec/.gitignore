@@ -29,6 +29,3 @@ vignettes/resources/*.bib
 # Documentation
 man/*.Rd
 NAMESPACE
-
-# Other
-
