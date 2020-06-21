@@ -170,7 +170,7 @@ There is no Raman scattering involved in this data, but the Raman software recor
 <p>Read the data files:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit">
 <span class="co"># Renishaw file</span>
-<span class="kw">file</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata/laser.txt.gz"</span>, package = <span class="st">"hyperSpec"</span>)
+<span class="kw">file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata/laser.txt.gz"</span>, package = <span class="st">"hyperSpec"</span>)
 <span class="kw">laser</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/scan.txt.Renishaw.html">read.txt.Renishaw</a></span>(<span class="kw">file</span>, data = <span class="st">"ts"</span>)
 </pre></div>
 <div class="sourceCode" id="cb4"><pre class="downlit">
@@ -337,7 +337,7 @@ Handing over the appropriate data columns of the <code class="sourceCode r">hype
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://r-forge.r-project.org/projects/rgl">rgl</a></span>)
 </pre></div>
 <div class="sourceCode" id="cb17"><pre class="downlit">
-<span class="kw">laser</span>   <span class="op">&lt;-</span> <span class="kw">laser</span> [, , <span class="fl">404.8</span> <span class="op">~</span> <span class="fl">405.6</span>] <span class="op">/</span> <span class="fl">10000</span>
+<span class="kw">laser</span> <span class="op">&lt;-</span> <span class="kw">laser</span> [, , <span class="fl">404.8</span> <span class="op">~</span> <span class="fl">405.6</span>] <span class="op">/</span> <span class="fl">10000</span>
 <span class="kw">laser</span><span class="op">$</span><span class="kw">t</span> <span class="op">&lt;-</span> <span class="kw">laser</span><span class="op">$</span><span class="kw">t</span> <span class="op">/</span> <span class="fl">3600</span>
 <span class="kw">cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="fu"><a href="../reference/matlab.palette.html">matlab.palette</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="kw">laser</span>)), <span class="fu"><a href="../reference/ncol,hyperSpec-method.html">nwl</a></span>(<span class="kw">laser</span>))
 

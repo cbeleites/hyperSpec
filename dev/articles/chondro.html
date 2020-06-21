@@ -215,9 +215,9 @@ In order to speed up the reading <code class="sourceCode r"><span class="kw">rea
 <div class="sourceCode" id="cb1"><pre class="downlit">
 <span class="co"># Download file from:</span>
 <span class="kw">raw_data_url</span> <span class="op">&lt;-</span>
-  <span class="st">'https://media.githubusercontent.com/media/cbeleites/hyperSpec/master/Vignettes/fileio/txt.Renishaw/chondro.gz'</span>
-<span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.create</a></span>(<span class="st">'rawdata'</span>, showWarnings = <span class="fl">FALSE</span>)
-<span class="fu"><a href="https://rdrr.io/r/utils/download.file.html">download.file</a></span>(<span class="kw">raw_data_url</span>, <span class="st">'rawdata/chondro.gz'</span>)
+  <span class="st">"https://media.githubusercontent.com/media/cbeleites/hyperSpec/master/Vignettes/fileio/txt.Renishaw/chondro.gz"</span>
+<span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.create</a></span>(<span class="st">"rawdata"</span>, showWarnings = <span class="fl">FALSE</span>)
+<span class="fu"><a href="https://rdrr.io/r/utils/download.file.html">download.file</a></span>(<span class="kw">raw_data_url</span>, <span class="st">"rawdata/chondro.gz"</span>)
 
 <span class="co"># Read the raw data and make a hyperSpec object</span>
 <span class="kw">chondro</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/scan.txt.Renishaw.html">read.txt.Renishaw</a></span>(<span class="st">"rawdata/chondro.gz"</span>, data = <span class="st">"xyspc"</span>)
@@ -704,7 +704,6 @@ However, they do not follow the model-predict paradigm, but instead do directly 
     xlab = <span class="fu"><a href="https://rdrr.io/pkg/sp/man/gridlines.html">labels</a></span>(<span class="kw">chondro</span>, <span class="st">"x"</span>), ylab = <span class="fu"><a href="https://rdrr.io/pkg/sp/man/gridlines.html">labels</a></span>(<span class="kw">chondro</span>, <span class="st">"y"</span>),
     col = <span class="kw">DNAcols</span>
   )
-
 } <span class="co">else</span> {
   <span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">NULL</span>, xlim = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>, <span class="fl">1</span>), ylim = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>, <span class="fl">1</span>))
   <span class="fu"><a href="https://rdrr.io/pkg/sp/man/gridlines.html">text</a></span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="st">'Package "akima" is required to create this plot'</span>)
@@ -737,7 +736,7 @@ In order to keep the package size small, only a PCA-compressed version with 10 P
 
 <span class="kw">chondro</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/initialize.html">new</a></span>(<span class="st">"hyperSpec"</span>,
   spc = <span class="fu"><a href="https://rdrr.io/r/base/crossprod.html">tcrossprod</a></span>(<span class="kw">.chondro_scores</span>, <span class="kw">.chondro_loadings</span>) <span class="op">+</span>
-      <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="kw">.chondro_center</span>, each = <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="kw">.chondro_scores</span>)),
+    <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="kw">.chondro_center</span>, each = <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="kw">.chondro_scores</span>)),
   wavelength = <span class="kw">.chondro_wl</span>,
   data = <span class="kw">.chondro_extra</span>,
   labels = <span class="kw">.chondro_labels</span>

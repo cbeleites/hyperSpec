@@ -189,9 +189,9 @@ Throughout the documentation of the package, the following terms are used:</p>
 <span class="kw">chondro.preproc</span> <span class="op">&lt;-</span> <span class="kw">chondro.preproc</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html">rowMeans</a></span>(<span class="kw">chondro</span>)
 <span class="kw">chondro.preproc</span> <span class="op">&lt;-</span> <span class="kw">chondro.preproc</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span>(<span class="kw">chondro.preproc</span>, <span class="fl">0.05</span>)
 
-<span class="kw">cluster.cols</span>   <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"dark blue"</span>, <span class="st">"orange"</span>, <span class="st">"#C02020"</span>)
+<span class="kw">cluster.cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"dark blue"</span>, <span class="st">"orange"</span>, <span class="st">"#C02020"</span>)
 <span class="kw">cluster.meansd</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/aggregate.html">aggregate</a></span>(<span class="kw">chondro.preproc</span>, <span class="kw">chondro</span><span class="op">$</span><span class="kw">clusters</span>, <span class="kw">mean_pm_sd</span>)
-<span class="kw">cluster.means</span>  <span class="op">&lt;-</span> <span class="fu"><a href="../reference/aggregate.html">aggregate</a></span>(<span class="kw">chondro.preproc</span>, <span class="kw">chondro</span><span class="op">$</span><span class="kw">clusters</span>, <span class="kw">mean</span>)
+<span class="kw">cluster.means</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/aggregate.html">aggregate</a></span>(<span class="kw">chondro.preproc</span>, <span class="kw">chondro</span><span class="op">$</span><span class="kw">clusters</span>, <span class="kw">mean</span>)
 </pre></div>
 <p>For details about the pre-processing, please refer to the example workflow in <code><a href="../articles/chondro.html">vignette("chondro")</a></code>, or the help <code><a href="../reference/chondro.html">?chondro</a></code>.</p>
 </div>
@@ -455,11 +455,11 @@ Figure 2.6: Time series plot: spectra intensities over time.
 <p>Code <code class="sourceCode r"><span class="kw">plot</span>(x, <span class="st">"depth"</span>)</code> plots a depth profile plot and is the same as <code class="sourceCode r"><span class="kw">plotc</span>(laser, spc <span class="op">~</span><span class="st"> </span>z)</code> (Fig. <a href="#fig:plotdepth">2.7</a>).</p>
 <div class="sourceCode" id="cb16"><pre class="downlit">
 <span class="kw">depth.profile</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/initialize.html">new</a></span>(<span class="st">"hyperSpec"</span>,
-  spc    = <span class="fu"><a href="../reference/as.data.frame.html">as.matrix</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">20</span>) <span class="op">+</span> <span class="fl">1</span><span class="op">:</span><span class="fl">20</span>),
-  data   = <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(z = <span class="fl">1</span><span class="op">:</span><span class="fl">20</span>),
+  spc = <span class="fu"><a href="../reference/as.data.frame.html">as.matrix</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">20</span>) <span class="op">+</span> <span class="fl">1</span><span class="op">:</span><span class="fl">20</span>),
+  data = <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(z = <span class="fl">1</span><span class="op">:</span><span class="fl">20</span>),
   labels = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
     spc = <span class="st">"I / a.u."</span>,
-    z   = <span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span>(<span class="fu">`/`</span>(<span class="kw">z</span>, <span class="kw">mu</span> <span class="op">*</span> <span class="kw">m</span>)),
+    z = <span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span>(<span class="fu">`/`</span>(<span class="kw">z</span>, <span class="kw">mu</span> <span class="op">*</span> <span class="kw">m</span>)),
     .wavelength = <span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span>(<span class="kw">lambda</span>)
   )
 )
@@ -633,7 +633,7 @@ Figure 3.6: An example of mass spectrum.
 <a href="#add-more-spectra-into-an-existing-plot" class="anchor"></a><span class="header-section-number">3.7</span> Add More Spectra into an Existing Plot</h2>
 <p>To plot additional spectra onto an existing plot (Fig. <a href="#fig:add">3.7</a>), use <code class="sourceCode r">add =<span class="st"> </span><span class="ot">TRUE</span></code></p>
 <div class="sourceCode" id="cb28"><pre class="downlit">
-<span class="fu"><a href="../reference/plotspc.html">plotspc</a></span>(<span class="kw">chondro</span>[ <span class="fl">30</span>, , ])
+<span class="fu"><a href="../reference/plotspc.html">plotspc</a></span>(<span class="kw">chondro</span>[<span class="fl">30</span>, , ])
 <span class="fu"><a href="../reference/plotspc.html">plotspc</a></span>(<span class="kw">chondro</span>[<span class="fl">300</span>, , ], add = <span class="fl">TRUE</span>, col = <span class="st">"blue"</span>)
 </pre></div>
 <div class="figure" style="text-align: center">
@@ -1197,10 +1197,10 @@ in the <a href="https://www.nceas.ucsb.edu/~frazier/RSpatialGuides/colorPaletteC
 <p>A map of the average intensity at particular wavelengths can be plotted if the wavelengths of interested are explicitly extracted (Fig. <a href="#fig:plotmap-wave">8.3</a>).</p>
 <div class="sourceCode" id="cb62"><pre class="downlit">
 <span class="fu"><a href="../reference/plotmap.html">plotmap</a></span>(<span class="kw">chondro.preproc</span>[, , <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(
-   <span class="fl">728</span>,  <span class="fl">782</span>, <span class="fl">1098</span>,
+  <span class="fl">728</span>, <span class="fl">782</span>, <span class="fl">1098</span>,
   <span class="fl">1240</span>, <span class="fl">1482</span>, <span class="fl">1577</span>
 )],
-  col.regions = <span class="kw">matlab.palette</span>
+col.regions = <span class="kw">matlab.palette</span>
 )
 </pre></div>
 <div class="figure" style="text-align: center">
@@ -1443,7 +1443,7 @@ Figure 10.1: Plot spectra with <code class="sourceCode r"><span class="kw">as.lo
 <p>Fig. <a href="#fig:ggplotmap">10.2</a> shows a map created with package <strong>ggplot2</strong>.</p>
 <div class="sourceCode" id="cb75"><pre class="downlit">
 <span class="fu"><a href="../reference/qplotmap.html">qplotmap</a></span>(<span class="kw">chondro</span>) <span class="op">+</span>
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_gradient.html">scale_fill_gradientn</a></span>(<span class="st">"spc"</span>, colours = <span class="fu"><a href="../reference/matlab.palette.html">matlab.palette</a></span>())
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_gradient.html">scale_fill_gradientn</a></span>(<span class="st">"spc"</span>, colours = <span class="fu"><a href="../reference/matlab.palette.html">matlab.palette</a></span>())
 </pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:ggplotmap"></span>
@@ -1469,8 +1469,8 @@ It is therefore highly recommended to calculate the particular data to be plotte
     y = <span class="fl">0</span>,
     group = <span class="fl">NA</span>
   ),
-    alpha = <span class="fl">0.25</span>,
-    data = <span class="fu"><a href="../reference/as.data.frame.html">as.t.df</a></span>(<span class="fu"><a href="../reference/mean_sd,numeric-method.html">mean_sd</a></span>(<span class="kw">chondro</span>))
+  alpha = <span class="fl">0.25</span>,
+  data = <span class="fu"><a href="../reference/as.data.frame.html">as.t.df</a></span>(<span class="fu"><a href="../reference/mean_sd,numeric-method.html">mean_sd</a></span>(<span class="kw">chondro</span>))
   )
 </pre></div>
 <p>Note that <code class="sourceCode r"><span class="kw">qpotspc</span>()</code> specifies aesthetics <code>y = spc</code> and <code>groups = .rownames</code>, which do not have corresponding columns in the <code>data.frame</code> returned by <code class="sourceCode r"><span class="kw">as.t.df</span>()</code>.

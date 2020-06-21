@@ -172,8 +172,8 @@ The files are completely ASCII text, with the actual spectra starting at line 55
 <span class="fu"><a href="https://rdrr.io/r/base/source.html">source</a></span>(<span class="st">"read.txt.PerkinElmer.R"</span>)
 
 <span class="kw">folder</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata/flu"</span>, package = <span class="st">"hyperSpec"</span>)
-<span class="kw">files</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.glob.html">Sys.glob</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="kw">folder</span>, <span class="st">"/flu?.txt"</span>))
-<span class="kw">flu</span>    <span class="op">&lt;-</span> <span class="fu">read.txt.PerkinElmer</span>(<span class="kw">files</span>, skip = <span class="fl">54</span>)
+<span class="kw">files</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.glob.html">Sys.glob</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="kw">folder</span>, <span class="st">"/flu?.txt"</span>))
+<span class="kw">flu</span> <span class="op">&lt;-</span> <span class="fu">read.txt.PerkinElmer</span>(<span class="kw">files</span>, skip = <span class="fl">54</span>)
 </pre></div>
 <p>Now the spectra are in a <code class="sourceCode r">hyperSpec</code> object and can be examined, e.g., by:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit">
@@ -418,13 +418,12 @@ Our prediction example is handled by another customized panel function:</p>
 <div class="sourceCode" id="cb21"><pre class="downlit">
 <span class="kw">panel.predict</span> <span class="op">&lt;-</span>
   <span class="fu">function</span>(<span class="kw">x</span>, <span class="kw">y</span>, <span class="kw">...</span>, <span class="kw">intensity</span>, <span class="kw">ci</span>, <span class="kw">pred.col</span> = <span class="st">"red"</span>, <span class="kw">pred.pch</span> = <span class="fl">19</span>, <span class="kw">pred.cex</span> = <span class="fl">1</span>) {
-
     <span class="fu">panel.xyplot</span>(<span class="kw">x</span>, <span class="kw">y</span>, <span class="kw">...</span>)
     <span class="fu"><a href="https://rdrr.io/r/base/mapply.html">mapply</a></span>(<span class="fu">function</span>(<span class="kw">i</span>, <span class="kw">lwr</span>, <span class="kw">upr</span>, <span class="kw">...</span>) {
       <span class="fu">panel.lines</span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">lwr</span>, <span class="kw">upr</span>), <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="kw">i</span>, <span class="fl">2</span>), <span class="kw">...</span>)
     },
-      <span class="kw">intensity</span>, <span class="kw">ci</span>[, <span class="fl">2</span>], <span class="kw">ci</span>[, <span class="fl">3</span>],
-      MoreArgs = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(col = <span class="kw">pred.col</span>)
+    <span class="kw">intensity</span>, <span class="kw">ci</span>[, <span class="fl">2</span>], <span class="kw">ci</span>[, <span class="fl">3</span>],
+    MoreArgs = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(col = <span class="kw">pred.col</span>)
     )
     <span class="fu">panel.xyplot</span>(<span class="kw">ci</span>[, <span class="fl">1</span>], <span class="kw">intensity</span>, col = <span class="kw">pred.col</span>, pch = <span class="kw">pred.pch</span>, cex = <span class="kw">pred.cex</span>, type = <span class="st">"p"</span>)
   }

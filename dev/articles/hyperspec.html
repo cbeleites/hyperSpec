@@ -1002,7 +1002,7 @@ Note that the package <strong>hyperSpec</strong> function’s name has an additi
 Mean spectra and pooled covariance matrix can be calculated using <code class="sourceCode r"><span class="kw">pooled.cov</span>()</code>:</p>
 <div class="sourceCode" id="cb54"><pre class="downlit">
 <span class="kw">pcov</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cov,hyperSpec,missing-method.html">pooled.cov</a></span>(<span class="kw">chondro</span>, <span class="kw">chondro</span><span class="op">$</span><span class="kw">clusters</span>)
-<span class="kw">rnd</span>  <span class="op">&lt;-</span> <span class="fu"><a href="../reference/rmmvnorm.html">rmmvnorm</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="fl">10</span>, <span class="fl">3</span>), mean = <span class="kw">pcov</span><span class="op">$</span><span class="kw">mean</span>, sigma = <span class="kw">pcov</span><span class="op">$</span><span class="kw">COV</span>)
+<span class="kw">rnd</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/rmmvnorm.html">rmmvnorm</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="fl">10</span>, <span class="fl">3</span>), mean = <span class="kw">pcov</span><span class="op">$</span><span class="kw">mean</span>, sigma = <span class="kw">pcov</span><span class="op">$</span><span class="kw">COV</span>)
 </pre></div>
 <div class="sourceCode" id="cb55"><pre class="downlit">
 <span class="kw">cluster.cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"dark blue"</span>, <span class="st">"orange"</span>, <span class="st">"#C02020"</span>)
@@ -1031,7 +1031,7 @@ Figure 4.1: Multivariate normally distributed random spectra generated with <cod
 <div class="sourceCode" id="cb57"><pre class="downlit">
 <span class="kw">colors</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"#00008040"</span>, <span class="st">"#FFA50040"</span>, <span class="st">"#C0202040"</span>)
 <span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">pred.chondro</span><span class="op">$</span><span class="kw">x</span>, col = <span class="kw">colors</span>[<span class="kw">chondro</span><span class="op">$</span><span class="kw">clusters</span>], pch = <span class="fl">3</span>)
-<span class="fu"><a href="https://rdrr.io/r/graphics/points.html">points</a></span>(<span class="kw">pred.sim</span><span class="op">$</span><span class="kw">x</span>,   col = <span class="kw">colors</span>[<span class="kw">rnd</span><span class="op">$</span><span class="kw">clusters</span>], pch = <span class="fl">20</span>, cex = <span class="fl">0.5</span>)
+<span class="fu"><a href="https://rdrr.io/r/graphics/points.html">points</a></span>(<span class="kw">pred.sim</span><span class="op">$</span><span class="kw">x</span>, col = <span class="kw">colors</span>[<span class="kw">rnd</span><span class="op">$</span><span class="kw">clusters</span>], pch = <span class="fl">20</span>, cex = <span class="fl">0.5</span>)
 </pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:sim-lda"></span>
@@ -1229,7 +1229,7 @@ This already defaults to the mean, but we need <code class="sourceCode r">na.rm 
 <div class="sourceCode" id="cb72"><pre class="downlit">
 <span class="kw">flu.ref</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(
   filename = <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="kw">flu</span><span class="op">$</span><span class="kw">filename</span>[<span class="fl">1</span><span class="op">:</span><span class="fl">2</span>], each = <span class="fl">2</span>),
-  cref     = <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="kw">flu</span><span class="op">$</span><span class="kw">c</span>[<span class="fl">1</span><span class="op">:</span><span class="fl">2</span>], each = <span class="fl">2</span>) <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">4</span>, sd = <span class="fl">0.01</span>)
+  cref = <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="kw">flu</span><span class="op">$</span><span class="kw">c</span>[<span class="fl">1</span><span class="op">:</span><span class="fl">2</span>], each = <span class="fl">2</span>) <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">4</span>, sd = <span class="fl">0.01</span>)
 )
 <span class="kw">flu.ref</span>
 <span class="co">#&gt;           filename     cref</span>
@@ -1394,7 +1394,7 @@ Figure 7.2: Shifting the spectra along the wavelength axis: interpolation.
 <span class="kw">tmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/apply.html">apply</a></span>(<span class="kw">tmp</span>, <span class="fl">1</span>, <span class="fu">function</span>(<span class="kw">x</span>, <span class="kw">wl</span>, <span class="kw">shift</span>) {
   <span class="fu"><a href="https://rdrr.io/r/stats/splinefun.html">spline</a></span>(<span class="kw">wl</span> <span class="op">+</span> <span class="kw">shift</span>, <span class="kw">x</span>, xout = <span class="kw">wl</span>)<span class="op">$</span><span class="kw">y</span>
 },
-  wl = <span class="fu"><a href="../reference/wl.html">wl</a></span>(<span class="kw">tmp</span>), shift = <span class="op">-</span><span class="fl">0.5</span>
+wl = <span class="fu"><a href="../reference/wl.html">wl</a></span>(<span class="kw">tmp</span>), shift = <span class="op">-</span><span class="fl">0.5</span>
 )
 <span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">tmp</span>, lines.args = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(type = <span class="st">"b"</span>, pch = <span class="fl">19</span>, cex = <span class="fl">0.5</span>), add = <span class="fl">TRUE</span>, col = <span class="st">"blue"</span>)
 </pre></div>
@@ -1436,11 +1436,11 @@ As just the very maximum is too coarse, we’ll use the maximum of a square poly
   <span class="kw">X</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span>(<span class="fl">1</span>, <span class="kw">X</span>, <span class="kw">X</span><span class="op">^</span><span class="fl">2</span>)
   <span class="kw">coef</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/qr.html">qr.solve</a></span>(<span class="kw">X</span>, <span class="kw">Y</span>)
 
-  <span class="op">-</span> <span class="kw">coef</span>[<span class="fl">2</span>] <span class="op">/</span> <span class="kw">coef</span>[<span class="fl">3</span>] <span class="op">/</span> <span class="fl">2</span> <span class="op">+</span> <span class="kw">x</span>[<span class="kw">pos</span>[<span class="fl">2</span>]]
+  <span class="op">-</span><span class="kw">coef</span>[<span class="fl">2</span>] <span class="op">/</span> <span class="kw">coef</span>[<span class="fl">3</span>] <span class="op">/</span> <span class="fl">2</span> <span class="op">+</span> <span class="kw">x</span>[<span class="kw">pos</span>[<span class="fl">2</span>]]
 }
 
 <span class="kw">bandpos</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/apply.html">apply</a></span>(<span class="kw">chondro</span>[[, , <span class="fl">990</span> <span class="op">~</span> <span class="fl">1020</span>]], <span class="fl">1</span>, <span class="kw">find.max</span>, <span class="fu"><a href="../reference/wl.html">wl</a></span>(<span class="kw">chondro</span>[, , <span class="fl">990</span> <span class="op">~</span> <span class="fl">1020</span>]))
-<span class="kw">refpos</span> <span class="op">&lt;-</span> <span class="fu">find.max</span>(<span class="fu"><a href="https://rdrr.io/r/base/colSums.html">colMeans</a></span>(<span class="kw">chondro</span>[[, , <span class="fl">990</span> <span class="op">~</span> <span class="fl">1020</span>]]),  <span class="fu"><a href="../reference/wl.html">wl</a></span>(<span class="kw">chondro</span>[, , <span class="fl">990</span> <span class="op">~</span> <span class="fl">1020</span>]))
+<span class="kw">refpos</span> <span class="op">&lt;-</span> <span class="fu">find.max</span>(<span class="fu"><a href="https://rdrr.io/r/base/colSums.html">colMeans</a></span>(<span class="kw">chondro</span>[[, , <span class="fl">990</span> <span class="op">~</span> <span class="fl">1020</span>]]), <span class="fu"><a href="../reference/wl.html">wl</a></span>(<span class="kw">chondro</span>[, , <span class="fl">990</span> <span class="op">~</span> <span class="fl">1020</span>]))
 
 <span class="kw">shift1</span> <span class="op">&lt;-</span> <span class="kw">refpos</span> <span class="op">-</span> <span class="kw">bandpos</span>
 </pre></div>
@@ -1499,10 +1499,10 @@ Figure 7.4: The shifts used to disturb the chondrocyte data (original), and the 
 E.g., for infrared spectra one may state that the absorbance maximum should be, say, between 0.1 and 1.
 Class <code class="sourceCode r">hyperSpec</code>’s comparison operators return a logical matrix of the size of the spectra that is suitable for later indexing:</p>
 <div class="sourceCode" id="cb90"><pre class="downlit">
-<span class="kw">ir.spc</span>   <span class="op">&lt;-</span> <span class="kw">chondro</span> <span class="op">/</span> <span class="fl">1500</span> <span class="co">## fake IR data</span>
+<span class="kw">ir.spc</span> <span class="op">&lt;-</span> <span class="kw">chondro</span> <span class="op">/</span> <span class="fl">1500</span> <span class="co">## fake IR data</span>
 <span class="kw">high.int</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/apply.html">apply</a></span>(<span class="kw">ir.spc</span> <span class="op">&gt;</span> <span class="fl">1</span>, <span class="fl">1</span>, <span class="kw">any</span>) <span class="co"># any point above 1 is bad</span>
-<span class="kw">low.int</span>  <span class="op">&lt;-</span> <span class="fu"><a href="../reference/apply.html">apply</a></span>(<span class="kw">ir.spc</span>, <span class="fl">1</span>, <span class="kw">max</span>) <span class="op">&lt;</span> <span class="fl">0.1</span> <span class="co"># the maximum should be at least 0.1</span>
-<span class="kw">ir.spc</span>   <span class="op">&lt;-</span> <span class="kw">ir.spc</span> [<span class="op">!</span><span class="kw">high.int</span> <span class="op">&amp;</span> <span class="op">!</span><span class="kw">low.int</span>]
+<span class="kw">low.int</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/apply.html">apply</a></span>(<span class="kw">ir.spc</span>, <span class="fl">1</span>, <span class="kw">max</span>) <span class="op">&lt;</span> <span class="fl">0.1</span> <span class="co"># the maximum should be at least 0.1</span>
+<span class="kw">ir.spc</span> <span class="op">&lt;-</span> <span class="kw">ir.spc</span> [<span class="op">!</span><span class="kw">high.int</span> <span class="op">&amp;</span> <span class="op">!</span><span class="kw">low.int</span>]
 </pre></div>
 </div>
 <div id="removing-spectra-outside-mean-pm-n-sd" class="section level3">
@@ -1586,7 +1586,8 @@ Figure 7.5: Filtering data: mean <span class="math inline">\(\pm\)</span> sd fil
 <span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">spc</span>)
 
 <span class="kw">spc</span>[[<span class="kw">spc</span> <span class="op">&lt;</span> <span class="fl">1e-4</span>]] <span class="op">&lt;-</span> <span class="fl">NA</span>
-<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="fu"><a href="../reference/spc.NA.approx.html">spc.NA.approx</a></span>(<span class="kw">spc</span>), add = <span class="fl">TRUE</span>, col = <span class="st">"blue"</span>,
+<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="fu"><a href="../reference/spc.NA.approx.html">spc.NA.approx</a></span>(<span class="kw">spc</span>),
+  add = <span class="fl">TRUE</span>, col = <span class="st">"blue"</span>,
   lines.args = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(type = <span class="st">"b"</span>, pch = <span class="fl">19</span>, cex = <span class="fl">0.5</span>)
 )
 </pre></div>
@@ -1812,7 +1813,7 @@ You may calculate the factors using only a certain wavelength range, thereby nor
 <li>
 <p>Again, sweep the factor off the spectra:</p>
 <div class="sourceCode" id="cb113"><pre class="downlit">
-<span class="kw">normalized</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sweep.html">sweep</a></span> (<span class="kw">spectra</span>, <span class="fl">1</span>, <span class="kw">factors</span>, <span class="st">"*"</span>)
+<span class="kw">normalized</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sweep.html">sweep</a></span>(<span class="kw">spectra</span>, <span class="fl">1</span>, <span class="kw">factors</span>, <span class="st">"*"</span>)
 </pre></div>
 </li>
 </ol>
@@ -1893,7 +1894,7 @@ It operates on the spectra matrix:</p>
 <p>Basic mathematical functions are defined for <code class="sourceCode r">hyperSpec</code> objects.
 You may convert spectra:</p>
 <div class="sourceCode" id="cb121"><pre class="downlit">
-<span class="kw">absorbance.spectra</span> <span class="op">=</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log10</a></span> (<span class="kw">transmission.spectra</span>)
+<span class="kw">absorbance.spectra</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log10</a></span>(<span class="kw">transmission.spectra</span>)
 </pre></div>
 
 <p>In this case, do not forget to adapt the label:</p>
@@ -2056,7 +2057,8 @@ This kind of noise reduction may influence further modeling of the data. Mathema
 Function <code class="sourceCode r"><span class="kw">as.long.df</span>()</code> is the appropriate conversion function.</p>
 <div class="sourceCode" id="cb133"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="http://ggplot2.tidyverse.org">ggplot2</a></span>)
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="fu"><a href="../reference/as.data.frame.html">as.long.df</a></span>(<span class="kw">chondro</span>[<span class="fl">1</span>]), <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(x = <span class="kw">.wavelength</span>, y = <span class="kw">spc</span>)) <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>()
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="fu"><a href="../reference/as.data.frame.html">as.long.df</a></span>(<span class="kw">chondro</span>[<span class="fl">1</span>]), <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(x = <span class="kw">.wavelength</span>, y = <span class="kw">spc</span>)) <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>()
 </pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:ggplot"></span>
@@ -2806,7 +2808,7 @@ You can also make suggestions in this manner.</p>
   }
 })
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.046   0.002   0.048</span>
+<span class="co">#&gt;   0.053   0.010   0.064</span>
 </pre></div>
 <p>Calculations that involve a lot of subsetting (i.e., extracting or changing the spectra matrix or extra data) can be sped up considerably if the required parts of the <code class="sourceCode r">hyperSpec</code> object are extracted beforehand.
 This is somewhat similar to model fitting in <code>R</code> in general: many model fitting functions in <code>R</code> are much faster if the formula interface is avoided and the appropriate <code class="sourceCode r">data.frame</code>s or matrices are handed over directly.</p>
@@ -2821,7 +2823,7 @@ This is somewhat similar to model fitting in <code>R</code> in general: many mod
   <span class="kw">tmp</span>[[]] <span class="op">&lt;-</span> <span class="kw">tmp.matrix</span>
 })
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.010   0.000   0.009</span>
+<span class="co">#&gt;   0.012   0.000   0.012</span>
 </pre></div>
 <!--
 ## Additional packages

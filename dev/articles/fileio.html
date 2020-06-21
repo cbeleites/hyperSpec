@@ -809,7 +809,7 @@ This may be a problem for certain conversion functions (<code class="sourceCode 
 <span class="kw">tmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="kw">tmp</span>, nrow = <span class="fl">4</span>)
 
 <span class="co">## 2. concatenate every two columns by a dot</span>
-<span class="kw">wl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/apply.html">apply</a></span>(<span class="kw">tmp</span>[<span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, ],  <span class="fl">2</span>, <span class="kw">paste</span>, collapse = <span class="st">"."</span>)
+<span class="kw">wl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/apply.html">apply</a></span>(<span class="kw">tmp</span>[<span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, ], <span class="fl">2</span>, <span class="kw">paste</span>, collapse = <span class="st">"."</span>)
 <span class="kw">spc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/apply.html">apply</a></span>(<span class="kw">tmp</span>[<span class="fl">3</span><span class="op">:</span><span class="fl">4</span>, ], <span class="fl">2</span>, <span class="kw">paste</span>, collapse = <span class="st">"."</span>)
 
 <span class="co">## 3. convert to numeric and create hyperSpec objectne, though).</span>
@@ -837,7 +837,7 @@ Thus two files for each spectrum were saved by Hologram.
 Thus, a file name pattern is difficult to give and a vector of file names is used instead:</p>
 <div class="sourceCode" id="cb30"><pre class="downlit">
 <span class="kw">files</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.glob.html">Sys.glob</a></span>(<span class="st">"fileio/spc.Kaisermap/*.spc"</span>)
-<span class="kw">spc.low</span>  <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read.spc.Kaiser.html">read.spc.KaiserMap</a></span>(<span class="kw">files</span>[<span class="fu"><a href="../reference/seq.hyperSpec.html">seq</a></span>(<span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="kw">files</span>), by = <span class="fl">2</span>)])
+<span class="kw">spc.low</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read.spc.Kaiser.html">read.spc.KaiserMap</a></span>(<span class="kw">files</span>[<span class="fu"><a href="../reference/seq.hyperSpec.html">seq</a></span>(<span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="kw">files</span>), by = <span class="fl">2</span>)])
 <span class="kw">spc.high</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read.spc.Kaiser.html">read.spc.KaiserMap</a></span>(<span class="kw">files</span>[<span class="fu"><a href="../reference/seq.hyperSpec.html">seq</a></span>(<span class="fl">2</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="kw">files</span>), by = <span class="fl">2</span>)])
 <span class="fu"><a href="../reference/wl.html">wl</a></span>(<span class="kw">spc.high</span>) <span class="op">&lt;-</span> <span class="fu"><a href="../reference/wl.html">wl</a></span>(<span class="kw">spc.high</span>) <span class="op">+</span> <span class="fl">1340</span>
 <span class="kw">spc</span>
@@ -3996,6 +3996,7 @@ matrix
 <span class="co">#&gt; ─ Packages ───────────────────────────────────────────────────────────────────────────────────────</span>
 <span class="co">#&gt;  package      * version       date       lib source                            </span>
 <span class="co">#&gt;  assertthat     0.2.1         2019-03-21 [1] CRAN (R 4.0.0)                    </span>
+<span class="co">#&gt;  backports      1.1.8         2020-06-17 [1] CRAN (R 4.0.1)                    </span>
 <span class="co">#&gt;  bookdown       0.19          2020-05-15 [1] CRAN (R 4.0.0)                    </span>
 <span class="co">#&gt;  cli            2.0.2         2020-02-28 [1] CRAN (R 4.0.0)                    </span>
 <span class="co">#&gt;  colorspace     1.4-1         2019-03-18 [1] CRAN (R 4.0.0)                    </span>
@@ -4027,6 +4028,7 @@ matrix
 <span class="co">#&gt;  pkgconfig      2.0.3         2019-09-22 [1] CRAN (R 4.0.0)                    </span>
 <span class="co">#&gt;  png            0.1-7         2013-12-03 [1] CRAN (R 4.0.0)                    </span>
 <span class="co">#&gt;  purrr          0.3.4         2020-04-17 [1] CRAN (R 4.0.0)                    </span>
+<span class="co">#&gt;  R.cache        0.14.0        2019-12-06 [1] CRAN (R 4.0.0)                    </span>
 <span class="co">#&gt;  R.matlab     * 3.6.2         2018-09-27 [1] CRAN (R 4.0.0)                    </span>
 <span class="co">#&gt;  R.methodsS3    1.8.0         2020-02-14 [1] CRAN (R 4.0.0)                    </span>
 <span class="co">#&gt;  R.oo           1.23.0        2019-11-03 [1] CRAN (R 4.0.0)                    </span>
@@ -4035,6 +4037,7 @@ matrix
 <span class="co">#&gt;  RColorBrewer   1.1-2         2014-12-07 [1] CRAN (R 4.0.0)                    </span>
 <span class="co">#&gt;  Rcpp           1.0.4.6       2020-04-09 [1] CRAN (R 4.0.0)                    </span>
 <span class="co">#&gt;  readr          1.3.1         2018-12-21 [1] CRAN (R 4.0.0)                    </span>
+<span class="co">#&gt;  rematch2       2.1.2         2020-05-01 [1] CRAN (R 4.0.0)                    </span>
 <span class="co">#&gt;  rlang          0.4.6         2020-05-02 [1] CRAN (R 4.0.0)                    </span>
 <span class="co">#&gt;  rmarkdown      2.3.1         2020-06-21 [1] Github (rstudio/rmarkdown@b53a85a)</span>
 <span class="co">#&gt;  rstudioapi     0.11          2020-02-07 [1] CRAN (R 4.0.0)                    </span>
@@ -4043,6 +4046,7 @@ matrix
 <span class="co">#&gt;  sessioninfo    1.1.1         2018-11-05 [1] CRAN (R 4.0.0)                    </span>
 <span class="co">#&gt;  stringi        1.4.6         2020-02-17 [1] CRAN (R 4.0.0)                    </span>
 <span class="co">#&gt;  stringr        1.4.0         2019-02-10 [1] CRAN (R 4.0.0)                    </span>
+<span class="co">#&gt;  styler         1.3.2         2020-02-23 [1] CRAN (R 4.0.0)                    </span>
 <span class="co">#&gt;  testthat       2.3.2         2020-03-02 [1] CRAN (R 4.0.0)                    </span>
 <span class="co">#&gt;  tibble         3.0.1         2020-04-20 [1] CRAN (R 4.0.0)                    </span>
 <span class="co">#&gt;  tidyselect     1.1.0         2020-05-11 [1] CRAN (R 4.0.0)                    </span>
