@@ -48,9 +48,9 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-<li class="dropdown-header">Documentation for version of pacakge:</li>
+<li class="dropdown-header">Documentation for version of package:</li>
     <li>
-      <a href="https://cbeleites.github.io/hyperSpec/">Realeased</a>
+      <a href="https://cbeleites.github.io/hyperSpec/">Released</a>
     </li>
     <li>
       <a href="https://cbeleites.github.io/hyperSpec/dev/">In-development</a>
@@ -291,10 +291,10 @@ Thus one should also consider requiring more support points than the default val
 <div class="sourceCode" id="cb5"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span>(<span class="fu"><a href="../reference/spc.fit.poly.html">spc.fit.poly.below</a></span>(<span class="kw">chondro</span>, <span class="kw">NULL</span>, npts.min = <span class="fl">20</span>))
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.854   0.147   1.003</span>
+<span class="co">#&gt;   0.736   0.042   0.780</span>
 <span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span>(<span class="fu"><a href="../reference/spc.fit.poly.html">spc.fit.poly.below</a></span>(<span class="kw">chondro</span>[, , <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">min</span> <span class="op">~</span> <span class="fl">700</span>, <span class="fl">1700</span> <span class="op">~</span> <span class="kw">max</span>)], <span class="kw">NULL</span>, npts.min = <span class="fl">20</span>))
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.436   0.019   0.457</span>
+<span class="co">#&gt;   0.394   0.010   0.405</span>
 </pre></div>
 <p>The choice of the spectral range in <code class="sourceCode r">fit.to</code> influences the resulting baselines to a certain extent, as becomes clear from figure <a href="#fig:spectralrange">2.3</a>.</p>
 </div>

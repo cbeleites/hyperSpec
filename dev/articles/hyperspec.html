@@ -48,9 +48,9 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-<li class="dropdown-header">Documentation for version of pacakge:</li>
+<li class="dropdown-header">Documentation for version of package:</li>
     <li>
-      <a href="https://cbeleites.github.io/hyperSpec/">Realeased</a>
+      <a href="https://cbeleites.github.io/hyperSpec/">Released</a>
     </li>
     <li>
       <a href="https://cbeleites.github.io/hyperSpec/dev/">In-development</a>
@@ -2808,7 +2808,7 @@ You can also make suggestions in this manner.</p>
   }
 })
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.053   0.010   0.064</span>
+<span class="co">#&gt;   0.051   0.002   0.054</span>
 </pre></div>
 <p>Calculations that involve a lot of subsetting (i.e., extracting or changing the spectra matrix or extra data) can be sped up considerably if the required parts of the <code class="sourceCode r">hyperSpec</code> object are extracted beforehand.
 This is somewhat similar to model fitting in <code>R</code> in general: many model fitting functions in <code>R</code> are much faster if the formula interface is avoided and the appropriate <code class="sourceCode r">data.frame</code>s or matrices are handed over directly.</p>
@@ -2823,7 +2823,7 @@ This is somewhat similar to model fitting in <code>R</code> in general: many mod
   <span class="kw">tmp</span>[[]] <span class="op">&lt;-</span> <span class="kw">tmp.matrix</span>
 })
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.012   0.000   0.012</span>
+<span class="co">#&gt;   0.011   0.000   0.011</span>
 </pre></div>
 <!--
 ## Additional packages
