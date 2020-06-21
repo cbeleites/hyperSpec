@@ -177,7 +177,7 @@ Likewise, named elements of a <code>list</code> and columns of a <code>data.fram
 </div>
 <div id="sec:structure-chy" class="section level2">
 <h2 class="hasAnchor">
-<a href="#sec:structure-chy" class="anchor"></a><span class="header-section-number">1.2</span> The Structure of <code>hyperSpec</code> Objects</h2>
+<a href="#sec:structure-chy" class="anchor"></a><span class="header-section-number">1.2</span> The Structure of <strong><em>hyperSpec</em></strong> Objects</h2>
 <p><code>hyperSpec</code> objects are defined using an S4 class. It contains the following slots:</p>
 <ul>
 <li>
@@ -187,40 +187,7 @@ Likewise, named elements of a <code>list</code> and columns of a <code>data.fram
 <li>
 <strong><code class="sourceCode r"><span class="op">@</span>label</code></strong> a list with appropriate labels (particularly for axis annotations).</li>
 </ul>
-<p>While the parts of the <code>hyperSpec</code> object can be accessed directly, it is good practice to use the functions provided by package <strong>hyperSpec</strong> to handle the objects rather than accessing the slots directly (Table <a href="#tab:getset">1.1</a>).
-This also ensures that proper (i.e. <em>valid</em>) objects are returned.
-In some cases, however, direct access to the slots can considerably speed up calculations (see section the appendicies).</p>
-<!-- ---------------------------------------------------------------------- -->
-<table class="table">
-<caption>
-<strong><span id="tab:getset">Table 1.1: </span></strong> Get and set functions for the slots of <code class="sourceCode r">hyperSpec</code> objects</caption>
-<thead><tr class="header">
-<th>slot</th>
-<th>get</th>
-<th>set</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td><code class="sourceCode r"><span class="op">@</span>wavelength</code></td>
-<td><code class="sourceCode r"><span class="kw">wl</span>()</code></td>
-<td><code class="sourceCode r">wl&lt;-</code></td>
-</tr>
-<tr class="even">
-<td><code class="sourceCode r"><span class="op">@</span>data</code></td>
-<td>
-<code><a href="../reference/extractreplace.html">[</a></code>, <code><a href="../reference/extractreplace.html">[[</a></code>, <code><a href="../reference/extractreplace.html">$</a></code>, <code class="sourceCode r"><span class="kw">as.data.frame</span>()</code>, <code class="sourceCode r"><span class="kw">as.long.df</span>()</code>, …</td>
-<td>
-<code>[&lt;-</code>, <code>[[&lt;-</code>, <code>$&lt;-</code>
-</td>
-</tr>
-<tr class="odd">
-<td><code class="sourceCode r"><span class="op">@</span>label</code></td>
-<td><code class="sourceCode r"><span class="kw">labels</span>()</code></td>
-<td><code class="sourceCode r">labels&lt;-</code></td>
-</tr>
-</tbody>
-</table>
-<!-- ---------------------------------------------------------------------- --><p>Most of the data is stored in <code class="sourceCode r"><span class="op">@</span>data</code>. This <code>data.frame</code> has one special column, <code class="sourceCode r"><span class="op">$</span>spc</code>. This is the column that actually contains the spectra. The spectra are stored in a matrix inside this column, as illustrated in Figure <a href="#fig:structure">1.1</a>.
+<p>Most of the data is stored in <code class="sourceCode r"><span class="op">@</span>data</code>. This <code>data.frame</code> has one special column, <code class="sourceCode r"><span class="op">$</span>spc</code>. This is the column that actually contains the spectra. The spectra are stored in a matrix inside this column, as illustrated in Figure <a href="#fig:structure">1.1</a>.
 Even if there are no spectra, <code class="sourceCode r"><span class="op">$</span>spc</code> must still be present.
 It is then a matrix with zero columns.</p>
 <div class="figure" style="text-align: center">
@@ -297,7 +264,7 @@ Table <a href="#tab:options">8.2</a> gives an overview of the options. You shoul
 </div>
 <div id="info-hyperspec-objs" class="section level1">
 <h1 class="hasAnchor">
-<a href="#info-hyperspec-objs" class="anchor"></a><span class="header-section-number">2</span> Obtaining Basic Information about <code class="sourceCode r">hyperSpec</code> Objects</h1>
+<a href="#info-hyperspec-objs" class="anchor"></a><span class="header-section-number">2</span> Obtaining Basic Information about <strong><em>hyperSpec</em></strong> Objects</h1>
 
 <p>As usual, the <code class="sourceCode r"><span class="kw">print</span>()</code>, <code class="sourceCode r"><span class="kw">show</span>()</code> and <code class="sourceCode r"><span class="kw">summary</span>()</code> methods provide an overview of the object (only <code>print</code> is shown here):</p>
 <div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="no">chondro</span>
@@ -329,21 +296,564 @@ These details can be directly obtained by</p>
 <div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="fu"><a href="../reference/dimnames.html">colnames</a></span>(<span class="no">chondro</span>)
 <span class="co">#&gt; [1] "y"        "x"        "filename" "clusters" "spc"</span></pre></body></html></div>
 <p>Likewise, <code class="sourceCode r"><span class="kw">rownames</span>()</code> returns the names assigned to the spectra, and <code class="sourceCode r"><span class="kw">dimnames</span>()</code> yields a list of these three vectors (including also the column names of <code class="sourceCode r"><span class="op">$</span>spc</code>).
-The column names of the spectra matrix contain the wavelengths as character, while <code class="sourceCode r"><span class="kw">wl</span>()</code> (see section <a href="#sec:wavel-axis-conv">4.5.4</a>) yields the numeric vector of wavelengths.</p>
+The column names of the spectra matrix contain the wavelengths as character, while <code class="sourceCode r"><span class="kw">wl</span>()</code> (see section <a href="#sec:wavel-axis-conv">3.5.4</a>) yields the numeric vector of wavelengths.</p>
 
 <p>Extra data column names and rownames of the object may be set by <code class="sourceCode r">colnames&lt;-</code> and <code class="sourceCode r">rownames&lt;-</code>, respectively.
 Function <code class="sourceCode r">colnames&lt;-</code> renames the labels as well.</p>
 </div>
+<div id="sec:access-parts" class="section level1">
+<h1 class="hasAnchor">
+<a href="#sec:access-parts" class="anchor"></a><span class="header-section-number">3</span> Accessing &amp; Manipulating <strong><em>hyperSpec</em></strong> Objects</h1>
+<p>While the parts of the <code>hyperSpec</code> object can be accessed directly, it is good practice to use the functions provided by the package to handle the objects rather than accessing the slots directly.
+This also ensures that proper (i.e. <em>valid</em>) objects are returned.
+In some cases, however, direct access to the slots can considerably speed up calculations (see the appendicies).</p>
+<!-- ======================================================================= -->
+<!-- ======================================================================= -->
+<p>The main functions to retrieve the data of a <code class="sourceCode r">hyperSpec</code> object are <code>[]</code> and <code>[[]]</code>. 
+The difference between these functions is that <code>[]</code> returns a <code class="sourceCode r">hyperSpec</code> object, whereas the result of <code>[[]]</code> is a <code class="sourceCode r">data.frame</code>.
+<strong>hyperSpec</strong> objects are triple indexed:</p>
+<ul>
+<li><code class="sourceCode r">x[i, j, l]</code></li>
+<li><code class="sourceCode r">x[[i, j, l]]</code></li>
+<li>
+<code>i</code> refers to rows of the <code class="sourceCode r"><span class="op">@</span>data</code> slot.</li>
+<li>
+<code>j</code> refers to columns of the <code class="sourceCode r"><span class="op">@</span>data</code> slot.</li>
+<li>
+<code>l</code> refers to wavelengths.</li>
+<li>If there is only one index given, e.g. <code class="sourceCode r">x[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</code>, it refers to the row index <code>i</code>. Likewise if there are only two indices given they refer to <code>i</code> and <code>j</code>.</li>
+</ul>
+<div id="sec:fast-access-parts" class="section level2">
+<h2 class="hasAnchor">
+<a href="#sec:fast-access-parts" class="anchor"></a><span class="header-section-number">3.1</span> Access Functions for <strong><em>hyperSpec</em></strong> Objects</h2>
+<p>Table <a href="#tab:getters">3.1</a> shows the main functions that can be used with class <code class="sourceCode r">hyperSpec</code> to access the object (“getters”). Table <a href="#tab:setters">3.2</a> shows the main functions that can be used with class <code class="sourceCode r">hyperSpec</code> to modify the object (“setters”).</p>
+<!-- ---------------------------------------------------------------------- -->
+<table class="table">
+<caption>
+<strong><span id="tab:getters">Table 3.1: </span></strong> Getter functions for the slots of <code class="sourceCode r">hyperSpec</code> objects</caption>
+<tbody>
+<tr class="odd">
+<td align="left"><strong><code class="sourceCode r">x[]</code></strong></td>
+<td align="left">Returns the entire <code>hyperSpec</code> object unchanged.</td>
+</tr>
+<tr class="even">
+<td align="left"><strong><code class="sourceCode r">x[i, , ]</code></strong></td>
+<td align="left">Returns the <code>hyperSpec</code> object with selected rows; equivalent to <code class="sourceCode r">x[i]</code>.</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong><code class="sourceCode r">x[, j, ]</code></strong></td>
+<td align="left"><strong>returns damaged object – investigate!</strong></td>
+</tr>
+<tr class="even">
+<td align="left"><strong><code class="sourceCode r">x[, , l]</code></strong></td>
+<td align="left">Returns the <code>hyperSpec</code> object with selected wavelengths.</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong><code class="sourceCode r">x[[]]</code></strong></td>
+<td align="left">Returns the spectra matrix (<code class="sourceCode r">x<span class="op">$</span>spc</code>).</td>
+</tr>
+<tr class="even">
+<td align="left"><strong><code class="sourceCode r">x[[i, , ]]</code></strong></td>
+<td align="left">Returns the spectra matrix (<code class="sourceCode r">x<span class="op">$</span>spc</code>) with selected rows.</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong><code class="sourceCode r">x[[, j, ]]</code></strong></td>
+<td align="left">Returns a <code class="sourceCode r">data.frame</code> with the selected columns.</td>
+</tr>
+<tr class="even">
+<td align="left"><strong><code class="sourceCode r">x[[, , l]]</code></strong></td>
+<td align="left">Returns the spectra matrix (<code class="sourceCode r">x<span class="op">$</span>spc</code>) with selected wavelengths.</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong><code class="sourceCode r">x<span class="op">$</span>.</code></strong></td>
+<td align="left">Returns the complete <code class="sourceCode r">data.frame</code> <code class="sourceCode r">x<span class="op">@</span>data</code>, with the spectra in column <code class="sourceCode r"><span class="op">$</span>spc</code>.</td>
+</tr>
+<tr class="even">
+<td align="left"><strong><code class="sourceCode r">x<span class="op">$</span>..</code></strong></td>
+<td align="left">Returns all the extra data (<code class="sourceCode r">x<span class="op">@</span>data</code> without <code class="sourceCode r">x<span class="op">$</span>spc</code>).</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong><code class="sourceCode r"><span class="kw">wl</span>()</code></strong></td>
+<td align="left">Returns the wavelengths.</td>
+</tr>
+<tr class="even">
+<td align="left"><strong><code class="sourceCode r"><span class="kw">labels</span>()</code></strong></td>
+<td align="left">Returns the labels.</td>
+</tr>
+</tbody>
+</table>
+<!-- ---------------------------------------------------------------------- --><!-- ---------------------------------------------------------------------- --><table class="table">
+<caption>
+<strong><span id="tab:setters">Table 3.2: </span></strong> Setter functions for the slots of <code class="sourceCode r">hyperSpec</code> objects</caption>
+<tbody>
+<tr class="odd">
+<td align="left"><strong><code class="sourceCode r">x[i, ,] &lt;-</code></strong></td>
+<td align="left">Replaces the specified rows.</td>
+</tr>
+<tr class="even">
+<td align="left"><strong><code class="sourceCode r">x[, j,] &lt;-</code></strong></td>
+<td align="left">Replaces the specified columns.</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong><code class="sourceCode r">x[, , l] &lt;-</code></strong></td>
+<td align="left">Replace the specified wavelengths.</td>
+</tr>
+<tr class="even">
+<td align="left"><strong><code class="sourceCode r">x[[i, ,]] &lt;-</code></strong></td>
+<td align="left"><strong>does this make sense? – investigate!</strong></td>
+</tr>
+<tr class="odd">
+<td align="left"><strong><code class="sourceCode r">x[[, j,]] &lt;-</code></strong></td>
+<td align="left"><strong>does this make sense? – investigate!</strong></td>
+</tr>
+<tr class="even">
+<td align="left"><strong><code class="sourceCode r">x[[, , l]] &lt;-</code></strong></td>
+<td align="left"><strong>does this make sense? – investigate!</strong></td>
+</tr>
+<tr class="odd">
+<td align="left"><strong><code class="sourceCode r">x[[i, , l]] &lt;-</code></strong></td>
+<td align="left">Also, parts of the spectra matrix can be set (only indices for spectra and wavelength are allowed for this function).</td>
+</tr>
+<tr class="even">
+<td align="left"><strong><code class="sourceCode r">x[i, j] &lt;-</code></strong></td>
+<td align="left">Sets parts of <code class="sourceCode r">x<span class="op">@</span>data</code>.</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong><code class="sourceCode r">x<span class="op">$</span>.. &lt;-</code></strong></td>
+<td align="left">Sets the extra data (<code class="sourceCode r">x<span class="op">@</span>data</code> without touching <code class="sourceCode r">x<span class="op">$</span>spc</code>). The column names must match exactly in this case.</td>
+</tr>
+<tr class="even">
+<td align="left"><strong><code class="sourceCode r">wl&lt;-</code></strong></td>
+<td align="left">Set the wavelength vector.</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong><code class="sourceCode r">labels&lt;-</code></strong></td>
+<td align="left">Set the labels.</td>
+</tr>
+</tbody>
+</table>
+<!-- ---------------------------------------------------------------------- --><p>For more details on <code>[]&lt;-</code>, <code>[[]]&lt;-</code>, and <code>$&lt;-</code>, see <a href="#sec:square-brack-replace">3.4.1</a> and <a href="#sec:accessing-extra-data">3.3</a>.</p>
+</div>
+<div id="sec:select-delete-spectra" class="section level2">
+<h2 class="hasAnchor">
+<a href="#sec:select-delete-spectra" class="anchor"></a><span class="header-section-number">3.2</span> Selecting and Deleting Spectra</h2>
+<p>The extraction function <code>[]</code> takes the spectra (rows) as the first argument (For detailed help: see <code class="sourceCode r">?<span class="st">"["</span></code>).
+It may be a vector giving the indices of the spectra to extract (select), a vector with negative indices indicating, which spectra should be deleted, or a vector of logical values.
+Note that a matrix given to <code>[]</code> will be treated as a vector.</p>
+<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="fu"><a href="../reference/plot.html">plot</a></span>(<span class="no">flu</span>, <span class="kw">col</span> <span class="kw">=</span> <span class="st">"green2"</span>)
+<span class="fu"><a href="../reference/plot.html">plot</a></span>(<span class="no">flu</span>[<span class="fl">1</span>:<span class="fl">3</span>], <span class="kw">add</span> <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></body></html></div>
+<div class="figure" style="text-align: center">
+<span id="fig:selspc"></span>
+<img src="hyperspec_files/figure-html/selspc-1.png" alt="An example with `[]` operator and positive indices.  "><p class="caption">
+Figure 3.1: An example with <code>[]</code> operator and positive indices.
+</p>
+</div>
+<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="fu"><a href="../reference/plot.html">plot</a></span>(<span class="no">flu</span>, <span class="kw">col</span> <span class="kw">=</span> <span class="st">"red"</span>)
+<span class="fu"><a href="../reference/plot.html">plot</a></span>(<span class="no">flu</span>[-<span class="fl">3</span>], <span class="kw">add</span> <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></body></html></div>
+<div class="figure" style="text-align: center">
+<span id="fig:delspc"></span>
+<img src="hyperspec_files/figure-html/delspc-1.png" alt="An example with `[]` operator and negative indices.  "><p class="caption">
+Figure 3.2: An example with <code>[]</code> operator and negative indices.
+</p>
+</div>
+<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="fu"><a href="../reference/plot.html">plot</a></span>(<span class="no">flu</span>, <span class="kw">col</span> <span class="kw">=</span> <span class="st">"gold"</span>)
+<span class="fu"><a href="../reference/plot.html">plot</a></span>(<span class="no">flu</span>[<span class="no">flu</span>$<span class="no">c</span> <span class="kw">&gt;</span> <span class="fl">0.2</span>], <span class="kw">add</span> <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></body></html></div>
+<div class="figure" style="text-align: center">
+<span id="fig:selspc2"></span>
+<img src="hyperspec_files/figure-html/selspc2-1.png" alt="An example with `[]` operator and logical indices.  "><p class="caption">
+Figure 3.3: An example with <code>[]</code> operator and logical indices.
+</p>
+</div>
+<div id="sec:random-samples" class="section level3">
+<h3 class="hasAnchor">
+<a href="#sec:random-samples" class="anchor"></a><span class="header-section-number">3.2.1</span> Random Samples</h3>
+
+<p>A random subset of spectra can be conveniently selected by <code class="sourceCode r"><span class="kw">sample</span>()</code>:</p>
+<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="no">chondro</span>, <span class="fl">3</span>)
+<span class="co">#&gt; hyperSpec object</span>
+<span class="co">#&gt;    3 spectra</span>
+<span class="co">#&gt;    5 data columns</span>
+<span class="co">#&gt;    300 data points / spectrum</span>
+<span class="co">#&gt; wavelength: Delta * tilde(nu)/cm^-1 [numeric] 602 606 ... 1798 </span>
+<span class="co">#&gt; data:  (3 rows x 5 columns)</span>
+<span class="co">#&gt;    1. y: y [numeric] 6.23 1.23 12.23 </span>
+<span class="co">#&gt;    2. x: x [numeric] 14.45 13.45 -8.55 </span>
+<span class="co">#&gt;    3. filename: filename [character] rawdata/chondro.txt rawdata/chondro.txt rawdata/chondro.txt </span>
+<span class="co">#&gt;    4. clusters: clusters [factor] cell   matrix matrix </span>
+<span class="co">#&gt;    5. spc: I / a.u. [matrix, array300] 366.83 276.39 ... 127.09</span></pre></body></html></div>
+
+<p>If indices into the selected spectra are needed instead, use <code class="sourceCode r"><span class="kw">isample</span>()</code>:</p>
+<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="fu"><a href="../reference/sample.html">isample</a></span>(<span class="no">chondro</span>, <span class="fl">3</span>)
+<span class="co">#&gt; [1] 534 728 321</span></pre></body></html></div>
+</div>
+<div id="sec:seq" class="section level3">
+<h3 class="hasAnchor">
+<a href="#sec:seq" class="anchor"></a><span class="header-section-number">3.2.2</span> Sequences</h3>
+
+<p>Sequences of every n<sup>th</sup> spectrum or the like can be retrieved with <code class="sourceCode r"><span class="kw">seq</span>()</code>:</p>
+<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="fu"><a href="../reference/seq.html">seq</a></span>(<span class="no">chondro</span>, <span class="kw">length.out</span> <span class="kw">=</span> <span class="fl">3</span>, <span class="kw">index</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
+<span class="co">#&gt; [1]   1 438 875</span>
+<span class="fu"><a href="../reference/seq.html">seq</a></span>(<span class="no">chondro</span>, <span class="kw">by</span> <span class="kw">=</span> <span class="fl">100</span>)
+<span class="co">#&gt; hyperSpec object</span>
+<span class="co">#&gt;    9 spectra</span>
+<span class="co">#&gt;    5 data columns</span>
+<span class="co">#&gt;    300 data points / spectrum</span>
+<span class="co">#&gt; wavelength: Delta * tilde(nu)/cm^-1 [numeric] 602 606 ... 1798 </span>
+<span class="co">#&gt; data:  (9 rows x 5 columns)</span>
+<span class="co">#&gt;    1. y: y [numeric] -4.77 -2.77 ... 17.23 </span>
+<span class="co">#&gt;    2. x: x [numeric] -11.55 18.45 ... 18.45 </span>
+<span class="co">#&gt;    3. filename: filename [character] rawdata/chondro.txt rawdata/chondro.txt ... rawdata/chondro.txt </span>
+<span class="co">#&gt;    4. clusters: clusters [factor] matrix matrix ... lacuna </span>
+<span class="co">#&gt;    5. spc: I / a.u. [matrix, array300] 501.82 400.94 ... 124.64</span></pre></body></html></div>
+<p>Here, indices may be requested using <code class="sourceCode r">index =<span class="st"> </span><span class="ot">TRUE</span></code>.</p>
+</div>
+</div>
+<div id="sec:accessing-extra-data" class="section level2">
+<h2 class="hasAnchor">
+<a href="#sec:accessing-extra-data" class="anchor"></a><span class="header-section-number">3.3</span> Selecting Extra Data Columns</h2>
+<p>The second argument of the extraction functions <code>[]</code> and <code>[[]]</code> specifies the (extra) data columns.
+They can be given like any column specification for a <code class="sourceCode r">data.frame</code>, i.e., numeric, logical, or by a vector of the column names:</p>
+<div class="sourceCode" id="cb13"><html><body><pre class="r"><span class="fu"><a href="../reference/dimnames.html">colnames</a></span>(<span class="no">chondro</span>)
+<span class="co">#&gt; [1] "y"        "x"        "filename" "clusters" "spc"</span></pre></body></html></div>
+<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="no">chondro</span><span class="kw">[[</span><span class="fl">1</span>:<span class="fl">3</span>, <span class="fl">1</span>]]
+<span class="co">#&gt;       y</span>
+<span class="co">#&gt; 1 -4.77</span>
+<span class="co">#&gt; 2 -4.77</span>
+<span class="co">#&gt; 3 -4.77</span></pre></body></html></div>
+<div class="sourceCode" id="cb15"><html><body><pre class="r"><span class="no">chondro</span><span class="kw">[[</span><span class="fl">1</span>:<span class="fl">3</span>, -<span class="fl">5</span>]]
+<span class="co">#&gt;       y      x            filename clusters</span>
+<span class="co">#&gt; 1 -4.77 -11.55 rawdata/chondro.txt   matrix</span>
+<span class="co">#&gt; 2 -4.77 -10.55 rawdata/chondro.txt   matrix</span>
+<span class="co">#&gt; 3 -4.77  -9.55 rawdata/chondro.txt   matrix</span></pre></body></html></div>
+<div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="no">chondro</span><span class="kw">[[</span><span class="fl">1</span>:<span class="fl">3</span>, <span class="st">"x"</span>]]
+<span class="co">#&gt;        x</span>
+<span class="co">#&gt; 1 -11.55</span>
+<span class="co">#&gt; 2 -10.55</span>
+<span class="co">#&gt; 3  -9.55</span></pre></body></html></div>
+<div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="no">chondro</span><span class="kw">[[</span><span class="fl">1</span>:<span class="fl">3</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">FALSE</span>, <span class="fl">TRUE</span>)]] <span class="co"># note the recycling!</span>
+<span class="co">#&gt;        x clusters</span>
+<span class="co">#&gt; 1 -11.55   matrix</span>
+<span class="co">#&gt; 2 -10.55   matrix</span>
+<span class="co">#&gt; 3  -9.55   matrix</span></pre></body></html></div>
+
+<p>To select one column, the <code class="sourceCode r"><span class="op">$</span></code> operator is more convenient:</p>
+<div class="sourceCode" id="cb18"><html><body><pre class="r"><span class="no">flu</span>$<span class="no">c</span>
+<span class="co">#&gt; [1] 0.05 0.10 0.15 0.20 0.25 0.30</span></pre></body></html></div>
+<p>Class <code class="sourceCode r">hyperSpec</code> supports command line completion for the <code class="sourceCode r"><span class="op">$</span></code> operator.</p>
+
+<p>The extra data may also be set this way:</p>
+<div class="sourceCode" id="cb19"><html><body><pre class="r"><span class="no">flu</span>$<span class="no">n</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">1</span>:<span class="fl">6</span>, <span class="kw">label</span> <span class="kw">=</span> <span class="st">"sample no."</span>)</pre></body></html></div>
+<p>This function will append new columns, if necessary.</p>
+</div>
+<div id="double-square-brackets" class="section level2">
+<h2 class="hasAnchor">
+<a href="#double-square-brackets" class="anchor"></a><span class="header-section-number">3.4</span> More on the <code>[[]]</code> and <code>[[]]&lt;-</code>
+</h2>
+<div id="sec:square-brack-replace" class="section level3">
+<h3 class="hasAnchor">
+<a href="#sec:square-brack-replace" class="anchor"></a><span class="header-section-number">3.4.1</span> Operators: Accessing Single Elements of the Spectra Matrix</h3>
+<p>Operator <code>[[]]</code> works mostly analogous to <code>[]</code>.
+In addition, however, these two functions also accept index matrices of size <span class="math inline">\(n × 2\)</span>.
+In this case, a vector of values from the spectra matrix is returned.</p>
+<div class="sourceCode" id="cb20"><html><body><pre class="r"><span class="no">indexmatrix</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>:<span class="fl">3</span>, <span class="fl">1</span>:<span class="fl">3</span>), <span class="kw">ncol</span> <span class="kw">=</span> <span class="fl">2</span>)
+<span class="no">indexmatrix</span>
+<span class="co">#&gt;      [,1] [,2]</span>
+<span class="co">#&gt; [1,]    1    1</span>
+<span class="co">#&gt; [2,]    2    2</span>
+<span class="co">#&gt; [3,]    3    3</span></pre></body></html></div>
+<div class="sourceCode" id="cb21"><html><body><pre class="r"><span class="no">chondro</span><span class="kw">[[</span><span class="no">indexmatrix</span>, <span class="kw">wl.index</span> <span class="kw">=</span> <span class="fl">TRUE</span>]]
+<span class="co">#&gt; [1] 501.82 507.81 456.03</span></pre></body></html></div>
+<div class="sourceCode" id="cb22"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/diag.html">diag</a></span>(<span class="no">chondro</span><span class="kw">[[</span><span class="fl">1</span>:<span class="fl">3</span>, , <span class="no">min</span> ~ <span class="no">min</span> + <span class="fl">2i</span>]])
+<span class="co">#&gt; [1] 501.82 507.81 456.03</span></pre></body></html></div>
+<p>Operator <code>[[]]&lt;-</code> also accepts index matrices of size <span class="math inline">\(n × 2\)</span>.</p>
+</div>
+</div>
+<div id="sec:wavelength-axis" class="section level2">
+<h2 class="hasAnchor">
+<a href="#sec:wavelength-axis" class="anchor"></a><span class="header-section-number">3.5</span> Wavelengths</h2>
+<p>
+
+</p>
+<div id="sec:wavelength-indices" class="section level3">
+<h3 class="hasAnchor">
+<a href="#sec:wavelength-indices" class="anchor"></a><span class="header-section-number">3.5.1</span> Converting Wavelengths to Indices and vice versa</h3>
+
+<p>Spectra in package <strong>hyperSpec</strong> always have discretized wavelength axes, stored in a matrix with each column corresponding to one wavelength.
+Package <strong>hyperSpec</strong> provides two functions to convert the respective column indices into wavelengths and vice versa: <code class="sourceCode r"><span class="kw">i2wl</span>()</code> and <code class="sourceCode r"><span class="kw">wl2i</span>()</code>.</p>
+<p>If the wavelengths are given as a numeric vector, they are each converted to the corresponding wavelength.
+In addition there is a more sophisticated possibility of specifying wavelength ranges using a <em>formula</em>.
+The basic syntax is <strong><code>start ~ end</code></strong>.
+This yields a vector <strong><code>index_of_start : index_of_end</code></strong>.</p>
+<p>The result of the formula conversion differs from the numeric vector conversion in three ways:</p>
+<ul>
+<li>The colon operator for constructing vectors accepts only integer numbers, the tilde (for formulas) does not have this restriction.</li>
+<li>If the vector does not take into account the spectral resolution, one may get only every <span class="math inline">\(n\)</span><sup>th</sup> point or repetitions of the same index:</li>
+</ul>
+<div class="sourceCode" id="cb23"><html><body><pre class="r"><span class="fu"><a href="../reference/wl2i.html">wl2i</a></span>(<span class="no">flu</span>, <span class="fl">405</span>:<span class="fl">410</span>)
+<span class="co">#&gt; [1]  1  3  5  7  9 11</span></pre></body></html></div>
+<div class="sourceCode" id="cb24"><html><body><pre class="r"><span class="fu"><a href="../reference/wl2i.html">wl2i</a></span>(<span class="no">flu</span>, <span class="fl">405</span> ~ <span class="fl">410</span>)
+<span class="co">#&gt;  [1]  1  2  3  4  5  6  7  8  9 10 11</span></pre></body></html></div>
+<div class="sourceCode" id="cb25"><html><body><pre class="r"><span class="fu"><a href="../reference/wl2i.html">wl2i</a></span>(<span class="no">chondro</span>, <span class="fl">1000</span>:<span class="fl">1010</span>)
+<span class="co">#&gt;  [1] 100 101 101 101 101 102 102 102 102 103 103</span></pre></body></html></div>
+<div class="sourceCode" id="cb26"><html><body><pre class="r"><span class="fu"><a href="../reference/wl2i.html">wl2i</a></span>(<span class="no">chondro</span>, <span class="fl">1000</span> ~ <span class="fl">1010</span>)
+<span class="co">#&gt; [1] 100 101 102 103</span></pre></body></html></div>
+<ul>
+<li>If the object’s wavelength axis is not ordered, the formula approach will give weird results.
+In that (probably rare) case, use <code class="sourceCode r"><span class="kw">orderwl</span>()</code> first to obtain an object with ordered wavelength axis.</li>
+</ul>
+<p>Values <em>start</em> and <em>end</em> may contain the special variables <code class="sourceCode r">min</code> and <code class="sourceCode r">max</code> that
+correspond to the lowest and highest wavelengths of the object:</p>
+<div class="sourceCode" id="cb27"><html><body><pre class="r"><span class="fu"><a href="../reference/wl2i.html">wl2i</a></span>(<span class="no">flu</span>, <span class="no">min</span> ~ <span class="fl">410</span>)
+<span class="co">#&gt;  [1]  1  2  3  4  5  6  7  8  9 10 11</span></pre></body></html></div>
+<p>Often, specifications like <em>“wavelength <span class="math inline">\(pm n\)</span> data points”</em> are needed.
+They can be given using complex numbers in the formula.
+The imaginary part is added to the index calculated from the wavelength in the real part:</p>
+<div class="sourceCode" id="cb28"><html><body><pre class="r"><span class="fu"><a href="../reference/wl2i.html">wl2i</a></span>(<span class="no">flu</span>, <span class="fl">450</span> - <span class="fl">2i</span> ~ <span class="fl">450</span> + <span class="fl">2i</span>)
+<span class="co">#&gt; [1] 89 90 91 92 93</span>
+<span class="fu"><a href="../reference/wl2i.html">wl2i</a></span>(<span class="no">flu</span>, <span class="no">max</span> - <span class="fl">2i</span> ~ <span class="no">max</span>)
+<span class="co">#&gt; [1] 179 180 181</span></pre></body></html></div>
+<p>To specify several wavelength ranges, use a list containing the formulas and vectors<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>:</p>
+<div class="sourceCode" id="cb29"><html><body><pre class="r"><span class="fu"><a href="../reference/wl2i.html">wl2i</a></span>(<span class="no">flu</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="no">min</span> ~ <span class="fl">406.5</span>, <span class="no">max</span> - <span class="fl">2i</span> ~ <span class="no">max</span>))
+<span class="co">#&gt; [1]   1   2   3   4 179 180 181</span></pre></body></html></div>
+<p>This mechanism also works for the wavelength arguments of <code>[]</code>, <code>[[]]</code>, and <code class="sourceCode r"><span class="kw">plotspc</span>()</code>.</p>
+</div>
+<div id="selecting-wavelength-ranges" class="section level3">
+<h3 class="hasAnchor">
+<a href="#selecting-wavelength-ranges" class="anchor"></a><span class="header-section-number">3.5.2</span> Selecting Wavelength Ranges</h3>
+<p>Wavelength ranges can easily be selected using <code>[]</code>’s third argument (Fig. <a href="#fig:paracetamol">3.4</a>).</p>
+<div class="sourceCode" id="cb30"><html><body><pre class="r"><span class="fu"><a href="../reference/plot.html">plot</a></span>(<span class="no">paracetamol</span>[, , <span class="fl">2800</span> ~ <span class="fl">3200</span>])</pre></body></html></div>
+<div class="figure" style="text-align: center">
+<span id="fig:paracetamol"></span>
+<img src="hyperspec_files/figure-html/paracetamol-1.png" alt="Spectra of `paracetamol` in range of 2800--3200 cm^-1^."><p class="caption">
+Figure 3.4: Spectra of <code>paracetamol</code> in range of 2800–3200 cm<sup>-1</sup>.
+</p>
+</div>
+<p>By default, the values given are treated as wavelengths.
+If they are indices into the columns of the spectra matrix, use <code class="sourceCode r">wl.index =<span class="st"> </span><span class="ot">TRUE</span></code>:</p>
+<div class="sourceCode" id="cb31"><html><body><pre class="r"><span class="fu"><a href="../reference/plot.html">plot</a></span>(<span class="no">paracetamol</span>[, , <span class="fl">2800</span>:<span class="fl">3200</span>, <span class="kw">wl.index</span> <span class="kw">=</span> <span class="fl">TRUE</span>])</pre></body></html></div>
+<div class="figure" style="text-align: center">
+<span id="fig:unnamed-chunk-11"></span>
+<img src="hyperspec_files/figure-html/unnamed-chunk-11-1.png" alt="Spectra of `paracetamol`: from 2800^th^ to 3200^th^ point on *wavelength* axis.  "><p class="caption">
+Figure 3.5: Spectra of <code>paracetamol</code>: from 2800<sup>th</sup> to 3200<sup>th</sup> point on <em>wavelength</em> axis.
+</p>
+</div>
+<p>Section <a href="#sec:wavelength-indices">3.5.1</a> delves into the different possibilities of specifying wavelengths.</p>
+</div>
+<div id="sec:del-wavelengths" class="section level3">
+<h3 class="hasAnchor">
+<a href="#sec:del-wavelengths" class="anchor"></a><span class="header-section-number">3.5.3</span> Deleting Wavelength Ranges</h3>
+<p>Deleting wavelength ranges may be accomplished using negative index vectors together with <code class="sourceCode r">wl.index =<span class="st"> </span><span class="ot">TRUE</span></code>.</p>
+<div class="sourceCode" id="cb32"><html><body><pre class="r"><span class="fu"><a href="../reference/plot.html">plot</a></span>(<span class="no">paracetamol</span>[, , -(<span class="fl">500</span>:<span class="fl">1000</span>), <span class="kw">wl.index</span> <span class="kw">=</span> <span class="fl">TRUE</span>])</pre></body></html></div>
+<div class="figure" style="text-align: center">
+<span id="fig:unnamed-chunk-13"></span>
+<img src="hyperspec_files/figure-html/unnamed-chunk-13-1.png" alt="Spectra of `paracetamol` with 500^th^ to 1000^th^ *wavelength* axis point removed.  "><p class="caption">
+Figure 3.6: Spectra of <code>paracetamol</code> with 500<sup>th</sup> to 1000<sup>th</sup><em>wavelength</em> axis point removed.
+</p>
+</div>
+<p>However, this mechanism works only if the proper indices are known.</p>
+<p>If the range to be removed is instead specified in the units of the wavelength axis, it is easier to select the remainder of the spectrum instead.
+To delete the spectral range from 1750 to 2800 cm<sup>-1</sup> of the paracetamol spectrum one can use:</p>
+<div class="sourceCode" id="cb33"><html><body><pre class="r"><span class="fu"><a href="../reference/plot.html">plot</a></span>(<span class="no">paracetamol</span>[, , <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="no">min</span> ~ <span class="fl">1750</span>, <span class="fl">2800</span> ~ <span class="no">max</span>)])</pre></body></html></div>
+<div class="figure" style="text-align: center">
+<span id="fig:unnamed-chunk-15"></span>
+<img src="hyperspec_files/figure-html/unnamed-chunk-15-1.png" alt="Spectra of `paracetamol` with range from 1750 to 2800 cm^-1^ removed.  "><p class="caption">
+Figure 3.7: Spectra of <code>paracetamol</code> with range from 1750 to 2800 cm<sup>-1</sup> removed.
+</p>
+</div>
+<p>It is possible to produce a plot of this data where the cut range is actually omitted and the wavelength axis is optionally cut in order to save space.
+For details see the “Plotting” vignette.</p>
+</div>
+<div id="sec:wavel-axis-conv" class="section level3">
+<h3 class="hasAnchor">
+<a href="#sec:wavel-axis-conv" class="anchor"></a><span class="header-section-number">3.5.4</span> Changing the Wavelength Axis</h3>
+<p>
+
+Sometimes wavelength axes need to be transformed, e.g., converting from wavelengths to frequencies.
+In this case, retrieve the wavelength axis vector with <code class="sourceCode r"><span class="kw">wl</span>()</code>, convert each value of the resulting vector and assign the result with <code class="sourceCode r">wl&lt;-</code>.
+Also the label of the wavelength axis may need to be adjusted.</p>
+<p>As an example, convert the wavelength axis of <code class="sourceCode r">laser</code> to frequencies.
+As the wavelengths are in nanometers, and the frequencies are easiest expressed in terahertz, an additional conversion factor of 1000 is needed:</p>
+<div class="sourceCode" id="cb34"><html><body><pre class="r"><span class="no">laser</span>
+<span class="co">#&gt; hyperSpec object</span>
+<span class="co">#&gt;    84 spectra</span>
+<span class="co">#&gt;    3 data columns</span>
+<span class="co">#&gt;    36 data points / spectrum</span>
+<span class="co">#&gt; wavelength: lambda/nm [numeric] 404.58 404.62 ... 405.82 </span>
+<span class="co">#&gt; data:  (84 rows x 3 columns)</span>
+<span class="co">#&gt;    1. t: t / s [numeric] 0 2 ... 5722 </span>
+<span class="co">#&gt;    2. spc: I / a.u. [matrix, array36] 164.65 179.72 ... 112.09 </span>
+<span class="co">#&gt;    3. filename: filename [character] rawdata/laser.txt.gz rawdata/laser.txt.gz ... rawdata/laser.txt.gz</span></pre></body></html></div>
+<div class="sourceCode" id="cb35"><html><body><pre class="r"><span class="no">wavelengths</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/wl.html">wl</a></span>(<span class="no">laser</span>)
+<span class="no">frequencies</span> <span class="kw">&lt;-</span> <span class="fl">2.998e8</span> / <span class="no">wavelengths</span> / <span class="fl">1000</span>
+<span class="fu"><a href="../reference/wl.html">wl</a></span>(<span class="no">laser</span>) <span class="kw">&lt;-</span> <span class="no">frequencies</span>
+<span class="fu"><a href="https://rdrr.io/r/base/labels.html">labels</a></span>(<span class="no">laser</span>, <span class="st">".wavelength"</span>) <span class="kw">&lt;-</span> <span class="st">"f / THz"</span>
+<span class="no">laser</span>
+<span class="co">#&gt; hyperSpec object</span>
+<span class="co">#&gt;    84 spectra</span>
+<span class="co">#&gt;    3 data columns</span>
+<span class="co">#&gt;    36 data points / spectrum</span>
+<span class="co">#&gt; wavelength: f / THz [numeric] 741.01 740.95 ... 738.76 </span>
+<span class="co">#&gt; data:  (84 rows x 3 columns)</span>
+<span class="co">#&gt;    1. t: t / s [numeric] 0 2 ... 5722 </span>
+<span class="co">#&gt;    2. spc: I / a.u. [matrix, array36] 164.65 179.72 ... 112.09 </span>
+<span class="co">#&gt;    3. filename: filename [character] rawdata/laser.txt.gz rawdata/laser.txt.gz ... rawdata/laser.txt.gz</span>
+<span class="fu"><a href="https://rdrr.io/r/base/rm.html">rm</a></span>(<span class="no">laser</span>)</pre></body></html></div>
+<p>There are other possibilities of invoking <code class="sourceCode r">wl&lt;-</code> including the new label, e.g.,</p>
+<div class="sourceCode" id="cb36"><html><body><pre class="r"><span class="fu"><a href="../reference/wl.html">wl</a></span>(<span class="no">laser</span>, <span class="st">"f / THz"</span>) <span class="kw">&lt;-</span> <span class="no">frequencies</span></pre></body></html></div>
+<p>and</p>
+<div class="sourceCode" id="cb37"><html><body><pre class="r"><span class="fu"><a href="../reference/wl.html">wl</a></span>(<span class="no">laser</span>) <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">wl</span> <span class="kw">=</span> <span class="no">frequencies</span>, <span class="kw">label</span> <span class="kw">=</span> <span class="st">"f / THz"</span>)</pre></body></html></div>
+<p>see <code>?wl&lt;-</code> for more information.</p>
+</div>
+<div id="sec:orderwl" class="section level3">
+<h3 class="hasAnchor">
+<a href="#sec:orderwl" class="anchor"></a><span class="header-section-number">3.5.5</span> Ordering the Wavelength Axis</h3>
+
+<p>If the wavelength axis of an object needs reordering (e.g., after <code class="sourceCode r"><span class="kw">collapse</span>()</code>), <code class="sourceCode r"><span class="kw">orderwl</span>()</code> can be used:</p>
+<div class="sourceCode" id="cb38"><html><body><pre class="r"><span class="no">barb</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/collapse.html">collapse</a></span>(<span class="no">barbiturates</span>[<span class="fl">1</span>:<span class="fl">3</span>])
+<span class="fu"><a href="../reference/wl.html">wl</a></span>(<span class="no">barb</span>)
+<span class="co">#&gt;  [1]  27.05  27.15  28.05  28.15  29.05  30.05  30.15  31.15  32.15  39.00  40.00  40.10  41.10</span>
+<span class="co">#&gt; [14]  43.05  43.85  43.95  44.05  55.00  55.10  56.00  56.10  57.10  68.90  69.00  69.10  70.00</span>
+<span class="co">#&gt; [27]  71.10  71.90  72.00  77.00  82.95  83.05  84.15  85.05  91.00  96.95  98.95 105.10 105.90</span>
+<span class="co">#&gt; [40] 106.00 112.90 113.00 116.95 117.95 118.05 119.05 119.15 119.95 120.05 130.90 131.00 132.95</span>
+<span class="co">#&gt; [53] 133.05 140.90 147.00 158.85 160.90</span></pre></body></html></div>
+<div class="sourceCode" id="cb39"><html><body><pre class="r"><span class="no">barb</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/orderwl.html">orderwl</a></span>(<span class="no">barb</span>)
+<span class="fu"><a href="../reference/wl.html">wl</a></span>(<span class="no">barb</span>)
+<span class="co">#&gt;  [1]  27.05  27.15  28.05  28.15  29.05  30.05  30.15  31.15  32.15  39.00  40.00  40.10  41.10</span>
+<span class="co">#&gt; [14]  43.05  43.85  43.95  44.05  55.00  55.10  56.00  56.10  57.10  68.90  69.00  69.10  70.00</span>
+<span class="co">#&gt; [27]  71.10  71.90  72.00  77.00  82.95  83.05  84.15  85.05  91.00  96.95  98.95 105.10 105.90</span>
+<span class="co">#&gt; [40] 106.00 112.90 113.00 116.95 117.95 118.05 119.05 119.15 119.95 120.05 130.90 131.00 132.95</span>
+<span class="co">#&gt; [53] 133.05 140.90 147.00 158.85 160.90</span></pre></body></html></div>
+</div>
+</div>
+<div id="sec:conv-long-form" class="section level2">
+<h2 class="hasAnchor">
+<a href="#sec:conv-long-form" class="anchor"></a><span class="header-section-number">3.6</span> Conversion to Long- and Wide-Format <code class="sourceCode r">data.frame</code>s</h2>
+
+<p>Function <code class="sourceCode r"><span class="kw">as.data.frame</span>()</code> extracts the <code class="sourceCode r"><span class="op">@</span>data</code> slot as a <code class="sourceCode r">data.frame</code>:</p>
+<div class="sourceCode" id="cb40"><html><body><pre class="r"><span class="no">flu</span> <span class="kw">&lt;-</span> <span class="no">flu</span>[, , <span class="fl">400</span> ~ <span class="fl">407</span>] <span class="co"># make a small and handy version of the flu data set</span>
+<span class="fu"><a href="../reference/asdataframe.html">as.data.frame</a></span>(<span class="no">flu</span>)
+<span class="co">#&gt;   spc.405 spc.405.5 spc.406 spc.406.5 spc.407         filename    c n .row</span>
+<span class="co">#&gt; 1  27.150    32.345  33.379    34.419  36.531 rawdata/flu1.txt 0.05 1    1</span>
+<span class="co">#&gt; 2  66.801    63.715  66.712    69.582  72.530 rawdata/flu2.txt 0.10 2    2</span>
+<span class="co">#&gt; 3  93.144   103.068 106.194   110.186 113.249 rawdata/flu3.txt 0.15 3    3</span>
+<span class="co">#&gt; 4 130.664   139.998 143.798   148.420 152.133 rawdata/flu4.txt 0.20 4    4</span>
+<span class="co">#&gt; 5 167.267   171.898 177.471   184.625 189.752 rawdata/flu5.txt 0.25 5    5</span>
+<span class="co">#&gt; 6 198.430   209.458 215.785   224.587 232.528 rawdata/flu6.txt 0.30 6    6</span></pre></body></html></div>
+<div class="sourceCode" id="cb41"><html><body><pre class="r"><span class="fu"><a href="../reference/dimnames.html">colnames</a></span>(<span class="fu"><a href="../reference/asdataframe.html">as.data.frame</a></span>(<span class="no">flu</span>))
+<span class="co">#&gt; [1] "spc"      "filename" "c"        "n"        ".row"</span></pre></body></html></div>
+<div class="sourceCode" id="cb42"><html><body><pre class="r"><span class="fu"><a href="../reference/asdataframe.html">as.data.frame</a></span>(<span class="no">flu</span>)$<span class="no">spc</span>
+<span class="co">#&gt;          405   405.5     406   406.5     407</span>
+<span class="co">#&gt; [1,]  27.150  32.345  33.379  34.419  36.531</span>
+<span class="co">#&gt; [2,]  66.801  63.715  66.712  69.582  72.530</span>
+<span class="co">#&gt; [3,]  93.144 103.068 106.194 110.186 113.249</span>
+<span class="co">#&gt; [4,] 130.664 139.998 143.798 148.420 152.133</span>
+<span class="co">#&gt; [5,] 167.267 171.898 177.471 184.625 189.752</span>
+<span class="co">#&gt; [6,] 198.430 209.458 215.785 224.587 232.528</span></pre></body></html></div>
+<p>Note that the spectra matrix is still a matrix inside column <code class="sourceCode r"><span class="op">$</span>spc</code>.</p>
+
+<p>Function <code class="sourceCode r"><span class="kw">as.data.frame</span>()</code> and the abbreviations <code class="sourceCode r"><span class="op">$</span>.</code> and <code class="sourceCode r"><span class="op">$</span>..</code> retrieve the usual wide format <code class="sourceCode r">data.frame</code>s:</p>
+<div class="sourceCode" id="cb43"><html><body><pre class="r"><span class="no">flu</span>$<span class="no">.</span>
+<span class="co">#&gt;   spc.405 spc.405.5 spc.406 spc.406.5 spc.407         filename    c n</span>
+<span class="co">#&gt; 1  27.150    32.345  33.379    34.419  36.531 rawdata/flu1.txt 0.05 1</span>
+<span class="co">#&gt; 2  66.801    63.715  66.712    69.582  72.530 rawdata/flu2.txt 0.10 2</span>
+<span class="co">#&gt; 3  93.144   103.068 106.194   110.186 113.249 rawdata/flu3.txt 0.15 3</span>
+<span class="co">#&gt; 4 130.664   139.998 143.798   148.420 152.133 rawdata/flu4.txt 0.20 4</span>
+<span class="co">#&gt; 5 167.267   171.898 177.471   184.625 189.752 rawdata/flu5.txt 0.25 5</span>
+<span class="co">#&gt; 6 198.430   209.458 215.785   224.587 232.528 rawdata/flu6.txt 0.30 6</span></pre></body></html></div>
+<div class="sourceCode" id="cb44"><html><body><pre class="r"><span class="no">flu</span>$<span class="no">..</span>
+<span class="co">#&gt;           filename    c n</span>
+<span class="co">#&gt; 1 rawdata/flu1.txt 0.05 1</span>
+<span class="co">#&gt; 2 rawdata/flu2.txt 0.10 2</span>
+<span class="co">#&gt; 3 rawdata/flu3.txt 0.15 3</span>
+<span class="co">#&gt; 4 rawdata/flu4.txt 0.20 4</span>
+<span class="co">#&gt; 5 rawdata/flu5.txt 0.25 5</span>
+<span class="co">#&gt; 6 rawdata/flu6.txt 0.30 6</span></pre></body></html></div>
+
+<p>If another subset of colums needs to be extracted, use <code>[[]]</code>:</p>
+<div class="sourceCode" id="cb45"><html><body><pre class="r"><span class="no">flu</span><span class="kw">[[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"c"</span>, <span class="st">"spc"</span>)]]
+<span class="co">#&gt;      c spc.405 spc.405.5 spc.406 spc.406.5 spc.407</span>
+<span class="co">#&gt; 1 0.05  27.150    32.345  33.379    34.419  36.531</span>
+<span class="co">#&gt; 2 0.10  66.801    63.715  66.712    69.582  72.530</span>
+<span class="co">#&gt; 3 0.15  93.144   103.068 106.194   110.186 113.249</span>
+<span class="co">#&gt; 4 0.20 130.664   139.998 143.798   148.420 152.133</span>
+<span class="co">#&gt; 5 0.25 167.267   171.898 177.471   184.625 189.752</span>
+<span class="co">#&gt; 6 0.30 198.430   209.458 215.785   224.587 232.528</span></pre></body></html></div>
+<p>This can be combined with extracting certain spectra and wavelengths, see <a href="#sec:conv-matrix">3.7</a>.</p>
+
+<p>The transpose of a wide format <code class="sourceCode r">data.frame</code> can be obtained by <code class="sourceCode r"><span class="kw">as.t.df</span>()</code>. For further examples, see the discussion of package <strong>ggplot2</strong> in <code class="sourceCode r"><span class="kw">vignette</span>(<span class="st">"plotting"</span>)</code>.</p>
+<div class="sourceCode" id="cb46"><html><body><pre class="r"><span class="fu"><a href="../reference/asdataframe.html">as.t.df</a></span>(<span class="fu"><a href="../reference/apply.html">apply</a></span>(<span class="no">flu</span>, <span class="fl">2</span>, <span class="no">mean_pm_sd</span>))
+<span class="co">#&gt;           .wavelength mean.minus.sd   mean mean.plus.sd</span>
+<span class="co">#&gt; spc.405         405.0        49.958 113.91       177.86</span>
+<span class="co">#&gt; spc.405.5       405.5        53.396 120.08       186.77</span>
+<span class="co">#&gt; spc.406         406.0        55.352 123.89       192.43</span>
+<span class="co">#&gt; spc.406.5       406.5        57.310 128.64       199.96</span>
+<span class="co">#&gt; spc.407         407.0        59.513 132.79       206.06</span></pre></body></html></div>
+
+<p>Some functions need the data being an <em>unstacked</em> or <em>long-format</em> <code class="sourceCode r">data.frame</code>.
+Function <code class="sourceCode r"><span class="kw">as.long.df</span>()</code> is the appropriate conversion function.</p>
+<div class="sourceCode" id="cb47"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="fu"><a href="../reference/asdataframe.html">as.long.df</a></span>(<span class="no">flu</span>), <span class="fl">20</span>)
+<span class="co">#&gt;     .wavelength     spc         filename    c n</span>
+<span class="co">#&gt; 1         405.0  27.150 rawdata/flu1.txt 0.05 1</span>
+<span class="co">#&gt; 2         405.0  66.801 rawdata/flu2.txt 0.10 2</span>
+<span class="co">#&gt; 3         405.0  93.144 rawdata/flu3.txt 0.15 3</span>
+<span class="co">#&gt; 4         405.0 130.664 rawdata/flu4.txt 0.20 4</span>
+<span class="co">#&gt; 5         405.0 167.267 rawdata/flu5.txt 0.25 5</span>
+<span class="co">#&gt; 6         405.0 198.430 rawdata/flu6.txt 0.30 6</span>
+<span class="co">#&gt; 1.1       405.5  32.345 rawdata/flu1.txt 0.05 1</span>
+<span class="co">#&gt; 2.1       405.5  63.715 rawdata/flu2.txt 0.10 2</span>
+<span class="co">#&gt; 3.1       405.5 103.068 rawdata/flu3.txt 0.15 3</span>
+<span class="co">#&gt; 4.1       405.5 139.998 rawdata/flu4.txt 0.20 4</span>
+<span class="co">#&gt; 5.1       405.5 171.898 rawdata/flu5.txt 0.25 5</span>
+<span class="co">#&gt; 6.1       405.5 209.458 rawdata/flu6.txt 0.30 6</span>
+<span class="co">#&gt; 1.2       406.0  33.379 rawdata/flu1.txt 0.05 1</span>
+<span class="co">#&gt; 2.2       406.0  66.712 rawdata/flu2.txt 0.10 2</span>
+<span class="co">#&gt; 3.2       406.0 106.194 rawdata/flu3.txt 0.15 3</span>
+<span class="co">#&gt; 4.2       406.0 143.798 rawdata/flu4.txt 0.20 4</span>
+<span class="co">#&gt; 5.2       406.0 177.471 rawdata/flu5.txt 0.25 5</span>
+<span class="co">#&gt; 6.2       406.0 215.785 rawdata/flu6.txt 0.30 6</span>
+<span class="co">#&gt; 1.3       406.5  34.419 rawdata/flu1.txt 0.05 1</span>
+<span class="co">#&gt; 2.3       406.5  69.582 rawdata/flu2.txt 0.10 2</span></pre></body></html></div>
+</div>
+<div id="sec:conv-matrix" class="section level2">
+<h2 class="hasAnchor">
+<a href="#sec:conv-matrix" class="anchor"></a><span class="header-section-number">3.7</span> Conversion to Matrix</h2>
+
+<p>The spectra matrix is extracted by <code class="sourceCode r"><span class="kw">as.matrix</span>()</code>, the convenient abbreviation is <code>[[]]</code>:</p>
+<div class="sourceCode" id="cb48"><html><body><pre class="r"><span class="no">flu</span><span class="kw">[[</span>]]
+<span class="co">#&gt;          405   405.5     406   406.5     407</span>
+<span class="co">#&gt; [1,]  27.150  32.345  33.379  34.419  36.531</span>
+<span class="co">#&gt; [2,]  66.801  63.715  66.712  69.582  72.530</span>
+<span class="co">#&gt; [3,]  93.144 103.068 106.194 110.186 113.249</span>
+<span class="co">#&gt; [4,] 130.664 139.998 143.798 148.420 152.133</span>
+<span class="co">#&gt; [5,] 167.267 171.898 177.471 184.625 189.752</span>
+<span class="co">#&gt; [6,] 198.430 209.458 215.785 224.587 232.528</span></pre></body></html></div>
+<div class="sourceCode" id="cb49"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span>(<span class="no">flu</span><span class="kw">[[</span>]])
+<span class="co">#&gt; [1] "matrix" "array"</span></pre></body></html></div>
+<p>Operator <code>[[]]</code> takes the same arguments as <code>[]</code>, and can be used to extract a matrix containing parts of the spectra matrix:</p>
+<div class="sourceCode" id="cb50"><html><body><pre class="r"><span class="no">flu</span><span class="kw">[[</span><span class="fl">1</span>:<span class="fl">3</span>, , <span class="fl">406</span> ~ <span class="fl">407</span>]]
+<span class="co">#&gt;          406   406.5     407</span>
+<span class="co">#&gt; [1,]  33.379  34.419  36.531</span>
+<span class="co">#&gt; [2,]  66.712  69.582  72.530</span>
+<span class="co">#&gt; [3,] 106.194 110.186 113.249</span></pre></body></html></div>
+<p>If indices for the columns to extract are given, a <code class="sourceCode r">data.frame</code> is returned instead of a matrix:</p>
+<div class="sourceCode" id="cb51"><html><body><pre class="r"><span class="no">flu</span><span class="kw">[[</span><span class="fl">1</span>:<span class="fl">3</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"filename"</span>, <span class="st">"spc"</span>), <span class="fl">406</span> ~ <span class="fl">407</span>]]
+<span class="co">#&gt;           filename spc.406 spc.406.5 spc.407</span>
+<span class="co">#&gt; 1 rawdata/flu1.txt  33.379    34.419  36.531</span>
+<span class="co">#&gt; 2 rawdata/flu2.txt  66.712    69.582  72.530</span>
+<span class="co">#&gt; 3 rawdata/flu3.txt 106.194   110.186 113.249</span></pre></body></html></div>
+<div class="sourceCode" id="cb52"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/rm.html">rm</a></span>(<span class="no">flu</span>)</pre></body></html></div>
+</div>
+</div>
 <div id="sec:create" class="section level1">
 <h1 class="hasAnchor">
-<a href="#sec:create" class="anchor"></a><span class="header-section-number">3</span> Creating a <code class="sourceCode r">hyperSpec</code> Object, Data Import and Export</h1>
+<a href="#sec:create" class="anchor"></a><span class="header-section-number">4</span> Creating a <strong><em>hyperSpec</em></strong> Object, Data Import and Export</h1>
 <p>Package <strong>hyperSpec</strong> comes with filters for a variety of file formats.
 These are discussed in detail in a separate vignette accessible via <code><a href="../articles/fileio.html">vignette("fileio")</a></code>. Here we just mention a couple of basic operations.</p>
 <div id="creating-a-hyperspec-object-from-spectra-matrix-and-wavelength-vector" class="section level2">
 <h2 class="hasAnchor">
-<a href="#creating-a-hyperspec-object-from-spectra-matrix-and-wavelength-vector" class="anchor"></a><span class="header-section-number">3.1</span> Creating a <code class="sourceCode r">hyperSpec</code> Object from Spectra Matrix and Wavelength Vector</h2>
+<a href="#creating-a-hyperspec-object-from-spectra-matrix-and-wavelength-vector" class="anchor"></a><span class="header-section-number">4.1</span> Creating a <code class="sourceCode r">hyperSpec</code> Object from Spectra Matrix and Wavelength Vector</h2>
 <p>If the data is in <code>R</code>’s workspace, a <code>hyperSpec</code> object is created by:</p>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="no">spc</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/initialize.html">new</a></span>(<span class="st">"hyperSpec"</span>, <span class="kw">spc</span> <span class="kw">=</span> <span class="no">spectra.matrix</span>, <span class="kw">wavelength</span> <span class="kw">=</span> <span class="no">wavelength.vector</span>, <span class="kw">data</span> <span class="kw">=</span> <span class="no">extra.data</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb53"><html><body><pre class="r"><span class="no">spc</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/initialize.html">new</a></span>(<span class="st">"hyperSpec"</span>, <span class="kw">spc</span> <span class="kw">=</span> <span class="no">spectra.matrix</span>, <span class="kw">wavelength</span> <span class="kw">=</span> <span class="no">wavelength.vector</span>, <span class="kw">data</span> <span class="kw">=</span> <span class="no">extra.data</span>)</pre></body></html></div>
 <p>The most frequently needed arguments are:</p>
 <table class="table">
 <colgroup>
@@ -379,23 +889,23 @@ spectral intensity axis label in <code class="sourceCode r"><span class="op">$</
 </div>
 <div id="creating-random-spectra" class="section level2">
 <h2 class="hasAnchor">
-<a href="#creating-random-spectra" class="anchor"></a><span class="header-section-number">3.2</span> Creating Random Spectra</h2>
+<a href="#creating-random-spectra" class="anchor"></a><span class="header-section-number">4.2</span> Creating Random Spectra</h2>
 
-<p>If package <strong>mvtnorm</strong><span class="citation">[<a href="#ref-mvtnorm" role="doc-biblioref">1</a>]</span> is available, multivariate normally distributed spectra can be generated from mean and covariance matrix using <code class="sourceCode r"><span class="kw">rmmvnorm</span>()</code> (Fig. <a href="#fig:sim-spc">3.1</a>).
+<p>If package <strong>mvtnorm</strong><span class="citation">[<a href="#ref-mvtnorm" role="doc-biblioref">1</a>]</span> is available, multivariate normally distributed spectra can be generated from mean and covariance matrix using <code class="sourceCode r"><span class="kw">rmmvnorm</span>()</code> (Fig. <a href="#fig:sim-spc">4.1</a>).
 Note that the package <strong>hyperSpec</strong> function’s name has an additional “m”: it already takes care of multiple groups.
 Mean spectra and pooled covariance matrix can be calculated using <code class="sourceCode r"><span class="kw">pooled.cov</span>()</code>:</p>
-<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="no">pcov</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cov.html">pooled.cov</a></span>(<span class="no">chondro</span>, <span class="no">chondro</span>$<span class="no">clusters</span>)
+<div class="sourceCode" id="cb54"><html><body><pre class="r"><span class="no">pcov</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cov.html">pooled.cov</a></span>(<span class="no">chondro</span>, <span class="no">chondro</span>$<span class="no">clusters</span>)
 <span class="no">rnd</span>  <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/rmmvnorm.html">rmmvnorm</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="fl">10</span>, <span class="fl">3</span>), <span class="kw">mean</span> <span class="kw">=</span> <span class="no">pcov</span>$<span class="no">mean</span>, <span class="kw">sigma</span> <span class="kw">=</span> <span class="no">pcov</span>$<span class="no">COV</span>)</pre></body></html></div>
-<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="no">cluster.cols</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"dark blue"</span>, <span class="st">"orange"</span>, <span class="st">"#C02020"</span>)
+<div class="sourceCode" id="cb55"><html><body><pre class="r"><span class="no">cluster.cols</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"dark blue"</span>, <span class="st">"orange"</span>, <span class="st">"#C02020"</span>)
 <span class="fu"><a href="../reference/plot.html">plot</a></span>(<span class="no">rnd</span>, <span class="kw">col</span> <span class="kw">=</span> <span class="no">cluster.cols</span>[<span class="no">rnd</span>$<span class="no">.group</span>])</pre></body></html></div>
 <div class="figure" style="text-align: center">
 <span id="fig:sim-spc"></span>
 <img src="hyperspec_files/figure-html/sim-spc-1.png" alt="Multivariate normally distributed random spectra generated with `rmmvnorm()`{.r}."><p class="caption">
-Figure 3.1: Multivariate normally distributed random spectra generated with <code class="sourceCode r"><span class="kw">rmmvnorm</span>()</code>.
+Figure 4.1: Multivariate normally distributed random spectra generated with <code class="sourceCode r"><span class="kw">rmmvnorm</span>()</code>.
 </p>
 </div>
-<p>Fig. <a href="#fig:sim-lda">3.2</a> shows the linear discriminant analysis (LDA) scores of simulated spectra in comparison to the real spectra in the <code class="sourceCode r">chondro</code> object:</p>
-<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"MASS"</span>)
+<p>Fig. <a href="#fig:sim-lda">4.2</a> shows the linear discriminant analysis (LDA) scores of simulated spectra in comparison to the real spectra in the <code class="sourceCode r">chondro</code> object:</p>
+<div class="sourceCode" id="cb56"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"MASS"</span>)
 
 <span class="no">rnd</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/rmmvnorm.html">rmmvnorm</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="fl">200</span>, <span class="fl">3</span>), <span class="kw">mean</span> <span class="kw">=</span> <span class="no">pcov</span>$<span class="no">mean</span>, <span class="kw">sigma</span> <span class="kw">=</span> <span class="no">pcov</span>$<span class="no">COV</span>)
 <span class="no">lda</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/MASS/man/lda.html">lda</a></span>(<span class="no">clusters</span> ~ <span class="no">spc</span>, <span class="no">rnd</span>)
@@ -406,474 +916,16 @@ Figure 3.1: Multivariate normally distributed random spectra generated with <cod
 <span class="no">pred.sim</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span>(<span class="no">lda</span>)</pre></body></html></div>
 <!-- ======================================================================= -->
 <!-- ======================================================================= -->
-<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="no">colors</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"#00008040"</span>, <span class="st">"#FFA50040"</span>, <span class="st">"#C0202040"</span>)
+<div class="sourceCode" id="cb57"><html><body><pre class="r"><span class="no">colors</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"#00008040"</span>, <span class="st">"#FFA50040"</span>, <span class="st">"#C0202040"</span>)
 <span class="fu"><a href="../reference/plot.html">plot</a></span>(<span class="no">pred.chondro</span>$<span class="no">x</span>, <span class="kw">col</span> <span class="kw">=</span> <span class="no">colors</span>[<span class="no">chondro</span>$<span class="no">clusters</span>], <span class="kw">pch</span> <span class="kw">=</span> <span class="fl">3</span>)
 <span class="fu"><a href="https://rdrr.io/r/graphics/points.html">points</a></span>(<span class="no">pred.sim</span>$<span class="no">x</span>,   <span class="kw">col</span> <span class="kw">=</span> <span class="no">colors</span>[<span class="no">rnd</span>$<span class="no">clusters</span>], <span class="kw">pch</span> <span class="kw">=</span> <span class="fl">20</span>, <span class="kw">cex</span> <span class="kw">=</span> <span class="fl">0.5</span>)</pre></body></html></div>
 <div class="figure" style="text-align: center">
 <span id="fig:sim-lda"></span>
 <img src="hyperspec_files/figure-html/sim-lda-1.png" alt="LDA of simulated spectra. Crosses mark real spectra. "><p class="caption">
-Figure 3.2: LDA of simulated spectra. Crosses mark real spectra.
+Figure 4.2: LDA of simulated spectra. Crosses mark real spectra.
 </p>
 </div>
 <p>If individual covariance matrices should be used for each group, <code class="sourceCode r">sigma</code> should be an array with the 3rd dimension corresponding to the group.</p>
-</div>
-</div>
-<div id="sec:access-parts" class="section level1">
-<h1 class="hasAnchor">
-<a href="#sec:access-parts" class="anchor"></a><span class="header-section-number">4</span> Access to the data</h1>
-<p>The main functions to retrieve the data of a <code class="sourceCode r">hyperSpec</code> object are <code>[]</code> and <code>[[]]</code>. 
-The difference between these functions is that <code>[]</code> returns a <code class="sourceCode r">hyperSpec</code> object, whereas the result of <code>[[]]</code> is a <code class="sourceCode r">data.frame</code> if extra data columns were selected or otherwise the spectra matrix.
-Single extra data columns may be retrieved by <code class="sourceCode r"><span class="op">$</span></code>. </p>
-
-<p>In order to change data, use <code>[]&lt;-</code>, <code>[[]]&lt;-</code>, and <code>$&lt;-</code> (see <a href="#sec:square-brack-replace">4.4.1</a> and <a href="#sec:accessing-extra-data">4.3</a>).</p>
-<div id="sec:fast-access-parts" class="section level2">
-<h2 class="hasAnchor">
-<a href="#sec:fast-access-parts" class="anchor"></a><span class="header-section-number">4.1</span> Access Functions and Abbreviations for Parts of the <code class="sourceCode r">hyperSpec</code> Object’s Data</h2>
-
-<p>Class <code class="sourceCode r">hyperSpec</code> comes with three abbreviation functions for easy access to the data:</p>
-<table class="table"><tbody>
-<tr class="odd">
-<td align="left"><strong><code class="sourceCode r">x[[]]</code></strong></td>
-<td align="left">Returns the spectra matrix (<code class="sourceCode r">x<span class="op">$</span>spc</code>).</td>
-</tr>
-<tr class="even">
-<td align="left"><strong><code class="sourceCode r">x[[i, , l]]</code></strong></td>
-<td align="left">The cut spectra matrix is returned if wavelengths are specified in <code class="sourceCode r">l</code>.</td>
-</tr>
-<tr class="odd">
-<td align="left"><strong><code class="sourceCode r">x[[i, j, l]]</code></strong></td>
-<td align="left">If data columns are selected (second index), the result is a <code class="sourceCode r">data.frame</code>.</td>
-</tr>
-<tr class="even">
-<td align="left"><strong><code class="sourceCode r">x[[i, , l]] &lt;-</code></strong></td>
-<td align="left">Also, parts of the spectra matrix can be set (only indices for spectra and wavelength are allowed for this function).</td>
-</tr>
-<tr class="odd">
-<td align="left"><strong><code class="sourceCode r">x[i, j] &lt;-</code></strong></td>
-<td align="left">Sets parts of <code class="sourceCode r">x<span class="op">@</span>data</code>.</td>
-</tr>
-<tr class="even">
-<td align="left"><strong><code class="sourceCode r">x<span class="op">$</span>.</code></strong></td>
-<td align="left">Returns the complete <code class="sourceCode r">data.frame</code> <code class="sourceCode r">x<span class="op">@</span>data</code>, with the spectra in column <code class="sourceCode r"><span class="op">$</span>spc</code>.</td>
-</tr>
-<tr class="odd">
-<td align="left"><strong><code class="sourceCode r">x<span class="op">$</span>..</code></strong></td>
-<td align="left">Returns the extra data (<code class="sourceCode r">x<span class="op">@</span>data</code> without <code class="sourceCode r">x<span class="op">$</span>spc</code>).</td>
-</tr>
-<tr class="even">
-<td align="left"><strong><code class="sourceCode r">x<span class="op">$</span>.. &lt;-</code></strong></td>
-<td align="left">Sets the extra data (<code class="sourceCode r">x<span class="op">@</span>data</code> without <code class="sourceCode r">x<span class="op">$</span>spc</code>). The columns must match exactly in this case.</td>
-</tr>
-</tbody></table>
-</div>
-<div id="sec:select-delete-spectra" class="section level2">
-<h2 class="hasAnchor">
-<a href="#sec:select-delete-spectra" class="anchor"></a><span class="header-section-number">4.2</span> Selecting and Deleting Spectra</h2>
-<p>The extraction function <code>[]</code> takes the spectra as first argument (For detailed help: see <code class="sourceCode r">?<span class="st">"["</span></code>).
-It may be a vector giving the indices of the spectra to extract (select), a vector with negative indices indicating, which spectra should be deleted, or a vector of logical values.
-Note that a matrix given to <code>[]</code> will be treated as a vector.</p>
-<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="fu"><a href="../reference/plot.html">plot</a></span>(<span class="no">flu</span>, <span class="kw">col</span> <span class="kw">=</span> <span class="st">"green2"</span>)
-<span class="fu"><a href="../reference/plot.html">plot</a></span>(<span class="no">flu</span>[<span class="fl">1</span>:<span class="fl">3</span>], <span class="kw">add</span> <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></body></html></div>
-<div class="figure" style="text-align: center">
-<span id="fig:selspc"></span>
-<img src="hyperspec_files/figure-html/selspc-1.png" alt="An example with `[]` operator and positive indices.  "><p class="caption">
-Figure 4.1: An example with <code>[]</code> operator and positive indices.
-</p>
-</div>
-<div class="sourceCode" id="cb13"><html><body><pre class="r"><span class="fu"><a href="../reference/plot.html">plot</a></span>(<span class="no">flu</span>, <span class="kw">col</span> <span class="kw">=</span> <span class="st">"red"</span>)
-<span class="fu"><a href="../reference/plot.html">plot</a></span>(<span class="no">flu</span>[-<span class="fl">3</span>], <span class="kw">add</span> <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></body></html></div>
-<div class="figure" style="text-align: center">
-<span id="fig:delspc"></span>
-<img src="hyperspec_files/figure-html/delspc-1.png" alt="An example with `[]` operator and negative indices.  "><p class="caption">
-Figure 4.2: An example with <code>[]</code> operator and negative indices.
-</p>
-</div>
-<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="fu"><a href="../reference/plot.html">plot</a></span>(<span class="no">flu</span>, <span class="kw">col</span> <span class="kw">=</span> <span class="st">"gold"</span>)
-<span class="fu"><a href="../reference/plot.html">plot</a></span>(<span class="no">flu</span>[<span class="no">flu</span>$<span class="no">c</span> <span class="kw">&gt;</span> <span class="fl">0.2</span>], <span class="kw">add</span> <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></body></html></div>
-<div class="figure" style="text-align: center">
-<span id="fig:selspc2"></span>
-<img src="hyperspec_files/figure-html/selspc2-1.png" alt="An example with `[]` operator and logical indices.  "><p class="caption">
-Figure 4.3: An example with <code>[]</code> operator and logical indices.
-</p>
-</div>
-<div id="sec:random-samples" class="section level3">
-<h3 class="hasAnchor">
-<a href="#sec:random-samples" class="anchor"></a><span class="header-section-number">4.2.1</span> Random Samples</h3>
-
-<p>A random subset of spectra is conveniently selected by <code class="sourceCode r"><span class="kw">sample</span>()</code>:</p>
-<div class="sourceCode" id="cb15"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="no">chondro</span>, <span class="fl">3</span>)
-<span class="co">#&gt; hyperSpec object</span>
-<span class="co">#&gt;    3 spectra</span>
-<span class="co">#&gt;    5 data columns</span>
-<span class="co">#&gt;    300 data points / spectrum</span>
-<span class="co">#&gt; wavelength: Delta * tilde(nu)/cm^-1 [numeric] 602 606 ... 1798 </span>
-<span class="co">#&gt; data:  (3 rows x 5 columns)</span>
-<span class="co">#&gt;    1. y: y [numeric] -3.77 -1.77 9.23 </span>
-<span class="co">#&gt;    2. x: x [numeric] -11.55 7.45 15.45 </span>
-<span class="co">#&gt;    3. filename: filename [character] rawdata/chondro.txt rawdata/chondro.txt rawdata/chondro.txt </span>
-<span class="co">#&gt;    4. clusters: clusters [factor] matrix matrix cell   </span>
-<span class="co">#&gt;    5. spc: I / a.u. [matrix, array300] 485.14 344.46 ... 123.31</span></pre></body></html></div>
-
-<p>If appropriate indices into the spectra are needed instead, use <code class="sourceCode r"><span class="kw">isample</span>()</code>:</p>
-<div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="fu"><a href="../reference/sample.html">isample</a></span>(<span class="no">chondro</span>, <span class="fl">3</span>)
-<span class="co">#&gt; [1] 148 135 228</span></pre></body></html></div>
-</div>
-<div id="sec:seq" class="section level3">
-<h3 class="hasAnchor">
-<a href="#sec:seq" class="anchor"></a><span class="header-section-number">4.2.2</span> Sequences</h3>
-
-<p>Sequences of every n<sup>th</sup> spectrum or the like can be retrieved with <code class="sourceCode r"><span class="kw">seq</span>()</code>:</p>
-<div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="fu"><a href="../reference/seq.html">seq</a></span>(<span class="no">chondro</span>, <span class="kw">length.out</span> <span class="kw">=</span> <span class="fl">3</span>, <span class="kw">index</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
-<span class="co">#&gt; [1]   1 438 875</span>
-<span class="fu"><a href="../reference/seq.html">seq</a></span>(<span class="no">chondro</span>, <span class="kw">by</span> <span class="kw">=</span> <span class="fl">100</span>)
-<span class="co">#&gt; hyperSpec object</span>
-<span class="co">#&gt;    9 spectra</span>
-<span class="co">#&gt;    5 data columns</span>
-<span class="co">#&gt;    300 data points / spectrum</span>
-<span class="co">#&gt; wavelength: Delta * tilde(nu)/cm^-1 [numeric] 602 606 ... 1798 </span>
-<span class="co">#&gt; data:  (9 rows x 5 columns)</span>
-<span class="co">#&gt;    1. y: y [numeric] -4.77 -2.77 ... 17.23 </span>
-<span class="co">#&gt;    2. x: x [numeric] -11.55 18.45 ... 18.45 </span>
-<span class="co">#&gt;    3. filename: filename [character] rawdata/chondro.txt rawdata/chondro.txt ... rawdata/chondro.txt </span>
-<span class="co">#&gt;    4. clusters: clusters [factor] matrix matrix ... lacuna </span>
-<span class="co">#&gt;    5. spc: I / a.u. [matrix, array300] 501.82 400.94 ... 124.64</span></pre></body></html></div>
-<p>Here, indices may be requested using <code class="sourceCode r">index =<span class="st"> </span><span class="ot">TRUE</span></code>.</p>
-</div>
-</div>
-<div id="sec:accessing-extra-data" class="section level2">
-<h2 class="hasAnchor">
-<a href="#sec:accessing-extra-data" class="anchor"></a><span class="header-section-number">4.3</span> Selecting Extra Data Columns</h2>
-<p>The second argument of the extraction functions <code>[]</code> and <code>[[]]</code> specifies the (extra) data columns.
-They can be given like any column specification for a <code class="sourceCode r">data.frame</code>, i.e., numeric, logical, or by a vector of the column names:</p>
-<div class="sourceCode" id="cb18"><html><body><pre class="r"><span class="fu"><a href="../reference/dimnames.html">colnames</a></span>(<span class="no">chondro</span>)
-<span class="co">#&gt; [1] "y"        "x"        "filename" "clusters" "spc"</span></pre></body></html></div>
-<div class="sourceCode" id="cb19"><html><body><pre class="r"><span class="no">chondro</span><span class="kw">[[</span><span class="fl">1</span>:<span class="fl">3</span>, <span class="fl">1</span>]]
-<span class="co">#&gt;       y</span>
-<span class="co">#&gt; 1 -4.77</span>
-<span class="co">#&gt; 2 -4.77</span>
-<span class="co">#&gt; 3 -4.77</span></pre></body></html></div>
-<div class="sourceCode" id="cb20"><html><body><pre class="r"><span class="no">chondro</span><span class="kw">[[</span><span class="fl">1</span>:<span class="fl">3</span>, -<span class="fl">5</span>]]
-<span class="co">#&gt;       y      x            filename clusters</span>
-<span class="co">#&gt; 1 -4.77 -11.55 rawdata/chondro.txt   matrix</span>
-<span class="co">#&gt; 2 -4.77 -10.55 rawdata/chondro.txt   matrix</span>
-<span class="co">#&gt; 3 -4.77  -9.55 rawdata/chondro.txt   matrix</span></pre></body></html></div>
-<div class="sourceCode" id="cb21"><html><body><pre class="r"><span class="no">chondro</span><span class="kw">[[</span><span class="fl">1</span>:<span class="fl">3</span>, <span class="st">"x"</span>]]
-<span class="co">#&gt;        x</span>
-<span class="co">#&gt; 1 -11.55</span>
-<span class="co">#&gt; 2 -10.55</span>
-<span class="co">#&gt; 3  -9.55</span></pre></body></html></div>
-<div class="sourceCode" id="cb22"><html><body><pre class="r"><span class="no">chondro</span><span class="kw">[[</span><span class="fl">1</span>:<span class="fl">3</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">FALSE</span>, <span class="fl">TRUE</span>)]] <span class="co"># note the recycling!</span>
-<span class="co">#&gt;        x clusters</span>
-<span class="co">#&gt; 1 -11.55   matrix</span>
-<span class="co">#&gt; 2 -10.55   matrix</span>
-<span class="co">#&gt; 3  -9.55   matrix</span></pre></body></html></div>
-
-<p>To select one column, the <code class="sourceCode r"><span class="op">$</span></code> operator is more convenient:</p>
-<div class="sourceCode" id="cb23"><html><body><pre class="r"><span class="no">flu</span>$<span class="no">c</span>
-<span class="co">#&gt; [1] 0.05 0.10 0.15 0.20 0.25 0.30</span></pre></body></html></div>
-<p>Class <code class="sourceCode r">hyperSpec</code> supports command line completion for the <code class="sourceCode r"><span class="op">$</span></code> operator.</p>
-
-<p>The extra data may also be set this way:</p>
-<div class="sourceCode" id="cb24"><html><body><pre class="r"><span class="no">flu</span>$<span class="no">n</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">1</span>:<span class="fl">6</span>, <span class="kw">label</span> <span class="kw">=</span> <span class="st">"sample no."</span>)</pre></body></html></div>
-<p>This function will append new columns, if necessary.</p>
-</div>
-<div id="double-square-brackets" class="section level2">
-<h2 class="hasAnchor">
-<a href="#double-square-brackets" class="anchor"></a><span class="header-section-number">4.4</span> More on the <code>[[]]</code> and <code>[[]]&lt;-</code>
-</h2>
-<div id="sec:square-brack-replace" class="section level3">
-<h3 class="hasAnchor">
-<a href="#sec:square-brack-replace" class="anchor"></a><span class="header-section-number">4.4.1</span> Operators: Accessing Single Elements of the Spectra Matrix</h3>
-<p>Operator <code>[[]]</code> works mostly analogous to <code>[]</code>.
-In addition, however, these two functions also accept index matrices of size <span class="math inline">\(n × 2\)</span>.
-In this case, a vector of values from the spectra matrix is returned.</p>
-<div class="sourceCode" id="cb25"><html><body><pre class="r"><span class="no">indexmatrix</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>:<span class="fl">3</span>, <span class="fl">1</span>:<span class="fl">3</span>), <span class="kw">ncol</span> <span class="kw">=</span> <span class="fl">2</span>)
-<span class="no">indexmatrix</span>
-<span class="co">#&gt;      [,1] [,2]</span>
-<span class="co">#&gt; [1,]    1    1</span>
-<span class="co">#&gt; [2,]    2    2</span>
-<span class="co">#&gt; [3,]    3    3</span></pre></body></html></div>
-<div class="sourceCode" id="cb26"><html><body><pre class="r"><span class="no">chondro</span><span class="kw">[[</span><span class="no">indexmatrix</span>, <span class="kw">wl.index</span> <span class="kw">=</span> <span class="fl">TRUE</span>]]
-<span class="co">#&gt; [1] 501.82 507.81 456.03</span></pre></body></html></div>
-<div class="sourceCode" id="cb27"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/diag.html">diag</a></span>(<span class="no">chondro</span><span class="kw">[[</span><span class="fl">1</span>:<span class="fl">3</span>, , <span class="no">min</span> ~ <span class="no">min</span> + <span class="fl">2i</span>]])
-<span class="co">#&gt; [1] 501.82 507.81 456.03</span></pre></body></html></div>
-<p>Operator <code>[[]]&lt;-</code> also accepts index matrices of size <span class="math inline">\(n × 2\)</span>.</p>
-</div>
-</div>
-<div id="sec:wavelength-axis" class="section level2">
-<h2 class="hasAnchor">
-<a href="#sec:wavelength-axis" class="anchor"></a><span class="header-section-number">4.5</span> Wavelengths</h2>
-<p>
-
-</p>
-<div id="sec:wavelength-indices" class="section level3">
-<h3 class="hasAnchor">
-<a href="#sec:wavelength-indices" class="anchor"></a><span class="header-section-number">4.5.1</span> Converting Wavelengths to Indices and vice versa</h3>
-
-<p>Spectra in package <strong>hyperSpec</strong> have always discretized wavelength axes, they are stored in a matrix with each column corresponding to one wavelength.
-Package <strong>hyperSpec</strong> provides two functions to convert the respective column indices into wavelengths and vice versa: <code class="sourceCode r"><span class="kw">i2wl</span>()</code> and <code class="sourceCode r"><span class="kw">wl2i</span>()</code>.</p>
-<p>If the wavelengths are given as a numeric vector, they are each converted to the corresponding wavelength.
-In addition there is a more sophisticated possibility of specifying wavelength ranges using a <em>formula</em>.
-The basic syntax is <strong><code>start ~ end</code></strong>.
-This yields a vector <strong><code>index_of_start : index_of_end</code></strong>.</p>
-<p>The result of the formula conversion differs from the numeric vector conversion in three ways:</p>
-<ul>
-<li>The colon operator for constructing vectors accepts only integer numbers, the tilde (for formulas) does not have this restriction.</li>
-<li>If the vector does not take into account the spectral resolution, one may get only every <span class="math inline">\(n\)</span><sup>th</sup> point or repetitions of the same index:</li>
-</ul>
-<div class="sourceCode" id="cb28"><html><body><pre class="r"><span class="fu"><a href="../reference/wl2i.html">wl2i</a></span>(<span class="no">flu</span>, <span class="fl">405</span>:<span class="fl">410</span>)
-<span class="co">#&gt; [1]  1  3  5  7  9 11</span></pre></body></html></div>
-<div class="sourceCode" id="cb29"><html><body><pre class="r"><span class="fu"><a href="../reference/wl2i.html">wl2i</a></span>(<span class="no">flu</span>, <span class="fl">405</span> ~ <span class="fl">410</span>)
-<span class="co">#&gt;  [1]  1  2  3  4  5  6  7  8  9 10 11</span></pre></body></html></div>
-<div class="sourceCode" id="cb30"><html><body><pre class="r"><span class="fu"><a href="../reference/wl2i.html">wl2i</a></span>(<span class="no">chondro</span>, <span class="fl">1000</span>:<span class="fl">1010</span>)
-<span class="co">#&gt;  [1] 100 101 101 101 101 102 102 102 102 103 103</span></pre></body></html></div>
-<div class="sourceCode" id="cb31"><html><body><pre class="r"><span class="fu"><a href="../reference/wl2i.html">wl2i</a></span>(<span class="no">chondro</span>, <span class="fl">1000</span> ~ <span class="fl">1010</span>)
-<span class="co">#&gt; [1] 100 101 102 103</span></pre></body></html></div>
-<ul>
-<li>If the object’s wavelength axis is not ordered, the formula approach will give weird results.
-In that (probably rare) case, use <code class="sourceCode r"><span class="kw">orderwl</span>()</code> first to obtain an object with ordered wavelength axis.</li>
-</ul>
-<p>Values <em>start</em> and <em>end</em> may contain the special variables <code class="sourceCode r">min</code> and <code class="sourceCode r">max</code> that
-correspond to the lowest and highest wavelengths of the object:</p>
-<div class="sourceCode" id="cb32"><html><body><pre class="r"><span class="fu"><a href="../reference/wl2i.html">wl2i</a></span>(<span class="no">flu</span>, <span class="no">min</span> ~ <span class="fl">410</span>)
-<span class="co">#&gt;  [1]  1  2  3  4  5  6  7  8  9 10 11</span></pre></body></html></div>
-<p>Often, specifications like <em>“wavelength <span class="math inline">\(pm n\)</span> data points”</em> are needed.
-They can be given using complex numbers in the formula.
-The imaginary part is added to the index calculated from the wavelength in the real part:</p>
-<div class="sourceCode" id="cb33"><html><body><pre class="r"><span class="fu"><a href="../reference/wl2i.html">wl2i</a></span>(<span class="no">flu</span>, <span class="fl">450</span> - <span class="fl">2i</span> ~ <span class="fl">450</span> + <span class="fl">2i</span>)
-<span class="co">#&gt; [1] 89 90 91 92 93</span>
-<span class="fu"><a href="../reference/wl2i.html">wl2i</a></span>(<span class="no">flu</span>, <span class="no">max</span> - <span class="fl">2i</span> ~ <span class="no">max</span>)
-<span class="co">#&gt; [1] 179 180 181</span></pre></body></html></div>
-<p>To specify several wavelength ranges, use a list containing the formulas and vectors<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>:</p>
-<div class="sourceCode" id="cb34"><html><body><pre class="r"><span class="fu"><a href="../reference/wl2i.html">wl2i</a></span>(<span class="no">flu</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="no">min</span> ~ <span class="fl">406.5</span>, <span class="no">max</span> - <span class="fl">2i</span> ~ <span class="no">max</span>))
-<span class="co">#&gt; [1]   1   2   3   4 179 180 181</span></pre></body></html></div>
-<p>This mechanism also works for the wavelength arguments of <code>[]</code>, <code>[[]]</code>, and <code class="sourceCode r"><span class="kw">plotspc</span>()</code>.</p>
-</div>
-<div id="selecting-wavelength-ranges" class="section level3">
-<h3 class="hasAnchor">
-<a href="#selecting-wavelength-ranges" class="anchor"></a><span class="header-section-number">4.5.2</span> Selecting Wavelength Ranges</h3>
-<p>Wavelength ranges can easily be selected using <code>[]</code>’s third argument (Fig. <a href="#fig:paracetamol">4.4</a>).</p>
-<div class="sourceCode" id="cb35"><html><body><pre class="r"><span class="fu"><a href="../reference/plot.html">plot</a></span>(<span class="no">paracetamol</span>[, , <span class="fl">2800</span> ~ <span class="fl">3200</span>])</pre></body></html></div>
-<div class="figure" style="text-align: center">
-<span id="fig:paracetamol"></span>
-<img src="hyperspec_files/figure-html/paracetamol-1.png" alt="Spectra of `paracetamol` in range of 2800--3200 cm^-1^."><p class="caption">
-Figure 4.4: Spectra of <code>paracetamol</code> in range of 2800–3200 cm<sup>-1</sup>.
-</p>
-</div>
-<p>By default, the values given are treated as wavelengths.
-If they are indices into the columns of the spectra matrix, use <code class="sourceCode r">wl.index =<span class="st"> </span><span class="ot">TRUE</span></code>:</p>
-<div class="sourceCode" id="cb36"><html><body><pre class="r"><span class="fu"><a href="../reference/plot.html">plot</a></span>(<span class="no">paracetamol</span>[, , <span class="fl">2800</span>:<span class="fl">3200</span>, <span class="kw">wl.index</span> <span class="kw">=</span> <span class="fl">TRUE</span>])</pre></body></html></div>
-<div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-16"></span>
-<img src="hyperspec_files/figure-html/unnamed-chunk-16-1.png" alt="Spectra of `paracetamol`: from 2800^th^ to 3200^th^ point on *wavelength* axis.  "><p class="caption">
-Figure 4.5: Spectra of <code>paracetamol</code>: from 2800<sup>th</sup> to 3200<sup>th</sup> point on <em>wavelength</em> axis.
-</p>
-</div>
-<p>Section <a href="#sec:wavelength-indices">4.5.1</a> delves into the different possibilities of specifying wavelengths.</p>
-</div>
-<div id="sec:del-wavelengths" class="section level3">
-<h3 class="hasAnchor">
-<a href="#sec:del-wavelengths" class="anchor"></a><span class="header-section-number">4.5.3</span> Deleting Wavelength Ranges</h3>
-<p>Deleting wavelength ranges may be accomplished using negative index vectors together with <code class="sourceCode r">wl.index =<span class="st"> </span><span class="ot">TRUE</span></code>.</p>
-<div class="sourceCode" id="cb37"><html><body><pre class="r"><span class="fu"><a href="../reference/plot.html">plot</a></span>(<span class="no">paracetamol</span>[, , -(<span class="fl">500</span>:<span class="fl">1000</span>), <span class="kw">wl.index</span> <span class="kw">=</span> <span class="fl">TRUE</span>])</pre></body></html></div>
-<div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-18"></span>
-<img src="hyperspec_files/figure-html/unnamed-chunk-18-1.png" alt="Spectra of `paracetamol` with 500^th^ to 1000^th^ *wavelength* axis point removed.  "><p class="caption">
-Figure 4.6: Spectra of <code>paracetamol</code> with 500<sup>th</sup> to 1000<sup>th</sup><em>wavelength</em> axis point removed.
-</p>
-</div>
-<p>However, this mechanism works only if the proper indices are known.</p>
-<p>If the range to be cut out is rather known in the units of the wavelength axis, it is easier to select the remainder of the spectrum instead.
-To delete the spectral range from 1750 to 2800 cm<sup>-1</sup> of the paracetamol spectrum one can thus use:</p>
-<div class="sourceCode" id="cb38"><html><body><pre class="r"><span class="fu"><a href="../reference/plot.html">plot</a></span>(<span class="no">paracetamol</span>[, , <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="no">min</span> ~ <span class="fl">1750</span>, <span class="fl">2800</span> ~ <span class="no">max</span>)])</pre></body></html></div>
-<div class="figure" style="text-align: center">
-<span id="fig:unnamed-chunk-20"></span>
-<img src="hyperspec_files/figure-html/unnamed-chunk-20-1.png" alt="Spectra of `paracetamol` with range from 1750 to 2800 cm^-1^ removed.  "><p class="caption">
-Figure 4.7: Spectra of <code>paracetamol</code> with range from 1750 to 2800 cm<sup>-1</sup> removed.
-</p>
-</div>
-<p>(It is possible to produce a plot of this data where the cut range is actually omitted and the wavelength axis is optionally cut in order to save space.
-For details see the “Plotting” vignette).</p>
-</div>
-<div id="sec:wavel-axis-conv" class="section level3">
-<h3 class="hasAnchor">
-<a href="#sec:wavel-axis-conv" class="anchor"></a><span class="header-section-number">4.5.4</span> Changing the Wavelength Axis</h3>
-<p>
-
-Sometimes wavelength axes need to be transformed, e.g., converting from wavelengths to frequencies.
-In this case, retrieve the wavelength axis vector with <code class="sourceCode r"><span class="kw">wl</span>()</code>, convert each value of the resulting vector and assign the result with <code class="sourceCode r">wl&lt;-</code>.
-Also the label of the wavelength axis may need to be adjusted.</p>
-<p>As an example, convert the wavelength axis of <code class="sourceCode r">laser</code> to frequencies.
-As the wavelengths are in nanometers, and the frequencies are easiest expressed in terahertz, an additional conversion factor of 1000 is needed:</p>
-<div class="sourceCode" id="cb39"><html><body><pre class="r"><span class="no">laser</span>
-<span class="co">#&gt; hyperSpec object</span>
-<span class="co">#&gt;    84 spectra</span>
-<span class="co">#&gt;    3 data columns</span>
-<span class="co">#&gt;    36 data points / spectrum</span>
-<span class="co">#&gt; wavelength: lambda/nm [numeric] 404.58 404.62 ... 405.82 </span>
-<span class="co">#&gt; data:  (84 rows x 3 columns)</span>
-<span class="co">#&gt;    1. t: t / s [numeric] 0 2 ... 5722 </span>
-<span class="co">#&gt;    2. spc: I / a.u. [matrix, array36] 164.65 179.72 ... 112.09 </span>
-<span class="co">#&gt;    3. filename: filename [character] rawdata/laser.txt.gz rawdata/laser.txt.gz ... rawdata/laser.txt.gz</span></pre></body></html></div>
-<div class="sourceCode" id="cb40"><html><body><pre class="r"><span class="no">wavelengths</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/wl.html">wl</a></span>(<span class="no">laser</span>)
-<span class="no">frequencies</span> <span class="kw">&lt;-</span> <span class="fl">2.998e8</span> / <span class="no">wavelengths</span> / <span class="fl">1000</span>
-<span class="fu"><a href="../reference/wl.html">wl</a></span>(<span class="no">laser</span>) <span class="kw">&lt;-</span> <span class="no">frequencies</span>
-<span class="fu"><a href="https://rdrr.io/r/base/labels.html">labels</a></span>(<span class="no">laser</span>, <span class="st">".wavelength"</span>) <span class="kw">&lt;-</span> <span class="st">"f / THz"</span>
-<span class="no">laser</span>
-<span class="co">#&gt; hyperSpec object</span>
-<span class="co">#&gt;    84 spectra</span>
-<span class="co">#&gt;    3 data columns</span>
-<span class="co">#&gt;    36 data points / spectrum</span>
-<span class="co">#&gt; wavelength: f / THz [numeric] 741.01 740.95 ... 738.76 </span>
-<span class="co">#&gt; data:  (84 rows x 3 columns)</span>
-<span class="co">#&gt;    1. t: t / s [numeric] 0 2 ... 5722 </span>
-<span class="co">#&gt;    2. spc: I / a.u. [matrix, array36] 164.65 179.72 ... 112.09 </span>
-<span class="co">#&gt;    3. filename: filename [character] rawdata/laser.txt.gz rawdata/laser.txt.gz ... rawdata/laser.txt.gz</span>
-<span class="fu"><a href="https://rdrr.io/r/base/rm.html">rm</a></span>(<span class="no">laser</span>)</pre></body></html></div>
-<p>There are other possibilities of invoking <code class="sourceCode r">wl&lt;-</code> including the new label, e.g.,</p>
-<div class="sourceCode" id="cb41"><html><body><pre class="r"><span class="fu"><a href="../reference/wl.html">wl</a></span>(<span class="no">laser</span>, <span class="st">"f / THz"</span>) <span class="kw">&lt;-</span> <span class="no">frequencies</span></pre></body></html></div>
-<p>and</p>
-<div class="sourceCode" id="cb42"><html><body><pre class="r"><span class="fu"><a href="../reference/wl.html">wl</a></span>(<span class="no">laser</span>) <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">wl</span> <span class="kw">=</span> <span class="no">frequencies</span>, <span class="kw">label</span> <span class="kw">=</span> <span class="st">"f / THz"</span>)</pre></body></html></div>
-<p>see <code>?wl&lt;-</code> for more information.</p>
-</div>
-<div id="sec:orderwl" class="section level3">
-<h3 class="hasAnchor">
-<a href="#sec:orderwl" class="anchor"></a><span class="header-section-number">4.5.5</span> Ordering the Wavelength Axis</h3>
-
-<p>If the wavelength axis of an object needs reordering (e.g., after <code class="sourceCode r"><span class="kw">collapse</span>()</code>), <code class="sourceCode r"><span class="kw">orderwl</span>()</code> can be used:</p>
-<div class="sourceCode" id="cb43"><html><body><pre class="r"><span class="no">barb</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/collapse.html">collapse</a></span>(<span class="no">barbiturates</span>[<span class="fl">1</span>:<span class="fl">3</span>])
-<span class="fu"><a href="../reference/wl.html">wl</a></span>(<span class="no">barb</span>)
-<span class="co">#&gt;  [1]  27.05  27.15  28.05  28.15  29.05  30.05  30.15  31.15  32.15  39.00  40.00  40.10  41.10</span>
-<span class="co">#&gt; [14]  43.05  43.85  43.95  44.05  55.00  55.10  56.00  56.10  57.10  68.90  69.00  69.10  70.00</span>
-<span class="co">#&gt; [27]  71.10  71.90  72.00  77.00  82.95  83.05  84.15  85.05  91.00  96.95  98.95 105.10 105.90</span>
-<span class="co">#&gt; [40] 106.00 112.90 113.00 116.95 117.95 118.05 119.05 119.15 119.95 120.05 130.90 131.00 132.95</span>
-<span class="co">#&gt; [53] 133.05 140.90 147.00 158.85 160.90</span></pre></body></html></div>
-<div class="sourceCode" id="cb44"><html><body><pre class="r"><span class="no">barb</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/orderwl.html">orderwl</a></span>(<span class="no">barb</span>)
-<span class="fu"><a href="../reference/wl.html">wl</a></span>(<span class="no">barb</span>)
-<span class="co">#&gt;  [1]  27.05  27.15  28.05  28.15  29.05  30.05  30.15  31.15  32.15  39.00  40.00  40.10  41.10</span>
-<span class="co">#&gt; [14]  43.05  43.85  43.95  44.05  55.00  55.10  56.00  56.10  57.10  68.90  69.00  69.10  70.00</span>
-<span class="co">#&gt; [27]  71.10  71.90  72.00  77.00  82.95  83.05  84.15  85.05  91.00  96.95  98.95 105.10 105.90</span>
-<span class="co">#&gt; [40] 106.00 112.90 113.00 116.95 117.95 118.05 119.05 119.15 119.95 120.05 130.90 131.00 132.95</span>
-<span class="co">#&gt; [53] 133.05 140.90 147.00 158.85 160.90</span></pre></body></html></div>
-</div>
-</div>
-<div id="sec:conv-long-form" class="section level2">
-<h2 class="hasAnchor">
-<a href="#sec:conv-long-form" class="anchor"></a><span class="header-section-number">4.6</span> Conversion to Long- and Wide-Format <code class="sourceCode r">data.frame</code>s</h2>
-
-<p>Function <code class="sourceCode r"><span class="kw">as.data.frame</span>()</code> extracts the <code class="sourceCode r"><span class="op">@</span>data</code> slot as a <code class="sourceCode r">data.frame</code>:</p>
-<div class="sourceCode" id="cb45"><html><body><pre class="r"><span class="no">flu</span> <span class="kw">&lt;-</span> <span class="no">flu</span>[, , <span class="fl">400</span> ~ <span class="fl">407</span>] <span class="co"># make a small and handy version of the flu data set</span>
-<span class="fu"><a href="../reference/asdataframe.html">as.data.frame</a></span>(<span class="no">flu</span>)
-<span class="co">#&gt;   spc.405 spc.405.5 spc.406 spc.406.5 spc.407         filename    c n .row</span>
-<span class="co">#&gt; 1  27.150    32.345  33.379    34.419  36.531 rawdata/flu1.txt 0.05 1    1</span>
-<span class="co">#&gt; 2  66.801    63.715  66.712    69.582  72.530 rawdata/flu2.txt 0.10 2    2</span>
-<span class="co">#&gt; 3  93.144   103.068 106.194   110.186 113.249 rawdata/flu3.txt 0.15 3    3</span>
-<span class="co">#&gt; 4 130.664   139.998 143.798   148.420 152.133 rawdata/flu4.txt 0.20 4    4</span>
-<span class="co">#&gt; 5 167.267   171.898 177.471   184.625 189.752 rawdata/flu5.txt 0.25 5    5</span>
-<span class="co">#&gt; 6 198.430   209.458 215.785   224.587 232.528 rawdata/flu6.txt 0.30 6    6</span></pre></body></html></div>
-<div class="sourceCode" id="cb46"><html><body><pre class="r"><span class="fu"><a href="../reference/dimnames.html">colnames</a></span>(<span class="fu"><a href="../reference/asdataframe.html">as.data.frame</a></span>(<span class="no">flu</span>))
-<span class="co">#&gt; [1] "spc"      "filename" "c"        "n"        ".row"</span></pre></body></html></div>
-<div class="sourceCode" id="cb47"><html><body><pre class="r"><span class="fu"><a href="../reference/asdataframe.html">as.data.frame</a></span>(<span class="no">flu</span>)$<span class="no">spc</span>
-<span class="co">#&gt;          405   405.5     406   406.5     407</span>
-<span class="co">#&gt; [1,]  27.150  32.345  33.379  34.419  36.531</span>
-<span class="co">#&gt; [2,]  66.801  63.715  66.712  69.582  72.530</span>
-<span class="co">#&gt; [3,]  93.144 103.068 106.194 110.186 113.249</span>
-<span class="co">#&gt; [4,] 130.664 139.998 143.798 148.420 152.133</span>
-<span class="co">#&gt; [5,] 167.267 171.898 177.471 184.625 189.752</span>
-<span class="co">#&gt; [6,] 198.430 209.458 215.785 224.587 232.528</span></pre></body></html></div>
-<p>Note that the spectra matrix is still a matrix inside column <code class="sourceCode r"><span class="op">$</span>spc</code>.</p>
-
-<p>Function <code class="sourceCode r"><span class="kw">as.data.frame</span>()</code> and the abbreviations <code class="sourceCode r"><span class="op">$</span>.</code> and <code class="sourceCode r"><span class="op">$</span>..</code> retrieve the usual wide format <code class="sourceCode r">data.frame</code>s:</p>
-<div class="sourceCode" id="cb48"><html><body><pre class="r"><span class="no">flu</span>$<span class="no">.</span>
-<span class="co">#&gt;   spc.405 spc.405.5 spc.406 spc.406.5 spc.407         filename    c n</span>
-<span class="co">#&gt; 1  27.150    32.345  33.379    34.419  36.531 rawdata/flu1.txt 0.05 1</span>
-<span class="co">#&gt; 2  66.801    63.715  66.712    69.582  72.530 rawdata/flu2.txt 0.10 2</span>
-<span class="co">#&gt; 3  93.144   103.068 106.194   110.186 113.249 rawdata/flu3.txt 0.15 3</span>
-<span class="co">#&gt; 4 130.664   139.998 143.798   148.420 152.133 rawdata/flu4.txt 0.20 4</span>
-<span class="co">#&gt; 5 167.267   171.898 177.471   184.625 189.752 rawdata/flu5.txt 0.25 5</span>
-<span class="co">#&gt; 6 198.430   209.458 215.785   224.587 232.528 rawdata/flu6.txt 0.30 6</span></pre></body></html></div>
-<div class="sourceCode" id="cb49"><html><body><pre class="r"><span class="no">flu</span>$<span class="no">..</span>
-<span class="co">#&gt;           filename    c n</span>
-<span class="co">#&gt; 1 rawdata/flu1.txt 0.05 1</span>
-<span class="co">#&gt; 2 rawdata/flu2.txt 0.10 2</span>
-<span class="co">#&gt; 3 rawdata/flu3.txt 0.15 3</span>
-<span class="co">#&gt; 4 rawdata/flu4.txt 0.20 4</span>
-<span class="co">#&gt; 5 rawdata/flu5.txt 0.25 5</span>
-<span class="co">#&gt; 6 rawdata/flu6.txt 0.30 6</span></pre></body></html></div>
-
-<p>If another subset of colums needs to be extracted, use <code>[[]]</code>:</p>
-<div class="sourceCode" id="cb50"><html><body><pre class="r"><span class="no">flu</span><span class="kw">[[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"c"</span>, <span class="st">"spc"</span>)]]
-<span class="co">#&gt;      c spc.405 spc.405.5 spc.406 spc.406.5 spc.407</span>
-<span class="co">#&gt; 1 0.05  27.150    32.345  33.379    34.419  36.531</span>
-<span class="co">#&gt; 2 0.10  66.801    63.715  66.712    69.582  72.530</span>
-<span class="co">#&gt; 3 0.15  93.144   103.068 106.194   110.186 113.249</span>
-<span class="co">#&gt; 4 0.20 130.664   139.998 143.798   148.420 152.133</span>
-<span class="co">#&gt; 5 0.25 167.267   171.898 177.471   184.625 189.752</span>
-<span class="co">#&gt; 6 0.30 198.430   209.458 215.785   224.587 232.528</span></pre></body></html></div>
-<p>This can be combined with extracting certain spectra and wavelengths, see below in subsection“nameref{sec:conv-matrix”on page .</p>
-
-<p>The transpose of a wide format <code class="sourceCode r">data.frame</code> can be obtained by <code class="sourceCode r"><span class="kw">as.t.df</span>()</code>. For further examples, see the discussion of package <strong>ggplot2</strong> in <code class="sourceCode r"><span class="kw">vignette</span>(<span class="st">"plotting"</span>)</code>.</p>
-<div class="sourceCode" id="cb51"><html><body><pre class="r"><span class="fu"><a href="../reference/asdataframe.html">as.t.df</a></span>(<span class="fu"><a href="../reference/apply.html">apply</a></span>(<span class="no">flu</span>, <span class="fl">2</span>, <span class="no">mean_pm_sd</span>))
-<span class="co">#&gt;           .wavelength mean.minus.sd   mean mean.plus.sd</span>
-<span class="co">#&gt; spc.405         405.0        49.958 113.91       177.86</span>
-<span class="co">#&gt; spc.405.5       405.5        53.396 120.08       186.77</span>
-<span class="co">#&gt; spc.406         406.0        55.352 123.89       192.43</span>
-<span class="co">#&gt; spc.406.5       406.5        57.310 128.64       199.96</span>
-<span class="co">#&gt; spc.407         407.0        59.513 132.79       206.06</span></pre></body></html></div>
-
-<p>Some functions need the data being an <em>unstacked</em> or <em>long-format</em> <code class="sourceCode r">data.frame</code>.
-Function <code class="sourceCode r"><span class="kw">as.long.df</span>()</code> is the appropriate conversion function.</p>
-<div class="sourceCode" id="cb52"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="fu"><a href="../reference/asdataframe.html">as.long.df</a></span>(<span class="no">flu</span>), <span class="fl">20</span>)
-<span class="co">#&gt;     .wavelength     spc         filename    c n</span>
-<span class="co">#&gt; 1         405.0  27.150 rawdata/flu1.txt 0.05 1</span>
-<span class="co">#&gt; 2         405.0  66.801 rawdata/flu2.txt 0.10 2</span>
-<span class="co">#&gt; 3         405.0  93.144 rawdata/flu3.txt 0.15 3</span>
-<span class="co">#&gt; 4         405.0 130.664 rawdata/flu4.txt 0.20 4</span>
-<span class="co">#&gt; 5         405.0 167.267 rawdata/flu5.txt 0.25 5</span>
-<span class="co">#&gt; 6         405.0 198.430 rawdata/flu6.txt 0.30 6</span>
-<span class="co">#&gt; 1.1       405.5  32.345 rawdata/flu1.txt 0.05 1</span>
-<span class="co">#&gt; 2.1       405.5  63.715 rawdata/flu2.txt 0.10 2</span>
-<span class="co">#&gt; 3.1       405.5 103.068 rawdata/flu3.txt 0.15 3</span>
-<span class="co">#&gt; 4.1       405.5 139.998 rawdata/flu4.txt 0.20 4</span>
-<span class="co">#&gt; 5.1       405.5 171.898 rawdata/flu5.txt 0.25 5</span>
-<span class="co">#&gt; 6.1       405.5 209.458 rawdata/flu6.txt 0.30 6</span>
-<span class="co">#&gt; 1.2       406.0  33.379 rawdata/flu1.txt 0.05 1</span>
-<span class="co">#&gt; 2.2       406.0  66.712 rawdata/flu2.txt 0.10 2</span>
-<span class="co">#&gt; 3.2       406.0 106.194 rawdata/flu3.txt 0.15 3</span>
-<span class="co">#&gt; 4.2       406.0 143.798 rawdata/flu4.txt 0.20 4</span>
-<span class="co">#&gt; 5.2       406.0 177.471 rawdata/flu5.txt 0.25 5</span>
-<span class="co">#&gt; 6.2       406.0 215.785 rawdata/flu6.txt 0.30 6</span>
-<span class="co">#&gt; 1.3       406.5  34.419 rawdata/flu1.txt 0.05 1</span>
-<span class="co">#&gt; 2.3       406.5  69.582 rawdata/flu2.txt 0.10 2</span></pre></body></html></div>
-</div>
-<div id="sec:conv-matrix" class="section level2">
-<h2 class="hasAnchor">
-<a href="#sec:conv-matrix" class="anchor"></a><span class="header-section-number">4.7</span> Conversion to Matrix</h2>
-
-<p>The spectra matrix is extracted by <code class="sourceCode r"><span class="kw">as.matrix</span>()</code>, the convenient abbreviation is <code>[[]]</code>:</p>
-<div class="sourceCode" id="cb53"><html><body><pre class="r"><span class="no">flu</span><span class="kw">[[</span>]]
-<span class="co">#&gt;          405   405.5     406   406.5     407</span>
-<span class="co">#&gt; [1,]  27.150  32.345  33.379  34.419  36.531</span>
-<span class="co">#&gt; [2,]  66.801  63.715  66.712  69.582  72.530</span>
-<span class="co">#&gt; [3,]  93.144 103.068 106.194 110.186 113.249</span>
-<span class="co">#&gt; [4,] 130.664 139.998 143.798 148.420 152.133</span>
-<span class="co">#&gt; [5,] 167.267 171.898 177.471 184.625 189.752</span>
-<span class="co">#&gt; [6,] 198.430 209.458 215.785 224.587 232.528</span></pre></body></html></div>
-<div class="sourceCode" id="cb54"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span>(<span class="no">flu</span><span class="kw">[[</span>]])
-<span class="co">#&gt; [1] "matrix" "array"</span></pre></body></html></div>
-<p>Operator <code>[[]]</code> takes the same arguments as <code>[]</code>, and can be used to extract a matrix containing parts of the spectra matrix:</p>
-<div class="sourceCode" id="cb55"><html><body><pre class="r"><span class="no">flu</span><span class="kw">[[</span><span class="fl">1</span>:<span class="fl">3</span>, , <span class="fl">406</span> ~ <span class="fl">407</span>]]
-<span class="co">#&gt;          406   406.5     407</span>
-<span class="co">#&gt; [1,]  33.379  34.419  36.531</span>
-<span class="co">#&gt; [2,]  66.712  69.582  72.530</span>
-<span class="co">#&gt; [3,] 106.194 110.186 113.249</span></pre></body></html></div>
-<p>If indices for the columns to extract are given, a <code class="sourceCode r">data.frame</code> is returned instead of a matrix:</p>
-<div class="sourceCode" id="cb56"><html><body><pre class="r"><span class="no">flu</span><span class="kw">[[</span><span class="fl">1</span>:<span class="fl">3</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"filename"</span>, <span class="st">"spc"</span>), <span class="fl">406</span> ~ <span class="fl">407</span>]]
-<span class="co">#&gt;           filename spc.406 spc.406.5 spc.407</span>
-<span class="co">#&gt; 1 rawdata/flu1.txt  33.379    34.419  36.531</span>
-<span class="co">#&gt; 2 rawdata/flu2.txt  66.712    69.582  72.530</span>
-<span class="co">#&gt; 3 rawdata/flu3.txt 106.194   110.186 113.249</span></pre></body></html></div>
-<div class="sourceCode" id="cb57"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/rm.html">rm</a></span>(<span class="no">flu</span>)</pre></body></html></div>
 </div>
 </div>
 <div id="sec:combine" class="section level1">
@@ -941,12 +993,12 @@ In each data set, some spectra are missing.</p>
 <p>As all extra data columns are the same, no special declarations are needed for merging the data:</p>
 <div class="sourceCode" id="cb65"><html><body><pre class="r"><span class="no">chondro.merged</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/merge.html">merge</a></span>(<span class="no">chondro.low</span>, <span class="no">chondro.high</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="no">chondro.merged</span>)
-<span class="co">#&gt; [1] 560</span></pre></body></html></div>
+<span class="co">#&gt; [1] 553</span></pre></body></html></div>
 <p>By default, the result consists of only those spectra, where <em>both</em> spectral ranges were available.
 To keep all spectra replacing missing parts by <code class="sourceCode r"><span class="ot">NA</span></code> (see Fig. <a href="#fig:merge-map">5.1</a>, <a href="#fig:merge-mat">5.2</a>):</p>
 <div class="sourceCode" id="cb66"><html><body><pre class="r"><span class="no">chondro.merged</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/merge.html">merge</a></span>(<span class="no">chondro.low</span>, <span class="no">chondro.high</span>, <span class="kw">all</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="no">chondro.merged</span>)
-<span class="co">#&gt; [1] 840</span></pre></body></html></div>
+<span class="co">#&gt; [1] 847</span></pre></body></html></div>
 <div class="sourceCode" id="cb67"><html><body><pre class="r"><span class="fu">levelplot</span>(<span class="no">spc</span> ~ <span class="no">x</span> * <span class="no">y</span> <span class="kw">|</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="no">.wavelength</span>, <span class="st">"  1/cm"</span>)),
   <span class="no">chondro.merged</span>[, , <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1000</span>, <span class="fl">1650</span>)],
   <span class="kw">aspect</span> <span class="kw">=</span> <span class="st">"iso"</span>, <span class="kw">col.regions</span> <span class="kw">=</span> <span class="fu"><a href="../reference/palettes.html">matlab.palette</a></span>()
@@ -2455,7 +2507,7 @@ You can also make suggestions in this manner.</p>
   }
 })
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.044   0.001   0.045</span></pre></body></html></div>
+<span class="co">#&gt;   0.046   0.002   0.047</span></pre></body></html></div>
 <p>Calculations that involve a lot of subsetting (i.e., extracting or changing the spectra matrix or extra data) can be sped up considerably if the required parts of the <code class="sourceCode r">hyperSpec</code> object are extracted beforehand.
 This is somewhat similar to model fitting in <code>R</code> in general: many model fitting functions in <code>R</code> are much faster if the formula interface is avoided and the appropriate <code class="sourceCode r">data.frame</code>s or matrices are handed over directly.</p>
 <div class="sourceCode" id="cb151"><html><body><pre class="r"><span class="no">tmp</span> <span class="kw">&lt;-</span> <span class="no">chondro</span>[<span class="fl">1</span>:<span class="fl">50</span>]
@@ -2468,7 +2520,7 @@ This is somewhat similar to model fitting in <code>R</code> in general: many mod
   <span class="no">tmp</span><span class="kw">[[</span>]] <span class="kw">&lt;-</span> <span class="no">tmp.matrix</span>
 })
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.009   0.000   0.008</span></pre></body></html></div>
+<span class="co">#&gt;   0.009   0.000   0.009</span></pre></body></html></div>
 <!--
 ## Additional packages
 
