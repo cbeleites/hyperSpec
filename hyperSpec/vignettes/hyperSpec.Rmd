@@ -349,7 +349,7 @@ For more details on `[]<-`, `[[]]<-`, and `$<-`, see \@ref(sec:square-brack-repl
 
 ## Selecting and Deleting Spectra {#sec:select-delete-spectra}
 
-The extraction function `[]` takes the spectra as first argument (For detailed help: see `?"["`{.r}).
+The extraction function `[]` takes the spectra (rows) as the first argument (For detailed help: see `?"["`{.r}).
 It may be a vector giving the indices of the spectra to extract (select), a vector with negative indices indicating, which spectra should be deleted, or a vector of logical values.
 Note that a matrix given to `[]` will be treated as a vector.
 
@@ -388,14 +388,14 @@ plot(flu[flu$c > 0.2], add = TRUE)
 ### Random Samples {#sec:random-samples}
 
 \mFun{`sample()`{.r}}
-A random subset of spectra is conveniently selected by `sample()`{.r}:
+A random subset of spectra can be conveniently selected by `sample()`{.r}:
 
 ```{r sample}
 sample(chondro, 3)
 ```
 
 \mFun{`isample()`{.r}}
-If appropriate indices into the spectra are needed instead, use `isample()`{.r}:
+If indices into the selected spectra are needed instead, use `isample()`{.r}:
 
 ```{r isample}
 isample(chondro, 3)
@@ -489,7 +489,7 @@ Operator `[[]]<-` also accepts index matrices of size $n × 2$.
 ### Converting Wavelengths to Indices and vice versa {#sec:wavelength-indices}
 
 \mFun{`wl2i()`{.r} `i2wl()`{.r}}
-Spectra in package **hyperSpec** have always discretized wavelength axes, they are stored in a matrix with each column corresponding to one wavelength.
+Spectra in package **hyperSpec** always have discretized wavelength axes, stored in a matrix with each column corresponding to one wavelength.
 Package **hyperSpec** provides two functions to convert the respective column indices into wavelengths and vice versa: `i2wl()`{.r} and `wl2i()`{.r}.
 
 If the wavelengths are given as a numeric vector, they are each converted to the corresponding wavelength.
@@ -591,8 +591,8 @@ plot(paracetamol[, , -(500:1000), wl.index = TRUE])
 
 However, this mechanism works only if the proper indices are known.
 
-If the range to be cut out is rather known in the units of the wavelength axis, it is easier to select the remainder of the spectrum instead.
-To delete the spectral range from 1750 to 2800 cm^-1^ of the paracetamol spectrum one can thus use:
+If the range to be removed is instead specified in the units of the wavelength axis, it is easier to select the remainder of the spectrum instead.
+To delete the spectral range from 1750 to 2800 cm^-1^ of the paracetamol spectrum one can use:
 
 
 
@@ -604,8 +604,8 @@ CAPTION <- "Spectra of `paracetamol` with range from 1750 to 2800 cm^-1^ removed
 plot(paracetamol[, , c(min ~ 1750, 2800 ~ max)])
 ```
 
-(It is possible to produce a plot of this data where the cut range is actually omitted and the wavelength axis is optionally cut in order to save space.
-For details see the "Plotting" vignette).
+It is possible to produce a plot of this data where the cut range is actually omitted and the wavelength axis is optionally cut in order to save space.
+For details see the "Plotting" vignette.
 
 
 
@@ -695,7 +695,7 @@ If another subset of colums needs to be extracted, use `[[]]`:
 flu[[, c("c", "spc")]]
 ```
 
-This can be combined with extracting certain spectra and wavelengths, see below in subsection"nameref{sec:conv-matrix"on page \pageref{sec:conv-matrix}.
+This can be combined with extracting certain spectra and wavelengths, see \@ref(sec:conv-matrix).
 
 \mFun{`as.t.df()`{.r}}
 The transpose of a wide format `data.frame`{.r} can be obtained by `as.t.df()`{.r}. For further examples, see the discussion of package **ggplot2** in `vignette("plotting")`{.r}.
