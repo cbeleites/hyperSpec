@@ -149,28 +149,13 @@ In R, slots of an S4 class are accessed by the \index{`"@`{.r} operator}`@`{.r} 
 In this vignette, the notation `@xxx`{.r} will thus mean *"slot xxx of an object"*.
 Likewise, named elements of a `list` and columns of a `data.frame` are accessed by the \index{`$`{.r} operator} `$`{.r} operator, and `$xxx`{.r} will be used for *"column xxx"*, and as an abbreviation for *"column xxx of the `data.frame` in slot data of the object"* (the structure of `hyperSpec` objects is discussed in section \@ref(sec:structure-chy)).
 
-## The Structure of `hyperSpec` Objects {#sec:structure-chy}
+## The Structure of **_hyperSpec_** Objects {#sec:structure-chy}
 
 `hyperSpec` objects are defined using an S4 class. It contains the following slots:
 
 -  **`@wavelength`{.r}** containing a numeric vector with the wavelength axis of the spectra.
 -  **`@data`{.r}**       a `data.frame` with the spectra and all further information belonging to the spectra.
 -  **`@label`{.r}**      a list with appropriate labels (particularly for axis annotations).
-
-While the parts of the `hyperSpec` object can be accessed directly, it is good practice to use the functions provided by package **hyperSpec** to handle the objects rather than accessing the slots directly (Table \@ref(tab:getset)).
-This also ensures that proper (i.e. *valid*) objects are returned.
-In some cases, however, direct access to the slots can considerably speed up calculations (see section the appendicies).
-
-
-<!-- ---------------------------------------------------------------------- -->
-: **(\#tab:getset)** Get and set functions for the slots of `hyperSpec`{.r} objects
-
-slot              | get                      | set
------------------ | ------------------------ | ------------------------
-`@wavelength`{.r} | `wl()`{.r}               | `wl<-`{.r}
-`@data`{.r}       | `[`, `[[`, `$`, `as.data.frame()`{.r}, `as.long.df()`{.r}, ... | `[<-`, `[[<-`, `$<-`
-`@label`{.r}      | `labels()`{.r}           | `labels<-`{.r}
-<!-- ---------------------------------------------------------------------- -->
 
 Most of the data is stored in `@data`{.r}. This `data.frame` has one special column, `$spc`{.r}. This is the column that actually contains the spectra. The spectra are stored in a matrix inside this column, as illustrated in Figure \@ref(fig:structure).
 Even if there are no spectra, `$spc`{.r} must still be present.
@@ -228,7 +213,7 @@ The global behaviour of package **hyperSpec** can be configured via options.
 The values of the options are retrieved with `hy.getOptions()`{.r} and `hy.getOption()`{.r}, and changed with `hy.setOptions()`{.r}.
 Table \@ref(tab:options) gives an overview of the options.  You should not worry about these at the start of your exploration of **hyperSpec**.
 
-# Obtaining Basic Information about `hyperSpec`{.r} Objects {#info-hyperspec-objs}
+# Obtaining Basic Information about **_hyperSpec_** Objects {#info-hyperspec-objs}
 
 
 ```{block, type = "note-t", echo = show_reviewers_notes}
@@ -287,108 +272,22 @@ Function `colnames<-`{.r} renames the labels as well.
 This line: _Function `colnames<-`{.r} renames the labels as well._ is not clear and the documentation doesn't seem to say anything about it.
 ```
 
+# Accessing & Manipulating **_hyperSpec_** Objects {#sec:access-parts}
 
-# Creating a `hyperSpec`{.r} Object, Data Import and Export {#sec:create}
-
-Package **hyperSpec** comes with filters for a variety of file formats.
-These are discussed in detail in a separate vignette accessible via `vignette("fileio")`.  Here we just mention a couple of basic operations.
-
-
-## Creating a `hyperSpec`{.r} Object from Spectra Matrix and Wavelength Vector
-
-If the data is in `R`'s workspace, a `hyperSpec` object is created by:
-
-```{r eval = FALSE}
-spc <- new("hyperSpec", spc = spectra.matrix, wavelength = wavelength.vector, data = extra.data)
-```
-
-The most frequently needed arguments are:
-
--------------------- ---------------------------------------------------------------------------------
-**`spc`**        The spectra matrix; may be a matrix or a `data.frame`.
-
-**`wavelength`** The wavelength axis as a numeric vector.
-
-**`data`**       Any extra data as a `data.frame`.  It is possible to pass `spc` via this argument if the data frame has a column `$spc`{.r}.
-
-**`label`**      A list with the proper labels.
-                     Do not forget the wavelength axis label in  `$.wavelength`{.r} and the
-                     spectral intensity axis label in `$spc`{.r}.
--------------------- ---------------------------------------------------------------------------------
-
-More information about converting existing data into `hyperSpec`{.r} objects can be found in `vignette ("fileio")`{.r}.
+While the parts of the `hyperSpec` object can be accessed directly, it is good practice to use the functions provided by the package to handle the objects rather than accessing the slots directly (Table \@ref(tab:getset)).
+This also ensures that proper (i.e. *valid*) objects are returned.
+In some cases, however, direct access to the slots can considerably speed up calculations (see section the appendicies).
 
 
-## Creating Random Spectra
+<!-- ---------------------------------------------------------------------- -->
+: **(\#tab:getset)** Get and set functions for the slots of `hyperSpec`{.r} objects
 
-```{block, type = "note-t", echo = show_reviewers_notes}
-**B. Hansons's notes** `Clarifications`
-
-1. Need more explanation of the pooled covariance approach.
-2. Here's a place that we should standardize the color scheme.
-3. Why not generate `rnd` only once here, and use it for the plot and LDA?  As it stands now it seemed like the first set of spectra were somehow related to the 2nd set.
-```
-
-\mFun{rmmvnorm}
-If package **mvtnorm**`r cite_pkg("mvtnorm")` is available, multivariate normally distributed spectra can be generated from mean and covariance matrix using `rmmvnorm()`{.r} (Fig. \@ref(fig:sim-spc)).
-Note that the package **hyperSpec** function's name has an additional "m": it already takes care of multiple groups.
-Mean spectra and pooled covariance matrix can be calculated using `pooled.cov()`{.r}\mFun{pooled.cov}:
-
-```{r}
-pcov <- pooled.cov(chondro, chondro$clusters)
-rnd  <- rmmvnorm(rep(10, 3), mean = pcov$mean, sigma = pcov$COV)
-```
-
-```{r include = FALSE}
-CAPTION <- "Multivariate normally distributed random spectra generated with `rmmvnorm()`{.r}."
-```
-
-```{r sim-spc, fig.cap = CAPTION}
-cluster.cols <- c("dark blue", "orange", "#C02020")
-plot(rnd, col = cluster.cols[rnd$.group])
-```
-
-Fig. \@ref(fig:sim-lda) shows the linear discriminant analysis (LDA) scores of simulated spectra in comparison to the real spectra in the `chondro`{.r} object:
-
-
-
-```{r lda}
-library("MASS")
-
-rnd <- rmmvnorm(rep(200, 3), mean = pcov$mean, sigma = pcov$COV)
-lda <- lda(clusters ~ spc, rnd)
-
-pred.chondro <- predict(lda, newdata = chondro)
-pred.sim <- predict(lda)
-```
-
-<!-- ======================================================================= -->
-```{block, type = "note-t", echo = show_reviewers_notes}
-**V. Gegzna's notes** `hyperspec-7`
-
-1. `# FIXME: `{.r}
-
-    # pred.chondro <- predict(lda, newdata = chondro)
-    # #> Warning in predict.lda(lda, chondro): variable names in 'newdata' do not match those in 'object'
-```
-<!-- ======================================================================= -->
-
-
-
-```{r include = FALSE}
-CAPTION <- "LDA of simulated spectra. Crosses mark real spectra. "
-```
-
-```{r sim-lda, fig.cap = CAPTION}
-colors <- c("#00008040", "#FFA50040", "#C0202040")
-plot(pred.chondro$x, col = colors[chondro$clusters], pch = 3)
-points(pred.sim$x,   col = colors[rnd$clusters], pch = 20, cex = 0.5)
-```
-
-If individual covariance matrices should be used for each group, `sigma`{.r} should be an array with the 3rd dimension corresponding to the group.
-
-
-# Access to the data {#sec:access-parts}
+slot              | get                      | set
+----------------- | ------------------------ | ------------------------
+`@wavelength`{.r} | `wl()`{.r}               | `wl<-`{.r}
+`@data`{.r}       | `[`, `[[`, `$`, `as.data.frame()`{.r}, `as.long.df()`{.r}, ... | `[<-`, `[[<-`, `$<-`
+`@label`{.r}      | `labels()`{.r}           | `labels<-`{.r}
+<!-- ---------------------------------------------------------------------- -->
 
 The main functions to retrieve the data of a `hyperSpec`{.r} object are `[]` and `[[]]`. \mFun{`[]`,`[[]]`}
 The difference between these functions is that `[]` returns a `hyperSpec`{.r} object, whereas the result of `[[]]` is a `data.frame`{.r} if extra data columns were selected or otherwise the spectra matrix.
@@ -398,7 +297,7 @@ Single extra data columns may be retrieved by `$`{.r}. \mFun{`$`{.r}}
 In order to change data, use `[]<-`, `[[]]<-`, and `$<-` (see \@ref(sec:square-brack-replace) and \@ref(sec:accessing-extra-data)).
 
 
-## Access Functions and Abbreviations for Parts of the `hyperSpec`{.r} Object's Data {#sec:fast-access-parts}
+## Access Functions and Abbreviations for Parts of the **_hyperSpec_** Object's Data {#sec:fast-access-parts}
 
 \mFun{`[] [[]] $. $.. []<- [[]]<- $<-`}
 Class `hyperSpec`{.r} comes with three abbreviation functions for easy access to the data:
@@ -808,6 +707,104 @@ flu[[1:3, c("filename", "spc"), 406 ~ 407]]
 rm(flu)
 ```
 
+# Creating a **_hyperSpec_** Object, Data Import and Export {#sec:create}
+
+Package **hyperSpec** comes with filters for a variety of file formats.
+These are discussed in detail in a separate vignette accessible via `vignette("fileio")`.  Here we just mention a couple of basic operations.
+
+
+## Creating a `hyperSpec`{.r} Object from Spectra Matrix and Wavelength Vector
+
+If the data is in `R`'s workspace, a `hyperSpec` object is created by:
+
+```{r eval = FALSE}
+spc <- new("hyperSpec", spc = spectra.matrix, wavelength = wavelength.vector, data = extra.data)
+```
+
+The most frequently needed arguments are:
+
+-------------------- ---------------------------------------------------------------------------------
+**`spc`**        The spectra matrix; may be a matrix or a `data.frame`.
+
+**`wavelength`** The wavelength axis as a numeric vector.
+
+**`data`**       Any extra data as a `data.frame`.  It is possible to pass `spc` via this argument if the data frame has a column `$spc`{.r}.
+
+**`label`**      A list with the proper labels.
+                     Do not forget the wavelength axis label in  `$.wavelength`{.r} and the
+                     spectral intensity axis label in `$spc`{.r}.
+-------------------- ---------------------------------------------------------------------------------
+
+More information about converting existing data into `hyperSpec`{.r} objects can be found in `vignette ("fileio")`{.r}.
+
+
+## Creating Random Spectra
+
+```{block, type = "note-t", echo = show_reviewers_notes}
+**B. Hansons's notes** `Clarifications`
+
+1. Need more explanation of the pooled covariance approach.
+2. Here's a place that we should standardize the color scheme.
+3. Why not generate `rnd` only once here, and use it for the plot and LDA?  As it stands now it seemed like the first set of spectra were somehow related to the 2nd set.
+```
+
+\mFun{rmmvnorm}
+If package **mvtnorm**`r cite_pkg("mvtnorm")` is available, multivariate normally distributed spectra can be generated from mean and covariance matrix using `rmmvnorm()`{.r} (Fig. \@ref(fig:sim-spc)).
+Note that the package **hyperSpec** function's name has an additional "m": it already takes care of multiple groups.
+Mean spectra and pooled covariance matrix can be calculated using `pooled.cov()`{.r}\mFun{pooled.cov}:
+
+```{r}
+pcov <- pooled.cov(chondro, chondro$clusters)
+rnd  <- rmmvnorm(rep(10, 3), mean = pcov$mean, sigma = pcov$COV)
+```
+
+```{r include = FALSE}
+CAPTION <- "Multivariate normally distributed random spectra generated with `rmmvnorm()`{.r}."
+```
+
+```{r sim-spc, fig.cap = CAPTION}
+cluster.cols <- c("dark blue", "orange", "#C02020")
+plot(rnd, col = cluster.cols[rnd$.group])
+```
+
+Fig. \@ref(fig:sim-lda) shows the linear discriminant analysis (LDA) scores of simulated spectra in comparison to the real spectra in the `chondro`{.r} object:
+
+
+
+```{r lda}
+library("MASS")
+
+rnd <- rmmvnorm(rep(200, 3), mean = pcov$mean, sigma = pcov$COV)
+lda <- lda(clusters ~ spc, rnd)
+
+pred.chondro <- predict(lda, newdata = chondro)
+pred.sim <- predict(lda)
+```
+
+<!-- ======================================================================= -->
+```{block, type = "note-t", echo = show_reviewers_notes}
+**V. Gegzna's notes** `hyperspec-7`
+
+1. `# FIXME: `{.r}
+
+    # pred.chondro <- predict(lda, newdata = chondro)
+    # #> Warning in predict.lda(lda, chondro): variable names in 'newdata' do not match those in 'object'
+```
+<!-- ======================================================================= -->
+
+
+
+```{r include = FALSE}
+CAPTION <- "LDA of simulated spectra. Crosses mark real spectra. "
+```
+
+```{r sim-lda, fig.cap = CAPTION}
+colors <- c("#00008040", "#FFA50040", "#C0202040")
+plot(pred.chondro$x, col = colors[chondro$clusters], pch = 3)
+points(pred.sim$x,   col = colors[rnd$clusters], pch = 20, cex = 0.5)
+```
+
+If individual covariance matrices should be used for each group, `sigma`{.r} should be an array with the 3rd dimension corresponding to the group.
 
 # Combining and Decomposing `hyperSpec`{.r} Objects {#sec:combine}
 
