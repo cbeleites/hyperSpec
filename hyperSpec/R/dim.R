@@ -15,7 +15,7 @@
 ##' @export
 ##' @examples
 ##'
-##' ncol (chondro)
+##' ncol (fauxCell)
 setMethod("ncol", signature = signature("hyperSpec"), function(x) {
   validObject(x)
 
@@ -30,7 +30,7 @@ setMethod("ncol", signature = signature("hyperSpec"), function(x) {
 ##' @seealso \code{\link[base]{nrow}}
 ##' @export
 ##' @examples
-##' nrow (chondro)
+##' nrow (fauxCell)
 setMethod("nrow", signature = signature("hyperSpec"), function(x) {
   validObject(x)
 
@@ -46,7 +46,7 @@ setMethod("nrow", signature = signature("hyperSpec"), function(x) {
 ##' @export
 ##' @examples
 ##'
-##' nwl  (chondro)
+##' nwl  (fauxCell)
 nwl <- function(x) {
   chk.hy(x)
   validObject(x)
@@ -68,7 +68,7 @@ nwl <- function(x) {
 ##' @keywords methods
 ##' @export
 ##' @examples
-##' dim (chondro)
+##' dim (fauxCell)
 setMethod("dim", signature = signature("hyperSpec"), function(x) {
   validObject(x)
   c(nrow = nrow(x@data), ncol = ncol(x@data), nwl = ncol(x@data$spc))
@@ -81,7 +81,7 @@ setMethod("dim", signature = signature("hyperSpec"), function(x) {
 ##' @seealso \code{\link[base]{length}}
 ##' @export
 ##' @examples
-##' length (chondro)
+##' length (fauxCell)
 setMethod("length", signature = signature("hyperSpec"), function(x) {
   validObject(x)
   nrow(x@data)

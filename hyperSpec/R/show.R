@@ -87,13 +87,13 @@ setMethod("as.character",
 ##' @export
 ##' @examples
 ##'
-##' chondro
+##' fauxCell
 ##'
-##' show (chondro)
+##' show (fauxCell)
 ##'
-##' summary (chondro)
+##' summary (fauxCell)
 ##'
-##' print (chondro, range = TRUE)
+##' print (fauxCell, range = TRUE)
 ##'
 setMethod("show", signature = signature(object = "hyperSpec"), function(object) {
   print(object, range = TRUE)

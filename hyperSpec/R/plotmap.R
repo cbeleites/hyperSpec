@@ -26,7 +26,7 @@
 ##' function defaults to \code{\link[latticeExtra]{panel.voronoi}}.
 ##' \code{\link[latticeExtra]{panel.voronoi}} depends on either of the packages 'tripack' or 'deldir'
 ##' being installed. For further information, please consult the help page of
-##' \code{\link[latticeExtra]{panel.voronoi}}.  On the \code{\link{chondro}} data set, \code{plotmap}
+##' \code{\link[latticeExtra]{panel.voronoi}}.  On the \code{\link{fauxCell}} data set, \code{plotmap}
 ##' is roughly 5 times faster than \code{plotvoronoi} using tripack, and ca. 15 times faster than
 ##' \code{plotvoronoi} using deldir. Package tripack, however, is free only for non-commercial
 ##' use. Also, it seems that tripack version hang (R running at full CPU power, but not responding
@@ -81,22 +81,22 @@
 ##' vignette (hyperspec)
 ##' }
 ##'
-##' levelplot (spc ~ y * x, chondro [,,1003]) # properly rotated
-##' plotmap (chondro [,,1003])
+##' levelplot (spc ~ y * x, fauxCell [,,1003]) # properly rotated
+##' plotmap (fauxCell [,,1003])
 ##'
 ##' # plot spectra matrix
 ##' levelplot (spc ~ .wavelength * t, laser, contour = TRUE, col = "#00000080")
 ##' # see also plotmat
 ##'
-##' plotmap (chondro, clusters ~ x * y)
+##' plotmap (fauxCell, region ~ x * y)
 ##'
 ##' # Voronoi plots
-##' smpl <- sample (chondro, 300)
-##' plotmap (smpl, clusters ~ x * y)
+##' smpl <- sample (fauxCell, 300)
+##' plotmap (smpl, region ~ x * y)
 ##' if (require (tripack))
-##'     plotvoronoi (smpl, clusters ~ x * y)
+##'     plotvoronoi (smpl, region ~ x * y)
 ##' if (require (deldir))
-##'     plotvoronoi (smpl, clusters ~ x * y,
+##'     plotvoronoi (smpl, region ~ x * y,
 ##'                  use.tripack = FALSE)
 ##'
 ##' @importFrom utils modifyList

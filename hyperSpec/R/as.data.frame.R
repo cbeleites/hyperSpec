@@ -18,8 +18,8 @@
 ##' @keywords methods
 ##' @examples
 ##'
-##' as.data.frame (chondro [1:3,, 600 ~ 620])
-##' as.matrix (chondro [1:3,, 600 ~ 620])
+##' as.data.frame (fauxCell [1:3,, 600 ~ 620])
+##' as.matrix (fauxCell [1:3,, 600 ~ 620])
 ##' lm (c ~ spc, data = flu [,,450])
 
 as.data.frame.hyperSpec <- function(x, row.names = TRUE, optional = NULL, ...) {
@@ -73,8 +73,8 @@ as.matrix.hyperSpec <- function(x, ...) {
 ##'   expanded *in place*.
 ##' @examples
 ##'
-##' as.wide.df (chondro [1:5,, 600 ~ 610])
-##' summary (as.wide.df (chondro [1:5,, 600 ~ 610]))
+##' as.wide.df (fauxCell [1:5,, 600 ~ 610])
+##' summary (as.wide.df (fauxCell [1:5,, 600 ~ 610]))
 
 as.wide.df <- function(x, wl.prefix = "") {
   chk.hy(x)
@@ -106,22 +106,22 @@ as.wide.df <- function(x, wl.prefix = "") {
 .test(as.wide.df) <- function() {
   context("as.wide.df")
 
-  test_that("chondro", {
+  test_that("fauxCell", {
     expect_equal(
-      as.wide.df(chondro [1:5, , 600 ~ 610]),
-      cbind(chondro [1:5]$.., chondro [[1:5, , 600 ~ 610]])
+      as.wide.df(fauxCell [1:5, , 600 ~ 610]),
+      cbind(fauxCell [1:5]$.., fauxCell [[1:5, , 600 ~ 610]])
     )
   })
 
   test_that("column names", {
     expect_equal(
-      colnames(as.wide.df(chondro)),
-      c(grep("spc", colnames(chondro), value = TRUE, invert = TRUE), colnames(chondro$spc))
+      colnames(as.wide.df(fauxCell)),
+      c(grep("spc", colnames(fauxCell), value = TRUE, invert = TRUE), colnames(fauxCell$spc))
     )
 
     expect_equal(
-      colnames(as.wide.df(chondro)),
-      c(grep("spc", colnames(chondro), value = TRUE, invert = TRUE), wl(chondro))
+      colnames(as.wide.df(fauxCell)),
+      c(grep("spc", colnames(fauxCell), value = TRUE, invert = TRUE), wl(fauxCell))
     )
 
     expect_true(!any(is.na(colnames(as.wide.df(barbiturates [[1]])))))
@@ -129,8 +129,8 @@ as.wide.df <- function(x, wl.prefix = "") {
 
   test_that("column names with wl.prefix", {
     expect_equal(
-      colnames(as.wide.df(chondro, wl.prefix = "wl")),
-      c(grep("spc", colnames(chondro), value = TRUE, invert = TRUE), paste0("wl", colnames(chondro$spc)))
+      colnames(as.wide.df(fauxCell, wl.prefix = "wl")),
+      c(grep("spc", colnames(fauxCell), value = TRUE, invert = TRUE), paste0("wl", colnames(fauxCell$spc)))
     )
   })
 }
@@ -223,7 +223,7 @@ as.long.df <- function(x, rownames = FALSE, wl.factor = FALSE, na.rm = TRUE) {
 ##'   see the example.
 ##' @export
 ##' @examples
-##' df <- as.t.df (apply (chondro, 2, mean_pm_sd))
+##' df <- as.t.df (apply (fauxCell, 2, mean_pm_sd))
 ##' head (df)
 ##'
 ##' if (require (ggplot2)){

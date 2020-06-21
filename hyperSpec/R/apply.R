@@ -104,7 +104,7 @@
 ##' @examples
 ##'
 ##'
-##' plotspc (apply (chondro, 2, range))
+##' plotspc (apply (fauxCell, 2, range))
 ##'
 ##' avgflu <- apply (flu, 1, mean,
 ##'                  label.spc = expression (bar (I)),

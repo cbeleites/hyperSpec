@@ -66,7 +66,8 @@ Suggests:
     akima,
     ggpubr,
     caTools,
-    styler
+    styler,
+    covr
 Imports:
     testthat,
     methods,

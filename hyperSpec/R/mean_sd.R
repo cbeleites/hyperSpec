@@ -119,7 +119,7 @@ setMethod("mean_pm_sd",
 ##' @export
 ##' @examples
 ##'
-##' plot (mean (chondro))
+##' plot (mean (fauxCell))
 setMethod("mean",
   signature = signature(x = "hyperSpec"),
   function(x, na.rm = TRUE, ...) {

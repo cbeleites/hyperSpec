@@ -37,17 +37,17 @@
 ##' @keywords methods manip
 ##' @examples
 ##'
-##' chondro
-##' bind ("r", chondro, chondro)
-##' rbind (chondro, chondro)
-##' cbind (chondro, chondro)
-##' bind ("r", list (chondro, chondro, chondro))
+##' fauxCell
+##' bind ("r", fauxCell, fauxCell)
+##' rbind (fauxCell, fauxCell)
+##' cbind (fauxCell, fauxCell)
+##' bind ("r", list (fauxCell, fauxCell, fauxCell))
 ##'
-##' x <- chondro[,, 600 : 605]
+##' x <- fauxCell[,, 600 : 605]
 ##' x$a <- 1
 ##' x@@data <- x@@data[, sample (ncol (x), ncol (x))] # reorder columns
 ##'
-##' y <- chondro [nrow (chondro) : 1,, 1730 : 1750] # reorder rows
+##' y <- fauxCell [nrow (fauxCell) : 1,, 1730 : 1750] # reorder rows
 ##' y$b <- 2
 ##'
 ##' cbind2 (x, y) # works
