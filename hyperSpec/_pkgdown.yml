@@ -15,9 +15,17 @@ development:
 
 navbar:
   structure:
-    left:  [home, intro, articles, tutorials, reference, news]
+    left:  [version, home, intro, articles, tutorials, reference, news]
     right: [github]
   components:
+    version:
+      icon: fa-book
+      menu:
+      - text: "Documentation for version of pacakge:"
+      - text: Realeased
+        href: https://cbeleites.github.io/hyperSpec/
+      - text: In-development
+        href: https://cbeleites.github.io/hyperSpec/dev/
     intro:
       text: Get started
       href: articles/hyperspec.html
