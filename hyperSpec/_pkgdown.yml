@@ -21,8 +21,8 @@ navbar:
     version:
       icon: fa-book
       menu:
-      - text: "Documentation for version of pacakge:"
-      - text: Realeased
+      - text: "Documentation for version of package:"
+      - text: Released
         href: https://cbeleites.github.io/hyperSpec/
       - text: In-development
         href: https://cbeleites.github.io/hyperSpec/dev/
