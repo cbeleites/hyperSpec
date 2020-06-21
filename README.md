@@ -3,6 +3,7 @@
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/hyperSpec)](https://cran.r-project.org/package=hyperSpec)
 [![R build status](https://github.com/cbeleites/hyperSpec/workflows/R-CMD-check/badge.svg)](https://github.com/cbeleites/hyperSpec/actions)
+[![Codecov test coverage](https://codecov.io/gh/cbeleites/hyperSpec/branch/develop/graph/badge.svg)](https://codecov.io/gh/cbeleites/hyperSpec?branch=develop)
 <!-- badges: end -->
 
 

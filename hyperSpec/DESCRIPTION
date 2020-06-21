@@ -56,7 +56,8 @@ Suggests:
     reshape,
     devtools,
     R.rsp,
-    tibble
+    tibble,
+    covr
 Imports:
     testthat,
     methods,
