@@ -65,7 +65,8 @@ Suggests:
     ggplotify,
     akima,
     ggpubr,
-    caTools
+    caTools,
+    styler
 Imports:
     testthat,
     methods,

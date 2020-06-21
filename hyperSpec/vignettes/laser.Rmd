@@ -34,6 +34,7 @@ vignette: >
     % \VignetteKeyword{time series}
     % \VignetteKeyword{hyperSpec}
     % \VignettePackage{hyperSpec}
+    % \VignetteDepends{styler}
     % \VignetteEngine{knitr::rmarkdown}
     % \VignetteEncoding{UTF-8}
 # Citations/References -------------------------------------------------------

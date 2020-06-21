@@ -34,6 +34,7 @@ vignette: >
     % \VignetteKeyword{flu}
     % \VignetteKeyword{hyperSpec}
     % \VignettePackage{hyperSpec}
+    % \VignetteDepends{styler}
     % \VignetteEngine{knitr::rmarkdown}
     % \VignetteEncoding{UTF-8}
 
