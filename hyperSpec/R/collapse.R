@@ -257,17 +257,17 @@ collapse <- function(..., wl.tolerance = hy.getOption("wl.tolerance"), collapse.
 
 
   test_that("factor behaviour of collapse", {
-    a <- chondro [chondro$clusters == "lacuna"]
-    a$clusters <- droplevels(a$clusters)
-    b <- chondro [chondro$clusters != "lacuna"]
-    b$clusters <- droplevels(b$clusters)
+    a <- fauxCell [fauxCell$region == "nucleus"]
+    a$region <- droplevels(a$region)
+    b <- fauxCell [fauxCell$region != "nucleus"]
+    b$region <- droplevels(b$region)
 
     tmp <- collapse(a, b)
-    tmp$clusters
+    tmp$region
 
     expect_equal(
-      sort(levels(tmp$clusters)),
-      sort(levels(chondro$clusters))
+      sort(levels(tmp$region)),
+      sort(levels(fauxCell$region))
     )
   })
 

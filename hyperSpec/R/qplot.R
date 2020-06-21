@@ -19,19 +19,18 @@
 ##' [ggplot2::ggplot()], [ggplot2::geom_line()]
 ##' @examples
 ##'
-##'   qplotspc (chondro)
+##'   qplotspc (fauxCell)
 ##'
 ##'   qplotspc (paracetamol, c (2800 ~ max, min ~ 1800)) +
 ##'      scale_x_reverse (breaks = seq (0, 3200, 400))
 ##'
-##'   qplotspc (aggregate (chondro, chondro$clusters, mean),
-##'             mapping = aes (x = .wavelength, y = spc, colour = clusters)) +
-##'     facet_grid (clusters ~ .)
+##'   qplotspc (aggregate (fauxCell, fauxCell$region, mean),
+##'             mapping = aes (x = .wavelength, y = spc, colour = region)) +
+##'     facet_grid (region ~ .)
 ##'
-##'   qplotspc (aggregate (chondro, chondro$clusters, mean_pm_sd),
-##'             mapping = aes (x = .wavelength, y = spc, colour = clusters,
-##'             group = .rownames)) +
-##'     facet_grid (clusters ~ .)
+##'   qplotspc (aggregate (fauxCell, fauxCell$region, mean_pm_sd),
+##'             mapping = aes (x = .wavelength, y = spc, colour = region, group = .rownames)) +
+##'     facet_grid (region ~ .)
 qplotspc <- function(x,
                      wl.range = TRUE, ...,
                      mapping = aes_string(x = ".wavelength", y = "spc",
@@ -115,8 +114,8 @@ qplotspc <- function(x,
 ##'
 ##'   [ggplot2::ggplot()], [ggplot2::geom_tile()]
 ##' @examples
-##' qplotmap (chondro)
-##' qplotmap (chondro) + scale_fill_gradientn (colours = alois.palette ())
+##' qplotmap (fauxCell)
+##' qplotmap (fauxCell) + scale_fill_gradientn (colours = alois.palette ())
 ##' @importFrom utils tail
 ##' @importFrom rlang as_label
 qplotmap <- function(object,

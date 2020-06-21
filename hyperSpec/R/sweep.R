@@ -56,13 +56,13 @@
 ##' ## Substract the background / slide / blank spectrum
 ##' # the example data does not have spectra of the empty slide,
 ##' # so instead the overall composition of the sample is substracted
-##' background <- apply (chondro, 2, quantile, probs = 0.05)
-##' corrected <- sweep (chondro, 2, background, "-")
+##' background <- apply (fauxCell, 2, quantile, probs = 0.05)
+##' corrected <- sweep (fauxCell, 2, background, "-")
 ##' plot (corrected, "spcprctl5")
 ##'
 ##' ## Offset correction
-##' offsets <- apply (chondro, 1, min)
-##' corrected <- sweep (chondro, 1, offsets, "-")
+##' offsets <- apply (fauxCell, 1, min)
+##' corrected <- sweep (fauxCell, 1, offsets, "-")
 ##' plot (corrected, "spcprctl5")
 ##'
 ##' ## Min-max normalization (on max amide I)

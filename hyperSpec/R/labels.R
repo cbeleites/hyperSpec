@@ -135,6 +135,6 @@
 ##' @export
 ##' @examples
 ##'
-##' labels (chondro)
+##' labels (fauxCell)
 ##'
 setMethod("labels", signature = signature(object = "hyperSpec"), .labels)

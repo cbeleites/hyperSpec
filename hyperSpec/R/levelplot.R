@@ -41,7 +41,7 @@ setGeneric("levelplot", package = "lattice")
 
   dots <- modifyList(
     list(
-      xlab = data@label [[use.x]],
+      xlab = data@label [[use.x]], 
       ylab = data@label [[use.y]]
     ),
     dots
@@ -84,10 +84,10 @@ setGeneric("levelplot", package = "lattice")
     expect_silent(levelplot(laser, contour = TRUE, col = "#00000080"))
 
     ## applying a function before plotting
-    expect_silent(plotmap(chondro, func = max, col.regions = gray(seq(0, 1, 0.05))))
+    expect_silent(plotmap(fauxCell, func = max, col.regions = gray(seq(0, 1, 0.05))))
 
-    expect_silent(plotmap(chondro, clusters ~ x * y, transform.factor = FALSE))
-    expect_silent(plotmap(chondro, clusters ~ x * y, col.regions = gray(seq(0, 1, 0.05))))
+    expect_silent(plotmap(fauxCell, region ~ x * y, transform.factor = FALSE))
+    expect_silent(plotmap(fauxCell, region ~ x * y, col.regions = gray(seq(0, 1, 0.05))))
   })
 }
 

@@ -13,11 +13,11 @@
 ##' @export
 ##' @md
 ##' @examples
-##' chondro <- chondro - spc.fit.poly.below (chondro)
-##' chondro <- chondro / rowMeans(chondro)
-##' chondro <- chondro - quantile (chondro, 0.05)
+##' fauxCell <- fauxCell - spc.fit.poly.below (fauxCell)
+##' fauxCell <- sweep (fauxCell, 1, apply (fauxCell, 1, mean), "/")
+##' fauxCell <- sweep (fauxCell, 2, apply (fauxCell, 2, quantile, 0.05), "-")
 ##'
-##' qplotmixmap (chondro [,,c (940, 1002, 1440)],
+##' qplotmixmap (fauxCell [,,c (940, 1002, 1440)],
 ##'              purecol = c (colg = "red", Phe = "green", Lipid = "blue"))
 ##'
 ##' @importFrom lazyeval f_rhs

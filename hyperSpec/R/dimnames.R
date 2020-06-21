@@ -58,7 +58,7 @@ setReplaceMethod("rownames", signature = signature(x = "hyperSpec"), function(x,
 ##' @seealso \code{\link[base]{colnames}}
 ##' @export
 ##' @examples
-##' colnames (chondro)
+##' colnames (fauxCell)
 
 setMethod("colnames",
   signature = signature(x = "hyperSpec"),
