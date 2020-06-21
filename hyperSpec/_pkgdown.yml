@@ -21,28 +21,28 @@ navbar:
     version:
       icon: fa-book
       menu:
-      - text: "Documentation for version of pacakge:"
-      - text: Realeased
+      - text: "Documentation for version of package:"
+      - text: Released
         href: https://cbeleites.github.io/hyperSpec/
       - text: In-development
         href: https://cbeleites.github.io/hyperSpec/dev/
-    intro:
-      text: Get started
-      href: articles/hyperspec.html
-    articles:
-      text: Articles
-      menu:
-      - text: Introduction to Package "hyperSpec"
-        href: articles/hyperspec.html
-      - text: Import and Export of Spectra Files
-        href: articles/fileio.html
-      - text: Plotting Functions in "hyperSpec"
-        href: articles/plotting.html
-      - text: Fitting Baselines to Spectra
-        href: articles/baseline.html
-      - text: ----------------------------------
-      - text: More...
-        href: articles/index.html
+#    intro:
+#      text: Get started
+#      href: articles/hyperSpec.html
+#    articles:
+#      text: Articles
+#      menu:
+#      - text: Introduction to Package "hyperSpec"
+#        href: articles/hyperSpec.html
+#      - text: Import and Export of Spectra Files
+#        href: articles/fileio.html
+#      - text: Plotting Functions in "hyperSpec"
+#        href: articles/plotting.html
+#      - text: Fitting Baselines to Spectra
+#        href: articles/baseline.html
+#      - text: ----------------------------------
+#      - text: More...
+#        href: articles/index.html
 
 # -------------------------------------------------------------------------
 
@@ -52,7 +52,7 @@ articles:
     desc: >
       The main functionality of "hyperSpec".
     contents:
-    - hyperspec
+    - hyperSpec
     - fileio
     - plotting
     - baseline
