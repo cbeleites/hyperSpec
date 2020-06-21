@@ -175,31 +175,31 @@ value of each spectrum is plotted. Spectra may be identified by mouse click.</h1
 axis.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>plotmap</span>(<span class='no'>object</span>, <span class='kw'>model</span> <span class='kw'>=</span> <span class='no'>spc</span> ~ <span class='no'>x</span> * <span class='no'>y</span>, <span class='kw'>func</span> <span class='kw'>=</span> <span class='no'>mean</span>, <span class='kw'>func.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(), <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>plotmap</span>(<span class='kw'>object</span>, model = <span class='kw'>spc</span> <span class='op'>~</span> <span class='kw'>x</span> <span class='op'>*</span> <span class='kw'>y</span>, func = <span class='kw'>mean</span>, func.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(), <span class='kw'>...</span>)
 
 <span class='co'># S4 method for hyperSpec,missing</span>
-<span class='fu'>levelplot</span>(<span class='no'>x</span>, <span class='no'>data</span>, <span class='no'>...</span>)
+<span class='fu'>levelplot</span>(<span class='kw'>x</span>, <span class='kw'>data</span>, <span class='kw'>...</span>)
 
 <span class='co'># S4 method for formula,hyperSpec</span>
 <span class='fu'>levelplot</span>(
-  <span class='no'>x</span>,
-  <span class='no'>data</span>,
-  <span class='kw'>transform.factor</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='no'>...</span>,
-  <span class='kw'>contour</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>useRaster</span> <span class='kw'>=</span> !<span class='no'>contour</span>
+  <span class='kw'>x</span>,
+  <span class='kw'>data</span>,
+  transform.factor = <span class='fl'>TRUE</span>,
+  <span class='kw'>...</span>,
+  contour = <span class='fl'>FALSE</span>,
+  useRaster = <span class='op'>!</span><span class='kw'>contour</span>
 )
 
 <span class='fu'>map.identify</span>(
-  <span class='no'>object</span>,
-  <span class='kw'>model</span> <span class='kw'>=</span> <span class='no'>spc</span> ~ <span class='no'>x</span> * <span class='no'>y</span>,
-  <span class='kw'>voronoi</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='no'>...</span>,
-  <span class='kw'>tol</span> <span class='kw'>=</span> <span class='fl'>0.02</span>,
-  <span class='kw'>warn</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+  <span class='kw'>object</span>,
+  model = <span class='kw'>spc</span> <span class='op'>~</span> <span class='kw'>x</span> <span class='op'>*</span> <span class='kw'>y</span>,
+  voronoi = <span class='fl'>FALSE</span>,
+  <span class='kw'>...</span>,
+  tol = <span class='fl'>0.02</span>,
+  warn = <span class='fl'>TRUE</span>
 )
 
-<span class='fu'>plotvoronoi</span>(<span class='no'>object</span>, <span class='kw'>model</span> <span class='kw'>=</span> <span class='no'>spc</span> ~ <span class='no'>x</span> * <span class='no'>y</span>, <span class='kw'>use.tripack</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>mix</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)</pre>
+<span class='fu'>plotvoronoi</span>(<span class='kw'>object</span>, model = <span class='kw'>spc</span> <span class='op'>~</span> <span class='kw'>x</span> <span class='op'>*</span> <span class='kw'>y</span>, use.tripack = <span class='fl'>FALSE</span>, mix = <span class='fl'>FALSE</span>, <span class='kw'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -230,7 +230,7 @@ to <code><a href='https://rdrr.io/pkg/lattice/man/levelplot.html'>levelplot</a><
     <tr>
       <th>transform.factor</th>
       <td><p>If the color-coded variable is a factor, should
-<code><a href='trellis.factor.key.html'>trellis.factor.key</a></code> be used to compute the color coding and
+<code>trellis.factor.key</code> be used to compute the color coding and
 legend?</p></td>
     </tr>
     <tr>
@@ -282,7 +282,7 @@ for all three. Two special column names, <code>.rownames</code> and <code>.wavel
 function defaults to <code><a href='https://rdrr.io/pkg/latticeExtra/man/panel.voronoi.html'>panel.voronoi</a></code>.
 <code><a href='https://rdrr.io/pkg/latticeExtra/man/panel.voronoi.html'>panel.voronoi</a></code> depends on either of the packages 'tripack' or 'deldir'
 being installed. For further information, please consult the help page of
-<code><a href='https://rdrr.io/pkg/latticeExtra/man/panel.voronoi.html'>panel.voronoi</a></code>.  On the <code><a href='chondro.html'>chondro</a></code> data set, <code>plotmap</code>
+<code><a href='https://rdrr.io/pkg/latticeExtra/man/panel.voronoi.html'>panel.voronoi</a></code>.  On the <code>chondro</code> data set, <code>plotmap</code>
 is roughly 5 times faster than <code>plotvoronoi</code> using tripack, and ca. 15 times faster than
 <code>plotvoronoi</code> using deldir. Package tripack, however, is free only for non-commercial
 use. Also, it seems that tripack version hang (R running at full CPU power, but not responding
@@ -292,20 +292,20 @@ nor finishing the calculation) for certain data sets. In this case, <code>mix = 
 <p>Unlike <code><a href='https://rdrr.io/pkg/lattice/man/interaction.html'>panel.identify</a></code>, the indices returned by <code>map.identify</code> are in
 the same order as the points were clicked. Also, multiple clicks on the same point are returned
 as multiple entries with the same index.</p>
-<p><code>map.identify</code> uses option <code>debuglevel</code> similar to <code><a href='spc-identify.html'>spc.identify</a></code>:
+<p><code>map.identify</code> uses option <code>debuglevel</code> similar to <code>spc.identify</code>:
 <code>debuglevel == 1</code> will plot the tolerance window if no data point was inside (and
 additionally labels the point) while <code>debuglevel == 2</code> will always plot the tolerance
 window.</p>
 <p>The <code>map.sel.*</code> functions offer further interactive selection, see
-<code><a href='map-sel-poly.html'>map.sel.poly</a></code>.</p>
+<code>map.sel.poly</code>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code>vignette (plotting)</code>, <code>vignette (hyperspec)</code></p>
-<p><code><a href='plot.html'>plot</a></code></p>
+<p><code><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></code></p>
 <p><code><a href='https://rdrr.io/pkg/lattice/man/levelplot.html'>levelplot</a></code></p>
-<p><code><a href='trellis.factor.key.html'>trellis.factor.key</a></code> for improved color coding of factors</p>
-<p><code><a href='https://rdrr.io/r/base/options.html'>hyperSpec options</a></code> <code><a href='spc-identify.html'>spc.identify</a></code>
-<code><a href='map-sel-poly.html'>map.sel.poly</a></code></p>
+<p><code>trellis.factor.key</code> for improved color coding of factors</p>
+<p><code>hyperSpec options</code> <code>spc.identify</code>
+<code>map.sel.poly</code></p>
 <p><code><a href='https://rdrr.io/pkg/latticeExtra/man/panel.voronoi.html'>panel.voronoi</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
@@ -313,20 +313,20 @@ window.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='fu'><a href='https://rdrr.io/r/utils/vignette.html'>vignette</a></span> (<span class='no'>plotting</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/vignette.html'>vignette</a></span> (<span class='no'>hyperspec</span>)
+<span class='co'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='fu'><a href='https://rdrr.io/r/utils/vignette.html'>vignette</a></span> (<span class='kw'>plotting</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/vignette.html'>vignette</a></span> (<span class='kw'>hyperspec</span>)
 }
 
-<span class='fu'>levelplot</span> (<span class='no'>spc</span> ~ <span class='no'>y</span> * <span class='no'>x</span>, <span class='no'>chondro</span> [,,<span class='fl'>1003</span>]) <span class='co'># properly rotated</span></div><div class='img'><img src='levelplot-1.png' alt='' width='466' height='288' /></div><div class='input'><span class='fu'>plotmap</span> (<span class='no'>chondro</span> [,,<span class='fl'>1003</span>])</div><div class='img'><img src='levelplot-2.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='fu'>levelplot</span> (<span class='kw'>spc</span> <span class='op'>~</span> <span class='kw'>y</span> <span class='op'>*</span> <span class='kw'>x</span>, <span class='kw'>chondro</span> [,,<span class='fl'>1003</span>]) <span class='co'># properly rotated</span></div><div class='img'><img src='levelplot-1.png' alt='' width='466' height='288' /></div><div class='input'><span class='fu'>plotmap</span> (<span class='kw'>chondro</span> [,,<span class='fl'>1003</span>])</div><div class='img'><img src='levelplot-2.png' alt='' width='466' height='288' /></div><div class='input'>
 <span class='co'># plot spectra matrix</span>
-<span class='fu'>levelplot</span> (<span class='no'>spc</span> ~ <span class='no'>.wavelength</span> * <span class='no'>t</span>, <span class='no'>laser</span>, <span class='kw'>contour</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"#00000080"</span>)</div><div class='img'><img src='levelplot-3.png' alt='' width='466' height='288' /></div><div class='input'><span class='co'># see also plotmat</span>
+<span class='fu'>levelplot</span> (<span class='kw'>spc</span> <span class='op'>~</span> <span class='kw'>.wavelength</span> <span class='op'>*</span> <span class='kw'>t</span>, <span class='kw'>laser</span>, contour = <span class='fl'>TRUE</span>, col = <span class='st'>"#00000080"</span>)</div><div class='img'><img src='levelplot-3.png' alt='' width='466' height='288' /></div><div class='input'><span class='co'># see also plotmat</span>
 
-<span class='fu'>plotmap</span> (<span class='no'>chondro</span>, <span class='no'>clusters</span> ~ <span class='no'>x</span> * <span class='no'>y</span>)</div><div class='img'><img src='levelplot-4.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='fu'>plotmap</span> (<span class='kw'>chondro</span>, <span class='kw'>clusters</span> <span class='op'>~</span> <span class='kw'>x</span> <span class='op'>*</span> <span class='kw'>y</span>)</div><div class='img'><img src='levelplot-4.png' alt='' width='466' height='288' /></div><div class='input'>
 <span class='co'># Voronoi plots</span>
-<span class='no'>smpl</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span> (<span class='no'>chondro</span>, <span class='fl'>300</span>)
-<span class='fu'>plotmap</span> (<span class='no'>smpl</span>, <span class='no'>clusters</span> ~ <span class='no'>x</span> * <span class='no'>y</span>)</div><div class='img'><img src='levelplot-5.png' alt='' width='466' height='288' /></div><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/library.html'>require</a></span> (<span class='no'>tripack</span>))
-    <span class='fu'>plotvoronoi</span> (<span class='no'>smpl</span>, <span class='no'>clusters</span> ~ <span class='no'>x</span> * <span class='no'>y</span>)</div><div class='output co'>#&gt; <span class='message'>Loading required package: tripack</span></div><div class='output co'>#&gt; <span class='message'>Loading required namespace: deldir</span></div><div class='output co'>#&gt; <span class='message'></span>
+<span class='kw'>smpl</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span> (<span class='kw'>chondro</span>, <span class='fl'>300</span>)
+<span class='fu'>plotmap</span> (<span class='kw'>smpl</span>, <span class='kw'>clusters</span> <span class='op'>~</span> <span class='kw'>x</span> <span class='op'>*</span> <span class='kw'>y</span>)</div><div class='img'><img src='levelplot-5.png' alt='' width='466' height='288' /></div><div class='input'><span class='co'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/library.html'>require</a></span> (<span class='kw'>tripack</span>))
+    <span class='fu'>plotvoronoi</span> (<span class='kw'>smpl</span>, <span class='kw'>clusters</span> <span class='op'>~</span> <span class='kw'>x</span> <span class='op'>*</span> <span class='kw'>y</span>)</div><div class='output co'>#&gt; <span class='message'>Loading required package: tripack</span></div><div class='output co'>#&gt; <span class='message'>Loading required namespace: deldir</span></div><div class='output co'>#&gt; <span class='message'></span>
 #&gt; <span class='message'>     PLEASE NOTE:  The components "delsgs" and "summary" of the</span>
 #&gt; <span class='message'> object returned by deldir() are now DATA FRAMES rather than</span>
 #&gt; <span class='message'> matrices (as they were prior to release 0.0-18).</span>
@@ -335,10 +335,9 @@ window.</p>
 #&gt; <span class='message'>     PLEASE NOTE: The process that deldir() uses for determining</span>
 #&gt; <span class='message'> duplicated points has changed from that used in version</span>
 #&gt; <span class='message'> 0.0-9 of this package (and previously). See help("deldir").</span>
-#&gt; <span class='message'></span></div><div class='img'><img src='levelplot-6.png' alt='' width='466' height='288' /></div><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/library.html'>require</a></span> (<span class='no'>deldir</span>))
-    <span class='fu'>plotvoronoi</span> (<span class='no'>smpl</span>, <span class='no'>clusters</span> ~ <span class='no'>x</span> * <span class='no'>y</span>,
-                 <span class='kw'>use.tripack</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; <span class='message'>Loading required package: deldir</span></div><div class='output co'>#&gt; <span class='message'>deldir 0.1-25</span></div><div class='img'><img src='levelplot-7.png' alt='' width='466' height='288' /></div><div class='input'>
-</div></pre>
+#&gt; <span class='message'></span></div><div class='img'><img src='levelplot-6.png' alt='' width='466' height='288' /></div><div class='input'><span class='co'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/library.html'>require</a></span> (<span class='kw'>deldir</span>))
+    <span class='fu'>plotvoronoi</span> (<span class='kw'>smpl</span>, <span class='kw'>clusters</span> <span class='op'>~</span> <span class='kw'>x</span> <span class='op'>*</span> <span class='kw'>y</span>,
+                 use.tripack = <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; <span class='message'>Loading required package: deldir</span></div><div class='output co'>#&gt; <span class='message'>deldir 0.1-25</span></div><div class='img'><img src='levelplot-7.png' alt='' width='466' height='288' /></div><div class='input'></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

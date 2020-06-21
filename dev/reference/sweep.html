@@ -171,7 +171,7 @@
     </div>
 
     <pre class="usage"><span class='co'># S4 method for hyperSpec</span>
-<span class='fu'>sweep</span>(<span class='no'>x</span>, <span class='no'>MARGIN</span>, <span class='no'>STATS</span>, <span class='kw'>FUN</span> <span class='kw'>=</span> <span class='st'>"-"</span>, <span class='kw'>check.margin</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+<span class='fu'><a href='https://rdrr.io/r/base/sweep.html'>sweep</a></span>(<span class='kw'>x</span>, <span class='kw'>MARGIN</span>, <span class='kw'>STATS</span>, FUN = <span class='st'>"-"</span>, check.margin = <span class='fl'>TRUE</span>, <span class='kw'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -231,23 +231,24 @@ spectra.</p>
 <span class='co'>## Substract the background / slide / blank spectrum</span>
 <span class='co'># the example data does not have spectra of the empty slide,</span>
 <span class='co'># so instead the overall composition of the sample is substracted</span>
-<span class='no'>background</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='apply.html'>apply</a></span> (<span class='no'>chondro</span>, <span class='fl'>2</span>, <span class='no'>quantile</span>, <span class='kw'>probs</span> <span class='kw'>=</span> <span class='fl'>0.05</span>)
-<span class='no'>corrected</span> <span class='kw'>&lt;-</span> <span class='fu'>sweep</span> (<span class='no'>chondro</span>, <span class='fl'>2</span>, <span class='no'>background</span>, <span class='st'>"-"</span>)
-<span class='fu'><a href='plot.html'>plot</a></span> (<span class='no'>corrected</span>, <span class='st'>"spcprctl5"</span>)</div><div class='img'><img src='sweep-1.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='kw'>background</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span> (<span class='kw'>chondro</span>, <span class='fl'>2</span>, <span class='kw'>quantile</span>, probs = <span class='fl'>0.05</span>)
+<span class='kw'>corrected</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sweep.html'>sweep</a></span> (<span class='kw'>chondro</span>, <span class='fl'>2</span>, <span class='kw'>background</span>, <span class='st'>"-"</span>)
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span> (<span class='kw'>corrected</span>, <span class='st'>"spcprctl5"</span>)</div><div class='img'><img src='sweep-1.png' alt='' width='466' height='288' /></div><div class='input'>
 <span class='co'>## Offset correction</span>
-<span class='no'>offsets</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='apply.html'>apply</a></span> (<span class='no'>chondro</span>, <span class='fl'>1</span>, <span class='no'>min</span>)
-<span class='no'>corrected</span> <span class='kw'>&lt;-</span> <span class='fu'>sweep</span> (<span class='no'>chondro</span>, <span class='fl'>1</span>, <span class='no'>offsets</span>, <span class='st'>"-"</span>)
-<span class='fu'><a href='plot.html'>plot</a></span> (<span class='no'>corrected</span>, <span class='st'>"spcprctl5"</span>)</div><div class='img'><img src='sweep-2.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='kw'>offsets</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span> (<span class='kw'>chondro</span>, <span class='fl'>1</span>, <span class='kw'>min</span>)
+<span class='kw'>corrected</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sweep.html'>sweep</a></span> (<span class='kw'>chondro</span>, <span class='fl'>1</span>, <span class='kw'>offsets</span>, <span class='st'>"-"</span>)
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span> (<span class='kw'>corrected</span>, <span class='st'>"spcprctl5"</span>)</div><div class='img'><img src='sweep-2.png' alt='' width='466' height='288' /></div><div class='input'>
 <span class='co'>## Min-max normalization (on max amide I)</span>
 <span class='co'># the minimum is set to zero by the offset correction.</span>
-<span class='no'>factor</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='apply.html'>apply</a></span> (<span class='no'>corrected</span>, <span class='fl'>1</span>, <span class='no'>max</span>)
-<span class='no'>mm.corrected</span> <span class='kw'>&lt;-</span> <span class='fu'>sweep</span> (<span class='no'>corrected</span>, <span class='fl'>1</span>, <span class='no'>factor</span>, <span class='st'>"/"</span>)
-<span class='fu'><a href='plot.html'>plot</a></span> (<span class='no'>mm.corrected</span>, <span class='st'>"spcprctl5"</span>)</div><div class='img'><img src='sweep-3.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='kw'>factor</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span> (<span class='kw'>corrected</span>, <span class='fl'>1</span>, <span class='kw'>max</span>)
+<span class='kw'>mm.corrected</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sweep.html'>sweep</a></span> (<span class='kw'>corrected</span>, <span class='fl'>1</span>, <span class='kw'>factor</span>, <span class='st'>"/"</span>)
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span> (<span class='kw'>mm.corrected</span>, <span class='st'>"spcprctl5"</span>)</div><div class='img'><img src='sweep-3.png' alt='' width='466' height='288' /></div><div class='input'>
 <span class='co'>## convenience: give function to compute STATS:</span>
-<span class='no'>mm.corrected2</span> <span class='kw'>&lt;-</span> <span class='fu'>sweep</span> (<span class='no'>corrected</span>, <span class='fl'>1</span>, <span class='no'>max</span>, <span class='st'>"/"</span>)
-<span class='fu'><a href='plot.html'>plot</a></span> (<span class='no'>mm.corrected2</span>)</div><div class='img'><img src='sweep-4.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='kw'>mm.corrected2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sweep.html'>sweep</a></span> (<span class='kw'>corrected</span>, <span class='fl'>1</span>, <span class='kw'>max</span>, <span class='st'>"/"</span>)
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span> (<span class='kw'>mm.corrected2</span>)</div><div class='img'><img src='sweep-4.png' alt='' width='466' height='288' /></div><div class='input'>
 <span class='co'>## checking</span>
-<span class='fu'><a href='https://rdrr.io/r/base/stopifnot.html'>stopifnot</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/all.html'>all</a></span> (<span class='no'>mm.corrected2</span> <span class='kw'>==</span> <span class='no'>mm.corrected</span>))</div></pre>
+<span class='fu'><a href='https://rdrr.io/r/base/stopifnot.html'>stopifnot</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/all.html'>all</a></span> (<span class='kw'>mm.corrected2</span> <span class='op'>==</span> <span class='kw'>mm.corrected</span>))
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -164,11 +164,11 @@
     </div>
 
     <div class="ref-description">
-    <p><code>link[base]{scale}</code>s the spectra matrix. <code>scale (x, scale = FALSE)</code> centers the data.</p>
+    <p><code>link[base]{scale}</code>s the spectra matrix. <code><a href='https://rdrr.io/r/base/scale.html'>scale (x, scale = FALSE)</a></code> centers the data.</p>
     </div>
 
     <pre class="usage"><span class='co'># S4 method for hyperSpec</span>
-<span class='fu'>scale</span>(<span class='no'>x</span>, <span class='kw'>center</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+<span class='fu'><a href='https://rdrr.io/r/base/scale.html'>scale</a></span>(<span class='kw'>x</span>, center = <span class='fl'>TRUE</span>, scale = <span class='fl'>TRUE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -181,14 +181,14 @@
       <th>center</th>
       <td><p>if <code>TRUE</code>, the data is centered to <code><a href='https://rdrr.io/r/base/colSums.html'>colMeans (x)</a></code>, <code>FALSE</code>
 suppresses centering. Alternatively, an object that can be converted to numeric of length
-<code><a href='dim.html'>nwl (x)</a></code> by <code><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></code> (e.g. hyperSpec object containing 1 spectrum) can
+<code>nwl (x)</code> by <code><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></code> (e.g. hyperSpec object containing 1 spectrum) can
 specify the center spectrum.</p></td>
     </tr>
     <tr>
       <th>scale</th>
       <td><p>if <code>TRUE</code>, the data is scaled to have unit variance at each wavelength,
 <code>FALSE</code> suppresses scaling. Alternatively, an object that can be converted to numeric of
-length <code><a href='dim.html'>nwl (x)</a></code> by <code><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></code> (e.g. hyperSpec object containing 1 spectrum)
+length <code>nwl (x)</code> by <code><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></code> (e.g. hyperSpec object containing 1 spectrum)
 can specify the center spectrum.</p></td>
     </tr>
     </table>
@@ -210,14 +210,15 @@ can specify the center spectrum.</p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'>## mean center &amp; variance scale</span>
-<span class='no'>tmp</span> <span class='kw'>&lt;-</span> <span class='fu'>scale</span> (<span class='no'>chondro</span>)
-<span class='fu'><a href='plot.html'>plot</a></span> (<span class='no'>tmp</span>, <span class='st'>"spcmeansd"</span>)</div><div class='input'><span class='fu'><a href='plot.html'>plot</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span> (<span class='no'>tmp</span>, <span class='fl'>5</span>), <span class='kw'>add</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='fl'>2</span>)</div><div class='img'><img src='scale-1.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='kw'>tmp</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/scale.html'>scale</a></span> (<span class='kw'>chondro</span>)
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span> (<span class='kw'>tmp</span>, <span class='st'>"spcmeansd"</span>)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span> (<span class='kw'>tmp</span>, <span class='fl'>5</span>), add = <span class='fl'>TRUE</span>, col = <span class='fl'>2</span>)</div><div class='img'><img src='scale-1.png' alt='' width='466' height='288' /></div><div class='input'>
 <span class='co'>## mean center only</span>
-<span class='no'>tmp</span> <span class='kw'>&lt;-</span> <span class='fu'>scale</span> (<span class='no'>chondro</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-<span class='fu'><a href='plot.html'>plot</a></span> (<span class='no'>tmp</span>, <span class='st'>"spcmeansd"</span>)</div><div class='input'><span class='fu'><a href='plot.html'>plot</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span> (<span class='no'>tmp</span>, <span class='fl'>5</span>), <span class='kw'>add</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='fl'>2</span>)</div><div class='img'><img src='scale-2.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='kw'>tmp</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/scale.html'>scale</a></span> (<span class='kw'>chondro</span>, scale = <span class='fl'>FALSE</span>)
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span> (<span class='kw'>tmp</span>, <span class='st'>"spcmeansd"</span>)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span> (<span class='kw'>tmp</span>, <span class='fl'>5</span>), add = <span class='fl'>TRUE</span>, col = <span class='fl'>2</span>)</div><div class='img'><img src='scale-2.png' alt='' width='466' height='288' /></div><div class='input'>
 <span class='co'>## custom center</span>
-<span class='no'>tmp</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='sweep.html'>sweep</a></span> (<span class='no'>chondro</span>, <span class='fl'>1</span>, <span class='no'>mean</span>, <span class='no'>`/`</span>)
-<span class='fu'><a href='plot.html'>plot</a></span> (<span class='no'>tmp</span>, <span class='st'>"spcmeansd"</span>)</div><div class='img'><img src='scale-3.png' alt='' width='466' height='288' /></div><div class='input'><span class='no'>tmp</span> <span class='kw'>&lt;-</span> <span class='fu'>scale</span> (<span class='no'>tmp</span>, <span class='kw'>center</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/quantile.html'>quantile</a></span> (<span class='no'>tmp</span>, <span class='fl'>.05</span>), <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div></pre>
+<span class='kw'>tmp</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sweep.html'>sweep</a></span> (<span class='kw'>chondro</span>, <span class='fl'>1</span>, <span class='kw'>mean</span>, <span class='kw'>`/`</span>)
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span> (<span class='kw'>tmp</span>, <span class='st'>"spcmeansd"</span>)</div><div class='img'><img src='scale-3.png' alt='' width='466' height='288' /></div><div class='input'><span class='kw'>tmp</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/scale.html'>scale</a></span> (<span class='kw'>tmp</span>, center = <span class='fu'><a href='https://rdrr.io/r/stats/quantile.html'>quantile</a></span> (<span class='kw'>tmp</span>, <span class='fl'>.05</span>), scale = <span class='fl'>FALSE</span>)
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

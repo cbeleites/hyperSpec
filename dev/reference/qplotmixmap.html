@@ -167,7 +167,7 @@
     <p>map plot with colour overlay</p>
     </div>
 
-    <pre class="usage"><span class='fu'>qplotmixmap</span>(<span class='no'>object</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>qplotmixmap</span>(<span class='kw'>object</span>, <span class='kw'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -178,8 +178,8 @@
     </tr>
     <tr>
       <th>...</th>
-      <td><p>handed over to <code><a href='qplotmix.html'>hyperSpec::qmixlegend()</a></code> and
-<code><a href='qplotmix.html'>hyperSpec::qmixtile()</a></code></p></td>
+      <td><p>handed over to <code><a href='https://rdrr.io/pkg/hyperSpec/man/qplotmix.html'>hyperSpec::qmixlegend()</a></code> and
+<code><a href='https://rdrr.io/pkg/hyperSpec/man/qplotmix.html'>hyperSpec::qmixtile()</a></code></p></td>
     </tr>
     </table>
 
@@ -188,19 +188,18 @@
     <p>invisible list with ggplot2 objects map and legend</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='qplotmix.html'>hyperSpec::qmixtile()</a></code></p></div>
+    <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/hyperSpec/man/qplotmix.html'>hyperSpec::qmixtile()</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Claudia Beleites</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>chondro</span> <span class='kw'>&lt;-</span> <span class='no'>chondro</span> - <span class='fu'><a href='baselines.html'>spc.fit.poly.below</a></span> (<span class='no'>chondro</span>)
-<span class='no'>chondro</span> <span class='kw'>&lt;-</span> <span class='no'>chondro</span> / <span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>rowMeans</a></span>(<span class='no'>chondro</span>)
-<span class='no'>chondro</span> <span class='kw'>&lt;-</span> <span class='no'>chondro</span> - <span class='fu'><a href='https://rdrr.io/r/stats/quantile.html'>quantile</a></span> (<span class='no'>chondro</span>, <span class='fl'>0.05</span>)
+    <pre class="examples"><div class='input'><span class='kw'>chondro</span> <span class='op'>&lt;-</span> <span class='kw'>chondro</span> <span class='op'>-</span> <span class='fu'>spc.fit.poly.below</span> (<span class='kw'>chondro</span>)
+<span class='kw'>chondro</span> <span class='op'>&lt;-</span> <span class='kw'>chondro</span> <span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>rowMeans</a></span>(<span class='kw'>chondro</span>)
+<span class='kw'>chondro</span> <span class='op'>&lt;-</span> <span class='kw'>chondro</span> <span class='op'>-</span> <span class='fu'><a href='https://rdrr.io/r/stats/quantile.html'>quantile</a></span> (<span class='kw'>chondro</span>, <span class='fl'>0.05</span>)
 
-<span class='fu'>qplotmixmap</span> (<span class='no'>chondro</span> [,,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span> (<span class='fl'>940</span>, <span class='fl'>1002</span>, <span class='fl'>1440</span>)],
-             <span class='kw'>purecol</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span> (<span class='kw'>colg</span> <span class='kw'>=</span> <span class='st'>"red"</span>, <span class='kw'>Phe</span> <span class='kw'>=</span> <span class='st'>"green"</span>, <span class='kw'>Lipid</span> <span class='kw'>=</span> <span class='st'>"blue"</span>))</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 300 rows containing missing values (geom_point).</span></div><div class='img'><img src='qplotmixmap-1.png' alt='' width='466' height='288' /></div><div class='input'>
-</div></pre>
+<span class='fu'>qplotmixmap</span> (<span class='kw'>chondro</span> [,,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span> (<span class='fl'>940</span>, <span class='fl'>1002</span>, <span class='fl'>1440</span>)],
+             purecol = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span> (colg = <span class='st'>"red"</span>, Phe = <span class='st'>"green"</span>, Lipid = <span class='st'>"blue"</span>))</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 300 rows containing missing values (geom_point).</span></div><div class='img'><img src='qplotmixmap-1.png' alt='' width='466' height='288' /></div><div class='input'></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

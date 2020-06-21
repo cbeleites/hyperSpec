@@ -182,12 +182,12 @@ wavelengths.</p>
     </div>
 
     <pre class="usage"><span class='fu'>plotc</span>(
-  <span class='no'>object</span>,
-  <span class='kw'>model</span> <span class='kw'>=</span> <span class='no'>spc</span> ~ <span class='no'>c</span>,
-  <span class='kw'>groups</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>func</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>func.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='no'>...</span>
+  <span class='kw'>object</span>,
+  model = <span class='kw'>spc</span> <span class='op'>~</span> <span class='kw'>c</span>,
+  groups = <span class='kw'>NULL</span>,
+  func = <span class='kw'>NULL</span>,
+  func.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
+  <span class='kw'>...</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -241,12 +241,12 @@ used.</p>
     <pre class="examples"><div class='input'>
 
 <span class='co'>## example 1: calibration of fluorescence</span>
-<span class='fu'>plotc</span> (<span class='no'>flu</span>) <span class='co'>## gives a warning</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Intensity at first wavelengh only is used.</span></div><div class='img'><img src='plotc-1.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='fu'>plotc</span> (<span class='no'>flu</span>, <span class='kw'>func</span> <span class='kw'>=</span> <span class='no'>mean</span>)</div><div class='img'><img src='plotc-2.png' alt='' width='466' height='288' /></div><div class='input'><span class='fu'>plotc</span> (<span class='no'>flu</span>, <span class='kw'>func</span> <span class='kw'>=</span> <span class='no'>range</span>, <span class='kw'>groups</span> <span class='kw'>=</span> <span class='no'>.wavelength</span>)</div><div class='img'><img src='plotc-3.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='fu'>plotc</span> (<span class='no'>flu</span>[,,<span class='fl'>450</span>], <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span> (<span class='no'>I</span> [<span class='st'>"450 nm"</span>] / <span class='no'>a.u.</span>))</div><div class='img'><img src='plotc-4.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='fu'>plotc</span> (<span class='kw'>flu</span>) <span class='co'>## gives a warning</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Intensity at first wavelengh only is used.</span></div><div class='img'><img src='plotc-1.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='fu'>plotc</span> (<span class='kw'>flu</span>, func = <span class='kw'>mean</span>)</div><div class='img'><img src='plotc-2.png' alt='' width='466' height='288' /></div><div class='input'><span class='fu'>plotc</span> (<span class='kw'>flu</span>, func = <span class='kw'>range</span>, groups = <span class='kw'>.wavelength</span>)</div><div class='img'><img src='plotc-3.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='fu'>plotc</span> (<span class='kw'>flu</span>[,,<span class='fl'>450</span>], ylab = <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span> (<span class='kw'>I</span> [<span class='st'>"450 nm"</span>] <span class='op'>/</span> <span class='kw'>a.u.</span>))</div><div class='img'><img src='plotc-4.png' alt='' width='466' height='288' /></div><div class='input'>
 
-<span class='no'>calibration</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span> (<span class='no'>spc</span> ~ <span class='no'>c</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>flu</span>[,,<span class='fl'>450</span>]$<span class='no'>.</span>)
-<span class='fu'><a href='show.html'>summary</a></span> (<span class='no'>calibration</span>)</div><div class='output co'>#&gt; 
+<span class='kw'>calibration</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span> (<span class='kw'>spc</span> <span class='op'>~</span> <span class='kw'>c</span>, data = <span class='kw'>flu</span>[,,<span class='fl'>450</span>]<span class='op'>$</span><span class='kw'>.</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span> (<span class='kw'>calibration</span>)</div><div class='output co'>#&gt; 
 #&gt; Call:
 #&gt; lm(formula = spc ~ c, data = flu[, , 450]$.)
 #&gt; 
@@ -264,29 +264,28 @@ used.</p>
 #&gt; Residual standard error: 3.089 on 4 degrees of freedom
 #&gt; Multiple R-squared:  0.9998,	Adjusted R-squared:  0.9998 
 #&gt; F-statistic: 2.359e+04 on 1 and 4 DF,  p-value: 1.078e-08
-#&gt; </div><div class='input'><span class='fu'>plotc</span> (<span class='no'>flu</span> [,, <span class='fl'>450</span>], <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"p"</span>, <span class='st'>"r"</span>))</div><div class='img'><img src='plotc-5.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='no'>conc</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span> (<span class='kw'>c</span> <span class='kw'>=</span> <span class='fu'><a href='seq.html'>seq</a></span> (<span class='kw'>from</span> <span class='kw'>=</span> <span class='fl'>0.04</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>0.31</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='fl'>0.01</span>))
-<span class='no'>ci</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span> (<span class='no'>calibration</span>, <span class='kw'>newdata</span> <span class='kw'>=</span> <span class='no'>conc</span>, <span class='kw'>interval</span> <span class='kw'>=</span> <span class='st'>"confidence"</span>, <span class='kw'>level</span> <span class='kw'>=</span> <span class='fl'>0.999</span>)
+#&gt; </div><div class='input'><span class='fu'>plotc</span> (<span class='kw'>flu</span> [,, <span class='fl'>450</span>], type = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"p"</span>, <span class='st'>"r"</span>))</div><div class='img'><img src='plotc-5.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='kw'>conc</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span> (c = <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span> (from = <span class='fl'>0.04</span>, to = <span class='fl'>0.31</span>, by = <span class='fl'>0.01</span>))
+<span class='kw'>ci</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span> (<span class='kw'>calibration</span>, newdata = <span class='kw'>conc</span>, interval = <span class='st'>"confidence"</span>, level = <span class='fl'>0.999</span>)
 
-<span class='no'>panel.ci</span> <span class='kw'>&lt;-</span>  <span class='kw'>function</span> (<span class='no'>x</span>, <span class='no'>y</span>, <span class='no'>...</span>,
-                       <span class='no'>conc</span>, <span class='no'>ci.lwr</span>, <span class='no'>ci.upr</span>, <span class='no'>ci.col</span> <span class='kw'>=</span> <span class='st'>"#606060"</span>) {
-   <span class='fu'>panel.xyplot</span> (<span class='no'>x</span>, <span class='no'>y</span>, <span class='no'>...</span>)
-   <span class='fu'>panel.lmline</span> (<span class='no'>x</span>, <span class='no'>y</span>,<span class='no'>...</span>)
-   <span class='fu'>panel.lines</span> (<span class='no'>conc</span>, <span class='no'>ci.lwr</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='no'>ci.col</span>)
-   <span class='fu'>panel.lines</span> (<span class='no'>conc</span>, <span class='no'>ci.upr</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='no'>ci.col</span>)
+<span class='kw'>panel.ci</span> <span class='op'>&lt;-</span>  <span class='fu'>function</span> (<span class='kw'>x</span>, <span class='kw'>y</span>, <span class='kw'>...</span>,
+                       <span class='kw'>conc</span>, <span class='kw'>ci.lwr</span>, <span class='kw'>ci.upr</span>, <span class='kw'>ci.col</span> = <span class='st'>"#606060"</span>) {
+   <span class='fu'>panel.xyplot</span> (<span class='kw'>x</span>, <span class='kw'>y</span>, <span class='kw'>...</span>)
+   <span class='fu'>panel.lmline</span> (<span class='kw'>x</span>, <span class='kw'>y</span>,<span class='kw'>...</span>)
+   <span class='fu'>panel.lines</span> (<span class='kw'>conc</span>, <span class='kw'>ci.lwr</span>, col = <span class='kw'>ci.col</span>)
+   <span class='fu'>panel.lines</span> (<span class='kw'>conc</span>, <span class='kw'>ci.upr</span>, col = <span class='kw'>ci.col</span>)
 }
 
-<span class='fu'>plotc</span> (<span class='no'>flu</span> [,, <span class='fl'>450</span>], <span class='kw'>panel</span> <span class='kw'>=</span> <span class='no'>panel.ci</span>,
-       <span class='kw'>conc</span> <span class='kw'>=</span> <span class='no'>conc</span>$<span class='no'>c</span>, <span class='kw'>ci.lwr</span> <span class='kw'>=</span> <span class='no'>ci</span> [, <span class='fl'>2</span>], <span class='kw'>ci.upr</span> <span class='kw'>=</span> <span class='no'>ci</span> [, <span class='fl'>3</span>])</div><div class='img'><img src='plotc-6.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='fu'>plotc</span> (<span class='kw'>flu</span> [,, <span class='fl'>450</span>], panel = <span class='kw'>panel.ci</span>,
+       conc = <span class='kw'>conc</span><span class='op'>$</span><span class='kw'>c</span>, ci.lwr = <span class='kw'>ci</span> [, <span class='fl'>2</span>], ci.upr = <span class='kw'>ci</span> [, <span class='fl'>3</span>])</div><div class='img'><img src='plotc-6.png' alt='' width='466' height='288' /></div><div class='input'>
 <span class='co'>## example 2: time-trace of laser emission modes</span>
-<span class='no'>cols</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span> (<span class='st'>"black"</span>, <span class='st'>"blue"</span>, <span class='st'>"#008000"</span>, <span class='st'>"red"</span>)
-<span class='no'>wl</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='wl2i.html'>i2wl</a></span> (<span class='no'>laser</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>13</span>, <span class='fl'>17</span>, <span class='fl'>21</span>, <span class='fl'>23</span>))
+<span class='kw'>cols</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span> (<span class='st'>"black"</span>, <span class='st'>"blue"</span>, <span class='st'>"#008000"</span>, <span class='st'>"red"</span>)
+<span class='kw'>wl</span> <span class='op'>&lt;-</span> <span class='fu'>i2wl</span> (<span class='kw'>laser</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>13</span>, <span class='fl'>17</span>, <span class='fl'>21</span>, <span class='fl'>23</span>))
 
-<span class='fu'><a href='plotspc.html'>plotspc</a></span> (<span class='no'>laser</span>, <span class='kw'>axis.args</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span> (<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span> (<span class='kw'>at</span> <span class='kw'>=</span> <span class='fu'><a href='seq.html'>seq</a></span> (<span class='fl'>404.5</span>, <span class='fl'>405.8</span>, <span class='fl'>.1</span>))))</div><div class='input'><span class='kw'>for</span> (<span class='no'>i</span> <span class='kw'>in</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq_along</a></span> (<span class='no'>wl</span>))
-   <span class='fu'><a href='https://rdrr.io/r/graphics/abline.html'>abline</a></span> (<span class='kw'>v</span> <span class='kw'>=</span> <span class='no'>wl</span>[<span class='no'>i</span>], <span class='kw'>col</span> <span class='kw'>=</span> <span class='no'>cols</span>[<span class='no'>i</span>], <span class='kw'>lwd</span> <span class='kw'>=</span> <span class='fl'>2</span>)</div><div class='img'><img src='plotc-7.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='fu'>plotc</span> (<span class='no'>laser</span> [,, <span class='no'>wl</span>], <span class='no'>spc</span> ~ <span class='no'>t</span>, <span class='kw'>groups</span> <span class='kw'>=</span> <span class='no'>.wavelength</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"b"</span>,
-       <span class='kw'>col</span> <span class='kw'>=</span> <span class='no'>cols</span>)</div><div class='img'><img src='plotc-8.png' alt='' width='466' height='288' /></div><div class='input'>
-</div></pre>
+<span class='fu'>plotspc</span> (<span class='kw'>laser</span>, axis.args=<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span> (x = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span> (at = <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span> (<span class='fl'>404.5</span>, <span class='fl'>405.8</span>, <span class='fl'>.1</span>))))</div><div class='input'><span class='co'>for</span> (<span class='kw'>i</span> <span class='co'>in</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq_along</a></span> (<span class='kw'>wl</span>))
+   <span class='fu'><a href='https://rdrr.io/r/graphics/abline.html'>abline</a></span> (v = <span class='kw'>wl</span>[<span class='kw'>i</span>], col = <span class='kw'>cols</span>[<span class='kw'>i</span>], lwd = <span class='fl'>2</span>)</div><div class='img'><img src='plotc-7.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='fu'>plotc</span> (<span class='kw'>laser</span> [,, <span class='kw'>wl</span>], <span class='kw'>spc</span> <span class='op'>~</span> <span class='kw'>t</span>, groups = <span class='kw'>.wavelength</span>, type = <span class='st'>"b"</span>,
+       col = <span class='kw'>cols</span>)</div><div class='img'><img src='plotc-8.png' alt='' width='466' height='288' /></div><div class='input'></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -176,47 +176,47 @@ values calculated from these may be used.</h1>
 
     <div class="ref-description">
     <p>This is <code>hyperSpec</code>'s main plotting function for spectra plots.</p>
-<p>Usually, the <code>stacked</code> argument of <code>plotspc</code> will do fine, but if you
+<p>Usually, the <code>stacked</code> argument of <code><a href='https://rdrr.io/pkg/hyperSpec/man/plotspc.html'>plotspc</a></code> will do fine, but if you
 need fine control over the stacking, you may calculate the y offsets yourself.</p>
     </div>
 
     <pre class="usage"><span class='fu'>plotspc</span>(
-  <span class='no'>object</span>,
-  <span class='kw'>wl.range</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>wl.index</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>wl.reverse</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>spc.nmax</span> <span class='kw'>=</span> <span class='fu'><a href='options.html'>hy.getOption</a></span>(<span class='st'>"plot.spc.nmax"</span>),
-  <span class='kw'>func</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>func.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='kw'>stacked</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>stacked.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='kw'>add</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>bty</span> <span class='kw'>=</span> <span class='st'>"l"</span>,
-  <span class='kw'>plot.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='kw'>lines.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='kw'>xoffset</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>yoffset</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>nxticks</span> <span class='kw'>=</span> <span class='fl'>10</span>,
-  <span class='kw'>axis.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='kw'>break.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='kw'>title.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='kw'>fill</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>fill.col</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>border</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>polygon.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='kw'>zeroline</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>lty</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='no'>col</span>),
-  <span class='kw'>debuglevel</span> <span class='kw'>=</span> <span class='fu'><a href='options.html'>hy.getOption</a></span>(<span class='st'>"debuglevel"</span>)
+  <span class='kw'>object</span>,
+  wl.range = <span class='fl'>TRUE</span>,
+  wl.index = <span class='fl'>FALSE</span>,
+  wl.reverse = <span class='fl'>FALSE</span>,
+  spc.nmax = <span class='fu'>hy.getOption</span>(<span class='st'>"plot.spc.nmax"</span>),
+  func = <span class='kw'>NULL</span>,
+  func.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
+  stacked = <span class='kw'>NULL</span>,
+  stacked.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
+  add = <span class='fl'>FALSE</span>,
+  bty = <span class='st'>"l"</span>,
+  plot.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
+  col = <span class='st'>"black"</span>,
+  lines.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
+  xoffset = <span class='fl'>0</span>,
+  yoffset = <span class='fl'>0</span>,
+  nxticks = <span class='fl'>10</span>,
+  axis.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
+  break.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
+  title.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
+  fill = <span class='kw'>NULL</span>,
+  fill.col = <span class='kw'>NULL</span>,
+  border = <span class='fl'>NA</span>,
+  polygon.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
+  zeroline = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(lty = <span class='fl'>2</span>, col = <span class='kw'>col</span>),
+  debuglevel = <span class='fu'>hy.getOption</span>(<span class='st'>"debuglevel"</span>)
 )
 
 <span class='fu'>stacked.offsets</span>(
-  <span class='no'>x</span>,
-  <span class='kw'>stacked</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>min.zero</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>add.factor</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
-  <span class='kw'>add.sum</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>.spc</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>debuglevel</span> <span class='kw'>=</span> <span class='fu'><a href='options.html'>hy.getOption</a></span>(<span class='st'>"debuglevel"</span>)
+  <span class='kw'>x</span>,
+  stacked = <span class='fl'>TRUE</span>,
+  min.zero = <span class='fl'>FALSE</span>,
+  add.factor = <span class='fl'>0.05</span>,
+  add.sum = <span class='fl'>0</span>,
+  .spc = <span class='kw'>NULL</span>,
+  debuglevel = <span class='fu'>hy.getOption</span>(<span class='st'>"debuglevel"</span>)
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -366,7 +366,7 @@ line color <code>col</code> to <code>NA</code> in order see the effect.</p></td>
     <tr>
       <th>debuglevel</th>
       <td><p>if &gt; 0, additional debug output is produced,
-see <code><a href='https://rdrr.io/r/base/options.html'>options</a></code> for details</p></td>
+see <code>options</code> for details</p></td>
     </tr>
     <tr>
       <th>x</th>
@@ -398,7 +398,7 @@ may change in future.</p></td>
 
 <dt>wavelengths</dt><dd><p>the wavelengths of the plotted spectral data points</p></dd>
 
-This can be used together with <a href='spc-identify.html'>spc.identify</a>.
+This can be used together with spc.identify.
 
 a list containing <dt>offsets</dt><dd><p>numeric with the yoffset for each group in
 <code>stacked</code></p></dd> <dt>groups</dt><dd><p>numeric with the group number for each spectrum</p></dd> <dt>levels</dt><dd><p>if
@@ -422,11 +422,11 @@ case.)</p>
   <code><a href='https://rdrr.io/r/graphics/polygon.html'>polygon</a></code>, <code><a href='https://rdrr.io/r/graphics/par.html'>par</a></code> for the
   description of the respective arguments.</p>
 <p><code><a href='https://rdrr.io/pkg/plotrix/man/axis.break.html'>axis.break</a></code> for cut marks</p>
-<p>See <code><a href='plot.html'>plot</a></code> for some predefined spectra plots such as mean
+<p>See <code><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></code> for some predefined spectra plots such as mean
   spectrum +/- one standard deviation and the like.</p>
 <p><code><a href='https://rdrr.io/r/graphics/identify.html'>identify</a></code> and <code><a href='https://rdrr.io/r/graphics/locator.html'>locator</a></code> about
   interaction with plots.</p>
-<p><code>plotspc</code></p></div>
+<p><code><a href='https://rdrr.io/pkg/hyperSpec/man/plotspc.html'>plotspc</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>C. Beleites</p>
@@ -434,41 +434,40 @@ case.)</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>plotspc</span> (<span class='no'>flu</span>)</div><div class='img'><img src='plotspc-1.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='fu'>plotspc</span> (<span class='kw'>flu</span>)</div><div class='img'><img src='plotspc-1.png' alt='' width='466' height='288' /></div><div class='input'>
 <span class='co'>## artificial example to show wavelength axis cutting</span>
-<span class='fu'>plotspc</span> (<span class='no'>chondro</span> [<span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span> (<span class='no'>chondro</span>), <span class='fl'>50</span>)],
-         <span class='kw'>wl.range</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span> (<span class='fl'>600</span> ~ <span class='fl'>650</span>, <span class='fl'>1000</span> ~ <span class='fl'>1100</span>, <span class='fl'>1600</span> ~ <span class='fl'>1700</span>),
-         <span class='kw'>xoffset</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span> (<span class='fl'>0</span>, <span class='fl'>300</span>, <span class='fl'>450</span>))</div><div class='img'><img src='plotspc-2.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='fu'>plotspc</span> (<span class='no'>chondro</span> [<span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span> (<span class='no'>chondro</span>), <span class='fl'>50</span>)],
-         <span class='kw'>wl.range</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span> (<span class='fl'>600</span> ~ <span class='fl'>650</span>, <span class='fl'>1000</span> ~ <span class='fl'>1100</span>, <span class='fl'>1600</span> ~ <span class='fl'>1700</span>),
-         <span class='kw'>xoffset</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span> (<span class='fl'>300</span>, <span class='fl'>450</span>))</div><div class='img'><img src='plotspc-3.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='fu'>plotspc</span> (<span class='kw'>chondro</span> [<span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span> (<span class='kw'>chondro</span>), <span class='fl'>50</span>)],
+         wl.range = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span> (<span class='fl'>600</span> <span class='op'>~</span> <span class='fl'>650</span>, <span class='fl'>1000</span> <span class='op'>~</span> <span class='fl'>1100</span>, <span class='fl'>1600</span> <span class='op'>~</span> <span class='fl'>1700</span>),
+         xoffset = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span> (<span class='fl'>0</span>, <span class='fl'>300</span>, <span class='fl'>450</span>))</div><div class='img'><img src='plotspc-2.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='fu'>plotspc</span> (<span class='kw'>chondro</span> [<span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span> (<span class='kw'>chondro</span>), <span class='fl'>50</span>)],
+         wl.range = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span> (<span class='fl'>600</span> <span class='op'>~</span> <span class='fl'>650</span>, <span class='fl'>1000</span> <span class='op'>~</span> <span class='fl'>1100</span>, <span class='fl'>1600</span> <span class='op'>~</span> <span class='fl'>1700</span>),
+         xoffset = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span> (<span class='fl'>300</span>, <span class='fl'>450</span>))</div><div class='img'><img src='plotspc-3.png' alt='' width='466' height='288' /></div><div class='input'>
 <span class='co'>## some journals publish Raman spectra backwards</span>
-<span class='fu'>plotspc</span> (<span class='no'>chondro</span> [<span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span> (<span class='no'>chondro</span>), <span class='fl'>50</span>)], <span class='kw'>wl.reverse</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='plotspc-4.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='fu'>plotspc</span> (<span class='no'>laser</span>[(<span class='fl'>0</span>:<span class='fl'>4</span>)*<span class='fl'>20</span>+<span class='fl'>1</span>,,], <span class='kw'>stacked</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='plotspc-5.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='fu'>plotspc</span> (<span class='no'>laser</span>, <span class='kw'>func</span> <span class='kw'>=</span> <span class='no'>mean_pm_sd</span>,
-         <span class='kw'>col</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>NA</span>, <span class='st'>"red"</span>, <span class='st'>"black"</span>), <span class='kw'>lines.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span> (<span class='kw'>lwd</span> <span class='kw'>=</span> <span class='fl'>2</span>),
-         <span class='kw'>fill</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span> (<span class='fl'>1</span>, <span class='fl'>NA</span>, <span class='fl'>1</span>),
-         <span class='kw'>fill.col</span> <span class='kw'>=</span> <span class='st'>"yellow"</span>, <span class='kw'>border</span> <span class='kw'>=</span> <span class='st'>"blue"</span>,
-         <span class='kw'>polygon.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span> (<span class='kw'>lty</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>lwd</span> <span class='kw'>=</span> <span class='fl'>4</span>),
-         <span class='kw'>title.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span> (<span class='kw'>xlab</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span> (<span class='no'>lambda</span>[<span class='no'>emission</span>] / <span class='no'>nm</span>),
-                            <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>line</span> <span class='kw'>=</span> <span class='fl'>3.4</span>),
-                            <span class='kw'>col.lab</span> <span class='kw'>=</span> <span class='st'>"darkgreen"</span>),
-         <span class='kw'>axis.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span> (<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span> (<span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"magenta"</span>), <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span> (<span class='kw'>las</span> <span class='kw'>=</span> <span class='fl'>1</span>))
+<span class='fu'>plotspc</span> (<span class='kw'>chondro</span> [<span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span> (<span class='kw'>chondro</span>), <span class='fl'>50</span>)], wl.reverse = <span class='fl'>TRUE</span>)</div><div class='img'><img src='plotspc-4.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='fu'>plotspc</span> (<span class='kw'>laser</span>[(<span class='fl'>0</span><span class='op'>:</span><span class='fl'>4</span>)<span class='op'>*</span><span class='fl'>20</span><span class='op'>+</span><span class='fl'>1</span>,,], stacked = <span class='fl'>TRUE</span>)</div><div class='img'><img src='plotspc-5.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='fu'>plotspc</span> (<span class='kw'>laser</span>, func = <span class='kw'>mean_pm_sd</span>,
+         col = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>NA</span>, <span class='st'>"red"</span>, <span class='st'>"black"</span>), lines.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span> (lwd = <span class='fl'>2</span>),
+         fill = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span> (<span class='fl'>1</span>, <span class='fl'>NA</span>, <span class='fl'>1</span>),
+         fill.col = <span class='st'>"yellow"</span>, border = <span class='st'>"blue"</span>,
+         polygon.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span> (lty = <span class='fl'>2</span>, lwd = <span class='fl'>4</span>),
+         title.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span> (xlab = <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span> (<span class='kw'>lambda</span>[<span class='kw'>emission</span>] <span class='op'>/</span> <span class='kw'>nm</span>),
+                            y = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(line = <span class='fl'>3.4</span>),
+                            col.lab = <span class='st'>"darkgreen"</span>),
+         axis.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span> (x = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span> (col = <span class='st'>"magenta"</span>), y = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span> (las = <span class='fl'>1</span>))
         )</div><div class='img'><img src='plotspc-6.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='no'>mean.pm.sd</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='aggregate.html'>aggregate</a></span> (<span class='no'>chondro</span>, <span class='no'>chondro</span>$<span class='no'>clusters</span>, <span class='no'>mean_pm_sd</span>)
-<span class='fu'><a href='plot.html'>plot</a></span> (<span class='no'>mean.pm.sd</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='fu'><a href='palettes.html'>matlab.palette</a></span> (<span class='fl'>3</span>), <span class='kw'>fill</span> <span class='kw'>=</span> <span class='st'>".aggregate"</span>, <span class='kw'>stacked</span> <span class='kw'>=</span> <span class='st'>".aggregate"</span>)</div><div class='img'><img src='plotspc-7.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='kw'>mean.pm.sd</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/sp/man/aggregate.html'>aggregate</a></span> (<span class='kw'>chondro</span>, <span class='kw'>chondro</span><span class='op'>$</span><span class='kw'>clusters</span>, <span class='kw'>mean_pm_sd</span>)
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span> (<span class='kw'>mean.pm.sd</span>, col = <span class='fu'>matlab.palette</span> (<span class='fl'>3</span>), fill = <span class='st'>".aggregate"</span>, stacked = <span class='st'>".aggregate"</span>)</div><div class='img'><img src='plotspc-7.png' alt='' width='466' height='288' /></div><div class='input'>
 
-<span class='no'>mean.pm.sd</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='aggregate.html'>aggregate</a></span> (<span class='no'>chondro</span>, <span class='no'>chondro</span>$<span class='no'>clusters</span>, <span class='no'>mean_pm_sd</span>)
+<span class='kw'>mean.pm.sd</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/sp/man/aggregate.html'>aggregate</a></span> (<span class='kw'>chondro</span>, <span class='kw'>chondro</span><span class='op'>$</span><span class='kw'>clusters</span>, <span class='kw'>mean_pm_sd</span>)
 
-<span class='no'>offset</span> <span class='kw'>&lt;-</span> <span class='fu'>stacked.offsets</span> (<span class='no'>mean.pm.sd</span>, <span class='st'>".aggregate"</span>)
-<span class='fu'><a href='plot.html'>plot</a></span> (<span class='no'>mean.pm.sd</span>, <span class='kw'>fill.col</span> <span class='kw'>=</span> <span class='fu'><a href='palettes.html'>matlab.palette</a></span> (<span class='fl'>3</span>), <span class='kw'>fill</span> <span class='kw'>=</span> <span class='st'>".aggregate"</span>,
-      <span class='kw'>stacked</span> <span class='kw'>=</span> <span class='st'>".aggregate"</span>)</div><div class='input'>
-<span class='fu'><a href='plot.html'>plot</a></span> (<span class='fu'><a href='aggregate.html'>aggregate</a></span> (<span class='no'>chondro</span>, <span class='no'>chondro</span>$<span class='no'>clusters</span>, <span class='no'>mean</span>), <span class='kw'>yoffset</span> <span class='kw'>=</span> <span class='no'>offset</span>$<span class='no'>offsets</span>,
-      <span class='kw'>lines.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span> (<span class='kw'>lty</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>lwd</span> <span class='kw'>=</span> <span class='fl'>2</span>), <span class='kw'>add</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='plotspc-8.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='no'>barb</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/do.call.html'>do.call</a></span> (<span class='no'>collapse</span>, <span class='no'>barbiturates</span> [<span class='fl'>1</span>:<span class='fl'>3</span>])
-<span class='fu'><a href='plot.html'>plot</a></span> (<span class='no'>barb</span>, <span class='kw'>lines.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span> (<span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"h"</span>), <span class='kw'>stacked</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-      <span class='kw'>stacked.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span> (<span class='kw'>add.factor</span> <span class='kw'>=</span> <span class='fl'>.2</span>))</div><div class='img'><img src='plotspc-9.png' alt='' width='466' height='288' /></div><div class='input'>
-
+<span class='kw'>offset</span> <span class='op'>&lt;-</span> <span class='fu'>stacked.offsets</span> (<span class='kw'>mean.pm.sd</span>, <span class='st'>".aggregate"</span>)
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span> (<span class='kw'>mean.pm.sd</span>, fill.col = <span class='fu'>matlab.palette</span> (<span class='fl'>3</span>), fill = <span class='st'>".aggregate"</span>,
+      stacked = <span class='st'>".aggregate"</span>)</div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span> (<span class='fu'><a href='https://rdrr.io/pkg/sp/man/aggregate.html'>aggregate</a></span> (<span class='kw'>chondro</span>, <span class='kw'>chondro</span><span class='op'>$</span><span class='kw'>clusters</span>, <span class='kw'>mean</span>), yoffset = <span class='kw'>offset</span><span class='op'>$</span><span class='kw'>offsets</span>,
+      lines.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span> (lty = <span class='fl'>2</span>, lwd = <span class='fl'>2</span>), add = <span class='fl'>TRUE</span>)</div><div class='img'><img src='plotspc-8.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='kw'>barb</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/do.call.html'>do.call</a></span> (<span class='kw'>collapse</span>, <span class='kw'>barbiturates</span> [<span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>])
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span> (<span class='kw'>barb</span>, lines.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span> (type = <span class='st'>"h"</span>), stacked = <span class='fl'>TRUE</span>,
+      stacked.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span> (add.factor = <span class='fl'>.2</span>))</div><div class='img'><img src='plotspc-9.png' alt='' width='466' height='288' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

@@ -171,7 +171,7 @@ the same label." />
 the same label.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>mergeextra</span>(<span class='no'>x</span>, <span class='no'>y</span>)</pre>
+    <pre class="usage"><span class='fu'>mergeextra</span>(<span class='kw'>x</span>, <span class='kw'>y</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -196,9 +196,9 @@ get `".y"` appended to its name.</p>
 <p>**`mergeextra()` relies on `x` and `y` having the same row order.**</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>tmp</span> <span class='kw'>&lt;-</span> <span class='no'>flu</span> [,<span class='fl'>FALSE</span>,]
-<span class='no'>tmp</span>$<span class='no'>prediction</span> <span class='kw'>&lt;-</span> <span class='fl'>1</span>:<span class='fl'>6</span>
-<span class='no'>tmp</span></div><div class='output co'>#&gt; hyperSpec object
+    <pre class="examples"><div class='input'><span class='kw'>tmp</span> <span class='op'>&lt;-</span> <span class='kw'>flu</span> [,<span class='fl'>FALSE</span>,]
+<span class='kw'>tmp</span><span class='op'>$</span><span class='kw'>prediction</span> <span class='op'>&lt;-</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span>
+<span class='kw'>tmp</span></div><div class='output co'>#&gt; hyperSpec object
 #&gt;    6 spectra
 #&gt;    2 data columns
 #&gt;    0 data points / spectrum
@@ -206,7 +206,7 @@ get `".y"` appended to its name.</p>
 #&gt; data:  (6 rows x 2 columns)
 #&gt;    1. spc:  [matrix, array0]
 #&gt;    2. prediction: prediction [integer] 1 2 ... 6 </div><div class='input'>
-<span class='fu'>mergeextra</span>(<span class='no'>flu</span>, <span class='no'>tmp</span>)</div><div class='output co'>#&gt; hyperSpec object
+<span class='fu'>mergeextra</span>(<span class='kw'>flu</span>, <span class='kw'>tmp</span>)</div><div class='output co'>#&gt; hyperSpec object
 #&gt;    6 spectra
 #&gt;    4 data columns
 #&gt;    181 data points / spectrum

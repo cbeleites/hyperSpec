@@ -8,7 +8,7 @@
 
 <title>Identifying Spectra and Spectral Data Points
 This function allows to identify the spectrum and the wavelength of a point
-in a plot produced by <code><a href='plotspc.html'>plotspc</a></code>. — spc.identify • hyperSpec</title>
+in a plot produced by <code>plotspc</code>. — spc.identify • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -45,7 +45,7 @@ in a plot produced by <code><a href='plotspc.html'>plotspc</a></code>. — spc.i
 
 <meta property="og:title" content="Identifying Spectra and Spectral Data Points
 This function allows to identify the spectrum and the wavelength of a point
-in a plot produced by <code><a href='plotspc.html'>plotspc</a></code>. — spc.identify" />
+in a plot produced by <code>plotspc</code>. — spc.identify" />
 <meta property="og:description" content="This function first finds the spectrum with a point closest to the clicked
 position (see locator). The distance to the clicked
 point is evaluated relative to the size of the tolerance window." />
@@ -166,7 +166,7 @@ point is evaluated relative to the size of the tolerance window." />
     <div class="page-header">
     <h1>Identifying Spectra and Spectral Data Points
 This function allows to identify the spectrum and the wavelength of a point
-in a plot produced by <code><a href='plotspc.html'>plotspc</a></code>.</h1>
+in a plot produced by <code>plotspc</code>.</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/spc.identify.R'><code>R/spc.identify.R</code></a></small>
     <div class="hidden name"><code>spc-identify.Rd</code></div>
     </div>
@@ -178,32 +178,32 @@ point is evaluated relative to the size of the tolerance window.</p>
     </div>
 
     <pre class="usage"><span class='fu'>spc.identify</span>(
-  <span class='no'>x</span>,
-  <span class='kw'>y</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>wavelengths</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>ispc</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>tol.wl</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/diff.html'>diff</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/range.html'>range</a></span>(<span class='no'>x</span>))/<span class='fl'>200</span>,
-  <span class='kw'>tol.spc</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/diff.html'>diff</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/range.html'>range</a></span>(<span class='no'>y</span>))/<span class='fl'>50</span>,
-  <span class='kw'>point.fn</span> <span class='kw'>=</span> <span class='no'>spc.point.max</span>,
-  <span class='kw'>formatter</span> <span class='kw'>=</span> <span class='no'>spc.label.default</span>,
-  <span class='no'>...</span>,
-  <span class='kw'>cex</span> <span class='kw'>=</span> <span class='fl'>0.7</span>,
-  <span class='kw'>adj</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>0.5</span>),
-  <span class='kw'>srt</span> <span class='kw'>=</span> <span class='fl'>90</span>,
-  <span class='kw'>warn</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+  <span class='kw'>x</span>,
+  y = <span class='kw'>NULL</span>,
+  wavelengths = <span class='kw'>NULL</span>,
+  ispc = <span class='kw'>NULL</span>,
+  tol.wl = <span class='fu'><a href='https://rdrr.io/r/base/diff.html'>diff</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/range.html'>range</a></span>(<span class='kw'>x</span>))<span class='op'>/</span><span class='fl'>200</span>,
+  tol.spc = <span class='fu'><a href='https://rdrr.io/r/base/diff.html'>diff</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/range.html'>range</a></span>(<span class='kw'>y</span>))<span class='op'>/</span><span class='fl'>50</span>,
+  point.fn = <span class='kw'>spc.point.max</span>,
+  formatter = <span class='kw'>spc.label.default</span>,
+  <span class='kw'>...</span>,
+  cex = <span class='fl'>0.7</span>,
+  adj = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>0.5</span>),
+  srt = <span class='fl'>90</span>,
+  warn = <span class='fl'>TRUE</span>
 )
 
-<span class='fu'>spc.point.max</span>(<span class='no'>wl</span>, <span class='no'>spc</span>, <span class='no'>wlclick</span>)
+<span class='fu'>spc.point.max</span>(<span class='kw'>wl</span>, <span class='kw'>spc</span>, <span class='kw'>wlclick</span>)
 
-<span class='fu'>spc.point.default</span>(<span class='no'>wl</span>, <span class='no'>spc</span>, <span class='no'>wlclick</span>)
+<span class='fu'>spc.point.default</span>(<span class='kw'>wl</span>, <span class='kw'>spc</span>, <span class='kw'>wlclick</span>)
 
-<span class='fu'>spc.point.min</span>(<span class='no'>wl</span>, <span class='no'>spc</span>, <span class='no'>wlclick</span>)
+<span class='fu'>spc.point.min</span>(<span class='kw'>wl</span>, <span class='kw'>spc</span>, <span class='kw'>wlclick</span>)
 
-<span class='fu'>spc.point.sqr</span>(<span class='no'>wl</span>, <span class='no'>spc</span>, <span class='no'>wlclick</span>, <span class='kw'>delta</span> <span class='kw'>=</span> <span class='fl'>1L</span>)
+<span class='fu'>spc.point.sqr</span>(<span class='kw'>wl</span>, <span class='kw'>spc</span>, <span class='kw'>wlclick</span>, delta = <span class='fl'>1L</span>)
 
-<span class='fu'>spc.label.default</span>(<span class='no'>ispc</span>, <span class='no'>wl</span>, <span class='no'>spc</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>3</span>)
+<span class='fu'>spc.label.default</span>(<span class='kw'>ispc</span>, <span class='kw'>wl</span>, <span class='kw'>spc</span>, digits = <span class='fl'>3</span>)
 
-<span class='fu'>spc.label.wlonly</span>(<span class='no'>ispc</span>, <span class='no'>wl</span>, <span class='no'>spc</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>3</span>)</pre>
+<span class='fu'>spc.label.wlonly</span>(<span class='kw'>ispc</span>, <span class='kw'>wl</span>, <span class='kw'>spc</span>, digits = <span class='fl'>3</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -211,7 +211,7 @@ point is evaluated relative to the size of the tolerance window.</p>
     <tr>
       <th>x</th>
       <td><p>either the abscissa coordinates or the list returned by
-<code><a href='plotspc.html'>plotspc</a></code></p></td>
+<code>plotspc</code></p></td>
     </tr>
     <tr>
       <th>y</th>
@@ -329,44 +329,45 @@ a row of <code>NA</code>s in the resulting data.frame.</p>
 <p><code>spc.identify</code> uses option <code>debuglevel</code> to determine whether debugging output should be
 produced. <code>debuglevel == 2</code> will plot the tolerance window for every clicked point,
 <code>debuglevel == 1</code> will plot the tolerance window only if no data point was inside.  See
-<code><a href='https://rdrr.io/r/base/options.html'>hyperSpec options</a></code> for details about retrieving and setting
+<code>hyperSpec options</code> for details about retrieving and setting
 options.</p>
 <p>You may want to adjust the plot's <code>ylim</code> to ensure that the labels are
 not clipped. As a dirty shortcut, <code>xpd = NA</code> may help.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://rdrr.io/r/graphics/locator.html'>locator</a></code>, <code><a href='plotspc.html'>plotspc</a></code>,
-  <code><a href='https://rdrr.io/r/base/options.html'>hyperSpec options</a></code></p>
-<p><code><a href='levelplot.html'>map.identify</a></code> <code><a href='map-sel-poly.html'>map.sel.poly</a></code></p></div>
+    <div class='dont-index'><p><code><a href='https://rdrr.io/r/graphics/locator.html'>locator</a></code>, <code>plotspc</code>,
+  <code>hyperSpec options</code></p>
+<p><code>map.identify</code> <code>map.sel.poly</code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>C. Beleites</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span> ()){
-<span class='no'>ispc</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span> (<span class='no'>laser</span>), <span class='fl'>10</span>)
-<span class='no'>ispc</span>
+<span class='co'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span> ()){
+<span class='kw'>ispc</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span> (<span class='kw'>laser</span>), <span class='fl'>10</span>)
+<span class='kw'>ispc</span>
 
-<span class='no'>identified</span> <span class='kw'>&lt;-</span> <span class='fu'>spc.identify</span> (<span class='fu'><a href='plotspc.html'>plotspc</a></span> (<span class='no'>laser</span>[<span class='no'>ispc</span>]))
+<span class='kw'>identified</span> <span class='op'>&lt;-</span> <span class='fu'>spc.identify</span> (<span class='fu'>plotspc</span> (<span class='kw'>laser</span>[<span class='kw'>ispc</span>]))
 
 <span class='co'>## convert to the "real" spectra indices</span>
-<span class='no'>ispc</span> [<span class='no'>identified</span>$<span class='no'>ispc</span>]
-<span class='no'>identified</span>$<span class='no'>wl</span>
-<span class='no'>identified</span>$<span class='no'>spc</span>
+<span class='kw'>ispc</span> [<span class='kw'>identified</span><span class='op'>$</span><span class='kw'>ispc</span>]
+<span class='kw'>identified</span><span class='op'>$</span><span class='kw'>wl</span>
+<span class='kw'>identified</span><span class='op'>$</span><span class='kw'>spc</span>
 
 <span class='co'>## allow the labels to be plotted into the plot margin</span>
-<span class='fu'>spc.identify</span> (<span class='fu'><a href='plotspc.html'>plotspc</a></span> (<span class='no'>laser</span>[<span class='no'>ispc</span>]), <span class='kw'>ispc</span> <span class='kw'>=</span> <span class='no'>ispc</span>, <span class='kw'>xpd</span> <span class='kw'>=</span> <span class='fl'>NA</span>)
+<span class='fu'>spc.identify</span> (<span class='fu'>plotspc</span> (<span class='kw'>laser</span>[<span class='kw'>ispc</span>]), ispc = <span class='kw'>ispc</span>, xpd = <span class='fl'>NA</span>)
 
-<span class='fu'>spc.identify</span> (<span class='fu'><a href='plotspc.html'>plotspc</a></span> (<span class='no'>paracetamol</span>, <span class='kw'>xoffset</span> <span class='kw'>=</span> <span class='fl'>1100</span>,
-              <span class='kw'>wl.range</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span> (<span class='fl'>600</span> ~ <span class='fl'>1700</span>, <span class='fl'>2900</span> ~ <span class='fl'>3150</span>)),
-              <span class='kw'>formatter</span> <span class='kw'>=</span> <span class='no'>spc.label.wlonly</span>)
+<span class='fu'>spc.identify</span> (<span class='fu'>plotspc</span> (<span class='kw'>paracetamol</span>, xoffset = <span class='fl'>1100</span>,
+              wl.range = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span> (<span class='fl'>600</span> <span class='op'>~</span> <span class='fl'>1700</span>, <span class='fl'>2900</span> <span class='op'>~</span> <span class='fl'>3150</span>)),
+              formatter = <span class='kw'>spc.label.wlonly</span>)
 
 <span class='co'>## looking for minima</span>
-<span class='fu'>spc.identify</span> (<span class='fu'><a href='plot.html'>plot</a></span> (-<span class='no'>paracetamol</span>, <span class='kw'>wl.reverse</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>),
-              <span class='kw'>point.fn</span> <span class='kw'>=</span> <span class='no'>spc.point.min</span>, <span class='kw'>adj</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span> (<span class='fl'>1</span>, <span class='fl'>0.5</span>))
+<span class='fu'>spc.identify</span> (<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span> (<span class='op'>-</span><span class='kw'>paracetamol</span>, wl.reverse = <span class='fl'>TRUE</span>),
+              point.fn = <span class='kw'>spc.point.min</span>, adj = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span> (<span class='fl'>1</span>, <span class='fl'>0.5</span>))
 
-}</div></pre>
+}
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

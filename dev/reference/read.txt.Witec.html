@@ -167,43 +167,43 @@
     <p>Import Raman Spectra/Maps from Witec Instrument via ASCII files</p>
     </div>
 
-    <pre class="usage"><span class='fu'>scan.txt.Witec</span>(<span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>scan.txt.Witec</span>(<span class='kw'>...</span>)
 
-<span class='fu'>scan.dat.Witec</span>(<span class='no'>...</span>)
+<span class='fu'>scan.dat.Witec</span>(<span class='kw'>...</span>)
 
-<span class='fu'>scan.txt.Witec.Graph</span>(<span class='no'>...</span>)
+<span class='fu'>scan.txt.Witec.Graph</span>(<span class='kw'>...</span>)
 
 <span class='fu'>read.txt.Witec</span>(
-  <span class='kw'>file</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/stop.html'>stop</a></span>(<span class='st'>"filename or connection needed"</span>),
-  <span class='kw'>points.per.line</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>lines.per.image</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"single"</span>, <span class='st'>"map"</span>),
-  <span class='kw'>hdr.label</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>hdr.units</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>encoding</span> <span class='kw'>=</span> <span class='st'>"unknown"</span>,
-  <span class='no'>...</span>,
-  <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+  file = <span class='fu'><a href='https://rdrr.io/r/base/stop.html'>stop</a></span>(<span class='st'>"filename or connection needed"</span>),
+  points.per.line = <span class='kw'>NULL</span>,
+  lines.per.image = <span class='kw'>NULL</span>,
+  type = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"single"</span>, <span class='st'>"map"</span>),
+  hdr.label = <span class='fl'>FALSE</span>,
+  hdr.units = <span class='fl'>FALSE</span>,
+  encoding = <span class='st'>"unknown"</span>,
+  <span class='kw'>...</span>,
+  quiet = <span class='fl'>TRUE</span>
 )
 
 <span class='fu'>read.dat.Witec</span>(
-  <span class='kw'>filex</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/stop.html'>stop</a></span>(<span class='st'>"filename or connection needed"</span>),
-  <span class='kw'>filey</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/grep.html'>sub</a></span>(<span class='st'>"-x"</span>, <span class='st'>"-y"</span>, <span class='no'>filex</span>),
-  <span class='kw'>points.per.line</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>lines.per.image</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"single"</span>, <span class='st'>"map"</span>),
-  <span class='kw'>encoding</span> <span class='kw'>=</span> <span class='st'>"unknown"</span>,
-  <span class='no'>...</span>,
-  <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fu'><a href='options.html'>hy.getOption</a></span>(<span class='st'>"debuglevel"</span>) <span class='kw'>&lt;</span> <span class='fl'>1L</span>
+  filex = <span class='fu'><a href='https://rdrr.io/r/base/stop.html'>stop</a></span>(<span class='st'>"filename or connection needed"</span>),
+  filey = <span class='fu'><a href='https://rdrr.io/r/base/grep.html'>sub</a></span>(<span class='st'>"-x"</span>, <span class='st'>"-y"</span>, <span class='kw'>filex</span>),
+  points.per.line = <span class='kw'>NULL</span>,
+  lines.per.image = <span class='kw'>NULL</span>,
+  type = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"single"</span>, <span class='st'>"map"</span>),
+  encoding = <span class='st'>"unknown"</span>,
+  <span class='kw'>...</span>,
+  quiet = <span class='fu'>hy.getOption</span>(<span class='st'>"debuglevel"</span>) <span class='op'>&lt;</span> <span class='fl'>1L</span>
 )
 
 <span class='fu'>read.txt.Witec.Graph</span>(
-  <span class='kw'>headerfile</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/stop.html'>stop</a></span>(<span class='st'>"filename or connection needed"</span>),
-  <span class='kw'>filex</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/grep.html'>gsub</a></span>(<span class='st'>"Header"</span>, <span class='st'>"X-Axis"</span>, <span class='no'>headerfile</span>),
-  <span class='kw'>filey</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/grep.html'>gsub</a></span>(<span class='st'>"Header"</span>, <span class='st'>"Y-Axis"</span>, <span class='no'>headerfile</span>),
-  <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"single"</span>, <span class='st'>"map"</span>),
-  <span class='kw'>encoding</span> <span class='kw'>=</span> <span class='st'>"unknown"</span>,
-  <span class='no'>...</span>,
-  <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+  headerfile = <span class='fu'><a href='https://rdrr.io/r/base/stop.html'>stop</a></span>(<span class='st'>"filename or connection needed"</span>),
+  filex = <span class='fu'><a href='https://rdrr.io/r/base/grep.html'>gsub</a></span>(<span class='st'>"Header"</span>, <span class='st'>"X-Axis"</span>, <span class='kw'>headerfile</span>),
+  filey = <span class='fu'><a href='https://rdrr.io/r/base/grep.html'>gsub</a></span>(<span class='st'>"Header"</span>, <span class='st'>"Y-Axis"</span>, <span class='kw'>headerfile</span>),
+  type = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"single"</span>, <span class='st'>"map"</span>),
+  encoding = <span class='st'>"unknown"</span>,
+  <span class='kw'>...</span>,
+  quiet = <span class='fl'>TRUE</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -259,7 +259,7 @@
     </tr>
     <tr>
       <th>remove.zerospc</th>
-      <td><p>is deprecated and will be removed soon. Use <code><a href='options.html'>hy.setOptions</a> (file.remove.emptyspc = TRUE)</code> instead.</p></td>
+      <td><p>is deprecated and will be removed soon. Use <code>hy.setOptions (file.remove.emptyspc = TRUE)</code> instead.</p></td>
     </tr>
     </table>
 
@@ -273,7 +273,7 @@ axes and the other columns the spectra. <code>read.dat.Witec</code> reads Witec'
 which comes in separate files with x and y data.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='../articles/fileio.html'>vignette ("fileio")</a></code> for more information on file import and</p>
+    <div class='dont-index'><p><code>vignette ("fileio")</code> for more information on file import and</p>
 <p><code><a href='https://rdrr.io/r/base/options.html'>options</a></code> for details on options.</p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 

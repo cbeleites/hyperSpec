@@ -169,16 +169,16 @@ grid.locator). Polygon will be drawn closed." />
 <code><a href='https://rdrr.io/r/grid/grid.locator.html'>grid.locator</a></code>). Polygon will be drawn closed.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>map.sel.poly</span>(<span class='no'>data</span>, <span class='kw'>pch</span> <span class='kw'>=</span> <span class='fl'>19</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>0.3</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>map.sel.poly</span>(<span class='kw'>data</span>, pch = <span class='fl'>19</span>, size = <span class='fl'>0.3</span>, <span class='kw'>...</span>)
 
-<span class='fu'>sel.poly</span>(<span class='kw'>pch</span> <span class='kw'>=</span> <span class='fl'>19</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>0.3</span>, <span class='no'>...</span>)</pre>
+<span class='fu'>sel.poly</span>(pch = <span class='fl'>19</span>, size = <span class='fl'>0.3</span>, <span class='kw'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>data</th>
-      <td><p>hyperSpec object for plotting map or list returned by <code><a href='levelplot.html'>plotmap</a></code></p></td>
+      <td><p>hyperSpec object for plotting map or list returned by <code>plotmap</code></p></td>
     </tr>
     <tr>
       <th>pch</th>
@@ -201,14 +201,14 @@ grid.locator). Polygon will be drawn closed." />
 <p><code>sel.poly</code>: n x 2 matrix with the corner points of the polygon</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p><code>map.sel.poly</code> is a convenience wrapper for <code><a href='levelplot.html'>plotmap</a></code>, <code>sel.poly</code>,
+    <p><code>map.sel.poly</code> is a convenience wrapper for <code>plotmap</code>, <code>sel.poly</code>,
 and <code><a href='https://rdrr.io/pkg/sp/man/point.in.polygon.html'>point.in.polygon</a></code>. For custiomized plotting, the plot can be produced by
-<code><a href='levelplot.html'>plotmap</a></code>, <code><a href='levelplot.html'>plotvoronoi</a></code> or <code>levelplot</code>, and the result of
+<code>plotmap</code>, <code>plotvoronoi</code> or <code>levelplot</code>, and the result of
 that plot command handed over to <code>map.sel.poly</code>, see the example below.</p>
 <p>If even more customized plotting is required,<code>sel.poly</code> should be used (see example).</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://rdrr.io/r/grid/grid.locator.html'>grid.locator</a></code>, <code><a href='levelplot.html'>map.identify</a></code></p>
+    <div class='dont-index'><p><code><a href='https://rdrr.io/r/grid/grid.locator.html'>grid.locator</a></code>, <code>map.identify</code></p>
 <p><code><a href='https://rdrr.io/r/grid/grid.locator.html'>grid.locator</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
@@ -216,29 +216,29 @@ that plot command handed over to <code>map.sel.poly</code>, see the example belo
 <p>Claudia Beleites</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span> ()){
+    <pre class="examples"><div class='input'><span class='co'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span> ()){
 <span class='co'>## convenience wrapper</span>
-<span class='fu'>map.sel.poly</span> (<span class='no'>chondro</span>)
+<span class='fu'>map.sel.poly</span> (<span class='kw'>chondro</span>)
 
 <span class='co'>## customized version</span>
-<span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span> (<span class='no'>chondro</span> [,, <span class='fl'>1004</span> - <span class='fl'>2i</span> ~ <span class='fl'>1004</span> + <span class='fl'>2i</span>], <span class='fl'>300</span>)
+<span class='kw'>data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span> (<span class='kw'>chondro</span> [,, <span class='fl'>1004</span> <span class='op'>-</span> <span class='fl'>2i</span> <span class='op'>~</span> <span class='fl'>1004</span> <span class='op'>+</span> <span class='fl'>2i</span>], <span class='fl'>300</span>)
 
-<span class='no'>plotdata</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='levelplot.html'>plotvoronoi</a></span> (<span class='no'>data</span>, <span class='no'>clusters</span> ~ <span class='no'>y</span> * <span class='no'>x</span>, <span class='kw'>col.regions</span> <span class='kw'>=</span> <span class='fu'><a href='palettes.html'>alois.palette</a></span> ())
-<span class='fu'><a href='show.html'>print</a></span> (<span class='no'>plotdata</span>)
-<span class='fu'>map.sel.poly</span> (<span class='no'>plotdata</span>)
+<span class='kw'>plotdata</span> <span class='op'>&lt;-</span> <span class='fu'>plotvoronoi</span> (<span class='kw'>data</span>, <span class='kw'>clusters</span> <span class='op'>~</span> <span class='kw'>y</span> <span class='op'>*</span> <span class='kw'>x</span>, col.regions = <span class='fu'>alois.palette</span> ())
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span> (<span class='kw'>plotdata</span>)
+<span class='fu'>map.sel.poly</span> (<span class='kw'>plotdata</span>)
 
 <span class='co'>## even more customization:</span>
-<span class='fu'><a href='levelplot.html'>plotvoronoi</a></span> (<span class='no'>data</span>)
+<span class='fu'>plotvoronoi</span> (<span class='kw'>data</span>)
 
 <span class='co'>## interactively retrieve polygon</span>
-<span class='no'>polygon</span> <span class='kw'>&lt;-</span> <span class='fu'>sel.poly</span> ()
+<span class='kw'>polygon</span> <span class='op'>&lt;-</span> <span class='fu'>sel.poly</span> ()
 
 <span class='co'>## find data points within polygon</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>require</a></span> (<span class='st'>"sp"</span>)
-<span class='no'>i.sel</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span> (<span class='fu'><a href='https://rdrr.io/pkg/sp/man/point.in.polygon.html'>point.in.polygon</a></span> (<span class='no'>data</span>$<span class='no'>x</span>, <span class='no'>data</span>$<span class='no'>y</span>, <span class='no'>polygon</span> [, <span class='fl'>1</span>], <span class='no'>polygon</span> [, <span class='fl'>2</span>]) <span class='kw'>&gt;</span> <span class='fl'>0</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>require</a></span> (<span class='st'><a href='https://github.com/edzer/sp'>"sp"</a></span>)
+<span class='kw'>i.sel</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span> (<span class='fu'><a href='https://rdrr.io/pkg/sp/man/point.in.polygon.html'>point.in.polygon</a></span> (<span class='kw'>data</span><span class='op'>$</span><span class='kw'>x</span>, <span class='kw'>data</span><span class='op'>$</span><span class='kw'>y</span>, <span class='kw'>polygon</span> [, <span class='fl'>1</span>], <span class='kw'>polygon</span> [, <span class='fl'>2</span>]) <span class='op'>&gt;</span> <span class='fl'>0</span>)
 
 <span class='co'>## work with selected points</span>
-<span class='fu'>grid.points</span> (<span class='fu'>unit</span> (<span class='no'>data</span>$<span class='no'>x</span> [<span class='no'>i.sel</span>], <span class='st'>"native"</span>), <span class='fu'>unit</span> (<span class='no'>data</span>$<span class='no'>y</span> [<span class='no'>i.sel</span>], <span class='st'>"native"</span>))
+<span class='fu'>grid.points</span> (<span class='fu'><a href='https://rdrr.io/r/grid/unit.html'>unit</a></span> (<span class='kw'>data</span><span class='op'>$</span><span class='kw'>x</span> [<span class='kw'>i.sel</span>], <span class='st'>"native"</span>), <span class='fu'><a href='https://rdrr.io/r/grid/unit.html'>unit</a></span> (<span class='kw'>data</span><span class='op'>$</span><span class='kw'>y</span> [<span class='kw'>i.sel</span>], <span class='st'>"native"</span>))
 }</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

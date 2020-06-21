@@ -1,13 +1,6 @@
 pandoc: 2.7.3
 pkgdown: 1.5.1.9000
-pkgdown_sha: 4b08940a9051ec429a5f42f9a2b4d3e03fdcdb1a
-articles:
-  baseline: baseline.html
-  chondro: chondro.html
-  fileio: fileio.html
-  flu: flu.html
-  hyperSpec: hyperSpec.html
-  laser: laser.html
-  plotting: plotting.html
-last_built: 2020-06-21T02:43Z
+pkgdown_sha: e703cfe666586d3517c5da39f8dbd1f0816b7d3b
+articles: []
+last_built: 2020-06-21T14:06Z
 

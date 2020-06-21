@@ -178,49 +178,49 @@ export data into <code>hyperSpec</code> objects exist.</p>
     </div>
 
     <pre class="usage"><span class='fu'>read.txt.long</span>(
-  <span class='kw'>file</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/stop.html'>stop</a></span>(<span class='st'>"file is required"</span>),
-  <span class='kw'>cols</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>.wavelength</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span>(<span class='no'>lambda</span>/<span class='no'>nm</span>), <span class='kw'>spc</span> <span class='kw'>=</span> <span class='st'>"I / a.u."</span>),
-  <span class='kw'>header</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='no'>...</span>
+  file = <span class='fu'><a href='https://rdrr.io/r/base/stop.html'>stop</a></span>(<span class='st'>"file is required"</span>),
+  cols = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(.wavelength = <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span>(<span class='kw'>lambda</span><span class='op'>/</span><span class='kw'>nm</span>), spc = <span class='st'>"I / a.u."</span>),
+  header = <span class='fl'>TRUE</span>,
+  <span class='kw'>...</span>
 )
 
 <span class='fu'>read.txt.wide</span>(
-  <span class='kw'>file</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/stop.html'>stop</a></span>(<span class='st'>"file is required"</span>),
-  <span class='kw'>cols</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>spc</span> <span class='kw'>=</span> <span class='st'>"I / a.u."</span>, <span class='kw'>.wavelength</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span>(<span class='no'>lambda</span>/<span class='no'>nm</span>)),
-  <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>"\t"</span>,
-  <span class='kw'>row.names</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>check.names</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='no'>...</span>
+  file = <span class='fu'><a href='https://rdrr.io/r/base/stop.html'>stop</a></span>(<span class='st'>"file is required"</span>),
+  cols = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(spc = <span class='st'>"I / a.u."</span>, .wavelength = <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span>(<span class='kw'>lambda</span><span class='op'>/</span><span class='kw'>nm</span>)),
+  sep = <span class='st'>"\t"</span>,
+  row.names = <span class='kw'>NULL</span>,
+  check.names = <span class='fl'>FALSE</span>,
+  <span class='kw'>...</span>
 )
 
 <span class='fu'>write.txt.long</span>(
-  <span class='no'>object</span>,
-  <span class='kw'>file</span> <span class='kw'>=</span> <span class='st'>""</span>,
-  <span class='kw'>order</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>".rownames"</span>, <span class='st'>".wavelength"</span>),
-  <span class='kw'>na.last</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>decreasing</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>quote</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>"\t"</span>,
-  <span class='kw'>row.names</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>col.names</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>col.labels</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>append</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='no'>...</span>
+  <span class='kw'>object</span>,
+  file = <span class='st'>""</span>,
+  order = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>".rownames"</span>, <span class='st'>".wavelength"</span>),
+  na.last = <span class='fl'>TRUE</span>,
+  decreasing = <span class='fl'>FALSE</span>,
+  quote = <span class='fl'>FALSE</span>,
+  sep = <span class='st'>"\t"</span>,
+  row.names = <span class='fl'>FALSE</span>,
+  cols = <span class='kw'>NULL</span>,
+  col.names = <span class='fl'>TRUE</span>,
+  col.labels = <span class='fl'>FALSE</span>,
+  append = <span class='fl'>FALSE</span>,
+  <span class='kw'>...</span>
 )
 
 <span class='fu'>write.txt.wide</span>(
-  <span class='no'>object</span>,
-  <span class='kw'>file</span> <span class='kw'>=</span> <span class='st'>""</span>,
-  <span class='kw'>cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>quote</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>"\t"</span>,
-  <span class='kw'>row.names</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>col.names</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>header.lines</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>col.labels</span> <span class='kw'>=</span> <span class='kw'>if</span> (<span class='no'>header.lines</span> <span class='kw'>==</span> <span class='fl'>1</span>) <span class='fl'>FALSE</span> <span class='kw'>else</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>append</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='no'>...</span>
+  <span class='kw'>object</span>,
+  file = <span class='st'>""</span>,
+  cols = <span class='kw'>NULL</span>,
+  quote = <span class='fl'>FALSE</span>,
+  sep = <span class='st'>"\t"</span>,
+  row.names = <span class='fl'>FALSE</span>,
+  col.names = <span class='fl'>TRUE</span>,
+  header.lines = <span class='fl'>1</span>,
+  col.labels = <span class='co'>if</span> (<span class='kw'>header.lines</span> <span class='op'>==</span> <span class='fl'>1</span>) <span class='fl'>FALSE</span> <span class='co'>else</span> <span class='fl'>TRUE</span>,
+  append = <span class='fl'>FALSE</span>,
+  <span class='kw'>...</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -302,9 +302,9 @@ provides the functions <code><a href='https://rdrr.io/pkg/R.matlab/man/readMat.h
 <p>hyperSpec comes with a number of pre-defined functions to import
 manufacturer specific file formats. For details, see <code>vignette
 ("file-io")</code>.</p>
-<p><code><a href='read-spc.html'>read.spc</a></code> imports Thermo Galactic's .spc file
+<p><code><a href='https://rdrr.io/pkg/hyperSpec/man/read-spc.html'>read.spc</a></code> imports Thermo Galactic's .spc file
 format, and ENVI files may be read using
-<code><a href='read.ENVI.html'>read.ENVI</a></code>.</p>
+<code><a href='https://rdrr.io/pkg/hyperSpec/man/read.ENVI.html'>read.ENVI</a></code>.</p>
 <p>These functions are very flexible and provide lots of arguments.</p>
 <p>If you use them to read or write manufacturer specific ASCII formats,
 please consider writing a wrapper function and contributing this function
@@ -322,9 +322,9 @@ to <span class="pkg">hyperSpec</span>.  An example is in the &#8220;flu&#8221; v
 <p>hyperSpec comes with a number of pre-defined functions to import
   manufacturer specific file formats. For details, see <code>vignette
   ("fileio")</code>.</p>
-<p><code><a href='read-spc.html'>read.spc</a></code> imports Thermo Galactic's .spc file
+<p><code><a href='https://rdrr.io/pkg/hyperSpec/man/read-spc.html'>read.spc</a></code> imports Thermo Galactic's .spc file
   format, and ENVI files may be read using
-  <code><a href='read.ENVI.html'>read.ENVI</a></code>.</p>
+  <code><a href='https://rdrr.io/pkg/hyperSpec/man/read.ENVI.html'>read.ENVI</a></code>.</p>
 <p>These functions are very flexible and provide lots of arguments.</p>
 <p>If you use them to read or write manufacturer specific ASCII formats,
 please consider writing a wrapper function and contributing this
@@ -332,17 +332,17 @@ function to <span class="pkg">hyperSpec</span>.  An example is in the &#8220;flu
 (see <code>vignette ("flu", package = "hyperSpec"</code>).</p>
 <p>Note that R accepts many packed formats for ASCII files, see
 <code><a href='https://rdrr.io/r/base/connections.html'>connections</a></code>. For .zip files, see <code><a href='https://rdrr.io/r/utils/unzip.html'>unzip</a></code>.</p>
-<p>For further information, see the examples below, <code><a href='../articles/fileio.html'>vignette ("fileio")</a></code> and the documentation
+<p>For further information, see the examples below, <code>vignette ("fileio")</code> and the documentation
 of <code><a href='https://rdrr.io/pkg/R.matlab/man/R.matlab-package.html'>R.matlab</a></code>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='https://rdrr.io/r/utils/read.table.html'>read.table</a></code> and
   <code><a href='https://rdrr.io/r/utils/write.table.html'>write.table</a></code></p>
 <p><code><a href='https://rdrr.io/pkg/R.matlab/man/R.matlab-package.html'>R.matlab</a></code> for .mat files</p>
-<p><code><a href='read.ENVI.html'>read.ENVI</a></code> for ENVI data</p>
-<p><code><a href='read-spc.html'>read.spc</a></code> for .spc files</p>
-<p>Manufacturer specific file formats: <code><a href='read.txt.Renishaw.html'>read.txt.Renishaw</a></code></p>
-<p><code><a href='../articles/fileio.html'>vignette ("fileio")</a></code> and <a href='http://hyperspec.r-forge.r-project.org/blob/fileio.pdf'>http://hyperspec.r-forge.r-project.org/blob/fileio.pdf</a>,
+<p><code><a href='https://rdrr.io/pkg/hyperSpec/man/read.ENVI.html'>read.ENVI</a></code> for ENVI data</p>
+<p><code><a href='https://rdrr.io/pkg/hyperSpec/man/read-spc.html'>read.spc</a></code> for .spc files</p>
+<p>Manufacturer specific file formats: <code>read.txt.Renishaw</code></p>
+<p><code>vignette ("fileio")</code> and <a href='http://hyperspec.r-forge.r-project.org/blob/fileio.pdf'>http://hyperspec.r-forge.r-project.org/blob/fileio.pdf</a>,
 respectively</p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
@@ -351,21 +351,21 @@ respectively</p></div>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) <span class='fu'><a href='https://rdrr.io/r/utils/vignette.html'>vignette</a></span>  (<span class='st'>"file-io"</span>)
+<span class='co'>if</span> (<span class='fl'>FALSE</span>) <span class='fu'><a href='https://rdrr.io/r/utils/vignette.html'>vignette</a></span>  (<span class='st'>"file-io"</span>)
 
 <span class='co'>## export &amp; import matlab files</span>
-<span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/library.html'>require</a></span> (<span class='no'>R.matlab</span>)) {
+<span class='co'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/library.html'>require</a></span> (<span class='kw'><a href='https://github.com/HenrikBengtsson/R.matlab'>R.matlab</a></span>)) {
    <span class='co'># export to matlab file</span>
    <span class='fu'><a href='https://rdrr.io/pkg/R.matlab/man/writeMat.html'>writeMat</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>"/test.mat"</span>),
-             <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>flu</span><span class='kw'>[[</span>]], <span class='kw'>wavelength</span> <span class='kw'>=</span> <span class='no'>flu</span>@<span class='kw'>wavelength</span>,
-             <span class='kw'>label</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span> (<span class='no'>flu</span>@<span class='kw'>label</span>, <span class='no'>as.character</span>))
+             x = <span class='kw'>flu</span>[[]], wavelength = <span class='kw'>flu</span><span class='op'>@</span>wavelength,
+             label = <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span> (<span class='kw'>flu</span><span class='op'>@</span>label, <span class='kw'>as.character</span>))
 
    <span class='co'># reading a matlab file</span>
-   <span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/R.matlab/man/readMat.html'>readMat</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>"/test.mat"</span>))
-   <span class='fu'><a href='show.html'>print</a></span> (<span class='no'>data</span>)
-   <span class='no'>mat</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='initialize.html'>new</a></span> (<span class='st'>"hyperSpec"</span>, <span class='kw'>spc</span> <span class='kw'>=</span> <span class='no'>data</span>$<span class='no'>x</span>,
-               <span class='kw'>wavelength</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span>(<span class='no'>data</span>$<span class='no'>wavelength</span>),
-               <span class='kw'>label</span> <span class='kw'>=</span> <span class='no'>data</span>$<span class='no'>label</span>[,,<span class='fl'>1</span>])
+   <span class='kw'>data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/R.matlab/man/readMat.html'>readMat</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>"/test.mat"</span>))
+   <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span> (<span class='kw'>data</span>)
+   <span class='kw'>mat</span> <span class='op'>&lt;-</span> <span class='fu'>new</span> (<span class='st'>"hyperSpec"</span>, spc = <span class='kw'>data</span><span class='op'>$</span><span class='kw'>x</span>,
+               wavelength = <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span>(<span class='kw'>data</span><span class='op'>$</span><span class='kw'>wavelength</span>),
+               label = <span class='kw'>data</span><span class='op'>$</span><span class='kw'>label</span>[,,<span class='fl'>1</span>])
 }</div><div class='output co'>#&gt; <span class='message'>Loading required package: R.matlab</span></div><div class='output co'>#&gt; <span class='message'>R.matlab v3.6.2 (2018-09-26) successfully loaded. See ?R.matlab for help.</span></div><div class='output co'>#&gt; <span class='message'></span>
 #&gt; <span class='message'>Attaching package: ‘R.matlab’</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:base’:</span>
 #&gt; <span class='message'></span>
@@ -576,7 +576,7 @@ respectively</p></div>
 #&gt; 
 #&gt; attr(,"header")
 #&gt; attr(,"header")$description
-#&gt; [1] "MATLAB 5.0 MAT-file, Platform: unix, Software: R v4.0.1, Created on: Sun Jun 21 02:46:27 2020                               "
+#&gt; [1] "MATLAB 5.0 MAT-file, Platform: unix, Software: R v4.0.1, Created on: Sun Jun 21 14:07:09 2020                               "
 #&gt; 
 #&gt; attr(,"header")$version
 #&gt; [1] "5"
@@ -587,15 +587,15 @@ respectively</p></div>
 <span class='co'>## ascii export &amp; import</span>
 
 
-<span class='fu'>write.txt.long</span> (<span class='no'>flu</span>,
-    <span class='kw'>file</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>"/flu.txt"</span>),
-    <span class='kw'>cols</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>".wavelength"</span>, <span class='st'>"spc"</span>, <span class='st'>"c"</span>),
-                <span class='kw'>order</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"c"</span>, <span class='st'>".wavelength"</span>),
-                <span class='kw'>decreasing</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>FALSE</span>, <span class='fl'>TRUE</span>))
+<span class='fu'>write.txt.long</span> (<span class='kw'>flu</span>,
+    file = <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>"/flu.txt"</span>),
+    cols = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>".wavelength"</span>, <span class='st'>"spc"</span>, <span class='st'>"c"</span>),
+		order = c("c", ".wavel<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>n<span class='st'>"c"</span>")<span class='st'>".wavelength"</span>
+		decreasing = c(FALSE, TRUE)<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='fl'>FALSE</span><span class='fl'>TRUE</span>
 
-<span class='fu'>read.txt.long</span> (<span class='kw'>file</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>"/flu.txt"</span>),
-      <span class='kw'>cols</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span> (<span class='kw'>.wavelength</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span> (<span class='no'>lambda</span> / <span class='no'>nm</span>),
-      <span class='kw'>spc</span> <span class='kw'>=</span> <span class='st'>"I / a.u"</span>, <span class='kw'>c</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span> (<span class='st'>"/"</span> (<span class='no'>c</span>, (<span class='no'>mg</span>/<span class='no'>l</span>)))))</div><div class='output co'>#&gt; hyperSpec object
+<span class='fu'>read.txt.long</span> (file = <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>"/flu.txt"</span>),
+      cols = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span> (.wavelength = <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span> (<span class='kw'>lambda</span> <span class='op'>/</span> <span class='kw'>nm</span>),
+      spc = <span class='st'>"I / a.u"</span>, c = <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span> (<span class='st'>"/"</span> (<span class='kw'>c</span>, (<span class='kw'>mg</span><span class='op'>/</span><span class='kw'>l</span>)))))</div><div class='output co'>#&gt; hyperSpec object
 #&gt;    6 spectra
 #&gt;    3 data columns
 #&gt;    181 data points / spectrum
@@ -603,22 +603,22 @@ respectively</p></div>
 #&gt; data:  (6 rows x 3 columns)
 #&gt;    1. spc: I / a.u [matrix, array181] 27.15000 66.80133 ... 294.6495 
 #&gt;    2. c: c/(mg/l) [numeric] 0.05 0.10 ... 0.3 
-#&gt;    3. filename: filename [character] /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmplCyXjP/flu.txt /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmplCyXjP/flu.txt ... /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmplCyXjP/flu.txt </div><div class='input'>
-<span class='fu'>write.txt.wide</span> (<span class='no'>flu</span>,  <span class='kw'>file</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>"/flu.txt"</span>),
-    <span class='kw'>cols</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"c"</span>, <span class='st'>"spc"</span>),
-                <span class='kw'>col.labels</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>header.lines</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>row.names</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+#&gt;    3. filename: filename [character] /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpIOMLcE/flu.txt /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpIOMLcE/flu.txt ... /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpIOMLcE/flu.txt </div><div class='input'>
+<span class='fu'>write.txt.wide</span> (<span class='kw'>flu</span>,  file = <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>"/flu.txt"</span>),
+    cols = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"c"</span>, <span class='st'>"spc"</span>),
+		col.labels = TRUE, header.l<span class='fl'>TRUE</span> = 2, row.names =<span class='fl'>2</span>TRUE)<span class='fl'>TRUE</span>
 
-<span class='fu'>write.txt.wide</span> (<span class='no'>flu</span>,  <span class='kw'>file</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>"/flu.txt"</span>),
-                <span class='kw'>col.labels</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>row.names</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'>write.txt.wide</span> (<span class='kw'>flu</span>,  file = <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>"/flu.txt"</span>),
+                col.labels = <span class='fl'>FALSE</span>, row.names = <span class='fl'>FALSE</span>)
 
-<span class='fu'>read.txt.wide</span> (<span class='kw'>file</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>"/flu.txt"</span>),
+<span class='fu'>read.txt.wide</span> (file = <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>"/flu.txt"</span>),
     <span class='co'># give columns in same order as they are in the file</span>
-    <span class='kw'>cols</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span> (<span class='kw'>spc</span> <span class='kw'>=</span> <span class='st'>"I / a.u"</span>,
-                 <span class='kw'>c</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span> (<span class='st'>"/"</span>(<span class='st'>"c"</span>, <span class='st'>"mg/l"</span>)),
-                 <span class='kw'>filename</span> <span class='kw'>=</span> <span class='st'>"filename"</span>,
+    cols = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span> (spc = <span class='st'>"I / a.u"</span>,
+                 c = <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span> (<span class='st'>"/"</span>(<span class='st'>"c"</span>, <span class='st'>"mg/l"</span>)),
+                 filename = <span class='st'>"filename"</span>,
                  <span class='co'># plus wavelength label last</span>
-                 <span class='kw'>.wavelength</span> <span class='kw'>=</span> <span class='st'>"lambda / nm"</span>),
-                <span class='kw'>header</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: $filename already exists. =&gt; Skipping file.keep.name</span></div><div class='output co'>#&gt; hyperSpec object
+                 .wavelength = <span class='st'>"lambda / nm"</span>),
+		header = TRUE)<span class='fl'>TRUE</span></div><div class='output co'>#&gt; <span class='warning'>Warning: $filename already exists. =&gt; Skipping file.keep.name</span></div><div class='output co'>#&gt; hyperSpec object
 #&gt;    6 spectra
 #&gt;    3 data columns
 #&gt;    181 data points / spectrum
@@ -627,7 +627,6 @@ respectively</p></div>
 #&gt;    1. c: "c"/"mg/l" [character] rawdata/flu1.txt rawdata/flu2.txt ... rawdata/flu6.txt 
 #&gt;    2. filename: filename [numeric] 0.05 0.10 ... 0.3 
 #&gt;    3. spc: I / a.u [matrix, array181] 27.15000 66.80133 ... 294.6495 </div><div class='input'>
-
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

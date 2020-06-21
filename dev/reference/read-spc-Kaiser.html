@@ -167,15 +167,15 @@
     <p>Import functions for Kaiser Optical Systems .spc files</p>
     </div>
 
-    <pre class="usage"><span class='fu'>read.spc.Kaiser</span>(<span class='no'>files</span>, <span class='no'>...</span>, <span class='kw'>glob</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+    <pre class="usage"><span class='fu'>read.spc.Kaiser</span>(<span class='kw'>files</span>, <span class='kw'>...</span>, glob = <span class='fl'>TRUE</span>)
 
-<span class='fu'>read.spc.KaiserMap</span>(<span class='no'>files</span>, <span class='kw'>keys.log2data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)
+<span class='fu'>read.spc.KaiserMap</span>(<span class='kw'>files</span>, keys.log2data = <span class='kw'>NULL</span>, <span class='kw'>...</span>)
 
 <span class='fu'>read.spc.KaiserLowHigh</span>(
-  <span class='kw'>files</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/stop.html'>stop</a></span>(<span class='st'>"file names needed"</span>),
-  <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"single"</span>, <span class='st'>"map"</span>),
-  <span class='no'>...</span>,
-  <span class='kw'>glob</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+  files = <span class='fu'><a href='https://rdrr.io/r/base/stop.html'>stop</a></span>(<span class='st'>"file names needed"</span>),
+  type = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"single"</span>, <span class='st'>"map"</span>),
+  <span class='kw'>...</span>,
+  glob = <span class='fl'>TRUE</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -194,7 +194,7 @@ containing file name pattern and expanded to all matching file names.</p></td>
     </tr>
     <tr>
       <th>keys.log2data, ...</th>
-      <td><p>All further arguments are handed over directly to <code><a href='read-spc.html'>read.spc</a></code>.</p></td>
+      <td><p>All further arguments are handed over directly to <code>read.spc</code>.</p></td>
     </tr>
     <tr>
       <th>type</th>

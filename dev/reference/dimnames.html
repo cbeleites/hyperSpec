@@ -166,23 +166,23 @@ are treated separately: see wl" />
 
     <div class="ref-description">
     <p>hyperSpec objects can have row- and column names like data.frames. The "names" of the wavelengths
-are treated separately: see <code><a href='wl.html'>wl</a></code></p>
+are treated separately: see <code>wl</code></p>
     </div>
 
     <pre class="usage"><span class='co'># S4 method for hyperSpec</span>
-<span class='fu'>dimnames</span>(<span class='no'>x</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/dimnames.html'>dimnames</a></span>(<span class='kw'>x</span>)
 
 <span class='co'># S4 method for hyperSpec</span>
-<span class='fu'>rownames</span>(<span class='no'>x</span>, <span class='kw'>do.NULL</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>prefix</span> <span class='kw'>=</span> <span class='st'>"row"</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span>(<span class='kw'>x</span>, do.NULL = <span class='fl'>TRUE</span>, prefix = <span class='st'>"row"</span>)
 
 <span class='co'># S4 method for hyperSpec</span>
-<span class='fu'>rownames</span> (<span class='no'>x</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span>
+<span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span> (<span class='kw'>x</span>) <span class='op'>&lt;-</span> <span class='kw'>value</span>
 
 <span class='co'># S4 method for hyperSpec</span>
-<span class='fu'>colnames</span>(<span class='no'>x</span>, <span class='kw'>do.NULL</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>prefix</span> <span class='kw'>=</span> <span class='st'>"col"</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span>(<span class='kw'>x</span>, do.NULL = <span class='fl'>TRUE</span>, prefix = <span class='st'>"col"</span>)
 
 <span class='co'># S4 method for hyperSpec</span>
-<span class='fu'>colnames</span> (<span class='no'>x</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span></pre>
+<span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span> (<span class='kw'>x</span>) <span class='op'>&lt;-</span> <span class='kw'>value</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -208,7 +208,7 @@ Should this create names if they are <code>NULL</code>?</p></td>
 
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='wl.html'>wl</a></code> for the wavelength dimension</p>
+    <div class='dont-index'><p><code>wl</code> for the wavelength dimension</p>
 <p><code><a href='https://rdrr.io/r/base/dimnames.html'>dimnames</a></code></p>
 <p><code><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></code></p>
 <p><code><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></code></p></div>
@@ -217,7 +217,7 @@ Should this create names if they are <code>NULL</code>?</p></td>
     <p>C. Beleites</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>dimnames</span> (<span class='no'>flu</span>)</div><div class='output co'>#&gt; $row
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/dimnames.html'>dimnames</a></span> (<span class='kw'>flu</span>)</div><div class='output co'>#&gt; $row
 #&gt; [1] "1" "2" "3" "4" "5" "6"
 #&gt; 
 #&gt; $data
@@ -245,7 +245,7 @@ Should this create names if they are <code>NULL</code>?</p></td>
 #&gt; [163] "486"   "486.5" "487"   "487.5" "488"   "488.5" "489"   "489.5" "490"  
 #&gt; [172] "490.5" "491"   "491.5" "492"   "492.5" "493"   "493.5" "494"   "494.5"
 #&gt; [181] "495"  
-#&gt; </div><div class='input'><span class='fu'>rownames</span> (<span class='no'>flu</span>)</div><div class='output co'>#&gt; [1] "1" "2" "3" "4" "5" "6"</div><div class='input'><span class='fu'>colnames</span> (<span class='no'>chondro</span>)</div><div class='output co'>#&gt; [1] "y"        "x"        "filename" "clusters" "spc"     </div></pre>
+#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span> (<span class='kw'>flu</span>)</div><div class='output co'>#&gt; [1] "1" "2" "3" "4" "5" "6"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span> (<span class='kw'>chondro</span>)</div><div class='output co'>#&gt; [1] "y"        "x"        "filename" "clusters" "spc"     </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -173,14 +173,14 @@ These functions allow to import Thermo Galactic/Grams .spc files.</p>
     </div>
 
     <pre class="usage"><span class='fu'>read.spc</span>(
-  <span class='no'>filename</span>,
-  <span class='kw'>keys.hdr2data</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>keys.log2data</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>log.txt</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>log.bin</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>log.disk</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>hdr</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='kw'>no.object</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+  <span class='kw'>filename</span>,
+  keys.hdr2data = <span class='fl'>FALSE</span>,
+  keys.log2data = <span class='fl'>FALSE</span>,
+  log.txt = <span class='fl'>TRUE</span>,
+  log.bin = <span class='fl'>FALSE</span>,
+  log.disk = <span class='fl'>FALSE</span>,
+  hdr = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
+  no.object = <span class='fl'>FALSE</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -252,19 +252,20 @@ into the hyperSpec object's log.</p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'>## get the sample .spc files from ftirsearch.com (see above)</span>
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='co'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='co'># single spectrum</span>
-<span class='no'>spc</span> <span class='kw'>&lt;-</span> <span class='fu'>read.spc</span> (<span class='st'>"BENZENE.SPC"</span>)
-<span class='fu'><a href='plot.html'>plot</a></span> (<span class='no'>spc</span>)
+<span class='kw'>spc</span> <span class='op'>&lt;-</span> <span class='fu'>read.spc</span> (<span class='st'>"BENZENE.SPC"</span>)
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span> (<span class='kw'>spc</span>)
 
 <span class='co'># multi-spectra .spc file with common wavelength axis</span>
-<span class='no'>spc</span> <span class='kw'>&lt;-</span> <span class='fu'>read.spc</span> (<span class='st'>'IG_MULTI.SPC'</span>)
-<span class='no'>spc</span>
+<span class='kw'>spc</span> <span class='op'>&lt;-</span> <span class='fu'>read.spc</span> (<span class='st'>'IG_MULTI.SPC'</span>)
+<span class='kw'>spc</span>
 
 <span class='co'># multi-spectra .spc file with individual wavelength axes</span>
-<span class='no'>spc</span> <span class='kw'>&lt;-</span> <span class='fu'>read.spc</span> (<span class='st'>"BARBITUATES.SPC"</span>)
-<span class='fu'><a href='plot.html'>plot</a></span> (<span class='no'>spc</span> <span class='kw'>[[</span><span class='fl'>1</span>]], <span class='kw'>lines.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span> (<span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"h"</span>))
-}</div></pre>
+<span class='kw'>spc</span> <span class='op'>&lt;-</span> <span class='fu'>read.spc</span> (<span class='st'>"BARBITUATES.SPC"</span>)
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span> (<span class='kw'>spc</span> [[<span class='fl'>1</span>]], lines.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span> (type = <span class='st'>"h"</span>))
+}
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

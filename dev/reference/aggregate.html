@@ -168,14 +168,14 @@
     </div>
 
     <pre class="usage"><span class='co'># S4 method for hyperSpec</span>
-<span class='fu'>aggregate</span>(
-  <span class='no'>x</span>,
-  <span class='kw'>by</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/stop.html'>stop</a></span>(<span class='st'>"by is needed"</span>),
-  <span class='kw'>FUN</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/stop.html'>stop</a></span>(<span class='st'>"FUN is needed."</span>),
-  <span class='no'>...</span>,
-  <span class='kw'>out.rows</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>append.rows</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>by.isindex</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+<span class='fu'><a href='https://rdrr.io/r/stats/aggregate.html'>aggregate</a></span>(
+  <span class='kw'>x</span>,
+  by = <span class='fu'><a href='https://rdrr.io/r/base/stop.html'>stop</a></span>(<span class='st'>"by is needed"</span>),
+  FUN = <span class='fu'><a href='https://rdrr.io/r/base/stop.html'>stop</a></span>(<span class='st'>"FUN is needed."</span>),
+  <span class='kw'>...</span>,
+  out.rows = <span class='kw'>NULL</span>,
+  append.rows = <span class='kw'>NULL</span>,
+  by.isindex = <span class='fl'>FALSE</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -243,39 +243,38 @@ more rows are appended and a warning is issued.</p>
     <p>C. Beleites</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>cluster.means</span> <span class='kw'>&lt;-</span> <span class='fu'>aggregate</span> (<span class='no'>chondro</span>, <span class='no'>chondro</span>$<span class='no'>clusters</span>, <span class='no'>mean_pm_sd</span>)
-<span class='fu'><a href='plot.html'>plot</a></span>(<span class='no'>cluster.means</span>, <span class='kw'>stacked</span> <span class='kw'>=</span> <span class='st'>".aggregate"</span>, <span class='kw'>fill</span> <span class='kw'>=</span> <span class='st'>".aggregate"</span>,
-     <span class='kw'>col</span> <span class='kw'>=</span> <span class='fu'><a href='palettes.html'>matlab.dark.palette</a></span> (<span class='fl'>3</span>))</div><div class='img'><img src='aggregate-1.png' alt='' width='466' height='288' /></div><div class='input'>
+    <pre class="examples"><div class='input'><span class='kw'>cluster.means</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/aggregate.html'>aggregate</a></span> (<span class='kw'>chondro</span>, <span class='kw'>chondro</span><span class='op'>$</span><span class='kw'>clusters</span>, <span class='kw'>mean_pm_sd</span>)
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>cluster.means</span>, stacked = <span class='st'>".aggregate"</span>, fill = <span class='st'>".aggregate"</span>,
+     col = <span class='fu'>matlab.dark.palette</span> (<span class='fl'>3</span>))</div><div class='img'><img src='aggregate-1.png' alt='' width='466' height='288' /></div><div class='input'>
 <span class='co'>## make some "spectra"</span>
-<span class='no'>spc</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='initialize.html'>new</a></span> (<span class='st'>"hyperSpec"</span>, <span class='kw'>spc</span> <span class='kw'>=</span> <span class='fu'><a href='sweep.html'>sweep</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span> (<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span> (<span class='fl'>10</span>*<span class='fl'>20</span>), <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>20</span>), <span class='fl'>1</span>, (<span class='fl'>1</span>:<span class='fl'>10</span>)*<span class='fl'>5</span>, <span class='st'>"+"</span>))
+<span class='kw'>spc</span> <span class='op'>&lt;-</span> <span class='fu'>new</span> (<span class='st'>"hyperSpec"</span>, spc = <span class='fu'><a href='https://rdrr.io/r/base/sweep.html'>sweep</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span> (<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span> (<span class='fl'>10</span><span class='op'>*</span><span class='fl'>20</span>), ncol = <span class='fl'>20</span>), <span class='fl'>1</span>, (<span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>)<span class='op'>*</span><span class='fl'>5</span>, <span class='st'>"+"</span>))
 
 <span class='co'>## 3 groups</span>
-<span class='no'>color</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"red"</span>, <span class='st'>"blue"</span>, <span class='st'>"black"</span>)
-<span class='no'>by</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>as.factor</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span> (<span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>5</span>, <span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>2</span>))
-<span class='no'>by</span></div><div class='output co'>#&gt;  [1] 1 1 1 1 1 1 5 1 2 2
-#&gt; Levels: 1 2 5</div><div class='input'><span class='fu'><a href='plot.html'>plot</a></span> (<span class='no'>spc</span>, <span class='st'>"spc"</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='no'>color</span>[<span class='no'>by</span>])</div><div class='input'>
+<span class='kw'>color</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"red"</span>, <span class='st'>"blue"</span>, <span class='st'>"black"</span>)
+<span class='kw'>by</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>as.factor</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span> (<span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>5</span>, <span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>2</span>))
+<span class='kw'>by</span></div><div class='output co'>#&gt;  [1] 1 1 1 1 1 1 5 1 2 2
+#&gt; Levels: 1 2 5</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span> (<span class='kw'>spc</span>, <span class='st'>"spc"</span>, col = <span class='kw'>color</span>[<span class='kw'>by</span>])</div><div class='input'>
 <span class='co'>## Example 1: plot the mean of the groups</span>
-<span class='fu'><a href='plot.html'>plot</a></span> (<span class='fu'>aggregate</span> (<span class='no'>spc</span>, <span class='no'>by</span>, <span class='no'>mean</span>), <span class='st'>"spc"</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='no'>color</span>, <span class='kw'>add</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-      <span class='kw'>lines.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>lwd</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>lty</span> <span class='kw'>=</span> <span class='fl'>2</span>))</div><div class='img'><img src='aggregate-2.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span> (<span class='fu'><a href='https://rdrr.io/r/stats/aggregate.html'>aggregate</a></span> (<span class='kw'>spc</span>, <span class='kw'>by</span>, <span class='kw'>mean</span>), <span class='st'>"spc"</span>, col = <span class='kw'>color</span>, add = <span class='fl'>TRUE</span>,
+      lines.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(lwd = <span class='fl'>3</span>, lty = <span class='fl'>2</span>))</div><div class='img'><img src='aggregate-2.png' alt='' width='466' height='288' /></div><div class='input'>
 <span class='co'>## Example 2: FUN may return more than one value (here: 3)</span>
-<span class='fu'><a href='plot.html'>plot</a></span> (<span class='fu'>aggregate</span> (<span class='no'>spc</span>, <span class='no'>by</span>, <span class='no'>mean_pm_sd</span>), <span class='st'>"spc"</span>,
-      <span class='kw'>col</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='no'>color</span>, <span class='kw'>each</span> <span class='kw'>=</span> <span class='fl'>3</span>), <span class='kw'>lines.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>lwd</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>lty</span> <span class='kw'>=</span> <span class='fl'>2</span>))</div><div class='img'><img src='aggregate-3.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span> (<span class='fu'><a href='https://rdrr.io/r/stats/aggregate.html'>aggregate</a></span> (<span class='kw'>spc</span>, <span class='kw'>by</span>, <span class='kw'>mean_pm_sd</span>), <span class='st'>"spc"</span>,
+      col = <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='kw'>color</span>, each = <span class='fl'>3</span>), lines.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(lwd = <span class='fl'>3</span>, lty = <span class='fl'>2</span>))</div><div class='img'><img src='aggregate-3.png' alt='' width='466' height='288' /></div><div class='input'>
 <span class='co'>## Example 3: aggregate even takes FUN that return different numbers of</span>
 <span class='co'>##            values for different groups</span>
-<span class='fu'><a href='plot.html'>plot</a></span> (<span class='no'>spc</span>, <span class='st'>"spc"</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='no'>color</span>[<span class='no'>by</span>])</div><div class='input'>
-<span class='no'>weird.function</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span> (<span class='no'>x</span>){
-   <span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span> (<span class='no'>x</span>) <span class='kw'>==</span> <span class='fl'>1</span>)
-      <span class='no'>x</span> + <span class='fl'>1</span> : <span class='fl'>10</span>
-   <span class='kw'>else</span> <span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span> (<span class='no'>x</span>) <span class='kw'>==</span> <span class='fl'>2</span>)
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span> (<span class='kw'>spc</span>, <span class='st'>"spc"</span>, col = <span class='kw'>color</span>[<span class='kw'>by</span>])</div><div class='input'>
+<span class='kw'>weird.function</span> <span class='op'>&lt;-</span> <span class='fu'>function</span> (<span class='kw'>x</span>){
+   <span class='co'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span> (<span class='kw'>x</span>) <span class='op'>==</span> <span class='fl'>1</span>)
+      <span class='kw'>x</span> <span class='op'>+</span> <span class='fl'>1</span> <span class='op'>:</span> <span class='fl'>10</span>
+   <span class='co'>else</span> <span class='co'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span> (<span class='kw'>x</span>) <span class='op'>==</span> <span class='fl'>2</span>)
       <span class='kw'>NULL</span>
-   <span class='kw'>else</span>
-      <span class='no'>x</span> [<span class='fl'>1</span>]
+   <span class='co'>else</span>
+      <span class='kw'>x</span> [<span class='fl'>1</span>]
 }
 
-<span class='no'>agg</span> <span class='kw'>&lt;-</span> <span class='fu'>aggregate</span> (<span class='no'>spc</span>, <span class='no'>by</span>, <span class='no'>weird.function</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: At3of3levels: Output data.frame too small. Consider using anappropriate value for out.rows to speed up calculations.</span></div><div class='input'><span class='no'>agg</span>$<span class='no'>.aggregate</span></div><div class='output co'>#&gt;  [1] 1 5 5 5 5 5 5 5 5 5 5
-#&gt; Levels: 1 2 5</div><div class='input'><span class='fu'><a href='plot.html'>plot</a></span> (<span class='no'>agg</span>, <span class='st'>"spc"</span>,  <span class='kw'>add</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='no'>color</span>[<span class='no'>agg</span>$<span class='no'>.aggregate</span>],
-      <span class='kw'>lines.args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span> (<span class='kw'>lwd</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>lty</span> <span class='kw'>=</span> <span class='fl'>2</span>))</div><div class='img'><img src='aggregate-4.png' alt='' width='466' height='288' /></div><div class='input'>
-</div></pre>
+<span class='kw'>agg</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/aggregate.html'>aggregate</a></span> (<span class='kw'>spc</span>, <span class='kw'>by</span>, <span class='kw'>weird.function</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: At3of3levels: Output data.frame too small. Consider using anappropriate value for out.rows to speed up calculations.</span></div><div class='input'><span class='kw'>agg</span><span class='op'>$</span><span class='kw'>.aggregate</span></div><div class='output co'>#&gt;  [1] 1 5 5 5 5 5 5 5 5 5 5
+#&gt; Levels: 1 2 5</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span> (<span class='kw'>agg</span>, <span class='st'>"spc"</span>,  add = <span class='fl'>TRUE</span>, col = <span class='kw'>color</span>[<span class='kw'>agg</span><span class='op'>$</span><span class='kw'>.aggregate</span>],
+      lines.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span> (lwd = <span class='fl'>3</span>, lty = <span class='fl'>2</span>))</div><div class='img'><img src='aggregate-4.png' alt='' width='466' height='288' /></div><div class='input'></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

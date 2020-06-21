@@ -169,13 +169,13 @@
 
     <pre class="usage"><span class='co'># S4 method for hyperSpec,missing</span>
 <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cov</a></span>(
-  <span class='no'>x</span>,
-  <span class='kw'>y</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>use</span> <span class='kw'>=</span> <span class='st'>"everything"</span>,
-  <span class='kw'>method</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"pearson"</span>, <span class='st'>"kendall"</span>, <span class='st'>"spearman"</span>)
+  <span class='kw'>x</span>,
+  y = <span class='kw'>NULL</span>,
+  use = <span class='st'>"everything"</span>,
+  method = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"pearson"</span>, <span class='st'>"kendall"</span>, <span class='st'>"spearman"</span>)
 )
 
-<span class='fu'>pooled.cov</span>(<span class='no'>x</span>, <span class='no'>groups</span>, <span class='no'>...</span>, <span class='kw'>regularize</span> <span class='kw'>=</span> <span class='fl'>1e-05</span> * <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>abs</a></span>(<span class='no'>COV</span>)))</pre>
+<span class='fu'>pooled.cov</span>(<span class='kw'>x</span>, <span class='kw'>groups</span>, <span class='kw'>...</span>, regularize = <span class='fl'>1e-05</span> <span class='op'>*</span> <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>abs</a></span>(<span class='kw'>COV</span>)))</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -209,7 +209,7 @@
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>covariance matrix of size <code><a href='dim.html'>nwl (x)</a></code> x  <code><a href='dim.html'>nwl (x)</a></code></p>
+    <p>covariance matrix of size <code>nwl (x)</code> x  <code>nwl (x)</code></p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='https://rdrr.io/r/stats/cor.html'>cov</a></code></p></div>
@@ -218,9 +218,8 @@
     <p>C. Beleites</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/image.html'>image</a></span> (<span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cov</a></span> (<span class='no'>chondro</span>))</div><div class='img'><img src='cov-1.png' alt='' width='466' height='288' /></div><div class='input'><span class='no'>pcov</span> <span class='kw'>&lt;-</span>  <span class='fu'>pooled.cov</span> (<span class='no'>chondro</span>, <span class='no'>chondro</span>$<span class='no'>clusters</span>)
-<span class='fu'><a href='plot.html'>plot</a></span> (<span class='no'>pcov</span>$<span class='no'>means</span>)</div><div class='img'><img src='cov-2.png' alt='' width='466' height='288' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/image.html'>image</a></span> (<span class='no'>pcov</span>$<span class='no'>COV</span>)</div><div class='img'><img src='cov-3.png' alt='' width='466' height='288' /></div><div class='input'>
-</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/image.html'>image</a></span> (<span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cov</a></span> (<span class='kw'>chondro</span>))</div><div class='img'><img src='cov-1.png' alt='' width='466' height='288' /></div><div class='input'><span class='kw'>pcov</span> <span class='op'>&lt;-</span>  <span class='fu'>pooled.cov</span> (<span class='kw'>chondro</span>, <span class='kw'>chondro</span><span class='op'>$</span><span class='kw'>clusters</span>)
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span> (<span class='kw'>pcov</span><span class='op'>$</span><span class='kw'>means</span>)</div><div class='img'><img src='cov-2.png' alt='' width='466' height='288' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/image.html'>image</a></span> (<span class='kw'>pcov</span><span class='op'>$</span><span class='kw'>COV</span>)</div><div class='img'><img src='cov-3.png' alt='' width='466' height='288' /></div><div class='input'></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

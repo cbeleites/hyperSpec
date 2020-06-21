@@ -168,13 +168,13 @@
     </div>
 
     <pre class="usage"><span class='co'># S4 method for hyperSpec</span>
-<span class='fu'>Math2</span>(<span class='no'>x</span>, <span class='no'>digits</span>)
+<span class='fu'>Math2</span>(<span class='kw'>x</span>, <span class='kw'>digits</span>)
 
 <span class='co'># S4 method for hyperSpec</span>
-<span class='fu'>log</span>(<span class='no'>x</span>, <span class='kw'>base</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>exp</a></span>(<span class='fl'>1</span>), <span class='no'>...</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span>(<span class='kw'>x</span>, base = <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>exp</a></span>(<span class='fl'>1</span>), <span class='kw'>...</span>)
 
 <span class='co'># S4 method for hyperSpec</span>
-<span class='fu'>Math</span>(<span class='no'>x</span>)</pre>
+<span class='fu'><a href='https://rdrr.io/r/base/groupGeneric.html'>Math</a></span>(<span class='kw'>x</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -214,8 +214,8 @@
     <div class='dont-index'><p><code><a href='https://rdrr.io/r/methods/S4groupGeneric.html'>S4groupGeneric</a></code> for group generic methods.</p>
 <p><code><a href='https://rdrr.io/r/base/groupGeneric.html'>Math</a></code> for the base math functions.</p>
 <p><code>Arith</code> for arithmetic operators,
-  <code><a href='Comparison.html'>Comparison</a></code> for comparison operators, and
-  <code><a href='summary.html'>Summary</a></code> for group generic functions working on
+  <code><a href='https://rdrr.io/pkg/hyperSpec/man/Comparison.html'>Comparison</a></code> for comparison operators, and
+  <code><a href='https://rdrr.io/pkg/hyperSpec/man/summary.html'>Summary</a></code> for group generic functions working on
   <code>hyperSpec</code> objects.</p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
@@ -223,7 +223,7 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-        <span class='fu'>log</span> (<span class='no'>flu</span>)</div><div class='output co'>#&gt; hyperSpec object
+	log (fl<span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='kw'>flu</span></div><div class='output co'>#&gt; hyperSpec object
 #&gt;    6 spectra
 #&gt;    3 data columns
 #&gt;    181 data points / spectrum
@@ -231,8 +231,7 @@
 #&gt; data:  (6 rows x 3 columns)
 #&gt;    1. spc: I[fl]/"a.u." [matrix, array181] 3.301377 4.201723 ... 5.685787 
 #&gt;    2. filename: filename [character] rawdata/flu1.txt rawdata/flu2.txt ... rawdata/flu6.txt 
-#&gt;    3. c: c / (mg / l) [numeric] 0.05 0.10 ... 0.3 </div><div class='input'>
-</div></pre>
+#&gt;    3. c: c / (mg / l) [numeric] 0.05 0.10 ... 0.3 </div><div class='input'></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

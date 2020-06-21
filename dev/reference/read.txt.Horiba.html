@@ -168,24 +168,24 @@
     </div>
 
     <pre class="usage"><span class='fu'>read.txt.Horiba</span>(
-  <span class='no'>file</span>,
-  <span class='kw'>cols</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>spc</span> <span class='kw'>=</span> <span class='st'>"I / a.u."</span>, <span class='kw'>.wavelength</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span>(<span class='no'>Delta</span> * <span class='fu'><a href='https://rdrr.io/r/base/tilde.html'>tilde</a></span>(<span class='no'>nu</span>)/<span class='no'>cm</span>^-<span class='fl'>1</span>)),
-  <span class='kw'>header</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>"\t"</span>,
-  <span class='kw'>row.names</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>check.names</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='no'>...</span>
+  <span class='kw'>file</span>,
+  cols = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(spc = <span class='st'>"I / a.u."</span>, .wavelength = <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span>(<span class='kw'>Delta</span> <span class='op'>*</span> <span class='fu'><a href='https://rdrr.io/r/base/tilde.html'>tilde</a></span>(<span class='kw'>nu</span>)<span class='op'>/</span><span class='kw'>cm</span><span class='op'>^</span><span class='op'>-</span><span class='fl'>1</span>)),
+  header = <span class='fl'>TRUE</span>,
+  sep = <span class='st'>"\t"</span>,
+  row.names = <span class='kw'>NULL</span>,
+  check.names = <span class='fl'>FALSE</span>,
+  <span class='kw'>...</span>
 )
 
-<span class='fu'>read.txt.Horiba.xy</span>(<span class='no'>file</span>, <span class='no'>...</span>)
+<span class='fu'>read.txt.Horiba.xy</span>(<span class='kw'>file</span>, <span class='kw'>...</span>)
 
 <span class='fu'>read.txt.Horiba.t</span>(
-  <span class='no'>file</span>,
-  <span class='kw'>header</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>"\t"</span>,
-  <span class='kw'>row.names</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>check.names</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='no'>...</span>
+  <span class='kw'>file</span>,
+  header = <span class='fl'>TRUE</span>,
+  sep = <span class='st'>"\t"</span>,
+  row.names = <span class='kw'>NULL</span>,
+  check.names = <span class='fl'>FALSE</span>,
+  <span class='kw'>...</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -197,7 +197,7 @@
     </tr>
     <tr>
       <th>cols, header, sep, row.names, check.names, ...</th>
-      <td><p>further parameters are handed over to <code><a href='textio.html'>read.txt.wide</a></code></p></td>
+      <td><p>further parameters are handed over to <code><a href='https://rdrr.io/pkg/hyperSpec/man/textio.html'>read.txt.wide</a></code></p></td>
     </tr>
     </table>
 
