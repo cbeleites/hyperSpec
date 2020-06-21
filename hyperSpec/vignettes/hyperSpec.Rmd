@@ -48,10 +48,12 @@ pkgdown:
 ---
 
 
-```{r setup-main, include = FALSE}
-# Clean up to ensure reproducible workspace
-rm(list = ls())
+```{r cleanup-hyperspec, include = FALSE}
+# Clean up to ensure reproducible workspace ----------------------------------
+rm(list = ls(all.names = TRUE))
+```
 
+```{r setup, include = FALSE}
 # Packages -------------------------------------------------------------------
 library(hyperSpec)
 library(mvtnorm)

@@ -53,7 +53,12 @@ pkgdown:
 ---
 
 
-```{r setup-io, include=FALSE}
+```{r cleanup-fileio, include = FALSE}
+# Clean up to ensure reproducible workspace ----------------------------------
+rm(list = ls(all.names = TRUE))
+```
+
+```{r setup, include = FALSE}
 # Packages -------------------------------------------------------------------
 library(hyperSpec)
 library(R.matlab)

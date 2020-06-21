@@ -53,7 +53,12 @@ pkgdown:
 ---
 
 
-```{r setup-chondro, include=FALSE}
+```{r cleanup-chondro, include = FALSE}
+# Clean up to ensure reproducible workspace ----------------------------------
+rm(list = ls(all.names = TRUE))
+```
+
+```{r setup, include = FALSE}
 # Packages -------------------------------------------------------------------
 library(hyperSpec)
 library(latticeExtra)
