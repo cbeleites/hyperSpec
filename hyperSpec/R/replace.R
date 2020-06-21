@@ -51,6 +51,7 @@ setReplaceMethod("[",
 ##' @aliases [[<-,hyperSpec-method
 ##' @name [[<-
 ##' @export
+##' @include wl2i.R
 ##' @examples
 ##' spc <- flu [,, 405 ~ 410]
 ##' spc [[]]

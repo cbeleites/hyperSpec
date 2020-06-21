@@ -11,6 +11,7 @@
 ##'   consists of 181 data points in the range of 405 nm to 495 nm.
 ##' @author M. Kammer and C. Beleites
 ##' @keywords datasets
+##' @include wl2i.R
 ##' @examples
 ##'
 ##' flu
@@ -20,13 +21,3 @@
 ##' plotc (flu)
 ##'
 NULL
-
-.make.fluNA <- function() {
-  fluNA <- hyperSpec::flu
-  fluNA [[2, ]] <- NA
-  fluNA [[, , 406]] <- NA
-
-  fluNA
-}
-
-delayedAssign("fluNA", .make.fluNA())
