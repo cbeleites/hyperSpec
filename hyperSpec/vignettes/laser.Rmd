@@ -48,7 +48,12 @@ pkgdown:
 ---
 
 
-```{r setup-laser, include=FALSE}
+```{r cleanup-laser, include = FALSE}
+# Clean up to ensure reproducible workspace ----------------------------------
+rm(list = ls(all.names = TRUE))
+```
+
+```{r setup, include = FALSE}
 # Packages -------------------------------------------------------------------
 library(hyperSpec)
 # library(rgl)

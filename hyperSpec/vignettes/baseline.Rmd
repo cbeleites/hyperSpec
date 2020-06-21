@@ -47,7 +47,12 @@ pkgdown:
 ---
 
 
-```{r setup-baseline, include=FALSE}
+```{r cleanup-baseline, include = FALSE}
+# Clean up to ensure reproducible workspace ----------------------------------
+rm(list = ls(all.names = TRUE))
+```
+
+```{r setup, include = FALSE}
 # Packages -------------------------------------------------------------------
 library(hyperSpec)
 

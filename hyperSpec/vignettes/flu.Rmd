@@ -49,7 +49,12 @@ pkgdown:
 ---
 
 
-```{r setup-flu, include=FALSE}
+```{r cleanup-flu, include = FALSE}
+# Clean up to ensure reproducible workspace ----------------------------------
+rm(list = ls(all.names = TRUE))
+```
+
+```{r setup, include = FALSE}
 # Packages -------------------------------------------------------------------
 library(hyperSpec)
 
