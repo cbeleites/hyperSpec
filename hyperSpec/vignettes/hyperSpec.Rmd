@@ -293,7 +293,9 @@ In some cases, however, direct access to the slots can considerably speed up cal
 
 
 The main functions to retrieve the data of a `hyperSpec`{.r} object are `[]` and `[[]]`. \mFun{`[]`,`[[]]`}
-The difference between these functions is that `[]` returns a `hyperSpec`{.r} object, whereas the result of `[[]]` is a `data.frame`{.r}.
+The difference between these functions is that `[]` returns a `hyperSpec`{.r} object, whereas `[[]]` returns a `data.frame` containing `x$spc`{.r}, the spectral data.
+To modify a `hyperSpec` object, the corresponding functions are `[<-`{.r} and `[[<-`{.r}. The first form is used to modify the entire `hyperSpec` object and the second form modifies the spectral data in `x$spc`{.r}.
+
 **hyperSpec** objects are triple indexed:
 
 * `x[i, j, l, wl.index = TRUE/FALSE]`{.r}
@@ -334,19 +336,19 @@ Table \@ref(tab:getters) shows the main functions that can be used with class `h
 <!-- ---------------------------------------------------------------------- -->
 : **(\#tab:setters)** Setter functions for the slots of `hyperSpec`{.r} objects
 
------------------------- -----------------------------------------------------------------------------------------------------------------------
-**`x[i, ,] <-`{.r}**     Replaces the specified rows.
-**`x[, j,] <-`{.r}**     Replaces the specified columns.
-**`x[, , l] <-`{.r}**    Replace the specified wavelengths.
-**`x[[i, ,]] <-`{.r}**   **does this make sense? -- investigate!**
-**`x[[, j,]] <-`{.r}**   **does this make sense? -- investigate!**
-**`x[[, , l]] <-`{.r}**  **does this make sense? -- investigate!**
-**`x[[i, , l]] <-`{.r}** Also, parts of the spectra matrix can be set (only indices for spectra and wavelength are allowed for this function).
-**`x[i, j] <-`{.r}**     Sets parts of `x@data`{.r}.
-**`x$.. <-`{.r}**        Sets the extra data (`x@data`{.r} without touching `x$spc`{.r}). The column names must match exactly in this case.
-**`wl<-`{.r}**           Set the wavelength vector.
-**`labels<-`{.r}**       Set the labels.
------------------------- -----------------------------------------------------------------------------------------------------------------------
+----------------------------------------------- -----------------------------------------------------------------------------------------------------------------------
+**`x[i, ,] <-`{.r}**                            Replaces the specified rows of the `@data`{.r} slot, including `x$spc`{.r} and any extra data columns. Other approaches are probably easier.
+**`x[, j,] <-`{.r}**                            Replaces the specified columns.
+**`x[, , l, wl.index = TRUE/FALSE] <-`{.r}**    Replaces the specified wavelengths.
+**`x[[i, ,]] <-`{.r}**                          Replaces the specified row of `x$spc`{.r}
+**`x[[, j,]] <-`{.r}**                          As `[[]]`{.r} refers to just the spectral data in `x$spc`{r.}, this operation is not valid.  See below.
+**`x[[, , l, wl.index = TRUE/FALSE]] <-`{.r}**  Replaces the intensity values in `x$spc`{.r} for the specified wavelengths.
+**`x[[i, , l, wl.index = TRUE/FALSE]] <-`{.r}** Replaces the intensity values in `x$spc`{.r} for the specified wavelengths in the specified rows.
+**`x[i, j] <-`{.r}**                            Sets parts of `x@data`{.r}.
+**`x$.. <-`{.r}**                               Sets the extra data (`x@data`{.r} without touching `x$spc`{.r}). The column names must match exactly in this case.
+**`wl<-`{.r}**                                  Sets the wavelength vector.
+**`labels<-`{.r}**                              Sets the labels.
+----------------------------------------------- -----------------------------------------------------------------------------------------------------------------------
 <!-- ---------------------------------------------------------------------- -->
 
 \mFun{`[]<-`, `[[]]<-`, `$<-`}
