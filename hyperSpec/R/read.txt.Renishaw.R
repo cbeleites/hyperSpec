@@ -215,6 +215,8 @@ read.zip.Renishaw <- function(file = stop("filename is required"),
   test_that("compressed files", {
     skip_if_not_fileio_available()
 
-    expect_equal(dim(read.zip.Renishaw("fileio/txt.Renishaw/chondro.zip")), c(nrow = 875L, ncol = 4L, nwl = 1272L))
+    expect_equal(
+      dim(read.zip.Renishaw("fileio/txt.Renishaw/chondro.zip")),
+      c(nrow = 875L, ncol = 4L, nwl = 1272L))
   })
 }
