@@ -1,4 +1,4 @@
-##' @importFrom lattice latticeParseFormula
+#' @importFrom lattice latticeParseFormula
 setGeneric("levelplot", package = "lattice")
 
 #################################################################################
@@ -9,7 +9,7 @@ setGeneric("levelplot", package = "lattice")
 ###
 
 ### the workhorse function
-##' @importFrom utils modifyList
+#' @importFrom utils modifyList
 .levelplot <- function(x, data, transform.factor = TRUE, ...,
                        contour = FALSE, useRaster = !contour) {
   validObject(data)
@@ -41,8 +41,8 @@ setGeneric("levelplot", package = "lattice")
 
   dots <- modifyList(
     list(
-      xlab = data@label [[use.x]], 
-      ylab = data@label [[use.y]]
+      xlab = data@label[[use.x]],
+      ylab = data@label[[use.y]]
     ),
     dots
   )
@@ -67,15 +67,15 @@ setGeneric("levelplot", package = "lattice")
 
 
 
-  if (is.factor(data [[use.z]]) && transform.factor) {
-    dots <- trellis.factor.key(data [[use.z]], dots)
-    data [[use.z]] <- as.numeric(data [[use.z]])
+  if (is.factor(data[[use.z]]) && transform.factor) {
+    dots <- trellis.factor.key(data[[use.z]], dots)
+    data[[use.z]] <- as.numeric(data[[use.z]])
   }
 
   do.call(levelplot, c(list(x, data), dots))
 }
 
-##' @include unittest.R
+#' @include unittest.R
 .test(.levelplot) <- function() {
   context(".levelplot")
 
@@ -91,17 +91,17 @@ setGeneric("levelplot", package = "lattice")
   })
 }
 
-##' @include plotmap.R
-##' @rdname levelplot
-##' @param transform.factor If the color-coded variable is a factor, should
-##'   \code{\link{trellis.factor.key}} be used to compute the color coding and
-##'   legend?
-##' @param contour,useRaster see  \code{\link[lattice]{levelplot}}
-##' @export
-##' @seealso  \code{\link[lattice]{levelplot}}
-##'
-##'  \code{\link{trellis.factor.key}} for improved color coding of factors
-##' @importFrom lattice levelplot
+#' @include plotmap.R
+#' @rdname levelplot
+#' @param transform.factor If the color-coded variable is a factor, should
+#'   \code{\link{trellis.factor.key}} be used to compute the color coding and
+#'   legend?
+#' @param contour,useRaster see  \code{\link[lattice]{levelplot}}
+#' @export
+#' @seealso  \code{\link[lattice]{levelplot}}
+#'
+#'  \code{\link{trellis.factor.key}} for improved color coding of factors
+#' @importFrom lattice levelplot
 setMethod(
   f = "levelplot", signature = signature(x = "hyperSpec", data = "missing"),
   definition = function(x, data, ...) {
@@ -109,8 +109,8 @@ setMethod(
   }
 )
 
-##' @rdname levelplot
-##' @export
+#' @rdname levelplot
+#' @export
 setMethod(
   f = "levelplot", signature = signature(x = "formula", data = "hyperSpec"),
   definition = .levelplot

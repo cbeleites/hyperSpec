@@ -1,16 +1,16 @@
-##' @aliases levelplot,hyperSpec,missing-method
-##' @include plotmap.R
-##' @rdname levelplot
-##' @export
-##' @seealso  \code{\link[hyperSpec:options]{hyperSpec options}} \code{\link{spc.identify}}
-##' \code{\link{map.sel.poly}}
-##' @param tol tolerance for \code{map.identify} as fraction of the viewport
-##'   (i.e. in "npc" \link[grid]{unit}s)
-##' @param warn should a warning be issued if no point is within the specified
-##'   tolerance? See also details.
-##' @importFrom grid convertX convertY grid.locator grid.circle gpar
-##' @importFrom lattice trellis.focus ltext
-##' @importFrom utils modifyList
+#' @aliases levelplot,hyperSpec,missing-method
+#' @include plotmap.R
+#' @rdname levelplot
+#' @export
+#' @seealso  \code{\link[hyperSpec:options]{hyperSpec options}} \code{\link{spc.identify}}
+#' \code{\link{map.sel.poly}}
+#' @param tol tolerance for \code{map.identify} as fraction of the viewport
+#'   (i.e. in "npc" \link[grid]{unit}s)
+#' @param warn should a warning be issued if no point is within the specified
+#'   tolerance? See also details.
+#' @importFrom grid convertX convertY grid.locator grid.circle gpar
+#' @importFrom lattice trellis.focus ltext
+#' @importFrom utils modifyList
 map.identify <- function(object, model = spc ~ x * y, voronoi = FALSE, ...,
                          tol = .02, warn = TRUE) {
   if (!interactive()) {

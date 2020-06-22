@@ -1,20 +1,19 @@
-##' hyperSpec unit tests
-##'
-##' If \code{\link[testthat]{testthat}} is available, run the unit tests and
-##' display the results.
-##'
-##' @rdname unittests
-##' @return Invisibly returns a data frame with the test results
-##'
-##' @author Claudia Beleites
-##'
-##' @keywords programming utilities
-##' @import testthat
-##' @export
-##' @examples
-##'
-##' hy.unittest ()
-##'
+#' hyperSpec unit tests
+#'
+#' If \code{\link[testthat]{testthat}} is available, run the unit tests and
+#' display the results.
+#'
+#' @rdname unittests
+#' @return Invisibly returns a data frame with the test results
+#'
+#' @author Claudia Beleites
+#'
+#' @keywords programming utilities
+#' @import testthat
+#' @export
+#' @examples
+#'
+#' hy.unittest()
 hy.unittest <- function() {
   if (!requireNamespace("testthat", quietly = TRUE)) {
     warning("testthat required to run the unit tests.")
@@ -34,7 +33,7 @@ hy.unittest <- function() {
   with_reporter(reporter = reporter, start_end_reporter = TRUE, {
     for (t in seq_along(tests)) {
       lister$start_file(names(tests [t]))
-      tests [[t]]()
+      tests[[t]]()
     }
     get_reporter()$.end_context()
   })
@@ -42,7 +41,7 @@ hy.unittest <- function() {
   invisible(lister$get_results())
 }
 
-##' @noRd
+#' @noRd
 {
   `.test<-` <- function(f, value) {
     attr(f, "test") <- value
@@ -54,8 +53,8 @@ hy.unittest <- function() {
   }
 }
 
-##' get test that is attached to object as "test" attribute
-##' @noRd
+#' get test that is attached to object as "test" attribute
+#' @noRd
 get.test <- function(object) {
   attr(object, "test")
 }

@@ -1,19 +1,19 @@
-##' Evaluate function on wavelengths of hyperSpec object
-##'
-##' This is useful for generating certain types of baseline "reference spectra".
-##'
-##' @param x hyperSpec object
-##' @param ... hyperSpec method: expressions to be evaluated
-##' @param normalize.wl function to transorm the wavelengths before evaluating the polynomial (or
-##' other function). Use \code{\link[hyperSpec]{normalize01}} to map the wavelength range to the interval [0, 1].
-##' @return hyperSpec object containing one spectrum for each expression
-##' @export
-##' @seealso \code{\link[hyperSpec]{vanderMonde}} for  polynomials,
-##'
-##' \code{\link[hyperSpec]{normalize01}} to normalize the wavenumbers before evaluating the function
-##' @author C. Beleites
-##' @examples
-##' plot (wl.eval (laser, exp = function (x) exp (-x)))
+#' Evaluate function on wavelengths of hyperSpec object
+#'
+#' This is useful for generating certain types of baseline "reference spectra".
+#'
+#' @param x hyperSpec object
+#' @param ... hyperSpec method: expressions to be evaluated
+#' @param normalize.wl function to transorm the wavelengths before evaluating the polynomial (or
+#' other function). Use \code{\link[hyperSpec]{normalize01}} to map the wavelength range to the interval [0, 1].
+#' @return hyperSpec object containing one spectrum for each expression
+#' @export
+#' @seealso \code{\link[hyperSpec]{vanderMonde}} for  polynomials,
+#'
+#' \code{\link[hyperSpec]{normalize01}} to normalize the wavenumbers before evaluating the function
+#' @author C. Beleites
+#' @examples
+#' plot(wl.eval(laser, exp = function(x) exp(-x)))
 wl.eval <- function(x, ..., normalize.wl = I) {
   chk.hy(x)
   validObject(x)
@@ -31,7 +31,7 @@ wl.eval <- function(x, ..., normalize.wl = I) {
   x
 }
 
-##' @include unittest.R
+#' @include unittest.R
 .test(wl.eval) <- function() {
   context("wl.eval")
 
@@ -41,7 +41,7 @@ wl.eval <- function(x, ..., normalize.wl = I) {
 
   test_that("wl.eval against manual evaluation", {
     expect_equivalent(
-      wl.eval(flu, function(x) rep(5, length(x)), normalize.wl = normalize01) [[]],
+      wl.eval(flu, function(x) rep(5, length(x)), normalize.wl = normalize01)[[]],
       matrix(rep(5, nwl(flu)), nrow = 1)
     )
 
@@ -51,24 +51,24 @@ wl.eval <- function(x, ..., normalize.wl = I) {
     )
 
     expect_equivalent(
-      wl.eval(flu, function(x) exp(-x)) [[]],
+      wl.eval(flu, function(x) exp(-x))[[]],
       matrix(exp(-flu@wavelength), nrow = 1)
     )
   })
 
   test_that("normalization", {
     expect_equivalent(
-      wl.eval(flu, function(x) rep(5, length(x)), normalize.wl = normalize01) [[]],
+      wl.eval(flu, function(x) rep(5, length(x)), normalize.wl = normalize01)[[]],
       matrix(rep(5, nwl(flu)), nrow = 1)
     )
 
     expect_equivalent(
-      wl.eval(flu, function(x) x, normalize.wl = normalize01) [[]],
+      wl.eval(flu, function(x) x, normalize.wl = normalize01)[[]],
       matrix(seq(0, 1, length.out = nwl(flu)), nrow = 1)
     )
 
     expect_equivalent(
-      wl.eval(flu, function(x) exp(x), normalize.wl = normalize01) [[]],
+      wl.eval(flu, function(x) exp(x), normalize.wl = normalize01)[[]],
       matrix(exp(seq(0, 1, length.out = nwl(flu))), nrow = 1)
     )
   })

@@ -34,15 +34,15 @@
   spc
 }
 
-##' @include unittest.R
+#' @include unittest.R
 .test(.fileio.optional) <- function() {
   context(".fileio.optional")
 
   test_that("removing of zero/NA spectra", {
     tmp <- fluNA # spectrum 2 is all NA
-    tmp [[3]] <- 0
-    tmp [[5]] <- runif(nwl(tmp), min = -hy.getOption("tolerance") / 2, max = hy.getOption("tolerance") / 2)
-    tmp [[, , 450 ~ 455]] <- NA
+    tmp[[3]] <- 0
+    tmp[[5]] <- runif(nwl(tmp), min = -hy.getOption("tolerance") / 2, max = hy.getOption("tolerance") / 2)
+    tmp[[, , 450 ~ 455]] <- NA
 
     expect_equivalent(
       .fileio.optional(tmp, file.remove.emptyspc = TRUE, file.keep.name = FALSE),

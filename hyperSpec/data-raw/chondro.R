@@ -45,19 +45,19 @@ spectra_to_save$clusters[-out] <- chondro_0$clusters
 pca <- prcomp(spectra_to_save)
 
 # Construct hyperSpe object --------------------------------------------------
-.chondro_0_scores   <- pca$x[,   seq_len(10)]
+.chondro_0_scores <- pca$x[, seq_len(10)]
 .chondro_0_loadings <- pca$rot[, seq_len(10)]
-.chondro_0_center   <- pca$center
-.chondro_0_wl       <- wl(chondro_0)
-.chondro_0_labels   <- lapply(labels(chondro_0), as.expression)
-.chondro_0_extra    <- spectra_to_save$..
+.chondro_0_center <- pca$center
+.chondro_0_wl <- wl(chondro_0)
+.chondro_0_labels <- lapply(labels(chondro_0), as.expression)
+.chondro_0_extra <- spectra_to_save$..
 
 chondro <-
   new(
     "hyperSpec",
     spc =
       tcrossprod(.chondro_0_scores, .chondro_0_loadings) +
-      rep(.chondro_0_center, each = nrow(.chondro_0_scores)),
+        rep(.chondro_0_center, each = nrow(.chondro_0_scores)),
     wavelength = .chondro_0_wl,
     data = .chondro_0_extra,
     labels = .chondro_0_labels
@@ -65,4 +65,3 @@ chondro <-
 
 # Save the prepared dataset as package data ----------------------------------
 usethis::use_data(chondro, overwrite = TRUE)
-

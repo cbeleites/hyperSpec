@@ -1,23 +1,23 @@
-##' Read INI files
-##'
-##' \code{read.ini} reads ini files of the form
-##'
-##' [section]
-##' key = value
-##'
-##' into a list.
-##'
-##' \code{read.ini} sanitizes the element names and tries to convert scalars and comma separated
-##' numeric vectors to numeric.
-##' @export
-##' @rdname read-ini
-##' @param con connection or file name
-##' @param skip number of lines to skip before first \code{[section]} starts
-##' @param encoding see \code{\link[base]{readLines}}
-##' @author C. Beleites
-##' @return a list with one element per section in the .ini file, each containing a list with elements
-##' for the key-value-pairs.
-##' @keywords IO file
+#' Read INI files
+#'
+#' \code{read.ini} reads ini files of the form
+#'
+#' [section]
+#' key = value
+#'
+#' into a list.
+#'
+#' \code{read.ini} sanitizes the element names and tries to convert scalars and comma separated
+#' numeric vectors to numeric.
+#' @export
+#' @rdname read-ini
+#' @param con connection or file name
+#' @param skip number of lines to skip before first \code{[section]} starts
+#' @param encoding see \code{\link[base]{readLines}}
+#' @author C. Beleites
+#' @return a list with one element per section in the .ini file, each containing a list with elements
+#' for the key-value-pairs.
+#' @keywords IO file
 
 read.ini <- function(con = stop("Connection con needed."), skip = NULL, encoding = "unknown") {
   Lines <- readLines(con, encoding = encoding)
@@ -33,7 +33,7 @@ read.ini <- function(con = stop("Connection con needed."), skip = NULL, encoding
   names(ini) <- .sanitize.name(gsub("[[:blank:]]*=.*$", "", content)) # see above: removes in front of equal sign
 
   # try converting to numeric
-  tmp <- lapply(ini, function(x) strsplit(x, ",") [[1]])
+  tmp <- lapply(ini, function(x) strsplit(x, ",")[[1]])
   tmp <- suppressWarnings(lapply(tmp, as.numeric))
   numbers <- !sapply(tmp, function(x) any(is.na(x)))
   ini [numbers] <- tmp [numbers]

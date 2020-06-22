@@ -1,34 +1,34 @@
-##' Plot spectra matrix
-##'
-##' plots the spectra matrix.
-##'
-##' If package plotrix is available, a color legend is plotted to the right. The right margin is set
-##' to at least 5 lines.
-##' @param object hyperSpec object
-##' @param y character giving the name of the extra data column to label the y axis.
-##' @param ylab y axis label, defaults to \code{"row"} and the label of the extra data column used
-##' for the y axis, respectively.
-##' @param col see  \code{\link[graphics]{image}}
-##' @param ... further parameters for \code{\link[graphics]{image}}
-##' @param contour should \code{\link[graphics]{contour}} be called instead of
-##' \code{\link[graphics]{image}}?
-##' @author Claudia Beleites
-##' @seealso  \code{\link[graphics]{image}}, \code{\link[graphics]{contour}}, \code{\link[hyperSpec]{levelplot}}
-##' @export
-##' @examples
-##' plotmat (laser, col = alois.palette (100))
-##'
-##' plot (laser, "mat")
-##'
-##' plotmat (laser)
-##' plotmat (laser, contour = TRUE, add = TRUE)
-##'
-##' ## use different y axis labels
-##'
-##' plotmat (laser, "t")
-##'
-##' plotmat (laser, laser$t / 3600, ylab = "t / h")
-##' @importFrom utils modifyList
+#' Plot spectra matrix
+#'
+#' plots the spectra matrix.
+#'
+#' If package plotrix is available, a color legend is plotted to the right. The right margin is set
+#' to at least 5 lines.
+#' @param object hyperSpec object
+#' @param y character giving the name of the extra data column to label the y axis.
+#' @param ylab y axis label, defaults to \code{"row"} and the label of the extra data column used
+#' for the y axis, respectively.
+#' @param col see  \code{\link[graphics]{image}}
+#' @param ... further parameters for \code{\link[graphics]{image}}
+#' @param contour should \code{\link[graphics]{contour}} be called instead of
+#' \code{\link[graphics]{image}}?
+#' @author Claudia Beleites
+#' @seealso  \code{\link[graphics]{image}}, \code{\link[graphics]{contour}}, \code{\link[hyperSpec]{levelplot}}
+#' @export
+#' @examples
+#' plotmat(laser, col = alois.palette(100))
+#'
+#' plot(laser, "mat")
+#'
+#' plotmat(laser)
+#' plotmat(laser, contour = TRUE, add = TRUE)
+#'
+#' ## use different y axis labels
+#'
+#' plotmat(laser, "t")
+#'
+#' plotmat(laser, laser$t / 3600, ylab = "t / h")
+#' @importFrom utils modifyList
 plotmat <- function(object, y = ".row", ylab, col = alois.palette(20), ...,
                     contour = FALSE) {
   chk.hy(object)
@@ -45,7 +45,7 @@ plotmat <- function(object, y = ".row", ylab, col = alois.palette(20), ...,
 
     y <- switch(y,
       .row = seq_len(nrow(object)),
-      object@data [[y]]
+      object@data[[y]]
     )
   }
 
@@ -53,7 +53,7 @@ plotmat <- function(object, y = ".row", ylab, col = alois.palette(20), ...,
     list(
       x = wl(object),
       y = y,
-      z = t(object [[]]),
+      z = t(object[[]]),
       xlab = labels(object, ".wavelength"),
       ylab = ylab,
       col = col
@@ -94,13 +94,13 @@ plotmat <- function(object, y = ".row", ylab, col = alois.palette(20), ...,
   }
 }
 
-##' @include unittest.R
+#' @include unittest.R
 .test(plotmat) <- function() {
   context("plotmat")
 
   test_that("non-increasing wavelength axis", {
     tmp <- flu
-    tmp [[]] <- tmp [[, , max ~ min]]
+    tmp[[]] <- tmp[[, , max ~ min]]
     tmp@wavelength <- rev(tmp@wavelength)
 
     expect_silent(plotmat(tmp))

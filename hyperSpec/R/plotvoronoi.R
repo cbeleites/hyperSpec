@@ -4,19 +4,19 @@
 ###
 ###  plots intensity or extra data column over 2 extra data columns
 
-##' @param use.tripack Whether package tripack should be used for calculating
-##'   the voronoi polygons. If \code{FALSE}, package deldir is used instead.
-##'   See details.
-##' @param mix For Voronoi plots using package tripack, I experienced errors if
-##'   the data was spatially ordered. Randomly rearrangig the rows of the
-##'   hyperSpec object circumvents this problem.
-##' @rdname levelplot
-##' @include levelplot.R
-##' @export
-##' @seealso \code{\link[latticeExtra]{panel.voronoi}}
-##' @importFrom latticeExtra panel.voronoi
-##' @importFrom lattice prepanel.default.levelplot
-##' @importFrom utils modifyList
+#' @param use.tripack Whether package tripack should be used for calculating
+#'   the voronoi polygons. If \code{FALSE}, package deldir is used instead.
+#'   See details.
+#' @param mix For Voronoi plots using package tripack, I experienced errors if
+#'   the data was spatially ordered. Randomly rearrangig the rows of the
+#'   hyperSpec object circumvents this problem.
+#' @rdname levelplot
+#' @include levelplot.R
+#' @export
+#' @seealso \code{\link[latticeExtra]{panel.voronoi}}
+#' @importFrom latticeExtra panel.voronoi
+#' @importFrom lattice prepanel.default.levelplot
+#' @importFrom utils modifyList
 plotvoronoi <- function(object, model = spc ~ x * y,
                         use.tripack = FALSE, mix = FALSE, ...) {
   if (!requireNamespace("latticeExtra")) {

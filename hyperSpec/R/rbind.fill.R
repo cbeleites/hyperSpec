@@ -2,18 +2,18 @@
 ### dependency, but do not export it anymore.
 
 
-##' Quick data frame.
-##' Experimental version of \code{\link{as.data.frame}} that converts a
-##' list to a data frame, but doesn't do any checks to make sure it's a
-##' valid format. Much faster.
-##'
-##' @param list list to convert to data frame
-##' @keywords internal
+#' Quick data frame.
+#' Experimental version of \code{\link{as.data.frame}} that converts a
+#' list to a data frame, but doesn't do any checks to make sure it's a
+#' valid format. Much faster.
+#'
+#' @param list list to convert to data frame
+#' @keywords internal
 quickdf <- function(list) {
-  if (is.matrix(list [[1]])) {
-    n <- nrow(list [[1]])
+  if (is.matrix(list[[1]])) {
+    n <- nrow(list[[1]])
   } else {
-    n <- length(list [[1]])
+    n <- length(list[[1]])
   }
 
   structure(list,
@@ -22,45 +22,44 @@ quickdf <- function(list) {
   )
 }
 
-##' Bind matrices by row, and fill missing columns with NA
-##'
-##' The matrices are bound together using their column names or the column indices (in that order of
-##' precedence.) Numeric columns may be converted to character beforehand, e.g. using format.  If a
-##' matrix doesn't have colnames, the column number is used (via \code{\link[base]{make.names}(unique
-##' = TRUE)}).
-##'
-##' Note that this means that a column with name \code{"X1"} is merged with the first column of a
-##' matrix without name and so on.
-##'
-##' Vectors are converted to 1-column matrices prior to rbind.
-##'
-##' Matrices of factors are not supported. (They are anyways quite inconvenient.) You may convert
-##' them first to either numeric or character matrices. If a character matrix is merged with a
-##' numeric, the result will be character.
-##'
-##' Row names are ignored.
-##'
-##' The return matrix will always have column names.
-##'
-##' @author C. Beleites
-##' @seealso   \code{\link[base]{rbind}}, \code{\link[base]{cbind}}, \code{\link[plyr]{rbind.fill}}
-##' @keywords manip
-##' @rdname rbind.fill
-##' @examples
-##'  A <- matrix (1:4, 2)
-##'  B <- matrix (6:11, 2)
-##'  A
-##'  B
-##'  hyperSpec:::rbind.fill.matrix (A, B)
-##'
-##'  colnames (A) <- c (3, 1)
-##'  A
-##'  hyperSpec:::rbind.fill.matrix (A, B)
-##'
-##'  hyperSpec:::rbind.fill.matrix (A, 99)
-##'
-##' @return a matrix
-##' @method rbind.fill matrix
+#' Bind matrices by row, and fill missing columns with NA
+#'
+#' The matrices are bound together using their column names or the column indices (in that order of
+#' precedence.) Numeric columns may be converted to character beforehand, e.g. using format.  If a
+#' matrix doesn't have colnames, the column number is used (via \code{\link[base]{make.names}(unique
+#' = TRUE)}).
+#'
+#' Note that this means that a column with name \code{"X1"} is merged with the first column of a
+#' matrix without name and so on.
+#'
+#' Vectors are converted to 1-column matrices prior to rbind.
+#'
+#' Matrices of factors are not supported. (They are anyways quite inconvenient.) You may convert
+#' them first to either numeric or character matrices. If a character matrix is merged with a
+#' numeric, the result will be character.
+#'
+#' Row names are ignored.
+#'
+#' The return matrix will always have column names.
+#'
+#' @author C. Beleites
+#' @seealso   \code{\link[base]{rbind}}, \code{\link[base]{cbind}}, \code{\link[plyr]{rbind.fill}}
+#' @keywords manip
+#' @rdname rbind.fill
+#' @examples
+#' A <- matrix(1:4, 2)
+#' B <- matrix(6:11, 2)
+#' A
+#' B
+#' hyperSpec:::rbind.fill.matrix(A, B)
+#'
+#' colnames(A) <- c(3, 1)
+#' A
+#' hyperSpec:::rbind.fill.matrix(A, B)
+#'
+#' hyperSpec:::rbind.fill.matrix(A, 99)
+#' @return a matrix
+#' @method rbind.fill matrix
 rbind.fill.matrix <- function(...) {
   matrices <- list(...)
 
@@ -94,7 +93,7 @@ rbind.fill.matrix <- function(...) {
   ## fill in the new matrix
   for (i in seq_along(matrices)) {
     icols <- match(lcols[[i]], cols)
-    result [(pos [i] + 1):pos [i + 1], icols] <- matrices [[i]]
+    result [(pos [i] + 1):pos [i + 1], icols] <- matrices[[i]]
   }
 
   colnames(result) <- cols
@@ -110,18 +109,18 @@ rbind.fill.matrix <- function(...) {
   cln
 }
 
-##' Combine objects by row, filling in missing columns.
-##' \code{rbind}s a list of data frames filling missing columns with NA.
-##'
-##' This is an enhancement to \code{\link{rbind}} which adds in columns
-##' that are not present in all inputs, accepts a list of data frames, and
-##' operates substantially faster
-##'
-##' @param ... data frames/matrices to row bind together
-##' @keywords manip
-##' @rdname rbind.fill
-##' @examples
-##' #' rbind.fill(mtcars[c("mpg", "wt")], mtcars[c("wt", "cyl")])
+#' Combine objects by row, filling in missing columns.
+#' \code{rbind}s a list of data frames filling missing columns with NA.
+#'
+#' This is an enhancement to \code{\link{rbind}} which adds in columns
+#' that are not present in all inputs, accepts a list of data frames, and
+#' operates substantially faster
+#'
+#' @param ... data frames/matrices to row bind together
+#' @keywords manip
+#' @rdname rbind.fill
+#' @examples
+#' #' rbind.fill(mtcars[c("mpg", "wt")], mtcars[c("wt", "cyl")])
 rbind.fill <- function(...) {
   dfs <- list(...)
   if (length(dfs) == 0) {
@@ -181,7 +180,7 @@ rbind.fill <- function(...) {
   # the trick is to supply a n by 0 matrix for input without column of that name
   for (var in matrixcols) {
     df <- lapply(dfs, .get.or.make.matrix, var)
-    output [[var]] <- I(do.call(rbind.fill.matrix, df))
+    output[[var]] <- I(do.call(rbind.fill.matrix, df))
   }
 
   # Compute start and end positions for each data frame
@@ -200,7 +199,7 @@ rbind.fill <- function(...) {
 }
 
 .get.or.make.matrix <- function(df, var) {
-  tmp <- df [[var]]
+  tmp <- df[[var]]
   if (is.null(tmp)) {
     tmp <- I(matrix(integer(), nrow = nrow(df)))
   }

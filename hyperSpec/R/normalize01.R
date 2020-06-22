@@ -1,21 +1,21 @@
-##' Normalize numbers -> [0, 1]
-##'
-##' The input \code{x} is mapped to [0, 1] by subtracting the minimum and subsequently dividing by
-##' the maximum. If all elements of \code{x} are equal, 1 is returned.
-##'
-##' @title normalization for mixed colors
-##' @name normalize01
-##' @param x  vector with values to transform
-##' @param tolerance tolerance level for determining what is 0 and 1
-##' @param ... additional parameters such as \code{tolerance} handed down.
-##' @return vector with \code{x} values mapped to the interval [0, 1]
-##' @author C. Beleites
-##' @seealso \code{\link[hyperSpec]{wl.eval}}, \code{\link[hyperSpec]{vanderMonde}}
-##' @export
+#' Normalize numbers -> [0, 1]
+#'
+#' The input \code{x} is mapped to [0, 1] by subtracting the minimum and subsequently dividing by
+#' the maximum. If all elements of \code{x} are equal, 1 is returned.
+#'
+#' @title normalization for mixed colors
+#' @name normalize01
+#' @param x  vector with values to transform
+#' @param tolerance tolerance level for determining what is 0 and 1
+#' @param ... additional parameters such as \code{tolerance} handed down.
+#' @return vector with \code{x} values mapped to the interval [0, 1]
+#' @author C. Beleites
+#' @seealso \code{\link[hyperSpec]{wl.eval}}, \code{\link[hyperSpec]{vanderMonde}}
+#' @export
 setGeneric("normalize01", function(x, ...) standardGeneric("normalize01"))
 
-##' @export
-##' @rdname normalize01
+#' @export
+#' @rdname normalize01
 setMethod(
   normalize01, signature(x = "matrix"),
   function(x, tolerance = hy.getOption("tolerance")) {
@@ -28,8 +28,8 @@ setMethod(
   }
 )
 
-##' @export
-##' @rdname normalize01
+#' @export
+#' @rdname normalize01
 setMethod("normalize01", signature(x = "numeric"), function(x, tolerance = hy.getOption("tolerance")) {
   x <- x - min(x)
 
@@ -41,8 +41,8 @@ setMethod("normalize01", signature(x = "numeric"), function(x, tolerance = hy.ge
   }
 })
 
-##' @export
-##' @rdname normalize01
+#' @export
+#' @rdname normalize01
 setMethod(normalize01, signature(x = "hyperSpec"), function(x, ...) {
   validObject(x)
 
@@ -52,7 +52,7 @@ setMethod(normalize01, signature(x = "hyperSpec"), function(x, ...) {
   x
 })
 
-##' @include unittest.R
+#' @include unittest.R
 .test(normalize01) <- function() {
   context("normalize01")
 
@@ -87,7 +87,7 @@ setMethod(normalize01, signature(x = "hyperSpec"), function(x, ...) {
   test_that("hyperSpec method", {
     tmp.hy <- normalize01(-vanderMonde(flu, 1))
 
-    expect_equal(apply(tmp.hy [[]], 1, min), 1:0)
-    expect_equal(apply(tmp.hy [[]], 1, max), c(1, 1))
+    expect_equal(apply(tmp.hy[[]], 1, min), 1:0)
+    expect_equal(apply(tmp.hy[[]], 1, max), c(1, 1))
   })
 }

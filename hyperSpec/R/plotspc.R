@@ -7,156 +7,160 @@
 
 
 
-##' Plotting Spectra
-##' Plot the spectra of a \code{hyperSpec} object, i.e. intensity over
-##' wavelength. Instead of the intensity values of the spectra matrix summary
-##' values calculated from these may be used.
-##'
-##' This is \code{hyperSpec}'s main plotting function for spectra plots.
-##'
-##' New plots are created by \code{\link[graphics]{plot}}, but the abscissa and
-##' ordinate are drawn separately by \code{\link[graphics]{axis}}. Also,
-##' \code{\link[graphics]{title}} is called explicitly to set up titles and
-##' axis labels. This allows fine-grained customization of the plots.
-##'
-##' If package plotrix is available, its function
-##' \code{\link[plotrix]{axis.break}} is used to produce break marks for cut
-##' wavelength axes.
-##'
-##' @param object the \code{hyperSpec} object
-##' @param wl.range the wavelength range to be plotted.
-##'
-##' Either a numeric vector or a list of vectors with different wavelength
-##'   ranges to be plotted separately.
-##'
-##' The values can be either wavelengths or wavelength indices (according to
-##'   \code{wl.index}).
-##' @param wl.index if \code{TRUE}, \code{wl.range} is considered to give
-##'   column indices into the spectra matrix. Defaults to specifying wavelength
-##'   values rather than indices.
-##' @param wl.reverse if \code{TRUE}, the wavelength axis is plotted backwards.
-##' @param spc.nmax maximal number of spectra to be plotted (to avoid
-##'   accidentally plotting of large numbers of spectra).
-##' @param func a function to apply to each wavelength in order to calculate
-##'   summary spectra such as mean, min, max, etc.
-##' @param func.args \code{list} with furter arguments for \code{func}
-##' @param add if \code{TRUE}, the output is added to the existing plot
-##' @param bty see \code{\link[graphics]{par}}
-##' @param col see \code{\link[graphics]{par}}. \code{col} might be a vector
-##'   giving individual colors for the spectra.
-##' @param xoffset vector with abscissa offsets for each of the
-##'   \code{wl.range}s. If it has one element less than there are
-##'   \code{wl.range}s, 0 is padded at the beginning.
-##'
-##' The values are interpreted as the distance along the wavelength axis that
-##'   the following parts of the spectra are shifted towards the origin. E.g.
-##'   if \code{wl.range = list (600 ~ 1800, 2800 ~ 3200)}, \code{xoffset = 750}
-##'   would result in a reasonable plot. See also the examples.
-##' @param yoffset ordinate offset values for the spectra. May be offsets to
-##'   stack the spectra (\code{\link{stacked.offsets}}). Either one for all
-##'   spectra, one per spectrum or one per group in \code{stacked}.
-##' @param nxticks hint how many tick marks the abscissa should have.
-##' @param stacked if not \code{NULL}, a "stacked" plot is produced, see the
-##'   example. \code{stacked} may be \code{TRUE} to stack single spectra.  A
-##'   numeric or factor is interpreted as giving the grouping, character is
-##'   interpreted as the name of the extra data column that holds the groups.
-##' @param stacked.args a list with further arguments to
-##'   \code{\link{stacked.offsets}}.
-##' @param fill if not \code{NULL}, the area between the specified spectra is
-##'   filled with color \code{col}. The grouping can be given as factor or
-##'   numeric, or as a character with the name of the extra data column to use.
-##'   If a group contains more than 2 spectra, the first and the last are used.
-##'
-##' If \code{TRUE} spectra n and nrow (spc) - n build a group.
-##' @param fill.col character vector with fill color. Defaults to brightened
-##'   colors from \code{col}.
-##' @param border character vector with border color. You will need to set the
-##'   line color \code{col} to \code{NA} in order see the effect.
-##' @param plot.args \code{list} with further arguments to
-##'   \code{\link[graphics]{plot}}
-##' @param axis.args \code{list} with further arguments for
-##'   \code{\link[graphics]{axis}}. \code{axis.args$x} should contain arguments
-##'   for plotting the abscissa, \code{axis.args$y} those for the ordinate
-##'   (again as \code{lists}).
-##' @param title.args list with further arguments to
-##'   \code{\link[graphics]{title}}.
-##'
-##' \code{title.args} may contain two lists, \code{$x}, and \code{$y} to set
-##'   parameters individually for each axis.
-##' @param lines.args list with further arguments to
-##'   \code{\link[graphics]{lines}}.
-##'
-##' \code{lines.args$type} defaults to "l".
-##' @param break.args list with arguments for
-##'   \code{\link[plotrix]{axis.break}}.
-##' @param polygon.args list with further arguments to
-##'   \code{\link[graphics]{polygon}} which draws the filled areas.
-##' @param zeroline \code{NA} or a list with arguments
-##'   \code{\link[graphics]{abline}}, used to plot line (s) marking I = 0.
-##'
-##' \code{NA} suppresses plotting of the line.  The line is by default turned
-##'   off if \code{yoffset} is not 0.
-##' @param debuglevel if > 0, additional debug output is produced,
-##' see \code{\link[hyperSpec]{options}} for details
-##' @return \code{plotspc} invisibly returns a list with
-##'
-##' \item{x}{the abscissa coordinates of the plotted spectral data points}
-##'
-##' \item{y}{a matrix the ordinate coordinates of the plotted spectral data
-##'   points}
-##'
-##' \item{wavelengths}{the wavelengths of the plotted spectral data points}
-##'
-##' This can be used together with \code{\link{spc.identify}}.
-##' @author C. Beleites
-##' @seealso \code{\link[graphics]{plot}}, \code{\link[graphics]{axis}},
-##'   \code{\link[graphics]{title}}, \code{\link[graphics]{lines}},
-##'   \code{\link[graphics]{polygon}}, \code{\link[graphics]{par}} for the
-##'   description of the respective arguments.
-##'
-##' \code{\link[plotrix]{axis.break}} for cut marks
-##'
-##' See \code{\link{plot}} for some predefined spectra plots such as mean
-##'   spectrum +/- one standard deviation and the like.
-##'
-##' \code{\link[graphics]{identify}} and \code{\link[graphics]{locator}} about
-##'   interaction with plots.
-##' @keywords hplot
-##' @export
-##' @examples
-##'
-##' plotspc (flu)
-##'
-##' ## artificial example to show wavelength axis cutting
-##' plotspc (faux_cell [sample (nrow (faux_cell), 50)],
-##'          wl.range = list (600 ~ 650, 1000 ~ 1100, 1600 ~ 1700),
-##'          xoffset = c (0, 300, 450))
-##'
-##' plotspc (faux_cell [sample (nrow (faux_cell), 50)],
-##'          wl.range = list (600 ~ 650, 1000 ~ 1100, 1600 ~ 1700),
-##'          xoffset = c (300, 450))
-##'
-##' ## some journals publish Raman spectra backwards
-##' plotspc (faux_cell [sample (nrow (faux_cell), 50)], wl.reverse = TRUE)
-##'
-##' plotspc (laser[(0:4)*20+1,,], stacked = TRUE)
-##'
-##' plotspc (laser, func = mean_pm_sd,
-##'          col = c(NA, "red", "black"), lines.args = list (lwd = 2),
-##'          fill = c (1, NA, 1),
-##'          fill.col = "yellow", border = "blue",
-##'          polygon.args = list (lty = 2, lwd = 4),
-##'          title.args = list (xlab = expression (lambda[emission] / nm),
-##'                             y = list(line = 3.4),
-##'                             col.lab = "darkgreen"),
-##'          axis.args = list (x = list (col = "magenta"), y = list (las = 1))
-##'         )
-##'
-##' mean.pm.sd <- aggregate (faux_cell, faux_cell$region, mean_pm_sd)
-##' plot (mean.pm.sd, col = matlab.palette (3), fill = ".aggregate", stacked = ".aggregate")
-##'
-##' @importFrom utils modifyList relist head tail
-##' @importFrom grDevices rgb col2rgb
+#' Plotting Spectra
+#' Plot the spectra of a \code{hyperSpec} object, i.e. intensity over
+#' wavelength. Instead of the intensity values of the spectra matrix summary
+#' values calculated from these may be used.
+#'
+#' This is \code{hyperSpec}'s main plotting function for spectra plots.
+#'
+#' New plots are created by \code{\link[graphics]{plot}}, but the abscissa and
+#' ordinate are drawn separately by \code{\link[graphics]{axis}}. Also,
+#' \code{\link[graphics]{title}} is called explicitly to set up titles and
+#' axis labels. This allows fine-grained customization of the plots.
+#'
+#' If package plotrix is available, its function
+#' \code{\link[plotrix]{axis.break}} is used to produce break marks for cut
+#' wavelength axes.
+#'
+#' @param object the \code{hyperSpec} object
+#' @param wl.range the wavelength range to be plotted.
+#'
+#' Either a numeric vector or a list of vectors with different wavelength
+#'   ranges to be plotted separately.
+#'
+#' The values can be either wavelengths or wavelength indices (according to
+#'   \code{wl.index}).
+#' @param wl.index if \code{TRUE}, \code{wl.range} is considered to give
+#'   column indices into the spectra matrix. Defaults to specifying wavelength
+#'   values rather than indices.
+#' @param wl.reverse if \code{TRUE}, the wavelength axis is plotted backwards.
+#' @param spc.nmax maximal number of spectra to be plotted (to avoid
+#'   accidentally plotting of large numbers of spectra).
+#' @param func a function to apply to each wavelength in order to calculate
+#'   summary spectra such as mean, min, max, etc.
+#' @param func.args \code{list} with furter arguments for \code{func}
+#' @param add if \code{TRUE}, the output is added to the existing plot
+#' @param bty see \code{\link[graphics]{par}}
+#' @param col see \code{\link[graphics]{par}}. \code{col} might be a vector
+#'   giving individual colors for the spectra.
+#' @param xoffset vector with abscissa offsets for each of the
+#'   \code{wl.range}s. If it has one element less than there are
+#'   \code{wl.range}s, 0 is padded at the beginning.
+#'
+#' The values are interpreted as the distance along the wavelength axis that
+#'   the following parts of the spectra are shifted towards the origin. E.g.
+#'   if \code{wl.range = list (600 ~ 1800, 2800 ~ 3200)}, \code{xoffset = 750}
+#'   would result in a reasonable plot. See also the examples.
+#' @param yoffset ordinate offset values for the spectra. May be offsets to
+#'   stack the spectra (\code{\link{stacked.offsets}}). Either one for all
+#'   spectra, one per spectrum or one per group in \code{stacked}.
+#' @param nxticks hint how many tick marks the abscissa should have.
+#' @param stacked if not \code{NULL}, a "stacked" plot is produced, see the
+#'   example. \code{stacked} may be \code{TRUE} to stack single spectra.  A
+#'   numeric or factor is interpreted as giving the grouping, character is
+#'   interpreted as the name of the extra data column that holds the groups.
+#' @param stacked.args a list with further arguments to
+#'   \code{\link{stacked.offsets}}.
+#' @param fill if not \code{NULL}, the area between the specified spectra is
+#'   filled with color \code{col}. The grouping can be given as factor or
+#'   numeric, or as a character with the name of the extra data column to use.
+#'   If a group contains more than 2 spectra, the first and the last are used.
+#'
+#' If \code{TRUE} spectra n and nrow (spc) - n build a group.
+#' @param fill.col character vector with fill color. Defaults to brightened
+#'   colors from \code{col}.
+#' @param border character vector with border color. You will need to set the
+#'   line color \code{col} to \code{NA} in order see the effect.
+#' @param plot.args \code{list} with further arguments to
+#'   \code{\link[graphics]{plot}}
+#' @param axis.args \code{list} with further arguments for
+#'   \code{\link[graphics]{axis}}. \code{axis.args$x} should contain arguments
+#'   for plotting the abscissa, \code{axis.args$y} those for the ordinate
+#'   (again as \code{lists}).
+#' @param title.args list with further arguments to
+#'   \code{\link[graphics]{title}}.
+#'
+#' \code{title.args} may contain two lists, \code{$x}, and \code{$y} to set
+#'   parameters individually for each axis.
+#' @param lines.args list with further arguments to
+#'   \code{\link[graphics]{lines}}.
+#'
+#' \code{lines.args$type} defaults to "l".
+#' @param break.args list with arguments for
+#'   \code{\link[plotrix]{axis.break}}.
+#' @param polygon.args list with further arguments to
+#'   \code{\link[graphics]{polygon}} which draws the filled areas.
+#' @param zeroline \code{NA} or a list with arguments
+#'   \code{\link[graphics]{abline}}, used to plot line (s) marking I = 0.
+#'
+#' \code{NA} suppresses plotting of the line.  The line is by default turned
+#'   off if \code{yoffset} is not 0.
+#' @param debuglevel if > 0, additional debug output is produced,
+#' see \code{\link[hyperSpec]{options}} for details
+#' @return \code{plotspc} invisibly returns a list with
+#'
+#' \item{x}{the abscissa coordinates of the plotted spectral data points}
+#'
+#' \item{y}{a matrix the ordinate coordinates of the plotted spectral data
+#'   points}
+#'
+#' \item{wavelengths}{the wavelengths of the plotted spectral data points}
+#'
+#' This can be used together with \code{\link{spc.identify}}.
+#' @author C. Beleites
+#' @seealso \code{\link[graphics]{plot}}, \code{\link[graphics]{axis}},
+#'   \code{\link[graphics]{title}}, \code{\link[graphics]{lines}},
+#'   \code{\link[graphics]{polygon}}, \code{\link[graphics]{par}} for the
+#'   description of the respective arguments.
+#'
+#' \code{\link[plotrix]{axis.break}} for cut marks
+#'
+#' See \code{\link{plot}} for some predefined spectra plots such as mean
+#'   spectrum +/- one standard deviation and the like.
+#'
+#' \code{\link[graphics]{identify}} and \code{\link[graphics]{locator}} about
+#'   interaction with plots.
+#' @keywords hplot
+#' @export
+#' @examples
+#'
+#' plotspc(flu)
+#'
+#' ## artificial example to show wavelength axis cutting
+#' plotspc(faux_cell [sample(nrow(faux_cell), 50)],
+#'   wl.range = list(600 ~ 650, 1000 ~ 1100, 1600 ~ 1700),
+#'   xoffset = c(0, 300, 450)
+#' )
+#'
+#' plotspc(faux_cell [sample(nrow(faux_cell), 50)],
+#'   wl.range = list(600 ~ 650, 1000 ~ 1100, 1600 ~ 1700),
+#'   xoffset = c(300, 450)
+#' )
+#'
+#' ## some journals publish Raman spectra backwards
+#' plotspc(faux_cell [sample(nrow(faux_cell), 50)], wl.reverse = TRUE)
+#'
+#' plotspc(laser[(0:4) * 20 + 1, , ], stacked = TRUE)
+#'
+#' plotspc(laser,
+#'   func = mean_pm_sd,
+#'   col = c(NA, "red", "black"), lines.args = list(lwd = 2),
+#'   fill = c(1, NA, 1),
+#'   fill.col = "yellow", border = "blue",
+#'   polygon.args = list(lty = 2, lwd = 4),
+#'   title.args = list(
+#'     xlab = expression(lambda[emission] / nm),
+#'     y = list(line = 3.4),
+#'     col.lab = "darkgreen"
+#'   ),
+#'   axis.args = list(x = list(col = "magenta"), y = list(las = 1))
+#' )
+#'
+#' mean.pm.sd <- aggregate(faux_cell, faux_cell$region, mean_pm_sd)
+#' plot(mean.pm.sd, col = matlab.palette(3), fill = ".aggregate", stacked = ".aggregate")
+#' @importFrom utils modifyList relist head tail
+#' @importFrom grDevices rgb col2rgb
 plotspc <- function(object,
                     ## what wavelengths to plot
                     wl.range = TRUE, wl.index = FALSE, wl.reverse = FALSE,
@@ -228,7 +232,7 @@ plotspc <- function(object,
   ## x are the actual x coordinates
   x <- wavelengths
   for (i in seq_along(x)) {
-    x [[i]] <- x [[i]] - xoffset[i]
+    x[[i]] <- x[[i]] - xoffset[i]
   }
 
   ## prepare spectra ................................................................................
@@ -446,7 +450,7 @@ plotspc <- function(object,
     ## groupings for upper and lower bound of the bands
     if (!is.null(fill)) {
       if (is.character(fill) && length(fill) == 1) {
-        fill <- unlist(object [[, fill]])
+        fill <- unlist(object[[, fill]])
       } else if (isTRUE(fill)) {
         fill <- seq_len(nrow(spc) / 2)
         if (nrow(spc) %% 2 == 1) { # odd number of spectra
@@ -486,7 +490,7 @@ plotspc <- function(object,
 
       border <- rep(border, length.out = length(groups))
 
-      polygon.args$x <- c(x [[i]], rev(x [[i]]))
+      polygon.args$x <- c(x[[i]], rev(x[[i]]))
 
       for (j in seq_along(groups)) {
         tmp <- which(fill == groups [j])
@@ -541,44 +545,48 @@ plotspc <- function(object,
 
 
 
-##' y Offsets for Stacked Plots
-##' Calculate approriate \code{yoffset} values for stacking in \code{\link[hyperSpec]{plotspc}}.
-##'
-##' Usually, the \code{stacked} argument of \code{\link[hyperSpec]{plotspc}} will do fine, but if you
-##' need fine control over the stacking, you may calculate the y offsets yourself.
-##'
-##' Empty levels of the stacking factor are dropped (as no stacking offset can be calculated in that
-##' case.)
-##'
-##' @param x a \code{hyperSpec} object
-##' @param min.zero if \code{TRUE}, the lesser of zero and the minimum intensity of the spectrum is
-##' used as minimum.
-##' @param add.factor,add.sum proportion and absolute amount of space that should be added.
-##' @param .spc for internal use. If given, the ranges are evaluated on \code{.spc}. However, this
-##' may change in future.
-##' @return a list containing \item{offsets}{numeric with the yoffset for each group in
-##' \code{stacked}} \item{groups}{numeric with the group number for each spectrum} \item{levels}{if
-##' \code{stacked} is a factor, the levels of the groups}
-##' @author C. Beleites
-##' @seealso \code{\link[hyperSpec]{plotspc}}
-##' @rdname plotspc
-##' @export
-##' @examples
-##'
-##' mean.pm.sd <- aggregate (faux_cell, faux_cell$region, mean_pm_sd)
-##'
-##' offset <- stacked.offsets (mean.pm.sd, ".aggregate")
-##' plot (mean.pm.sd, fill.col = matlab.palette (3), fill = ".aggregate",
-##'       stacked = ".aggregate")
-##'
-##' plot (aggregate (faux_cell, faux_cell$region, mean), yoffset = offset$offsets,
-##'       lines.args = list (lty = 2, lwd = 2), add = TRUE)
-##'
-##' barb <- do.call (collapse, barbiturates [1:3])
-##' plot (barb, lines.args = list (type = "h"), stacked = TRUE,
-##'       stacked.args = list (add.factor = .2))
-##'
-##'
+#' y Offsets for Stacked Plots
+#' Calculate approriate \code{yoffset} values for stacking in \code{\link[hyperSpec]{plotspc}}.
+#'
+#' Usually, the \code{stacked} argument of \code{\link[hyperSpec]{plotspc}} will do fine, but if you
+#' need fine control over the stacking, you may calculate the y offsets yourself.
+#'
+#' Empty levels of the stacking factor are dropped (as no stacking offset can be calculated in that
+#' case.)
+#'
+#' @param x a \code{hyperSpec} object
+#' @param min.zero if \code{TRUE}, the lesser of zero and the minimum intensity of the spectrum is
+#' used as minimum.
+#' @param add.factor,add.sum proportion and absolute amount of space that should be added.
+#' @param .spc for internal use. If given, the ranges are evaluated on \code{.spc}. However, this
+#' may change in future.
+#' @return a list containing \item{offsets}{numeric with the yoffset for each group in
+#' \code{stacked}} \item{groups}{numeric with the group number for each spectrum} \item{levels}{if
+#' \code{stacked} is a factor, the levels of the groups}
+#' @author C. Beleites
+#' @seealso \code{\link[hyperSpec]{plotspc}}
+#' @rdname plotspc
+#' @export
+#' @examples
+#'
+#' mean.pm.sd <- aggregate(faux_cell, faux_cell$region, mean_pm_sd)
+#'
+#' offset <- stacked.offsets(mean.pm.sd, ".aggregate")
+#' plot(mean.pm.sd,
+#'   fill.col = matlab.palette(3), fill = ".aggregate",
+#'   stacked = ".aggregate"
+#' )
+#'
+#' plot(aggregate(faux_cell, faux_cell$region, mean),
+#'   yoffset = offset$offsets,
+#'   lines.args = list(lty = 2, lwd = 2), add = TRUE
+#' )
+#'
+#' barb <- do.call(collapse, barbiturates [1:3])
+#' plot(barb,
+#'   lines.args = list(type = "h"), stacked = TRUE,
+#'   stacked.args = list(add.factor = .2)
+#' )
 stacked.offsets <- function(x, stacked = TRUE,
                             min.zero = FALSE, add.factor = 0.05, add.sum = 0,
                             # tight = FALSE, TODO
@@ -590,7 +598,7 @@ stacked.offsets <- function(x, stacked = TRUE,
   }
 
   if (is.character(stacked)) {
-    stacked <- unlist(x [[, stacked]])
+    stacked <- unlist(x[[, stacked]])
   } else if (isTRUE(stacked)) {
     stacked <- row.seq(x)
   }
@@ -638,7 +646,7 @@ stacked.offsets <- function(x, stacked = TRUE,
   )
 }
 
-##' @include unittest.R
+#' @include unittest.R
 .test(stacked.offsets) <- function() {
   context("stacked.offsets")
 
@@ -646,7 +654,7 @@ stacked.offsets <- function(x, stacked = TRUE,
     spc <- do.call(collapse, barbiturates [1:3])
     ofs <- stacked.offsets(spc)
     spc <- spc + ofs$offsets
-    rngs <- apply(spc [[]], 1, range, na.rm = TRUE)
+    rngs <- apply(spc[[]], 1, range, na.rm = TRUE)
 
     expect_equal(as.numeric(rngs), sort(rngs))
   })
@@ -663,7 +671,7 @@ stacked.offsets <- function(x, stacked = TRUE,
     ofs <- stacked.offsets(flu, min.zero = TRUE, add.factor = 0)
     expect_equal(
       ofs$offsets,
-      c(0, cumsum(apply(flu [[-nrow(flu)]], 1, max)))
+      c(0, cumsum(apply(flu[[-nrow(flu)]], 1, max)))
     )
   })
 }
@@ -674,7 +682,7 @@ stacked.offsets <- function(x, stacked = TRUE,
 }
 
 ### .cut.ticks - pretty tick marks for cut axes
-##' @importFrom utils head
+#' @importFrom utils head
 .cut.ticks <- function(start.ranges,
                        end.ranges,
                        offsets,
@@ -703,19 +711,19 @@ stacked.offsets <- function(x, stacked = TRUE,
   start.ranges <- start.ranges - offsets
   end.ranges <- end.ranges - offsets
 
-  delta <- start.ranges [-1] - head(end.ranges, -1)
+  delta <- start.ranges[-1] - head(end.ranges, -1)
 
   cutmarks <- head(end.ranges, -1) + delta / 2
 
   ## make sure that the ticks are not too close
   for (i in seq_along(delta)) {
-    keep <- at [[i]] < end.ranges [i] + delta [i] / 4
-    at [[i]] <- at     [[i]][keep]
-    labels [[i]] <- labels [[i]][keep]
+    keep <- at[[i]] < end.ranges[i] + delta [i] / 4
+        at[[i]] <-     at[[i]][keep]
+    labels[[i]] <- labels[[i]][keep]
 
-    keep <- at [[i + 1]] > start.ranges [i + 1] - delta [i] / 4
-    at [[i + 1]] <- at     [[i + 1]][keep]
-    labels [[i + 1]] <- labels [[i + 1]][keep]
+    keep <- at[[i + 1]] > start.ranges[i + 1] - delta[i] / 4
+        at[[i + 1]] <-     at[[i + 1]][keep]
+    labels[[i + 1]] <- labels[[i + 1]][keep]
   }
 
   list(
@@ -725,7 +733,7 @@ stacked.offsets <- function(x, stacked = TRUE,
   )
 }
 
-##' @include unittest.R
+#' @include unittest.R
 .test(.cut.ticks) <- function() {
   context(".cut.ticks")
 

@@ -1,33 +1,32 @@
-##' Rubberband baseline
-##'
-##' Baseline with support points determined from a convex hull of the spectrum.
-##'
-##' Use \code{debuglevel >= 1} to obtain debug plots, either directly via function argument or by setting hyperSpec's \code{debuglevel} option.
-##' @title Rubberband baseline correction
-##' @param spc hyperSpec object
-##' @param ... further parameters handed to \code{\link[stats]{smooth.spline}}
-##' @param upper logical indicating whether the lower or upper part of the hull should be used
-##' @param noise noise level to be taken into account
-##' @param spline logical indicating whether the baseline should be an interpolating spline through
-##' the support points or piecewise linear.
-##' @return hyperSpec object containing the baselines
-##' @rdname spc-rubberband
-##' @author Claudia Beleites
-##' @seealso \code{\link[hyperSpec]{spc.fit.poly}}, \code{\link[hyperSpec]{spc.fit.poly.below}}
-##'
-##' \code{vignette ("baseline")}
-##'
-##' \code{\link[hyperSpec]{hy.setOptions}}
-##'
-##' @note This function is still experimental
-##' @export
-##' @examples
-##' plot (paracetamol [,, 175 ~ 1800])
-##' bl <- spc.rubberband (paracetamol [,, 175 ~ 1800], noise = 300, df = 20)
-##' plot (bl, add = TRUE, col = 2)
-##'
-##' plot (paracetamol [,, 175 ~ 1800] - bl)
-
+#' Rubberband baseline
+#'
+#' Baseline with support points determined from a convex hull of the spectrum.
+#'
+#' Use \code{debuglevel >= 1} to obtain debug plots, either directly via function argument or by setting hyperSpec's \code{debuglevel} option.
+#' @title Rubberband baseline correction
+#' @param spc hyperSpec object
+#' @param ... further parameters handed to \code{\link[stats]{smooth.spline}}
+#' @param upper logical indicating whether the lower or upper part of the hull should be used
+#' @param noise noise level to be taken into account
+#' @param spline logical indicating whether the baseline should be an interpolating spline through
+#' the support points or piecewise linear.
+#' @return hyperSpec object containing the baselines
+#' @rdname spc-rubberband
+#' @author Claudia Beleites
+#' @seealso \code{\link[hyperSpec]{spc.fit.poly}}, \code{\link[hyperSpec]{spc.fit.poly.below}}
+#'
+#' \code{vignette ("baseline")}
+#'
+#' \code{\link[hyperSpec]{hy.setOptions}}
+#'
+#' @note This function is still experimental
+#' @export
+#' @examples
+#' plot(paracetamol [, , 175 ~ 1800])
+#' bl <- spc.rubberband(paracetamol [, , 175 ~ 1800], noise = 300, df = 20)
+#' plot(bl, add = TRUE, col = 2)
+#'
+#' plot(paracetamol [, , 175 ~ 1800] - bl)
 spc.rubberband <- function(spc, ..., upper = FALSE, noise = 0, spline = TRUE) {
   spc <- orderwl(spc)
 
@@ -42,7 +41,7 @@ spc.rubberband <- function(spc, ..., upper = FALSE, noise = 0, spline = TRUE) {
   spc
 }
 
-##' @importFrom grDevices chull
+#' @importFrom grDevices chull
 .rubberband <- function(x, y, noise, spline, ..., debuglevel = hy.getOption("debuglevel")) {
   for (s in seq_len(nrow(y))) {
     use <- which(!is.na(y [s, ]))
@@ -109,37 +108,37 @@ spc.rubberband <- function(spc, ..., upper = FALSE, noise = 0, spline = TRUE) {
 
   test_that("spectrum containing NA inside", {
     tmp <- paracetamol
-    tmp [[, , 400]] <- NA
+    tmp[[, , 400]] <- NA
 
     coefs <- spc.rubberband(tmp)
     expect_equal(
-      coefs [[, , !is.na(tmp)]],
-      spc.rubberband(paracetamol [, , !is.na(tmp)]) [[]]
+      coefs[[, , !is.na(tmp)]],
+      spc.rubberband(paracetamol [, , !is.na(tmp)])[[]]
     )
 
     ## bug was: all coefficients were silently 0
-    expect_true(all(abs(coefs [[]]) > sqrt(.Machine$double.eps)))
+    expect_true(all(abs(coefs[[]]) > sqrt(.Machine$double.eps)))
   })
 
   test_that("spectrum containing NA at first wavelength (issue #95)", {
     tmp <- paracetamol
-    tmp [[, , 1, wl.index = TRUE]] <- NA
+    tmp[[, , 1, wl.index = TRUE]] <- NA
 
     coefs <- spc.rubberband(tmp)
     expect_equal(
-      coefs [[, , !is.na(tmp)]],
-      spc.rubberband(paracetamol [, , !is.na(tmp)]) [[]]
+      coefs[[, , !is.na(tmp)]],
+      spc.rubberband(paracetamol [, , !is.na(tmp)])[[]]
     )
   })
 
   test_that("spectrum containing NA at end", {
     tmp <- paracetamol [1]
-    tmp [[, , nwl(paracetamol), wl.index = TRUE]] <- NA
+    tmp[[, , nwl(paracetamol), wl.index = TRUE]] <- NA
 
     coefs <- spc.rubberband(tmp)
     expect_equal(
-      coefs [[, , !is.na(tmp)]],
-      spc.rubberband(paracetamol [1, , !is.na(tmp)]) [[]]
+      coefs[[, , !is.na(tmp)]],
+      spc.rubberband(paracetamol [1, , !is.na(tmp)])[[]]
     )
   })
 }
