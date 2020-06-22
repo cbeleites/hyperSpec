@@ -31,7 +31,7 @@
 ##'
 ##' \dontrun{vignette ("baseline", package = "hyperSpec")}
 ##'
-##' spc <- fauxCell[1 : 10]
+##' spc <- faux_cell[1 : 10]
 ##' baselines <- spc.fit.poly(spc[,, c (625 ~ 640, 1785 ~ 1800)], spc)
 ##' plot(spc - baselines)
 ##'
@@ -107,13 +107,13 @@ spc.fit.poly <- function(fit.to, apply.to = NULL, poly.order = 1,
   })
 
   test_that("spectrum containing NA", {
-    tmp <- fauxCell[1]
+    tmp <- faux_cell[1]
     tmp[[, , 1600]] <- NA
 
     coefs <- spc.fit.poly(tmp, apply.to = NULL)[[]]
     expect_equal(
       coefs,
-      spc.fit.poly(fauxCell[1, , !is.na(tmp)], apply.to = NULL)[[]]
+      spc.fit.poly(faux_cell[1, , !is.na(tmp)], apply.to = NULL)[[]]
     )
 
     ## bug was: all coefficients were silently 0
@@ -144,10 +144,10 @@ spc.fit.poly <- function(fit.to, apply.to = NULL, poly.order = 1,
 ##' baselines <- spc.fit.poly.below (spc)
 ##' plot (spc - baselines)
 ##'
-##' spc.fit.poly.below(fauxCell[1:3], debuglevel = 1)
-##' spc.fit.poly.below(fauxCell[1:3], debuglevel = 2)
-##' spc.fit.poly.below(fauxCell[1:3], debuglevel = 3,
-##'                    noise = sqrt (rowMeans (fauxCell[[1:3]])))
+##' spc.fit.poly.below(faux_cell[1:3], debuglevel = 1)
+##' spc.fit.poly.below(faux_cell[1:3], debuglevel = 2)
+##' spc.fit.poly.below(faux_cell[1:3], debuglevel = 3,
+##'                    noise = sqrt (rowMeans (faux_cell[[1:3]])))
 ##'
 spc.fit.poly.below <- function(fit.to, apply.to = fit.to, poly.order = 1,
                                npts.min = max(round(nwl(fit.to) * 0.05),
@@ -345,13 +345,13 @@ spc.fit.poly.below <- function(fit.to, apply.to = fit.to, poly.order = 1,
   })
 
   test_that("spectrum containing NA", {
-    tmp <- fauxCell[1]
+    tmp <- faux_cell[1]
     tmp[[, , 1600]] <- NA
 
     coefs <- spc.fit.poly.below(tmp, apply.to = NULL)[[]]
     expect_equal(
       coefs,
-      spc.fit.poly.below(fauxCell[1, , !is.na(tmp)], apply.to = NULL)[[]]
+      spc.fit.poly.below(faux_cell[1, , !is.na(tmp)], apply.to = NULL)[[]]
     )
 
     ## bug was: all coefficients were silently 0

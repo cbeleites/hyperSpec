@@ -11,8 +11,8 @@
 ##' @author R. Kiselev
 ##' @export
 ##' @examples
-##' plot (fauxCell [7])
-##' markpeak (fauxCell [7], 1662)
+##' plot (faux_cell [7])
+##' markpeak (faux_cell [7], 1662)
 markpeak <- function(spc, xpos, col = "red") {
   chk.hy(spc)
   validObject(spc)

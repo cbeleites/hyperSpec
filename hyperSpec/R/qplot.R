@@ -19,16 +19,16 @@
 ##' [ggplot2::ggplot()], [ggplot2::geom_line()]
 ##' @examples
 ##'
-##'   qplotspc (fauxCell)
+##'   qplotspc (faux_cell)
 ##'
 ##'   qplotspc (paracetamol, c (2800 ~ max, min ~ 1800)) +
 ##'      scale_x_reverse (breaks = seq (0, 3200, 400))
 ##'
-##'   qplotspc (aggregate (fauxCell, fauxCell$region, mean),
+##'   qplotspc (aggregate (faux_cell, faux_cell$region, mean),
 ##'             mapping = aes (x = .wavelength, y = spc, colour = region)) +
 ##'     facet_grid (region ~ .)
 ##'
-##'   qplotspc (aggregate (fauxCell, fauxCell$region, mean_pm_sd),
+##'   qplotspc (aggregate (faux_cell, faux_cell$region, mean_pm_sd),
 ##'             mapping = aes (x = .wavelength, y = spc, colour = region, group = .rownames)) +
 ##'     facet_grid (region ~ .)
 qplotspc <- function(x,
@@ -114,8 +114,8 @@ qplotspc <- function(x,
 ##'
 ##'   [ggplot2::ggplot()], [ggplot2::geom_tile()]
 ##' @examples
-##' qplotmap (fauxCell)
-##' qplotmap (fauxCell) + scale_fill_gradientn (colours = alois.palette ())
+##' qplotmap (faux_cell)
+##' qplotmap (faux_cell) + scale_fill_gradientn (colours = alois.palette ())
 ##' @importFrom utils tail
 ##' @importFrom rlang as_label
 qplotmap <- function(object,

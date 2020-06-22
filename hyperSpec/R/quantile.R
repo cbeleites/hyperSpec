@@ -31,5 +31,5 @@
 ##' @export
 ##' @examples
 ##'
-##' plot (quantile (fauxCell))
+##' plot (quantile (faux_cell))
 setMethod("quantile", signature = signature(x = "hyperSpec"), .quantile)

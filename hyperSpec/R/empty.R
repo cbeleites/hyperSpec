@@ -9,7 +9,7 @@
 ##' @keywords manip
 ##' @export
 ##' @examples
-##' empty (fauxCell, nrow = 2, spc = 0)
+##' empty (faux_cell, nrow = 2, spc = 0)
 ##' @param x hyperSpec object
 ##' @param nrow number of rows the new object should have
 ##' @param spc value to initialize the new spectra matrix with

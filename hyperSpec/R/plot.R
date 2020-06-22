@@ -148,8 +148,8 @@ setGeneric("plot")
 ##'
 ##' plot (laser, "ts")
 ##'
-##' spc <- apply (fauxCell, 2, quantile, probs = 0.05)
-##' spc <- sweep (fauxCell, 2, spc, "-")
+##' spc <- apply (faux_cell, 2, quantile, probs = 0.05)
+##' spc <- sweep (faux_cell, 2, spc, "-")
 ##' plot (spc, "spcprctl5")
 ##' plot (spc, "spcprctile")
 ##' plot (spc, "spcmeansd")

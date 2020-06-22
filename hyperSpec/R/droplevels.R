@@ -18,30 +18,30 @@
 #'
 #' @examples
 #'
-#' fauxCell[1:3]$region
-#' droplevels(fauxCell [1:3])$region
+#' faux_cell[1:3]$region
+#' droplevels(faux_cell [1:3])$region
 setMethod("droplevels", signature = "hyperSpec", definition = .droplevels)
 
 .test(.droplevels) <- function() {
   context("droplevels")
 
   test_that("no change on object without levels to drop", {
-    expect_equal(droplevels(fauxCell), fauxCell)
+    expect_equal(droplevels(faux_cell), faux_cell)
   })
 
   test_that("dropping levels", {
-    tmp <- droplevels(fauxCell [1:3])
-    expect_equal(tmp@data, droplevels(fauxCell@data [1:3, ]))
+    tmp <- droplevels(faux_cell [1:3])
+    expect_equal(tmp@data, droplevels(faux_cell@data [1:3, ]))
 
     expect_equal(
       tmp     [, c("x", "y", "spc")],
-      fauxCell [1:3, c("x", "y", "spc")]
+      faux_cell [1:3, c("x", "y", "spc")]
     )
 
     expect_equal(tmp$region, factor(rep("matrix", 3)))
   })
 
   test_that("no change if factor is `except`ed", {
-    expect_equal(droplevels(fauxCell, except = 4), fauxCell)
+    expect_equal(droplevels(faux_cell, except = 4), faux_cell)
   })
 }

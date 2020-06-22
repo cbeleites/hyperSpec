@@ -1,4 +1,4 @@
-.fauxCell <- function() {
+.faux_cell <- function() {
 
 
   # Check for points inside ellipse
@@ -28,7 +28,7 @@
     pt_in
   }
 
-  # Now for fauxCell() itself
+  # Now for faux_cell() itself
 
   # Create a matrix containing a faux cell image
   # The matrix contains a cell which in turn contains a nucleus.
@@ -107,33 +107,33 @@
 #'   frequency and line width.  Poisson noise has been added.  The data is
 #'   indexed along the x and y dimensions, simulating data collected on a grid.
 #'
-#' @rdname fauxCell
+#' @rdname faux_cell
 #' @docType data
 #' @include initialize.R
 #' @export
 #' @author Claudia Beleites, Bryan A. Hanson
 #' @examples
 #'
-#' fauxCell
+#' faux_cell
 #'
-#' plot (sample (fauxCell, 10), stacked = TRUE)
+#' plot (sample (faux_cell, 10), stacked = TRUE)
 #'
 #' # Plot mean spectra
-#' FCgrps <- aggregate(fauxCell, fauxCell$region, mean_pm_sd)
+#' FCgrps <- aggregate(faux_cell, faux_cell$region, mean_pm_sd)
 #' plotspc(FCgrps, stacked = ".aggregate",
 #'         col = c("red", "green", "blue"), fill = ".aggregate")
 #'
 #' mapcols <- c(cell = "aquamarine", matrix = "aliceblue", nucleus = "dodgerblue")
-#' plotmap(fauxCell, region ~ x * y, col.regions = mapcols)
+#' plotmap(faux_cell, region ~ x * y, col.regions = mapcols)
 #'
 #' # PCA
-#' pca <- prcomp(fauxCell)
+#' pca <- prcomp(faux_cell)
 #' plot(pca)
 #'
-#' loadings <- decomposition(fauxCell, t(pca$rotation), scores = FALSE)
+#' loadings <- decomposition(faux_cell, t(pca$rotation), scores = FALSE)
 #' plot(loadings[1 : 5], stacked = TRUE)
 #'
 #' plot(pca$x[,2], pca$x[,3], xlab = "PC 1", ylab = "PC 2",
-#'   bg = mapcols[fauxCell$region], col = "black", pch = 21)
+#'   bg = mapcols[faux_cell$region], col = "black", pch = 21)
 #'
-delayedAssign("fauxCell", .fauxCell())
+delayedAssign("faux_cell", .faux_cell())
