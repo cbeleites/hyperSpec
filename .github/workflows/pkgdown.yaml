@@ -1,9 +1,11 @@
 on:
   push:
     branches:
+      - release
       - master
       - develop
-      - fix/190-pkgdown-setup
+      - feature/polish-vignettes
+      - feature/update-pkgdown-settings
 
 name: Update pkgdown website
 
