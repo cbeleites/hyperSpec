@@ -1,14 +1,14 @@
-##' Read ASCII (.txt) files exported by Horiba's Labspec software (LabRAM spectrometers)
-##'
-##' \code{read.txt.Horiba.xy} reads maps, i.e. .txt files where the first two columns give x and y coordinates.
-##'
-##' @title Import Horiba Labspec exported ASCII files
-##' @param file connection (file name and path) to the .txt file
-##' @param cols,header,sep,row.names,check.names,... further parameters are handed over to \code{\link[hyperSpec]{read.txt.wide}}
-##' @rdname read.txt.Horiba
-##' @author C. Beleites
-##' @return hyperSpec object
-##' @export
+#' Read ASCII (.txt) files exported by Horiba's Labspec software (LabRAM spectrometers)
+#'
+#' \code{read.txt.Horiba.xy} reads maps, i.e. .txt files where the first two columns give x and y coordinates.
+#'
+#' @title Import Horiba Labspec exported ASCII files
+#' @param file connection (file name and path) to the .txt file
+#' @param cols,header,sep,row.names,check.names,... further parameters are handed over to \code{\link[hyperSpec]{read.txt.wide}}
+#' @rdname read.txt.Horiba
+#' @author C. Beleites
+#' @return hyperSpec object
+#' @export
 read.txt.Horiba <- function(file, cols = c(
                               spc = "I / a.u.",
                               .wavelength = expression(Delta * tilde(nu) / cm^-1)
@@ -27,8 +27,8 @@ read.txt.Horiba <- function(file, cols = c(
   spc
 }
 
-##' @rdname read.txt.Horiba
-##' @export
+#' @rdname read.txt.Horiba
+#' @export
 read.txt.Horiba.xy <- function(file, ...) {
   read.txt.Horiba(
     file = file,
@@ -42,9 +42,9 @@ read.txt.Horiba.xy <- function(file, ...) {
   )
 }
 
-##' \code{read.txt.Horiba.t}  reads time series, i.e. .txt files with the time in the first column
-##' @rdname read.txt.Horiba
-##' @export
+#' \code{read.txt.Horiba.t}  reads time series, i.e. .txt files with the time in the first column
+#' @rdname read.txt.Horiba
+#' @export
 read.txt.Horiba.t <- function(file, header = TRUE, sep = "\t", row.names = NULL,
                               check.names = FALSE, ...) {
   read.txt.Horiba(file,

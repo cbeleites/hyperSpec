@@ -1,23 +1,23 @@
-##' @details
-##' Nicolet uses some more keywords in their header file.
-##' They are interpreted as follows:
-##' \tabular{ll}{
-##' description   \tab giving the position of the first spectrum \cr
-##' z plot titles \tab wavelength and intensity axis units, comma separated \cr
-##' pixel size    \tab interpreted as x and y step size
-##'                    (specify \code{x = NA} and \code{y = NA})
-##' }
-##' These parameters can be overwritten by giving a list with the respective
-##' elements in parameter \code{header}.
-##'
-##' The values in header line description seem to be microns while the pixel
-##' size seems to be in microns. If \code{nicolet.correction} is true, the
-##' pixel size values (i.e. the step sizes) are multiplied by 1000.
-##'
-##' @param nicolet.correction see details
-##' @describeIn  read.ENVI
-##' @export
-##' @importFrom utils modifyList
+#' @details
+#' Nicolet uses some more keywords in their header file.
+#' They are interpreted as follows:
+#' \tabular{ll}{
+#' description   \tab giving the position of the first spectrum \cr
+#' z plot titles \tab wavelength and intensity axis units, comma separated \cr
+#' pixel size    \tab interpreted as x and y step size
+#'                    (specify \code{x = NA} and \code{y = NA})
+#' }
+#' These parameters can be overwritten by giving a list with the respective
+#' elements in parameter \code{header}.
+#'
+#' The values in header line description seem to be microns while the pixel
+#' size seems to be in microns. If \code{nicolet.correction} is true, the
+#' pixel size values (i.e. the step sizes) are multiplied by 1000.
+#'
+#' @param nicolet.correction see details
+#' @describeIn  read.ENVI
+#' @export
+#' @importFrom utils modifyList
 read.ENVI.Nicolet <- function(file = stop("read.ENVI: file name needed"),
                               headerfile = NULL, header = list(), ...,
                               x = NA, y = NA,

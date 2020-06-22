@@ -1,36 +1,36 @@
-##' Spectra plotting with ggplot2
-##'
-##' These functions are still experimental and may change in future.
-##' @title Spectra plotting with ggplot2
-##' @param x hyperSpec object
-##' @param wl.range wavelength ranges to plot
-##' @param ... handed to [ggplot2::geom_line()]
-##' @param mapping see  [ggplot2::geom_line()]
-##' @param spc.nmax maximum number of spectra to plot
-##' @param map.lineonly if `TRUE`, `mapping` will be handed to
-##' [ggplot2::geom_line()] instead of [ggplot2::ggplot()].
-##' @param debuglevel if > 0, additional debug output is produced
-##' @return a [ggplot2::ggplot()] object
-##' @author Claudia Beleites
-##' @export
-##' @md
-##' @seealso [plotspc()]
-##'
-##' [ggplot2::ggplot()], [ggplot2::geom_line()]
-##' @examples
-##'
-##'   qplotspc (faux_cell)
-##'
-##'   qplotspc (paracetamol, c (2800 ~ max, min ~ 1800)) +
-##'      scale_x_reverse (breaks = seq (0, 3200, 400))
-##'
-##'   qplotspc (aggregate (faux_cell, faux_cell$region, mean),
-##'             mapping = aes (x = .wavelength, y = spc, colour = region)) +
-##'     facet_grid (region ~ .)
-##'
-##'   qplotspc (aggregate (faux_cell, faux_cell$region, mean_pm_sd),
-##'             mapping = aes (x = .wavelength, y = spc, colour = region, group = .rownames)) +
-##'     facet_grid (region ~ .)
+#' Spectra plotting with ggplot2
+#'
+#' These functions are still experimental and may change in future.
+#' @title Spectra plotting with ggplot2
+#' @param x hyperSpec object
+#' @param wl.range wavelength ranges to plot
+#' @param ... handed to [ggplot2::geom_line()]
+#' @param mapping see  [ggplot2::geom_line()]
+#' @param spc.nmax maximum number of spectra to plot
+#' @param map.lineonly if `TRUE`, `mapping` will be handed to
+#' [ggplot2::geom_line()] instead of [ggplot2::ggplot()].
+#' @param debuglevel if > 0, additional debug output is produced
+#' @return a [ggplot2::ggplot()] object
+#' @author Claudia Beleites
+#' @export
+#' @md
+#' @seealso [plotspc()]
+#'
+#' [ggplot2::ggplot()], [ggplot2::geom_line()]
+#' @examples
+#'
+#'   qplotspc (faux_cell)
+#'
+#'   qplotspc (paracetamol, c (2800 ~ max, min ~ 1800)) +
+#'      scale_x_reverse (breaks = seq (0, 3200, 400))
+#'
+#'   qplotspc (aggregate (faux_cell, faux_cell$region, mean),
+#'             mapping = aes (x = .wavelength, y = spc, colour = region)) +
+#'     facet_grid (region ~ .)
+#'
+#'   qplotspc (aggregate (faux_cell, faux_cell$region, mean_pm_sd),
+#'             mapping = aes (x = .wavelength, y = spc, colour = region, group = .rownames)) +
+#'     facet_grid (region ~ .)
 qplotspc <- function(x,
                      wl.range = TRUE, ...,
                      mapping = aes_string(x = ".wavelength", y = "spc",
@@ -91,33 +91,33 @@ qplotspc <- function(x,
 }
 
 
-##' Spectra plotting with ggplot2
-##'
-##' These functions are still experimental and may change in future.
-##'
-##' Note that `qplotmap()` will currently produce the wrong scales if x or y are
-##' discrete.
-##'
-##' @title Spectra plotting with ggplot2
-##' @param object  hyperSpec object
-##' @param mapping see  [ggplot2::geom_tile()]
-##' @param ... handed to [ggplot2::geom_tile()]
-##' @param func function to summarize the wavelengths
-##' @param func.args arguments to `func`
-##' @param map.tileonly if `TRUE`, `mapping` will be handed to
-##'   [ggplot2::geom_tile()] instead of [ggplot2::ggplot()].
-##' @return a [ggplot2::ggplot()] object
-##' @export
-##' @md
-##' @author Claudia Beleites
-##' @seealso [plotmap()]
-##'
-##'   [ggplot2::ggplot()], [ggplot2::geom_tile()]
-##' @examples
-##' qplotmap (faux_cell)
-##' qplotmap (faux_cell) + scale_fill_gradientn (colours = alois.palette ())
-##' @importFrom utils tail
-##' @importFrom rlang as_label
+#' Spectra plotting with ggplot2
+#'
+#' These functions are still experimental and may change in future.
+#'
+#' Note that `qplotmap()` will currently produce the wrong scales if x or y are
+#' discrete.
+#'
+#' @title Spectra plotting with ggplot2
+#' @param object  hyperSpec object
+#' @param mapping see  [ggplot2::geom_tile()]
+#' @param ... handed to [ggplot2::geom_tile()]
+#' @param func function to summarize the wavelengths
+#' @param func.args arguments to `func`
+#' @param map.tileonly if `TRUE`, `mapping` will be handed to
+#'   [ggplot2::geom_tile()] instead of [ggplot2::ggplot()].
+#' @return a [ggplot2::ggplot()] object
+#' @export
+#' @md
+#' @author Claudia Beleites
+#' @seealso [plotmap()]
+#'
+#'   [ggplot2::ggplot()], [ggplot2::geom_tile()]
+#' @examples
+#' qplotmap (faux_cell)
+#' qplotmap (faux_cell) + scale_fill_gradientn (colours = alois.palette ())
+#' @importFrom utils tail
+#' @importFrom rlang as_label
 qplotmap <- function(object,
                      mapping = aes_string(x = "x", y = "y", fill = "spc"),
                      ...,
@@ -171,28 +171,28 @@ qplotmap <- function(object,
 }
 
 
-##' Spectra plotting with ggplot2
-##'
-##' These functions are still experimental and may change in future.
-##' @title Spectra plotting with ggplot2
-##' @param object hyperSpec object
-##' @param mapping see  [ggplot2::geom_point()]
-##' @param ... handed to [ggplot2::geom_point()]
-##' @export
-##' @param func function to summarize the wavelengths, if `NULL`, only the first
-##'   wavelength is used
-##' @param func.args arguments to `func`
-##' @param map.pointonly if `TRUE`, `mapping` will be handed to
-##'   [ggplot2::geom_point()] instead of [ggplot2::ggplot()].
-##' @return a [ggplot2::ggplot()] object
-##' @author Claudia Beleites
-##' @md
-##' @seealso [plotc()]
-##'
-##'   [ggplot2::ggplot()], [ggplot2::geom_point()]
-##' @examples
-##' qplotc (flu)
-##' qplotc (flu) + geom_smooth (method = "lm")
+#' Spectra plotting with ggplot2
+#'
+#' These functions are still experimental and may change in future.
+#' @title Spectra plotting with ggplot2
+#' @param object hyperSpec object
+#' @param mapping see  [ggplot2::geom_point()]
+#' @param ... handed to [ggplot2::geom_point()]
+#' @export
+#' @param func function to summarize the wavelengths, if `NULL`, only the first
+#'   wavelength is used
+#' @param func.args arguments to `func`
+#' @param map.pointonly if `TRUE`, `mapping` will be handed to
+#'   [ggplot2::geom_point()] instead of [ggplot2::ggplot()].
+#' @return a [ggplot2::ggplot()] object
+#' @author Claudia Beleites
+#' @md
+#' @seealso [plotc()]
+#'
+#'   [ggplot2::ggplot()], [ggplot2::geom_point()]
+#' @examples
+#' qplotc (flu)
+#' qplotc (flu) + geom_smooth (method = "lm")
 qplotc <- function(object, mapping = aes_string(x = "c", y = "spc"), ...,
                    func = NULL, func.args = list(),
                    map.pointonly = FALSE) {

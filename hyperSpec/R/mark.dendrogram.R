@@ -1,42 +1,42 @@
-##' Groups are marked by colored rectangles as well as by their levels.
-##'
-##' The dendrogram should be plotted separately, see the example.
-##' @title Mark groups in \code{\link[stats]{hclust}} dendrograms
-##' @param dendrogram the dendrogram
-##' @param groups factor giving the the groups to mark
-##' @param col vector with colors for each group
-##' @param pos.marker top of the marker rectangle
-##' @param height height of the marker rectangle
-##' @param pos.text position of the text label
-##' @param border see \code{\link[graphics]{text}}
-##' @param text.col color (vector) giving the color for the text markers
-##' @param label side label see example
-##' @param label.right should the side labels be at the right side?
-##' @param ... handed to \code{\link[graphics]{rect}} and \code{\link[graphics]{text}}
-##' @author Claudia Beleites
-##' @export
-##' @rdname mark.dendrogram
-##' @examples
-##'
-##' dend <- hclust (pearson.dist (laser[[]]))
-##' par (xpd = TRUE, mar = c (5.1, 4, 4, 3)) # allows plotting into the margin
-##' plot (dend, hang = -1, labels = FALSE)
-##'
-##' ## mark clusters
-##' clusters <- as.factor (cutree (dend, k = 4))
-##' levels (clusters) <- LETTERS [1 : 4]
-##' mark.dendrogram (dend, clusters, label = "cluster")
-##'
-##' ## mark independent factor
-##' mark.dendrogram (dend, as.factor (laser [,,405.36] > 11000),
-##' pos.marker = -0.02, pos.text = - 0.03)
-##'
-##' ## mark continuous variable: convert it to a factor and omit labels
-##' mark.dendrogram (dend, cut (laser [[,, 405.36]], 100), alois.palette (100),
-##'                  pos.marker = -.015, text.col = NA,
-##'                  label = expression (I [lambda == 405.36~nm]), label.right = FALSE)
-##'
-##' @importFrom utils head tail
+#' Groups are marked by colored rectangles as well as by their levels.
+#'
+#' The dendrogram should be plotted separately, see the example.
+#' @title Mark groups in \code{\link[stats]{hclust}} dendrograms
+#' @param dendrogram the dendrogram
+#' @param groups factor giving the the groups to mark
+#' @param col vector with colors for each group
+#' @param pos.marker top of the marker rectangle
+#' @param height height of the marker rectangle
+#' @param pos.text position of the text label
+#' @param border see \code{\link[graphics]{text}}
+#' @param text.col color (vector) giving the color for the text markers
+#' @param label side label see example
+#' @param label.right should the side labels be at the right side?
+#' @param ... handed to \code{\link[graphics]{rect}} and \code{\link[graphics]{text}}
+#' @author Claudia Beleites
+#' @export
+#' @rdname mark.dendrogram
+#' @examples
+#'
+#' dend <- hclust (pearson.dist (laser[[]]))
+#' par (xpd = TRUE, mar = c (5.1, 4, 4, 3)) # allows plotting into the margin
+#' plot (dend, hang = -1, labels = FALSE)
+#'
+#' ## mark clusters
+#' clusters <- as.factor (cutree (dend, k = 4))
+#' levels (clusters) <- LETTERS [1 : 4]
+#' mark.dendrogram (dend, clusters, label = "cluster")
+#'
+#' ## mark independent factor
+#' mark.dendrogram (dend, as.factor (laser [,,405.36] > 11000),
+#' pos.marker = -0.02, pos.text = - 0.03)
+#'
+#' ## mark continuous variable: convert it to a factor and omit labels
+#' mark.dendrogram (dend, cut (laser [[,, 405.36]], 100), alois.palette (100),
+#'                  pos.marker = -.015, text.col = NA,
+#'                  label = expression (I [lambda == 405.36~nm]), label.right = FALSE)
+#'
+#' @importFrom utils head tail
 mark.dendrogram <- function(dendrogram, groups, col = seq_along(unique(groups)),
                             pos.marker = 0,
                             height = 0.025 * max(dendrogram$height),

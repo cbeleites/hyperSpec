@@ -1,26 +1,26 @@
-##' Conversion of a hyperSpec object into a data.frame or matrix
-##' \code{as.data.frame} returns \code{x@@data} (as data.frame) \code{as.matrix}
-##' returns the spectra matrix \code{x@@data$spc} as matrix
-##'
-##' @rdname asdataframe
-##' @name as.data.frame
-##' @aliases as.data.frame as.data.frame,hyperSpec-method as.data.frame.hyperSpec
-##' @docType methods
-##' @param x a \code{hyperSpec} object
-##' @param row.names if \code{TRUE}, a column \code{.row} is created containing row names or row
-##' indices if no rownames are set. If character vector, the rownames are set accordingly.
-##' @param optional ignored
-##' @return \code{x@@data} and \code{x@@data$spc} (== \code{x$spc} == \code{x [[]]}), respectively.
-##' @author C. Beleites
-##' @method as.data.frame hyperSpec
-##' @export
-##' @seealso \code{\link[base]{as.data.frame}}
-##' @keywords methods
-##' @examples
-##'
-##' as.data.frame (faux_cell [1:3,, 600 ~ 620])
-##' as.matrix (faux_cell [1:3,, 600 ~ 620])
-##' lm (c ~ spc, data = flu [,,450])
+#' Conversion of a hyperSpec object into a data.frame or matrix
+#' \code{as.data.frame} returns \code{x@@data} (as data.frame) \code{as.matrix}
+#' returns the spectra matrix \code{x@@data$spc} as matrix
+#'
+#' @rdname asdataframe
+#' @name as.data.frame
+#' @aliases as.data.frame as.data.frame,hyperSpec-method as.data.frame.hyperSpec
+#' @docType methods
+#' @param x a \code{hyperSpec} object
+#' @param row.names if \code{TRUE}, a column \code{.row} is created containing row names or row
+#' indices if no rownames are set. If character vector, the rownames are set accordingly.
+#' @param optional ignored
+#' @return \code{x@@data} and \code{x@@data$spc} (== \code{x$spc} == \code{x [[]]}), respectively.
+#' @author C. Beleites
+#' @method as.data.frame hyperSpec
+#' @export
+#' @seealso \code{\link[base]{as.data.frame}}
+#' @keywords methods
+#' @examples
+#'
+#' as.data.frame (faux_cell [1:3,, 600 ~ 620])
+#' as.matrix (faux_cell [1:3,, 600 ~ 620])
+#' lm (c ~ spc, data = flu [,,450])
 
 as.data.frame.hyperSpec <- function(x, row.names = TRUE, optional = NULL, ...) {
   validObject(x)
@@ -41,15 +41,15 @@ as.data.frame.hyperSpec <- function(x, row.names = TRUE, optional = NULL, ...) {
 
   x
 }
-##' @method as.matrix hyperSpec
-##' @rdname asdataframe
-##' @param ... ignored
-##' @aliases as.matrix as.matrix,hyperSpec-method
-##' @export
-##' @md
-##' @seealso and [base::as.matrix()]
-##'
-##' [`[[`()] (`[[]]`) for a shortcut to `as.matrix`
+#' @method as.matrix hyperSpec
+#' @rdname asdataframe
+#' @param ... ignored
+#' @aliases as.matrix as.matrix,hyperSpec-method
+#' @export
+#' @md
+#' @seealso and [base::as.matrix()]
+#'
+#' [`[[`()] (`[[]]`) for a shortcut to `as.matrix`
 as.matrix.hyperSpec <- function(x, ...) {
   validObject(x)
 
@@ -57,24 +57,24 @@ as.matrix.hyperSpec <- function(x, ...) {
 }
 
 
-##' `as.wide.df` converts the spectra matrix to a data.frame. The extra
-##' data together with this data is returned. The column names of the spectra
-##' matrix are retained (if they are numbers, without preceeding letters).
-##'
-##' @param wl.prefix prefix to prepend wavelength column names
-##' @rdname asdataframe
-##' @aliases  as.wide.df
-##' @export
-##' @md
-##' @return
-##'
-##' `as.wide.df` returns a data.frame that consists of the extra data and
-##'   the spectra matrix converted to a data.frame. The spectra matrix is
-##'   expanded *in place*.
-##' @examples
-##'
-##' as.wide.df (faux_cell [1:5,, 600 ~ 610])
-##' summary (as.wide.df (faux_cell [1:5,, 600 ~ 610]))
+#' `as.wide.df` converts the spectra matrix to a data.frame. The extra
+#' data together with this data is returned. The column names of the spectra
+#' matrix are retained (if they are numbers, without preceeding letters).
+#'
+#' @param wl.prefix prefix to prepend wavelength column names
+#' @rdname asdataframe
+#' @aliases  as.wide.df
+#' @export
+#' @md
+#' @return
+#'
+#' `as.wide.df` returns a data.frame that consists of the extra data and
+#'   the spectra matrix converted to a data.frame. The spectra matrix is
+#'   expanded *in place*.
+#' @examples
+#'
+#' as.wide.df (faux_cell [1:5,, 600 ~ 610])
+#' summary (as.wide.df (faux_cell [1:5,, 600 ~ 610]))
 
 as.wide.df <- function(x, wl.prefix = "") {
   chk.hy(x)
@@ -135,33 +135,33 @@ as.wide.df <- function(x, wl.prefix = "") {
   })
 }
 
-##' \code{as.long.df} returns a long-format data.frame.
-##'
-##' The data.frame returned by \code{as.long.df} is guaranteed to have columns
-##' \code{spc} and \code{.wavelength}. If \code{nwl (x) == 0} these columns
-##' will be \code{NA}.
-##'
-##' @rdname asdataframe
-##' @aliases as.long.df
-##' @param rownames should the rownames be in column \code{.rownames} of the
-##'   long-format data.frame?
-##' @param wl.factor should the wavelengths be returned as a factor (instead of
-##'   numeric)?
-##' @param na.rm if \code{TRUE}, rows where spc is not \code{NA} are deleted.
-##' @export
-##' @return \code{as.long.df} returns the stacked or molten version of \code{x@@data}. The
-##'   wavelengths are in column \code{.wavelength}.
-##' @seealso
-##'
-##' \code{\link[utils]{stack}} and \code{\link[reshape]{melt}} or \code{\link[reshape2]{melt}} for
-##' other functions producing long-format data.frames.
-##' @examples
-##'
-##' as.long.df (flu [,, 405 ~ 410])
-##' summary (as.long.df (flu [,, 405 ~ 410]))
-##' summary (as.long.df (flu [,, 405 ~ 410], rownames = TRUE))
-##' summary (as.long.df (flu [,, 405 ~ 410], wl.factor = TRUE))
-##'
+#' \code{as.long.df} returns a long-format data.frame.
+#'
+#' The data.frame returned by \code{as.long.df} is guaranteed to have columns
+#' \code{spc} and \code{.wavelength}. If \code{nwl (x) == 0} these columns
+#' will be \code{NA}.
+#'
+#' @rdname asdataframe
+#' @aliases as.long.df
+#' @param rownames should the rownames be in column \code{.rownames} of the
+#'   long-format data.frame?
+#' @param wl.factor should the wavelengths be returned as a factor (instead of
+#'   numeric)?
+#' @param na.rm if \code{TRUE}, rows where spc is not \code{NA} are deleted.
+#' @export
+#' @return \code{as.long.df} returns the stacked or molten version of \code{x@@data}. The
+#'   wavelengths are in column \code{.wavelength}.
+#' @seealso
+#'
+#' \code{\link[utils]{stack}} and \code{\link[reshape]{melt}} or \code{\link[reshape2]{melt}} for
+#' other functions producing long-format data.frames.
+#' @examples
+#'
+#' as.long.df (flu [,, 405 ~ 410])
+#' summary (as.long.df (flu [,, 405 ~ 410]))
+#' summary (as.long.df (flu [,, 405 ~ 410], rownames = TRUE))
+#' summary (as.long.df (flu [,, 405 ~ 410], wl.factor = TRUE))
+#'
 as.long.df <- function(x, rownames = FALSE, wl.factor = FALSE, na.rm = TRUE) {
   chk.hy(x)
   validObject(x)
@@ -214,24 +214,24 @@ as.long.df <- function(x, rownames = FALSE, wl.factor = FALSE, na.rm = TRUE) {
   tmp
 }
 
-##'
-##' \code{as.t.df} produces a 'transposed' data.frame with columns containing the spectra.
-##' @rdname asdataframe
-##' @aliases as.t.df
-##' @return \code{as.t.df} returns a data.frame similar to \code{as.long.df}, but each
-##'   spectrum in its own column. This is useful for exporting summary spectra,
-##'   see the example.
-##' @export
-##' @examples
-##' df <- as.t.df (apply (faux_cell, 2, mean_pm_sd))
-##' head (df)
-##'
-##' if (require (ggplot2)){
-##'   ggplot (df, aes (x = .wavelength)) +
-##'     geom_ribbon (aes (ymin = mean.minus.sd, ymax = mean.plus.sd),
-##'       fill = "#00000040") +
-##'     geom_line (aes (y = mean))
-##' }
+#'
+#' \code{as.t.df} produces a 'transposed' data.frame with columns containing the spectra.
+#' @rdname asdataframe
+#' @aliases as.t.df
+#' @return \code{as.t.df} returns a data.frame similar to \code{as.long.df}, but each
+#'   spectrum in its own column. This is useful for exporting summary spectra,
+#'   see the example.
+#' @export
+#' @examples
+#' df <- as.t.df (apply (faux_cell, 2, mean_pm_sd))
+#' head (df)
+#'
+#' if (require (ggplot2)){
+#'   ggplot (df, aes (x = .wavelength)) +
+#'     geom_ribbon (aes (ymin = mean.minus.sd, ymax = mean.plus.sd),
+#'       fill = "#00000040") +
+#'     geom_line (aes (y = mean))
+#' }
 as.t.df <- function(x) {
   chk.hy(x)
   validObject(x)

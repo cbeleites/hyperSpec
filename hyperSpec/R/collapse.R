@@ -1,58 +1,58 @@
-##' collapse/bind several hyperSpec objects into one object
-##'
-##' The spectra from all objects will be put into one object.
-##' The resulting object has all wavelengths that occur in any of the input objects,
-##' `wl.tolerance` is used to determine which difference in the wavelengths is
-##' tolerated as equal: clusters of approximately equal wavelengths will span at most `2 * wl.tolerance`.
-##' Differences up to +/- `wl.tolerance` are considered equal.
-##'
-##' The returned object has wavelengths that are the weighted average
-##' (by number of spectra) of the wavelengths within any such cluster of approximately
-##' equal wavelengths.
-##'
-##' Labels will be taken from the first object where they are encountered. However,
-##' the order of processing objects is not necessarily the same as the order of objects
-##' in the input: `collapse` first processes groups of input objects that share all
-##' wavelengths (within `wl.tolerance`).
-##'
-##' Data points corresponding to wavelengths not in the original spectrum will be set to NA.
-##' Extra data is combined in the same manner.
-##'
-##' If the objects are named, the names will be preserved in extra data column `$.name`.
-##' If the wavelengths are names, names are preserved and taken from the first object where they were encountered,
-##' the same applies to possible column names of the spectra matrix.
-##'
-##' @author C. Beleites
-##' @md
-##' @title Collapse hyperSpec objects
-##' @export
-##' @param ... hyperSpec objects to be collapsed into one object. Instead of giving several
-##' arguments, a list with all objects to be collapsed may be given.
-##' @param wl.tolerance tolerance to decide which wavelengths are considered equal.
-##' @param collapse.equal logical indicating whether to try first finding groups of spectra
-##' with (approximately) equal wavelength axes. If the data is known to contain few or no
-##' such groups, `collapse()` will be faster with this first pass being turned off.
-##' @aliases collapse collapse.hyperSpec
-##' @seealso [merge()],  [rbind()], and [plyr::rbind.fill()]
-##' @return a hyperSpec object
-##' @importFrom dplyr group_by
-##' @importFrom dplyr summarise
-##' @keywords manip
-##' @examples
-##' barbiturates [1:3]
-##' collapse (barbiturates [1:3])
-##'
-##' a <- barbiturates [[1]]
-##' b <- barbiturates [[2]]
-##' c <- barbiturates [[3]]
-##'
-##' a
-##' b
-##' c
-##' collapse (a, b, c)
-##'
-##' collapse (barbiturates [1:3], collapse.equal = FALSE)
-##'
+#' collapse/bind several hyperSpec objects into one object
+#'
+#' The spectra from all objects will be put into one object.
+#' The resulting object has all wavelengths that occur in any of the input objects,
+#' `wl.tolerance` is used to determine which difference in the wavelengths is
+#' tolerated as equal: clusters of approximately equal wavelengths will span at most `2 * wl.tolerance`.
+#' Differences up to +/- `wl.tolerance` are considered equal.
+#'
+#' The returned object has wavelengths that are the weighted average
+#' (by number of spectra) of the wavelengths within any such cluster of approximately
+#' equal wavelengths.
+#'
+#' Labels will be taken from the first object where they are encountered. However,
+#' the order of processing objects is not necessarily the same as the order of objects
+#' in the input: `collapse` first processes groups of input objects that share all
+#' wavelengths (within `wl.tolerance`).
+#'
+#' Data points corresponding to wavelengths not in the original spectrum will be set to NA.
+#' Extra data is combined in the same manner.
+#'
+#' If the objects are named, the names will be preserved in extra data column `$.name`.
+#' If the wavelengths are names, names are preserved and taken from the first object where they were encountered,
+#' the same applies to possible column names of the spectra matrix.
+#'
+#' @author C. Beleites
+#' @md
+#' @title Collapse hyperSpec objects
+#' @export
+#' @param ... hyperSpec objects to be collapsed into one object. Instead of giving several
+#' arguments, a list with all objects to be collapsed may be given.
+#' @param wl.tolerance tolerance to decide which wavelengths are considered equal.
+#' @param collapse.equal logical indicating whether to try first finding groups of spectra
+#' with (approximately) equal wavelength axes. If the data is known to contain few or no
+#' such groups, `collapse()` will be faster with this first pass being turned off.
+#' @aliases collapse collapse.hyperSpec
+#' @seealso [merge()],  [rbind()], and [plyr::rbind.fill()]
+#' @return a hyperSpec object
+#' @importFrom dplyr group_by
+#' @importFrom dplyr summarise
+#' @keywords manip
+#' @examples
+#' barbiturates [1:3]
+#' collapse (barbiturates [1:3])
+#'
+#' a <- barbiturates [[1]]
+#' b <- barbiturates [[2]]
+#' c <- barbiturates [[3]]
+#'
+#' a
+#' b
+#' c
+#' collapse (a, b, c)
+#'
+#' collapse (barbiturates [1:3], collapse.equal = FALSE)
+#'
 
 collapse <- function(..., wl.tolerance = hy.getOption("wl.tolerance"), collapse.equal = TRUE) {
   wl.tolerance <- .checkpos(wl.tolerance, "wl.tolerance")
@@ -136,7 +136,7 @@ collapse <- function(..., wl.tolerance = hy.getOption("wl.tolerance"), collapse.
   new("hyperSpec", wavelength = wl, data = dots, labels = labels)
 }
 
-##' @include unittest.R
+#' @include unittest.R
 .test(collapse) <- function() {
   context("collapse")
 

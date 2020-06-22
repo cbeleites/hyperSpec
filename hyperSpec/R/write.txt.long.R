@@ -4,25 +4,25 @@
 ###
 ###
 
-##' @param object the \code{hyperSpec} object
-##' @param order which columns should be \code{\link[base]{order}}ed?
-##'   \code{order} is used as index vector into a \code{data.frame} with
-##'   columns given by \code{cols}.
-##' @param na.last handed to \code{\link[base]{order}} by
-##'   \code{write.txt.long}.
-##' @param quote,sep,col.names,row.names have their usual meaning (see
-##'   \code{\link[utils]{read.table}} and \code{\link[utils]{write.table}}),
-##'   but different default values.
-##'
-##'   For file import, \code{row.names} should usually be \code{NULL} so that the
-##' first column becomes a extra data column (as opposed to row names of the extra data).
-##' @param col.labels Should the column labels be used rather than the
-##'   colnames?
-##' @param append Should the output be appended to an existing file?
-##' @aliases write.txt.long
-##' @rdname textio
-##' @export
-##' @importFrom utils write.table
+#' @param object the \code{hyperSpec} object
+#' @param order which columns should be \code{\link[base]{order}}ed?
+#'   \code{order} is used as index vector into a \code{data.frame} with
+#'   columns given by \code{cols}.
+#' @param na.last handed to \code{\link[base]{order}} by
+#'   \code{write.txt.long}.
+#' @param quote,sep,col.names,row.names have their usual meaning (see
+#'   \code{\link[utils]{read.table}} and \code{\link[utils]{write.table}}),
+#'   but different default values.
+#'
+#'   For file import, \code{row.names} should usually be \code{NULL} so that the
+#' first column becomes a extra data column (as opposed to row names of the extra data).
+#' @param col.labels Should the column labels be used rather than the
+#'   colnames?
+#' @param append Should the output be appended to an existing file?
+#' @aliases write.txt.long
+#' @rdname textio
+#' @export
+#' @importFrom utils write.table
 write.txt.long <- function(object,
                            file = "",
                            order = c(".rownames", ".wavelength"),

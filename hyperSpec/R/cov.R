@@ -1,16 +1,16 @@
-##' Covariance matrices for hyperSpec objects
-##'
-##'
-##' @param x hyperSpec object
-##' @param y not supported
-##' @param use,method handed to  \code{\link[stats]{cov}}
-##' @return covariance matrix of size \code{nwl (x)} x  \code{nwl (x)}
-##' @seealso \code{\link[stats]{cov}}
-##' @author C. Beleites
-##' @rdname cov
-##' @export
-##' @examples
-##' image (cov (faux_cell))
+#' Covariance matrices for hyperSpec objects
+#'
+#'
+#' @param x hyperSpec object
+#' @param y not supported
+#' @param use,method handed to  \code{\link[stats]{cov}}
+#' @return covariance matrix of size \code{nwl (x)} x  \code{nwl (x)}
+#' @seealso \code{\link[stats]{cov}}
+#' @author C. Beleites
+#' @rdname cov
+#' @export
+#' @examples
+#' image (cov (faux_cell))
 setMethod("cov", signature = signature(x = "hyperSpec", y = "missing"), function(x, y, use, method) {
   validObject(x)
 
@@ -18,18 +18,18 @@ setMethod("cov", signature = signature(x = "hyperSpec", y = "missing"), function
 })
 
 
-##' @param ... ignored
-##' @param regularize regularization of the covariance matrix. Set \code{0} to switch off
-##'
-##' \code{pooled.cov} calculates pooled covariance like e.g. in LDA.
-##' @param groups factor indicating the groups
-##' @rdname cov
-##' @export
-##' @examples
-##' pcov <-  pooled.cov (faux_cell, faux_cell$region)
-##' plot (pcov$means)
-##' image (pcov$COV)
-##'
+#' @param ... ignored
+#' @param regularize regularization of the covariance matrix. Set \code{0} to switch off
+#'
+#' \code{pooled.cov} calculates pooled covariance like e.g. in LDA.
+#' @param groups factor indicating the groups
+#' @rdname cov
+#' @export
+#' @examples
+#' pcov <-  pooled.cov (faux_cell, faux_cell$region)
+#' plot (pcov$means)
+#' image (pcov$COV)
+#'
 pooled.cov <- function(x, groups, ..., regularize = 1e-5 * max(abs(COV))) {
   chk.hy(x)
   validObject(x)

@@ -1,40 +1,40 @@
-##' Polynomial Baseline Fitting
-##' These functions fit polynomal baselines.
-##'
-##' Both functions fit polynomials to be used as baselines. If `apply.to`
-##' is `NULL`, a hyperSpec object with the polynomial coefficients
-##' is returned, otherwise the polynomials are evaluated on the spectral range
-##' of `apply.to`.
-##'
-##' `spc.fit.poly()` calculates the least squares fit of order
-##' `poly.order` to the *complete* spectra given in `fit.to`.
-##' Thus `fit.to` needs to be cut appropriately.
-##'
-##' @rdname baselines
-##' @concept baseline
-##' @param fit.to hyperSpec object on which the baselines are fitted
-##' @param apply.to hyperSpec object on which the baselines are evaluted
-##'   If `NULL`, a hyperSpec object containing the polynomial
-##'   coefficients rather than evaluted baselines is returned.
-##' @param poly.order order of the polynomial to be used
-##' @param offset.wl should the wavelength range be mapped to -> \[0, delta wl\]?
-##' This enhances numerical stability.
-##' @return hyperSpec object containing the baselines in the spectra
-##'   matrix, either as polynomial coefficients or as polynomials evaluted on
-##'   the spectral range of `apply.to`
-##' @author C. Beleites
-##' @md
-##' @seealso `vignette ("baseline", package = "hyperSpec")`
-##' @keywords manip datagen
-##' @export
-##' @examples
-##'
-##' \dontrun{vignette ("baseline", package = "hyperSpec")}
-##'
-##' spc <- faux_cell[1 : 10]
-##' baselines <- spc.fit.poly(spc[,, c (625 ~ 640, 1785 ~ 1800)], spc)
-##' plot(spc - baselines)
-##'
+#' Polynomial Baseline Fitting
+#' These functions fit polynomal baselines.
+#'
+#' Both functions fit polynomials to be used as baselines. If `apply.to`
+#' is `NULL`, a hyperSpec object with the polynomial coefficients
+#' is returned, otherwise the polynomials are evaluated on the spectral range
+#' of `apply.to`.
+#'
+#' `spc.fit.poly()` calculates the least squares fit of order
+#' `poly.order` to the *complete* spectra given in `fit.to`.
+#' Thus `fit.to` needs to be cut appropriately.
+#'
+#' @rdname baselines
+#' @concept baseline
+#' @param fit.to hyperSpec object on which the baselines are fitted
+#' @param apply.to hyperSpec object on which the baselines are evaluted
+#'   If `NULL`, a hyperSpec object containing the polynomial
+#'   coefficients rather than evaluted baselines is returned.
+#' @param poly.order order of the polynomial to be used
+#' @param offset.wl should the wavelength range be mapped to -> \[0, delta wl\]?
+#' This enhances numerical stability.
+#' @return hyperSpec object containing the baselines in the spectra
+#'   matrix, either as polynomial coefficients or as polynomials evaluted on
+#'   the spectral range of `apply.to`
+#' @author C. Beleites
+#' @md
+#' @seealso `vignette ("baseline", package = "hyperSpec")`
+#' @keywords manip datagen
+#' @export
+#' @examples
+#'
+#' \dontrun{vignette ("baseline", package = "hyperSpec")}
+#'
+#' spc <- faux_cell[1 : 10]
+#' baselines <- spc.fit.poly(spc[,, c (625 ~ 640, 1785 ~ 1800)], spc)
+#' plot(spc - baselines)
+#'
 spc.fit.poly <- function(fit.to, apply.to = NULL, poly.order = 1,
                          offset.wl = !(is.null(apply.to))) {
   chk.hy(fit.to)
@@ -121,34 +121,34 @@ spc.fit.poly <- function(fit.to, apply.to = NULL, poly.order = 1,
   })
 }
 
-##'
-##' `spc.fit.poly.below()` tries to fit the baseline on appropriate spectral
-##' ranges of the spectra in `fit.to`.  For details, see the 
-##' `vignette("baseline")`.
-##' @rdname baselines
-##' @param npts.min minimal number of points used for fitting the polynomial
-##' @param noise noise level to be considered during the fit. It may be given as
-##'   one value for all the spectra, or for each spectrum separately.
-##' @param max.iter stop at the latest after so many iterations.
-##' @param stop.on.increase additional stopping rule: stop if the number of
-##'   support points would increase, regardless whether npts.min was reached or
-##'   not.
-##' @param debuglevel  additional output: `1` shows `npts.min`,
-##'   `2` plots support points for the final baseline of 1st spectrum,
-##'   `3` plots support points for 1st spectrum, `4` plots support
-##'   points for all spectra.
-##' @seealso  see [hyperSpec::options()] for more on `debuglevel`
-##' @export
-##' @examples
-##'
-##' baselines <- spc.fit.poly.below (spc)
-##' plot (spc - baselines)
-##'
-##' spc.fit.poly.below(faux_cell[1:3], debuglevel = 1)
-##' spc.fit.poly.below(faux_cell[1:3], debuglevel = 2)
-##' spc.fit.poly.below(faux_cell[1:3], debuglevel = 3,
-##'                    noise = sqrt (rowMeans (faux_cell[[1:3]])))
-##'
+#'
+#' `spc.fit.poly.below()` tries to fit the baseline on appropriate spectral
+#' ranges of the spectra in `fit.to`.  For details, see the 
+#' `vignette("baseline")`.
+#' @rdname baselines
+#' @param npts.min minimal number of points used for fitting the polynomial
+#' @param noise noise level to be considered during the fit. It may be given as
+#'   one value for all the spectra, or for each spectrum separately.
+#' @param max.iter stop at the latest after so many iterations.
+#' @param stop.on.increase additional stopping rule: stop if the number of
+#'   support points would increase, regardless whether npts.min was reached or
+#'   not.
+#' @param debuglevel  additional output: `1` shows `npts.min`,
+#'   `2` plots support points for the final baseline of 1st spectrum,
+#'   `3` plots support points for 1st spectrum, `4` plots support
+#'   points for all spectra.
+#' @seealso  see [hyperSpec::options()] for more on `debuglevel`
+#' @export
+#' @examples
+#'
+#' baselines <- spc.fit.poly.below (spc)
+#' plot (spc - baselines)
+#'
+#' spc.fit.poly.below(faux_cell[1:3], debuglevel = 1)
+#' spc.fit.poly.below(faux_cell[1:3], debuglevel = 2)
+#' spc.fit.poly.below(faux_cell[1:3], debuglevel = 3,
+#'                    noise = sqrt (rowMeans (faux_cell[[1:3]])))
+#'
 spc.fit.poly.below <- function(fit.to, apply.to = fit.to, poly.order = 1,
                                npts.min = max(round(nwl(fit.to) * 0.05),
                                               3 * (poly.order + 1)),

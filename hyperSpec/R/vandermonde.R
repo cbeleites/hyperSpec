@@ -1,20 +1,20 @@
-##' Function evaluation on hyperSpec objects
-##'
-##' `vandermonde()` generates Vandermonde matrices, the hyperSpec method
-##' generates a hyperSpec object containing the van der Monde matrix of the
-##' wavelengths of a hyperSpec object.
-##'
-##' It is often numerically preferrable to map `wl(x)` to \[0, 1\], see the
-##' example.
-##'
-##' @param x object to evaluate the polynomial on
-##' @param order of the polynomial
-##' @md
-##' @rdname vanderMonde
-##' @return Vandermonde matrix
-##' @author C. Beleites
-##' @export
-##' @include unittest.R
+#' Function evaluation on hyperSpec objects
+#'
+#' `vandermonde()` generates Vandermonde matrices, the hyperSpec method
+#' generates a hyperSpec object containing the van der Monde matrix of the
+#' wavelengths of a hyperSpec object.
+#'
+#' It is often numerically preferrable to map `wl(x)` to \[0, 1\], see the
+#' example.
+#'
+#' @param x object to evaluate the polynomial on
+#' @param order of the polynomial
+#' @md
+#' @rdname vanderMonde
+#' @return Vandermonde matrix
+#' @author C. Beleites
+#' @export
+#' @include unittest.R
 vanderMonde <- function(x, order, ...) {
   if (nargs() > 2)
     stop('Unknown arguments: ', names(c (...)))
@@ -22,23 +22,23 @@ vanderMonde <- function(x, order, ...) {
   outer(x, 0:order, `^`)
 }
 
-##' @noRd
+#' @noRd
 setGeneric ("vanderMonde")
 
-##' @param normalize.wl function to transorm the wavelengths before evaluating the polynomial (or
-##' other function). `hyperSpec::normalize01()` maps the wavelength range to the interval
-##' [0, 1]. Use `base::I()` to turn off.
-##' @param ... hyperSpec method: further arguments to `hyperSpec::decomposition()`
-##' @return hyperSpec method: hyperSpec object containing van der Monde matrix as spectra and an additional column `$.vdm.order$ giving the order of each spectrum (term).
-##' @rdname vanderMonde
-##' @seealso `hyperSpec::wl.eval()` for calculating arbitrary functions of the wavelength,
-##'
-##' `hyperSpec::normalize01()`
-##' @export
-##' @examples
-##' plot(vanderMonde(flu, 2))
-##' plot(vanderMonde(flu, 2, normalize.wl = I))
-##'
+#' @param normalize.wl function to transorm the wavelengths before evaluating the polynomial (or
+#' other function). `hyperSpec::normalize01()` maps the wavelength range to the interval
+#' [0, 1]. Use `base::I()` to turn off.
+#' @param ... hyperSpec method: further arguments to `hyperSpec::decomposition()`
+#' @return hyperSpec method: hyperSpec object containing van der Monde matrix as spectra and an additional column `$.vdm.order$ giving the order of each spectrum (term).
+#' @rdname vanderMonde
+#' @seealso `hyperSpec::wl.eval()` for calculating arbitrary functions of the wavelength,
+#'
+#' `hyperSpec::normalize01()`
+#' @export
+#' @examples
+#' plot(vanderMonde(flu, 2))
+#' plot(vanderMonde(flu, 2, normalize.wl = I))
+#'
 setMethod("vanderMonde", signature = signature (x = "hyperSpec"),
            function(x, order, ..., normalize.wl = normalize01) {
              validObject (x)

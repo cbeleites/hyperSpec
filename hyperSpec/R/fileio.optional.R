@@ -34,7 +34,7 @@
   spc
 }
 
-##' @include unittest.R
+#' @include unittest.R
 .test(.fileio.optional) <- function() {
   context(".fileio.optional")
 

@@ -1,17 +1,17 @@
-##' Expand scalar, vector, matrix or similarly shaped hyperSpec objec to matrix
-##'
-##' Helper function for hyperSpec arithmetics.
-##'
-##' A row- or column vector or
-##' a matrix of size 1 x n or n x 1 or
-##' a hyperSpec object with 1 row or 1 wavelength will be expanded
-##' along the size-1-dimension.
-##'
-##' Dimensions that have size > 1 lead to an error if the size does not match.
-##'
-##' @param m matrix, vector or scalar
-##' @param target.dim target size to expand the vector to for the sweep-shortcuts
-##' @noRd
+#' Expand scalar, vector, matrix or similarly shaped hyperSpec objec to matrix
+#'
+#' Helper function for hyperSpec arithmetics.
+#'
+#' A row- or column vector or
+#' a matrix of size 1 x n or n x 1 or
+#' a hyperSpec object with 1 row or 1 wavelength will be expanded
+#' along the size-1-dimension.
+#'
+#' Dimensions that have size > 1 lead to an error if the size does not match.
+#'
+#' @param m matrix, vector or scalar
+#' @param target.dim target size to expand the vector to for the sweep-shortcuts
+#' @noRd
 .expand <- function(m, target.dim) {
 
   ## vector corresponding to a single row

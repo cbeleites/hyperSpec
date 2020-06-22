@@ -52,75 +52,75 @@
 
 }
 
-##' Arithmetical Operators: +, -, *, /, ^, %%, %/%, %*% for hyperSpec objects
-##'
-##' The arithmetical operators `+`, `-`, `*`, `/`, `^`, `%%`, `%/%`, and `%*%`
-##' hyperSpec objects.
-##'
-##' You can use these operators in different ways:
-##' \preformatted{
-##' e1 + e2
-##'
-##' `+`(e1, e2)
-##'
-##' x %*% y `%*%`(x, y)
-##'
-##' -x }
-##'
-##' The arithmetical operators `+`, `-`, `*`, `/`, `^`, `%%`, `%/%`, and
-##' `%*%` work on the  spectra matrix of the hyperSpec object. They have their
-##' usual meaning (see [base::Arithmetic]).  The operators work also with
-##' one hyperSpec object and a numeric object or a matrix of the same
-##' size as the spectra matrix of the hyperSpec object.
-##'
-##' With numeric vectors [sweep()] may be more explicit.
-##'
-##' If you want to calculate on the extra data as well, use the data.frame
-##' `hyperSpec@data` directly or [`as.data.frame(x)`][as.data.frame()].
-##' @author C. Beleites
-##' @md
-##' @rdname Arith
-##' @docType methods
-##' @param e1,e2 or
-##' @param x,y either two hyperSpec objects or
-##'
-##'   one hyperSpec object and  matrix of same size as `x[[]]` or
-##'
-##'   a vector which length equalling either the number of rows or the number of
-##'   wavelengths of the hyperSpec object, or
-##'
-##'   a scalar (numeric of length 1).
-##' @return hyperSpec object with the new spectra matrix.
-##'
-##' If
-##' If the `e2` is a hyperSpec objects, its extra data columns will silently be
-##' dropped silently.
-##'
-##' @export
-##' @keywords methods arith
-##' @include paste.row.R
-##' @include unittest.R
-##' @include hyperspec-class.R
-##' @concept hyperSpec arithmetic
-##' @concept hyperSpec arithmetical operators
-##' @concept hyperSpec plus
-##' @concept hyperSpec division
-##' @concept hyperSpec spectra conversion
-##' @seealso [sweep()] for calculations with a vector and the spectra matrix.
-##'
-##' [methods::S4groupGeneric] for group generic methods.
-##'
-##' [base::Arithmetic] for the base arithmetic functions.
-##'
-##' [hyperSpec::Comparison] for comparison operators,
-##' [hyperSpec::Math] for mathematical group generic functions (Math
-##' and Math2 groups) working on hyperSpec objects.
-##' @examples
-##' flu + flu
-##' 1 / flu
-##' all((flu + flu - 2 * flu)[[]] == 0)
-##' -flu
-##' flu / flu$c
+#' Arithmetical Operators: +, -, *, /, ^, %%, %/%, %*% for hyperSpec objects
+#'
+#' The arithmetical operators `+`, `-`, `*`, `/`, `^`, `%%`, `%/%`, and `%*%`
+#' hyperSpec objects.
+#'
+#' You can use these operators in different ways:
+#' \preformatted{
+#' e1 + e2
+#'
+#' `+`(e1, e2)
+#'
+#' x %*% y `%*%`(x, y)
+#'
+#' -x }
+#'
+#' The arithmetical operators `+`, `-`, `*`, `/`, `^`, `%%`, `%/%`, and
+#' `%*%` work on the  spectra matrix of the hyperSpec object. They have their
+#' usual meaning (see [base::Arithmetic]).  The operators work also with
+#' one hyperSpec object and a numeric object or a matrix of the same
+#' size as the spectra matrix of the hyperSpec object.
+#'
+#' With numeric vectors [sweep()] may be more explicit.
+#'
+#' If you want to calculate on the extra data as well, use the data.frame
+#' `hyperSpec@data` directly or [`as.data.frame(x)`][as.data.frame()].
+#' @author C. Beleites
+#' @md
+#' @rdname Arith
+#' @docType methods
+#' @param e1,e2 or
+#' @param x,y either two hyperSpec objects or
+#'
+#'   one hyperSpec object and  matrix of same size as `x[[]]` or
+#'
+#'   a vector which length equalling either the number of rows or the number of
+#'   wavelengths of the hyperSpec object, or
+#'
+#'   a scalar (numeric of length 1).
+#' @return hyperSpec object with the new spectra matrix.
+#'
+#' If
+#' If the `e2` is a hyperSpec objects, its extra data columns will silently be
+#' dropped silently.
+#'
+#' @export
+#' @keywords methods arith
+#' @include paste.row.R
+#' @include unittest.R
+#' @include hyperspec-class.R
+#' @concept hyperSpec arithmetic
+#' @concept hyperSpec arithmetical operators
+#' @concept hyperSpec plus
+#' @concept hyperSpec division
+#' @concept hyperSpec spectra conversion
+#' @seealso [sweep()] for calculations with a vector and the spectra matrix.
+#'
+#' [methods::S4groupGeneric] for group generic methods.
+#'
+#' [base::Arithmetic] for the base arithmetic functions.
+#'
+#' [hyperSpec::Comparison] for comparison operators,
+#' [hyperSpec::Math] for mathematical group generic functions (Math
+#' and Math2 groups) working on hyperSpec objects.
+#' @examples
+#' flu + flu
+#' 1 / flu
+#' all((flu + flu - 2 * flu)[[]] == 0)
+#' -flu
+#' flu / flu$c
 setMethod("Arith", signature(e1 = "hyperSpec", e2 = "hyperSpec"), .arith_hh)
 
 ## unary operators
@@ -159,7 +159,7 @@ setMethod("Arith", signature(e1 = "hyperSpec", e2 = "hyperSpec"), .arith_hh)
   })
 }
 
-##' @rdname Arith
+#' @rdname Arith
 setMethod("Arith", signature(e1 = "hyperSpec", e2 = "missing"), .arith_h_)
 
 
@@ -259,9 +259,9 @@ setMethod("Arith", signature(e1 = "hyperSpec", e2 = "missing"), .arith_h_)
 }
 
 
-##' @rdname Arith
+#' @rdname Arith
 setMethod("Arith", signature(e1 = "hyperSpec", e2 = "numeric"), .arith_hn)
-##' @rdname Arith
+#' @rdname Arith
 setMethod("Arith", signature(e1 = "hyperSpec", e2 = "matrix"), .arith_hn)
 
 ## arithmetic function called with second parameter hyperSpec
@@ -279,10 +279,10 @@ setMethod("Arith", signature(e1 = "hyperSpec", e2 = "matrix"), .arith_hn)
   e2
 }
 
-##' @rdname Arith
+#' @rdname Arith
 setMethod("Arith", signature(e1 = "numeric", e2 = "hyperSpec"), .arith_nh)
 
-##' @rdname Arith
+#' @rdname Arith
 setMethod("Arith", signature(e1 = "matrix", e2 = "hyperSpec"), .arith_nh)
 
 
@@ -319,11 +319,11 @@ setMethod("Arith", signature(e1 = "matrix", e2 = "hyperSpec"), .arith_nh)
 }
 
 
-##' @rdname Arith
-##' @concept hyperSpec matrix multiplication
-##' @export
-##' @md
-##' @seealso  [base::matmult] for matrix multiplications with `%*%`.
+#' @rdname Arith
+#' @concept hyperSpec matrix multiplication
+#' @export
+#' @md
+#' @seealso  [base::matmult] for matrix multiplications with `%*%`.
 setMethod("%*%", signature(x = "hyperSpec", y = "hyperSpec"), .matmul_hh)
 
 ## matrix multiplication hyperSpec object %*% matrix
@@ -357,7 +357,7 @@ setMethod("%*%", signature(x = "hyperSpec", y = "hyperSpec"), .matmul_hh)
 
 }
 
-##' @rdname Arith
+#' @rdname Arith
 setMethod("%*%", signature(x = "hyperSpec", y = "matrix"), .matmul_hm)
 
 ## matrix multiplication matrix %*% hyperSpec object
@@ -382,6 +382,6 @@ setMethod("%*%", signature(x = "hyperSpec", y = "matrix"), .matmul_hm)
 }
 
 
-##' @rdname Arith
+#' @rdname Arith
 setMethod("%*%", signature(x = "matrix", y = "hyperSpec"), .matmul_mh)
 

@@ -31,8 +31,8 @@ guess.wavelength <- function(X) {
   wl
 }
 
-##' @include regexps.R
-##' @include options.R
+#' @include regexps.R
+#' @include options.R
 .test(guess.wavelength) <- function() {
   context("guess.wavelength")
 

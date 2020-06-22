@@ -1,32 +1,32 @@
-##' Rubberband baseline
-##'
-##' Baseline with support points determined from a convex hull of the spectrum.
-##'
-##' Use \code{debuglevel >= 1} to obtain debug plots, either directly via function argument or by setting hyperSpec's \code{debuglevel} option.
-##' @title Rubberband baseline correction
-##' @param spc hyperSpec object
-##' @param ... further parameters handed to \code{\link[stats]{smooth.spline}}
-##' @param upper logical indicating whether the lower or upper part of the hull should be used
-##' @param noise noise level to be taken into account
-##' @param spline logical indicating whether the baseline should be an interpolating spline through
-##' the support points or piecewise linear.
-##' @return hyperSpec object containing the baselines
-##' @rdname spc-rubberband
-##' @author Claudia Beleites
-##' @seealso \code{\link[hyperSpec]{spc.fit.poly}}, \code{\link[hyperSpec]{spc.fit.poly.below}}
-##'
-##' \code{vignette ("baseline")}
-##'
-##' \code{\link[hyperSpec]{hy.setOptions}}
-##'
-##' @note This function is still experimental
-##' @export
-##' @examples
-##' plot (paracetamol [,, 175 ~ 1800])
-##' bl <- spc.rubberband (paracetamol [,, 175 ~ 1800], noise = 300, df = 20)
-##' plot (bl, add = TRUE, col = 2)
-##'
-##' plot (paracetamol [,, 175 ~ 1800] - bl)
+#' Rubberband baseline
+#'
+#' Baseline with support points determined from a convex hull of the spectrum.
+#'
+#' Use \code{debuglevel >= 1} to obtain debug plots, either directly via function argument or by setting hyperSpec's \code{debuglevel} option.
+#' @title Rubberband baseline correction
+#' @param spc hyperSpec object
+#' @param ... further parameters handed to \code{\link[stats]{smooth.spline}}
+#' @param upper logical indicating whether the lower or upper part of the hull should be used
+#' @param noise noise level to be taken into account
+#' @param spline logical indicating whether the baseline should be an interpolating spline through
+#' the support points or piecewise linear.
+#' @return hyperSpec object containing the baselines
+#' @rdname spc-rubberband
+#' @author Claudia Beleites
+#' @seealso \code{\link[hyperSpec]{spc.fit.poly}}, \code{\link[hyperSpec]{spc.fit.poly.below}}
+#'
+#' \code{vignette ("baseline")}
+#'
+#' \code{\link[hyperSpec]{hy.setOptions}}
+#'
+#' @note This function is still experimental
+#' @export
+#' @examples
+#' plot (paracetamol [,, 175 ~ 1800])
+#' bl <- spc.rubberband (paracetamol [,, 175 ~ 1800], noise = 300, df = 20)
+#' plot (bl, add = TRUE, col = 2)
+#'
+#' plot (paracetamol [,, 175 ~ 1800] - bl)
 
 spc.rubberband <- function(spc, ..., upper = FALSE, noise = 0, spline = TRUE) {
   spc <- orderwl(spc)
@@ -42,7 +42,7 @@ spc.rubberband <- function(spc, ..., upper = FALSE, noise = 0, spline = TRUE) {
   spc
 }
 
-##' @importFrom grDevices chull
+#' @importFrom grDevices chull
 .rubberband <- function(x, y, noise, spline, ..., debuglevel = hy.getOption("debuglevel")) {
   for (s in seq_len(nrow(y))) {
     use <- which(!is.na(y [s, ]))

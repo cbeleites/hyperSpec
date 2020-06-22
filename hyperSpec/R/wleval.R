@@ -1,19 +1,19 @@
-##' Evaluate function on wavelengths of hyperSpec object
-##'
-##' This is useful for generating certain types of baseline "reference spectra".
-##'
-##' @param x hyperSpec object
-##' @param ... hyperSpec method: expressions to be evaluated
-##' @param normalize.wl function to transorm the wavelengths before evaluating the polynomial (or
-##' other function). Use \code{\link[hyperSpec]{normalize01}} to map the wavelength range to the interval [0, 1].
-##' @return hyperSpec object containing one spectrum for each expression
-##' @export
-##' @seealso \code{\link[hyperSpec]{vanderMonde}} for  polynomials,
-##'
-##' \code{\link[hyperSpec]{normalize01}} to normalize the wavenumbers before evaluating the function
-##' @author C. Beleites
-##' @examples
-##' plot (wl.eval (laser, exp = function (x) exp (-x)))
+#' Evaluate function on wavelengths of hyperSpec object
+#'
+#' This is useful for generating certain types of baseline "reference spectra".
+#'
+#' @param x hyperSpec object
+#' @param ... hyperSpec method: expressions to be evaluated
+#' @param normalize.wl function to transorm the wavelengths before evaluating the polynomial (or
+#' other function). Use \code{\link[hyperSpec]{normalize01}} to map the wavelength range to the interval [0, 1].
+#' @return hyperSpec object containing one spectrum for each expression
+#' @export
+#' @seealso \code{\link[hyperSpec]{vanderMonde}} for  polynomials,
+#'
+#' \code{\link[hyperSpec]{normalize01}} to normalize the wavenumbers before evaluating the function
+#' @author C. Beleites
+#' @examples
+#' plot (wl.eval (laser, exp = function (x) exp (-x)))
 wl.eval <- function(x, ..., normalize.wl = I) {
   chk.hy(x)
   validObject(x)
@@ -31,7 +31,7 @@ wl.eval <- function(x, ..., normalize.wl = I) {
   x
 }
 
-##' @include unittest.R
+#' @include unittest.R
 .test(wl.eval) <- function() {
   context("wl.eval")
 

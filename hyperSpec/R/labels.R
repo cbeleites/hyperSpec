@@ -1,4 +1,4 @@
-##' @importFrom utils modifyList
+#' @importFrom utils modifyList
 .labels <- function(object, which = bquote(), drop = TRUE, ..., use.colnames = TRUE) {
   validObject(object)
 
@@ -28,7 +28,7 @@
   label
 }
 
-##' @include unittest.R
+#' @include unittest.R
 .test(.labels) <- function() {
   context(".labels")
 
@@ -70,18 +70,18 @@
   })
 }
 
-##' @rdname labels
-##' @usage
-##' labels (object, which = NULL, ...) <- value
-##'
-##' @aliases labels<-,hyperSpec-method
-##' @export "labels<-"
-##' @param value the new label(s)
-##' @return  \code{labels<-} returns a \code{hyperSpec} object.
-##' @examples
-##'
-##' labels (flu, "c") <- expression ("/" ("c", "mg / l"))
-##'
+#' @rdname labels
+#' @usage
+#' labels (object, which = NULL, ...) <- value
+#'
+#' @aliases labels<-,hyperSpec-method
+#' @export "labels<-"
+#' @param value the new label(s)
+#' @return  \code{labels<-} returns a \code{hyperSpec} object.
+#' @examples
+#'
+#' labels (flu, "c") <- expression ("/" ("c", "mg / l"))
+#'
 `labels<-` <- function(object, which = NULL, ..., value) {
   chk.hy(object)
   validObject(object)
@@ -106,35 +106,35 @@
 }
 
 
-##' Get and Set Labels of a hyperSpec Object
-##' \code{value} may be a list or vector of labels giving the new label for
-##' each of the entries specified by \code{which}.
-##'
-##' The names of the labels are the same as the colnames of the
-##' \code{data.frame}.  The label for the wavelength axis has the name
-##' \code{.wavelength}.
-##'
-##' The labels should be given in a form ready for the text-drawing functions
-##' (see \code{\link[grDevices]{plotmath}}), e.g. as \code{expression} or a
-##' \code{character}.
-##'
-##' @param object a hyperSpec object
-##' @param which numeric or character to specify the label(s)
-##' @param ... ignored
-##' @param drop if the result would be a list with only one element, should the
-##'   element be returned instead?
-##' @param use.colnames should missing labels be replaced by column names of
-##'   the extra data?
-##' @return \code{labels} returns a list of labels.  If \code{drop} is
-##'   \code{TRUE} and the list contains only one element, the element is
-##'   returned instead.
-##' @docType methods
-##' @rdname labels
-##' @author C. Beleites
-##' @seealso \code{\link[base]{labels}}
-##' @export
-##' @examples
-##'
-##' labels (faux_cell)
-##'
+#' Get and Set Labels of a hyperSpec Object
+#' \code{value} may be a list or vector of labels giving the new label for
+#' each of the entries specified by \code{which}.
+#'
+#' The names of the labels are the same as the colnames of the
+#' \code{data.frame}.  The label for the wavelength axis has the name
+#' \code{.wavelength}.
+#'
+#' The labels should be given in a form ready for the text-drawing functions
+#' (see \code{\link[grDevices]{plotmath}}), e.g. as \code{expression} or a
+#' \code{character}.
+#'
+#' @param object a hyperSpec object
+#' @param which numeric or character to specify the label(s)
+#' @param ... ignored
+#' @param drop if the result would be a list with only one element, should the
+#'   element be returned instead?
+#' @param use.colnames should missing labels be replaced by column names of
+#'   the extra data?
+#' @return \code{labels} returns a list of labels.  If \code{drop} is
+#'   \code{TRUE} and the list contains only one element, the element is
+#'   returned instead.
+#' @docType methods
+#' @rdname labels
+#' @author C. Beleites
+#' @seealso \code{\link[base]{labels}}
+#' @export
+#' @examples
+#'
+#' labels (faux_cell)
+#'
 setMethod("labels", signature = signature(object = "hyperSpec"), .labels)

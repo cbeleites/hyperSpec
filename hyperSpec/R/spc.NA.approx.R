@@ -1,23 +1,23 @@
-##' Impute missing data points
-##'
-##' Replace \code{NA}s in the spectra matrix by interpolation. With
-##' less than 4 points available linear interpolation of the 2 neighbour points is used. For larger numbers of
-##' neighbour points, smoothing interpolation is performed by
-##' \code{\link[stats]{smooth.spline}}.
-##' @note  The function has been renamed from \code{spc.NA.linapprox} to  \code{spc.NA.approx}
-##' @param spc hyperSpec object with spectra matrix containing \code{NA}s
-##' @param neighbours how many neighbour data points should be used to fit the
-##'   line
-##' @param w,df,spar see \code{\link[stats]{smooth.spline}}
-##' @param debuglevel  see \code{\link[hyperSpec]{options}}
-##' @return hyperSpec object
-##' @export
-##' @author Claudia Beleites
-##' @examples
-##' fluNA <- hyperSpec:::fluNA
-##' spc.NA.approx (fluNA [,, min ~ 410], debuglevel = 1)
-##' spc.NA.approx (fluNA [1,, min ~ 410], debuglevel = 2)
-##' spc.NA.approx (fluNA [4,, min ~ 410], neighbours = 3, df = 4, debuglevel = 2)
+#' Impute missing data points
+#'
+#' Replace \code{NA}s in the spectra matrix by interpolation. With
+#' less than 4 points available linear interpolation of the 2 neighbour points is used. For larger numbers of
+#' neighbour points, smoothing interpolation is performed by
+#' \code{\link[stats]{smooth.spline}}.
+#' @note  The function has been renamed from \code{spc.NA.linapprox} to  \code{spc.NA.approx}
+#' @param spc hyperSpec object with spectra matrix containing \code{NA}s
+#' @param neighbours how many neighbour data points should be used to fit the
+#'   line
+#' @param w,df,spar see \code{\link[stats]{smooth.spline}}
+#' @param debuglevel  see \code{\link[hyperSpec]{options}}
+#' @return hyperSpec object
+#' @export
+#' @author Claudia Beleites
+#' @examples
+#' fluNA <- hyperSpec:::fluNA
+#' spc.NA.approx (fluNA [,, min ~ 410], debuglevel = 1)
+#' spc.NA.approx (fluNA [1,, min ~ 410], debuglevel = 2)
+#' spc.NA.approx (fluNA [4,, min ~ 410], neighbours = 3, df = 4, debuglevel = 2)
 spc.NA.approx <- function(spc, neighbours = 1, w = rep(1, 2 * neighbours), df = 1 + .Machine$double.eps, spar = NULL,
                           debuglevel = hy.getOption("debuglevel")) {
   chk.hy(spc)
@@ -107,8 +107,8 @@ spc.NA.approx <- function(spc, neighbours = 1, w = rep(1, 2 * neighbours), df = 
   spc
 }
 
-##' @rdname spc.NA.approx
-##' @param ... ignored
+#' @rdname spc.NA.approx
+#' @param ... ignored
 spc.NA.linapprox <- function(...) {
   stop("spc.NA.linapprox has been renamed to spc.NA.approx")
 }
