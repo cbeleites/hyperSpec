@@ -38,28 +38,28 @@
 #' @examples
 #'
 #' faux_cell
-#' bind ("r", faux_cell, faux_cell)
-#' rbind (faux_cell, faux_cell)
-#' cbind (faux_cell, faux_cell)
-#' bind ("r", list (faux_cell, faux_cell, faux_cell))
+#' bind("r", faux_cell, faux_cell)
+#' rbind(faux_cell, faux_cell)
+#' cbind(faux_cell, faux_cell)
+#' bind("r", list(faux_cell, faux_cell, faux_cell))
 #'
-#' x <- faux_cell[,, 600 : 605]
+#' x <- faux_cell[, , 600:605]
 #' x$a <- 1
-#' x@@data <- x@@data[, sample (ncol (x), ncol (x))] # reorder columns
+#' x@data <- x@data[, sample(ncol(x), ncol(x))] # reorder columns
 #'
-#' y <- faux_cell [nrow (faux_cell) : 1,, 1730 : 1750] # reorder rows
+#' y <- faux_cell [nrow(faux_cell):1, , 1730:1750] # reorder rows
 #' y$b <- 2
 #'
-#' cbind2 (x, y) # works
+#' cbind2(x, y) # works
 #'
 #' y$y[3] <- 5
-#' try (cbind2 (x, y)) # error
+#' try(cbind2(x, y)) # error
 #'
 #' # list of hyperSpec objects
 #'
-#' lhy <- list (flu, flu)
-#' do.call ("rbind", lhy)
-#' bind ("r", lhy)
+#' lhy <- list(flu, flu)
+#' do.call("rbind", lhy)
+#' bind("r", lhy)
 bind <- function(direction = stop("direction ('c' or 'r') required"), ...,
                  wl.tolerance = hy.getOption("wl.tolerance")) {
   wl.tolerance <- .checkpos(wl.tolerance, "wl.tolerance")
