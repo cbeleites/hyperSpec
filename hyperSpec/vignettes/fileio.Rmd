@@ -73,9 +73,28 @@ source("vignette-default-settings.R", encoding = "UTF-8")
 # Temporaty options ----------------------------------------------------------
 # Change the value of this option in "vignette-default-settings.R"
 show_reviewers_notes = getOption("show_reviewers_notes", TRUE)
+```
 
-# DO not run code
-knitr::opts_chunk$set(eval = FALSE)
+```{r, echo=FALSE}
+# ----------------------------------------------------------------------------
+# If all necessary datasets are coppied into "fileio" directory,
+# the examples are run. Otherwise they are disabled.
+if (dir.exists("fileio") && length(dir("fileio")) != 0) {
+  # To test locally if the exaples still work
+  knit_eval <- TRUE
+  # message("Code evaluation in fileio.Rmd enabled!")
+
+} else {
+  # Do not run code
+  knit_eval <- FALSE
+  warning("Code evaluation in fileio.Rmd DISABLED!")
+}
+
+knitr::opts_chunk$set(eval = knit_eval)
+# FIXME: this is not a good way to do in vignette,
+# but we should come up with ideas how to cope
+# with big files in this situation.
+# ----------------------------------------------------------------------------
 ```
 
 ```{r bib, echo=FALSE, paged.print=FALSE, eval=TRUE}
@@ -91,6 +110,7 @@ make_bib(
 ```
 
 
+***
 
 ```{block, type="redbox", echo=TRUE}
 **Consistent naming of file import functions in version >= 0.99**
@@ -153,7 +173,7 @@ To run the code examples, you should create a folder named "fileio" in your work
 This online directory contains the required datasets (via `git-lfs`).
 ```
 
-
+***
 
 ```{r}
 library(hyperSpec)
