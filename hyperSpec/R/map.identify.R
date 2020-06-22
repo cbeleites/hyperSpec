@@ -2,10 +2,10 @@
 #' @include plotmap.R
 #' @rdname levelplot
 #' @export
-#' @seealso  \code{\link[hyperSpec:options]{hyperSpec options}} \code{\link{spc.identify}}
-#' \code{\link{map.sel.poly}}
+#' @seealso  [`hyperSpec options()`][hyperSpec::options] [spc.identify()]
+#' [map.sel.poly()]
 #' @param tol tolerance for `map.identify` as fraction of the viewport
-#'   (i.e. in "npc" \link[grid]{unit}s)
+#'   (i.e. in "npc" [unit][grid::unit]s)
 #' @param warn should a warning be issued if no point is within the specified
 #'   tolerance? See also details.
 #' @importFrom grid convertX convertY grid.locator grid.circle gpar

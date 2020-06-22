@@ -18,9 +18,9 @@
 }
 
 #' Sweep Summary Statistic out of an hyperSpec Object
-#' \code{\link[base]{sweep}} for `hyperSpec` objects.
+#' [base::sweep()] for `hyperSpec` objects.
 #'
-#' Calls \code{\link[base]{sweep}} for the spectra matrix.
+#' Calls [base::sweep()] for the spectra matrix.
 #'
 #' `sweep` is useful for some spectra preprocessing, like offset
 #' correction, substraction of background spectra, and normalization of the
@@ -48,7 +48,7 @@
 #' @param ... further arguments for `FUN`
 #' @return A `hyperSpec` object.
 #' @author C. Beleites
-#' @seealso \code{\link[base]{sweep}}
+#' @seealso [base::sweep()]
 #' @keywords methods
 #' @export
 #' @examples

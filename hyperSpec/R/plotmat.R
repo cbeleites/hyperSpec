@@ -8,12 +8,12 @@
 #' @param y character giving the name of the extra data column to label the y axis.
 #' @param ylab y axis label, defaults to `"row"` and the label of the extra data column used
 #' for the y axis, respectively.
-#' @param col see  \code{\link[graphics]{image}}
-#' @param ... further parameters for \code{\link[graphics]{image}}
-#' @param contour should \code{\link[graphics]{contour}} be called instead of
-#' \code{\link[graphics]{image}}?
+#' @param col see  [graphics::image()]
+#' @param ... further parameters for [graphics::image()]
+#' @param contour should [graphics::contour()] be called instead of
+#' [graphics::image()]?
 #' @author Claudia Beleites
-#' @seealso  \code{\link[graphics]{image}}, \code{\link[graphics]{contour}}, \code{\link[hyperSpec]{levelplot}}
+#' @seealso  [graphics::image()], [graphics::contour()], [hyperSpec::levelplot()]
 #' @export
 #' @examples
 #' plotmat(laser, col = alois.palette(100))

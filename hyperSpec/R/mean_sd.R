@@ -13,11 +13,11 @@ setGeneric("mean_pm_sd", function(x, na.rm = TRUE, ...) standardGeneric("mean_pm
 #' @aliases mean_sd
 #' @rdname mean_sd
 #' @param x a numeric vector
-#' @param na.rm handed to \code{\link[base]{mean}} and \code{\link[stats]{sd}}
+#' @param na.rm handed to [base::mean()] and [stats::sd()]
 #' @param ... ignored (needed to make function generic)
 #' @return `mean_sd` returns a vector with two values (mean and standard
 #'   deviation) of `x`.
-#' @seealso \code{\link[base]{mean}}, \code{\link[stats]{sd}}
+#' @seealso [base::mean()], [stats::sd()]
 #' @keywords multivar
 #' @export
 #' @examples
@@ -51,7 +51,7 @@ setMethod("mean_sd",
 #' @rdname mean_sd
 #' @return `mean_sd` returns a hyperSpec object with the mean spectrum in the first row and the standard deviation in the 2nd.
 #' @author C. Beleites
-#' @seealso \code{\link[base]{mean}}, \code{\link[stats]{sd}}
+#' @seealso [base::mean()], [stats::sd()]
 #' @keywords univar
 #' @export
 #' @examples

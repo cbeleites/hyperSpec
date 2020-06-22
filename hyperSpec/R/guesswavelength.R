@@ -1,7 +1,7 @@
 #' guess wavelengths from character vector
 #'
 #' character vectors used for names (e.g. colnames for matrices or data.frames)
-#' are often treated by \code{\link[base]{make.names}} or similar functions that
+#' are often treated by [base::make.names()] or similar functions that
 #' produce suitable names (e.g. by prepending "X" to numbers.). Such names
 #' cannot be directly converted to numeric.
 #'

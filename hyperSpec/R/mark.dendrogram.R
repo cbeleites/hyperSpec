@@ -1,18 +1,18 @@
 #' Groups are marked by colored rectangles as well as by their levels.
 #'
 #' The dendrogram should be plotted separately, see the example.
-#' @title Mark groups in \code{\link[stats]{hclust}} dendrograms
+#' @title Mark groups in [stats::hclust()] dendrograms
 #' @param dendrogram the dendrogram
 #' @param groups factor giving the the groups to mark
 #' @param col vector with colors for each group
 #' @param pos.marker top of the marker rectangle
 #' @param height height of the marker rectangle
 #' @param pos.text position of the text label
-#' @param border see \code{\link[graphics]{text}}
+#' @param border see [graphics::text()]
 #' @param text.col color (vector) giving the color for the text markers
 #' @param label side label see example
 #' @param label.right should the side labels be at the right side?
-#' @param ... handed to \code{\link[graphics]{rect}} and \code{\link[graphics]{text}}
+#' @param ... handed to [graphics::rect()] and [graphics::text()]
 #' @author Claudia Beleites
 #' @export
 #' @rdname mark.dendrogram

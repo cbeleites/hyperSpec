@@ -14,7 +14,7 @@
 #' @author C. Beleites
 #' @method as.data.frame hyperSpec
 #' @export
-#' @seealso \code{\link[base]{as.data.frame}}
+#' @seealso [base::as.data.frame()]
 #' @keywords methods
 #' @examples
 #'
@@ -151,7 +151,7 @@ as.wide.df <- function(x, wl.prefix = "") {
 #'   wavelengths are in column `.wavelength`.
 #' @seealso
 #'
-#' \code{\link[utils]{stack}} and \code{\link[reshape]{melt}} or \code{\link[reshape2]{melt}} for
+#' [utils::stack()] and [reshape::melt()] or [reshape2::melt()] for
 #' other functions producing long-format data.frames.
 #' @examples
 #'

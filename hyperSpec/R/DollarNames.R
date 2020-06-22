@@ -2,7 +2,7 @@
 #'
 #' @aliases .DollarNames .DollarNames,hyperSpec-method
 #' @author C. Beleites
-#' @seealso \code{\link[utils]{.DollarNames}}
+#' @seealso [utils::.DollarNames()]
 #' @export
 #' @rdname dollarnames
 #' @keywords utilities

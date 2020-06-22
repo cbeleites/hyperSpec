@@ -66,8 +66,8 @@
 #' Compute summary statistics for subsets of a `hyperSpec` object.
 #'
 #' `aggregate` applies `FUN` to each of the subgroups given by
-#' `by`. It combines the functionality of \code{\link[stats]{aggregate}},
-#' \code{\link[base]{tapply}}, and \code{\link[stats]{ave}} for hyperSpec
+#' `by`. It combines the functionality of [stats::aggregate()],
+#' [base::tapply()], and [stats::ave()] for hyperSpec
 #' objects.
 #'
 #' `aggregate` avoids splitting `x@@data`.
@@ -97,13 +97,13 @@
 #'   still to be done, whatever is larger.
 #' @param by.isindex If a list is given in `by`: does the list already
 #'   contain the row indices of the groups? If `FALSE`, the list in
-#'   `by` is computed first (as in \code{\link[stats]{aggregate}}).
+#'   `by` is computed first (as in [stats::aggregate()]).
 #' @param ... further arguments passed to `FUN`
 #' @return A `hyperSpec` object with an additional column
 #'   `@@data$.aggregate` tracing which group the rows belong to.
 #' @author C. Beleites
-#' @seealso \code{\link[base]{tapply}}, \code{\link[stats]{aggregate}},
-#'   \code{\link[stats]{ave}}
+#' @seealso [base::tapply()], [stats::aggregate()],
+#'   [stats::ave()]
 #' @keywords methods category array
 #' @rdname aggregate
 #' @export

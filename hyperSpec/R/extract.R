@@ -112,9 +112,9 @@
 #' @param wl.index If `TRUE` (default), the value(s) in `l` are
 #'   treated as column indices for the spectral matrix. Otherwise, the numbers
 #'   in `l` are treated as wavelengths and the corresponding column
-#'   indices are looked up first via \code{\link{wl2i}}.
+#'   indices are looked up first via [wl2i()].
 #' @param drop For `[[`: drop unnecessary dimensions, see
-#'   \code{\link[base]{drop}} and \code{\link[base]{Extract}}. Ignored for
+#'   [base::drop()] and [base::Extract()]. Ignored for
 #'   `[`, as otherwise invalid `hyperSpec` objects might result.
 #' @param ... ignored
 #' @return For `[`, `[<-`, `[[<-`, and `$<-` a `hyperSpec` object,
@@ -129,9 +129,9 @@
 #'
 #' `x$..` returns the `data.frame` in `@@data` but without the column
 #' `@@data$spc` containing the spectra matrix.
-#' @seealso \code{\link{wl2i}} on conversion of wavelength ranges to indices.
+#' @seealso [wl2i()] on conversion of wavelength ranges to indices.
 #'
-#' \code{\link[base]{drop}} and \code{\link[base]{Extract}} on `drop`.
+#' [base::drop()] and [base::Extract()] on `drop`.
 #' @keywords methods manip
 #' @examples
 #'

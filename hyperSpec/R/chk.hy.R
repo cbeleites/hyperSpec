@@ -3,7 +3,7 @@
 #' @title Validation of hyperSpec objects
 #' @aliases validObject validObject,hyperSpec-method chk.hy
 #' @author C. Beleites
-#' @seealso \code{\link[methods]{validObject}}
+#' @seealso [methods::validObject()]
 #' @param object the object to check
 #' @return `TRUE` if the check passes, otherwise stop with an
 #' error.

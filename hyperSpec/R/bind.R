@@ -9,7 +9,7 @@
 #' directly.
 #'
 #' However, in consequence it is no longer possible to call `cbind` or `rbind` with a
-#' list of hyperSpec objects. In that case, use `bind` or \code{\link[base]{do.call}} (see example).
+#' list of hyperSpec objects. In that case, use `bind` or [base::do.call()] (see example).
 #'
 #' `bind` does the common work for both column- and row-wise binding.
 #'
@@ -29,10 +29,10 @@
 #' @author C. Beleites
 #' @export
 #' @seealso
-#' \code{\link[methods]{rbind2}}, \code{\link[methods]{cbind2}}
-#' \code{\link[base]{rbind}}, \code{\link[base]{cbind}}
+#' [methods::rbind2()], [methods::cbind2()]
+#' [base::rbind()], [base::cbind()]
 #'
-#' \code{\link{merge}} and \code{\link{collapse}} for combining objects that do not share spectra
+#' [merge()] and [collapse()] for combining objects that do not share spectra
 #' or wavelengths, respectively.
 #' @keywords methods manip
 #' @examples

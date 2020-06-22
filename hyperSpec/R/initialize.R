@@ -176,18 +176,18 @@
 #' @param labels A `list` containing the labels for the columns of the
 #'   `data` slot of the `hyperSpec` object and for the wavelength
 #'   (in `label$.wavelength`). The labels should be given in a form ready
-#'   for the text-drawing functions (see \code{\link[grDevices]{plotmath}}).
+#'   for the text-drawing functions (see [grDevices::plotmath()]).
 #'
 #' If `label` is not given, a list containing `NULL` for each of the
 #'   columns of`data` and `wavelength` is used.
 #' @author C.Beleites
-#' @seealso \code{\link[methods]{new}} for more information on creating and
+#' @seealso [methods::new()] for more information on creating and
 #'   initializing S4 objects.
 #'
-#' \code{\link[grDevices]{plotmath}} on expressions for math annotations as
+#' [grDevices::plotmath()] on expressions for math annotations as
 #'   for slot `label`.
 #'
-#' \code{\link{hy.setOptions}}
+#' [hy.setOptions()]
 #' @keywords methods datagen
 #' @examples
 #'
@@ -325,7 +325,7 @@ setMethod("initialize", "hyperSpec", .initialize)
 #' @param ... additional parameters that should be handed over to `new ("hyperSpec")` (initialize)
 #'
 #' @return hyperSpec object
-#' @seealso \code{\link[hyperSpec]{initialize}}
+#' @seealso [hyperSpec::initialize()]
 #' @export
 setGeneric(
   "as.hyperSpec",

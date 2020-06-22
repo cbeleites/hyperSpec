@@ -55,10 +55,10 @@
 #' apply
 #' Computes summary statistics for the spectra of a `hyperSpec` object.
 #'
-#' `apply` gives the functionality of \code{\link[base]{apply}} for
+#' `apply` gives the functionality of [base::apply()] for
 #' `hyperSpec` objects.
 #'
-#' The generic functions of group \code{\link[methods]{Math}} are not definded
+#' The generic functions of group [methods::Math()] are not definded
 #' for `hyperSpec` objects. Instead, `apply` can be used. For
 #' functions like `log` that work on scalars, `MARGIN = 1 : 2` gives
 #' the appropriate behaviour.
@@ -83,7 +83,7 @@
 #' `1 : 2` indicates that `FUN` should be applied to each single
 #'   element of the spectra matrix. Note that many basic mathematical
 #'   functions are already defined for hyperSpec objects (see
-#'   \code{\link{Math}}).
+#'   [Math()]).
 #'
 #' If `MARGIN` is missing, the whole spectra matrix is handed to
 #'   `FUN`, see also the examples.
@@ -97,8 +97,8 @@
 #'   the resulting object.
 #' @return A `hyperSpec` object
 #' @author C. Beleites
-#' @seealso \code{\link[base]{apply}}, for applying `FUN` to subgroups of
-#'   the `hyperSpec` object: \code{\link[hyperSpec]{aggregate}}.
+#' @seealso [base::apply()], for applying `FUN` to subgroups of
+#'   the `hyperSpec` object: [hyperSpec::aggregate()].
 #' @keywords methods iteration
 #' @export
 #' @examples

@@ -3,13 +3,13 @@
 #' Replace `NA`s in the spectra matrix by interpolation. With
 #' less than 4 points available linear interpolation of the 2 neighbour points is used. For larger numbers of
 #' neighbour points, smoothing interpolation is performed by
-#' \code{\link[stats]{smooth.spline}}.
+#' [stats::smooth.spline()].
 #' @note  The function has been renamed from `spc.NA.linapprox` to  `spc.NA.approx`
 #' @param spc hyperSpec object with spectra matrix containing `NA`s
 #' @param neighbours how many neighbour data points should be used to fit the
 #'   line
-#' @param w,df,spar see \code{\link[stats]{smooth.spline}}
-#' @param debuglevel  see \code{\link[hyperSpec]{options}}
+#' @param w,df,spar see [stats::smooth.spline()]
+#' @param debuglevel  see [hyperSpec::options()]
 #' @return hyperSpec object
 #' @export
 #' @author Claudia Beleites

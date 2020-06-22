@@ -25,13 +25,13 @@
 #' @return a `hyperSpec` object
 #' @rdname math
 #' @author C. Beleites
-#' @seealso \code{\link[methods]{S4groupGeneric}} for group generic methods.
+#' @seealso [methods::S4groupGeneric()] for group generic methods.
 #'
-#' \code{\link[base]{Math}} for the base math functions.
+#' [base::Math()] for the base math functions.
 #'
-#' \code{\link[hyperSpec]{Arith}} for arithmetic operators,
-#'   \code{\link[hyperSpec]{Comparison}} for comparison operators, and
-#'   \code{\link[hyperSpec]{Summary}} for group generic functions working on
+#' [hyperSpec::Arith()] for arithmetic operators,
+#'   [hyperSpec::Comparison()] for comparison operators, and
+#'   [hyperSpec::Summary()] for group generic functions working on
 #'   `hyperSpec` objects.
 #' @keywords methods math
 #' @export

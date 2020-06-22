@@ -1,23 +1,23 @@
 #' Interactively select a polygon (grid graphics) and highlight points
 #'
 #' Click the points that should be connected as polygon. Input ends with right click (see
-#' \code{\link[grid]{grid.locator}}). Polygon will be drawn closed.
+#' [grid::grid.locator()]). Polygon will be drawn closed.
 #'
-#' `map.sel.poly` is a convenience wrapper for \code{\link{plotmap}}, `sel.poly`,
-#' and \code{\link[sp]{point.in.polygon}}. For custiomized plotting, the plot can be produced by
-#' \code{\link{plotmap}}, \code{\link{plotvoronoi}} or \code{\link{levelplot}}, and the result of
+#' `map.sel.poly` is a convenience wrapper for [plotmap()], `sel.poly`,
+#' and [sp::point.in.polygon()]. For custiomized plotting, the plot can be produced by
+#' [plotmap()], [plotvoronoi()] or [levelplot()], and the result of
 #' that plot command handed over to `map.sel.poly`, see the example below.
 #'
 #' If even more customized plotting is required,`sel.poly` should be used (see example).
 #'
-#' @param data hyperSpec object for plotting map or list returned by \code{\link{plotmap}}
-#' @param pch symbol to display the points of the polygon for \code{\link{sel.poly}}
-#' @param size size for polygon point symbol for \code{\link{sel.poly}}
-#' @param ... further arguments for \code{\link[grid]{grid.points}} and
-#' \code{\link[grid]{grid.lines}}
+#' @param data hyperSpec object for plotting map or list returned by [plotmap()]
+#' @param pch symbol to display the points of the polygon for [sel.poly()]
+#' @param size size for polygon point symbol for [sel.poly()]
+#' @param ... further arguments for [grid::grid.points()] and
+#' [grid::grid.lines()]
 #' @return `map.sel.poly`: array of indices for points within the selected polygon
 #' @author Claudia Beleites, Sebastian Mellor
-#' @seealso \code{\link[grid]{grid.locator}}, \code{\link{map.identify}}
+#' @seealso [grid::grid.locator()], [map.identify()]
 #' @export
 #' @rdname map-sel-poly
 #' @keywords iplot
@@ -87,7 +87,7 @@ map.sel.poly <- function(data, pch = 19, size = 0.3, ...) {
 
 #' @return `sel.poly`: n x 2 matrix with the corner points of the polygon
 #' @author Claudia Beleites
-#' @seealso \code{\link[grid]{grid.locator}}
+#' @seealso [grid::grid.locator()]
 #' @export
 #' @keywords iplot
 #' @rdname map-sel-poly

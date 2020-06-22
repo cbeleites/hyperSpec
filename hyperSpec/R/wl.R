@@ -18,17 +18,17 @@
 #'   changing the columns of the spectra matrix. If you rather want to cut the
 #'   spectral range, use \code{\link[hyperSpec:extractreplace]{[}}, for
 #'   interpolation along the spectral axis see
-#'   \code{\link[hyperSpec]{spc.loess}} and for spectral binning
-#'   \code{\link[hyperSpec]{spc.bin}}.
+#'   [hyperSpec::spc.loess()] and for spectral binning
+#'   [hyperSpec::spc.bin()].
 #' @author C. Beleites
 #' @export
-#' @seealso \code{\link[base]{signif}}
+#' @seealso [base::signif()]
 #'
 #' cutting the spectral range: \code{\link[hyperSpec:extractreplace]{[}}
 #'
-#' interpolation along the spectral axis: \code{\link[hyperSpec]{spc.loess}}
+#' interpolation along the spectral axis: [hyperSpec::spc.loess()]
 #'
-#' spectral binning: \code{\link[hyperSpec]{spc.bin}}
+#' spectral binning: [hyperSpec::spc.bin()]
 #' @examples
 #'
 #' wl(laser)
@@ -60,9 +60,9 @@ wl <- function(x) {
 #' @param value either a numeric containing the new wavelength vector, or a
 #'   list with `value$wl` containing the new wavelength vector and
 #'   `value$label` holding the corresponding `label`.
-#' @param label The label for the new wavelength axis. See \link{initialize}
+#' @param label The label for the new wavelength axis. See [initialize]
 #'   for details.
-#' @param digits handed to \code{\link[base]{signif}}. See details.
+#' @param digits handed to [base::signif()]. See details.
 #' @return `hyperSpec` object
 #' @examples
 #' # convert from wavelength to frequency

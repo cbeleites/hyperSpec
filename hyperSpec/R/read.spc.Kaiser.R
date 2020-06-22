@@ -12,7 +12,7 @@
 #'   specified.
 #' @param glob If `TRUE` the filename is interpreted as a wildcard
 #'   containing file name pattern and expanded to all matching file names.
-#' @param keys.log2data,... All further arguments are handed over directly to \code{\link{read.spc}}.
+#' @param keys.log2data,... All further arguments are handed over directly to [read.spc()].
 #' @return hyperSpec
 #' @examples
 #' ## for examples, please see `vignette ("fileio", package = "hyperSpec")`.

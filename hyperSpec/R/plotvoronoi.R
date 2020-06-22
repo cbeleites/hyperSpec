@@ -13,7 +13,7 @@
 #' @rdname levelplot
 #' @include levelplot.R
 #' @export
-#' @seealso \code{\link[latticeExtra]{panel.voronoi}}
+#' @seealso [latticeExtra::panel.voronoi()]
 #' @importFrom latticeExtra panel.voronoi
 #' @importFrom lattice prepanel.default.levelplot
 #' @importFrom utils modifyList

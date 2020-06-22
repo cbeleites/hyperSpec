@@ -8,7 +8,7 @@
 #' @docType methods
 #' @param x a `hyperSpec` object
 #' @author C. Beleites
-#' @seealso \code{\link[base]{ncol}}
+#' @seealso [base::ncol()]
 #'
 #' @return `nrow`, `ncol`, `nwl`, and `length`, return an
 #'   `integer`.
@@ -27,7 +27,7 @@ setMethod("ncol", signature = signature("hyperSpec"), function(x) {
 #' spectra in the `hyperSpec` object.
 #'
 #' @rdname dim
-#' @seealso \code{\link[base]{nrow}}
+#' @seealso [base::nrow()]
 #' @export
 #' @examples
 #' nrow(faux_cell)
@@ -64,7 +64,7 @@ nwl <- function(x) {
 #' @return
 #'
 #' `dim` returns a vector of length 3.
-#' @seealso \code{\link[base]{dim}}
+#' @seealso [base::dim()]
 #' @keywords methods
 #' @export
 #' @examples
@@ -78,7 +78,7 @@ setMethod("dim", signature = signature("hyperSpec"), function(x) {
 #' `length` is a synonym for `nrow`. It is supplied so that
 #' `seq_along (x)` returns a sequence to index each spectrum.
 #' @rdname dim
-#' @seealso \code{\link[base]{length}}
+#' @seealso [base::length()]
 #' @export
 #' @examples
 #' length(faux_cell)

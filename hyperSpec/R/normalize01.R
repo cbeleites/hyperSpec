@@ -10,7 +10,7 @@
 #' @param ... additional parameters such as `tolerance` handed down.
 #' @return vector with `x` values mapped to the interval [0, 1]
 #' @author C. Beleites
-#' @seealso \code{\link[hyperSpec]{wl.eval}}, \code{\link[hyperSpec]{vanderMonde}}
+#' @seealso [hyperSpec::wl.eval()], [hyperSpec::vanderMonde()]
 #' @export
 setGeneric("normalize01", function(x, ...) standardGeneric("normalize01"))
 

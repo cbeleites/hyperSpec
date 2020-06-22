@@ -1,9 +1,9 @@
 #' Identifying Spectra and Spectral Data Points
 #' This function allows to identify the spectrum and the wavelength of a point
-#' in a plot produced by \code{\link{plotspc}}.
+#' in a plot produced by [plotspc()].
 #'
 #' This function first finds the spectrum with a point closest to the clicked
-#' position (see \code{\link[graphics]{locator}}). The distance to the clicked
+#' position (see [graphics::locator()]). The distance to the clicked
 #' point is evaluated relative to the size of the tolerance window.
 #'
 #' In a second step, `max.fn` searches for the actual point to label
@@ -22,7 +22,7 @@
 #' (wavelength and intensity).
 #'
 #' As a last step, a label for the point produced by `formatter` and
-#' plotted using \code{\link[graphics]{text}}. Currently, the following
+#' plotted using [graphics::text()]. Currently, the following
 #' `formatter`s are available: \tabular{ll}{ spc.label.default \tab
 #' spectrum number, wavelength \cr spc.label.wlonly \tab wavelength\cr }
 #' `formatter` functions receive the number of the spectrum `ispc`,
@@ -38,7 +38,7 @@
 #' `spc.identify` uses option `debuglevel` to determine whether debugging output should be
 #' produced. `debuglevel == 2` will plot the tolerance window for every clicked point,
 #' `debuglevel == 1` will plot the tolerance window only if no data point was inside.  See
-#' \code{\link[hyperSpec:options]{hyperSpec options}} for details about retrieving and setting
+#' [`hyperSpec options()`][hyperSpec::options] for details about retrieving and setting
 #' options.
 #'
 #' You may want to adjust the plot's `ylim` to ensure that the labels are
@@ -47,7 +47,7 @@
 #' @aliases spc.identify spc.label.default spc.label.wlonly spc.point.default
 #'   spc.point.max spc.point.min spc.point.sqr
 #' @param x either the abscissa coordinates or the list returned by
-#'   \code{\link{plotspc}}
+#'   [plotspc()]
 #' @param y the ordinate values. Giving `y` will override any values from
 #'   `x$y`.
 #' @param wavelengths the wavelengths for the data points. Giving
@@ -58,9 +58,9 @@
 #'   point to label, see details.
 #' @param formatter `function (i, wl, spc)` that produces the labels. If
 #'   `NULL`, no labels are displayed.
-#' @param ... passed to \code{\link[graphics]{text}} in order to produce the
+#' @param ... passed to [graphics::text()] in order to produce the
 #'   labels
-#' @param  cex,adj,srt see \code{\link[graphics]{par}}
+#' @param  cex,adj,srt see [graphics::par()]
 #' @param warn Should the user be warned if no point is in the considered
 #'   window? In addition, see the discussion of option `debuglevel` in
 #'   the details.
@@ -77,10 +77,10 @@
 #'   } \item{wavelengths}{the wavelengths of the identified points}
 #'   \item{spc}{the intensities of the identified points}
 #' @author C. Beleites
-#' @seealso \code{\link[graphics]{locator}}, \code{\link{plotspc}},
-#'   \code{\link[hyperSpec:options]{hyperSpec options}}
+#' @seealso [graphics::locator()], [plotspc()],
+#'   [`hyperSpec options()`][hyperSpec::options]
 #'
-#' \code{\link{map.identify}} \code{\link{map.sel.poly}}
+#' [map.identify()] [map.sel.poly()]
 #' @keywords iplot
 #' @rdname spc-identify
 #' @export

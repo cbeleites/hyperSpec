@@ -49,7 +49,7 @@
 #' @return a hyperSpec object, data.frame or matrix with `size` rows for `sample`, and an
 #' integer vector for `isample` that is suitable for indexing (into the spectra) of x.
 #' @author C. Beleites
-#' @seealso \code{\link[base]{sample}}
+#' @seealso [base::sample()]
 #' @keywords methods distribution
 #' @export
 #' @examples
@@ -112,7 +112,7 @@ isample <- function(x, size = nrow(x), replace = FALSE, prob = NULL) {
 }
 
 #' @rdname sample
-#' @param drop see \code{\link[base]{drop}}: by default, do not drop dimensions of the result
+#' @param drop see [base::drop()]: by default, do not drop dimensions of the result
 #' @export
 #' @examples
 #' sample(cars, 2)

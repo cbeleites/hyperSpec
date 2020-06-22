@@ -87,7 +87,7 @@
 #' @rdname Comparison
 #' @param target,current two `hyperSpec` objects that are tested for
 #'   equality
-#' @param ... handed to \code{\link[base]{all.equal}} when testing the slots of the
+#' @param ... handed to [base::all.equal()] when testing the slots of the
 #'   `hyperSpec` objects
 #' @param check.column.order If two objects have the same data, but the order
 #'   of the columns (determined by the names) differs, should they be regarded
@@ -95,11 +95,11 @@
 #' @param check.label Should the slot `label` be checked? \cr If the
 #'   labels differ only in the order of their entries, they are conidered
 #'   equal.
-#' @param check.attributes,check.names see \code{\link[base]{all.equal}}
+#' @param check.attributes,check.names see [base::all.equal()]
 #' @param tolerance,wl.tolerance tolerances for checking wavelengths and data, respectively
 #' @return `all.equal` returns either `TRUE`, or a character vector describing the
 #' differences. In conditions, the result must therefore be tested with
-#' \code{\link[base]{isTRUE}}.
-#' @seealso \code{\link[base]{all.equal}} and \code{\link[base]{isTRUE}}
+#' [base::isTRUE()].
+#' @seealso [base::all.equal()] and [base::isTRUE()]
 #' @export
 setMethod("all.equal", signature(target = "hyperSpec", current = "hyperSpec"), .all.equal)

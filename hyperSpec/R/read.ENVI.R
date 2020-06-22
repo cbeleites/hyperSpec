@@ -297,7 +297,7 @@ split.line <- function(x, separator, trim.blank = TRUE) {
 #' Some more information that is not provided by the ENVI files may be given:
 #'
 #' Wavelength axis and axis labels in the respective parameters. For more
-#' information, see \code{\link[hyperSpec]{initialize}}.
+#' information, see [hyperSpec::initialize()].
 #'
 #' The spatial information is by default a sequence from 0 to
 #' `header$samples - 1` and `header$lines - 1`, respectively.
@@ -316,7 +316,7 @@ split.line <- function(x, separator, trim.blank = TRUE) {
 #'   see details.
 #' @param wavelength,label lists that overwrite the respective information
 #'   from the ENVI header file. These data is then handed to
-#'   \code{\link[hyperSpec]{initialize}}
+#'   [hyperSpec::initialize()]
 #' @param block.lines.skip,block.lines.size BIL and BIP ENVI files may be read in blocks of lines:
 #'   skip the first `block.lines.skip` lines, then read a block of `block.lines.size`
 #'   lines. If `block.lines.NULL`, the whole file is read.
@@ -332,11 +332,11 @@ split.line <- function(x, separator, trim.blank = TRUE) {
 #'   braces should be pulled into one line each.
 #' @return a `hyperSpec` object
 #' @author C. Beleites, testing for the Nicolet files C. Dicko
-#' @seealso \code{\link[caTools]{read.ENVI}}
+#' @seealso [caTools::read.ENVI()]
 #'
-#' \code{\link[hyperSpec]{textio}}
+#' [hyperSpec::textio()]
 #' @references This function was adapted from
-#'   \code{\link[caTools]{read.ENVI}}:
+#'   [caTools::read.ENVI()]:
 #'
 #' Jarek Tuszynski (2008). caTools: Tools: moving window statistics, GIF,
 #'   Base64, ROC AUC, etc.. R package version 1.9.

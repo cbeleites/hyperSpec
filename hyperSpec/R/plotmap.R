@@ -9,24 +9,24 @@
 
 
 #' Plot a Map and Identify/Select Spectra in the Map
-#' \code{\link[lattice]{levelplot}} functions for hyperSpec objects.  An image or map of a summary
+#' [lattice::levelplot()] functions for hyperSpec objects.  An image or map of a summary
 #' value of each spectrum is plotted. Spectra may be identified by mouse click.
 #'
 #' The `model` can contain the special column name `.wavelength` to specify the wavelength
 #' axis.
 #'
 #' `plotmap`, `map.identify`, and the `levelplot` methods internally use the same
-#' gateway function to \code{\link[lattice]{levelplot}}. Thus `transform.factor` can be used
-#' with all of them and the panel function defaults to \code{\link[lattice]{panel.levelplot.raster}}
+#' gateway function to [lattice::levelplot()]. Thus `transform.factor` can be used
+#' with all of them and the panel function defaults to [lattice::panel.levelplot.raster()]
 #' for all three. Two special column names, `.rownames` and `.wavelength` may be used.
 #'
 #' `levelplot` plots the spectra matrix.
 #'
 #' `plotvoronoi` calls `plotmap` with different default settings, namely the panel
-#' function defaults to \code{\link[latticeExtra]{panel.voronoi}}.
-#' \code{\link[latticeExtra]{panel.voronoi}} depends on either of the packages 'tripack' or 'deldir'
+#' function defaults to [latticeExtra::panel.voronoi()].
+#' [latticeExtra::panel.voronoi()] depends on either of the packages 'tripack' or 'deldir'
 #' being installed. For further information, please consult the help page of
-#' \code{\link[latticeExtra]{panel.voronoi}}.  On the \code{\link{faux_cell}} data set, `plotmap`
+#' [latticeExtra::panel.voronoi()].  On the [faux_cell()] data set, `plotmap`
 #' is roughly 5 times faster than `plotvoronoi` using tripack, and ca. 15 times faster than
 #' `plotvoronoi` using deldir. Package tripack, however, is free only for non-commercial
 #' use. Also, it seems that tripack version hang (R running at full CPU power, but not responding
@@ -35,24 +35,24 @@
 #' `map.identify` calls `plotmap` and `plotvoronoi`, respectively and waits for
 #' (left) mouse clicks on points. Other mouse clicks end the input.
 #'
-#' Unlike \code{\link[lattice]{panel.identify}}, the indices returned by `map.identify` are in
+#' Unlike [lattice::panel.identify()], the indices returned by `map.identify` are in
 #' the same order as the points were clicked. Also, multiple clicks on the same point are returned
 #' as multiple entries with the same index.
 #'
-#' `map.identify` uses option `debuglevel` similar to \code{\link{spc.identify}}:
+#' `map.identify` uses option `debuglevel` similar to [spc.identify()]:
 #' `debuglevel == 1` will plot the tolerance window if no data point was inside (and
 #' additionally labels the point) while `debuglevel == 2` will always plot the tolerance
 #' window.
 #'
 #' The `map.sel.*` functions offer further interactive selection, see
-#' \code{\link{map.sel.poly}}.
+#' [map.sel.poly()].
 #'
 #' @rdname levelplot
 #' @aliases plotmap plotvoronoi levelplot,formula,hyperSpec-method
 #'   levelplot,hyperSpec,missing-method map.identify
 #' @param object,data the `hyperSpec` object
 #' @param model,x formula specifying the columns of object that are to be
-#'   displayed by \code{\link[lattice]{levelplot}}
+#'   displayed by [lattice::levelplot()]
 #' @param func,func.args Before plotting, `plotmap` applies function
 #'   `func` with the arguments given in the list `func.args` to each
 #'   of the spectra. Thus a single summary value is displayed for each of the
@@ -63,7 +63,7 @@
 #' @param voronoi Should the plot for identifying spectra by mouse click be
 #'   produced by `plotmap` (default) or `plotvoronoi`?
 #' @param ... further arguments are passed down the call chain, and finally
-#'   to \code{\link[lattice]{levelplot}}
+#'   to [lattice::levelplot()]
 #' @return `map.identify` returns a vector of row indices into
 #'   `object` of the clicked points.
 #'
@@ -71,7 +71,7 @@
 #' @author C. Beleites
 #' @seealso `vignette (plotting)`, `vignette (hyperspec)`
 #'
-#' \code{\link{plot}}
+#' [plot()]
 #' @export
 #' @keywords hplot
 #' @examples

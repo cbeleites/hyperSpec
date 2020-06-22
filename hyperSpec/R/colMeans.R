@@ -1,7 +1,7 @@
 #' colSums, colMeans, rowSums and rowMeans functions for hyperSpec objects
 #'
-#' hyperSpec objects can use the base functions \code{\link[base]{colMeans}},
-#' \code{\link[base]{colSums}}, \code{\link[base]{rowMeans}} and \code{\link[base]{rowSums}}.
+#' hyperSpec objects can use the base functions [base::colMeans()],
+#' [base::colSums()], [base::rowMeans()] and [base::rowSums()].
 #'
 #' @param x hyperSpec object
 #' @param label.spc labels for the intensity axis for loadings-like (col) statistics
@@ -9,7 +9,7 @@
 #' @param na.rm,... further parameters to the base functions
 #'
 #' `na.rm` defaults to `TRUE` for hyperSpec objects.
-#' @seealso \link[base]{colSums}
+#' @seealso [colSums][base::colSums]
 #' @rdname colSums
 #' @name colSums
 NULL

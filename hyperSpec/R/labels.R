@@ -114,7 +114,7 @@
 #' `.wavelength`.
 #'
 #' The labels should be given in a form ready for the text-drawing functions
-#' (see \code{\link[grDevices]{plotmath}}), e.g. as `expression` or a
+#' (see [grDevices::plotmath()]), e.g. as `expression` or a
 #' `character`.
 #'
 #' @param object a hyperSpec object
@@ -130,7 +130,7 @@
 #' @docType methods
 #' @rdname labels
 #' @author C. Beleites
-#' @seealso \code{\link[base]{labels}}
+#' @seealso [base::labels()]
 #' @export
 #' @examples
 #'

@@ -14,13 +14,13 @@
 #'
 #' This is `hyperSpec`'s main plotting function for spectra plots.
 #'
-#' New plots are created by \code{\link[graphics]{plot}}, but the abscissa and
-#' ordinate are drawn separately by \code{\link[graphics]{axis}}. Also,
-#' \code{\link[graphics]{title}} is called explicitly to set up titles and
+#' New plots are created by [graphics::plot()], but the abscissa and
+#' ordinate are drawn separately by [graphics::axis()]. Also,
+#' [graphics::title()] is called explicitly to set up titles and
 #' axis labels. This allows fine-grained customization of the plots.
 #'
 #' If package plotrix is available, its function
-#' \code{\link[plotrix]{axis.break}} is used to produce break marks for cut
+#' [plotrix::axis.break()] is used to produce break marks for cut
 #' wavelength axes.
 #'
 #' @param object the `hyperSpec` object
@@ -41,8 +41,8 @@
 #'   summary spectra such as mean, min, max, etc.
 #' @param func.args `list` with furter arguments for `func`
 #' @param add if `TRUE`, the output is added to the existing plot
-#' @param bty see \code{\link[graphics]{par}}
-#' @param col see \code{\link[graphics]{par}}. `col` might be a vector
+#' @param bty see [graphics::par()]
+#' @param col see [graphics::par()]. `col` might be a vector
 #'   giving individual colors for the spectra.
 #' @param xoffset vector with abscissa offsets for each of the
 #'   `wl.range`s. If it has one element less than there are
@@ -53,7 +53,7 @@
 #'   if `wl.range = list (600 ~ 1800, 2800 ~ 3200)`, `xoffset = 750`
 #'   would result in a reasonable plot. See also the examples.
 #' @param yoffset ordinate offset values for the spectra. May be offsets to
-#'   stack the spectra (\code{\link{stacked.offsets}}). Either one for all
+#'   stack the spectra ([stacked.offsets()]). Either one for all
 #'   spectra, one per spectrum or one per group in `stacked`.
 #' @param nxticks hint how many tick marks the abscissa should have.
 #' @param stacked if not `NULL`, a "stacked" plot is produced, see the
@@ -61,7 +61,7 @@
 #'   numeric or factor is interpreted as giving the grouping, character is
 #'   interpreted as the name of the extra data column that holds the groups.
 #' @param stacked.args a list with further arguments to
-#'   \code{\link{stacked.offsets}}.
+#'   [stacked.offsets()].
 #' @param fill if not `NULL`, the area between the specified spectra is
 #'   filled with color `col`. The grouping can be given as factor or
 #'   numeric, or as a character with the name of the extra data column to use.
@@ -73,31 +73,31 @@
 #' @param border character vector with border color. You will need to set the
 #'   line color `col` to `NA` in order see the effect.
 #' @param plot.args `list` with further arguments to
-#'   \code{\link[graphics]{plot}}
+#'   [graphics::plot()]
 #' @param axis.args `list` with further arguments for
-#'   \code{\link[graphics]{axis}}. `axis.args$x` should contain arguments
+#'   [graphics::axis()]. `axis.args$x` should contain arguments
 #'   for plotting the abscissa, `axis.args$y` those for the ordinate
 #'   (again as `lists`).
 #' @param title.args list with further arguments to
-#'   \code{\link[graphics]{title}}.
+#'   [graphics::title()].
 #'
 #' `title.args` may contain two lists, `$x`, and `$y` to set
 #'   parameters individually for each axis.
 #' @param lines.args list with further arguments to
-#'   \code{\link[graphics]{lines}}.
+#'   [graphics::lines()].
 #'
 #' `lines.args$type` defaults to "l".
 #' @param break.args list with arguments for
-#'   \code{\link[plotrix]{axis.break}}.
+#'   [plotrix::axis.break()].
 #' @param polygon.args list with further arguments to
-#'   \code{\link[graphics]{polygon}} which draws the filled areas.
+#'   [graphics::polygon()] which draws the filled areas.
 #' @param zeroline `NA` or a list with arguments
-#'   \code{\link[graphics]{abline}}, used to plot line (s) marking I = 0.
+#'   [graphics::abline()], used to plot line (s) marking I = 0.
 #'
 #' `NA` suppresses plotting of the line.  The line is by default turned
 #'   off if `yoffset` is not 0.
 #' @param debuglevel if > 0, additional debug output is produced,
-#' see \code{\link[hyperSpec]{options}} for details
+#' see [hyperSpec::options()] for details
 #' @return `plotspc` invisibly returns a list with
 #'
 #' \item{x}{the abscissa coordinates of the plotted spectral data points}
@@ -107,19 +107,19 @@
 #'
 #' \item{wavelengths}{the wavelengths of the plotted spectral data points}
 #'
-#' This can be used together with \code{\link{spc.identify}}.
+#' This can be used together with [spc.identify()].
 #' @author C. Beleites
-#' @seealso \code{\link[graphics]{plot}}, \code{\link[graphics]{axis}},
-#'   \code{\link[graphics]{title}}, \code{\link[graphics]{lines}},
-#'   \code{\link[graphics]{polygon}}, \code{\link[graphics]{par}} for the
+#' @seealso [graphics::plot()], [graphics::axis()],
+#'   [graphics::title()], [graphics::lines()],
+#'   [graphics::polygon()], [graphics::par()] for the
 #'   description of the respective arguments.
 #'
-#' \code{\link[plotrix]{axis.break}} for cut marks
+#' [plotrix::axis.break()] for cut marks
 #'
-#' See \code{\link{plot}} for some predefined spectra plots such as mean
+#' See [plot()] for some predefined spectra plots such as mean
 #'   spectrum +/- one standard deviation and the like.
 #'
-#' \code{\link[graphics]{identify}} and \code{\link[graphics]{locator}} about
+#' [graphics::identify()] and [graphics::locator()] about
 #'   interaction with plots.
 #' @keywords hplot
 #' @export
@@ -546,9 +546,9 @@ plotspc <- function(object,
 
 
 #' y Offsets for Stacked Plots
-#' Calculate approriate `yoffset` values for stacking in \code{\link[hyperSpec]{plotspc}}.
+#' Calculate approriate `yoffset` values for stacking in [hyperSpec::plotspc()].
 #'
-#' Usually, the `stacked` argument of \code{\link[hyperSpec]{plotspc}} will do fine, but if you
+#' Usually, the `stacked` argument of [hyperSpec::plotspc()] will do fine, but if you
 #' need fine control over the stacking, you may calculate the y offsets yourself.
 #'
 #' Empty levels of the stacking factor are dropped (as no stacking offset can be calculated in that
@@ -564,7 +564,7 @@ plotspc <- function(object,
 #' `stacked`} \item{groups}{numeric with the group number for each spectrum} \item{levels}{if
 #' `stacked` is a factor, the levels of the groups}
 #' @author C. Beleites
-#' @seealso \code{\link[hyperSpec]{plotspc}}
+#' @seealso [hyperSpec::plotspc()]
 #' @rdname plotspc
 #' @export
 #' @examples

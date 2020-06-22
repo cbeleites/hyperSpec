@@ -1,5 +1,5 @@
 #' Color coding legend for factors
-#' Modifies a list of lattice arguments (as for \code{\link[lattice]{levelplot}}, etc.) according to
+#' Modifies a list of lattice arguments (as for [lattice::levelplot()], etc.) according to
 #' the factor levels. The colorkey will shows all levels (including unused), and the drawing colors
 #' will be set accordingly.
 #'
@@ -10,7 +10,7 @@
 #' @param levelplot.args a list with levelplot arguments
 #' @return the modified list with levelplot arguments.
 #' @author C. Beleites
-#' @seealso \code{\link[lattice]{levelplot}}
+#' @seealso [lattice::levelplot()]
 #' @keywords aplot
 #' @export
 #' @importFrom lattice level.colors

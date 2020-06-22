@@ -5,12 +5,12 @@
 #'
 #' The comparison operators `>`, `<`, `>=`, `<=`,
 #' `==`, and `!=` work on the spectra matrix of the `hyperSpec`
-#' object. They have their usual meaning (see \code{\link[base]{Comparison}}).
+#' object. They have their usual meaning (see [base::Comparison()]).
 #' The operators work also with one `hyperSpec` object and a numeric
 #' (scalar) object or a matrices of the same size as the spectra matrix of the
 #' `hyperSpec` object.
 #'
-#' With numeric vectors \code{\link[hyperSpec]{sweep}} might be more
+#' With numeric vectors [hyperSpec::sweep()] might be more
 #' appropriate.
 #'
 #' If you want to calculate on the `data.frame` `hyperSpec@@data`,
@@ -33,15 +33,15 @@
 #' As `hyperSpec` objects must have numeric spectra matrices, the
 #'   resulting matrix of the comparison is returned directly.
 #' @return a logical matrix for the comparison operators.
-#' @seealso \code{\link[hyperSpec]{sweep-methods}} for calculations involving
+#' @seealso [hyperSpec::sweep-methods()] for calculations involving
 #'   a vector and the spectral matrix.
 #'
-#' \code{\link[methods]{S4groupGeneric}} for group generic methods.
+#' [methods::S4groupGeneric()] for group generic methods.
 #'
-#' \code{\link[base]{Comparison}} for the base comparison functions.
+#' [base::Comparison()] for the base comparison functions.
 #'
-#' \code{\link[hyperSpec]{Arith}} for arithmetic operators,
-#'   \code{\link[hyperSpec]{Math}} for mathematical group generic functions
+#' [hyperSpec::Arith()] for arithmetic operators,
+#'   [hyperSpec::Math()] for mathematical group generic functions
 #'   (groups Math and Math2) working on `hyperSpec` objects.
 #' @keywords methods arith
 #' @export

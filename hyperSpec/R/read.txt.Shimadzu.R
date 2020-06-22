@@ -3,7 +3,7 @@
 #'
 #' @note This is a first rough import function and the functions may change without notice.
 #' @param filename file name and path of the .txt file
-#' @param encoding encoding of the txt file (used by \code{\link[base]{readLines}})
+#' @param encoding encoding of the txt file (used by [base::readLines()])
 #' @param quiet suppress printing of progress
 #' @return list of spectra tables
 #' @author Bjoern Egert

@@ -3,9 +3,9 @@
 #'
 #' @param x hyperSpec object
 #' @param y not supported
-#' @param use,method handed to  \code{\link[stats]{cov}}
+#' @param use,method handed to  [stats::cov()]
 #' @return covariance matrix of size `nwl (x)` x  `nwl (x)`
-#' @seealso \code{\link[stats]{cov}}
+#' @seealso [stats::cov()]
 #' @author C. Beleites
 #' @rdname cov
 #' @export

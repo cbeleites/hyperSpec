@@ -12,7 +12,7 @@
 #' @return `as.character` returns a character vector fit to be printed by
 #'   `cat` with `sep = "\n"`.
 #'
-#' @seealso \code{\link[base]{as.character}}
+#' @seealso [base::as.character()]
 #' @include paste.row.R
 #' @export
 
@@ -82,7 +82,7 @@ setMethod("as.character",
 #' @rdname show
 #' @aliases show show,hyperSpec-method
 #' @param object a `hyperSpec` object
-#' @seealso \code{\link[methods]{show}}
+#' @seealso [methods::show()]
 #' @keywords methods print
 #' @export
 #' @examples
@@ -109,7 +109,7 @@ setMethod("show", signature = signature(object = "hyperSpec"), function(object) 
 #'   an invisible `NULL`.
 #' @rdname show
 #' @export
-#' @seealso \code{\link[base]{print}}
+#' @seealso [base::print()]
 setMethod("print", signature = signature(x = "hyperSpec"), function(x, range = FALSE, ...) {
   validObject(x)
   cat(as.character(x, range = FALSE, ...), sep = "\n")
@@ -121,7 +121,7 @@ setMethod("print", signature = signature(x = "hyperSpec"), function(x, range = F
 #' `summary` displays the logbook in addition.
 #'
 #' @aliases summary summary,hyperSpec-method
-#' @seealso \code{\link[base]{summary}}
+#' @seealso [base::summary()]
 #' @export
 #' @rdname show
 setMethod("summary",

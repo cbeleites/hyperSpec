@@ -24,7 +24,7 @@
 #' The special column names `.rownames` and `.wavelength` may be
 #' used.
 #'
-#' The actual plotting is done by \code{\link[lattice]{xyplot}}.
+#' The actual plotting is done by [lattice::xyplot()].
 #'
 #' @param object the `hyperSpec` object
 #' @param model the lattice model specifying the plot
@@ -33,9 +33,9 @@
 #' @param func.args further arguments to `func`
 #' @param groups grouping variable, e.g. `.wavelength` if intensities of
 #'   more than one wavelength should be plotted
-#' @param ... further arguments to \code{\link[lattice]{xyplot}}.
+#' @param ... further arguments to [lattice::xyplot()].
 #' @author C. Beleites
-#' @seealso \code{\link[lattice]{xyplot}}
+#' @seealso [lattice::xyplot()]
 #' @keywords hplot
 #' @export
 #' @import graphics

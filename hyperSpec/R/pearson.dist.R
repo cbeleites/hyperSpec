@@ -10,7 +10,7 @@
 #' @param x a matrix
 #' @return distance matrix (distance object)
 #' @author C. Beleites
-#' @seealso \code{\link[stats]{as.dist}}
+#' @seealso [stats::as.dist()]
 #' @references S. Theodoridis and K. Koutroumbas: Pattern Recognition, 3rd ed., p. 495
 #' @keywords cluster
 #' @export

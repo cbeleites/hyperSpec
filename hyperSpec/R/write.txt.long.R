@@ -5,13 +5,13 @@
 ###
 
 #' @param object the `hyperSpec` object
-#' @param order which columns should be \code{\link[base]{order}}ed?
+#' @param order which columns should be [base::order()]ed?
 #'   `order` is used as index vector into a `data.frame` with
 #'   columns given by `cols`.
-#' @param na.last handed to \code{\link[base]{order}} by
+#' @param na.last handed to [base::order()] by
 #'   `write.txt.long`.
 #' @param quote,sep,col.names,row.names have their usual meaning (see
-#'   \code{\link[utils]{read.table}} and \code{\link[utils]{write.table}}),
+#'   [utils::read.table()] and [utils::write.table()]),
 #'   but different default values.
 #'
 #'   For file import, `row.names` should usually be `NULL` so that the

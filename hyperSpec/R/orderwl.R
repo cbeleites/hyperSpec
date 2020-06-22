@@ -6,11 +6,11 @@
 #' The wavelength vector is sorted and the columns of the spectra matrix are rearranged accordingly.
 #'
 #' @param x The `hyperSpec` object.
-#' @param na.last,decreasing Handed to \code{\link[base]{order}}.
+#' @param na.last,decreasing Handed to [base::order()].
 #' @return A `hyperSpec` object.
 #' @author C. Beleites
 #' @export
-#' @seealso \code{\link[base]{order}}
+#' @seealso [base::order()]
 #' @examples
 #'
 #' ## Example 1: different drawing order in plotspc

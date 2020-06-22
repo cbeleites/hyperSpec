@@ -7,22 +7,22 @@
 ###
 
 #' Import and Export of hyperSpec objects
-#' Besides \code{\link[base]{save}} and \code{\link[base]{load}}, two general
+#' Besides [base::save()] and [base::load()], two general
 #' ways to import and export data into `hyperSpec` objects exist.
 #'
 #' Firstly, hyperSpec objects can be imported and exported as ASCII files.
 #'
-#' A second option is using the package \code{\link[R.matlab]{R.matlab}} which
-#' provides the functions \code{\link[R.matlab]{readMat}} and
-#' \code{\link[R.matlab]{writeMat}}.
+#' A second option is using the package [R.matlab::R.matlab()] which
+#' provides the functions [R.matlab::readMat()] and
+#' [R.matlab::writeMat()].
 #'
 #' hyperSpec comes with a number of pre-defined functions to import
 #' manufacturer specific file formats. For details, see `vignette
 #' ("file-io")`.
 #'
-#' \code{\link[hyperSpec]{read.spc}} imports Thermo Galactic's .spc file
+#' [hyperSpec::read.spc()] imports Thermo Galactic's .spc file
 #' format, and ENVI files may be read using
-#' \code{\link[hyperSpec]{read.ENVI}}.
+#' [hyperSpec::read.ENVI()].
 #'
 #' These functions are very flexible and provide lots of arguments.
 #'
@@ -32,11 +32,11 @@
 #' `vignette ("flu", package = "hyperSpec"`).
 #'
 #' Note that R accepts many packed formats for ASCII files, see
-#' \code{\link[base]{connections}}. For .zip files, see
-#' \code{\link[utils]{unzip}}.
+#' [base::connections()]. For .zip files, see
+#' [utils::unzip()].
 #'
 #' For further information, see the examples below and the documentation of
-#' \code{\link[R.matlab]{R.matlab}}.
+#' [R.matlab::R.matlab()].
 #'
 #' @aliases read.txt.long import export
 #' @param file filename or connection
@@ -46,20 +46,20 @@
 #'   character vector with the colnames.  Use `wavelength` to specify the
 #'   wavelengths.
 #' @param header the file has (shall have) a header line
-#' @param ... arguments handed to \code{\link[utils]{read.table}} and
-#'   \code{\link[utils]{write.table}}, respectively.
+#' @param ... arguments handed to [utils::read.table()] and
+#'   [utils::write.table()], respectively.
 #' @param decreasing logical vector giving the sort order
 #' @author C. Beleites
-#' @seealso \code{\link[utils]{read.table}} and
-#'   \code{\link[utils]{write.table}}
+#' @seealso [utils::read.table()] and
+#'   [utils::write.table()]
 #'
-#' \code{\link[R.matlab]{R.matlab}} for .mat files
+#' [R.matlab::R.matlab()] for .mat files
 #'
-#' \code{\link[hyperSpec]{read.ENVI}} for ENVI data
+#' [hyperSpec::read.ENVI()] for ENVI data
 #'
-#' \code{\link[hyperSpec]{read.spc}} for .spc files
+#' [hyperSpec::read.spc()] for .spc files
 #'
-#' Manufacturer specific file formats: \code{\link{read.txt.Renishaw}}
+#' Manufacturer specific file formats: [read.txt.Renishaw()]
 #' @rdname textio
 #' @keywords IO file
 #' @export

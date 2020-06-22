@@ -1,7 +1,7 @@
 #' dimnames for hyperSpec objects
 #'
 #' hyperSpec objects can have row- and column names like data.frames. The "names" of the wavelengths
-#' are treated separately: see \code{\link{wl}}
+#' are treated separately: see [wl()]
 #'
 #' @param x the hyperSpec object
 #' @aliases dimnames
@@ -9,9 +9,9 @@
 #' @rdname dimnames
 #' @docType methods
 #' @author C. Beleites
-#' @seealso \code{\link{wl}} for the wavelength dimension
+#' @seealso [wl()] for the wavelength dimension
 #'
-#' \code{\link[base]{dimnames}}
+#' [base::dimnames()]
 #' @export
 #' @examples
 #' dimnames(flu)
@@ -26,10 +26,10 @@ setMethod("dimnames", signature = signature(x = "hyperSpec"), function(x) {
 
 #' @rdname dimnames
 #' @aliases rownames
-#' @param do.NULL handed to \code{\link[base]{rownames}} or \code{\link[base]{colnames}}: logical.
+#' @param do.NULL handed to [base::rownames()] or [base::colnames()]: logical.
 #' Should this create names if they are `NULL`?
-#' @param prefix handed to \code{\link[base]{rownames}} or \code{\link[base]{colnames}}
-#' @seealso \code{\link[base]{rownames}}
+#' @param prefix handed to [base::rownames()] or [base::colnames()]
+#' @seealso [base::rownames()]
 #' @export
 #' @examples
 #' rownames(flu)
@@ -55,7 +55,7 @@ setReplaceMethod("rownames", signature = signature(x = "hyperSpec"), function(x,
 
 #' @rdname dimnames
 #' @aliases colnames
-#' @seealso \code{\link[base]{colnames}}
+#' @seealso [base::colnames()]
 #' @export
 #' @examples
 #' colnames(faux_cell)

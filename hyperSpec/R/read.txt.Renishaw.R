@@ -3,7 +3,7 @@
 #' import Raman measurements from Renishaw (possibly compressed) .txt file.
 #'
 #' The file may be of any file type that can be read by
-#' \code{\link[base]{gzfile}} (i.e. text, or zipped by gzip, bzip2, xz or
+#' [base::gzfile()] (i.e. text, or zipped by gzip, bzip2, xz or
 #' lzma). .zip zipped files need to be read using `read.zip.Renishaw`.
 #'
 #' Renishaw .wxd files are converted to .txt ASCII files by their batch
@@ -38,8 +38,8 @@
 #' @return the `hyperSpec` object
 #' @export
 #' @author C. Beleites
-#' @seealso \code{\link{read.txt.long}}, \code{\link{read.txt.wide}},
-#'   \code{\link[base]{scan}}
+#' @seealso [read.txt.long()], [read.txt.wide()],
+#'   [base::scan()]
 #' @keywords IO file
 #' @importFrom utils head
 read.txt.Renishaw <- function(file = stop("file is required"),

@@ -3,7 +3,7 @@
 #' Imports a single spectrum in PerkinElmer's ASCII format. This function is experimental.
 #'
 #' @param file filename (or connection)
-#' @param ... further parameters are handed to \code{\link[hyperSpec]{read.txt.long}}
+#' @param ... further parameters are handed to [hyperSpec::read.txt.long()]
 #'
 #' @return hyperSpec object
 #' @importFrom utils packageDescription

@@ -20,16 +20,16 @@
 #' `decomposition` (also setting `scores = FALSE`), the spectra
 #' matrix is replaced by `x`. Moreover, all columns of `object@@data`
 #' that did not contain the same value for all spectra are set to `NA`.
-#' Thus, for the resulting `hyperSpec` object, \code{\link{plotspc}} and
-#' related functions are meaningful. \code{\link[hyperSpec]{plotmap}} cannot be
+#' Thus, for the resulting `hyperSpec` object, [plotspc()] and
+#' related functions are meaningful. [hyperSpec::plotmap()] cannot be
 #' applied as the loadings are not laterally resolved.
 #'
 #' The scores matrix needs to have the same number of rows as `object` has
 #' spectra. If such a matrix is given, `decomposition` will replace the
 #' spectra matrix is replaced by `x` and `object@@wavelength` by
 #' `wavelength`. The information related to each of the spectra is
-#' retained. For such a `hyperSpec` object, \code{\link{plotmap}} and
-#' \code{\link{plotc}} and the like can be applied. It is also possible to use
+#' retained. For such a `hyperSpec` object, [plotmap()] and
+#' [plotc()] and the like can be applied. It is also possible to use
 #' the spectra plotting, but the interpretation is not that of the spectrum any
 #' longer.
 #'
@@ -54,10 +54,10 @@
 #' @param ... ignored.
 #' @return A `hyperSpec` object, updated according to `x`
 #' @author C. Beleites
-#' @seealso See \code{\link{\%*\%}} for matrix multiplication of
+#' @seealso See [\%*\%()] for matrix multiplication of
 #'   `hyperSpec` objects.
 #'
-#'   See e.g. \code{\link[stats]{prcomp}} and \code{\link[stats]{princomp}} for
+#'   See e.g. [stats::prcomp()] and [stats::princomp()] for
 #'   principal component analysis, and package `pls` for Partial Least
 #'   Squares Regression.
 #' @keywords methods manip

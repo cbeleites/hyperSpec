@@ -15,7 +15,7 @@
 #' `hyperSpec` objects according to the groups given by `f`.
 #'
 #' The `hyperSpec` objects in the list may be bound together again by
-#' \code{\link{bind} ("r", list_of_hyperSpec_objects)}.
+#' `[bind] ("r", list_of_hyperSpec_objects)`.
 #'
 #' @name split
 #' @rdname split
@@ -28,7 +28,7 @@
 #'   dropped.
 #' @return A list of `hyperSpec` objects.
 #' @author C. Beleites
-#' @seealso \code{\link[base]{split}}
+#' @seealso [base::split()]
 #' @keywords methods
 #' @export
 #' @examples

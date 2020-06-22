@@ -17,16 +17,16 @@
 #' Currently, the following options are defined:
 #' \tabular{llll}{
 #' **Name**          \tab **Default Value (range)**      \tab **Description**                               \tab **Used by**\cr
-#' debuglevel           \tab 0 (1L 2L 3L)                      \tab amount of debugging information produced         \tab \code{\link{spc.identify}} \code{\link{map.identify}}\cr
+#' debuglevel           \tab 0 (1L 2L 3L)                      \tab amount of debugging information produced         \tab [spc.identify()] [map.identify()]\cr
 #'                      \tab                                   \tab                                                  \tab various file import functions\cr
-#'                      \tab                                   \tab                                                  \tab \code{\link{spc.fit.poly.below}}\cr
-#' gc                   \tab FALSE                             \tab triggers frequent calling of gc ()               \tab \code{\link{read.ENVI}}, `new ("hyperSpec")`\cr
+#'                      \tab                                   \tab                                                  \tab [spc.fit.poly.below()]\cr
+#' gc                   \tab FALSE                             \tab triggers frequent calling of gc ()               \tab [read.ENVI()], `new ("hyperSpec")`\cr
 #' file.remove.emptyspc \tab TRUE                              \tab remove empty spectra directly on file import     \tab various file import functions\cr
 #' file.keep.name       \tab TRUE                              \tab always create filename column                    \tab various file import functions\cr
-#' tolerance            \tab `sqrt (.Machine$double.eps)` \tab tolerance for numerical comparisons              \tab \code{\link{normalize01}}, file import: `file.remove.emptyspc`\cr
-#' wl.tolerance         \tab `sqrt (.Machine$double.eps)` \tab tolerance for comparisons of the wavelength axis \tab \code{\link{all.equal}}, \code{\link{collapse}}, \code{\link{rbind}}\cr
-#' plot.spc.nmax        \tab 25                                \tab number of spectra to be plotted by default       \tab \code{\link{plotspc}}\cr
-#' ggplot.spc.nmax      \tab 10                                \tab                                                  \tab \code{\link{qplotspc}}\cr
+#' tolerance            \tab `sqrt (.Machine$double.eps)` \tab tolerance for numerical comparisons              \tab [normalize01()], file import: `file.remove.emptyspc`\cr
+#' wl.tolerance         \tab `sqrt (.Machine$double.eps)` \tab tolerance for comparisons of the wavelength axis \tab [all.equal()], [collapse()], [rbind()]\cr
+#' plot.spc.nmax        \tab 25                                \tab number of spectra to be plotted by default       \tab [plotspc()]\cr
+#' ggplot.spc.nmax      \tab 10                                \tab                                                  \tab [qplotspc()]\cr
 #' }
 #'
 #' `hy.setOptions` will discard any values that were given without a
