@@ -73,9 +73,10 @@ wl <- function(x) {
 ##'
 ##' 	# convert from Raman shift to wavelength
 ##' 	# excitation was at 785 nm
-##' 	plot (fauxCell [1])
-##' 	wl (fauxCell) <- list (wl = 1e7 / (1e7/785 - wl (fauxCell)), label = expression (lambda / nm))
-##' 	plot (fauxCell [1])
+##' 	plot (faux_cell [1])
+##' 	wl(faux_cell) <- list(wl = 1e7/(1e7/785 - wl(faux_cell)),
+##' 	                      label = expression(lambda / nm))
+##' 	plot (faux_cell [1])
 ##'
 "wl<-" <- function(x, label = NULL, digits = 6, value) {
   chk.hy(x)

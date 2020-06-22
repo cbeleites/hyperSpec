@@ -106,7 +106,7 @@ Collate:
     'regexps.R'
     'guesswavelength.R'
     'initialize.R'
-    'fauxCell.R'
+    'faux_cell.R'
     'fileio.optional.R'
     'fix_spc_colnames.R'
     'flu.R'

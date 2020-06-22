@@ -18,8 +18,8 @@
 ##' @keywords methods
 ##' @examples
 ##'
-##' as.data.frame (fauxCell [1:3,, 600 ~ 620])
-##' as.matrix (fauxCell [1:3,, 600 ~ 620])
+##' as.data.frame (faux_cell [1:3,, 600 ~ 620])
+##' as.matrix (faux_cell [1:3,, 600 ~ 620])
 ##' lm (c ~ spc, data = flu [,,450])
 
 as.data.frame.hyperSpec <- function(x, row.names = TRUE, optional = NULL, ...) {
@@ -73,8 +73,8 @@ as.matrix.hyperSpec <- function(x, ...) {
 ##'   expanded *in place*.
 ##' @examples
 ##'
-##' as.wide.df (fauxCell [1:5,, 600 ~ 610])
-##' summary (as.wide.df (fauxCell [1:5,, 600 ~ 610]))
+##' as.wide.df (faux_cell [1:5,, 600 ~ 610])
+##' summary (as.wide.df (faux_cell [1:5,, 600 ~ 610]))
 
 as.wide.df <- function(x, wl.prefix = "") {
   chk.hy(x)
@@ -106,22 +106,22 @@ as.wide.df <- function(x, wl.prefix = "") {
 .test(as.wide.df) <- function() {
   context("as.wide.df")
 
-  test_that("fauxCell", {
+  test_that("faux_cell", {
     expect_equal(
-      as.wide.df(fauxCell [1:5, , 600 ~ 610]),
-      cbind(fauxCell [1:5]$.., fauxCell [[1:5, , 600 ~ 610]])
+      as.wide.df(faux_cell [1:5, , 600 ~ 610]),
+      cbind(faux_cell [1:5]$.., faux_cell [[1:5, , 600 ~ 610]])
     )
   })
 
   test_that("column names", {
     expect_equal(
-      colnames(as.wide.df(fauxCell)),
-      c(grep("spc", colnames(fauxCell), value = TRUE, invert = TRUE), colnames(fauxCell$spc))
+      colnames(as.wide.df(faux_cell)),
+      c(grep("spc", colnames(faux_cell), value = TRUE, invert = TRUE), colnames(faux_cell$spc))
     )
 
     expect_equal(
-      colnames(as.wide.df(fauxCell)),
-      c(grep("spc", colnames(fauxCell), value = TRUE, invert = TRUE), wl(fauxCell))
+      colnames(as.wide.df(faux_cell)),
+      c(grep("spc", colnames(faux_cell), value = TRUE, invert = TRUE), wl(faux_cell))
     )
 
     expect_true(!any(is.na(colnames(as.wide.df(barbiturates [[1]])))))
@@ -129,8 +129,8 @@ as.wide.df <- function(x, wl.prefix = "") {
 
   test_that("column names with wl.prefix", {
     expect_equal(
-      colnames(as.wide.df(fauxCell, wl.prefix = "wl")),
-      c(grep("spc", colnames(fauxCell), value = TRUE, invert = TRUE), paste0("wl", colnames(fauxCell$spc)))
+      colnames(as.wide.df(faux_cell, wl.prefix = "wl")),
+      c(grep("spc", colnames(faux_cell), value = TRUE, invert = TRUE), paste0("wl", colnames(faux_cell$spc)))
     )
   })
 }
@@ -223,7 +223,7 @@ as.long.df <- function(x, rownames = FALSE, wl.factor = FALSE, na.rm = TRUE) {
 ##'   see the example.
 ##' @export
 ##' @examples
-##' df <- as.t.df (apply (fauxCell, 2, mean_pm_sd))
+##' df <- as.t.df (apply (faux_cell, 2, mean_pm_sd))
 ##' head (df)
 ##'
 ##' if (require (ggplot2)){

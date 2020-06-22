@@ -37,17 +37,17 @@
 ##' @keywords methods manip
 ##' @examples
 ##'
-##' fauxCell
-##' bind ("r", fauxCell, fauxCell)
-##' rbind (fauxCell, fauxCell)
-##' cbind (fauxCell, fauxCell)
-##' bind ("r", list (fauxCell, fauxCell, fauxCell))
+##' faux_cell
+##' bind ("r", faux_cell, faux_cell)
+##' rbind (faux_cell, faux_cell)
+##' cbind (faux_cell, faux_cell)
+##' bind ("r", list (faux_cell, faux_cell, faux_cell))
 ##'
-##' x <- fauxCell[,, 600 : 605]
+##' x <- faux_cell[,, 600 : 605]
 ##' x$a <- 1
 ##' x@@data <- x@@data[, sample (ncol (x), ncol (x))] # reorder columns
 ##'
-##' y <- fauxCell [nrow (fauxCell) : 1,, 1730 : 1750] # reorder rows
+##' y <- faux_cell [nrow (faux_cell) : 1,, 1730 : 1750] # reorder rows
 ##' y$b <- 2
 ##'
 ##' cbind2 (x, y) # works

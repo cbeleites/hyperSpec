@@ -10,7 +10,7 @@
 ##' @rdname cov
 ##' @export
 ##' @examples
-##' image (cov (fauxCell))
+##' image (cov (faux_cell))
 setMethod("cov", signature = signature(x = "hyperSpec", y = "missing"), function(x, y, use, method) {
   validObject(x)
 
@@ -26,7 +26,7 @@ setMethod("cov", signature = signature(x = "hyperSpec", y = "missing"), function
 ##' @rdname cov
 ##' @export
 ##' @examples
-##' pcov <-  pooled.cov (fauxCell, fauxCell$region)
+##' pcov <-  pooled.cov (faux_cell, faux_cell$region)
 ##' plot (pcov$means)
 ##' image (pcov$COV)
 ##'
