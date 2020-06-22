@@ -296,12 +296,13 @@ The main functions to retrieve the data of a `hyperSpec`{.r} object are `[]` and
 The difference between these functions is that `[]` returns a `hyperSpec`{.r} object, whereas the result of `[[]]` is a `data.frame`{.r}.
 **hyperSpec** objects are triple indexed:
 
-* `x[i, j, l]`{.r}
-* `x[[i, j, l]]`{.r}
-* `i` refers to rows of the `@data`{.r} slot.
-* `j` refers to columns of the `@data`{.r} slot.
-* `l` refers to wavelengths.
+* `x[i, j, l, wl.index = TRUE/FALSE]`{.r}
+* `x[[i, j, l], wl.ndex = TRUE/FALSE]`{.r}
+* `i` refers to rows of the `@data`{.r} slot. `i` can be integer indices or a logical vector.
+* `j` refers to columns of the `@data`{.r} slot. `j` can be integer indices, a logical vector or the name of a column.  However, there is no guaranteed order to `colnames(x)`{.r} so using integer indices is dangerous.
+* `l` refers to wavelengths. Note the argument `wl.index` which determines how `l` is interpreted.
 * If there is only one index given, e.g. `x[1:3]`{.r}, it refers to the row index `i`. Likewise if there are only two indices given they refer to `i` and `j`.
+* See \@ref(sec:square-brack-replace) and \@ref(sec:accessing-extra-data) for even more ways to specify the indices.
 
 
 ## Access Functions for **_hyperSpec_** Objects {#sec:fast-access-parts}
