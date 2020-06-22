@@ -13,7 +13,7 @@
 #' \code{\link[hyperSpec]{normalize01}} to normalize the wavenumbers before evaluating the function
 #' @author C. Beleites
 #' @examples
-#' plot (wl.eval (laser, exp = function (x) exp (-x)))
+#' plot(wl.eval(laser, exp = function(x) exp(-x)))
 wl.eval <- function(x, ..., normalize.wl = I) {
   chk.hy(x)
   validObject(x)

@@ -191,29 +191,33 @@
 #' @keywords methods datagen
 #' @examples
 #'
-#' new ("hyperSpec")
+#' new("hyperSpec")
 #'
-#' spc <- matrix (rnorm (12), ncol = 4)
-#' new ("hyperSpec", spc = spc)
-#' new ("hyperSpec", data = data.frame (x = letters[1:3]),
-#'      spc = spc)
-#'
-#' colnames (spc) <- 600:603
-#' new ("hyperSpec", spc = spc)  # wavelength taken from colnames (spc)
-#'
-#' # given wavelengths precede over colnames of spc
-#' new ("hyperSpec", spc = spc, wavelength = 700:703)
-#'
-#' # specifying labels
-#' h <- new ("hyperSpec", spc = spc, data = data.frame (pos = 1 : 3),
-#'           label = list (spc = "I / a.u.",
-#'                         .wavelength = expression (tilde (nu) / cm^-1),
-#'                         pos = expression ("/" (x, mu*m)))
+#' spc <- matrix(rnorm(12), ncol = 4)
+#' new("hyperSpec", spc = spc)
+#' new("hyperSpec",
+#'   data = data.frame(x = letters[1:3]),
+#'   spc = spc
 #' )
 #'
-#' plot (h)
-#' plotc (h, spc ~ pos)
+#' colnames(spc) <- 600:603
+#' new("hyperSpec", spc = spc) # wavelength taken from colnames (spc)
 #'
+#' # given wavelengths precede over colnames of spc
+#' new("hyperSpec", spc = spc, wavelength = 700:703)
+#'
+#' # specifying labels
+#' h <- new("hyperSpec",
+#'   spc = spc, data = data.frame(pos = 1:3),
+#'   label = list(
+#'     spc = "I / a.u.",
+#'     .wavelength = expression(tilde(nu) / cm^-1),
+#'     pos = expression("/"(x, mu * m))
+#'   )
+#' )
+#'
+#' plot(h)
+#' plotc(h, spc ~ pos)
 setMethod("initialize", "hyperSpec", .initialize)
 
 #' @include unittest.R

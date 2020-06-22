@@ -11,10 +11,12 @@
   validObject(e1)
   validObject(e2)
 
-  if (length(e2[[]]) > length(e1[[]]))
+  if (length(e2[[]]) > length(e1[[]])) {
     e1 <- .expand(e1, dim(e2) [c(1, 3)])
-  if (length(e1[[]]) > length(e2[[]]))
+  }
+  if (length(e1[[]]) > length(e2[[]])) {
     e2 <- .expand(e2, dim(e1) [c(1, 3)])
+  }
 
   e1[[]] <- callGeneric(e1[[]], e2[[]])
 
@@ -23,7 +25,7 @@
   e1
 }
 
-.test(.arith_hh) <- function(){
+.test(.arith_hh) <- function() {
   context("Arithmetic operators, 2 hyperSpec objects")
 
   tmp <- as.hyperSpec(matrix(1:length(flu[[]]), nrow = nrow(flu)))
@@ -32,7 +34,6 @@
 
   test_that("correct results for 2 equal-sized objects", {
     for (operator in c(`+`, `-`, `*`, `/`, `^`, `%%`, `%/%`)) {
-
       res <- operator(flu, tmp)
       expect_equal(res[[]], operator(flu[[]], tmp[[]]))
       expect_equal(res$.., cbind(flu$.., tmp$..))
@@ -49,7 +50,6 @@
 
   test_that("correct results with 1x1 object", {
   })
-
 }
 
 #' Arithmetical Operators: +, -, *, /, ^, %%, %/%, %*% for hyperSpec objects
@@ -128,13 +128,14 @@ setMethod("Arith", signature(e1 = "hyperSpec", e2 = "hyperSpec"), .arith_hh)
 .arith_h_ <- function(e1, e2) {
   validObject(e1)
 
-  if (!missing(e2))
+  if (!missing(e2)) {
     stop("e2 must be missing")
+  }
 
   e1[[]] <- callGeneric(e1[[]])
   e1
 }
-.test(.arith_h_) <- function(){
+.test(.arith_h_) <- function() {
   context("Unary arithmetic operators")
 
   test_that("correct results", {
@@ -146,8 +147,9 @@ setMethod("Arith", signature(e1 = "hyperSpec", e2 = "hyperSpec"), .arith_hh)
       expect_equal(wl(res), wl(flu))
     }
 
-    for (operator in c(`*`, `/`, `^`, `%%`, `%/%`))
+    for (operator in c(`*`, `/`, `^`, `%%`, `%/%`)) {
       expect_error(operator(flu))
+    }
   })
 
   test_that("unary -", {
@@ -167,17 +169,19 @@ setMethod("Arith", signature(e1 = "hyperSpec", e2 = "missing"), .arith_h_)
 .arith_hn <- function(e1, e2) {
   validObject(e1)
 
-  if (length(e2) > length(e1[[]]))
+  if (length(e2) > length(e1[[]])) {
     e1 <- .expand(e1, dim(e2))
-  if (length(e1[[]]) > length(e2))
+  }
+  if (length(e1[[]]) > length(e2)) {
     e2 <- .expand(e2, dim(e1) [c(1, 3)])
+  }
 
   e1[[]] <- callGeneric(e1[[]], e2)
 
   e1
 }
 
-.test(.arith_hn) <- function(){
+.test(.arith_hn) <- function() {
   context("Arithmetic operators, hyperSpec object x")
 
   test_that("correct results with scalar", {
@@ -200,7 +204,7 @@ setMethod("Arith", signature(e1 = "hyperSpec", e2 = "missing"), .arith_h_)
     }
   })
 
-    test_that("correct results with vector for rows", {
+  test_that("correct results with vector for rows", {
     v <- 1:nwl(flu)
 
     for (operator in c(`+`, `-`, `*`, `/`, `^`, `%%`, `%/%`)) {
@@ -255,7 +259,6 @@ setMethod("Arith", signature(e1 = "hyperSpec", e2 = "missing"), .arith_h_)
     expect_equal(as.matrix(flu + 1), as.matrix(flu) + 1)
     expect_equal(as.matrix(1 + flu), as.matrix(flu) + 1)
   })
-
 }
 
 
@@ -266,16 +269,18 @@ setMethod("Arith", signature(e1 = "hyperSpec", e2 = "matrix"), .arith_hn)
 
 ## arithmetic function called with second parameter hyperSpec
 .arith_nh <- function(e1, e2) {
-  #e1 <- as.matrix(e1)
+  # e1 <- as.matrix(e1)
   validObject(e2)
 
   ## called /only/ with e2 hyperSpec but e1 numeric
-  if (length(e2[[]]) > length(e1))
+  if (length(e2[[]]) > length(e1)) {
     e1 <- .expand(e1, dim(e2) [c(1, 3)])
-  if (length(e1) > length(e2[[]]))
+  }
+  if (length(e1) > length(e2[[]])) {
     e2 <- .expand(e2, dim(e1))
+  }
 
-  e2[[]] <- callGeneric(e1,e2[[]])
+  e2[[]] <- callGeneric(e1, e2[[]])
   e2
 }
 
@@ -298,9 +303,9 @@ setMethod("Arith", signature(e1 = "matrix", e2 = "hyperSpec"), .arith_nh)
   x
 }
 
-.test(.matmul_hh) <- function(){
+.test(.matmul_hh) <- function() {
   context("matrix multiplication: 2 hyperSpec objects")
-  h <- flu[,,1:nrow(flu), wl.index = TRUE]
+  h <- flu[, , 1:nrow(flu), wl.index = TRUE]
   h$filename <- NULL
 
   test_that("correct result", {
@@ -314,7 +319,7 @@ setMethod("Arith", signature(e1 = "matrix", e2 = "hyperSpec"), .arith_nh)
 
     expect_equal(res$.., h$..)
 
-        expect_equal(wl(res), wl(flu))
+    expect_equal(wl(res), wl(flu))
   })
 }
 
@@ -354,7 +359,6 @@ setMethod("%*%", signature(x = "hyperSpec", y = "hyperSpec"), .matmul_hh)
 
     expect_equal(res$.., flu$.., )
   })
-
 }
 
 #' @rdname Arith
@@ -367,7 +371,7 @@ setMethod("%*%", signature(x = "hyperSpec", y = "matrix"), .matmul_hm)
   new("hyperSpec", wavelength = y@wavelength, spc = x %*% y@data$spc)
 }
 
-.test(.matmul_mh) <- function(){
+.test(.matmul_mh) <- function() {
   context("matrix multiplication: matrix x hyperSpec")
 
   m <- matrix(1:(2 * nrow(flu)), ncol = nrow(flu))
@@ -384,4 +388,3 @@ setMethod("%*%", signature(x = "hyperSpec", y = "matrix"), .matmul_hm)
 
 #' @rdname Arith
 setMethod("%*%", signature(x = "matrix", y = "hyperSpec"), .matmul_mh)
-

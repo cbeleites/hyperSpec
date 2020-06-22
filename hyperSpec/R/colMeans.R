@@ -20,7 +20,7 @@ setGeneric("colMeans") # , package = 'matrixStats')
 #' @rdname colSums
 #' @export
 #' @examples
-#' colMeans (flu)
+#' colMeans(flu)
 setMethod("colMeans", signature = signature(x = "hyperSpec"), function(x, na.rm = TRUE, ..., label.spc) {
   result <- colMeans(x@data$spc, na.rm = na.rm, ...)
   if (is.matrix(result) && ncol(result) != nwl(x) && nrow(result) == nwl(x)) {
@@ -36,7 +36,7 @@ setGeneric("colSums") # , package = 'matrixStats')
 #' @rdname colSums
 #' @export
 #' @examples
-#' colSums (flu)
+#' colSums(flu)
 setMethod("colSums", signature = signature(x = "hyperSpec"), function(x, na.rm = TRUE, ..., label.spc) {
   result <- colSums(x@data$spc, na.rm = na.rm, ...)
   if (is.matrix(result) && ncol(result) != nwl(x) && nrow(result) == nwl(x)) {
@@ -53,7 +53,7 @@ setGeneric("rowMeans") # , package = 'matrixStats')
 #' @rdname colSums
 #' @export
 #' @examples
-#' colSums (flu)
+#' colSums(flu)
 setMethod("rowMeans", signature = signature(x = "hyperSpec"), function(x, na.rm = TRUE, ..., label.wavelength) {
   result <- rowMeans(x@data$spc, na.rm = na.rm, ...)
   if (is.matrix(result) && nrow(result) != nrow(x) && ncol(result) == nrow(x)) {
@@ -69,7 +69,7 @@ setGeneric("rowSums") # , package = 'matrixStats')
 #' @rdname colSums
 #' @export
 #' @examples
-#' rowSums (flu)
+#' rowSums(flu)
 setMethod("rowSums", signature = signature(x = "hyperSpec"), function(x, na.rm = TRUE, ..., label.wavelength) {
   result <- rowSums(x@data$spc, na.rm = na.rm, ...)
   if (is.matrix(result) && nrow(result) != nrow(x) && ncol(result) == nrow(x)) {

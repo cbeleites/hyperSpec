@@ -27,16 +27,16 @@
 #' @keywords manip
 #' @examples
 #'
-#' seq (flu, index = TRUE)
-#' seq_along (flu)
-#' seq (flu, length.out = 3, index = TRUE) # return value is numeric, not integer!
-#' seq (flu, by = 2, index = TRUE) 		    # return value is numeric, not integer!
+#' seq(flu, index = TRUE)
+#' seq_along(flu)
+#' seq(flu, length.out = 3, index = TRUE) # return value is numeric, not integer!
+#' seq(flu, by = 2, index = TRUE) # return value is numeric, not integer!
 #'
-#' plot (flu, col = "darkgray")
-#' plot (seq (flu, by = 2), add = TRUE, col= "red")
-#' plot (seq (flu, length.out = 2), add = TRUE, col= "blue")
+#' plot(flu, col = "darkgray")
+#' plot(seq(flu, by = 2), add = TRUE, col = "red")
+#' plot(seq(flu, length.out = 2), add = TRUE, col = "blue")
 #'
-### needs to be an S3 function as S4 ... dispatch has to have the same signature for all parameters
+#' ### needs to be an S3 function as S4 ... dispatch has to have the same signature for all parameters
 seq.hyperSpec <- function(x, from = 1, to = nrow(x),
                           ..., index = FALSE) {
   validObject(x)

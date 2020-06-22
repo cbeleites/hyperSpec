@@ -13,8 +13,7 @@
 #' @export
 #' @examples
 #'
-#' hy.unittest ()
-#'
+#' hy.unittest()
 hy.unittest <- function() {
   if (!requireNamespace("testthat", quietly = TRUE)) {
     warning("testthat required to run the unit tests.")

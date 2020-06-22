@@ -77,28 +77,30 @@
 #' @examples
 #'
 #' \dontrun{
-#' vignette (plotting)
-#' vignette (hyperspec)
+#' vignette(plotting)
+#' vignette(hyperspec)
 #' }
 #'
-#' levelplot (spc ~ y * x, faux_cell [,,1003]) # properly rotated
-#' plotmap (faux_cell [,,1003])
+#' levelplot(spc ~ y * x, faux_cell [, , 1003]) # properly rotated
+#' plotmap(faux_cell [, , 1003])
 #'
 #' # plot spectra matrix
-#' levelplot (spc ~ .wavelength * t, laser, contour = TRUE, col = "#00000080")
+#' levelplot(spc ~ .wavelength * t, laser, contour = TRUE, col = "#00000080")
 #' # see also plotmat
 #'
-#' plotmap (faux_cell, region ~ x * y)
+#' plotmap(faux_cell, region ~ x * y)
 #'
 #' # Voronoi plots
-#' smpl <- sample (faux_cell, 300)
-#' plotmap (smpl, region ~ x * y)
-#' if (require (tripack))
-#'     plotvoronoi (smpl, region ~ x * y)
-#' if (require (deldir))
-#'     plotvoronoi (smpl, region ~ x * y,
-#'                  use.tripack = FALSE)
-#'
+#' smpl <- sample(faux_cell, 300)
+#' plotmap(smpl, region ~ x * y)
+#' if (require(tripack)) {
+#'   plotvoronoi(smpl, region ~ x * y)
+#' }
+#' if (require(deldir)) {
+#'   plotvoronoi(smpl, region ~ x * y,
+#'     use.tripack = FALSE
+#'   )
+#' }
 #' @importFrom utils modifyList
 plotmap <- function(object, model = spc ~ x * y,
                     func = mean, func.args = list(), ...) {

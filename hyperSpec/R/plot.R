@@ -29,45 +29,48 @@
 
   switch(tolower(y),
 
-         spc = plotspc(x, ...),
+    spc = plotspc(x, ...),
 
-         spcmeansd = {
-           dots <- modifyList(
-             list(object = mean_pm_sd(x), fill = c(1, NA, 1)),
-             dots)
+    spcmeansd = {
+      dots <- modifyList(
+        list(object = mean_pm_sd(x), fill = c(1, NA, 1)),
+        dots
+      )
 
-           do.call(plotspc, dots)
-         },
+      do.call(plotspc, dots)
+    },
 
-         spcprctile = {
-           dots <- modifyList(
-             list(object = quantile(x, probs = c(0.16, 0.5, 0.84)), fill = c(1, NA, 1)),
-             dots)
+    spcprctile = {
+      dots <- modifyList(
+        list(object = quantile(x, probs = c(0.16, 0.5, 0.84)), fill = c(1, NA, 1)),
+        dots
+      )
 
-           do.call(plotspc, dots)
-         },
+      do.call(plotspc, dots)
+    },
 
-         spcprctl5 = {
-           dots <- modifyList(
-             list(object = quantile(x, probs = c(0.05, 0.16, 0.5, 0.84, 0.95)), fill = c(1, 2, 3, 2, 1), fill.col = c("#00000040")),
-             dots)
+    spcprctl5 = {
+      dots <- modifyList(
+        list(object = quantile(x, probs = c(0.05, 0.16, 0.5, 0.84, 0.95)), fill = c(1, 2, 3, 2, 1), fill.col = c("#00000040")),
+        dots
+      )
 
-           do.call(plotspc, dots)
-         },
+      do.call(plotspc, dots)
+    },
 
-         map = plotmap(x, ...),
+    map = plotmap(x, ...),
 
-         voronoi = plotvoronoi(x, ...),
+    voronoi = plotvoronoi(x, ...),
 
-         mat = plotmat(x, ...),
+    mat = plotmat(x, ...),
 
-         c = plotc(x, ...),
+    c = plotc(x, ...),
 
-         ts = plotc(x, spc ~ t, ...),
+    ts = plotc(x, spc ~ t, ...),
 
-         depth = plotc(x, spc ~ z, ...),
+    depth = plotc(x, spc ~ z, ...),
 
-         stop(paste("y = ", y, "unknown.", collapse = " "))
+    stop(paste("y = ", y, "unknown.", collapse = " "))
   )
 }
 
@@ -142,19 +145,19 @@ setGeneric("plot")
 #' @export
 #' @examples
 #'
-#' plot (flu)
+#' plot(flu)
 #'
-#' plot (flu, "c")
+#' plot(flu, "c")
 #'
-#' plot (laser, "ts")
+#' plot(laser, "ts")
 #'
-#' spc <- apply (faux_cell, 2, quantile, probs = 0.05)
-#' spc <- sweep (faux_cell, 2, spc, "-")
-#' plot (spc, "spcprctl5")
-#' plot (spc, "spcprctile")
-#' plot (spc, "spcmeansd")
+#' spc <- apply(faux_cell, 2, quantile, probs = 0.05)
+#' spc <- sweep(faux_cell, 2, spc, "-")
+#' plot(spc, "spcprctl5")
+#' plot(spc, "spcprctile")
+#' plot(spc, "spcmeansd")
 #'
-### use plotspc as default plot function
+#' ### use plotspc as default plot function
 setMethod(
   "plot",
   signature(x = "hyperSpec", y = "missing"),

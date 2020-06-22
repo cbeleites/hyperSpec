@@ -15,9 +15,9 @@
 #' @author Claudia Beleites
 #' @examples
 #' fluNA <- hyperSpec:::fluNA
-#' spc.NA.approx (fluNA [,, min ~ 410], debuglevel = 1)
-#' spc.NA.approx (fluNA [1,, min ~ 410], debuglevel = 2)
-#' spc.NA.approx (fluNA [4,, min ~ 410], neighbours = 3, df = 4, debuglevel = 2)
+#' spc.NA.approx(fluNA [, , min ~ 410], debuglevel = 1)
+#' spc.NA.approx(fluNA [1, , min ~ 410], debuglevel = 2)
+#' spc.NA.approx(fluNA [4, , min ~ 410], neighbours = 3, df = 4, debuglevel = 2)
 spc.NA.approx <- function(spc, neighbours = 1, w = rep(1, 2 * neighbours), df = 1 + .Machine$double.eps, spar = NULL,
                           debuglevel = hy.getOption("debuglevel")) {
   chk.hy(spc)

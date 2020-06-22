@@ -26,35 +26,37 @@
 #' @keywords manip
 #' @examples
 #'
-#' merge (faux_cell [1:10,, 600], faux_cell [5:15,, 600], by = c("x", "y"))$.
-#' tmp <- merge (faux_cell [1:10,, 610], faux_cell [5:15,, 610],
-#'               by = c("x", "y"), all = TRUE)
+#' merge(faux_cell [1:10, , 600], faux_cell [5:15, , 600], by = c("x", "y"))$.
+#' tmp <- merge(faux_cell [1:10, , 610], faux_cell [5:15, , 610],
+#'   by = c("x", "y"), all = TRUE
+#' )
 #' tmp$.
-#' wl (tmp)
+#' wl(tmp)
 #'
 #' ## remove duplicated wavelengths:
-#' approxfun <- function (y, wl, new.wl){
-#'   approx (wl, y, new.wl, method = "constant",
-#'           ties = function (x) mean (x, na.rm = TRUE)
-#'           )$y
+#' approxfun <- function(y, wl, new.wl) {
+#'   approx(wl, y, new.wl,
+#'     method = "constant",
+#'     ties = function(x) mean(x, na.rm = TRUE)
+#'   )$y
 #' }
 #'
-#' merged <- merge (faux_cell [1:7,, 610 ~ 620], faux_cell [5:10,, 615 ~ 625], all = TRUE)
+#' merged <- merge(faux_cell [1:7, , 610 ~ 620], faux_cell [5:10, , 615 ~ 625], all = TRUE)
 #' merged$.
-#' merged <- apply (merged, 1, approxfun,
-#'                  wl = wl (merged), new.wl = unique (wl (merged)),
-#'                  new.wavelength = "new.wl")
+#' merged <- apply(merged, 1, approxfun,
+#'   wl = wl(merged), new.wl = unique(wl(merged)),
+#'   new.wavelength = "new.wl"
+#' )
 #' merged$.
 #'
 #' ## merging data.frame into hyperSpec object => hyperSpec object
-#' y <- data.frame (filename = sample (flu$filename, 4, replace = TRUE), cpred = 1:4)
+#' y <- data.frame(filename = sample(flu$filename, 4, replace = TRUE), cpred = 1:4)
 #' y
-#' tmp <- merge (flu, y)
+#' tmp <- merge(flu, y)
 #' tmp$..
 #'
 #' ## merging hyperSpec object into data.frame => data.frame
-#' merge (y, flu)
-
+#' merge(y, flu)
 setMethod("merge",
   signature = signature(x = "hyperSpec", y = "hyperSpec"),
   function(x, y, ...) {

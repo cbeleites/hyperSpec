@@ -28,14 +28,13 @@
 #' @keywords manip datagen
 #' @examples
 #'
-#'  spc <- spc.bin (flu, 5)
+#' spc <- spc.bin(flu, 5)
 #'
-#'  plot (flu[1,,425:475])
-#'  plot (spc[1,,425:475], add = TRUE, col = "blue")
+#' plot(flu[1, , 425:475])
+#' plot(spc[1, , 425:475], add = TRUE, col = "blue")
 #'
-#'  nwl (flu)
-#'  nwl (spc)
-#'
+#' nwl(flu)
+#' nwl(spc)
 spc.bin <- function(spc, by = stop("reduction factor needed"), na.rm = TRUE, ...) {
   chk.hy(spc)
   validObject(spc)

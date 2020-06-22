@@ -22,7 +22,7 @@ setGeneric("mean_pm_sd", function(x, na.rm = TRUE, ...) standardGeneric("mean_pm
 #' @export
 #' @examples
 #'
-#' mean_sd (flu [,, 405 ~ 410])
+#' mean_sd(flu [, , 405 ~ 410])
 setMethod("mean_sd",
   signature = signature(x = "numeric"),
   function(x, na.rm = TRUE, ...) {
@@ -38,7 +38,7 @@ setMethod("mean_sd",
 #' @export
 #' @examples
 #'
-#' mean_sd (flu$spc)
+#' mean_sd(flu$spc)
 setMethod("mean_sd",
   signature = signature(x = "matrix"),
   function(x, na.rm = TRUE, ...) {
@@ -56,7 +56,7 @@ setMethod("mean_sd",
 #' @export
 #' @examples
 #'
-#' mean_sd (flu)
+#' mean_sd(flu)
 setMethod("mean_sd",
   signature = signature(x = "hyperSpec"),
   function(x, na.rm = TRUE, ...) {
@@ -73,7 +73,7 @@ setMethod("mean_sd",
 #' @export
 #' @examples
 #'
-#'   mean_pm_sd (flu$c)
+#' mean_pm_sd(flu$c)
 setMethod("mean_pm_sd",
   signature = signature(x = "numeric"),
   function(x, na.rm = TRUE, ...) {
@@ -89,7 +89,7 @@ setMethod("mean_pm_sd",
 #' @export
 #' @examples
 #'
-#' mean_pm_sd (flu$spc)
+#' mean_pm_sd(flu$spc)
 setMethod("mean_pm_sd",
   signature = signature(x = "matrix"),
   function(x, na.rm = TRUE, ...) {
@@ -105,7 +105,7 @@ setMethod("mean_pm_sd",
 #' @export
 #' @examples
 #'
-#' mean_pm_sd (flu)
+#' mean_pm_sd(flu)
 setMethod("mean_pm_sd",
   signature = signature(x = "hyperSpec"),
   function(x, na.rm = TRUE, ...) {
@@ -119,7 +119,7 @@ setMethod("mean_pm_sd",
 #' @export
 #' @examples
 #'
-#' plot (mean (faux_cell))
+#' plot(mean(faux_cell))
 setMethod("mean",
   signature = signature(x = "hyperSpec"),
   function(x, na.rm = TRUE, ...) {

@@ -80,8 +80,7 @@
 #' @return  \code{labels<-} returns a \code{hyperSpec} object.
 #' @examples
 #'
-#' labels (flu, "c") <- expression ("/" ("c", "mg / l"))
-#'
+#' labels(flu, "c") <- expression("/"("c", "mg / l"))
 `labels<-` <- function(object, which = NULL, ..., value) {
   chk.hy(object)
   validObject(object)
@@ -135,6 +134,5 @@
 #' @export
 #' @examples
 #'
-#' labels (faux_cell)
-#'
+#' labels(faux_cell)
 setMethod("labels", signature = signature(object = "hyperSpec"), .labels)

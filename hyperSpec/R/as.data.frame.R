@@ -18,10 +18,9 @@
 #' @keywords methods
 #' @examples
 #'
-#' as.data.frame (faux_cell [1:3,, 600 ~ 620])
-#' as.matrix (faux_cell [1:3,, 600 ~ 620])
-#' lm (c ~ spc, data = flu [,,450])
-
+#' as.data.frame(faux_cell [1:3, , 600 ~ 620])
+#' as.matrix(faux_cell [1:3, , 600 ~ 620])
+#' lm(c ~ spc, data = flu [, , 450])
 as.data.frame.hyperSpec <- function(x, row.names = TRUE, optional = NULL, ...) {
   validObject(x)
 
@@ -73,9 +72,8 @@ as.matrix.hyperSpec <- function(x, ...) {
 #'   expanded *in place*.
 #' @examples
 #'
-#' as.wide.df (faux_cell [1:5,, 600 ~ 610])
-#' summary (as.wide.df (faux_cell [1:5,, 600 ~ 610]))
-
+#' as.wide.df(faux_cell [1:5, , 600 ~ 610])
+#' summary(as.wide.df(faux_cell [1:5, , 600 ~ 610]))
 as.wide.df <- function(x, wl.prefix = "") {
   chk.hy(x)
   validObject(x)
@@ -157,11 +155,10 @@ as.wide.df <- function(x, wl.prefix = "") {
 #' other functions producing long-format data.frames.
 #' @examples
 #'
-#' as.long.df (flu [,, 405 ~ 410])
-#' summary (as.long.df (flu [,, 405 ~ 410]))
-#' summary (as.long.df (flu [,, 405 ~ 410], rownames = TRUE))
-#' summary (as.long.df (flu [,, 405 ~ 410], wl.factor = TRUE))
-#'
+#' as.long.df(flu [, , 405 ~ 410])
+#' summary(as.long.df(flu [, , 405 ~ 410]))
+#' summary(as.long.df(flu [, , 405 ~ 410], rownames = TRUE))
+#' summary(as.long.df(flu [, , 405 ~ 410], wl.factor = TRUE))
 as.long.df <- function(x, rownames = FALSE, wl.factor = FALSE, na.rm = TRUE) {
   chk.hy(x)
   validObject(x)
@@ -223,14 +220,15 @@ as.long.df <- function(x, rownames = FALSE, wl.factor = FALSE, na.rm = TRUE) {
 #'   see the example.
 #' @export
 #' @examples
-#' df <- as.t.df (apply (faux_cell, 2, mean_pm_sd))
-#' head (df)
+#' df <- as.t.df(apply(faux_cell, 2, mean_pm_sd))
+#' head(df)
 #'
-#' if (require (ggplot2)){
-#'   ggplot (df, aes (x = .wavelength)) +
-#'     geom_ribbon (aes (ymin = mean.minus.sd, ymax = mean.plus.sd),
-#'       fill = "#00000040") +
-#'     geom_line (aes (y = mean))
+#' if (require(ggplot2)) {
+#'   ggplot(df, aes(x = .wavelength)) +
+#'     geom_ribbon(aes(ymin = mean.minus.sd, ymax = mean.plus.sd),
+#'       fill = "#00000040"
+#'     ) +
+#'     geom_line(aes(y = mean))
 #' }
 as.t.df <- function(x) {
   chk.hy(x)

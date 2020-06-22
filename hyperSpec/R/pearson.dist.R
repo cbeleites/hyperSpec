@@ -16,8 +16,8 @@
 #' @export
 #' @examples
 #'
-#' pearson.dist (flu [[]])
-#' pearson.dist (flu)
+#' pearson.dist(flu [[]])
+#' pearson.dist(flu)
 pearson.dist <- function(x) {
   x <- as.matrix(x)
 

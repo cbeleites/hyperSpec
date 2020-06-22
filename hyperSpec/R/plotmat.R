@@ -16,18 +16,18 @@
 #' @seealso  \code{\link[graphics]{image}}, \code{\link[graphics]{contour}}, \code{\link[hyperSpec]{levelplot}}
 #' @export
 #' @examples
-#' plotmat (laser, col = alois.palette (100))
+#' plotmat(laser, col = alois.palette(100))
 #'
-#' plot (laser, "mat")
+#' plot(laser, "mat")
 #'
-#' plotmat (laser)
-#' plotmat (laser, contour = TRUE, add = TRUE)
+#' plotmat(laser)
+#' plotmat(laser, contour = TRUE, add = TRUE)
 #'
 #' ## use different y axis labels
 #'
-#' plotmat (laser, "t")
+#' plotmat(laser, "t")
 #'
-#' plotmat (laser, laser$t / 3600, ylab = "t / h")
+#' plotmat(laser, laser$t / 3600, ylab = "t / h")
 #' @importFrom utils modifyList
 plotmat <- function(object, y = ".row", ylab, col = alois.palette(20), ...,
                     contour = FALSE) {

@@ -58,30 +58,29 @@
 #' @examples
 #'
 #' flu
-#' wl2i (flu, 405 : 407)
-#' wl2i (flu, 405 ~ 407)
+#' wl2i(flu, 405:407)
+#' wl2i(flu, 405 ~ 407)
 #'
 #' ## beginning of the spectrum to 407 nm
-#' wl2i (flu, min ~ 407)
+#' wl2i(flu, min ~ 407)
 #'
 #' ## 2 data points from the beginning of the spectrum to 407 nm
-#' wl2i (flu, min + 2i ~ 407)
+#' wl2i(flu, min + 2i ~ 407)
 #'
 #' ## the first 3 data points
-#' wl2i (flu, min ~ min + 2i)
+#' wl2i(flu, min ~ min + 2i)
 #'
 #' ## from 490 nm to end of the spectrum
-#' wl2i (flu, 490 ~ max)
+#' wl2i(flu, 490 ~ max)
 #'
 #' ## the last 8 data points
-#' wl2i (flu, max - 7i ~ max)
+#' wl2i(flu, max - 7i ~ max)
 #'
 #' ## get 450 nm +- 3 data points
-#' wl2i (flu, 450 - 3i ~ 450 + 3i)
+#' wl2i(flu, 450 - 3i ~ 450 + 3i)
 #'
-#' wl2i (flu, 300 : 400) ## all NA:
-#' wl2i (flu, 600 ~ 700) ## NULL: completely outside flu's wavelength range
-#'
+#' wl2i(flu, 300:400) ## all NA:
+#' wl2i(flu, 600 ~ 700) ## NULL: completely outside flu's wavelength range
 #' @importFrom lazyeval lazy lazy_eval is_formula f_eval_lhs f_eval_rhs
 wl2i <- function(x, wavelength = stop("wavelengths are required."), unlist = TRUE) {
   chk.hy(x)
@@ -233,8 +232,7 @@ wl2i <- function(x, wavelength = stop("wavelengths are required."), unlist = TRU
 #' @export
 #' @examples
 #'
-#' i2wl (faux_cell, 17:20)
-#'
+#' i2wl(faux_cell, 17:20)
 i2wl <- function(x, i) {
   chk.hy(x)
   validObject(x)

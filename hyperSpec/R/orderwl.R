@@ -14,26 +14,25 @@
 #' @examples
 #'
 #' ## Example 1: different drawing order in plotspc
-#' spc <- new ("hyperSpec", spc = matrix (rnorm (5) + 1:5, ncol = 5))
-#' spc <- cbind (spc, spc+.5)
+#' spc <- new("hyperSpec", spc = matrix(rnorm(5) + 1:5, ncol = 5))
+#' spc <- cbind(spc, spc + .5)
 #'
-#' plot (spc, "spc")
-#' text (wl (spc), spc [[]], as.character (1:10))
-#' spc <- orderwl (spc)
-#' plot (spc, "spc")
-#' text (wl (spc), spc [[]], as.character (1:10))
+#' plot(spc, "spc")
+#' text(wl(spc), spc [[]], as.character(1:10))
+#' spc <- orderwl(spc)
+#' plot(spc, "spc")
+#' text(wl(spc), spc [[]], as.character(1:10))
 #'
 #' ## Example 2
-#' spc <- new ("hyperSpec", spc = matrix (rnorm (5)*2 + 1:5, ncol = 5))
-#' spc <- cbind (spc, spc)
+#' spc <- new("hyperSpec", spc = matrix(rnorm(5) * 2 + 1:5, ncol = 5))
+#' spc <- cbind(spc, spc)
 #'
-#' plot (seq_len(nwl(spc)), spc[[]], type = "b")
+#' plot(seq_len(nwl(spc)), spc[[]], type = "b")
 #' spc[[]]
 #'
-#' spc <- orderwl (spc)
-#' lines (seq_len(nwl(spc)), spc[[]], type = "l", col = "red")
+#' spc <- orderwl(spc)
+#' lines(seq_len(nwl(spc)), spc[[]], type = "l", col = "red")
 #' spc[[]]
-#'
 orderwl <- function(x, na.last = TRUE, decreasing = FALSE) {
   chk.hy(x)
   validObject(x)

@@ -86,30 +86,32 @@
 #' @export
 #' @examples
 #'
-#' if (interactive ()){
-#' ispc <- sample (nrow (laser), 10)
-#' ispc
+#' if (interactive()) {
+#'   ispc <- sample(nrow(laser), 10)
+#'   ispc
 #'
-#' identified <- spc.identify (plotspc (laser[ispc]))
+#'   identified <- spc.identify(plotspc(laser[ispc]))
 #'
-#' ## convert to the "real" spectra indices
-#' ispc [identified$ispc]
-#' identified$wl
-#' identified$spc
+#'   ## convert to the "real" spectra indices
+#'   ispc [identified$ispc]
+#'   identified$wl
+#'   identified$spc
 #'
-#' ## allow the labels to be plotted into the plot margin
-#' spc.identify (plotspc (laser[ispc]), ispc = ispc, xpd = NA)
+#'   ## allow the labels to be plotted into the plot margin
+#'   spc.identify(plotspc(laser[ispc]), ispc = ispc, xpd = NA)
 #'
-#' spc.identify (plotspc (paracetamol, xoffset = 1100,
-#'               wl.range = c (600 ~ 1700, 2900 ~ 3150)),
-#'               formatter = spc.label.wlonly)
+#'   spc.identify(plotspc(paracetamol,
+#'     xoffset = 1100,
+#'     wl.range = c(600 ~ 1700, 2900 ~ 3150)
+#'   ),
+#'   formatter = spc.label.wlonly
+#'   )
 #'
-#' ## looking for minima
-#' spc.identify (plot (-paracetamol, wl.reverse = TRUE),
-#'               point.fn = spc.point.min, adj = c (1, 0.5))
-#'
+#'   ## looking for minima
+#'   spc.identify(plot(-paracetamol, wl.reverse = TRUE),
+#'     point.fn = spc.point.min, adj = c(1, 0.5)
+#'   )
 #' }
-#'
 spc.identify <- function(x, y = NULL, wavelengths = NULL, ispc = NULL,
                          tol.wl = diff(range(x)) / 200,
                          tol.spc = diff(range(y)) / 50,

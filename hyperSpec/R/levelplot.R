@@ -41,7 +41,7 @@ setGeneric("levelplot", package = "lattice")
 
   dots <- modifyList(
     list(
-      xlab = data@label [[use.x]], 
+      xlab = data@label [[use.x]],
       ylab = data@label [[use.y]]
     ),
     dots

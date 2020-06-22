@@ -40,7 +40,7 @@
 #' @keywords manip
 #' @examples
 #' barbiturates [1:3]
-#' collapse (barbiturates [1:3])
+#' collapse(barbiturates [1:3])
 #'
 #' a <- barbiturates [[1]]
 #' b <- barbiturates [[2]]
@@ -49,11 +49,9 @@
 #' a
 #' b
 #' c
-#' collapse (a, b, c)
+#' collapse(a, b, c)
 #'
-#' collapse (barbiturates [1:3], collapse.equal = FALSE)
-#'
-
+#' collapse(barbiturates [1:3], collapse.equal = FALSE)
 collapse <- function(..., wl.tolerance = hy.getOption("wl.tolerance"), collapse.equal = TRUE) {
   wl.tolerance <- .checkpos(wl.tolerance, "wl.tolerance")
   dots <- list(...)

@@ -19,22 +19,26 @@
 #' [ggplot2::ggplot()], [ggplot2::geom_line()]
 #' @examples
 #'
-#'   qplotspc (faux_cell)
+#' qplotspc(faux_cell)
 #'
-#'   qplotspc (paracetamol, c (2800 ~ max, min ~ 1800)) +
-#'      scale_x_reverse (breaks = seq (0, 3200, 400))
+#' qplotspc(paracetamol, c(2800 ~ max, min ~ 1800)) +
+#'   scale_x_reverse(breaks = seq(0, 3200, 400))
 #'
-#'   qplotspc (aggregate (faux_cell, faux_cell$region, mean),
-#'             mapping = aes (x = .wavelength, y = spc, colour = region)) +
-#'     facet_grid (region ~ .)
+#' qplotspc(aggregate(faux_cell, faux_cell$region, mean),
+#'   mapping = aes(x = .wavelength, y = spc, colour = region)
+#' ) +
+#'   facet_grid(region ~ .)
 #'
-#'   qplotspc (aggregate (faux_cell, faux_cell$region, mean_pm_sd),
-#'             mapping = aes (x = .wavelength, y = spc, colour = region, group = .rownames)) +
-#'     facet_grid (region ~ .)
+#' qplotspc(aggregate(faux_cell, faux_cell$region, mean_pm_sd),
+#'   mapping = aes(x = .wavelength, y = spc, colour = region, group = .rownames)
+#' ) +
+#'   facet_grid(region ~ .)
 qplotspc <- function(x,
                      wl.range = TRUE, ...,
-                     mapping = aes_string(x = ".wavelength", y = "spc",
-                                          group = ".rownames"),
+                     mapping = aes_string(
+                       x = ".wavelength", y = "spc",
+                       group = ".rownames"
+                     ),
                      spc.nmax = hy.getOption("ggplot.spc.nmax"),
                      map.lineonly = FALSE,
                      debuglevel = hy.getOption("debuglevel")) {
@@ -44,8 +48,10 @@ qplotspc <- function(x,
   ## cut away everything that isn't asked for before transforming to data.frame
   if (nrow(x) > spc.nmax) {
     if (debuglevel >= 1L) {
-      message("Number of spectra exceeds spc.nmax. Only the first ", spc.nmax,
-              " are plotted.")
+      message(
+        "Number of spectra exceeds spc.nmax. Only the first ", spc.nmax,
+        " are plotted."
+      )
     }
     x <- x[seq_len(spc.nmax)]
   }
@@ -55,7 +61,7 @@ qplotspc <- function(x,
   x <- x[, , unlist(wl.range), wl.index = TRUE]
 
   df <- as.long.df(x, rownames = TRUE, na.rm = FALSE) # with na.rm trouble with
-                                                      # wl.range
+  # wl.range
 
   ## ranges go into facets
   if (length(wl.range) > 1L) {
@@ -114,8 +120,8 @@ qplotspc <- function(x,
 #'
 #'   [ggplot2::ggplot()], [ggplot2::geom_tile()]
 #' @examples
-#' qplotmap (faux_cell)
-#' qplotmap (faux_cell) + scale_fill_gradientn (colours = alois.palette ())
+#' qplotmap(faux_cell)
+#' qplotmap(faux_cell) + scale_fill_gradientn(colours = alois.palette())
 #' @importFrom utils tail
 #' @importFrom rlang as_label
 qplotmap <- function(object,
@@ -191,8 +197,8 @@ qplotmap <- function(object,
 #'
 #'   [ggplot2::ggplot()], [ggplot2::geom_point()]
 #' @examples
-#' qplotc (flu)
-#' qplotc (flu) + geom_smooth (method = "lm")
+#' qplotc(flu)
+#' qplotc(flu) + geom_smooth(method = "lm")
 qplotc <- function(object, mapping = aes_string(x = "c", y = "spc"), ...,
                    func = NULL, func.args = list(),
                    map.pointonly = FALSE) {
@@ -219,8 +225,9 @@ qplotc <- function(object, mapping = aes_string(x = "c", y = "spc"), ...,
 
   ## produce fancy y label
   ylabel <- labels(object, as_label(mapping$y))
-  if (is.null(ylabel))
+  if (is.null(ylabel)) {
     ylabel <- as_label(mapping$y)
+  }
 
   if (!is.null(func)) {
     ylabel <- make.fn.expr(substitute(func), c(ylabel, func.args))
@@ -232,11 +239,11 @@ qplotc <- function(object, mapping = aes_string(x = "c", y = "spc"), ...,
 
   ## if plots should be grouped, faceted, etc. by wavelength, it is better to
   ## have a factor
-  if (any(grepl("[.]wavelength",
-                sapply(mapping[!names(mapping) %in% c("x", "y")], as_label)
-                )
-          )
-      ) {
+  if (any(grepl(
+    "[.]wavelength",
+    sapply(mapping[!names(mapping) %in% c("x", "y")], as_label)
+  ))
+  ) {
     df$.wavelength <- as.factor(df$.wavelength)
   }
 
@@ -249,8 +256,9 @@ qplotc <- function(object, mapping = aes_string(x = "c", y = "spc"), ...,
   }
 
   xlabel <- labels(object)[[as_label(mapping$x)]]
-  if (is.null(xlabel))
+  if (is.null(xlabel)) {
     xlabel <- as_label(mapping$x)
+  }
 
   p + ylab(ylabel) +
     xlab(xlabel)

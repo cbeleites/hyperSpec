@@ -47,11 +47,9 @@
 #' @export
 #' @examples
 #'
-#' flu [,,445 ~ 450] > 300
+#' flu [, , 445 ~ 450] > 300
 #'
-#' all (flu == flu[[]])
-#'
-
+#' all(flu == flu[[]])
 setMethod(
   "Compare", signature(e1 = "hyperSpec", e2 = "hyperSpec"),
   function(e1, e2) {

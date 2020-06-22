@@ -37,9 +37,7 @@
 #' @export
 #' @examples
 #'
-#' 	log (flu)
-#'
-
+#' log(flu)
 setMethod(
   "Math2", signature(x = "hyperSpec"),
   function(x, digits) {

@@ -13,8 +13,9 @@
 #'
 #' paracetamol
 #'
-#' plot (paracetamol)
-#' plotspc (paracetamol, c (min ~ 1750, 2800 ~ max), xoffset = 800,
-#' wl.reverse = TRUE)
-#'
+#' plot(paracetamol)
+#' plotspc(paracetamol, c(min ~ 1750, 2800 ~ max),
+#'   xoffset = 800,
+#'   wl.reverse = TRUE
+#' )
 NULL

@@ -49,12 +49,11 @@ setGeneric("rmmvnorm", .rmmvnorm)
 #' @examples
 #' ## multiple groups, common covariance matrix
 #'
-#' if (require ("mvtnorm")){
-#'    pcov <- pooled.cov (faux_cell, faux_cell$region)
-#'    rnd <- rmmvnorm (rep (10, 3), mean = pcov$mean, sigma = pcov$COV)
-#'    plot (rnd, col = rnd$.group)
+#' if (require("mvtnorm")) {
+#'   pcov <- pooled.cov(faux_cell, faux_cell$region)
+#'   rnd <- rmmvnorm(rep(10, 3), mean = pcov$mean, sigma = pcov$COV)
+#'   plot(rnd, col = rnd$.group)
 #' }
-
 setMethod(
   "rmmvnorm", signature(n = "numeric", mean = "hyperSpec", sigma = "matrix"),
   function(n, mean, sigma) {

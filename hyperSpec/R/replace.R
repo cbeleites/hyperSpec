@@ -13,13 +13,12 @@
 #' ## replacement functions
 #' spc <- flu
 #' spc$.
-#' spc[, "c"] <- 16 : 11
+#' spc[, "c"] <- 16:11
 #' ## be careful:
-#' plot (spc)
-#' spc [] <- 6 : 1
+#' plot(spc)
+#' spc [] <- 6:1
 #' spc$..
-#' plot (spc)
-#'
+#' plot(spc)
 setReplaceMethod("[",
   signature = signature(x = "hyperSpec"),
   function(x, i, j,
@@ -53,31 +52,30 @@ setReplaceMethod("[",
 #' @export
 #' @include wl2i.R
 #' @examples
-#' spc <- flu [,, 405 ~ 410]
+#' spc <- flu [, , 405 ~ 410]
 #' spc [[]]
 #' spc [[3]] <- -spc[[3]]
 #' spc [[]]
-#' spc [[,,405 : 410]] <- -spc[[,,405 : 410]]
+#' spc [[, , 405:410]] <- -spc[[, , 405:410]]
 #' spc [[]]
-#' spc [[,,405 ~ 410]] <- -spc[[,,405 ~ 410]]
+#' spc [[, , 405 ~ 410]] <- -spc[[, , 405 ~ 410]]
 #'
 #' ## indexing with logical matrix
-#' spc <- flu [,, min ~ 410]
+#' spc <- flu [, , min ~ 410]
 #' spc < 125
 #' spc [[spc < 125]] <- NA
 #' spc [[]]
 #'
 #' ## indexing with n by 2 matrix
-#' ind <- matrix (c (1, 2, 4, 406, 405.5, 409), ncol = 2)
+#' ind <- matrix(c(1, 2, 4, 406, 405.5, 409), ncol = 2)
 #' ind
 #' spc [[ind]] <- 3
 #' spc [[]]
 #'
-#' ind <- matrix (c (1, 2, 4, 4:6), ncol = 2)
+#' ind <- matrix(c(1, 2, 4, 4:6), ncol = 2)
 #' ind
 #' spc [[ind, wl.index = TRUE]] <- 9999
 #' spc [[]]
-#'
 setReplaceMethod("[[",
   signature = signature(x = "hyperSpec"),
   function(x, i, j, l, wl.index = FALSE,
@@ -139,11 +137,9 @@ setReplaceMethod("[[",
 #' @export
 #' @examples
 #' spc$.
-#' spc$z <- 1 : 6
+#' spc$z <- 1:6
 #' spc
-#' spc$z <- list (1 : 6, "z / a.u.")
-#'
-
+#' spc$z <- list(1:6, "z / a.u.")
 setReplaceMethod("$",
   signature = signature(x = "hyperSpec"),
   function(x, name, value) {

@@ -12,21 +12,25 @@
 #' @examples
 #'
 #' barbiturates [1:3]
-#' length (barbiturates)
+#' length(barbiturates)
 #'
-#' barb <- collapse (barbiturates, collapse.equal = FALSE)
-#' barb <- orderwl (barb)
+#' barb <- collapse(barbiturates, collapse.equal = FALSE)
+#' barb <- orderwl(barb)
 #'
-#' plot (barb [1:3], lines.args = list (type = "h"),
-#'       col = matlab.dark.palette (3), stacked = TRUE,
-#'       stacked.args = list (add.factor = .2))
+#' plot(barb [1:3],
+#'   lines.args = list(type = "h"),
+#'   col = matlab.dark.palette(3), stacked = TRUE,
+#'   stacked.args = list(add.factor = .2)
+#' )
 #'
-#' if (require (latticeExtra)){
-#' levelplot (spc ~ .wavelength * z, log (barb), panel = panel.levelplot.points,
-#'    cex = 0.3, col = "#00000000", col.regions = matlab.palette (20))
+#' if (require(latticeExtra)) {
+#'   levelplot(spc ~ .wavelength * z, log(barb),
+#'     panel = panel.levelplot.points,
+#'     cex = 0.3, col = "#00000000", col.regions = matlab.palette(20)
+#'   )
 #' }
 #'
-#' plotc (apply (barb [,, 42.9~43.2], 1, sum, na.rm = TRUE), spc ~ z,
-#'        panel = panel.lines, ylab = expression (I[m/z == 43] / "a.u."))
-#'
+#' plotc(apply(barb [, , 42.9 ~ 43.2], 1, sum, na.rm = TRUE), spc ~ z,
+#'   panel = panel.lines, ylab = expression(I[m / z == 43] / "a.u.")
+#' )
 NULL

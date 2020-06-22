@@ -56,26 +56,25 @@
 #' ## Substract the background / slide / blank spectrum
 #' # the example data does not have spectra of the empty slide,
 #' # so instead the overall composition of the sample is substracted
-#' background <- apply (faux_cell, 2, quantile, probs = 0.05)
-#' corrected <- sweep (faux_cell, 2, background, "-")
-#' plot (corrected, "spcprctl5")
+#' background <- apply(faux_cell, 2, quantile, probs = 0.05)
+#' corrected <- sweep(faux_cell, 2, background, "-")
+#' plot(corrected, "spcprctl5")
 #'
 #' ## Offset correction
-#' offsets <- apply (faux_cell, 1, min)
-#' corrected <- sweep (faux_cell, 1, offsets, "-")
-#' plot (corrected, "spcprctl5")
+#' offsets <- apply(faux_cell, 1, min)
+#' corrected <- sweep(faux_cell, 1, offsets, "-")
+#' plot(corrected, "spcprctl5")
 #'
 #' ## Min-max normalization (on max amide I)
 #' # the minimum is set to zero by the offset correction.
-#' factor <- apply (corrected, 1, max)
-#' mm.corrected <- sweep (corrected, 1, factor, "/")
-#' plot (mm.corrected, "spcprctl5")
+#' factor <- apply(corrected, 1, max)
+#' mm.corrected <- sweep(corrected, 1, factor, "/")
+#' plot(mm.corrected, "spcprctl5")
 #'
 #' ## convenience: give function to compute STATS:
-#' mm.corrected2 <- sweep (corrected, 1, max, "/")
-#' plot (mm.corrected2)
+#' mm.corrected2 <- sweep(corrected, 1, max, "/")
+#' plot(mm.corrected2)
 #'
 #' ## checking
-#' stopifnot (all (mm.corrected2 == mm.corrected))
-#'
+#' stopifnot(all(mm.corrected2 == mm.corrected))
 setMethod("sweep", signature = signature(x = "hyperSpec"), .sweep)

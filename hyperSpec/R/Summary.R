@@ -28,8 +28,7 @@
 #' @export
 #' @examples
 #'
-#' 	range (flu)
-#'
+#' range(flu)
 setMethod(
   "Summary", signature(x = "hyperSpec"),
   function(x, ..., na.rm = FALSE) {
@@ -52,7 +51,7 @@ setMethod(
 #' @export
 #' @examples
 #'
-#' is.na (flu [,, 405 ~ 410]);
+#' is.na(flu [, , 405 ~ 410])
 setMethod(
   "is.na", signature(x = "hyperSpec"),
   function(x) {
@@ -70,7 +69,7 @@ setMethod(
 #' @export
 #' @examples
 #'
-#' all_wl (flu > 100)
+#' all_wl(flu > 100)
 all_wl <- function(expression, na.rm = FALSE) {
   res <- rowSums(!expression, na.rm = TRUE) == 0
 
@@ -122,8 +121,8 @@ all_wl <- function(expression, na.rm = FALSE) {
 #' @export
 #' @examples
 #'
-#' any_wl (flu > 300)
-#' ! any_wl (is.na (flu))
+#' any_wl(flu > 300)
+#' !any_wl(is.na(flu))
 any_wl <- function(expression, na.rm = FALSE) {
   res <- rowSums(expression, na.rm = TRUE) > 0
 

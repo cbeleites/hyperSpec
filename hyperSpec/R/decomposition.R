@@ -63,15 +63,15 @@
 #' @keywords methods manip
 #' @include apply.R
 #' @examples
-#' pca <- prcomp (flu)
+#' pca <- prcomp(flu)
 #'
-#' pca.loadings <- decomposition (flu, t (pca$rotation), scores = FALSE)
-#' pca.center <- decomposition (flu, pca$center, scores = FALSE)
-#' pca.scores <- decomposition (flu, pca$x)
+#' pca.loadings <- decomposition(flu, t(pca$rotation), scores = FALSE)
+#' pca.center <- decomposition(flu, pca$center, scores = FALSE)
+#' pca.scores <- decomposition(flu, pca$x)
 #'
-#' plot (pca.center)
-#' plot (pca.loadings, col = c ("red", "gray50"))
-#' plotc (pca.scores, groups = .wavelength)
+#' plot(pca.center)
+#' plot(pca.loadings, col = c("red", "gray50"))
+#' plotc(pca.scores, groups = .wavelength)
 #' @export
 decomposition <- function(object, x, wavelength = seq_len(ncol(x)),
                           label.wavelength, label.spc,

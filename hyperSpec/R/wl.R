@@ -31,8 +31,7 @@
 #' spectral binning: \code{\link[hyperSpec]{spc.bin}}
 #' @examples
 #'
-#' 	wl (laser)
-#'
+#' wl(laser)
 wl <- function(x) {
   chk.hy(x)
   validObject(x)
@@ -66,18 +65,19 @@ wl <- function(x) {
 #' @param digits handed to \code{\link[base]{signif}}. See details.
 #' @return \code{hyperSpec} object
 #' @examples
-#' 	# convert from wavelength to frequency
-#' 	plot (laser)
-#' 	wl (laser, "f / Hz") <- 2.998e8 * wl (laser) * 1e9
-#' 	plot (laser)
+#' # convert from wavelength to frequency
+#' plot(laser)
+#' wl(laser, "f / Hz") <- 2.998e8 * wl(laser) * 1e9
+#' plot(laser)
 #'
-#' 	# convert from Raman shift to wavelength
-#' 	# excitation was at 785 nm
-#' 	plot (faux_cell [1])
-#' 	wl(faux_cell) <- list(wl = 1e7/(1e7/785 - wl(faux_cell)),
-#' 	                      label = expression(lambda / nm))
-#' 	plot (faux_cell [1])
-#'
+#' # convert from Raman shift to wavelength
+#' # excitation was at 785 nm
+#' plot(faux_cell [1])
+#' wl(faux_cell) <- list(
+#'   wl = 1e7 / (1e7 / 785 - wl(faux_cell)),
+#'   label = expression(lambda / nm)
+#' )
+#' plot(faux_cell [1])
 "wl<-" <- function(x, label = NULL, digits = 6, value) {
   chk.hy(x)
   validObject(x)
@@ -111,8 +111,8 @@ wl <- function(x) {
 #' @author R. Kiselev
 #' @export
 #' @examples
-#' wlconv (3200, "Raman shift", "nm", laser = 785.04)
-#' wlconv( 785, "nm", "invcm")
+#' wlconv(3200, "Raman shift", "nm", laser = 785.04)
+#' wlconv(785, "nm", "invcm")
 wlconv <- function(points, src, dst, laser = NULL) {
   SRC <- .fixunitname(src)
   DST <- .fixunitname(dst)

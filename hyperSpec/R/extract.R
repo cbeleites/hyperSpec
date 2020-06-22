@@ -139,21 +139,21 @@
 #' ## make some "spectra"
 #'
 #' ## numeric index
-#' plot (flu, "spc", lines.args = list (lty = 2))
-#' plot (flu[1:3], "spc", add = TRUE, col = "red")     # select spectra
-#' plot (flu[-(1:3)], "spc", add = TRUE, col = "blue") # delete spectra
+#' plot(flu, "spc", lines.args = list(lty = 2))
+#' plot(flu[1:3], "spc", add = TRUE, col = "red") # select spectra
+#' plot(flu[-(1:3)], "spc", add = TRUE, col = "blue") # delete spectra
 #'
 #' ## logic index
-#' plot (flu, "spc", lines.args = list (lty = 2))
-#' index <- rnorm (6) > 0
+#' plot(flu, "spc", lines.args = list(lty = 2))
+#' index <- rnorm(6) > 0
 #' index
-#' plot (flu[index], "spc", add = TRUE, col = "red")   # select spectra
-#' plot (flu[!index], "spc", add = TRUE, col = "blue") # select spectra
+#' plot(flu[index], "spc", add = TRUE, col = "red") # select spectra
+#' plot(flu[!index], "spc", add = TRUE, col = "blue") # select spectra
 #'
 #' ## index into the data columns ---------------------------------------
-#' range (faux_cell[[,"x"]])
-#' colnames (faux_cell[[,1]])
-#' dim (faux_cell[[,c(TRUE, FALSE, FALSE)]])
+#' range(faux_cell[[, "x"]])
+#' colnames(faux_cell[[, 1]])
+#' dim(faux_cell[[, c(TRUE, FALSE, FALSE)]])
 #' faux_cell$x
 #'
 #'
@@ -163,37 +163,36 @@
 #' flu[[]]
 #'
 #' ## indexing via logical matrix
-#' summary (flu [[flu < 125]])
+#' summary(flu [[flu < 125]])
 #'
 #' ## indexing the spectra matrix with index matrix n by 2
-#' ind <- matrix (c (1, 2, 4, 406, 405.5, 409), ncol = 2)
+#' ind <- matrix(c(1, 2, 4, 406, 405.5, 409), ncol = 2)
 #' ind
 #' flu [[ind]]
 #'
-#' ind <- matrix (c (1, 2, 4, 4:6), ncol = 2)
+#' ind <- matrix(c(1, 2, 4, 4:6), ncol = 2)
 #' ind
 #' flu [[ind, wl.index = TRUE]]
 #'
-#' pca <- prcomp (flu[[]])
+#' pca <- prcomp(flu[[]])
 #'
 #' ## result is data.frame, if j is given:
 #' result <- flu [[, 1:2, 405 ~ 410]]
 #' result
-#' class (result)
-#' colnames (result)
+#' class(result)
+#' colnames(result)
 #'
 #' ## extract the data.frame including the spectra matrix
 #' flu$.
 #' dim(flu$.)
-#' colnames (flu$.)
+#' colnames(flu$.)
 #' flu$.$spc
 #'
-#' calibration <- lm (spc ~ c, data = flu[,,450]$.)
+#' calibration <- lm(spc ~ c, data = flu[, , 450]$.)
 #' calibration
 #'
 #' flu$..
-#' colnames (flu$..)
-#'
+#' colnames(flu$..)
 #' @include call.list.R
 #' @export
 setMethod("[",

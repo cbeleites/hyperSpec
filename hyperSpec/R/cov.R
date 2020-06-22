@@ -10,7 +10,7 @@
 #' @rdname cov
 #' @export
 #' @examples
-#' image (cov (faux_cell))
+#' image(cov(faux_cell))
 setMethod("cov", signature = signature(x = "hyperSpec", y = "missing"), function(x, y, use, method) {
   validObject(x)
 
@@ -26,10 +26,9 @@ setMethod("cov", signature = signature(x = "hyperSpec", y = "missing"), function
 #' @rdname cov
 #' @export
 #' @examples
-#' pcov <-  pooled.cov (faux_cell, faux_cell$region)
-#' plot (pcov$means)
-#' image (pcov$COV)
-#'
+#' pcov <- pooled.cov(faux_cell, faux_cell$region)
+#' plot(pcov$means)
+#' image(pcov$COV)
 pooled.cov <- function(x, groups, ..., regularize = 1e-5 * max(abs(COV))) {
   chk.hy(x)
   validObject(x)
@@ -38,7 +37,7 @@ pooled.cov <- function(x, groups, ..., regularize = 1e-5 * max(abs(COV))) {
     stop("groups must be a factor")
   }
 
-  x      <- x      [!is.na(groups)]
+  x <- x      [!is.na(groups)]
   groups <- groups [!is.na(groups)]
 
   means <- aggregate(x, groups, "mean") # TODO: speed up?

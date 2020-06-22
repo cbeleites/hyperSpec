@@ -54,15 +54,16 @@
 #' @export
 #' @examples
 #'
-#' sample (flu, 3)
+#' sample(flu, 3)
 #'
-#' plot (flu, col = "darkgray")
-#' plot (sample (flu, 3), col = "red", add = TRUE)
+#' plot(flu, col = "darkgray")
+#' plot(sample(flu, 3), col = "red", add = TRUE)
 #'
-#' plot (flu, col = "darkgray")
-#' plot (sample (flu, 3, replace = TRUE), col = "#0000FF80", add = TRUE,
-#'       lines.args = list (lwd = 2));
-#'
+#' plot(flu, col = "darkgray")
+#' plot(sample(flu, 3, replace = TRUE),
+#'   col = "#0000FF80", add = TRUE,
+#'   lines.args = list(lwd = 2)
+#' )
 setMethod("sample", signature = signature(x = "hyperSpec"), .sample)
 
 #' \code{isample} returns an vector of indices, \code{sample} returns the
@@ -72,10 +73,9 @@ setMethod("sample", signature = signature(x = "hyperSpec"), .sample)
 #' @return vector with indices suitable for row-indexing x
 #' @export
 #' @examples
-#' isample (flu, 3)
-#' isample (flu, 3, replace = TRUE)
-#' isample (flu, 8, replace = TRUE)
-
+#' isample(flu, 3)
+#' isample(flu, 3, replace = TRUE)
+#' isample(flu, 8, replace = TRUE)
 isample <- function(x, size = nrow(x), replace = FALSE, prob = NULL) {
   chk.hy(x)
   validObject(x)
@@ -115,7 +115,7 @@ isample <- function(x, size = nrow(x), replace = FALSE, prob = NULL) {
 #' @param drop see \code{\link[base]{drop}}: by default, do not drop dimensions of the result
 #' @export
 #' @examples
-#' sample (cars, 2)
+#' sample(cars, 2)
 setMethod("sample", signature = signature(x = "data.frame"), .sample.data.frame)
 
 .test(.sample.data.frame) <- function() {
@@ -155,7 +155,7 @@ setMethod("sample", signature = signature(x = "data.frame"), .sample.data.frame)
 #' @rdname sample
 #' @export
 #' @examples
-#' sample (matrix (1:24, 6), 2)
+#' sample(matrix(1:24, 6), 2)
 setMethod("sample", signature = signature(x = "matrix"), .sample.matrix)
 
 .test(.sample.matrix) <- function() {

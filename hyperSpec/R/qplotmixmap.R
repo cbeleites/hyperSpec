@@ -13,25 +13,27 @@
 #' @export
 #' @md
 #' @examples
-#' faux_cell <- faux_cell - spc.fit.poly.below (faux_cell)
-#' faux_cell <- sweep (faux_cell, 1, apply (faux_cell, 1, mean), "/")
-#' faux_cell <- sweep (faux_cell, 2, apply (faux_cell, 2, quantile, 0.05), "-")
+#' faux_cell <- faux_cell - spc.fit.poly.below(faux_cell)
+#' faux_cell <- sweep(faux_cell, 1, apply(faux_cell, 1, mean), "/")
+#' faux_cell <- sweep(faux_cell, 2, apply(faux_cell, 2, quantile, 0.05), "-")
 #'
-#' qplotmixmap (faux_cell [,,c (940, 1002, 1440)],
-#'              purecol = c (colg = "red", Phe = "green", Lipid = "blue"))
-#'
+#' qplotmixmap(faux_cell [, , c(940, 1002, 1440)],
+#'   purecol = c(colg = "red", Phe = "green", Lipid = "blue")
+#' )
 #' @importFrom lazyeval f_rhs
 qplotmixmap <- function(object, ...) {
   p <- qmixtile(object@data, ...) +
     coord_equal()
 
   xlabel <- labels(object)[[as_label(p$mapping$x)]]
-  if (is.null(xlabel))
+  if (is.null(xlabel)) {
     xlabel <- as_label(p$mapping$x)
+  }
 
   ylabel <- labels(object)[[as_label(p$mapping$y)]]
-  if (is.null(ylabel))
+  if (is.null(ylabel)) {
     ylabel <- as_label(p$mapping$y)
+  }
 
   p <- p +
     xlab(xlabel) +
@@ -225,9 +227,9 @@ qmixlegend <- function(x, purecol, dx = 0.33, ny = 100, labels = names(purecol),
 
   df <- data.frame()
   for (column in seq_along(purecol)) {
-
     tmp <- colmix.rgb(l$fill[, column, drop = FALSE], purecol[column],
-                      normalize = NULL, ...)
+      normalize = NULL, ...
+    )
 
     df <- rbind(df, data.frame(
       column = labels[column],
@@ -249,8 +251,10 @@ qmixlegend <- function(x, purecol, dx = 0.33, ny = 100, labels = names(purecol),
     fill = "col", colour = "col"
   ))
 
-  l <- l + theme(plot.margin = unit(c(0.5, 0, 0, 0), "lines"),
-                 legend.position = "none") +
+  l <- l + theme(
+    plot.margin = unit(c(0.5, 0, 0, 0), "lines"),
+    legend.position = "none"
+  ) +
     scale_fill_identity() + scale_colour_identity()
 
   l

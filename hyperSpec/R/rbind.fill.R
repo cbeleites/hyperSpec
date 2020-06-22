@@ -47,18 +47,17 @@ quickdf <- function(list) {
 #' @keywords manip
 #' @rdname rbind.fill
 #' @examples
-#'  A <- matrix (1:4, 2)
-#'  B <- matrix (6:11, 2)
-#'  A
-#'  B
-#'  hyperSpec:::rbind.fill.matrix (A, B)
+#' A <- matrix(1:4, 2)
+#' B <- matrix(6:11, 2)
+#' A
+#' B
+#' hyperSpec:::rbind.fill.matrix(A, B)
 #'
-#'  colnames (A) <- c (3, 1)
-#'  A
-#'  hyperSpec:::rbind.fill.matrix (A, B)
+#' colnames(A) <- c(3, 1)
+#' A
+#' hyperSpec:::rbind.fill.matrix(A, B)
 #'
-#'  hyperSpec:::rbind.fill.matrix (A, 99)
-#'
+#' hyperSpec:::rbind.fill.matrix(A, 99)
 #' @return a matrix
 #' @method rbind.fill matrix
 rbind.fill.matrix <- function(...) {

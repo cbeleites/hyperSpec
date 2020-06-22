@@ -27,20 +27,19 @@
 #' @examples
 #'
 #' ## mean center & variance scale
-#' tmp <- scale (faux_cell)
-#' plot (tmp, "spcmeansd")
-#' plot (sample (tmp, 5), add = TRUE, col = 2)
+#' tmp <- scale(faux_cell)
+#' plot(tmp, "spcmeansd")
+#' plot(sample(tmp, 5), add = TRUE, col = 2)
 #'
 #' ## mean center only
-#' tmp <- scale (faux_cell, scale = FALSE)
-#' plot (tmp, "spcmeansd")
-#' plot (sample (tmp, 5), add = TRUE, col = 2)
+#' tmp <- scale(faux_cell, scale = FALSE)
+#' plot(tmp, "spcmeansd")
+#' plot(sample(tmp, 5), add = TRUE, col = 2)
 #'
 #' ## custom center
-#' tmp <- sweep (faux_cell, 1, mean, `/`)
-#' plot (tmp, "spcmeansd")
-#' tmp <- scale (tmp, center = quantile (tmp, .05), scale = FALSE)
-#'
+#' tmp <- sweep(faux_cell, 1, mean, `/`)
+#' plot(tmp, "spcmeansd")
+#' tmp <- scale(tmp, center = quantile(tmp, .05), scale = FALSE)
 setMethod("scale",
   signature = signature(x = "hyperSpec"),
   function(x, center = TRUE, scale = TRUE) {

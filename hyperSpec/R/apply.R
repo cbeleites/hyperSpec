@@ -104,28 +104,28 @@
 #' @examples
 #'
 #'
-#' plotspc (apply (faux_cell, 2, range))
+#' plotspc(apply(faux_cell, 2, range))
 #'
-#' avgflu <- apply (flu, 1, mean,
-#'                  label.spc = expression (bar (I)),
-#'                  new.wavelength = mean (wl (flu)))
+#' avgflu <- apply(flu, 1, mean,
+#'   label.spc = expression(bar(I)),
+#'   new.wavelength = mean(wl(flu))
+#' )
 #' avgflu
 #'
-#' flu[[,,405:407]]
-#' apply (flu, 1:2, "*", -1)[[,,405:407]]
+#' flu[[, , 405:407]]
+#' apply(flu, 1:2, "*", -1)[[, , 405:407]]
 #'
 #' ## without MARGIN the whole matrix is handed to FUN
-#' apply (flu [,,405:407], , print) [[]]
+#' apply(flu [, , 405:407], , print) [[]]
 #'
 #' ## whereas MARGIN = 1 : 2 leads to FUN being called for each element separately
-#' apply (flu [,,405:407], 1 : 2, print) [[]]
-#'
-setMethod ("apply", signature = signature (X = "hyperSpec"),
-           function (X, MARGIN, FUN, ...,
-                     label.wl = NULL, label.spc = NULL, new.wavelength = NULL,
-                     simplify
-           ){
-  validObject (X)
+#' apply(flu [, , 405:407], 1:2, print) [[]]
+setMethod("apply",
+  signature = signature(X = "hyperSpec"),
+  function(X, MARGIN, FUN, ...,
+           label.wl = NULL, label.spc = NULL, new.wavelength = NULL,
+           simplify) {
+    validObject(X)
 
     if (missing(MARGIN)) { # apply for functions that the complete spectra matrix
       ## is easier: tmp <- apply (x, , FUN, ...)

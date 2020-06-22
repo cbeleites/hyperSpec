@@ -31,7 +31,9 @@
 #' @examples
 #'
 #' showClass("hyperSpec")
-#' \dontrun{vignette ("hyperspec")}
+#' \dontrun{
+#' vignette("hyperspec")
+#' }
 setClass("hyperSpec",
   representation = representation(
     wavelength = "numeric", # spectral abscissa

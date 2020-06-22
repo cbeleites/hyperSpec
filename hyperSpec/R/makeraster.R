@@ -21,27 +21,26 @@
 #' @export
 #' @author Claudia Beleites
 #' @examples
-#' x <- c (sample (1:20, 10), (0 : 5) + 0.5)
-#' raster <- makeraster (x, x [1], 2)
+#' x <- c(sample(1:20, 10), (0:5) + 0.5)
+#' raster <- makeraster(x, x [1], 2)
 #' raster
-#' plot (x)
-#' abline (h = raster$levels, col = "#00000040")
+#' plot(x)
+#' abline(h = raster$levels, col = "#00000040")
 #'
 #' ## unoccupied levels
-#' missing <- setdiff (raster$levels, raster$x)
-#' abline (h = missing, col = "red")
+#' missing <- setdiff(raster$levels, raster$x)
+#' abline(h = missing, col = "red")
 #'
 #' ## points acutally on the raster
 #' onraster <- raster$x %in% raster$levels
-#' points (which (onraster), raster$x [onraster], col = "blue", pch = 20)
-#'
+#' points(which(onraster), raster$x [onraster], col = "blue", pch = 20)
 #' @importFrom utils tail
 makeraster <- function(x, startx, d, newlevels, tol = 0.1) {
   if (missing(newlevels)) {
     ## make sure to cover the whole data range + 1 point
     newlevels <- c(
       rev(seq(startx, min(x, na.rm = TRUE) - d, by = -d) [-1]),
-          seq(startx, max(x, na.rm = TRUE) + d, by =  d)
+      seq(startx, max(x, na.rm = TRUE) + d, by = d)
     )
   }
 
@@ -67,33 +66,32 @@ makeraster <- function(x, startx, d, newlevels, tol = 0.1) {
 #' @export
 #' @examples
 #'
-#' raster <- fitraster (x)
+#' raster <- fitraster(x)
 #' raster
-#' plot (x)
-#' abline (h = raster$levels, col = "#00000040")
+#' plot(x)
+#' abline(h = raster$levels, col = "#00000040")
 #'
 #' ## unoccupied levels
-#' missing <- setdiff (raster$levels, raster$x)
-#' abline (h = missing, col = "red")
+#' missing <- setdiff(raster$levels, raster$x)
+#' abline(h = missing, col = "red")
 #'
 #' ## points acutally on the raster
 #' onraster <- raster$x %in% raster$levels
-#' points (which (onraster), raster$x [onraster], col = "blue", pch = 20)
+#' points(which(onraster), raster$x [onraster], col = "blue", pch = 20)
 #'
-#' x <- c (sample (1:20, 10), (0 : 5) + 0.45)
-#' raster <- fitraster (x)
+#' x <- c(sample(1:20, 10), (0:5) + 0.45)
+#' raster <- fitraster(x)
 #' raster
-#' plot (x)
-#' abline (h = raster$levels, col = "#00000040")
+#' plot(x)
+#' abline(h = raster$levels, col = "#00000040")
 #'
 #' ## unoccupied levels
-#' missing <- setdiff (raster$levels, raster$x)
-#' abline (h = missing, col = "red")
+#' missing <- setdiff(raster$levels, raster$x)
+#' abline(h = missing, col = "red")
 #'
 #' ## points acutally on the raster
 #' onraster <- raster$x %in% raster$levels
-#' points (which (onraster), raster$x [onraster], col = "blue", pch = 20)
-#'
+#' points(which(onraster), raster$x [onraster], col = "blue", pch = 20)
 fitraster <- function(x, tol = 0.1) {
   levels <- sort(unique(x))
 

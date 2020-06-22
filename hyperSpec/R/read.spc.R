@@ -670,16 +670,16 @@ raw.split.nul <- function(raw, trunc = c(TRUE, TRUE), firstonly = FALSE, paste.c
 #' ## get the sample .spc files from ftirsearch.com (see above)
 #' \dontrun{
 #' # single spectrum
-#' spc <- read.spc ("BENZENE.SPC")
-#' plot (spc)
+#' spc <- read.spc("BENZENE.SPC")
+#' plot(spc)
 #'
 #' # multi-spectra .spc file with common wavelength axis
-#' spc <- read.spc ('IG_MULTI.SPC')
+#' spc <- read.spc("IG_MULTI.SPC")
 #' spc
 #'
 #' # multi-spectra .spc file with individual wavelength axes
-#' spc <- read.spc ("BARBITUATES.SPC")
-#' plot (spc [[1]], lines.args = list (type = "h"))
+#' spc <- read.spc("BARBITUATES.SPC")
+#' plot(spc [[1]], lines.args = list(type = "h"))
 #' }
 #'
 #' @importFrom utils modifyList

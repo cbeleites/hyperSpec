@@ -14,7 +14,7 @@
 #' \code{\link[base]{dimnames}}
 #' @export
 #' @examples
-#' dimnames (flu)
+#' dimnames(flu)
 setMethod("dimnames", signature = signature(x = "hyperSpec"), function(x) {
   validObject(x)
 
@@ -32,7 +32,7 @@ setMethod("dimnames", signature = signature(x = "hyperSpec"), function(x) {
 #' @seealso \code{\link[base]{rownames}}
 #' @export
 #' @examples
-#' rownames (flu)
+#' rownames(flu)
 setMethod("rownames", signature = signature(x = "hyperSpec"), function(x, do.NULL = TRUE, prefix = "row") {
   validObject(x)
 
@@ -58,8 +58,7 @@ setReplaceMethod("rownames", signature = signature(x = "hyperSpec"), function(x,
 #' @seealso \code{\link[base]{colnames}}
 #' @export
 #' @examples
-#' colnames (faux_cell)
-
+#' colnames(faux_cell)
 setMethod("colnames",
   signature = signature(x = "hyperSpec"),
   function(x, do.NULL = TRUE, prefix = "col") {

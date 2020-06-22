@@ -16,7 +16,6 @@
 #' @return hyperSpec
 #' @examples
 #' ## for examples, please see `vignette ("fileio", package = "hyperSpec")`.
-
 read.spc.Kaiser <- function(files, ..., glob = TRUE) {
   if (glob) {
     files <- Sys.glob(files)

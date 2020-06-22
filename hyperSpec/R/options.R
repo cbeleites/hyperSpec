@@ -47,8 +47,7 @@
 #' @export
 #' @examples
 #'
-#' hy.getOptions ()
-#'
+#' hy.getOptions()
 hy.getOptions <- function(...) {
   dots <- c(...)
   if (length(dots) == 0L) {

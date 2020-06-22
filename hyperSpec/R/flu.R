@@ -16,8 +16,7 @@
 #'
 #' flu
 #'
-#' plot (flu)
+#' plot(flu)
 #'
-#' plotc (flu)
-#'
+#' plotc(flu)
 NULL

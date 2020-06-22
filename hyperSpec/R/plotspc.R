@@ -125,36 +125,40 @@
 #' @export
 #' @examples
 #'
-#' plotspc (flu)
+#' plotspc(flu)
 #'
 #' ## artificial example to show wavelength axis cutting
-#' plotspc (faux_cell [sample (nrow (faux_cell), 50)],
-#'          wl.range = list (600 ~ 650, 1000 ~ 1100, 1600 ~ 1700),
-#'          xoffset = c (0, 300, 450))
+#' plotspc(faux_cell [sample(nrow(faux_cell), 50)],
+#'   wl.range = list(600 ~ 650, 1000 ~ 1100, 1600 ~ 1700),
+#'   xoffset = c(0, 300, 450)
+#' )
 #'
-#' plotspc (faux_cell [sample (nrow (faux_cell), 50)],
-#'          wl.range = list (600 ~ 650, 1000 ~ 1100, 1600 ~ 1700),
-#'          xoffset = c (300, 450))
+#' plotspc(faux_cell [sample(nrow(faux_cell), 50)],
+#'   wl.range = list(600 ~ 650, 1000 ~ 1100, 1600 ~ 1700),
+#'   xoffset = c(300, 450)
+#' )
 #'
 #' ## some journals publish Raman spectra backwards
-#' plotspc (faux_cell [sample (nrow (faux_cell), 50)], wl.reverse = TRUE)
+#' plotspc(faux_cell [sample(nrow(faux_cell), 50)], wl.reverse = TRUE)
 #'
-#' plotspc (laser[(0:4)*20+1,,], stacked = TRUE)
+#' plotspc(laser[(0:4) * 20 + 1, , ], stacked = TRUE)
 #'
-#' plotspc (laser, func = mean_pm_sd,
-#'          col = c(NA, "red", "black"), lines.args = list (lwd = 2),
-#'          fill = c (1, NA, 1),
-#'          fill.col = "yellow", border = "blue",
-#'          polygon.args = list (lty = 2, lwd = 4),
-#'          title.args = list (xlab = expression (lambda[emission] / nm),
-#'                             y = list(line = 3.4),
-#'                             col.lab = "darkgreen"),
-#'          axis.args = list (x = list (col = "magenta"), y = list (las = 1))
-#'         )
+#' plotspc(laser,
+#'   func = mean_pm_sd,
+#'   col = c(NA, "red", "black"), lines.args = list(lwd = 2),
+#'   fill = c(1, NA, 1),
+#'   fill.col = "yellow", border = "blue",
+#'   polygon.args = list(lty = 2, lwd = 4),
+#'   title.args = list(
+#'     xlab = expression(lambda[emission] / nm),
+#'     y = list(line = 3.4),
+#'     col.lab = "darkgreen"
+#'   ),
+#'   axis.args = list(x = list(col = "magenta"), y = list(las = 1))
+#' )
 #'
-#' mean.pm.sd <- aggregate (faux_cell, faux_cell$region, mean_pm_sd)
-#' plot (mean.pm.sd, col = matlab.palette (3), fill = ".aggregate", stacked = ".aggregate")
-#'
+#' mean.pm.sd <- aggregate(faux_cell, faux_cell$region, mean_pm_sd)
+#' plot(mean.pm.sd, col = matlab.palette(3), fill = ".aggregate", stacked = ".aggregate")
 #' @importFrom utils modifyList relist head tail
 #' @importFrom grDevices rgb col2rgb
 plotspc <- function(object,
@@ -565,20 +569,24 @@ plotspc <- function(object,
 #' @export
 #' @examples
 #'
-#' mean.pm.sd <- aggregate (faux_cell, faux_cell$region, mean_pm_sd)
+#' mean.pm.sd <- aggregate(faux_cell, faux_cell$region, mean_pm_sd)
 #'
-#' offset <- stacked.offsets (mean.pm.sd, ".aggregate")
-#' plot (mean.pm.sd, fill.col = matlab.palette (3), fill = ".aggregate",
-#'       stacked = ".aggregate")
+#' offset <- stacked.offsets(mean.pm.sd, ".aggregate")
+#' plot(mean.pm.sd,
+#'   fill.col = matlab.palette(3), fill = ".aggregate",
+#'   stacked = ".aggregate"
+#' )
 #'
-#' plot (aggregate (faux_cell, faux_cell$region, mean), yoffset = offset$offsets,
-#'       lines.args = list (lty = 2, lwd = 2), add = TRUE)
+#' plot(aggregate(faux_cell, faux_cell$region, mean),
+#'   yoffset = offset$offsets,
+#'   lines.args = list(lty = 2, lwd = 2), add = TRUE
+#' )
 #'
-#' barb <- do.call (collapse, barbiturates [1:3])
-#' plot (barb, lines.args = list (type = "h"), stacked = TRUE,
-#'       stacked.args = list (add.factor = .2))
-#'
-#'
+#' barb <- do.call(collapse, barbiturates [1:3])
+#' plot(barb,
+#'   lines.args = list(type = "h"), stacked = TRUE,
+#'   stacked.args = list(add.factor = .2)
+#' )
 stacked.offsets <- function(x, stacked = TRUE,
                             min.zero = FALSE, add.factor = 0.05, add.sum = 0,
                             # tight = FALSE, TODO

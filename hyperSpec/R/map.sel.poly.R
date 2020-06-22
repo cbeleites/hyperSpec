@@ -22,29 +22,29 @@
 #' @rdname map-sel-poly
 #' @keywords iplot
 #' @examples
-#' if (interactive ()){
-#' ## convenience wrapper
-#' map.sel.poly (faux_cell)
+#' if (interactive()) {
+#'   ## convenience wrapper
+#'   map.sel.poly(faux_cell)
 #'
-#' ## customized version
-#' data <- sample (faux_cell [,, 1004 - 2i ~ 1004 + 2i], 300)
+#'   ## customized version
+#'   data <- sample(faux_cell [, , 1004 - 2i ~ 1004 + 2i], 300)
 #'
-#' plotdata <- plotvoronoi (data, region ~ y * x, col.regions = alois.palette ())
-#' print (plotdata)
-#' map.sel.poly (plotdata)
+#'   plotdata <- plotvoronoi(data, region ~ y * x, col.regions = alois.palette())
+#'   print(plotdata)
+#'   map.sel.poly(plotdata)
 #'
-#' ## even more customization:
-#' plotvoronoi (data)
+#'   ## even more customization:
+#'   plotvoronoi(data)
 #'
-#' ## interactively retrieve polygon
-#' polygon <- sel.poly ()
+#'   ## interactively retrieve polygon
+#'   polygon <- sel.poly()
 #'
-#' ## find data points within polygon
-#' require ("sp")
-#' i.sel <- which (point.in.polygon (data$x, data$y, polygon [, 1], polygon [, 2]) > 0)
+#'   ## find data points within polygon
+#'   require("sp")
+#'   i.sel <- which(point.in.polygon(data$x, data$y, polygon [, 1], polygon [, 2]) > 0)
 #'
-#' ## work with selected points
-#' grid.points (unit (data$x [i.sel], "native"), unit (data$y [i.sel], "native"))
+#'   ## work with selected points
+#'   grid.points(unit(data$x [i.sel], "native"), unit(data$y [i.sel], "native"))
 #' }
 map.sel.poly <- function(data, pch = 19, size = 0.3, ...) {
   if (!interactive()) {

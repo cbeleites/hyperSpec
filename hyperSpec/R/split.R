@@ -33,17 +33,13 @@
 #' @export
 #' @examples
 #'
-#' dist <- pearson.dist (faux_cell[[]])
-#' dend <- hclust (dist, method = "ward")
-#' z <- cutree (dend, h = 0.15)
+#' dist <- pearson.dist(faux_cell[[]])
+#' dend <- hclust(dist, method = "ward")
+#' z <- cutree(dend, h = 0.15)
 #'
-#' region <- split (faux_cell, z)
-#' length (region)
+#' region <- split(faux_cell, z)
+#' length(region)
 #'
 #' # difference in cluster mean spectra
-#' plot (apply (region[[2]], 2, mean) - apply (region[[1]], 2, mean))
-#'
-#'
-
-
+#' plot(apply(region[[2]], 2, mean) - apply(region[[1]], 2, mean))
 setMethod("split", signature = signature(x = "hyperSpec"), .split)
