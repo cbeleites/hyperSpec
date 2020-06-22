@@ -27,14 +27,14 @@ vanderMonde <- function(x, order, ...) {
 setGeneric("vanderMonde")
 
 #' @param normalize.wl function to transorm the wavelengths before evaluating the polynomial (or
-#' other function). `hyperSpec::normalize01()` maps the wavelength range to the interval
-#' [0, 1]. Use `base::I()` to turn off.
-#' @param ... hyperSpec method: further arguments to `hyperSpec::decomposition()`
+#' other function). [hyperSpec::normalize01()] maps the wavelength range to the interval
+#' \[0, 1\]. Use [base::I()] to turn off.
+#' @param ... hyperSpec method: further arguments to [hyperSpec::decomposition()]
 #' @return hyperSpec method: hyperSpec object containing van der Monde matrix as spectra and an additional column `$.vdm.order$ giving the order of each spectrum (term).
 #' @rdname vanderMonde
-#' @seealso `hyperSpec::wl.eval()` for calculating arbitrary functions of the wavelength,
+#' @seealso [hyperSpec::wl.eval()] for calculating arbitrary functions of the wavelength,
 #'
-#' `hyperSpec::normalize01()`
+#' [hyperSpec::normalize01()]
 #' @export
 #' @examples
 #' plot(vanderMonde(flu, 2))

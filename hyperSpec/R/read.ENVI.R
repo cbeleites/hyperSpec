@@ -286,9 +286,9 @@ split.line <- function(x, separator, trim.blank = TRUE) {
 #'                         \tab 12            \tab 2 byte unsigned integer \cr
 #'  ``header offset`` \tab integer       \tab number of bytes to skip before binary data starts\cr
 #'  `interleave`      \tab               \tab directions of the data cube \cr
-#'                         \tab "BSQ"         \tab band sequential (indexing: [sample, line, band])\cr
-#'                         \tab "BIL"         \tab band interleave by line (indexing: [sample, line, band])\cr
-#'                         \tab "BIP"         \tab band interleave by pixel (indexing: [band, line, sample])\cr
+#'                         \tab "BSQ"         \tab band sequential (indexing: \[sample, line, band\])\cr
+#'                         \tab "BIL"         \tab band interleave by line (indexing: \[sample, line, band\])\cr
+#'                         \tab "BIP"         \tab band interleave by pixel (indexing: \[band, line, sample\])\cr
 #'  ``byte order``    \tab 0 or "little" \tab little endian \cr
 #'                         \tab 1 or "big"    \tab big endian \cr
 #'                         \tab "swap"        \tab swap byte order

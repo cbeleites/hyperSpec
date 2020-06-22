@@ -1,6 +1,6 @@
-#' Normalize numbers -> [0, 1]
+#' Normalize numbers -> \[0, 1\]
 #'
-#' The input `x` is mapped to [0, 1] by subtracting the minimum and subsequently dividing by
+#' The input `x` is mapped to \[0, 1\] by subtracting the minimum and subsequently dividing by
 #' the maximum. If all elements of `x` are equal, 1 is returned.
 #'
 #' @title normalization for mixed colors
@@ -8,7 +8,7 @@
 #' @param x  vector with values to transform
 #' @param tolerance tolerance level for determining what is 0 and 1
 #' @param ... additional parameters such as `tolerance` handed down.
-#' @return vector with `x` values mapped to the interval [0, 1]
+#' @return vector with `x` values mapped to the interval \[0, 1\]
 #' @author C. Beleites
 #' @seealso [hyperSpec::wl.eval()], [hyperSpec::vanderMonde()]
 #' @export

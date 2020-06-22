@@ -38,8 +38,7 @@
 #'
 #'   Its size must correspond to rows (for `scores`) and to either columns
 #'   or rows (for `loadings`) of `object`.
-#' @param wavelength for a scores-like `x`: the new
-#'   `object@@wavelength`.
+#' @param wavelength for a scores-like `x`: the new `object@@wavelength`.
 #' @param label.wavelength The new label for the wavelength axis (if `x`
 #'   is scores-like). If not given, the label of `object` is kept.
 #' @param label.spc The new label for the spectra matrix. If not given, the
@@ -54,7 +53,7 @@
 #' @param ... ignored.
 #' @return A `hyperSpec` object, updated according to `x`
 #' @author C. Beleites
-#' @seealso See [\%*\%()] for matrix multiplication of
+#' @seealso See [%*%] for matrix multiplication of
 #'   `hyperSpec` objects.
 #'
 #'   See e.g. [stats::prcomp()] and [stats::princomp()] for

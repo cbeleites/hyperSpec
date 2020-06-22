@@ -1,10 +1,10 @@
 #' Read INI files
 #'
 #' `read.ini` reads ini files of the form
-#'
-#' [section]
-#' key = value
-#'
+#' \cr\cr
+#' `[section]`\cr
+#' `key = value`
+#' \cr\cr
 #' into a list.
 #'
 #' `read.ini` sanitizes the element names and tries to convert scalars and comma separated
