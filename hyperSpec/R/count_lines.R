@@ -1,11 +1,11 @@
-##' count lines (of an ASCII file)
-##'
-##' @param file the file name or connection
-##' @param chunksize `file` is read in chunks of `chunksize` lines.
-##' @return number of lines in file
-##' @export
-##' @md
-##' @author C. Beleites
+#' count lines (of an ASCII file)
+#'
+#' @param file the file name or connection
+#' @param chunksize `file` is read in chunks of `chunksize` lines.
+#' @return number of lines in file
+#' @export
+#' @md
+#' @author C. Beleites
 count_lines <- function(file, chunksize = 1e4) {
   nlines <- 0
 

@@ -1,5 +1,5 @@
 ## ' @export
-##' @importFrom utils maintainer
+#' @importFrom utils maintainer
 read.mat.Witec <- function(file = stop("filename or connection needed")) {
   if (!requireNamespace("R.matlab")) {
     stop("package 'R.matlab' needed.")
@@ -17,7 +17,7 @@ read.mat.Witec <- function(file = stop("filename or connection needed")) {
     )
   }
   spcname <- names(data)
-  data <- data [[1]]
+  data <- data[[1]]
 
   spc <- new("hyperSpec", spc = data$data)
 

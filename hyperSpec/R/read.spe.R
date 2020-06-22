@@ -6,36 +6,36 @@
 # July 2015
 
 
-##' Import WinSpec SPE file
-##'
-##' Import function for WinSpec SPE files (file version up to 3.0). The calibration
-##' data (polynome and calibration data pairs) for x-axis are automatically
-##' read and applied to the spectra. Note that the y-calibration data structure
-##' is not extracted from the file since it is not saved there by WinSpec and is
-##' always empty.
-##'
-##' @param filename Name of the SPE file to read data from
-##' @param xaxis Units of x-axis, e.g. \emph{"file"}, \emph{"px"},
-##' \emph{"nm"}, \emph{"energy"}, \emph{"raman"}, \emph{...}
-##' \code{read.spe} function automatically checks if the x-calibration data are
-##' available and uses them (if possible) to reconstruct the xaxis
-##' in the selected units.
-##' @param acc2avg whether to divide the actual data set by the number of
-##' accumulations, thus transforming \emph{accumulated} spectra to
-##' \emph{averaged} spectra. WinSpec does not do this automatically, so the
-##' spectral intensity is always proportional to the number of accumulations.
-##' The flag \code{@@data$averaged} is automatically set to \code{TRUE}.
-##' @param cts_sec whether to divide the actual data set by the exposure time,
-##' thus going to count per second unit.
-##' @param keys.hdr2data Which metadata from the file header should be saved to
-##' the \code{Data} slot of a newly created hyperSpec object
-##'
-##' @return hyperSpec object
-##'
-##' @rdname read.spe
-##'
-##' @author R. Kiselev, C. Beleites
-##' @export
+#' Import WinSpec SPE file
+#'
+#' Import function for WinSpec SPE files (file version up to 3.0). The calibration
+#' data (polynome and calibration data pairs) for x-axis are automatically
+#' read and applied to the spectra. Note that the y-calibration data structure
+#' is not extracted from the file since it is not saved there by WinSpec and is
+#' always empty.
+#'
+#' @param filename Name of the SPE file to read data from
+#' @param xaxis Units of x-axis, e.g. \emph{"file"}, \emph{"px"},
+#' \emph{"nm"}, \emph{"energy"}, \emph{"raman"}, \emph{...}
+#' \code{read.spe} function automatically checks if the x-calibration data are
+#' available and uses them (if possible) to reconstruct the xaxis
+#' in the selected units.
+#' @param acc2avg whether to divide the actual data set by the number of
+#' accumulations, thus transforming \emph{accumulated} spectra to
+#' \emph{averaged} spectra. WinSpec does not do this automatically, so the
+#' spectral intensity is always proportional to the number of accumulations.
+#' The flag \code{@@data$averaged} is automatically set to \code{TRUE}.
+#' @param cts_sec whether to divide the actual data set by the exposure time,
+#' thus going to count per second unit.
+#' @param keys.hdr2data Which metadata from the file header should be saved to
+#' the \code{Data} slot of a newly created hyperSpec object
+#'
+#' @return hyperSpec object
+#'
+#' @rdname read.spe
+#'
+#' @author R. Kiselev, C. Beleites
+#' @export
 read.spe <- function(filename, xaxis = "file", acc2avg = F, cts_sec = F,
                      keys.hdr2data = c(
                        "exposure_sec",
@@ -55,7 +55,7 @@ read.spe <- function(filename, xaxis = "file", acc2avg = F, cts_sec = F,
 
   # Convert raw spectral data according to the datatype defined in the header
   spc <- switch(hdr$datatype + 1,
-    readBin(raw.data, "double",  length(raw.data) / 4, 4), # float
+    readBin(raw.data, "double", length(raw.data) / 4, 4), # float
     readBin(raw.data, "integer", length(raw.data) / 4, 4, signed = TRUE), # long
     readBin(raw.data, "integer", length(raw.data) / 2, 2, signed = TRUE), # int
     readBin(raw.data, "integer", length(raw.data) / 2, 2, signed = FALSE) # uint
@@ -192,8 +192,8 @@ read.spe <- function(filename, xaxis = "file", acc2avg = F, cts_sec = F,
 
 
 
-##' @describeIn read.spe Read only header of a WinSpec SPE file (version 2.5)
-##' @return hdr list with \code{key=value} pairs
+#' @describeIn read.spe Read only header of a WinSpec SPE file (version 2.5)
+#' @return hdr list with \code{key=value} pairs
 .read.spe.header <- function(filename) {
   # Read the 4100-byte long binary header from the SPE file and parse it
 
@@ -202,55 +202,55 @@ read.spe <- function(filename, xaxis = "file", acc2avg = F, cts_sec = F,
 
   # Extract some items from the 4100 bytes-long file header
   hdr <- list(
-     hwVersion       = readBin(raw.data[  1:    2], "integer",   1,   2, signed = TRUE ), # uint16
-     xDimDet         = readBin(raw.data[  7:    8], "integer",   1,   2, signed = FALSE), # uint16
-     mode            = readBin(raw.data[  9:   10], "integer",   1,   2, signed = TRUE ), # uint16
-     exposure_sec    = readBin(raw.data[  11:  14], "double",    1,   4                ), # float32
-     vChipXDim       = readBin(raw.data[  15:  16], "integer",   1,   2, signed = TRUE ), # int8
-     vChipYDim       = readBin(raw.data[  17:  18], "integer",   1,   2, signed = TRUE ), # int8
-     yDimDet         = readBin(raw.data[  19:  20], "integer",   1,   2, signed = FALSE), # uint16
-     date            = readBin(raw.data[  21:  30], "character", 1,  10                ), # char
-     detTemperature  = readBin(raw.data[  37:  40], "double",    1,   4                ), # float32
-     xdim            = readBin(raw.data[  43:  44], "integer",   1,   2, signed = FALSE), # uint16
-     shutterMode     = readBin(raw.data[  51:  52], "integer",   1,   2, signed = FALSE), # uint16
-     specCenterWlNm  = readBin(raw.data[  73:  76], "double",    1,   4                ), # float32
-     datatype        = readBin(raw.data[ 109: 110], "integer",   1,   2, signed = TRUE ), # int8
-     darkSubtracted  = readBin(raw.data[ 151: 152], "integer",   1,   2, signed = FALSE), # int8
-     timeLocal       = readBin(raw.data[ 173: 179], "character", 1,   7                ), # char
-     timeUTC         = readBin(raw.data[ 180: 186], "character", 1,   7                ), # char
-     gain            = readBin(raw.data[ 199: 200], "integer",   1,   2, signed = FALSE), # uint16
-     comments        = readBin(raw.data[ 201: 600], "character", 1, 400                ), # char
-     ydim            = readBin(raw.data[ 657: 658], "integer",   1,   2, signed = FALSE), # uint16
-     accumulCount    = readBin(raw.data[ 669: 672], "integer",   1,   4                ), # uint32
-     readoutTime     = readBin(raw.data[ 673: 676], "double",    1,   4                ), # float32
-     swVersion       = readBin(raw.data[ 688: 704], "character", 1,  16                ), # char
-     kinTrigMode     = readBin(raw.data[ 725: 726], "integer",   1,   2, signed = TRUE ), # int16
-     expRepeatCount  = readBin(raw.data[1419:1422], "integer",   1,   4, signed = TRUE ), # int32
-     expAccumCount   = readBin(raw.data[1423:1426], "integer",   1,   4, signed = TRUE ), # int32
-     hwAccumFlag     = readBin(raw.data[1433:1434], "integer",   1,   2, signed = TRUE ), # int16
-     cosmicApplied   = readBin(raw.data[1439:1440], "integer",   1,   2, signed = TRUE ), # int16
-     cosmicType      = readBin(raw.data[1441:1442], "integer",   1,   2, signed = TRUE ), # int16
-     numFrames       = readBin(raw.data[1447:1450], "integer",   1,   4                ), # int32
-     shutterType     = readBin(raw.data[1475:1476], "integer",   1,   2, signed = TRUE ), # int16
-     readoutMode     = readBin(raw.data[1481:1482], "integer",   1,   2, signed = TRUE ), # int16
-     kinWindowSize   = readBin(raw.data[1483:1484], "integer",   1,   2, signed = TRUE ), # int16
-     clkSpeed        = readBin(raw.data[1485:1486], "integer",   1,   2, signed = TRUE ), # int16
-     computerIface   = readBin(raw.data[1487:1488], "integer",   1,   2, signed = TRUE ), # int16
-     fileFormatVer   = readBin(raw.data[1993:1996], "double",    1,   4, signed = TRUE ), # float32 
+    hwVersion       = readBin(raw.data[1:2], "integer", 1, 2, signed = TRUE), # uint16
+    xDimDet         = readBin(raw.data[7:8], "integer", 1, 2, signed = FALSE), # uint16
+    mode            = readBin(raw.data[9:10], "integer", 1, 2, signed = TRUE), # uint16
+    exposure_sec    = readBin(raw.data[11:14], "double", 1, 4), # float32
+    vChipXDim       = readBin(raw.data[15:16], "integer", 1, 2, signed = TRUE), # int8
+    vChipYDim       = readBin(raw.data[17:18], "integer", 1, 2, signed = TRUE), # int8
+    yDimDet         = readBin(raw.data[19:20], "integer", 1, 2, signed = FALSE), # uint16
+    date            = readBin(raw.data[21:30], "character", 1, 10), # char
+    detTemperature  = readBin(raw.data[37:40], "double", 1, 4), # float32
+    xdim            = readBin(raw.data[43:44], "integer", 1, 2, signed = FALSE), # uint16
+    shutterMode     = readBin(raw.data[51:52], "integer", 1, 2, signed = FALSE), # uint16
+    specCenterWlNm  = readBin(raw.data[73:76], "double", 1, 4), # float32
+    datatype        = readBin(raw.data[109:110], "integer", 1, 2, signed = TRUE), # int8
+    darkSubtracted  = readBin(raw.data[151:152], "integer", 1, 2, signed = FALSE), # int8
+    timeLocal       = readBin(raw.data[173:179], "character", 1, 7), # char
+    timeUTC         = readBin(raw.data[180:186], "character", 1, 7), # char
+    gain            = readBin(raw.data[199:200], "integer", 1, 2, signed = FALSE), # uint16
+    comments        = readBin(raw.data[201:600], "character", 1, 400), # char
+    ydim            = readBin(raw.data[657:658], "integer", 1, 2, signed = FALSE), # uint16
+    accumulCount    = readBin(raw.data[669:672], "integer", 1, 4), # uint32
+    readoutTime     = readBin(raw.data[673:676], "double", 1, 4), # float32
+    swVersion       = readBin(raw.data[688:704], "character", 1, 16), # char
+    kinTrigMode     = readBin(raw.data[725:726], "integer", 1, 2, signed = TRUE), # int16
+    expRepeatCount  = readBin(raw.data[1419:1422], "integer", 1, 4, signed = TRUE), # int32
+    expAccumCount   = readBin(raw.data[1423:1426], "integer", 1, 4, signed = TRUE), # int32
+    hwAccumFlag     = readBin(raw.data[1433:1434], "integer", 1, 2, signed = TRUE), # int16
+    cosmicApplied   = readBin(raw.data[1439:1440], "integer", 1, 2, signed = TRUE), # int16
+    cosmicType      = readBin(raw.data[1441:1442], "integer", 1, 2, signed = TRUE), # int16
+    numFrames       = readBin(raw.data[1447:1450], "integer", 1, 4), # int32
+    shutterType     = readBin(raw.data[1475:1476], "integer", 1, 2, signed = TRUE), # int16
+    readoutMode     = readBin(raw.data[1481:1482], "integer", 1, 2, signed = TRUE), # int16
+    kinWindowSize   = readBin(raw.data[1483:1484], "integer", 1, 2, signed = TRUE), # int16
+    clkSpeed        = readBin(raw.data[1485:1486], "integer", 1, 2, signed = TRUE), # int16
+    computerIface   = readBin(raw.data[1487:1488], "integer", 1, 2, signed = TRUE), # int16
+    fileFormatVer   = readBin(raw.data[1993:1996], "double", 1, 4, signed = TRUE), # float32
 
-     # X Calibration Structure
-     xCalOffset      = readBin(raw.data[3001:3008], "double",    1,   8, signed = TRUE ), # float64
-     xCalFactor      = readBin(raw.data[3009:3016], "double",    1,   8, signed = TRUE ), # float64
-     xCalDisplayUnit = readBin(raw.data[3017],      "integer",   1,   1, signed = FALSE), # uint8
-     xCalValid       = readBin(raw.data[3099],      "integer",   1,   1, signed = FALSE), # uint8
-     xCalInputUnit   = readBin(raw.data[3100],      "integer",   1,   1, signed = FALSE), # uint8
-     xCalPolyUnit    = readBin(raw.data[3101],      "integer",   1,   1, signed = FALSE), # uint8
-     xCalPolyOrder   = readBin(raw.data[3102],      "integer",   1,   1, signed = FALSE), # uint8
-     xCalPointCount  = readBin(raw.data[3103],      "integer",   1,   1, signed = FALSE), # uint8
-     xCalPxPos       = readBin(raw.data[3104:3183], "double",   10,   8, signed = TRUE ), # float64
-     xCalValues      = readBin(raw.data[3184:3263], "double",   10,   8, signed = TRUE ), # float64
-     xCalPolCoeffs   = readBin(raw.data[3264:3311], "double",    6,   8, signed = TRUE ), # float64
-     LaserWavelen    = readBin(raw.data[3312:3319], "double",    1,   8, signed = TRUE )  # float64
+    # X Calibration Structure
+    xCalOffset      = readBin(raw.data[3001:3008], "double", 1, 8, signed = TRUE), # float64
+    xCalFactor      = readBin(raw.data[3009:3016], "double", 1, 8, signed = TRUE), # float64
+    xCalDisplayUnit = readBin(raw.data[3017], "integer", 1, 1, signed = FALSE), # uint8
+    xCalValid       = readBin(raw.data[3099], "integer", 1, 1, signed = FALSE), # uint8
+    xCalInputUnit   = readBin(raw.data[3100], "integer", 1, 1, signed = FALSE), # uint8
+    xCalPolyUnit    = readBin(raw.data[3101], "integer", 1, 1, signed = FALSE), # uint8
+    xCalPolyOrder   = readBin(raw.data[3102], "integer", 1, 1, signed = FALSE), # uint8
+    xCalPointCount  = readBin(raw.data[3103], "integer", 1, 1, signed = FALSE), # uint8
+    xCalPxPos       = readBin(raw.data[3104:3183], "double", 10, 8, signed = TRUE), # float64
+    xCalValues      = readBin(raw.data[3184:3263], "double", 10, 8, signed = TRUE), # float64
+    xCalPolCoeffs   = readBin(raw.data[3264:3311], "double", 6, 8, signed = TRUE), # float64
+    LaserWavelen    = readBin(raw.data[3312:3319], "double", 1, 8, signed = TRUE) # float64
   )
 
   # Convert magic numbers into human-readable unit strings
@@ -263,9 +263,9 @@ read.spe <- function(filename, xaxis = "file", acc2avg = F, cts_sec = F,
 }
 
 
-##' @describeIn read.spe Plot the WinSpec SPE file (version 2.5) and show the
-##' calibration points stored inside of it (x-axis calibration)
-##' @export
+#' @describeIn read.spe Plot the WinSpec SPE file (version 2.5) and show the
+#' calibration points stored inside of it (x-axis calibration)
+#' @export
 spe.showcalpoints <- function(filename, xaxis = "file", acc2avg = F, cts_sec = F) {
   hdr <- .read.spe.header(filename)
   xaxis <- .fixunitname(xaxis)

@@ -1,60 +1,62 @@
-##' Merge hyperSpec objects
-##'
-##' Merges two hyperSpec objects and \code{\link[base]{cbind}}s their spectra
-##' matrices, or merges additional extra data into a hyperSpec object.
-##'
-##' After merging, the spectra matrix can contain duplicates, and is not
-##' ordered according to the wavelength.
-##'
-##' If the wavelength axis should be ordered, use \code{\link{orderwl}}.
-##'
-##' If a \code{hyperSpec} object and  a \code{data.frame} are merged, the result is of the class of the first (\code{x}) object.
-##'
-##' @aliases merge,hyperSpec,hyperSpec-method merge
-##' @param x a hyperSpec object or data.frame
-##' @param y a hyperSpec object or data.frame (including derived classes like tibble)
-##' @param ... handed to \code{\link[base]{merge.data.frame}}
-##' @author C. Beleites
-##' @export
-##' @rdname merge
-##' @docType methods
-##' @aliases merge
-##' @seealso \code{\link[base]{merge}}.
-##'
-##' \code{\link{collapse}} combines hyperSpec objects that do not share the wavelength axis.
-##' \code{\link{rbind}}, and \code{\link{cbind}} for combining hyperSpec objects that.
-##' @keywords manip
-##' @examples
-##'
-##' merge (faux_cell [1:10,, 600], faux_cell [5:15,, 600], by = c("x", "y"))$.
-##' tmp <- merge (faux_cell [1:10,, 610], faux_cell [5:15,, 610],
-##'               by = c("x", "y"), all = TRUE)
-##' tmp$.
-##' wl (tmp)
-##'
-##' ## remove duplicated wavelengths:
-##' approxfun <- function (y, wl, new.wl){
-##'   approx (wl, y, new.wl, method = "constant",
-##'           ties = function (x) mean (x, na.rm = TRUE)
-##'           )$y
-##' }
-##'
-##' merged <- merge (faux_cell [1:7,, 610 ~ 620], faux_cell [5:10,, 615 ~ 625], all = TRUE)
-##' merged$.
-##' merged <- apply (merged, 1, approxfun,
-##'                  wl = wl (merged), new.wl = unique (wl (merged)),
-##'                  new.wavelength = "new.wl")
-##' merged$.
-##'
-##' ## merging data.frame into hyperSpec object => hyperSpec object
-##' y <- data.frame (filename = sample (flu$filename, 4, replace = TRUE), cpred = 1:4)
-##' y
-##' tmp <- merge (flu, y)
-##' tmp$..
-##'
-##' ## merging hyperSpec object into data.frame => data.frame
-##' merge (y, flu)
-
+#' Merge hyperSpec objects
+#'
+#' Merges two hyperSpec objects and \code{\link[base]{cbind}}s their spectra
+#' matrices, or merges additional extra data into a hyperSpec object.
+#'
+#' After merging, the spectra matrix can contain duplicates, and is not
+#' ordered according to the wavelength.
+#'
+#' If the wavelength axis should be ordered, use \code{\link{orderwl}}.
+#'
+#' If a \code{hyperSpec} object and  a \code{data.frame} are merged, the result is of the class of the first (\code{x}) object.
+#'
+#' @aliases merge,hyperSpec,hyperSpec-method merge
+#' @param x a hyperSpec object or data.frame
+#' @param y a hyperSpec object or data.frame (including derived classes like tibble)
+#' @param ... handed to \code{\link[base]{merge.data.frame}}
+#' @author C. Beleites
+#' @export
+#' @rdname merge
+#' @docType methods
+#' @aliases merge
+#' @seealso \code{\link[base]{merge}}.
+#'
+#' \code{\link{collapse}} combines hyperSpec objects that do not share the wavelength axis.
+#' \code{\link{rbind}}, and \code{\link{cbind}} for combining hyperSpec objects that.
+#' @keywords manip
+#' @examples
+#'
+#' merge(faux_cell [1:10, , 600], faux_cell [5:15, , 600], by = c("x", "y"))$.
+#' tmp <- merge(faux_cell [1:10, , 610], faux_cell [5:15, , 610],
+#'   by = c("x", "y"), all = TRUE
+#' )
+#' tmp$.
+#' wl(tmp)
+#'
+#' ## remove duplicated wavelengths:
+#' approxfun <- function(y, wl, new.wl) {
+#'   approx(wl, y, new.wl,
+#'     method = "constant",
+#'     ties = function(x) mean(x, na.rm = TRUE)
+#'   )$y
+#' }
+#'
+#' merged <- merge(faux_cell [1:7, , 610 ~ 620], faux_cell [5:10, , 615 ~ 625], all = TRUE)
+#' merged$.
+#' merged <- apply(merged, 1, approxfun,
+#'   wl = wl(merged), new.wl = unique(wl(merged)),
+#'   new.wavelength = "new.wl"
+#' )
+#' merged$.
+#'
+#' ## merging data.frame into hyperSpec object => hyperSpec object
+#' y <- data.frame(filename = sample(flu$filename, 4, replace = TRUE), cpred = 1:4)
+#' y
+#' tmp <- merge(flu, y)
+#' tmp$..
+#'
+#' ## merging hyperSpec object into data.frame => data.frame
+#' merge(y, flu)
 setMethod("merge",
   signature = signature(x = "hyperSpec", y = "hyperSpec"),
   function(x, y, ...) {
@@ -112,7 +114,7 @@ setMethod("merge",
   x
 }
 
-##' @rdname merge
+#' @rdname merge
 setMethod("merge",
   signature = signature(x = "hyperSpec", y = "data.frame"),
   function(x, y, ...) {
@@ -130,7 +132,7 @@ setMethod("merge",
   }
 )
 
-##' @rdname merge
+#' @rdname merge
 setMethod("merge",
   signature = signature(x = "data.frame", y = "hyperSpec"),
   function(x, y, ...) {
@@ -143,7 +145,7 @@ setMethod("merge",
 
 
 
-##' @include unittest.R
+#' @include unittest.R
 .test(.merge) <- function() {
   context("merge")
 

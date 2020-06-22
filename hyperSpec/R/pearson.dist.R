@@ -1,23 +1,23 @@
-##' Distance based on Pearson's \eqn{R^2}{R squared}
-##'
-##' The calculated distance is
-##' \eqn{D^2 = \frac{1 - COR (\code{x}')}{2}}{D^2 = (1 - COR (x')) / 2}
-##'
-##' The distance between the rows of \code{x} is calculated.  The possible
-##' values range from 0 (prefectly correlated) over 0.5 (uncorrelated) to 1
-##' (perfectly anti-correlated).
-##'
-##' @param x a matrix
-##' @return distance matrix (distance object)
-##' @author C. Beleites
-##' @seealso \code{\link[stats]{as.dist}}
-##' @references S. Theodoridis and K. Koutroumbas: Pattern Recognition, 3rd ed., p. 495
-##' @keywords cluster
-##' @export
-##' @examples
-##'
-##' pearson.dist (flu [[]])
-##' pearson.dist (flu)
+#' Distance based on Pearson's \eqn{R^2}{R squared}
+#'
+#' The calculated distance is
+#' \eqn{D^2 = \frac{1 - COR (\code{x}')}{2}}{D^2 = (1 - COR (x')) / 2}
+#'
+#' The distance between the rows of \code{x} is calculated.  The possible
+#' values range from 0 (prefectly correlated) over 0.5 (uncorrelated) to 1
+#' (perfectly anti-correlated).
+#'
+#' @param x a matrix
+#' @return distance matrix (distance object)
+#' @author C. Beleites
+#' @seealso \code{\link[stats]{as.dist}}
+#' @references S. Theodoridis and K. Koutroumbas: Pattern Recognition, 3rd ed., p. 495
+#' @keywords cluster
+#' @export
+#' @examples
+#'
+#' pearson.dist(flu[[]])
+#' pearson.dist(flu)
 pearson.dist <- function(x) {
   x <- as.matrix(x)
 
@@ -37,7 +37,7 @@ pearson.dist <- function(x) {
   0.5 - x / 2
 }
 
-##' @include unittest.R
+#' @include unittest.R
 .test(pearson.dist) <- function() {
   context("pearson.dist")
 
@@ -51,7 +51,7 @@ pearson.dist <- function(x) {
 
 ## benchmark
 # function (){
-#   m <- sample (faux_cell, 10000) [[]]
+#   m <- sample (faux_cell, 10000)[[]]
 #   microbenchmark (
 #     cor = as.dist (0.5 - cor (t (as.matrix (m))) / 2),
 #     tcross = pearson.dist (m),

@@ -1,71 +1,71 @@
-##' Binding hyperSpec Objects
-##'
-##' The former difficulties with binding S4 objects
-##' are resolved since R version 3.2.0 and \code{cbind} and \code{rbind} now work as intended and
-##' expected for hyperSpec objects.
-##'
-##' Therefore, calling \code{rbind.hyperSpec} and
-##' \code{cbind.hyperSpec} is now depecated: \code{cbind} and \code{rbind} should now be called
-##' directly.
-##'
-##' However, in consequence it is no longer possible to call \code{cbind} or \code{rbind} with a
-##' list of hyperSpec objects. In that case, use \code{bind} or \code{\link[base]{do.call}} (see example).
-##'
-##' \code{bind} does the common work for both column- and row-wise binding.
-##'
-##' @aliases bind
-##' @param ... The \code{hyperSpec} objects to be combined.
-##'
-##' Alternatively, \emph{one} list of \code{hyperSpec} objects can be given to
-##'   \code{bind}.
-##' @param wl.tolerance \code{rbind} and \code{rbind2} check for equal wavelengths
-##' with this tolerance.
-##' @include paste.row.R
-##' @param direction "r" or "c" to bind rows or columns
-##' @return a \code{hyperSpec} object, possibly with different row order (for
-##'   \code{bind ("c", \dots{})} and \code{cbind2}).
-##' @note You might have to make sure that the objects either all have or all
-##'   do not have rownames and/or colnames.
-##' @author C. Beleites
-##' @export
-##' @seealso
-##' \code{\link[methods]{rbind2}}, \code{\link[methods]{cbind2}}
-##' \code{\link[base]{rbind}}, \code{\link[base]{cbind}}
-##'
-##' \code{\link{merge}} and \code{\link{collapse}} for combining objects that do not share spectra
-##' or wavelengths, respectively.
-##' @keywords methods manip
-##' @examples
-##'
-##' faux_cell
-##' bind ("r", faux_cell, faux_cell)
-##' rbind (faux_cell, faux_cell)
-##' cbind (faux_cell, faux_cell)
-##' bind ("r", list (faux_cell, faux_cell, faux_cell))
-##'
-##' x <- faux_cell[,, 600 : 605]
-##' x$a <- 1
-##' x@@data <- x@@data[, sample (ncol (x), ncol (x))] # reorder columns
-##'
-##' y <- faux_cell [nrow (faux_cell) : 1,, 1730 : 1750] # reorder rows
-##' y$b <- 2
-##'
-##' cbind2 (x, y) # works
-##'
-##' y$y[3] <- 5
-##' try (cbind2 (x, y)) # error
-##'
-##' # list of hyperSpec objects
-##'
-##' lhy <- list (flu, flu)
-##' do.call ("rbind", lhy)
-##' bind ("r", lhy)
+#' Binding hyperSpec Objects
+#'
+#' The former difficulties with binding S4 objects
+#' are resolved since R version 3.2.0 and \code{cbind} and \code{rbind} now work as intended and
+#' expected for hyperSpec objects.
+#'
+#' Therefore, calling \code{rbind.hyperSpec} and
+#' \code{cbind.hyperSpec} is now depecated: \code{cbind} and \code{rbind} should now be called
+#' directly.
+#'
+#' However, in consequence it is no longer possible to call \code{cbind} or \code{rbind} with a
+#' list of hyperSpec objects. In that case, use \code{bind} or \code{\link[base]{do.call}} (see example).
+#'
+#' \code{bind} does the common work for both column- and row-wise binding.
+#'
+#' @aliases bind
+#' @param ... The \code{hyperSpec} objects to be combined.
+#'
+#' Alternatively, \emph{one} list of \code{hyperSpec} objects can be given to
+#'   \code{bind}.
+#' @param wl.tolerance \code{rbind} and \code{rbind2} check for equal wavelengths
+#' with this tolerance.
+#' @include paste.row.R
+#' @param direction "r" or "c" to bind rows or columns
+#' @return a \code{hyperSpec} object, possibly with different row order (for
+#'   \code{bind ("c", \dots{})} and \code{cbind2}).
+#' @note You might have to make sure that the objects either all have or all
+#'   do not have rownames and/or colnames.
+#' @author C. Beleites
+#' @export
+#' @seealso
+#' \code{\link[methods]{rbind2}}, \code{\link[methods]{cbind2}}
+#' \code{\link[base]{rbind}}, \code{\link[base]{cbind}}
+#'
+#' \code{\link{merge}} and \code{\link{collapse}} for combining objects that do not share spectra
+#' or wavelengths, respectively.
+#' @keywords methods manip
+#' @examples
+#'
+#' faux_cell
+#' bind("r", faux_cell, faux_cell)
+#' rbind(faux_cell, faux_cell)
+#' cbind(faux_cell, faux_cell)
+#' bind("r", list(faux_cell, faux_cell, faux_cell))
+#'
+#' x <- faux_cell[, , 600:605]
+#' x$a <- 1
+#' x@data <- x@data[, sample(ncol(x), ncol(x))] # reorder columns
+#'
+#' y <- faux_cell[nrow(faux_cell):1, , 1730:1750] # reorder rows
+#' y$b <- 2
+#'
+#' cbind2(x, y) # works
+#'
+#' y$y[3] <- 5
+#' try(cbind2(x, y)) # error
+#'
+#' # list of hyperSpec objects
+#'
+#' lhy <- list(flu, flu)
+#' do.call("rbind", lhy)
+#' bind("r", lhy)
 bind <- function(direction = stop("direction ('c' or 'r') required"), ...,
                  wl.tolerance = hy.getOption("wl.tolerance")) {
   wl.tolerance <- .checkpos(wl.tolerance, "wl.tolerance")
   dots <- list(...)
 
-  if ((length(dots) == 1) & is.list(dots [[1]])) {
+  if ((length(dots) == 1) & is.list(dots[[1]])) {
     dots <- dots[[1]]
   }
 
@@ -78,7 +78,7 @@ bind <- function(direction = stop("direction ('c' or 'r') required"), ...,
     lapply(dots, chk.hy)
     lapply(dots, validObject)
 
-    for (i in seq_along(dots) [-1]) {
+    for (i in seq_along(dots)[-1]) {
       dots[[1]] <- switch(direction,
         c = cbind2(dots[[1]], dots[[i]]),
         r = rbind2(dots[[1]], dots[[i]], wl.tolerance = wl.tolerance),
@@ -89,11 +89,11 @@ bind <- function(direction = stop("direction ('c' or 'r') required"), ...,
       )
     }
 
-    dots [[1]]
+    dots[[1]]
   }
 }
 
-##' @include unittest.R
+#' @include unittest.R
 .test(bind) <- function() {
   context("bind")
 
@@ -108,40 +108,40 @@ bind <- function(direction = stop("direction ('c' or 'r') required"), ...,
 
     expect_error(bind("r", tmp.list))
     expect_true(all.equal(bind("r", tmp.list, wl.tolerance = 0.1),
-      flu [rep(row.seq(flu), 3)],
+      flu[rep(row.seq(flu), 3)],
       check.label = TRUE
     ))
 
     expect_true(all.equal(do.call("bind", list("r", tmp.list, wl.tolerance = 0.1)),
-      flu [rep(row.seq(flu), 3)],
+      flu[rep(row.seq(flu), 3)],
       check.label = TRUE
     ))
   })
 }
 
 
-##' @description  \code{cbind2} binds the spectral matrices of two \code{hyperSpec} objects by column. All columns
-##' besides \code{spc} with the same name in \code{x@@data} and \code{y@@data} must have the same
-##' elements.  Rows are ordered before checking.
-##' @aliases bind cbind.hyperSpec rbind.hyperSpec
-##'   cbind2,hyperSpec,hyperSpec-method rbind2,hyperSpec,hyperSpec-method
-##'   cbind2,hyperSpec,missing-method rbind2,hyperSpec,missing-method
-##' @param x,y \code{hyperSpec} objects
-##' @rdname bind
-##' @export
-##' @aliases cbind.hyperSpec
+#' @description  \code{cbind2} binds the spectral matrices of two \code{hyperSpec} objects by column. All columns
+#' besides \code{spc} with the same name in \code{x@@data} and \code{y@@data} must have the same
+#' elements.  Rows are ordered before checking.
+#' @aliases bind cbind.hyperSpec rbind.hyperSpec
+#'   cbind2,hyperSpec,hyperSpec-method rbind2,hyperSpec,hyperSpec-method
+#'   cbind2,hyperSpec,missing-method rbind2,hyperSpec,missing-method
+#' @param x,y \code{hyperSpec} objects
+#' @rdname bind
+#' @export
+#' @aliases cbind.hyperSpec
 
-##'
+#'
 cbind.hyperSpec <- function(...) bind("c", ...)
 
-##'
-##' \code{rbind2} binds two \code{hyperSpec} objects by row. They need to have
-##' the same columns.
-##'
-##' @aliases  rbind.hyperSpec
-##' @rdname bind
-##' @export
-##' @aliases rbind.hyperSpec
+#'
+#' \code{rbind2} binds two \code{hyperSpec} objects by row. They need to have
+#' the same columns.
+#'
+#' @aliases  rbind.hyperSpec
+#' @rdname bind
+#' @export
+#' @aliases rbind.hyperSpec
 rbind.hyperSpec <- function(...) bind("r", ...)
 
 .test(rbind.hyperSpec) <- function() {
@@ -155,19 +155,19 @@ rbind.hyperSpec <- function(...) bind("r", ...)
 
     tmp.list <- list(flu, tmp, flu)
     expect_true(all.equal(do.call("rbind", c(tmp.list, wl.tolerance = 0.1)),
-      flu [rep(row.seq(flu), 3)],
+      flu[rep(row.seq(flu), 3)],
       check.label = TRUE
     ))
   })
 
   test_that("correct rbinding", {
     expect_equal(nrow(rbind(flu, flu)), 2 * nrow(flu))
-    expect_error(rbind(flu, flu [, , min ~ min + 3i]))
+    expect_error(rbind(flu, flu[, , min ~ min + 3i]))
   })
 
   test_that("list of hyperSpec objects", {
     expect_equal(nrow(rbind(flu, flu)), 2 * nrow(flu))
-    expect_error(rbind(flu, flu [, , min ~ min + 3i]))
+    expect_error(rbind(flu, flu[, , min ~ min + 3i]))
   })
 }
 
@@ -177,9 +177,9 @@ rbind.hyperSpec <- function(...) bind("r", ...)
   validObject(y)
 
   cols <- match(colnames(x@data), colnames(y@data))
-  cols <- colnames(y@data) [cols]
-  cols <- cols [!is.na(cols)]
-  cols <- cols [-match("spc", cols)]
+  cols <- colnames(y@data)[cols]
+  cols <- cols[!is.na(cols)]
+  cols <- cols[-match("spc", cols)]
 
   if (length(cols) < 0) {
     ord <- do.call(order, x@data[, cols, drop = FALSE])
@@ -209,14 +209,14 @@ rbind.hyperSpec <- function(...) bind("r", ...)
 
   x
 }
-##' @rdname bind
-##' @export
-##' @aliases cbind2,hyperSpec,hyperSpec-method
+#' @rdname bind
+#' @export
+#' @aliases cbind2,hyperSpec,hyperSpec-method
 setMethod("cbind2", signature = signature(x = "hyperSpec", y = "hyperSpec"), .cbind2)
 
-##' @rdname bind
-##' @export
-##' @aliases cbind2,hyperSpec,missing-method
+#' @rdname bind
+#' @export
+#' @aliases cbind2,hyperSpec,missing-method
 setMethod("cbind2", signature = signature(x = "hyperSpec", y = "missing"), function(x, y) x)
 
 .rbind2 <- function(x, y, wl.tolerance = hy.getOption("wl.tolerance")) {
@@ -240,15 +240,15 @@ setMethod("cbind2", signature = signature(x = "hyperSpec", y = "missing"), funct
   context(".rbind2")
 
   test_that("flu", {
-    expect_equal(rbind(flu [1], flu [-1]), flu, check.attributes = FALSE)
-    expect_equal(rbind(flu [-1], flu [1]), flu [c(2:6, 1)], check.attributes = FALSE)
-    expect_equal(rbind(flu [1:2], flu [3:6]), flu, check.attributes = FALSE)
+    expect_equal(rbind(flu[1], flu[-1]), flu, check.attributes = FALSE)
+    expect_equal(rbind(flu[-1], flu[1]), flu[c(2:6, 1)], check.attributes = FALSE)
+    expect_equal(rbind(flu[1:2], flu[3:6]), flu, check.attributes = FALSE)
   })
 
   test_that("empty objects", {
-    expect_equal(rbind(flu [0], flu [0]), flu [0], check.attributes = FALSE)
-    expect_equal(rbind(flu [1], flu [0]), flu [1], check.attributes = FALSE)
-    expect_equal(rbind(flu [0], flu [1]), flu [1], check.attributes = FALSE)
+    expect_equal(rbind(flu[0], flu[0]), flu[0], check.attributes = FALSE)
+    expect_equal(rbind(flu[1], flu[0]), flu[1], check.attributes = FALSE)
+    expect_equal(rbind(flu[0], flu[1]), flu[1], check.attributes = FALSE)
   })
 
 
@@ -260,12 +260,12 @@ setMethod("cbind2", signature = signature(x = "hyperSpec", y = "missing"), funct
   })
 }
 
-##' @rdname bind
-##' @export
-##' @aliases  rbind2,hyperSpec,hyperSpec-method
+#' @rdname bind
+#' @export
+#' @aliases  rbind2,hyperSpec,hyperSpec-method
 setMethod("rbind2", signature = signature(x = "hyperSpec", y = "hyperSpec"), .rbind2)
 
-##' @rdname bind
-##' @export
-##' @aliases rbind2,hyperSpec,missing-method
+#' @rdname bind
+#' @export
+#' @aliases rbind2,hyperSpec,missing-method
 setMethod("rbind2", signature = signature(x = "hyperSpec", y = "missing"), function(x, y, wl.tolerance) x)

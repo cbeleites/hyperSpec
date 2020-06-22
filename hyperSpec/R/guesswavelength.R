@@ -14,7 +14,7 @@
 #' @export
 #'
 #' @examples
-#' tmp <- data.frame(flu [[, , 400 ~ 410]])
+#' tmp <- data.frame(flu[[, , 400 ~ 410]])
 #' (wl <- colnames(tmp))
 #' guess.wavelength(wl)
 guess.wavelength <- function(X) {
@@ -31,8 +31,8 @@ guess.wavelength <- function(X) {
   wl
 }
 
-##' @include regexps.R
-##' @include options.R
+#' @include regexps.R
+#' @include options.R
 .test(guess.wavelength) <- function() {
   context("guess.wavelength")
 

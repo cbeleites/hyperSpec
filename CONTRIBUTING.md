@@ -113,6 +113,8 @@ Briefly, the version string has the form `x.y.z` (or `major.minor.patch`), where
 The version numbers refer only to commits in the `master` branch, and get incremented in one of two cases:
 * during the release preparation, when a `release/x.y.z` branch buds off `develop` and merges into `master`.
 * after a hotfix, which also results in a new commit on `master`.
+* development branches have version `x.x.x.9000` (or `.9001` and so on - but that is rarely needed).  
+  This is important since **pkgdown** uses the `.9000` to distinguish between documentation for the released version vs. the development version.
 
 ### Release Process
 The process starts when the package is in a stable state that can be released to CRAN (release candidate). First, decide on a new version number `x.y.z` based on the severity of changes. Then:

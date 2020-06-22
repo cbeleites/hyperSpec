@@ -3,13 +3,13 @@
 ### write.txt.wide
 ###
 ###
-##' @param header.lines Toggle one or two line header (wavelengths in the
-##'   second header line) for \code{write.txt.wide}
-##' @aliases write.txt.wide
-##' @rdname textio
-##' @export
-##' @importFrom utils write.table
-##'
+#' @param header.lines Toggle one or two line header (wavelengths in the
+#'   second header line) for \code{write.txt.wide}
+#' @aliases write.txt.wide
+#' @rdname textio
+#' @export
+#' @importFrom utils write.table
+#'
 
 write.txt.wide <- function(object,
                            file = "",
@@ -92,7 +92,7 @@ write.txt.wide <- function(object,
 
   # no AsIs columns!
   for (c in which(sapply(object@data, class) == "AsIs")) {
-    class(object@data [[c]]) <- NULL
+    class(object@data[[c]]) <- NULL
   }
 
   write.table(object@data,

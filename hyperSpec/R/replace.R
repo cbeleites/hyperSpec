@@ -1,25 +1,24 @@
-##' @rdname extractreplace
-##' @name [<-
-##' @usage
-##'
-##' \S4method{[}{hyperSpec}(x, i, j, \dots) <- value
-##'
-##' @aliases [<-,hyperSpec-method
-##' @param value the replacement value
-##' @include wl2i.R
-##' @include paste.row.R
-##' @export
-##' @examples
-##' ## replacement functions
-##' spc <- flu
-##' spc$.
-##' spc[, "c"] <- 16 : 11
-##' ## be careful:
-##' plot (spc)
-##' spc [] <- 6 : 1
-##' spc$..
-##' plot (spc)
-##'
+#' @rdname extractreplace
+#' @name [<-
+#' @usage
+#'
+#' \S4method{[}{hyperSpec}(x, i, j, \dots) <- value
+#'
+#' @aliases [<-,hyperSpec-method
+#' @param value the replacement value
+#' @include wl2i.R
+#' @include paste.row.R
+#' @export
+#' @examples
+#' ## replacement functions
+#' spc <- flu
+#' spc$.
+#' spc[, "c"] <- 16:11
+#' ## be careful:
+#' plot(spc)
+#' spc [] <- 6:1
+#' spc$..
+#' plot(spc)
 setReplaceMethod("[",
   signature = signature(x = "hyperSpec"),
   function(x, i, j, ..., value) {
@@ -41,41 +40,40 @@ setReplaceMethod("[",
   }
 )
 
-##' @rdname extractreplace
-##' @usage
-##'
-##' \S4method{[[}{hyperSpec}(x, i, j, l, wl.index = FALSE, \dots) <- value
-##'
-##' @aliases [[<-,hyperSpec-method
-##' @name [[<-
-##' @export
-##' @include wl2i.R
-##' @examples
-##' spc <- flu [,, 405 ~ 410]
-##' spc [[]]
-##' spc [[3]] <- -spc[[3]]
-##' spc [[]]
-##' spc [[,,405 : 410]] <- -spc[[,,405 : 410]]
-##' spc [[]]
-##' spc [[,,405 ~ 410]] <- -spc[[,,405 ~ 410]]
-##'
-##' ## indexing with logical matrix
-##' spc <- flu [,, min ~ 410]
-##' spc < 125
-##' spc [[spc < 125]] <- NA
-##' spc [[]]
-##'
-##' ## indexing with n by 2 matrix
-##' ind <- matrix (c (1, 2, 4, 406, 405.5, 409), ncol = 2)
-##' ind
-##' spc [[ind]] <- 3
-##' spc [[]]
-##'
-##' ind <- matrix (c (1, 2, 4, 4:6), ncol = 2)
-##' ind
-##' spc [[ind, wl.index = TRUE]] <- 9999
-##' spc [[]]
-##'
+#' @rdname extractreplace
+#' @usage
+#'
+#' \S4method{[[}{hyperSpec}(x, i, j, l, wl.index = FALSE, \dots) <- value
+#'
+#' @aliases [[<-,hyperSpec-method
+#' @name [[<-
+#' @export
+#' @include wl2i.R
+#' @examples
+#' spc <- flu [, , 405 ~ 410]
+#' spc[[]]
+#' spc[[3]] <- -spc[[3]]
+#' spc[[]]
+#' spc[[, , 405:410]] <- -spc[[, , 405:410]]
+#' spc[[]]
+#' spc[[, , 405 ~ 410]] <- -spc[[, , 405 ~ 410]]
+#'
+#' ## indexing with logical matrix
+#' spc <- flu [, , min ~ 410]
+#' spc < 125
+#' spc[[spc < 125]] <- NA
+#' spc[[]]
+#'
+#' ## indexing with n by 2 matrix
+#' ind <- matrix(c(1, 2, 4, 406, 405.5, 409), ncol = 2)
+#' ind
+#' spc[[ind]] <- 3
+#' spc[[]]
+#'
+#' ind <- matrix(c(1, 2, 4, 4:6), ncol = 2)
+#' ind
+#' spc[[ind, wl.index = TRUE]] <- 9999
+#' spc[[]]
 setReplaceMethod("[[",
   signature = signature(x = "hyperSpec"),
   function(x, i, j, l, wl.index = FALSE, ..., value) {
@@ -126,21 +124,19 @@ setReplaceMethod("[[",
   }
 )
 
-##' @rdname extractreplace
-##' @usage
-##'
-##' \S4method{$}{hyperSpec}(x, name) <- value
-##'
-##' @aliases $<-,hyperSpec-method
-##' @name $<-
-##' @export
-##' @examples
-##' spc$.
-##' spc$z <- 1 : 6
-##' spc
-##' spc$z <- list (1 : 6, "z / a.u.")
-##'
-
+#' @rdname extractreplace
+#' @usage
+#'
+#' \S4method{$}{hyperSpec}(x, name) <- value
+#'
+#' @aliases $<-,hyperSpec-method
+#' @name $<-
+#' @export
+#' @examples
+#' spc$.
+#' spc$z <- 1:6
+#' spc
+#' spc$z <- list(1:6, "z / a.u.")
 setReplaceMethod("$",
   signature = signature(x = "hyperSpec"),
   function(x, name, value) {
@@ -153,9 +149,9 @@ setReplaceMethod("$",
         ilabel <- 2
       }
 
-      label <- value [[ilabel]]
+      label <- value[[ilabel]]
 
-      value <- value [[3 - ilabel]] ## the other of the 2 entries
+      value <- value[[3 - ilabel]] ## the other of the 2 entries
     } else {
       label <- name
     }

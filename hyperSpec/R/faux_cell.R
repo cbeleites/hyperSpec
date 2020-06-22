@@ -12,8 +12,7 @@
   # @param rot rotation angle
   # @return logical indicating points inside the ellipse
   in_ellipse <- function(xy, center = c(0, 0), scale = c(1, 1), a = 0,
-                         debuglevel = 0L
-  ) {
+                         debuglevel = 0L) {
     xy <- as.matrix(xy)
     xy <- scale(xy, center = center, scale = FALSE)
     xy <- xy %*% matrix(c(cos(a), -sin(a), sin(a), cos(a)), ncol = 2)
@@ -21,8 +20,9 @@
 
     pt_in <- rowSums(xy^2) <= 1
 
-    if (debuglevel >= 1L)
+    if (debuglevel >= 1L) {
       plot(xy[, 1], xy[, 2], asp = 1, pch = 19, col = pt_in + 1)
+    }
 
     ## backtransformed points within unit circle?
     pt_in
@@ -44,14 +44,16 @@
   xy$region <- "matrix"
 
   pts_in_cell <- in_ellipse(xy[c("x", "y")],
-                            center = c(10, 10),
-                            scale = c(6, 10), a = -pi / 8)
+    center = c(10, 10),
+    scale = c(6, 10), a = -pi / 8
+  )
   xy$region[pts_in_cell] <- "cell"
 
 
   pts_in_nucleus <- in_ellipse(xy[c("x", "y")],
-                               center = c(12.5, 8),
-                               scale = c(3, 4), a = pi / 6)
+    center = c(12.5, 8),
+    scale = c(3, 4), a = pi / 6
+  )
   xy$region[pts_in_nucleus] <- "nucleus"
 
   xy$region <- as.factor(xy$region)
@@ -64,10 +66,12 @@
     wavelength = wavelength,
     data = xy,
     spc = matrix(0, nrow = nrow(xy), ncol = length(wavelength)),
-    label = list(spc = "intensity (arbitrary units)",
-                 .wavelength = expression(Delta * tilde(nu) / cm^-1),
-                 x = "x position",
-                 y = "y position")
+    label = list(
+      spc = "intensity (arbitrary units)",
+      .wavelength = expression(Delta * tilde(nu) / cm^-1),
+      x = "x position",
+      y = "y position"
+    )
   )
 
   ## 3. generate fake spectra
@@ -79,7 +83,7 @@
   tmp <- 7000 * dnorm(wavelength, mean = 1200, sd = 15)
   spc[[spc$region == "cell", , ]] <- rep(tmp, each = sum(spc$region == "cell"))
 
-  tmp <- 3000 * dnorm(wavelength, mean = 1500, sd =  5)
+  tmp <- 3000 * dnorm(wavelength, mean = 1500, sd = 5)
   spc[[spc$region == "nucleus", , ]] <- rep(tmp, each = sum(spc$region == "nucleus"))
 
   # add baselines
@@ -116,12 +120,14 @@
 #'
 #' faux_cell
 #'
-#' plot (sample (faux_cell, 10), stacked = TRUE)
+#' plot(sample(faux_cell, 10), stacked = TRUE)
 #'
 #' # Plot mean spectra
 #' FCgrps <- aggregate(faux_cell, faux_cell$region, mean_pm_sd)
-#' plotspc(FCgrps, stacked = ".aggregate",
-#'         col = c("red", "green", "blue"), fill = ".aggregate")
+#' plotspc(FCgrps,
+#'   stacked = ".aggregate",
+#'   col = c("red", "green", "blue"), fill = ".aggregate"
+#' )
 #'
 #' mapcols <- c(cell = "aquamarine", matrix = "aliceblue", nucleus = "dodgerblue")
 #' plotmap(faux_cell, region ~ x * y, col.regions = mapcols)
@@ -131,9 +137,10 @@
 #' plot(pca)
 #'
 #' loadings <- decomposition(faux_cell, t(pca$rotation), scores = FALSE)
-#' plot(loadings[1 : 5], stacked = TRUE)
+#' plot(loadings[1:5], stacked = TRUE)
 #'
-#' plot(pca$x[,2], pca$x[,3], xlab = "PC 1", ylab = "PC 2",
-#'   bg = mapcols[faux_cell$region], col = "black", pch = 21)
-#'
+#' plot(pca$x[, 2], pca$x[, 3],
+#'   xlab = "PC 1", ylab = "PC 2",
+#'   bg = mapcols[faux_cell$region], col = "black", pch = 21
+#' )
 delayedAssign("faux_cell", .faux_cell())

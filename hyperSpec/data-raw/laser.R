@@ -7,7 +7,7 @@ library(hyperSpec)
 library(usethis)
 
 # Read the raw data ----------------------------------------------------------
-file   <- system.file("extdata/laser.txt.gz", package = "hyperSpec")
+file <- system.file("extdata/laser.txt.gz", package = "hyperSpec")
 laser0 <- read.txt.Renishaw(file, data = "ts") # Renishaw file
 
 # Pre-process ----------------------------------------------------------------
