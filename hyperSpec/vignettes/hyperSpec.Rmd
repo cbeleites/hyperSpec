@@ -332,6 +332,7 @@ Table \@ref(tab:getters) shows the main functions that can be used with class `h
 
 <!-- ---------------------------------------------------------------------- -->
 
+One can see that there are several ways to get the spectral data: `x$spc`{.r}, `x[[]]`{.r}, `x$..`{.r}.  The first two forms return a matrix, while the last returns a `data.frame`.
 
 <!-- ---------------------------------------------------------------------- -->
 : **(\#tab:setters)** Setter functions for the slots of `hyperSpec`{.r} objects
@@ -339,12 +340,11 @@ Table \@ref(tab:getters) shows the main functions that can be used with class `h
 ----------------------------------------------- -----------------------------------------------------------------------------------------------------------------------
 **`x[i, ,] <-`{.r}**                            Replaces the specified rows of the `@data`{.r} slot, including `x$spc`{.r} and any extra data columns. Other approaches are probably easier.
 **`x[, j,] <-`{.r}**                            Replaces the specified columns.  Safest to give `j` as a character string.
-**`x[, , l, wl.index = TRUE/FALSE] <-`{.r}**    Replaces the specified wavelengths.
+**`x[i, j] <-`{.r}**                            Replaces the specified column limited to the specified rows.  Safest to give `j` as a character string.**`x[, , l, wl.index = TRUE/FALSE] <-`{.r}**    Replaces the specified wavelengths.
 **`x[[i, ,]] <-`{.r}**                          Replaces the specified row of `x$spc`{.r}
 **`x[[, j,]] <-`{.r}**                          As `[[]]`{.r} refers to just the spectral data in `x$spc`{.r}, this operation is not valid.  See below.
 **`x[[, , l, wl.index = TRUE/FALSE]] <-`{.r}**  Replaces the intensity values in `x$spc`{.r} for the specified wavelengths.
 **`x[[i, , l, wl.index = TRUE/FALSE]] <-`{.r}** Replaces the intensity values in `x$spc`{.r} for the specified wavelengths limited to the specified rows.
-**`x[i, j] <-`{.r}**                            Sets parts of `x@data`{.r}.  Safest to give `j` as a character string.
 **`x$.. <-`{.r}**                               Sets the extra data (`x@data`{.r} without touching `x$spc`{.r}). The column names must match exactly in this case.
 **`wl<-`{.r}**                                  Sets the wavelength vector.
 **`labels<-`{.r}**                              Sets the labels.
