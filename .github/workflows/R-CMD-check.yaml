@@ -83,10 +83,8 @@ jobs:
 
       - name: Roxygenize
         run: |
-          devtools::document(
-            "./hyperSpec",
-            roclets = c('rd', 'collate', 'namespace', 'vignette')
-          )
+          devtools::document("./hyperSpec", roclets = c('rd', 'collate', 'namespace'))
+          devtools::document("./hyperSpec", roclets = c('vignette'))
         shell: Rscript {0}
 
       - name: Check
@@ -127,3 +125,6 @@ jobs:
         with:
           name: ${{ runner.os }}-r${{ matrix.config.r }}-results
           path: check
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1

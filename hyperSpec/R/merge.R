@@ -26,8 +26,8 @@
 ##' @keywords manip
 ##' @examples
 ##'
-##' merge (chondro [1:10,, 600], chondro [5:15,, 600], by = c("x", "y"))$.
-##' tmp <- merge (chondro [1:10,, 610], chondro [5:15,, 610],
+##' merge (faux_cell [1:10,, 600], faux_cell [5:15,, 600], by = c("x", "y"))$.
+##' tmp <- merge (faux_cell [1:10,, 610], faux_cell [5:15,, 610],
 ##'               by = c("x", "y"), all = TRUE)
 ##' tmp$.
 ##' wl (tmp)
@@ -39,7 +39,7 @@
 ##'           )$y
 ##' }
 ##'
-##' merged <- merge (chondro [1:7,, 610 ~ 620], chondro [5:10,, 615 ~ 625], all = TRUE)
+##' merged <- merge (faux_cell [1:7,, 610 ~ 620], faux_cell [5:10,, 615 ~ 625], all = TRUE)
 ##' merged$.
 ##' merged <- apply (merged, 1, approxfun,
 ##'                  wl = wl (merged), new.wl = unique (wl (merged)),
@@ -148,8 +148,8 @@ setMethod("merge",
   context("merge")
 
   test_that("correct number of rows", {
-    expect_equivalent(nrow(merge(chondro [1:10], chondro [5:15], all = TRUE)), 15)
-    expect_equivalent(nrow(merge(chondro [1:10], chondro [5:15])), 6)
+    expect_equivalent(nrow(merge(faux_cell [1:10], faux_cell [5:15], all = TRUE)), 15)
+    expect_equivalent(nrow(merge(faux_cell [1:10], faux_cell [5:15])), 6)
   })
 
   test_that("merging hyperSpec object with data.frame", {

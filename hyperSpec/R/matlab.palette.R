@@ -17,7 +17,7 @@
 ##' @keywords color
 ##' @examples
 ##'
-##' plotmap (chondro [,, 778], col.regions = matlab.palette ())
+##' plotmap (faux_cell [,, 778], col.regions = matlab.palette ())
 ##'
 matlab.palette <- function(n = 100, ...) {
   rev(rainbow(n, start = 0, end = 4 / 6, ...))
@@ -42,7 +42,7 @@ matlab.dark.palette <- function(n = 100, ...) {
 ##' @export
 ##' @examples
 ##'
-##' plotmap (chondro, col = alois.palette)
+##' plotmap (faux_cell, col = alois.palette)
 ##' @importFrom grDevices colorRampPalette
 alois.palette <- function(n = 100, ...) {
   colorRampPalette(c("black", "blue", "cyan", "green", "yellow", "red"), ...)(n)

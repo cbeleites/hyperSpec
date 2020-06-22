@@ -16,20 +16,20 @@
 ##' @importFrom lattice level.colors
 ##' @examples
 ##'
-##' chondro$z <- factor (rep (c("a", "a", "d", "c"),
-##'                           length.out = nrow (chondro)),
+##' faux_cell$z <- factor (rep (c("a", "a", "d", "c"),
+##'                           length.out = nrow (faux_cell)),
 ##'                      levels = letters [1 : 4])
 ##'
-##' str (trellis.factor.key (chondro$z))
+##' str (trellis.factor.key (faux_cell$z))
 ##'
-##' plotmap (chondro, z ~ x * y)
+##' plotmap (faux_cell, z ~ x * y)
 ##'
 ##' ## switch off using trellis.factor.key:
 ##' ## note that the factor levels are collapsed to c(1, 2, 3) rather than
 ##' ## c (1, 3, 4)
-##' plotmap (chondro, z ~ x * y, transform.factor = FALSE)
+##' plotmap (faux_cell, z ~ x * y, transform.factor = FALSE)
 ##'
-##' plotmap (chondro, z ~ x * y,
+##' plotmap (faux_cell, z ~ x * y,
 ##'          col.regions = c ("gray", "red", "blue", "dark green"))
 ##'
 ##' @importFrom utils modifyList

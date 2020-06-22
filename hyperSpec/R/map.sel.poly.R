@@ -24,12 +24,12 @@
 ##' @examples
 ##' if (interactive ()){
 ##' ## convenience wrapper
-##' map.sel.poly (chondro)
+##' map.sel.poly (faux_cell)
 ##'
 ##' ## customized version
-##' data <- sample (chondro [,, 1004 - 2i ~ 1004 + 2i], 300)
+##' data <- sample (faux_cell [,, 1004 - 2i ~ 1004 + 2i], 300)
 ##'
-##' plotdata <- plotvoronoi (data, clusters ~ y * x, col.regions = alois.palette ())
+##' plotdata <- plotvoronoi (data, region ~ y * x, col.regions = alois.palette ())
 ##' print (plotdata)
 ##' map.sel.poly (plotdata)
 ##'

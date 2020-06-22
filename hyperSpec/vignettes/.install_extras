@@ -1,4 +1,9 @@
-vignettes.defs
-scan.txt.PerkinElmer.R
-flu-data-[1-6].txt
-laser-data.txt.gz
+vignette-default-settingsR.R
+vignette-functions.R
+fileio--fileformats.txt
+read.txt.PerkinElmer.R
+read.ENVI.Nicolet.R
+elsevier-with-titles.csl
+fileio.bib
+style.css
+vignette.css

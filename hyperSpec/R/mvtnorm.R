@@ -50,7 +50,7 @@ setGeneric("rmmvnorm", .rmmvnorm)
 ##' ## multiple groups, common covariance matrix
 ##'
 ##' if (require ("mvtnorm")){
-##'    pcov <- pooled.cov (chondro, chondro$clusters)
+##'    pcov <- pooled.cov (faux_cell, faux_cell$region)
 ##'    rnd <- rmmvnorm (rep (10, 3), mean = pcov$mean, sigma = pcov$COV)
 ##'    plot (rnd, col = rnd$.group)
 ##' }

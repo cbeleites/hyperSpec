@@ -110,8 +110,8 @@
 ##' @import stats
 ##' @include hyperspec-class.R
 ##' @examples
-##' cluster.means <- aggregate (chondro, chondro$clusters, mean_pm_sd)
-##' plot(cluster.means, stacked = ".aggregate", fill = ".aggregate",
+##' region.means <- aggregate (faux_cell, faux_cell$region, mean_pm_sd)
+##' plot(region.means, stacked = ".aggregate", fill = ".aggregate",
 ##'      col = matlab.dark.palette (3))
 ##'
 ##' ## make some "spectra"
@@ -154,17 +154,17 @@ setMethod("aggregate", signature = signature(x = "hyperSpec"), .aggregate)
 
 .test(.aggregate) <- function() {
   context("aggregate")
-  test_that("chondro cluster means", {
-    cluster.means <- aggregate(chondro, chondro$clusters, mean_pm_sd)
-    expect_true(all(is.na(cluster.means$y)))
-    expect_true(all(is.na(cluster.means$x)))
+  test_that("faux_cell region means", {
+    region.means <- aggregate(faux_cell, faux_cell$region, mean_pm_sd)
+    expect_true(all(is.na(region.means$y)))
+    expect_true(all(is.na(region.means$x)))
 
-    expect_equal(cluster.means$clusters, cluster.means$.aggregate)
+    expect_equal(region.means$region, region.means$.aggregate)
 
-    for (cluster in levels(chondro$clusters)) {
+    for (region in levels(faux_cell$region)) {
       expect_equivalent(
-        cluster.means [[cluster.means$clusters == cluster, ]],
-        apply(chondro [[chondro$clusters == cluster, ]], 2, mean_pm_sd)
+        region.means [[region.means$region == region, ]],
+        apply(faux_cell [[faux_cell$region == region, ]], 2, mean_pm_sd)
       )
     }
   })
