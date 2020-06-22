@@ -128,16 +128,16 @@
 ##' plotspc (flu)
 ##'
 ##' ## artificial example to show wavelength axis cutting
-##' plotspc (fauxCell [sample (nrow (fauxCell), 50)],
+##' plotspc (faux_cell [sample (nrow (faux_cell), 50)],
 ##'          wl.range = list (600 ~ 650, 1000 ~ 1100, 1600 ~ 1700),
 ##'          xoffset = c (0, 300, 450))
 ##'
-##' plotspc (fauxCell [sample (nrow (fauxCell), 50)],
+##' plotspc (faux_cell [sample (nrow (faux_cell), 50)],
 ##'          wl.range = list (600 ~ 650, 1000 ~ 1100, 1600 ~ 1700),
 ##'          xoffset = c (300, 450))
 ##'
 ##' ## some journals publish Raman spectra backwards
-##' plotspc (fauxCell [sample (nrow (fauxCell), 50)], wl.reverse = TRUE)
+##' plotspc (faux_cell [sample (nrow (faux_cell), 50)], wl.reverse = TRUE)
 ##'
 ##' plotspc (laser[(0:4)*20+1,,], stacked = TRUE)
 ##'
@@ -152,7 +152,7 @@
 ##'          axis.args = list (x = list (col = "magenta"), y = list (las = 1))
 ##'         )
 ##'
-##' mean.pm.sd <- aggregate (fauxCell, fauxCell$region, mean_pm_sd)
+##' mean.pm.sd <- aggregate (faux_cell, faux_cell$region, mean_pm_sd)
 ##' plot (mean.pm.sd, col = matlab.palette (3), fill = ".aggregate", stacked = ".aggregate")
 ##'
 ##' @importFrom utils modifyList relist head tail
@@ -565,13 +565,13 @@ plotspc <- function(object,
 ##' @export
 ##' @examples
 ##'
-##' mean.pm.sd <- aggregate (fauxCell, fauxCell$region, mean_pm_sd)
+##' mean.pm.sd <- aggregate (faux_cell, faux_cell$region, mean_pm_sd)
 ##'
 ##' offset <- stacked.offsets (mean.pm.sd, ".aggregate")
 ##' plot (mean.pm.sd, fill.col = matlab.palette (3), fill = ".aggregate",
 ##'       stacked = ".aggregate")
 ##'
-##' plot (aggregate (fauxCell, fauxCell$region, mean), yoffset = offset$offsets,
+##' plot (aggregate (faux_cell, faux_cell$region, mean), yoffset = offset$offsets,
 ##'       lines.args = list (lty = 2, lwd = 2), add = TRUE)
 ##'
 ##' barb <- do.call (collapse, barbiturates [1:3])

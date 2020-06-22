@@ -257,9 +257,9 @@ collapse <- function(..., wl.tolerance = hy.getOption("wl.tolerance"), collapse.
 
 
   test_that("factor behaviour of collapse", {
-    a <- fauxCell [fauxCell$region == "nucleus"]
+    a <- faux_cell [faux_cell$region == "nucleus"]
     a$region <- droplevels(a$region)
-    b <- fauxCell [fauxCell$region != "nucleus"]
+    b <- faux_cell [faux_cell$region != "nucleus"]
     b$region <- droplevels(b$region)
 
     tmp <- collapse(a, b)
@@ -267,7 +267,7 @@ collapse <- function(..., wl.tolerance = hy.getOption("wl.tolerance"), collapse.
 
     expect_equal(
       sort(levels(tmp$region)),
-      sort(levels(fauxCell$region))
+      sort(levels(faux_cell$region))
     )
   })
 

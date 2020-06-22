@@ -151,7 +151,7 @@ mergeextra <- function(x, y) {
   })
 
   test_that("x missing labels", {
-    spc <- fauxCell[1:3]
+    spc <- faux_cell[1:3]
     spc@label$region <- NULL
     spc - spc
   })

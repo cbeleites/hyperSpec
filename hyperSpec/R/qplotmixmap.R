@@ -13,11 +13,11 @@
 ##' @export
 ##' @md
 ##' @examples
-##' fauxCell <- fauxCell - spc.fit.poly.below (fauxCell)
-##' fauxCell <- sweep (fauxCell, 1, apply (fauxCell, 1, mean), "/")
-##' fauxCell <- sweep (fauxCell, 2, apply (fauxCell, 2, quantile, 0.05), "-")
+##' faux_cell <- faux_cell - spc.fit.poly.below (faux_cell)
+##' faux_cell <- sweep (faux_cell, 1, apply (faux_cell, 1, mean), "/")
+##' faux_cell <- sweep (faux_cell, 2, apply (faux_cell, 2, quantile, 0.05), "-")
 ##'
-##' qplotmixmap (fauxCell [,,c (940, 1002, 1440)],
+##' qplotmixmap (faux_cell [,,c (940, 1002, 1440)],
 ##'              purecol = c (colg = "red", Phe = "green", Lipid = "blue"))
 ##'
 ##' @importFrom lazyeval f_rhs

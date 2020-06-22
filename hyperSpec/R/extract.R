@@ -151,10 +151,10 @@
 ##' plot (flu[!index], "spc", add = TRUE, col = "blue") # select spectra
 ##'
 ##' ## index into the data columns ---------------------------------------
-##' range (fauxCell[[,"x"]])
-##' colnames (fauxCell[[,1]])
-##' dim (fauxCell[[,c(TRUE, FALSE, FALSE)]])
-##' fauxCell$x
+##' range (faux_cell[[,"x"]])
+##' colnames (faux_cell[[,1]])
+##' dim (faux_cell[[,c(TRUE, FALSE, FALSE)]])
+##' faux_cell$x
 ##'
 ##'
 ##' ## the shortcut functions --------------------------------------------
