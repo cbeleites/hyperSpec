@@ -60,12 +60,12 @@ write.txt.long <- function(object,
     order.data <- as.list(X [, order, drop = FALSE])
 
     for (i in seq_along(order)) {
-      if (is.factor(order.data [[i]])) {
-        order.data [[i]] <- rank(order.data [[i]], na.last = na.last | is.na(na.last))
+      if (is.factor(order.data[[i]])) {
+        order.data[[i]] <- rank(order.data[[i]], na.last = na.last | is.na(na.last))
       }
 
       if (decreasing [i]) {
-        order.data [[i]] <- -order.data [[i]]
+        order.data[[i]] <- -order.data[[i]]
       }
     }
 

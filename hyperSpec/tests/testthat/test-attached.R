@@ -4,5 +4,5 @@ tests <- eapply(env = getNamespace("hyperSpec"), FUN = get.test, all.names = TRU
 tests <- tests [!sapply(tests, is.null)]
 
 for (t in seq_along(tests)) {
-  tests [[t]]()
+  tests[[t]]()
 }

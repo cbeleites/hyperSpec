@@ -41,7 +41,7 @@ wl.eval <- function(x, ..., normalize.wl = I) {
 
   test_that("wl.eval against manual evaluation", {
     expect_equivalent(
-      wl.eval(flu, function(x) rep(5, length(x)), normalize.wl = normalize01) [[]],
+      wl.eval(flu, function(x) rep(5, length(x)), normalize.wl = normalize01)[[]],
       matrix(rep(5, nwl(flu)), nrow = 1)
     )
 
@@ -51,24 +51,24 @@ wl.eval <- function(x, ..., normalize.wl = I) {
     )
 
     expect_equivalent(
-      wl.eval(flu, function(x) exp(-x)) [[]],
+      wl.eval(flu, function(x) exp(-x))[[]],
       matrix(exp(-flu@wavelength), nrow = 1)
     )
   })
 
   test_that("normalization", {
     expect_equivalent(
-      wl.eval(flu, function(x) rep(5, length(x)), normalize.wl = normalize01) [[]],
+      wl.eval(flu, function(x) rep(5, length(x)), normalize.wl = normalize01)[[]],
       matrix(rep(5, nwl(flu)), nrow = 1)
     )
 
     expect_equivalent(
-      wl.eval(flu, function(x) x, normalize.wl = normalize01) [[]],
+      wl.eval(flu, function(x) x, normalize.wl = normalize01)[[]],
       matrix(seq(0, 1, length.out = nwl(flu)), nrow = 1)
     )
 
     expect_equivalent(
-      wl.eval(flu, function(x) exp(x), normalize.wl = normalize01) [[]],
+      wl.eval(flu, function(x) exp(x), normalize.wl = normalize01)[[]],
       matrix(exp(seq(0, 1, length.out = nwl(flu))), nrow = 1)
     )
   })

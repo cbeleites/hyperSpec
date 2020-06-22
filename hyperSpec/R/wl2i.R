@@ -132,12 +132,12 @@ wl2i <- function(x, wavelength = stop("wavelengths are required."), unlist = TRU
 
     if (is.null(from)) {
       results[[r]] <- to
-      results [[r]][!is.finite(results [[r]])] <- NA
+      results[[r]][!is.finite(results[[r]])] <- NA
     } else {
       from <- .getindex(x, Re(from), extrapolate = FALSE) + Im(from)
 
       ## completely outside range
-      results [[r]] <- NULL
+      results[[r]] <- NULL
 
       ## start outside left
       if (from == -Inf) from <- 1
@@ -151,7 +151,7 @@ wl2i <- function(x, wavelength = stop("wavelengths are required."), unlist = TRU
         if (from < 1L) from <- 1L
         if (to > nwl(x)) to <- nwl(x)
 
-        results [[r]] <- seq(from, to)
+        results[[r]] <- seq(from, to)
       }
     }
   }

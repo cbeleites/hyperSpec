@@ -711,18 +711,18 @@ stacked.offsets <- function(x, stacked = TRUE,
   start.ranges <- start.ranges - offsets
   end.ranges <- end.ranges - offsets
 
-  delta <- start.ranges [-1] - head(end.ranges, -1)
+  delta <- start.ranges[-1] - head(end.ranges, -1)
 
   cutmarks <- head(end.ranges, -1) + delta / 2
 
   ## make sure that the ticks are not too close
   for (i in seq_along(delta)) {
-    keep <- at[[i]] < end.ranges [i] + delta [i] / 4
-    at[[i]] <- at    [[i]][keep]
+    keep <- at[[i]] < end.ranges[i] + delta [i] / 4
+        at[[i]] <-     at[[i]][keep]
     labels[[i]] <- labels[[i]][keep]
 
-    keep <- at[[i + 1]] > start.ranges [i + 1] - delta [i] / 4
-    at[[i + 1]] <- at    [[i + 1]][keep]
+    keep <- at[[i + 1]] > start.ranges[i + 1] - delta[i] / 4
+        at[[i + 1]] <-     at[[i + 1]][keep]
     labels[[i + 1]] <- labels[[i + 1]][keep]
   }
 

@@ -124,7 +124,7 @@ dummies <- check.req.pkg("latticeExtra",
   hynsgrid   = "plotvoronoi"
 )
 for (i in seq_along(dummies)) {
-  eval(dummies [[i]])
+  eval(dummies[[i]])
 }
 
 check.req.pkg("deldir", hynsgrid = "plotvoronoi")
