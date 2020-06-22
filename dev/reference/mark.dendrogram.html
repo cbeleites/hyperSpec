@@ -236,20 +236,22 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='kw'>dend</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span> (<span class='fu'>pearson.dist</span> (<span class='kw'>laser</span>[[]]))
-<span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span> (xpd = <span class='fl'>TRUE</span>, mar = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span> (<span class='fl'>5.1</span>, <span class='fl'>4</span>, <span class='fl'>4</span>, <span class='fl'>3</span>)) <span class='co'># allows plotting into the margin</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span> (<span class='kw'>dend</span>, hang = <span class='op'>-</span><span class='fl'>1</span>, labels = <span class='fl'>FALSE</span>)</div><div class='input'>
+<span class='kw'>dend</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></span>(<span class='fu'>pearson.dist</span>(<span class='kw'>laser</span>[[]]))
+<span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(xpd = <span class='fl'>TRUE</span>, mar = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>5.1</span>, <span class='fl'>4</span>, <span class='fl'>4</span>, <span class='fl'>3</span>)) <span class='co'># allows plotting into the margin</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>dend</span>, hang = <span class='op'>-</span><span class='fl'>1</span>, labels = <span class='fl'>FALSE</span>)</div><div class='input'>
 <span class='co'>## mark clusters</span>
-<span class='kw'>clusters</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>as.factor</a></span> (<span class='fu'><a href='https://rdrr.io/r/stats/cutree.html'>cutree</a></span> (<span class='kw'>dend</span>, k = <span class='fl'>4</span>))
-<span class='fu'><a href='https://rdrr.io/r/base/levels.html'>levels</a></span> (<span class='kw'>clusters</span>) <span class='op'>&lt;-</span> <span class='kw'>LETTERS</span> [<span class='fl'>1</span> <span class='op'>:</span> <span class='fl'>4</span>]
-<span class='fu'>mark.dendrogram</span> (<span class='kw'>dend</span>, <span class='kw'>clusters</span>, label = <span class='st'>"cluster"</span>)</div><div class='input'>
+<span class='kw'>clusters</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>as.factor</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/cutree.html'>cutree</a></span>(<span class='kw'>dend</span>, k = <span class='fl'>4</span>))
+<span class='fu'><a href='https://rdrr.io/r/base/levels.html'>levels</a></span>(<span class='kw'>clusters</span>) <span class='op'>&lt;-</span> <span class='kw'>LETTERS</span> [<span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span>]
+<span class='fu'>mark.dendrogram</span>(<span class='kw'>dend</span>, <span class='kw'>clusters</span>, label = <span class='st'>"cluster"</span>)</div><div class='input'>
 <span class='co'>## mark independent factor</span>
-<span class='fu'>mark.dendrogram</span> (<span class='kw'>dend</span>, <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>as.factor</a></span> (<span class='kw'>laser</span> [,,<span class='fl'>405.36</span>] <span class='op'>&gt;</span> <span class='fl'>11000</span>),
-pos.marker = <span class='op'>-</span><span class='fl'>0.02</span>, pos.text = <span class='op'>-</span> <span class='fl'>0.03</span>)</div><div class='input'>
+<span class='fu'>mark.dendrogram</span>(<span class='kw'>dend</span>, <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>as.factor</a></span>(<span class='kw'>laser</span> [, , <span class='fl'>405.36</span>] <span class='op'>&gt;</span> <span class='fl'>11000</span>),
+  pos.marker = <span class='op'>-</span><span class='fl'>0.02</span>, pos.text = <span class='op'>-</span><span class='fl'>0.03</span>
+)</div><div class='input'>
 <span class='co'>## mark continuous variable: convert it to a factor and omit labels</span>
-<span class='fu'>mark.dendrogram</span> (<span class='kw'>dend</span>, <span class='fu'><a href='https://rdrr.io/r/base/cut.html'>cut</a></span> (<span class='kw'>laser</span> [[,, <span class='fl'>405.36</span>]], <span class='fl'>100</span>), <span class='fu'>alois.palette</span> (<span class='fl'>100</span>),
-                 pos.marker = <span class='op'>-</span><span class='fl'>.015</span>, text.col = <span class='fl'>NA</span>,
-                 label = <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span> (<span class='kw'>I</span> [<span class='kw'>lambda</span> <span class='op'>==</span> <span class='fl'>405.36</span><span class='op'>~</span><span class='kw'>nm</span>]), label.right = <span class='fl'>FALSE</span>)</div><div class='img'><img src='mark.dendrogram-1.png' alt='' width='466' height='288' /></div><div class='input'></div></pre>
+<span class='fu'>mark.dendrogram</span>(<span class='kw'>dend</span>, <span class='fu'><a href='https://rdrr.io/r/base/cut.html'>cut</a></span>(<span class='kw'>laser</span>[[, , <span class='fl'>405.36</span>]], <span class='fl'>100</span>), <span class='fu'>alois.palette</span>(<span class='fl'>100</span>),
+  pos.marker = <span class='op'>-</span><span class='fl'>.015</span>, text.col = <span class='fl'>NA</span>,
+  label = <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span>(<span class='kw'>I</span> [<span class='kw'>lambda</span> <span class='op'>==</span> <span class='fl'>405.36</span> <span class='op'>~</span> <span class='kw'>nm</span>]), label.right = <span class='fl'>FALSE</span>
+)</div><div class='img'><img src='mark.dendrogram-1.png' alt='' width='466' height='288' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

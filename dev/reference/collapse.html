@@ -255,7 +255,7 @@ the same applies to possible column names of the spectra matrix.</p>
 #&gt;    2. z.end: t/min [numeric] 4.04095 
 #&gt;    3. spc: I/"a. u." [matrix, array29] 735 1412 ... 638 
 #&gt;    4. filename: filename [character] spc/BARBITUATES.SPC 
-#&gt; </div><div class='input'><span class='fu'>collapse</span> (<span class='kw'>barbiturates</span> [<span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>])</div><div class='output co'>#&gt; hyperSpec object
+#&gt; </div><div class='input'><span class='fu'>collapse</span>(<span class='kw'>barbiturates</span> [<span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>])</div><div class='output co'>#&gt; hyperSpec object
 #&gt;    3 spectra
 #&gt;    4 data columns
 #&gt;    57 data points / spectrum
@@ -265,9 +265,9 @@ the same applies to possible column names of the spectra matrix.</p>
 #&gt;    2. z.end: t/min [numeric] 4.027184 4.034117 4.040950 
 #&gt;    3. spc: I/"a. u." [matrix, array57] 562 NA ... NA + NA
 #&gt;    4. filename: filename [character] spc/BARBITUATES.SPC spc/BARBITUATES.SPC spc/BARBITUATES.SPC </div><div class='input'>
-<span class='kw'>a</span> <span class='op'>&lt;-</span> <span class='kw'>barbiturates</span> [[<span class='fl'>1</span>]]
-<span class='kw'>b</span> <span class='op'>&lt;-</span> <span class='kw'>barbiturates</span> [[<span class='fl'>2</span>]]
-<span class='kw'>c</span> <span class='op'>&lt;-</span> <span class='kw'>barbiturates</span> [[<span class='fl'>3</span>]]
+<span class='kw'>a</span> <span class='op'>&lt;-</span> <span class='kw'>barbiturates</span>[[<span class='fl'>1</span>]]
+<span class='kw'>b</span> <span class='op'>&lt;-</span> <span class='kw'>barbiturates</span>[[<span class='fl'>2</span>]]
+<span class='kw'>c</span> <span class='op'>&lt;-</span> <span class='kw'>barbiturates</span>[[<span class='fl'>3</span>]]
 
 <span class='kw'>a</span></div><div class='output co'>#&gt; hyperSpec object
 #&gt;    1 spectra
@@ -296,7 +296,7 @@ the same applies to possible column names of the spectra matrix.</p>
 #&gt;    1. z: t/min [numeric] 4.04095 
 #&gt;    2. z.end: t/min [numeric] 4.04095 
 #&gt;    3. spc: I/"a. u." [matrix, array29] 735 1412 ... 638 
-#&gt;    4. filename: filename [character] spc/BARBITUATES.SPC </div><div class='input'><span class='fu'>collapse</span> (<span class='kw'>a</span>, <span class='kw'>b</span>, <span class='kw'>c</span>)</div><div class='output co'>#&gt; hyperSpec object
+#&gt;    4. filename: filename [character] spc/BARBITUATES.SPC </div><div class='input'><span class='fu'>collapse</span>(<span class='kw'>a</span>, <span class='kw'>b</span>, <span class='kw'>c</span>)</div><div class='output co'>#&gt; hyperSpec object
 #&gt;    3 spectra
 #&gt;    4 data columns
 #&gt;    57 data points / spectrum
@@ -306,7 +306,7 @@ the same applies to possible column names of the spectra matrix.</p>
 #&gt;    2. z.end: t/min [numeric] 4.027184 4.034117 4.040950 
 #&gt;    3. spc: I/"a. u." [matrix, array57] 562 NA ... NA + NA
 #&gt;    4. filename: filename [character] spc/BARBITUATES.SPC spc/BARBITUATES.SPC spc/BARBITUATES.SPC </div><div class='input'>
-<span class='fu'>collapse</span> (<span class='kw'>barbiturates</span> [<span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>], collapse.equal = <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; hyperSpec object
+<span class='fu'>collapse</span>(<span class='kw'>barbiturates</span> [<span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>], collapse.equal = <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; hyperSpec object
 #&gt;    3 spectra
 #&gt;    4 data columns
 #&gt;    57 data points / spectrum
@@ -315,7 +315,7 @@ the same applies to possible column names of the spectra matrix.</p>
 #&gt;    1. z: t/min [numeric] 4.027184 4.034117 4.040950 
 #&gt;    2. z.end: t/min [numeric] 4.027184 4.034117 4.040950 
 #&gt;    3. spc: I/"a. u." [matrix, array57] 562 NA ... NA + NA
-#&gt;    4. filename: filename [character] spc/BARBITUATES.SPC spc/BARBITUATES.SPC spc/BARBITUATES.SPC </div><div class='input'></div></pre>
+#&gt;    4. filename: filename [character] spc/BARBITUATES.SPC spc/BARBITUATES.SPC spc/BARBITUATES.SPC </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -262,14 +262,15 @@ Thus <code>fit.to</code> needs to be cut appropriately.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='co'>if</span> (<span class='fl'>FALSE</span>) <span class='fu'><a href='https://rdrr.io/r/utils/vignette.html'>vignette</a></span> (<span class='st'>"baseline"</span>, package = <span class='st'>"hyperSpec"</span>)
+<span class='co'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='fu'><a href='https://rdrr.io/r/utils/vignette.html'>vignette</a></span>(<span class='st'>"baseline"</span>, package = <span class='st'>"hyperSpec"</span>)
+}
 
-<span class='kw'>spc</span> <span class='op'>&lt;-</span> <span class='kw'>faux_cell</span>[<span class='fl'>1</span> <span class='op'>:</span> <span class='fl'>10</span>]
-<span class='kw'>baselines</span> <span class='op'>&lt;-</span> <span class='fu'>spc.fit.poly</span>(<span class='kw'>spc</span>[,, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span> (<span class='fl'>625</span> <span class='op'>~</span> <span class='fl'>640</span>, <span class='fl'>1785</span> <span class='op'>~</span> <span class='fl'>1800</span>)], <span class='kw'>spc</span>)
+<span class='kw'>spc</span> <span class='op'>&lt;-</span> <span class='kw'>faux_cell</span>[<span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>]
+<span class='kw'>baselines</span> <span class='op'>&lt;-</span> <span class='fu'>spc.fit.poly</span>(<span class='kw'>spc</span>[, , <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>625</span> <span class='op'>~</span> <span class='fl'>640</span>, <span class='fl'>1785</span> <span class='op'>~</span> <span class='fl'>1800</span>)], <span class='kw'>spc</span>)
 <span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>spc</span> <span class='op'>-</span> <span class='kw'>baselines</span>)</div><div class='img'><img src='baselines-1.png' alt='' width='466' height='288' /></div><div class='input'>
-
-<span class='kw'>baselines</span> <span class='op'>&lt;-</span> <span class='fu'>spc.fit.poly.below</span> (<span class='kw'>spc</span>)
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span> (<span class='kw'>spc</span> <span class='op'>-</span> <span class='kw'>baselines</span>)</div><div class='img'><img src='baselines-2.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='kw'>baselines</span> <span class='op'>&lt;-</span> <span class='fu'>spc.fit.poly.below</span>(<span class='kw'>spc</span>)
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>spc</span> <span class='op'>-</span> <span class='kw'>baselines</span>)</div><div class='img'><img src='baselines-2.png' alt='' width='466' height='288' /></div><div class='input'>
 <span class='fu'>spc.fit.poly.below</span>(<span class='kw'>faux_cell</span>[<span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>], debuglevel = <span class='fl'>1</span>)</div><div class='output co'>#&gt; <span class='message'>Fitting with npts.min = 15</span></div><div class='output co'>#&gt; <span class='message'>spectrum      1:    16 support points, noise = 0.0,   5 iterations</span></div><div class='output co'>#&gt; <span class='message'>spectrum      2:    37 support points, noise = 0.0,   4 iterations</span></div><div class='output co'>#&gt; <span class='message'>spectrum      3:    30 support points, noise = 0.0,   4 iterations</span></div><div class='output co'>#&gt; hyperSpec object
 #&gt;    3 spectra
 #&gt;    4 data columns
@@ -288,8 +289,10 @@ Thus <code>fit.to</code> needs to be cut appropriately.</p>
 #&gt;    1. x: x position [numeric] -11.55 -10.55 -9.55 
 #&gt;    2. y: y position [numeric] -4.77 -4.77 -4.77 
 #&gt;    3. region:  [factor] matrix matrix matrix 
-#&gt;    4. spc: intensity (arbitrary units) [AsIs matrix x 300] 10.63286 150.75316 ... 120.1995 </div><div class='input'><span class='fu'>spc.fit.poly.below</span>(<span class='kw'>faux_cell</span>[<span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>], debuglevel = <span class='fl'>3</span>,
-                   noise = <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>rowMeans</a></span> (<span class='kw'>faux_cell</span>[[<span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>]])))</div><div class='output co'>#&gt; <span class='message'>Fitting with npts.min = 15</span></div><div class='output co'>#&gt; <span class='message'>start: 300 support points</span></div><div class='output co'>#&gt; <span class='message'>Iteration 1: 260 support points</span></div><div class='output co'>#&gt; <span class='message'>Iteration 2: 229 support points</span></div><div class='output co'>#&gt; <span class='message'>Iteration 3: 216 support points</span></div><div class='output co'>#&gt; <span class='message'>Iteration 4: 213 support points</span></div><div class='output co'>#&gt; <span class='message'>Iteration 5: 212 support points</span></div><div class='output co'>#&gt; <span class='message'>Iteration 6: 212 support points</span></div><div class='output co'>#&gt; <span class='message'>spectrum      1:   212 support points, noise = 5.7,   6 iterations</span></div><div class='output co'>#&gt; <span class='message'>spectrum      2:   201 support points, noise = 13.4,  10 iterations</span></div><div class='output co'>#&gt; <span class='message'>spectrum      3:   181 support points, noise = 11.8,   9 iterations</span></div><div class='img'><img src='baselines-4.png' alt='' width='466' height='288' /></div><div class='output co'>#&gt; hyperSpec object
+#&gt;    4. spc: intensity (arbitrary units) [AsIs matrix x 300] 10.63286 150.75316 ... 120.1995 </div><div class='input'><span class='fu'>spc.fit.poly.below</span>(<span class='kw'>faux_cell</span>[<span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>],
+  debuglevel = <span class='fl'>3</span>,
+  noise = <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>rowMeans</a></span>(<span class='kw'>faux_cell</span>[[<span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>]]))
+)</div><div class='output co'>#&gt; <span class='message'>Fitting with npts.min = 15</span></div><div class='output co'>#&gt; <span class='message'>start: 300 support points</span></div><div class='output co'>#&gt; <span class='message'>Iteration 1: 260 support points</span></div><div class='output co'>#&gt; <span class='message'>Iteration 2: 229 support points</span></div><div class='output co'>#&gt; <span class='message'>Iteration 3: 216 support points</span></div><div class='output co'>#&gt; <span class='message'>Iteration 4: 213 support points</span></div><div class='output co'>#&gt; <span class='message'>Iteration 5: 212 support points</span></div><div class='output co'>#&gt; <span class='message'>Iteration 6: 212 support points</span></div><div class='output co'>#&gt; <span class='message'>spectrum      1:   212 support points, noise = 5.7,   6 iterations</span></div><div class='output co'>#&gt; <span class='message'>spectrum      2:   201 support points, noise = 13.4,  10 iterations</span></div><div class='output co'>#&gt; <span class='message'>spectrum      3:   181 support points, noise = 11.8,   9 iterations</span></div><div class='img'><img src='baselines-4.png' alt='' width='466' height='288' /></div><div class='output co'>#&gt; hyperSpec object
 #&gt;    3 spectra
 #&gt;    4 data columns
 #&gt;    300 data points / spectrum
@@ -298,7 +301,7 @@ Thus <code>fit.to</code> needs to be cut appropriately.</p>
 #&gt;    1. x: x position [numeric] -11.55 -10.55 -9.55 
 #&gt;    2. y: y position [numeric] -4.77 -4.77 -4.77 
 #&gt;    3. region:  [factor] matrix matrix matrix 
-#&gt;    4. spc: intensity (arbitrary units) [AsIs matrix x 300] 15.41523 164.56086 ... 139.527 </div><div class='input'></div></pre>
+#&gt;    4. spc: intensity (arbitrary units) [AsIs matrix x 300] 15.41523 164.56086 ... 139.527 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -249,10 +249,11 @@ additionally allows to set a new wavelength axis and adjust the labels.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 
-<span class='fu'>plotspc</span> (<span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span> (<span class='kw'>faux_cell</span>, <span class='fl'>2</span>, <span class='kw'>range</span>))</div><div class='img'><img src='apply-1.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='kw'>avgflu</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span> (<span class='kw'>flu</span>, <span class='fl'>1</span>, <span class='kw'>mean</span>,
-                 label.spc = <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span> (<span class='fu'><a href='https://rdrr.io/r/grDevices/plotmath.html'>bar</a></span> (<span class='kw'>I</span>)),
-                 new.wavelength = <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span> (<span class='fu'>wl</span> (<span class='kw'>flu</span>)))
+<span class='fu'>plotspc</span>(<span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span>(<span class='kw'>faux_cell</span>, <span class='fl'>2</span>, <span class='kw'>range</span>))</div><div class='img'><img src='apply-1.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='kw'>avgflu</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span>(<span class='kw'>flu</span>, <span class='fl'>1</span>, <span class='kw'>mean</span>,
+  label.spc = <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span>(<span class='fu'><a href='https://rdrr.io/r/grDevices/plotmath.html'>bar</a></span>(<span class='kw'>I</span>)),
+  new.wavelength = <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span>(<span class='fu'>wl</span>(<span class='kw'>flu</span>))
+)
 <span class='kw'>avgflu</span></div><div class='output co'>#&gt; hyperSpec object
 #&gt;    6 spectra
 #&gt;    3 data columns
@@ -262,13 +263,13 @@ additionally allows to set a new wavelength axis and adjust the labels.</p>
 #&gt;    1. spc: bar(I) [matrix, array1] 79.61862 160.88475 ... 510.623 
 #&gt;    2. filename: filename [character] rawdata/flu1.txt rawdata/flu2.txt ... rawdata/flu6.txt 
 #&gt;    3. c: c / (mg / l) [numeric] 0.05 0.10 ... 0.3 </div><div class='input'>
-<span class='kw'>flu</span>[[,,<span class='fl'>405</span><span class='op'>:</span><span class='fl'>407</span>]]</div><div class='output co'>#&gt;            405       406       407
+<span class='kw'>flu</span>[[, , <span class='fl'>405</span><span class='op'>:</span><span class='fl'>407</span>]]</div><div class='output co'>#&gt;            405       406       407
 #&gt; [1,]  27.15000  33.37867  36.53133
 #&gt; [2,]  66.80133  66.71200  72.52967
 #&gt; [3,]  93.14433 106.19367 113.24867
 #&gt; [4,] 130.66367 143.79767 152.13267
 #&gt; [5,] 167.26667 177.47067 189.75233
-#&gt; [6,] 198.43033 215.78500 232.52800</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span> (<span class='kw'>flu</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span>, <span class='st'>"*"</span>, <span class='op'>-</span><span class='fl'>1</span>)[[,,<span class='fl'>405</span><span class='op'>:</span><span class='fl'>407</span>]]</div><div class='output co'>#&gt;            [,1]       [,2]       [,3]
+#&gt; [6,] 198.43033 215.78500 232.52800</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span>(<span class='kw'>flu</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span>, <span class='st'>"*"</span>, <span class='op'>-</span><span class='fl'>1</span>)[[, , <span class='fl'>405</span><span class='op'>:</span><span class='fl'>407</span>]]</div><div class='output co'>#&gt;            [,1]       [,2]       [,3]
 #&gt; [1,]  -27.15000  -33.37867  -36.53133
 #&gt; [2,]  -66.80133  -66.71200  -72.52967
 #&gt; [3,]  -93.14433 -106.19367 -113.24867
@@ -276,7 +277,7 @@ additionally allows to set a new wavelength axis and adjust the labels.</p>
 #&gt; [5,] -167.26667 -177.47067 -189.75233
 #&gt; [6,] -198.43033 -215.78500 -232.52800</div><div class='input'>
 <span class='co'>## without MARGIN the whole matrix is handed to FUN</span>
-<span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span> (<span class='kw'>flu</span> [,,<span class='fl'>405</span><span class='op'>:</span><span class='fl'>407</span>], , <span class='kw'>print</span>) [[]]</div><div class='output co'>#&gt;            405       406       407
+<span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span>(<span class='kw'>flu</span> [, , <span class='fl'>405</span><span class='op'>:</span><span class='fl'>407</span>], , <span class='kw'>print</span>)[[]]</div><div class='output co'>#&gt;            405       406       407
 #&gt; [1,]  27.15000  33.37867  36.53133
 #&gt; [2,]  66.80133  66.71200  72.52967
 #&gt; [3,]  93.14433 106.19367 113.24867
@@ -290,7 +291,7 @@ additionally allows to set a new wavelength axis and adjust the labels.</p>
 #&gt; [5,] 167.26667 177.47067 189.75233
 #&gt; [6,] 198.43033 215.78500 232.52800</div><div class='input'>
 <span class='co'>## whereas MARGIN = 1 : 2 leads to FUN being called for each element separately</span>
-<span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span> (<span class='kw'>flu</span> [,,<span class='fl'>405</span><span class='op'>:</span><span class='fl'>407</span>], <span class='fl'>1</span> <span class='op'>:</span> <span class='fl'>2</span>, <span class='kw'>print</span>) [[]]</div><div class='output co'>#&gt; [1] 27.15
+<span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span>(<span class='kw'>flu</span> [, , <span class='fl'>405</span><span class='op'>:</span><span class='fl'>407</span>], <span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span>, <span class='kw'>print</span>)[[]]</div><div class='output co'>#&gt; [1] 27.15
 #&gt; [1] 66.80133
 #&gt; [1] 93.14433
 #&gt; [1] 130.6637
@@ -313,7 +314,7 @@ additionally allows to set a new wavelength axis and adjust the labels.</p>
 #&gt; [3,]  93.14433 106.19367 113.24867
 #&gt; [4,] 130.66367 143.79767 152.13267
 #&gt; [5,] 167.26667 177.47067 189.75233
-#&gt; [6,] 198.43033 215.78500 232.52800</div><div class='input'></div></pre>
+#&gt; [6,] 198.43033 215.78500 232.52800</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

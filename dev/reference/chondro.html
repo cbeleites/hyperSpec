@@ -200,22 +200,23 @@ cartilage.</h1>
 #&gt;    4. clusters: clusters [factor] matrix matrix ... lacuna + NA
 #&gt;    5. spc: I / a.u. [matrix, array300] 501.8194 500.4552 ... 169.2942 </div><div class='input'>
 <span class='co'>## do baseline correction</span>
-<span class='kw'>baselines</span> <span class='op'>&lt;-</span> <span class='fu'>spc.fit.poly.below</span> (<span class='kw'>chondro</span>)
+<span class='kw'>baselines</span> <span class='op'>&lt;-</span> <span class='fu'>spc.fit.poly.below</span>(<span class='kw'>chondro</span>)
 <span class='kw'>chondro</span> <span class='op'>&lt;-</span> <span class='kw'>chondro</span> <span class='op'>-</span> <span class='kw'>baselines</span>
 
 <span class='co'>## area normalization</span>
-<span class='kw'>chondro</span> <span class='op'>&lt;-</span> <span class='kw'>chondro</span> <span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>colMeans</a></span> (<span class='kw'>chondro</span>)
+<span class='kw'>chondro</span> <span class='op'>&lt;-</span> <span class='kw'>chondro</span> <span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>colMeans</a></span>(<span class='kw'>chondro</span>)
 
 <span class='co'>## substact common composition</span>
-<span class='kw'>chondro</span> <span class='op'>&lt;-</span> <span class='kw'>chondro</span> <span class='op'>-</span> <span class='fu'><a href='https://rdrr.io/r/stats/quantile.html'>quantile</a></span> (<span class='kw'>chondro</span>, <span class='fl'>0.05</span>)
+<span class='kw'>chondro</span> <span class='op'>&lt;-</span> <span class='kw'>chondro</span> <span class='op'>-</span> <span class='fu'><a href='https://rdrr.io/r/stats/quantile.html'>quantile</a></span>(<span class='kw'>chondro</span>, <span class='fl'>0.05</span>)
 
-<span class='kw'>cols</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span> (<span class='st'>"dark blue"</span>, <span class='st'>"orange"</span>, <span class='st'>"#C02020"</span>)
-<span class='fu'>plotmap</span> (<span class='kw'>chondro</span>, <span class='kw'>clusters</span> <span class='op'>~</span> <span class='kw'>x</span> <span class='op'>*</span> <span class='kw'>y</span>, col.regions = <span class='kw'>cols</span>)</div><div class='img'><img src='chondro-1.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='kw'>cluster.means</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/aggregate.html'>aggregate</a></span> (<span class='kw'>chondro</span>, <span class='kw'>chondro</span><span class='op'>$</span><span class='kw'>clusters</span>, <span class='kw'>mean_pm_sd</span>)
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span> (<span class='kw'>cluster.means</span>, stacked = <span class='st'>".aggregate"</span>, fill = <span class='st'>".aggregate"</span>, col = <span class='kw'>cols</span>)</div><div class='img'><img src='chondro-2.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='kw'>cols</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"dark blue"</span>, <span class='st'>"orange"</span>, <span class='st'>"#C02020"</span>)
+<span class='fu'>plotmap</span>(<span class='kw'>chondro</span>, <span class='kw'>clusters</span> <span class='op'>~</span> <span class='kw'>x</span> <span class='op'>*</span> <span class='kw'>y</span>, col.regions = <span class='kw'>cols</span>)</div><div class='img'><img src='chondro-1.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='kw'>cluster.means</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/aggregate.html'>aggregate</a></span>(<span class='kw'>chondro</span>, <span class='kw'>chondro</span><span class='op'>$</span><span class='kw'>clusters</span>, <span class='kw'>mean_pm_sd</span>)
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>cluster.means</span>, stacked = <span class='st'>".aggregate"</span>, fill = <span class='st'>".aggregate"</span>, col = <span class='kw'>cols</span>)</div><div class='img'><img src='chondro-2.png' alt='' width='466' height='288' /></div><div class='input'>
 <span class='co'>## plot nucleic acid bands</span>
-<span class='fu'>plotmap</span> (<span class='kw'>chondro</span>[, , <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>( <span class='fl'>728</span>, <span class='fl'>782</span>, <span class='fl'>1098</span>, <span class='fl'>1240</span>, <span class='fl'>1482</span>, <span class='fl'>1577</span>)],
-       col.regions = <span class='fu'><a href='https://rdrr.io/r/grDevices/colorRamp.html'>colorRampPalette</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span> (<span class='st'>"white"</span>, <span class='st'>"gold"</span>, <span class='st'>"dark green"</span>), space = <span class='st'>"Lab"</span>) (<span class='fl'>20</span>))</div><div class='img'><img src='chondro-3.png' alt='' width='466' height='288' /></div><div class='input'></div></pre>
+<span class='fu'>plotmap</span>(<span class='kw'>chondro</span>[, , <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>728</span>, <span class='fl'>782</span>, <span class='fl'>1098</span>, <span class='fl'>1240</span>, <span class='fl'>1482</span>, <span class='fl'>1577</span>)],
+  col.regions = <span class='fu'><a href='https://rdrr.io/r/grDevices/colorRamp.html'>colorRampPalette</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"white"</span>, <span class='st'>"gold"</span>, <span class='st'>"dark green"</span>), space = <span class='st'>"Lab"</span>)(<span class='fl'>20</span>)
+)</div><div class='img'><img src='chondro-3.png' alt='' width='466' height='288' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

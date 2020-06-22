@@ -247,14 +247,14 @@ respective quantile spectra.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>mean_sd</span> (<span class='kw'>flu</span> [,, <span class='fl'>405</span> <span class='op'>~</span> <span class='fl'>410</span>])</div><div class='output co'>#&gt; hyperSpec object
+<span class='fu'>mean_sd</span>(<span class='kw'>flu</span> [, , <span class='fl'>405</span> <span class='op'>~</span> <span class='fl'>410</span>])</div><div class='output co'>#&gt; hyperSpec object
 #&gt;    2 spectra
 #&gt;    1 data columns
 #&gt;    11 data points / spectrum
 #&gt; wavelength: lambda/nm [numeric] 405.0 405.5 ... 410 
 #&gt; data:  (2 rows x 1 columns)
 #&gt;    1. spc: I[fl]/"a.u." [matrix, array11] 113.90939 63.95161 ... 88.86944 </div><div class='input'>
-<span class='fu'>mean_sd</span> (<span class='kw'>flu</span><span class='op'>$</span><span class='kw'>spc</span>)</div><div class='output co'>#&gt;            405     405.5       406     406.5       407     407.5       408
+<span class='fu'>mean_sd</span>(<span class='kw'>flu</span><span class='op'>$</span><span class='kw'>spc</span>)</div><div class='output co'>#&gt;            405     405.5       406     406.5       407     407.5       408
 #&gt; mean 113.90939 120.08039 123.88961 128.63661 132.78711 138.26267 142.52667
 #&gt; sd    63.95161  66.68462  68.53711  71.32635  73.27403  76.26193  79.05704
 #&gt;          408.5       409     409.5       410     410.5      411    411.5
@@ -323,16 +323,16 @@ respective quantile spectra.</p>
 #&gt;           492    492.5      493     493.5       494     494.5       495
 #&gt; mean 186.5108 183.8356 180.6879 178.78053 175.72864 173.40081 170.52147
 #&gt; sd   102.6725 101.4147  99.9830  98.97507  97.29897  95.44527  93.76262</div><div class='input'>
-<span class='fu'>mean_sd</span> (<span class='kw'>flu</span>)</div><div class='output co'>#&gt; hyperSpec object
+<span class='fu'>mean_sd</span>(<span class='kw'>flu</span>)</div><div class='output co'>#&gt; hyperSpec object
 #&gt;    2 spectra
 #&gt;    1 data columns
 #&gt;    181 data points / spectrum
 #&gt; wavelength: lambda/nm [numeric] 405.0 405.5 ... 495 
 #&gt; data:  (2 rows x 1 columns)
 #&gt;    1. spc: I[fl]/"a.u." [matrix, array181] 113.90939 63.95161 ... 93.76262 </div><div class='input'>
-  <span class='fu'>mean_pm_sd</span> (<span class='kw'>flu</span><span class='op'>$</span><span class='kw'>c</span>)</div><div class='output co'>#&gt; mean.minus.sd          mean  mean.plus.sd 
+<span class='fu'>mean_pm_sd</span>(<span class='kw'>flu</span><span class='op'>$</span><span class='kw'>c</span>)</div><div class='output co'>#&gt; mean.minus.sd          mean  mean.plus.sd 
 #&gt;    0.08145857    0.17500000    0.26854143 </div><div class='input'>
-<span class='fu'>mean_pm_sd</span> (<span class='kw'>flu</span><span class='op'>$</span><span class='kw'>spc</span>)</div><div class='output co'>#&gt;                 405     405.5      406     406.5       407     407.5       408
+<span class='fu'>mean_pm_sd</span>(<span class='kw'>flu</span><span class='op'>$</span><span class='kw'>spc</span>)</div><div class='output co'>#&gt;                 405     405.5      406     406.5       407     407.5       408
 #&gt; mean - sd  49.95778  53.39577  55.3525  57.31027  59.51308  62.00074  63.46963
 #&gt; mean      113.90939 120.08039 123.8896 128.63661 132.78711 138.26267 142.52667
 #&gt; mean + sd 177.86100 186.76501 192.4267 199.96296 206.06114 214.52459 221.58371
@@ -436,15 +436,15 @@ respective quantile spectra.</p>
 #&gt; mean - sd  82.42095  80.70487  79.80546  78.42967  77.95554  76.75885
 #&gt; mean      183.83564 180.68786 178.78053 175.72864 173.40081 170.52147
 #&gt; mean + sd 285.25032 280.67086 277.75559 273.02761 268.84607 264.28409</div><div class='input'>
-<span class='fu'>mean_pm_sd</span> (<span class='kw'>flu</span>)</div><div class='output co'>#&gt; hyperSpec object
+<span class='fu'>mean_pm_sd</span>(<span class='kw'>flu</span>)</div><div class='output co'>#&gt; hyperSpec object
 #&gt;    3 spectra
 #&gt;    1 data columns
 #&gt;    181 data points / spectrum
 #&gt; wavelength: lambda/nm [numeric] 405.0 405.5 ... 495 
 #&gt; data:  (3 rows x 1 columns)
 #&gt;    1. spc: I[fl]/"a.u." [matrix, array181] 49.95778 113.90939 ... 264.2841 </div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span> (<span class='kw'>faux_cell</span>))</div><div class='img'><img src='mean_sd-1.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span> (<span class='fu'><a href='https://rdrr.io/r/stats/quantile.html'>quantile</a></span> (<span class='kw'>faux_cell</span>))</div><div class='img'><img src='mean_sd-2.png' alt='' width='466' height='288' /></div></pre>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span>(<span class='kw'>faux_cell</span>))</div><div class='img'><img src='mean_sd-1.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/quantile.html'>quantile</a></span>(<span class='kw'>faux_cell</span>))</div><div class='img'><img src='mean_sd-2.png' alt='' width='466' height='288' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

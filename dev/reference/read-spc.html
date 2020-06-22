@@ -251,16 +251,16 @@ into the hyperSpec object's log.</p></td>
 <span class='co'>## get the sample .spc files from ftirsearch.com (see above)</span>
 <span class='co'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='co'># single spectrum</span>
-<span class='kw'>spc</span> <span class='op'>&lt;-</span> <span class='fu'>read.spc</span> (<span class='st'>"BENZENE.SPC"</span>)
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span> (<span class='kw'>spc</span>)
+<span class='kw'>spc</span> <span class='op'>&lt;-</span> <span class='fu'>read.spc</span>(<span class='st'>"BENZENE.SPC"</span>)
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>spc</span>)
 
 <span class='co'># multi-spectra .spc file with common wavelength axis</span>
-<span class='kw'>spc</span> <span class='op'>&lt;-</span> <span class='fu'>read.spc</span> (<span class='st'>'IG_MULTI.SPC'</span>)
+<span class='kw'>spc</span> <span class='op'>&lt;-</span> <span class='fu'>read.spc</span>(<span class='st'>"IG_MULTI.SPC"</span>)
 <span class='kw'>spc</span>
 
 <span class='co'># multi-spectra .spc file with individual wavelength axes</span>
-<span class='kw'>spc</span> <span class='op'>&lt;-</span> <span class='fu'>read.spc</span> (<span class='st'>"BARBITUATES.SPC"</span>)
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span> (<span class='kw'>spc</span> [[<span class='fl'>1</span>]], lines.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span> (type = <span class='st'>"h"</span>))
+<span class='kw'>spc</span> <span class='op'>&lt;-</span> <span class='fu'>read.spc</span>(<span class='st'>"BARBITUATES.SPC"</span>)
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>spc</span>[[<span class='fl'>1</span>]], lines.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(type = <span class='st'>"h"</span>))
 }
 </div></pre>
   </div>
