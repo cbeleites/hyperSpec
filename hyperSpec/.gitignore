@@ -25,6 +25,7 @@ tests/testthat/fileio
 # Vignettes
 vignettes/*-pkg.bib
 vignettes/resources/*.bib
+vignettes/fileio
 
 # Documentation
 man/*.Rd
