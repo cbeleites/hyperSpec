@@ -9,7 +9,7 @@
     'Package ',  desc$Package, ' (version ', desc$Version, ')\n\n',
 
     'To get started, try: \n',
-    '   vignette("', tolower(desc$Package), '", package = "', desc$Package, '")', '\n',
+    '   vignette("', desc$Package, '", package = "', desc$Package, '")', '\n',
     '   package?', desc$Package,                      '\n',
     '   browseVignettes(package = "', desc$Package, '")\n',
     '   vignette(package = "', desc$Package, '")',    '\n',

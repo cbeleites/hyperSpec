@@ -1,0 +1,64 @@
+on:
+  push:
+    branches:
+      - master
+      - develop
+      - feature/vignettes-in-rmd
+
+name: Update pkgdown website
+
+jobs:
+  pkgdown:
+    runs-on: macOS-latest
+
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: r-lib/actions/setup-r@master
+
+      - uses: r-lib/actions/setup-pandoc@master
+
+      # # May be needed for "rgl" package
+      # - name: Install XQuartz on macOS
+      #   if: runner.os == 'macOS'
+      #   run: brew cask install xquartz
+
+      - name: Query dependencies
+        run: |
+          install.packages('remotes')
+          saveRDS(remotes::dev_package_deps("./hyperSpec", dependencies = TRUE), ".github/depends.Rds", version = 2)
+          writeLines(sprintf("R-%i.%i", getRversion()$major, getRversion()$minor), ".github/R-version")
+        shell: Rscript {0}
+
+      - name: Cache R packages
+        uses: actions/cache@v1
+        with:
+          path: ${{ env.R_LIBS_USER }}
+          key: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-${{ hashFiles('.github/depends.Rds') }}
+          restore-keys: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-
+
+      - name: Install dependencies
+        run: |
+          install.packages("remotes")
+          install.packages("devtools")
+          remotes::install_deps("./hyperSpec", dependencies = TRUE)
+          # remotes::install_dev("pkgdown")
+          remotes::install_github("forked-packages/pkgdown")
+        shell: Rscript {0}
+
+      - name: Roxygenize
+        # The vignettes will be built in step "Deploy paackage"
+        run: |
+          devtools::document("./hyperSpec", roclets = c('rd', 'collate', 'namespace'))
+        shell: Rscript {0}
+
+      - name: Install package
+        run: R CMD INSTALL .
+        working-directory: ./hyperSpec
+
+      - name: Deploy package
+        run: |
+          pkgdown::deploy_to_branch("./hyperSpec", new_process = FALSE)
+        shell: Rscript {0}

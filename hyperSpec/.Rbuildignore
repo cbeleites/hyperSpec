@@ -9,4 +9,5 @@ Rplots.pdf
 ^docs$
 ^pkgdown$
 ^data-raw$
+^inst/extdata/chondro\.gz$
 ^codecov\.yml$

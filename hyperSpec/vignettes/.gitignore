@@ -1,0 +1,12 @@
+/*.html
+/*.R
+!resources/*.R
+!vignette-functions.R
+!vignette-default-settings.R
+!read.txt.PerkinElmer.R
+!read.ENVI.Nicolet.R
+old/
+*_cache/
+*_files/
+rawdata/
+

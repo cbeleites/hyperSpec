@@ -3,13 +3,13 @@ Encoding: UTF-8
 Type: Package
 Title: Work with Hyperspectral Data, i.e. Spectra + Meta Information (Spatial,
     Time, Concentration, ...)
-Version: 0.99-20200608
+Version: 0.99-20200615
 Date: 2020-06-15
 Maintainer: Claudia Beleites <Claudia.Beleites@chemometrix.gmbh>
 Authors@R: c(
-    person("Claudia",   "Beleites",  role = c("aut","cre", "dtc"), email = "Claudia.Beleites@chemometrix.gmbh"),
+    person("Claudia",   "Beleites",  role = c("aut", "cre", "dtc"), email = "Claudia.Beleites@chemometrix.gmbh"),
     person("Valter",    "Sergo",     role = c("aut")),
-    person("Alois",     "Bonifacio", role = c ("ctb", "dtc")),
+    person("Alois",     "Bonifacio", role = c("ctb", "dtc")),
     person("Marcel",    "Dahms",     role = "ctb"),
     person("Björn",     "Egert",     role = "ctb"),
     person("Simon",     "Fuller",    role = "ctb"),
@@ -28,7 +28,7 @@ Description: Comfortable ways to work with hyperspectral data sets,
     etc. More generally, any data that is recorded over a discretized variable,
     e.g. absorbance = f (wavelength), stored as a vector of absorbance values
     for discrete wavelengths is suitable.
-License: GPL (>= 3)
+License: GPL (>= 3) + file LICENSE
 LazyLoad: yes
 LazyData: yes
 Depends:
@@ -57,6 +57,16 @@ Suggests:
     devtools,
     R.rsp,
     tibble,
+    knitr,
+    kableExtra,
+    rmarkdown,
+    bookdown,
+    sessioninfo,
+    ggplotify,
+    akima,
+    ggpubr,
+    caTools,
+    styler,
     covr
 Imports:
     testthat,
@@ -66,9 +76,11 @@ Imports:
     lazyeval,
     dplyr,
     rlang
-URL: https://github.com/cbeleites/hyperSpec
+URL: 
+    https://cbeleites.github.io/hyperSpec,
+    https://github.com/cbeleites/hyperSpec
 BugReports: https://github.com/cbeleites/hyperSpec/issues
-VignetteBuilder: R.rsp
+VignetteBuilder: knitr
 Collate:
     'validate.R'
     'hyperspec-class.R'
