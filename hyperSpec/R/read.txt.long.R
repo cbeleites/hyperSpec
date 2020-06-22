@@ -65,54 +65,69 @@
 #' @export
 #' @examples
 #'
-#'
-#' \dontrun{vignette  ("file-io")}
+#' \dontrun{
+#' vignette("file-io")
+#' }
 #'
 #' ## export & import matlab files
-#' if (require (R.matlab)) {
-#'    # export to matlab file
-#'    writeMat (paste0 (tempdir(), "/test.mat"),
-#'              x = flu[[]], wavelength = flu@@wavelength,
-#'              label = lapply (flu@@label, as.character))
+#' if (require(R.matlab)) {
+#'   # export to matlab file
+#'   writeMat(paste0(tempdir(), "/test.mat"),
+#'     x = flu[[]], wavelength = flu@wavelength,
+#'     label = lapply(flu@label, as.character)
+#'   )
 #'
-#'    # reading a matlab file
-#'    data <- readMat (paste0 (tempdir(), "/test.mat"))
-#'    print (data)
-#'    mat <- new ("hyperSpec", spc = data$x,
-#'                wavelength = as.numeric(data$wavelength),
-#'                label = data$label[,,1])
+#'   # reading a matlab file
+#'   data <- readMat(paste0(tempdir(), "/test.mat"))
+#'   print(data)
+#'   mat <- new("hyperSpec",
+#'     spc = data$x,
+#'     wavelength = as.numeric(data$wavelength),
+#'     label = data$label[, , 1]
+#'   )
 #' }
 #'
 #' ## ascii export & import
 #'
 #'
-#' write.txt.long (flu,
-#'     file = paste0 (tempdir(), "/flu.txt"),
-#'     cols = c(".wavelength", "spc", "c"),
-#' 		order = c("c", ".wavelength"),
-#' 		decreasing = c(FALSE, TRUE))
+#' write.txt.long(flu,
+#'   file = paste0(tempdir(), "/flu.txt"),
+#'   cols = c(".wavelength", "spc", "c"),
+#'   order = c("c", ".wavelength"),
+#'   decreasing = c(FALSE, TRUE)
+#' )
 #'
-#' read.txt.long (file = paste0 (tempdir(), "/flu.txt"),
-#'       cols = list (.wavelength = expression (lambda / nm),
-#'       spc = "I / a.u", c = expression ("/" (c, (mg/l)))))
+#' read.txt.long(
+#'   file = paste0(tempdir(), "/flu.txt"),
+#'   cols = list(
+#'     .wavelength = expression(lambda / nm),
+#'     spc = "I / a.u", c = expression("/"(c, (mg / l)))
+#'   )
+#' )
 #'
-#' write.txt.wide (flu,  file = paste0 (tempdir(), "/flu.txt"),
-#'     cols = c("c", "spc"),
-#' 		col.labels = TRUE, header.lines = 2, row.names = TRUE)
+#' write.txt.wide(flu,
+#'   file = paste0(tempdir(), "/flu.txt"),
+#'   cols = c("c", "spc"),
+#'   col.labels = TRUE, header.lines = 2, row.names = TRUE
+#' )
 #'
-#' write.txt.wide (flu,  file = paste0 (tempdir(), "/flu.txt"),
-#'                 col.labels = FALSE, row.names = FALSE)
+#' write.txt.wide(flu,
+#'   file = paste0(tempdir(), "/flu.txt"),
+#'   col.labels = FALSE, row.names = FALSE
+#' )
 #'
-#' read.txt.wide (file = paste0 (tempdir(), "/flu.txt"),
-#'     # give columns in same order as they are in the file
-#'     cols = list (spc = "I / a.u",
-#'                  c = expression ("/"("c", "mg/l")),
-#'                  filename = "filename",
-#'                  # plus wavelength label last
-#'                  .wavelength = "lambda / nm"),
-#' 		header = TRUE)
-#'
-#'
+#' read.txt.wide(
+#'   file = paste0(tempdir(), "/flu.txt"),
+#'   # give columns in same order as they are in the file
+#'   cols = list(
+#'     spc = "I / a.u",
+#'     c = expression("/"("c", "mg/l")),
+#'     filename = "filename",
+#'     # plus wavelength label last
+#'     .wavelength = "lambda / nm"
+#'   ),
+#'   header = TRUE
+#' )
 #' @importFrom utils read.table unstack
 read.txt.long <- function(file = stop("file is required"),
                           cols = list(
