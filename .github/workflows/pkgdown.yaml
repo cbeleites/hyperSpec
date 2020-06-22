@@ -65,3 +65,4 @@ jobs:
         run: |
           pkgdown::deploy_to_branch("./hyperSpec", new_process = FALSE)
         shell: Rscript {0}
+
