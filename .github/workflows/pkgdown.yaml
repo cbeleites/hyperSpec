@@ -3,7 +3,7 @@ on:
     branches:
       - master
       - develop
-      - feature/vignettes-in-rmd
+      - feature/187-roxygen2Rd
 
 name: Update pkgdown website
 
