@@ -1,8 +1,8 @@
-#' Raman spectra of 2 Chondrocytes in Cartilage
-#' A Raman-map (laterally resolved Raman spectra) of chondrocytes in
-#' cartilage.
+#' Raman spectra of 2 Chondrocytes in Cartilage.
 #'
-#' See the vignette `vignette ("chondro", package = "hyperSpec")`.
+#' A Raman-map (laterally resolved Raman spectra) of chondrocytes in cartilage.
+#'
+#' See the vignette `vignette("chondro", package = "hyperSpec")`.
 #'
 #' @name chondro
 #' @docType data

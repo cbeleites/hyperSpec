@@ -14,7 +14,7 @@
 
   if (!missing(j)) {
     x@data <- x@data[, j, drop = FALSE]
-    x@label <- x@label [c(".wavelength", colnames(x@data))]
+    x@label <- x@label[c(".wavelength", colnames(x@data))]
   }
 
   if (!missing(l)) {
@@ -95,14 +95,14 @@
 #' spectra matrix.
 #'
 
-#' @title Extract and Replace parts of hyperSpec objects
+#' @title Extract and Replace parts of `hyperSpec` objects.
 #' @rdname extractreplace
 #' @docType methods
 #' @aliases [ [,hyperSpec-method
 #' @param x a `hyperSpec` Object
 #' @param i row index: selects spectra
 #'
-#' `[[` and code{[[<-} accept indexing with logical matrix or a n by 2
+#' `[[` and `[[<-` accept indexing with logical matrix or a n by 2
 #'   integer index matrix. In this case the indexing is done inside the
 #'   spectra matrix. See the examples below.
 #' @param j selecting columns of `x@@data`

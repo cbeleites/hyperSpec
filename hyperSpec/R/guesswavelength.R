@@ -1,4 +1,4 @@
-#' guess wavelengths from character vector
+#' Guess wavelengths from character vector.
 #'
 #' character vectors used for names (e.g. colnames for matrices or data.frames)
 #' are often treated by [base::make.names()] or similar functions that

@@ -72,7 +72,7 @@
 
 #' @rdname labels
 #' @usage
-#' labels (object, which = NULL, ...) <- value
+#' labels(object, which = NULL, ...) <- value
 #'
 #' @aliases labels<-,hyperSpec-method
 #' @export "labels<-"
@@ -105,7 +105,8 @@
 }
 
 
-#' Get and Set Labels of a hyperSpec Object
+#' Get and Set Labels of a `hyperSpec` Object.
+#'
 #' `value` may be a list or vector of labels giving the new label for
 #' each of the entries specified by `which`.
 #'
@@ -117,7 +118,7 @@
 #' (see [grDevices::plotmath()]), e.g. as `expression` or a
 #' `character`.
 #'
-#' @param object a hyperSpec object
+#' @param object a `hyperSpec` object
 #' @param which numeric or character to specify the label(s)
 #' @param ... ignored
 #' @param drop if the result would be a list with only one element, should the

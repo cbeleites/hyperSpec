@@ -8,7 +8,8 @@
 
 
 
-#' Plot a Map and Identify/Select Spectra in the Map
+#' Plot a Map and Identify/Select Spectra in the Map.
+#'
 #' [lattice::levelplot()] functions for hyperSpec objects.  An image or map of a summary
 #' value of each spectrum is plotted. Spectra may be identified by mouse click.
 #'
@@ -69,7 +70,7 @@
 #'
 #' The other functions return a lattice object.
 #' @author C. Beleites
-#' @seealso `vignette (plotting)`, `vignette (hyperspec)`
+#' @seealso `vignette(plotting)`, `vignette(hyperSpec)`
 #'
 #' [plot()]
 #' @export
@@ -78,11 +79,11 @@
 #'
 #' \dontrun{
 #' vignette(plotting)
-#' vignette(hyperspec)
+#' vignette(hyperSpec)
 #' }
 #'
-#' levelplot(spc ~ y * x, faux_cell [, , 1003]) # properly rotated
-#' plotmap(faux_cell [, , 1003])
+#' levelplot(spc ~ y * x, faux_cell[, , 1003]) # properly rotated
+#' plotmap(faux_cell[, , 1003])
 #'
 #' # plot spectra matrix
 #' levelplot(spc ~ .wavelength * t, laser, contour = TRUE, col = "#00000080")

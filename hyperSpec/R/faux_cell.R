@@ -98,7 +98,7 @@
   spc
 }
 
-#' Faux Cell Data Set for Testing & Demonstration
+#' Faux Cell Data Set for Testing & Demonstration.
 #'
 #' This is a synthetic data set intended for testing and demonstration.
 #'

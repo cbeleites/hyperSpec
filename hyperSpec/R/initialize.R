@@ -1,6 +1,6 @@
 ### -----------------------------------------------------------------------------
 ###
-###  initialize -- initialization, called by new ("hyperSpec", ...)
+###  initialize -- initialization, called by new("hyperSpec", ...)
 ###
 ###  C. Beleites
 ###
@@ -143,13 +143,13 @@
   .Object
 }
 
-#' Creating a hyperSpec Object
+#' Creating a `hyperSpec` Object.
 #'
-#' Like other S4 objects, a hyperSpec object can be created by `new`. The
-#' hyperSpec object is then `initialize`d using the given parameters.
+#' Like other S4 objects, a `hyperSpec` object can be created by `new`. The
+#' `hyperSpec` object is then `initialize`d using the given parameters.
 #'
 #' If option `gc` is `TRUE`, the initialization will have frequent
-#' calls to `gc ()` which can help to avoid swapping or running out of
+#' calls to `gc()`, which can help to avoid swapping or running out of
 #' memory.
 #'
 #' @name initialize
@@ -163,16 +163,15 @@
 #'   entered as *one* column of a data frame by:
 #'  `data.frame (spc = I (as.matrix (spc)))`.
 #'
-#' However, it will usually be more convenient if the spectra are given in
-#'   `spc`
+#' However, it will usually be more convenient if the spectra are given in `spc`
 #' @param spc the spectra matrix.
 #'
 #' `spc` does not need to be a matrix, it is converted explicitly by
-#'   `I (as.matrix (spc))`.
+#'   `I(as.matrix (spc))`.
 #' @param wavelength The wavelengths corresponding to the columns of
 #'   `data`. If no wavelengths are given, an appropriate vector is
 #'   derived from the column names of `data$spc`. If this is not
-#'   possible, `1 : ncol (data$spc)` is used instead.
+#'   possible, `1:ncol(data$spc)` is used instead.
 #' @param labels A `list` containing the labels for the columns of the
 #'   `data` slot of the `hyperSpec` object and for the wavelength
 #'   (in `label$.wavelength`). The labels should be given in a form ready
@@ -315,7 +314,7 @@ setMethod("initialize", "hyperSpec", .initialize)
 
 
 
-#' as.hyperSpec: convenience conversion functions
+#' `as.hyperSpec`: convenience conversion functions.
 #'
 #' These functions are shortcuts to convert other objects into hypeSpec objects.
 #'

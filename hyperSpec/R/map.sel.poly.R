@@ -1,4 +1,4 @@
-#' Interactively select a polygon (grid graphics) and highlight points
+#' Interactively select a polygon (grid graphics) and highlight points.
 #'
 #' Click the points that should be connected as polygon. Input ends with right click (see
 #' [grid::grid.locator()]). Polygon will be drawn closed.

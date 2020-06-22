@@ -1,4 +1,4 @@
-#' Ensure that the spectra matrix has the wavelengths in column names
+#' Ensure that the spectra matrix has the wavelengths in column names.
 #'
 #' @param spc hyperSpec object
 #'

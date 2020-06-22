@@ -6,34 +6,32 @@
 ###  (y x) wl int
 ###
 
-#' Import and Export of hyperSpec objects
-#' Besides [base::save()] and [base::load()], two general
-#' ways to import and export data into `hyperSpec` objects exist.
+#' Import and Export of `hyperSpec` objects.
 #'
-#' Firstly, hyperSpec objects can be imported and exported as ASCII files.
+#' Besides [base::save()] and [base::load()], two general ways to import and
+#' export data into `hyperSpec` objects exist.
 #'
-#' A second option is using the package [R.matlab::R.matlab()] which
-#' provides the functions [R.matlab::readMat()] and
-#' [R.matlab::writeMat()].
+#' Firstly, `hyperSpec` objects can be imported and exported as ASCII files.
 #'
-#' hyperSpec comes with a number of pre-defined functions to import
-#' manufacturer specific file formats. For details, see `vignette
-#' ("file-io")`.
+#' A second option is using the package [R.matlab::R.matlab()], which
+#' provides the functions [R.matlab::readMat()] and [R.matlab::writeMat()].
 #'
-#' [hyperSpec::read.spc()] imports Thermo Galactic's .spc file
-#' format, and ENVI files may be read using
-#' [hyperSpec::read.ENVI()].
+#' Package \pkg{hyperSpec} comes with a number of pre-defined functions to
+#' import manufacturer specific file formats. For details, see
+#' `vignette("file-io")`.
+#'
+#' [hyperSpec::read.spc()] imports Thermo Galactic's `.spc` file format,
+#' and ENVI files may be read using [hyperSpec::read.ENVI()].
 #'
 #' These functions are very flexible and provide lots of arguments.
 #'
 #' If you use them to read or write manufacturer specific ASCII formats,
 #' please consider writing a wrapper function and contributing this function
-#' to \pkg{hyperSpec}.  An example is in the \dQuote{flu} vignette (see
-#' `vignette ("flu", package = "hyperSpec"`).
+#' to \pkg{hyperSpec}. An example is in the \dQuote{flu} vignette (see
+#' `vignette("flu", package = "hyperSpec"`).
 #'
 #' Note that R accepts many packed formats for ASCII files, see
-#' [base::connections()]. For .zip files, see
-#' [utils::unzip()].
+#' [base::connections()]. For `.zip` files, see [utils::unzip()].
 #'
 #' For further information, see the examples below and the documentation of
 #' [R.matlab::R.matlab()].
@@ -50,19 +48,18 @@
 #'   [utils::write.table()], respectively.
 #' @param decreasing logical vector giving the sort order
 #' @author C. Beleites
-#' @seealso [utils::read.table()] and
-#'   [utils::write.table()]
+#' @seealso
 #'
-#' [R.matlab::R.matlab()] for .mat files
+#' - [utils::read.table()] and [utils::write.table()],
+#' - [R.matlab::R.matlab()] for `.mat` files,
+#' - [hyperSpec::read.ENVI()] for ENVI data,
+#' - [hyperSpec::read.spc()] for `.spc` files,
+#' - Manufacturer specific file formats: [read.txt.Renishaw()].
 #'
-#' [hyperSpec::read.ENVI()] for ENVI data
-#'
-#' [hyperSpec::read.spc()] for .spc files
-#'
-#' Manufacturer specific file formats: [read.txt.Renishaw()]
 #' @rdname textio
 #' @keywords IO file
 #' @export
+#' @importFrom utils read.table unstack
 #' @examples
 #'
 #' \dontrun{
@@ -128,7 +125,7 @@
 #'   ),
 #'   header = TRUE
 #' )
-#' @importFrom utils read.table unstack
+
 read.txt.long <- function(file = stop("file is required"),
                           cols = list(
                             .wavelength = expression(lambda / nm),

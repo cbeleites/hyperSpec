@@ -1,5 +1,4 @@
-#' Convert Principal Component Decomposition or the like into a hyperSpec
-#' Object
+#' Convert Principal Component Decomposition or the like into a `hyperSpec` Object.
 #'
 #' Decomposition of the spectra matrix is a common procedure in chemometric
 #' data analysis. `scores` and `loadings` convert the result matrices

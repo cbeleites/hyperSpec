@@ -1,9 +1,9 @@
-#' dimnames for hyperSpec objects
+#' Dimnames for `hyperSpec` objects.
 #'
-#' hyperSpec objects can have row- and column names like data.frames. The "names" of the wavelengths
-#' are treated separately: see [wl()]
+#' `hyperSpec` objects can have row- and column names like data.frames.
+#' The "names" of the wavelengths are treated separately: see [wl()].
 #'
-#' @param x the hyperSpec object
+#' @param x the `hyperSpec` object
 #' @aliases dimnames
 #' @keywords methods
 #' @rdname dimnames
@@ -78,7 +78,7 @@ setReplaceMethod("colnames",
   function(x, value) {
     validObject(x)
 
-    names(x@label [colnames(x@data)]) <- value
+    names(x@label[colnames(x@data)]) <- value
     colnames(x@data) <- value
 
     validObject(x) # necessary: $spc could be renamed!

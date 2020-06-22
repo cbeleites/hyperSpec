@@ -1,15 +1,14 @@
-#' Binding hyperSpec Objects
+#' Binding `hyperSpec` Objects.
 #'
 #' The former difficulties with binding S4 objects
 #' are resolved since R version 3.2.0 and `cbind` and `rbind` now work as intended and
-#' expected for hyperSpec objects.
+#' expected for `hyperSpec` objects.
 #'
-#' Therefore, calling `rbind.hyperSpec` and
-#' `cbind.hyperSpec` is now depecated: `cbind` and `rbind` should now be called
-#' directly.
+#' Therefore, calling `rbind.hyperSpec` and `cbind.hyperSpec` is now depecated:
+#'  `cbind` and `rbind` should now be called directly.
 #'
 #' However, in consequence it is no longer possible to call `cbind` or `rbind` with a
-#' list of hyperSpec objects. In that case, use `bind` or [base::do.call()] (see example).
+#' list of `hyperSpec` objects. In that case, use `bind` or [base::do.call()] (see example).
 #'
 #' `bind` does the common work for both column- and row-wise binding.
 #'
@@ -38,6 +37,7 @@
 #' @examples
 #'
 #' faux_cell
+#'
 #' bind("r", faux_cell, faux_cell)
 #' rbind(faux_cell, faux_cell)
 #' cbind(faux_cell, faux_cell)

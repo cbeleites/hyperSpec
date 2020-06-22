@@ -1,4 +1,5 @@
-#' loess smoothing interpolation for spectra
+#' LOESS smoothing interpolation for spectra.
+#'
 #' Spectra can be smoothed and interpolated on a new wavelength axis using
 #' [stats::loess()].
 #'
@@ -11,7 +12,7 @@
 #' @param newx wavelengh axis to interpolate on
 #' @param enp.target,surface,... parameters for [stats::loess()] and
 #' [stats::loess.control()].
-#' @return a new `hyperspec` object.
+#' @return A new `hyperSpec` object.
 #' @rdname spc-loess
 #' @export
 #' @author C. Beleites

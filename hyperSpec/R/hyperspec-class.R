@@ -1,13 +1,13 @@
-#' Class "hyperSpec"
-#' This class handles hyperspectral data sets, i.e. spatially or time-resolved
-#' spectra, or spectra with any other kind of information associated with the
-#' spectra.
+#' Class "hyperSpec".
 #'
+#' This package gives an interface to handle hyperspectral data sets in R.
+#' Hyperspectral data are spatially or time-resolved spectra, or spectra with
+#' any other kind of information associated with the spectra. E.g. spectral
+#' maps or images, time series, calibration series, etc.\cr
 #' The spectra can be data as obtained in XRF, UV/VIS, Fluorescence, AES, NIR,
-#' IR, Raman, NMR, MS, etc.
-#'
+#' IR, Raman, NMR, MS, etc.\cr
 #' More generally, any data that is recorded over a discretized variable, e.g.
-#' absorbance = f (wavelength), stored as a vector of absorbance values for
+#' `absorbance = f(wavelength)`, stored as a vector of absorbance values for
 #' discrete wavelengths is suitable.
 #'
 #' @include validate.R
@@ -23,16 +23,17 @@
 #' @slot log deprecated.
 #' @note Please note that the logbook is now removed.
 #' @author C. Beleites
-#' @seealso See the vignette "hyperspec" for an introduction to hyperSpec
+#' @seealso See the vignette "hyperspec" for an introduction to \pkg{hyperSpec}
 #'   from a spectroscopic point of view.
 #' @keywords classes
+#' @concept hyperSpec-main, classes
 #' @export
 #' @include validate.R
 #' @examples
-#'
 #' showClass("hyperSpec")
+#'
 #' \dontrun{
-#' vignette("hyperspec")
+#' vignette("hyperSpec")
 #' }
 setClass("hyperSpec",
   representation = representation(

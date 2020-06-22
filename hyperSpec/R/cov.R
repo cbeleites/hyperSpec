@@ -1,7 +1,7 @@
-#' Covariance matrices for hyperSpec objects
+#' Covariance matrices for `hyperSpec` objects.
 #'
 #'
-#' @param x hyperSpec object
+#' @param x `hyperSpec` object
 #' @param y not supported
 #' @param use,method handed to  [stats::cov()]
 #' @return covariance matrix of size `nwl (x)` x  `nwl (x)`
@@ -11,11 +11,12 @@
 #' @export
 #' @examples
 #' image(cov(faux_cell))
-setMethod("cov", signature = signature(x = "hyperSpec", y = "missing"), function(x, y, use, method) {
-  validObject(x)
+setMethod("cov", signature = signature(x = "hyperSpec", y = "missing"),
+  function(x, y, use, method) {
+    validObject(x)
 
-  cov(x@data$spc, use = use, method = method)
-})
+    cov(x@data$spc, use = use, method = method)
+  })
 
 
 #' @param ... ignored
@@ -37,8 +38,8 @@ pooled.cov <- function(x, groups, ..., regularize = 1e-5 * max(abs(COV))) {
     stop("groups must be a factor")
   }
 
-  x <- x      [!is.na(groups)]
-  groups <- groups [!is.na(groups)]
+  x      <-      x[!is.na(groups)]
+  groups <- groups[!is.na(groups)]
 
   means <- aggregate(x, groups, "mean") # TODO: speed up?
 

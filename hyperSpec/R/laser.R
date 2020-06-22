@@ -1,7 +1,9 @@
-#' Laser Emission
+#' Laser Emission Dataset.
+#'
 #' A time series of an unstable laser emission.
 #'
-#' see the Vignette
+#' @seealso
+#' See the vignette `vignette("laser", package = "hyperSpec")`.
 #'
 #' @name laser
 #' @docType data

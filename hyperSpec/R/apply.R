@@ -52,15 +52,13 @@
 
 
 
-#' apply
-#' Computes summary statistics for the spectra of a `hyperSpec` object.
+#' Compute summary statistics for the spectra of a `hyperSpec` object.
 #'
-#' `apply` gives the functionality of [base::apply()] for
-#' `hyperSpec` objects.
+#' `apply` gives the functionality of [base::apply()] for `hyperSpec` objects.
 #'
 #' The generic functions of group [methods::Math()] are not definded
 #' for `hyperSpec` objects. Instead, `apply` can be used. For
-#' functions like `log` that work on scalars, `MARGIN = 1 : 2` gives
+#' functions like `log()` that work on scalars, `MARGIN = 1 : 2` gives
 #' the appropriate behaviour.
 #'
 #' `spcapply` does the same as `apply` with `MARGIN = 1`, but
@@ -76,11 +74,9 @@
 #' @param X,spc a `hyperSpec` object
 #' @param MARGIN The subscript which the function will be applied over.
 #'
-#' `1` indicates rows (`FUN` is applied to each spectrum),
-#'
-#' `2` indicates columns (`FUN` is applied to each wavelength),
-#'
-#' `1 : 2` indicates that `FUN` should be applied to each single
+#' - `1` indicates rows (`FUN` is applied to each spectrum),
+#' - `2` indicates columns (`FUN` is applied to each wavelength),
+#' - `1:2` indicates that `FUN` should be applied to each single
 #'   element of the spectra matrix. Note that many basic mathematical
 #'   functions are already defined for hyperSpec objects (see
 #'   [Math()]).

@@ -1,5 +1,6 @@
-#' The comparison operators `>`, `<`, `>=`, `<=`,
-#' `==`, and `!=` for `hyperSpec` objects.
+#' @title Comparison of hyperSpec objects.
+#' @description
+#' The comparison operators `>`, `<`, `>=`, `<=`, `==`, and `!=` for `hyperSpec` objects.
 #'
 #' `all.equal` checks the equality of two hyperSpec objects.
 #'
@@ -17,7 +18,6 @@
 #' you have to do this directly on `hyperSpec@@data`.
 #'
 #' @author C. Beleites
-#' @title Comparison of hyperSpec objects
 #' @name Comparison
 #' @rdname Comparison
 #' @docType methods
@@ -47,7 +47,7 @@
 #' @export
 #' @examples
 #'
-#' flu [, , 445 ~ 450] > 300
+#' flu[, , 445 ~ 450] > 300
 #'
 #' all(flu == flu[[]])
 setMethod(

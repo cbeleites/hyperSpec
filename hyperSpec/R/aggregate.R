@@ -61,14 +61,13 @@
 }
 
 
-#' aggregate hyperSpec objects
+#' Aggregate `hyperSpec` objects.
 #'
 #' Compute summary statistics for subsets of a `hyperSpec` object.
 #'
-#' `aggregate` applies `FUN` to each of the subgroups given by
-#' `by`. It combines the functionality of [stats::aggregate()],
-#' [base::tapply()], and [stats::ave()] for hyperSpec
-#' objects.
+#' `aggregate()` applies `FUN` to each of the subgroups given by `by`.
+#' It combines the functionality of [stats::aggregate()], [base::tapply()],
+#' and [stats::ave()] for `hyperSpec` objects.
 #'
 #' `aggregate` avoids splitting `x@@data`.
 #'
@@ -189,7 +188,7 @@ setMethod("aggregate", signature = signature(x = "hyperSpec"), .aggregate)
       } else if (length(x) == 2) {
         NULL
       } else {
-        x [1]
+        x[1]
       }
     }
 

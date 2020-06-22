@@ -1,6 +1,7 @@
-#' Conversion of a hyperSpec object into a data.frame or matrix
+#' Conversion of a hyperSpec object into a data.frame or matrix.
+#'
 #' `as.data.frame` returns `x@@data` (as data.frame) `as.matrix`
-#' returns the spectra matrix `x@@data$spc` as matrix
+#' returns the spectra matrix `x@@data$spc` as matrix.
 #'
 #' @rdname asdataframe
 #' @name as.data.frame
