@@ -241,50 +241,46 @@ printed</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='kw'>chondro</span></div><div class='output co'>#&gt; hyperSpec object
+<span class='kw'>faux_cell</span></div><div class='output co'>#&gt; hyperSpec object
 #&gt;    875 spectra
-#&gt;    5 data columns
+#&gt;    4 data columns
 #&gt;    300 data points / spectrum
 #&gt; wavelength: Delta * tilde(nu)/cm^-1 [numeric] 602 606 ... 1798 
-#&gt; data:  (875 rows x 5 columns)
-#&gt;    1. y: y [numeric] -4.77 -4.77 ... 19.23 
-#&gt;    2. x: x [numeric] -11.55 -10.55 ... 22.45 
-#&gt;    3. filename: filename [character] rawdata/chondro.txt rawdata/chondro.txt ... rawdata/chondro.txt 
-#&gt;    4. clusters: clusters [factor] matrix matrix ... lacuna + NA
-#&gt;    5. spc: I / a.u. [matrix, array300] 501.8194 500.4552 ... 169.2942 </div><div class='input'>
-<span class='fu'>show</span> (<span class='kw'>chondro</span>)</div><div class='output co'>#&gt; hyperSpec object
+#&gt; data:  (875 rows x 4 columns)
+#&gt;    1. x: x position [numeric] -11.55 -10.55 ... 22.45 
+#&gt;    2. y: y position [numeric] -4.77 -4.77 ... 19.23 
+#&gt;    3. region:  [factor] matrix matrix ... matrix 
+#&gt;    4. spc: intensity (arbitrary units) [matrix, array300] 15 168 ... 93 </div><div class='input'>
+<span class='fu'>show</span> (<span class='kw'>faux_cell</span>)</div><div class='output co'>#&gt; hyperSpec object
 #&gt;    875 spectra
-#&gt;    5 data columns
+#&gt;    4 data columns
 #&gt;    300 data points / spectrum
 #&gt; wavelength: Delta * tilde(nu)/cm^-1 [numeric] 602 606 ... 1798 
-#&gt; data:  (875 rows x 5 columns)
-#&gt;    1. y: y [numeric] -4.77 -4.77 ... 19.23 
-#&gt;    2. x: x [numeric] -11.55 -10.55 ... 22.45 
-#&gt;    3. filename: filename [character] rawdata/chondro.txt rawdata/chondro.txt ... rawdata/chondro.txt 
-#&gt;    4. clusters: clusters [factor] matrix matrix ... lacuna + NA
-#&gt;    5. spc: I / a.u. [matrix, array300] 501.8194 500.4552 ... 169.2942 </div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span> (<span class='kw'>chondro</span>)</div><div class='output co'>#&gt; hyperSpec object
+#&gt; data:  (875 rows x 4 columns)
+#&gt;    1. x: x position [numeric] -11.55 -10.55 ... 22.45 
+#&gt;    2. y: y position [numeric] -4.77 -4.77 ... 19.23 
+#&gt;    3. region:  [factor] matrix matrix ... matrix 
+#&gt;    4. spc: intensity (arbitrary units) [matrix, array300] 15 168 ... 93 </div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span> (<span class='kw'>faux_cell</span>)</div><div class='output co'>#&gt; hyperSpec object
 #&gt;    875 spectra
-#&gt;    5 data columns
+#&gt;    4 data columns
 #&gt;    300 data points / spectrum
 #&gt; wavelength: Delta * tilde(nu)/cm^-1 [numeric] 602 606 ... 1798 
-#&gt; data:  (875 rows x 5 columns)
-#&gt;    1. y: y [numeric] -4.77 -4.77 ... 19.23 
-#&gt;    2. x: x [numeric] -11.55 -10.55 ... 22.45 
-#&gt;    3. filename: filename [character] rawdata/chondro.txt rawdata/chondro.txt ... rawdata/chondro.txt 
-#&gt;    4. clusters: clusters [factor] matrix matrix ... lacuna + NA
-#&gt;    5. spc: I / a.u. [matrix, array300] 501.8194 500.4552 ... 169.2942 </div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span> (<span class='kw'>chondro</span>, range = <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; hyperSpec object
+#&gt; data:  (875 rows x 4 columns)
+#&gt;    1. x: x position [numeric] -11.55 -10.55 ... 22.45 
+#&gt;    2. y: y position [numeric] -4.77 -4.77 ... 19.23 
+#&gt;    3. region:  [factor] matrix matrix ... matrix 
+#&gt;    4. spc: intensity (arbitrary units) [matrix, array300] 15 168 ... 93 </div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span> (<span class='kw'>faux_cell</span>, range = <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; hyperSpec object
 #&gt;    875 spectra
-#&gt;    5 data columns
+#&gt;    4 data columns
 #&gt;    300 data points / spectrum
 #&gt; wavelength: Delta * tilde(nu)/cm^-1 [numeric] 602 606 ... 1798 
-#&gt; data:  (875 rows x 5 columns)
-#&gt;    1. y: y [numeric] -4.77 -4.77 ... 19.23 
-#&gt;    2. x: x [numeric] -11.55 -10.55 ... 22.45 
-#&gt;    3. filename: filename [character] rawdata/chondro.txt rawdata/chondro.txt ... rawdata/chondro.txt 
-#&gt;    4. clusters: clusters [factor] matrix matrix ... lacuna + NA
-#&gt;    5. spc: I / a.u. [matrix, array300] 501.8194 500.4552 ... 169.2942 </div><div class='input'></div></pre>
+#&gt; data:  (875 rows x 4 columns)
+#&gt;    1. x: x position [numeric] -11.55 -10.55 ... 22.45 
+#&gt;    2. y: y position [numeric] -4.77 -4.77 ... 19.23 
+#&gt;    3. region:  [factor] matrix matrix ... matrix 
+#&gt;    4. spc: intensity (arbitrary units) [matrix, array300] 15 168 ... 93 </div><div class='input'></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

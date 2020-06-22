@@ -168,7 +168,7 @@ These functions fit polynomal baselines.</h1>
 
     <div class="ref-description">
     <p>Both functions fit polynomials to be used as baselines. If <code>apply.to</code>
-is <code>NULL</code>, a <code>hyperSpec</code> object with the polynomial coefficients
+is <code>NULL</code>, a hyperSpec object with the polynomial coefficients
 is returned, otherwise the polynomials are evaluated on the spectral range
 of <code>apply.to</code>.</p>
     </div>
@@ -197,12 +197,12 @@ of <code>apply.to</code>.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>fit.to</th>
-      <td><p><code>hyperSpec</code> object on which the baselines are fitted</p></td>
+      <td><p>hyperSpec object on which the baselines are fitted</p></td>
     </tr>
     <tr>
       <th>apply.to</th>
-      <td><p><code>hyperSpec</code> object on which the baselines are evaluted
-If <code>NULL</code>, a <code>hyperSpec</code> object containing the polynomial
+      <td><p>hyperSpec object on which the baselines are evaluted
+If <code>NULL</code>, a hyperSpec object containing the polynomial
 coefficients rather than evaluted baselines is returned.</p></td>
     </tr>
     <tr>
@@ -220,8 +220,8 @@ This enhances numerical stability.</p></td>
     </tr>
     <tr>
       <th>noise</th>
-      <td><p>noise level to be considered during the fit. It may be given
-as one value for all the spectra, or for each spectrum separately.</p></td>
+      <td><p>noise level to be considered during the fit. It may be given as
+one value for all the spectra, or for each spectrum separately.</p></td>
     </tr>
     <tr>
       <th>max.iter</th>
@@ -229,33 +229,33 @@ as one value for all the spectra, or for each spectrum separately.</p></td>
     </tr>
     <tr>
       <th>stop.on.increase</th>
-      <td><p>additional stopping rule: stop if the number of support points would increase,
-regardless whether npts.min was reached or not.</p></td>
+      <td><p>additional stopping rule: stop if the number of
+support points would increase, regardless whether npts.min was reached or
+not.</p></td>
     </tr>
     <tr>
       <th>debuglevel</th>
-      <td><p>additional output:
-<code>1</code> shows <code>npts.min</code>,
-<code>2</code> plots support points for the final baseline of 1st spectrum,
-<code>3</code> plots support points for 1st spectrum,
-<code>4</code> plots support points for all spectra.</p></td>
+      <td><p>additional output: `1` shows `npts.min`,
+`2` plots support points for the final baseline of 1st spectrum,
+`3` plots support points for 1st spectrum, `4` plots support
+points for all spectra.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>hyperspec</code> object containing the baselines in the spectra
-  matrix, either as polynomial coefficients or as polynomials evaluted on
-  the spectral range of <code>apply.to</code></p>
+    <p>hyperSpec object containing the baselines in the spectra
+matrix, either as polynomial coefficients or as polynomials evaluted on
+the spectral range of <code>apply.to</code></p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p><code>spc.fit.poly</code> calculates the least squares fit of order
+    <p><code>spc.fit.poly()</code> calculates the least squares fit of order
 <code>poly.order</code> to the <em>complete</em> spectra given in <code>fit.to</code>.
 Thus <code>fit.to</code> needs to be cut appropriately.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code>vignette ("baseline", package = "hyperSpec")</code></p>
-<p>see <code>options</code> for more on <code>debuglevel</code></p></div>
+<p>see [hyperSpec::options()] for more on `debuglevel`</p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>C. Beleites</p>
@@ -264,43 +264,41 @@ Thus <code>fit.to</code> needs to be cut appropriately.</p>
     <pre class="examples"><div class='input'>
 <span class='co'>if</span> (<span class='fl'>FALSE</span>) <span class='fu'><a href='https://rdrr.io/r/utils/vignette.html'>vignette</a></span> (<span class='st'>"baseline"</span>, package = <span class='st'>"hyperSpec"</span>)
 
-<span class='kw'>spc</span> <span class='op'>&lt;-</span> <span class='kw'>chondro</span> [<span class='fl'>1</span> <span class='op'>:</span> <span class='fl'>10</span>]
-<span class='kw'>baselines</span> <span class='op'>&lt;-</span> <span class='fu'>spc.fit.poly</span>(<span class='kw'>spc</span> [,, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span> (<span class='fl'>625</span> <span class='op'>~</span> <span class='fl'>640</span>, <span class='fl'>1785</span> <span class='op'>~</span> <span class='fl'>1800</span>)], <span class='kw'>spc</span>)
+<span class='kw'>spc</span> <span class='op'>&lt;-</span> <span class='kw'>faux_cell</span>[<span class='fl'>1</span> <span class='op'>:</span> <span class='fl'>10</span>]
+<span class='kw'>baselines</span> <span class='op'>&lt;-</span> <span class='fu'>spc.fit.poly</span>(<span class='kw'>spc</span>[,, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span> (<span class='fl'>625</span> <span class='op'>~</span> <span class='fl'>640</span>, <span class='fl'>1785</span> <span class='op'>~</span> <span class='fl'>1800</span>)], <span class='kw'>spc</span>)
 <span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>spc</span> <span class='op'>-</span> <span class='kw'>baselines</span>)</div><div class='img'><img src='baselines-1.png' alt='' width='466' height='288' /></div><div class='input'>
 
 <span class='kw'>baselines</span> <span class='op'>&lt;-</span> <span class='fu'>spc.fit.poly.below</span> (<span class='kw'>spc</span>)
 <span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span> (<span class='kw'>spc</span> <span class='op'>-</span> <span class='kw'>baselines</span>)</div><div class='img'><img src='baselines-2.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='fu'>spc.fit.poly.below</span>(<span class='kw'>chondro</span> [<span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>], debuglevel = <span class='fl'>1</span>)</div><div class='output co'>#&gt; <span class='message'>Fitting with npts.min = 15</span></div><div class='output co'>#&gt; <span class='message'>spectrum      1:    26 support points, noise = 0.0,   5 iterations</span></div><div class='output co'>#&gt; <span class='message'>spectrum      2:    26 support points, noise = 0.0,   5 iterations</span></div><div class='output co'>#&gt; <span class='message'>spectrum      3:    26 support points, noise = 0.0,   5 iterations</span></div><div class='output co'>#&gt; hyperSpec object
+<span class='fu'>spc.fit.poly.below</span>(<span class='kw'>faux_cell</span>[<span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>], debuglevel = <span class='fl'>1</span>)</div><div class='output co'>#&gt; <span class='message'>Fitting with npts.min = 15</span></div><div class='output co'>#&gt; <span class='message'>spectrum      1:    16 support points, noise = 0.0,   5 iterations</span></div><div class='output co'>#&gt; <span class='message'>spectrum      2:    37 support points, noise = 0.0,   4 iterations</span></div><div class='output co'>#&gt; <span class='message'>spectrum      3:    30 support points, noise = 0.0,   4 iterations</span></div><div class='output co'>#&gt; hyperSpec object
 #&gt;    3 spectra
-#&gt;    5 data columns
+#&gt;    4 data columns
 #&gt;    300 data points / spectrum
 #&gt; wavelength: Delta * tilde(nu)/cm^-1 [numeric] 602 606 ... 1798 
-#&gt; data:  (3 rows x 5 columns)
-#&gt;    1. y: y [numeric] -4.77 -4.77 -4.77 
-#&gt;    2. x: x [numeric] -11.55 -10.55 -9.55 
-#&gt;    3. filename: filename [character] rawdata/chondro.txt rawdata/chondro.txt rawdata/chondro.txt 
-#&gt;    4. clusters: clusters [factor] matrix matrix matrix 
-#&gt;    5. spc: I / a.u. [AsIs matrix x 300] 454.0450 453.4485 ... 212.8395 </div><div class='input'><span class='fu'>spc.fit.poly.below</span>(<span class='kw'>chondro</span> [<span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>], debuglevel = <span class='fl'>2</span>)</div><div class='output co'>#&gt; <span class='message'>Fitting with npts.min = 15</span></div><div class='output co'>#&gt; <span class='message'>start: 300 support points</span></div><div class='output co'>#&gt; <span class='message'>spectrum      1:    26 support points, noise = 0.0,   5 iterations</span></div><div class='output co'>#&gt; <span class='message'>spectrum      2:    26 support points, noise = 0.0,   5 iterations</span></div><div class='output co'>#&gt; <span class='message'>spectrum      3:    26 support points, noise = 0.0,   5 iterations</span></div><div class='img'><img src='baselines-3.png' alt='' width='466' height='288' /></div><div class='output co'>#&gt; hyperSpec object
+#&gt; data:  (3 rows x 4 columns)
+#&gt;    1. x: x position [numeric] -11.55 -10.55 -9.55 
+#&gt;    2. y: y position [numeric] -4.77 -4.77 -4.77 
+#&gt;    3. region:  [factor] matrix matrix matrix 
+#&gt;    4. spc: intensity (arbitrary units) [AsIs matrix x 300] 10.63286 150.75316 ... 120.1995 </div><div class='input'><span class='fu'>spc.fit.poly.below</span>(<span class='kw'>faux_cell</span>[<span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>], debuglevel = <span class='fl'>2</span>)</div><div class='output co'>#&gt; <span class='message'>Fitting with npts.min = 15</span></div><div class='output co'>#&gt; <span class='message'>start: 300 support points</span></div><div class='output co'>#&gt; <span class='message'>spectrum      1:    16 support points, noise = 0.0,   5 iterations</span></div><div class='output co'>#&gt; <span class='message'>spectrum      2:    37 support points, noise = 0.0,   4 iterations</span></div><div class='output co'>#&gt; <span class='message'>spectrum      3:    30 support points, noise = 0.0,   4 iterations</span></div><div class='img'><img src='baselines-3.png' alt='' width='466' height='288' /></div><div class='output co'>#&gt; hyperSpec object
 #&gt;    3 spectra
-#&gt;    5 data columns
+#&gt;    4 data columns
 #&gt;    300 data points / spectrum
 #&gt; wavelength: Delta * tilde(nu)/cm^-1 [numeric] 602 606 ... 1798 
-#&gt; data:  (3 rows x 5 columns)
-#&gt;    1. y: y [numeric] -4.77 -4.77 -4.77 
-#&gt;    2. x: x [numeric] -11.55 -10.55 -9.55 
-#&gt;    3. filename: filename [character] rawdata/chondro.txt rawdata/chondro.txt rawdata/chondro.txt 
-#&gt;    4. clusters: clusters [factor] matrix matrix matrix 
-#&gt;    5. spc: I / a.u. [AsIs matrix x 300] 454.0450 453.4485 ... 212.8395 </div><div class='input'><span class='fu'>spc.fit.poly.below</span>(<span class='kw'>chondro</span> [<span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>], debuglevel = <span class='fl'>3</span>, noise = <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>rowMeans</a></span> (<span class='kw'>chondro</span> [[<span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>]])))</div><div class='output co'>#&gt; <span class='message'>Fitting with npts.min = 15</span></div><div class='output co'>#&gt; <span class='message'>start: 300 support points</span></div><div class='output co'>#&gt; <span class='message'>Iteration 1: 160 support points</span></div><div class='output co'>#&gt; <span class='message'>Iteration 2: 99 support points</span></div><div class='output co'>#&gt; <span class='message'>Iteration 3: 62 support points</span></div><div class='output co'>#&gt; <span class='message'>Iteration 4: 44 support points</span></div><div class='output co'>#&gt; <span class='message'>Iteration 5: 40 support points</span></div><div class='output co'>#&gt; <span class='message'>Iteration 6: 38 support points</span></div><div class='output co'>#&gt; <span class='message'>Iteration 7: 38 support points</span></div><div class='output co'>#&gt; <span class='message'>spectrum      1:    38 support points, noise = 29.0,   7 iterations</span></div><div class='output co'>#&gt; <span class='message'>spectrum      2:    37 support points, noise = 29.0,   8 iterations</span></div><div class='output co'>#&gt; <span class='message'>spectrum      3:    38 support points, noise = 27.9,   8 iterations</span></div><div class='img'><img src='baselines-4.png' alt='' width='466' height='288' /></div><div class='output co'>#&gt; hyperSpec object
+#&gt; data:  (3 rows x 4 columns)
+#&gt;    1. x: x position [numeric] -11.55 -10.55 -9.55 
+#&gt;    2. y: y position [numeric] -4.77 -4.77 -4.77 
+#&gt;    3. region:  [factor] matrix matrix matrix 
+#&gt;    4. spc: intensity (arbitrary units) [AsIs matrix x 300] 10.63286 150.75316 ... 120.1995 </div><div class='input'><span class='fu'>spc.fit.poly.below</span>(<span class='kw'>faux_cell</span>[<span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>], debuglevel = <span class='fl'>3</span>,
+                   noise = <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>rowMeans</a></span> (<span class='kw'>faux_cell</span>[[<span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>]])))</div><div class='output co'>#&gt; <span class='message'>Fitting with npts.min = 15</span></div><div class='output co'>#&gt; <span class='message'>start: 300 support points</span></div><div class='output co'>#&gt; <span class='message'>Iteration 1: 260 support points</span></div><div class='output co'>#&gt; <span class='message'>Iteration 2: 229 support points</span></div><div class='output co'>#&gt; <span class='message'>Iteration 3: 216 support points</span></div><div class='output co'>#&gt; <span class='message'>Iteration 4: 213 support points</span></div><div class='output co'>#&gt; <span class='message'>Iteration 5: 212 support points</span></div><div class='output co'>#&gt; <span class='message'>Iteration 6: 212 support points</span></div><div class='output co'>#&gt; <span class='message'>spectrum      1:   212 support points, noise = 5.7,   6 iterations</span></div><div class='output co'>#&gt; <span class='message'>spectrum      2:   201 support points, noise = 13.4,  10 iterations</span></div><div class='output co'>#&gt; <span class='message'>spectrum      3:   181 support points, noise = 11.8,   9 iterations</span></div><div class='img'><img src='baselines-4.png' alt='' width='466' height='288' /></div><div class='output co'>#&gt; hyperSpec object
 #&gt;    3 spectra
-#&gt;    5 data columns
+#&gt;    4 data columns
 #&gt;    300 data points / spectrum
 #&gt; wavelength: Delta * tilde(nu)/cm^-1 [numeric] 602 606 ... 1798 
-#&gt; data:  (3 rows x 5 columns)
-#&gt;    1. y: y [numeric] -4.77 -4.77 -4.77 
-#&gt;    2. x: x [numeric] -11.55 -10.55 -9.55 
-#&gt;    3. filename: filename [character] rawdata/chondro.txt rawdata/chondro.txt rawdata/chondro.txt 
-#&gt;    4. clusters: clusters [factor] matrix matrix matrix 
-#&gt;    5. spc: I / a.u. [AsIs matrix x 300] 467.0478 465.4305 ... 215.9908 </div><div class='input'></div></pre>
+#&gt; data:  (3 rows x 4 columns)
+#&gt;    1. x: x position [numeric] -11.55 -10.55 -9.55 
+#&gt;    2. y: y position [numeric] -4.77 -4.77 -4.77 
+#&gt;    3. region:  [factor] matrix matrix matrix 
+#&gt;    4. spc: intensity (arbitrary units) [AsIs matrix x 300] 15.41523 164.56086 ... 139.527 </div><div class='input'></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
