@@ -51,7 +51,11 @@ remotes::install_github("cbeleites/hyperSpec/hyperSpec", ref = "develop")
 
 ## How to build from source
 
-In order to build the package from source, first install all the packages listed under the section `Suggests:` in file `hyperSpec/DESCRIPTION`.
+In order to build the package from source, first install all the packages listed under the section `Suggests:` in file `hyperSpec/DESCRIPTION`. This can be done e.g. using `remotes` package:
+
+```
+remotes::install_deps(dependencies = 'Suggests')
+```
 
 If using RStudio, go to menu *Build/configure build tools*, use 'Package' build system, set `hyperSpec` as the package directory, and make sure that the checkboxes for 'Use devtools package' and 'Generate documentation with Roxygen' are checked. Under the *Roxygen configuration* dialog set all checkboxes except of 'install and restart'.
 
