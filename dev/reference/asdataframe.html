@@ -250,10 +250,10 @@ other functions producing long-format data.frames.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span> (<span class='kw'>fauxCell</span> [<span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>,, <span class='fl'>600</span> <span class='op'>~</span> <span class='fl'>620</span>])</div><div class='output co'>#&gt;        x     y region spc.602 spc.606 spc.610 spc.614 spc.618 .row
+<span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span> (<span class='kw'>faux_cell</span> [<span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>,, <span class='fl'>600</span> <span class='op'>~</span> <span class='fl'>620</span>])</div><div class='output co'>#&gt;        x     y region spc.602 spc.606 spc.610 spc.614 spc.618 .row
 #&gt; 1 -11.55 -4.77 matrix      15      22      15      13      15    1
 #&gt; 2 -10.55 -4.77 matrix     168     166     159     175     160    2
-#&gt; 3  -9.55 -4.77 matrix     112     113      99     115     119    3</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span> (<span class='kw'>fauxCell</span> [<span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>,, <span class='fl'>600</span> <span class='op'>~</span> <span class='fl'>620</span>])</div><div class='output co'>#&gt;      602 606 610 614 618
+#&gt; 3  -9.55 -4.77 matrix     112     113      99     115     119    3</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span> (<span class='kw'>faux_cell</span> [<span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>,, <span class='fl'>600</span> <span class='op'>~</span> <span class='fl'>620</span>])</div><div class='output co'>#&gt;      602 606 610 614 618
 #&gt; [1,]  15  22  15  13  15
 #&gt; [2,] 168 166 159 175 160
 #&gt; [3,] 112 113  99 115 119</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span> (<span class='kw'>c</span> <span class='op'>~</span> <span class='kw'>spc</span>, data = <span class='kw'>flu</span> [,,<span class='fl'>450</span>])</div><div class='output co'>#&gt; 
@@ -264,12 +264,12 @@ other functions producing long-format data.frames.</p></div>
 #&gt; (Intercept)          spc  
 #&gt;   0.0038493    0.0004407  
 #&gt; </div><div class='input'>
-<span class='fu'>as.wide.df</span> (<span class='kw'>fauxCell</span> [<span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>,, <span class='fl'>600</span> <span class='op'>~</span> <span class='fl'>610</span>])</div><div class='output co'>#&gt;        x     y region 602 606 610
+<span class='fu'>as.wide.df</span> (<span class='kw'>faux_cell</span> [<span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>,, <span class='fl'>600</span> <span class='op'>~</span> <span class='fl'>610</span>])</div><div class='output co'>#&gt;        x     y region 602 606 610
 #&gt; 1 -11.55 -4.77 matrix  15  22  15
 #&gt; 2 -10.55 -4.77 matrix 168 166 159
 #&gt; 3  -9.55 -4.77 matrix 112 113  99
 #&gt; 4  -8.55 -4.77 matrix  23  33  39
-#&gt; 5  -7.55 -4.77 matrix   3   0   1</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span> (<span class='fu'>as.wide.df</span> (<span class='kw'>fauxCell</span> [<span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>,, <span class='fl'>600</span> <span class='op'>~</span> <span class='fl'>610</span>]))</div><div class='output co'>#&gt;        x                y             region       602             606       
+#&gt; 5  -7.55 -4.77 matrix   3   0   1</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span> (<span class='fu'>as.wide.df</span> (<span class='kw'>faux_cell</span> [<span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>,, <span class='fl'>600</span> <span class='op'>~</span> <span class='fl'>610</span>]))</div><div class='output co'>#&gt;        x                y             region       602             606       
 #&gt;  Min.   :-11.55   Min.   :-4.77   cell   :0   Min.   :  3.0   Min.   :  0.0  
 #&gt;  1st Qu.:-10.55   1st Qu.:-4.77   matrix :5   1st Qu.: 15.0   1st Qu.: 22.0  
 #&gt;  Median : -9.55   Median :-4.77   nucleus:0   Median : 23.0   Median : 33.0  
@@ -369,7 +369,7 @@ other functions producing long-format data.frames.</p></div>
 #&gt;  407    : 6   3rd Qu.:196.02                      3rd Qu.:0.250  
 #&gt;  407.5  : 6   Max.   :281.83                      Max.   :0.300  
 #&gt;  (Other):30                                                      </div><div class='input'>
-<span class='kw'>df</span> <span class='op'>&lt;-</span> <span class='fu'>as.t.df</span> (<span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span> (<span class='kw'>fauxCell</span>, <span class='fl'>2</span>, <span class='kw'>mean_pm_sd</span>))
+<span class='kw'>df</span> <span class='op'>&lt;-</span> <span class='fu'>as.t.df</span> (<span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span> (<span class='kw'>faux_cell</span>, <span class='fl'>2</span>, <span class='kw'>mean_pm_sd</span>))
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span> (<span class='kw'>df</span>)</div><div class='output co'>#&gt;         .wavelength mean.minus.sd     mean mean.plus.sd
 #&gt; spc.602         602      42.04492 101.5691     161.0934
 #&gt; spc.606         606      42.14042 101.6023     161.0642

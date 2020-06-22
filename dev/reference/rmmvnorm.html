@@ -210,7 +210,7 @@ groups with different mean but common covariance matrix, see the examples.</p>
     <pre class="examples"><div class='input'><span class='co'>## multiple groups, common covariance matrix</span>
 
 <span class='co'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/library.html'>require</a></span> (<span class='st'><a href='http://mvtnorm.R-forge.R-project.org'>"mvtnorm"</a></span>)){
-   <span class='kw'>pcov</span> <span class='op'>&lt;-</span> <span class='fu'>pooled.cov</span> (<span class='kw'>fauxCell</span>, <span class='kw'>fauxCell</span><span class='op'>$</span><span class='kw'>region</span>)
+   <span class='kw'>pcov</span> <span class='op'>&lt;-</span> <span class='fu'>pooled.cov</span> (<span class='kw'>faux_cell</span>, <span class='kw'>faux_cell</span><span class='op'>$</span><span class='kw'>region</span>)
    <span class='kw'>rnd</span> <span class='op'>&lt;-</span> <span class='fu'>rmmvnorm</span> (<span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span> (<span class='fl'>10</span>, <span class='fl'>3</span>), mean = <span class='kw'>pcov</span><span class='op'>$</span><span class='kw'>mean</span>, sigma = <span class='kw'>pcov</span><span class='op'>$</span><span class='kw'>COV</span>)
    <span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span> (<span class='kw'>rnd</span>, col = <span class='kw'>rnd</span><span class='op'>$</span><span class='kw'>.group</span>)
 }</div><div class='output co'>#&gt; <span class='message'>Loading required package: mvtnorm</span></div><div class='img'><img src='rmmvnorm-1.png' alt='' width='466' height='288' /></div></pre>

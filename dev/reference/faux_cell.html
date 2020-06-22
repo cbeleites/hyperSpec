@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Getting and Setting the Wavelength Axis
-<code>wl</code> returns the wavelength axis, <code>wl&lt;-</code> sets it. — wl • hyperSpec</title>
+<title>Faux Cell Data Set for Testing &amp; Demonstration — faux_cell • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -42,10 +41,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Getting and Setting the Wavelength Axis
-<code>wl</code> returns the wavelength axis, <code>wl&lt;-</code> sets it. — wl" />
-<meta property="og:description" content="The wavelength axis of a hyperSpec object can be retrieved and
-replaced with wl and wl&amp;lt;-, respectively." />
+<meta property="og:title" content="Faux Cell Data Set for Testing &amp; Demonstration — faux_cell" />
+<meta property="og:description" content="This is a synthetic data set intended for testing and demonstration." />
 
 <meta name="robots" content="noindex" />
 <meta name="robots" content="noindex">
@@ -158,89 +155,59 @@ replaced with wl and wl&amp;lt;-, respectively." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Getting and Setting the Wavelength Axis
-<code>wl</code> returns the wavelength axis, <code>wl&lt;-</code> sets it.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/wl.R'><code>R/wl.R</code></a></small>
-    <div class="hidden name"><code>wl.Rd</code></div>
+    <h1>Faux Cell Data Set for Testing &amp; Demonstration</h1>
+    <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/faux_cell.R'><code>R/faux_cell.R</code></a></small>
+    <div class="hidden name"><code>faux_cell.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>The wavelength axis of a <code>hyperSpec</code> object can be retrieved and
-replaced with <code>wl</code> and <code>wl&lt;-</code>, respectively.</p>
+    <p>This is a synthetic data set intended for testing and demonstration.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>wl</span>(<span class='kw'>x</span>)
+    <pre class="usage"><span class='kw'>faux_cell</span></pre>
 
-<span class='fu'>wl</span> (<span class='kw'>x</span>, label=<span class='kw'>NULL</span>, digits=<span class='fl'>6</span>) <span class='op'>&lt;-</span> <span class='kw'>value</span></pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>x</th>
-      <td><p>a <code>hyperSpec</code> object</p></td>
-    </tr>
-    <tr>
-      <th>label</th>
-      <td><p>The label for the new wavelength axis. See initialize
-for details.</p></td>
-    </tr>
-    <tr>
-      <th>digits</th>
-      <td><p>handed to <code><a href='https://rdrr.io/r/base/Round.html'>signif</a></code>. See details.</p></td>
-    </tr>
-    <tr>
-      <th>value</th>
-      <td><p>either a numeric containing the new wavelength vector, or a
-list with <code>value$wl</code> containing the new wavelength vector and
-<code>value$label</code> holding the corresponding <code>label</code>.</p></td>
-    </tr>
-    </table>
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>a numeric vector</p>
-<p><code>hyperSpec</code> object</p>
+    <p>The object contains 875 Raman-like spectra, allocated to three
+  groups/regions in column region: the matrix/background, the cell and the
+  cell nucleus. Each spectrum is composed of 300 data points.  The spectrum
+  of each region is unique and simple, with a single peak at a particular
+  frequency and line width.  Poisson noise has been added.  The data is
+  indexed along the x and y dimensions, simulating data collected on a grid.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>When the wavelength axis is replaced, the colnames of <code>x@data$spc</code> are
-replaced by the rounded new wavelengths.  <code>digits</code> specifies the how
-many significant digits should be used.</p>
-<p>There are two ways to set the label of the new wavelength axis, see the
-examples.  If no label is given, a warning will be issued.</p>
-    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
-
-    <p><code>wl&lt;-</code> always sets the complete wavelength axis, without
-  changing the columns of the spectra matrix. If you rather want to cut the
-  spectral range, use <code><a href='https://rdrr.io/r/base/Extract.html'>[</a></code>, for
-  interpolation along the spectral axis see
-  <code><a href='https://rdrr.io/pkg/hyperSpec/man/spc-loess.html'>spc.loess</a></code> and for spectral binning
-  <code><a href='https://rdrr.io/pkg/hyperSpec/man/spc-bin.html'>spc.bin</a></code>.</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><code><a href='https://rdrr.io/r/base/Round.html'>signif</a></code></p>
-<p>cutting the spectral range: <code><a href='https://rdrr.io/r/base/Extract.html'>[</a></code></p>
-<p>interpolation along the spectral axis: <code><a href='https://rdrr.io/pkg/hyperSpec/man/spc-loess.html'>spc.loess</a></code></p>
-<p>spectral binning: <code><a href='https://rdrr.io/pkg/hyperSpec/man/spc-bin.html'>spc.bin</a></code></p></div>
+    <p>The data set resembles the `chondro` data set but is entirely synthetic.</p>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
-    <p>C. Beleites</p>
+    <p>Claudia Beleites, Bryan A. Hanson</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-	wl (las<span class='fu'>wl</span>)<span class='kw'>laser</span></div><div class='output co'>#&gt;  [1] 404.5828 404.6181 404.6534 404.6887 404.7240 404.7592 404.7945 404.8298
-#&gt;  [9] 404.8651 404.9004 404.9357 404.9710 405.0063 405.0416 405.0768 405.1121
-#&gt; [17] 405.1474 405.1827 405.2180 405.2532 405.2885 405.3238 405.3591 405.3944
-#&gt; [25] 405.4296 405.4649 405.5002 405.5355 405.5707 405.6060 405.6413 405.6765
-#&gt; [33] 405.7118 405.7471 405.7823 405.8176</div><div class='input'>
-	# conve<span class='co'># convert from wavelength to frequency</span>
-	plot (l<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>)<span class='kw'>laser</span></div><div class='img'><img src='wl-1.png' alt='' width='466' height='288' /></div><div class='input'>	wl (las<span class='fu'>wl</span>, <span class='kw'>laser</span>Hz<span class='st'>"f / Hz"</span>99<span class='op'>&lt;-</span>8<span class='fl'>2.998e8</span>l<span class='op'>*</span>s<span class='fu'>wl</span>) <span class='kw'>laser</span><span class='op'>*</span><span class='fl'>1e9</span>
-	plot (l<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>)<span class='kw'>laser</span></div><div class='img'><img src='wl-2.png' alt='' width='466' height='288' /></div><div class='input'>
-	# conve<span class='co'># convert from Raman shift to wavelength</span>
-	# excit<span class='co'># excitation was at 785 nm</span>
-	plot (f<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>ce<span class='kw'>faux_cell</span><span class='fl'>1</span></div><div class='img'><img src='wl-3.png' alt='' width='466' height='288' /></div><div class='input'>	wl(faux<span class='fu'>wl</span>e<span class='kw'>faux_cell</span>st<span class='op'>&lt;-</span>l<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>e7/(1e<span class='fl'>1e7</span><span class='op'>/</span>5<span class='fl'>1e7</span><span class='op'>/</span><span class='fl'>785</span>a<span class='op'>-</span>x<span class='fu'>wl</span>e<span class='kw'>faux_cell</span>
-	                      label = express<span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span> <span class='kw'>lambda</span><span class='op'>/</span><span class='kw'>nm</span>
-	plot (f<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>ce<span class='kw'>faux_cell</span><span class='fl'>1</span></div><div class='img'><img src='wl-4.png' alt='' width='466' height='288' /></div><div class='input'></div></pre>
+<span class='kw'>faux_cell</span></div><div class='output co'>#&gt; hyperSpec object
+#&gt;    875 spectra
+#&gt;    4 data columns
+#&gt;    300 data points / spectrum
+#&gt; wavelength: Delta * tilde(nu)/cm^-1 [numeric] 602 606 ... 1798 
+#&gt; data:  (875 rows x 4 columns)
+#&gt;    1. x: x position [numeric] -11.55 -10.55 ... 22.45 
+#&gt;    2. y: y position [numeric] -4.77 -4.77 ... 19.23 
+#&gt;    3. region:  [factor] matrix matrix ... matrix 
+#&gt;    4. spc: intensity (arbitrary units) [matrix, array300] 15 168 ... 93 </div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span> (<span class='kw'>faux_cell</span>, <span class='fl'>10</span>), stacked = <span class='fl'>TRUE</span>)</div><div class='img'><img src='faux_cell-1.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='co'># Plot mean spectra</span>
+<span class='kw'>FCgrps</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/aggregate.html'>aggregate</a></span>(<span class='kw'>faux_cell</span>, <span class='kw'>faux_cell</span><span class='op'>$</span><span class='kw'>region</span>, <span class='kw'>mean_pm_sd</span>)
+<span class='fu'>plotspc</span>(<span class='kw'>FCgrps</span>, stacked = <span class='st'>".aggregate"</span>,
+        col = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"red"</span>, <span class='st'>"green"</span>, <span class='st'>"blue"</span>), fill = <span class='st'>".aggregate"</span>)</div><div class='img'><img src='faux_cell-2.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='kw'>mapcols</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(cell = <span class='st'>"aquamarine"</span>, matrix = <span class='st'>"aliceblue"</span>, nucleus = <span class='st'>"dodgerblue"</span>)
+<span class='fu'>plotmap</span>(<span class='kw'>faux_cell</span>, <span class='kw'>region</span> <span class='op'>~</span> <span class='kw'>x</span> <span class='op'>*</span> <span class='kw'>y</span>, col.regions = <span class='kw'>mapcols</span>)</div><div class='img'><img src='faux_cell-3.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='co'># PCA</span>
+<span class='kw'>pca</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/prcomp.html'>prcomp</a></span>(<span class='kw'>faux_cell</span>)
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>pca</span>)</div><div class='img'><img src='faux_cell-4.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='kw'>loadings</span> <span class='op'>&lt;-</span> <span class='fu'>decomposition</span>(<span class='kw'>faux_cell</span>, <span class='fu'><a href='https://rdrr.io/r/base/t.html'>t</a></span>(<span class='kw'>pca</span><span class='op'>$</span><span class='kw'>rotation</span>), scores = <span class='fl'>FALSE</span>)
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>loadings</span>[<span class='fl'>1</span> <span class='op'>:</span> <span class='fl'>5</span>], stacked = <span class='fl'>TRUE</span>)</div><div class='img'><img src='faux_cell-5.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>pca</span><span class='op'>$</span><span class='kw'>x</span>[,<span class='fl'>2</span>], <span class='kw'>pca</span><span class='op'>$</span><span class='kw'>x</span>[,<span class='fl'>3</span>], xlab = <span class='st'>"PC 1"</span>, ylab = <span class='st'>"PC 2"</span>,
+  bg = <span class='kw'>mapcols</span>[<span class='kw'>faux_cell</span><span class='op'>$</span><span class='kw'>region</span>], col = <span class='st'>"black"</span>, pch = <span class='fl'>21</span>)</div><div class='img'><img src='faux_cell-6.png' alt='' width='466' height='288' /></div><div class='input'></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

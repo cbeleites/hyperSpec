@@ -279,7 +279,7 @@ for all three. Two special column names, <code>.rownames</code> and <code>.wavel
 function defaults to <code><a href='https://rdrr.io/pkg/latticeExtra/man/panel.voronoi.html'>panel.voronoi</a></code>.
 <code><a href='https://rdrr.io/pkg/latticeExtra/man/panel.voronoi.html'>panel.voronoi</a></code> depends on either of the packages 'tripack' or 'deldir'
 being installed. For further information, please consult the help page of
-<code><a href='https://rdrr.io/pkg/latticeExtra/man/panel.voronoi.html'>panel.voronoi</a></code>.  On the <code>fauxCell</code> data set, <code>plotmap</code>
+<code><a href='https://rdrr.io/pkg/latticeExtra/man/panel.voronoi.html'>panel.voronoi</a></code>.  On the <code>faux_cell</code> data set, <code>plotmap</code>
 is roughly 5 times faster than <code>plotvoronoi</code> using tripack, and ca. 15 times faster than
 <code>plotvoronoi</code> using deldir. Package tripack, however, is free only for non-commercial
 use. Also, it seems that tripack version hang (R running at full CPU power, but not responding
@@ -315,13 +315,13 @@ window.</p>
 <span class='fu'><a href='https://rdrr.io/r/utils/vignette.html'>vignette</a></span> (<span class='kw'>hyperspec</span>)
 }
 
-<span class='fu'>levelplot</span> (<span class='kw'>spc</span> <span class='op'>~</span> <span class='kw'>y</span> <span class='op'>*</span> <span class='kw'>x</span>, <span class='kw'>fauxCell</span> [,,<span class='fl'>1003</span>]) <span class='co'># properly rotated</span></div><div class='img'><img src='levelplot-1.png' alt='' width='466' height='288' /></div><div class='input'><span class='fu'>plotmap</span> (<span class='kw'>fauxCell</span> [,,<span class='fl'>1003</span>])</div><div class='img'><img src='levelplot-2.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='fu'>levelplot</span> (<span class='kw'>spc</span> <span class='op'>~</span> <span class='kw'>y</span> <span class='op'>*</span> <span class='kw'>x</span>, <span class='kw'>faux_cell</span> [,,<span class='fl'>1003</span>]) <span class='co'># properly rotated</span></div><div class='img'><img src='levelplot-1.png' alt='' width='466' height='288' /></div><div class='input'><span class='fu'>plotmap</span> (<span class='kw'>faux_cell</span> [,,<span class='fl'>1003</span>])</div><div class='img'><img src='levelplot-2.png' alt='' width='466' height='288' /></div><div class='input'>
 <span class='co'># plot spectra matrix</span>
 <span class='fu'>levelplot</span> (<span class='kw'>spc</span> <span class='op'>~</span> <span class='kw'>.wavelength</span> <span class='op'>*</span> <span class='kw'>t</span>, <span class='kw'>laser</span>, contour = <span class='fl'>TRUE</span>, col = <span class='st'>"#00000080"</span>)</div><div class='img'><img src='levelplot-3.png' alt='' width='466' height='288' /></div><div class='input'><span class='co'># see also plotmat</span>
 
-<span class='fu'>plotmap</span> (<span class='kw'>fauxCell</span>, <span class='kw'>region</span> <span class='op'>~</span> <span class='kw'>x</span> <span class='op'>*</span> <span class='kw'>y</span>)</div><div class='img'><img src='levelplot-4.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='fu'>plotmap</span> (<span class='kw'>faux_cell</span>, <span class='kw'>region</span> <span class='op'>~</span> <span class='kw'>x</span> <span class='op'>*</span> <span class='kw'>y</span>)</div><div class='img'><img src='levelplot-4.png' alt='' width='466' height='288' /></div><div class='input'>
 <span class='co'># Voronoi plots</span>
-<span class='kw'>smpl</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span> (<span class='kw'>fauxCell</span>, <span class='fl'>300</span>)
+<span class='kw'>smpl</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span> (<span class='kw'>faux_cell</span>, <span class='fl'>300</span>)
 <span class='fu'>plotmap</span> (<span class='kw'>smpl</span>, <span class='kw'>region</span> <span class='op'>~</span> <span class='kw'>x</span> <span class='op'>*</span> <span class='kw'>y</span>)</div><div class='img'><img src='levelplot-5.png' alt='' width='466' height='288' /></div><div class='input'><span class='co'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/library.html'>require</a></span> (<span class='kw'>tripack</span>))
     <span class='fu'>plotvoronoi</span> (<span class='kw'>smpl</span>, <span class='kw'>region</span> <span class='op'>~</span> <span class='kw'>x</span> <span class='op'>*</span> <span class='kw'>y</span>)</div><div class='output co'>#&gt; <span class='message'>Loading required package: tripack</span></div><div class='output co'>#&gt; <span class='message'>Loading required namespace: deldir</span></div><div class='output co'>#&gt; <span class='message'></span>
 #&gt; <span class='message'>     PLEASE NOTE:  The components "delsgs" and "summary" of the</span>

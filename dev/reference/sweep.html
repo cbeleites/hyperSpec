@@ -228,12 +228,12 @@ spectra.</p>
 <span class='co'>## Substract the background / slide / blank spectrum</span>
 <span class='co'># the example data does not have spectra of the empty slide,</span>
 <span class='co'># so instead the overall composition of the sample is substracted</span>
-<span class='kw'>background</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span> (<span class='kw'>fauxCell</span>, <span class='fl'>2</span>, <span class='kw'>quantile</span>, probs = <span class='fl'>0.05</span>)
-<span class='kw'>corrected</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sweep.html'>sweep</a></span> (<span class='kw'>fauxCell</span>, <span class='fl'>2</span>, <span class='kw'>background</span>, <span class='st'>"-"</span>)
+<span class='kw'>background</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span> (<span class='kw'>faux_cell</span>, <span class='fl'>2</span>, <span class='kw'>quantile</span>, probs = <span class='fl'>0.05</span>)
+<span class='kw'>corrected</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sweep.html'>sweep</a></span> (<span class='kw'>faux_cell</span>, <span class='fl'>2</span>, <span class='kw'>background</span>, <span class='st'>"-"</span>)
 <span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span> (<span class='kw'>corrected</span>, <span class='st'>"spcprctl5"</span>)</div><div class='img'><img src='sweep-1.png' alt='' width='466' height='288' /></div><div class='input'>
 <span class='co'>## Offset correction</span>
-<span class='kw'>offsets</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span> (<span class='kw'>fauxCell</span>, <span class='fl'>1</span>, <span class='kw'>min</span>)
-<span class='kw'>corrected</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sweep.html'>sweep</a></span> (<span class='kw'>fauxCell</span>, <span class='fl'>1</span>, <span class='kw'>offsets</span>, <span class='st'>"-"</span>)
+<span class='kw'>offsets</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span> (<span class='kw'>faux_cell</span>, <span class='fl'>1</span>, <span class='kw'>min</span>)
+<span class='kw'>corrected</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sweep.html'>sweep</a></span> (<span class='kw'>faux_cell</span>, <span class='fl'>1</span>, <span class='kw'>offsets</span>, <span class='st'>"-"</span>)
 <span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span> (<span class='kw'>corrected</span>, <span class='st'>"spcprctl5"</span>)</div><div class='img'><img src='sweep-2.png' alt='' width='466' height='288' /></div><div class='input'>
 <span class='co'>## Min-max normalization (on max amide I)</span>
 <span class='co'># the minimum is set to zero by the offset correction.</span>
