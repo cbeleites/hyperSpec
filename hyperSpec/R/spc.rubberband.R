@@ -2,7 +2,7 @@
 #'
 #' Baseline with support points determined from a convex hull of the spectrum.
 #'
-#' Use \code{debuglevel >= 1} to obtain debug plots, either directly via function argument or by setting hyperSpec's \code{debuglevel} option.
+#' Use `debuglevel >= 1` to obtain debug plots, either directly via function argument or by setting hyperSpec's `debuglevel` option.
 #' @title Rubberband baseline correction
 #' @param spc hyperSpec object
 #' @param ... further parameters handed to \code{\link[stats]{smooth.spline}}
@@ -15,7 +15,7 @@
 #' @author Claudia Beleites
 #' @seealso \code{\link[hyperSpec]{spc.fit.poly}}, \code{\link[hyperSpec]{spc.fit.poly.below}}
 #'
-#' \code{vignette ("baseline")}
+#' `vignette ("baseline")`
 #'
 #' \code{\link[hyperSpec]{hy.setOptions}}
 #'

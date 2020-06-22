@@ -1,20 +1,20 @@
 #' Getting and Setting the Wavelength Axis
-#' \code{wl} returns the wavelength axis, \code{wl<-} sets it.
+#' `wl` returns the wavelength axis, `wl<-` sets it.
 #'
-#' The wavelength axis of a \code{hyperSpec} object can be retrieved and
-#' replaced with \code{wl} and \code{wl<-}, respectively.
+#' The wavelength axis of a `hyperSpec` object can be retrieved and
+#' replaced with `wl` and `wl<-`, respectively.
 #'
-#' When the wavelength axis is replaced, the colnames of \code{x@@data$spc} are
-#' replaced by the rounded new wavelengths.  \code{digits} specifies the how
+#' When the wavelength axis is replaced, the colnames of `x@@data$spc` are
+#' replaced by the rounded new wavelengths.  `digits` specifies the how
 #' many significant digits should be used.
 #'
 #' There are two ways to set the label of the new wavelength axis, see the
 #' examples.  If no label is given, a warning will be issued.
 #'
 #' @aliases wl
-#' @param x a \code{hyperSpec} object
+#' @param x a `hyperSpec` object
 #' @return a numeric vector
-#' @note \code{wl<-} always sets the complete wavelength axis, without
+#' @note `wl<-` always sets the complete wavelength axis, without
 #'   changing the columns of the spectra matrix. If you rather want to cut the
 #'   spectral range, use \code{\link[hyperSpec:extractreplace]{[}}, for
 #'   interpolation along the spectral axis see
@@ -58,12 +58,12 @@ wl <- function(x) {
 #' wl (x, label=NULL, digits=6) <- value
 #'
 #' @param value either a numeric containing the new wavelength vector, or a
-#'   list with \code{value$wl} containing the new wavelength vector and
-#'   \code{value$label} holding the corresponding \code{label}.
+#'   list with `value$wl` containing the new wavelength vector and
+#'   `value$label` holding the corresponding `label`.
 #' @param label The label for the new wavelength axis. See \link{initialize}
 #'   for details.
 #' @param digits handed to \code{\link[base]{signif}}. See details.
-#' @return \code{hyperSpec} object
+#' @return `hyperSpec` object
 #' @examples
 #' # convert from wavelength to frequency
 #' plot(laser)
@@ -101,8 +101,8 @@ wl <- function(x) {
 #' Convert different wavelength units
 #'
 #' The following units can be converted into each other:
-#' \emph{nm}, \emph{\eqn{cm^{-1}}{inverse cm}}, \emph{eV}, \emph{THz} and
-#' \emph{Raman shift}
+#' *nm*, \emph{\eqn{cm^{-1}}{inverse cm}}, *eV*, *THz* and
+#' *Raman shift*
 #'
 #' @param points data for conversion
 #' @param src source unit
@@ -132,102 +132,102 @@ wlconv <- function(points, src, dst, laser = NULL) {
 
 #' @param x wavelength points for conversion
 #' @param ... ignored
-#' @describeIn wlconv conversion \strong{nanometers} -> \strong{Raman shift (relative wavenumber)}
+#' @describeIn wlconv conversion **nanometers** -> **Raman shift (relative wavenumber)**
 #' @export
 nm2raman <- function(x, laser) 1e7 * (1 / laser - 1 / x)
 
 
-#' @describeIn wlconv conversion \strong{nanometers} -> \strong{inverse cm (absolute wavenumber)}
+#' @describeIn wlconv conversion **nanometers** -> **inverse cm (absolute wavenumber)**
 #' @export
 nm2invcm <- function(x, ...) 1e7 / x
 
 
-#' @describeIn wlconv conversion \strong{nanometers} -> \strong{electronvolt}
+#' @describeIn wlconv conversion **nanometers** -> **electronvolt**
 #' @export
 nm2ev <- function(x, ...) 1e9 * h * c / (q * x)
 
 
-#' @describeIn wlconv conversion \strong{nm} -> \strong{frequency in THz}
+#' @describeIn wlconv conversion **nm** -> **frequency in THz**
 #' @export
 nm2freq <- function(x, ...) 1e-3 * c / x
 
 
-#' @describeIn wlconv conversion \strong{inverse cm (absolute wavenumber)} -> \strong{Raman shift (relative wavenumber)}
+#' @describeIn wlconv conversion **inverse cm (absolute wavenumber)** -> **Raman shift (relative wavenumber)**
 #' @export
 invcm2raman <- function(x, laser) 1e7 / laser - x
 
 
-#' @describeIn wlconv conversion \strong{inverse cm (absolute wavenumber)} -> \strong{nanometers}
+#' @describeIn wlconv conversion **inverse cm (absolute wavenumber)** -> **nanometers**
 #' @export
 invcm2nm <- function(x, ...) 1e7 / x
 
 
-#' @describeIn wlconv conversion \strong{inverse cm (absolute wavenumber)} -> \strong{electronvolt}
+#' @describeIn wlconv conversion **inverse cm (absolute wavenumber)** -> **electronvolt**
 #' @export
 invcm2ev <- function(x, ...) 100 * x * c * h / q
 
 
-#' @describeIn wlconv conversion \strong{inverse cm (absolute wavenumber)} -> \strong{frequency in THz}
+#' @describeIn wlconv conversion **inverse cm (absolute wavenumber)** -> **frequency in THz**
 #' @export
 invcm2freq <- function(x, ...) nm2freq(invcm2nm(x))
 
 
-#' @describeIn wlconv conversion \strong{Raman shift (relative wavenumber)} -> \strong{inverse cm (absolute wavenumber)}
+#' @describeIn wlconv conversion **Raman shift (relative wavenumber)** -> **inverse cm (absolute wavenumber)**
 #' @export
 raman2invcm <- function(x, laser) 1e7 / laser - x
 
 
-#' @describeIn wlconv conversion \strong{Raman shift (relative wavenumber)} -> \strong{nanometers}
+#' @describeIn wlconv conversion **Raman shift (relative wavenumber)** -> **nanometers**
 #' @export
 raman2nm <- function(x, laser) 1e7 / (1e7 / laser - x)
 
 
-#' @describeIn wlconv conversion \strong{Raman shift (relative wavenumber)} -> \strong{electronvolt}
+#' @describeIn wlconv conversion **Raman shift (relative wavenumber)** -> **electronvolt**
 #' @export
 raman2ev <- function(x, laser) 100 * h * c * (1e7 / laser - x) / q
 
 
-#' @describeIn wlconv conversion \strong{Raman shift (relative wavenumber)} -> \strong{frequency in THz}
+#' @describeIn wlconv conversion **Raman shift (relative wavenumber)** -> **frequency in THz**
 #' @export
 raman2freq <- function(x, laser) nm2freq(raman2nm(x, laser))
 
 
-#' @describeIn wlconv conversion \strong{electronvolt} -> \strong{Raman shift (relative wavenumber)}
+#' @describeIn wlconv conversion **electronvolt** -> **Raman shift (relative wavenumber)**
 #' @export
 ev2raman <- function(x, laser) 1e7 / laser - x * q / (100 * h * c)
 
 
-#' @describeIn wlconv conversion \strong{electronvolt} -> \strong{inverse cm (absolute wavenumber)}
+#' @describeIn wlconv conversion **electronvolt** -> **inverse cm (absolute wavenumber)**
 #' @export
 ev2invcm <- function(x, ...) q * x / (100 * h * c)
 
 
-#' @describeIn wlconv conversion \strong{electronvolt} -> \strong{nanometers}
+#' @describeIn wlconv conversion **electronvolt** -> **nanometers**
 #' @export
 ev2nm <- function(x, ...) 1e9 * h * c / (q * x)
 
 
-#' @describeIn wlconv conversion \strong{electronvolt} -> \strong{frequency in THz}
+#' @describeIn wlconv conversion **electronvolt** -> **frequency in THz**
 #' @export
 ev2freq <- function(x, ...) nm2freq(ev2nm(x))
 
 
-#' @describeIn wlconv conversion \strong{frequency in THz} -> \strong{nanometers}
+#' @describeIn wlconv conversion **frequency in THz** -> **nanometers**
 #' @export
 freq2nm <- function(x, ...) 1e-3 * c / x
 
 
-#' @describeIn wlconv conversion \strong{frequency in THz} -> \strong{inverse cm (absolute wavenumber)}
+#' @describeIn wlconv conversion **frequency in THz** -> **inverse cm (absolute wavenumber)**
 #' @export
 freq2invcm <- function(x, ...) nm2invcm(freq2nm(x))
 
 
-#' @describeIn wlconv conversion \strong{frequency in THz} -> \strong{electronvolt}
+#' @describeIn wlconv conversion **frequency in THz** -> **electronvolt**
 #' @export
 freq2ev <- function(x, ...) nm2ev(freq2nm(x))
 
 
-#' @describeIn wlconv conversion \strong{frequency in THz} -> \strong{Raman shift (relative wavenumber)}
+#' @describeIn wlconv conversion **frequency in THz** -> **Raman shift (relative wavenumber)**
 #' @export
 freq2raman <- function(x, laser) nm2raman(freq2nm(x), laser)
 

@@ -4,17 +4,17 @@
 ###
 ###
 
-#' @param object the \code{hyperSpec} object
+#' @param object the `hyperSpec` object
 #' @param order which columns should be \code{\link[base]{order}}ed?
-#'   \code{order} is used as index vector into a \code{data.frame} with
-#'   columns given by \code{cols}.
+#'   `order` is used as index vector into a `data.frame` with
+#'   columns given by `cols`.
 #' @param na.last handed to \code{\link[base]{order}} by
-#'   \code{write.txt.long}.
+#'   `write.txt.long`.
 #' @param quote,sep,col.names,row.names have their usual meaning (see
 #'   \code{\link[utils]{read.table}} and \code{\link[utils]{write.table}}),
 #'   but different default values.
 #'
-#'   For file import, \code{row.names} should usually be \code{NULL} so that the
+#'   For file import, `row.names` should usually be `NULL` so that the
 #' first column becomes a extra data column (as opposed to row names of the extra data).
 #' @param col.labels Should the column labels be used rather than the
 #'   colnames?

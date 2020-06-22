@@ -1,16 +1,16 @@
 #' Conversion of a hyperSpec object into a data.frame or matrix
-#' \code{as.data.frame} returns \code{x@@data} (as data.frame) \code{as.matrix}
-#' returns the spectra matrix \code{x@@data$spc} as matrix
+#' `as.data.frame` returns `x@@data` (as data.frame) `as.matrix`
+#' returns the spectra matrix `x@@data$spc` as matrix
 #'
 #' @rdname asdataframe
 #' @name as.data.frame
 #' @aliases as.data.frame as.data.frame,hyperSpec-method as.data.frame.hyperSpec
 #' @docType methods
-#' @param x a \code{hyperSpec} object
-#' @param row.names if \code{TRUE}, a column \code{.row} is created containing row names or row
+#' @param x a `hyperSpec` object
+#' @param row.names if `TRUE`, a column `.row` is created containing row names or row
 #' indices if no rownames are set. If character vector, the rownames are set accordingly.
 #' @param optional ignored
-#' @return \code{x@@data} and \code{x@@data$spc} (== \code{x$spc} == \code{x[[]]}), respectively.
+#' @return `x@@data` and `x@@data$spc` (== `x$spc` == `x[[]]`), respectively.
 #' @author C. Beleites
 #' @method as.data.frame hyperSpec
 #' @export
@@ -133,22 +133,22 @@ as.wide.df <- function(x, wl.prefix = "") {
   })
 }
 
-#' \code{as.long.df} returns a long-format data.frame.
+#' `as.long.df` returns a long-format data.frame.
 #'
-#' The data.frame returned by \code{as.long.df} is guaranteed to have columns
-#' \code{spc} and \code{.wavelength}. If \code{nwl (x) == 0} these columns
-#' will be \code{NA}.
+#' The data.frame returned by `as.long.df` is guaranteed to have columns
+#' `spc` and `.wavelength`. If `nwl (x) == 0` these columns
+#' will be `NA`.
 #'
 #' @rdname asdataframe
 #' @aliases as.long.df
-#' @param rownames should the rownames be in column \code{.rownames} of the
+#' @param rownames should the rownames be in column `.rownames` of the
 #'   long-format data.frame?
 #' @param wl.factor should the wavelengths be returned as a factor (instead of
 #'   numeric)?
-#' @param na.rm if \code{TRUE}, rows where spc is not \code{NA} are deleted.
+#' @param na.rm if `TRUE`, rows where spc is not `NA` are deleted.
 #' @export
-#' @return \code{as.long.df} returns the stacked or molten version of \code{x@@data}. The
-#'   wavelengths are in column \code{.wavelength}.
+#' @return `as.long.df` returns the stacked or molten version of `x@@data`. The
+#'   wavelengths are in column `.wavelength`.
 #' @seealso
 #'
 #' \code{\link[utils]{stack}} and \code{\link[reshape]{melt}} or \code{\link[reshape2]{melt}} for
@@ -212,10 +212,10 @@ as.long.df <- function(x, rownames = FALSE, wl.factor = FALSE, na.rm = TRUE) {
 }
 
 #'
-#' \code{as.t.df} produces a 'transposed' data.frame with columns containing the spectra.
+#' `as.t.df` produces a 'transposed' data.frame with columns containing the spectra.
 #' @rdname asdataframe
 #' @aliases as.t.df
-#' @return \code{as.t.df} returns a data.frame similar to \code{as.long.df}, but each
+#' @return `as.t.df` returns a data.frame similar to `as.long.df`, but each
 #'   spectrum in its own column. This is useful for exporting summary spectra,
 #'   see the example.
 #' @export

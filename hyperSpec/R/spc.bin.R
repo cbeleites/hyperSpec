@@ -3,25 +3,25 @@
 #' ratio or to reduce the dimensionality of the spectral data set, the
 #' spectral resolution can be reduced.
 #'
-#' The mean of every \code{by} data points in the spectra is calculated.
+#' The mean of every `by` data points in the spectra is calculated.
 #'
-#' Using \code{na.rm = TRUE} always takes about twice as long as \code{na.rm = FALSE}.
+#' Using `na.rm = TRUE` always takes about twice as long as `na.rm = FALSE`.
 #'
-#' If the spectra matrix does not contain too many \code{NA}s, \code{na.rm = 2} is faster than
-#' \code{na.rm = TRUE}.
+#' If the spectra matrix does not contain too many `NA`s, `na.rm = 2` is faster than
+#' `na.rm = TRUE`.
 #'
-#' @param spc the \code{hyperSpec} object
+#' @param spc the `hyperSpec` object
 #' @param by reduction factor
-#' @param na.rm decides about the treatment of \code{NA}s:
+#' @param na.rm decides about the treatment of `NA`s:
 #'
-#' if \code{FALSE} or \code{0}, the binning is done using \code{na.rm = FALSE}
+#' if `FALSE` or `0`, the binning is done using `na.rm = FALSE`
 #'
-#' if \code{TRUE} or \code{1}, the binning is done using \code{na.rm = TRUE}
+#' if `TRUE` or `1`, the binning is done using `na.rm = TRUE`
 #'
-#' if \code{2}, the binning is done using \code{na.rm = FALSE}, and resulting \code{NA}s are
+#' if `2`, the binning is done using `na.rm = FALSE`, and resulting `NA`s are
 #' corrected with \code{mean(\dots{}, na.rm = TRUE)}.
 #' @param ... ignored
-#' @return A \code{hyperSpec} object with \code{ceiling (nwl (spc) / by)} data points per spectrum.
+#' @return A `hyperSpec` object with `ceiling (nwl (spc) / by)` data points per spectrum.
 #' @rdname spc-bin
 #' @export
 #' @author C. Beleites

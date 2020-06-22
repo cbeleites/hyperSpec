@@ -1,8 +1,8 @@
 #' Empty hyperSpec object
 #'
-#' Empty produces an hyperSpec object with the same columns and wavelengths as \code{x}.  The new
+#' Empty produces an hyperSpec object with the same columns and wavelengths as `x`.  The new
 #' object will either contain no rows at all (default), or the given number of rows with all data
-#' initialized to \code{spc} and \code{extra}, respectively.
+#' initialized to `spc` and `extra`, respectively.
 #'
 #' @aliases empty
 #' @author C. Beleites

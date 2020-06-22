@@ -19,7 +19,7 @@
 #' spectra matrix
 #' @slot data  the data (extra data and spectra matrix)
 #' @slot label expressions for column labels (incl. units). The label of the wavelength axis is in
-#' the special element \code{.wavelength}.
+#' the special element `.wavelength`.
 #' @slot log deprecated.
 #' @note Please note that the logbook is now removed.
 #' @author C. Beleites

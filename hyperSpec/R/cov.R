@@ -4,7 +4,7 @@
 #' @param x hyperSpec object
 #' @param y not supported
 #' @param use,method handed to  \code{\link[stats]{cov}}
-#' @return covariance matrix of size \code{nwl (x)} x  \code{nwl (x)}
+#' @return covariance matrix of size `nwl (x)` x  `nwl (x)`
 #' @seealso \code{\link[stats]{cov}}
 #' @author C. Beleites
 #' @rdname cov
@@ -19,9 +19,9 @@ setMethod("cov", signature = signature(x = "hyperSpec", y = "missing"), function
 
 
 #' @param ... ignored
-#' @param regularize regularization of the covariance matrix. Set \code{0} to switch off
+#' @param regularize regularization of the covariance matrix. Set `0` to switch off
 #'
-#' \code{pooled.cov} calculates pooled covariance like e.g. in LDA.
+#' `pooled.cov` calculates pooled covariance like e.g. in LDA.
 #' @param groups factor indicating the groups
 #' @rdname cov
 #' @export

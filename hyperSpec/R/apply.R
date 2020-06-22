@@ -53,52 +53,52 @@
 
 
 #' apply
-#' Computes summary statistics for the spectra of a \code{hyperSpec} object.
+#' Computes summary statistics for the spectra of a `hyperSpec` object.
 #'
-#' \code{apply} gives the functionality of \code{\link[base]{apply}} for
-#' \code{hyperSpec} objects.
+#' `apply` gives the functionality of \code{\link[base]{apply}} for
+#' `hyperSpec` objects.
 #'
 #' The generic functions of group \code{\link[methods]{Math}} are not definded
-#' for \code{hyperSpec} objects. Instead, \code{apply} can be used. For
-#' functions like \code{log} that work on scalars, \code{MARGIN = 1 : 2} gives
+#' for `hyperSpec` objects. Instead, `apply` can be used. For
+#' functions like `log` that work on scalars, `MARGIN = 1 : 2` gives
 #' the appropriate behaviour.
 #'
-#' \code{spcapply} does the same as \code{apply} with \code{MARGIN = 1}, but
+#' `spcapply` does the same as `apply` with `MARGIN = 1`, but
 #' additionally allows to set a new wavelength axis and adjust the labels.
 #'
-#' \code{wlapply} does the same as \code{apply} with \code{MARGIN = 2}, but
+#' `wlapply` does the same as `apply` with `MARGIN = 2`, but
 #' additionally allows to set a new wavelength axis and adjust the labels.
 #'
 #' @name apply
 #' @rdname apply
 #' @aliases apply apply,hyperSpec-method
 #' @docType methods
-#' @param X,spc a \code{hyperSpec} object
+#' @param X,spc a `hyperSpec` object
 #' @param MARGIN The subscript which the function will be applied over.
 #'
-#' \code{1} indicates rows (\code{FUN} is applied to each spectrum),
+#' `1` indicates rows (`FUN` is applied to each spectrum),
 #'
-#' \code{2} indicates columns (\code{FUN} is applied to each wavelength),
+#' `2` indicates columns (`FUN` is applied to each wavelength),
 #'
-#' \code{1 : 2} indicates that \code{FUN} should be applied to each single
+#' `1 : 2` indicates that `FUN` should be applied to each single
 #'   element of the spectra matrix. Note that many basic mathematical
 #'   functions are already defined for hyperSpec objects (see
 #'   \code{\link{Math}}).
 #'
-#' If \code{MARGIN} is missing, the whole spectra matrix is handed to
-#'   \code{FUN}, see also the examples.
+#' If `MARGIN` is missing, the whole spectra matrix is handed to
+#'   `FUN`, see also the examples.
 #' @param FUN function to compute the summary statistics
-#' @param ... further arguments passed to \code{FUN}
+#' @param ... further arguments passed to `FUN`
 #' @param simplify ignored: apply for hyperSpec results are always simplified
 #' @param label.wl,label.spc new labels for wavelength and spectral intensity
 #'   axes
-#' @param new.wavelength for \code{MARGIN = 2}: numeric vector or name of the
+#' @param new.wavelength for `MARGIN = 2`: numeric vector or name of the
 #'   argument in \dots{} that is to be used (character) as wavelength axis of
 #'   the resulting object.
-#' @return A \code{hyperSpec} object
+#' @return A `hyperSpec` object
 #' @author C. Beleites
-#' @seealso \code{\link[base]{apply}}, for applying \code{FUN} to subgroups of
-#'   the \code{hyperSpec} object: \code{\link[hyperSpec]{aggregate}}.
+#' @seealso \code{\link[base]{apply}}, for applying `FUN` to subgroups of
+#'   the `hyperSpec` object: \code{\link[hyperSpec]{aggregate}}.
 #' @keywords methods iteration
 #' @export
 #' @examples

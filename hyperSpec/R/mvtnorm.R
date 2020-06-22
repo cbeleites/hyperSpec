@@ -33,12 +33,12 @@ setGeneric("rmmvnorm", .rmmvnorm)
 #' Interface functions to use \code{\link[mvtnorm]{rmvnorm}} for
 #' \code{\link[hyperSpec]{hyperSpec-class}} objects.
 #'
-#' The \code{mvtnorm} method for hyperSpec objects supports producing multivariate normal data for
+#' The `mvtnorm` method for hyperSpec objects supports producing multivariate normal data for
 #' groups with different mean but common covariance matrix, see the examples.
 #'
 #' @param n vector giving the numer of cases to generate for each group
 #' @param mean matrix with mean cases in rows
-#' @param sigma common covariance matrix or array (\code{ncol (mean)} x \code{ncol (mean)} x \code{nrow (mean)}) with individual covariance matrices for the groups.
+#' @param sigma common covariance matrix or array (`ncol (mean)` x `ncol (mean)` x `nrow (mean)`) with individual covariance matrices for the groups.
 #' @export
 #' @seealso \code{\link[mvtnorm]{rmvnorm}}
 #'

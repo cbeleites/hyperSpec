@@ -33,38 +33,38 @@
   x
 }
 
-#' These Methods allow to extract and replace parts of the \code{hyperSpec} object.
+#' These Methods allow to extract and replace parts of the `hyperSpec` object.
 #'
-#' They work with respect to the spectra (rows of \code{x}), the columns of the data matrix, and the
+#' They work with respect to the spectra (rows of `x`), the columns of the data matrix, and the
 #' wavelengths (columns of the spectra matrix).
 #'
 #' Thus, they can be used for selecting/deleting spectra, cutting the spectral range, and extracting
 #' or setting the data belonging to the spectra.
 #'
-#' Convenient shortcuts for access of the spectra matrix and the \code{data.frame} in slot
-#' \code{data} are provided.
+#' Convenient shortcuts for access of the spectra matrix and the `data.frame` in slot
+#' `data` are provided.
 #'
-#' \emph{Extracting: \code{[}, \code{[[}, and \code{$}}.
+#' *Extracting: `[`, `[[`, and `$`*.
 #'
-#' The version with single square brackets (\code{[}) returns the resulting \code{hyperSpec} object.
+#' The version with single square brackets (`[`) returns the resulting `hyperSpec` object.
 #'
-#' \code{[[} yields \code{data.frame} of slot \code{@@data} of that corresponding \code{hyperSpec}
-#' object returned with the same arguments by \code{[} if columns were selected (i.e. \code{j} is
-#' given), otherwise the spectra \code{matrix} \code{x@@data$spc}.
+#' `[[` yields `data.frame` of slot `@@data` of that corresponding `hyperSpec`
+#' object returned with the same arguments by `[` if columns were selected (i.e. `j` is
+#' given), otherwise the spectra `matrix` `x@@data$spc`.
 #'
-#' \code{$} returns the selected column of the \code{data.frame} in slot \code{@@data}.
+#' `$` returns the selected column of the `data.frame` in slot `@@data`.
 #'
-#' \emph{Shortcuts.} Three shortcuts to conveniently extract much needed parts of the object are
+#' *Shortcuts.* Three shortcuts to conveniently extract much needed parts of the object are
 #' defined:
 #'
-#' \code{x[[]]} returns the spectra matrix.
+#' `x[[]]` returns the spectra matrix.
 #'
-#' \code{x$.} returns the complete slot \code{@@data}, including the spectra matrix in column
-#' \code{$spc}, as a \code{data.frame}.
+#' `x$.` returns the complete slot `@@data`, including the spectra matrix in column
+#' `$spc`, as a `data.frame`.
 #'
-#' \code{x$..} returns a \code{data.frame} like \code{x$.} but without the spectra matrix.
+#' `x$..` returns a `data.frame` like `x$.` but without the spectra matrix.
 #'
-#' \emph{Replacing: \code{[<-}, \code{[[<-}, and \code{$<-}}.
+#' *Replacing: `[<-`, `[[<-`, and `$<-`*.
 #' \preformatted{
 #' ## S4 method for signature 'hyperSpec':
 #' x [i, j, l, \dots] <- value
@@ -76,22 +76,22 @@
 #' x$name <- value
 #' }
 #'
-#' \code{value} gives the values to be assigned.\cr
+#' `value` gives the values to be assigned.\cr
 #'
-#' For \code{$}, this can also be a list of the form \code{list (value =
-#' value, label = label)}, with \code{label} containing the label for data
-#' column \code{name}.
+#' For `$`, this can also be a list of the form `list (value =
+#' value, label = label)`, with `label` containing the label for data
+#' column `name`.
 #'
-#' \code{[[<-} replaces parts of the spectra matrix.
+#' `[[<-` replaces parts of the spectra matrix.
 #'
-#' \code{[<-} replaces parts of the \code{data.frame} in slot \code{x@@data}.
+#' `[<-` replaces parts of the `data.frame` in slot `x@@data`.
 #'
-#' \code{$<-} replaces a column of the \code{data.frame} in slot
-#' \code{x@@data}.  The \code{value} may be a list with two elements,
-#' \code{value} and \code{label}.  In this case the label of the data column
+#' `$<-` replaces a column of the `data.frame` in slot
+#' `x@@data`.  The `value` may be a list with two elements,
+#' `value` and `label`.  In this case the label of the data column
 #' is changed accordingly.
 #'
-#' \code{$..<-} is again an abbreviation for the data.frame without the
+#' `$..<-` is again an abbreviation for the data.frame without the
 #' spectra matrix.
 #'
 
@@ -99,39 +99,39 @@
 #' @rdname extractreplace
 #' @docType methods
 #' @aliases [ [,hyperSpec-method
-#' @param x a \code{hyperSpec} Object
+#' @param x a `hyperSpec` Object
 #' @param i row index: selects spectra
 #'
-#' \code{[[} and code{[[<-} accept indexing with logical matrix or a n by 2
+#' `[[` and code{[[<-} accept indexing with logical matrix or a n by 2
 #'   integer index matrix. In this case the indexing is done inside the
 #'   spectra matrix. See the examples below.
-#' @param j selecting columns of \code{x@@data}
-#' @param l selecting columns of the spectra matrix. If \code{l} is numeric,
-#'   the default behaviour is treating \code{l} as wavelengths, \emph{not} as
+#' @param j selecting columns of `x@@data`
+#' @param l selecting columns of the spectra matrix. If `l` is numeric,
+#'   the default behaviour is treating `l` as wavelengths, *not* as
 #'   indices.
-#' @param wl.index If \code{TRUE} (default), the value(s) in \code{l} are
+#' @param wl.index If `TRUE` (default), the value(s) in `l` are
 #'   treated as column indices for the spectral matrix. Otherwise, the numbers
-#'   in \code{l} are treated as wavelengths and the corresponding column
+#'   in `l` are treated as wavelengths and the corresponding column
 #'   indices are looked up first via \code{\link{wl2i}}.
-#' @param drop For \code{[[}: drop unnecessary dimensions, see
+#' @param drop For `[[`: drop unnecessary dimensions, see
 #'   \code{\link[base]{drop}} and \code{\link[base]{Extract}}. Ignored for
-#'   \code{[}, as otherwise invalid \code{hyperSpec} objects might result.
+#'   `[`, as otherwise invalid `hyperSpec` objects might result.
 #' @param ... ignored
-#' @return For \code{[}, \code{[<-}, \code{[[<-}, and \code{$<-} a \code{hyperSpec} object,
+#' @return For `[`, `[<-`, `[[<-`, and `$<-` a `hyperSpec` object,
 #'
-#' for \code{[[} a matrix or \code{data.frame}, and
+#' for `[[` a matrix or `data.frame`, and
 #'
-#' for \code{$} the column of the \code{data.frame} \code{@@data}.
+#' for `$` the column of the `data.frame` `@@data`.
 #'
-#' \code{x[[]]} returns the complete spectra matrix.
+#' `x[[]]` returns the complete spectra matrix.
 #'
-#' \code{x$.} returns the complete slot \code{@@data},
+#' `x$.` returns the complete slot `@@data`,
 #'
-#' \code{x$..} returns the \code{data.frame} in \code{@@data} but without the column
-#' \code{@@data$spc} containing the spectra matrix.
+#' `x$..` returns the `data.frame` in `@@data` but without the column
+#' `@@data$spc` containing the spectra matrix.
 #' @seealso \code{\link{wl2i}} on conversion of wavelength ranges to indices.
 #'
-#' \code{\link[base]{drop}} and \code{\link[base]{Extract}} on \code{drop}.
+#' \code{\link[base]{drop}} and \code{\link[base]{Extract}} on `drop`.
 #' @keywords methods manip
 #' @examples
 #'
@@ -266,7 +266,7 @@ setMethod("[[",
 )
 
 #' @rdname extractreplace
-#' @param name name of the data column to extract. \code{$spc} yields the spectra matrix.
+#' @param name name of the data column to extract. `$spc` yields the spectra matrix.
 #' @aliases $ $,hyperSpec-method
 #' @export
 setMethod("$",

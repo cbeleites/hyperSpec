@@ -46,8 +46,8 @@
 #' @param replace Should sampling be with replacement?
 #' @param prob A vector of probability weights for obtaining the elements of
 #'   the vector being sampled.
-#' @return a hyperSpec object, data.frame or matrix with \code{size} rows for \code{sample}, and an
-#' integer vector for \code{isample} that is suitable for indexing (into the spectra) of x.
+#' @return a hyperSpec object, data.frame or matrix with `size` rows for `sample`, and an
+#' integer vector for `isample` that is suitable for indexing (into the spectra) of x.
 #' @author C. Beleites
 #' @seealso \code{\link[base]{sample}}
 #' @keywords methods distribution
@@ -66,7 +66,7 @@
 #' )
 setMethod("sample", signature = signature(x = "hyperSpec"), .sample)
 
-#' \code{isample} returns an vector of indices, \code{sample} returns the
+#' `isample` returns an vector of indices, `sample` returns the
 #' corresponding hyperSpec object.
 #'
 #' @rdname sample

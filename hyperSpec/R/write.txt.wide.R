@@ -4,7 +4,7 @@
 ###
 ###
 #' @param header.lines Toggle one or two line header (wavelengths in the
-#'   second header line) for \code{write.txt.wide}
+#'   second header line) for `write.txt.wide`
 #' @aliases write.txt.wide
 #' @rdname textio
 #' @export

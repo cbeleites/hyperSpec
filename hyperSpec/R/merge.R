@@ -8,7 +8,7 @@
 #'
 #' If the wavelength axis should be ordered, use \code{\link{orderwl}}.
 #'
-#' If a \code{hyperSpec} object and  a \code{data.frame} are merged, the result is of the class of the first (\code{x}) object.
+#' If a `hyperSpec` object and  a `data.frame` are merged, the result is of the class of the first (`x`) object.
 #'
 #' @aliases merge,hyperSpec,hyperSpec-method merge
 #' @param x a hyperSpec object or data.frame

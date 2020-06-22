@@ -12,64 +12,64 @@
 #' \code{\link[lattice]{levelplot}} functions for hyperSpec objects.  An image or map of a summary
 #' value of each spectrum is plotted. Spectra may be identified by mouse click.
 #'
-#' The \code{model} can contain the special column name \code{.wavelength} to specify the wavelength
+#' The `model` can contain the special column name `.wavelength` to specify the wavelength
 #' axis.
 #'
-#' \code{plotmap}, \code{map.identify}, and the \code{levelplot} methods internally use the same
-#' gateway function to \code{\link[lattice]{levelplot}}. Thus \code{transform.factor} can be used
+#' `plotmap`, `map.identify`, and the `levelplot` methods internally use the same
+#' gateway function to \code{\link[lattice]{levelplot}}. Thus `transform.factor` can be used
 #' with all of them and the panel function defaults to \code{\link[lattice]{panel.levelplot.raster}}
-#' for all three. Two special column names, \code{.rownames} and \code{.wavelength} may be used.
+#' for all three. Two special column names, `.rownames` and `.wavelength` may be used.
 #'
-#' \code{levelplot} plots the spectra matrix.
+#' `levelplot` plots the spectra matrix.
 #'
-#' \code{plotvoronoi} calls \code{plotmap} with different default settings, namely the panel
+#' `plotvoronoi` calls `plotmap` with different default settings, namely the panel
 #' function defaults to \code{\link[latticeExtra]{panel.voronoi}}.
 #' \code{\link[latticeExtra]{panel.voronoi}} depends on either of the packages 'tripack' or 'deldir'
 #' being installed. For further information, please consult the help page of
-#' \code{\link[latticeExtra]{panel.voronoi}}.  On the \code{\link{faux_cell}} data set, \code{plotmap}
-#' is roughly 5 times faster than \code{plotvoronoi} using tripack, and ca. 15 times faster than
-#' \code{plotvoronoi} using deldir. Package tripack, however, is free only for non-commercial
+#' \code{\link[latticeExtra]{panel.voronoi}}.  On the \code{\link{faux_cell}} data set, `plotmap`
+#' is roughly 5 times faster than `plotvoronoi` using tripack, and ca. 15 times faster than
+#' `plotvoronoi` using deldir. Package tripack, however, is free only for non-commercial
 #' use. Also, it seems that tripack version hang (R running at full CPU power, but not responding
-#' nor finishing the calculation) for certain data sets. In this case, \code{mix = TRUE} may help.
+#' nor finishing the calculation) for certain data sets. In this case, `mix = TRUE` may help.
 #'
-#' \code{map.identify} calls \code{plotmap} and \code{plotvoronoi}, respectively and waits for
+#' `map.identify` calls `plotmap` and `plotvoronoi`, respectively and waits for
 #' (left) mouse clicks on points. Other mouse clicks end the input.
 #'
-#' Unlike \code{\link[lattice]{panel.identify}}, the indices returned by \code{map.identify} are in
+#' Unlike \code{\link[lattice]{panel.identify}}, the indices returned by `map.identify` are in
 #' the same order as the points were clicked. Also, multiple clicks on the same point are returned
 #' as multiple entries with the same index.
 #'
-#' \code{map.identify} uses option \code{debuglevel} similar to \code{\link{spc.identify}}:
-#' \code{debuglevel == 1} will plot the tolerance window if no data point was inside (and
-#' additionally labels the point) while \code{debuglevel == 2} will always plot the tolerance
+#' `map.identify` uses option `debuglevel` similar to \code{\link{spc.identify}}:
+#' `debuglevel == 1` will plot the tolerance window if no data point was inside (and
+#' additionally labels the point) while `debuglevel == 2` will always plot the tolerance
 #' window.
 #'
-#' The \code{map.sel.*} functions offer further interactive selection, see
+#' The `map.sel.*` functions offer further interactive selection, see
 #' \code{\link{map.sel.poly}}.
 #'
 #' @rdname levelplot
 #' @aliases plotmap plotvoronoi levelplot,formula,hyperSpec-method
 #'   levelplot,hyperSpec,missing-method map.identify
-#' @param object,data the \code{hyperSpec} object
+#' @param object,data the `hyperSpec` object
 #' @param model,x formula specifying the columns of object that are to be
 #'   displayed by \code{\link[lattice]{levelplot}}
-#' @param func,func.args Before plotting, \code{plotmap} applies function
-#'   \code{func} with the arguments given in the list \code{func.args} to each
+#' @param func,func.args Before plotting, `plotmap` applies function
+#'   `func` with the arguments given in the list `func.args` to each
 #'   of the spectra. Thus a single summary value is displayed for each of the
 #'   spectra.
 #'
-#' This can be suppressed manually by setting \code{func} to NULL. It is automatically suppressed if
-#' \code{.wavelength} appears in the formula.
+#' This can be suppressed manually by setting `func` to NULL. It is automatically suppressed if
+#' `.wavelength` appears in the formula.
 #' @param voronoi Should the plot for identifying spectra by mouse click be
-#'   produced by \code{plotmap} (default) or \code{plotvoronoi}?
+#'   produced by `plotmap` (default) or `plotvoronoi`?
 #' @param ... further arguments are passed down the call chain, and finally
 #'   to \code{\link[lattice]{levelplot}}
-#' @return \code{map.identify} returns a vector of row indices into
-#'   \code{object} of the clicked points.
+#' @return `map.identify` returns a vector of row indices into
+#'   `object` of the clicked points.
 #'
 #' The other functions return a lattice object.
 #' @author C. Beleites
-#' @seealso \code{vignette (plotting)}, \code{vignette (hyperspec)}
+#' @seealso `vignette (plotting)`, `vignette (hyperspec)`
 #'
 #' \code{\link{plot}}
 #' @export

@@ -1,18 +1,18 @@
 #' Read INI files
 #'
-#' \code{read.ini} reads ini files of the form
+#' `read.ini` reads ini files of the form
 #'
 #' [section]
 #' key = value
 #'
 #' into a list.
 #'
-#' \code{read.ini} sanitizes the element names and tries to convert scalars and comma separated
+#' `read.ini` sanitizes the element names and tries to convert scalars and comma separated
 #' numeric vectors to numeric.
 #' @export
 #' @rdname read-ini
 #' @param con connection or file name
-#' @param skip number of lines to skip before first \code{[section]} starts
+#' @param skip number of lines to skip before first `[section]` starts
 #' @param encoding see \code{\link[base]{readLines}}
 #' @author C. Beleites
 #' @return a list with one element per section in the .ini file, each containing a list with elements

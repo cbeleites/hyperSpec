@@ -15,20 +15,20 @@
 #' always empty.
 #'
 #' @param filename Name of the SPE file to read data from
-#' @param xaxis Units of x-axis, e.g. \emph{"file"}, \emph{"px"},
-#' \emph{"nm"}, \emph{"energy"}, \emph{"raman"}, \emph{...}
-#' \code{read.spe} function automatically checks if the x-calibration data are
+#' @param xaxis Units of x-axis, e.g. *"file"*, *"px"*,
+#' *"nm"*, *"energy"*, *"raman"*, *...*
+#' `read.spe` function automatically checks if the x-calibration data are
 #' available and uses them (if possible) to reconstruct the xaxis
 #' in the selected units.
 #' @param acc2avg whether to divide the actual data set by the number of
-#' accumulations, thus transforming \emph{accumulated} spectra to
-#' \emph{averaged} spectra. WinSpec does not do this automatically, so the
+#' accumulations, thus transforming *accumulated* spectra to
+#' *averaged* spectra. WinSpec does not do this automatically, so the
 #' spectral intensity is always proportional to the number of accumulations.
-#' The flag \code{@@data$averaged} is automatically set to \code{TRUE}.
+#' The flag `@@data$averaged` is automatically set to `TRUE`.
 #' @param cts_sec whether to divide the actual data set by the exposure time,
 #' thus going to count per second unit.
 #' @param keys.hdr2data Which metadata from the file header should be saved to
-#' the \code{Data} slot of a newly created hyperSpec object
+#' the `Data` slot of a newly created hyperSpec object
 #'
 #' @return hyperSpec object
 #'
@@ -193,7 +193,7 @@ read.spe <- function(filename, xaxis = "file", acc2avg = F, cts_sec = F,
 
 
 #' @describeIn read.spe Read only header of a WinSpec SPE file (version 2.5)
-#' @return hdr list with \code{key=value} pairs
+#' @return hdr list with `key=value` pairs
 .read.spe.header <- function(filename) {
   # Read the 4100-byte long binary header from the SPE file and parse it
 

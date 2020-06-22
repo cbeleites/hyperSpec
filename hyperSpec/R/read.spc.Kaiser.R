@@ -1,16 +1,16 @@
 #' Import functions for Kaiser Optical Systems .spc files
 #'
-#' \code{read.spc.Kaiser} imports sets of .spc files written by Kaiser Optical Systems' Hologram
-#' software.  It may also serve as an example how to write wrapper functions for \code{read.spc} to
+#' `read.spc.Kaiser` imports sets of .spc files written by Kaiser Optical Systems' Hologram
+#' software.  It may also serve as an example how to write wrapper functions for `read.spc` to
 #' conveniently import specialized sets of .spc files.
 #'
 #' @title read Kaiser .spc files
 #' @export
 #' @rdname read-spc-Kaiser
-#' @param files If \code{glob = TRUE}, \code{filename} can contain wildcards.
-#'   Thus all files matching the name pattern in \code{filename} can be
+#' @param files If `glob = TRUE`, `filename` can contain wildcards.
+#'   Thus all files matching the name pattern in `filename` can be
 #'   specified.
-#' @param glob If \code{TRUE} the filename is interpreted as a wildcard
+#' @param glob If `TRUE` the filename is interpreted as a wildcard
 #'   containing file name pattern and expanded to all matching file names.
 #' @param keys.log2data,... All further arguments are handed over directly to \code{\link{read.spc}}.
 #' @return hyperSpec
@@ -52,7 +52,7 @@ read.spc.Kaiser <- function(files, ..., glob = TRUE) {
   .fileio.optional(spc, file.keep.name = FALSE)
 }
 
-#' \code{read.spc.KaiserMap} is a wrapper for \code{read.spc.Kaiser} with predefined \code{log2data}
+#' `read.spc.KaiserMap` is a wrapper for `read.spc.Kaiser` with predefined `log2data`
 #' to fetch the stage position for each file.
 #' @rdname read-spc-Kaiser
 #' @export
@@ -76,13 +76,13 @@ read.spc.KaiserMap <- function(files, keys.log2data = NULL, ...) {
   spc
 }
 
-#' \code{read.spc.KaiserLowHigh} is a wrapper for \code{read.spc.Kaiser} for raw data that is saved
+#' `read.spc.KaiserLowHigh` is a wrapper for `read.spc.Kaiser` for raw data that is saved
 #' in separate files for low and high wavenumber range.  The wavelength axis holds the pixel
 #' numbers, which repeat for low and high wavenumber ranges.
 #'
 #' @rdname read-spc-Kaiser
-#' @param type what kind of measurement was done? If \code{"map"}, \code{read.spc.KaiserMap} is used
-#' instead of \code{read.spc.Kaiser}.
+#' @param type what kind of measurement was done? If `"map"`, `read.spc.KaiserMap` is used
+#' instead of `read.spc.Kaiser`.
 #' @export
 read.spc.KaiserLowHigh <- function(files = stop("file names needed"),
                                    type = c("single", "map"),

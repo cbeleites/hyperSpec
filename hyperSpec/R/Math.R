@@ -2,13 +2,13 @@
 #'
 #' Mathematical functions for hyperSpec Objects.
 #'
-#' The functions \code{abs}, \code{sign}, \code{sqrt}, \code{floor},
-#' \code{ceiling}, \code{trunc}, \code{round}, \code{signif}, \code{exp},
-#' \code{log}, \code{expm1}, \code{log1p}, \code{cos}, \code{sin}, \code{tan},
-#' \code{acos}, \code{asin}, \code{atan}, \code{cosh}, \code{sinh},
-#' \code{tanh}, \code{acosh}, \code{asinh}, \code{atanh}, \code{lgamma},
-#' \code{gamma}, \code{digamma}, \code{trigamma}, \code{cumsum},
-#' \code{cumprod}, \code{cummax}, \code{cummin} for \code{hyperSpec} objects.
+#' The functions `abs`, `sign`, `sqrt`, `floor`,
+#' `ceiling`, `trunc`, `round`, `signif`, `exp`,
+#' `log`, `expm1`, `log1p`, `cos`, `sin`, `tan`,
+#' `acos`, `asin`, `atan`, `cosh`, `sinh`,
+#' `tanh`, `acosh`, `asinh`, `atanh`, `lgamma`,
+#' `gamma`, `digamma`, `trigamma`, `cumsum`,
+#' `cumprod`, `cummax`, `cummin` for `hyperSpec` objects.
 #'
 #' @aliases  Math Math2 Math,hyperSpec-method Math2,hyperSpec-method abs,hyperSpec-method
 #' sign,hyperSpec-method sqrt,hyperSpec-method floor,hyperSpec-method ceiling,hyperSpec-method
@@ -20,9 +20,9 @@
 #' gamma,hyperSpec-method digamma,hyperSpec-method trigamma,hyperSpec-method cumsum,hyperSpec-method
 #' cumprod,hyperSpec-method cummax,hyperSpec-method cummin,hyperSpec-method round,hyperSpec-method
 #' signif,hyperSpec-method
-#' @param x the \code{hyperSpec} object
+#' @param x the `hyperSpec` object
 #' @param digits integer stating the rounding precision
-#' @return a \code{hyperSpec} object
+#' @return a `hyperSpec` object
 #' @rdname math
 #' @author C. Beleites
 #' @seealso \code{\link[methods]{S4groupGeneric}} for group generic methods.
@@ -32,7 +32,7 @@
 #' \code{\link[hyperSpec]{Arith}} for arithmetic operators,
 #'   \code{\link[hyperSpec]{Comparison}} for comparison operators, and
 #'   \code{\link[hyperSpec]{Summary}} for group generic functions working on
-#'   \code{hyperSpec} objects.
+#'   `hyperSpec` objects.
 #' @keywords methods math
 #' @export
 #' @examples

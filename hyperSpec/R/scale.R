@@ -1,23 +1,23 @@
 #' Center and scale hyperSpec object
 #'
-#' \code{link[base]{scale}}s the spectra matrix. \code{scale (x, scale = FALSE)} centers the data.
+#' \code{link[base]{scale}}s the spectra matrix. `scale (x, scale = FALSE)` centers the data.
 #'
-#' Package \code{scale} provides a fast alternative for \code{base::\link[base]{scale}}
+#' Package `scale` provides a fast alternative for \code{base::\link[base]{scale}}
 #'
 #' @name scale,hyperSpec-method
 #' @rdname scale
 #' @aliases scale scale-methods scale,hyperSpec-method
 #' @docType methods
-#' @param x the \code{hyperSpec} object
-#' @param center if \code{TRUE}, the data is centered to \code{colMeans (x)}, \code{FALSE}
+#' @param x the `hyperSpec` object
+#' @param center if `TRUE`, the data is centered to `colMeans (x)`, `FALSE`
 #' suppresses centering. Alternatively, an object that can be converted to numeric of length
-#' \code{nwl (x)} by \code{\link[base]{as.matrix}} (e.g. hyperSpec object containing 1 spectrum) can
+#' `nwl (x)` by \code{\link[base]{as.matrix}} (e.g. hyperSpec object containing 1 spectrum) can
 #' specify the center spectrum.
-#' @param scale if \code{TRUE}, the data is scaled to have unit variance at each wavelength,
-#' \code{FALSE} suppresses scaling. Alternatively, an object that can be converted to numeric of
-#' length \code{nwl (x)} by \code{\link[base]{as.matrix}} (e.g. hyperSpec object containing 1 spectrum)
+#' @param scale if `TRUE`, the data is scaled to have unit variance at each wavelength,
+#' `FALSE` suppresses scaling. Alternatively, an object that can be converted to numeric of
+#' length `nwl (x)` by \code{\link[base]{as.matrix}} (e.g. hyperSpec object containing 1 spectrum)
 #' can specify the center spectrum.
-#' @return the centered & scaled \code{hyperSpec} object
+#' @return the centered & scaled `hyperSpec` object
 #' @author C. Beleites
 #' @seealso \code{\link[base]{scale}}
 #'

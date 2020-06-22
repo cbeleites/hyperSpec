@@ -8,7 +8,7 @@
 
 #' Import and Export of hyperSpec objects
 #' Besides \code{\link[base]{save}} and \code{\link[base]{load}}, two general
-#' ways to import and export data into \code{hyperSpec} objects exist.
+#' ways to import and export data into `hyperSpec` objects exist.
 #'
 #' Firstly, hyperSpec objects can be imported and exported as ASCII files.
 #'
@@ -17,8 +17,8 @@
 #' \code{\link[R.matlab]{writeMat}}.
 #'
 #' hyperSpec comes with a number of pre-defined functions to import
-#' manufacturer specific file formats. For details, see \code{vignette
-#' ("file-io")}.
+#' manufacturer specific file formats. For details, see `vignette
+#' ("file-io")`.
 #'
 #' \code{\link[hyperSpec]{read.spc}} imports Thermo Galactic's .spc file
 #' format, and ENVI files may be read using
@@ -29,7 +29,7 @@
 #' If you use them to read or write manufacturer specific ASCII formats,
 #' please consider writing a wrapper function and contributing this function
 #' to \pkg{hyperSpec}.  An example is in the \dQuote{flu} vignette (see
-#' \code{vignette ("flu", package = "hyperSpec"}).
+#' `vignette ("flu", package = "hyperSpec"`).
 #'
 #' Note that R accepts many packed formats for ASCII files, see
 #' \code{\link[base]{connections}}. For .zip files, see
@@ -42,8 +42,8 @@
 #' @param file filename or connection
 #' @param cols the column names specifying the column order.
 #'
-#' For data import, a list with elements \code{colname = label}; for export a
-#'   character vector with the colnames.  Use \code{wavelength} to specify the
+#' For data import, a list with elements `colname = label`; for export a
+#'   character vector with the colnames.  Use `wavelength` to specify the
 #'   wavelengths.
 #' @param header the file has (shall have) a header line
 #' @param ... arguments handed to \code{\link[utils]{read.table}} and

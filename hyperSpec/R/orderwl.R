@@ -1,13 +1,13 @@
 
 #' Sorting the Wavelengths of a hyperSpec Object
-#' Rearranges the \code{hyperSpec} object so that the wavelength vector is in increasing (or
+#' Rearranges the `hyperSpec` object so that the wavelength vector is in increasing (or
 #' decreasing) order.
 #'
 #' The wavelength vector is sorted and the columns of the spectra matrix are rearranged accordingly.
 #'
-#' @param x The \code{hyperSpec} object.
+#' @param x The `hyperSpec` object.
 #' @param na.last,decreasing Handed to \code{\link[base]{order}}.
-#' @return A \code{hyperSpec} object.
+#' @return A `hyperSpec` object.
 #' @author C. Beleites
 #' @export
 #' @seealso \code{\link[base]{order}}

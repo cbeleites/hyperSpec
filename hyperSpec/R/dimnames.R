@@ -27,7 +27,7 @@ setMethod("dimnames", signature = signature(x = "hyperSpec"), function(x) {
 #' @rdname dimnames
 #' @aliases rownames
 #' @param do.NULL handed to \code{\link[base]{rownames}} or \code{\link[base]{colnames}}: logical.
-#' Should this create names if they are \code{NULL}?
+#' Should this create names if they are `NULL`?
 #' @param prefix handed to \code{\link[base]{rownames}} or \code{\link[base]{colnames}}
 #' @seealso \code{\link[base]{rownames}}
 #' @export

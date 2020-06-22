@@ -7,7 +7,7 @@
 #' @format The data sets consists of 286 spectra. They are the result of importing the
 #' BARBITUATES.SPC example data from Thermo Galactic's spc file format specification.
 #' @author C. Beleites and Thermo Galactic
-#' @references The raw data is available at \url{http://hyperspec.r-forge.r-project.org/blob/fileio.zip}
+#' @references The raw data is available at <http://hyperspec.r-forge.r-project.org/blob/fileio.zip>
 #' @keywords datasets
 #' @examples
 #'

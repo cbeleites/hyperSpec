@@ -1,6 +1,6 @@
 #' Read ASCII (.txt) files exported by Horiba's Labspec software (LabRAM spectrometers)
 #'
-#' \code{read.txt.Horiba.xy} reads maps, i.e. .txt files where the first two columns give x and y coordinates.
+#' `read.txt.Horiba.xy` reads maps, i.e. .txt files where the first two columns give x and y coordinates.
 #'
 #' @title Import Horiba Labspec exported ASCII files
 #' @param file connection (file name and path) to the .txt file
@@ -42,7 +42,7 @@ read.txt.Horiba.xy <- function(file, ...) {
   )
 }
 
-#' \code{read.txt.Horiba.t}  reads time series, i.e. .txt files with the time in the first column
+#' `read.txt.Horiba.t`  reads time series, i.e. .txt files with the time in the first column
 #' @rdname read.txt.Horiba
 #' @export
 read.txt.Horiba.t <- function(file, header = TRUE, sep = "\t", row.names = NULL,

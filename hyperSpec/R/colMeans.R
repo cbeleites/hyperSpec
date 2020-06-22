@@ -8,7 +8,7 @@
 #' @param label.wavelength labels for the wavelength axis for scores-like (row) statistics
 #' @param na.rm,... further parameters to the base functions
 #'
-#' \code{na.rm} defaults to \code{TRUE} for hyperSpec objects.
+#' `na.rm` defaults to `TRUE` for hyperSpec objects.
 #' @seealso \link[base]{colSums}
 #' @rdname colSums
 #' @name colSums

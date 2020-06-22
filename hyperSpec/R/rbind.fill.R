@@ -29,7 +29,7 @@ quickdf <- function(list) {
 #' matrix doesn't have colnames, the column number is used (via \code{\link[base]{make.names}(unique
 #' = TRUE)}).
 #'
-#' Note that this means that a column with name \code{"X1"} is merged with the first column of a
+#' Note that this means that a column with name `"X1"` is merged with the first column of a
 #' matrix without name and so on.
 #'
 #' Vectors are converted to 1-column matrices prior to rbind.
@@ -110,7 +110,7 @@ rbind.fill.matrix <- function(...) {
 }
 
 #' Combine objects by row, filling in missing columns.
-#' \code{rbind}s a list of data frames filling missing columns with NA.
+#' `rbind`s a list of data frames filling missing columns with NA.
 #'
 #' This is an enhancement to \code{\link{rbind}} which adds in columns
 #' that are not present in all inputs, accepts a list of data frames, and

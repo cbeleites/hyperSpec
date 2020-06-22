@@ -7,11 +7,11 @@
 #' signal : noise ratio. See \code{\link[stats]{loess}} and \code{\link[stats]{loess.control}} on
 #' the parameters that control the amount of smoothing.
 #'
-#' @param spc the \code{hyperSpec} object
+#' @param spc the `hyperSpec` object
 #' @param newx wavelengh axis to interpolate on
 #' @param enp.target,surface,... parameters for \code{\link[stats]{loess}} and
 #' \code{\link[stats]{loess.control}}.
-#' @return a new \code{hyperspec} object.
+#' @return a new `hyperspec` object.
 #' @rdname spc-loess
 #' @export
 #' @author C. Beleites

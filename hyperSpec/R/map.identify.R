@@ -4,7 +4,7 @@
 #' @export
 #' @seealso  \code{\link[hyperSpec:options]{hyperSpec options}} \code{\link{spc.identify}}
 #' \code{\link{map.sel.poly}}
-#' @param tol tolerance for \code{map.identify} as fraction of the viewport
+#' @param tol tolerance for `map.identify` as fraction of the viewport
 #'   (i.e. in "npc" \link[grid]{unit}s)
 #' @param warn should a warning be issued if no point is within the specified
 #'   tolerance? See also details.

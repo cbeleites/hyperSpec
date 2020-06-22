@@ -145,11 +145,11 @@
 
 #' Creating a hyperSpec Object
 #'
-#' Like other S4 objects, a hyperSpec object can be created by \code{new}. The
-#' hyperSpec object is then \code{initialize}d using the given parameters.
+#' Like other S4 objects, a hyperSpec object can be created by `new`. The
+#' hyperSpec object is then `initialize`d using the given parameters.
 #'
-#' If option \code{gc} is \code{TRUE}, the initialization will have frequent
-#' calls to \code{gc ()} which can help to avoid swapping or running out of
+#' If option `gc` is `TRUE`, the initialization will have frequent
+#' calls to `gc ()` which can help to avoid swapping or running out of
 #' memory.
 #'
 #' @name initialize
@@ -157,35 +157,35 @@
 #' @aliases initialize,hyperSpec-method initialize create
 #'   create,hyperSpec-method new,hyperSpec-method new
 #' @docType methods
-#' @param .Object the new \code{hyperSpec} object.
-#' @param data \code{data.frame}, possibly with the spectra in
-#'   \code{data$spc}, and further variates in more columns.  A matrix can be
-#'   entered as \emph{one} column of a data frame by: \code{data.frame (spc =
-#'   I (as.matrix (spc)))}.
+#' @param .Object the new `hyperSpec` object.
+#' @param data `data.frame`, possibly with the spectra in
+#'   `data$spc`, and further variates in more columns.  A matrix can be
+#'   entered as *one* column of a data frame by:
+#'  `data.frame (spc = I (as.matrix (spc)))`.
 #'
 #' However, it will usually be more convenient if the spectra are given in
-#'   \code{spc}
+#'   `spc`
 #' @param spc the spectra matrix.
 #'
-#' \code{spc} does not need to be a matrix, it is converted explicitly by
-#'   \code{I (as.matrix (spc))}.
+#' `spc` does not need to be a matrix, it is converted explicitly by
+#'   `I (as.matrix (spc))`.
 #' @param wavelength The wavelengths corresponding to the columns of
-#'   \code{data}. If no wavelengths are given, an appropriate vector is
-#'   derived from the column names of \code{data$spc}. If this is not
-#'   possible, \code{1 : ncol (data$spc)} is used instead.
-#' @param labels A \code{list} containing the labels for the columns of the
-#'   \code{data} slot of the \code{hyperSpec} object and for the wavelength
-#'   (in \code{label$.wavelength}). The labels should be given in a form ready
+#'   `data`. If no wavelengths are given, an appropriate vector is
+#'   derived from the column names of `data$spc`. If this is not
+#'   possible, `1 : ncol (data$spc)` is used instead.
+#' @param labels A `list` containing the labels for the columns of the
+#'   `data` slot of the `hyperSpec` object and for the wavelength
+#'   (in `label$.wavelength`). The labels should be given in a form ready
 #'   for the text-drawing functions (see \code{\link[grDevices]{plotmath}}).
 #'
-#' If \code{label} is not given, a list containing \code{NULL} for each of the
-#'   columns of\code{data} and \code{wavelength} is used.
+#' If `label` is not given, a list containing `NULL` for each of the
+#'   columns of`data` and `wavelength` is used.
 #' @author C.Beleites
 #' @seealso \code{\link[methods]{new}} for more information on creating and
 #'   initializing S4 objects.
 #'
 #' \code{\link[grDevices]{plotmath}} on expressions for math annotations as
-#'   for slot \code{label}.
+#'   for slot `label`.
 #'
 #' \code{\link{hy.setOptions}}
 #' @keywords methods datagen
@@ -322,7 +322,7 @@ setMethod("initialize", "hyperSpec", .initialize)
 #' @param X the object to convert.
 #' A matrix is assumed to contain the spectra matrix,
 #' a data.frame is assumed to contain extra data.
-#' @param ... additional parameters that should be handed over to \code{new ("hyperSpec")} (initialize)
+#' @param ... additional parameters that should be handed over to `new ("hyperSpec")` (initialize)
 #'
 #' @return hyperSpec object
 #' @seealso \code{\link[hyperSpec]{initialize}}
@@ -340,7 +340,7 @@ setGeneric(
 }
 
 #' @rdname as.hyperSpec
-#' @param wl wavelength vector. Defaults to guessing from the column names in \code{X}
+#' @param wl wavelength vector. Defaults to guessing from the column names in `X`
 #' @param spc spectra matrix
 #' @param labels list with labels
 #' @export
@@ -366,8 +366,8 @@ setMethod("as.hyperSpec", "matrix", .as.hyperSpec.matrix)
 }
 
 #' @rdname as.hyperSpec
-#' @note \emph{Note that the behaviour of \code{as.hyperSpec (X)} was changed: it now assumes \code{X} to be extra data,
-#' and returns a hyperSpec object with 0 wavelengths. To get the old behaviour}
+#' @note *Note that the behaviour of `as.hyperSpec (X)` was changed: it now assumes `X` to be extra data,
+#' and returns a hyperSpec object with 0 wavelengths. To get the old behaviour*
 setMethod("as.hyperSpec", "data.frame", .as.hyperSpec.data.frame)
 
 #' @include unittest.R

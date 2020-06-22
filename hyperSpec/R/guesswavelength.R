@@ -5,7 +5,7 @@
 #' produce suitable names (e.g. by prepending "X" to numbers.). Such names
 #' cannot be directly converted to numeric.
 #'
-#' \code{guess.wavlength} tries to extract numbers from X which may be
+#' `guess.wavlength` tries to extract numbers from X which may be
 #' surrounded by such "protecting" characters.
 #'
 #' @param X character with numbers hidden inside

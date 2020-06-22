@@ -641,15 +641,15 @@ raw.split.nul <- function(raw, trunc = c(TRUE, TRUE), firstonly = FALSE, paste.c
 #'
 #' Use with care, and look into the source code for detailed insight on the
 #'   elements of this list.
-#' @param no.object If \code{TRUE}, a list with wavelengths, spectra, labels,
+#' @param no.object If `TRUE`, a list with wavelengths, spectra, labels,
 #'   log and data are returned instead of a hyperSpec object.
 #'
 #' This parameter will likely be subject to change in future - use with care.
 #' @return If the file contains multiple spectra with individual wavelength
-#'   axes, \code{read.spc} returns a list of hyperSpec objects.  Otherwise the
+#'   axes, `read.spc` returns a list of hyperSpec objects.  Otherwise the
 #'   result is a hyperSpec object.
 #'
-#' \code{read.spc.KaiserMap} returns a hyperSpec object with data columns x,
+#' `read.spc.KaiserMap` returns a hyperSpec object with data columns x,
 #'   y, and z containing the stage position as recorded in the .spc files'
 #'   log.
 #' @note Only a restricted set of test files was available for development.

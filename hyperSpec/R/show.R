@@ -2,15 +2,15 @@
 #' @docType methods
 #' @import methods
 #' @aliases as.character
-#' @param digits number of digits handed over to \code{format}
+#' @param digits number of digits handed over to `format`
 #' @param range should the values be indicated as range rather then first and
 #'   last elements?
 #' @param max.print maximum number of elements to be printed (of a variable)
-#' @param shorten.to if a vector is longer than \code{max.print}, only the
-#'   first \code{shorten.to[1]} and the last \code{shorten.to[2]} elements are
+#' @param shorten.to if a vector is longer than `max.print`, only the
+#'   first `shorten.to[1]` and the last `shorten.to[2]` elements are
 #'   printed
-#' @return \code{as.character} returns a character vector fit to be printed by
-#'   \code{cat} with \code{sep = "\n"}.
+#' @return `as.character` returns a character vector fit to be printed by
+#'   `cat` with `sep = "\n"`.
 #'
 #' @seealso \code{\link[base]{as.character}}
 #' @include paste.row.R
@@ -73,15 +73,15 @@ setMethod("as.character",
 )
 
 #' Convert a hyperSpec object to character strings for Display
-#' \code{print}, \code{show}, and \code{summary} show the result of
-#' \code{as.character}.
+#' `print`, `show`, and `summary` show the result of
+#' `as.character`.
 #'
-#' \code{print}, \code{show}, and \code{summary} differ only in the defaults.
-#' \code{show} displays the range of values instead,
+#' `print`, `show`, and `summary` differ only in the defaults.
+#' `show` displays the range of values instead,
 #' @name show
 #' @rdname show
 #' @aliases show show,hyperSpec-method
-#' @param object a \code{hyperSpec} object
+#' @param object a `hyperSpec` object
 #' @seealso \code{\link[methods]{show}}
 #' @keywords methods print
 #' @export
@@ -100,13 +100,13 @@ setMethod("show", signature = signature(object = "hyperSpec"), function(object) 
 })
 
 #'
-#' \code{print} shows the overview giving the first and last values of each
+#' `print` shows the overview giving the first and last values of each
 #' data column (fastest).
 #' @aliases print print,hyperSpec-method
-#' @param x a \code{hyperSpec} object
-#' @param ... \code{print} and \code{summary}  hand further arguments to \code{as.character}
-#' @return \code{print} invisibly returns \code{x} after printing, \code{show} returns
-#'   an invisible \code{NULL}.
+#' @param x a `hyperSpec` object
+#' @param ... `print` and `summary`  hand further arguments to `as.character`
+#' @return `print` invisibly returns `x` after printing, `show` returns
+#'   an invisible `NULL`.
 #' @rdname show
 #' @export
 #' @seealso \code{\link[base]{print}}
@@ -118,7 +118,7 @@ setMethod("print", signature = signature(x = "hyperSpec"), function(x, range = F
 
 
 #'
-#' \code{summary} displays the logbook in addition.
+#' `summary` displays the logbook in addition.
 #'
 #' @aliases summary summary,hyperSpec-method
 #' @seealso \code{\link[base]{summary}}

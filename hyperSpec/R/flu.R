@@ -2,7 +2,7 @@
 #' Fluorescence spectra of different dilutions of quinine forming a
 #' calibration set.
 #'
-#' See the vignette: \code{vignette ("flu", package = "hyperSpec")}
+#' See the vignette: `vignette ("flu", package = "hyperSpec")`
 #'
 #' @name flu
 #' @docType data

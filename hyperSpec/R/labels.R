@@ -77,7 +77,7 @@
 #' @aliases labels<-,hyperSpec-method
 #' @export "labels<-"
 #' @param value the new label(s)
-#' @return  \code{labels<-} returns a \code{hyperSpec} object.
+#' @return  `labels<-` returns a `hyperSpec` object.
 #' @examples
 #'
 #' labels(flu, "c") <- expression("/"("c", "mg / l"))
@@ -106,16 +106,16 @@
 
 
 #' Get and Set Labels of a hyperSpec Object
-#' \code{value} may be a list or vector of labels giving the new label for
-#' each of the entries specified by \code{which}.
+#' `value` may be a list or vector of labels giving the new label for
+#' each of the entries specified by `which`.
 #'
 #' The names of the labels are the same as the colnames of the
-#' \code{data.frame}.  The label for the wavelength axis has the name
-#' \code{.wavelength}.
+#' `data.frame`.  The label for the wavelength axis has the name
+#' `.wavelength`.
 #'
 #' The labels should be given in a form ready for the text-drawing functions
-#' (see \code{\link[grDevices]{plotmath}}), e.g. as \code{expression} or a
-#' \code{character}.
+#' (see \code{\link[grDevices]{plotmath}}), e.g. as `expression` or a
+#' `character`.
 #'
 #' @param object a hyperSpec object
 #' @param which numeric or character to specify the label(s)
@@ -124,8 +124,8 @@
 #'   element be returned instead?
 #' @param use.colnames should missing labels be replaced by column names of
 #'   the extra data?
-#' @return \code{labels} returns a list of labels.  If \code{drop} is
-#'   \code{TRUE} and the list contains only one element, the element is
+#' @return `labels` returns a list of labels.  If `drop` is
+#'   `TRUE` and the list contains only one element, the element is
 #'   returned instead.
 #' @docType methods
 #' @rdname labels

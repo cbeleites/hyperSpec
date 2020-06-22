@@ -80,16 +80,15 @@ setGeneric("plot")
 
 #' Plotting hyperSpec Objects
 #'
-#' Plotting \code{hyperSpec} objects. The \code{plot} method for
-#' \code{hyperSpec} objects is a switchyard to \code{\link{plotspc}},
+#' Plotting `hyperSpec` objects. The `plot` method for
+#' `hyperSpec` objects is a switchyard to \code{\link{plotspc}},
 #' \code{\link{plotmap}}, and \code{\link{plotc}}.
 #'
 #' It also supplies some convenient abbrevations for much used plots.
 #'
-#' If \code{y} is missing, \code{plot} behaves like \code{plot (x, y =
-#' "spc")}.
+#' If `y` is missing, `plot` behaves like `plot (x, y = "spc")`.
 #'
-#' Supported values for \code{y} are:
+#' Supported values for `y` are:
 #'
 #' \describe{ \item{"spc"}{calls \code{\link{plotspc}} to produce a spectra
 #' plot.}
@@ -98,11 +97,11 @@ setGeneric("plot")
 #'
 #' \item{"spcprctile"}{plots 16th, 50th, and 84th percentile spectre. If the
 #' distributions of the intensities at all wavelengths were normal, this would
-#' correspond to \code{"spcmeansd"}. However, this is frequently not the case.
-#' Then \code{"spcprctile"} gives a better impression of the spectral data
+#' correspond to `"spcmeansd"`. However, this is frequently not the case.
+#' Then `"spcprctile"` gives a better impression of the spectral data
 #' set.}
 #'
-#' \item{"spcprctl5"}{like \code{"spcprctile"}, but additionally the 5th and
+#' \item{"spcprctl5"}{like `"spcprctile"`, but additionally the 5th and
 #' 95th percentile spectra are plotted.}
 #'
 #' \item{"map"}{calls \code{\link{plotmap}} to produce a map plot.}
@@ -128,7 +127,7 @@ setGeneric("plot")
 #' @aliases plot plot,ANY,ANY-method plot,hyperSpec,character-method
 #'   plot,hyperSpec,missing-method
 #' @docType methods
-#' @param x the \code{hyperSpec} object
+#' @param x the `hyperSpec` object
 #' @param y selects what plot should be produced
 #' @param ... arguments passed to the respective plot function
 #' @author C. Beleites

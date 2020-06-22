@@ -1,14 +1,14 @@
 #' Normalize numbers -> [0, 1]
 #'
-#' The input \code{x} is mapped to [0, 1] by subtracting the minimum and subsequently dividing by
-#' the maximum. If all elements of \code{x} are equal, 1 is returned.
+#' The input `x` is mapped to [0, 1] by subtracting the minimum and subsequently dividing by
+#' the maximum. If all elements of `x` are equal, 1 is returned.
 #'
 #' @title normalization for mixed colors
 #' @name normalize01
 #' @param x  vector with values to transform
 #' @param tolerance tolerance level for determining what is 0 and 1
-#' @param ... additional parameters such as \code{tolerance} handed down.
-#' @return vector with \code{x} values mapped to the interval [0, 1]
+#' @param ... additional parameters such as `tolerance` handed down.
+#' @return vector with `x` values mapped to the interval [0, 1]
 #' @author C. Beleites
 #' @seealso \code{\link[hyperSpec]{wl.eval}}, \code{\link[hyperSpec]{vanderMonde}}
 #' @export

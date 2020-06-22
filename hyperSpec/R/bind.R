@@ -1,29 +1,29 @@
 #' Binding hyperSpec Objects
 #'
 #' The former difficulties with binding S4 objects
-#' are resolved since R version 3.2.0 and \code{cbind} and \code{rbind} now work as intended and
+#' are resolved since R version 3.2.0 and `cbind` and `rbind` now work as intended and
 #' expected for hyperSpec objects.
 #'
-#' Therefore, calling \code{rbind.hyperSpec} and
-#' \code{cbind.hyperSpec} is now depecated: \code{cbind} and \code{rbind} should now be called
+#' Therefore, calling `rbind.hyperSpec` and
+#' `cbind.hyperSpec` is now depecated: `cbind` and `rbind` should now be called
 #' directly.
 #'
-#' However, in consequence it is no longer possible to call \code{cbind} or \code{rbind} with a
-#' list of hyperSpec objects. In that case, use \code{bind} or \code{\link[base]{do.call}} (see example).
+#' However, in consequence it is no longer possible to call `cbind` or `rbind` with a
+#' list of hyperSpec objects. In that case, use `bind` or \code{\link[base]{do.call}} (see example).
 #'
-#' \code{bind} does the common work for both column- and row-wise binding.
+#' `bind` does the common work for both column- and row-wise binding.
 #'
 #' @aliases bind
-#' @param ... The \code{hyperSpec} objects to be combined.
+#' @param ... The `hyperSpec` objects to be combined.
 #'
-#' Alternatively, \emph{one} list of \code{hyperSpec} objects can be given to
-#'   \code{bind}.
-#' @param wl.tolerance \code{rbind} and \code{rbind2} check for equal wavelengths
+#' Alternatively, *one* list of `hyperSpec` objects can be given to
+#'   `bind`.
+#' @param wl.tolerance `rbind` and `rbind2` check for equal wavelengths
 #' with this tolerance.
 #' @include paste.row.R
 #' @param direction "r" or "c" to bind rows or columns
-#' @return a \code{hyperSpec} object, possibly with different row order (for
-#'   \code{bind ("c", \dots{})} and \code{cbind2}).
+#' @return a `hyperSpec` object, possibly with different row order (for
+#'   \code{bind ("c", \dots{})} and `cbind2`).
 #' @note You might have to make sure that the objects either all have or all
 #'   do not have rownames and/or colnames.
 #' @author C. Beleites
@@ -120,13 +120,13 @@ bind <- function(direction = stop("direction ('c' or 'r') required"), ...,
 }
 
 
-#' @description  \code{cbind2} binds the spectral matrices of two \code{hyperSpec} objects by column. All columns
-#' besides \code{spc} with the same name in \code{x@@data} and \code{y@@data} must have the same
+#' @description  `cbind2` binds the spectral matrices of two `hyperSpec` objects by column. All columns
+#' besides `spc` with the same name in `x@@data` and `y@@data` must have the same
 #' elements.  Rows are ordered before checking.
 #' @aliases bind cbind.hyperSpec rbind.hyperSpec
 #'   cbind2,hyperSpec,hyperSpec-method rbind2,hyperSpec,hyperSpec-method
 #'   cbind2,hyperSpec,missing-method rbind2,hyperSpec,missing-method
-#' @param x,y \code{hyperSpec} objects
+#' @param x,y `hyperSpec` objects
 #' @rdname bind
 #' @export
 #' @aliases cbind.hyperSpec
@@ -135,7 +135,7 @@ bind <- function(direction = stop("direction ('c' or 'r') required"), ...,
 cbind.hyperSpec <- function(...) bind("c", ...)
 
 #'
-#' \code{rbind2} binds two \code{hyperSpec} objects by row. They need to have
+#' `rbind2` binds two `hyperSpec` objects by row. They need to have
 #' the same columns.
 #'
 #' @aliases  rbind.hyperSpec

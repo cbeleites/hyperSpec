@@ -4,19 +4,19 @@
 #'
 #' Note that \code{\link{wl2i}} generates sequences of indices along the wavelength axis.
 #'
-#' \code{seq} had to be implemented as S3 method as the generic has only \dots{} arguments (on which
+#' `seq` had to be implemented as S3 method as the generic has only \dots{} arguments (on which
 #' no dispatch with differing types is possible).
 #'
-#' \code{\link[base]{seq_along}} is not generic, but returns a sequence of the \code{length} of the
+#' \code{\link[base]{seq_along}} is not generic, but returns a sequence of the `length` of the
 #' object. As hyperSpec provides a Method \code{\link{length}}, it can be used. The result is a
 #' sequence of indices for the spectra.
 #'
 #' @aliases seq seq,hyperSpec-method
 #' @param x the hyperSpec object
 #' @param from,to arguments handed to \code{\link[base]{seq.int}}
-#' @param ... arguments for \code{\link[base]{seq}}, namely \code{by}, \code{length.out}
+#' @param ... arguments for \code{\link[base]{seq}}, namely `by`, `length.out`
 #' @param index should a vector with indices be returned rather than a hyperSpec object?
-#' @return a numeric or hyperSpec object, depending on \code{index}.
+#' @return a numeric or hyperSpec object, depending on `index`.
 #' @author C. Beleites
 #' @seealso \code{\link{wl2i}} to construct sequences of wavelength indices.
 #'

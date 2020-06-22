@@ -254,10 +254,10 @@ split.line <- function(x, separator, trim.blank = TRUE) {
 #' @title Import of ENVI data as hyperSpec object
 #'
 #' @description
-#' This function allows ENVI data import as \code{hyperSpec} object.
+#' This function allows ENVI data import as `hyperSpec` object.
 #'
-#' \code{read.ENVI.Nicolet} should be a good starting point for writing custom
-#' wrappers for \code{read.ENVI} that take into account your manufacturer's
+#' `read.ENVI.Nicolet` should be a good starting point for writing custom
+#' wrappers for `read.ENVI` that take into account your manufacturer's
 #' special entries in the header file.
 #'
 #' @details
@@ -269,14 +269,14 @@ split.line <- function(x, separator, trim.blank = TRUE) {
 #' contents) produced by Bruker Opus' ENVI export.
 #'
 #' In this case the necessary information can be given as a list in parameter
-#' \code{header} instead:
+#' `header` instead:
 #'
 #' \tabular{lll}{
-#' \code{header$}          \tab values        \tab meaning\cr
-#' \code{samples}          \tab integer       \tab no of columns / spectra in x direction\cr
-#' \code{lines}            \tab integer       \tab no of lines / spectra in y direction\cr
-#' \code{bands}            \tab integer       \tab no of wavelengths / data points per spectrum\cr
-#' \code{`data type`}      \tab               \tab format of the binary file\cr
+#' `header$`          \tab values        \tab meaning\cr
+#' `samples`          \tab integer       \tab no of columns / spectra in x direction\cr
+#' `lines`            \tab integer       \tab no of lines / spectra in y direction\cr
+#' `bands`            \tab integer       \tab no of wavelengths / data points per spectrum\cr
+#' ``data type``      \tab               \tab format of the binary file\cr
 #'                         \tab 1             \tab 1 byte unsigned integer \cr
 #'                         \tab 2             \tab 2 byte signed integer \cr
 #'                         \tab 3             \tab 4 byte signed integer \cr
@@ -284,12 +284,12 @@ split.line <- function(x, separator, trim.blank = TRUE) {
 #'                         \tab 5             \tab 8 byte double \cr
 #'                         \tab 9             \tab 16 (2 x 8) byte complex double \cr
 #'                         \tab 12            \tab 2 byte unsigned integer \cr
-#'  \code{`header offset`} \tab integer       \tab number of bytes to skip before binary data starts\cr
-#'  \code{interleave}      \tab               \tab directions of the data cube \cr
+#'  ``header offset`` \tab integer       \tab number of bytes to skip before binary data starts\cr
+#'  `interleave`      \tab               \tab directions of the data cube \cr
 #'                         \tab "BSQ"         \tab band sequential (indexing: [sample, line, band])\cr
 #'                         \tab "BIL"         \tab band interleave by line (indexing: [sample, line, band])\cr
 #'                         \tab "BIP"         \tab band interleave by pixel (indexing: [band, line, sample])\cr
-#'  \code{`byte order`}    \tab 0 or "little" \tab little endian \cr
+#'  ``byte order``    \tab 0 or "little" \tab little endian \cr
 #'                         \tab 1 or "big"    \tab big endian \cr
 #'                         \tab "swap"        \tab swap byte order
 #' }
@@ -300,17 +300,17 @@ split.line <- function(x, separator, trim.blank = TRUE) {
 #' information, see \code{\link[hyperSpec]{initialize}}.
 #'
 #' The spatial information is by default a sequence from 0 to
-#' \code{header$samples - 1} and \code{header$lines - 1}, respectively.
-#' \code{x} and \code{y} give offset of the first spectrum and step size.
+#' `header$samples - 1` and `header$lines - 1`, respectively.
+#' `x` and `y` give offset of the first spectrum and step size.
 #'
-#' Thus, the object's \code{$x} colum is: \code{(0 : header$samples - 1) * x
-#' [2] + x [1]}.  The \code{$y} colum is calculated analogously.
+#' Thus, the object's `$x` colum is: `(0 : header$samples - 1) * x
+#' [2] + x [1]`.  The `$y` colum is calculated analogously.
 #'
 #' @aliases read.ENVI read.ENVI.Nicolet read.ENVI.HySpex
 #' @param file complete name of the binary file
-#' @param headerfile name of the ASCII header file. If \code{NULL}, the name
+#' @param headerfile name of the ASCII header file. If `NULL`, the name
 #'   of the header file is guessed by looking for a second file with the same
-#'   basename as \code{file} but \code{hdr} or \code{HDR} suffix.
+#'   basename as `file` but `hdr` or `HDR` suffix.
 #' @param header list with header information, see details. Overwrites information extracted from the header file.
 #' @param x,y vectors of form c(offset, step size) for the position vectors,
 #'   see details.
@@ -318,19 +318,19 @@ split.line <- function(x, separator, trim.blank = TRUE) {
 #'   from the ENVI header file. These data is then handed to
 #'   \code{\link[hyperSpec]{initialize}}
 #' @param block.lines.skip,block.lines.size BIL and BIP ENVI files may be read in blocks of lines:
-#'   skip the first \code{block.lines.skip} lines, then read a block of \code{block.lines.size}
-#'   lines. If \code{block.lines.NULL}, the whole file is read.
-#'   Blocks are silently truncated at the end of the file (more precisely: to \code{header$lines}).
+#'   skip the first `block.lines.skip` lines, then read a block of `block.lines.size`
+#'   lines. If `block.lines.NULL`, the whole file is read.
+#'   Blocks are silently truncated at the end of the file (more precisely: to `header$lines`).
 #' @param keys.hdr2data determines which fields of the header file should be
 #'   put into the extra data. Defaults to none.
 #'
 #' To specify certain entries, give character vectors containing the lowercase
 #'   names of the header file entries.
-#' @param ... currently unused by \code{read.ENVI},
-#'   \code{read.ENVI.Nicolet} hands those arguements over to \code{read.ENVI}
+#' @param ... currently unused by `read.ENVI`,
+#'   `read.ENVI.Nicolet` hands those arguements over to `read.ENVI`
 #' @param pull.header.lines (internal) flag whether multi-line header entries grouped by curly
 #'   braces should be pulled into one line each.
-#' @return a \code{hyperSpec} object
+#' @return a `hyperSpec` object
 #' @author C. Beleites, testing for the Nicolet files C. Dicko
 #' @seealso \code{\link[caTools]{read.ENVI}}
 #'

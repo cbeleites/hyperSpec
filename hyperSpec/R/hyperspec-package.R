@@ -17,11 +17,11 @@
 #' @author C. Beleites
 #'
 #' Maintainer: Claudia Beleites <claudia.beleites@@chemometrix.eu>
-#' @seealso \code{citation ("hyperSpec")} produces the correct citation.
+#' @seealso `citation ("hyperSpec")` produces the correct citation.
 #'
-#' \code{package?hyperSpec} for information about the package
+#' `package?hyperSpec` for information about the package
 #'
-#' \code{class?hyperSpec} for details on the S4 class provided by this
+#' `class?hyperSpec` for details on the S4 class provided by this
 #'   package.
 #' @rdname hyperSpec-package
 #' @include flu.R

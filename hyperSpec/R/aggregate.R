@@ -63,44 +63,44 @@
 
 #' aggregate hyperSpec objects
 #'
-#' Compute summary statistics for subsets of a \code{hyperSpec} object.
+#' Compute summary statistics for subsets of a `hyperSpec` object.
 #'
-#' \code{aggregate} applies \code{FUN} to each of the subgroups given by
-#' \code{by}. It combines the functionality of \code{\link[stats]{aggregate}},
+#' `aggregate` applies `FUN` to each of the subgroups given by
+#' `by`. It combines the functionality of \code{\link[stats]{aggregate}},
 #' \code{\link[base]{tapply}}, and \code{\link[stats]{ave}} for hyperSpec
 #' objects.
 #'
-#' \code{aggregate} avoids splitting \code{x@@data}.
+#' `aggregate` avoids splitting `x@@data`.
 #'
-#' \code{FUN} does not need to return exactly one value.  The number of
+#' `FUN` does not need to return exactly one value.  The number of
 #' returned values needs to be the same for all wavelengths (otherwise the
 #' result could not be a matrix), see the examples.
 #'
-#' If the initially preallocated \code{data.frame} turns out to be too small,
+#' If the initially preallocated `data.frame` turns out to be too small,
 #' more rows are appended and a warning is issued.
 #'
 #' @include hyperspec-class.R
 #' @aliases aggregate,hyperSpec-method ave,hyperSpec-method
 #' @name aggregate
 #' @docType methods
-#' @param x a \code{hyperSpec} object
-#' @param by grouping for the rows of \code{x@@data}.
+#' @param x a `hyperSpec` object
+#' @param by grouping for the rows of `x@@data`.
 #'
 #' Either a list containing an index vector for each of the subgroups or a
-#'   vector that can be \code{split} in such a list.
+#'   vector that can be `split` in such a list.
 #' @param FUN function to compute the summary statistics
-#' @param out.rows number of rows in the resulting \code{hyperSpec} object,
+#' @param out.rows number of rows in the resulting `hyperSpec` object,
 #'   for memory preallocation.
 #' @param append.rows If more rows are needed, how many should be appended?
 #'
 #' Defaults to 100 or an estimate based on the percentage of groups that are
 #'   still to be done, whatever is larger.
-#' @param by.isindex If a list is given in \code{by}: does the list already
-#'   contain the row indices of the groups? If \code{FALSE}, the list in
-#'   \code{by} is computed first (as in \code{\link[stats]{aggregate}}).
-#' @param ... further arguments passed to \code{FUN}
-#' @return A \code{hyperSpec} object with an additional column
-#'   \code{@@data$.aggregate} tracing which group the rows belong to.
+#' @param by.isindex If a list is given in `by`: does the list already
+#'   contain the row indices of the groups? If `FALSE`, the list in
+#'   `by` is computed first (as in \code{\link[stats]{aggregate}}).
+#' @param ... further arguments passed to `FUN`
+#' @return A `hyperSpec` object with an additional column
+#'   `@@data$.aggregate` tracing which group the rows belong to.
 #' @author C. Beleites
 #' @seealso \code{\link[base]{tapply}}, \code{\link[stats]{aggregate}},
 #'   \code{\link[stats]{ave}}
