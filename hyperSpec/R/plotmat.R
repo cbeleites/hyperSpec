@@ -45,7 +45,7 @@ plotmat <- function(object, y = ".row", ylab, col = alois.palette(20), ...,
 
     y <- switch(y,
       .row = seq_len(nrow(object)),
-      object@data [[y]]
+      object@data[[y]]
     )
   }
 
@@ -53,7 +53,7 @@ plotmat <- function(object, y = ".row", ylab, col = alois.palette(20), ...,
     list(
       x = wl(object),
       y = y,
-      z = t(object [[]]),
+      z = t(object[[]]),
       xlab = labels(object, ".wavelength"),
       ylab = ylab,
       col = col
@@ -100,7 +100,7 @@ plotmat <- function(object, y = ".row", ylab, col = alois.palette(20), ...,
 
   test_that("non-increasing wavelength axis", {
     tmp <- flu
-    tmp [[]] <- tmp [[, , max ~ min]]
+    tmp[[]] <- tmp[[, , max ~ min]]
     tmp@wavelength <- rev(tmp@wavelength)
 
     expect_silent(plotmat(tmp))

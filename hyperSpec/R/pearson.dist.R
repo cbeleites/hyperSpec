@@ -16,7 +16,7 @@
 #' @export
 #' @examples
 #'
-#' pearson.dist(flu [[]])
+#' pearson.dist(flu[[]])
 #' pearson.dist(flu)
 pearson.dist <- function(x) {
   x <- as.matrix(x)
@@ -51,7 +51,7 @@ pearson.dist <- function(x) {
 
 ## benchmark
 # function (){
-#   m <- sample (faux_cell, 10000) [[]]
+#   m <- sample (faux_cell, 10000)[[]]
 #   microbenchmark (
 #     cor = as.dist (0.5 - cor (t (as.matrix (m))) / 2),
 #     tcross = pearson.dist (m),

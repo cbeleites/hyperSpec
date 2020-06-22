@@ -79,7 +79,7 @@ hy.getOptions <- function(...) {
 #' @export
 #' @param name the name of the option
 hy.getOption <- function(name) {
-  .options [[name]]
+  .options[[name]]
 }
 
 #' @rdname options
@@ -89,8 +89,8 @@ hy.setOptions <- function(...) {
   new <- list(...)
 
   ## if called with list in 1st argument, use that list
-  if (length(new) == 1 && is.list(new [[1]])) {
-    new <- new [[1]]
+  if (length(new) == 1 && is.list(new[[1]])) {
+    new <- new[[1]]
   }
 
   names <- nzchar(names(new))

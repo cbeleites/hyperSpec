@@ -100,7 +100,7 @@ all_wl <- function(expression, na.rm = FALSE) {
 
   test_that("na.rm", {
     tmp <- flu
-    tmp [[3:4, , 450 ~ 460]] <- NA
+    tmp[[3:4, , 450 ~ 460]] <- NA
 
     expect_equal(
       all_wl(tmp > 100),
@@ -153,7 +153,7 @@ any_wl <- function(expression, na.rm = FALSE) {
 
   test_that("na.rm", {
     tmp <- flu
-    tmp [[3:4, , 450 ~ 460]] <- NA
+    tmp[[3:4, , 450 ~ 460]] <- NA
 
     expect_equal(
       any_wl(tmp > 400),

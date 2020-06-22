@@ -43,7 +43,7 @@ setMethod(
   function(x, digits) {
     validObject(x)
 
-    x [[]] <- callGeneric(x[[]], digits)
+    x[[]] <- callGeneric(x[[]], digits)
 
     x
   }
@@ -59,7 +59,7 @@ setMethod(
   function(x, base = exp(1), ...) {
     validObject(x)
 
-    x [[]] <- log(x[[]], base = base)
+    x[[]] <- log(x[[]], base = base)
     x
   }
 )
@@ -75,7 +75,7 @@ setMethod(
       warning(paste("Do you really want to use", .Generic, "on a hyperSpec object?"))
     }
 
-    x [[]] <- callGeneric(x[[]])
+    x[[]] <- callGeneric(x[[]])
     x
   }
 )

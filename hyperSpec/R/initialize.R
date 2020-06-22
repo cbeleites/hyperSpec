@@ -308,8 +308,8 @@ setMethod("initialize", "hyperSpec", .initialize)
     on.exit(hy.setOptions(gc = option))
     hy.setOptions(gc = TRUE)
 
-    spc <- new("hyperSpec", spc = flu [[]])
-    expect_equal(spc [[]], flu [[]])
+    spc <- new("hyperSpec", spc = flu[[]])
+    expect_equal(spc[[]], flu[[]])
   })
 }
 
@@ -346,7 +346,7 @@ setGeneric(
 #' @export
 #'
 #' @examples
-#' tmp <- data.frame(flu [[, , 400 ~ 410]])
+#' tmp <- data.frame(flu[[, , 400 ~ 410]])
 #' (wl <- colnames(tmp))
 #' guess.wavelength(wl)
 setMethod("as.hyperSpec", "matrix", .as.hyperSpec.matrix)

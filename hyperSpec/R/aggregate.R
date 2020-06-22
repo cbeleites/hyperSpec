@@ -12,7 +12,7 @@
 
   # try a guess how many rows the result will have
   if (is.null(out.rows)) {
-    tmp <- .apply(data = x@data[by [[1]], , drop = FALSE], MARGIN = 2, FUN = FUN, ...)
+    tmp <- .apply(data = x@data[by[[1]], , drop = FALSE], MARGIN = 2, FUN = FUN, ...)
 
     out.rows <- nrow(tmp) * length(by)
   }
@@ -24,7 +24,7 @@
   r <- 1 # keeping track of the actually filled rows
 
   for (i in seq(along = by)) {
-    tmp <- .apply(data = x@data[by [[i]], , drop = FALSE], MARGIN = 2, FUN = FUN, ...)
+    tmp <- .apply(data = x@data[by[[i]], , drop = FALSE], MARGIN = 2, FUN = FUN, ...)
 
     prows <- nrow(tmp) - 1
 
@@ -170,8 +170,8 @@ setMethod("aggregate", signature = signature(x = "hyperSpec"), .aggregate)
 
     for (region in levels(faux_cell$region)) {
       expect_equivalent(
-        region.means [[region.means$region == region, ]],
-        apply(faux_cell [[faux_cell$region == region, ]], 2, mean_pm_sd)
+        region.means[[region.means$region == region, ]],
+        apply(faux_cell[[faux_cell$region == region, ]], 2, mean_pm_sd)
       )
     }
   })

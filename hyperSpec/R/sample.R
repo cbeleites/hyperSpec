@@ -162,8 +162,8 @@ setMethod("sample", signature = signature(x = "matrix"), .sample.matrix)
   context(".sample.matrix")
   test_that("matrix", {
     set.seed(101)
-    tmp <- sample(flu [[]])
-    expect_equal(dim(tmp), dim(flu [[]]))
-    expect_equal(tmp [c(1L, 3L, 4L, 6L, 5L, 2L), ], flu [[]])
+    tmp <- sample(flu[[]])
+    expect_equal(dim(tmp), dim(flu[[]]))
+    expect_equal(tmp [c(1L, 3L, 4L, 6L, 5L, 2L), ], flu[[]])
   })
 }

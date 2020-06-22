@@ -116,10 +116,10 @@
 #' apply(flu, 1:2, "*", -1)[[, , 405:407]]
 #'
 #' ## without MARGIN the whole matrix is handed to FUN
-#' apply(flu [, , 405:407], , print) [[]]
+#' apply(flu [, , 405:407], , print)[[]]
 #'
 #' ## whereas MARGIN = 1 : 2 leads to FUN being called for each element separately
-#' apply(flu [, , 405:407], 1:2, print) [[]]
+#' apply(flu [, , 405:407], 1:2, print)[[]]
 setMethod("apply",
   signature = signature(X = "hyperSpec"),
   function(X, MARGIN, FUN, ...,
@@ -131,7 +131,7 @@ setMethod("apply",
       ## is easier: tmp <- apply (x, , FUN, ...)
       ## does:
       ## tmp <- x
-      ## tmp [[]] <- FUN (x [[]], ...)
+      ## tmp[[]] <- FUN (x[[]], ...)
 
       X@data$spc <- do.call(FUN, list(X@data$spc, ...))
     } else if (all(MARGIN == 1:2)) { # apply for functions that take scalar arguments.
@@ -162,7 +162,7 @@ setMethod("apply",
               .wl(X) <- new.wavelength
             } else {
               dots <- list(...)
-              .wl(X) <- dots [[new.wavelength]] # or as name of the argument that becomes the new
+              .wl(X) <- dots[[new.wavelength]] # or as name of the argument that becomes the new
               # wavelength vector
             }
           } else if (ncol(X@data$spc) != length(X@wavelength)) {

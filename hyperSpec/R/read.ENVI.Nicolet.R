@@ -78,7 +78,7 @@ read.ENVI.Nicolet <- function(file = stop("read.ENVI: file name needed"),
 
   ## set up regular expressions to extract the values
   p.description <- paste(
-    "^Spectrum position [[:digit:]]+ of [[:digit:]]+ positions,",
+    "^Spectrum position[[:digit:]]+ of[[:digit:]]+ positions,",
     "X = ([[:digit:].-]+), Y = ([[:digit:].-]+)$"
   )
   p.pixel.size <- "^[[:blank:]]*([[:digit:].-]+),[[:blank:]]*([[:digit:].-]+).*$"

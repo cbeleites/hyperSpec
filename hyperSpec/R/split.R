@@ -4,7 +4,7 @@
   hyperlist <- split(seq(x, index = TRUE), f, drop)
 
   for (i in seq_along(hyperlist)) {
-    hyperlist [[i]] <- x [hyperlist [[i]], ]
+    hyperlist[[i]] <- x[hyperlist[[i]], ]
   }
 
   hyperlist

@@ -33,7 +33,7 @@ read.ini <- function(con = stop("Connection con needed."), skip = NULL, encoding
   names(ini) <- .sanitize.name(gsub("[[:blank:]]*=.*$", "", content)) # see above: removes in front of equal sign
 
   # try converting to numeric
-  tmp <- lapply(ini, function(x) strsplit(x, ",") [[1]])
+  tmp <- lapply(ini, function(x) strsplit(x, ",")[[1]])
   tmp <- suppressWarnings(lapply(tmp, as.numeric))
   numbers <- !sapply(tmp, function(x) any(is.na(x)))
   ini [numbers] <- tmp [numbers]

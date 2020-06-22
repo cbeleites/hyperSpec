@@ -62,7 +62,7 @@ spc.bin <- function(spc, by = stop("reduction factor needed"), na.rm = TRUE, ...
       bin <- split(wl.seq(spc), bin)
 
       for (i in seq_len(nrow(na))) {
-        tmp [na [i, 1], na [i, 2]] <- mean(spc@data$spc [na [i, 1], bin [[na[i, 2]]]], na.rm = TRUE)
+        tmp [na [i, 1], na [i, 2]] <- mean(spc@data$spc [na [i, 1], bin[[na[i, 2]]]], na.rm = TRUE)
       }
       spc@data$spc <- tmp
     }

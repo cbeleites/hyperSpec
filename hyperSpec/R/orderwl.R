@@ -18,10 +18,10 @@
 #' spc <- cbind(spc, spc + .5)
 #'
 #' plot(spc, "spc")
-#' text(wl(spc), spc [[]], as.character(1:10))
+#' text(wl(spc), spc[[]], as.character(1:10))
 #' spc <- orderwl(spc)
 #' plot(spc, "spc")
-#' text(wl(spc), spc [[]], as.character(1:10))
+#' text(wl(spc), spc[[]], as.character(1:10))
 #'
 #' ## Example 2
 #' spc <- new("hyperSpec", spc = matrix(rnorm(5) * 2 + 1:5, ncol = 5))

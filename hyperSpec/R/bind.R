@@ -47,7 +47,7 @@
 #' x$a <- 1
 #' x@data <- x@data[, sample(ncol(x), ncol(x))] # reorder columns
 #'
-#' y <- faux_cell [nrow(faux_cell):1, , 1730:1750] # reorder rows
+#' y <- faux_cell[nrow(faux_cell):1, , 1730:1750] # reorder rows
 #' y$b <- 2
 #'
 #' cbind2(x, y) # works
@@ -65,7 +65,7 @@ bind <- function(direction = stop("direction ('c' or 'r') required"), ...,
   wl.tolerance <- .checkpos(wl.tolerance, "wl.tolerance")
   dots <- list(...)
 
-  if ((length(dots) == 1) & is.list(dots [[1]])) {
+  if ((length(dots) == 1) & is.list(dots[[1]])) {
     dots <- dots[[1]]
   }
 
@@ -78,7 +78,7 @@ bind <- function(direction = stop("direction ('c' or 'r') required"), ...,
     lapply(dots, chk.hy)
     lapply(dots, validObject)
 
-    for (i in seq_along(dots) [-1]) {
+    for (i in seq_along(dots)[-1]) {
       dots[[1]] <- switch(direction,
         c = cbind2(dots[[1]], dots[[i]]),
         r = rbind2(dots[[1]], dots[[i]], wl.tolerance = wl.tolerance),
@@ -89,7 +89,7 @@ bind <- function(direction = stop("direction ('c' or 'r') required"), ...,
       )
     }
 
-    dots [[1]]
+    dots[[1]]
   }
 }
 
@@ -108,12 +108,12 @@ bind <- function(direction = stop("direction ('c' or 'r') required"), ...,
 
     expect_error(bind("r", tmp.list))
     expect_true(all.equal(bind("r", tmp.list, wl.tolerance = 0.1),
-      flu [rep(row.seq(flu), 3)],
+      flu[rep(row.seq(flu), 3)],
       check.label = TRUE
     ))
 
     expect_true(all.equal(do.call("bind", list("r", tmp.list, wl.tolerance = 0.1)),
-      flu [rep(row.seq(flu), 3)],
+      flu[rep(row.seq(flu), 3)],
       check.label = TRUE
     ))
   })
@@ -155,19 +155,19 @@ rbind.hyperSpec <- function(...) bind("r", ...)
 
     tmp.list <- list(flu, tmp, flu)
     expect_true(all.equal(do.call("rbind", c(tmp.list, wl.tolerance = 0.1)),
-      flu [rep(row.seq(flu), 3)],
+      flu[rep(row.seq(flu), 3)],
       check.label = TRUE
     ))
   })
 
   test_that("correct rbinding", {
     expect_equal(nrow(rbind(flu, flu)), 2 * nrow(flu))
-    expect_error(rbind(flu, flu [, , min ~ min + 3i]))
+    expect_error(rbind(flu, flu[, , min ~ min + 3i]))
   })
 
   test_that("list of hyperSpec objects", {
     expect_equal(nrow(rbind(flu, flu)), 2 * nrow(flu))
-    expect_error(rbind(flu, flu [, , min ~ min + 3i]))
+    expect_error(rbind(flu, flu[, , min ~ min + 3i]))
   })
 }
 
@@ -177,9 +177,9 @@ rbind.hyperSpec <- function(...) bind("r", ...)
   validObject(y)
 
   cols <- match(colnames(x@data), colnames(y@data))
-  cols <- colnames(y@data) [cols]
-  cols <- cols [!is.na(cols)]
-  cols <- cols [-match("spc", cols)]
+  cols <- colnames(y@data)[cols]
+  cols <- cols[!is.na(cols)]
+  cols <- cols[-match("spc", cols)]
 
   if (length(cols) < 0) {
     ord <- do.call(order, x@data[, cols, drop = FALSE])
@@ -240,15 +240,15 @@ setMethod("cbind2", signature = signature(x = "hyperSpec", y = "missing"), funct
   context(".rbind2")
 
   test_that("flu", {
-    expect_equal(rbind(flu [1], flu [-1]), flu, check.attributes = FALSE)
-    expect_equal(rbind(flu [-1], flu [1]), flu [c(2:6, 1)], check.attributes = FALSE)
-    expect_equal(rbind(flu [1:2], flu [3:6]), flu, check.attributes = FALSE)
+    expect_equal(rbind(flu[1], flu[-1]), flu, check.attributes = FALSE)
+    expect_equal(rbind(flu[-1], flu[1]), flu[c(2:6, 1)], check.attributes = FALSE)
+    expect_equal(rbind(flu[1:2], flu[3:6]), flu, check.attributes = FALSE)
   })
 
   test_that("empty objects", {
-    expect_equal(rbind(flu [0], flu [0]), flu [0], check.attributes = FALSE)
-    expect_equal(rbind(flu [1], flu [0]), flu [1], check.attributes = FALSE)
-    expect_equal(rbind(flu [0], flu [1]), flu [1], check.attributes = FALSE)
+    expect_equal(rbind(flu[0], flu[0]), flu[0], check.attributes = FALSE)
+    expect_equal(rbind(flu[1], flu[0]), flu[1], check.attributes = FALSE)
+    expect_equal(rbind(flu[0], flu[1]), flu[1], check.attributes = FALSE)
   })
 
 

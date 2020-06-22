@@ -62,12 +62,12 @@ setMethod(
 
 .compx <- function(e1, e2) {
   validObject(e1)
-  callGeneric(e1 [[]], e2)
+  callGeneric(e1[[]], e2)
 }
 
 .compy <- function(e1, e2) {
   validObject(e2)
-  callGeneric(e1, e2 [[]])
+  callGeneric(e1, e2[[]])
 }
 
 #' @rdname Comparison

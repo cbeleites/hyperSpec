@@ -87,7 +87,7 @@ setMethod(normalize01, signature(x = "hyperSpec"), function(x, ...) {
   test_that("hyperSpec method", {
     tmp.hy <- normalize01(-vanderMonde(flu, 1))
 
-    expect_equal(apply(tmp.hy [[]], 1, min), 1:0)
-    expect_equal(apply(tmp.hy [[]], 1, max), c(1, 1))
+    expect_equal(apply(tmp.hy[[]], 1, min), 1:0)
+    expect_equal(apply(tmp.hy[[]], 1, max), c(1, 1))
   })
 }

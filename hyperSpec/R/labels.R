@@ -22,7 +22,7 @@
   }
 
   if (drop && length(label) == 1L) {
-    label <- label [[1]]
+    label <- label[[1]]
   }
 
   label
@@ -97,7 +97,7 @@
       stop("Column to label does not exist!")
     }
 
-    object@label [[which]] <- value
+    object@label[[which]] <- value
   }
 
   validObject(object)

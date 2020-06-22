@@ -605,7 +605,7 @@ raw.split.nul <- function(raw, trunc = c(TRUE, TRUE), firstonly = FALSE, paste.c
   cat("ERROR in read.spc function ", fname, "\n\n")
   for (i in seq_along(objects)) {
     cat(names(objects) [i], ":\n")
-    str(objects [[i]], vec.len = 20)
+    str(objects[[i]], vec.len = 20)
   }
   stop(...)
 }
@@ -679,7 +679,7 @@ raw.split.nul <- function(raw, trunc = c(TRUE, TRUE), firstonly = FALSE, paste.c
 #'
 #' # multi-spectra .spc file with individual wavelength axes
 #' spc <- read.spc("BARBITUATES.SPC")
-#' plot(spc [[1]], lines.args = list(type = "h"))
+#' plot(spc[[1]], lines.args = list(type = "h"))
 #' }
 #'
 #' @importFrom utils modifyList
@@ -782,7 +782,7 @@ read.spc <- function(filename,
         )
       }
 
-      spc [[s]] <- new("hyperSpec",
+      spc[[s]] <- new("hyperSpec",
         spc = y$y,
         wavelength = wavelength$x,
         data = data,
@@ -1021,14 +1021,14 @@ read.spc <- function(filename,
 
   vector.entries <- which(sapply(data, length) > 1L)
   for (v in vector.entries) {
-    data [[v]] <- I(t(as.matrix(data [[v]])))
+    data[[v]] <- I(t(as.matrix(data[[v]])))
   }
 
   data <- as.data.frame(data, stringsAsFactors = FALSE)
   data <- data [rep(1L, nsubfiles), ]
 
   for (v in vector.entries) {
-    data [[v]] <- unclass(data [[v]])
+    data[[v]] <- unclass(data[[v]])
   } # remove AsIs protection
 
   data

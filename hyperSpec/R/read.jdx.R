@@ -86,7 +86,7 @@ read.jdx <- function(filename = stop("filename is needed"), encoding = "",
       stop("SQZ, DIF, and DIFDUP forms are not yet supported.")
     }
 
-    spc [[s]] <- switch(hdr$.format,
+    spc[[s]] <- switch(hdr$.format,
       `(X++(Y..Y))` = .jdx.TABULAR.PAC(hdr, jdx [datastart [s]:spcend [s]], ...),
       `(XY..XY)` = .jdx.TABULAR.AFFN(hdr, jdx [datastart [s]:spcend [s]], ...),
 
@@ -94,11 +94,11 @@ read.jdx <- function(filename = stop("filename is needed"), encoding = "",
     )
 
     ## process according to header entries
-    spc [[s]] <- .jdx.processhdr(spc [[s]], hdr, keys.hdr2data, ..., NA.symbols = NA.symbols)
+    spc[[s]] <- .jdx.processhdr(spc[[s]], hdr, keys.hdr2data, ..., NA.symbols = NA.symbols)
   }
 
   if (length(spc) == 1L) {
-    spc <- spc [[1]]
+    spc <- spc[[1]]
   } else if (collapse.multi) {
     spc <- collapse(spc, wl.tolerance = wl.tolerance, collapse.equal = collapse.equal)
   }
@@ -149,7 +149,7 @@ read.jdx <- function(filename = stop("filename is needed"), encoding = "",
     )
   }
 
-  hdr$.format <- format [[1]]
+  hdr$.format <- format[[1]]
 
   hdr
 }

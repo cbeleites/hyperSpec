@@ -232,7 +232,7 @@ plotspc <- function(object,
   ## x are the actual x coordinates
   x <- wavelengths
   for (i in seq_along(x)) {
-    x [[i]] <- x [[i]] - xoffset[i]
+    x[[i]] <- x[[i]] - xoffset[i]
   }
 
   ## prepare spectra ................................................................................
@@ -450,7 +450,7 @@ plotspc <- function(object,
     ## groupings for upper and lower bound of the bands
     if (!is.null(fill)) {
       if (is.character(fill) && length(fill) == 1) {
-        fill <- unlist(object [[, fill]])
+        fill <- unlist(object[[, fill]])
       } else if (isTRUE(fill)) {
         fill <- seq_len(nrow(spc) / 2)
         if (nrow(spc) %% 2 == 1) { # odd number of spectra
@@ -490,7 +490,7 @@ plotspc <- function(object,
 
       border <- rep(border, length.out = length(groups))
 
-      polygon.args$x <- c(x [[i]], rev(x [[i]]))
+      polygon.args$x <- c(x[[i]], rev(x[[i]]))
 
       for (j in seq_along(groups)) {
         tmp <- which(fill == groups [j])
@@ -598,7 +598,7 @@ stacked.offsets <- function(x, stacked = TRUE,
   }
 
   if (is.character(stacked)) {
-    stacked <- unlist(x [[, stacked]])
+    stacked <- unlist(x[[, stacked]])
   } else if (isTRUE(stacked)) {
     stacked <- row.seq(x)
   }
@@ -654,7 +654,7 @@ stacked.offsets <- function(x, stacked = TRUE,
     spc <- do.call(collapse, barbiturates [1:3])
     ofs <- stacked.offsets(spc)
     spc <- spc + ofs$offsets
-    rngs <- apply(spc [[]], 1, range, na.rm = TRUE)
+    rngs <- apply(spc[[]], 1, range, na.rm = TRUE)
 
     expect_equal(as.numeric(rngs), sort(rngs))
   })
@@ -671,7 +671,7 @@ stacked.offsets <- function(x, stacked = TRUE,
     ofs <- stacked.offsets(flu, min.zero = TRUE, add.factor = 0)
     expect_equal(
       ofs$offsets,
-      c(0, cumsum(apply(flu [[-nrow(flu)]], 1, max)))
+      c(0, cumsum(apply(flu[[-nrow(flu)]], 1, max)))
     )
   })
 }
@@ -717,13 +717,13 @@ stacked.offsets <- function(x, stacked = TRUE,
 
   ## make sure that the ticks are not too close
   for (i in seq_along(delta)) {
-    keep <- at [[i]] < end.ranges [i] + delta [i] / 4
-    at [[i]] <- at     [[i]][keep]
-    labels [[i]] <- labels [[i]][keep]
+    keep <- at[[i]] < end.ranges [i] + delta [i] / 4
+    at[[i]] <- at    [[i]][keep]
+    labels[[i]] <- labels[[i]][keep]
 
-    keep <- at [[i + 1]] > start.ranges [i + 1] - delta [i] / 4
-    at [[i + 1]] <- at     [[i + 1]][keep]
-    labels [[i + 1]] <- labels [[i + 1]][keep]
+    keep <- at[[i + 1]] > start.ranges [i + 1] - delta [i] / 4
+    at[[i + 1]] <- at    [[i + 1]][keep]
+    labels[[i + 1]] <- labels[[i + 1]][keep]
   }
 
   list(

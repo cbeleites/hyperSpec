@@ -10,7 +10,7 @@
 #' @param row.names if \code{TRUE}, a column \code{.row} is created containing row names or row
 #' indices if no rownames are set. If character vector, the rownames are set accordingly.
 #' @param optional ignored
-#' @return \code{x@@data} and \code{x@@data$spc} (== \code{x$spc} == \code{x [[]]}), respectively.
+#' @return \code{x@@data} and \code{x@@data$spc} (== \code{x$spc} == \code{x[[]]}), respectively.
 #' @author C. Beleites
 #' @method as.data.frame hyperSpec
 #' @export
@@ -107,7 +107,7 @@ as.wide.df <- function(x, wl.prefix = "") {
   test_that("faux_cell", {
     expect_equal(
       as.wide.df(faux_cell [1:5, , 600 ~ 610]),
-      cbind(faux_cell [1:5]$.., faux_cell [[1:5, , 600 ~ 610]])
+      cbind(faux_cell [1:5]$.., faux_cell[[1:5, , 600 ~ 610]])
     )
   })
 
@@ -122,7 +122,7 @@ as.wide.df <- function(x, wl.prefix = "") {
       c(grep("spc", colnames(faux_cell), value = TRUE, invert = TRUE), wl(faux_cell))
     )
 
-    expect_true(!any(is.na(colnames(as.wide.df(barbiturates [[1]])))))
+    expect_true(!any(is.na(colnames(as.wide.df(barbiturates[[1]])))))
   })
 
   test_that("column names with wl.prefix", {
@@ -179,7 +179,7 @@ as.long.df <- function(x, rownames = FALSE, wl.factor = FALSE, na.rm = TRUE) {
     tmp <- cbind(
       data.frame(
         .wavelength = rep(x@wavelength, each = nrow(x)),
-        spc = as.numeric(x [[]])
+        spc = as.numeric(x[[]])
       ),
       tmp
     )

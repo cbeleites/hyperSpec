@@ -17,7 +17,7 @@ read.mat.Witec <- function(file = stop("filename or connection needed")) {
     )
   }
   spcname <- names(data)
-  data <- data [[1]]
+  data <- data[[1]]
 
   spc <- new("hyperSpec", spc = data$data)
 

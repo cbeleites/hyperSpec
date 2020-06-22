@@ -22,9 +22,9 @@
 #' plot(flu, col = "darkgray")
 #' plot(spc.loess(flu, seq(420, 470, 5)), add = TRUE, col = "red")
 #'
-#' flu [[3, ]] <- NA_real_
+#' flu[[3, ]] <- NA_real_
 #' smooth <- spc.loess(flu, seq(420, 470, 5))
-#' smooth [[, ]]
+#' smooth[[, ]]
 #' plot(smooth, add = TRUE, col = "blue")
 spc.loess <- function(spc, newx, enp.target = nwl(spc) / 4,
                       surface = "direct", ...) {

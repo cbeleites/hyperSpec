@@ -53,29 +53,29 @@ setReplaceMethod("[",
 #' @include wl2i.R
 #' @examples
 #' spc <- flu [, , 405 ~ 410]
-#' spc [[]]
-#' spc [[3]] <- -spc[[3]]
-#' spc [[]]
-#' spc [[, , 405:410]] <- -spc[[, , 405:410]]
-#' spc [[]]
-#' spc [[, , 405 ~ 410]] <- -spc[[, , 405 ~ 410]]
+#' spc[[]]
+#' spc[[3]] <- -spc[[3]]
+#' spc[[]]
+#' spc[[, , 405:410]] <- -spc[[, , 405:410]]
+#' spc[[]]
+#' spc[[, , 405 ~ 410]] <- -spc[[, , 405 ~ 410]]
 #'
 #' ## indexing with logical matrix
 #' spc <- flu [, , min ~ 410]
 #' spc < 125
-#' spc [[spc < 125]] <- NA
-#' spc [[]]
+#' spc[[spc < 125]] <- NA
+#' spc[[]]
 #'
 #' ## indexing with n by 2 matrix
 #' ind <- matrix(c(1, 2, 4, 406, 405.5, 409), ncol = 2)
 #' ind
-#' spc [[ind]] <- 3
-#' spc [[]]
+#' spc[[ind]] <- 3
+#' spc[[]]
 #'
 #' ind <- matrix(c(1, 2, 4, 4:6), ncol = 2)
 #' ind
-#' spc [[ind, wl.index = TRUE]] <- 9999
-#' spc [[]]
+#' spc[[ind, wl.index = TRUE]] <- 9999
+#' spc[[]]
 setReplaceMethod("[[",
   signature = signature(x = "hyperSpec"),
   function(x, i, j, l, wl.index = FALSE,
@@ -152,9 +152,9 @@ setReplaceMethod("$",
         ilabel <- 2
       }
 
-      label <- value [[ilabel]]
+      label <- value[[ilabel]]
 
-      value <- value [[3 - ilabel]] ## the other of the 2 entries
+      value <- value[[3 - ilabel]] ## the other of the 2 entries
     } else {
       label <- name
     }

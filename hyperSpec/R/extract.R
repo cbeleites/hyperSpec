@@ -70,7 +70,7 @@
 #' x [i, j, l, \dots] <- value
 #'
 #' ## S4 method for signature 'hyperSpec':
-#' x [[i, j, l, wl.index = FALSE, \dots]] <- value
+#' x[[i, j, l, wl.index = FALSE, \dots]] <- value
 #'
 #' ## S4 method for signature 'hyperSpec':
 #' x$name <- value
@@ -163,21 +163,21 @@
 #' flu[[]]
 #'
 #' ## indexing via logical matrix
-#' summary(flu [[flu < 125]])
+#' summary(flu[[flu < 125]])
 #'
 #' ## indexing the spectra matrix with index matrix n by 2
 #' ind <- matrix(c(1, 2, 4, 406, 405.5, 409), ncol = 2)
 #' ind
-#' flu [[ind]]
+#' flu[[ind]]
 #'
 #' ind <- matrix(c(1, 2, 4, 4:6), ncol = 2)
 #' ind
-#' flu [[ind, wl.index = TRUE]]
+#' flu[[ind, wl.index = TRUE]]
 #'
 #' pca <- prcomp(flu[[]])
 #'
 #' ## result is data.frame, if j is given:
-#' result <- flu [[, 1:2, 405 ~ 410]]
+#' result <- flu[[, 1:2, 405 ~ 410]]
 #' result
 #' class(result)
 #' colnames(result)

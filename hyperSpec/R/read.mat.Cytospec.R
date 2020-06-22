@@ -60,7 +60,7 @@ read.mat.Cytospec <- function(file, keys2data = FALSE, blocks = TRUE) {
   } else {
     result <- list()
     for (b in blocks) {
-      result [[b]] <- .block2hyperSpec(spc, extra.data, wn, b, file)
+      result[[b]] <- .block2hyperSpec(spc, extra.data, wn, b, file)
     }
   }
 

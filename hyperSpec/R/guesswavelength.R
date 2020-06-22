@@ -14,7 +14,7 @@
 #' @export
 #'
 #' @examples
-#' tmp <- data.frame(flu [[, , 400 ~ 410]])
+#' tmp <- data.frame(flu[[, , 400 ~ 410]])
 #' (wl <- colnames(tmp))
 #' guess.wavelength(wl)
 guess.wavelength <- function(X) {

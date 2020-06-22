@@ -393,14 +393,14 @@ read.txt.Witec.Graph <- function(headerfile = stop("filename or connection neede
     hdr <- strsplit(hdr, "\t")
 
     if (length(hdr) == 2) {
-      spc@data$spcname <- hdr [[1]][-1]
-      labels(spc, ".wavelength") <- hdr [[2]] [1]
-      labels(spc, "spc") <- unique(hdr [[2]] [-1])
+      spc@data$spcname <- hdr[[1]][-1]
+      labels(spc, ".wavelength") <- hdr[[2]] [1]
+      labels(spc, "spc") <- unique(hdr[[2]] [-1])
     } else if (length(hdr) == 1 && hdr.label) {
-      spc@data$spcname <- hdr [[1]][-1]
+      spc@data$spcname <- hdr[[1]][-1]
     } else {
-      labels(spc, ".wavelength") <- hdr [[1]] [1]
-      labels(spc, "spc") <- unique(hdr [[1]] [-1])
+      labels(spc, ".wavelength") <- hdr[[1]] [1]
+      labels(spc, "spc") <- unique(hdr[[1]] [-1])
     }
   }
 

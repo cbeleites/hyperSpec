@@ -33,7 +33,7 @@
 #' )
 #'
 #' ## mark continuous variable: convert it to a factor and omit labels
-#' mark.dendrogram(dend, cut(laser [[, , 405.36]], 100), alois.palette(100),
+#' mark.dendrogram(dend, cut(laser[[, , 405.36]], 100), alois.palette(100),
 #'   pos.marker = -.015, text.col = NA,
 #'   label = expression(I [lambda == 405.36 ~ nm]), label.right = FALSE
 #' )

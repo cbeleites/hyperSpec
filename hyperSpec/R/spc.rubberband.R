@@ -108,37 +108,37 @@ spc.rubberband <- function(spc, ..., upper = FALSE, noise = 0, spline = TRUE) {
 
   test_that("spectrum containing NA inside", {
     tmp <- paracetamol
-    tmp [[, , 400]] <- NA
+    tmp[[, , 400]] <- NA
 
     coefs <- spc.rubberband(tmp)
     expect_equal(
-      coefs [[, , !is.na(tmp)]],
-      spc.rubberband(paracetamol [, , !is.na(tmp)]) [[]]
+      coefs[[, , !is.na(tmp)]],
+      spc.rubberband(paracetamol [, , !is.na(tmp)])[[]]
     )
 
     ## bug was: all coefficients were silently 0
-    expect_true(all(abs(coefs [[]]) > sqrt(.Machine$double.eps)))
+    expect_true(all(abs(coefs[[]]) > sqrt(.Machine$double.eps)))
   })
 
   test_that("spectrum containing NA at first wavelength (issue #95)", {
     tmp <- paracetamol
-    tmp [[, , 1, wl.index = TRUE]] <- NA
+    tmp[[, , 1, wl.index = TRUE]] <- NA
 
     coefs <- spc.rubberband(tmp)
     expect_equal(
-      coefs [[, , !is.na(tmp)]],
-      spc.rubberband(paracetamol [, , !is.na(tmp)]) [[]]
+      coefs[[, , !is.na(tmp)]],
+      spc.rubberband(paracetamol [, , !is.na(tmp)])[[]]
     )
   })
 
   test_that("spectrum containing NA at end", {
     tmp <- paracetamol [1]
-    tmp [[, , nwl(paracetamol), wl.index = TRUE]] <- NA
+    tmp[[, , nwl(paracetamol), wl.index = TRUE]] <- NA
 
     coefs <- spc.rubberband(tmp)
     expect_equal(
-      coefs [[, , !is.na(tmp)]],
-      spc.rubberband(paracetamol [1, , !is.na(tmp)]) [[]]
+      coefs[[, , !is.na(tmp)]],
+      spc.rubberband(paracetamol [1, , !is.na(tmp)])[[]]
     )
   })
 }

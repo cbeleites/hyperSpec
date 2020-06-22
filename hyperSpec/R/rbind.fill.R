@@ -10,10 +10,10 @@
 #' @param list list to convert to data frame
 #' @keywords internal
 quickdf <- function(list) {
-  if (is.matrix(list [[1]])) {
-    n <- nrow(list [[1]])
+  if (is.matrix(list[[1]])) {
+    n <- nrow(list[[1]])
   } else {
-    n <- length(list [[1]])
+    n <- length(list[[1]])
   }
 
   structure(list,
@@ -93,7 +93,7 @@ rbind.fill.matrix <- function(...) {
   ## fill in the new matrix
   for (i in seq_along(matrices)) {
     icols <- match(lcols[[i]], cols)
-    result [(pos [i] + 1):pos [i + 1], icols] <- matrices [[i]]
+    result [(pos [i] + 1):pos [i + 1], icols] <- matrices[[i]]
   }
 
   colnames(result) <- cols
@@ -180,7 +180,7 @@ rbind.fill <- function(...) {
   # the trick is to supply a n by 0 matrix for input without column of that name
   for (var in matrixcols) {
     df <- lapply(dfs, .get.or.make.matrix, var)
-    output [[var]] <- I(do.call(rbind.fill.matrix, df))
+    output[[var]] <- I(do.call(rbind.fill.matrix, df))
   }
 
   # Compute start and end positions for each data frame
@@ -199,7 +199,7 @@ rbind.fill <- function(...) {
 }
 
 .get.or.make.matrix <- function(df, var) {
-  tmp <- df [[var]]
+  tmp <- df[[var]]
   if (is.null(tmp)) {
     tmp <- I(matrix(integer(), nrow = nrow(df)))
   }

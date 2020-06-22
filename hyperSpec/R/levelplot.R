@@ -41,8 +41,8 @@ setGeneric("levelplot", package = "lattice")
 
   dots <- modifyList(
     list(
-      xlab = data@label [[use.x]],
-      ylab = data@label [[use.y]]
+      xlab = data@label[[use.x]],
+      ylab = data@label[[use.y]]
     ),
     dots
   )
@@ -67,9 +67,9 @@ setGeneric("levelplot", package = "lattice")
 
 
 
-  if (is.factor(data [[use.z]]) && transform.factor) {
-    dots <- trellis.factor.key(data [[use.z]], dots)
-    data [[use.z]] <- as.numeric(data [[use.z]])
+  if (is.factor(data[[use.z]]) && transform.factor) {
+    dots <- trellis.factor.key(data[[use.z]], dots)
+    data[[use.z]] <- as.numeric(data[[use.z]])
   }
 
   do.call(levelplot, c(list(x, data), dots))

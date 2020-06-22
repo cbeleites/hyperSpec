@@ -33,7 +33,7 @@ hy.unittest <- function() {
   with_reporter(reporter = reporter, start_end_reporter = TRUE, {
     for (t in seq_along(tests)) {
       lister$start_file(names(tests [t]))
-      tests [[t]]()
+      tests[[t]]()
     }
     get_reporter()$.end_context()
   })

@@ -118,12 +118,12 @@ spc.NA.linapprox <- function(...) {
 
   test_that("linear interpolation", {
     tmp <- spc.NA.approx(fluNA [-2, , min ~ 410])
-    expect_equivalent(as.numeric(tmp [[, , 406]]), rowMeans(fluNA [[-2, , 405.5 ~ 406.5]], na.rm = TRUE))
+    expect_equivalent(as.numeric(tmp[[, , 406]]), rowMeans(fluNA[[-2, , 405.5 ~ 406.5]], na.rm = TRUE))
   })
 
   test_that("spline interpolation", {
     tmp <- spc.NA.approx(fluNA [-2, , min ~ 410], neighbours = 2)
-    expect_true(all(abs(tmp [[, , 406]] - rowMeans(fluNA [[-2, , 405 ~ 407]], na.rm = TRUE)) <= 1e-5))
+    expect_true(all(abs(tmp[[, , 406]] - rowMeans(fluNA[[-2, , 405 ~ 407]], na.rm = TRUE)) <= 1e-5))
     # version on CRAN throws error on `expect_equal (tolerance = 1e-5)`
     # TODO => change back ASAP
   })
@@ -133,13 +133,13 @@ spc.NA.linapprox <- function(...) {
     for (d in 0:2) {
       for (r in ranges) {
         tmp <- spc.NA.approx(fluNA [-2, , r], neighbours = 3, debuglevel = d)
-        # expect_equal (round (as.numeric (tmp [[,, 406]]), 5),
-        #               round (rowMeans (fluNA [[-2,, r]], na.rm = TRUE), 5),
+        # expect_equal (round (as.numeric (tmp[[,, 406]]), 5),
+        #               round (rowMeans (fluNA[[-2,, r]], na.rm = TRUE), 5),
         #               tolerance = 1e-5,
         #               info = paste0 ("debuglevel = ", d, ", range = ", paste0 (r [c (2, 1, 3)], collapse = "")))
         # version on CRAN throws error on `expect_equal (tolerance = 1e-5)`
         # TODO => change back ASAP
-        expect_true(all(abs(tmp [[, , 406]] - rowMeans(fluNA [[-2, , r]], na.rm = TRUE)) <= 1e-5),
+        expect_true(all(abs(tmp[[, , 406]] - rowMeans(fluNA[[-2, , r]], na.rm = TRUE)) <= 1e-5),
           info = paste0("debuglevel = ", d, ", range = ", paste0(r [c(2, 1, 3)], collapse = ""))
         )
       }

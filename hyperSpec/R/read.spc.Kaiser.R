@@ -65,7 +65,7 @@ read.spc.KaiserMap <- function(files, keys.log2data = NULL, ...) {
 
   colnames(spc@data) <- gsub("Stage_(.)_Position", "\\L\\1", colnames(spc@data), perl = TRUE)
   for (cln in c("x", "y", "z")) {
-    spc@data [[cln]] <- as.numeric(spc@data [[cln]])
+    spc@data[[cln]] <- as.numeric(spc@data[[cln]])
   }
 
   spc@label$x <- expression(`/`(x, micro * m))

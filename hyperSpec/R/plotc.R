@@ -123,19 +123,19 @@ plotc <- function(object, model = spc ~ c, groups = NULL,
   }
 
   if (is.null(func)) {
-    ylab <- object@label [[use.spc]]
+    ylab <- object@label[[use.spc]]
   } else {
     ylab <- substitute(func())
-    ylab [[2]] <- object@label [[use.spc]][[1]]
+    ylab[[2]] <- object@label[[use.spc]][[1]]
     for (i in seq_along(func.args)) {
       if (names(func.args)[[i]] == "") {
-        ylab [[i + 2]] <- func.args [[i]]
+        ylab[[i + 2]] <- func.args[[i]]
       } else {
-        ylab [[i + 2]] <- bquote(
+        ylab[[i + 2]] <- bquote(
           .(x) == .(y),
           list(
-            x = names(func.args) [[i]],
-            y = as.character(func.args [[i]])
+            x = names(func.args)[[i]],
+            y = as.character(func.args[[i]])
           )
         )
       }
@@ -146,7 +146,7 @@ plotc <- function(object, model = spc ~ c, groups = NULL,
   ## set defaults: axis labels, plot style
   dots <- modifyList(
     list(
-      xlab = object@label [[use.c]],
+      xlab = object@label[[use.c]],
       ylab = ylab,
       pch = 19
     ),

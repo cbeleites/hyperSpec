@@ -114,13 +114,13 @@ wl2i <- function(x, wavelength = stop("wavelengths are required."), unlist = TRU
   for (r in seq_along(wavelength)) {
 
     ## ~ sequence vs. scalars and : sequences
-    if (is_formula(wavelength [[r]])) {
-      from <- f_eval_lhs(wavelength [[r]])
-      to <- f_eval_rhs(wavelength [[r]])
+    if (is_formula(wavelength[[r]])) {
+      from <- f_eval_lhs(wavelength[[r]])
+      to <- f_eval_rhs(wavelength[[r]])
     } else {
       ## sequence with : or scalar
       from <- NULL
-      to <- wavelength [[r]]
+      to <- wavelength[[r]]
     }
 
     ## conversion to indices
@@ -131,7 +131,7 @@ wl2i <- function(x, wavelength = stop("wavelengths are required."), unlist = TRU
     }
 
     if (is.null(from)) {
-      results [[r]] <- to
+      results[[r]] <- to
       results [[r]][!is.finite(results [[r]])] <- NA
     } else {
       from <- .getindex(x, Re(from), extrapolate = FALSE) + Im(from)

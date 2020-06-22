@@ -42,9 +42,9 @@
 #' barbiturates [1:3]
 #' collapse(barbiturates [1:3])
 #'
-#' a <- barbiturates [[1]]
-#' b <- barbiturates [[2]]
-#' c <- barbiturates [[3]]
+#' a <- barbiturates[[1]]
+#' b <- barbiturates[[2]]
+#' c <- barbiturates[[3]]
 #'
 #' a
 #' b
@@ -57,8 +57,8 @@ collapse <- function(..., wl.tolerance = hy.getOption("wl.tolerance"), collapse.
   dots <- list(...)
 
   ## accept also a list of hyperSpec objects
-  if (length(dots) == 1 && is.list(dots [[1]])) {
-    dots <- dots [[1]]
+  if (length(dots) == 1 && is.list(dots[[1]])) {
+    dots <- dots[[1]]
   }
 
   ## check the arguments
@@ -89,7 +89,7 @@ collapse <- function(..., wl.tolerance = hy.getOption("wl.tolerance"), collapse.
     dots <- .collapse.equal(dots, wl.tolerance)
 
     if (length(dots) == 1L) {
-      return(dots [[1]])
+      return(dots[[1]])
     }
   }
 
@@ -106,7 +106,7 @@ collapse <- function(..., wl.tolerance = hy.getOption("wl.tolerance"), collapse.
   ## assign cluster number to columns
   # wl.df is ordered by wavelength, each object in dots is ordered by wavelength, so
   for (i in seq_along(dots)) {
-    colnames(dots [[i]]@data$spc) <- wl.df$wlcluster [wl.df$iobj == i]
+    colnames(dots[[i]]@data$spc) <- wl.df$wlcluster [wl.df$iobj == i]
   }
 
   ## now we're ready for the  actual work of collapsing the objects
@@ -147,9 +147,9 @@ collapse <- function(..., wl.tolerance = hy.getOption("wl.tolerance"), collapse.
     )
 
     for (s in 1:3) {
-      expect_equal(as.numeric(new [[s, , wl(barbiturates [[s]])]]),
-        as.numeric(barbiturates [[s]][[]]),
-        label = paste0("barbiturates [[", s, "]]")
+      expect_equal(as.numeric(new[[s, , wl(barbiturates[[s]])]]),
+        as.numeric(barbiturates[[s]][[]]),
+        label = paste0("barbiturates[[", s, "]]")
       )
     }
   })
@@ -217,8 +217,8 @@ collapse <- function(..., wl.tolerance = hy.getOption("wl.tolerance"), collapse.
   })
 
   test_that("collapsing objects with equal wavelength axes", {
-    expect_equivalent(collapse(barbiturates [[1]], barbiturates [[1]]),
-      barbiturates [[1]][c(1, 1)],
+    expect_equivalent(collapse(barbiturates[[1]], barbiturates[[1]]),
+      barbiturates[[1]][c(1, 1)],
       check.label = TRUE
     )
   })
@@ -276,8 +276,8 @@ collapse <- function(..., wl.tolerance = hy.getOption("wl.tolerance"), collapse.
     )
 
     tmp <- flu [rep(1:nrow(flu), 2)]
-    tmp [[7:12]] <- NA
-    tmp [[7:12, , 450]] <- flu [[, , 450]]
+    tmp[[7:12]] <- NA
+    tmp[[7:12, , 450]] <- flu[[, , 450]]
     expect_equivalent(collapse(flu [, , 450], flu),
       tmp,
       check.labels = TRUE
@@ -358,30 +358,30 @@ collapse <- function(..., wl.tolerance = hy.getOption("wl.tolerance"), collapse.
 
   while (i < length(dots)) {
     bind_directly <- sapply(tail(dots, -i), function(x) {
-      (nwl(x) == nwl(dots [[i]])) && all(abs(wl(x) - wl(dots [[i]])) < wl.tolerance)
+      (nwl(x) == nwl(dots[[i]])) && all(abs(wl(x) - wl(dots[[i]])) < wl.tolerance)
     })
     bind_directly <- which(bind_directly)
 
     if (length(bind_directly) > 0L) {
       n <- 0
-      wl <- rep(0, nwl(dots [[i]]))
+      wl <- rep(0, nwl(dots[[i]]))
 
       for (j in c(i, i + bind_directly)) {
-        wl <- wl + nrow(dots [[j]]) * wl(dots [[j]])
-        n <- n + nrow(dots [[j]])
+        wl <- wl + nrow(dots[[j]]) * wl(dots[[j]])
+        n <- n + nrow(dots[[j]])
 
         # also ensure same column names within spc.
-        colnames(dots [[j]]@data$spc) <- colnames(dots [[i]]@data$spc)
+        colnames(dots[[j]]@data$spc) <- colnames(dots[[i]]@data$spc)
       }
       wl <- wl / n
 
-      dots [[i]]@data <- rbind.fill(lapply(dots [c(i, i + bind_directly)], slot, "data"))
-      .wl(dots [[i]]) <- structure(wl, names = names(wl(dots [[i]])))
+      dots[[i]]@data <- rbind.fill(lapply(dots [c(i, i + bind_directly)], slot, "data"))
+      .wl(dots[[i]]) <- structure(wl, names = names(wl(dots[[i]])))
 
       labels <- unlist(lapply(dots [c(i, i + bind_directly)], labels))
       labels <- lapply(labels, function(l) if (is.language(l)) l <- as.expression(l) else l)
 
-      labels(dots [[i]]) <- labels [!duplicated(names(labels))]
+      labels(dots[[i]]) <- labels [!duplicated(names(labels))]
 
       dots <- dots [-(i + bind_directly)]
     }
@@ -403,15 +403,15 @@ collapse <- function(..., wl.tolerance = hy.getOption("wl.tolerance"), collapse.
 
   # set up data.frame to hold relevant information
   wl.df <- lapply(seq_along(dots), function(i) {
-    if (nwl(dots [[i]]) == 0L) {
+    if (nwl(dots[[i]]) == 0L) {
       return(data.frame())
     }
 
     data.frame(
-      wl = wl(dots [[i]]),
+      wl = wl(dots[[i]]),
       iobj = i,
-      nspc = nrow(dots [[i]]),
-      wlcol = seq_len(nwl(dots [[i]])),
+      nspc = nrow(dots[[i]]),
+      wlcol = seq_len(nwl(dots[[i]])),
       wlcluster = NA
     )
   })
@@ -421,7 +421,7 @@ collapse <- function(..., wl.tolerance = hy.getOption("wl.tolerance"), collapse.
   wl.df$old.wlnames <- NA
 
   for (i in seq_along(dots)) {
-    wln <- names(dots [[i]]@wavelength)
+    wln <- names(dots[[i]]@wavelength)
     if (!is.null(wln)) wl.df$old.wlnames [wl.df$iobj == i] <- wln
   }
 
@@ -491,8 +491,8 @@ collapse <- function(..., wl.tolerance = hy.getOption("wl.tolerance"), collapse.
   })
 
   test_that("new wavelengths are weighted mean of wavelength bin", {
-    a <- barbiturates [[1]][, , min ~ 30]
-    b <- barbiturates [[2]][, , min ~ 30]
+    a <- barbiturates[[1]][, , min ~ 30]
+    b <- barbiturates[[2]][, , min ~ 30]
     wl(b) <- wl(b) + 0.03 / 2
 
     expect_equal(

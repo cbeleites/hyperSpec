@@ -6,11 +6,11 @@
 
 split.string <- function(x, separator, trim.blank = TRUE, remove.empty = TRUE) {
   pos <- gregexpr(separator, x)
-  if (length(pos) == 1 && pos [[1]] == -1) {
+  if (length(pos) == 1 && pos[[1]] == -1) {
     return(x)
   }
 
-  pos <- pos [[1]]
+  pos <- pos[[1]]
 
   pos <- matrix(c(
     1, pos + attr(pos, "match.length"),
