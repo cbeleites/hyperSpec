@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Import Raman measurements from Renishaw ASCII-files. — scan.txt.Renishaw • hyperSpec</title>
+<title>Import Raman measurements from Renishaw ASCII-files. — read.txt.Renishaw • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,7 +41,7 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Import Raman measurements from Renishaw ASCII-files. — scan.txt.Renishaw" />
+<meta property="og:title" content="Import Raman measurements from Renishaw ASCII-files. — read.txt.Renishaw" />
 <meta property="og:description" content="Import Raman measurements from Renishaw (possibly compressed) .txt file." />
 
 <meta name="robots" content="noindex" />
@@ -156,7 +156,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Import Raman measurements from Renishaw ASCII-files.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/deprecated.R'><code>R/deprecated.R</code></a>, <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/read.txt.Renishaw.R'><code>R/read.txt.Renishaw.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/read.txt.Renishaw.R'><code>R/read.txt.Renishaw.R</code></a></small>
     <div class="hidden name"><code>read.txt.Renishaw.Rd</code></div>
     </div>
 
@@ -164,11 +164,7 @@
     <p>Import Raman measurements from Renishaw (possibly compressed) <code>.txt</code> file.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>scan.txt.Renishaw</span>(<span class='kw'>...</span>)
-
-<span class='fu'>scan.zip.Renishaw</span>(<span class='kw'>...</span>)
-
-<span class='fu'>read.txt.Renishaw</span>(
+    <pre class="usage"><span class='fu'>read.txt.Renishaw</span>(
   file = <span class='fu'><a href='https://rdrr.io/r/base/stop.html'>stop</a></span>(<span class='st'>"file is required"</span>),
   data = <span class='st'>"xyspc"</span>,
   nlines = <span class='fl'>0</span>,
@@ -184,10 +180,6 @@
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>...</th>
-      <td><p>Arguments for <code>read.txt.Renishaw</code></p></td>
-    </tr>
     <tr>
       <th>file</th>
       <td><p>file name or connection</p></td>
@@ -213,6 +205,10 @@ values start at <code>1e6</code>.</p></td>
       <th>txt.file</th>
       <td><p>name of the .txt file in the .zip archive. Defaults to zip
 file's name with suffix .txt instead of .zip</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Arguments for <code>read.txt.Renishaw</code></p></td>
     </tr>
     </table>
 

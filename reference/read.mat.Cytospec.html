@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Import for Cytospec <code>mat</code> files. — read.cytomat • hyperSpec</title>
+<title>Import for Cytospec <code>mat</code> files. — read.mat.Cytospec • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,7 +41,7 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Import for Cytospec <code>mat</code> files. — read.cytomat" />
+<meta property="og:title" content="Import for Cytospec <code>mat</code> files. — read.mat.Cytospec" />
 <meta property="og:description" content="These functions allow to import .mat (Matlab V5) files written by Cytospec." />
 
 <meta name="robots" content="noindex" />
@@ -156,7 +156,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Import for Cytospec <code>mat</code> files.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/deprecated.R'><code>R/deprecated.R</code></a>, <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/read.mat.Cytospec.R'><code>R/read.mat.Cytospec.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/read.mat.Cytospec.R'><code>R/read.mat.Cytospec.R</code></a></small>
     <div class="hidden name"><code>read.mat.Cytospec.Rd</code></div>
     </div>
 
@@ -164,18 +164,11 @@
     <p>These functions allow to import <code>.mat</code> (Matlab V5) files written by Cytospec.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>read.cytomat</span>(<span class='kw'>...</span>)
-
-<span class='fu'>read.mat.Cytospec</span>(<span class='kw'>file</span>, keys2data = <span class='fl'>FALSE</span>, blocks = <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>read.mat.Cytospec</span>(<span class='kw'>file</span>, keys2data = <span class='fl'>FALSE</span>, blocks = <span class='fl'>TRUE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>...</th>
-      <td><p><code>read.cytomat</code> for now hands all arguments to
-<code>read.mat.Cytospec</code> for backwards compatibility.</p></td>
-    </tr>
     <tr>
       <th>file</th>
       <td><p>The complete file name (or a connection to) the <code>.mat</code> file.</p></td>
@@ -188,6 +181,11 @@ transferred into the extra data</p></td>
     <tr>
       <th>blocks</th>
       <td><p>which blocks should be read? <code>TRUE</code> reads all blocks.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p><code>read.cytomat</code> for now hands all arguments to
+<code>read.mat.Cytospec</code> for backwards compatibility.</p></td>
     </tr>
     </table>
 

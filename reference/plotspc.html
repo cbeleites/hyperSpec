@@ -453,16 +453,16 @@ interaction with plots.</p>
   ),
   axis.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(x = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(col = <span class='st'>"magenta"</span>), y = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(las = <span class='fl'>1</span>))
 )</div><div class='img'><img src='plotspc-6.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='kw'>mean.pm.sd</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/sp/man/aggregate.html'>aggregate</a></span>(<span class='kw'>faux_cell</span>, <span class='kw'>faux_cell</span><span class='op'>$</span><span class='kw'>region</span>, <span class='kw'>mean_pm_sd</span>)
+<span class='kw'>mean.pm.sd</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/aggregate.html'>aggregate</a></span>(<span class='kw'>faux_cell</span>, <span class='kw'>faux_cell</span><span class='op'>$</span><span class='kw'>region</span>, <span class='kw'>mean_pm_sd</span>)
 <span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>mean.pm.sd</span>, col = <span class='fu'>matlab.palette</span>(<span class='fl'>3</span>), fill = <span class='st'>".aggregate"</span>, stacked = <span class='st'>".aggregate"</span>)</div><div class='img'><img src='plotspc-7.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='kw'>mean.pm.sd</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/sp/man/aggregate.html'>aggregate</a></span>(<span class='kw'>faux_cell</span>, <span class='kw'>faux_cell</span><span class='op'>$</span><span class='kw'>region</span>, <span class='kw'>mean_pm_sd</span>)
+<span class='kw'>mean.pm.sd</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/aggregate.html'>aggregate</a></span>(<span class='kw'>faux_cell</span>, <span class='kw'>faux_cell</span><span class='op'>$</span><span class='kw'>region</span>, <span class='kw'>mean_pm_sd</span>)
 
 <span class='kw'>offset</span> <span class='op'>&lt;-</span> <span class='fu'>stacked.offsets</span>(<span class='kw'>mean.pm.sd</span>, <span class='st'>".aggregate"</span>)
 <span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>mean.pm.sd</span>,
   fill.col = <span class='fu'>matlab.palette</span>(<span class='fl'>3</span>), fill = <span class='st'>".aggregate"</span>,
   stacked = <span class='st'>".aggregate"</span>
 )</div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/sp/man/aggregate.html'>aggregate</a></span>(<span class='kw'>faux_cell</span>, <span class='kw'>faux_cell</span><span class='op'>$</span><span class='kw'>region</span>, <span class='kw'>mean</span>),
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/aggregate.html'>aggregate</a></span>(<span class='kw'>faux_cell</span>, <span class='kw'>faux_cell</span><span class='op'>$</span><span class='kw'>region</span>, <span class='kw'>mean</span>),
   yoffset = <span class='kw'>offset</span><span class='op'>$</span><span class='kw'>offsets</span>,
   lines.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(lty = <span class='fl'>2</span>, lwd = <span class='fl'>2</span>), add = <span class='fl'>TRUE</span>
 )</div><div class='img'><img src='plotspc-8.png' alt='' width='466' height='288' /></div><div class='input'>

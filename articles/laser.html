@@ -167,7 +167,7 @@ There is no Raman scattering involved in this data, but the Raman software recor
 <div class="sourceCode" id="cb3"><pre class="downlit">
 <span class="co"># Renishaw file</span>
 <span class="kw">file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata/laser.txt.gz"</span>, package = <span class="st">"hyperSpec"</span>)
-<span class="kw">laser</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/scan.txt.Renishaw.html">read.txt.Renishaw</a></span>(<span class="kw">file</span>, data = <span class="st">"ts"</span>)
+<span class="kw">laser</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read.txt.Renishaw.html">read.txt.Renishaw</a></span>(<span class="kw">file</span>, data = <span class="st">"ts"</span>)
 </pre></div>
 <div class="sourceCode" id="cb4"><pre class="downlit">
 <span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">laser</span>, <span class="st">"spcprctl5"</span>)

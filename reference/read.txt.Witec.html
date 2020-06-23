@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>File Import Witec Raman — scan.txt.Witec • hyperSpec</title>
+<title>File Import Witec Raman — read.txt.Witec • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,7 +41,7 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="File Import Witec Raman — scan.txt.Witec" />
+<meta property="og:title" content="File Import Witec Raman — read.txt.Witec" />
 <meta property="og:description" content="Import Raman Spectra/Maps from Witec Instrument via ASCII files." />
 
 <meta name="robots" content="noindex" />
@@ -156,7 +156,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>File Import Witec Raman</h1>
-    <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/deprecated.R'><code>R/deprecated.R</code></a>, <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/read.txt.Witec.R'><code>R/read.txt.Witec.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/read.txt.Witec.R'><code>R/read.txt.Witec.R</code></a></small>
     <div class="hidden name"><code>read.txt.Witec.Rd</code></div>
     </div>
 
@@ -164,13 +164,7 @@
     <p>Import Raman Spectra/Maps from Witec Instrument via ASCII files.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>scan.txt.Witec</span>(<span class='kw'>...</span>)
-
-<span class='fu'>scan.dat.Witec</span>(<span class='kw'>...</span>)
-
-<span class='fu'>scan.txt.Witec.Graph</span>(<span class='kw'>...</span>)
-
-<span class='fu'>read.txt.Witec</span>(
+    <pre class="usage"><span class='fu'>read.txt.Witec</span>(
   file = <span class='fu'><a href='https://rdrr.io/r/base/stop.html'>stop</a></span>(<span class='st'>"filename or connection needed"</span>),
   points.per.line = <span class='kw'>NULL</span>,
   lines.per.image = <span class='kw'>NULL</span>,
@@ -207,10 +201,6 @@
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>..., quiet</th>
-      <td><p>handed to <code><a href='https://rdrr.io/r/base/scan.html'>base::scan()</a></code></p></td>
-    </tr>
-    <tr>
       <th>file</th>
       <td><p>filename or connection to ASCII file</p></td>
     </tr>
@@ -237,6 +227,10 @@
     <tr>
       <th>encoding</th>
       <td><p>character encoding, see <code><a href='https://rdrr.io/r/base/readLines.html'>base::readLines()</a></code></p></td>
+    </tr>
+    <tr>
+      <th>..., quiet</th>
+      <td><p>handed to <code><a href='https://rdrr.io/r/base/scan.html'>base::scan()</a></code></p></td>
     </tr>
     <tr>
       <th>filex</th>

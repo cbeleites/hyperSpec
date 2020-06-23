@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Spectra plotting with <span class="pkg">ggplot2</span>: <code>qplotspc().</code> — qplotspc • hyperSpec</title>
+<title>Deprecated and defunct functions. — deprecated • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,9 +41,9 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Spectra plotting with <span class="pkg">ggplot2</span>: <code>qplotspc().</code> — qplotspc" />
-<meta property="og:description" content="Spectra plotting with ggplot2.
-These functions are still experimental and may change in future." />
+<meta property="og:title" content="Deprecated and defunct functions. — deprecated" />
+<meta property="og:description" content="Deprecated and defunct functions. You should not use these.
+See section &quot;Details&quot; for proposed replacement." />
 
 <meta name="robots" content="noindex" />
 
@@ -156,84 +156,72 @@ These functions are still experimental and may change in future." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Spectra plotting with <span class="pkg">ggplot2</span>: <code>qplotspc().</code></h1>
-    <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/qplot.R'><code>R/qplot.R</code></a></small>
-    <div class="hidden name"><code>qplotspc.Rd</code></div>
+    <h1>Deprecated and defunct functions.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/deprecated.R'><code>R/deprecated.R</code></a></small>
+    <div class="hidden name"><code>deprecated.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Spectra plotting with <span class="pkg">ggplot2</span>.</p>
-<p>These functions are still experimental and may change in future.</p>
+    <p>Deprecated and defunct functions. You should not use these.
+See section "Details" for proposed replacement.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>qplotspc</span>(
-  <span class='kw'>x</span>,
-  wl.range = <span class='fl'>TRUE</span>,
-  <span class='kw'>...</span>,
-  mapping = <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes_.html'>aes_string</a></span>(x = <span class='st'>".wavelength"</span>, y = <span class='st'>"spc"</span>, group = <span class='st'>".rownames"</span>),
-  spc.nmax = <span class='fu'>hy.getOption</span>(<span class='st'>"ggplot.spc.nmax"</span>),
-  map.lineonly = <span class='fl'>FALSE</span>,
-  debuglevel = <span class='fu'>hy.getOption</span>(<span class='st'>"debuglevel"</span>)
-)</pre>
+    <pre class="usage"><span class='fu'>scan.asc.Andor</span>(<span class='kw'>...</span>)
+
+<span class='fu'>scan.txt.Renishaw</span>(<span class='kw'>...</span>)
+
+<span class='fu'>scan.zip.Renishaw</span>(<span class='kw'>...</span>)
+
+<span class='fu'>scan.txt.Witec</span>(<span class='kw'>...</span>)
+
+<span class='fu'>scan.dat.Witec</span>(<span class='kw'>...</span>)
+
+<span class='fu'>scan.txt.Witec.Graph</span>(<span class='kw'>...</span>)
+
+<span class='fu'>read.cytomat</span>(<span class='kw'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p><code>hyperSpec</code> object</p></td>
-    </tr>
-    <tr>
-      <th>wl.range</th>
-      <td><p>wavelength ranges to plot</p></td>
-    </tr>
-    <tr>
       <th>...</th>
-      <td><p>handed to <code><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>ggplot2::geom_line()</a></code></p></td>
-    </tr>
-    <tr>
-      <th>mapping</th>
-      <td><p>see  <code><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>ggplot2::geom_line()</a></code></p></td>
-    </tr>
-    <tr>
-      <th>spc.nmax</th>
-      <td><p>maximum number of spectra to plot</p></td>
-    </tr>
-    <tr>
-      <th>map.lineonly</th>
-      <td><p>if <code>TRUE</code>, <code>mapping</code> will be handed to
-<code><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>ggplot2::geom_line()</a></code> instead of <code><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot2::ggplot()</a></code>.</p></td>
-    </tr>
-    <tr>
-      <th>debuglevel</th>
-      <td><p>if &gt; 0, additional debug output is produced</p></td>
+      <td><p>Arguments passed to appropriate replacement function.
+(See the description of that function).</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>a <code><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot2::ggplot()</a></code> object</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+    
+<ul>
+<li><p>Instead of <code>scan.asc.Andor()</code> use <code>read.asc.Andor()</code>.</p></li>
+</ul>
 
-    <div class='dont-index'><p><code>plotspc()</code></p>
-<p><code><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot2::ggplot()</a></code>, <code><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>ggplot2::geom_line()</a></code></p></div>
-    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+<ul>
+<li><p>Instead of <code>scan.txt.Renishaw()</code> use <code>read.txt.Renishaw()</code>.</p></li>
+</ul>
 
-    <p>Claudia Beleites</p>
+<ul>
+<li><p>Instead of <code>scan.zip.Renishaw()</code> use <code>read.zip.Renishaw()</code>.</p></li>
+</ul>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='fu'>qplotspc</span>(<span class='kw'>faux_cell</span>)</div><div class='img'><img src='qplotspc-1.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='fu'>qplotspc</span>(<span class='kw'>paracetamol</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2800</span> <span class='op'>~</span> <span class='kw'>max</span>, <span class='kw'>min</span> <span class='op'>~</span> <span class='fl'>1800</span>)) <span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_x_reverse</a></span>(breaks = <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>0</span>, <span class='fl'>3200</span>, <span class='fl'>400</span>))</div><div class='img'><img src='qplotspc-2.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='fu'>qplotspc</span>(<span class='fu'><a href='https://rdrr.io/r/stats/aggregate.html'>aggregate</a></span>(<span class='kw'>faux_cell</span>, <span class='kw'>faux_cell</span><span class='op'>$</span><span class='kw'>region</span>, <span class='kw'>mean</span>),
-  mapping = <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(x = <span class='kw'>.wavelength</span>, y = <span class='kw'>spc</span>, colour = <span class='kw'>region</span>)
-) <span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/facet_grid.html'>facet_grid</a></span>(<span class='kw'>region</span> <span class='op'>~</span> <span class='kw'>.</span>)</div><div class='img'><img src='qplotspc-3.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='fu'>qplotspc</span>(<span class='fu'><a href='https://rdrr.io/r/stats/aggregate.html'>aggregate</a></span>(<span class='kw'>faux_cell</span>, <span class='kw'>faux_cell</span><span class='op'>$</span><span class='kw'>region</span>, <span class='kw'>mean_pm_sd</span>),
-  mapping = <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(x = <span class='kw'>.wavelength</span>, y = <span class='kw'>spc</span>, colour = <span class='kw'>region</span>, group = <span class='kw'>.rownames</span>)
-) <span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/facet_grid.html'>facet_grid</a></span>(<span class='kw'>region</span> <span class='op'>~</span> <span class='kw'>.</span>)</div><div class='img'><img src='qplotspc-4.png' alt='' width='466' height='288' /></div></pre>
+<ul>
+<li><p>Instead of <code>scan.txt.Witec()</code> use <code>read.txt.Witec()</code>.</p></li>
+</ul>
+
+<ul>
+<li><p>Instead of <code>scan.dat.Witec()</code> use <code>read.dat.Witec()</code>.</p></li>
+</ul>
+
+<ul>
+<li><p>Instead of <code>scan.txt.Witec.Graph()</code> use <code>read.txt.Witec.Graph()</code>.</p></li>
+</ul>
+
+<ul>
+<li><p>Instead of <code>read.cytomat()</code> use <code>read.mat.Cytospec()</code>.</p></li>
+</ul>
+
+
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

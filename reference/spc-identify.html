@@ -335,33 +335,7 @@ not clipped. As a dirty shortcut, <code>xpd = NA</code> may help.</p>
     <p>C. Beleites</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='co'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()) {
-  <span class='kw'>ispc</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='kw'>laser</span>), <span class='fl'>10</span>)
-  <span class='kw'>ispc</span>
-
-  <span class='kw'>identified</span> <span class='op'>&lt;-</span> <span class='fu'>spc.identify</span>(<span class='fu'>plotspc</span>(<span class='kw'>laser</span>[<span class='kw'>ispc</span>]))
-
-  <span class='co'>## convert to the "real" spectra indices</span>
-  <span class='kw'>ispc</span> [<span class='kw'>identified</span><span class='op'>$</span><span class='kw'>ispc</span>]
-  <span class='kw'>identified</span><span class='op'>$</span><span class='kw'>wl</span>
-  <span class='kw'>identified</span><span class='op'>$</span><span class='kw'>spc</span>
-
-  <span class='co'>## allow the labels to be plotted into the plot margin</span>
-  <span class='fu'>spc.identify</span>(<span class='fu'>plotspc</span>(<span class='kw'>laser</span>[<span class='kw'>ispc</span>]), ispc = <span class='kw'>ispc</span>, xpd = <span class='fl'>NA</span>)
-
-  <span class='fu'>spc.identify</span>(<span class='fu'>plotspc</span>(<span class='kw'>paracetamol</span>,
-    xoffset = <span class='fl'>1100</span>,
-    wl.range = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>600</span> <span class='op'>~</span> <span class='fl'>1700</span>, <span class='fl'>2900</span> <span class='op'>~</span> <span class='fl'>3150</span>)
-  ),
-  formatter = <span class='kw'>spc.label.wlonly</span>
-  )
-
-  <span class='co'>## looking for minima</span>
-  <span class='fu'>spc.identify</span>(<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='op'>-</span><span class='kw'>paracetamol</span>, wl.reverse = <span class='fl'>TRUE</span>),
-    point.fn = <span class='kw'>spc.point.min</span>, adj = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>0.5</span>)
-  )
-}</div></pre>
+    <pre class="examples"></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -751,7 +751,7 @@ As the wavelengths are in nanometers, and the frequencies are easiest expressed 
 <span class="kw">wavelengths</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/wl.html">wl</a></span>(<span class="kw">laser</span>)
 <span class="kw">frequencies</span> <span class="op">&lt;-</span> <span class="fl">2.998e8</span> <span class="op">/</span> <span class="kw">wavelengths</span> <span class="op">/</span> <span class="fl">1000</span>
 <span class="fu"><a href="../reference/wl.html">wl</a></span>(<span class="kw">laser</span>) <span class="op">&lt;-</span> <span class="kw">frequencies</span>
-<span class="fu"><a href="https://rdrr.io/pkg/sp/man/gridlines.html">labels</a></span>(<span class="kw">laser</span>, <span class="st">".wavelength"</span>) <span class="op">&lt;-</span> <span class="st">"f / THz"</span>
+<span class="fu"><a href="https://rdrr.io/r/base/labels.html">labels</a></span>(<span class="kw">laser</span>, <span class="st">".wavelength"</span>) <span class="op">&lt;-</span> <span class="st">"f / THz"</span>
 <span class="kw">laser</span>
 <span class="co">#&gt; hyperSpec object</span>
 <span class="co">#&gt;    84 spectra</span>
@@ -1895,7 +1895,7 @@ You may convert spectra:</p>
 
 <p>In this case, do not forget to adapt the label:</p>
 <div class="sourceCode" id="cb122"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/pkg/sp/man/gridlines.html">labels</a></span>(<span class="kw">absorbance.spectra</span>)<span class="op">$</span><span class="kw">spc</span> <span class="op">&lt;-</span> <span class="st">"A"</span>
+<span class="fu"><a href="https://rdrr.io/r/base/labels.html">labels</a></span>(<span class="kw">absorbance.spectra</span>)<span class="op">$</span><span class="kw">spc</span> <span class="op">&lt;-</span> <span class="st">"A"</span>
 </pre></div>
 <p>Be careful: <code>R</code>’s <code class="sourceCode r"><span class="kw">log</span>()</code> function calculates the <em>natural</em> logarithm if no base is given.</p>
 <p>The basic arithmetic operators work element-wise in <code>R</code>.
@@ -2804,7 +2804,7 @@ You can also make suggestions in this manner.</p>
   }
 })
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.047   0.003   0.050</span>
+<span class="co">#&gt;   0.045   0.002   0.047</span>
 </pre></div>
 <p>Calculations that involve a lot of subsetting (i.e., extracting or changing the spectra matrix or extra data) can be sped up considerably if the required parts of the <code class="sourceCode r">hyperSpec</code> object are extracted beforehand.
 This is somewhat similar to model fitting in <code>R</code> in general: many model fitting functions in <code>R</code> are much faster if the formula interface is avoided and the appropriate <code class="sourceCode r">data.frame</code>s or matrices are handed over directly.</p>

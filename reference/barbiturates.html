@@ -179,7 +179,7 @@ BARBITUATES.SPC example data from Thermo Galactic's spc file format specificatio
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='kw'>barbiturates</span> [<span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>]</div><div class='output co'>#&gt; [[1]]
+<span class='kw'>barbiturates</span>[<span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>]</div><div class='output co'>#&gt; [[1]]
 #&gt; hyperSpec object
 #&gt;    1 spectra
 #&gt;    4 data columns
@@ -218,7 +218,7 @@ BARBITUATES.SPC example data from Thermo Galactic's spc file format specificatio
 <span class='kw'>barb</span> <span class='op'>&lt;-</span> <span class='fu'>collapse</span>(<span class='kw'>barbiturates</span>, collapse.equal = <span class='fl'>FALSE</span>)
 <span class='kw'>barb</span> <span class='op'>&lt;-</span> <span class='fu'>orderwl</span>(<span class='kw'>barb</span>)
 
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>barb</span> [<span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>],
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>barb</span>[<span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>],
   lines.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(type = <span class='st'>"h"</span>),
   col = <span class='fu'>matlab.dark.palette</span>(<span class='fl'>3</span>), stacked = <span class='fl'>TRUE</span>,
   stacked.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(add.factor = <span class='fl'>.2</span>)
@@ -232,7 +232,7 @@ BARBITUATES.SPC example data from Thermo Galactic's spc file format specificatio
 #&gt; <span class='message'>Attaching package: ‘latticeExtra’</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from ‘package:ggplot2’:</span>
 #&gt; <span class='message'></span>
 #&gt; <span class='message'>    layer</span></div><div class='img'><img src='barbiturates-2.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='fu'>plotc</span>(<span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span>(<span class='kw'>barb</span> [, , <span class='fl'>42.9</span> <span class='op'>~</span> <span class='fl'>43.2</span>], <span class='fl'>1</span>, <span class='kw'>sum</span>, na.rm = <span class='fl'>TRUE</span>), <span class='kw'>spc</span> <span class='op'>~</span> <span class='kw'>z</span>,
+<span class='fu'>plotc</span>(<span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span>(<span class='kw'>barb</span>[, , <span class='fl'>42.9</span> <span class='op'>~</span> <span class='fl'>43.2</span>], <span class='fl'>1</span>, <span class='kw'>sum</span>, na.rm = <span class='fl'>TRUE</span>), <span class='kw'>spc</span> <span class='op'>~</span> <span class='kw'>z</span>,
   panel = <span class='kw'>panel.lines</span>, ylab = <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span>(<span class='kw'>I</span>[<span class='kw'>m</span> <span class='op'>/</span> <span class='kw'>z</span> <span class='op'>==</span> <span class='fl'>43</span>] <span class='op'>/</span> <span class='st'>"a.u."</span>)
 )</div><div class='img'><img src='barbiturates-3.png' alt='' width='466' height='288' /></div></pre>
   </div>
