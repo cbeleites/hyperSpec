@@ -87,6 +87,8 @@ reference:
   - has_keyword("IO")
   - has_keyword("file")
 - title: Plots
+- subtitle: ggplot2
+  desc: "R base graphics and **_lattice_** based plots."
 - contents:
   - "plot-methods"
   - has_keyword("aplot")
@@ -94,6 +96,10 @@ reference:
   - has_keyword("hplot")
   - has_keyword("iplot")
   - has_keyword("color")
+- subtitle: ggplot2
+  desc: "Plots based on package **_ggplot2_**."
+- contents:
+  - has_concept("ggplot2")
 - title: Data manipulation
 - subtitle: Arithmetics and comparison
 - contents:
