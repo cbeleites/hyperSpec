@@ -82,7 +82,7 @@ setMethod("dim", signature = signature("hyperSpec"), function(x) {
 #' @details
 #' - `length()` is a synonym for `nrow()`. It is supplied so that `seq_along(x)`
 #' returns a sequence to index each spectrum.
-#' @name dim
+#' @rdname dim
 #' @seealso [base::length()]
 #' @export
 #' @examples
