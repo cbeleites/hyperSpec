@@ -1,5 +1,5 @@
 #' @name hyperSpec-package
-#' @title Package \pkg{hyperSpec}: Interface for Hyperspectral Data Sets.
+#' @title Package hyperSpec: Interface for Hyperspectral Data Sets.
 #' @description
 #' This package gives an interface to handle hyperspectral data sets in R.
 #' Hyperspectral data are spatially or time-resolved spectra, or spectra with
