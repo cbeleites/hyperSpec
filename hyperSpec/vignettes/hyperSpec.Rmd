@@ -220,17 +220,8 @@ Table \@ref(tab:options) gives an overview of the options.  You should not worry
 # Obtaining Basic Information about **_hyperSpec_** Objects {#info-hyperspec-objs}
 
 
-```{block, type = "note-t", echo = show_reviewers_notes}
-**V. Gegzna's notes** `hyperspec-6`
-
-1. The output of print() and summary() is identical. Is it expected?
-I think, the `print()`{.r} method should give less details than it does now.
-```
-
-
-
 \mFun{print, show, summary}
-As usual, the `print()`{.r}, `show()`{.r} and `summary()`{.r} methods provide an overview of the object (only `print` is shown here):
+Any of `print()`{.r}, `show()`{.r} or `summary()`{.r} provides an overview of the object (the output of each is identical):
 
 ```{r print}
 chondro
