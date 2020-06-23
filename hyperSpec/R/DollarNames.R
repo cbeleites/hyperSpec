@@ -1,3 +1,5 @@
+#' @title command line completion for `$`.
+#' @description
 #' Command line completion for `$`.
 #'
 #' @aliases .DollarNames .DollarNames,hyperSpec-method
@@ -6,7 +8,6 @@
 #' @export
 #' @rdname dollarnames
 #' @keywords utilities
-#' @title command line completion for $
 #' @param x the `hyperSpec` object
 #' @param pattern pattern to look for
 #' @return the name of the extra data slot
