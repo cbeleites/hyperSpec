@@ -22,7 +22,7 @@
 #' @rdname map-sel-poly
 #' @keywords iplot
 #' @examples
-#' if (interactive()) {
+#' \dontrun{\donttest{
 #'   ## convenience wrapper
 #'   map.sel.poly(faux_cell)
 #'
@@ -45,7 +45,7 @@
 #'
 #'   ## work with selected points
 #'   grid.points(unit(data$x [i.sel], "native"), unit(data$y [i.sel], "native"))
-#' }
+#' }}
 map.sel.poly <- function(data, pch = 19, size = 0.3, ...) {
   if (!interactive()) {
     stop("map.sel.poly works only on interactive graphics devices.")

@@ -87,7 +87,7 @@
 #' @export
 #' @examples
 #'
-#' if (interactive()) {
+#' \dontrun{\donttest{
 #'   ispc <- sample(nrow(laser), 10)
 #'   ispc
 #'
@@ -112,7 +112,7 @@
 #'   spc.identify(plot(-paracetamol, wl.reverse = TRUE),
 #'     point.fn = spc.point.min, adj = c(1, 0.5)
 #'   )
-#' }
+#' }}
 spc.identify <- function(x, y = NULL, wavelengths = NULL, ispc = NULL,
                          tol.wl = diff(range(x)) / 200,
                          tol.spc = diff(range(y)) / 50,
