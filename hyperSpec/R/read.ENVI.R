@@ -251,7 +251,7 @@ split.line <- function(x, separator, trim.blank = TRUE) {
 
 
 
-#' @title Import of ENVI data as `hyperSpec` object.
+#' @title Import of ENVI data.
 #'
 #' @description
 #' This function allows ENVI data import as `hyperSpec` object.

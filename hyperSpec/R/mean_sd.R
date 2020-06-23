@@ -20,6 +20,7 @@ setGeneric("mean_pm_sd", function(x, na.rm = TRUE, ...) standardGeneric("mean_pm
 #'   deviation) of `x`.
 #' @seealso [base::mean()], [stats::sd()]
 #' @keywords multivar
+#' @concept stats
 #' @export
 #' @examples
 #'

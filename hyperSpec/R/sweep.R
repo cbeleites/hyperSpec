@@ -51,6 +51,7 @@
 #' @author C. Beleites
 #' @seealso [base::sweep()]
 #' @keywords methods
+#' @concept summary, preprocessing
 #' @export
 #' @examples
 #'

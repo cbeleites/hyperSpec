@@ -23,6 +23,7 @@
 #'
 #' package scale.
 #' @keywords methods
+#' @concept preprocessing
 #' @export
 #' @examples
 #'

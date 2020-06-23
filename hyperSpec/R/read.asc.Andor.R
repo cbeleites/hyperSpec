@@ -3,7 +3,6 @@
 #' `read.asc.Andor()` reads Andor Solis ASCII (`.asc`) files where the first column gives the wavelength
 #' axes and the other columns the spectra.
 #'
-#' @title File Import Andor Solis
 #' @param file filename or connection to ASCII file
 #' @param ...,quiet,dec,sep handed to [base::scan()]
 #' @return a hyperSpec object

@@ -12,6 +12,7 @@
 #'   in the range of ca. 600 - 1800 cm\eqn{^{-1}}{^-1}.
 #' @author A. Bonifacio and C. Beleites
 #' @keywords datasets
+#' @concept datasets
 #' @references The raw data is available at <http://hyperspec.r-forge.r-project.org/blob/chondro.zip>
 #' @examples
 #'

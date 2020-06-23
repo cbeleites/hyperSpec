@@ -1,4 +1,4 @@
-#' Class "hyperSpec".
+#' Class `hyperSpec`.
 #'
 #' This package gives an interface to handle hyperspectral data sets in R.
 #' Hyperspectral data are spatially or time-resolved spectra, or spectra with

@@ -10,6 +10,7 @@
 #'
 #' `na.rm` defaults to `TRUE` for `hyperSpec` objects.
 #' @seealso [colSums][base::colSums]
+#' @concept summary
 #' @rdname colSums
 #' @name colSums
 NULL

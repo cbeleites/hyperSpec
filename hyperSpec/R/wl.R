@@ -99,7 +99,7 @@ wl <- function(x) {
 
 
 ### -----------------------------------------------------------------------------
-#' Convert different wavelength units
+#' Convert different wavelength units.
 #'
 #' The following units can be converted into each other:
 #' *nm*, \emph{\eqn{cm^{-1}}{inverse cm}}, *eV*, *THz* and

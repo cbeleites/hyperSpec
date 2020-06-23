@@ -12,6 +12,7 @@
 #'   405.8 nm.
 #' @author C. Beleites
 #' @keywords datasets
+#' @concept datasets
 #' @examples
 #'
 #' laser

@@ -13,6 +13,7 @@
 #' @seealso [stats::as.dist()]
 #' @references S. Theodoridis and K. Koutroumbas: Pattern Recognition, 3rd ed., p. 495
 #' @keywords cluster
+#' @concept stats
 #' @export
 #' @examples
 #'

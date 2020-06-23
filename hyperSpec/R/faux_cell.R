@@ -114,6 +114,8 @@
 #' @rdname faux_cell
 #' @docType data
 #' @include initialize.R
+#' @keywords datasets
+#' @concept datasets
 #' @export
 #' @author Claudia Beleites, Bryan A. Hanson
 #' @examples

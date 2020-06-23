@@ -15,7 +15,7 @@
 
   tmp <- matrix(NA_real_, sum(n), ncol(mean))
   for (i in seq_along(n)) {
-    tmp [.group == i, ] <- mvtnorm::rmvnorm(n [i], mean [i, ], sigma [, , isigma [i]])
+    tmp[.group == i, ] <- mvtnorm::rmvnorm(n [i], mean [i, ], sigma [, , isigma [i]])
   }
 
   attr(tmp, "group") <- .group

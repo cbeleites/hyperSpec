@@ -4,6 +4,7 @@
 #' @param chunksize `file` is read in chunks of `chunksize` lines.
 #' @return number of lines in file
 #' @export
+#' @concept io
 #' @md
 #' @author C. Beleites
 count_lines <- function(file, chunksize = 1e4) {

@@ -1,8 +1,8 @@
-#' @title Comparison of hyperSpec objects.
+#' @title Comparison of `hyperSpec` objects.
 #' @description
 #' The comparison operators `>`, `<`, `>=`, `<=`, `==`, and `!=` for `hyperSpec` objects.
 #'
-#' `all.equal` checks the equality of two hyperSpec objects.
+#' `all.equal` checks the equality of two `hyperSpec` objects.
 #'
 #' The comparison operators `>`, `<`, `>=`, `<=`,
 #' `==`, and `!=` work on the spectra matrix of the `hyperSpec`

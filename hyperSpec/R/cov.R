@@ -7,6 +7,7 @@
 #' @return covariance matrix of size `nwl (x)` x  `nwl (x)`
 #' @seealso [stats::cov()]
 #' @author C. Beleites
+#' @concept stats
 #' @rdname cov
 #' @export
 #' @examples
