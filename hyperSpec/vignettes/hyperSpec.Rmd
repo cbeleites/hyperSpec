@@ -964,21 +964,11 @@ This all is discussed in a separate document: see `vignette ("plotting")`.
 
 
 
-# Spectral (Pre)processing
+# Spectral Pre-Processing
 
 ## Cutting the Spectral Range
 
-\mFun{`[]` `[[]]`}
-The extraction operators `[]` and `[[]]` can be used to cut the spectra.
-Their third argument takes wavelength specifications as discussed above and also logicals (i.e. vectors specifying with `TRUE`{.r}/`FALSE`{.r} for each column of `$spc`{.r} whether it should be included or not.
-
-Operator`[]` returns a `hyperSpec`{.r} object, `[[]]` the spectra matrix `$spc`{.r} (or the `data.frame`{.r} `@data`{.r} if in addition data columns were specified) only.
-
-```{r cut.wl}
-flu[, , min ~ 408.5]
-flu[[, , c(min ~ min + 2i, max - 2i ~ max)]]
-```
-
+Please refer to Table \@ref(tab:getters), Table \@ref(tab:setters) and Section \@ref(sec:wavelength-axis) for information and examples of cutting the spectral range.
 
 ## Shifting Spectra {#sec:shifting-spectra}
 
@@ -1082,10 +1072,6 @@ This strategy works best with spectrally oversampled data that allows accurate d
 
 For the `chondro`{.r} data, let's use the maximum of the phenylalanine band between 990 and 1020 cm^-1^.
 As just the very maximum is too coarse, we'll use the maximum of a square polynomial fitted to the maximum and its two neighbours.
-
-```{r TODO-1}
-#  TODO: use vanderMonde
-```
 
 <!-- ======================================================================= -->
 ```{block, type= "note-t", echo = show_reviewers_notes}
@@ -1216,7 +1202,7 @@ points(wl(chondro)[i[, 2]], chondro[[!OK]], pch = 19, col = "red", cex = 0.5)
 
 ### Bad Data Points {#sec:bad-data-points}
 
-Assume the data contains once in a while a detector readout of 0:
+Assume the data occasionally has a detector readout of 0:
 
 ```{r}
 spc <- chondro[1:3, , min ~ min + 15i]
@@ -1232,7 +1218,7 @@ spc[[]]
 ```
 
 \mFun{`spc.NA.approx()`{.r}, `spc.loess()`{.r}, `spc.bin()`{.r}}
-Depending on the type of analysis, one may wants to replace the `NA`{.r}s by interpolating the neighbour values. So far, package **hyperSpec** provides three functions that can interpolate the `NA`{.r}s: `spc.NA.approx()`{.r}, `spc.loess()`{.r}, and `spc.bin()`{.r} with `na.rm = TRUE`{.r} (the latter two are discussed below).
+Depending on the type of analysis, one may wish to replace the `NA`{.r}s by interpolating the neighbour values. Package **hyperSpec** provides three functions that can interpolate the `NA`{.r}s: `spc.NA.approx()`{.r}, `spc.loess()`{.r}, and `spc.bin()`{.r} with `na.rm = TRUE`{.r} (the latter two are discussed below).
 
 ```{r include = FALSE}
 if (!exists("spc.NA.approx")) {
@@ -1263,30 +1249,10 @@ plot(spc.NA.approx(spc), add = TRUE, col = "blue",
 
 ### Spikes in Raman Spectra {#sec:spikes-raman-spectra}
 
-> ...coming soon...
-
-```{r}
-# TODO: ...coming soon...
-```
-
-<!-- ======================================================================= -->
-```{block, type = "note-t", echo = show_reviewers_notes}
-**V. Gegzna's notes** `hyperspec-10`
-
-
-1. Empty chapter. What to do with it?
-
-Comment from Roman: I suggest for now to write the following:
-
-Correction of cosmic spikes is not a part of `hyperSpec` package, and can be addressed with algorithms presented in these papers:
+Correction of cosmic spikes is not a part of `hyperSpec` package, but can be addressed with algorithms presented in these papers:
 
 * [A Simple Algorithm for Despiking Raman Spectra](https://chemrxiv.org/articles/A_Simple_Algorithm_for_Despiking_Raman_Spectra/5993011/2)
 * [Automatization of spike correction in Raman spectra of biological samples](https://www.sciencedirect.com/science/article/abs/pii/S0169743916300600)
-
-```
-<!-- ======================================================================= -->
-
-
 
 ## Smoothing Interpolation
 
@@ -1328,14 +1294,6 @@ plot(p[, , 1600 ~ 1670], col = "red", add = TRUE)
 plot(b[, , 1600 ~ 1670], col = "blue", add = TRUE)
 ```
 
-
-<!-- \begin{figure} -->
-<!-- \includegraphics[width=0.33\textwidth]{hyperspec-fig-fig-loess} -->
-<!-- \includegraphics[width=0.33\textwidth]{hyperspec-fig-fig-loess-kl} -->
-<!-- \caption{ {#fig-spcloess} -->
-<!-- Smoothing interpolation by `spc.loess()`{.r} with new data point spacing of 2 cm^-1^ (red) and `spc.bin()`{.r} (blue). The magnification on the right shows how interpolation may cause a loss in signal height.} -->
-<!-- \end{figure} -->
-
 Function `spc.loess()`{.r} applies R's `loess()`{.r} function for spectral interpolation.
 Figures \@ref(fig:fig-loess) and \@ref(fig:loess-kl) show the result of interpolating from 300 to 1800 and 2850 to 3150 cm^-1^ with 2 cm^-1^ data point distance.
 This corresponds to a spectral resolution of about 4 cm^-1^, and the decrease in spectral resolution can be seen at the sharp bands where the maxima are not reached (due to the fact that the interpolation wavelength axis does not necessarily hit the maxima.
@@ -1357,7 +1315,7 @@ sweep(spectra, 2, background.spectrum, "-")
 
 \mFun{`apply()`{.r} `sweep()`{.r}}
 
-Calculate the offsets and sweep them off the spectra:
+Calculate the offsets and adjust the spectra accordingly:
 
 ```{r ofs}
 offsets <- apply(chondro, 1, min)
@@ -1528,7 +1486,7 @@ From a spectroscopic point of view it depends on the particular data set whether
 
 Variance scaling is often used in multivariate analysis to adjust the influence and scaling of the variates (that are typically different physical values).
 However, spectra already do have the same scale of the same physical value.
-Thus one has to trade off the the expected numeric benefit with the fact that for wavelengths with low signal the noise level will"xplod"by variance scaling.
+Thus one has to trade off the the expected numeric benefit with the fact that for wavelengths with low signal the noise level will greatly increase when using variance scaling.
 Scaling usually makes sense only for centered data.
 
 Both tasks are carried out by the same method in `R`, `scale()`{.r}, which will by default both mean center and variance scale the spectra matrix.
@@ -1585,7 +1543,7 @@ chondro.msc[[]] <- msc(chondro[[]])
 \mFun{`+ - * / log() log10()`{.r}}
 
 Basic mathematical functions are defined for `hyperSpec`{.r} objects.
-You may convert spectra:
+You may convert spectra to their log:
 
 ```{r eval = FALSE}
 absorbance.spectra = - log10 (transmission.spectra)
@@ -1603,8 +1561,9 @@ Be careful: `R`'s `log()`{.r} function calculates the *natural* logarithm if no 
 The basic arithmetic operators work element-wise in `R`.
 Thus they all need either a scalar, or a matrix (or `hyperSpec`{.r} object) of the correct size.
 
-Matrix multiplication is done by `\%*%`\mFun{`\%*\%`}, again each of the operands may be a matrix or a `hyperSpec`{.r} object, and must have the correct dimensions.
+Matrix multiplication is done by `%*%`\mFun{`\%*\%`}, again each of the operands may be a matrix or a `hyperSpec`{.r} object, and must have the correct dimensions.
 
+There are many more mathematical functions that understand a `hyperSpec` object. See `?Arith` for more details.
 
 # Data Analysis
 
