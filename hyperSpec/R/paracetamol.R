@@ -10,6 +10,7 @@
 #'   overlapping wavelength regions.
 #' @author C. Beleites
 #' @keywords datasets
+#' @concept datasets
 #' @examples
 #'
 #' paracetamol
