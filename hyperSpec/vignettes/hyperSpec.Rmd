@@ -1567,25 +1567,29 @@ There are many more mathematical functions that understand a `hyperSpec` object.
 
 # Data Analysis
 
-## Data Analysis Methods using a `data.frame`{.r}, e.g., Principal Component Analysis with `prcomp()`{.r} {#sec:pca}
+## Principal Component Analysis with `prcomp()`{.r} {#sec:pca}
+
+### Carrying out PCA
 
 \mFun{`$.`{.r}}
-The `$.`{.r} notation is handy, if a data analysis function expects a `data.frame`{.r}.
+The `$.`{.r} notation is handy, if a data analysis function expects a `data.frame`{.r}, as `prcomp()`{.r} does.
 The column names can then be used in the formula:
 
 ```{r pca}
 pca <- prcomp(~spc, data = chondro$., center = FALSE)
 ```
 
-Many modeling functions call `as.data.frame`{.r} on their `data`{.r} argument.
-In that case, the conversion is done automatically:
+However, many modeling functions call `as.data.frame`{.r} on their `data`{.r} argument, including `prcomp()`{.r}.
+In that case, the conversion is done automatically so the following gives the same result as above:
 
 ```{r pca-auto}
 pca <- prcomp(~spc, data = chondro, center = FALSE)
 ```
 
-Results of such a \mFun{`decomposition()`{.r}} decomposition can be put again into `hyperSpec`{.r} objects.
-This allows to plot, e.g., the loading like spectra, or score maps, see Figures \@ref(fig:pca-load) and  \@ref(fig:pca-score).
+### Plotting the Results of PCA
+
+The results of such a \mFun{`decomposition()`{.r}} decomposition can be put back into `hyperSpec`{.r} objects.
+This conveniently allows one to use the regular `hyperSpec` plotting functions, e.g., the loading-like spectra, or score maps, see Figures \@ref(fig:pca-load) and  \@ref(fig:pca-score).
 
 ```{r decomp}
 scores <- decomposition(chondro, pca$x,
@@ -1620,7 +1624,7 @@ loadings <- decomposition(chondro, t(pca$rotation),
 )
 loadings[1]$..
 ```
-If an extra data column does contain only one unique value, it is retained anyways:
+If an extra data column does contain only one unique value, it is retained regardless:
 
 ```{r retain}
 chondro$measurement <- 1
@@ -1659,11 +1663,10 @@ plotmap(scores[, , 3], col.regions = div_palette(20))
 ```
 
 
-
 ### PCA as Noise Filter {#sec:pca-as-noise}
 
 Principal component analysis is sometimes used as a noise filtering technique.
-The idea is that the relevant differences are captured in the first components while the higher components contain noise only.
+The idea is that the relevant differences are captured in the first few components while the higher components contain noise only.
 Thus the spectra are reconstructed using only the first $p$ components.
 
 This reconstruction is in fact a matrix multiplication:
