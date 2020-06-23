@@ -21,9 +21,7 @@
 #' plot(spc)
 setReplaceMethod("[",
   signature = signature(x = "hyperSpec"),
-  function(x, i, j,
-           ...,
-           value) {
+  function(x, i, j, ..., value) {
     validObject(x)
 
     if (missing(i)) i <- row.seq(x)
@@ -31,9 +29,9 @@ setReplaceMethod("[",
 
     if (is(value, "hyperSpec")) {
       validObject(value)
-      x@data [i, j, ...] <- value@data
+      x@data[i, j] <- value@data
     } else {
-      x@data [i, j, ...] <- value
+      x@data[i, j] <- value
     }
 
     validObject(x)
@@ -78,8 +76,7 @@ setReplaceMethod("[",
 #' spc[[]]
 setReplaceMethod("[[",
   signature = signature(x = "hyperSpec"),
-  function(x, i, j, l, wl.index = FALSE,
-           ..., value) {
+  function(x, i, j, l, wl.index = FALSE, ..., value) {
     validObject(x)
 
 
@@ -118,7 +115,7 @@ setReplaceMethod("[[",
         l <- wl2i(x, l)
       }
 
-      x@data$spc[i, l, ...] <- value
+      x@data$spc[i, l] <- value
     }
 
     validObject(x)

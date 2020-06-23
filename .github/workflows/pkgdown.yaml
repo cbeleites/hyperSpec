@@ -1,9 +1,11 @@
 on:
   push:
     branches:
+      - release
       - master
       - develop
-      - feature/vignettes-in-rmd
+      - feature/polish-vignettes
+      - feature/update-pkgdown-settings
 
 name: Update pkgdown website
 
@@ -13,10 +15,13 @@ jobs:
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+
     steps:
       - uses: actions/checkout@v2
 
       - uses: r-lib/actions/setup-r@master
+        with:
+          r-version: 'release'
 
       - uses: r-lib/actions/setup-pandoc@master
 
@@ -62,3 +67,4 @@ jobs:
         run: |
           pkgdown::deploy_to_branch("./hyperSpec", new_process = FALSE)
         shell: Rscript {0}
+
