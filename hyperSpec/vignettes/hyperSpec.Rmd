@@ -263,17 +263,6 @@ While the parts of the `hyperSpec` object can be accessed directly, it is good p
 This also ensures that proper (i.e. *valid*) objects are returned.
 In some cases, however, direct access to the slots can considerably speed up calculations (see the appendicies).
 
-<!-- ======================================================================= -->
-```{block, type = "note-t", echo = show_reviewers_notes}
-**B. Hanson's notes**
-
-* I consolidated all the various parts dealing with getters and setters here.
-* In the tables, I tried to be systematic and put in every combination of getters and setters.  In the process I discovered some that don't work.  These should be fixed if they are logical operations, or intercepted if not and the user warned. The setters table has some open questions that need to be investigated.
-* This material would be good in a cheatsheet... eventually.
-```
-<!-- ======================================================================= -->
-
-
 The main functions to retrieve the data of a `hyperSpec`{.r} object are `[]` and `[[]]`. \mFun{`[]`,`[[]]`}
 The difference between these functions is that `[]` returns a `hyperSpec`{.r} object, whereas `[[]]` returns a `data.frame` containing `x$spc`{.r}, the spectral data.
 To modify a `hyperSpec` object, the corresponding functions are `[<-`{.r} and `[[<-`{.r}. The first form is used to modify the entire `hyperSpec` object and the second form modifies the spectral data in `x$spc`{.r}.
