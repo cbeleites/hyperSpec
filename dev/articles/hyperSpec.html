@@ -2805,7 +2805,7 @@ You can also make suggestions in this manner.</p>
   }
 })
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.048   0.002   0.050</span>
+<span class="co">#&gt;   0.047   0.002   0.049</span>
 </pre></div>
 <p>Calculations that involve a lot of subsetting (i.e., extracting or changing the spectra matrix or extra data) can be sped up considerably if the required parts of the <code class="sourceCode r">hyperSpec</code> object are extracted beforehand.
 This is somewhat similar to model fitting in <code>R</code> in general: many model fitting functions in <code>R</code> are much faster if the formula interface is avoided and the appropriate <code class="sourceCode r">data.frame</code>s or matrices are handed over directly.</p>
@@ -2820,7 +2820,7 @@ This is somewhat similar to model fitting in <code>R</code> in general: many mod
   <span class="kw">tmp</span>[[]] <span class="op">&lt;-</span> <span class="kw">tmp.matrix</span>
 })
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.009   0.000   0.009</span>
+<span class="co">#&gt;   0.011   0.000   0.012</span>
 </pre></div>
 <!--
 ## Additional packages
@@ -2957,7 +2957,7 @@ In this case, the name of the function must be quoted: `-` is the recommended st
 <span class="co">#&gt;  glue           1.4.1         2020-05-13 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  gtable         0.3.0         2019-03-25 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  hyperSpec    * 0.99-20200615 2020-06-23 [1] local         </span>
-<span class="co">#&gt;  isoband        0.2.2         2020-06-20 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  isoband        0.2.2         2020-06-20 [1] CRAN (R 4.0.1)</span>
 <span class="co">#&gt;  jpeg           0.1-8.1       2019-10-24 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  labeling       0.3           2014-08-23 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  lattice      * 0.20-41       2020-04-02 [2] CRAN (R 4.0.1)</span>
