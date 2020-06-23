@@ -293,7 +293,7 @@ These details can be directly obtained by</p>
 <span class="co">#&gt; [1] 5</span>
 </pre></div>
 <div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="fu"><a href="../reference/ncol,hyperSpec-method.html">dim</a></span>(<span class="kw">chondro</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span>(<span class="kw">chondro</span>)
 <span class="co">#&gt; nrow ncol  nwl </span>
 <span class="co">#&gt;  875    5  300</span>
 </pre></div>
@@ -1047,17 +1047,17 @@ Figure 4.2: LDA of simulated spectra. Crosses mark real spectra.
 
 <p>Class <code class="sourceCode r">hyperspec</code> objects can be bound together, either by columns (<code class="sourceCode r"><span class="kw">cbind</span>()</code>) to append a new spectral range or by row (<code class="sourceCode r"><span class="kw">rbind</span>()</code>) to append new spectra:</p>
 <div class="sourceCode" id="cb58"><pre class="downlit">
-<span class="fu"><a href="../reference/ncol,hyperSpec-method.html">dim</a></span>(<span class="kw">flu</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span>(<span class="kw">flu</span>)
 <span class="co">#&gt; nrow ncol  nwl </span>
 <span class="co">#&gt;    6    3  181</span>
 </pre></div>
 <div class="sourceCode" id="cb59"><pre class="downlit">
-<span class="fu"><a href="../reference/ncol,hyperSpec-method.html">dim</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span>(<span class="kw">flu</span>, <span class="kw">flu</span>))
+<span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span>(<span class="kw">flu</span>, <span class="kw">flu</span>))
 <span class="co">#&gt; nrow ncol  nwl </span>
 <span class="co">#&gt;    6    3  362</span>
 </pre></div>
 <div class="sourceCode" id="cb60"><pre class="downlit">
-<span class="fu"><a href="../reference/ncol,hyperSpec-method.html">dim</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span>(<span class="kw">flu</span>, <span class="kw">flu</span>))
+<span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span>(<span class="kw">flu</span>, <span class="kw">flu</span>))
 <span class="co">#&gt; nrow ncol  nwl </span>
 <span class="co">#&gt;   12    3  181</span>
 </pre></div>
@@ -2804,7 +2804,7 @@ You can also make suggestions in this manner.</p>
   }
 })
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.048   0.002   0.050</span>
+<span class="co">#&gt;   0.048   0.002   0.051</span>
 </pre></div>
 <p>Calculations that involve a lot of subsetting (i.e., extracting or changing the spectra matrix or extra data) can be sped up considerably if the required parts of the <code class="sourceCode r">hyperSpec</code> object are extracted beforehand.
 This is somewhat similar to model fitting in <code>R</code> in general: many model fitting functions in <code>R</code> are much faster if the formula interface is avoided and the appropriate <code class="sourceCode r">data.frame</code>s or matrices are handed over directly.</p>
@@ -2819,7 +2819,7 @@ This is somewhat similar to model fitting in <code>R</code> in general: many mod
   <span class="kw">tmp</span>[[]] <span class="op">&lt;-</span> <span class="kw">tmp.matrix</span>
 })
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.009   0.000   0.009</span>
+<span class="co">#&gt;    0.01    0.00    0.01</span>
 </pre></div>
 <!--
 ## Additional packages
