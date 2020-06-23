@@ -329,9 +329,6 @@ For more details on `[]<-`, `[[]]<-`, and `$<-`, see \@ref(sec:square-brack-repl
 
 The extraction function `[]` takes the spectra (rows) as the first argument (For detailed help: see `?"["`{.r}).
 It may be a vector giving the indices of the spectra to extract (select), a vector with negative indices indicating, which spectra should be deleted, or a vector of logical values.
-Note that a matrix given to `[]` will be treated as a vector.
-
-
 
 ```{r include = FALSE}
 CAPTION <- "An example with `[]` operator and positive indices.  "
