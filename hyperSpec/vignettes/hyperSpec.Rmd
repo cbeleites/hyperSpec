@@ -767,7 +767,7 @@ cluster.cols <- c("dark blue", "orange", "#C02020")
 plot(rnd, col = cluster.cols[rnd$.group])
 ```
 
-# Combining and Decomposing `hyperSpec`{.r} Objects {#sec:combine}
+# Combining `hyperSpec`{.r} Objects {#sec:combine}
 
 ## Binding Objects together {#sec:bind}
 
@@ -954,29 +954,6 @@ class(merge(flu, flu.ref))
 ```{r}
 class(merge(flu.ref, flu))
 ```
-
-
-## Matrix Multiplication {#sec:matmult}
-
-\mFun{`\%*\%`}
-Two `hyperSpec`{.r} objects can be matrix multiplied by `%*%`{.r}.
-For an example, see the principal component analysis below (section \@ref(sec:pca)).
-
-
-## Decomposition {#sec:decomposition}
-
-Matrix decompositions are common operations during chemometric data analysis.
-The results, e.g., of a principal component analysis are two matrices, the so-called scores and loadings.
-The results can have either the same number of rows as the spectra matrix they were calculated from (scores-like), or
-they have as many wavelengths as the spectra (loadings-like).
-
-\mFun{`decomposition()`{.r}}
-Both types of result objects can be "re-imported" into `hyperSpec`{.r} objects with function `decomposition()`{.r}.
-A scores-like object retains all per-spectrum information (i.e., the extra data) while the spectra matrix and wavelength vector are replaced.
-A loadings-like object retains the wavelength information, while extra data is deleted (set to `NA`{.r}) unless the value is constant for all spectra.
-
-A demonstration can be found in the principal component analysis example (section \@ref(sec:pca)).
-
 
 
 # Plotting {#plotting-hyperspec}
