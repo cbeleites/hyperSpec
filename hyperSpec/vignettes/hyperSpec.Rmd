@@ -748,14 +748,6 @@ More information about converting existing data into `hyperSpec`{.r} objects can
 
 ## Creating Random Spectra
 
-```{block, type = "note-t", echo = show_reviewers_notes}
-**B. Hansons's notes** `Clarifications`
-
-1. Need more explanation of the pooled covariance approach.
-2. Here's a place that we should standardize the color scheme.
-3. Why not generate `rnd` only once here, and use it for the plot and LDA?  As it stands now it seemed like the first set of spectra were somehow related to the 2nd set.
-```
-
 \mFun{rmmvnorm}
 If package **mvtnorm**`r cite_pkg("mvtnorm")` is available, multivariate normally distributed spectra can be generated from mean and covariance matrix using `rmmvnorm()`{.r} (Fig. \@ref(fig:sim-spc)).
 Note that the package **hyperSpec** function's name has an additional "m": it already takes care of multiple groups.
@@ -774,45 +766,6 @@ CAPTION <- "Multivariate normally distributed random spectra generated with `rmm
 cluster.cols <- c("dark blue", "orange", "#C02020")
 plot(rnd, col = cluster.cols[rnd$.group])
 ```
-
-Fig. \@ref(fig:sim-lda) shows the linear discriminant analysis (LDA) scores of simulated spectra in comparison to the real spectra in the `chondro`{.r} object:
-
-
-
-```{r lda}
-library("MASS")
-
-rnd <- rmmvnorm(rep(200, 3), mean = pcov$mean, sigma = pcov$COV)
-lda <- lda(clusters ~ spc, rnd)
-
-pred.chondro <- predict(lda, newdata = chondro)
-pred.sim <- predict(lda)
-```
-
-<!-- ======================================================================= -->
-```{block, type = "note-t", echo = show_reviewers_notes}
-**V. Gegzna's notes** `hyperspec-7`
-
-1. `# FIXME: `{.r}
-
-    # pred.chondro <- predict(lda, newdata = chondro)
-    # #> Warning in predict.lda(lda, chondro): variable names in 'newdata' do not match those in 'object'
-```
-<!-- ======================================================================= -->
-
-
-
-```{r include = FALSE}
-CAPTION <- "LDA of simulated spectra. Crosses mark real spectra. "
-```
-
-```{r sim-lda, fig.cap = CAPTION}
-colors <- c("#00008040", "#FFA50040", "#C0202040")
-plot(pred.chondro$x, col = colors[chondro$clusters], pch = 3)
-points(pred.sim$x,   col = colors[rnd$clusters], pch = 20, cex = 0.5)
-```
-
-If individual covariance matrices should be used for each group, `sigma`{.r} should be an array with the 3rd dimension corresponding to the group.
 
 # Combining and Decomposing `hyperSpec`{.r} Objects {#sec:combine}
 
