@@ -1,8 +1,8 @@
 #' The Number of Rows (Spectra), Columns, and Data Points per Spectrum of a
 #' `hyperSpec` Object.
 #'
-#' THese functions return the number of rows (spectra), columns, and/or
-#' data points per spectrum of a `hyperSpec` Object.
+#' These functions return the number of rows (spectra), columns, and/or
+#' data points per spectrum of a `hyperSpec` object.
 #' See section "Details".
 #'
 #' @details
@@ -17,6 +17,7 @@
 #' @seealso [base::ncol()]
 #'
 #' @return `nrow()`, `ncol()`, `nwl()`, and `length()`, return an `integer`.
+#' @concept summary
 #' @export
 #' @examples
 #' ncol(faux_cell)
