@@ -42,7 +42,7 @@
   
 
 <meta property="og:title" content="File Import Witec Raman — scan.txt.Witec" />
-<meta property="og:description" content="Import Raman Spectra/Maps from Witec Instrument via ASCII files" />
+<meta property="og:description" content="Import Raman Spectra/Maps from Witec Instrument via ASCII files." />
 
 <meta name="robots" content="noindex" />
 
@@ -74,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">hyperSpec</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.99</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99</span>
       </span>
     </div>
 
@@ -161,7 +161,7 @@
     </div>
 
     <div class="ref-description">
-    <p>Import Raman Spectra/Maps from Witec Instrument via ASCII files</p>
+    <p>Import Raman Spectra/Maps from Witec Instrument via ASCII files.</p>
     </div>
 
     <pre class="usage"><span class='fu'>scan.txt.Witec</span>(<span class='kw'>...</span>)
@@ -208,7 +208,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>..., quiet</th>
-      <td><p>handed to <code><a href='https://rdrr.io/r/base/scan.html'>scan</a></code></p></td>
+      <td><p>handed to <code><a href='https://rdrr.io/r/base/scan.html'>base::scan()</a></code></p></td>
     </tr>
     <tr>
       <th>file</th>
@@ -236,7 +236,7 @@
     </tr>
     <tr>
       <th>encoding</th>
-      <td><p>character encoding, see <code><a href='https://rdrr.io/r/base/readLines.html'>readLines</a></code></p></td>
+      <td><p>character encoding, see <code><a href='https://rdrr.io/r/base/readLines.html'>base::readLines()</a></code></p></td>
     </tr>
     <tr>
       <th>filex</th>
@@ -256,7 +256,8 @@
     </tr>
     <tr>
       <th>remove.zerospc</th>
-      <td><p>is deprecated and will be removed soon. Use <code>hy.setOptions (file.remove.emptyspc = TRUE)</code> instead.</p></td>
+      <td><p>is deprecated and will be removed soon.
+Use <code>[hy.setOptions] (file.remove.emptyspc = TRUE)</code> instead.</p></td>
     </tr>
     </table>
 
@@ -265,13 +266,14 @@
     <p>a hyperSpec object</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p><code>read.txt.Witec</code> reads Witec ASCII files where the first column gives the wavelength
-axes and the other columns the spectra. <code>read.dat.Witec</code> reads Witec's ASCII exported data
-which comes in separate files with x and y data.</p>
+    <p><code>read.txt.Witec()</code> reads Witec ASCII files where the first column gives the
+wavelength axes and the other columns the spectra.
+<code>read.dat.Witec()</code> reads Witec's ASCII exported data, which comes in separate
+files with x and y data.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code>vignette ("fileio")</code> for more information on file import and</p>
-<p><code><a href='https://rdrr.io/r/base/options.html'>options</a></code> for details on options.</p></div>
+<p><code><a href='https://rdrr.io/r/base/options.html'>options()</a></code> for details on options.</p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Claudia Beleites and Marcel Dahms</p>

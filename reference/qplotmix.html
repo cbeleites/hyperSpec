@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plot multivariate data into colour channels — legendright • hyperSpec</title>
+<title>Plot multivariate data into colour channels. — legendright • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,8 +41,14 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Plot multivariate data into colour channels — legendright" />
-<meta property="og:description" content="plot graph with legend right of it" />
+<meta property="og:title" content="Plot multivariate data into colour channels. — legendright" />
+<meta property="og:description" content="Plot graph with legend right of it.
+Plot multivariate data into colour channels using ggplot2::geom_tile()
+normalize.colrange() normalizes the range of each column to [0, 1].
+normalize.range() normalizes the range of all columns to [0, 1].
+normalize.null() does not touch the values.
+normalize.minmax() normalizes the range of each column j to [min_j, max_j]
+legends for mixed colour plots" />
 
 <meta name="robots" content="noindex" />
 
@@ -74,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">hyperSpec</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.99</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99</span>
       </span>
     </div>
 
@@ -155,13 +161,19 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Plot multivariate data into colour channels</h1>
+    <h1>Plot multivariate data into colour channels.</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/qplotmixmap.R'><code>R/qplotmixmap.R</code></a></small>
     <div class="hidden name"><code>qplotmix.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>plot graph with legend right of it</p>
+    <p>Plot graph with legend right of it.</p>
+<p>Plot multivariate data into colour channels using <code><a href='https://ggplot2.tidyverse.org/reference/geom_tile.html'>ggplot2::geom_tile()</a></code></p>
+<p><code>normalize.colrange()</code> normalizes the range of each column to [0, 1].</p>
+<p><code>normalize.range()</code> normalizes the range of all columns to [0, 1].</p>
+<p><code>normalize.null()</code> does not touch the values.</p>
+<p><code>normalize.minmax()</code> normalizes the range of each column j to [min_j, max_j]</p>
+<p>legends for mixed colour plots</p>
     </div>
 
     <pre class="usage"><span class='fu'>legendright</span>(<span class='kw'>p</span>, <span class='kw'>l</span>, legend.width = <span class='fl'>8</span>, legend.unit = <span class='st'>"lines"</span>)
@@ -226,18 +238,18 @@
     </tr>
     <tr>
       <th>mapping</th>
-      <td><p>see [ggplot2::geom_tile()]</p></td>
+      <td><p>see <code><a href='https://ggplot2.tidyverse.org/reference/geom_tile.html'>ggplot2::geom_tile()</a></code></p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>`qmixtile`: handed to [colmix.rgb()]</p>
-<p>`qmixlegend()` and `colmix.rgb()` hand further arguments to the
-  `normalize` function</p></td>
+      <td><p><code>qmixtile</code>: handed to <code>colmix.rgb()</code></p>
+<p><code>qmixlegend()</code> and <code>colmix.rgb()</code> hand further arguments to the
+<code>normalize</code> function</p></td>
     </tr>
     <tr>
       <th>map.tileonly</th>
-      <td><p>if `TRUE`, `mapping` will be handed to
-[ggplot2::geom_tile()] instead of [ggplot2::ggplot()].</p></td>
+      <td><p>if <code>TRUE</code>, <code>mapping</code> will be handed to
+<code><a href='https://ggplot2.tidyverse.org/reference/geom_tile.html'>ggplot2::geom_tile()</a></code> instead of <code><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot2::ggplot()</a></code>.</p></td>
     </tr>
     <tr>
       <th>x</th>
@@ -245,7 +257,7 @@
     </tr>
     <tr>
       <th>na.rm</th>
-      <td><p>see [base::min()]</p></td>
+      <td><p>see <code><a href='https://rdrr.io/r/base/Extremes.html'>base::min()</a></code></p></td>
     </tr>
     <tr>
       <th>legend</th>
@@ -284,7 +296,7 @@ column</p></td>
     <tr>
       <th>against</th>
       <td><p>value to mix against
-(for `sub = TRUE` only, 1 = white, 0 = black)</p></td>
+(for <code>sub = TRUE</code> only, 1 = white, 0 = black)</p></td>
     </tr>
     <tr>
       <th>sub</th>
@@ -294,10 +306,10 @@ column</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>invisible `NULL`</p>
-<p>list with components `ymin`, `max` and `fill` to specify value and
-  fill colour value (still numeric!) for the legend, otherwise the
-  normalized values</p>
+    <p>invisible <code>NULL</code></p>
+<p>list with components <code>ymin</code>, <code>max</code> and <code>fill</code> to specify value and
+fill colour value (still numeric!) for the legend, otherwise the
+normalized values</p>
 <p>ggplot object with legend</p>
 <p>character with colours</p>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>

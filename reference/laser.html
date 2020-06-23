@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Laser Emission
-A time series of an unstable laser emission. — laser • hyperSpec</title>
+<title>Laser Emission Dataset. — laser • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -42,9 +41,8 @@ A time series of an unstable laser emission. — laser • hyperSpec</title>
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Laser Emission
-A time series of an unstable laser emission. — laser" />
-<meta property="og:description" content="see the Vignette" />
+<meta property="og:title" content="Laser Emission Dataset. — laser" />
+<meta property="og:description" content="A time series of an unstable laser emission." />
 
 <meta name="robots" content="noindex" />
 
@@ -76,7 +74,7 @@ A time series of an unstable laser emission. — laser" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">hyperSpec</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.99</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99</span>
       </span>
     </div>
 
@@ -157,14 +155,13 @@ A time series of an unstable laser emission. — laser" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Laser Emission
-A time series of an unstable laser emission.</h1>
+    <h1>Laser Emission Dataset.</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/laser.R'><code>R/laser.R</code></a></small>
     <div class="hidden name"><code>laser.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>see the Vignette</p>
+    <p>A time series of an unstable laser emission.</p>
     </div>
 
 
@@ -172,8 +169,11 @@ A time series of an unstable laser emission.</h1>
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
     <p>The data set consists of 84 laser emission spectra measured during
-  95 min.  Each spectrum has 36 data points in the range of 404.5 nm to
-  405.8 nm.</p>
+95 min.  Each spectrum has 36 data points in the range of 404.5 nm to
+405.8 nm.</p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>See the vignette <code>vignette("laser", package = "hyperSpec")</code>.</p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>C. Beleites</p>
@@ -189,13 +189,17 @@ A time series of an unstable laser emission.</h1>
 #&gt;    1. t: t / s [numeric] 0 2 ... 5722 
 #&gt;    2. spc: I / a.u. [matrix, array36] 164.650 179.724 ... 112.086 
 #&gt;    3. filename: filename [character] rawdata/laser.txt.gz rawdata/laser.txt.gz ... rawdata/laser.txt.gz </div><div class='input'>
-<span class='kw'>cols</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span> (<span class='st'>"black"</span>, <span class='st'>"blue"</span>, <span class='st'>"darkgreen"</span>, <span class='st'>"red"</span>)
-<span class='kw'>wl</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span> (<span class='fl'>405.0</span>, <span class='fl'>405.1</span>, <span class='fl'>405.3</span>, <span class='fl'>405.4</span>)
-<span class='fu'>plotspc</span> (<span class='kw'>laser</span>, axis.args=<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span> (x = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span> (at = <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span> (<span class='fl'>404.5</span>, <span class='fl'>405.8</span>, <span class='fl'>.1</span>))))</div><div class='input'><span class='co'>for</span> (<span class='kw'>i</span> <span class='co'>in</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq_along</a></span> (<span class='kw'>wl</span>))
-   <span class='fu'><a href='https://rdrr.io/r/graphics/abline.html'>abline</a></span> (v = <span class='kw'>wl</span>[<span class='kw'>i</span>], col = <span class='kw'>cols</span>[<span class='kw'>i</span>], lwd = <span class='fl'>2</span>, lty = <span class='fl'>2</span>)</div><div class='img'><img src='laser-1.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='fu'>plotc</span> (<span class='kw'>laser</span> [,, <span class='kw'>wl</span>], <span class='kw'>spc</span> <span class='op'>~</span> <span class='kw'>t</span>, groups = <span class='kw'>.wavelength</span>, type = <span class='st'>"b"</span>,
-       col = <span class='kw'>cols</span>)</div><div class='img'><img src='laser-2.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='co'>if</span> (<span class='fl'>FALSE</span>) <span class='fu'><a href='https://rdrr.io/r/utils/vignette.html'>vignette</a></span> (<span class='st'>"laser"</span>, package=<span class='st'>"hyperSpec"</span>)
+<span class='kw'>cols</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"black"</span>, <span class='st'>"blue"</span>, <span class='st'>"darkgreen"</span>, <span class='st'>"red"</span>)
+<span class='kw'>wl</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>405.0</span>, <span class='fl'>405.1</span>, <span class='fl'>405.3</span>, <span class='fl'>405.4</span>)
+<span class='fu'>plotspc</span>(<span class='kw'>laser</span>, axis.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(x = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(at = <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>404.5</span>, <span class='fl'>405.8</span>, <span class='fl'>.1</span>))))</div><div class='input'><span class='co'>for</span> (<span class='kw'>i</span> <span class='co'>in</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq_along</a></span>(<span class='kw'>wl</span>)) {
+  <span class='fu'><a href='https://rdrr.io/r/graphics/abline.html'>abline</a></span>(v = <span class='kw'>wl</span>[<span class='kw'>i</span>], col = <span class='kw'>cols</span>[<span class='kw'>i</span>], lwd = <span class='fl'>2</span>, lty = <span class='fl'>2</span>)
+}</div><div class='img'><img src='laser-1.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='fu'>plotc</span>(<span class='kw'>laser</span> [, , <span class='kw'>wl</span>], <span class='kw'>spc</span> <span class='op'>~</span> <span class='kw'>t</span>,
+  groups = <span class='kw'>.wavelength</span>, type = <span class='st'>"b"</span>,
+  col = <span class='kw'>cols</span>
+)</div><div class='img'><img src='laser-2.png' alt='' width='466' height='288' /></div><div class='input'><span class='co'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='fu'><a href='https://rdrr.io/r/utils/vignette.html'>vignette</a></span>(<span class='st'>"laser"</span>, package = <span class='st'>"hyperSpec"</span>)
+}
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

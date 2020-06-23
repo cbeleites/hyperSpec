@@ -6,9 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Identifying Spectra and Spectral Data Points
-This function allows to identify the spectrum and the wavelength of a point
-in a plot produced by <code>plotspc</code>. — spc.identify • hyperSpec</title>
+<title>Identifying Spectra and Spectral Data Points. — spc.identify • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -43,12 +41,9 @@ in a plot produced by <code>plotspc</code>. — spc.identify • hyperSpec</titl
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Identifying Spectra and Spectral Data Points
-This function allows to identify the spectrum and the wavelength of a point
-in a plot produced by <code>plotspc</code>. — spc.identify" />
-<meta property="og:description" content="This function first finds the spectrum with a point closest to the clicked
-position (see locator). The distance to the clicked
-point is evaluated relative to the size of the tolerance window." />
+<meta property="og:title" content="Identifying Spectra and Spectral Data Points. — spc.identify" />
+<meta property="og:description" content="This function allows to identify the spectrum and the wavelength of a point
+in a plot produced by plotspc()." />
 
 <meta name="robots" content="noindex" />
 
@@ -80,7 +75,7 @@ point is evaluated relative to the size of the tolerance window." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">hyperSpec</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.99</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99</span>
       </span>
     </div>
 
@@ -161,17 +156,14 @@ point is evaluated relative to the size of the tolerance window." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Identifying Spectra and Spectral Data Points
-This function allows to identify the spectrum and the wavelength of a point
-in a plot produced by <code>plotspc</code>.</h1>
+    <h1>Identifying Spectra and Spectral Data Points.</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/spc.identify.R'><code>R/spc.identify.R</code></a></small>
     <div class="hidden name"><code>spc-identify.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function first finds the spectrum with a point closest to the clicked
-position (see <code><a href='https://rdrr.io/r/graphics/locator.html'>locator</a></code>). The distance to the clicked
-point is evaluated relative to the size of the tolerance window.</p>
+    <p>This function allows to identify the spectrum and the wavelength of a point
+in a plot produced by <code>plotspc()</code>.</p>
     </div>
 
     <pre class="usage"><span class='fu'>spc.identify</span>(
@@ -208,7 +200,7 @@ point is evaluated relative to the size of the tolerance window.</p>
     <tr>
       <th>x</th>
       <td><p>either the abscissa coordinates or the list returned by
-<code>plotspc</code></p></td>
+<code>plotspc()</code></p></td>
     </tr>
     <tr>
       <th>y</th>
@@ -243,20 +235,20 @@ point to label, see details.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>passed to <code><a href='https://rdrr.io/r/graphics/text.html'>text</a></code> in order to produce the
+      <td><p>passed to <code><a href='https://rdrr.io/r/graphics/text.html'>graphics::text()</a></code> in order to produce the
 labels</p></td>
     </tr>
     <tr>
       <th>cex, adj, srt</th>
-      <td><p>see <code><a href='https://rdrr.io/r/graphics/par.html'>par</a></code></p></td>
+      <td><p>see <code><a href='https://rdrr.io/r/graphics/par.html'>graphics::par()</a></code></p></td>
     </tr>
     <tr>
       <th>warn</th>
       <td><p>Should the user be warned if no point is in the considered
-  window? In addition, see the discussion of option <code>debuglevel</code> in
-  the details.</p>
+window? In addition, see the discussion of option <code>debuglevel</code> in
+the details.</p>
 <p>If <code>FALSE</code>, the resulting data.frame will have a row of <code>NA</code>s
-  instead.</p></td>
+instead.</p></td>
     </tr>
     <tr>
       <th>wl</th>
@@ -285,13 +277,16 @@ labels</p></td>
 
     <p>a <code>data.frame</code> with columns</p>
 <dt>ispc</dt><dd><p>spectra indices of the
-  identified points, i.e. the rows of the <code>hyperSpec</code> object that was
-  plotted.If <code>ispc</code> is given, <code>ispc [i]</code> is returned rather than <code>i</code>.</p></dd> <dt>wavelengths</dt><dd><p>the wavelengths of the identified points</p></dd>
-  <dt>spc</dt><dd><p>the intensities of the identified points</p></dd>
+identified points, i.e. the rows of the <code>hyperSpec</code> object that was
+plotted.If <code>ispc</code> is given, <code>ispc [i]</code> is returned rather than <code>i</code>.</p></dd> <dt>wavelengths</dt><dd><p>the wavelengths of the identified points</p></dd>
+<dt>spc</dt><dd><p>the intensities of the identified points</p></dd>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>In a second step, <code>max.fn</code> searches for the actual point to label
+    <p>This function first finds the spectrum with a point closest to the clicked
+position (see <code><a href='https://rdrr.io/r/graphics/locator.html'>graphics::locator()</a></code>). The distance to the clicked
+point is evaluated relative to the size of the tolerance window.</p>
+<p>In a second step, <code>max.fn</code> searches for the actual point to label
 within the specified wavelength window of that spectrum. This allows to
 label maxima (or minima) without demanding too precise clicks. Currently,
 the following functions to determine the precise point:</p><table class='table'>
@@ -310,7 +305,7 @@ respective intensities of the closest spectrum, and <code>wlclick</code> the
 wavelength that was clicked. They return a vector of two elements
 (wavelength and intensity).</p>
 <p>As a last step, a label for the point produced by <code>formatter</code> and
-plotted using <code><a href='https://rdrr.io/r/graphics/text.html'>text</a></code>. Currently, the following
+plotted using <code><a href='https://rdrr.io/r/graphics/text.html'>graphics::text()</a></code>. Currently, the following
 <code>formatter</code>s are available:</p><table class='table'>
 <tr><td>spc.label.default</td><td>spectrum number, wavelength</td></tr>
 <tr><td>spc.label.wlonly</td><td>wavelength</td></tr>
@@ -326,45 +321,47 @@ a row of <code>NA</code>s in the resulting data.frame.</p>
 <p><code>spc.identify</code> uses option <code>debuglevel</code> to determine whether debugging output should be
 produced. <code>debuglevel == 2</code> will plot the tolerance window for every clicked point,
 <code>debuglevel == 1</code> will plot the tolerance window only if no data point was inside.  See
-<code>hyperSpec options</code> for details about retrieving and setting
+<code>hyperSpec options()</code> for details about retrieving and setting
 options.</p>
 <p>You may want to adjust the plot's <code>ylim</code> to ensure that the labels are
 not clipped. As a dirty shortcut, <code>xpd = NA</code> may help.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://rdrr.io/r/graphics/locator.html'>locator</a></code>, <code>plotspc</code>,
-  <code>hyperSpec options</code></p>
-<p><code>map.identify</code> <code>map.sel.poly</code></p></div>
+    <div class='dont-index'><p><code><a href='https://rdrr.io/r/graphics/locator.html'>graphics::locator()</a></code>, <code>plotspc()</code>,
+<code>hyperSpec options()</code></p>
+<p><code>map.identify()</code> <code>map.sel.poly()</code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>C. Beleites</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='co'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span> ()){
-<span class='kw'>ispc</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span> (<span class='kw'>laser</span>), <span class='fl'>10</span>)
-<span class='kw'>ispc</span>
+<span class='co'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()) {
+  <span class='kw'>ispc</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='kw'>laser</span>), <span class='fl'>10</span>)
+  <span class='kw'>ispc</span>
 
-<span class='kw'>identified</span> <span class='op'>&lt;-</span> <span class='fu'>spc.identify</span> (<span class='fu'>plotspc</span> (<span class='kw'>laser</span>[<span class='kw'>ispc</span>]))
+  <span class='kw'>identified</span> <span class='op'>&lt;-</span> <span class='fu'>spc.identify</span>(<span class='fu'>plotspc</span>(<span class='kw'>laser</span>[<span class='kw'>ispc</span>]))
 
-<span class='co'>## convert to the "real" spectra indices</span>
-<span class='kw'>ispc</span> [<span class='kw'>identified</span><span class='op'>$</span><span class='kw'>ispc</span>]
-<span class='kw'>identified</span><span class='op'>$</span><span class='kw'>wl</span>
-<span class='kw'>identified</span><span class='op'>$</span><span class='kw'>spc</span>
+  <span class='co'>## convert to the "real" spectra indices</span>
+  <span class='kw'>ispc</span> [<span class='kw'>identified</span><span class='op'>$</span><span class='kw'>ispc</span>]
+  <span class='kw'>identified</span><span class='op'>$</span><span class='kw'>wl</span>
+  <span class='kw'>identified</span><span class='op'>$</span><span class='kw'>spc</span>
 
-<span class='co'>## allow the labels to be plotted into the plot margin</span>
-<span class='fu'>spc.identify</span> (<span class='fu'>plotspc</span> (<span class='kw'>laser</span>[<span class='kw'>ispc</span>]), ispc = <span class='kw'>ispc</span>, xpd = <span class='fl'>NA</span>)
+  <span class='co'>## allow the labels to be plotted into the plot margin</span>
+  <span class='fu'>spc.identify</span>(<span class='fu'>plotspc</span>(<span class='kw'>laser</span>[<span class='kw'>ispc</span>]), ispc = <span class='kw'>ispc</span>, xpd = <span class='fl'>NA</span>)
 
-<span class='fu'>spc.identify</span> (<span class='fu'>plotspc</span> (<span class='kw'>paracetamol</span>, xoffset = <span class='fl'>1100</span>,
-              wl.range = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span> (<span class='fl'>600</span> <span class='op'>~</span> <span class='fl'>1700</span>, <span class='fl'>2900</span> <span class='op'>~</span> <span class='fl'>3150</span>)),
-              formatter = <span class='kw'>spc.label.wlonly</span>)
+  <span class='fu'>spc.identify</span>(<span class='fu'>plotspc</span>(<span class='kw'>paracetamol</span>,
+    xoffset = <span class='fl'>1100</span>,
+    wl.range = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>600</span> <span class='op'>~</span> <span class='fl'>1700</span>, <span class='fl'>2900</span> <span class='op'>~</span> <span class='fl'>3150</span>)
+  ),
+  formatter = <span class='kw'>spc.label.wlonly</span>
+  )
 
-<span class='co'>## looking for minima</span>
-<span class='fu'>spc.identify</span> (<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span> (<span class='op'>-</span><span class='kw'>paracetamol</span>, wl.reverse = <span class='fl'>TRUE</span>),
-              point.fn = <span class='kw'>spc.point.min</span>, adj = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span> (<span class='fl'>1</span>, <span class='fl'>0.5</span>))
-
-}
-</div></pre>
+  <span class='co'>## looking for minima</span>
+  <span class='fu'>spc.identify</span>(<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='op'>-</span><span class='kw'>paracetamol</span>, wl.reverse = <span class='fl'>TRUE</span>),
+    point.fn = <span class='kw'>spc.point.min</span>, adj = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>0.5</span>)
+  )
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

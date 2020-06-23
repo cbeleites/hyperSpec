@@ -6,10 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Class "hyperSpec"
-This class handles hyperspectral data sets, i.e. spatially or time-resolved
-spectra, or spectra with any other kind of information associated with the
-spectra. — hyperSpec-class • hyperSpec</title>
+<title>Class "hyperSpec". — hyperSpec-class • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -44,12 +41,16 @@ spectra. — hyperSpec-class • hyperSpec</title>
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Class "hyperSpec"
-This class handles hyperspectral data sets, i.e. spatially or time-resolved
-spectra, or spectra with any other kind of information associated with the
-spectra. — hyperSpec-class" />
-<meta property="og:description" content="The spectra can be data as obtained in XRF, UV/VIS, Fluorescence, AES, NIR,
-IR, Raman, NMR, MS, etc." />
+<meta property="og:title" content="Class "hyperSpec". — hyperSpec-class" />
+<meta property="og:description" content="This package gives an interface to handle hyperspectral data sets in R.
+Hyperspectral data are spatially or time-resolved spectra, or spectra with
+any other kind of information associated with the spectra. E.g. spectral
+maps or images, time series, calibration series, etc.
+The spectra can be data as obtained in XRF, UV/VIS, Fluorescence, AES, NIR,
+IR, Raman, NMR, MS, etc.
+More generally, any data that is recorded over a discretized variable, e.g.
+absorbance = f(wavelength), stored as a vector of absorbance values for
+discrete wavelengths is suitable." />
 
 <meta name="robots" content="noindex" />
 
@@ -81,7 +82,7 @@ IR, Raman, NMR, MS, etc." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">hyperSpec</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.99</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99</span>
       </span>
     </div>
 
@@ -162,26 +163,25 @@ IR, Raman, NMR, MS, etc." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Class "hyperSpec"
-This class handles hyperspectral data sets, i.e. spatially or time-resolved
-spectra, or spectra with any other kind of information associated with the
-spectra.</h1>
+    <h1>Class "hyperSpec".</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/hyperspec-class.R'><code>R/hyperspec-class.R</code></a></small>
     <div class="hidden name"><code>hyperSpec-class.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>The spectra can be data as obtained in XRF, UV/VIS, Fluorescence, AES, NIR,
-IR, Raman, NMR, MS, etc.</p>
+    <p>This package gives an interface to handle hyperspectral data sets in R.
+Hyperspectral data are spatially or time-resolved spectra, or spectra with
+any other kind of information associated with the spectra. E.g. spectral
+maps or images, time series, calibration series, etc.<br />
+The spectra can be data as obtained in XRF, UV/VIS, Fluorescence, AES, NIR,
+IR, Raman, NMR, MS, etc.<br />
+More generally, any data that is recorded over a discretized variable, e.g.
+<code>absorbance = f(wavelength)</code>, stored as a vector of absorbance values for
+discrete wavelengths is suitable.</p>
     </div>
 
 
 
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>More generally, any data that is recorded over a discretized variable, e.g.
-absorbance = f (wavelength), stored as a vector of absorbance values for
-discrete wavelengths is suitable.</p>
     <h2 class="hasAnchor" id="slots"><a class="anchor" href="#slots"></a>Slots</h2>
 
     
@@ -203,20 +203,22 @@ the special element <code>.wavelength</code>.</p></dd>
     <p>Please note that the logbook is now removed.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>See the vignette "hyperspec" for an introduction to hyperSpec
-  from a spectroscopic point of view.</p></div>
+    <div class='dont-index'><p>See the vignette "hyperspec" for an introduction to <span class="pkg">hyperSpec</span>
+from a spectroscopic point of view.</p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>C. Beleites</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='fu'>showClass</span>(<span class='st'>"hyperSpec"</span>)</div><div class='output co'>#&gt; Class "hyperSpec" [package "hyperSpec"]
+    <pre class="examples"><div class='input'><span class='fu'>showClass</span>(<span class='st'>"hyperSpec"</span>)</div><div class='output co'>#&gt; Class "hyperSpec" [package "hyperSpec"]
 #&gt; 
 #&gt; Slots:
 #&gt;                                                   
 #&gt; Name:  wavelength       data      label        log
-#&gt; Class:    numeric data.frame       list data.frame</div><div class='input'><span class='co'>if</span> (<span class='fl'>FALSE</span>) <span class='fu'><a href='https://rdrr.io/r/utils/vignette.html'>vignette</a></span> (<span class='st'>"hyperspec"</span>)</div></pre>
+#&gt; Class:    numeric data.frame       list data.frame</div><div class='input'>
+<span class='co'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='fu'><a href='https://rdrr.io/r/utils/vignette.html'>vignette</a></span>(<span class='st'>"hyperSpec"</span>)
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

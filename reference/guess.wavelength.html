@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>guess wavelengths from character vector — guess.wavelength • hyperSpec</title>
+<title>Guess wavelengths from character vector. — guess.wavelength • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,9 +41,9 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="guess wavelengths from character vector — guess.wavelength" />
+<meta property="og:title" content="Guess wavelengths from character vector. — guess.wavelength" />
 <meta property="og:description" content="character vectors used for names (e.g. colnames for matrices or data.frames)
-are often treated by make.names or similar functions that
+are often treated by base::make.names() or similar functions that
 produce suitable names (e.g. by prepending &quot;X&quot; to numbers.). Such names
 cannot be directly converted to numeric." />
 
@@ -77,7 +77,7 @@ cannot be directly converted to numeric." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">hyperSpec</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.99</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99</span>
       </span>
     </div>
 
@@ -158,14 +158,14 @@ cannot be directly converted to numeric." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>guess wavelengths from character vector</h1>
+    <h1>Guess wavelengths from character vector.</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/guesswavelength.R'><code>R/guesswavelength.R</code></a></small>
     <div class="hidden name"><code>guess.wavelength.Rd</code></div>
     </div>
 
     <div class="ref-description">
     <p>character vectors used for names (e.g. colnames for matrices or data.frames)
-are often treated by <code><a href='https://rdrr.io/r/base/make.names.html'>make.names</a></code> or similar functions that
+are often treated by <code><a href='https://rdrr.io/r/base/make.names.html'>base::make.names()</a></code> or similar functions that
 produce suitable names (e.g. by prepending "X" to numbers.). Such names
 cannot be directly converted to numeric.</p>
     </div>
@@ -190,7 +190,7 @@ cannot be directly converted to numeric.</p>
 surrounded by such "protecting" characters.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>tmp</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>flu</span> [[, , <span class='fl'>400</span> <span class='op'>~</span> <span class='fl'>410</span>]])
+    <pre class="examples"><div class='input'><span class='kw'>tmp</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>flu</span>[[, , <span class='fl'>400</span> <span class='op'>~</span> <span class='fl'>410</span>]])
 (<span class='kw'>wl</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span>(<span class='kw'>tmp</span>))</div><div class='output co'>#&gt;  [1] "X405"   "X405.5" "X406"   "X406.5" "X407"   "X407.5" "X408"   "X408.5"
 #&gt;  [9] "X409"   "X409.5" "X410"  </div><div class='input'><span class='fu'>guess.wavelength</span>(<span class='kw'>wl</span>)</div><div class='output co'>#&gt;  [1] 405.0 405.5 406.0 406.5 407.0 407.5 408.0 408.5 409.0 409.5 410.0</div></pre>
   </div>

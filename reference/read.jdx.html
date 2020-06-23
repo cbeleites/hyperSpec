@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>JCAMP-DX Import for Shimadzu Library Spectra — read.jdx • hyperSpec</title>
+<title>JCAMP-DX Import for Shimadzu Library Spectra. — read.jdx • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,8 +41,11 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="JCAMP-DX Import for Shimadzu Library Spectra — read.jdx" />
-<meta property="og:description" content="this is a first rough import function for JCAMP-DX spectra." />
+<meta property="og:title" content="JCAMP-DX Import for Shimadzu Library Spectra. — read.jdx" />
+<meta property="og:description" content="This is a first rough import function for JCAMP-DX spectra.
+So far, AFFN and PAC formats are supported for simple XYDATA, DATA TABLEs and PEAK TABLEs.
+NTUPLES / PAGES are not (yet) supported.
+DIF, DUF, DIFDUP and SQZ data formats are not (yet) supported." />
 
 <meta name="robots" content="noindex" />
 
@@ -74,7 +77,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">hyperSpec</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.99</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99</span>
       </span>
     </div>
 
@@ -155,13 +158,16 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>JCAMP-DX Import for Shimadzu Library Spectra</h1>
+    <h1>JCAMP-DX Import for Shimadzu Library Spectra.</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/read.jdx.R'><code>R/read.jdx.R</code></a></small>
     <div class="hidden name"><code>read.jdx.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>this is a first rough import function for JCAMP-DX spectra.</p>
+    <p>This is a first rough import function for JCAMP-DX spectra.</p>
+<p>So far, AFFN and PAC formats are supported for simple XYDATA, DATA TABLEs and PEAK TABLEs.</p>
+<p>NTUPLES / PAGES are not (yet) supported.</p>
+<p>DIF, DUF, DIFDUP and SQZ data formats are not (yet) supported.</p>
     </div>
 
     <pre class="usage"><span class='fu'>read.jdx</span>(
@@ -224,11 +230,6 @@ hyperSpec object (if <code>FALSE</code>, a list of hyperSpec objects is returned
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>hyperSpec object</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>So far, AFFN and PAC formats are supported for simple XYDATA, DATA TABLEs and PEAK TABLEs.</p>
-<p>NTUPLES / PAGES are not (yet) supported.</p>
-<p>DIF, DUF, DIFDUP and SQZ data formats are not (yet) supported.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>JCAMP-DX support is incomplete and the functions may change without notice. See

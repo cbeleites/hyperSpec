@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plot spectra matrix — plotmat • hyperSpec</title>
+<title>Plot spectra matrix. — plotmat • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,8 +41,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Plot spectra matrix — plotmat" />
-<meta property="og:description" content="plots the spectra matrix." />
+<meta property="og:title" content="Plot spectra matrix. — plotmat" />
+<meta property="og:description" content="Plots the spectra matrix." />
 
 <meta name="robots" content="noindex" />
 
@@ -74,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">hyperSpec</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.99</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99</span>
       </span>
     </div>
 
@@ -155,13 +155,13 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Plot spectra matrix</h1>
+    <h1>Plot spectra matrix.</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/plotmat.R'><code>R/plotmat.R</code></a></small>
     <div class="hidden name"><code>plotmat.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>plots the spectra matrix.</p>
+    <p>Plots the spectra matrix.</p>
     </div>
 
     <pre class="usage"><span class='fu'>plotmat</span>(
@@ -191,39 +191,39 @@ for the y axis, respectively.</p></td>
     </tr>
     <tr>
       <th>col</th>
-      <td><p>see  <code><a href='https://rdrr.io/r/graphics/image.html'>image</a></code></p></td>
+      <td><p>see  <code><a href='https://rdrr.io/r/graphics/image.html'>graphics::image()</a></code></p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>further parameters for <code><a href='https://rdrr.io/r/graphics/image.html'>image</a></code></p></td>
+      <td><p>further parameters for <code><a href='https://rdrr.io/r/graphics/image.html'>graphics::image()</a></code></p></td>
     </tr>
     <tr>
       <th>contour</th>
-      <td><p>should <code><a href='https://rdrr.io/r/graphics/contour.html'>contour</a></code> be called instead of
-<code><a href='https://rdrr.io/r/graphics/image.html'>image</a></code>?</p></td>
+      <td><p>should <code><a href='https://rdrr.io/r/graphics/contour.html'>graphics::contour()</a></code> be called instead of
+<code><a href='https://rdrr.io/r/graphics/image.html'>graphics::image()</a></code>?</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>If package plotrix is available, a color legend is plotted to the right. The right margin is set
-to at least 5 lines.</p>
+    <p>If package <span class="pkg">plotrix</span> is available, a color legend is plotted to the right.
+The right margin is set to at least 5 lines.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://rdrr.io/r/graphics/image.html'>image</a></code>, <code><a href='https://rdrr.io/r/graphics/contour.html'>contour</a></code>, <code>levelplot</code></p></div>
+    <div class='dont-index'><p><code><a href='https://rdrr.io/r/graphics/image.html'>graphics::image()</a></code>, <code><a href='https://rdrr.io/r/graphics/contour.html'>graphics::contour()</a></code>, <code>hyperSpec::levelplot()</code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Claudia Beleites</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>plotmat</span> (<span class='kw'>laser</span>, col = <span class='fu'>alois.palette</span> (<span class='fl'>100</span>))</div><div class='img'><img src='plotmat-1.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span> (<span class='kw'>laser</span>, <span class='st'>"mat"</span>)</div><div class='input'>
-<span class='fu'>plotmat</span> (<span class='kw'>laser</span>)
-<span class='fu'>plotmat</span> (<span class='kw'>laser</span>, contour = <span class='fl'>TRUE</span>, add = <span class='fl'>TRUE</span>)</div><div class='img'><img src='plotmat-2.png' alt='' width='466' height='288' /></div><div class='input'>
+    <pre class="examples"><div class='input'><span class='fu'>plotmat</span>(<span class='kw'>laser</span>, col = <span class='fu'>alois.palette</span>(<span class='fl'>100</span>))</div><div class='img'><img src='plotmat-1.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>laser</span>, <span class='st'>"mat"</span>)</div><div class='input'>
+<span class='fu'>plotmat</span>(<span class='kw'>laser</span>)
+<span class='fu'>plotmat</span>(<span class='kw'>laser</span>, contour = <span class='fl'>TRUE</span>, add = <span class='fl'>TRUE</span>)</div><div class='img'><img src='plotmat-2.png' alt='' width='466' height='288' /></div><div class='input'>
 <span class='co'>## use different y axis labels</span>
 
-<span class='fu'>plotmat</span> (<span class='kw'>laser</span>, <span class='st'>"t"</span>)</div><div class='img'><img src='plotmat-3.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='fu'>plotmat</span> (<span class='kw'>laser</span>, <span class='kw'>laser</span><span class='op'>$</span><span class='kw'>t</span> <span class='op'>/</span> <span class='fl'>3600</span>, ylab = <span class='st'>"t / h"</span>)</div><div class='img'><img src='plotmat-4.png' alt='' width='466' height='288' /></div></pre>
+<span class='fu'>plotmat</span>(<span class='kw'>laser</span>, <span class='st'>"t"</span>)</div><div class='img'><img src='plotmat-3.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='fu'>plotmat</span>(<span class='kw'>laser</span>, <span class='kw'>laser</span><span class='op'>$</span><span class='kw'>t</span> <span class='op'>/</span> <span class='fl'>3600</span>, ylab = <span class='st'>"t / h"</span>)</div><div class='img'><img src='plotmat-4.png' alt='' width='466' height='288' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>qplotmap with colour mixing for multivariate overlay — qplotmixmap • hyperSpec</title>
+<title><code>qplotmap</code> with colour mixing for multivariate overlay. — qplotmixmap • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,8 +41,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="qplotmap with colour mixing for multivariate overlay — qplotmixmap" />
-<meta property="og:description" content="map plot with colour overlay" />
+<meta property="og:title" content="<code>qplotmap</code> with colour mixing for multivariate overlay. — qplotmixmap" />
+<meta property="og:description" content="Map plot with colour overlay." />
 
 <meta name="robots" content="noindex" />
 
@@ -74,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">hyperSpec</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.99</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99</span>
       </span>
     </div>
 
@@ -155,13 +155,13 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>qplotmap with colour mixing for multivariate overlay</h1>
+    <h1><code>qplotmap</code> with colour mixing for multivariate overlay.</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/qplotmixmap.R'><code>R/qplotmixmap.R</code></a></small>
     <div class="hidden name"><code>qplotmixmap.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>map plot with colour overlay</p>
+    <p>Map plot with colour overlay.</p>
     </div>
 
     <pre class="usage"><span class='fu'>qplotmixmap</span>(<span class='kw'>object</span>, <span class='kw'>...</span>)</pre>
@@ -171,7 +171,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>object</th>
-      <td><p>hyperSpec object</p></td>
+      <td><p><code>hyperSpec</code> object</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -191,12 +191,13 @@
     <p>Claudia Beleites</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>faux_cell</span> <span class='op'>&lt;-</span> <span class='kw'>faux_cell</span> <span class='op'>-</span> <span class='fu'>spc.fit.poly.below</span> (<span class='kw'>faux_cell</span>)
-<span class='kw'>faux_cell</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sweep.html'>sweep</a></span> (<span class='kw'>faux_cell</span>, <span class='fl'>1</span>, <span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span> (<span class='kw'>faux_cell</span>, <span class='fl'>1</span>, <span class='kw'>mean</span>), <span class='st'>"/"</span>)
-<span class='kw'>faux_cell</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sweep.html'>sweep</a></span> (<span class='kw'>faux_cell</span>, <span class='fl'>2</span>, <span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span> (<span class='kw'>faux_cell</span>, <span class='fl'>2</span>, <span class='kw'>quantile</span>, <span class='fl'>0.05</span>), <span class='st'>"-"</span>)
+    <pre class="examples"><div class='input'><span class='kw'>faux_cell</span> <span class='op'>&lt;-</span> <span class='kw'>faux_cell</span> <span class='op'>-</span> <span class='fu'>spc.fit.poly.below</span>(<span class='kw'>faux_cell</span>)
+<span class='kw'>faux_cell</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sweep.html'>sweep</a></span>(<span class='kw'>faux_cell</span>, <span class='fl'>1</span>, <span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span>(<span class='kw'>faux_cell</span>, <span class='fl'>1</span>, <span class='kw'>mean</span>), <span class='st'>"/"</span>)
+<span class='kw'>faux_cell</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sweep.html'>sweep</a></span>(<span class='kw'>faux_cell</span>, <span class='fl'>2</span>, <span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span>(<span class='kw'>faux_cell</span>, <span class='fl'>2</span>, <span class='kw'>quantile</span>, <span class='fl'>0.05</span>), <span class='st'>"-"</span>)
 
-<span class='fu'>qplotmixmap</span> (<span class='kw'>faux_cell</span> [,,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span> (<span class='fl'>940</span>, <span class='fl'>1002</span>, <span class='fl'>1440</span>)],
-             purecol = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span> (colg = <span class='st'>"red"</span>, Phe = <span class='st'>"green"</span>, Lipid = <span class='st'>"blue"</span>))</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 300 rows containing missing values (geom_point).</span></div><div class='img'><img src='qplotmixmap-1.png' alt='' width='466' height='288' /></div><div class='input'></div></pre>
+<span class='fu'>qplotmixmap</span>(<span class='kw'>faux_cell</span> [, , <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>940</span>, <span class='fl'>1002</span>, <span class='fl'>1440</span>)],
+  purecol = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(colg = <span class='st'>"red"</span>, Phe = <span class='st'>"green"</span>, Lipid = <span class='st'>"blue"</span>)
+)</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 300 rows containing missing values (geom_point).</span></div><div class='img'><img src='qplotmixmap-1.png' alt='' width='466' height='288' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

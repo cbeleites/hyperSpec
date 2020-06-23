@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Rubberband baseline correction — spc.rubberband • hyperSpec</title>
+<title>Rubberband baseline correction. — spc.rubberband • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,8 +41,10 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Rubberband baseline correction — spc.rubberband" />
-<meta property="og:description" content="Rubberband baseline" />
+<meta property="og:title" content="Rubberband baseline correction. — spc.rubberband" />
+<meta property="og:description" content="Baseline with support points determined from a convex hull of the spectrum.
+Use debuglevel &amp;gt;= 1 to obtain debug plots, either directly via function
+argument or by setting hyperSpec's debuglevel option." />
 
 <meta name="robots" content="noindex" />
 
@@ -74,7 +76,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">hyperSpec</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.99</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99</span>
       </span>
     </div>
 
@@ -155,13 +157,15 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Rubberband baseline correction</h1>
+    <h1>Rubberband baseline correction.</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/spc.rubberband.R'><code>R/spc.rubberband.R</code></a></small>
     <div class="hidden name"><code>spc-rubberband.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Rubberband baseline</p>
+    <p>Baseline with support points determined from a convex hull of the spectrum.</p>
+<p>Use <code>debuglevel &gt;= 1</code> to obtain debug plots, either directly via function
+argument or by setting hyperSpec's <code>debuglevel</code> option.</p>
     </div>
 
     <pre class="usage"><span class='fu'>spc.rubberband</span>(<span class='kw'>spc</span>, <span class='kw'>...</span>, upper = <span class='fl'>FALSE</span>, noise = <span class='fl'>0</span>, spline = <span class='fl'>TRUE</span>)</pre>
@@ -171,11 +175,11 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>spc</th>
-      <td><p>hyperSpec object</p></td>
+      <td><p><code>hyperSpec</code> object</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>further parameters handed to <code><a href='https://rdrr.io/r/stats/smooth.spline.html'>smooth.spline</a></code></p></td>
+      <td><p>further parameters handed to <code><a href='https://rdrr.io/r/stats/smooth.spline.html'>stats::smooth.spline()</a></code></p></td>
     </tr>
     <tr>
       <th>upper</th>
@@ -194,27 +198,23 @@ the support points or piecewise linear.</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>hyperSpec object containing the baselines</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>Baseline with support points determined from a convex hull of the spectrum.</p>
-<p>Use <code>debuglevel &gt;= 1</code> to obtain debug plots, either directly via function argument or by setting hyperSpec's <code>debuglevel</code> option.</p>
+    <p><code>hyperSpec</code> object containing the baselines</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>This function is still experimental</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/hyperSpec/man/baselines.html'>spc.fit.poly</a></code>, <code><a href='https://rdrr.io/pkg/hyperSpec/man/baselines.html'>spc.fit.poly.below</a></code></p>
+    <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/hyperSpec/man/baselines.html'>hyperSpec::spc.fit.poly()</a></code>, <code><a href='https://rdrr.io/pkg/hyperSpec/man/baselines.html'>hyperSpec::spc.fit.poly.below()</a></code></p>
 <p><code>vignette ("baseline")</code></p>
-<p><code><a href='https://rdrr.io/pkg/hyperSpec/man/options.html'>hy.setOptions</a></code></p></div>
+<p><code><a href='https://rdrr.io/pkg/hyperSpec/man/options.html'>hyperSpec::hy.setOptions()</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Claudia Beleites</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span> (<span class='kw'>paracetamol</span> [,, <span class='fl'>175</span> <span class='op'>~</span> <span class='fl'>1800</span>])</div><div class='input'><span class='kw'>bl</span> <span class='op'>&lt;-</span> <span class='fu'>spc.rubberband</span> (<span class='kw'>paracetamol</span> [,, <span class='fl'>175</span> <span class='op'>~</span> <span class='fl'>1800</span>], noise = <span class='fl'>300</span>, df = <span class='fl'>20</span>)
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span> (<span class='kw'>bl</span>, add = <span class='fl'>TRUE</span>, col = <span class='fl'>2</span>)</div><div class='img'><img src='spc-rubberband-1.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span> (<span class='kw'>paracetamol</span> [,, <span class='fl'>175</span> <span class='op'>~</span> <span class='fl'>1800</span>] <span class='op'>-</span> <span class='kw'>bl</span>)</div><div class='img'><img src='spc-rubberband-2.png' alt='' width='466' height='288' /></div></pre>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>paracetamol</span> [, , <span class='fl'>175</span> <span class='op'>~</span> <span class='fl'>1800</span>])</div><div class='input'><span class='kw'>bl</span> <span class='op'>&lt;-</span> <span class='fu'>spc.rubberband</span>(<span class='kw'>paracetamol</span> [, , <span class='fl'>175</span> <span class='op'>~</span> <span class='fl'>1800</span>], noise = <span class='fl'>300</span>, df = <span class='fl'>20</span>)
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>bl</span>, add = <span class='fl'>TRUE</span>, col = <span class='fl'>2</span>)</div><div class='img'><img src='spc-rubberband-1.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>paracetamol</span> [, , <span class='fl'>175</span> <span class='op'>~</span> <span class='fl'>1800</span>] <span class='op'>-</span> <span class='kw'>bl</span>)</div><div class='img'><img src='spc-rubberband-2.png' alt='' width='466' height='288' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

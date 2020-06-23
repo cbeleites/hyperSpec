@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Impute missing data points — spc.NA.approx • hyperSpec</title>
+<title>Impute missing data points. — spc.NA.approx • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,11 +41,12 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Impute missing data points — spc.NA.approx" />
+<meta property="og:title" content="Impute missing data points. — spc.NA.approx" />
 <meta property="og:description" content="Replace NAs in the spectra matrix by interpolation. With
-less than 4 points available linear interpolation of the 2 neighbour points is used. For larger numbers of
+less than 4 points available linear interpolation of the 2 neighbour points
+is used. For larger numbers of
 neighbour points, smoothing interpolation is performed by
-smooth.spline." />
+stats::smooth.spline()." />
 
 <meta name="robots" content="noindex" />
 
@@ -77,7 +78,7 @@ smooth.spline." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">hyperSpec</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.99</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99</span>
       </span>
     </div>
 
@@ -158,16 +159,17 @@ smooth.spline." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Impute missing data points</h1>
+    <h1>Impute missing data points.</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/spc.NA.approx.R'><code>R/spc.NA.approx.R</code></a></small>
     <div class="hidden name"><code>spc.NA.approx.Rd</code></div>
     </div>
 
     <div class="ref-description">
     <p>Replace <code>NA</code>s in the spectra matrix by interpolation. With
-less than 4 points available linear interpolation of the 2 neighbour points is used. For larger numbers of
+less than 4 points available linear interpolation of the 2 neighbour points
+is used. For larger numbers of
 neighbour points, smoothing interpolation is performed by
-<code><a href='https://rdrr.io/r/stats/smooth.spline.html'>smooth.spline</a></code>.</p>
+<code><a href='https://rdrr.io/r/stats/smooth.spline.html'>stats::smooth.spline()</a></code>.</p>
     </div>
 
     <pre class="usage"><span class='fu'>spc.NA.approx</span>(
@@ -195,11 +197,11 @@ line</p></td>
     </tr>
     <tr>
       <th>w, df, spar</th>
-      <td><p>see <code><a href='https://rdrr.io/r/stats/smooth.spline.html'>smooth.spline</a></code></p></td>
+      <td><p>see <code><a href='https://rdrr.io/r/stats/smooth.spline.html'>stats::smooth.spline()</a></code></p></td>
     </tr>
     <tr>
       <th>debuglevel</th>
-      <td><p>see <code>options</code></p></td>
+      <td><p>see <code>hyperSpec::options()</code></p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -219,7 +221,7 @@ line</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>fluNA</span> <span class='op'>&lt;-</span> <span class='kw'>hyperSpec</span>:::<span class='kw'>fluNA</span>
-<span class='fu'>spc.NA.approx</span> (<span class='kw'>fluNA</span> [,, <span class='kw'>min</span> <span class='op'>~</span> <span class='fl'>410</span>], debuglevel = <span class='fl'>1</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Spectra containing only NAs found. They will not be approximated.</span></div><div class='img'><img src='spc.NA.approx-1.png' alt='' width='466' height='288' /></div><div class='output co'>#&gt; hyperSpec object
+<span class='fu'>spc.NA.approx</span>(<span class='kw'>fluNA</span> [, , <span class='kw'>min</span> <span class='op'>~</span> <span class='fl'>410</span>], debuglevel = <span class='fl'>1</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Spectra containing only NAs found. They will not be approximated.</span></div><div class='img'><img src='spc.NA.approx-1.png' alt='' width='466' height='288' /></div><div class='output co'>#&gt; hyperSpec object
 #&gt;    6 spectra
 #&gt;    3 data columns
 #&gt;    11 data points / spectrum
@@ -227,7 +229,7 @@ line</p></td>
 #&gt; data:  (6 rows x 3 columns)
 #&gt;    1. spc: I[fl]/"a.u." [matrix, array11] 27.15 NA ... 281.8287 + NA
 #&gt;    2. filename: filename [character] rawdata/flu1.txt rawdata/flu2.txt ... rawdata/flu6.txt 
-#&gt;    3. c: c / (mg / l) [numeric] 0.05 0.10 ... 0.3 </div><div class='input'><span class='fu'>spc.NA.approx</span> (<span class='kw'>fluNA</span> [<span class='fl'>1</span>,, <span class='kw'>min</span> <span class='op'>~</span> <span class='fl'>410</span>], debuglevel = <span class='fl'>2</span>)</div><div class='img'><img src='spc.NA.approx-2.png' alt='' width='466' height='288' /></div><div class='output co'>#&gt; hyperSpec object
+#&gt;    3. c: c / (mg / l) [numeric] 0.05 0.10 ... 0.3 </div><div class='input'><span class='fu'>spc.NA.approx</span>(<span class='kw'>fluNA</span> [<span class='fl'>1</span>, , <span class='kw'>min</span> <span class='op'>~</span> <span class='fl'>410</span>], debuglevel = <span class='fl'>2</span>)</div><div class='img'><img src='spc.NA.approx-2.png' alt='' width='466' height='288' /></div><div class='output co'>#&gt; hyperSpec object
 #&gt;    1 spectra
 #&gt;    3 data columns
 #&gt;    11 data points / spectrum
@@ -235,7 +237,7 @@ line</p></td>
 #&gt; data:  (1 rows x 3 columns)
 #&gt;    1. spc: I[fl]/"a.u." [matrix, array11] 27.15000 32.34467 ... 44.25133 
 #&gt;    2. filename: filename [character] rawdata/flu1.txt 
-#&gt;    3. c: c / (mg / l) [numeric] 0.05 </div><div class='input'><span class='fu'>spc.NA.approx</span> (<span class='kw'>fluNA</span> [<span class='fl'>4</span>,, <span class='kw'>min</span> <span class='op'>~</span> <span class='fl'>410</span>], neighbours = <span class='fl'>3</span>, df = <span class='fl'>4</span>, debuglevel = <span class='fl'>2</span>)</div><div class='img'><img src='spc.NA.approx-3.png' alt='' width='466' height='288' /></div><div class='output co'>#&gt; hyperSpec object
+#&gt;    3. c: c / (mg / l) [numeric] 0.05 </div><div class='input'><span class='fu'>spc.NA.approx</span>(<span class='kw'>fluNA</span> [<span class='fl'>4</span>, , <span class='kw'>min</span> <span class='op'>~</span> <span class='fl'>410</span>], neighbours = <span class='fl'>3</span>, df = <span class='fl'>4</span>, debuglevel = <span class='fl'>2</span>)</div><div class='img'><img src='spc.NA.approx-3.png' alt='' width='466' height='288' /></div><div class='output co'>#&gt; hyperSpec object
 #&gt;    1 spectra
 #&gt;    3 data columns
 #&gt;    11 data points / spectrum

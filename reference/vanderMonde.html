@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function evaluation on hyperSpec objects — vanderMonde • hyperSpec</title>
+<title>Function evaluation on <code>hyperSpec</code> objects. — vanderMonde • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,7 +41,7 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Function evaluation on hyperSpec objects — vanderMonde" />
+<meta property="og:title" content="Function evaluation on <code>hyperSpec</code> objects. — vanderMonde" />
 <meta property="og:description" content="vandermonde() generates Vandermonde matrices, the hyperSpec method
 generates a hyperSpec object containing the van der Monde matrix of the
 wavelengths of a hyperSpec object." />
@@ -76,7 +76,7 @@ wavelengths of a hyperSpec object." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">hyperSpec</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.99</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99</span>
       </span>
     </div>
 
@@ -157,15 +157,15 @@ wavelengths of a hyperSpec object." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Function evaluation on hyperSpec objects</h1>
+    <h1>Function evaluation on <code>hyperSpec</code> objects.</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/vandermonde.R'><code>R/vandermonde.R</code></a></small>
     <div class="hidden name"><code>vanderMonde.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p><code>vandermonde()</code> generates Vandermonde matrices, the hyperSpec method
-generates a hyperSpec object containing the van der Monde matrix of the
-wavelengths of a hyperSpec object.</p>
+    <p><code>vandermonde()</code> generates Vandermonde matrices, the <code>hyperSpec</code> method
+generates a <code>hyperSpec</code> object containing the van der Monde matrix of the
+wavelengths of a <code>hyperSpec</code> object.</p>
     </div>
 
     <pre class="usage"><span class='fu'>vanderMonde</span>(<span class='kw'>x</span>, <span class='kw'>order</span>, <span class='kw'>...</span>)
@@ -186,13 +186,13 @@ wavelengths of a hyperSpec object.</p>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>hyperSpec method: further arguments to `hyperSpec::decomposition()`</p></td>
+      <td><p>hyperSpec method: further arguments to <code><a href='https://rdrr.io/pkg/hyperSpec/man/decomposition.html'>hyperSpec::decomposition()</a></code></p></td>
     </tr>
     <tr>
       <th>normalize.wl</th>
       <td><p>function to transorm the wavelengths before evaluating the polynomial (or
-other function). `hyperSpec::normalize01()` maps the wavelength range to the interval
-[0, 1]. Use `base::I()` to turn off.</p></td>
+other function). <code><a href='https://rdrr.io/pkg/hyperSpec/man/normalize01.html'>hyperSpec::normalize01()</a></code> maps the wavelength range to the interval
+[0, 1]. Use <code><a href='https://rdrr.io/r/base/AsIs.html'>base::I()</a></code> to turn off.</p></td>
     </tr>
     </table>
 
@@ -206,14 +206,14 @@ other function). `hyperSpec::normalize01()` maps the wavelength range to the int
 example.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>`hyperSpec::wl.eval()` for calculating arbitrary functions of the wavelength,</p>
-<p>`hyperSpec::normalize01()`</p></div>
+    <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/hyperSpec/man/wl.eval.html'>hyperSpec::wl.eval()</a></code> for calculating arbitrary functions of the wavelength,</p>
+<p><code><a href='https://rdrr.io/pkg/hyperSpec/man/normalize01.html'>hyperSpec::normalize01()</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>C. Beleites</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='fu'>vanderMonde</span>(<span class='kw'>flu</span>, <span class='fl'>2</span>))</div><div class='img'><img src='vanderMonde-1.png' alt='' width='466' height='288' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='fu'>vanderMonde</span>(<span class='kw'>flu</span>, <span class='fl'>2</span>, normalize.wl = <span class='kw'>I</span>))</div><div class='img'><img src='vanderMonde-2.png' alt='' width='466' height='288' /></div><div class='input'></div></pre>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='fu'>vanderMonde</span>(<span class='kw'>flu</span>, <span class='fl'>2</span>))</div><div class='img'><img src='vanderMonde-1.png' alt='' width='466' height='288' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='fu'>vanderMonde</span>(<span class='kw'>flu</span>, <span class='fl'>2</span>, normalize.wl = <span class='kw'>I</span>))</div><div class='img'><img src='vanderMonde-2.png' alt='' width='466' height='288' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

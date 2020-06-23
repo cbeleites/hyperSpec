@@ -6,10 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Matlab-like Palettes
-Two palettes going from blue over green to red, approximately as the
-standard palette of Matlab does. The second one has darker green values and
-is better suited for plotting lines on white background. — matlab.palette • hyperSpec</title>
+<title>Matlab-like Palettes. — matlab.palette • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -44,12 +41,8 @@ is better suited for plotting lines on white background. — matlab.palette • 
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Matlab-like Palettes
-Two palettes going from blue over green to red, approximately as the
-standard palette of Matlab does. The second one has darker green values and
-is better suited for plotting lines on white background. — matlab.palette" />
-<meta property="og:description" content="Matlab-like Palettes
-Two palettes going from blue over green to red, approximately as the
+<meta property="og:title" content="Matlab-like Palettes. — matlab.palette" />
+<meta property="og:description" content="Two palettes going from blue over green to red, approximately as the
 standard palette of Matlab does. The second one has darker green values and
 is better suited for plotting lines on white background." />
 
@@ -83,7 +76,7 @@ is better suited for plotting lines on white background." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">hyperSpec</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.99</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99</span>
       </span>
     </div>
 
@@ -164,17 +157,13 @@ is better suited for plotting lines on white background." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Matlab-like Palettes
-Two palettes going from blue over green to red, approximately as the
-standard palette of Matlab does. The second one has darker green values and
-is better suited for plotting lines on white background.</h1>
+    <h1>Matlab-like Palettes.</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/matlab.palette.R'><code>R/matlab.palette.R</code></a></small>
     <div class="hidden name"><code>palettes.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Matlab-like Palettes
-Two palettes going from blue over green to red, approximately as the
+    <p>Two palettes going from blue over green to red, approximately as the
 standard palette of Matlab does. The second one has darker green values and
 is better suited for plotting lines on white background.</p>
     </div>
@@ -194,8 +183,8 @@ is better suited for plotting lines on white background.</p>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>further arguments are handed to <code><a href='https://rdrr.io/r/grDevices/palettes.html'>rainbow</a></code>
-(<code>alois.palette</code>: <code><a href='https://rdrr.io/r/grDevices/colorRamp.html'>colorRampPalette</a></code>)</p></td>
+      <td><p>further arguments are handed to <code><a href='https://rdrr.io/r/grDevices/palettes.html'>grDevices::rainbow()</a></code>
+(<code>alois.palette</code>: <code><a href='https://rdrr.io/r/grDevices/colorRamp.html'>grDevices::colorRampPalette()</a></code>)</p></td>
     </tr>
     </table>
 
@@ -204,17 +193,16 @@ is better suited for plotting lines on white background.</p>
     <p>A vector containing the color values in the form "\#rrbbggaa".</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://rdrr.io/r/grDevices/palettes.html'>rainbow</a></code></p></div>
+    <div class='dont-index'><p><code><a href='https://rdrr.io/r/grDevices/palettes.html'>grDevices::rainbow()</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>C. Beleites and A. Bonifacio</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>plotmap</span> (<span class='kw'>faux_cell</span> [,, <span class='fl'>778</span>], col.regions = <span class='fu'>matlab.palette</span> ())</div><div class='img'><img src='palettes-1.png' alt='' width='466' height='288' /></div><div class='input'>
-
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span> (<span class='kw'>flu</span>, col = <span class='fu'>matlab.dark.palette</span> (<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span> (<span class='kw'>flu</span>)))</div><div class='img'><img src='palettes-2.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='fu'>plotmap</span> (<span class='kw'>faux_cell</span>, col = <span class='kw'>alois.palette</span>)</div><div class='img'><img src='palettes-3.png' alt='' width='466' height='288' /></div></pre>
+<span class='fu'>plotmap</span>(<span class='kw'>faux_cell</span> [, , <span class='fl'>778</span>], col.regions = <span class='fu'>matlab.palette</span>())</div><div class='img'><img src='palettes-1.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>flu</span>, col = <span class='fu'>matlab.dark.palette</span>(<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='kw'>flu</span>)))</div><div class='img'><img src='palettes-2.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='fu'>plotmap</span>(<span class='kw'>faux_cell</span>, col = <span class='kw'>alois.palette</span>)</div><div class='img'><img src='palettes-3.png' alt='' width='466' height='288' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

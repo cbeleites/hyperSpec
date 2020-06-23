@@ -6,9 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Raman spectra of 2 Chondrocytes in Cartilage
-A Raman-map (laterally resolved Raman spectra) of chondrocytes in
-cartilage. — chondro • hyperSpec</title>
+<title>Raman spectra of 2 Chondrocytes in Cartilage. — chondro • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -43,10 +41,8 @@ cartilage. — chondro • hyperSpec</title>
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Raman spectra of 2 Chondrocytes in Cartilage
-A Raman-map (laterally resolved Raman spectra) of chondrocytes in
-cartilage. — chondro" />
-<meta property="og:description" content="See the vignette vignette (&quot;chondro&quot;, package = &quot;hyperSpec&quot;)." />
+<meta property="og:title" content="Raman spectra of 2 Chondrocytes in Cartilage. — chondro" />
+<meta property="og:description" content="A Raman-map (laterally resolved Raman spectra) of chondrocytes in cartilage." />
 
 <meta name="robots" content="noindex" />
 
@@ -78,7 +74,7 @@ cartilage. — chondro" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">hyperSpec</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.99</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99</span>
       </span>
     </div>
 
@@ -159,15 +155,13 @@ cartilage. — chondro" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Raman spectra of 2 Chondrocytes in Cartilage
-A Raman-map (laterally resolved Raman spectra) of chondrocytes in
-cartilage.</h1>
+    <h1>Raman spectra of 2 Chondrocytes in Cartilage.</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/chondro.R'><code>R/chondro.R</code></a></small>
     <div class="hidden name"><code>chondro.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>See the vignette <code>vignette ("chondro", package = "hyperSpec")</code>.</p>
+    <p>A Raman-map (laterally resolved Raman spectra) of chondrocytes in cartilage.</p>
     </div>
 
 
@@ -175,9 +169,12 @@ cartilage.</h1>
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
     <p>The data set has 875 Raman spectra measured on a 25 \(\times\)
-  35 grid with 1 micron step size. Spatial information is in
-  <code>chondro$x</code> and <code>chondro$y</code>. Each spectrum has 300 data points
-  in the range of ca. 600 - 1800 cm\(^{-1}\).</p>
+35 grid with 1 micron step size. Spatial information is in
+<code>chondro$x</code> and <code>chondro$y</code>. Each spectrum has 300 data points
+in the range of ca. 600 - 1800 cm\(^{-1}\).</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>See the vignette <code>vignette("chondro", package = "hyperSpec")</code>.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>The raw data is available at <a href='http://hyperspec.r-forge.r-project.org/blob/chondro.zip'>http://hyperspec.r-forge.r-project.org/blob/chondro.zip</a></p>
@@ -200,22 +197,23 @@ cartilage.</h1>
 #&gt;    4. clusters: clusters [factor] matrix matrix ... lacuna + NA
 #&gt;    5. spc: I / a.u. [matrix, array300] 501.8194 500.4552 ... 169.2942 </div><div class='input'>
 <span class='co'>## do baseline correction</span>
-<span class='kw'>baselines</span> <span class='op'>&lt;-</span> <span class='fu'>spc.fit.poly.below</span> (<span class='kw'>chondro</span>)
+<span class='kw'>baselines</span> <span class='op'>&lt;-</span> <span class='fu'>spc.fit.poly.below</span>(<span class='kw'>chondro</span>)
 <span class='kw'>chondro</span> <span class='op'>&lt;-</span> <span class='kw'>chondro</span> <span class='op'>-</span> <span class='kw'>baselines</span>
 
 <span class='co'>## area normalization</span>
-<span class='kw'>chondro</span> <span class='op'>&lt;-</span> <span class='kw'>chondro</span> <span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>colMeans</a></span> (<span class='kw'>chondro</span>)
+<span class='kw'>chondro</span> <span class='op'>&lt;-</span> <span class='kw'>chondro</span> <span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>colMeans</a></span>(<span class='kw'>chondro</span>)
 
 <span class='co'>## substact common composition</span>
-<span class='kw'>chondro</span> <span class='op'>&lt;-</span> <span class='kw'>chondro</span> <span class='op'>-</span> <span class='fu'><a href='https://rdrr.io/r/stats/quantile.html'>quantile</a></span> (<span class='kw'>chondro</span>, <span class='fl'>0.05</span>)
+<span class='kw'>chondro</span> <span class='op'>&lt;-</span> <span class='kw'>chondro</span> <span class='op'>-</span> <span class='fu'><a href='https://rdrr.io/r/stats/quantile.html'>quantile</a></span>(<span class='kw'>chondro</span>, <span class='fl'>0.05</span>)
 
-<span class='kw'>cols</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span> (<span class='st'>"dark blue"</span>, <span class='st'>"orange"</span>, <span class='st'>"#C02020"</span>)
-<span class='fu'>plotmap</span> (<span class='kw'>chondro</span>, <span class='kw'>clusters</span> <span class='op'>~</span> <span class='kw'>x</span> <span class='op'>*</span> <span class='kw'>y</span>, col.regions = <span class='kw'>cols</span>)</div><div class='img'><img src='chondro-1.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='kw'>cluster.means</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/aggregate.html'>aggregate</a></span> (<span class='kw'>chondro</span>, <span class='kw'>chondro</span><span class='op'>$</span><span class='kw'>clusters</span>, <span class='kw'>mean_pm_sd</span>)
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span> (<span class='kw'>cluster.means</span>, stacked = <span class='st'>".aggregate"</span>, fill = <span class='st'>".aggregate"</span>, col = <span class='kw'>cols</span>)</div><div class='img'><img src='chondro-2.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='kw'>cols</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"dark blue"</span>, <span class='st'>"orange"</span>, <span class='st'>"#C02020"</span>)
+<span class='fu'>plotmap</span>(<span class='kw'>chondro</span>, <span class='kw'>clusters</span> <span class='op'>~</span> <span class='kw'>x</span> <span class='op'>*</span> <span class='kw'>y</span>, col.regions = <span class='kw'>cols</span>)</div><div class='img'><img src='chondro-1.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='kw'>cluster.means</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/aggregate.html'>aggregate</a></span>(<span class='kw'>chondro</span>, <span class='kw'>chondro</span><span class='op'>$</span><span class='kw'>clusters</span>, <span class='kw'>mean_pm_sd</span>)
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>cluster.means</span>, stacked = <span class='st'>".aggregate"</span>, fill = <span class='st'>".aggregate"</span>, col = <span class='kw'>cols</span>)</div><div class='img'><img src='chondro-2.png' alt='' width='466' height='288' /></div><div class='input'>
 <span class='co'>## plot nucleic acid bands</span>
-<span class='fu'>plotmap</span> (<span class='kw'>chondro</span>[, , <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>( <span class='fl'>728</span>, <span class='fl'>782</span>, <span class='fl'>1098</span>, <span class='fl'>1240</span>, <span class='fl'>1482</span>, <span class='fl'>1577</span>)],
-       col.regions = <span class='fu'><a href='https://rdrr.io/r/grDevices/colorRamp.html'>colorRampPalette</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span> (<span class='st'>"white"</span>, <span class='st'>"gold"</span>, <span class='st'>"dark green"</span>), space = <span class='st'>"Lab"</span>) (<span class='fl'>20</span>))</div><div class='img'><img src='chondro-3.png' alt='' width='466' height='288' /></div><div class='input'></div></pre>
+<span class='fu'>plotmap</span>(<span class='kw'>chondro</span>[, , <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>728</span>, <span class='fl'>782</span>, <span class='fl'>1098</span>, <span class='fl'>1240</span>, <span class='fl'>1482</span>, <span class='fl'>1577</span>)],
+  col.regions = <span class='fu'><a href='https://rdrr.io/r/grDevices/colorRamp.html'>colorRampPalette</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"white"</span>, <span class='st'>"gold"</span>, <span class='st'>"dark green"</span>), space = <span class='st'>"Lab"</span>)(<span class='fl'>20</span>)
+)</div><div class='img'><img src='chondro-3.png' alt='' width='466' height='288' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

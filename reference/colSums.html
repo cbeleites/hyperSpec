@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>colSums, colMeans, rowSums and rowMeans functions for hyperSpec objects — colSums • hyperSpec</title>
+<title><code>colSums</code>, <code>colMeans</code>, <code>rowSums</code> and <code>rowMeans</code> functions for <code>hyperSpec</code> objects. — colSums • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,9 +41,9 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="colSums, colMeans, rowSums and rowMeans functions for hyperSpec objects — colSums" />
-<meta property="og:description" content="hyperSpec objects can use the base functions colMeans,
-colSums, rowMeans and rowSums." />
+<meta property="og:title" content="<code>colSums</code>, <code>colMeans</code>, <code>rowSums</code> and <code>rowMeans</code> functions for <code>hyperSpec</code> objects. — colSums" />
+<meta property="og:description" content="hyperSpec objects can use the base functions base::colMeans(),
+base::colSums(), base::rowMeans() and base::rowSums()." />
 
 <meta name="robots" content="noindex" />
 
@@ -75,7 +75,7 @@ colSums, rowMeans and rowSums." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">hyperSpec</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.99</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99</span>
       </span>
     </div>
 
@@ -156,14 +156,14 @@ colSums, rowMeans and rowSums." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>colSums, colMeans, rowSums and rowMeans functions for hyperSpec objects</h1>
+    <h1><code>colSums</code>, <code>colMeans</code>, <code>rowSums</code> and <code>rowMeans</code> functions for <code>hyperSpec</code> objects.</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/colMeans.R'><code>R/colMeans.R</code></a></small>
     <div class="hidden name"><code>colSums.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>hyperSpec objects can use the base functions <code><a href='https://rdrr.io/r/base/colSums.html'>colMeans</a></code>,
-<code><a href='https://rdrr.io/r/base/colSums.html'>colSums</a></code>, <code><a href='https://rdrr.io/r/base/colSums.html'>rowMeans</a></code> and <code><a href='https://rdrr.io/r/base/colSums.html'>rowSums</a></code>.</p>
+    <p><code>hyperSpec</code> objects can use the base functions <code><a href='https://rdrr.io/r/base/colSums.html'>base::colMeans()</a></code>,
+<code><a href='https://rdrr.io/r/base/colSums.html'>base::colSums()</a></code>, <code><a href='https://rdrr.io/r/base/colSums.html'>base::rowMeans()</a></code> and <code><a href='https://rdrr.io/r/base/colSums.html'>base::rowSums()</a></code>.</p>
     </div>
 
     <pre class="usage"><span class='co'># S4 method for hyperSpec</span>
@@ -183,12 +183,12 @@ colSums, rowMeans and rowSums." />
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>hyperSpec object</p></td>
+      <td><p><code>hyperSpec</code> object</p></td>
     </tr>
     <tr>
       <th>na.rm, ...</th>
       <td><p>further parameters to the base functions</p>
-<p><code>na.rm</code> defaults to <code>TRUE</code> for hyperSpec objects.</p></td>
+<p><code>na.rm</code> defaults to <code>TRUE</code> for <code>hyperSpec</code> objects.</p></td>
     </tr>
     <tr>
       <th>label.spc</th>
@@ -205,25 +205,25 @@ colSums, rowMeans and rowSums." />
     <div class='dont-index'><p><a href='https://rdrr.io/r/base/colSums.html'>colSums</a></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>colMeans</a></span> (<span class='kw'>flu</span>)</div><div class='output co'>#&gt; hyperSpec object
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>colMeans</a></span>(<span class='kw'>flu</span>)</div><div class='output co'>#&gt; hyperSpec object
 #&gt;    1 spectra
 #&gt;    1 data columns
 #&gt;    181 data points / spectrum
 #&gt; wavelength: lambda/nm [numeric] 405.0 405.5 ... 495 
 #&gt; data:  (1 rows x 1 columns)
-#&gt;    1. spc: I[fl]/"a.u." [matrix, array181] 113.9094 120.0804 ... 170.5215 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>colSums</a></span> (<span class='kw'>flu</span>)</div><div class='output co'>#&gt; hyperSpec object
+#&gt;    1. spc: I[fl]/"a.u." [matrix, array181] 113.9094 120.0804 ... 170.5215 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>colSums</a></span>(<span class='kw'>flu</span>)</div><div class='output co'>#&gt; hyperSpec object
 #&gt;    1 spectra
 #&gt;    1 data columns
 #&gt;    181 data points / spectrum
 #&gt; wavelength: lambda/nm [numeric] 405.0 405.5 ... 495 
 #&gt; data:  (1 rows x 1 columns)
-#&gt;    1. spc: I[fl]/"a.u." [matrix, array181] 683.4563 720.4823 ... 1023.129 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>colSums</a></span> (<span class='kw'>flu</span>)</div><div class='output co'>#&gt; hyperSpec object
+#&gt;    1. spc: I[fl]/"a.u." [matrix, array181] 683.4563 720.4823 ... 1023.129 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>colSums</a></span>(<span class='kw'>flu</span>)</div><div class='output co'>#&gt; hyperSpec object
 #&gt;    1 spectra
 #&gt;    1 data columns
 #&gt;    181 data points / spectrum
 #&gt; wavelength: lambda/nm [numeric] 405.0 405.5 ... 495 
 #&gt; data:  (1 rows x 1 columns)
-#&gt;    1. spc: I[fl]/"a.u." [matrix, array181] 683.4563 720.4823 ... 1023.129 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>rowSums</a></span> (<span class='kw'>flu</span>)</div><div class='output co'>#&gt; hyperSpec object
+#&gt;    1. spc: I[fl]/"a.u." [matrix, array181] 683.4563 720.4823 ... 1023.129 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>rowSums</a></span>(<span class='kw'>flu</span>)</div><div class='output co'>#&gt; hyperSpec object
 #&gt;    6 spectra
 #&gt;    3 data columns
 #&gt;    1 data points / spectrum

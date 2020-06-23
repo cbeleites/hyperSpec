@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Sequence generation along spectra or wavelengths
-This function generates sequences along the spectra (rows) or wavelengths of hyperSpec objects. — seq.hyperSpec • hyperSpec</title>
+<title>Sequence generation along spectra or wavelengths. — seq.hyperSpec • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -42,9 +41,8 @@ This function generates sequences along the spectra (rows) or wavelengths of hyp
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Sequence generation along spectra or wavelengths
-This function generates sequences along the spectra (rows) or wavelengths of hyperSpec objects. — seq.hyperSpec" />
-<meta property="og:description" content="Note that wl2i generates sequences of indices along the wavelength axis." />
+<meta property="og:title" content="Sequence generation along spectra or wavelengths. — seq.hyperSpec" />
+<meta property="og:description" content="This function generates sequences along the spectra (rows) or wavelengths of hyperSpec objects." />
 
 <meta name="robots" content="noindex" />
 
@@ -76,7 +74,7 @@ This function generates sequences along the spectra (rows) or wavelengths of hyp
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">hyperSpec</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.99</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99</span>
       </span>
     </div>
 
@@ -157,14 +155,13 @@ This function generates sequences along the spectra (rows) or wavelengths of hyp
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Sequence generation along spectra or wavelengths
-This function generates sequences along the spectra (rows) or wavelengths of hyperSpec objects.</h1>
+    <h1>Sequence generation along spectra or wavelengths.</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/seq.R'><code>R/seq.R</code></a></small>
     <div class="hidden name"><code>seq.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Note that <code>wl2i</code> generates sequences of indices along the wavelength axis.</p>
+    <p>This function generates sequences along the spectra (rows) or wavelengths of <code>hyperSpec</code> objects.</p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for hyperSpec</span>
@@ -175,15 +172,15 @@ This function generates sequences along the spectra (rows) or wavelengths of hyp
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>the hyperSpec object</p></td>
+      <td><p>the <code>hyperSpec</code> object</p></td>
     </tr>
     <tr>
       <th>from, to</th>
-      <td><p>arguments handed to <code><a href='https://rdrr.io/r/base/seq.html'>seq.int</a></code></p></td>
+      <td><p>arguments handed to <code><a href='https://rdrr.io/r/base/seq.html'>base::seq.int()</a></code></p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>arguments for <code><a href='https://rdrr.io/r/base/seq.html'>seq</a></code>, namely <code>by</code>, <code>length.out</code></p></td>
+      <td><p>arguments for <code><a href='https://rdrr.io/r/base/seq.html'>base::seq()</a></code>, namely <code>by</code>, <code>length.out</code></p></td>
     </tr>
     <tr>
       <th>index</th>
@@ -196,23 +193,25 @@ This function generates sequences along the spectra (rows) or wavelengths of hyp
     <p>a numeric or hyperSpec object, depending on <code>index</code>.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p><code>seq</code> had to be implemented as S3 method as the generic has only ... arguments (on which
+    <p>Note that <code>wl2i()</code> generates sequences of indices along the wavelength axis.</p>
+<p><code><a href='https://rdrr.io/r/base/seq.html'>seq()</a></code> had to be implemented as S3 method as the generic has only ... arguments (on which
 no dispatch with differing types is possible).</p>
-<p><code><a href='https://rdrr.io/r/base/seq.html'>seq_along</a></code> is not generic, but returns a sequence of the <code>length</code> of the
-object. As hyperSpec provides a Method <code><a href='https://rdrr.io/r/base/length.html'>length</a></code>, it can be used. The result is a
+<p><code><a href='https://rdrr.io/r/base/seq.html'>base::seq_along()</a></code> is not generic, but returns a sequence of the <code>length</code> of the
+object. As <code>hyperSpec</code> provides a Method <code><a href='https://rdrr.io/r/base/length.html'>length()</a></code>, it can be used. The result is a
 sequence of indices for the spectra.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code>wl2i</code> to construct sequences of wavelength indices.</p>
-<p><code><a href='https://rdrr.io/r/base/seq.html'>seq</a></code></p></div>
+    <div class='dont-index'><p><code>wl2i()</code> to construct sequences of wavelength indices.</p>
+<p><code><a href='https://rdrr.io/r/base/seq.html'>base::seq()</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>C. Beleites</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span> (<span class='kw'>flu</span>, index = <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; [1] 1 2 3 4 5 6</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq_along</a></span> (<span class='kw'>flu</span>)</div><div class='output co'>#&gt; [1] 1 2 3 4 5 6</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span> (<span class='kw'>flu</span>, length.out = <span class='fl'>3</span>, index = <span class='fl'>TRUE</span>) <span class='co'># return value is numeric, not integer!</span></div><div class='output co'>#&gt; [1] 1.0 3.5 6.0</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span> (<span class='kw'>flu</span>, by = <span class='fl'>2</span>, index = <span class='fl'>TRUE</span>) 		    # return value<span class='co'># return value is numeric, not integer!</span></div><div class='output co'>#&gt; [1] 1 3 5</div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span> (<span class='kw'>flu</span>, col = <span class='st'>"darkgray"</span>)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span> (<span class='kw'>flu</span>, by = <span class='fl'>2</span>), add = <span class='fl'>TRUE</span>, col= <span class='st'>"red"</span>)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span> (<span class='kw'>flu</span>, length.out = <span class='fl'>2</span>), add = <span class='fl'>TRUE</span>, col= <span class='st'>"blue"</span>)</div><div class='img'><img src='seq-1.png' alt='' width='466' height='288' /></div><div class='input'></div></pre>
+<span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='kw'>flu</span>, index = <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; [1] 1 2 3 4 5 6</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq_along</a></span>(<span class='kw'>flu</span>)</div><div class='output co'>#&gt; [1] 1 2 3 4 5 6</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='kw'>flu</span>, length.out = <span class='fl'>3</span>, index = <span class='fl'>TRUE</span>) <span class='co'># return value is numeric, not integer!</span></div><div class='output co'>#&gt; [1] 1.0 3.5 6.0</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='kw'>flu</span>, by = <span class='fl'>2</span>, index = <span class='fl'>TRUE</span>) <span class='co'># return value is numeric, not integer!</span></div><div class='output co'>#&gt; [1] 1 3 5</div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>flu</span>, col = <span class='st'>"darkgray"</span>)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='kw'>flu</span>, by = <span class='fl'>2</span>), add = <span class='fl'>TRUE</span>, col = <span class='st'>"red"</span>)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='kw'>flu</span>, length.out = <span class='fl'>2</span>), add = <span class='fl'>TRUE</span>, col = <span class='st'>"blue"</span>)</div><div class='img'><img src='seq-1.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='co'>### needs to be an S3 function as S4 ... dispatch has to have the same signature for all parameters</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

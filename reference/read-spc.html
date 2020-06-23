@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Import for Thermo Galactic's spc file format
-These functions allow to import Thermo Galactic/Grams .spc files. — read.spc • hyperSpec</title>
+<title>Import for Thermo Galactic's <code>spc</code> file format. — read.spc • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -42,10 +41,8 @@ These functions allow to import Thermo Galactic/Grams .spc files. — read.spc �
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Import for Thermo Galactic's spc file format
-These functions allow to import Thermo Galactic/Grams .spc files. — read.spc" />
-<meta property="og:description" content="Import for Thermo Galactic's spc file format
-These functions allow to import Thermo Galactic/Grams .spc files." />
+<meta property="og:title" content="Import for Thermo Galactic's <code>spc</code> file format. — read.spc" />
+<meta property="og:description" content="These functions allow to import Thermo Galactic/Grams .spc files." />
 
 <meta name="robots" content="noindex" />
 
@@ -77,7 +74,7 @@ These functions allow to import Thermo Galactic/Grams .spc files." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">hyperSpec</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.99</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99</span>
       </span>
     </div>
 
@@ -158,15 +155,13 @@ These functions allow to import Thermo Galactic/Grams .spc files." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Import for Thermo Galactic's spc file format
-These functions allow to import Thermo Galactic/Grams .spc files.</h1>
+    <h1>Import for Thermo Galactic's <code>spc</code> file format.</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/read.spc.R'><code>R/read.spc.R</code></a></small>
     <div class="hidden name"><code>read-spc.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Import for Thermo Galactic's spc file format
-These functions allow to import Thermo Galactic/Grams .spc files.</p>
+    <p>These functions allow to import Thermo Galactic/Grams <code>.spc</code> files.</p>
     </div>
 
     <pre class="usage"><span class='fu'>read.spc</span>(
@@ -185,37 +180,37 @@ These functions allow to import Thermo Galactic/Grams .spc files.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>filename</th>
-      <td><p>The complete file name of the .spc file.</p></td>
+      <td><p>The complete file name of the <code>.spc</code> file.</p></td>
     </tr>
     <tr>
       <th>keys.hdr2data, keys.log2data</th>
-      <td><p>character vectors with the names of parameters in the .spc
+      <td><p>character vectors with the names of parameters in the <code>.spc</code>
 file's log block (log2xxx) or header (hdr2xxx) that should go into the extra data (yyy2data) of
 the returned hyperSpec object.</p>
-<p>All header fields specified in the .spc file format specification (see
-  below) are imported and can be referred to by their de-capitalized names.</p></td>
+<p>All header fields specified in the <code>.spc</code> file format specification (see
+below) are imported and can be referred to by their de-capitalized names.</p></td>
     </tr>
     <tr>
       <th>log.txt</th>
-      <td><p>Should the text part of the .spc file's log block be read?</p></td>
+      <td><p>Should the text part of the <code>.spc</code> file's log block be read?</p></td>
     </tr>
     <tr>
       <th>log.bin, log.disk</th>
       <td><p>Should the normal and on-disk binary parts of the
-.spc file's log block be read?  If so, they will be put as raw vectors
+<code>.spc</code> file's log block be read?  If so, they will be put as raw vectors
 into the hyperSpec object's log.</p></td>
     </tr>
     <tr>
       <th>hdr</th>
       <td><p>A list with fileheader fields that overwrite the settings of
-  actual file's header.</p>
+actual file's header.</p>
 <p>Use with care, and look into the source code for detailed insight on the
-  elements of this list.</p></td>
+elements of this list.</p></td>
     </tr>
     <tr>
       <th>no.object</th>
       <td><p>If <code>TRUE</code>, a list with wavelengths, spectra, labels,
-  log and data are returned instead of a hyperSpec object.</p>
+log and data are returned instead of a hyperSpec object.</p>
 <p>This parameter will likely be subject to change in future - use with care.</p></td>
     </tr>
     </table>
@@ -223,25 +218,25 @@ into the hyperSpec object's log.</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>If the file contains multiple spectra with individual wavelength
-  axes, <code>read.spc</code> returns a list of hyperSpec objects.  Otherwise the
-  result is a hyperSpec object.</p>
+axes, <code>read.spc</code> returns a list of hyperSpec objects.  Otherwise the
+result is a hyperSpec object.</p>
 <p><code>read.spc.KaiserMap</code> returns a hyperSpec object with data columns x,
-  y, and z containing the stage position as recorded in the .spc files'
-  log.</p>
+y, and z containing the stage position as recorded in the <code>.spc</code> files'
+log.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>Only a restricted set of test files was available for development.
-  Particularly, the w-planes feature could not be tested.</p>
-<p>If you have .spc files that cannot be read with these function, don't
-  hesitate to contact the package maintainer with your code patch or asking
-  advice.</p>
+Particularly, the w-planes feature could not be tested.</p>
+<p>If you have <code>.spc</code> files that cannot be read with these function, don't
+hesitate to contact the package maintainer with your code patch or asking
+advice.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Source development kit and file format specification of .spc
-  files.</p>
+    <p>Source development kit and file format specification of <code>.spc</code>
+files.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code>textio</code></p></div>
+    <div class='dont-index'><p><code>hyperSpec::textio()</code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>C. Beleites</p>
@@ -251,16 +246,16 @@ into the hyperSpec object's log.</p></td>
 <span class='co'>## get the sample .spc files from ftirsearch.com (see above)</span>
 <span class='co'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='co'># single spectrum</span>
-<span class='kw'>spc</span> <span class='op'>&lt;-</span> <span class='fu'>read.spc</span> (<span class='st'>"BENZENE.SPC"</span>)
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span> (<span class='kw'>spc</span>)
+<span class='kw'>spc</span> <span class='op'>&lt;-</span> <span class='fu'>read.spc</span>(<span class='st'>"BENZENE.SPC"</span>)
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>spc</span>)
 
 <span class='co'># multi-spectra .spc file with common wavelength axis</span>
-<span class='kw'>spc</span> <span class='op'>&lt;-</span> <span class='fu'>read.spc</span> (<span class='st'>'IG_MULTI.SPC'</span>)
+<span class='kw'>spc</span> <span class='op'>&lt;-</span> <span class='fu'>read.spc</span>(<span class='st'>"IG_MULTI.SPC"</span>)
 <span class='kw'>spc</span>
 
 <span class='co'># multi-spectra .spc file with individual wavelength axes</span>
-<span class='kw'>spc</span> <span class='op'>&lt;-</span> <span class='fu'>read.spc</span> (<span class='st'>"BARBITUATES.SPC"</span>)
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span> (<span class='kw'>spc</span> [[<span class='fl'>1</span>]], lines.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span> (type = <span class='st'>"h"</span>))
+<span class='kw'>spc</span> <span class='op'>&lt;-</span> <span class='fu'>read.spc</span>(<span class='st'>"BARBITUATES.SPC"</span>)
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>spc</span>[[<span class='fl'>1</span>]], lines.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(type = <span class='st'>"h"</span>))
 }
 </div></pre>
   </div>

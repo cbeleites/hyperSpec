@@ -6,9 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Conversion of a hyperSpec object into a data.frame or matrix
-<code>as.data.frame</code> returns <code>x@data</code> (as data.frame) <code>as.matrix</code>
-returns the spectra matrix <code>x@data$spc</code> as matrix — as.data.frame • hyperSpec</title>
+<title>Conversion of a hyperSpec object into a data.frame or matrix. — as.data.frame • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -43,10 +41,10 @@ returns the spectra matrix <code>x@data$spc</code> as matrix — as.data.frame �
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Conversion of a hyperSpec object into a data.frame or matrix
-<code>as.data.frame</code> returns <code>x@data</code> (as data.frame) <code>as.matrix</code>
-returns the spectra matrix <code>x@data$spc</code> as matrix — as.data.frame" />
-<meta property="og:description" content="The data.frame returned by as.long.df is guaranteed to have columns
+<meta property="og:title" content="Conversion of a hyperSpec object into a data.frame or matrix. — as.data.frame" />
+<meta property="og:description" content="as.data.frame returns x@data (as data.frame) as.matrix
+returns the spectra matrix x@data$spc as matrix.
+The data.frame returned by as.long.df is guaranteed to have columns
 spc and .wavelength. If nwl (x) == 0 these columns
 will be NA." />
 
@@ -80,7 +78,7 @@ will be NA." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">hyperSpec</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.99</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99</span>
       </span>
     </div>
 
@@ -161,15 +159,15 @@ will be NA." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Conversion of a hyperSpec object into a data.frame or matrix
-<code>as.data.frame</code> returns <code>x@data</code> (as data.frame) <code>as.matrix</code>
-returns the spectra matrix <code>x@data$spc</code> as matrix</h1>
+    <h1>Conversion of a hyperSpec object into a data.frame or matrix.</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/as.data.frame.R'><code>R/as.data.frame.R</code></a></small>
     <div class="hidden name"><code>asdataframe.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>The data.frame returned by <code>as.long.df</code> is guaranteed to have columns
+    <p><code>as.data.frame</code> returns <code>x@data</code> (as data.frame) <code>as.matrix</code>
+returns the spectra matrix <code>x@data$spc</code> as matrix.</p>
+<p>The data.frame returned by <code>as.long.df</code> is guaranteed to have columns
 <code>spc</code> and <code>.wavelength</code>. If <code>nwl (x) == 0</code> these columns
 will be <code>NA</code>.</p>
     </div>
@@ -228,21 +226,21 @@ numeric)?</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>x@data</code> and <code>x@data$spc</code> (== <code>x$spc</code> == <code>x [[]]</code>), respectively.</p>
+    <p><code>x@data</code> and <code>x@data$spc</code> (== <code>x$spc</code> == <code>x[[]]</code>), respectively.</p>
 <p><code>as.wide.df</code> returns a data.frame that consists of the extra data and
 the spectra matrix converted to a data.frame. The spectra matrix is
 expanded <em>in place</em>.</p>
 <p><code>as.long.df</code> returns the stacked or molten version of <code>x@data</code>. The
-  wavelengths are in column <code>.wavelength</code>.</p>
+wavelengths are in column <code>.wavelength</code>.</p>
 <p><code>as.t.df</code> returns a data.frame similar to <code>as.long.df</code>, but each
-  spectrum in its own column. This is useful for exporting summary spectra,
-  see the example.</p>
+spectrum in its own column. This is useful for exporting summary spectra,
+see the example.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></code></p>
+    <div class='dont-index'><p><code><a href='https://rdrr.io/r/base/as.data.frame.html'>base::as.data.frame()</a></code></p>
 <p>and <code><a href='https://rdrr.io/r/base/matrix.html'>base::as.matrix()</a></code></p>
 <p>[<code><a href='https://rdrr.io/r/base/Extract.html'>[[</a></code>()] (<code>[[]]</code>) for a shortcut to <code>as.matrix</code></p>
-<p><code><a href='https://rdrr.io/r/utils/stack.html'>stack</a></code> and <code><a href='https://rdrr.io/pkg/reshape/man/melt-24.html'>melt</a></code> or <code><a href='https://rdrr.io/pkg/reshape2/man/melt.html'>melt</a></code> for
+<p><code><a href='https://rdrr.io/r/utils/stack.html'>utils::stack()</a></code> and <code><a href='https://rdrr.io/pkg/reshape/man/melt-24.html'>reshape::melt()</a></code> or <code><a href='https://rdrr.io/pkg/reshape2/man/melt.html'>reshape2::melt()</a></code> for
 other functions producing long-format data.frames.</p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
@@ -250,13 +248,13 @@ other functions producing long-format data.frames.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span> (<span class='kw'>faux_cell</span> [<span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>,, <span class='fl'>600</span> <span class='op'>~</span> <span class='fl'>620</span>])</div><div class='output co'>#&gt;        x     y region spc.602 spc.606 spc.610 spc.614 spc.618 .row
+<span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span>(<span class='kw'>faux_cell</span> [<span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>, , <span class='fl'>600</span> <span class='op'>~</span> <span class='fl'>620</span>])</div><div class='output co'>#&gt;        x     y region spc.602 spc.606 spc.610 spc.614 spc.618 .row
 #&gt; 1 -11.55 -4.77 matrix      15      22      15      13      15    1
 #&gt; 2 -10.55 -4.77 matrix     168     166     159     175     160    2
-#&gt; 3  -9.55 -4.77 matrix     112     113      99     115     119    3</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span> (<span class='kw'>faux_cell</span> [<span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>,, <span class='fl'>600</span> <span class='op'>~</span> <span class='fl'>620</span>])</div><div class='output co'>#&gt;      602 606 610 614 618
+#&gt; 3  -9.55 -4.77 matrix     112     113      99     115     119    3</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span>(<span class='kw'>faux_cell</span> [<span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>, , <span class='fl'>600</span> <span class='op'>~</span> <span class='fl'>620</span>])</div><div class='output co'>#&gt;      602 606 610 614 618
 #&gt; [1,]  15  22  15  13  15
 #&gt; [2,] 168 166 159 175 160
-#&gt; [3,] 112 113  99 115 119</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span> (<span class='kw'>c</span> <span class='op'>~</span> <span class='kw'>spc</span>, data = <span class='kw'>flu</span> [,,<span class='fl'>450</span>])</div><div class='output co'>#&gt; 
+#&gt; [3,] 112 113  99 115 119</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span>(<span class='kw'>c</span> <span class='op'>~</span> <span class='kw'>spc</span>, data = <span class='kw'>flu</span> [, , <span class='fl'>450</span>])</div><div class='output co'>#&gt; 
 #&gt; Call:
 #&gt; lm(formula = c ~ spc, data = flu[, , 450])
 #&gt; 
@@ -264,12 +262,12 @@ other functions producing long-format data.frames.</p></div>
 #&gt; (Intercept)          spc  
 #&gt;   0.0038493    0.0004407  
 #&gt; </div><div class='input'>
-<span class='fu'>as.wide.df</span> (<span class='kw'>faux_cell</span> [<span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>,, <span class='fl'>600</span> <span class='op'>~</span> <span class='fl'>610</span>])</div><div class='output co'>#&gt;        x     y region 602 606 610
+<span class='fu'>as.wide.df</span>(<span class='kw'>faux_cell</span> [<span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>, , <span class='fl'>600</span> <span class='op'>~</span> <span class='fl'>610</span>])</div><div class='output co'>#&gt;        x     y region 602 606 610
 #&gt; 1 -11.55 -4.77 matrix  15  22  15
 #&gt; 2 -10.55 -4.77 matrix 168 166 159
 #&gt; 3  -9.55 -4.77 matrix 112 113  99
 #&gt; 4  -8.55 -4.77 matrix  23  33  39
-#&gt; 5  -7.55 -4.77 matrix   3   0   1</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span> (<span class='fu'>as.wide.df</span> (<span class='kw'>faux_cell</span> [<span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>,, <span class='fl'>600</span> <span class='op'>~</span> <span class='fl'>610</span>]))</div><div class='output co'>#&gt;        x                y             region       602             606       
+#&gt; 5  -7.55 -4.77 matrix   3   0   1</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='fu'>as.wide.df</span>(<span class='kw'>faux_cell</span> [<span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>, , <span class='fl'>600</span> <span class='op'>~</span> <span class='fl'>610</span>]))</div><div class='output co'>#&gt;        x                y             region       602             606       
 #&gt;  Min.   :-11.55   Min.   :-4.77   cell   :0   Min.   :  3.0   Min.   :  0.0  
 #&gt;  1st Qu.:-10.55   1st Qu.:-4.77   matrix :5   1st Qu.: 15.0   1st Qu.: 22.0  
 #&gt;  Median : -9.55   Median :-4.77   nucleus:0   Median : 23.0   Median : 33.0  
@@ -283,7 +281,7 @@ other functions producing long-format data.frames.</p></div>
 #&gt;  Mean   : 62.6  
 #&gt;  3rd Qu.: 99.0  
 #&gt;  Max.   :159.0  </div><div class='input'>
-<span class='fu'>as.long.df</span> (<span class='kw'>flu</span> [,, <span class='fl'>405</span> <span class='op'>~</span> <span class='fl'>410</span>])</div><div class='output co'>#&gt;      .wavelength       spc         filename    c
+<span class='fu'>as.long.df</span>(<span class='kw'>flu</span> [, , <span class='fl'>405</span> <span class='op'>~</span> <span class='fl'>410</span>])</div><div class='output co'>#&gt;      .wavelength       spc         filename    c
 #&gt; 1          405.0  27.15000 rawdata/flu1.txt 0.05
 #&gt; 2          405.0  66.80133 rawdata/flu2.txt 0.10
 #&gt; 3          405.0  93.14433 rawdata/flu3.txt 0.15
@@ -349,39 +347,39 @@ other functions producing long-format data.frames.</p></div>
 #&gt; 3.10       410.0 139.98667 rawdata/flu3.txt 0.15
 #&gt; 4.10       410.0 185.69233 rawdata/flu4.txt 0.20
 #&gt; 5.10       410.0 231.03567 rawdata/flu5.txt 0.25
-#&gt; 6.10       410.0 281.82867 rawdata/flu6.txt 0.30</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span> (<span class='fu'>as.long.df</span> (<span class='kw'>flu</span> [,, <span class='fl'>405</span> <span class='op'>~</span> <span class='fl'>410</span>]))</div><div class='output co'>#&gt;   .wavelength         spc           filename               c        
+#&gt; 6.10       410.0 281.82867 rawdata/flu6.txt 0.30</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='fu'>as.long.df</span>(<span class='kw'>flu</span> [, , <span class='fl'>405</span> <span class='op'>~</span> <span class='fl'>410</span>]))</div><div class='output co'>#&gt;   .wavelength         spc           filename               c        
 #&gt;  Min.   :405.0   Min.   : 27.15   Length:66          Min.   :0.050  
 #&gt;  1st Qu.:406.0   1st Qu.: 75.18   Class :character   1st Qu.:0.100  
 #&gt;  Median :407.5   Median :137.05   Mode  :character   Median :0.175  
 #&gt;  Mean   :407.5   Mean   :137.80                      Mean   :0.175  
 #&gt;  3rd Qu.:409.0   3rd Qu.:196.02                      3rd Qu.:0.250  
-#&gt;  Max.   :410.0   Max.   :281.83                      Max.   :0.300  </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span> (<span class='fu'>as.long.df</span> (<span class='kw'>flu</span> [,, <span class='fl'>405</span> <span class='op'>~</span> <span class='fl'>410</span>], rownames = <span class='fl'>TRUE</span>))</div><div class='output co'>#&gt;  .rownames  .wavelength         spc           filename               c        
+#&gt;  Max.   :410.0   Max.   :281.83                      Max.   :0.300  </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='fu'>as.long.df</span>(<span class='kw'>flu</span> [, , <span class='fl'>405</span> <span class='op'>~</span> <span class='fl'>410</span>], rownames = <span class='fl'>TRUE</span>))</div><div class='output co'>#&gt;  .rownames  .wavelength         spc           filename               c        
 #&gt;  1:11      Min.   :405.0   Min.   : 27.15   Length:66          Min.   :0.050  
 #&gt;  2:11      1st Qu.:406.0   1st Qu.: 75.18   Class :character   1st Qu.:0.100  
 #&gt;  3:11      Median :407.5   Median :137.05   Mode  :character   Median :0.175  
 #&gt;  4:11      Mean   :407.5   Mean   :137.80                      Mean   :0.175  
 #&gt;  5:11      3rd Qu.:409.0   3rd Qu.:196.02                      3rd Qu.:0.250  
-#&gt;  6:11      Max.   :410.0   Max.   :281.83                      Max.   :0.300  </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span> (<span class='fu'>as.long.df</span> (<span class='kw'>flu</span> [,, <span class='fl'>405</span> <span class='op'>~</span> <span class='fl'>410</span>], wl.factor = <span class='fl'>TRUE</span>))</div><div class='output co'>#&gt;   .wavelength      spc           filename               c        
+#&gt;  6:11      Max.   :410.0   Max.   :281.83                      Max.   :0.300  </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='fu'>as.long.df</span>(<span class='kw'>flu</span> [, , <span class='fl'>405</span> <span class='op'>~</span> <span class='fl'>410</span>], wl.factor = <span class='fl'>TRUE</span>))</div><div class='output co'>#&gt;   .wavelength      spc           filename               c        
 #&gt;  405    : 6   Min.   : 27.15   Length:66          Min.   :0.050  
 #&gt;  405.5  : 6   1st Qu.: 75.18   Class :character   1st Qu.:0.100  
 #&gt;  406    : 6   Median :137.05   Mode  :character   Median :0.175  
 #&gt;  406.5  : 6   Mean   :137.80                      Mean   :0.175  
 #&gt;  407    : 6   3rd Qu.:196.02                      3rd Qu.:0.250  
 #&gt;  407.5  : 6   Max.   :281.83                      Max.   :0.300  
-#&gt;  (Other):30                                                      </div><div class='input'>
-<span class='kw'>df</span> <span class='op'>&lt;-</span> <span class='fu'>as.t.df</span> (<span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span> (<span class='kw'>faux_cell</span>, <span class='fl'>2</span>, <span class='kw'>mean_pm_sd</span>))
-<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span> (<span class='kw'>df</span>)</div><div class='output co'>#&gt;         .wavelength mean.minus.sd     mean mean.plus.sd
+#&gt;  (Other):30                                                      </div><div class='input'><span class='kw'>df</span> <span class='op'>&lt;-</span> <span class='fu'>as.t.df</span>(<span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span>(<span class='kw'>faux_cell</span>, <span class='fl'>2</span>, <span class='kw'>mean_pm_sd</span>))
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='kw'>df</span>)</div><div class='output co'>#&gt;         .wavelength mean.minus.sd     mean mean.plus.sd
 #&gt; spc.602         602      42.04492 101.5691     161.0934
 #&gt; spc.606         606      42.14042 101.6023     161.0642
 #&gt; spc.610         610      41.82034 101.9383     162.0562
 #&gt; spc.614         614      42.85471 102.3966     161.9384
 #&gt; spc.618         618      42.61228 102.2571     161.9020
 #&gt; spc.622         622      42.58845 102.3257     162.0630</div><div class='input'>
-<span class='co'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/library.html'>require</a></span> (<span class='kw'><a href='http://ggplot2.tidyverse.org'>ggplot2</a></span>)){
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span> (<span class='kw'>df</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span> (x = <span class='kw'>.wavelength</span>)) <span class='op'>+</span>
-    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_ribbon.html'>geom_ribbon</a></span> (<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span> (ymin = <span class='kw'>mean.minus.sd</span>, ymax = <span class='kw'>mean.plus.sd</span>),
-      fill = <span class='st'>"#00000040"</span>) <span class='op'>+</span>
-    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span> (<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span> (y = <span class='kw'>mean</span>))
+<span class='co'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/library.html'>require</a></span>(<span class='kw'><a href='http://ggplot2.tidyverse.org'>ggplot2</a></span>)) {
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='kw'>df</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(x = <span class='kw'>.wavelength</span>)) <span class='op'>+</span>
+    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_ribbon.html'>geom_ribbon</a></span>(<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(ymin = <span class='kw'>mean.minus.sd</span>, ymax = <span class='kw'>mean.plus.sd</span>),
+      fill = <span class='st'>"#00000040"</span>
+    ) <span class='op'>+</span>
+    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span>(<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(y = <span class='kw'>mean</span>))
 }</div><div class='img'><img src='asdataframe-1.png' alt='' width='466' height='288' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
