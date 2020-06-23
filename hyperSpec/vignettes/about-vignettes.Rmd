@@ -1,0 +1,3 @@
+
+> **Note**  <a name = "abt-vigs"></a>
+Package `hyperSpec` ships with a number of vignettes.  To see all of them, simply type `browseVignettes("hyperSpec")`{.r} to get a clickable list in a browser window.
