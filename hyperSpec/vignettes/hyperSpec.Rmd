@@ -94,35 +94,6 @@ make_bib(
 ```
 
 
-```{block, type = "note-t", echo = show_reviewers_notes}
-**V. Gegzna's notes** `hyperspec-1`
-
-1. I suggest keeping tags `\\mFun{}` and `\\index{}`.
-They are not useful for HTML format yet, but in the future we can come up with useful ideas how to create an index of functions.
-But they are ignored by HTML rendering engine (as they are LaTeX tags) and removed from the output.
-
-2. I general, it seems that this tutorial could be split into several smaller tutorials:
-    a. I think, there should be one additional short tutorial "Quick-start".
-    b. I suggest moving sections such as `Spectral (Pre)processing`, `Data Analysis` to separate vignettes.
-
-3. Some ideas should be more clearly explained for beginner-level users without assuming that they know technical details.
-```
-
-```{block, type = "note-t", echo = show_reviewers_notes}
-**B. Hansons's notes** `Some remaining issues`
-
-There is still a lot of work and polishing to be done.  Here are some of the remaining organizational and document processing issues as I see it:
-
-1. I think we can greatly simplify the bibliography processing by just letting `markdown` take care of it.
-
-2. For all vignettes we should probably settle on one or two color schemes for plots.  At least some are defined in `vignette-functions.R`.
-
-3.  I'm not sure if any of the `\index ` and related items do anything in this type of document.  Remove if possible.  html files can be search via the browser.  Note: **VG wants to keep for now.**
-
-4.  Some maintenance simplification might be gained by putting the contents of all tables into data frames and using `kableExtra` to print them.
-
-```
-
 <!-- \tableofcontents -->
 
 # Things to Know About **_hyperSpec_**
@@ -766,248 +737,6 @@ CAPTION <- "Multivariate normally distributed random spectra generated with `rmm
 cluster.cols <- c("dark blue", "orange", "#C02020")
 plot(rnd, col = cluster.cols[rnd$.group])
 ```
-
-# Combining and Splitting `hyperSpec`{.r} Objects {#sec:combine}
-
-## Binding Objects together {#sec:bind}
-
-\mFun{`cbind()`{.r} `rbind()`{.r}}
-Class `hyperspec`{.r} objects can be bound together, either by columns (`cbind()`{.r}) to append a new spectral range or by row (`rbind()`{.r}) to append new spectra:
-
-```{r cbind}
-dim(flu)
-```
-```{r}
-dim(cbind(flu, flu))
-```
-```{r}
-dim(rbind(flu, flu))
-```
-
-There is also a more general function, `bind()`{.r}, taking the direction (`"r"`{.r} or `"c"`{.r}) as first argument followed by the objects to bind either in separate arguments or in a list.
-
-As usual for `rbind()`{.r} and `cbind()`{.r}, the objects that should be bound together must have
-the same number of columns (for `rbind()`{.r}) and the same number of rows (for `cbind()`{.r}),
-respectively.
-
-\mFun{`collapse()`{.r}}
-For binding row-wise (`rbind()`{.r}), `collapse()`{.r} is more flexible and faster as well.
-
-
-## Binding Objects that do not Share the Same Extra Data and/or Wavelength Axis {#sec:collapse}
-
-\mFun{`collapse()`{.r}}
-Function `collapse()`{.r} combines objects that should be bound together by row, but they do not share the columns and/or spectral range.
-The resulting object has all columns from all input objects, and all wavelengths from the input objects.
-If an input object does not have a particular column or wavelength, its value in the resulting object is `NA`{.r}.
-
-The `barbiturates`{.r} data is a list of `r length(barbiturates)` `hyperSpec`{.r} objects, each containing one mass spectrum.
-The spectra have between `r (min(sapply(barbiturates, nwl)))` and `r (max(sapply(barbiturates, nwl)))` data points each.
-
-```{r collapse}
-barb <- collapse(barbiturates)
-wl(barb)[1:25]
-```
-The resulting object does not have an ordered wavelength axis.
-This can be obtained in the second step:
-
-```{r collapse-orderwl}
-barb <- orderwl(barb)
-barb[[1:3, , min ~ min + 10i]]
-```
-
-
-## Binding Objects that do not Share the Same Spectra {#sec:merge}
-
-\mFun{`merge()`{.r}}
-Function `merge()`{.r} adds a new spectral range (like `cbind()`{.r}), but works also if spectra are missing in one of the objects.
-The arguments `by`{.r}, `by.x`{.r}, and `by.y`{.r} specify which columns should be used to decide which spectra are the same.
-The arguments `all`{.r}, `all.x`{.r}, and `all.y`{.r} determine whether spectra should be kept for the result set if they appear in only one of the objects.
-For details, see also the help on the base function `merge()`{.r}.
-
-As an example, let's construct a version of the `chondro`{.r} data like being taken as two maps with different spectral ranges.
-In each data set, some spectra are missing.
-
-```{r merge-sample}
-chondro.low <- sample(chondro[, , 600 ~ 1200], 700)
-nrow(chondro.low)
-```
-```{r merge-sample-2}
-chondro.high <- sample(chondro[, , 1400 ~ 1800], 700)
-nrow(chondro.high)
-```
-
-As all extra data columns are the same, no special declarations are needed for merging the data:
-
-```{r merge}
-chondro.merged <- merge(chondro.low, chondro.high)
-nrow(chondro.merged)
-```
-
-By default, the result consists of only those spectra, where *both* spectral ranges were available.
-To keep all spectra replacing missing parts by `NA`{.r} (see Fig. \@ref(fig:merge-map), \@ref(fig:merge-mat)):
-
-```{r}
-chondro.merged <- merge(chondro.low, chondro.high, all = TRUE)
-nrow(chondro.merged)
-```
-
-
-
-```{r include = FALSE}
-CAPTION <- "For both spectral ranges some spectra are missing. "
-```
-
-```{r merge-map, fig.cap = CAPTION, fig.width = 7}
-levelplot(spc ~ x * y | as.factor(paste(.wavelength, "  1/cm")),
-  chondro.merged[, , c(1000, 1650)],
-  aspect = "iso", col.regions = matlab.palette()
-)
-```
-
-
-
-<!-- ```{r merge-mat echo=FALSE, results='hide'} -->
-<!-- png("hyperspec-fig-merged.png", width = 500, height = 425, res = 100) -->
-<!-- plot(chondro.merged[1:100], "mat") -->
-<!-- dev.off() -->
-<!-- rm(chondro) -->
-<!-- ``` -->
-
-```{r include = FALSE}
-CAPTION <- "The missing parts of the spectra are filled with `NA`{.r}.  "
-```
-```{r merge-mat, fig.cap = CAPTION}
-plot(chondro.merged[1:100], "mat")
-```
-
-
-```{r}
-merged <- merge(chondro[1:7, , 610 ~ 620], chondro[5:10, , 615 ~ 625], all = TRUE)
-merged$.
-```
-
-If the spectra overlap, the result will have both data points.
-In the example here one could easily delete duplicate wavelengths.
-For real data, however, the duplicated wavelength will hardly ever contain the same values.
-The appropriate method to deal with this situation depends on the data at hand, but it will usually be some kind of spectral interpolation.
-
-One possibility is removing duplicated wavelengths by using the mean intensity.
-This can conveniently be done by using `approx()`{.r} using `method = "constant"`{.r}.
-For duplicated wavelengths, the intensities will be combined by the tie function.
-This already defaults to the mean, but we need `na.rm = TRUE`{.r}.
-
-Thus, the function to calculate the new spectral intensities is
-
-```{r approxfun}
-approxfun <- function(y, wl, new.wl) {
-  approx(wl, y, new.wl,
-    method = "constant",
-    ties = function(x) mean(x, na.rm = TRUE)
-  )$y
-}
-```
-
-which can be applied to the spectra:
-
-```{r}
-merged <- apply(merged, 1, approxfun,
-  wl = wl(merged),
-  new.wl = unique(wl(merged)),
-  new.wavelength = "new.wl"
-)
-merged$.
-```
-
-## Merging extra data to objects that do not (necessarily) share the same spectra {#sec:merge-df}
-
-Assume we obtained duplicate reference measurements for some of the concentrations in `flu`{.r}:
-
-```{r}
-flu.ref <- data.frame(
-  filename = rep(flu$filename[1:2], each = 2),
-  cref     = rep(flu$c[1:2], each = 2) + rnorm(4, sd = 0.01)
-)
-flu.ref
-```
-
-This information can be merged into the extra data of `flu`{.r} by:
-
-```{r}
-flu.merged <- merge(flu, flu.ref)
-flu.merged$..
-```
-
-The usual rules for `merge()`{.r} apply.
-E. g., if to preserver all spectra of flu, use `all.x = TRUE`{.r}:
-
-```{r}
-flu.merged <- merge(flu, flu.ref, all.x = TRUE)
-flu.merged$..
-```
-
-The class of the first object (`x`{.r}) determines the resulting class:
-
-```{r}
-class(merge(flu, flu.ref))
-```
-```{r}
-class(merge(flu.ref, flu))
-```
-
-## Splitting an Object, and Binding a List of `hyperSpec`{.r} Objects
-
-\mFun{`split()`{.r}}
-A `hyperSpec`{.r} object may also be split into a list of `hyperSpec`{.r} objects:
-
-```{r split}
-clusters <- split(chondro, chondro$clusters)
-clusters
-```
-
-\mFun{`rbind()`{.r}}
-Splitting can be reversed by `rbind()`{.r} (see section \@ref(sec:bind)).
-\mFun{`collapse()`{.r}}
-Another, similar way to combine a number of `hyperSpec`{.r} objects with different wavelength axes or extra data columns is `collapse()`{.r} (see section \@ref(sec:collapse)).
-
-Both `rbind()`{.r} and `collapse()`{.r} take care that factor levels are expanded as necessary:
-
-```{r}
-lacunae <- droplevels(chondro[chondro$clusters == "lacuna" & !is.na(chondro$clusters)])
-summary(lacunae$clusters)
-```
-```{r}
-cells <- droplevels(chondro[chondro$clusters == "cell" & !is.na(chondro$clusters)])
-summary(cells$clusters)
-```
-```{r}
-summary(rbind(cells, lacunae)$clusters)
-```
-```{r}
-summary(collapse(cells, lacunae)$clusters)
-```
-
-## Factor columns in `hyperSpec`{.r} Objects: dropping factor levels that are not needed
-
-\mFun{`droplevels()`{.r}}
-For subsections of `hyperSpec`{.r} objects that do not contain all levels of a factor column, `droplevels()`{.r} drops the "unpopulated" levels:
-
-```{r droplevels}
-tmp <- chondro[1:50]
-table(tmp$clusters)
-```
-```{r droplevels-2}
-tmp <- droplevels(tmp)
-table(tmp$clusters)
-```
-
-# Plotting {#plotting-hyperspec}
-
-Package **hyperSpec** offers a variety of possibilities to plot spectra, spectral maps, the spectra matrix, time
-series, depth profiles, etc.
-This all is discussed in a separate document: see `vignette ("plotting")`.
-
-
 
 # Spectral Pre-Processing
 
@@ -1814,6 +1543,247 @@ CAPTION <- "The results of the cluster analysis: the the mean spectra.  "
 means <- aggregate(chondro, by = chondro$clusters, mean_pm_sd)
 plot(means, col = cluster.cols, stacked = ".aggregate", fill = ".aggregate")
 ```
+
+# Combining and Splitting `hyperSpec`{.r} Objects {#sec:combine}
+
+## Binding Objects together {#sec:bind}
+
+\mFun{`cbind()`{.r} `rbind()`{.r}}
+Class `hyperspec`{.r} objects can be bound together, either by columns (`cbind()`{.r}) to append a new spectral range or by row (`rbind()`{.r}) to append new spectra:
+
+```{r cbind}
+dim(flu)
+```
+```{r}
+dim(cbind(flu, flu))
+```
+```{r}
+dim(rbind(flu, flu))
+```
+
+There is also a more general function, `bind()`{.r}, taking the direction (`"r"`{.r} or `"c"`{.r}) as first argument followed by the objects to bind either in separate arguments or in a list.
+
+As usual for `rbind()`{.r} and `cbind()`{.r}, the objects that should be bound together must have
+the same number of columns (for `rbind()`{.r}) and the same number of rows (for `cbind()`{.r}),
+respectively.
+
+\mFun{`collapse()`{.r}}
+For binding row-wise (`rbind()`{.r}), `collapse()`{.r} is more flexible and faster as well.
+
+
+## Binding Objects that do not Share the Same Extra Data and/or Wavelength Axis {#sec:collapse}
+
+\mFun{`collapse()`{.r}}
+Function `collapse()`{.r} combines objects that should be bound together by row, but they do not share the columns and/or spectral range.
+The resulting object has all columns from all input objects, and all wavelengths from the input objects.
+If an input object does not have a particular column or wavelength, its value in the resulting object is `NA`{.r}.
+
+The `barbiturates`{.r} data is a list of `r length(barbiturates)` `hyperSpec`{.r} objects, each containing one mass spectrum.
+The spectra have between `r (min(sapply(barbiturates, nwl)))` and `r (max(sapply(barbiturates, nwl)))` data points each.
+
+```{r collapse}
+barb <- collapse(barbiturates)
+wl(barb)[1:25]
+```
+The resulting object does not have an ordered wavelength axis.
+This can be obtained in the second step:
+
+```{r collapse-orderwl}
+barb <- orderwl(barb)
+barb[[1:3, , min ~ min + 10i]]
+```
+
+
+## Binding Objects that do not Share the Same Spectra {#sec:merge}
+
+\mFun{`merge()`{.r}}
+Function `merge()`{.r} adds a new spectral range (like `cbind()`{.r}), but works also if spectra are missing in one of the objects.
+The arguments `by`{.r}, `by.x`{.r}, and `by.y`{.r} specify which columns should be used to decide which spectra are the same.
+The arguments `all`{.r}, `all.x`{.r}, and `all.y`{.r} determine whether spectra should be kept for the result set if they appear in only one of the objects.
+For details, see also the help on the base function `merge()`{.r}.
+
+As an example, let's construct a version of the `chondro`{.r} data like being taken as two maps with different spectral ranges.
+In each data set, some spectra are missing.
+
+```{r merge-sample}
+chondro.low <- sample(chondro[, , 600 ~ 1200], 700)
+nrow(chondro.low)
+```
+```{r merge-sample-2}
+chondro.high <- sample(chondro[, , 1400 ~ 1800], 700)
+nrow(chondro.high)
+```
+
+As all extra data columns are the same, no special declarations are needed for merging the data:
+
+```{r merge}
+chondro.merged <- merge(chondro.low, chondro.high)
+nrow(chondro.merged)
+```
+
+By default, the result consists of only those spectra, where *both* spectral ranges were available.
+To keep all spectra replacing missing parts by `NA`{.r} (see Fig. \@ref(fig:merge-map), \@ref(fig:merge-mat)):
+
+```{r}
+chondro.merged <- merge(chondro.low, chondro.high, all = TRUE)
+nrow(chondro.merged)
+```
+
+
+
+```{r include = FALSE}
+CAPTION <- "For both spectral ranges some spectra are missing. "
+```
+
+```{r merge-map, fig.cap = CAPTION, fig.width = 7}
+levelplot(spc ~ x * y | as.factor(paste(.wavelength, "  1/cm")),
+  chondro.merged[, , c(1000, 1650)],
+  aspect = "iso", col.regions = matlab.palette()
+)
+```
+
+
+
+<!-- ```{r merge-mat echo=FALSE, results='hide'} -->
+<!-- png("hyperspec-fig-merged.png", width = 500, height = 425, res = 100) -->
+<!-- plot(chondro.merged[1:100], "mat") -->
+<!-- dev.off() -->
+<!-- rm(chondro) -->
+<!-- ``` -->
+
+```{r include = FALSE}
+CAPTION <- "The missing parts of the spectra are filled with `NA`{.r}.  "
+```
+```{r merge-mat, fig.cap = CAPTION}
+plot(chondro.merged[1:100], "mat")
+```
+
+
+```{r}
+merged <- merge(chondro[1:7, , 610 ~ 620], chondro[5:10, , 615 ~ 625], all = TRUE)
+merged$.
+```
+
+If the spectra overlap, the result will have both data points.
+In the example here one could easily delete duplicate wavelengths.
+For real data, however, the duplicated wavelength will hardly ever contain the same values.
+The appropriate method to deal with this situation depends on the data at hand, but it will usually be some kind of spectral interpolation.
+
+One possibility is removing duplicated wavelengths by using the mean intensity.
+This can conveniently be done by using `approx()`{.r} using `method = "constant"`{.r}.
+For duplicated wavelengths, the intensities will be combined by the tie function.
+This already defaults to the mean, but we need `na.rm = TRUE`{.r}.
+
+Thus, the function to calculate the new spectral intensities is
+
+```{r approxfun}
+approxfun <- function(y, wl, new.wl) {
+  approx(wl, y, new.wl,
+    method = "constant",
+    ties = function(x) mean(x, na.rm = TRUE)
+  )$y
+}
+```
+
+which can be applied to the spectra:
+
+```{r}
+merged <- apply(merged, 1, approxfun,
+  wl = wl(merged),
+  new.wl = unique(wl(merged)),
+  new.wavelength = "new.wl"
+)
+merged$.
+```
+
+## Merging extra data to objects that do not (necessarily) share the same spectra {#sec:merge-df}
+
+Assume we obtained duplicate reference measurements for some of the concentrations in `flu`{.r}:
+
+```{r}
+flu.ref <- data.frame(
+  filename = rep(flu$filename[1:2], each = 2),
+  cref     = rep(flu$c[1:2], each = 2) + rnorm(4, sd = 0.01)
+)
+flu.ref
+```
+
+This information can be merged into the extra data of `flu`{.r} by:
+
+```{r}
+flu.merged <- merge(flu, flu.ref)
+flu.merged$..
+```
+
+The usual rules for `merge()`{.r} apply.
+E. g., if to preserver all spectra of flu, use `all.x = TRUE`{.r}:
+
+```{r}
+flu.merged <- merge(flu, flu.ref, all.x = TRUE)
+flu.merged$..
+```
+
+The class of the first object (`x`{.r}) determines the resulting class:
+
+```{r}
+class(merge(flu, flu.ref))
+```
+```{r}
+class(merge(flu.ref, flu))
+```
+
+## Splitting an Object, and Binding a List of `hyperSpec`{.r} Objects
+
+\mFun{`split()`{.r}}
+A `hyperSpec`{.r} object may also be split into a list of `hyperSpec`{.r} objects:
+
+```{r split}
+clusters <- split(chondro, chondro$clusters)
+clusters
+```
+
+\mFun{`rbind()`{.r}}
+Splitting can be reversed by `rbind()`{.r} (see section \@ref(sec:bind)).
+\mFun{`collapse()`{.r}}
+Another, similar way to combine a number of `hyperSpec`{.r} objects with different wavelength axes or extra data columns is `collapse()`{.r} (see section \@ref(sec:collapse)).
+
+Both `rbind()`{.r} and `collapse()`{.r} take care that factor levels are expanded as necessary:
+
+```{r}
+lacunae <- droplevels(chondro[chondro$clusters == "lacuna" & !is.na(chondro$clusters)])
+summary(lacunae$clusters)
+```
+```{r}
+cells <- droplevels(chondro[chondro$clusters == "cell" & !is.na(chondro$clusters)])
+summary(cells$clusters)
+```
+```{r}
+summary(rbind(cells, lacunae)$clusters)
+```
+```{r}
+summary(collapse(cells, lacunae)$clusters)
+```
+
+## Factor columns in `hyperSpec`{.r} Objects: dropping factor levels that are not needed
+
+\mFun{`droplevels()`{.r}}
+For subsections of `hyperSpec`{.r} objects that do not contain all levels of a factor column, `droplevels()`{.r} drops the "unpopulated" levels:
+
+```{r droplevels}
+tmp <- chondro[1:50]
+table(tmp$clusters)
+```
+```{r droplevels-2}
+tmp <- droplevels(tmp)
+table(tmp$clusters)
+```
+
+# Plotting {#plotting-hyperspec}
+
+Package **hyperSpec** offers a variety of possibilities to plot spectra, spectral maps, the spectra matrix, time
+series, depth profiles, etc.
+This all is discussed in a separate document: see `vignette ("plotting")`.
+
 
 
 \printindex
