@@ -1882,9 +1882,9 @@ summary(collapse(cells, lacunae)$clusters)
 
 \printindex
 
+# Appendices
 
-
-# Appendix 2.  Package Options {-}
+## Package Options {-}
 
 <!-- ----------------------------------------------------------------------- -->
 : **(\#tab:options)** Package **hyperSpec**'s options.
@@ -1912,7 +1912,7 @@ stopifnot(all(names(hy.getOptions(TRUE)) %in% c(
 ```
 
 
-# Appendix 4. Speed and Memory Considerations {- #sec:speed-considerations}
+## Speed and Memory Considerations {- #sec:speed-considerations}
 
 While most of package **hyperSpec**'s functions work at a decent speed for interactive sessions (of course depending on the size of the object), iterated (repeated) calculations as for bootstrapping or iterated cross validation may ask for special speed considerations.
 
@@ -1942,22 +1942,6 @@ system.time({
   tmp[[]] <- tmp.matrix
 })
 ```
-<!--
-## Additional packages
-
-
-Package **matrixStats** implements fast functions to calculate summary statistics for each row  or each column of a matrix.
-This functionality can be enabled for package **hyperSpec** by installing package package **hyperSpec.matrixStats** which is available in package **hyperSpec**'s development repository at <http://hyperSpec.r-forge.r-project.org/>
-
-
-## Compiled code
-
-R provides interfaces to Fortran and C code, see the manual "Writing `R` Extensions" package **Rcpp**`r cite_pkg("Rcpp")` allows to conveniently integrate C++ code.
-Package **inline**`r cite_pkg("inline")` adds another layer of convenience: inline definition of functions in C, C++, or Fortran.
-
-An intermediate level is byte compilation of `R` code, which is done by package **compiler**`r cite_pkg("compiler")`.
-
-## Memory usage -->
 
 In general, it is not recommended to work with variables that are more than approximately a third of the available RAM in size. Particularly the import of raw spectroscopic data can consume large amounts of memory.
 At certain points, package **hyperSpec** provides switches that allow working with data sets that are actually close to this memory limit.
@@ -1969,9 +1953,7 @@ In addition, frequent calls to `gc()`{.r} can be requested by `hy.setOption(gc =
 The same behaviour is triggered in `read.ENVI()`{.r} and its derivatives (`r list_funs_rmd("read.ENVI")`).
 The memory consumption of `read.txt.Renishaw()`{.r} can be lowered by importing the data in chunks (argument `nlines`{.r}).
 
-
-
-Session Info {-}
+## Session Info {-}
 
 ```{r session-info-hyperspec, paged.print = FALSE}
 sessioninfo::session_info("hyperSpec")
