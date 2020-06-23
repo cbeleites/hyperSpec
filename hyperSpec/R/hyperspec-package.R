@@ -29,6 +29,6 @@
 #' @include barbiturates.R
 #' @include unittest.R
 #' @keywords package
-#' @concept hyperSpec-main, package
+#' @concept hyperSpec-main
 
 NULL

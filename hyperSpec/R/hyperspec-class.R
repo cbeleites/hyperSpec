@@ -26,7 +26,7 @@
 #' @seealso See the vignette "hyperspec" for an introduction to \pkg{hyperSpec}
 #'   from a spectroscopic point of view.
 #' @keywords classes
-#' @concept hyperSpec-main, classes
+#' @concept hyperSpec-main
 #' @export
 #' @include validate.R
 #' @examples
