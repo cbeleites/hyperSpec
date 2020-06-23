@@ -1911,37 +1911,6 @@ stopifnot(all(names(hy.getOptions(TRUE)) %in% c(
 )))
 ```
 
-# Appendix 3. Reporting Bugs and Getting Help {-}
-
-```{block, type= "note-t", echo = show_reviewers_notes}
-**B. Hanson's notes**
-
-* This material probably belongs elsewhere.
-* Should also add something about using StackOverflow etc.
-```
-
-## Reporting an issue
-
-`R` packages include contact information of the package maintainer, which you can access e.g., by:
-
-```{r}
-maintainer("hyperSpec")
-```
-
-In case you want to report an issue, `R` provides a function to do so:
-`bug.report()`{.r} will either open an e-mail to the package maintainer or the issue tracker URL given in the package `DESCRIPTION`.
-
-```{r eval = FALSE}
-bug.report(package = "hyperSpec")
-```
-Will take you to package **hyperSpec**'s issue tracking page at <https://github.com/cbeleites/hyperSpec/issues>.
-It also displays essential information about your installation which can help in tracking down the bug.
-You can also make suggestions in this manner.
-
-## Getting Help
-
-This section needs to be written.
-
 
 # Appendix 4. Speed and Memory Considerations {- #sec:speed-considerations}
 
