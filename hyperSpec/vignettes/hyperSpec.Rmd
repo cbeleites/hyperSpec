@@ -255,17 +255,7 @@ colnames(chondro)
 ```
 
 Likewise, `rownames()`{.r} returns the names assigned to the spectra, and `dimnames()`{.r} yields a list of these three vectors (including also the column names of `$spc`{.r}).
-The column names of the spectra matrix contain the wavelengths as character, while `wl()`{.r} (see section \@ref(sec:wavel-axis-conv)) yields the numeric vector of wavelengths.
-
-\mFun{colnames<-, rownames<-}
-Extra data column names and rownames of the object may be set by `colnames<-`{.r} and `rownames<-`{.r}, respectively.
-Function `colnames<-`{.r} renames the labels as well.
-
-```{block, type = "note-t", echo = show_reviewers_notes}
-**B. Hansons's notes** `This is not clear`
-
-This line: _Function `colnames<-`{.r} renames the labels as well._ is not clear and the documentation doesn't seem to say anything about it.
-```
+The column names of the spectra matrix contain the wavelengths as a character vector, while `wl()`{.r} (see section \@ref(sec:wavel-axis-conv)) returns the numeric vector of wavelengths.
 
 # Accessing & Manipulating **_hyperSpec_** Objects {#sec:access-parts}
 
