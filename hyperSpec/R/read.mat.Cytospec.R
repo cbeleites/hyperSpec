@@ -2,15 +2,10 @@
 #'
 #' These functions allow to import `.mat` (Matlab V5) files written by Cytospec.
 #'
-#' `read.cytomat` has been renamed to `read.mat.Cytospec` and is now
-#' deprecated. Use `read.mat.Cytospec` instead.
-#'
 #' @param file The complete file name (or a connection to) the `.mat` file.
 #' @param keys2data specifies which elements of the `Info` should be
 #'   transferred into the extra data
 #' @param blocks which blocks should be read? `TRUE` reads all blocks.
-#' @param ... `read.cytomat` for now hands all arguments to
-#'   `read.mat.Cytospec` for backwards compatibility.
 #' @note This function is an ad-hoc implementation and subject to changes.
 #' @return `hyperSpec` object if the file contains a single spectra block,
 #'   otherwise a list with one `hyperSpec` object for each block.
