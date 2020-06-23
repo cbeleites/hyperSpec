@@ -767,7 +767,7 @@ cluster.cols <- c("dark blue", "orange", "#C02020")
 plot(rnd, col = cluster.cols[rnd$.group])
 ```
 
-# Combining `hyperSpec`{.r} Objects {#sec:combine}
+# Combining and Splitting `hyperSpec`{.r} Objects {#sec:combine}
 
 ## Binding Objects together {#sec:bind}
 
