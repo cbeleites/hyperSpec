@@ -80,7 +80,7 @@ reference:
 - title: Datasets
   desc: "Datasets to try functionality of **hyperSpec** functions."
 - contents:
-  - has_keyword("datasets")
+  - has_concept("datasets")
 - title: Input and output
 - contents:
   - "initialize"
@@ -125,8 +125,13 @@ reference:
   - has_keyword("misc")
 - title: All functions
   desc: "All functions including those that are not mentioned above."
+- subtitle: Active functions
 - contents:
-  - lacks_concepts("not-in-hyperSpec")
+  - lacks_concepts("deprecated")
+- subtitle: Deprecated and defunct functions
+  desc: "You should **not** use these functions."
+- contents:
+  - has_concept("deprecated", internal = TRUE)
 
 # -------------------------------------------------------------------------
 
