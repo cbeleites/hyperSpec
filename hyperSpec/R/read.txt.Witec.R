@@ -1,14 +1,16 @@
-#' Import Raman Spectra/Maps from Witec Instrument via ASCII files
+#' Import Raman Spectra/Maps from Witec Instrument via ASCII files.
 #'
-#' `read.txt.Witec` reads Witec ASCII files where the first column gives the wavelength
-#' axes and the other columns the spectra. `read.dat.Witec` reads Witec's ASCII exported data
-#' which comes in separate files with x and y data.
+#' `read.txt.Witec()` reads Witec ASCII files where the first column gives the
+#'  wavelength axes and the other columns the spectra.
+#' `read.dat.Witec()` reads Witec's ASCII exported data, which comes in separate
+#'  files with x and y data.
 #' @title File Import Witec Raman
 #' @param file filename or connection to ASCII file
 #' @param points.per.line number of spectra in x direction of the map
 #' @param lines.per.image number of spectra in y direction
 #' @param nwl is deprecated and will be removed soon. Number of wavelengths is calculated automatically.
-#' @param remove.zerospc is deprecated and will be removed soon. Use `[hy.setOptions] (file.remove.emptyspc = TRUE)` instead.
+#' @param remove.zerospc is deprecated and will be removed soon.
+#'         Use `[hy.setOptions] (file.remove.emptyspc = TRUE)` instead.
 #' @param type type of spectra: `single` for single spectra (including time series), `map` for imaging data.
 #' @param hdr.label WITec Project exports the spectra names (contain information of map position or number of spectra) within the `file`.
 #' @param hdr.units WITec Project exports the spectra units within the `file`.

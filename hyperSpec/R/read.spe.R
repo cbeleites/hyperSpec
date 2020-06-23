@@ -6,7 +6,7 @@
 # July 2015
 
 
-#' Import WinSpec SPE file
+#' Import WinSpec SPE file.
 #'
 #' Import function for WinSpec SPE files (file version up to 3.0). The calibration
 #' data (polynome and calibration data pairs) for x-axis are automatically
@@ -140,7 +140,7 @@ read.spe <- function(filename, xaxis = "file", acc2avg = F, cts_sec = F,
   .fileio.optional(spc, filename)
 }
 
-#' Read XML footer from SPE file format version 3.0
+#' Read XML footer from SPE file format version 3.0.
 #'
 #' The new SPE file format, introduced in 2012, was designed to be backwards compatible with the
 #' previous format 2.5. The most prominent change is the new plain text XML footer holding vast

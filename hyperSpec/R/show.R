@@ -72,12 +72,14 @@ setMethod("as.character",
   }
 )
 
-#' Convert a hyperSpec object to character strings for Display
-#' `print`, `show`, and `summary` show the result of
-#' `as.character`.
+#' Convert a `hyperSpec` object to character strings for display.
 #'
-#' `print`, `show`, and `summary` differ only in the defaults.
-#' `show` displays the range of values instead,
+#' `print()`, `show()`, and `summary()` show the result of `as.character()`.
+#'
+#' @details
+#' `print()`, `show()`, and `summary()` differ only in the defaults:
+#'
+#' - `show()` displays the range of values instead,
 #' @name show
 #' @rdname show
 #' @aliases show show,hyperSpec-method
@@ -99,9 +101,9 @@ setMethod("show", signature = signature(object = "hyperSpec"), function(object) 
   invisible(NULL)
 })
 
-#'
-#' `print` shows the overview giving the first and last values of each
-#' data column (fastest).
+#' @details
+#' - `print()` shows the overview giving the first and last values of each
+#' data column (fastest),
 #' @aliases print print,hyperSpec-method
 #' @param x a `hyperSpec` object
 #' @param ... `print` and `summary`  hand further arguments to `as.character`
@@ -117,9 +119,11 @@ setMethod("print", signature = signature(x = "hyperSpec"), function(x, range = F
 })
 
 
-#'
-#' `summary` displays the logbook in addition.
-#'
+# FIXME: logbook is mentioned
+# - `summary()` displays the logbook in addition.
+
+#' @details
+#' - `summary()` ...
 #' @aliases summary summary,hyperSpec-method
 #' @seealso [base::summary()]
 #' @export

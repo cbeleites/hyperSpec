@@ -1,4 +1,4 @@
-#' hyperSpec unit tests
+#' \pkg{hyperSpec} unit tests.
 #'
 #' If [testthat::testthat()] is available, run the unit tests and
 #' display the results.

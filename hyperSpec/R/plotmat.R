@@ -1,9 +1,9 @@
-#' Plot spectra matrix
+#' Plot spectra matrix.
 #'
-#' plots the spectra matrix.
+#' Plots the spectra matrix.
 #'
-#' If package plotrix is available, a color legend is plotted to the right. The right margin is set
-#' to at least 5 lines.
+#' If package \pkg{plotrix} is available, a color legend is plotted to the right.
+#' The right margin is set to at least 5 lines.
 #' @param object hyperSpec object
 #' @param y character giving the name of the extra data column to label the y axis.
 #' @param ylab y axis label, defaults to `"row"` and the label of the extra data column used

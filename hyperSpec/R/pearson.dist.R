@@ -1,4 +1,4 @@
-#' Distance based on Pearson's \eqn{R^2}{R squared}
+#' Distance based on Pearson's \eqn{R^2}{R squared}.
 #'
 #' The calculated distance is
 #' \eqn{D^2 = \frac{1 - COR (`x`')}{2}}{D^2 = (1 - COR (x')) / 2}

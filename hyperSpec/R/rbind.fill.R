@@ -3,6 +3,7 @@
 
 
 #' Quick data frame.
+#'
 #' Experimental version of [as.data.frame()] that converts a
 #' list to a data frame, but doesn't do any checks to make sure it's a
 #' valid format. Much faster.
@@ -22,7 +23,7 @@ quickdf <- function(list) {
   )
 }
 
-#' Bind matrices by row, and fill missing columns with NA
+#' Bind matrices by row, and fill missing columns with `NA`.
 #'
 #' The matrices are bound together using their column names or the column indices (in that order of
 #' precedence.) Numeric columns may be converted to character beforehand, e.g. using format.  If a
@@ -110,6 +111,7 @@ rbind.fill.matrix <- function(...) {
 }
 
 #' Combine objects by row, filling in missing columns.
+#'
 #' `rbind`s a list of data frames filling missing columns with NA.
 #'
 #' This is an enhancement to [rbind()] which adds in columns

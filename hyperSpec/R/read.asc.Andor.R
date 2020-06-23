@@ -1,6 +1,6 @@
-#' Import Raman Spectra/Maps from Andor Cameras/Solis ASCII files
+#' Import Raman Spectra/Maps from Andor Cameras/Solis ASCII files.
 #'
-#' `read.asc.Andor` reads Andor Solis ASCII (`.asc`) files where the first column gives the wavelength
+#' `read.asc.Andor()` reads Andor Solis ASCII (`.asc`) files where the first column gives the wavelength
 #' axes and the other columns the spectra.
 #'
 #' @title File Import Andor Solis

@@ -1,4 +1,5 @@
-#' Color coding legend for factors
+#' Color coding legend for factors.
+#'
 #' Modifies a list of lattice arguments (as for [lattice::levelplot()], etc.) according to
 #' the factor levels. The colorkey will shows all levels (including unused), and the drawing colors
 #' will be set accordingly.

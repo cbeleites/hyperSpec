@@ -1,3 +1,5 @@
+#' @title Statistical summary and other functions for `hyperSpec`.
+#' @description
 #' The functions
 #'
 #' `all`, `any`,
@@ -59,6 +61,7 @@ setMethod(
   }
 )
 
+#' @details
 #' `all_wl` and `any_wl` are shortcut function to check whether
 #' any or all intensities fulfill the condition per spectrum.
 #' `na.rm` behaviour is like [base::all()] and [base::any()].

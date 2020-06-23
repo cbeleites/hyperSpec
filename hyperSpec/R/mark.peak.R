@@ -1,4 +1,4 @@
-#' Mark peak
+#' Mark peak.
 #'
 #' Marks location of the *first* spectrum at the data point closest to the
 #' specified position on the current plot.
@@ -11,8 +11,8 @@
 #' @author R. Kiselev
 #' @export
 #' @examples
-#' plot(faux_cell [7])
-#' markpeak(faux_cell [7], 1662)
+#' plot(faux_cell[7])
+#' markpeak(faux_cell[7], 1662)
 markpeak <- function(spc, xpos, col = "red") {
   chk.hy(spc)
   validObject(spc)

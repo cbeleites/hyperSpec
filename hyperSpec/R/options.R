@@ -11,8 +11,9 @@
   ggplot.spc.nmax = 10
 )
 
-#' Options for package hyperSpec
-#' Functions to access and set hyperSpec's options.
+#' Options for package \pkg{hyperSpec}.
+#'
+#' Functions to access and set \pkg{hyperSpec}'s options.
 #'
 #' Currently, the following options are defined:
 #' \tabular{llll}{
@@ -29,8 +30,7 @@
 #' ggplot.spc.nmax      \tab 10                                \tab                                                  \tab [qplotspc()]\cr
 #' }
 #'
-#' `hy.setOptions` will discard any values that were given without a
-#' name.
+#' `hy.setOptions` will discard any values that were given without a  name.
 #'
 #' @rdname options
 #' @param ... `hy.setOptions`: pairs of argument names and values.

@@ -1,4 +1,4 @@
-#' Read INI files
+#' Read INI files.
 #'
 #' `read.ini` reads ini files of the form
 #' \cr\cr

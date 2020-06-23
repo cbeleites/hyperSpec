@@ -1,9 +1,9 @@
-#' Read ASCII (.txt) files exported by Horiba's Labspec software (LabRAM spectrometers)
+#' Read ASCII (`.txt`) files exported by Horiba's Labspec software (LabRAM spectrometers).
 #'
-#' `read.txt.Horiba.xy` reads maps, i.e. .txt files where the first two columns give x and y coordinates.
+#' `read.txt.Horiba.xy` reads maps, i.e. `.txt` files where the first two columns give x and y coordinates.
 #'
 #' @title Import Horiba Labspec exported ASCII files
-#' @param file connection (file name and path) to the .txt file
+#' @param file connection (file name and path) to the `.txt` file
 #' @param cols,header,sep,row.names,check.names,... further parameters are handed over to [hyperSpec::read.txt.wide()]
 #' @rdname read.txt.Horiba
 #' @author C. Beleites

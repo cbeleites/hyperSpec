@@ -1,6 +1,6 @@
-#' import Raman measurements from Renishaw ASCII-files
+#' Import Raman measurements from Renishaw ASCII-files.
 #'
-#' import Raman measurements from Renishaw (possibly compressed) .txt file.
+#' Import Raman measurements from Renishaw (possibly compressed) `.txt` file.
 #'
 #' The file may be of any file type that can be read by
 #' [base::gzfile()] (i.e. text, or zipped by gzip, bzip2, xz or

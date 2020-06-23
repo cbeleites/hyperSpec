@@ -1,6 +1,7 @@
-#' JCAMP-DX Import for Shimadzu Library Spectra
+#' @title JCAMP-DX Import for Shimadzu Library Spectra.
 #'
-#' this is a first rough import function for JCAMP-DX spectra.
+#' @description
+#' This is a first rough import function for JCAMP-DX spectra.
 #'
 #' So far, AFFN and PAC formats are supported for simple XYDATA, DATA TABLEs and PEAK TABLEs.
 #'
@@ -55,7 +56,7 @@ read.jdx <- function(filename = stop("filename is needed"), encoding = "",
   if (length(datastart) == 0L) stop("No data found: unsupported data type.")
 
   dataend <- grep("^[[:blank:]]*##", jdx)
-  dataend <- sapply(datastart, function(s) dataend [which(dataend > s)[1]]) - 1
+  dataend <- sapply(datastart, function(s) dataend[which(dataend > s)[1]]) - 1
 
   spcend <- grep("^[[:blank:]]*##END=[[:blank:]]*$", jdx) - 1
 

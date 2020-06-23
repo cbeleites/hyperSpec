@@ -1,4 +1,4 @@
-#' Math Functions for hyperSpec Objects
+#' Math Functions for `hyperSpec` Objects.
 #'
 #' Mathematical functions for hyperSpec Objects.
 #'

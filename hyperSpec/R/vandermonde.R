@@ -1,8 +1,8 @@
-#' Function evaluation on hyperSpec objects
+#' Function evaluation on `hyperSpec` objects.
 #'
-#' `vandermonde()` generates Vandermonde matrices, the hyperSpec method
-#' generates a hyperSpec object containing the van der Monde matrix of the
-#' wavelengths of a hyperSpec object.
+#' `vandermonde()` generates Vandermonde matrices, the `hyperSpec` method
+#' generates a `hyperSpec` object containing the van der Monde matrix of the
+#' wavelengths of a `hyperSpec` object.
 #'
 #' It is often numerically preferrable to map `wl(x)` to \[0, 1\], see the
 #' example.

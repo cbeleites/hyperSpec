@@ -1,5 +1,6 @@
-#' Getting and Setting the Wavelength Axis
-#' `wl` returns the wavelength axis, `wl<-` sets it.
+#' Getting and Setting the Wavelength Axis.
+#'
+#' `wl()` returns the wavelength axis, `wl<-` sets it.
 #'
 #' The wavelength axis of a `hyperSpec` object can be retrieved and
 #' replaced with `wl` and `wl<-`, respectively.

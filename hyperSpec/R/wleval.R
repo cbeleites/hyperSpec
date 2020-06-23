@@ -1,12 +1,12 @@
-#' Evaluate function on wavelengths of hyperSpec object
+#' Evaluate function on wavelengths of `hyperSpec` object.
 #'
 #' This is useful for generating certain types of baseline "reference spectra".
 #'
-#' @param x hyperSpec object
+#' @param x `hyperSpec` object
 #' @param ... hyperSpec method: expressions to be evaluated
 #' @param normalize.wl function to transorm the wavelengths before evaluating the polynomial (or
 #' other function). Use [hyperSpec::normalize01()] to map the wavelength range to the interval \[0, 1\].
-#' @return hyperSpec object containing one spectrum for each expression
+#' @return `hyperSpec` object containing one spectrum for each expression
 #' @export
 #' @seealso [hyperSpec::vanderMonde()] for  polynomials,
 #'

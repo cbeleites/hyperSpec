@@ -6,7 +6,9 @@
 
 
 
-#' Calibration- and Timeseries Plots, Depth-Profiles and the like
+#' Calibration Plots, Timeseries Plots, and Depth-Profiles.
+#'
+#' Calibration- and timeseries plots, depth-profiles and the like
 #' `plotc` plots intensities of a `hyperSpec` object over another
 #' dimension such as concentration, time, or a spatial coordinate.
 #'
@@ -21,8 +23,7 @@
 #' `func` given, then only the first wavelength's intensities are plotted
 #' and a warning is issued.
 #'
-#' The special column names `.rownames` and `.wavelength` may be
-#' used.
+#' The special column names `.rownames` and `.wavelength` may be used.
 #'
 #' The actual plotting is done by [lattice::xyplot()].
 #'

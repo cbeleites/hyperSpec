@@ -10,12 +10,13 @@
   hyperlist
 }
 
-#' Split a hyperSpec object according to groups
-#' `split` divides the `hyperSpec` object into a list of
+#' Split a `hyperSpec` object according to groups.
+#'
+#' `split()` divides the `hyperSpec` object into a list of
 #' `hyperSpec` objects according to the groups given by `f`.
 #'
 #' The `hyperSpec` objects in the list may be bound together again by
-#' `[bind] ("r", list_of_hyperSpec_objects)`.
+#' [`bind("r", list_of_hyperSpec_objects)`][bind()].
 #'
 #' @name split
 #' @rdname split

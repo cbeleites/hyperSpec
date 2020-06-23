@@ -1,4 +1,4 @@
-#' Merge additional extra data into an object
+#' Merge additional extra data into an object.
 #'
 #' Columns from `y` that are not in `x` are merged into `x`. Columns in `x` and
 #' `y` are considered equal if they have the same name, the same content, and

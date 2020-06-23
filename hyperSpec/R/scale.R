@@ -1,21 +1,21 @@
-#' Center and scale hyperSpec object
+#' Center and scale `hyperSpec` object.
 #'
-#' \code{link[base]{scale}}s the spectra matrix. `scale (x, scale = FALSE)` centers the data.
+#' Scales the spectra matrix. `scale(x, scale = FALSE)` centers the data.
 #'
-#' Package `scale` provides a fast alternative for `base::[scale][base::scale]`
+#' Package \pkg{scale} provides a fast alternative for [base::scale()]
 #'
 #' @name scale,hyperSpec-method
 #' @rdname scale
 #' @aliases scale scale-methods scale,hyperSpec-method
 #' @docType methods
 #' @param x the `hyperSpec` object
-#' @param center if `TRUE`, the data is centered to `colMeans (x)`, `FALSE`
+#' @param center if `TRUE`, the data is centered to `colMeans(x)`, `FALSE`
 #' suppresses centering. Alternatively, an object that can be converted to numeric of length
-#' `nwl (x)` by [base::as.matrix()] (e.g. hyperSpec object containing 1 spectrum) can
+#' `nwl(x)` by [base::as.matrix()] (e.g. hyperSpec object containing 1 spectrum) can
 #' specify the center spectrum.
 #' @param scale if `TRUE`, the data is scaled to have unit variance at each wavelength,
 #' `FALSE` suppresses scaling. Alternatively, an object that can be converted to numeric of
-#' length `nwl (x)` by [base::as.matrix()] (e.g. hyperSpec object containing 1 spectrum)
+#' length `nwl(x)` by [base::as.matrix()] (e.g. hyperSpec object containing 1 spectrum)
 #' can specify the center spectrum.
 #' @return the centered & scaled `hyperSpec` object
 #' @author C. Beleites

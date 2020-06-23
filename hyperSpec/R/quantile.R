@@ -21,8 +21,8 @@
 }
 
 #' @rdname mean_sd
-#' @return For hyperSpec object, `quantile` returns a hyperSpec object containing the
-#' respective quantile spectra.
+#' @return For `hyperSpec` object, `quantile()` returns a `hyperSpec` object
+#' containing the respective quantile spectra.
 #' @param probs the quantiles, see [stats::quantile()]
 #' @param names `"pretty"` results in percentages (like [stats::quantile()]'s
 #' `names = TRUE`), `"num"` results in the row names being `as.character (probs)`

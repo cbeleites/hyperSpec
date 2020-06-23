@@ -1,9 +1,11 @@
-#' Normalize numbers -> \[0, 1\]
+# @title normalization for mixed colors
+
+#' Normalize numbers to interval \[0, 1\].
 #'
-#' The input `x` is mapped to \[0, 1\] by subtracting the minimum and subsequently dividing by
-#' the maximum. If all elements of `x` are equal, 1 is returned.
+#' The input `x` is mapped to \[0, 1\] by subtracting the minimum and
+#' subsequently dividing by the maximum. If all elements of `x` are equal,
+#'  1 is returned.
 #'
-#' @title normalization for mixed colors
 #' @name normalize01
 #' @param x  vector with values to transform
 #' @param tolerance tolerance level for determining what is 0 and 1
@@ -23,7 +25,7 @@ setMethod(
     x <- sweep(x, 1, m, `-`)
     m <- apply(x, 1, max)
     x <- sweep(x, 1, m, `/`)
-    x [m < tolerance, ] <- 1
+    x[m < tolerance, ] <- 1
     x
   }
 )
@@ -76,7 +78,7 @@ setMethod(normalize01, signature(x = "hyperSpec"), function(x, ...) {
 
   test_that("matrix method", {
     m <- matrix(runif(12), 3)
-    m [3, ] <- 7
+    m[3, ] <- 7
 
     tmp.m <- normalize01(m)
 

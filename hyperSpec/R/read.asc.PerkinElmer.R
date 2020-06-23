@@ -1,4 +1,4 @@
-#' File import filter PerkinElmer ASCII spectra
+#' File import filter PerkinElmer ASCII spectra.
 #'
 #' Imports a single spectrum in PerkinElmer's ASCII format. This function is experimental.
 #'
@@ -31,7 +31,7 @@ read.asc.PerkinElmer <- function(file = stop("filename or connection needed"), .
   }
 
   ## Spectra values are stored
-  content <- content [-seq_len(startDATA)]
+  content <- content[-seq_len(startDATA)]
 
   spc <- read.txt.long(textConnection(content), header = FALSE, sep = "\t", ...)
   spc$filename <- NULL # not meaningful due to textConnection use

@@ -1,10 +1,10 @@
-#' Import functions for Kaiser Optical Systems .spc files
+#' Import functions for Kaiser Optical Systems `.spc` files.
 #'
-#' `read.spc.Kaiser` imports sets of .spc files written by Kaiser Optical Systems' Hologram
+#' `read.spc.Kaiser` imports sets of `.spc` files written by Kaiser Optical Systems' Hologram
 #' software.  It may also serve as an example how to write wrapper functions for `read.spc` to
-#' conveniently import specialized sets of .spc files.
+#' conveniently import specialized sets of `.spc` files.
 #'
-#' @title read Kaiser .spc files
+#' @title read Kaiser `.spc` files
 #' @export
 #' @rdname read-spc-Kaiser
 #' @param files If `glob = TRUE`, `filename` can contain wildcards.

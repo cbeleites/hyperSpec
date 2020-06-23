@@ -7,7 +7,8 @@
 
 
 
-#' Plotting Spectra
+#' Plotting Spectra.
+#'
 #' Plot the spectra of a `hyperSpec` object, i.e. intensity over
 #' wavelength. Instead of the intensity values of the spectra matrix summary
 #' values calculated from these may be used.

@@ -5,8 +5,12 @@
 ###  Format:
 ###  x y ... int (wl1)  int (wl2) ... int (wl p) z ...
 ###
-#' Import/export of hyperSpec objects to/from ASCII files
-#' A detailed discussion of hyperSpec's file import and export capabilities is given in vignette \quote{fileio}.
+
+#' Import/export of `hyperSpec` objects to/from ASCII files.
+#'
+#' @details
+#' A detailed discussion of \pkg{hyperSpec}'s file import and export
+#' capabilities is given in vignette `fileio`.
 #'
 #' Besides [base::save()] and [base::load()], two general ways to import and
 #' export data into `hyperSpec` objects exist.
@@ -17,7 +21,7 @@
 #'   which provides the functions [R.matlab::readMat()] and
 #'   [R.matlab::writeMat()].
 #'
-#'   hyperSpec comes with a number of pre-defined functions to import
+#'   \pkg{hyperSpec} comes with a number of pre-defined functions to import
 #'   manufacturer specific file formats. For details, see `vignette("fileio")`.
 #'
 #'   [hyperSpec::read.spc()] imports Thermo Galactic's .spc file
@@ -36,8 +40,7 @@
 #'
 #' For further information, see the examples below, `vignette("fileio")` and the documentation
 #' of [R.matlab::R.matlab()].
-#' @seealso `vignette("fileio")` and <http://hyperspec.r-forge.r-project.org/blob/fileio.pdf>,
-#' respectively
+#' @seealso `vignette("fileio")`
 #' @aliases read.txt.wide
 #' @rdname textio
 #' @param check.names handed to [utils::read.table()]. Make sure this is `FALSE`, if

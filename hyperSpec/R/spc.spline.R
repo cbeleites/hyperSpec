@@ -1,11 +1,10 @@
-#' Smoothing splines
-#'
-#' Spectral smoothing by splines
-#' @title Spectral smoothing by splines
-#' @param spc hyperSpec object
+#' @title Spectral smoothing by splines.
+#' @description
+#' Spectral smoothing by splines.
+#' @param spc `hyperSpec` object
 #' @param newx  wavelengh axis to interpolate on
 #' @param ... further parameters handed to [stats::smooth.spline()]
-#' @return hyperSpec object containing smoothed spectra
+#' @return `hyperSpec` object containing smoothed spectra
 #' @rdname spc-spline
 #' @author Claudia Beleites
 #' @seealso [hyperSpec::spc.loess()]

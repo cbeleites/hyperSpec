@@ -1,8 +1,8 @@
-#' map plot with colour overlay
+#' @title `qplotmap` with colour mixing for multivariate overlay.
+#' @description
+#' Map plot with colour overlay.
 #'
-#'
-#' @title qplotmap with colour mixing for multivariate overlay
-#' @param object hyperSpec object
+#' @param object `hyperSpec` object
 #' @param ... handed over to [hyperSpec::qmixlegend()] and
 #'   [hyperSpec::qmixtile()]
 #' @return invisible list with ggplot2 objects map and legend
@@ -46,9 +46,9 @@ qplotmixmap <- function(object, ...) {
   invisible(list(map = p, legend = l))
 }
 
-#' Plot multivariate data into colour channels
-#'
-#' plot graph with legend right of it
+#' @title Plot multivariate data into colour channels.
+#' @description
+#' Plot graph with legend right of it.
 #'
 #' @param p plot object
 #' @param l legend object
@@ -67,7 +67,8 @@ legendright <- function(p, l, legend.width = 8, legend.unit = "lines") {
   popViewport()
 }
 
-#' plot multivariate data into colour channels using [ggplot2::geom_tile()]
+#' @description
+#' Plot multivariate data into colour channels using [ggplot2::geom_tile()]
 #' @rdname qplotmix
 #' @param object matrix to be plotted with mixed colour channels
 #' @param purecol pure component colours, names determine legend labels
@@ -100,7 +101,8 @@ qmixtile <- function(object,
   p + scale_fill_identity() + theme(legend.position = "none")
 }
 
-#' `normalize.colrange()` normalizes the range of each column to [0, 1]
+#' @description
+#' `normalize.colrange()` normalizes the range of each column to \[0, 1\].
 #' @rdname qplotmix
 #' @export
 #'
@@ -128,7 +130,8 @@ normalize.colrange <- function(x, na.rm = TRUE, legend = FALSE, n = 100, ...) {
   }
 }
 
-#' `normalize.range()` normalizes the range of all columns to [0, 1]
+#' @description
+#' `normalize.range()` normalizes the range of all columns to \[0, 1\].
 #' @rdname qplotmix
 #' @export
 #'
@@ -148,7 +151,8 @@ normalize.range <- function(x, na.rm = TRUE, legend = FALSE, n = 100, ...) {
   }
 }
 
-#' `normalize.null()` does not touch the values
+#' @description
+#' `normalize.null()` does not touch the values.
 #' @rdname qplotmix
 #' @export
 #'
@@ -165,7 +169,9 @@ normalize.null <- function(x, na.rm = TRUE, legend = FALSE, n = 100, ...) {
     x
   }
 }
-#' `normalize.minmax()` normalizes the range of each column j to [min_j, max_j]
+
+#' @description
+#' `normalize.minmax()` normalizes the range of each column j to \[min_j, max_j\]
 #' @rdname qplotmix
 #' @export
 #' @param min numeric with value corresponding to "lowest" colour for each
@@ -198,6 +204,7 @@ normalize.minmax <- function(x, min = 0, max = 1, legend = FALSE, n = 100,
   }
 }
 
+#' @description
 #' legends for mixed colour plots
 #' @rdname qplotmix
 #' @param dx width of label bar
@@ -261,7 +268,7 @@ qmixlegend <- function(x, purecol, dx = 0.33, ny = 100, labels = names(purecol),
 }
 
 #' @rdname qplotmix
-#' @title multi channel colour mixing
+#' @title Multi channel colour mixing.
 #' @param x matrix with component intensities in columns
 #' @param against value to mix against
 #'                (for `sub = TRUE` only, 1 = white, 0 = black)

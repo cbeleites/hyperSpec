@@ -28,21 +28,25 @@
 setGeneric("rmmvnorm", .rmmvnorm)
 
 
-#' Multivariate normal random numbers
+#' Multivariate normal random numbers.
 #'
 #' Interface functions to use [mvtnorm::rmvnorm()] for
 #' [hyperSpec::hyperSpec-class()] objects.
 #'
-#' The `mvtnorm` method for hyperSpec objects supports producing multivariate normal data for
-#' groups with different mean but common covariance matrix, see the examples.
+#' The `mvtnorm` method for `hyperSpec` objects supports producing multivariate
+#' normal data for groups with different mean but common covariance matrix,
+#' see the examples.
 #'
 #' @param n vector giving the numer of cases to generate for each group
 #' @param mean matrix with mean cases in rows
-#' @param sigma common covariance matrix or array (`ncol (mean)` x `ncol (mean)` x `nrow (mean)`) with individual covariance matrices for the groups.
+#' @param sigma common covariance matrix or array
+#' (`ncol(mean)` x `ncol(mean)` x `nrow(mean)`) with individual covariance
+#' matrices for the groups.
 #' @export
 #' @seealso [mvtnorm::rmvnorm()]
 #'
-#' [hyperSpec::cov()] and [hyperSpec::pooled.cov()] about calculating  covariance of hyperSpec objects.
+#' [hyperSpec::cov()] and [hyperSpec::pooled.cov()] about calculating covariance
+#' of `hyperSpec` objects.
 #' @rdname rmmvnorm
 #' @aliases rmmvnorm rmmvnorm,hyperSpec-method
 #' @docType methods
@@ -59,7 +63,7 @@ setMethod(
   function(n, mean, sigma) {
     tmp <- .rmmvnorm(n, mean@data$spc, sigma)
 
-    data <- mean [attr(tmp, "group"), , drop = FALSE]
+    data <- mean[attr(tmp, "group"), , drop = FALSE]
     if (hy.getOption("gc")) gc()
     data@data$spc <- tmp
     if (hy.getOption("gc")) gc()
@@ -76,7 +80,7 @@ setMethod(
   function(n, mean, sigma) {
     tmp <- .rmmvnorm(n, mean@data$spc, sigma)
 
-    data <- mean [attr(tmp, "group"), , drop = FALSE]
+    data <- mean[attr(tmp, "group"), , drop = FALSE]
     if (hy.getOption("gc")) gc()
     data@data$spc <- tmp
     if (hy.getOption("gc")) gc()

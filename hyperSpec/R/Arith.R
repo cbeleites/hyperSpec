@@ -52,10 +52,12 @@
   })
 }
 
-#' Arithmetical Operators: `+`, `-`, `*`, `/`, `^`, `%%`, `%/%`, `%*%` for `hyperSpec` objects.
-#'
+#' @title Arithmetical Operators: `+`, `-`, `*`, `/`, `^`, `%%`, `%/%`, `%*%` for `hyperSpec` objects.
+#' @description
 #' The arithmetical operators `+`, `-`, `*`, `/`, `^`, `%%`, `%/%`, and `%*%`
 #' `hyperSpec` objects.
+#'
+#' @details
 #' You can use these operators in different ways:
 #' \preformatted{
 #' e1 + e2

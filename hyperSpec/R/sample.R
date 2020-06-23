@@ -35,7 +35,8 @@
 
 
 
-#' Random Samples and Permutations
+#' Random Samples and Permutations.
+#'
 #' Take a sample of the specified size from the elements of x with or without
 #' replacement.
 #'

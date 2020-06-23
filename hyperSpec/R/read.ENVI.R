@@ -251,13 +251,13 @@ split.line <- function(x, separator, trim.blank = TRUE) {
 
 
 
-#' @title Import of ENVI data as hyperSpec object
+#' @title Import of ENVI data as `hyperSpec` object.
 #'
 #' @description
 #' This function allows ENVI data import as `hyperSpec` object.
 #'
-#' `read.ENVI.Nicolet` should be a good starting point for writing custom
-#' wrappers for `read.ENVI` that take into account your manufacturer's
+#' `read.ENVI.Nicolet()` should be a good starting point for writing custom
+#' wrappers for `read.ENVI()` that take into account your manufacturer's
 #' special entries in the header file.
 #'
 #' @details

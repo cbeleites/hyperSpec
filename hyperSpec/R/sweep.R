@@ -17,7 +17,8 @@
   x
 }
 
-#' Sweep Summary Statistic out of an hyperSpec Object
+#' Sweep Summary Statistic out of an hyperSpec Object.
+#'
 #' [base::sweep()] for `hyperSpec` objects.
 #'
 #' Calls [base::sweep()] for the spectra matrix.

@@ -1,8 +1,10 @@
-#' Reads Shimadzu GCxGC-qMS - Spectra Files (.txt) as exported by Shimadzu Chrome Solution (v. 2.72)
+#' Reads Shimadzu GCxGC-qMS - Spectra Files (`.txt`).
+#'
+#' Reads Shimadzu GCxGC-qMS - Spectra Files (`.txt`) as exported by Shimadzu Chrome Solution (v. 2.72).
 #' Mass Spectrometer: Shimadzu GCMS-QP 2010 Ultra (www.shimadzu.com)
 #'
 #' @note This is a first rough import function and the functions may change without notice.
-#' @param filename file name and path of the .txt file
+#' @param filename file name and path of the `.txt` file
 #' @param encoding encoding of the txt file (used by [base::readLines()])
 #' @param quiet suppress printing of progress
 #' @return list of spectra tables

@@ -1,4 +1,5 @@
-#' Wavelength Binning
+#' Wavelength Binning.
+#'
 #' In order to reduce the spectral resolution and thus gain signal to noise
 #' ratio or to reduce the dimensionality of the spectral data set, the
 #' spectral resolution can be reduced.

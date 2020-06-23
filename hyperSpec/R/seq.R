@@ -1,18 +1,19 @@
 
-#' Sequence generation along spectra or wavelengths
-#' This function generates sequences along the spectra (rows) or wavelengths of hyperSpec objects.
+#' Sequence generation along spectra or wavelengths.
+#'
+#' This function generates sequences along the spectra (rows) or wavelengths of `hyperSpec` objects.
 #'
 #' Note that [wl2i()] generates sequences of indices along the wavelength axis.
 #'
-#' `seq` had to be implemented as S3 method as the generic has only \dots{} arguments (on which
+#' [seq()] had to be implemented as S3 method as the generic has only \dots{} arguments (on which
 #' no dispatch with differing types is possible).
 #'
 #' [base::seq_along()] is not generic, but returns a sequence of the `length` of the
-#' object. As hyperSpec provides a Method [length()], it can be used. The result is a
+#' object. As `hyperSpec` provides a Method [length()], it can be used. The result is a
 #' sequence of indices for the spectra.
 #'
 #' @aliases seq seq,hyperSpec-method
-#' @param x the hyperSpec object
+#' @param x the `hyperSpec` object
 #' @param from,to arguments handed to [base::seq.int()]
 #' @param ... arguments for [base::seq()], namely `by`, `length.out`
 #' @param index should a vector with indices be returned rather than a hyperSpec object?

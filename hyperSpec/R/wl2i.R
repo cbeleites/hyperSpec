@@ -24,9 +24,10 @@
   wavelength
 }
 
-#' Conversion between Wavelength and Spectra Matrix Column
-#' Index `wl2i` returns the column indices for the spectra matrix for the given wavelengths.
-#' `i2wl` converts column indices into wavelengths.
+#' Conversion between Wavelength and Spectra Matrix Column.
+#'
+#' Index `wl2i()` returns the column indices for the spectra matrix for the given wavelengths.
+#' `i2wl()` converts column indices into wavelengths.
 #'
 #' If `wavelength` is numeric, each of its elements is converted to the respective index.
 #' Values outside the range of `x@@wavelength` become `NA`.

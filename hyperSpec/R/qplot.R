@@ -1,8 +1,10 @@
-#' Spectra plotting with ggplot2
+#' @title Spectra plotting with \pkg{ggplot2}: `qplotspc().`
+#' @description
+#' Spectra plotting with \pkg{ggplot2}.
 #'
 #' These functions are still experimental and may change in future.
-#' @title Spectra plotting with ggplot2
-#' @param x hyperSpec object
+#'
+#' @param x `hyperSpec` object
 #' @param wl.range wavelength ranges to plot
 #' @param ... handed to [ggplot2::geom_line()]
 #' @param mapping see  [ggplot2::geom_line()]
@@ -96,15 +98,15 @@ qplotspc <- function(x,
   p
 }
 
-
-#' Spectra plotting with ggplot2
+#' @title Spectra plotting with \pkg{ggplot2}: `qplotmap().`
+#' @description
+#' Spectra plotting with \pkg{ggplot2}.
 #'
 #' These functions are still experimental and may change in future.
 #'
 #' Note that `qplotmap()` will currently produce the wrong scales if x or y are
 #' discrete.
 #'
-#' @title Spectra plotting with ggplot2
 #' @param object  hyperSpec object
 #' @param mapping see  [ggplot2::geom_tile()]
 #' @param ... handed to [ggplot2::geom_tile()]
@@ -177,7 +179,9 @@ qplotmap <- function(object,
 }
 
 
-#' Spectra plotting with ggplot2
+#' @title Spectra plotting with \pkg{ggplot2}: `qplotc().`
+#' @description
+#' Spectra plotting with \pkg{ggplot2}.
 #'
 #' These functions are still experimental and may change in future.
 #' @title Spectra plotting with ggplot2

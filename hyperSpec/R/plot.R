@@ -78,10 +78,9 @@
 #' @export
 setGeneric("plot")
 
-#' Plotting hyperSpec Objects
+#' Plotting `hyperSpec` Objects.
 #'
-#' Plotting `hyperSpec` objects. The `plot` method for
-#' `hyperSpec` objects is a switchyard to [plotspc()],
+#' The `plot` method for `hyperSpec` objects is a switchyard to [plotspc()],
 #' [plotmap()], and [plotc()].
 #'
 #' It also supplies some convenient abbrevations for much used plots.

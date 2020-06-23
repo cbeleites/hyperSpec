@@ -8,15 +8,14 @@
 }
 
 
-#' subset for hyperSpec object
+#' Subset for `hyperSpec` object.
 #'
-#' @title subset
 #' @name subset
-#' @param x hyperSpec object
+#' @param x `hyperSpec` object
 #' @param ... handed to [base::subset()] (data.frame method)
 #' @docType methods
 #' @aliases subset subset,hyperSpec-method
-#' @return hyperSpec object containing the respective subset of spectra.
+#' @return `hyperSpec` object containing the respective subset of spectra.
 #' @author Claudia Beleites
 #' @seealso [base::subset()]
 #' @export

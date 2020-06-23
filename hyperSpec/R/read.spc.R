@@ -622,19 +622,20 @@ raw.split.nul <- function(raw, trunc = c(TRUE, TRUE), firstonly = FALSE, paste.c
 #####################################################################################################
 
 
-#' Import for Thermo Galactic's spc file format
-#' These functions allow to import Thermo Galactic/Grams .spc files.
+#' Import for Thermo Galactic's `spc` file format.
 #'
-#' @param filename The complete file name of the .spc file.
-#' @param keys.hdr2data,keys.log2data character vectors with the names of parameters in the .spc
+#' These functions allow to import Thermo Galactic/Grams `.spc` files.
+#'
+#' @param filename The complete file name of the `.spc` file.
+#' @param keys.hdr2data,keys.log2data character vectors with the names of parameters in the `.spc`
 #' file's log block (log2xxx) or header (hdr2xxx) that should go into the extra data (yyy2data) of
 #' the returned hyperSpec object.
 #'
-#' All header fields specified in the .spc file format specification (see
+#' All header fields specified in the `.spc` file format specification (see
 #'   below) are imported and can be referred to by their de-capitalized names.
-#' @param log.txt Should the text part of the .spc file's log block be read?
+#' @param log.txt Should the text part of the `.spc` file's log block be read?
 #' @param log.bin,log.disk Should the normal and on-disk binary parts of the
-#'   .spc file's log block be read?  If so, they will be put as raw vectors
+#'   `.spc` file's log block be read?  If so, they will be put as raw vectors
 #'   into the hyperSpec object's log.
 #' @param hdr A list with fileheader fields that overwrite the settings of
 #'   actual file's header.
@@ -650,18 +651,18 @@ raw.split.nul <- function(raw, trunc = c(TRUE, TRUE), firstonly = FALSE, paste.c
 #'   result is a hyperSpec object.
 #'
 #' `read.spc.KaiserMap` returns a hyperSpec object with data columns x,
-#'   y, and z containing the stage position as recorded in the .spc files'
+#'   y, and z containing the stage position as recorded in the `.spc` files'
 #'   log.
 #' @note Only a restricted set of test files was available for development.
 #'   Particularly, the w-planes feature could not be tested.
 #'
-#' If you have .spc files that cannot be read with these function, don't
+#' If you have `.spc` files that cannot be read with these function, don't
 #'   hesitate to contact the package maintainer with your code patch or asking
 #'   advice.
 #' @author C. Beleites
 #' @rdname read-spc
 #' @seealso [hyperSpec::textio()]
-#' @references Source development kit and file format specification of .spc
+#' @references Source development kit and file format specification of `.spc`
 #'   files.
 #' @export
 #' @keywords IO file

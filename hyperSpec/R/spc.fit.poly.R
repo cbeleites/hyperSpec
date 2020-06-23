@@ -1,8 +1,10 @@
-#' Polynomial Baseline Fitting
+#' Polynomial Baseline Fitting.
+#'
 #' These functions fit polynomal baselines.
 #'
+#' @details
 #' Both functions fit polynomials to be used as baselines. If `apply.to`
-#' is `NULL`, a hyperSpec object with the polynomial coefficients
+#' is `NULL`, a `hyperSpec` object with the polynomial coefficients
 #' is returned, otherwise the polynomials are evaluated on the spectral range
 #' of `apply.to`.
 #'
@@ -12,14 +14,14 @@
 #'
 #' @rdname baselines
 #' @concept baseline
-#' @param fit.to hyperSpec object on which the baselines are fitted
-#' @param apply.to hyperSpec object on which the baselines are evaluted
-#'   If `NULL`, a hyperSpec object containing the polynomial
+#' @param fit.to `hyperSpec` object on which the baselines are fitted
+#' @param apply.to `hyperSpec` object on which the baselines are evaluted
+#'   If `NULL`, a `hyperSpec` object containing the polynomial
 #'   coefficients rather than evaluted baselines is returned.
 #' @param poly.order order of the polynomial to be used
 #' @param offset.wl should the wavelength range be mapped to -> \[0, delta wl\]?
 #' This enhances numerical stability.
-#' @return hyperSpec object containing the baselines in the spectra
+#' @return `hyperSpec` object containing the baselines in the spectra
 #'   matrix, either as polynomial coefficients or as polynomials evaluted on
 #'   the spectral range of `apply.to`
 #' @author C. Beleites
@@ -124,7 +126,7 @@ spc.fit.poly <- function(fit.to, apply.to = NULL, poly.order = 1,
   })
 }
 
-#'
+#' @details
 #' `spc.fit.poly.below()` tries to fit the baseline on appropriate spectral
 #' ranges of the spectra in `fit.to`.  For details, see the
 #' `vignette("baseline")`.

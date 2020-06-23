@@ -1,4 +1,5 @@
-#' Paracetamol Spectrum
+#' Paracetamol Spectrum.
+#'
 #' A Raman spectrum of a paracetamol tablet.
 #'
 #'
