@@ -955,6 +955,51 @@ class(merge(flu, flu.ref))
 class(merge(flu.ref, flu))
 ```
 
+## Splitting an Object, and Binding a List of `hyperSpec`{.r} Objects
+
+\mFun{`split()`{.r}}
+A `hyperSpec`{.r} object may also be split into a list of `hyperSpec`{.r} objects:
+
+```{r split}
+clusters <- split(chondro, chondro$clusters)
+clusters
+```
+
+\mFun{`rbind()`{.r}}
+Splitting can be reversed by `rbind()`{.r} (see section \@ref(sec:bind)).
+\mFun{`collapse()`{.r}}
+Another, similar way to combine a number of `hyperSpec`{.r} objects with different wavelength axes or extra data columns is `collapse()`{.r} (see section \@ref(sec:collapse)).
+
+Both `rbind()`{.r} and `collapse()`{.r} take care that factor levels are expanded as necessary:
+
+```{r}
+lacunae <- droplevels(chondro[chondro$clusters == "lacuna" & !is.na(chondro$clusters)])
+summary(lacunae$clusters)
+```
+```{r}
+cells <- droplevels(chondro[chondro$clusters == "cell" & !is.na(chondro$clusters)])
+summary(cells$clusters)
+```
+```{r}
+summary(rbind(cells, lacunae)$clusters)
+```
+```{r}
+summary(collapse(cells, lacunae)$clusters)
+```
+
+## Factor columns in `hyperSpec`{.r} Objects: dropping factor levels that are not needed
+
+\mFun{`droplevels()`{.r}}
+For subsections of `hyperSpec`{.r} objects that do not contain all levels of a factor column, `droplevels()`{.r} drops the "unpopulated" levels:
+
+```{r droplevels}
+tmp <- chondro[1:50]
+table(tmp$clusters)
+```
+```{r droplevels-2}
+tmp <- droplevels(tmp)
+table(tmp$clusters)
+```
 
 # Plotting {#plotting-hyperspec}
 
@@ -1769,54 +1814,6 @@ CAPTION <- "The results of the cluster analysis: the the mean spectra.  "
 means <- aggregate(chondro, by = chondro$clusters, mean_pm_sd)
 plot(means, col = cluster.cols, stacked = ".aggregate", fill = ".aggregate")
 ```
-
-
-## Factor columns in `hyperSpec`{.r} Objects: dropping factor levels that are not needed
-
-\mFun{`droplevels()`{.r}}
-For subsections of `hyperSpec`{.r} objects that do not contain all levels of a factor column, `droplevels()`{.r} drops the "unpopulated" levels:
-
-```{r droplevels}
-tmp <- chondro[1:50]
-table(tmp$clusters)
-```
-```{r droplevels-2}
-tmp <- droplevels(tmp)
-table(tmp$clusters)
-```
-
-## Splitting an Object, and Binding a List of `hyperSpec`{.r} Objects
-
-\mFun{`split()`{.r}}
-A `hyperSpec`{.r} object may also be split into a list of `hyperSpec`{.r} objects:
-
-```{r split}
-clusters <- split(chondro, chondro$clusters)
-clusters
-```
-
-\mFun{`rbind()`{.r}}
-Splitting can be reversed by `rbind()`{.r} (see section \@ref(sec:bind)).
-\mFun{`collapse()`{.r}}
-Another, similar way to combine a number of `hyperSpec`{.r} objects with different wavelength axes or extra data columns is `collapse()`{.r} (see section \@ref(sec:collapse)).
-
-Both `rbind()`{.r} and `collapse()`{.r} take care that factor levels are expanded as necessary:
-
-```{r}
-lacunae <- droplevels(chondro[chondro$clusters == "lacuna" & !is.na(chondro$clusters)])
-summary(lacunae$clusters)
-```
-```{r}
-cells <- droplevels(chondro[chondro$clusters == "cell" & !is.na(chondro$clusters)])
-summary(cells$clusters)
-```
-```{r}
-summary(rbind(cells, lacunae)$clusters)
-```
-```{r}
-summary(collapse(cells, lacunae)$clusters)
-```
-
 
 
 \printindex
