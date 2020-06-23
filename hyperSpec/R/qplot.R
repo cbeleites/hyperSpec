@@ -14,6 +14,8 @@
 #' @param debuglevel if > 0, additional debug output is produced
 #' @return a [ggplot2::ggplot()] object
 #' @author Claudia Beleites
+#' @concept ggplot2
+#' @concept plots
 #' @export
 #' @md
 #' @seealso [plotspc()]
@@ -118,6 +120,8 @@ qplotspc <- function(x,
 #' @export
 #' @md
 #' @author Claudia Beleites
+#' @concept ggplot2
+#' @concept plots
 #' @seealso [plotmap()]
 #'
 #'   [ggplot2::ggplot()], [ggplot2::geom_tile()]
@@ -196,6 +200,8 @@ qplotmap <- function(object,
 #'   [ggplot2::geom_point()] instead of [ggplot2::ggplot()].
 #' @return a [ggplot2::ggplot()] object
 #' @author Claudia Beleites
+#' @concept ggplot2
+#' @concept plots
 #' @md
 #' @seealso [plotc()]
 #'
