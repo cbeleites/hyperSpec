@@ -1,48 +1,64 @@
-
-
-#' @rdname read.asc.Andor
-#' @export
+#' @name deprecated
+#' @title Deprecated and defunct functions.
+#' @description Deprecated and defunct functions. You should not use these.
+#' See section "Details" for proposed replacement.
+#'
+#' @param ... Arguments passed to appropriate replacement function.
+#'       (See the description of that function).
+#'
 #' @keywords internal
+#' @concept deprecated
+NULL
+
+#' @rdname deprecated
+#' @details
+#' - Instead of `scan.asc.Andor()` use [read.asc.Andor()].
+#' @export
 scan.asc.Andor <- function(...) {
   .Deprecated("read.asc.Andor")
   read.asc.Andor(...)
 }
 
-#' @rdname read.txt.Renishaw
+#' @rdname deprecated
+#' @details
+#' - Instead of `scan.txt.Renishaw()` use [read.txt.Renishaw()].
 #' @export
-#' @keywords internal
 scan.txt.Renishaw <- function(...) {
   .Deprecated("read.txt.Renishaw()")
   read.txt.Renishaw(...)
 }
 
-#' @rdname read.txt.Renishaw
+#' @rdname deprecated
+#' @details
+#' - Instead of `scan.zip.Renishaw()` use [read.zip.Renishaw()].
 #' @export
-#' @keywords internal
 scan.zip.Renishaw <- function(...) {
-  .Deprecated("read.(zip.Renishaw)")
+  .Deprecated("read.zip.Renishaw())")
   read.zip.Renishaw(...)
 }
 
-#' @rdname read.txt.Witec
+#' @rdname deprecated
+#' @details
+#' - Instead of `scan.txt.Witec()` use [read.txt.Witec()].
 #' @export
-#' @keywords internal
 scan.txt.Witec <- function(...) {
   .Deprecated("read.txt.Witec()")
   read.txt.Witec(...)
 }
 
-#' @rdname read.txt.Witec
+#' @rdname deprecated
+#' @details
+#' - Instead of `scan.dat.Witec()` use [read.dat.Witec()].
 #' @export
-#' @keywords internal
 scan.dat.Witec <- function(...) {
-  .Deprecated("read.(dat.Witec)")
+  .Deprecated("read.dat.Witec()")
   read.dat.Witec(...)
 }
 
-#' @rdname read.txt.Witec
+#' @rdname deprecated
+#' @details
+#' - Instead of `scan.txt.Witec.Graph()` use [read.txt.Witec.Graph()].
 #' @export
-#' @keywords internal
 scan.txt.Witec.Graph <- function(...) {
   .Deprecated("read.txt.Witec.Graph()")
   read.txt.Witec.Graph(...)
@@ -51,10 +67,12 @@ scan.txt.Witec.Graph <- function(...) {
 
 #### DEFUNCT ##################################################################################################
 
+#' @rdname deprecated
+#' @details
+#' - Instead of `read.cytomat()` use [read.mat.Cytospec()].
 #' @export
-#' @rdname read.mat.Cytospec
 read.cytomat <- function(...) {
-  .Defunct("read.mat.Cytospec",
+  .Defunct("read.cytomat",
     package = "hyperSpec",
     msg = "read.mat.Cytospec is now defunct.\nPlease use read.mat.Cytospec instead."
   )
