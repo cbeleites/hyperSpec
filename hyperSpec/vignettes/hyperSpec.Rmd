@@ -731,7 +731,7 @@ spc <- new("hyperSpec", spc = spectra.matrix, wavelength = wavelength.vector, da
 
 The most frequently needed arguments are:
 
--------------------- ---------------------------------------------------------------------------------
+---------------- ---------------------------------------------------------------------------------
 **`spc`**        The spectra matrix; may be a matrix or a `data.frame`.
 
 **`wavelength`** The wavelength axis as a numeric vector.
@@ -741,7 +741,7 @@ The most frequently needed arguments are:
 **`label`**      A list with the proper labels.
                      Do not forget the wavelength axis label in  `$.wavelength`{.r} and the
                      spectral intensity axis label in `$spc`{.r}.
--------------------- ---------------------------------------------------------------------------------
+---------------- ---------------------------------------------------------------------------------
 
 More information about converting existing data into `hyperSpec`{.r} objects can be found in `vignette ("fileio")`{.r}.
 
