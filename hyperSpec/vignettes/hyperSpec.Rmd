@@ -278,9 +278,9 @@ To modify a `hyperSpec` object, the corresponding functions are `[<-`{.r} and `[
 * See \@ref(sec:square-brack-replace) and \@ref(sec:accessing-extra-data) for even more ways to specify the indices.
 
 
-## Access Functions for **_hyperSpec_** Objects {#sec:fast-access-parts}
+## Summary of Extraction Functions for **_hyperSpec_** Objects (getters) {#sec:getters}
 
-Table \@ref(tab:getters) shows the main functions that can be used with class `hyperSpec`{.r} to access the object ("getters").  Table \@ref(tab:setters) shows the main functions that can be used with class `hyperSpec`{.r} to modify the object ("setters").
+Table \@ref(tab:getters) shows the main functions that can be used with class `hyperSpec`{.r} to access the object ("getters").
 
 <!-- ---------------------------------------------------------------------- -->
 : **(\#tab:getters)** Getter functions for the slots of `hyperSpec`{.r} objects
@@ -305,6 +305,10 @@ Table \@ref(tab:getters) shows the main functions that can be used with class `h
 
 One can see that there are several ways to get the spectral data: `x$spc`{.r}, `x[[]]`{.r}, `x$..`{.r}.  The first two forms return a matrix, while the last returns a `data.frame`.
 
+## Summary of Replacement Functions for **_hyperSpec_** Objects (setters) {#sec:setters}
+
+  Table \@ref(tab:setters) shows the main functions that can be used with class `hyperSpec`{.r} to modify the object ("setters").
+  
 <!-- ---------------------------------------------------------------------- -->
 : **(\#tab:setters)** Setter functions for the slots of `hyperSpec`{.r} objects
 
