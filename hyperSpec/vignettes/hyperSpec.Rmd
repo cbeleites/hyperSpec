@@ -1704,30 +1704,27 @@ Keep in mind, though, that we cannot be sure how much *useful* information was d
 This kind of noise reduction may influence further modeling of the data. Mathematically speaking, the rank of the new `r nrow (chondro)` $×$ `r nwl (chondro)` spectra matrix is only 10.
 
 
-## Data Analysis Methods using a matrix e.g., Hierarchical Cluster Analysis {#HCA}
+## Hierarchical Cluster Analysis {#HCA}
 
 \mFun{`[[]]`{.r}}
-Some functions expect their input data in a matrix, so either `as.matrix(object)`{.r} or the abbreviation `object[[]]`{.r} can be used:
+Some `R` functions expect their input data in a matrix, including those related to HCA. Conveniently, the `[[]]`{.r} extraction function returns a matrix.
 
 ```{r hca}
 dist <- pearson.dist(chondro[[]])
 ```
 
-Again, many such functions coerce the data to a matrix automatically, so the `hyperSpec`{.r} object can be
-handed over:
+Again, many such functions coerce the data to a matrix automatically, so the `hyperSpec`{.r} object can be handed over without the explicit conversion above (as we saw for PCA):
 
 ```{r hca-asmatrix}
 dist <- pearson.dist(chondro)
 dendrogram <- hclust(dist, method = "ward.D")
 ```
 
-
-
 ```{r include = FALSE}
 CAPTION <- "The results of the cluster analysis: the dendrogram.  "
 ```
 
-```{r dend, fig.cap = CAPTION, fig.width = 7}
+```{r dend, fig.cap = CAPTION, fig.width = 7, fig.height = 7}
 plot(dendrogram)
 ```
 
@@ -1743,9 +1740,8 @@ As the cluster membership was stored as factor, the levels can be meaningful nam
 ```{r clustname}
 levels(chondro$clusters) <- c("matrix", "lacuna", "cell")
 ```
+
 Then the result may be plotted (Figure \@ref(fig:clust-map)):
-
-
 
 ```{r include = FALSE}
 CAPTION <- "The results of the cluster analysis: the map of the 3 clusters.  "
