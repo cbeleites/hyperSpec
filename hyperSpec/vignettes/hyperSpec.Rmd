@@ -1701,25 +1701,6 @@ Keep in mind, though, that we cannot be sure how much *useful* information was d
 This kind of noise reduction may influence further modeling of the data. Mathematically speaking, the rank of the new `r nrow (chondro)` $×$ `r nwl (chondro)` spectra matrix is only 10.
 
 
-## Data Analysis using long-format `data.frame` e.g., plotting with **_ggplot2_** {#sec:as.long.df}
-
-\mFun{`as.long.df()`{.r}}
-Some functions need the data being an *unstacked* or *long-format* `data.frame`{.r}.
-Function `as.long.df()`{.r} is the appropriate conversion function.
-
-
-```{r include = FALSE}
-CAPTION <- "A plot of spectrum created with **ggplot2**.  "
-```
-
-```{r ggplot, fig.cap = CAPTION}
-library(ggplot2)
-ggplot(as.long.df(chondro[1]), aes(x = .wavelength, y = spc)) + geom_line()
-```
-
-
-
-
 ## Data Analysis Methods using a matrix e.g., Hierarchical Cluster Analysis {#HCA}
 
 \mFun{`[[]]`{.r}}
