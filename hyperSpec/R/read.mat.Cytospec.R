@@ -1,22 +1,17 @@
-#' Import for Cytospec mat files
+#' Import for Cytospec `mat` files.
 #'
-#' These functions allow to import .mat (Matlab V5) files written by Cytospec.
+#' These functions allow to import `.mat` (Matlab V5) files written by Cytospec.
 #'
-#' \code{read.cytomat} has been renamed to \code{read.mat.Cytospec} and is now
-#' deprecated. Use \code{read.mat.Cytospec} instead.
-#'
-#' @param file The complete file name (or a connection to) the .mat file.
-#' @param keys2data specifies which elements of the \code{Info} should be
+#' @param file The complete file name (or a connection to) the `.mat` file.
+#' @param keys2data specifies which elements of the `Info` should be
 #'   transferred into the extra data
-#' @param blocks which blocks should be read? \code{TRUE} reads all blocks.
-#' @param ... \code{read.cytomat} for now hands all arguments to
-#'   \code{read.mat.Cytospec} for backwards compatibility.
+#' @param blocks which blocks should be read? `TRUE` reads all blocks.
 #' @note This function is an ad-hoc implementation and subject to changes.
-#' @return hyperSpec object if the file contains a single spectra block,
-#'   otherwise a list with one hyperSpec object for each block.
+#' @return `hyperSpec` object if the file contains a single spectra block,
+#'   otherwise a list with one `hyperSpec` object for each block.
 #' @author C. Beleites
 #' @rdname read.mat.Cytospec
-#' @seealso \code{R.matlab::readMat}
+#' @seealso [R.matlab::readMat()]
 #' @export
 #' @keywords IO file
 read.mat.Cytospec <- function(file, keys2data = FALSE, blocks = TRUE) {
@@ -32,8 +27,8 @@ read.mat.Cytospec <- function(file, keys2data = FALSE, blocks = TRUE) {
 
   ## get wavelength information
   fileinfo <- (tmp$Info[[1]])
-  lwn <- as.numeric(fileinfo [grep("LWN", fileinfo) - 1])
-  hwn <- as.numeric(fileinfo [grep("VWN", fileinfo) - 1])
+  lwn <- as.numeric(fileinfo[grep("LWN", fileinfo) - 1])
+  hwn <- as.numeric(fileinfo[grep("VWN", fileinfo) - 1])
   wn <- seq(lwn, hwn, length.out = dim(spc)[3])
 
   ## x + y coordinates
@@ -71,7 +66,7 @@ read.mat.Cytospec <- function(file, keys2data = FALSE, blocks = TRUE) {
 }
 
 .block2hyperSpec <- function(spc, df, wn, block, file) {
-  spc <- spc [, , , block]
+  spc <- spc[, , , block]
 
   d <- dim(spc)
   dim(spc) <- c(d [1] * d[2], d [3])

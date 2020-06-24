@@ -6,36 +6,37 @@
 
 
 
-#' Calibration- and Timeseries Plots, Depth-Profiles and the like
-#' \code{plotc} plots intensities of a \code{hyperSpec} object over another
+#' Calibration Plots, Timeseries Plots, and Depth-Profiles.
+#'
+#' Calibration- and timeseries plots, depth-profiles and the like
+#' `plotc` plots intensities of a `hyperSpec` object over another
 #' dimension such as concentration, time, or a spatial coordinate.
 #'
-#' If \code{func} is not \code{NULL}, the summary characteristic is calculated
-#' first by applying \code{func} with the respective arguments (in
-#' \code{func.args}) to each of the spectra. If \code{func} returns more than
+#' If `func` is not `NULL`, the summary characteristic is calculated
+#' first by applying `func` with the respective arguments (in
+#' `func.args`) to each of the spectra. If `func` returns more than
 #' one value (for each spectrum), the different values end up as different
 #' wavelengths.
 #'
 #' If the wavelength is not used in the model specification nor in
-#' \code{groups}, nor for specifying \code{subsets}, and neither is
-#' \code{func} given, then only the first wavelength's intensities are plotted
+#' `groups`, nor for specifying `subsets`, and neither is
+#' `func` given, then only the first wavelength's intensities are plotted
 #' and a warning is issued.
 #'
-#' The special column names \code{.rownames} and \code{.wavelength} may be
-#' used.
+#' The special column names `.rownames` and `.wavelength` may be used.
 #'
-#' The actual plotting is done by \code{\link[lattice]{xyplot}}.
+#' The actual plotting is done by [lattice::xyplot()].
 #'
-#' @param object the \code{hyperSpec} object
+#' @param object the `hyperSpec` object
 #' @param model the lattice model specifying the plot
 #' @param func function to compute a summary value from the spectra to be
 #'   plotted instead of single intensities
-#' @param func.args further arguments to \code{func}
-#' @param groups grouping variable, e.g. \code{.wavelength} if intensities of
+#' @param func.args further arguments to `func`
+#' @param groups grouping variable, e.g. `.wavelength` if intensities of
 #'   more than one wavelength should be plotted
-#' @param ... further arguments to \code{\link[lattice]{xyplot}}.
+#' @param ... further arguments to [lattice::xyplot()].
 #' @author C. Beleites
-#' @seealso \code{\link[lattice]{xyplot}}
+#' @seealso [lattice::xyplot()]
 #' @keywords hplot
 #' @export
 #' @import graphics

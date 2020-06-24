@@ -24,35 +24,36 @@
   wavelength
 }
 
-#' Conversion between Wavelength and Spectra Matrix Column
-#' Index \code{wl2i} returns the column indices for the spectra matrix for the given wavelengths.
-#' \code{i2wl} converts column indices into wavelengths.
+#' Conversion between Wavelength and Spectra Matrix Column.
 #'
-#' If \code{wavelength} is numeric, each of its elements is converted to the respective index.
-#' Values outside the range of \code{x@@wavelength} become \code{NA}.
+#' Index `wl2i()` returns the column indices for the spectra matrix for the given wavelengths.
+#' `i2wl()` converts column indices into wavelengths.
 #'
-#' If the range is given as a formula (i.e. \code{start ~ end}, a sequence
+#' If `wavelength` is numeric, each of its elements is converted to the respective index.
+#' Values outside the range of `x@@wavelength` become `NA`.
+#'
+#' If the range is given as a formula (i.e. `start ~ end`, a sequence
 #'
 #' index corresponding to start : index corresponding to end
 #'
 #' is returned. If the wavelengths are not ordered, that may lead to chaos. In this case, call
-#' \code{\link[hyperSpec]{orderwl}} first.
+#' [hyperSpec::orderwl()] first.
 #'
-#' Two special variables can be used: \code{min} and \code{max}, corresponding to the lowest and
-#' highest wavelength of \code{x}, respectively.
+#' Two special variables can be used: `min` and `max`, corresponding to the lowest and
+#' highest wavelength of `x`, respectively.
 #'
 #' start and end may be complex numbers. The resulting index for a complex x is then
 #'
 #' index (Re (x)) + Im (x)
 #'
 #' @aliases wl2i
-#' @param x a \code{hyperSpec} object
+#' @param x a `hyperSpec` object
 #' @param wavelength the wavelengths to be converted into column indices,
 #'   either numeric or a formula, see details.
 #' @param i the column indices into the spectra matrix for which the
 #'   wavelength is to be computed
 #' @param unlist if multiple wavelength ranges are given, should the indices be unlisted or kept in a list?
-#' @return A numeric containing the resulting indices for \code{wl2i}
+#' @return A numeric containing the resulting indices for `wl2i`
 #' @author C. Beleites
 #' @export
 #' @examples
@@ -228,7 +229,7 @@ wl2i <- function(x, wavelength = stop("wavelengths are required."), unlist = TRU
 
 #' @rdname wl2i
 #' @aliases i2wl
-#' @return \code{i2wl} returns a numeric with the wavelengths
+#' @return `i2wl` returns a numeric with the wavelengths
 #' @export
 #' @examples
 #'

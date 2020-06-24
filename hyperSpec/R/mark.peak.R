@@ -1,9 +1,9 @@
-#' Mark peak
+#' Mark peak.
 #'
-#' Marks location of the \emph{first} spectrum at the data point closest to the
+#' Marks location of the *first* spectrum at the data point closest to the
 #' specified position on the current plot.
 #'
-#' @param spc the \code{hyperSpec} object
+#' @param spc the `hyperSpec` object
 #' @param xpos position of the peak(s) in current x-axis units
 #' @param col color of the markers and text
 #'
@@ -11,8 +11,8 @@
 #' @author R. Kiselev
 #' @export
 #' @examples
-#' plot(faux_cell [7])
-#' markpeak(faux_cell [7], 1662)
+#' plot(faux_cell[7])
+#' markpeak(faux_cell[7], 1662)
 markpeak <- function(spc, xpos, col = "red") {
   chk.hy(spc)
   validObject(spc)

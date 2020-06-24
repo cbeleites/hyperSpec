@@ -1,9 +1,8 @@
-#' Convert Principal Component Decomposition or the like into a hyperSpec
-#' Object
+#' Convert Principal Component Decomposition or the like into a `hyperSpec` Object.
 #'
 #' Decomposition of the spectra matrix is a common procedure in chemometric
-#' data analysis. \code{scores} and \code{loadings} convert the result matrices
-#' into new \code{hyperSpec} objects.
+#' data analysis. `scores` and `loadings` convert the result matrices
+#' into new `hyperSpec` objects.
 #'
 #' Multivariate data are frequently decomposed by methods like principal
 #' component analysis, partial least squares, linear discriminant analysis, and
@@ -16,49 +15,48 @@
 #'
 #' The obtained latent variables are spectra-like objects: a latent variable
 #' has a coefficient for each wavelength. If such a matrix (with the same
-#' number of columns as \code{object} has wavelengths) is given to
-#' \code{decomposition} (also setting \code{scores = FALSE}), the spectra
-#' matrix is replaced by \code{x}. Moreover, all columns of \code{object@@data}
-#' that did not contain the same value for all spectra are set to \code{NA}.
-#' Thus, for the resulting \code{hyperSpec} object, \code{\link{plotspc}} and
-#' related functions are meaningful. \code{\link[hyperSpec]{plotmap}} cannot be
+#' number of columns as `object` has wavelengths) is given to
+#' `decomposition` (also setting `scores = FALSE`), the spectra
+#' matrix is replaced by `x`. Moreover, all columns of `object@@data`
+#' that did not contain the same value for all spectra are set to `NA`.
+#' Thus, for the resulting `hyperSpec` object, [plotspc()] and
+#' related functions are meaningful. [hyperSpec::plotmap()] cannot be
 #' applied as the loadings are not laterally resolved.
 #'
-#' The scores matrix needs to have the same number of rows as \code{object} has
-#' spectra. If such a matrix is given, \code{decomposition} will replace the
-#' spectra matrix is replaced by \code{x} and \code{object@@wavelength} by
-#' \code{wavelength}. The information related to each of the spectra is
-#' retained. For such a \code{hyperSpec} object, \code{\link{plotmap}} and
-#' \code{\link{plotc}} and the like can be applied. It is also possible to use
+#' The scores matrix needs to have the same number of rows as `object` has
+#' spectra. If such a matrix is given, `decomposition` will replace the
+#' spectra matrix is replaced by `x` and `object@@wavelength` by
+#' `wavelength`. The information related to each of the spectra is
+#' retained. For such a `hyperSpec` object, [plotmap()] and
+#' [plotc()] and the like can be applied. It is also possible to use
 #' the spectra plotting, but the interpretation is not that of the spectrum any
 #' longer.
 #'
-#' @param object A \code{hyperSpec} object.
-#' @param x matrix with the new content for \code{object@@data$spc}.
+#' @param object A `hyperSpec` object.
+#' @param x matrix with the new content for `object@@data$spc`.
 #'
-#'   Its size must correspond to rows (for \code{scores}) and to either columns
-#'   or rows (for \code{loadings}) of \code{object}.
-#' @param wavelength for a scores-like \code{x}: the new
-#'   \code{object@@wavelength}.
-#' @param label.wavelength The new label for the wavelength axis (if \code{x}
-#'   is scores-like). If not given, the label of \code{object} is kept.
+#'   Its size must correspond to rows (for `scores`) and to either columns
+#'   or rows (for `loadings`) of `object`.
+#' @param wavelength for a scores-like `x`: the new `object@@wavelength`.
+#' @param label.wavelength The new label for the wavelength axis (if `x`
+#'   is scores-like). If not given, the label of `object` is kept.
 #' @param label.spc The new label for the spectra matrix. If not given, the
-#'   label of \code{object} is kept.
-#' @param scores is \code{x} a scores-like matrix?
-#' @param retain.columns for loading-like decompostition (i.e. \code{x} holds
+#'   label of `object` is kept.
+#' @param scores is `x` a scores-like matrix?
+#' @param retain.columns for loading-like decompostition (i.e. `x` holds
 #'   loadings, pure component spectra or the like), the data columns need
 #'   special attention.
 #'
-#'   Columns with different values across the rows will be set to \code{NA} if
-#'   \code{retain.columns} is \code{TRUE}, otherwise they will be deleted.
+#'   Columns with different values across the rows will be set to `NA` if
+#'   `retain.columns` is `TRUE`, otherwise they will be deleted.
 #' @param ... ignored.
-#' @return A \code{hyperSpec} object, updated according to \code{x}
+#' @return A `hyperSpec` object, updated according to `x`
 #' @author C. Beleites
-#' @seealso See \code{\link{\%*\%}} for matrix multiplication of
-#'   \code{hyperSpec} objects.
+#' @seealso See [%*%] for matrix multiplication of
+#'   `hyperSpec` objects.
 #'
-#'   See e.g. \code{\link[stats]{prcomp}} and \code{\link[stats]{princomp}} for
-#'   principal component analysis, and package \code{pls} for Partial Least
+#'   See e.g. [stats::prcomp()] and [stats::princomp()] for
+#'   principal component analysis, and package `pls` for Partial Least
 #'   Squares Regression.
 #' @keywords methods manip
 #' @include apply.R

@@ -5,7 +5,7 @@
 ###  plots intensity or extra data column over 2 extra data columns
 
 #' @param use.tripack Whether package tripack should be used for calculating
-#'   the voronoi polygons. If \code{FALSE}, package deldir is used instead.
+#'   the voronoi polygons. If `FALSE`, package deldir is used instead.
 #'   See details.
 #' @param mix For Voronoi plots using package tripack, I experienced errors if
 #'   the data was spatially ordered. Randomly rearrangig the rows of the
@@ -13,7 +13,7 @@
 #' @rdname levelplot
 #' @include levelplot.R
 #' @export
-#' @seealso \code{\link[latticeExtra]{panel.voronoi}}
+#' @seealso [latticeExtra::panel.voronoi()]
 #' @importFrom latticeExtra panel.voronoi
 #' @importFrom lattice prepanel.default.levelplot
 #' @importFrom utils modifyList

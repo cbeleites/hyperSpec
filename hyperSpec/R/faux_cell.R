@@ -98,7 +98,7 @@
   spc
 }
 
-#' Faux Cell Data Set for Testing & Demonstration
+#' Faux Cell Data Set for Testing & Demonstration.
 #'
 #' This is a synthetic data set intended for testing and demonstration.
 #'
@@ -114,6 +114,8 @@
 #' @rdname faux_cell
 #' @docType data
 #' @include initialize.R
+#' @keywords datasets
+#' @concept datasets
 #' @export
 #' @author Claudia Beleites, Bryan A. Hanson
 #' @examples

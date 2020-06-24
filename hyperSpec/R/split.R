@@ -10,25 +10,26 @@
   hyperlist
 }
 
-#' Split a hyperSpec object according to groups
-#' \code{split} divides the \code{hyperSpec} object into a list of
-#' \code{hyperSpec} objects according to the groups given by \code{f}.
+#' Split a `hyperSpec` object according to groups.
 #'
-#' The \code{hyperSpec} objects in the list may be bound together again by
-#' \code{\link{bind} ("r", list_of_hyperSpec_objects)}.
+#' `split()` divides the `hyperSpec` object into a list of
+#' `hyperSpec` objects according to the groups given by `f`.
+#'
+#' The `hyperSpec` objects in the list may be bound together again by
+#' [`bind("r", list_of_hyperSpec_objects)`][bind()].
 #'
 #' @name split
 #' @rdname split
 #' @aliases split split-methods split,ANY-method split,hyperSpec-method
 #' @docType methods
-#' @param x the \code{hyperSpec} object
+#' @param x the `hyperSpec` object
 #' @param f a factor giving the grouping (or a variable that can be converted
-#'   into a factor by \code{as.factor})
-#' @param drop if \code{TRUE}, levels of\code{f} that do not occur are
+#'   into a factor by `as.factor`)
+#' @param drop if `TRUE`, levels of`f` that do not occur are
 #'   dropped.
-#' @return A list of \code{hyperSpec} objects.
+#' @return A list of `hyperSpec` objects.
 #' @author C. Beleites
-#' @seealso \code{\link[base]{split}}
+#' @seealso [base::split()]
 #' @keywords methods
 #' @export
 #' @examples

@@ -6,5 +6,5 @@
 ## TODO: export
 
 factor2num <- function(f) {
-  as.numeric(levels(f)) [as.numeric(f)]
+  as.numeric(levels(f))[as.numeric(f)]
 }

@@ -1,20 +1,25 @@
-#' The Number of Rows (Spectra), Columns, and Data Points per Spectrum of an
-#' hyperSpec Object)
+#' The Number of Rows (Spectra), Columns, and Data Points per Spectrum of a
+#' `hyperSpec` Object.
 #'
-#' \code{ncol} returns the number of columns in \code{x@@data}. I.e. the number
+#' These functions return the number of rows (spectra), columns, and/or
+#' data points per spectrum of a `hyperSpec` object.
+#' See section "Details".
+#'
+#' @details
+#' - `ncol()` returns the number of columns in `x@@data`. I.e. the number
 #' of columns with additional information to each spectrum (e.g. "x", "y",
-#' \dots{}) + 1 (for column \code{spc} containing the spectra).
+#' \dots{}) + 1 (for column `spc` containing the spectra).
+#'
 #' @rdname dim
 #' @docType methods
-#' @param x a \code{hyperSpec} object
+#' @param x a `hyperSpec` object
 #' @author C. Beleites
-#' @seealso \code{\link[base]{ncol}}
+#' @seealso [base::ncol()]
 #'
-#' @return \code{nrow}, \code{ncol}, \code{nwl}, and \code{length}, return an
-#'   \code{integer}.
+#' @return `nrow()`, `ncol()`, `nwl()`, and `length()`, return an `integer`.
+#' @concept summary
 #' @export
 #' @examples
-#'
 #' ncol(faux_cell)
 setMethod("ncol", signature = signature("hyperSpec"), function(x) {
   validObject(x)
@@ -22,14 +27,15 @@ setMethod("ncol", signature = signature("hyperSpec"), function(x) {
   ncol(x@data)
 })
 
-#'
-#' \code{nrow} yields the number of rows in \code{x@@data}, i.e. the number of
-#' spectra in the \code{hyperSpec} object.
+#' @details
+#' - `nrow()` yields the number of rows in `x@@data`, i.e. the number of
+#'   spectra in the `hyperSpec` object.
 #'
 #' @rdname dim
-#' @seealso \code{\link[base]{nrow}}
+#' @seealso [base::nrow()]
 #' @export
 #' @examples
+#'
 #' nrow(faux_cell)
 setMethod("nrow", signature = signature("hyperSpec"), function(x) {
   validObject(x)
@@ -37,9 +43,9 @@ setMethod("nrow", signature = signature("hyperSpec"), function(x) {
   nrow(x@data)
 })
 
-#'
-#' \code{nwl} returns the number of columns in \code{x@@data$spc}, i.e. the
-#' length of each spectrum.
+#' @details
+#' - `nwl()` returns the number of columns in `x@@data$spc`, i.e. thelength of
+#'   each spectrum.
 #'
 #' @rdname dim
 #' @aliases nwl
@@ -56,31 +62,32 @@ nwl <- function(x) {
 
 
 
-#'
-#' \code{dim} returns all three values in a vector.
-#'
+#' @details
+#' - `dim()` returns all three values in a vector.
 #'
 #' @rdname dim
 #' @return
 #'
-#' \code{dim} returns a vector of length 3.
-#' @seealso \code{\link[base]{dim}}
+#' `dim()` returns a vector of length 3.
+#' @seealso [base::dim()]
 #' @keywords methods
 #' @export
 #' @examples
+#'
 #' dim(faux_cell)
 setMethod("dim", signature = signature("hyperSpec"), function(x) {
   validObject(x)
   c(nrow = nrow(x@data), ncol = ncol(x@data), nwl = ncol(x@data$spc))
 })
 
-#'
-#' \code{length} is a synonym for \code{nrow}. It is supplied so that
-#' \code{seq_along (x)} returns a sequence to index each spectrum.
+#' @details
+#' - `length()` is a synonym for `nrow()`. It is supplied so that `seq_along(x)`
+#' returns a sequence to index each spectrum.
 #' @rdname dim
-#' @seealso \code{\link[base]{length}}
+#' @seealso [base::length()]
 #' @export
 #' @examples
+#'
 #' length(faux_cell)
 setMethod("length", signature = signature("hyperSpec"), function(x) {
   validObject(x)

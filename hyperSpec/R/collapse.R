@@ -1,5 +1,5 @@
-#' collapse/bind several hyperSpec objects into one object
-#'
+#' @title Collapse/bind several `hyperSpec` objects into one object.
+#' @description
 #' The spectra from all objects will be put into one object.
 #' The resulting object has all wavelengths that occur in any of the input objects,
 #' `wl.tolerance` is used to determine which difference in the wavelengths is
@@ -24,7 +24,6 @@
 #'
 #' @author C. Beleites
 #' @md
-#' @title Collapse hyperSpec objects
 #' @export
 #' @param ... hyperSpec objects to be collapsed into one object. Instead of giving several
 #' arguments, a list with all objects to be collapsed may be given.

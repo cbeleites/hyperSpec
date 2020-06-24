@@ -1,22 +1,21 @@
-#' find an evenly spaced grid for x
+#' @title Find an evenly spaced grid for x.
+#' @description
+#' `makeraster()` fits the data to the specified raster.
 #'
-#' \code{makeraster} fits the data to the specified raster.
-#'
-#' \code{fitraster} tries different raster parameter and returns the raster that covers most of the
-#' \code{x} values: The differences between the values of \code{x} are calculated (possible step
+#' `fitraster()` tries different raster parameter and returns the raster that covers most of the
+#' `x` values: The differences between the values of `x` are calculated (possible step
 #' sizes). For each of those step sizes, different points are tried (until all points have been
 #' covered by a raster) and the parameter combination leading to the best coverage (i.e. most points
 #' on the grid) ist used.
 #'
 #' Note that only differences between the sorted values of x are considered as step size.
-#' @title makeraster
 #' @param x numeric to be fitted with a raster
 #' @param startx starting point ("origin") for calculation of the raster
 #' @param d step size of the raster
-#' @param tol tolerance for rounding to new levels: elements of x within \code{tol} of the distance between the levels of the new grid are rounded to the new grid point.
+#' @param tol tolerance for rounding to new levels: elements of x within `tol` of the distance between the levels of the new grid are rounded to the new grid point.
 #' @param newlevels levels of the raster
 #' @return list with elements
-#' \item{x}{the values of \code{x}, possibly rounded to the raster values}
+#' \item{x}{the values of `x`, possibly rounded to the raster values}
 #' \item{levels}{the values of the raster}
 #' @export
 #' @author Claudia Beleites

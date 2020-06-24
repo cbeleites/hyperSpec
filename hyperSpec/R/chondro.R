@@ -1,18 +1,19 @@
-#' Raman spectra of 2 Chondrocytes in Cartilage
-#' A Raman-map (laterally resolved Raman spectra) of chondrocytes in
-#' cartilage.
+#' Raman spectra of 2 Chondrocytes in Cartilage.
 #'
-#' See the vignette \code{vignette ("chondro", package = "hyperSpec")}.
+#' A Raman-map (laterally resolved Raman spectra) of chondrocytes in cartilage.
+#'
+#' See the vignette `vignette("chondro", package = "hyperSpec")`.
 #'
 #' @name chondro
 #' @docType data
 #' @format The data set has 875 Raman spectra measured on a 25 \eqn{\times}{x}
 #'   35 grid with 1 micron step size. Spatial information is in
-#'   \code{chondro$x} and \code{chondro$y}. Each spectrum has 300 data points
+#'   `chondro$x` and `chondro$y`. Each spectrum has 300 data points
 #'   in the range of ca. 600 - 1800 cm\eqn{^{-1}}{^-1}.
 #' @author A. Bonifacio and C. Beleites
 #' @keywords datasets
-#' @references The raw data is available at \url{http://hyperspec.r-forge.r-project.org/blob/chondro.zip}
+#' @concept datasets
+#' @references The raw data is available at <http://hyperspec.r-forge.r-project.org/blob/chondro.zip>
 #' @examples
 #'
 #'

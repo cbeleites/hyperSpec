@@ -1,6 +1,6 @@
-#' Expand scalar, vector, matrix or similarly shaped hyperSpec objec to matrix
+#' Expand scalar, vector, matrix or similarly shaped `hyperSpec` objec to matrix.
 #'
-#' Helper function for hyperSpec arithmetics.
+#' Helper function for `hyperSpec` arithmetics.
 #'
 #' A row- or column vector or
 #' a matrix of size 1 x n or n x 1 or

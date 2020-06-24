@@ -1,21 +1,22 @@
-#' loess smoothing interpolation for spectra
-#' Spectra can be smoothed and interpolated on a new wavelength axis using
-#' \code{\link[stats]{loess}}.
+#' LOESS smoothing interpolation for spectra.
 #'
-#' Applying \code{\link[stats]{loess}} to each of the spectra, an interpolation onto a new
+#' Spectra can be smoothed and interpolated on a new wavelength axis using
+#' [stats::loess()].
+#'
+#' Applying [stats::loess()] to each of the spectra, an interpolation onto a new
 #' wavelength axis is performed.  At the same time, the specta are smoothed in order to increase the
-#' signal : noise ratio. See \code{\link[stats]{loess}} and \code{\link[stats]{loess.control}} on
+#' signal : noise ratio. See [stats::loess()] and [stats::loess.control()] on
 #' the parameters that control the amount of smoothing.
 #'
-#' @param spc the \code{hyperSpec} object
+#' @param spc the `hyperSpec` object
 #' @param newx wavelengh axis to interpolate on
-#' @param enp.target,surface,... parameters for \code{\link[stats]{loess}} and
-#' \code{\link[stats]{loess.control}}.
-#' @return a new \code{hyperspec} object.
+#' @param enp.target,surface,... parameters for [stats::loess()] and
+#' [stats::loess.control()].
+#' @return A new `hyperSpec` object.
 #' @rdname spc-loess
 #' @export
 #' @author C. Beleites
-#' @seealso \code{\link[stats]{loess}}, \code{\link[stats]{loess.control}}
+#' @seealso [stats::loess()], [stats::loess.control()]
 #' @keywords manip datagen
 #' @examples
 #'

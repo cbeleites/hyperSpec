@@ -1,6 +1,6 @@
-#' hyperSpec unit tests
+#' \pkg{hyperSpec} unit tests.
 #'
-#' If \code{\link[testthat]{testthat}} is available, run the unit tests and
+#' If [testthat::testthat()] is available, run the unit tests and
 #' display the results.
 #'
 #' @rdname unittests

@@ -35,7 +35,8 @@
 
 
 
-#' Random Samples and Permutations
+#' Random Samples and Permutations.
+#'
 #' Take a sample of the specified size from the elements of x with or without
 #' replacement.
 #'
@@ -46,10 +47,10 @@
 #' @param replace Should sampling be with replacement?
 #' @param prob A vector of probability weights for obtaining the elements of
 #'   the vector being sampled.
-#' @return a hyperSpec object, data.frame or matrix with \code{size} rows for \code{sample}, and an
-#' integer vector for \code{isample} that is suitable for indexing (into the spectra) of x.
+#' @return a hyperSpec object, data.frame or matrix with `size` rows for `sample`, and an
+#' integer vector for `isample` that is suitable for indexing (into the spectra) of x.
 #' @author C. Beleites
-#' @seealso \code{\link[base]{sample}}
+#' @seealso [base::sample()]
 #' @keywords methods distribution
 #' @export
 #' @examples
@@ -66,7 +67,7 @@
 #' )
 setMethod("sample", signature = signature(x = "hyperSpec"), .sample)
 
-#' \code{isample} returns an vector of indices, \code{sample} returns the
+#' `isample` returns an vector of indices, `sample` returns the
 #' corresponding hyperSpec object.
 #'
 #' @rdname sample
@@ -112,7 +113,7 @@ isample <- function(x, size = nrow(x), replace = FALSE, prob = NULL) {
 }
 
 #' @rdname sample
-#' @param drop see \code{\link[base]{drop}}: by default, do not drop dimensions of the result
+#' @param drop see [base::drop()]: by default, do not drop dimensions of the result
 #' @export
 #' @examples
 #' sample(cars, 2)

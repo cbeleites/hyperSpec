@@ -1,11 +1,11 @@
-#' guess wavelengths from character vector
+#' Guess wavelengths from character vector.
 #'
 #' character vectors used for names (e.g. colnames for matrices or data.frames)
-#' are often treated by \code{\link[base]{make.names}} or similar functions that
+#' are often treated by [base::make.names()] or similar functions that
 #' produce suitable names (e.g. by prepending "X" to numbers.). Such names
 #' cannot be directly converted to numeric.
 #'
-#' \code{guess.wavlength} tries to extract numbers from X which may be
+#' `guess.wavlength` tries to extract numbers from X which may be
 #' surrounded by such "protecting" characters.
 #'
 #' @param X character with numbers hidden inside

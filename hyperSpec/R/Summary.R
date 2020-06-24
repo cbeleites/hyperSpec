@@ -1,16 +1,18 @@
+#' @title Statistical summary and other functions for `hyperSpec`.
+#' @description
 #' The functions
 #'
-#' \code{all}, \code{any},
+#' `all`, `any`,
 #'
-#' \code{sum}, \code{prod},
+#' `sum`, `prod`,
 #'
-#' \code{min}, \code{max},
+#' `min`, `max`,
 #'
-#' \code{range}, and
+#' `range`, and
 #'
-#' \code{is.na}
+#' `is.na`
 #'
-#' for \code{hyperSpec} objects.
+#' for `hyperSpec` objects.
 #'
 #' All these functions work on the spectra matrix.
 #' @name Summary
@@ -22,9 +24,9 @@
 #' @param x hyperSpec object
 #' @param ... further objects
 #' @param na.rm logical indicating whether missing values should be removed
-#' @return \code{sum}, \code{prod}, \code{min}, \code{max}, and \code{range} return  a numeric,
-#' \code{all}, \code{any}, and \code{is.na} a logical.
-#' @seealso \code{\link[base]{Summary}} for the base summary functions.
+#' @return `sum`, `prod`, `min`, `max`, and `range` return  a numeric,
+#' `all`, `any`, and `is.na` a logical.
+#' @seealso [base::Summary()] for the base summary functions.
 #' @export
 #' @examples
 #'
@@ -47,7 +49,7 @@ setMethod(
 
 #' @rdname summary
 #' @aliases is.na,hyperSpec-method
-#' @seealso \code{\link[base]{all.equal}} and \code{\link[base]{isTRUE}}
+#' @seealso [base::all.equal()] and [base::isTRUE()]
 #' @export
 #' @examples
 #'
@@ -59,9 +61,10 @@ setMethod(
   }
 )
 
-#' \code{all_wl} and \code{any_wl} are shortcut function to check whether
+#' @details
+#' `all_wl` and `any_wl` are shortcut function to check whether
 #' any or all intensities fulfill the condition per spectrum.
-#' \code{na.rm} behaviour is like \code{\link[base]{all}} and \code{\link[base]{any}}.
+#' `na.rm` behaviour is like [base::all()] and [base::any()].
 #'
 #' @param expression expression that evaluates to a logical matrix of the same size as the spectra matrix
 #'

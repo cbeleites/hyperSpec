@@ -52,11 +52,12 @@
   })
 }
 
-#' Arithmetical Operators: +, -, *, /, ^, %%, %/%, %*% for hyperSpec objects
-#'
+#' @title Arithmetical Operators: `+`, `-`, `*`, `/`, `^`, `%%`, `%/%`, `%*%` for `hyperSpec` objects.
+#' @description
 #' The arithmetical operators `+`, `-`, `*`, `/`, `^`, `%%`, `%/%`, and `%*%`
-#' hyperSpec objects.
+#' `hyperSpec` objects.
 #'
+#' @details
 #' You can use these operators in different ways:
 #' \preformatted{
 #' e1 + e2
@@ -68,10 +69,10 @@
 #' -x }
 #'
 #' The arithmetical operators `+`, `-`, `*`, `/`, `^`, `%%`, `%/%`, and
-#' `%*%` work on the  spectra matrix of the hyperSpec object. They have their
+#' `%*%` work on the  spectra matrix of the `hyperSpec` object. They have their
 #' usual meaning (see [base::Arithmetic]).  The operators work also with
-#' one hyperSpec object and a numeric object or a matrix of the same
-#' size as the spectra matrix of the hyperSpec object.
+#' one `hyperSpec` object and a numeric object or a matrix of the same
+#' size as the spectra matrix of the `hyperSpec` object.
 #'
 #' With numeric vectors [sweep()] may be more explicit.
 #'
@@ -82,18 +83,18 @@
 #' @rdname Arith
 #' @docType methods
 #' @param e1,e2 or
-#' @param x,y either two hyperSpec objects or
+#' @param x,y either two `hyperSpec` objects or
 #'
-#'   one hyperSpec object and  matrix of same size as `x[[]]` or
+#'   one `hyperSpec` object and  matrix of same size as `x[[]]` or
 #'
 #'   a vector which length equalling either the number of rows or the number of
-#'   wavelengths of the hyperSpec object, or
+#'   wavelengths of the `hyperSpec` object, or
 #'
 #'   a scalar (numeric of length 1).
-#' @return hyperSpec object with the new spectra matrix.
+#' @return `hyperSpec` object with the new spectra matrix.
 #'
 #' If
-#' If the `e2` is a hyperSpec objects, its extra data columns will silently be
+#' If the `e2` is a `hyperSpec` objects, its extra data columns will silently be
 #' dropped silently.
 #'
 #' @export

@@ -1,16 +1,17 @@
-#' Color coding legend for factors
-#' Modifies a list of lattice arguments (as for \code{\link[lattice]{levelplot}}, etc.) according to
+#' Color coding legend for factors.
+#'
+#' Modifies a list of lattice arguments (as for [lattice::levelplot()], etc.) according to
 #' the factor levels. The colorkey will shows all levels (including unused), and the drawing colors
 #' will be set accordingly.
 #'
-#' \code{trellis.factor.key} is used during \code{levelplot}-based plotting of factors (for
-#' hyperSpec objects) unless \code{transform.factor = FALSE} is specified.
+#' `trellis.factor.key` is used during `levelplot`-based plotting of factors (for
+#' hyperSpec objects) unless `transform.factor = FALSE` is specified.
 #'
 #' @param f the factor that will be color-coded
 #' @param levelplot.args a list with levelplot arguments
 #' @return the modified list with levelplot arguments.
 #' @author C. Beleites
-#' @seealso \code{\link[lattice]{levelplot}}
+#' @seealso [lattice::levelplot()]
 #' @keywords aplot
 #' @export
 #' @importFrom lattice level.colors

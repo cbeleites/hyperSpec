@@ -3,7 +3,8 @@
 
 
 #' Quick data frame.
-#' Experimental version of \code{\link{as.data.frame}} that converts a
+#'
+#' Experimental version of [as.data.frame()] that converts a
 #' list to a data frame, but doesn't do any checks to make sure it's a
 #' valid format. Much faster.
 #'
@@ -22,14 +23,14 @@ quickdf <- function(list) {
   )
 }
 
-#' Bind matrices by row, and fill missing columns with NA
+#' Bind matrices by row, and fill missing columns with `NA`.
 #'
 #' The matrices are bound together using their column names or the column indices (in that order of
 #' precedence.) Numeric columns may be converted to character beforehand, e.g. using format.  If a
-#' matrix doesn't have colnames, the column number is used (via \code{\link[base]{make.names}(unique
-#' = TRUE)}).
+#' matrix doesn't have colnames, the column number is used (via `[make.names][base::make.names](unique
+#' = TRUE)`).
 #'
-#' Note that this means that a column with name \code{"X1"} is merged with the first column of a
+#' Note that this means that a column with name `"X1"` is merged with the first column of a
 #' matrix without name and so on.
 #'
 #' Vectors are converted to 1-column matrices prior to rbind.
@@ -43,7 +44,7 @@ quickdf <- function(list) {
 #' The return matrix will always have column names.
 #'
 #' @author C. Beleites
-#' @seealso   \code{\link[base]{rbind}}, \code{\link[base]{cbind}}, \code{\link[plyr]{rbind.fill}}
+#' @seealso   [base::rbind()], [base::cbind()], [plyr::rbind.fill()]
 #' @keywords manip
 #' @rdname rbind.fill
 #' @examples
@@ -110,9 +111,10 @@ rbind.fill.matrix <- function(...) {
 }
 
 #' Combine objects by row, filling in missing columns.
-#' \code{rbind}s a list of data frames filling missing columns with NA.
 #'
-#' This is an enhancement to \code{\link{rbind}} which adds in columns
+#' `rbind`s a list of data frames filling missing columns with NA.
+#'
+#' This is an enhancement to [rbind()] which adds in columns
 #' that are not present in all inputs, accepts a list of data frames, and
 #' operates substantially faster
 #'

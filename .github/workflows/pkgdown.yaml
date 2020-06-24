@@ -6,6 +6,7 @@ on:
       - develop
       - feature/polish-vignettes
       - feature/update-pkgdown-settings
+      - feature/187-roxygen2Rd
 
 name: Update pkgdown website
 
