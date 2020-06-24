@@ -237,8 +237,8 @@ While the parts of the `hyperSpec` object can be accessed directly, it is good p
 This also ensures that proper (i.e. *valid*) objects are returned.
 In some cases, however, direct access to the slots can considerably speed up calculations (see the appendicies).
 
-The main functions to retrieve the data of a `hyperSpec`{.r} object are `[]` and `[[]]`. \mFun{`[]`,`[[]]`}
-The difference between these functions is that `[]` returns a `hyperSpec`{.r} object, whereas `[[]]` returns a `data.frame` containing `x$spc`{.r}, the spectral data.
+The main functions to retrieve the data of a `hyperSpec` object are `[]` and `[[]]`. \mFun{`[]`,`[[]]`}
+The difference between these functions is that `[]` returns a `hyperSpec` object, whereas `[[]]` returns a `data.frame` containing `x$spc`{.r}, the spectral data.
 To modify a `hyperSpec` object, the corresponding functions are `[<-`{.r} and `[[<-`{.r}. The first form is used to modify the entire `hyperSpec` object and the second form modifies the spectral data in `x$spc`{.r}.
 
 **hyperSpec** objects are triple indexed:
@@ -254,10 +254,10 @@ To modify a `hyperSpec` object, the corresponding functions are `[<-`{.r} and `[
 
 ## Summary of Extraction Functions for **_hyperSpec_** Objects (getters) {#sec:getters}
 
-Table \@ref(tab:getters) shows the main functions that can be used with class `hyperSpec`{.r} to access the object ("getters").
+Table \@ref(tab:getters) shows the main functions that can be used with class `hyperSpec` to access the object ("getters").
 
 <!-- ---------------------------------------------------------------------- -->
-: **(\#tab:getters)** Getter functions for the slots of `hyperSpec`{.r} objects
+: **(\#tab:getters)** Getter functions for the slots of `hyperSpec` objects
 
 ------------------------------------------- -----------------------------------------------------------------------------------------------------------------------
 **`x[]`{.r}**                               Returns the entire `hyperSpec` object unchanged.
@@ -281,10 +281,10 @@ One can see that there are several ways to get the spectral data: `x$spc`{.r}, `
 
 ## Summary of Replacement Functions for **_hyperSpec_** Objects (setters) {#sec:setters}
 
-  Table \@ref(tab:setters) shows the main functions that can be used with class `hyperSpec`{.r} to modify the object ("setters").
+  Table \@ref(tab:setters) shows the main functions that can be used with class `hyperSpec` to modify the object ("setters").
 
 <!-- ---------------------------------------------------------------------- -->
-: **(\#tab:setters)** Setter functions for the slots of `hyperSpec`{.r} objects
+: **(\#tab:setters)** Setter functions for the slots of `hyperSpec` objects
 
 ----------------------------------------------- -----------------------------------------------------------------------------------------------------------------------
 **`x[i, ,] <-`{.r}**                            Replaces the specified rows of the `@data`{.r} slot, including `x$spc`{.r} and any extra data columns. Other approaches are probably easier.
@@ -395,7 +395,7 @@ To select one column, the `$`{.r} operator is more convenient:
 flu$c
 ```
 
-Class `hyperSpec`{.r} supports command line completion for the `$`{.r} operator.
+Class `hyperSpec` supports command line completion for the `$`{.r} operator.
 
 \mFun{`$<-`{.r}}
 The extra data may also be set this way:
@@ -695,7 +695,7 @@ Package **hyperSpec** comes with filters for a variety of file formats.
 These are discussed in detail in a separate [fileio](#abt-vigs) vignette.  Here we just mention a couple of basic operations.
 
 
-## Creating a `hyperSpec`{.r} Object from Spectra Matrix and Wavelength Vector
+## Creating a `hyperSpec` Object from Spectra Matrix and Wavelength Vector
 
 If the data is in `R`'s workspace, a `hyperSpec` object is created by:
 
@@ -717,7 +717,7 @@ The most frequently needed arguments are:
                      spectral intensity axis label in `$spc`{.r}.
 ---------------- ---------------------------------------------------------------------------------
 
-More information about converting existing data into `hyperSpec`{.r} objects can be found in the [fileio](#abt-vigs) vignette.
+More information about converting existing data into `hyperSpec` objects can be found in the [fileio](#abt-vigs) vignette.
 
 
 ## Creating Random Spectra
@@ -934,7 +934,7 @@ plot(histogram(~ shift | method,
 
 Occasionally, one may want to remove spectra because of too low or too high signal.
 E.g., for infrared spectra one may state that the absorbance maximum should be, say, between 0.1 and 1.
-Class `hyperSpec`{.r}'s comparison operators return a logical matrix of the size of the spectra that is suitable for later indexing:
+Class `hyperSpec`'s comparison operators return a logical matrix of the size of the spectra that is suitable for later indexing:
 
 ```{r eval = FALSE}
 ir.spc   <- chondro / 1500 ## fake IR data
@@ -1099,7 +1099,7 @@ offsets <- apply(chondro, 1, min)
 chondro.offset.corrected <- sweep(chondro, 1, offsets, "-")
 ```
 
-If the offset is calculated by a function, as here with the `min()`{.r}, `hyperSpec`{.r}'s `sweep()`{.r} method offers a shortcut: `sweep()`{.r}'s `STATS`{.r} argument may be the function instead of a numeric vector:
+If the offset is calculated by a function, as here with the `min()`{.r}, `hyperSpec`'s `sweep()`{.r} method offers a shortcut: `sweep()`{.r}'s `STATS`{.r} argument may be the function instead of a numeric vector:
 
 ```{r ofs2}
 chondro.offset.corrected <- sweep(chondro, 1, min, "-")
@@ -1118,7 +1118,7 @@ Particularly, the supplied wavelength ranges are not weighted.
 
 Function `spc.fit.poly.below()`{.r} tries to find appropriate support points for the baseline iteratively.
 
-Both functions return a `hyperSpec`{.r} object containing the fitted baselines.
+Both functions return a `hyperSpec` object containing the fitted baselines.
 They need to be subtracted afterwards:
 
 ```{r bl}
@@ -1130,7 +1130,7 @@ For details, see [baseline](#abt-vigs) vignette.
 
 Package package **baseline**`r cite_pkg("baseline")` offers many more functions for baseline correction.
 The `baseline()`{.r} function works on the spectra matrix, which is extracted by `[[]]`.
-The result is a `baseline`{.r} object, but can easily be re-imported into the `hyperSpec`{.r} object:
+The result is a `baseline`{.r} object, but can easily be re-imported into the `hyperSpec` object:
 
 ```{r do-bl}
 corrected <- hyperSpec::chondro[1] # start with the unchanged data set
@@ -1319,7 +1319,7 @@ chondro.msc[[]] <- msc(chondro[[]])
 
 \mFun{`+ - * / log() log10()`{.r}}
 
-Basic mathematical functions are defined for `hyperSpec`{.r} objects.
+Basic mathematical functions are defined for `hyperSpec` objects.
 You may convert spectra to their log:
 
 ```{r eval = FALSE}
@@ -1336,9 +1336,9 @@ labels(absorbance.spectra)$spc <- "A"
 Be careful: `R`'s `log()`{.r} function calculates the *natural* logarithm if no base is given.
 
 The basic arithmetic operators work element-wise in `R`.
-Thus they all need either a scalar, or a matrix (or `hyperSpec`{.r} object) of the correct size.
+Thus they all need either a scalar, or a matrix (or `hyperSpec` object) of the correct size.
 
-Matrix multiplication is done by `%*%`\mFun{`\%*\%`}, again each of the operands may be a matrix or a `hyperSpec`{.r} object, and must have the correct dimensions.
+Matrix multiplication is done by `%*%`\mFun{`\%*\%`}, again each of the operands may be a matrix or a `hyperSpec` object, and must have the correct dimensions.
 
 There are many more mathematical functions that understand a `hyperSpec` object. See `?Arith` for more details.
 
@@ -1365,7 +1365,7 @@ pca <- prcomp(~spc, data = chondro, center = FALSE)
 
 ### Plotting the Results of PCA
 
-The results of such a \mFun{`decomposition()`{.r}} decomposition can be put back into `hyperSpec`{.r} objects.
+The results of such a \mFun{`decomposition()`{.r}} decomposition can be put back into `hyperSpec` objects.
 This conveniently allows one to use the regular `hyperSpec` plotting functions, e.g., the loading-like spectra, or score maps, see Figures \@ref(fig:pca-load) and  \@ref(fig:pca-score).
 
 ```{r decomp}
@@ -1490,7 +1490,7 @@ Some `R` functions expect their input data in a matrix, including those related 
 dist <- pearson.dist(chondro[[]])
 ```
 
-Again, many such functions coerce the data to a matrix automatically, so the `hyperSpec`{.r} object can be handed over without the explicit conversion above (as we saw for PCA):
+Again, many such functions coerce the data to a matrix automatically, so the `hyperSpec` object can be handed over without the explicit conversion above (as we saw for PCA):
 
 ```{r hca-asmatrix}
 dist <- pearson.dist(chondro)
@@ -1547,12 +1547,12 @@ means <- aggregate(chondro, by = chondro$clusters, mean_pm_sd)
 plot(means, col = cluster.cols, stacked = ".aggregate", fill = ".aggregate")
 ```
 
-# Combining and Splitting `hyperSpec`{.r} Objects {#sec:combine}
+# Combining and Splitting `hyperSpec` Objects {#sec:combine}
 
 ## Binding Objects together {#sec:bind}
 
 \mFun{`cbind()`{.r} `rbind()`{.r}}
-Class `hyperspec`{.r} objects can be bound together, either by columns (`cbind()`{.r}) to append a new spectral range or by row (`rbind()`{.r}) to append new spectra:
+Class `hyperspec` objects can be bound together, either by columns (`cbind()`{.r}) to append a new spectral range or by row (`rbind()`{.r}) to append new spectra:
 
 ```{r cbind}
 dim(flu)
@@ -1581,7 +1581,7 @@ Function `collapse()`{.r} combines objects that should be bound together by row,
 The resulting object has all columns from all input objects, and all wavelengths from the input objects.
 If an input object does not have a particular column or wavelength, its value in the resulting object is `NA`{.r}.
 
-The `barbiturates`{.r} data is a list of `r length(barbiturates)` `hyperSpec`{.r} objects, each containing one mass spectrum.
+The `barbiturates`{.r} data is a list of `r length(barbiturates)` `hyperSpec` objects, each containing one mass spectrum.
 The spectra have between `r (min(sapply(barbiturates, nwl)))` and `r (max(sapply(barbiturates, nwl)))` data points each.
 
 ```{r collapse}
@@ -1735,10 +1735,10 @@ class(merge(flu, flu.ref))
 class(merge(flu.ref, flu))
 ```
 
-## Splitting an Object, and Binding a List of `hyperSpec`{.r} Objects
+## Splitting an Object, and Binding a List of `hyperSpec` Objects
 
 \mFun{`split()`{.r}}
-A `hyperSpec`{.r} object may also be split into a list of `hyperSpec`{.r} objects:
+A `hyperSpec` object may also be split into a list of `hyperSpec` objects:
 
 ```{r split}
 clusters <- split(chondro, chondro$clusters)
@@ -1748,7 +1748,7 @@ clusters
 \mFun{`rbind()`{.r}}
 Splitting can be reversed by `rbind()`{.r} (see section \@ref(sec:bind)).
 \mFun{`collapse()`{.r}}
-Another, similar way to combine a number of `hyperSpec`{.r} objects with different wavelength axes or extra data columns is `collapse()`{.r} (see section \@ref(sec:collapse)).
+Another, similar way to combine a number of `hyperSpec` objects with different wavelength axes or extra data columns is `collapse()`{.r} (see section \@ref(sec:collapse)).
 
 Both `rbind()`{.r} and `collapse()`{.r} take care that factor levels are expanded as necessary:
 
@@ -1767,10 +1767,10 @@ summary(rbind(cells, lacunae)$clusters)
 summary(collapse(cells, lacunae)$clusters)
 ```
 
-## Factor columns in `hyperSpec`{.r} Objects: dropping factor levels that are not needed
+## Factor columns in `hyperSpec` Objects: dropping factor levels that are not needed
 
 \mFun{`droplevels()`{.r}}
-For subsections of `hyperSpec`{.r} objects that do not contain all levels of a factor column, `droplevels()`{.r} drops the "unpopulated" levels:
+For subsections of `hyperSpec` objects that do not contain all levels of a factor column, `droplevels()`{.r} drops the "unpopulated" levels:
 
 ```{r droplevels}
 tmp <- chondro[1:50]
@@ -1836,7 +1836,7 @@ system.time({
 })
 ```
 
-Calculations that involve a lot of subsetting (i.e., extracting or changing the spectra matrix or extra data) can be sped up considerably if the required parts of the `hyperSpec`{.r} object are extracted beforehand.
+Calculations that involve a lot of subsetting (i.e., extracting or changing the spectra matrix or extra data) can be sped up considerably if the required parts of the `hyperSpec` object are extracted beforehand.
 This is somewhat similar to model fitting in `R` in general: many model fitting functions in `R` are much faster if the formula interface is avoided and the appropriate `data.frame`{.r}s or matrices are handed over directly.
 
 ```{r speed3}
