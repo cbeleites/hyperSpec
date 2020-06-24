@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Polynomial Baseline Fitting
-These functions fit polynomal baselines. — spc.fit.poly • hyperSpec</title>
+<title>Polynomial Baseline Fitting. — spc.fit.poly • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -42,12 +41,8 @@ These functions fit polynomal baselines. — spc.fit.poly • hyperSpec</title>
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Polynomial Baseline Fitting
-These functions fit polynomal baselines. — spc.fit.poly" />
-<meta property="og:description" content="Both functions fit polynomials to be used as baselines. If apply.to
-is NULL, a hyperSpec object with the polynomial coefficients
-is returned, otherwise the polynomials are evaluated on the spectral range
-of apply.to." />
+<meta property="og:title" content="Polynomial Baseline Fitting. — spc.fit.poly" />
+<meta property="og:description" content="These functions fit polynomal baselines." />
 
 <meta name="robots" content="noindex" />
 <meta name="robots" content="noindex">
@@ -160,17 +155,13 @@ of apply.to." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Polynomial Baseline Fitting
-These functions fit polynomal baselines.</h1>
+    <h1>Polynomial Baseline Fitting.</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/spc.fit.poly.R'><code>R/spc.fit.poly.R</code></a></small>
     <div class="hidden name"><code>baselines.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Both functions fit polynomials to be used as baselines. If <code>apply.to</code>
-is <code>NULL</code>, a hyperSpec object with the polynomial coefficients
-is returned, otherwise the polynomials are evaluated on the spectral range
-of <code>apply.to</code>.</p>
+    <p>These functions fit polynomal baselines.</p>
     </div>
 
     <pre class="usage"><span class='fu'>spc.fit.poly</span>(
@@ -197,12 +188,12 @@ of <code>apply.to</code>.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>fit.to</th>
-      <td><p>hyperSpec object on which the baselines are fitted</p></td>
+      <td><p><code>hyperSpec</code> object on which the baselines are fitted</p></td>
     </tr>
     <tr>
       <th>apply.to</th>
-      <td><p>hyperSpec object on which the baselines are evaluted
-If <code>NULL</code>, a hyperSpec object containing the polynomial
+      <td><p><code>hyperSpec</code> object on which the baselines are evaluted
+If <code>NULL</code>, a <code>hyperSpec</code> object containing the polynomial
 coefficients rather than evaluted baselines is returned.</p></td>
     </tr>
     <tr>
@@ -235,27 +226,34 @@ not.</p></td>
     </tr>
     <tr>
       <th>debuglevel</th>
-      <td><p>additional output: `1` shows `npts.min`,
-`2` plots support points for the final baseline of 1st spectrum,
-`3` plots support points for 1st spectrum, `4` plots support
+      <td><p>additional output: <code>1</code> shows <code>npts.min</code>,
+<code>2</code> plots support points for the final baseline of 1st spectrum,
+<code>3</code> plots support points for 1st spectrum, <code>4</code> plots support
 points for all spectra.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>hyperSpec object containing the baselines in the spectra
+    <p><code>hyperSpec</code> object containing the baselines in the spectra
 matrix, either as polynomial coefficients or as polynomials evaluted on
 the spectral range of <code>apply.to</code></p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p><code>spc.fit.poly()</code> calculates the least squares fit of order
+    <p>Both functions fit polynomials to be used as baselines. If <code>apply.to</code>
+is <code>NULL</code>, a <code>hyperSpec</code> object with the polynomial coefficients
+is returned, otherwise the polynomials are evaluated on the spectral range
+of <code>apply.to</code>.</p>
+<p><code>spc.fit.poly()</code> calculates the least squares fit of order
 <code>poly.order</code> to the <em>complete</em> spectra given in <code>fit.to</code>.
 Thus <code>fit.to</code> needs to be cut appropriately.</p>
+<p><code>spc.fit.poly.below()</code> tries to fit the baseline on appropriate spectral
+ranges of the spectra in <code>fit.to</code>.  For details, see the
+<code>vignette("baseline")</code>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code>vignette ("baseline", package = "hyperSpec")</code></p>
-<p>see [hyperSpec::options()] for more on `debuglevel`</p></div>
+<p>see <code>hyperSpec::options()</code> for more on <code>debuglevel</code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>C. Beleites</p>

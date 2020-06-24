@@ -6,9 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get and Set Labels of a hyperSpec Object
-<code>value</code> may be a list or vector of labels giving the new label for
-each of the entries specified by <code>which</code>. — labels&lt;- • hyperSpec</title>
+<title>Get and Set Labels of a <code>hyperSpec</code> Object. — labels&lt;- • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -43,12 +41,9 @@ each of the entries specified by <code>which</code>. — labels&lt;- • hyperSp
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Get and Set Labels of a hyperSpec Object
-<code>value</code> may be a list or vector of labels giving the new label for
-each of the entries specified by <code>which</code>. — labels&lt;-" />
-<meta property="og:description" content="The names of the labels are the same as the colnames of the
-data.frame.  The label for the wavelength axis has the name
-.wavelength." />
+<meta property="og:title" content="Get and Set Labels of a <code>hyperSpec</code> Object. — labels&lt;-" />
+<meta property="og:description" content="value may be a list or vector of labels giving the new label for
+each of the entries specified by which." />
 
 <meta name="robots" content="noindex" />
 <meta name="robots" content="noindex">
@@ -161,20 +156,17 @@ data.frame.  The label for the wavelength axis has the name
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get and Set Labels of a hyperSpec Object
-<code>value</code> may be a list or vector of labels giving the new label for
-each of the entries specified by <code>which</code>.</h1>
+    <h1>Get and Set Labels of a <code>hyperSpec</code> Object.</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/labels.R'><code>R/labels.R</code></a></small>
     <div class="hidden name"><code>labels.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>The names of the labels are the same as the colnames of the
-<code>data.frame</code>.  The label for the wavelength axis has the name
-<code>.wavelength</code>.</p>
+    <p><code>value</code> may be a list or vector of labels giving the new label for
+each of the entries specified by <code>which</code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'><a href='https://rdrr.io/r/base/labels.html'>labels</a></span> (<span class='kw'>object</span>, which = <span class='kw'>NULL</span>, <span class='kw'>...</span>) <span class='op'>&lt;-</span> <span class='kw'>value</span>
+    <pre class="usage"><span class='fu'><a href='https://rdrr.io/r/base/labels.html'>labels</a></span>(<span class='kw'>object</span>, which = <span class='kw'>NULL</span>, <span class='kw'>...</span>) <span class='op'>&lt;-</span> <span class='kw'>value</span>
 
 <span class='co'># S4 method for hyperSpec</span>
 <span class='fu'><a href='https://rdrr.io/r/base/labels.html'>labels</a></span>(<span class='kw'>object</span>, which = <span class='fu'><a href='https://rdrr.io/r/base/bquote.html'>bquote</a></span>(), drop = <span class='fl'>TRUE</span>, <span class='kw'>...</span>, use.colnames = <span class='fl'>TRUE</span>)</pre>
@@ -184,7 +176,7 @@ each of the entries specified by <code>which</code>.</h1>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>object</th>
-      <td><p>a hyperSpec object</p></td>
+      <td><p>a <code>hyperSpec</code> object</p></td>
     </tr>
     <tr>
       <th>which</th>
@@ -214,16 +206,19 @@ the extra data?</p></td>
 
     <p><code>labels&lt;-</code> returns a <code>hyperSpec</code> object.</p>
 <p><code>labels</code> returns a list of labels.  If <code>drop</code> is
-  <code>TRUE</code> and the list contains only one element, the element is
-  returned instead.</p>
+<code>TRUE</code> and the list contains only one element, the element is
+returned instead.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>The labels should be given in a form ready for the text-drawing functions
-(see <code><a href='https://rdrr.io/r/grDevices/plotmath.html'>plotmath</a></code>), e.g. as <code>expression</code> or a
+    <p>The names of the labels are the same as the colnames of the
+<code>data.frame</code>.  The label for the wavelength axis has the name
+<code>.wavelength</code>.</p>
+<p>The labels should be given in a form ready for the text-drawing functions
+(see <code><a href='https://rdrr.io/r/grDevices/plotmath.html'>grDevices::plotmath()</a></code>), e.g. as <code>expression</code> or a
 <code>character</code>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://rdrr.io/r/base/labels.html'>labels</a></code></p></div>
+    <div class='dont-index'><p><code><a href='https://rdrr.io/r/base/labels.html'>base::labels()</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>C. Beleites</p>

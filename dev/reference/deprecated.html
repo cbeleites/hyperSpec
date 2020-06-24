@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Statistical summary and other functions for <code>hyperSpec</code>. — Summary • hyperSpec</title>
+<title>Deprecated and defunct functions. — deprecated • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,15 +41,9 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Statistical summary and other functions for <code>hyperSpec</code>. — Summary" />
-<meta property="og:description" content="The functions
-all, any,
-sum, prod,
-min, max,
-range, and
-is.na
-for hyperSpec objects.
-All these functions work on the spectra matrix." />
+<meta property="og:title" content="Deprecated and defunct functions. — deprecated" />
+<meta property="og:description" content="Deprecated and defunct functions. You should not use these.
+See section &quot;Details&quot; for proposed replacement." />
 
 <meta name="robots" content="noindex" />
 <meta name="robots" content="noindex">
@@ -162,79 +156,72 @@ All these functions work on the spectra matrix." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Statistical summary and other functions for <code>hyperSpec</code>.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/Summary.R'><code>R/Summary.R</code></a></small>
-    <div class="hidden name"><code>summary.Rd</code></div>
+    <h1>Deprecated and defunct functions.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/deprecated.R'><code>R/deprecated.R</code></a></small>
+    <div class="hidden name"><code>deprecated.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>The functions</p>
-<p><code>all</code>, <code>any</code>,</p>
-<p><code>sum</code>, <code>prod</code>,</p>
-<p><code>min</code>, <code>max</code>,</p>
-<p><code>range</code>, and</p>
-<p><code>is.na</code></p>
-<p>for <code>hyperSpec</code> objects.</p>
-<p>All these functions work on the spectra matrix.</p>
+    <p>Deprecated and defunct functions. You should not use these.
+See section "Details" for proposed replacement.</p>
     </div>
 
-    <pre class="usage"><span class='co'># S4 method for hyperSpec</span>
-<span class='fu'><a href='https://rdrr.io/r/base/groupGeneric.html'>Summary</a></span>(<span class='kw'>x</span>, <span class='kw'>...</span>, na.rm = <span class='fl'>FALSE</span>)
+    <pre class="usage"><span class='fu'>scan.asc.Andor</span>(<span class='kw'>...</span>)
 
-<span class='co'># S4 method for hyperSpec</span>
-<span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span>(<span class='kw'>x</span>)
+<span class='fu'>scan.txt.Renishaw</span>(<span class='kw'>...</span>)
 
-<span class='fu'>all_wl</span>(<span class='kw'>expression</span>, na.rm = <span class='fl'>FALSE</span>)
+<span class='fu'>scan.zip.Renishaw</span>(<span class='kw'>...</span>)
 
-<span class='fu'>any_wl</span>(<span class='kw'>expression</span>, na.rm = <span class='fl'>FALSE</span>)</pre>
+<span class='fu'>scan.txt.Witec</span>(<span class='kw'>...</span>)
+
+<span class='fu'>scan.dat.Witec</span>(<span class='kw'>...</span>)
+
+<span class='fu'>scan.txt.Witec.Graph</span>(<span class='kw'>...</span>)
+
+<span class='fu'>read.cytomat</span>(<span class='kw'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>hyperSpec object</p></td>
-    </tr>
-    <tr>
       <th>...</th>
-      <td><p>further objects</p></td>
-    </tr>
-    <tr>
-      <th>na.rm</th>
-      <td><p>logical indicating whether missing values should be removed</p></td>
-    </tr>
-    <tr>
-      <th>expression</th>
-      <td><p>expression that evaluates to a logical matrix of the same size as the spectra matrix</p></td>
+      <td><p>Arguments passed to appropriate replacement function.
+(See the description of that function).</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p><code>sum</code>, <code>prod</code>, <code>min</code>, <code>max</code>, and <code>range</code> return  a numeric,
-<code>all</code>, <code>any</code>, and <code>is.na</code> a logical.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p><code>all_wl</code> and <code>any_wl</code> are shortcut function to check whether
-any or all intensities fulfill the condition per spectrum.
-<code>na.rm</code> behaviour is like <code><a href='https://rdrr.io/r/base/all.html'>base::all()</a></code> and <code><a href='https://rdrr.io/r/base/any.html'>base::any()</a></code>.</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+    
+<ul>
+<li><p>Instead of <code>scan.asc.Andor()</code> use <code>read.asc.Andor()</code>.</p></li>
+</ul>
 
-    <div class='dont-index'><p><code><a href='https://rdrr.io/r/base/groupGeneric.html'>base::Summary()</a></code> for the base summary functions.</p>
-<p><code><a href='https://rdrr.io/r/base/all.equal.html'>base::all.equal()</a></code> and <code><a href='https://rdrr.io/r/base/Logic.html'>base::isTRUE()</a></code></p></div>
+<ul>
+<li><p>Instead of <code>scan.txt.Renishaw()</code> use <code>read.txt.Renishaw()</code>.</p></li>
+</ul>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/base/range.html'>range</a></span>(<span class='kw'>flu</span>)</div><div class='output co'>#&gt; [1]  27.1500 677.4947</div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span>(<span class='kw'>flu</span> [, , <span class='fl'>405</span> <span class='op'>~</span> <span class='fl'>410</span>])</div><div class='output co'>#&gt;        405 405.5   406 406.5   407 407.5   408 408.5   409 409.5   410
-#&gt; [1,] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-#&gt; [2,] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-#&gt; [3,] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-#&gt; [4,] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-#&gt; [5,] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-#&gt; [6,] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</div><div class='input'>
-<span class='fu'>all_wl</span>(<span class='kw'>flu</span> <span class='op'>&gt;</span> <span class='fl'>100</span>)</div><div class='output co'>#&gt; [1] FALSE FALSE FALSE  TRUE  TRUE  TRUE</div><div class='input'>
-<span class='fu'>any_wl</span>(<span class='kw'>flu</span> <span class='op'>&gt;</span> <span class='fl'>300</span>)</div><div class='output co'>#&gt; [1] FALSE FALSE  TRUE  TRUE  TRUE  TRUE</div><div class='input'><span class='op'>!</span><span class='fu'>any_wl</span>(<span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span>(<span class='kw'>flu</span>))</div><div class='output co'>#&gt; [1] TRUE TRUE TRUE TRUE TRUE TRUE</div></pre>
+<ul>
+<li><p>Instead of <code>scan.zip.Renishaw()</code> use <code>read.zip.Renishaw()</code>.</p></li>
+</ul>
+
+<ul>
+<li><p>Instead of <code>scan.txt.Witec()</code> use <code>read.txt.Witec()</code>.</p></li>
+</ul>
+
+<ul>
+<li><p>Instead of <code>scan.dat.Witec()</code> use <code>read.dat.Witec()</code>.</p></li>
+</ul>
+
+<ul>
+<li><p>Instead of <code>scan.txt.Witec.Graph()</code> use <code>read.txt.Witec.Graph()</code>.</p></li>
+</ul>
+
+<ul>
+<li><p>Instead of <code>read.cytomat()</code> use <code>read.mat.Cytospec()</code>.</p></li>
+</ul>
+
+
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Extract and Replace parts of hyperSpec objects — [,hyperSpec-method • hyperSpec</title>
+<title>Extract and Replace parts of <code>hyperSpec</code> objects. — [,hyperSpec-method • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,7 +41,7 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Extract and Replace parts of hyperSpec objects — [,hyperSpec-method" />
+<meta property="og:title" content="Extract and Replace parts of <code>hyperSpec</code> objects. — [,hyperSpec-method" />
 <meta property="og:description" content="These Methods allow to extract and replace parts of the hyperSpec object." />
 
 <meta name="robots" content="noindex" />
@@ -155,7 +155,7 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Extract and Replace parts of hyperSpec objects</h1>
+    <h1>Extract and Replace parts of <code>hyperSpec</code> objects.</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/extract.R'><code>R/extract.R</code></a>, <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/replace.R'><code>R/replace.R</code></a></small>
     <div class="hidden name"><code>extractreplace.Rd</code></div>
     </div>
@@ -192,9 +192,9 @@ $(x, name) &lt;- value</pre>
     <tr>
       <th>i</th>
       <td><p>row index: selects spectra</p>
-<p><code><a href='https://rdrr.io/r/base/Extract.html'>[[</a></code> and code[[&lt;- accept indexing with logical matrix or a n by 2
-  integer index matrix. In this case the indexing is done inside the
-  spectra matrix. See the examples below.</p></td>
+<p><code><a href='https://rdrr.io/r/base/Extract.html'>[[</a></code> and <code>[[&lt;-</code> accept indexing with logical matrix or a n by 2
+integer index matrix. In this case the indexing is done inside the
+spectra matrix. See the examples below.</p></td>
     </tr>
     <tr>
       <th>j</th>
@@ -215,12 +215,12 @@ indices.</p></td>
       <td><p>If <code>TRUE</code> (default), the value(s) in <code>l</code> are
 treated as column indices for the spectral matrix. Otherwise, the numbers
 in <code>l</code> are treated as wavelengths and the corresponding column
-indices are looked up first via <code>wl2i</code>.</p></td>
+indices are looked up first via <code>wl2i()</code>.</p></td>
     </tr>
     <tr>
       <th>drop</th>
       <td><p>For <code><a href='https://rdrr.io/r/base/Extract.html'>[[</a></code>: drop unnecessary dimensions, see
-<code><a href='https://rdrr.io/r/base/drop.html'>drop</a></code> and <code><a href='https://rdrr.io/r/base/Extract.html'>Extract</a></code>. Ignored for
+<code><a href='https://rdrr.io/r/base/drop.html'>base::drop()</a></code> and <code><a href='https://rdrr.io/r/base/Extract.html'>base::Extract()</a></code>. Ignored for
 <code><a href='https://rdrr.io/r/base/Extract.html'>[</a></code>, as otherwise invalid <code>hyperSpec</code> objects might result.</p></td>
     </tr>
     <tr>
@@ -274,8 +274,7 @@ x$name &lt;- value
 </pre>
 
 <p><code>value</code> gives the values to be assigned.<br /></p>
-<p>For <code><a href='https://rdrr.io/r/base/Extract.html'>$</a></code>, this can also be a list of the form <code><a href='https://rdrr.io/r/base/list.html'>list (value =
-value, label = label)</a></code>, with <code>label</code> containing the label for data
+<p>For <code><a href='https://rdrr.io/r/base/Extract.html'>$</a></code>, this can also be a list of the form <code><a href='https://rdrr.io/r/base/list.html'>list (value = value, label = label)</a></code>, with <code>label</code> containing the label for data
 column <code>name</code>.</p>
 <p><code>[[&lt;-</code> replaces parts of the spectra matrix.</p>
 <p><code>[&lt;-</code> replaces parts of the <code>data.frame</code> in slot <code>x@data</code>.</p>
@@ -287,8 +286,8 @@ is changed accordingly.</p>
 spectra matrix.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code>wl2i</code> on conversion of wavelength ranges to indices.</p>
-<p><code><a href='https://rdrr.io/r/base/drop.html'>drop</a></code> and <code><a href='https://rdrr.io/r/base/Extract.html'>Extract</a></code> on <code>drop</code>.</p></div>
+    <div class='dont-index'><p><code>wl2i()</code> on conversion of wavelength ranges to indices.</p>
+<p><code><a href='https://rdrr.io/r/base/drop.html'>base::drop()</a></code> and <code><a href='https://rdrr.io/r/base/Extract.html'>base::Extract()</a></code> on <code>drop</code>.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>

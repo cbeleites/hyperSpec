@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Impute missing data points — spc.NA.approx • hyperSpec</title>
+<title>Impute missing data points. — spc.NA.approx • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,11 +41,12 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Impute missing data points — spc.NA.approx" />
+<meta property="og:title" content="Impute missing data points. — spc.NA.approx" />
 <meta property="og:description" content="Replace NAs in the spectra matrix by interpolation. With
-less than 4 points available linear interpolation of the 2 neighbour points is used. For larger numbers of
+less than 4 points available linear interpolation of the 2 neighbour points
+is used. For larger numbers of
 neighbour points, smoothing interpolation is performed by
-smooth.spline." />
+stats::smooth.spline()." />
 
 <meta name="robots" content="noindex" />
 <meta name="robots" content="noindex">
@@ -158,16 +159,17 @@ smooth.spline." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Impute missing data points</h1>
+    <h1>Impute missing data points.</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/spc.NA.approx.R'><code>R/spc.NA.approx.R</code></a></small>
     <div class="hidden name"><code>spc.NA.approx.Rd</code></div>
     </div>
 
     <div class="ref-description">
     <p>Replace <code>NA</code>s in the spectra matrix by interpolation. With
-less than 4 points available linear interpolation of the 2 neighbour points is used. For larger numbers of
+less than 4 points available linear interpolation of the 2 neighbour points
+is used. For larger numbers of
 neighbour points, smoothing interpolation is performed by
-<code><a href='https://rdrr.io/r/stats/smooth.spline.html'>smooth.spline</a></code>.</p>
+<code><a href='https://rdrr.io/r/stats/smooth.spline.html'>stats::smooth.spline()</a></code>.</p>
     </div>
 
     <pre class="usage"><span class='fu'>spc.NA.approx</span>(
@@ -195,11 +197,11 @@ line</p></td>
     </tr>
     <tr>
       <th>w, df, spar</th>
-      <td><p>see <code><a href='https://rdrr.io/r/stats/smooth.spline.html'>smooth.spline</a></code></p></td>
+      <td><p>see <code><a href='https://rdrr.io/r/stats/smooth.spline.html'>stats::smooth.spline()</a></code></p></td>
     </tr>
     <tr>
       <th>debuglevel</th>
-      <td><p>see <code>options</code></p></td>
+      <td><p>see <code>hyperSpec::options()</code></p></td>
     </tr>
     <tr>
       <th>...</th>

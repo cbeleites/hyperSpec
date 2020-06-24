@@ -6,9 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Calibration- and Timeseries Plots, Depth-Profiles and the like
-<code>plotc</code> plots intensities of a <code>hyperSpec</code> object over another
-dimension such as concentration, time, or a spatial coordinate. — plotc • hyperSpec</title>
+<title>Calibration Plots, Timeseries Plots, and Depth-Profiles. — plotc • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -43,14 +41,10 @@ dimension such as concentration, time, or a spatial coordinate. — plotc • hy
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Calibration- and Timeseries Plots, Depth-Profiles and the like
-<code>plotc</code> plots intensities of a <code>hyperSpec</code> object over another
-dimension such as concentration, time, or a spatial coordinate. — plotc" />
-<meta property="og:description" content="If func is not NULL, the summary characteristic is calculated
-first by applying func with the respective arguments (in
-func.args) to each of the spectra. If func returns more than
-one value (for each spectrum), the different values end up as different
-wavelengths." />
+<meta property="og:title" content="Calibration Plots, Timeseries Plots, and Depth-Profiles. — plotc" />
+<meta property="og:description" content="Calibration- and timeseries plots, depth-profiles and the like
+plotc plots intensities of a hyperSpec object over another
+dimension such as concentration, time, or a spatial coordinate." />
 
 <meta name="robots" content="noindex" />
 <meta name="robots" content="noindex">
@@ -163,19 +157,15 @@ wavelengths." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Calibration- and Timeseries Plots, Depth-Profiles and the like
-<code>plotc</code> plots intensities of a <code>hyperSpec</code> object over another
-dimension such as concentration, time, or a spatial coordinate.</h1>
+    <h1>Calibration Plots, Timeseries Plots, and Depth-Profiles.</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/plotc.R'><code>R/plotc.R</code></a></small>
     <div class="hidden name"><code>plotc.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>If <code>func</code> is not <code>NULL</code>, the summary characteristic is calculated
-first by applying <code>func</code> with the respective arguments (in
-<code>func.args</code>) to each of the spectra. If <code>func</code> returns more than
-one value (for each spectrum), the different values end up as different
-wavelengths.</p>
+    <p>Calibration- and timeseries plots, depth-profiles and the like
+<code>plotc</code> plots intensities of a <code>hyperSpec</code> object over another
+dimension such as concentration, time, or a spatial coordinate.</p>
     </div>
 
     <pre class="usage"><span class='fu'>plotc</span>(
@@ -214,22 +204,26 @@ plotted instead of single intensities</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>further arguments to <code><a href='https://rdrr.io/pkg/lattice/man/xyplot.html'>xyplot</a></code>.</p></td>
+      <td><p>further arguments to <code><a href='https://rdrr.io/pkg/lattice/man/xyplot.html'>lattice::xyplot()</a></code>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>If the wavelength is not used in the model specification nor in
+    <p>If <code>func</code> is not <code>NULL</code>, the summary characteristic is calculated
+first by applying <code>func</code> with the respective arguments (in
+<code>func.args</code>) to each of the spectra. If <code>func</code> returns more than
+one value (for each spectrum), the different values end up as different
+wavelengths.</p>
+<p>If the wavelength is not used in the model specification nor in
 <code>groups</code>, nor for specifying <code>subsets</code>, and neither is
 <code>func</code> given, then only the first wavelength's intensities are plotted
 and a warning is issued.</p>
-<p>The special column names <code>.rownames</code> and <code>.wavelength</code> may be
-used.</p>
-<p>The actual plotting is done by <code><a href='https://rdrr.io/pkg/lattice/man/xyplot.html'>xyplot</a></code>.</p>
+<p>The special column names <code>.rownames</code> and <code>.wavelength</code> may be used.</p>
+<p>The actual plotting is done by <code><a href='https://rdrr.io/pkg/lattice/man/xyplot.html'>lattice::xyplot()</a></code>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/lattice/man/xyplot.html'>xyplot</a></code></p></div>
+    <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/lattice/man/xyplot.html'>lattice::xyplot()</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>C. Beleites</p>

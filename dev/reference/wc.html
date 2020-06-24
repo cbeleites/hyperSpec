@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>line/word/character count of ASCII files — wc • hyperSpec</title>
+<title>Line/word/character count of ASCII files (DEPRECATED). — wc • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,8 +41,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="line/word/character count of ASCII files — wc" />
-<meta property="og:description" content="`wc()` uses the system command `wc`. Use at your own risk." />
+<meta property="og:title" content="Line/word/character count of ASCII files (DEPRECATED). — wc" />
+<meta property="og:description" content="wc() uses the system command wc. Use at your own risk." />
 
 <meta name="robots" content="noindex" />
 <meta name="robots" content="noindex">
@@ -155,13 +155,13 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>line/word/character count of ASCII files</h1>
+    <h1>Line/word/character count of ASCII files (DEPRECATED).</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/wc.R'><code>R/wc.R</code></a></small>
     <div class="hidden name"><code>wc.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>`wc()` uses the system command `wc`. Use at your own risk.</p>
+    <p><code>wc()</code> uses the system command <code>wc</code>. Use at your own risk.</p>
     </div>
 
     <pre class="usage"><span class='fu'>wc</span>(<span class='kw'>file</span>, flags = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"lines"</span>, <span class='st'>"words"</span>, <span class='st'>"bytes"</span>))</pre>
@@ -182,14 +182,15 @@ of the parameters</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>data.frame with the counts and file names, or `NULL` if wc is
-  not available on the system.</p>
+    <p>data.frame with the counts and file names, or <code>NULL</code> if wc is
+not available on the system.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>`wc()` now is deprecated and will be removed from hyperSpec in future. Consider using [count_lines()] instead for line counting.</p>
+    <p><code>wc()</code> now is deprecated and will be removed from <span class="pkg">hyperSpec</span>
+in the future. Consider using <code>count_lines()</code> instead for line counting.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>[count_lines()]</p></div>
+    <div class='dont-index'><p><code>count_lines()</code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>C. Beleites</p>

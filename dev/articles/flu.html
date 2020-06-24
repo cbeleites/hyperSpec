@@ -201,7 +201,7 @@ Figure 1.1: Six spectra of <code>flu</code> dataset.
 This information can be stored together with the spectra, and also gets an appropriate label:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit">
 <span class="kw">flu</span><span class="op">$</span><span class="kw">c</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/seq.hyperSpec.html">seq</a></span>(from = <span class="fl">0.05</span>, to = <span class="fl">0.30</span>, by = <span class="fl">0.05</span>)
-<span class="fu"><a href="https://rdrr.io/pkg/sp/man/gridlines.html">labels</a></span>(<span class="kw">flu</span>, <span class="st">"c"</span>) <span class="op">&lt;-</span> <span class="st">"c, mg/l"</span>
+<span class="fu"><a href="https://rdrr.io/r/base/labels.html">labels</a></span>(<span class="kw">flu</span>, <span class="st">"c"</span>) <span class="op">&lt;-</span> <span class="st">"c, mg/l"</span>
 
 <span class="kw">flu</span>
 <span class="co">#&gt; hyperSpec object</span>
@@ -267,7 +267,7 @@ The first coordinate defines which spectra are to be used, the second which data
 <p>We discard all the wavelengths but 450 nm:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit">
 <span class="kw">flu</span> <span class="op">&lt;-</span> <span class="kw">flu</span>[, , <span class="fl">450</span>]
-<span class="fu"><a href="https://rdrr.io/pkg/sp/man/gridlines.html">labels</a></span>(<span class="kw">flu</span>, <span class="st">"spc"</span>) <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span>(<span class="kw">I</span>[<span class="st">"450 nm"</span>] <span class="op">/</span> <span class="kw">a.u.</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/labels.html">labels</a></span>(<span class="kw">flu</span>, <span class="st">"spc"</span>) <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span>(<span class="kw">I</span>[<span class="st">"450 nm"</span>] <span class="op">/</span> <span class="kw">a.u.</span>)
 </pre></div>
 <p>The plot could be enhanced by annotating the ordinate with the emission wavelength.
 Also the axes should start at the origin, so that it is easier to see whether the calibration function will go through the origin:</p>

@@ -6,9 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Convert a hyperSpec object to character strings for Display
-<code>print</code>, <code>show</code>, and <code>summary</code> show the result of
-<code>as.character</code>. — as.character,hyperSpec-method • hyperSpec</title>
+<title>Convert a <code>hyperSpec</code> object to character strings for display. — as.character,hyperSpec-method • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -43,11 +41,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Convert a hyperSpec object to character strings for Display
-<code>print</code>, <code>show</code>, and <code>summary</code> show the result of
-<code>as.character</code>. — as.character,hyperSpec-method" />
-<meta property="og:description" content="print, show, and summary differ only in the defaults.
-show displays the range of values instead," />
+<meta property="og:title" content="Convert a <code>hyperSpec</code> object to character strings for display. — as.character,hyperSpec-method" />
+<meta property="og:description" content="print(), show(), and summary() show the result of as.character()." />
 
 <meta name="robots" content="noindex" />
 <meta name="robots" content="noindex">
@@ -160,16 +155,13 @@ show displays the range of values instead," />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Convert a hyperSpec object to character strings for Display
-<code>print</code>, <code>show</code>, and <code>summary</code> show the result of
-<code>as.character</code>.</h1>
+    <h1>Convert a <code>hyperSpec</code> object to character strings for display.</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/show.R'><code>R/show.R</code></a></small>
     <div class="hidden name"><code>show.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p><code>print</code>, <code>show</code>, and <code>summary</code> differ only in the defaults.
-<code>show</code> displays the range of values instead,</p>
+    <p><code><a href='https://rdrr.io/r/base/print.html'>print()</a></code>, <code>show()</code>, and <code><a href='https://rdrr.io/r/base/summary.html'>summary()</a></code> show the result of <code><a href='https://rdrr.io/r/base/character.html'>as.character()</a></code>.</p>
     </div>
 
     <pre class="usage"><span class='co'># S4 method for hyperSpec</span>
@@ -229,15 +221,30 @@ printed</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p><code>as.character</code> returns a character vector fit to be printed by
-  <code>cat</code> with <code>sep = "\n"</code>.</p>
+<code>cat</code> with <code>sep = "\n"</code>.</p>
 <p><code>print</code> invisibly returns <code>x</code> after printing, <code>show</code> returns
-  an invisible <code>NULL</code>.</p>
+an invisible <code>NULL</code>.</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p><code><a href='https://rdrr.io/r/base/print.html'>print()</a></code>, <code>show()</code>, and <code><a href='https://rdrr.io/r/base/summary.html'>summary()</a></code> differ only in the defaults:</p><ul>
+<li><p><code>show()</code> displays the range of values instead,</p></li>
+</ul>
+
+<ul>
+<li><p><code><a href='https://rdrr.io/r/base/print.html'>print()</a></code> shows the overview giving the first and last values of each
+data column (fastest),</p></li>
+</ul>
+
+<ul>
+<li><p><code><a href='https://rdrr.io/r/base/summary.html'>summary()</a></code> ...</p></li>
+</ul>
+
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://rdrr.io/r/base/character.html'>as.character</a></code></p>
-<p><code><a href='https://rdrr.io/r/methods/show.html'>show</a></code></p>
-<p><code><a href='https://rdrr.io/r/base/print.html'>print</a></code></p>
-<p><code><a href='https://rdrr.io/r/base/summary.html'>summary</a></code></p></div>
+    <div class='dont-index'><p><code><a href='https://rdrr.io/r/base/character.html'>base::as.character()</a></code></p>
+<p><code><a href='https://rdrr.io/r/methods/show.html'>methods::show()</a></code></p>
+<p><code><a href='https://rdrr.io/r/base/print.html'>base::print()</a></code></p>
+<p><code><a href='https://rdrr.io/r/base/summary.html'>base::summary()</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>

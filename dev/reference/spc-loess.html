@@ -6,9 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>loess smoothing interpolation for spectra
-Spectra can be smoothed and interpolated on a new wavelength axis using
-<code><a href='https://rdrr.io/r/stats/loess.html'>loess</a></code>. — spc.loess • hyperSpec</title>
+<title>LOESS smoothing interpolation for spectra. — spc.loess • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -43,13 +41,9 @@ Spectra can be smoothed and interpolated on a new wavelength axis using
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="loess smoothing interpolation for spectra
-Spectra can be smoothed and interpolated on a new wavelength axis using
-<code><a href='https://rdrr.io/r/stats/loess.html'>loess</a></code>. — spc.loess" />
-<meta property="og:description" content="Applying loess to each of the spectra, an interpolation onto a new
-wavelength axis is performed.  At the same time, the specta are smoothed in order to increase the
-signal : noise ratio. See loess and loess.control on
-the parameters that control the amount of smoothing." />
+<meta property="og:title" content="LOESS smoothing interpolation for spectra. — spc.loess" />
+<meta property="og:description" content="Spectra can be smoothed and interpolated on a new wavelength axis using
+stats::loess()." />
 
 <meta name="robots" content="noindex" />
 <meta name="robots" content="noindex">
@@ -162,18 +156,14 @@ the parameters that control the amount of smoothing." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>loess smoothing interpolation for spectra
-Spectra can be smoothed and interpolated on a new wavelength axis using
-<code><a href='https://rdrr.io/r/stats/loess.html'>loess</a></code>.</h1>
+    <h1>LOESS smoothing interpolation for spectra.</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/spc.loess.R'><code>R/spc.loess.R</code></a></small>
     <div class="hidden name"><code>spc-loess.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Applying <code><a href='https://rdrr.io/r/stats/loess.html'>loess</a></code> to each of the spectra, an interpolation onto a new
-wavelength axis is performed.  At the same time, the specta are smoothed in order to increase the
-signal : noise ratio. See <code><a href='https://rdrr.io/r/stats/loess.html'>loess</a></code> and <code><a href='https://rdrr.io/r/stats/loess.control.html'>loess.control</a></code> on
-the parameters that control the amount of smoothing.</p>
+    <p>Spectra can be smoothed and interpolated on a new wavelength axis using
+<code><a href='https://rdrr.io/r/stats/loess.html'>stats::loess()</a></code>.</p>
     </div>
 
     <pre class="usage"><span class='fu'>spc.loess</span>(<span class='kw'>spc</span>, <span class='kw'>newx</span>, enp.target = <span class='fu'>nwl</span>(<span class='kw'>spc</span>)<span class='op'>/</span><span class='fl'>4</span>, surface = <span class='st'>"direct"</span>, <span class='kw'>...</span>)</pre>
@@ -191,17 +181,23 @@ the parameters that control the amount of smoothing.</p>
     </tr>
     <tr>
       <th>enp.target, surface, ...</th>
-      <td><p>parameters for <code><a href='https://rdrr.io/r/stats/loess.html'>loess</a></code> and
-<code><a href='https://rdrr.io/r/stats/loess.control.html'>loess.control</a></code>.</p></td>
+      <td><p>parameters for <code><a href='https://rdrr.io/r/stats/loess.html'>stats::loess()</a></code> and
+<code><a href='https://rdrr.io/r/stats/loess.control.html'>stats::loess.control()</a></code>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a new <code>hyperspec</code> object.</p>
+    <p>A new <code>hyperSpec</code> object.</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Applying <code><a href='https://rdrr.io/r/stats/loess.html'>stats::loess()</a></code> to each of the spectra, an interpolation onto a new
+wavelength axis is performed.  At the same time, the specta are smoothed in order to increase the
+signal : noise ratio. See <code><a href='https://rdrr.io/r/stats/loess.html'>stats::loess()</a></code> and <code><a href='https://rdrr.io/r/stats/loess.control.html'>stats::loess.control()</a></code> on
+the parameters that control the amount of smoothing.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://rdrr.io/r/stats/loess.html'>loess</a></code>, <code><a href='https://rdrr.io/r/stats/loess.control.html'>loess.control</a></code></p></div>
+    <div class='dont-index'><p><code><a href='https://rdrr.io/r/stats/loess.html'>stats::loess()</a></code>, <code><a href='https://rdrr.io/r/stats/loess.control.html'>stats::loess.control()</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>C. Beleites</p>

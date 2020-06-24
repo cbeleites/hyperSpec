@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Collapse hyperSpec objects — collapse • hyperSpec</title>
+<title>Collapse/bind several <code>hyperSpec</code> objects into one object. — collapse • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,8 +41,24 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Collapse hyperSpec objects — collapse" />
-<meta property="og:description" content="collapse/bind several hyperSpec objects into one object" />
+<meta property="og:title" content="Collapse/bind several <code>hyperSpec</code> objects into one object. — collapse" />
+<meta property="og:description" content="The spectra from all objects will be put into one object.
+The resulting object has all wavelengths that occur in any of the input objects,
+wl.tolerance is used to determine which difference in the wavelengths is
+tolerated as equal: clusters of approximately equal wavelengths will span at most 2 * wl.tolerance.
+Differences up to +/- wl.tolerance are considered equal.
+The returned object has wavelengths that are the weighted average
+(by number of spectra) of the wavelengths within any such cluster of approximately
+equal wavelengths.
+Labels will be taken from the first object where they are encountered. However,
+the order of processing objects is not necessarily the same as the order of objects
+in the input: collapse first processes groups of input objects that share all
+wavelengths (within wl.tolerance).
+Data points corresponding to wavelengths not in the original spectrum will be set to NA.
+Extra data is combined in the same manner.
+If the objects are named, the names will be preserved in extra data column $.name.
+If the wavelengths are names, names are preserved and taken from the first object where they were encountered,
+the same applies to possible column names of the spectra matrix." />
 
 <meta name="robots" content="noindex" />
 <meta name="robots" content="noindex">
@@ -155,13 +171,29 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Collapse hyperSpec objects</h1>
+    <h1>Collapse/bind several <code>hyperSpec</code> objects into one object.</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/collapse.R'><code>R/collapse.R</code></a></small>
     <div class="hidden name"><code>collapse.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>collapse/bind several hyperSpec objects into one object</p>
+    <p>The spectra from all objects will be put into one object.
+The resulting object has all wavelengths that occur in any of the input objects,
+<code>wl.tolerance</code> is used to determine which difference in the wavelengths is
+tolerated as equal: clusters of approximately equal wavelengths will span at most <code>2 * wl.tolerance</code>.
+Differences up to +/- <code>wl.tolerance</code> are considered equal.</p>
+<p>The returned object has wavelengths that are the weighted average
+(by number of spectra) of the wavelengths within any such cluster of approximately
+equal wavelengths.</p>
+<p>Labels will be taken from the first object where they are encountered. However,
+the order of processing objects is not necessarily the same as the order of objects
+in the input: <code>collapse</code> first processes groups of input objects that share all
+wavelengths (within <code>wl.tolerance</code>).</p>
+<p>Data points corresponding to wavelengths not in the original spectrum will be set to NA.
+Extra data is combined in the same manner.</p>
+<p>If the objects are named, the names will be preserved in extra data column <code>$.name</code>.
+If the wavelengths are names, names are preserved and taken from the first object where they were encountered,
+the same applies to possible column names of the spectra matrix.</p>
     </div>
 
     <pre class="usage"><span class='fu'>collapse</span>(
@@ -193,25 +225,6 @@ such groups, <code>collapse()</code> will be faster with this first pass being t
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>a hyperSpec object</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>The spectra from all objects will be put into one object.
-The resulting object has all wavelengths that occur in any of the input objects,
-<code>wl.tolerance</code> is used to determine which difference in the wavelengths is
-tolerated as equal: clusters of approximately equal wavelengths will span at most <code>2 * wl.tolerance</code>.
-Differences up to +/- <code>wl.tolerance</code> are considered equal.</p>
-<p>The returned object has wavelengths that are the weighted average
-(by number of spectra) of the wavelengths within any such cluster of approximately
-equal wavelengths.</p>
-<p>Labels will be taken from the first object where they are encountered. However,
-the order of processing objects is not necessarily the same as the order of objects
-in the input: <code>collapse</code> first processes groups of input objects that share all
-wavelengths (within <code>wl.tolerance</code>).</p>
-<p>Data points corresponding to wavelengths not in the original spectrum will be set to NA.
-Extra data is combined in the same manner.</p>
-<p>If the objects are named, the names will be preserved in extra data column <code>$.name</code>.
-If the wavelengths are names, names are preserved and taken from the first object where they were encountered,
-the same applies to possible column names of the spectra matrix.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='https://rdrr.io/r/base/merge.html'>merge()</a></code>,  <code><a href='https://rdrr.io/r/base/cbind.html'>rbind()</a></code>, and <code><a href='https://rdrr.io/pkg/plyr/man/rbind.fill.html'>plyr::rbind.fill()</a></code></p></div>

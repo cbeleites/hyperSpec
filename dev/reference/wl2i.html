@@ -6,9 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Conversion between Wavelength and Spectra Matrix Column
-Index <code>wl2i</code> returns the column indices for the spectra matrix for the given wavelengths.
-<code>i2wl</code> converts column indices into wavelengths. — wl2i • hyperSpec</title>
+<title>Conversion between Wavelength and Spectra Matrix Column. — wl2i • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -43,11 +41,9 @@ Index <code>wl2i</code> returns the column indices for the spectra matrix for th
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Conversion between Wavelength and Spectra Matrix Column
-Index <code>wl2i</code> returns the column indices for the spectra matrix for the given wavelengths.
-<code>i2wl</code> converts column indices into wavelengths. — wl2i" />
-<meta property="og:description" content="If wavelength is numeric, each of its elements is converted to the respective index.
-Values outside the range of x@wavelength become NA." />
+<meta property="og:title" content="Conversion between Wavelength and Spectra Matrix Column. — wl2i" />
+<meta property="og:description" content="Index wl2i() returns the column indices for the spectra matrix for the given wavelengths.
+i2wl() converts column indices into wavelengths." />
 
 <meta name="robots" content="noindex" />
 <meta name="robots" content="noindex">
@@ -160,16 +156,14 @@ Values outside the range of x@wavelength become NA." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Conversion between Wavelength and Spectra Matrix Column
-Index <code>wl2i</code> returns the column indices for the spectra matrix for the given wavelengths.
-<code>i2wl</code> converts column indices into wavelengths.</h1>
+    <h1>Conversion between Wavelength and Spectra Matrix Column.</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/wl2i.R'><code>R/wl2i.R</code></a></small>
     <div class="hidden name"><code>wl2i.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>If <code>wavelength</code> is numeric, each of its elements is converted to the respective index.
-Values outside the range of <code>x@wavelength</code> become <code>NA</code>.</p>
+    <p>Index <code>wl2i()</code> returns the column indices for the spectra matrix for the given wavelengths.
+<code>i2wl()</code> converts column indices into wavelengths.</p>
     </div>
 
     <pre class="usage"><span class='fu'>wl2i</span>(<span class='kw'>x</span>, wavelength = <span class='fu'><a href='https://rdrr.io/r/base/stop.html'>stop</a></span>(<span class='st'>"wavelengths are required."</span>), unlist = <span class='fl'>TRUE</span>)
@@ -205,10 +199,12 @@ wavelength is to be computed</p></td>
 <p><code>i2wl</code> returns a numeric with the wavelengths</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>If the range is given as a formula (i.e. <code>start ~ end</code>, a sequence</p>
+    <p>If <code>wavelength</code> is numeric, each of its elements is converted to the respective index.
+Values outside the range of <code>x@wavelength</code> become <code>NA</code>.</p>
+<p>If the range is given as a formula (i.e. <code>start ~ end</code>, a sequence</p>
 <p>index corresponding to start : index corresponding to end</p>
 <p>is returned. If the wavelengths are not ordered, that may lead to chaos. In this case, call
-<code><a href='https://rdrr.io/pkg/hyperSpec/man/orderwl.html'>orderwl</a></code> first.</p>
+<code><a href='https://rdrr.io/pkg/hyperSpec/man/orderwl.html'>hyperSpec::orderwl()</a></code> first.</p>
 <p>Two special variables can be used: <code>min</code> and <code>max</code>, corresponding to the lowest and
 highest wavelength of <code>x</code>, respectively.</p>
 <p>start and end may be complex numbers. The resulting index for a complex x is then</p>

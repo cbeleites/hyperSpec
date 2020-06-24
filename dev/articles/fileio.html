@@ -559,11 +559,11 @@ The functions <code class="sourceCode r"><span class="kw">as.long.df</span>()</c
 The block to be read can be specified with the <code class="sourceCode r">block</code> argument.
 With <code class="sourceCode r">block =<span class="st"> </span><span class="ot">TRUE</span></code>, the function will read all blocks into a list:</p>
 <div class="sourceCode" id="cb18"><pre class="downlit">
-<span class="fu"><a href="../reference/read.cytomat.html">read.mat.Cytospec</a></span>(<span class="st">"fileio/mat.cytospec/cytospec.mat"</span>, blocks = <span class="fl">TRUE</span>)
+<span class="fu"><a href="../reference/read.mat.Cytospec.html">read.mat.Cytospec</a></span>(<span class="st">"fileio/mat.cytospec/cytospec.mat"</span>, blocks = <span class="fl">TRUE</span>)
 </pre></div>
 <p>otherwise, select a block:</p>
 <div class="sourceCode" id="cb19"><pre class="downlit">
-<span class="fu"><a href="../reference/read.cytomat.html">read.mat.Cytospec</a></span>(<span class="st">"fileio/mat.cytospec/cytospec.mat"</span>, blocks = <span class="fl">1</span>)
+<span class="fu"><a href="../reference/read.mat.Cytospec.html">read.mat.Cytospec</a></span>(<span class="st">"fileio/mat.cytospec/cytospec.mat"</span>, blocks = <span class="fl">1</span>)
 </pre></div>
 <div class="redbox">
 <p>
@@ -899,26 +899,26 @@ Supported types are:</p>
 </tbody></table>
 <p>Instead of a file name, <code class="sourceCode r"><span class="kw">read.txt.Renishaw</span>()</code> accepts also a connection.</p>
 <div class="sourceCode" id="cb32"><pre class="downlit">
-<span class="kw">paracetamol</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/scan.txt.Renishaw.html">read.txt.Renishaw</a></span>(<span class="st">"fileio/txt.Renishaw/paracetamol.txt"</span>, <span class="st">"spc"</span>)
+<span class="kw">paracetamol</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read.txt.Renishaw.html">read.txt.Renishaw</a></span>(<span class="st">"fileio/txt.Renishaw/paracetamol.txt"</span>, <span class="st">"spc"</span>)
 <span class="kw">paracetamol</span>
 </pre></div>
 <!-- NOTE: the code to save this dataset as package data was removed from this file. -->
 <!-- save(paracetamol, file = "paracetamol.rda") -->
 <div class="sourceCode" id="cb33"><pre class="downlit">
-<span class="fu"><a href="../reference/scan.txt.Renishaw.html">read.txt.Renishaw</a></span>(<span class="st">"fileio/txt.Renishaw/laser.txt.gz"</span>, data = <span class="st">"ts"</span>)
+<span class="fu"><a href="../reference/read.txt.Renishaw.html">read.txt.Renishaw</a></span>(<span class="st">"fileio/txt.Renishaw/laser.txt.gz"</span>, data = <span class="st">"ts"</span>)
 </pre></div>
 <p>Very large files can be read in chunks to save memory:</p>
 <div class="sourceCode" id="cb34"><pre class="downlit">
-<span class="fu"><a href="../reference/scan.txt.Renishaw.html">read.txt.Renishaw</a></span>(<span class="st">"fileio/txt.Renishaw/chondro.txt"</span>, nlines = <span class="fl">1e5</span>, nspc = <span class="fl">875</span>)
+<span class="fu"><a href="../reference/read.txt.Renishaw.html">read.txt.Renishaw</a></span>(<span class="st">"fileio/txt.Renishaw/chondro.txt"</span>, nlines = <span class="fl">1e5</span>, nspc = <span class="fl">875</span>)
 </pre></div>
 <p>R accepts a variety of compressed file formats for ASCII files:</p>
 <div class="sourceCode" id="cb35"><pre class="downlit">
-<span class="fu"><a href="../reference/scan.txt.Renishaw.html">read.txt.Renishaw</a></span>(<span class="st">"fileio/txt.Renishaw/chondro.gz"</span>)
-<span class="fu"><a href="../reference/scan.txt.Renishaw.html">read.txt.Renishaw</a></span>(<span class="st">"fileio/txt.Renishaw/chondro.xz"</span>)
-<span class="fu"><a href="../reference/scan.txt.Renishaw.html">read.txt.Renishaw</a></span>(<span class="st">"fileio/txt.Renishaw/chondro.lzma"</span>)
-<span class="fu"><a href="../reference/scan.txt.Renishaw.html">read.txt.Renishaw</a></span>(<span class="st">"fileio/txt.Renishaw/chondro.gz"</span>)
-<span class="fu"><a href="../reference/scan.txt.Renishaw.html">read.txt.Renishaw</a></span>(<span class="st">"fileio/txt.Renishaw/chondro.bz2"</span>)
-<span class="fu"><a href="../reference/scan.txt.Renishaw.html">read.zip.Renishaw</a></span>(<span class="st">"fileio/txt.Renishaw/chondro.zip"</span>)
+<span class="fu"><a href="../reference/read.txt.Renishaw.html">read.txt.Renishaw</a></span>(<span class="st">"fileio/txt.Renishaw/chondro.gz"</span>)
+<span class="fu"><a href="../reference/read.txt.Renishaw.html">read.txt.Renishaw</a></span>(<span class="st">"fileio/txt.Renishaw/chondro.xz"</span>)
+<span class="fu"><a href="../reference/read.txt.Renishaw.html">read.txt.Renishaw</a></span>(<span class="st">"fileio/txt.Renishaw/chondro.lzma"</span>)
+<span class="fu"><a href="../reference/read.txt.Renishaw.html">read.txt.Renishaw</a></span>(<span class="st">"fileio/txt.Renishaw/chondro.gz"</span>)
+<span class="fu"><a href="../reference/read.txt.Renishaw.html">read.txt.Renishaw</a></span>(<span class="st">"fileio/txt.Renishaw/chondro.bz2"</span>)
+<span class="fu"><a href="../reference/read.txt.Renishaw.html">read.zip.Renishaw</a></span>(<span class="st">"fileio/txt.Renishaw/chondro.zip"</span>)
 </pre></div>
 </div>
 </div>
@@ -978,7 +978,7 @@ These spectra are by removed by default if option <code class="sourceCode r">fil
 </p>
 <p>Andor Solis exports ASCII files that can be read with <code class="sourceCode r"><span class="kw">read.asc.Andor</span>()</code>:</p>
 <div class="sourceCode" id="cb39"><pre class="downlit">
-<span class="fu"><a href="../reference/scan.asc.Andor.html">read.asc.Andor</a></span>(<span class="st">"fileio/asc.Andor/ASCII-Andor-Solis.asc"</span>)
+<span class="fu"><a href="../reference/read.asc.Andor.html">read.asc.Andor</a></span>(<span class="st">"fileio/asc.Andor/ASCII-Andor-Solis.asc"</span>)
 </pre></div>
 </div>
 <div id="sec:read-txt-Witec" class="section level2">
@@ -1004,8 +1004,8 @@ For imaging data no spatial information for the set of spectra is provided (in v
 <p>Imaging data (but also single spectra and time series) can be exported as ASCII X and Y files (Save ASCII X and Save ASCII Y, not supported in version 4).
 These can be read by <code class="sourceCode r"><span class="kw">read.dat.Witec</span>()</code>:</p>
 <div class="sourceCode" id="cb41"><pre class="downlit">
-<span class="fu"><a href="../reference/scan.txt.Witec.html">read.dat.Witec</a></span>(<span class="st">"fileio/txt.Witec/Witec-timeseries-x.dat"</span>)
-<span class="fu"><a href="../reference/scan.txt.Witec.html">read.dat.Witec</a></span>(
+<span class="fu"><a href="../reference/read.txt.Witec.html">read.dat.Witec</a></span>(<span class="st">"fileio/txt.Witec/Witec-timeseries-x.dat"</span>)
+<span class="fu"><a href="../reference/read.txt.Witec.html">read.dat.Witec</a></span>(
   filex = <span class="st">"fileio/txt.Witec/Witec-Map-x.dat"</span>,
   points.per.line = <span class="fl">5</span>, lines.per.image = <span class="fl">5</span>, type = <span class="st">"map"</span>
 )
@@ -1028,9 +1028,9 @@ Otherwise, at least one, <code class="sourceCode r">points.per.line</code> or <c
 <p>For line scans and z-stacks use <code class="sourceCode r">type =<span class="st"> "single"</span></code> because the provided information are looking the same like for timeseries, so no further information can be extracted from the header files.</p>
 <p>Since version 4 WITec Project offers the Graph ASCII export (Export <span class="math inline">\(\rightarrow\)</span> Graph ASCII) which produces three ASCII files, named Header containing additional information, X-Axis containing the wavelength values and Y-Axis containing the spectra one spectrum in each column. Data exported in this way can be read with <code class="sourceCode r"><span class="kw">read.txt.Witec.Graph</span>()</code>:</p>
 <div class="sourceCode" id="cb42"><pre class="downlit">
-<span class="fu"><a href="../reference/scan.txt.Witec.html">read.txt.Witec.Graph</a></span>(<span class="st">"fileio/txt.Witec/Witec-timeseries (Header).txt"</span>)
-<span class="fu"><a href="../reference/scan.txt.Witec.html">read.txt.Witec.Graph</a></span>(<span class="st">"fileio/txt.Witec/Witec-Map (Header).txt"</span>, type = <span class="st">"map"</span>)
-<span class="fu"><a href="../reference/scan.txt.Witec.html">read.txt.Witec.Graph</a></span>(<span class="st">"fileio/txt.Witec/nofilename (Header).txt"</span>, encoding = <span class="st">"latin1"</span>)
+<span class="fu"><a href="../reference/read.txt.Witec.html">read.txt.Witec.Graph</a></span>(<span class="st">"fileio/txt.Witec/Witec-timeseries (Header).txt"</span>)
+<span class="fu"><a href="../reference/read.txt.Witec.html">read.txt.Witec.Graph</a></span>(<span class="st">"fileio/txt.Witec/Witec-Map (Header).txt"</span>, type = <span class="st">"map"</span>)
+<span class="fu"><a href="../reference/read.txt.Witec.html">read.txt.Witec.Graph</a></span>(<span class="st">"fileio/txt.Witec/nofilename (Header).txt"</span>, encoding = <span class="st">"latin1"</span>)
 </pre></div>
 <p>This function reads the spectra files automatically, if they are named properly and extracts additional information of the header file. As for the other Witec functions it is possible to read image data by by selecting <code class="sourceCode r">type =<span class="st"> "map"</span></code>. Line scans and z-stacks should be read as single spectra.</p>
 </div>

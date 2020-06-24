@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>File Import Andor Solis — scan.asc.Andor • hyperSpec</title>
+<title>Import Raman Spectra/Maps from Andor Cameras/Solis ASCII files. — read.asc.Andor • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,8 +41,9 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="File Import Andor Solis — scan.asc.Andor" />
-<meta property="og:description" content="Import Raman Spectra/Maps from Andor Cameras/Solis ASCII files" />
+<meta property="og:title" content="Import Raman Spectra/Maps from Andor Cameras/Solis ASCII files. — read.asc.Andor" />
+<meta property="og:description" content="read.asc.Andor() reads Andor Solis ASCII (.asc) files where the first column gives the wavelength
+axes and the other columns the spectra." />
 
 <meta name="robots" content="noindex" />
 <meta name="robots" content="noindex">
@@ -155,18 +156,17 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>File Import Andor Solis</h1>
-    <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/deprecated.R'><code>R/deprecated.R</code></a>, <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/read.asc.Andor.R'><code>R/read.asc.Andor.R</code></a></small>
+    <h1>Import Raman Spectra/Maps from Andor Cameras/Solis ASCII files.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/read.asc.Andor.R'><code>R/read.asc.Andor.R</code></a></small>
     <div class="hidden name"><code>read.asc.Andor.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Import Raman Spectra/Maps from Andor Cameras/Solis ASCII files</p>
+    <p><code>read.asc.Andor()</code> reads Andor Solis ASCII (<code>.asc</code>) files where the first column gives the wavelength
+axes and the other columns the spectra.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>scan.asc.Andor</span>(<span class='kw'>...</span>)
-
-<span class='fu'>read.asc.Andor</span>(
+    <pre class="usage"><span class='fu'>read.asc.Andor</span>(
   file = <span class='fu'><a href='https://rdrr.io/r/base/stop.html'>stop</a></span>(<span class='st'>"filename or connection needed"</span>),
   <span class='kw'>...</span>,
   quiet = <span class='fl'>TRUE</span>,
@@ -178,26 +178,22 @@
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>..., quiet, dec, sep</th>
-      <td><p>handed to <code><a href='https://rdrr.io/r/base/scan.html'>scan</a></code></p></td>
-    </tr>
-    <tr>
       <th>file</th>
       <td><p>filename or connection to ASCII file</p></td>
+    </tr>
+    <tr>
+      <th>..., quiet, dec, sep</th>
+      <td><p>handed to <code><a href='https://rdrr.io/r/base/scan.html'>base::scan()</a></code></p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>a hyperSpec object</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p><code>read.asc.Andor</code> reads Andor Solis ASCII (<code>.asc</code>) files where the first column gives the wavelength
-axes and the other columns the spectra.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code>vignette ("fileio")</code> for more information on file import and</p>
-<p><code><a href='https://rdrr.io/r/base/options.html'>options</a></code> for details on options.</p></div>
+<p><code><a href='https://rdrr.io/r/base/options.html'>options()</a></code> for details on options.</p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Claudia Beleites</p>

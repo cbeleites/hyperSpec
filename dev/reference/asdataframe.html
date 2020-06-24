@@ -6,9 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Conversion of a hyperSpec object into a data.frame or matrix
-<code>as.data.frame</code> returns <code>x@data</code> (as data.frame) <code>as.matrix</code>
-returns the spectra matrix <code>x@data$spc</code> as matrix — as.data.frame • hyperSpec</title>
+<title>Conversion of a hyperSpec object into a data.frame or matrix. — as.data.frame • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -43,10 +41,10 @@ returns the spectra matrix <code>x@data$spc</code> as matrix — as.data.frame �
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Conversion of a hyperSpec object into a data.frame or matrix
-<code>as.data.frame</code> returns <code>x@data</code> (as data.frame) <code>as.matrix</code>
-returns the spectra matrix <code>x@data$spc</code> as matrix — as.data.frame" />
-<meta property="og:description" content="The data.frame returned by as.long.df is guaranteed to have columns
+<meta property="og:title" content="Conversion of a hyperSpec object into a data.frame or matrix. — as.data.frame" />
+<meta property="og:description" content="as.data.frame returns x@data (as data.frame) as.matrix
+returns the spectra matrix x@data$spc as matrix.
+The data.frame returned by as.long.df is guaranteed to have columns
 spc and .wavelength. If nwl (x) == 0 these columns
 will be NA." />
 
@@ -161,15 +159,15 @@ will be NA." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Conversion of a hyperSpec object into a data.frame or matrix
-<code>as.data.frame</code> returns <code>x@data</code> (as data.frame) <code>as.matrix</code>
-returns the spectra matrix <code>x@data$spc</code> as matrix</h1>
+    <h1>Conversion of a hyperSpec object into a data.frame or matrix.</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/as.data.frame.R'><code>R/as.data.frame.R</code></a></small>
     <div class="hidden name"><code>asdataframe.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>The data.frame returned by <code>as.long.df</code> is guaranteed to have columns
+    <p><code>as.data.frame</code> returns <code>x@data</code> (as data.frame) <code>as.matrix</code>
+returns the spectra matrix <code>x@data$spc</code> as matrix.</p>
+<p>The data.frame returned by <code>as.long.df</code> is guaranteed to have columns
 <code>spc</code> and <code>.wavelength</code>. If <code>nwl (x) == 0</code> these columns
 will be <code>NA</code>.</p>
     </div>
@@ -233,16 +231,16 @@ numeric)?</p></td>
 the spectra matrix converted to a data.frame. The spectra matrix is
 expanded <em>in place</em>.</p>
 <p><code>as.long.df</code> returns the stacked or molten version of <code>x@data</code>. The
-  wavelengths are in column <code>.wavelength</code>.</p>
+wavelengths are in column <code>.wavelength</code>.</p>
 <p><code>as.t.df</code> returns a data.frame similar to <code>as.long.df</code>, but each
-  spectrum in its own column. This is useful for exporting summary spectra,
-  see the example.</p>
+spectrum in its own column. This is useful for exporting summary spectra,
+see the example.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></code></p>
+    <div class='dont-index'><p><code><a href='https://rdrr.io/r/base/as.data.frame.html'>base::as.data.frame()</a></code></p>
 <p>and <code><a href='https://rdrr.io/r/base/matrix.html'>base::as.matrix()</a></code></p>
 <p>[<code><a href='https://rdrr.io/r/base/Extract.html'>[[</a></code>()] (<code>[[]]</code>) for a shortcut to <code>as.matrix</code></p>
-<p><code><a href='https://rdrr.io/r/utils/stack.html'>stack</a></code> and <code><a href='https://rdrr.io/pkg/reshape/man/melt-24.html'>melt</a></code> or <code><a href='https://rdrr.io/pkg/reshape2/man/melt.html'>melt</a></code> for
+<p><code><a href='https://rdrr.io/r/utils/stack.html'>utils::stack()</a></code> and <code><a href='https://rdrr.io/pkg/reshape/man/melt-24.html'>reshape::melt()</a></code> or <code><a href='https://rdrr.io/pkg/reshape2/man/melt.html'>reshape2::melt()</a></code> for
 other functions producing long-format data.frames.</p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 

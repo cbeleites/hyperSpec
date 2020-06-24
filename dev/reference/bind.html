@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Binding hyperSpec Objects — bind • hyperSpec</title>
+<title>Binding <code>hyperSpec</code> Objects. — bind • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,7 +41,7 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Binding hyperSpec Objects — bind" />
+<meta property="og:title" content="Binding <code>hyperSpec</code> Objects. — bind" />
 <meta property="og:description" content="The former difficulties with binding S4 objects
 are resolved since R version 3.2.0 and cbind and rbind now work as intended and
 expected for hyperSpec objects.
@@ -160,7 +160,7 @@ elements.  Rows are ordered before checking." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Binding hyperSpec Objects</h1>
+    <h1>Binding <code>hyperSpec</code> Objects.</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/bind.R'><code>R/bind.R</code></a></small>
     <div class="hidden name"><code>bind.Rd</code></div>
     </div>
@@ -168,7 +168,7 @@ elements.  Rows are ordered before checking." />
     <div class="ref-description">
     <p>The former difficulties with binding S4 objects
 are resolved since R version 3.2.0 and <code>cbind</code> and <code>rbind</code> now work as intended and
-expected for hyperSpec objects.</p>
+expected for <code>hyperSpec</code> objects.</p>
 <p><code>cbind2</code> binds the spectral matrices of two <code>hyperSpec</code> objects by column. All columns
 besides <code>spc</code> with the same name in <code>x@data</code> and <code>y@data</code> must have the same
 elements.  Rows are ordered before checking.</p>
@@ -209,7 +209,7 @@ elements.  Rows are ordered before checking.</p>
       <th>...</th>
       <td><p>The <code>hyperSpec</code> objects to be combined.</p>
 <p>Alternatively, <em>one</em> list of <code>hyperSpec</code> objects can be given to
-  <code>bind</code>.</p></td>
+<code>bind</code>.</p></td>
     </tr>
     <tr>
       <th>wl.tolerance</th>
@@ -225,24 +225,23 @@ with this tolerance.</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>a <code>hyperSpec</code> object, possibly with different row order (for
-  <code>bind ("c", ...{})</code> and <code>cbind2</code>).</p>
+<code>bind ("c", ...{})</code> and <code>cbind2</code>).</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Therefore, calling <code>rbind.hyperSpec</code> and
-<code>cbind.hyperSpec</code> is now depecated: <code>cbind</code> and <code>rbind</code> should now be called
-directly.</p>
+    <p>Therefore, calling <code>rbind.hyperSpec</code> and <code>cbind.hyperSpec</code> is now depecated:
+<code>cbind</code> and <code>rbind</code> should now be called directly.</p>
 <p>However, in consequence it is no longer possible to call <code>cbind</code> or <code>rbind</code> with a
-list of hyperSpec objects. In that case, use <code>bind</code> or <code><a href='https://rdrr.io/r/base/do.call.html'>do.call</a></code> (see example).</p>
+list of <code>hyperSpec</code> objects. In that case, use <code>bind</code> or <code><a href='https://rdrr.io/r/base/do.call.html'>base::do.call()</a></code> (see example).</p>
 <p><code>bind</code> does the common work for both column- and row-wise binding.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>You might have to make sure that the objects either all have or all
-  do not have rownames and/or colnames.</p>
+do not have rownames and/or colnames.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://rdrr.io/r/methods/cbind2.html'>rbind2</a></code>, <code><a href='https://rdrr.io/r/methods/cbind2.html'>cbind2</a></code>
-<code><a href='https://rdrr.io/r/base/cbind.html'>rbind</a></code>, <code><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></code></p>
-<p><code><a href='https://rdrr.io/r/base/merge.html'>merge</a></code> and <code>collapse</code> for combining objects that do not share spectra
+    <div class='dont-index'><p><code><a href='https://rdrr.io/r/methods/cbind2.html'>methods::rbind2()</a></code>, <code><a href='https://rdrr.io/r/methods/cbind2.html'>methods::cbind2()</a></code>
+<code><a href='https://rdrr.io/r/base/cbind.html'>base::rbind()</a></code>, <code><a href='https://rdrr.io/r/base/cbind.html'>base::cbind()</a></code></p>
+<p><code><a href='https://rdrr.io/r/base/merge.html'>merge()</a></code> and <code>collapse()</code> for combining objects that do not share spectra
 or wavelengths, respectively.</p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
@@ -259,7 +258,8 @@ or wavelengths, respectively.</p></div>
 #&gt;    1. x: x position [numeric] -11.55 -10.55 ... 22.45 
 #&gt;    2. y: y position [numeric] -4.77 -4.77 ... 19.23 
 #&gt;    3. region:  [factor] matrix matrix ... matrix 
-#&gt;    4. spc: intensity (arbitrary units) [matrix, array300] 15 168 ... 93 </div><div class='input'><span class='fu'>bind</span>(<span class='st'>"r"</span>, <span class='kw'>faux_cell</span>, <span class='kw'>faux_cell</span>)</div><div class='output co'>#&gt; hyperSpec object
+#&gt;    4. spc: intensity (arbitrary units) [matrix, array300] 15 168 ... 93 </div><div class='input'>
+<span class='fu'>bind</span>(<span class='st'>"r"</span>, <span class='kw'>faux_cell</span>, <span class='kw'>faux_cell</span>)</div><div class='output co'>#&gt; hyperSpec object
 #&gt;    1750 spectra
 #&gt;    4 data columns
 #&gt;    300 data points / spectrum

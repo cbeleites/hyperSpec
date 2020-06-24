@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>normalization for mixed colors — normalize01 • hyperSpec</title>
+<title>Normalize numbers to interval [0, 1]. — normalize01 • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,8 +41,10 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="normalization for mixed colors — normalize01" />
-<meta property="og:description" content="Normalize numbers -&amp;gt; [0, 1]" />
+<meta property="og:title" content="Normalize numbers to interval [0, 1]. — normalize01" />
+<meta property="og:description" content="The input x is mapped to [0, 1] by subtracting the minimum and
+subsequently dividing by the maximum. If all elements of x are equal,
+1 is returned." />
 
 <meta name="robots" content="noindex" />
 <meta name="robots" content="noindex">
@@ -155,13 +157,15 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>normalization for mixed colors</h1>
+    <h1>Normalize numbers to interval [0, 1].</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/normalize01.R'><code>R/normalize01.R</code></a></small>
     <div class="hidden name"><code>normalize01.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Normalize numbers -&gt; [0, 1]</p>
+    <p>The input <code>x</code> is mapped to [0, 1] by subtracting the minimum and
+subsequently dividing by the maximum. If all elements of <code>x</code> are equal,
+1 is returned.</p>
     </div>
 
     <pre class="usage"><span class='fu'>normalize01</span>(<span class='kw'>x</span>, <span class='kw'>...</span>)
@@ -195,13 +199,9 @@
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>vector with <code>x</code> values mapped to the interval [0, 1]</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>The input <code>x</code> is mapped to [0, 1] by subtracting the minimum and subsequently dividing by
-the maximum. If all elements of <code>x</code> are equal, 1 is returned.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/hyperSpec/man/wl.eval.html'>wl.eval</a></code>, <code><a href='https://rdrr.io/pkg/hyperSpec/man/vanderMonde.html'>vanderMonde</a></code></p></div>
+    <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/hyperSpec/man/wl.eval.html'>hyperSpec::wl.eval()</a></code>, <code><a href='https://rdrr.io/pkg/hyperSpec/man/vanderMonde.html'>hyperSpec::vanderMonde()</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>C. Beleites</p>

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Creating a hyperSpec Object — initialize • hyperSpec</title>
+<title>Creating a <code>hyperSpec</code> Object. — initialize • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,7 +41,7 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Creating a hyperSpec Object — initialize" />
+<meta property="og:title" content="Creating a <code>hyperSpec</code> Object. — initialize" />
 <meta property="og:description" content="Like other S4 objects, a hyperSpec object can be created by new. The
 hyperSpec object is then initialized using the given parameters." />
 
@@ -156,14 +156,14 @@ hyperSpec object is then initialized using the given parameters." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Creating a hyperSpec Object</h1>
+    <h1>Creating a <code>hyperSpec</code> Object.</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/initialize.R'><code>R/initialize.R</code></a></small>
     <div class="hidden name"><code>initialize.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Like other S4 objects, a hyperSpec object can be created by <code>new</code>. The
-hyperSpec object is then <code>initialize</code>d using the given parameters.</p>
+    <p>Like other S4 objects, a <code>hyperSpec</code> object can be created by <code>new</code>. The
+<code>hyperSpec</code> object is then <code>initialize</code>d using the given parameters.</p>
     </div>
 
     <pre class="usage"><span class='co'># S4 method for hyperSpec</span>
@@ -180,47 +180,46 @@ hyperSpec object is then <code>initialize</code>d using the given parameters.</p
       <th>spc</th>
       <td><p>the spectra matrix.</p>
 <p><code>spc</code> does not need to be a matrix, it is converted explicitly by
-  <code><a href='https://rdrr.io/r/base/AsIs.html'>I (as.matrix (spc))</a></code>.</p></td>
+<code><a href='https://rdrr.io/r/base/AsIs.html'>I(as.matrix (spc))</a></code>.</p></td>
     </tr>
     <tr>
       <th>data</th>
       <td><p><code>data.frame</code>, possibly with the spectra in
-  <code>data$spc</code>, and further variates in more columns.  A matrix can be
-  entered as <em>one</em> column of a data frame by: <code><a href='https://rdrr.io/r/base/data.frame.html'>data.frame (spc =
-  I (as.matrix (spc)))</a></code>.</p>
-<p>However, it will usually be more convenient if the spectra are given in
-  <code>spc</code></p></td>
+<code>data$spc</code>, and further variates in more columns.  A matrix can be
+entered as <em>one</em> column of a data frame by:
+<code><a href='https://rdrr.io/r/base/data.frame.html'>data.frame (spc = I (as.matrix (spc)))</a></code>.</p>
+<p>However, it will usually be more convenient if the spectra are given in <code>spc</code></p></td>
     </tr>
     <tr>
       <th>wavelength</th>
       <td><p>The wavelengths corresponding to the columns of
 <code>data</code>. If no wavelengths are given, an appropriate vector is
 derived from the column names of <code>data$spc</code>. If this is not
-possible, <code>1 : ncol (data$spc)</code> is used instead.</p></td>
+possible, <code>1:ncol(data$spc)</code> is used instead.</p></td>
     </tr>
     <tr>
       <th>labels</th>
       <td><p>A <code>list</code> containing the labels for the columns of the
-  <code>data</code> slot of the <code>hyperSpec</code> object and for the wavelength
-  (in <code>label$.wavelength</code>). The labels should be given in a form ready
-  for the text-drawing functions (see <code><a href='https://rdrr.io/r/grDevices/plotmath.html'>plotmath</a></code>).</p>
+<code>data</code> slot of the <code>hyperSpec</code> object and for the wavelength
+(in <code>label$.wavelength</code>). The labels should be given in a form ready
+for the text-drawing functions (see <code><a href='https://rdrr.io/r/grDevices/plotmath.html'>grDevices::plotmath()</a></code>).</p>
 <p>If <code>label</code> is not given, a list containing <code>NULL</code> for each of the
-  columns of<code>data</code> and <code>wavelength</code> is used.</p></td>
+columns of<code>data</code> and <code>wavelength</code> is used.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>If option <code>gc</code> is <code>TRUE</code>, the initialization will have frequent
-calls to <code><a href='https://rdrr.io/r/base/gc.html'>gc ()</a></code> which can help to avoid swapping or running out of
+calls to <code><a href='https://rdrr.io/r/base/gc.html'>gc()</a></code>, which can help to avoid swapping or running out of
 memory.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://rdrr.io/r/methods/new.html'>new</a></code> for more information on creating and
-  initializing S4 objects.</p>
-<p><code><a href='https://rdrr.io/r/grDevices/plotmath.html'>plotmath</a></code> on expressions for math annotations as
-  for slot <code>label</code>.</p>
-<p><code>hy.setOptions</code></p></div>
+    <div class='dont-index'><p><code><a href='https://rdrr.io/r/methods/new.html'>methods::new()</a></code> for more information on creating and
+initializing S4 objects.</p>
+<p><code><a href='https://rdrr.io/r/grDevices/plotmath.html'>grDevices::plotmath()</a></code> on expressions for math annotations as
+for slot <code>label</code>.</p>
+<p><code>hy.setOptions()</code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>C.Beleites</p>
