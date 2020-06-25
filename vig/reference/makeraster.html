@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>makeraster — makeraster • hyperSpec</title>
+<title>Find an evenly spaced grid for x. — makeraster • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,8 +41,14 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="makeraster — makeraster" />
-<meta property="og:description" content="find an evenly spaced grid for x" />
+<meta property="og:title" content="Find an evenly spaced grid for x. — makeraster" />
+<meta property="og:description" content="makeraster() fits the data to the specified raster.
+fitraster() tries different raster parameter and returns the raster that covers most of the
+x values: The differences between the values of x are calculated (possible step
+sizes). For each of those step sizes, different points are tried (until all points have been
+covered by a raster) and the parameter combination leading to the best coverage (i.e. most points
+on the grid) ist used.
+Note that only differences between the sorted values of x are considered as step size." />
 
 <meta name="robots" content="noindex" />
 <meta name="robots" content="noindex">
@@ -155,13 +161,19 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>makeraster</h1>
+    <h1>Find an evenly spaced grid for x.</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/makeraster.R'><code>R/makeraster.R</code></a></small>
     <div class="hidden name"><code>makeraster.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>find an evenly spaced grid for x</p>
+    <p><code>makeraster()</code> fits the data to the specified raster.</p>
+<p><code>fitraster()</code> tries different raster parameter and returns the raster that covers most of the
+<code>x</code> values: The differences between the values of <code>x</code> are calculated (possible step
+sizes). For each of those step sizes, different points are tried (until all points have been
+covered by a raster) and the parameter combination leading to the best coverage (i.e. most points
+on the grid) ist used.</p>
+<p>Note that only differences between the sorted values of x are considered as step size.</p>
     </div>
 
     <pre class="usage"><span class='fu'>makeraster</span>(<span class='kw'>x</span>, <span class='kw'>startx</span>, <span class='kw'>d</span>, <span class='kw'>newlevels</span>, tol = <span class='fl'>0.1</span>)
@@ -199,15 +211,6 @@
 <dt>x</dt><dd><p>the values of <code>x</code>, possibly rounded to the raster values</p></dd>
 <dt>levels</dt><dd><p>the values of the raster</p></dd>
 
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p><code>makeraster</code> fits the data to the specified raster.</p>
-<p><code>fitraster</code> tries different raster parameter and returns the raster that covers most of the
-<code>x</code> values: The differences between the values of <code>x</code> are calculated (possible step
-sizes). For each of those step sizes, different points are tried (until all points have been
-covered by a raster) and the parameter combination leading to the best coverage (i.e. most points
-on the grid) ist used.</p>
-<p>Note that only differences between the sorted values of x are considered as step size.</p>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Claudia Beleites</p>

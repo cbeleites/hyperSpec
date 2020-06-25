@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Getting and Setting the Wavelength Axis
-<code>wl</code> returns the wavelength axis, <code>wl&lt;-</code> sets it. — wl • hyperSpec</title>
+<title>Getting and Setting the Wavelength Axis. — wl • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -42,10 +41,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Getting and Setting the Wavelength Axis
-<code>wl</code> returns the wavelength axis, <code>wl&lt;-</code> sets it. — wl" />
-<meta property="og:description" content="The wavelength axis of a hyperSpec object can be retrieved and
-replaced with wl and wl&amp;lt;-, respectively." />
+<meta property="og:title" content="Getting and Setting the Wavelength Axis. — wl" />
+<meta property="og:description" content="wl() returns the wavelength axis, wl&amp;lt;- sets it." />
 
 <meta name="robots" content="noindex" />
 <meta name="robots" content="noindex">
@@ -158,15 +155,13 @@ replaced with wl and wl&amp;lt;-, respectively." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Getting and Setting the Wavelength Axis
-<code>wl</code> returns the wavelength axis, <code>wl&lt;-</code> sets it.</h1>
+    <h1>Getting and Setting the Wavelength Axis.</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/wl.R'><code>R/wl.R</code></a></small>
     <div class="hidden name"><code>wl.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>The wavelength axis of a <code>hyperSpec</code> object can be retrieved and
-replaced with <code>wl</code> and <code>wl&lt;-</code>, respectively.</p>
+    <p><code>wl()</code> returns the wavelength axis, <code>wl&lt;-</code> sets it.</p>
     </div>
 
     <pre class="usage"><span class='fu'>wl</span>(<span class='kw'>x</span>)
@@ -187,7 +182,7 @@ for details.</p></td>
     </tr>
     <tr>
       <th>digits</th>
-      <td><p>handed to <code><a href='https://rdrr.io/r/base/Round.html'>signif</a></code>. See details.</p></td>
+      <td><p>handed to <code><a href='https://rdrr.io/r/base/Round.html'>base::signif()</a></code>. See details.</p></td>
     </tr>
     <tr>
       <th>value</th>
@@ -203,7 +198,9 @@ list with <code>value$wl</code> containing the new wavelength vector and
 <p><code>hyperSpec</code> object</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>When the wavelength axis is replaced, the colnames of <code>x@data$spc</code> are
+    <p>The wavelength axis of a <code>hyperSpec</code> object can be retrieved and
+replaced with <code>wl</code> and <code>wl&lt;-</code>, respectively.</p>
+<p>When the wavelength axis is replaced, the colnames of <code>x@data$spc</code> are
 replaced by the rounded new wavelengths.  <code>digits</code> specifies the how
 many significant digits should be used.</p>
 <p>There are two ways to set the label of the new wavelength axis, see the
@@ -211,17 +208,17 @@ examples.  If no label is given, a warning will be issued.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p><code>wl&lt;-</code> always sets the complete wavelength axis, without
-  changing the columns of the spectra matrix. If you rather want to cut the
-  spectral range, use <code><a href='https://rdrr.io/r/base/Extract.html'>[</a></code>, for
-  interpolation along the spectral axis see
-  <code><a href='https://rdrr.io/pkg/hyperSpec/man/spc-loess.html'>spc.loess</a></code> and for spectral binning
-  <code><a href='https://rdrr.io/pkg/hyperSpec/man/spc-bin.html'>spc.bin</a></code>.</p>
+changing the columns of the spectra matrix. If you rather want to cut the
+spectral range, use <code><a href='https://rdrr.io/r/base/Extract.html'>[</a></code>, for
+interpolation along the spectral axis see
+<code><a href='https://rdrr.io/pkg/hyperSpec/man/spc-loess.html'>hyperSpec::spc.loess()</a></code> and for spectral binning
+<code><a href='https://rdrr.io/pkg/hyperSpec/man/spc-bin.html'>hyperSpec::spc.bin()</a></code>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://rdrr.io/r/base/Round.html'>signif</a></code></p>
+    <div class='dont-index'><p><code><a href='https://rdrr.io/r/base/Round.html'>base::signif()</a></code></p>
 <p>cutting the spectral range: <code><a href='https://rdrr.io/r/base/Extract.html'>[</a></code></p>
-<p>interpolation along the spectral axis: <code><a href='https://rdrr.io/pkg/hyperSpec/man/spc-loess.html'>spc.loess</a></code></p>
-<p>spectral binning: <code><a href='https://rdrr.io/pkg/hyperSpec/man/spc-bin.html'>spc.bin</a></code></p></div>
+<p>interpolation along the spectral axis: <code><a href='https://rdrr.io/pkg/hyperSpec/man/spc-loess.html'>hyperSpec::spc.loess()</a></code></p>
+<p>spectral binning: <code><a href='https://rdrr.io/pkg/hyperSpec/man/spc-bin.html'>hyperSpec::spc.bin()</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>C. Beleites</p>

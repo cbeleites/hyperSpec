@@ -6,9 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plot a Map and Identify/Select Spectra in the Map
-<code><a href='https://rdrr.io/pkg/lattice/man/levelplot.html'>levelplot</a></code> functions for hyperSpec objects.  An image or map of a summary
-value of each spectrum is plotted. Spectra may be identified by mouse click. — plotmap • hyperSpec</title>
+<title>Plot a Map and Identify/Select Spectra in the Map. — plotmap • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -43,11 +41,9 @@ value of each spectrum is plotted. Spectra may be identified by mouse click. —
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Plot a Map and Identify/Select Spectra in the Map
-<code><a href='https://rdrr.io/pkg/lattice/man/levelplot.html'>levelplot</a></code> functions for hyperSpec objects.  An image or map of a summary
-value of each spectrum is plotted. Spectra may be identified by mouse click. — plotmap" />
-<meta property="og:description" content="The model can contain the special column name .wavelength to specify the wavelength
-axis." />
+<meta property="og:title" content="Plot a Map and Identify/Select Spectra in the Map. — plotmap" />
+<meta property="og:description" content="lattice::levelplot() functions for hyperSpec objects.  An image or map of a summary
+value of each spectrum is plotted. Spectra may be identified by mouse click." />
 
 <meta name="robots" content="noindex" />
 <meta name="robots" content="noindex">
@@ -160,16 +156,14 @@ axis." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Plot a Map and Identify/Select Spectra in the Map
-<code><a href='https://rdrr.io/pkg/lattice/man/levelplot.html'>levelplot</a></code> functions for hyperSpec objects.  An image or map of a summary
-value of each spectrum is plotted. Spectra may be identified by mouse click.</h1>
+    <h1>Plot a Map and Identify/Select Spectra in the Map.</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/plotmap.R'><code>R/plotmap.R</code></a>, <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/levelplot.R'><code>R/levelplot.R</code></a>, <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/map.identify.R'><code>R/map.identify.R</code></a>, and 1 more</small>
     <div class="hidden name"><code>levelplot.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>The <code>model</code> can contain the special column name <code>.wavelength</code> to specify the wavelength
-axis.</p>
+    <p><code><a href='https://rdrr.io/pkg/lattice/man/levelplot.html'>lattice::levelplot()</a></code> functions for hyperSpec objects.  An image or map of a summary
+value of each spectrum is plotted. Spectra may be identified by mouse click.</p>
     </div>
 
     <pre class="usage"><span class='fu'>plotmap</span>(<span class='kw'>object</span>, model = <span class='kw'>spc</span> <span class='op'>~</span> <span class='kw'>x</span> <span class='op'>*</span> <span class='kw'>y</span>, func = <span class='kw'>mean</span>, func.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(), <span class='kw'>...</span>)
@@ -208,31 +202,31 @@ axis.</p>
     <tr>
       <th>model, x</th>
       <td><p>formula specifying the columns of object that are to be
-displayed by <code><a href='https://rdrr.io/pkg/lattice/man/levelplot.html'>levelplot</a></code></p></td>
+displayed by <code><a href='https://rdrr.io/pkg/lattice/man/levelplot.html'>lattice::levelplot()</a></code></p></td>
     </tr>
     <tr>
       <th>func, func.args</th>
       <td><p>Before plotting, <code>plotmap</code> applies function
-  <code>func</code> with the arguments given in the list <code>func.args</code> to each
-  of the spectra. Thus a single summary value is displayed for each of the
-  spectra.</p>
+<code>func</code> with the arguments given in the list <code>func.args</code> to each
+of the spectra. Thus a single summary value is displayed for each of the
+spectra.</p>
 <p>This can be suppressed manually by setting <code>func</code> to NULL. It is automatically suppressed if
 <code>.wavelength</code> appears in the formula.</p></td>
     </tr>
     <tr>
       <th>...</th>
       <td><p>further arguments are passed down the call chain, and finally
-to <code><a href='https://rdrr.io/pkg/lattice/man/levelplot.html'>levelplot</a></code></p></td>
+to <code><a href='https://rdrr.io/pkg/lattice/man/levelplot.html'>lattice::levelplot()</a></code></p></td>
     </tr>
     <tr>
       <th>transform.factor</th>
       <td><p>If the color-coded variable is a factor, should
-<code>trellis.factor.key</code> be used to compute the color coding and
+<code>trellis.factor.key()</code> be used to compute the color coding and
 legend?</p></td>
     </tr>
     <tr>
       <th>contour, useRaster</th>
-      <td><p>see  <code><a href='https://rdrr.io/pkg/lattice/man/levelplot.html'>levelplot</a></code></p></td>
+      <td><p>see  <code><a href='https://rdrr.io/pkg/lattice/man/levelplot.html'>lattice::levelplot()</a></code></p></td>
     </tr>
     <tr>
       <th>voronoi</th>
@@ -266,44 +260,46 @@ hyperSpec object circumvents this problem.</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p><code>map.identify</code> returns a vector of row indices into
-  <code>object</code> of the clicked points.</p>
+<code>object</code> of the clicked points.</p>
 <p>The other functions return a lattice object.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p><code>plotmap</code>, <code>map.identify</code>, and the <code>levelplot</code> methods internally use the same
-gateway function to <code><a href='https://rdrr.io/pkg/lattice/man/levelplot.html'>levelplot</a></code>. Thus <code>transform.factor</code> can be used
-with all of them and the panel function defaults to <code><a href='https://rdrr.io/pkg/lattice/man/panel.levelplot.html'>panel.levelplot.raster</a></code>
+    <p>The <code>model</code> can contain the special column name <code>.wavelength</code> to specify the wavelength
+axis.</p>
+<p><code>plotmap</code>, <code>map.identify</code>, and the <code>levelplot</code> methods internally use the same
+gateway function to <code><a href='https://rdrr.io/pkg/lattice/man/levelplot.html'>lattice::levelplot()</a></code>. Thus <code>transform.factor</code> can be used
+with all of them and the panel function defaults to <code><a href='https://rdrr.io/pkg/lattice/man/panel.levelplot.html'>lattice::panel.levelplot.raster()</a></code>
 for all three. Two special column names, <code>.rownames</code> and <code>.wavelength</code> may be used.</p>
 <p><code>levelplot</code> plots the spectra matrix.</p>
 <p><code>plotvoronoi</code> calls <code>plotmap</code> with different default settings, namely the panel
-function defaults to <code><a href='https://rdrr.io/pkg/latticeExtra/man/panel.voronoi.html'>panel.voronoi</a></code>.
-<code><a href='https://rdrr.io/pkg/latticeExtra/man/panel.voronoi.html'>panel.voronoi</a></code> depends on either of the packages 'tripack' or 'deldir'
+function defaults to <code><a href='https://rdrr.io/pkg/latticeExtra/man/panel.voronoi.html'>latticeExtra::panel.voronoi()</a></code>.
+<code><a href='https://rdrr.io/pkg/latticeExtra/man/panel.voronoi.html'>latticeExtra::panel.voronoi()</a></code> depends on either of the packages 'tripack' or 'deldir'
 being installed. For further information, please consult the help page of
-<code><a href='https://rdrr.io/pkg/latticeExtra/man/panel.voronoi.html'>panel.voronoi</a></code>.  On the <code>faux_cell</code> data set, <code>plotmap</code>
+<code><a href='https://rdrr.io/pkg/latticeExtra/man/panel.voronoi.html'>latticeExtra::panel.voronoi()</a></code>.  On the <code>faux_cell()</code> data set, <code>plotmap</code>
 is roughly 5 times faster than <code>plotvoronoi</code> using tripack, and ca. 15 times faster than
 <code>plotvoronoi</code> using deldir. Package tripack, however, is free only for non-commercial
 use. Also, it seems that tripack version hang (R running at full CPU power, but not responding
 nor finishing the calculation) for certain data sets. In this case, <code>mix = TRUE</code> may help.</p>
 <p><code>map.identify</code> calls <code>plotmap</code> and <code>plotvoronoi</code>, respectively and waits for
 (left) mouse clicks on points. Other mouse clicks end the input.</p>
-<p>Unlike <code><a href='https://rdrr.io/pkg/lattice/man/interaction.html'>panel.identify</a></code>, the indices returned by <code>map.identify</code> are in
+<p>Unlike <code><a href='https://rdrr.io/pkg/lattice/man/interaction.html'>lattice::panel.identify()</a></code>, the indices returned by <code>map.identify</code> are in
 the same order as the points were clicked. Also, multiple clicks on the same point are returned
 as multiple entries with the same index.</p>
-<p><code>map.identify</code> uses option <code>debuglevel</code> similar to <code>spc.identify</code>:
+<p><code>map.identify</code> uses option <code>debuglevel</code> similar to <code>spc.identify()</code>:
 <code>debuglevel == 1</code> will plot the tolerance window if no data point was inside (and
 additionally labels the point) while <code>debuglevel == 2</code> will always plot the tolerance
 window.</p>
 <p>The <code>map.sel.*</code> functions offer further interactive selection, see
-<code>map.sel.poly</code>.</p>
+<code>map.sel.poly()</code>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code>vignette (plotting)</code>, <code>vignette (hyperspec)</code></p>
-<p><code><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></code></p>
-<p><code><a href='https://rdrr.io/pkg/lattice/man/levelplot.html'>levelplot</a></code></p>
-<p><code>trellis.factor.key</code> for improved color coding of factors</p>
-<p><code>hyperSpec options</code> <code>spc.identify</code>
-<code>map.sel.poly</code></p>
-<p><code><a href='https://rdrr.io/pkg/latticeExtra/man/panel.voronoi.html'>panel.voronoi</a></code></p></div>
+    <div class='dont-index'><p><code>vignette(plotting)</code>, <code>vignette(hyperSpec)</code></p>
+<p><code><a href='https://rdrr.io/r/graphics/plot.default.html'>plot()</a></code></p>
+<p><code><a href='https://rdrr.io/pkg/lattice/man/levelplot.html'>lattice::levelplot()</a></code></p>
+<p><code>trellis.factor.key()</code> for improved color coding of factors</p>
+<p><code>hyperSpec options()</code> <code>spc.identify()</code>
+<code>map.sel.poly()</code></p>
+<p><code><a href='https://rdrr.io/pkg/latticeExtra/man/panel.voronoi.html'>latticeExtra::panel.voronoi()</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>C. Beleites</p>
@@ -312,10 +308,10 @@ window.</p>
     <pre class="examples"><div class='input'>
 <span class='co'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='fu'><a href='https://rdrr.io/r/utils/vignette.html'>vignette</a></span>(<span class='kw'>plotting</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/vignette.html'>vignette</a></span>(<span class='kw'>hyperspec</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/vignette.html'>vignette</a></span>(<span class='kw'>hyperSpec</span>)
 }
 
-<span class='fu'>levelplot</span>(<span class='kw'>spc</span> <span class='op'>~</span> <span class='kw'>y</span> <span class='op'>*</span> <span class='kw'>x</span>, <span class='kw'>faux_cell</span> [, , <span class='fl'>1003</span>]) <span class='co'># properly rotated</span></div><div class='img'><img src='levelplot-1.png' alt='' width='466' height='288' /></div><div class='input'><span class='fu'>plotmap</span>(<span class='kw'>faux_cell</span> [, , <span class='fl'>1003</span>])</div><div class='img'><img src='levelplot-2.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='fu'>levelplot</span>(<span class='kw'>spc</span> <span class='op'>~</span> <span class='kw'>y</span> <span class='op'>*</span> <span class='kw'>x</span>, <span class='kw'>faux_cell</span>[, , <span class='fl'>1003</span>]) <span class='co'># properly rotated</span></div><div class='img'><img src='levelplot-1.png' alt='' width='466' height='288' /></div><div class='input'><span class='fu'>plotmap</span>(<span class='kw'>faux_cell</span>[, , <span class='fl'>1003</span>])</div><div class='img'><img src='levelplot-2.png' alt='' width='466' height='288' /></div><div class='input'>
 <span class='co'># plot spectra matrix</span>
 <span class='fu'>levelplot</span>(<span class='kw'>spc</span> <span class='op'>~</span> <span class='kw'>.wavelength</span> <span class='op'>*</span> <span class='kw'>t</span>, <span class='kw'>laser</span>, contour = <span class='fl'>TRUE</span>, col = <span class='st'>"#00000080"</span>)</div><div class='img'><img src='levelplot-3.png' alt='' width='466' height='288' /></div><div class='input'><span class='co'># see also plotmat</span>
 

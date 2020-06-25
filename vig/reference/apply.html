@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>apply
-Computes summary statistics for the spectra of a <code>hyperSpec</code> object. — apply • hyperSpec</title>
+<title>Compute summary statistics for the spectra of a <code>hyperSpec</code> object. — apply • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -42,10 +41,8 @@ Computes summary statistics for the spectra of a <code>hyperSpec</code> object. 
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="apply
-Computes summary statistics for the spectra of a <code>hyperSpec</code> object. — apply" />
-<meta property="og:description" content="apply gives the functionality of apply for
-hyperSpec objects." />
+<meta property="og:title" content="Compute summary statistics for the spectra of a <code>hyperSpec</code> object. — apply" />
+<meta property="og:description" content="apply gives the functionality of base::apply() for hyperSpec objects." />
 
 <meta name="robots" content="noindex" />
 <meta name="robots" content="noindex">
@@ -158,15 +155,13 @@ hyperSpec objects." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>apply
-Computes summary statistics for the spectra of a <code>hyperSpec</code> object.</h1>
+    <h1>Compute summary statistics for the spectra of a <code>hyperSpec</code> object.</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/apply.R'><code>R/apply.R</code></a></small>
     <div class="hidden name"><code>apply.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p><code>apply</code> gives the functionality of <code><a href='https://rdrr.io/r/base/apply.html'>apply</a></code> for
-<code>hyperSpec</code> objects.</p>
+    <p><code>apply</code> gives the functionality of <code><a href='https://rdrr.io/r/base/apply.html'>base::apply()</a></code> for <code>hyperSpec</code> objects.</p>
     </div>
 
     <pre class="usage"><span class='co'># S4 method for hyperSpec</span>
@@ -190,15 +185,17 @@ Computes summary statistics for the spectra of a <code>hyperSpec</code> object.<
     </tr>
     <tr>
       <th>MARGIN</th>
-      <td><p>The subscript which the function will be applied over.</p>
-<p><code>1</code> indicates rows (<code>FUN</code> is applied to each spectrum),</p>
-<p><code>2</code> indicates columns (<code>FUN</code> is applied to each wavelength),</p>
-<p><code>1 : 2</code> indicates that <code>FUN</code> should be applied to each single
-  element of the spectra matrix. Note that many basic mathematical
-  functions are already defined for hyperSpec objects (see
-  <code><a href='https://rdrr.io/r/base/groupGeneric.html'>Math</a></code>).</p>
+      <td><p>The subscript which the function will be applied over.</p><ul>
+<li><p><code>1</code> indicates rows (<code>FUN</code> is applied to each spectrum),</p></li>
+<li><p><code>2</code> indicates columns (<code>FUN</code> is applied to each wavelength),</p></li>
+<li><p><code>1:2</code> indicates that <code>FUN</code> should be applied to each single
+element of the spectra matrix. Note that many basic mathematical
+functions are already defined for hyperSpec objects (see
+<code><a href='https://rdrr.io/r/base/groupGeneric.html'>Math()</a></code>).</p></li>
+</ul>
+
 <p>If <code>MARGIN</code> is missing, the whole spectra matrix is handed to
-  <code>FUN</code>, see also the examples.</p></td>
+<code>FUN</code>, see also the examples.</p></td>
     </tr>
     <tr>
       <th>FUN</th>
@@ -230,9 +227,9 @@ the resulting object.</p></td>
     <p>A <code>hyperSpec</code> object</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>The generic functions of group <code><a href='https://rdrr.io/r/methods/S4groupGeneric.html'>Math</a></code> are not definded
+    <p>The generic functions of group <code><a href='https://rdrr.io/r/methods/S4groupGeneric.html'>methods::Math()</a></code> are not definded
 for <code>hyperSpec</code> objects. Instead, <code>apply</code> can be used. For
-functions like <code>log</code> that work on scalars, <code>MARGIN = 1 : 2</code> gives
+functions like <code><a href='https://rdrr.io/r/base/Log.html'>log()</a></code> that work on scalars, <code>MARGIN = 1 : 2</code> gives
 the appropriate behaviour.</p>
 <p><code>spcapply</code> does the same as <code>apply</code> with <code>MARGIN = 1</code>, but
 additionally allows to set a new wavelength axis and adjust the labels.</p>
@@ -240,8 +237,8 @@ additionally allows to set a new wavelength axis and adjust the labels.</p>
 additionally allows to set a new wavelength axis and adjust the labels.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://rdrr.io/r/base/apply.html'>apply</a></code>, for applying <code>FUN</code> to subgroups of
-  the <code>hyperSpec</code> object: <code><a href='https://rdrr.io/pkg/hyperSpec/man/aggregate.html'>aggregate</a></code>.</p></div>
+    <div class='dont-index'><p><code><a href='https://rdrr.io/r/base/apply.html'>base::apply()</a></code>, for applying <code>FUN</code> to subgroups of
+the <code>hyperSpec</code> object: <code><a href='https://rdrr.io/pkg/hyperSpec/man/aggregate.html'>hyperSpec::aggregate()</a></code>.</p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>C. Beleites</p>

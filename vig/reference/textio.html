@@ -6,9 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Import and Export of hyperSpec objects
-Besides <code><a href='https://rdrr.io/r/base/save.html'>save</a></code> and <code><a href='https://rdrr.io/r/base/load.html'>load</a></code>, two general
-ways to import and export data into <code>hyperSpec</code> objects exist. — read.txt.long • hyperSpec</title>
+<title>Import and Export of <code>hyperSpec</code> objects. — read.txt.long • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -43,11 +41,8 @@ ways to import and export data into <code>hyperSpec</code> objects exist. — re
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Import and Export of hyperSpec objects
-Besides <code><a href='https://rdrr.io/r/base/save.html'>save</a></code> and <code><a href='https://rdrr.io/r/base/load.html'>load</a></code>, two general
-ways to import and export data into <code>hyperSpec</code> objects exist. — read.txt.long" />
-<meta property="og:description" content="Firstly, hyperSpec objects can be imported and exported as ASCII files.
-Besides save and load, two general ways to import and
+<meta property="og:title" content="Import and Export of <code>hyperSpec</code> objects. — read.txt.long" />
+<meta property="og:description" content="Besides base::save() and base::load(), two general ways to import and
 export data into hyperSpec objects exist." />
 
 <meta name="robots" content="noindex" />
@@ -161,16 +156,13 @@ export data into hyperSpec objects exist." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Import and Export of hyperSpec objects
-Besides <code><a href='https://rdrr.io/r/base/save.html'>save</a></code> and <code><a href='https://rdrr.io/r/base/load.html'>load</a></code>, two general
-ways to import and export data into <code>hyperSpec</code> objects exist.</h1>
+    <h1>Import and Export of <code>hyperSpec</code> objects.</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/read.txt.long.R'><code>R/read.txt.long.R</code></a>, <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/read.txt.wide.R'><code>R/read.txt.wide.R</code></a>, <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/write.txt.long.R'><code>R/write.txt.long.R</code></a>, and 1 more</small>
     <div class="hidden name"><code>textio.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Firstly, hyperSpec objects can be imported and exported as ASCII files.</p>
-<p>Besides <code><a href='https://rdrr.io/r/base/save.html'>save</a></code> and <code><a href='https://rdrr.io/r/base/load.html'>load</a></code>, two general ways to import and
+    <p>Besides <code><a href='https://rdrr.io/r/base/save.html'>base::save()</a></code> and <code><a href='https://rdrr.io/r/base/load.html'>base::load()</a></code>, two general ways to import and
 export data into <code>hyperSpec</code> objects exist.</p>
     </div>
 
@@ -231,8 +223,8 @@ export data into <code>hyperSpec</code> objects exist.</p>
       <th>cols</th>
       <td><p>the column names specifying the column order.</p>
 <p>For data import, a list with elements <code>colname = label</code>; for export a
-  character vector with the colnames.  Use <code>wavelength</code> to specify the
-  wavelengths.</p></td>
+character vector with the colnames.  Use <code>wavelength</code> to specify the
+wavelengths.</p></td>
     </tr>
     <tr>
       <th>header</th>
@@ -240,12 +232,12 @@ export data into <code>hyperSpec</code> objects exist.</p>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>arguments handed to <code><a href='https://rdrr.io/r/utils/read.table.html'>read.table</a></code> and
-<code><a href='https://rdrr.io/r/utils/write.table.html'>write.table</a></code>, respectively.</p></td>
+      <td><p>arguments handed to <code><a href='https://rdrr.io/r/utils/read.table.html'>utils::read.table()</a></code> and
+<code><a href='https://rdrr.io/r/utils/write.table.html'>utils::write.table()</a></code>, respectively.</p></td>
     </tr>
     <tr>
       <th>check.names</th>
-      <td><p>handed to <code><a href='https://rdrr.io/r/utils/read.table.html'>read.table</a></code>. Make sure this is <code>FALSE</code>, if
+      <td><p>handed to <code><a href='https://rdrr.io/r/utils/read.table.html'>utils::read.table()</a></code>. Make sure this is <code>FALSE</code>, if
 the column names of the spectra are the wavelength values.</p></td>
     </tr>
     <tr>
@@ -254,13 +246,13 @@ the column names of the spectra are the wavelength values.</p></td>
     </tr>
     <tr>
       <th>order</th>
-      <td><p>which columns should be <code><a href='https://rdrr.io/r/base/order.html'>order</a></code>ed?
+      <td><p>which columns should be <code><a href='https://rdrr.io/r/base/order.html'>base::order()</a></code>ed?
 <code>order</code> is used as index vector into a <code>data.frame</code> with
 columns given by <code>cols</code>.</p></td>
     </tr>
     <tr>
       <th>na.last</th>
-      <td><p>handed to <code><a href='https://rdrr.io/r/base/order.html'>order</a></code> by
+      <td><p>handed to <code><a href='https://rdrr.io/r/base/order.html'>base::order()</a></code> by
 <code>write.txt.long</code>.</p></td>
     </tr>
     <tr>
@@ -270,8 +262,8 @@ columns given by <code>cols</code>.</p></td>
     <tr>
       <th>quote, sep, col.names, row.names</th>
       <td><p>have their usual meaning (see
-  <code><a href='https://rdrr.io/r/utils/read.table.html'>read.table</a></code> and <code><a href='https://rdrr.io/r/utils/write.table.html'>write.table</a></code>),
-  but different default values.</p>
+<code><a href='https://rdrr.io/r/utils/read.table.html'>utils::read.table()</a></code> and <code><a href='https://rdrr.io/r/utils/write.table.html'>utils::write.table()</a></code>),
+but different default values.</p>
 <p>For file import, <code>row.names</code> should usually be <code>NULL</code> so that the
 first column becomes a extra data column (as opposed to row names of the extra data).</p></td>
     </tr>
@@ -293,54 +285,57 @@ second header line) for <code>write.txt.wide</code></p></td>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>A second option is using the package <code><a href='https://rdrr.io/pkg/R.matlab/man/R.matlab-package.html'>R.matlab</a></code> which
-provides the functions <code><a href='https://rdrr.io/pkg/R.matlab/man/readMat.html'>readMat</a></code> and
-<code><a href='https://rdrr.io/pkg/R.matlab/man/writeMat.html'>writeMat</a></code>.</p>
-<p>hyperSpec comes with a number of pre-defined functions to import
-manufacturer specific file formats. For details, see <code>vignette
-("file-io")</code>.</p>
-<p><code><a href='https://rdrr.io/pkg/hyperSpec/man/read-spc.html'>read.spc</a></code> imports Thermo Galactic's .spc file
-format, and ENVI files may be read using
-<code><a href='https://rdrr.io/pkg/hyperSpec/man/read.ENVI.html'>read.ENVI</a></code>.</p>
+    <p>Firstly, <code>hyperSpec</code> objects can be imported and exported as ASCII files.</p>
+<p>A second option is using the package <code><a href='https://rdrr.io/pkg/R.matlab/man/R.matlab-package.html'>R.matlab::R.matlab()</a></code>, which
+provides the functions <code><a href='https://rdrr.io/pkg/R.matlab/man/readMat.html'>R.matlab::readMat()</a></code> and <code><a href='https://rdrr.io/pkg/R.matlab/man/writeMat.html'>R.matlab::writeMat()</a></code>.</p>
+<p>Package <span class="pkg">hyperSpec</span> comes with a number of pre-defined functions to
+import manufacturer specific file formats. For details, see
+<code>vignette("file-io")</code>.</p>
+<p><code><a href='https://rdrr.io/pkg/hyperSpec/man/read-spc.html'>hyperSpec::read.spc()</a></code> imports Thermo Galactic's <code>.spc</code> file format,
+and ENVI files may be read using <code><a href='https://rdrr.io/pkg/hyperSpec/man/read.ENVI.html'>hyperSpec::read.ENVI()</a></code>.</p>
 <p>These functions are very flexible and provide lots of arguments.</p>
 <p>If you use them to read or write manufacturer specific ASCII formats,
 please consider writing a wrapper function and contributing this function
-to <span class="pkg">hyperSpec</span>.  An example is in the &#8220;flu&#8221; vignette (see
-<code>vignette ("flu", package = "hyperSpec"</code>).</p>
+to <span class="pkg">hyperSpec</span>. An example is in the &#8220;flu&#8221; vignette (see
+<code>vignette("flu", package = "hyperSpec"</code>).</p>
 <p>Note that R accepts many packed formats for ASCII files, see
-<code><a href='https://rdrr.io/r/base/connections.html'>connections</a></code>. For .zip files, see
-<code><a href='https://rdrr.io/r/utils/unzip.html'>unzip</a></code>.</p>
+<code><a href='https://rdrr.io/r/base/connections.html'>base::connections()</a></code>. For <code>.zip</code> files, see <code><a href='https://rdrr.io/r/utils/unzip.html'>utils::unzip()</a></code>.</p>
 <p>For further information, see the examples below and the documentation of
-<code><a href='https://rdrr.io/pkg/R.matlab/man/R.matlab-package.html'>R.matlab</a></code>.</p>
+<code><a href='https://rdrr.io/pkg/R.matlab/man/R.matlab-package.html'>R.matlab::R.matlab()</a></code>.</p>
+<p>A detailed discussion of <span class="pkg">hyperSpec</span>'s file import and export
+capabilities is given in vignette <code>fileio</code>.</p>
+<p>Besides <code><a href='https://rdrr.io/r/base/save.html'>base::save()</a></code> and <code><a href='https://rdrr.io/r/base/load.html'>base::load()</a></code>, two general ways to import and
+export data into <code>hyperSpec</code> objects exist.</p>
 <p>Firstly, hyperSpec objects can be imported  and exported as ASCII files.</p>
-<p>A second option is using the package <code><a href='https://rdrr.io/pkg/R.matlab/man/R.matlab-package.html'>R.matlab</a></code>
-  which provides the functions <code><a href='https://rdrr.io/pkg/R.matlab/man/readMat.html'>readMat</a></code> and
-  <code><a href='https://rdrr.io/pkg/R.matlab/man/writeMat.html'>writeMat</a></code>.</p>
-<p>hyperSpec comes with a number of pre-defined functions to import
-  manufacturer specific file formats. For details, see <code>vignette
-  ("fileio")</code>.</p>
-<p><code><a href='https://rdrr.io/pkg/hyperSpec/man/read-spc.html'>read.spc</a></code> imports Thermo Galactic's .spc file
-  format, and ENVI files may be read using
-  <code><a href='https://rdrr.io/pkg/hyperSpec/man/read.ENVI.html'>read.ENVI</a></code>.</p>
+<p>A second option is using the package <code><a href='https://rdrr.io/pkg/R.matlab/man/R.matlab-package.html'>R.matlab::R.matlab()</a></code>
+which provides the functions <code><a href='https://rdrr.io/pkg/R.matlab/man/readMat.html'>R.matlab::readMat()</a></code> and
+<code><a href='https://rdrr.io/pkg/R.matlab/man/writeMat.html'>R.matlab::writeMat()</a></code>.</p>
+<p><span class="pkg">hyperSpec</span> comes with a number of pre-defined functions to import
+manufacturer specific file formats. For details, see <code>vignette("fileio")</code>.</p>
+<p><code><a href='https://rdrr.io/pkg/hyperSpec/man/read-spc.html'>hyperSpec::read.spc()</a></code> imports Thermo Galactic's .spc file
+format, and ENVI files may be read using
+<code><a href='https://rdrr.io/pkg/hyperSpec/man/read.ENVI.html'>hyperSpec::read.ENVI()</a></code>.</p>
 <p>These functions are very flexible and provide lots of arguments.</p>
 <p>If you use them to read or write manufacturer specific ASCII formats,
 please consider writing a wrapper function and contributing this
 function to <span class="pkg">hyperSpec</span>.  An example is in the &#8220;flu&#8221; vignette
-(see <code>vignette ("flu", package = "hyperSpec"</code>).</p>
+(see <code>vignette("flu", package = "hyperSpec"</code>).</p>
 <p>Note that R accepts many packed formats for ASCII files, see
-<code><a href='https://rdrr.io/r/base/connections.html'>connections</a></code>. For .zip files, see <code><a href='https://rdrr.io/r/utils/unzip.html'>unzip</a></code>.</p>
-<p>For further information, see the examples below, <code>vignette ("fileio")</code> and the documentation
-of <code><a href='https://rdrr.io/pkg/R.matlab/man/R.matlab-package.html'>R.matlab</a></code>.</p>
+<code><a href='https://rdrr.io/r/base/connections.html'>base::connections()</a></code>. For .zip files, see <code><a href='https://rdrr.io/r/utils/unzip.html'>utils::unzip()</a></code>.</p>
+<p>For further information, see the examples below, <code>vignette("fileio")</code> and the documentation
+of <code><a href='https://rdrr.io/pkg/R.matlab/man/R.matlab-package.html'>R.matlab::R.matlab()</a></code>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://rdrr.io/r/utils/read.table.html'>read.table</a></code> and
-  <code><a href='https://rdrr.io/r/utils/write.table.html'>write.table</a></code></p>
-<p><code><a href='https://rdrr.io/pkg/R.matlab/man/R.matlab-package.html'>R.matlab</a></code> for .mat files</p>
-<p><code><a href='https://rdrr.io/pkg/hyperSpec/man/read.ENVI.html'>read.ENVI</a></code> for ENVI data</p>
-<p><code><a href='https://rdrr.io/pkg/hyperSpec/man/read-spc.html'>read.spc</a></code> for .spc files</p>
-<p>Manufacturer specific file formats: <code>read.txt.Renishaw</code></p>
-<p><code>vignette ("fileio")</code> and <a href='http://hyperspec.r-forge.r-project.org/blob/fileio.pdf'>http://hyperspec.r-forge.r-project.org/blob/fileio.pdf</a>,
-respectively</p></div>
+    <div class='dont-index'>
+<ul>
+<li><p><code><a href='https://rdrr.io/r/utils/read.table.html'>utils::read.table()</a></code> and <code><a href='https://rdrr.io/r/utils/write.table.html'>utils::write.table()</a></code>,</p></li>
+<li><p><code><a href='https://rdrr.io/pkg/R.matlab/man/R.matlab-package.html'>R.matlab::R.matlab()</a></code> for <code>.mat</code> files,</p></li>
+<li><p><code><a href='https://rdrr.io/pkg/hyperSpec/man/read.ENVI.html'>hyperSpec::read.ENVI()</a></code> for ENVI data,</p></li>
+<li><p><code><a href='https://rdrr.io/pkg/hyperSpec/man/read-spc.html'>hyperSpec::read.spc()</a></code> for <code>.spc</code> files,</p></li>
+<li><p>Manufacturer specific file formats: <code>read.txt.Renishaw()</code>.</p></li>
+</ul>
+
+<p><code>vignette("fileio")</code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>C. Beleites</p>
@@ -577,7 +572,7 @@ respectively</p></div>
 #&gt; 
 #&gt; attr(,"header")
 #&gt; attr(,"header")$description
-#&gt; [1] "MATLAB 5.0 MAT-file, Platform: unix, Software: R v4.0.2, Created on: Wed Jun 24 11:13:42 2020                               "
+#&gt; [1] "MATLAB 5.0 MAT-file, Platform: unix, Software: R v4.0.2, Created on: Thu Jun 25 23:29:01 2020                               "
 #&gt; 
 #&gt; attr(,"header")$version
 #&gt; [1] "5"
@@ -609,7 +604,7 @@ respectively</p></div>
 #&gt; data:  (6 rows x 3 columns)
 #&gt;    1. spc: I / a.u [matrix, array181] 27.15000 66.80133 ... 294.6495 
 #&gt;    2. c: c/(mg/l) [numeric] 0.05 0.10 ... 0.3 
-#&gt;    3. filename: filename [character] /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpARxqAv/flu.txt /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpARxqAv/flu.txt ... /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpARxqAv/flu.txt </div><div class='input'>
+#&gt;    3. filename: filename [character] /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//Rtmp2x292N/flu.txt /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//Rtmp2x292N/flu.txt ... /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//Rtmp2x292N/flu.txt </div><div class='input'>
 <span class='fu'>write.txt.wide</span>(<span class='kw'>flu</span>,
   file = <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>"/flu.txt"</span>),
   cols = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"c"</span>, <span class='st'>"spc"</span>),

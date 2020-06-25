@@ -130,7 +130,7 @@
 <br><a class="author_email" href="mailto:#"></a><a href="mailto:chemometrie@beleites.de" class="email">chemometrie@beleites.de</a>
       </address>
                   
-            <h4 class="date">2020-06-24</h4>
+            <h4 class="date">2020-06-25</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/cbeleites/hyperSpec/blob/master/../vignettes/flu.Rmd"><code>../vignettes/flu.Rmd</code></a></small>
       <div class="hidden name"><code>flu.Rmd</code></div>
@@ -201,7 +201,7 @@ Figure 1.1: Six spectra of <code>flu</code> dataset.
 This information can be stored together with the spectra, and also gets an appropriate label:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit">
 <span class="kw">flu</span><span class="op">$</span><span class="kw">c</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/seq.hyperSpec.html">seq</a></span>(from = <span class="fl">0.05</span>, to = <span class="fl">0.30</span>, by = <span class="fl">0.05</span>)
-<span class="fu"><a href="https://rdrr.io/pkg/sp/man/gridlines.html">labels</a></span>(<span class="kw">flu</span>, <span class="st">"c"</span>) <span class="op">&lt;-</span> <span class="st">"c, mg/l"</span>
+<span class="fu"><a href="https://rdrr.io/r/base/labels.html">labels</a></span>(<span class="kw">flu</span>, <span class="st">"c"</span>) <span class="op">&lt;-</span> <span class="st">"c, mg/l"</span>
 
 <span class="kw">flu</span>
 <span class="co">#&gt; hyperSpec object</span>
@@ -267,7 +267,7 @@ The first coordinate defines which spectra are to be used, the second which data
 <p>We discard all the wavelengths but 450 nm:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit">
 <span class="kw">flu</span> <span class="op">&lt;-</span> <span class="kw">flu</span>[, , <span class="fl">450</span>]
-<span class="fu"><a href="https://rdrr.io/pkg/sp/man/gridlines.html">labels</a></span>(<span class="kw">flu</span>, <span class="st">"spc"</span>) <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span>(<span class="kw">I</span>[<span class="st">"450 nm"</span>] <span class="op">/</span> <span class="kw">a.u.</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/labels.html">labels</a></span>(<span class="kw">flu</span>, <span class="st">"spc"</span>) <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span>(<span class="kw">I</span>[<span class="st">"450 nm"</span>] <span class="op">/</span> <span class="kw">a.u.</span>)
 </pre></div>
 <p>The plot could be enhanced by annotating the ordinate with the emission wavelength.
 Also the axes should start at the origin, so that it is easier to see whether the calibration function will go through the origin:</p>
@@ -459,7 +459,7 @@ Figure 4.4: calibration function and its 99% confidence interval and predicted p
 <span class="co">#&gt;  collate  en_US.UTF-8                 </span>
 <span class="co">#&gt;  ctype    en_US.UTF-8                 </span>
 <span class="co">#&gt;  tz       UTC                         </span>
-<span class="co">#&gt;  date     2020-06-24                  </span>
+<span class="co">#&gt;  date     2020-06-25                  </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; ─ Packages ───────────────────────────────────────────────────────────────────────────────────────</span>
 <span class="co">#&gt;  package      * version       date       lib source        </span>
@@ -480,7 +480,7 @@ Figure 4.4: calibration function and its 99% confidence interval and predicted p
 <span class="co">#&gt;  ggplot2      * 3.3.2         2020-06-19 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  glue           1.4.1         2020-05-13 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  gtable         0.3.0         2019-03-25 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  hyperSpec    * 0.99-20200615 2020-06-24 [1] local         </span>
+<span class="co">#&gt;  hyperSpec    * 0.99-20200615 2020-06-25 [1] local         </span>
 <span class="co">#&gt;  isoband        0.2.2         2020-06-20 [1] CRAN (R 4.0.1)</span>
 <span class="co">#&gt;  jpeg           0.1-8.1       2019-10-24 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  labeling       0.3           2014-08-23 [1] CRAN (R 4.0.0)</span>

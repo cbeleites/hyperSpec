@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Arithmetical Operators: +, -, <em>, /, ^, %%, %/%, %</em>% for hyperSpec objects — Arith,hyperSpec,hyperSpec-method • hyperSpec</title>
+<title>Arithmetical Operators: <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>^</code>, <code>%%</code>, <code>%/%</code>, <code>%*%</code> for <code>hyperSpec</code> objects. — Arith,hyperSpec,hyperSpec-method • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,7 +41,7 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Arithmetical Operators: +, -, <em>, /, ^, %%, %/%, %</em>% for hyperSpec objects — Arith,hyperSpec,hyperSpec-method" />
+<meta property="og:title" content="Arithmetical Operators: <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>^</code>, <code>%%</code>, <code>%/%</code>, <code>%*%</code> for <code>hyperSpec</code> objects. — Arith,hyperSpec,hyperSpec-method" />
 <meta property="og:description" content="The arithmetical operators +, -, *, /, ^, %%, %/%, and %*%
 hyperSpec objects." />
 
@@ -156,14 +156,14 @@ hyperSpec objects." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Arithmetical Operators: +, -, <em>, /, ^, %%, %/%, %</em>% for hyperSpec objects</h1>
+    <h1>Arithmetical Operators: <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>^</code>, <code>%%</code>, <code>%/%</code>, <code>%*%</code> for <code>hyperSpec</code> objects.</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/Arith.R'><code>R/Arith.R</code></a></small>
     <div class="hidden name"><code>Arith.Rd</code></div>
     </div>
 
     <div class="ref-description">
     <p>The arithmetical operators <code><a href='https://rdrr.io/r/base/Arithmetic.html'>+</a></code>, <code><a href='https://rdrr.io/r/base/Arithmetic.html'>-</a></code>, <code><a href='https://rdrr.io/r/base/Arithmetic.html'>*</a></code>, <code><a href='https://rdrr.io/r/base/Arithmetic.html'>/</a></code>, <code><a href='https://rdrr.io/r/base/Arithmetic.html'>^</a></code>, <code><a href='https://rdrr.io/r/base/Arithmetic.html'>%%</a></code>, <code><a href='https://rdrr.io/r/base/Arithmetic.html'>%/%</a></code>, and <code><a href='https://rdrr.io/r/base/matmult.html'>%*%</a></code>
-hyperSpec objects.</p>
+<code>hyperSpec</code> objects.</p>
     </div>
 
     <pre class="usage"># S4 method for hyperSpec,hyperSpec
@@ -202,19 +202,19 @@ Arith(e1, e2)
     </tr>
     <tr>
       <th>x, y</th>
-      <td><p>either two hyperSpec objects or</p>
-<p>one hyperSpec object and  matrix of same size as <code>x[[]]</code> or</p>
+      <td><p>either two <code>hyperSpec</code> objects or</p>
+<p>one <code>hyperSpec</code> object and  matrix of same size as <code>x[[]]</code> or</p>
 <p>a vector which length equalling either the number of rows or the number of
-wavelengths of the hyperSpec object, or</p>
+wavelengths of the <code>hyperSpec</code> object, or</p>
 <p>a scalar (numeric of length 1).</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>hyperSpec object with the new spectra matrix.</p>
+    <p><code>hyperSpec</code> object with the new spectra matrix.</p>
 <p>If
-If the <code>e2</code> is a hyperSpec objects, its extra data columns will silently be
+If the <code>e2</code> is a <code>hyperSpec</code> objects, its extra data columns will silently be
 dropped silently.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
@@ -228,10 +228,10 @@ x &lt;!-- %*% y `%*%`(x, y) --&gt;
 -x </pre>
 
 <p>The arithmetical operators <code><a href='https://rdrr.io/r/base/Arithmetic.html'>+</a></code>, <code><a href='https://rdrr.io/r/base/Arithmetic.html'>-</a></code>, <code><a href='https://rdrr.io/r/base/Arithmetic.html'>*</a></code>, <code><a href='https://rdrr.io/r/base/Arithmetic.html'>/</a></code>, <code><a href='https://rdrr.io/r/base/Arithmetic.html'>^</a></code>, <code><a href='https://rdrr.io/r/base/Arithmetic.html'>%%</a></code>, <code><a href='https://rdrr.io/r/base/Arithmetic.html'>%/%</a></code>, and
-<code><a href='https://rdrr.io/r/base/matmult.html'>%*%</a></code> work on the  spectra matrix of the hyperSpec object. They have their
+<code><a href='https://rdrr.io/r/base/matmult.html'>%*%</a></code> work on the  spectra matrix of the <code>hyperSpec</code> object. They have their
 usual meaning (see <a href='https://rdrr.io/r/base/Arithmetic.html'>base::Arithmetic</a>).  The operators work also with
-one hyperSpec object and a numeric object or a matrix of the same
-size as the spectra matrix of the hyperSpec object.</p>
+one <code>hyperSpec</code> object and a numeric object or a matrix of the same
+size as the spectra matrix of the <code>hyperSpec</code> object.</p>
 <p>With numeric vectors <code><a href='https://rdrr.io/r/base/sweep.html'>sweep()</a></code> may be more explicit.</p>
 <p>If you want to calculate on the extra data as well, use the data.frame
 <code>hyperSpec@data</code> directly or <code><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame(x)</a></code>.</p>

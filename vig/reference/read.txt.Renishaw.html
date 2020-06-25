@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>import Raman measurements from Renishaw ASCII-files — scan.txt.Renishaw • hyperSpec</title>
+<title>Import Raman measurements from Renishaw ASCII-files. — read.txt.Renishaw • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,8 +41,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="import Raman measurements from Renishaw ASCII-files — scan.txt.Renishaw" />
-<meta property="og:description" content="import Raman measurements from Renishaw (possibly compressed) .txt file." />
+<meta property="og:title" content="Import Raman measurements from Renishaw ASCII-files. — read.txt.Renishaw" />
+<meta property="og:description" content="Import Raman measurements from Renishaw (possibly compressed) .txt file." />
 
 <meta name="robots" content="noindex" />
 <meta name="robots" content="noindex">
@@ -155,20 +155,16 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>import Raman measurements from Renishaw ASCII-files</h1>
-    <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/deprecated.R'><code>R/deprecated.R</code></a>, <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/read.txt.Renishaw.R'><code>R/read.txt.Renishaw.R</code></a></small>
+    <h1>Import Raman measurements from Renishaw ASCII-files.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/read.txt.Renishaw.R'><code>R/read.txt.Renishaw.R</code></a></small>
     <div class="hidden name"><code>read.txt.Renishaw.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>import Raman measurements from Renishaw (possibly compressed) .txt file.</p>
+    <p>Import Raman measurements from Renishaw (possibly compressed) <code>.txt</code> file.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>scan.txt.Renishaw</span>(<span class='kw'>...</span>)
-
-<span class='fu'>scan.zip.Renishaw</span>(<span class='kw'>...</span>)
-
-<span class='fu'>read.txt.Renishaw</span>(
+    <pre class="usage"><span class='fu'>read.txt.Renishaw</span>(
   file = <span class='fu'><a href='https://rdrr.io/r/base/stop.html'>stop</a></span>(<span class='st'>"file is required"</span>),
   data = <span class='st'>"xyspc"</span>,
   nlines = <span class='fl'>0</span>,
@@ -185,10 +181,6 @@
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>...</th>
-      <td><p>Arguments for <code>read.txt.Renishaw</code></p></td>
-    </tr>
-    <tr>
       <th>file</th>
       <td><p>file name or connection</p></td>
     </tr>
@@ -200,10 +192,10 @@ details.</p></td>
     <tr>
       <th>nlines</th>
       <td><p>number of lines to read in each chunk, if 0 or less read
-  whole file at once.</p>
+whole file at once.</p>
 <p><code>nlines</code> must cover at least one complete spectrum,i.e. <code>nlines</code>
-  must be at least the number of data points per spectrum. Reasonable
-  values start at <code>1e6</code>.</p></td>
+must be at least the number of data points per spectrum. Reasonable
+values start at <code>1e6</code>.</p></td>
     </tr>
     <tr>
       <th>nspc</th>
@@ -214,6 +206,10 @@ details.</p></td>
       <td><p>name of the .txt file in the .zip archive. Defaults to zip
 file's name with suffix .txt instead of .zip</p></td>
     </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Arguments for <code>read.txt.Renishaw</code></p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -222,7 +218,7 @@ file's name with suffix .txt instead of .zip</p></td>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>The file may be of any file type that can be read by
-<code><a href='https://rdrr.io/r/base/connections.html'>gzfile</a></code> (i.e. text, or zipped by gzip, bzip2, xz or
+<code><a href='https://rdrr.io/r/base/connections.html'>base::gzfile()</a></code> (i.e. text, or zipped by gzip, bzip2, xz or
 lzma). .zip zipped files need to be read using <code>read.zip.Renishaw</code>.</p>
 <p>Renishaw .wxd files are converted to .txt ASCII files by their batch
 converter. They come in a "long" format with columns (y x | time | z)?
@@ -243,8 +239,8 @@ not given, <code>read.txt.Renishaw</code> tries to guess it by using <code>wc</c
 (if installed).</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code>read.txt.long</code>, <code>read.txt.wide</code>,
-  <code><a href='https://rdrr.io/r/base/scan.html'>scan</a></code></p></div>
+    <div class='dont-index'><p><code>read.txt.long()</code>, <code>read.txt.wide()</code>,
+<code><a href='https://rdrr.io/r/base/scan.html'>base::scan()</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>C. Beleites</p>

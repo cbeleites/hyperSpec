@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>aggregate hyperSpec objects — aggregate • hyperSpec</title>
+<title>Aggregate <code>hyperSpec</code> objects. — aggregate • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,7 +41,7 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="aggregate hyperSpec objects — aggregate" />
+<meta property="og:title" content="Aggregate <code>hyperSpec</code> objects. — aggregate" />
 <meta property="og:description" content="Compute summary statistics for subsets of a hyperSpec object." />
 
 <meta name="robots" content="noindex" />
@@ -155,7 +155,7 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>aggregate hyperSpec objects</h1>
+    <h1>Aggregate <code>hyperSpec</code> objects.</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/aggregate.R'><code>R/aggregate.R</code></a></small>
     <div class="hidden name"><code>aggregate.Rd</code></div>
     </div>
@@ -186,7 +186,7 @@
       <th>by</th>
       <td><p>grouping for the rows of <code>x@data</code>.</p>
 <p>Either a list containing an index vector for each of the subgroups or a
-  vector that can be <code>split</code> in such a list.</p></td>
+vector that can be <code>split</code> in such a list.</p></td>
     </tr>
     <tr>
       <th>FUN</th>
@@ -205,26 +205,25 @@ for memory preallocation.</p></td>
       <th>append.rows</th>
       <td><p>If more rows are needed, how many should be appended?</p>
 <p>Defaults to 100 or an estimate based on the percentage of groups that are
-  still to be done, whatever is larger.</p></td>
+still to be done, whatever is larger.</p></td>
     </tr>
     <tr>
       <th>by.isindex</th>
       <td><p>If a list is given in <code>by</code>: does the list already
 contain the row indices of the groups? If <code>FALSE</code>, the list in
-<code>by</code> is computed first (as in <code><a href='https://rdrr.io/r/stats/aggregate.html'>aggregate</a></code>).</p></td>
+<code>by</code> is computed first (as in <code><a href='https://rdrr.io/r/stats/aggregate.html'>stats::aggregate()</a></code>).</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A <code>hyperSpec</code> object with an additional column
-  <code>@data$.aggregate</code> tracing which group the rows belong to.</p>
+<code>@data$.aggregate</code> tracing which group the rows belong to.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p><code>aggregate</code> applies <code>FUN</code> to each of the subgroups given by
-<code>by</code>. It combines the functionality of <code><a href='https://rdrr.io/r/stats/aggregate.html'>aggregate</a></code>,
-<code><a href='https://rdrr.io/r/base/tapply.html'>tapply</a></code>, and <code><a href='https://rdrr.io/r/stats/ave.html'>ave</a></code> for hyperSpec
-objects.</p>
+    <p><code><a href='https://rdrr.io/r/stats/aggregate.html'>aggregate()</a></code> applies <code>FUN</code> to each of the subgroups given by <code>by</code>.
+It combines the functionality of <code><a href='https://rdrr.io/r/stats/aggregate.html'>stats::aggregate()</a></code>, <code><a href='https://rdrr.io/r/base/tapply.html'>base::tapply()</a></code>,
+and <code><a href='https://rdrr.io/r/stats/ave.html'>stats::ave()</a></code> for <code>hyperSpec</code> objects.</p>
 <p><code>aggregate</code> avoids splitting <code>x@data</code>.</p>
 <p><code>FUN</code> does not need to return exactly one value.  The number of
 returned values needs to be the same for all wavelengths (otherwise the
@@ -233,8 +232,8 @@ result could not be a matrix), see the examples.</p>
 more rows are appended and a warning is issued.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://rdrr.io/r/base/tapply.html'>tapply</a></code>, <code><a href='https://rdrr.io/r/stats/aggregate.html'>aggregate</a></code>,
-  <code><a href='https://rdrr.io/r/stats/ave.html'>ave</a></code></p></div>
+    <div class='dont-index'><p><code><a href='https://rdrr.io/r/base/tapply.html'>base::tapply()</a></code>, <code><a href='https://rdrr.io/r/stats/aggregate.html'>stats::aggregate()</a></code>,
+<code><a href='https://rdrr.io/r/stats/ave.html'>stats::ave()</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>C. Beleites</p>

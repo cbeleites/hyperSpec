@@ -6,8 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>The Number of Rows (Spectra), Columns, and Data Points per Spectrum of an
-hyperSpec Object) — ncol,hyperSpec-method • hyperSpec</title>
+<title>The Number of Rows (Spectra), Columns, and Data Points per Spectrum of a
+<code>hyperSpec</code> Object. — ncol,hyperSpec-method • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -42,11 +42,11 @@ hyperSpec Object) — ncol,hyperSpec-method • hyperSpec</title>
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="The Number of Rows (Spectra), Columns, and Data Points per Spectrum of an
-hyperSpec Object) — ncol,hyperSpec-method" />
-<meta property="og:description" content="ncol returns the number of columns in x@data. I.e. the number
-of columns with additional information to each spectrum (e.g. &quot;x&quot;, &quot;y&quot;,
-...) + 1 (for column spc containing the spectra)." />
+<meta property="og:title" content="The Number of Rows (Spectra), Columns, and Data Points per Spectrum of a
+<code>hyperSpec</code> Object. — ncol,hyperSpec-method" />
+<meta property="og:description" content="These functions return the number of rows (spectra), columns, and/or
+data points per spectrum of a hyperSpec object.
+See section &quot;Details&quot;." />
 
 <meta name="robots" content="noindex" />
 <meta name="robots" content="noindex">
@@ -159,16 +159,16 @@ of columns with additional information to each spectrum (e.g. &quot;x&quot;, &qu
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>The Number of Rows (Spectra), Columns, and Data Points per Spectrum of an
-hyperSpec Object)</h1>
+    <h1>The Number of Rows (Spectra), Columns, and Data Points per Spectrum of a
+<code>hyperSpec</code> Object.</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/dim.R'><code>R/dim.R</code></a></small>
     <div class="hidden name"><code>dim.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p><code>ncol</code> returns the number of columns in <code>x@data</code>. I.e. the number
-of columns with additional information to each spectrum (e.g. "x", "y",
-...) + 1 (for column <code>spc</code> containing the spectra).</p>
+    <p>These functions return the number of rows (spectra), columns, and/or
+data points per spectrum of a <code>hyperSpec</code> object.
+See section "Details".</p>
     </div>
 
     <pre class="usage"><span class='co'># S4 method for hyperSpec</span>
@@ -196,24 +196,53 @@ of columns with additional information to each spectrum (e.g. "x", "y",
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>nrow</code>, <code>ncol</code>, <code>nwl</code>, and <code>length</code>, return an
-  <code>integer</code>.</p>
-<p><code>dim</code> returns a vector of length 3.</p>
+    <p><code><a href='https://rdrr.io/r/base/nrow.html'>nrow()</a></code>, <code><a href='https://rdrr.io/r/base/nrow.html'>ncol()</a></code>, <code>nwl()</code>, and <code><a href='https://rdrr.io/r/base/length.html'>length()</a></code>, return an <code>integer</code>.</p>
+<p><code><a href='https://rdrr.io/r/base/dim.html'>dim()</a></code> returns a vector of length 3.</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    
+<ul>
+<li><p><code><a href='https://rdrr.io/r/base/nrow.html'>ncol()</a></code> returns the number of columns in <code>x@data</code>. I.e. the number
+of columns with additional information to each spectrum (e.g. "x", "y",
+...) + 1 (for column <code>spc</code> containing the spectra).</p></li>
+</ul>
+
+<ul>
+<li><p><code><a href='https://rdrr.io/r/base/nrow.html'>nrow()</a></code> yields the number of rows in <code>x@data</code>, i.e. the number of
+spectra in the <code>hyperSpec</code> object.</p></li>
+</ul>
+
+<ul>
+<li><p><code>nwl()</code> returns the number of columns in <code>x@data$spc</code>, i.e. thelength of
+each spectrum.</p></li>
+</ul>
+
+<ul>
+<li><p><code><a href='https://rdrr.io/r/base/dim.html'>dim()</a></code> returns all three values in a vector.</p></li>
+</ul>
+
+<ul>
+<li><p><code><a href='https://rdrr.io/r/base/length.html'>length()</a></code> is a synonym for <code><a href='https://rdrr.io/r/base/nrow.html'>nrow()</a></code>. It is supplied so that <code><a href='https://rdrr.io/r/base/seq.html'>seq_along(x)</a></code>
+returns a sequence to index each spectrum.</p></li>
+</ul>
+
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://rdrr.io/r/base/nrow.html'>ncol</a></code></p>
-<p><code><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></code></p>
-<p><code><a href='https://rdrr.io/r/base/dim.html'>dim</a></code></p>
-<p><code><a href='https://rdrr.io/r/base/length.html'>length</a></code></p></div>
+    <div class='dont-index'><p><code><a href='https://rdrr.io/r/base/nrow.html'>base::ncol()</a></code></p>
+<p><code><a href='https://rdrr.io/r/base/nrow.html'>base::nrow()</a></code></p>
+<p><code><a href='https://rdrr.io/r/base/dim.html'>base::dim()</a></code></p>
+<p><code><a href='https://rdrr.io/r/base/length.html'>base::length()</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>C. Beleites</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>ncol</a></span>(<span class='kw'>faux_cell</span>)</div><div class='output co'>#&gt; [1] 4</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='kw'>faux_cell</span>)</div><div class='output co'>#&gt; [1] 875</div><div class='input'>
-<span class='fu'>nwl</span>(<span class='kw'>faux_cell</span>)</div><div class='output co'>#&gt; [1] 300</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span>(<span class='kw'>faux_cell</span>)</div><div class='output co'>#&gt; nrow ncol  nwl 
-#&gt;  875    4  300 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='kw'>faux_cell</span>)</div><div class='output co'>#&gt; [1] 875</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>ncol</a></span>(<span class='kw'>faux_cell</span>)</div><div class='output co'>#&gt; [1] 4</div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='kw'>faux_cell</span>)</div><div class='output co'>#&gt; [1] 875</div><div class='input'>
+<span class='fu'>nwl</span>(<span class='kw'>faux_cell</span>)</div><div class='output co'>#&gt; [1] 300</div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span>(<span class='kw'>faux_cell</span>)</div><div class='output co'>#&gt; nrow ncol  nwl 
+#&gt;  875    4  300 </div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='kw'>faux_cell</span>)</div><div class='output co'>#&gt; [1] 875</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

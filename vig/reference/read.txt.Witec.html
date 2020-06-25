@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>File Import Witec Raman — scan.txt.Witec • hyperSpec</title>
+<title>File Import Witec Raman — read.txt.Witec • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,8 +41,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="File Import Witec Raman — scan.txt.Witec" />
-<meta property="og:description" content="Import Raman Spectra/Maps from Witec Instrument via ASCII files" />
+<meta property="og:title" content="File Import Witec Raman — read.txt.Witec" />
+<meta property="og:description" content="Import Raman Spectra/Maps from Witec Instrument via ASCII files." />
 
 <meta name="robots" content="noindex" />
 <meta name="robots" content="noindex">
@@ -156,21 +156,15 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>File Import Witec Raman</h1>
-    <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/deprecated.R'><code>R/deprecated.R</code></a>, <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/read.txt.Witec.R'><code>R/read.txt.Witec.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/read.txt.Witec.R'><code>R/read.txt.Witec.R</code></a></small>
     <div class="hidden name"><code>read.txt.Witec.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Import Raman Spectra/Maps from Witec Instrument via ASCII files</p>
+    <p>Import Raman Spectra/Maps from Witec Instrument via ASCII files.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>scan.txt.Witec</span>(<span class='kw'>...</span>)
-
-<span class='fu'>scan.dat.Witec</span>(<span class='kw'>...</span>)
-
-<span class='fu'>scan.txt.Witec.Graph</span>(<span class='kw'>...</span>)
-
-<span class='fu'>read.txt.Witec</span>(
+    <pre class="usage"><span class='fu'>read.txt.Witec</span>(
   file = <span class='fu'><a href='https://rdrr.io/r/base/stop.html'>stop</a></span>(<span class='st'>"filename or connection needed"</span>),
   points.per.line = <span class='kw'>NULL</span>,
   lines.per.image = <span class='kw'>NULL</span>,
@@ -207,10 +201,6 @@
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>..., quiet</th>
-      <td><p>handed to <code><a href='https://rdrr.io/r/base/scan.html'>scan</a></code></p></td>
-    </tr>
-    <tr>
       <th>file</th>
       <td><p>filename or connection to ASCII file</p></td>
     </tr>
@@ -236,7 +226,11 @@
     </tr>
     <tr>
       <th>encoding</th>
-      <td><p>character encoding, see <code><a href='https://rdrr.io/r/base/readLines.html'>readLines</a></code></p></td>
+      <td><p>character encoding, see <code><a href='https://rdrr.io/r/base/readLines.html'>base::readLines()</a></code></p></td>
+    </tr>
+    <tr>
+      <th>..., quiet</th>
+      <td><p>handed to <code><a href='https://rdrr.io/r/base/scan.html'>base::scan()</a></code></p></td>
     </tr>
     <tr>
       <th>filex</th>
@@ -250,14 +244,6 @@
       <th>headerfile</th>
       <td><p>filename or connection to ASCII file with header information</p></td>
     </tr>
-    <tr>
-      <th>nwl</th>
-      <td><p>is deprecated and will be removed soon. Number of wavelengths is calculated automatically.</p></td>
-    </tr>
-    <tr>
-      <th>remove.zerospc</th>
-      <td><p>is deprecated and will be removed soon. Use <code>hy.setOptions (file.remove.emptyspc = TRUE)</code> instead.</p></td>
-    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -265,13 +251,14 @@
     <p>a hyperSpec object</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p><code>read.txt.Witec</code> reads Witec ASCII files where the first column gives the wavelength
-axes and the other columns the spectra. <code>read.dat.Witec</code> reads Witec's ASCII exported data
-which comes in separate files with x and y data.</p>
+    <p><code>read.txt.Witec()</code> reads Witec ASCII files where the first column gives the
+wavelength axes and the other columns the spectra.
+<code>read.dat.Witec()</code> reads Witec's ASCII exported data, which comes in separate
+files with x and y data.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code>vignette ("fileio")</code> for more information on file import and</p>
-<p><code><a href='https://rdrr.io/r/base/options.html'>options</a></code> for details on options.</p></div>
+    <div class='dont-index'><p><code>vignette("fileio")</code> for more information on file import</p>
+<p><code><a href='https://rdrr.io/r/base/options.html'>options()</a></code> for details on options.</p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Claudia Beleites and Marcel Dahms</p>

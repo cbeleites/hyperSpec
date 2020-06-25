@@ -130,7 +130,7 @@
 <br><a class="author_email" href="mailto:#"></a><a href="mailto:chemometrie@beleites.de" class="email">chemometrie@beleites.de</a>
       </address>
                   
-            <h4 class="date">2020-06-24</h4>
+            <h4 class="date">2020-06-25</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/cbeleites/hyperSpec/blob/master/../vignettes/chondro.Rmd"><code>../vignettes/chondro.Rmd</code></a></small>
       <div class="hidden name"><code>chondro.Rmd</code></div>
@@ -217,7 +217,7 @@ In order to speed up the reading <code class="sourceCode r"><span class="kw">rea
 <span class="fu"><a href="https://rdrr.io/r/utils/download.file.html">download.file</a></span>(<span class="kw">raw_data_url</span>, <span class="st">"rawdata/chondro.gz"</span>)
 
 <span class="co"># Read the raw data and make a hyperSpec object</span>
-<span class="kw">chondro</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/scan.txt.Renishaw.html">read.txt.Renishaw</a></span>(<span class="st">"rawdata/chondro.gz"</span>, data = <span class="st">"xyspc"</span>)
+<span class="kw">chondro</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read.txt.Renishaw.html">read.txt.Renishaw</a></span>(<span class="st">"rawdata/chondro.gz"</span>, data = <span class="st">"xyspc"</span>)
 <span class="kw">chondro</span>
 <span class="co">#&gt; hyperSpec object</span>
 <span class="co">#&gt;    875 spectra</span>
@@ -500,7 +500,7 @@ There is also a function to identify spectra in a spectra plot, <code class="sou
     yoffset = <span class="kw">i</span>, col = <span class="kw">outcols</span>[<span class="kw">i</span>], add = <span class="fl">TRUE</span>,
     lines.args = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(lwd = <span class="fl">2</span>)
   )
-  <span class="fu"><a href="https://rdrr.io/pkg/sp/man/gridlines.html">text</a></span>(<span class="fl">600</span>, <span class="kw">i</span> <span class="op">+</span> <span class="fl">.33</span>, <span class="kw">out</span>[<span class="kw">i</span>])
+  <span class="fu"><a href="https://rdrr.io/r/graphics/text.html">text</a></span>(<span class="fl">600</span>, <span class="kw">i</span> <span class="op">+</span> <span class="fl">.33</span>, <span class="kw">out</span>[<span class="kw">i</span>])
 }
 </pre></div>
 <div class="figure" style="text-align: center">
@@ -698,12 +698,12 @@ However, they do not follow the model-predict paradigm, but instead do directly 
   <span class="kw">chondro.bilinear</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/akima/man/interp.html">interp</a></span>(<span class="kw">chondro</span><span class="op">$</span><span class="kw">x</span>, <span class="kw">chondro</span><span class="op">$</span><span class="kw">y</span>, <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span>(<span class="kw">tmp</span>), nx = <span class="fl">100</span>, ny = <span class="fl">100</span>)
 
   <span class="fu"><a href="https://rdrr.io/r/graphics/image.html">image</a></span>(<span class="kw">chondro.bilinear</span>,
-    xlab = <span class="fu"><a href="https://rdrr.io/pkg/sp/man/gridlines.html">labels</a></span>(<span class="kw">chondro</span>, <span class="st">"x"</span>), ylab = <span class="fu"><a href="https://rdrr.io/pkg/sp/man/gridlines.html">labels</a></span>(<span class="kw">chondro</span>, <span class="st">"y"</span>),
+    xlab = <span class="fu"><a href="https://rdrr.io/r/base/labels.html">labels</a></span>(<span class="kw">chondro</span>, <span class="st">"x"</span>), ylab = <span class="fu"><a href="https://rdrr.io/r/base/labels.html">labels</a></span>(<span class="kw">chondro</span>, <span class="st">"y"</span>),
     col = <span class="kw">DNAcols</span>
   )
 } <span class="co">else</span> {
   <span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">NULL</span>, xlim = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>, <span class="fl">1</span>), ylim = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>, <span class="fl">1</span>))
-  <span class="fu"><a href="https://rdrr.io/pkg/sp/man/gridlines.html">text</a></span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="st">'Package "akima" is required to create this plot'</span>)
+  <span class="fu"><a href="https://rdrr.io/r/graphics/text.html">text</a></span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="st">'Package "akima" is required to create this plot'</span>)
 }
 </pre></div>
 <div class="figure" style="text-align: center">
@@ -728,7 +728,7 @@ In order to keep the package size small, only a PCA-compressed version with 10 P
 <span class="kw">.chondro_loadings</span> <span class="op">&lt;-</span> <span class="kw">pca</span><span class="op">$</span><span class="kw">rot</span>[, <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span>(<span class="fl">10</span>)]
 <span class="kw">.chondro_center</span> <span class="op">&lt;-</span> <span class="kw">pca</span><span class="op">$</span><span class="kw">center</span>
 <span class="kw">.chondro_wl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/wl.html">wl</a></span>(<span class="kw">chondro</span>)
-<span class="kw">.chondro_labels</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="fu"><a href="https://rdrr.io/pkg/sp/man/gridlines.html">labels</a></span>(<span class="kw">chondro</span>), <span class="kw">as.expression</span>)
+<span class="kw">.chondro_labels</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/labels.html">labels</a></span>(<span class="kw">chondro</span>), <span class="kw">as.expression</span>)
 <span class="kw">.chondro_extra</span> <span class="op">&lt;-</span> <span class="kw">spectra_to_save</span><span class="op">$</span><span class="kw">..</span>
 
 <span class="kw">chondro</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/initialize.html">new</a></span>(<span class="st">"hyperSpec"</span>,
@@ -756,7 +756,7 @@ In order to keep the package size small, only a PCA-compressed version with 10 P
 <span class="co">#&gt;  collate  en_US.UTF-8                 </span>
 <span class="co">#&gt;  ctype    en_US.UTF-8                 </span>
 <span class="co">#&gt;  tz       UTC                         </span>
-<span class="co">#&gt;  date     2020-06-24                  </span>
+<span class="co">#&gt;  date     2020-06-25                  </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; ─ Packages ───────────────────────────────────────────────────────────────────────────────────────</span>
 <span class="co">#&gt;  package      * version       date       lib source        </span>
@@ -777,7 +777,7 @@ In order to keep the package size small, only a PCA-compressed version with 10 P
 <span class="co">#&gt;  ggplot2      * 3.3.2         2020-06-19 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  glue           1.4.1         2020-05-13 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  gtable         0.3.0         2019-03-25 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  hyperSpec    * 0.99-20200615 2020-06-24 [1] local         </span>
+<span class="co">#&gt;  hyperSpec    * 0.99-20200615 2020-06-25 [1] local         </span>
 <span class="co">#&gt;  isoband        0.2.2         2020-06-20 [1] CRAN (R 4.0.1)</span>
 <span class="co">#&gt;  jpeg           0.1-8.1       2019-10-24 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  labeling       0.3           2014-08-23 [1] CRAN (R 4.0.0)</span>

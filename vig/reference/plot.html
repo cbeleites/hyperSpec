@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plotting hyperSpec Objects — plot-methods • hyperSpec</title>
+<title>Plotting <code>hyperSpec</code> Objects. — plot-methods • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,10 +41,9 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Plotting hyperSpec Objects — plot-methods" />
-<meta property="og:description" content="Plotting hyperSpec objects. The plot method for
-hyperSpec objects is a switchyard to plotspc,
-plotmap, and plotc." />
+<meta property="og:title" content="Plotting <code>hyperSpec</code> Objects. — plot-methods" />
+<meta property="og:description" content="The plot method for hyperSpec objects is a switchyard to plotspc(),
+plotmap(), and plotc()." />
 
 <meta name="robots" content="noindex" />
 <meta name="robots" content="noindex">
@@ -157,15 +156,14 @@ plotmap, and plotc." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Plotting hyperSpec Objects</h1>
+    <h1>Plotting <code>hyperSpec</code> Objects.</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/plot.R'><code>R/plot.R</code></a></small>
     <div class="hidden name"><code>plot.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Plotting <code>hyperSpec</code> objects. The <code>plot</code> method for
-<code>hyperSpec</code> objects is a switchyard to <code>plotspc</code>,
-<code>plotmap</code>, and <code>plotc</code>.</p>
+    <p>The <code>plot</code> method for <code>hyperSpec</code> objects is a switchyard to <code>plotspc()</code>,
+<code>plotmap()</code>, and <code>plotc()</code>.</p>
     </div>
 
     <pre class="usage"><span class='co'># S4 method for hyperSpec,missing</span>
@@ -194,11 +192,10 @@ plotmap, and plotc." />
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>It also supplies some convenient abbrevations for much used plots.</p>
-<p>If <code>y</code> is missing, <code>plot</code> behaves like <code><a href='https://rdrr.io/r/graphics/plot.default.html'>plot (x, y =
-"spc")</a></code>.</p>
+<p>If <code>y</code> is missing, <code>plot</code> behaves like <code><a href='https://rdrr.io/r/graphics/plot.default.html'>plot (x, y = "spc")</a></code>.</p>
 <p>Supported values for <code>y</code> are:</p>
 <dl>
-<dt>"spc"</dt><dd><p>calls <code>plotspc</code> to produce a spectra
+<dt>"spc"</dt><dd><p>calls <code>plotspc()</code> to produce a spectra
 plot.</p></dd>
 
 <dt>"spcmeansd"</dt><dd><p>plots mean spectrum +/- one standard deviation</p></dd>
@@ -212,33 +209,31 @@ set.</p></dd>
 <dt>"spcprctl5"</dt><dd><p>like <code>"spcprctile"</code>, but additionally the 5th and
 95th percentile spectra are plotted.</p></dd>
 
-<dt>"map"</dt><dd><p>calls <code>plotmap</code> to produce a map plot.</p></dd>
+<dt>"map"</dt><dd><p>calls <code>plotmap()</code> to produce a map plot.</p></dd>
 
-<dt>"voronoi"</dt><dd><p>calls <code>plotvoronoi</code> to produce a Voronoi plot
+<dt>"voronoi"</dt><dd><p>calls <code>plotvoronoi()</code> to produce a Voronoi plot
 (tesselated plot, like "map" for hyperSpec objects with uneven/non-rectangular
 grid).</p></dd>
 
-<dt>"mat"</dt><dd><p>calls <code>plotmat</code> to produce a plot of the spectra
-matrix (not to be confused with <code><a href='https://rdrr.io/r/graphics/matplot.html'>matplot</a></code>).</p></dd>
+<dt>"mat"</dt><dd><p>calls <code>plotmat()</code> to produce a plot of the spectra
+matrix (not to be confused with <code><a href='https://rdrr.io/r/graphics/matplot.html'>graphics::matplot()</a></code>).</p></dd>
 
-<dt>"c"</dt><dd><p>calls <code>plotc</code> to produce a calibration (or time
+<dt>"c"</dt><dd><p>calls <code>plotc()</code> to produce a calibration (or time
 series, depth-profile, or the like)</p></dd>
 
-<dt>"ts"</dt><dd><p>plots a time series: abbrevation for <code>plotc (x,
-use.c = "t")</code></p></dd>
+<dt>"ts"</dt><dd><p>plots a time series: abbrevation for <code>[plotc] (x, use.c = "t")</code></p></dd>
 
-<dt>"depth"</dt><dd><p>plots a depth profile: abbrevation for <code>plotc
-(x, use.c = "z")</code></p></dd> 
+<dt>"depth"</dt><dd><p>plots a depth profile: abbrevation for <code>[plotc] (x, use.c = "z")</code></p></dd> 
 </dl>
 
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code>plotspc</code> for spectra plots (intensity over
-  wavelength),</p>
-<p><code>plotmap</code> for plotting maps, i.e. color coded summary value on
-  two (usually spatial) dimensions.</p>
-<p><code>plotc</code></p>
-<p><code><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></code></p></div>
+    <div class='dont-index'><p><code>plotspc()</code> for spectra plots (intensity over
+wavelength),</p>
+<p><code>plotmap()</code> for plotting maps, i.e. color coded summary value on
+two (usually spatial) dimensions.</p>
+<p><code>plotc()</code></p>
+<p><code><a href='https://rdrr.io/r/graphics/plot.default.html'>graphics::plot()</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>C. Beleites</p>

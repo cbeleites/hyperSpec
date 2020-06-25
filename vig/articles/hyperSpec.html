@@ -129,7 +129,7 @@
 <br><a class="author_email" href="mailto:#"></a><a href="mailto:chemometrie@beleites.de" class="email">chemometrie@beleites.de</a>
       </address>
                   
-            <h4 class="date">2020-06-24</h4>
+            <h4 class="date">2020-06-25</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/cbeleites/hyperSpec/blob/master/../vignettes/hyperSpec.Rmd"><code>../vignettes/hyperSpec.Rmd</code></a></small>
       <div class="hidden name"><code>hyperSpec.Rmd</code></div>
@@ -318,8 +318,8 @@ The column names of the spectra matrix contain the wavelengths as a character ve
 <p>While the parts of the <code>hyperSpec</code> object can be accessed directly, it is good practice to use the functions provided by the package to handle the objects rather than accessing the slots directly.
 This also ensures that proper (i.e. <em>valid</em>) objects are returned.
 In some cases, however, direct access to the slots can considerably speed up calculations (see the appendicies).</p>
-<p>The main functions to retrieve the data of a <code class="sourceCode r">hyperSpec</code> object are <code>[]</code> and <code>[[]]</code>. 
-The difference between these functions is that <code>[]</code> returns a <code class="sourceCode r">hyperSpec</code> object, whereas <code>[[]]</code> returns a <code>data.frame</code> containing <code class="sourceCode r">x<span class="op">$</span>spc</code>, the spectral data.
+<p>The main functions to retrieve the data of a <code>hyperSpec</code> object are <code>[]</code> and <code>[[]]</code>. 
+The difference between these functions is that <code>[]</code> returns a <code>hyperSpec</code> object, whereas <code>[[]]</code> returns a <code>data.frame</code> containing <code class="sourceCode r">x<span class="op">$</span>spc</code>, the spectral data.
 To modify a <code>hyperSpec</code> object, the corresponding functions are <code class="sourceCode r">[&lt;-</code> and <code class="sourceCode r">[[&lt;-</code>. The first form is used to modify the entire <code>hyperSpec</code> object and the second form modifies the spectral data in <code class="sourceCode r">x<span class="op">$</span>spc</code>.</p>
 <p><strong>hyperSpec</strong> objects are triple indexed:</p>
 <ul>
@@ -338,11 +338,11 @@ To modify a <code>hyperSpec</code> object, the corresponding functions are <code
 <div id="sec:getters" class="section level2">
 <h2 class="hasAnchor">
 <a href="#sec:getters" class="anchor"></a><span class="header-section-number">3.1</span> Summary of Extraction Functions for <strong><em>hyperSpec</em></strong> Objects (getters)</h2>
-<p>Table <a href="#tab:getters">3.1</a> shows the main functions that can be used with class <code class="sourceCode r">hyperSpec</code> to access the object (“getters”).</p>
+<p>Table <a href="#tab:getters">3.1</a> shows the main functions that can be used with class <code>hyperSpec</code> to access the object (“getters”).</p>
 <!-- ---------------------------------------------------------------------- -->
 <table class="table">
 <caption>
-<strong><span id="tab:getters">Table 3.1: </span></strong> Getter functions for the slots of <code class="sourceCode r">hyperSpec</code> objects</caption>
+<strong><span id="tab:getters">Table 3.1: </span></strong> Getter functions for the slots of <code>hyperSpec</code> objects</caption>
 <tbody>
 <tr class="odd">
 <td align="left"><strong><code class="sourceCode r">x[]</code></strong></td>
@@ -403,11 +403,11 @@ To modify a <code>hyperSpec</code> object, the corresponding functions are <code
 <div id="sec:setters" class="section level2">
 <h2 class="hasAnchor">
 <a href="#sec:setters" class="anchor"></a><span class="header-section-number">3.2</span> Summary of Replacement Functions for <strong><em>hyperSpec</em></strong> Objects (setters)</h2>
-<p>Table <a href="#tab:setters">3.2</a> shows the main functions that can be used with class <code class="sourceCode r">hyperSpec</code> to modify the object (“setters”).</p>
+<p>Table <a href="#tab:setters">3.2</a> shows the main functions that can be used with class <code>hyperSpec</code> to modify the object (“setters”).</p>
 <!-- ---------------------------------------------------------------------- -->
 <table class="table">
 <caption>
-<strong><span id="tab:setters">Table 3.2: </span></strong> Setter functions for the slots of <code class="sourceCode r">hyperSpec</code> objects</caption>
+<strong><span id="tab:setters">Table 3.2: </span></strong> Setter functions for the slots of <code>hyperSpec</code> objects</caption>
 <tbody>
 <tr class="odd">
 <td align="left"><strong><code class="sourceCode r">x[i, ,] &lt;-</code></strong></td>
@@ -582,7 +582,7 @@ They can be given like any column specification for a <code class="sourceCode r"
 <span class="kw">flu</span><span class="op">$</span><span class="kw">c</span>
 <span class="co">#&gt; [1] 0.05 0.10 0.15 0.20 0.25 0.30</span>
 </pre></div>
-<p>Class <code class="sourceCode r">hyperSpec</code> supports command line completion for the <code class="sourceCode r"><span class="op">$</span></code> operator.</p>
+<p>Class <code>hyperSpec</code> supports command line completion for the <code class="sourceCode r"><span class="op">$</span></code> operator.</p>
 
 <p>The extra data may also be set this way:</p>
 <div class="sourceCode" id="cb19"><pre class="downlit">
@@ -761,7 +761,7 @@ As the wavelengths are in nanometers, and the frequencies are easiest expressed 
 <span class="kw">wavelengths</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/wl.html">wl</a></span>(<span class="kw">laser</span>)
 <span class="kw">frequencies</span> <span class="op">&lt;-</span> <span class="fl">2.998e8</span> <span class="op">/</span> <span class="kw">wavelengths</span> <span class="op">/</span> <span class="fl">1000</span>
 <span class="fu"><a href="../reference/wl.html">wl</a></span>(<span class="kw">laser</span>) <span class="op">&lt;-</span> <span class="kw">frequencies</span>
-<span class="fu"><a href="https://rdrr.io/pkg/sp/man/gridlines.html">labels</a></span>(<span class="kw">laser</span>, <span class="st">".wavelength"</span>) <span class="op">&lt;-</span> <span class="st">"f / THz"</span>
+<span class="fu"><a href="https://rdrr.io/r/base/labels.html">labels</a></span>(<span class="kw">laser</span>, <span class="st">".wavelength"</span>) <span class="op">&lt;-</span> <span class="st">"f / THz"</span>
 <span class="kw">laser</span>
 <span class="co">#&gt; hyperSpec object</span>
 <span class="co">#&gt;    84 spectra</span>
@@ -958,7 +958,7 @@ Function <code class="sourceCode r"><span class="kw">as.long.df</span>()</code> 
 These are discussed in detail in a separate <a href="#abt-vigs">fileio</a> vignette. Here we just mention a couple of basic operations.</p>
 <div id="creating-a-hyperspec-object-from-spectra-matrix-and-wavelength-vector" class="section level2">
 <h2 class="hasAnchor">
-<a href="#creating-a-hyperspec-object-from-spectra-matrix-and-wavelength-vector" class="anchor"></a><span class="header-section-number">4.1</span> Creating a <code class="sourceCode r">hyperSpec</code> Object from Spectra Matrix and Wavelength Vector</h2>
+<a href="#creating-a-hyperspec-object-from-spectra-matrix-and-wavelength-vector" class="anchor"></a><span class="header-section-number">4.1</span> Creating a <code>hyperSpec</code> Object from Spectra Matrix and Wavelength Vector</h2>
 <p>If the data is in <code>R</code>’s workspace, a <code>hyperSpec</code> object is created by:</p>
 <div class="sourceCode" id="cb52"><pre class="downlit">
 <span class="kw">spc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/initialize.html">new</a></span>(<span class="st">"hyperSpec"</span>, spc = <span class="kw">spectra.matrix</span>, wavelength = <span class="kw">wavelength.vector</span>, data = <span class="kw">extra.data</span>)
@@ -990,7 +990,7 @@ spectral intensity axis label in <code class="sourceCode r"><span class="op">$</
 </tr>
 </tbody>
 </table>
-<p>More information about converting existing data into <code class="sourceCode r">hyperSpec</code> objects can be found in the <a href="#abt-vigs">fileio</a> vignette.</p>
+<p>More information about converting existing data into <code>hyperSpec</code> objects can be found in the <a href="#abt-vigs">fileio</a> vignette.</p>
 </div>
 <div id="creating-random-spectra" class="section level2">
 <h2 class="hasAnchor">
@@ -1183,7 +1183,7 @@ Figure 5.4: The shifts used to disturb the chondrocyte data (original), and the 
 <a href="#sec:bad-spectra" class="anchor"></a><span class="header-section-number">5.3.1</span> Bad Spectra</h3>
 <p>Occasionally, one may want to remove spectra because of too low or too high signal.
 E.g., for infrared spectra one may state that the absorbance maximum should be, say, between 0.1 and 1.
-Class <code class="sourceCode r">hyperSpec</code>’s comparison operators return a logical matrix of the size of the spectra that is suitable for later indexing:</p>
+Class <code>hyperSpec</code>’s comparison operators return a logical matrix of the size of the spectra that is suitable for later indexing:</p>
 <div class="sourceCode" id="cb66"><pre class="downlit">
 <span class="kw">ir.spc</span> <span class="op">&lt;-</span> <span class="kw">chondro</span> <span class="op">/</span> <span class="fl">1500</span> <span class="co">## fake IR data</span>
 <span class="kw">high.int</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/apply.html">apply</a></span>(<span class="kw">ir.spc</span> <span class="op">&gt;</span> <span class="fl">1</span>, <span class="fl">1</span>, <span class="kw">any</span>) <span class="co"># any point above 1 is bad</span>
@@ -1355,7 +1355,7 @@ The interpolated spectrum has 902 data points.</p>
 <span class="kw">offsets</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/apply.html">apply</a></span>(<span class="kw">chondro</span>, <span class="fl">1</span>, <span class="kw">min</span>)
 <span class="kw">chondro.offset.corrected</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sweep.html">sweep</a></span>(<span class="kw">chondro</span>, <span class="fl">1</span>, <span class="kw">offsets</span>, <span class="st">"-"</span>)
 </pre></div>
-<p>If the offset is calculated by a function, as here with the <code class="sourceCode r"><span class="kw">min</span>()</code>, <code class="sourceCode r">hyperSpec</code>’s <code class="sourceCode r"><span class="kw">sweep</span>()</code> method offers a shortcut: <code class="sourceCode r"><span class="kw">sweep</span>()</code>’s <code class="sourceCode r">STATS</code> argument may be the function instead of a numeric vector:</p>
+<p>If the offset is calculated by a function, as here with the <code class="sourceCode r"><span class="kw">min</span>()</code>, <code>hyperSpec</code>’s <code class="sourceCode r"><span class="kw">sweep</span>()</code> method offers a shortcut: <code class="sourceCode r"><span class="kw">sweep</span>()</code>’s <code class="sourceCode r">STATS</code> argument may be the function instead of a numeric vector:</p>
 <div class="sourceCode" id="cb77"><pre class="downlit">
 <span class="kw">chondro.offset.corrected</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sweep.html">sweep</a></span>(<span class="kw">chondro</span>, <span class="fl">1</span>, <span class="kw">min</span>, <span class="st">"-"</span>)
 </pre></div>
@@ -1370,7 +1370,7 @@ A least-squares fit is done so that the function may be used on rather noisy spe
 However, the user must supply an object that is cut appropriately.
 Particularly, the supplied wavelength ranges are not weighted.</p>
 <p>Function <code class="sourceCode r"><span class="kw">spc.fit.poly.below</span>()</code> tries to find appropriate support points for the baseline iteratively.</p>
-<p>Both functions return a <code class="sourceCode r">hyperSpec</code> object containing the fitted baselines.
+<p>Both functions return a <code>hyperSpec</code> object containing the fitted baselines.
 They need to be subtracted afterwards:</p>
 <div class="sourceCode" id="cb78"><pre class="downlit">
 <span class="kw">bl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/spc.fit.poly.html">spc.fit.poly.below</a></span>(<span class="kw">chondro</span>)
@@ -1379,7 +1379,7 @@ They need to be subtracted afterwards:</p>
 <p>For details, see <a href="#abt-vigs">baseline</a> vignette.</p>
 <p>Package package <strong>baseline</strong><span class="citation">[<a href="#ref-baseline" role="doc-biblioref">2</a>]</span> offers many more functions for baseline correction.
 The <code class="sourceCode r"><span class="kw">baseline</span>()</code> function works on the spectra matrix, which is extracted by <code>[[]]</code>.
-The result is a <code class="sourceCode r">baseline</code> object, but can easily be re-imported into the <code class="sourceCode r">hyperSpec</code> object:</p>
+The result is a <code class="sourceCode r">baseline</code> object, but can easily be re-imported into the <code>hyperSpec</code> object:</p>
 <div class="sourceCode" id="cb79"><pre class="downlit">
 <span class="kw">corrected</span> <span class="op">&lt;-</span> <span class="kw">hyperSpec</span>::<span class="kw"><a href="../reference/chondro.html">chondro</a></span>[<span class="fl">1</span>] <span class="co"># start with the unchanged data set</span>
 
@@ -1568,7 +1568,7 @@ It operates on the spectra matrix:</p>
 <h2 class="hasAnchor">
 <a href="#spectral-arithmetic" class="anchor"></a><span class="header-section-number">5.12</span> Spectral Arithmetic</h2>
 
-<p>Basic mathematical functions are defined for <code class="sourceCode r">hyperSpec</code> objects.
+<p>Basic mathematical functions are defined for <code>hyperSpec</code> objects.
 You may convert spectra to their log:</p>
 <div class="sourceCode" id="cb96"><pre class="downlit">
 <span class="kw">absorbance.spectra</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log10</a></span>(<span class="kw">transmission.spectra</span>)
@@ -1576,12 +1576,12 @@ You may convert spectra to their log:</p>
 
 <p>In this case, do not forget to adapt the label:</p>
 <div class="sourceCode" id="cb97"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/pkg/sp/man/gridlines.html">labels</a></span>(<span class="kw">absorbance.spectra</span>)<span class="op">$</span><span class="kw">spc</span> <span class="op">&lt;-</span> <span class="st">"A"</span>
+<span class="fu"><a href="https://rdrr.io/r/base/labels.html">labels</a></span>(<span class="kw">absorbance.spectra</span>)<span class="op">$</span><span class="kw">spc</span> <span class="op">&lt;-</span> <span class="st">"A"</span>
 </pre></div>
 <p>Be careful: <code>R</code>’s <code class="sourceCode r"><span class="kw">log</span>()</code> function calculates the <em>natural</em> logarithm if no base is given.</p>
 <p>The basic arithmetic operators work element-wise in <code>R</code>.
-Thus they all need either a scalar, or a matrix (or <code class="sourceCode r">hyperSpec</code> object) of the correct size.</p>
-<p>Matrix multiplication is done by <code><a href="https://rdrr.io/r/base/matmult.html">%*%</a></code>, again each of the operands may be a matrix or a <code class="sourceCode r">hyperSpec</code> object, and must have the correct dimensions.</p>
+Thus they all need either a scalar, or a matrix (or <code>hyperSpec</code> object) of the correct size.</p>
+<p>Matrix multiplication is done by <code><a href="https://rdrr.io/r/base/matmult.html">%*%</a></code>, again each of the operands may be a matrix or a <code>hyperSpec</code> object, and must have the correct dimensions.</p>
 <p>There are many more mathematical functions that understand a <code>hyperSpec</code> object. See <code>?Arith</code> for more details.</p>
 </div>
 </div>
@@ -1610,7 +1610,7 @@ In that case, the conversion is done automatically so the following gives the sa
 <div id="plotting-the-results-of-pca" class="section level3">
 <h3 class="hasAnchor">
 <a href="#plotting-the-results-of-pca" class="anchor"></a><span class="header-section-number">6.1.2</span> Plotting the Results of PCA</h3>
-<p>The results of such a  decomposition can be put back into <code class="sourceCode r">hyperSpec</code> objects.
+<p>The results of such a  decomposition can be put back into <code>hyperSpec</code> objects.
 This conveniently allows one to use the regular <code>hyperSpec</code> plotting functions, e.g., the loading-like spectra, or score maps, see Figures <a href="#fig:pca-load">6.1</a> and <a href="#fig:pca-score">6.2</a>.</p>
 <div class="sourceCode" id="cb100"><pre class="downlit">
 <span class="kw">scores</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/decomposition.html">decomposition</a></span>(<span class="kw">chondro</span>, <span class="kw">pca</span><span class="op">$</span><span class="kw">x</span>,
@@ -1742,7 +1742,7 @@ This kind of noise reduction may influence further modeling of the data. Mathema
 <div class="sourceCode" id="cb108"><pre class="downlit">
 <span class="kw">dist</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pearson.dist.html">pearson.dist</a></span>(<span class="kw">chondro</span>[[]])
 </pre></div>
-<p>Again, many such functions coerce the data to a matrix automatically, so the <code class="sourceCode r">hyperSpec</code> object can be handed over without the explicit conversion above (as we saw for PCA):</p>
+<p>Again, many such functions coerce the data to a matrix automatically, so the <code>hyperSpec</code> object can be handed over without the explicit conversion above (as we saw for PCA):</p>
 <div class="sourceCode" id="cb109"><pre class="downlit">
 <span class="kw">dist</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pearson.dist.html">pearson.dist</a></span>(<span class="kw">chondro</span>)
 <span class="kw">dendrogram</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span>(<span class="kw">dist</span>, method = <span class="st">"ward.D"</span>)
@@ -1796,12 +1796,12 @@ Figure 6.5: The results of the cluster analysis: the the mean spectra.
 </div>
 <div id="sec:combine" class="section level1">
 <h1 class="hasAnchor">
-<a href="#sec:combine" class="anchor"></a><span class="header-section-number">7</span> Combining and Splitting <code class="sourceCode r">hyperSpec</code> Objects</h1>
+<a href="#sec:combine" class="anchor"></a><span class="header-section-number">7</span> Combining and Splitting <code>hyperSpec</code> Objects</h1>
 <div id="sec:bind" class="section level2">
 <h2 class="hasAnchor">
 <a href="#sec:bind" class="anchor"></a><span class="header-section-number">7.1</span> Binding Objects together</h2>
 
-<p>Class <code class="sourceCode r">hyperspec</code> objects can be bound together, either by columns (<code class="sourceCode r"><span class="kw">cbind</span>()</code>) to append a new spectral range or by row (<code class="sourceCode r"><span class="kw">rbind</span>()</code>) to append new spectra:</p>
+<p>Class <code>hyperspec</code> objects can be bound together, either by columns (<code class="sourceCode r"><span class="kw">cbind</span>()</code>) to append a new spectral range or by row (<code class="sourceCode r"><span class="kw">rbind</span>()</code>) to append new spectra:</p>
 <div class="sourceCode" id="cb115"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span>(<span class="kw">flu</span>)
 <span class="co">#&gt; nrow ncol  nwl </span>
@@ -1831,7 +1831,7 @@ respectively.</p>
 <p>Function <code class="sourceCode r"><span class="kw">collapse</span>()</code> combines objects that should be bound together by row, but they do not share the columns and/or spectral range.
 The resulting object has all columns from all input objects, and all wavelengths from the input objects.
 If an input object does not have a particular column or wavelength, its value in the resulting object is <code class="sourceCode r"><span class="ot">NA</span></code>.</p>
-<p>The <code class="sourceCode r">barbiturates</code> data is a list of 286 <code class="sourceCode r">hyperSpec</code> objects, each containing one mass spectrum.
+<p>The <code class="sourceCode r">barbiturates</code> data is a list of 286 <code>hyperSpec</code> objects, each containing one mass spectrum.
 The spectra have between 4 and 101 data points each.</p>
 <div class="sourceCode" id="cb118"><pre class="downlit">
 <span class="kw">barb</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/collapse.html">collapse</a></span>(<span class="kw">barbiturates</span>)
@@ -2040,9 +2040,9 @@ E. g., if to preserver all spectra of flu, use <code class="sourceCode r">all.x 
 </div>
 <div id="splitting-an-object-and-binding-a-list-of-hyperspec-objects" class="section level2">
 <h2 class="hasAnchor">
-<a href="#splitting-an-object-and-binding-a-list-of-hyperspec-objects" class="anchor"></a><span class="header-section-number">7.5</span> Splitting an Object, and Binding a List of <code class="sourceCode r">hyperSpec</code> Objects</h2>
+<a href="#splitting-an-object-and-binding-a-list-of-hyperspec-objects" class="anchor"></a><span class="header-section-number">7.5</span> Splitting an Object, and Binding a List of <code>hyperSpec</code> Objects</h2>
 
-<p>A <code class="sourceCode r">hyperSpec</code> object may also be split into a list of <code class="sourceCode r">hyperSpec</code> objects:</p>
+<p>A <code>hyperSpec</code> object may also be split into a list of <code>hyperSpec</code> objects:</p>
 <div class="sourceCode" id="cb134"><pre class="downlit">
 <span class="kw">clusters</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/split.html">split</a></span>(<span class="kw">chondro</span>, <span class="kw">chondro</span><span class="op">$</span><span class="kw">clusters</span>)
 <span class="kw">clusters</span>
@@ -2091,7 +2091,7 @@ E. g., if to preserver all spectra of flu, use <code class="sourceCode r">all.x 
 
 <p>Splitting can be reversed by <code class="sourceCode r"><span class="kw">rbind</span>()</code> (see section <a href="#sec:bind">7.1</a>).
 
-Another, similar way to combine a number of <code class="sourceCode r">hyperSpec</code> objects with different wavelength axes or extra data columns is <code class="sourceCode r"><span class="kw">collapse</span>()</code> (see section <a href="#sec:collapse">7.2</a>).</p>
+Another, similar way to combine a number of <code>hyperSpec</code> objects with different wavelength axes or extra data columns is <code class="sourceCode r"><span class="kw">collapse</span>()</code> (see section <a href="#sec:collapse">7.2</a>).</p>
 <p>Both <code class="sourceCode r"><span class="kw">rbind</span>()</code> and <code class="sourceCode r"><span class="kw">collapse</span>()</code> take care that factor levels are expanded as necessary:</p>
 <div class="sourceCode" id="cb135"><pre class="downlit">
 <span class="kw">lacunae</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/droplevels.html">droplevels</a></span>(<span class="kw">chondro</span>[<span class="kw">chondro</span><span class="op">$</span><span class="kw">clusters</span> <span class="op">==</span> <span class="st">"lacuna"</span> <span class="op">&amp;</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span>(<span class="kw">chondro</span><span class="op">$</span><span class="kw">clusters</span>)])
@@ -2118,9 +2118,9 @@ Another, similar way to combine a number of <code class="sourceCode r">hyperSpec
 </div>
 <div id="factor-columns-in-hyperspec-objects-dropping-factor-levels-that-are-not-needed" class="section level2">
 <h2 class="hasAnchor">
-<a href="#factor-columns-in-hyperspec-objects-dropping-factor-levels-that-are-not-needed" class="anchor"></a><span class="header-section-number">7.6</span> Factor columns in <code class="sourceCode r">hyperSpec</code> Objects: dropping factor levels that are not needed</h2>
+<a href="#factor-columns-in-hyperspec-objects-dropping-factor-levels-that-are-not-needed" class="anchor"></a><span class="header-section-number">7.6</span> Factor columns in <code>hyperSpec</code> Objects: dropping factor levels that are not needed</h2>
 
-<p>For subsections of <code class="sourceCode r">hyperSpec</code> objects that do not contain all levels of a factor column, <code class="sourceCode r"><span class="kw">droplevels</span>()</code> drops the “unpopulated” levels:</p>
+<p>For subsections of <code>hyperSpec</code> objects that do not contain all levels of a factor column, <code class="sourceCode r"><span class="kw">droplevels</span>()</code> drops the “unpopulated” levels:</p>
 <div class="sourceCode" id="cb139"><pre class="downlit">
 <span class="kw">tmp</span> <span class="op">&lt;-</span> <span class="kw">chondro</span>[<span class="fl">1</span><span class="op">:</span><span class="fl">50</span>]
 <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span>(<span class="kw">tmp</span><span class="op">$</span><span class="kw">clusters</span>)
@@ -2245,9 +2245,9 @@ Please refer to the documentation of the respective functions for details about 
   }
 })
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.046   0.002   0.048</span>
+<span class="co">#&gt;   0.048   0.002   0.050</span>
 </pre></div>
-<p>Calculations that involve a lot of subsetting (i.e., extracting or changing the spectra matrix or extra data) can be sped up considerably if the required parts of the <code class="sourceCode r">hyperSpec</code> object are extracted beforehand.
+<p>Calculations that involve a lot of subsetting (i.e., extracting or changing the spectra matrix or extra data) can be sped up considerably if the required parts of the <code>hyperSpec</code> object are extracted beforehand.
 This is somewhat similar to model fitting in <code>R</code> in general: many model fitting functions in <code>R</code> are much faster if the formula interface is avoided and the appropriate <code class="sourceCode r">data.frame</code>s or matrices are handed over directly.</p>
 <div class="sourceCode" id="cb142"><pre class="downlit">
 <span class="kw">tmp</span> <span class="op">&lt;-</span> <span class="kw">chondro</span>[<span class="fl">1</span><span class="op">:</span><span class="fl">50</span>]
@@ -2260,7 +2260,7 @@ This is somewhat similar to model fitting in <code>R</code> in general: many mod
   <span class="kw">tmp</span>[[]] <span class="op">&lt;-</span> <span class="kw">tmp.matrix</span>
 })
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;    0.01    0.00    0.01</span>
+<span class="co">#&gt;   0.010   0.000   0.009</span>
 </pre></div>
 <p>In general, it is not recommended to work with variables that are more than approximately a third of the available RAM in size. Particularly the import of raw spectroscopic data can consume large amounts of memory.
 At certain points, package <strong>hyperSpec</strong> provides switches that allow working with data sets that are actually close to this memory limit.</p>
@@ -2286,7 +2286,7 @@ The memory consumption of <code class="sourceCode r"><span class="kw">read.txt.R
 <span class="co">#&gt;  collate  en_US.UTF-8                 </span>
 <span class="co">#&gt;  ctype    en_US.UTF-8                 </span>
 <span class="co">#&gt;  tz       UTC                         </span>
-<span class="co">#&gt;  date     2020-06-24                  </span>
+<span class="co">#&gt;  date     2020-06-25                  </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; ─ Packages ───────────────────────────────────────────────────────────────────────────────────────</span>
 <span class="co">#&gt;  package      * version       date       lib source        </span>
@@ -2307,7 +2307,7 @@ The memory consumption of <code class="sourceCode r"><span class="kw">read.txt.R
 <span class="co">#&gt;  ggplot2      * 3.3.2         2020-06-19 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  glue           1.4.1         2020-05-13 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  gtable         0.3.0         2019-03-25 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  hyperSpec    * 0.99-20200615 2020-06-24 [1] local         </span>
+<span class="co">#&gt;  hyperSpec    * 0.99-20200615 2020-06-25 [1] local         </span>
 <span class="co">#&gt;  isoband        0.2.2         2020-06-20 [1] CRAN (R 4.0.1)</span>
 <span class="co">#&gt;  jpeg           0.1-8.1       2019-10-24 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  labeling       0.3           2014-08-23 [1] CRAN (R 4.0.0)</span>

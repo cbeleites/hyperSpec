@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Import of ENVI data as hyperSpec object — read.ENVI • hyperSpec</title>
+<title>Import of ENVI data. — read.ENVI • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,10 +41,10 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Import of ENVI data as hyperSpec object — read.ENVI" />
+<meta property="og:title" content="Import of ENVI data. — read.ENVI" />
 <meta property="og:description" content="This function allows ENVI data import as hyperSpec object.
-read.ENVI.Nicolet should be a good starting point for writing custom
-wrappers for read.ENVI that take into account your manufacturer's
+read.ENVI.Nicolet() should be a good starting point for writing custom
+wrappers for read.ENVI() that take into account your manufacturer's
 special entries in the header file." />
 
 <meta name="robots" content="noindex" />
@@ -158,15 +158,15 @@ special entries in the header file." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Import of ENVI data as hyperSpec object</h1>
+    <h1>Import of ENVI data.</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/read.ENVI.R'><code>R/read.ENVI.R</code></a>, <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/read.ENVI.HySpex.R'><code>R/read.ENVI.HySpex.R</code></a>, <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/read.ENVI.Nicolet.R'><code>R/read.ENVI.Nicolet.R</code></a></small>
     <div class="hidden name"><code>read.ENVI.Rd</code></div>
     </div>
 
     <div class="ref-description">
     <p>This function allows ENVI data import as <code>hyperSpec</code> object.</p>
-<p><code>read.ENVI.Nicolet</code> should be a good starting point for writing custom
-wrappers for <code>read.ENVI</code> that take into account your manufacturer's
+<p><code>read.ENVI.Nicolet()</code> should be a good starting point for writing custom
+wrappers for <code>read.ENVI()</code> that take into account your manufacturer's
 special entries in the header file.</p>
     </div>
 
@@ -223,9 +223,9 @@ basename as <code>file</code> but <code>hdr</code> or <code>HDR</code> suffix.</
     <tr>
       <th>keys.hdr2data</th>
       <td><p>determines which fields of the header file should be
-  put into the extra data. Defaults to none.</p>
+put into the extra data. Defaults to none.</p>
 <p>To specify certain entries, give character vectors containing the lowercase
-  names of the header file entries.</p></td>
+names of the header file entries.</p></td>
     </tr>
     <tr>
       <th>x, y</th>
@@ -236,7 +236,7 @@ see details.</p></td>
       <th>wavelength, label</th>
       <td><p>lists that overwrite the respective information
 from the ENVI header file. These data is then handed to
-<code><a href='https://rdrr.io/pkg/hyperSpec/man/initialize.html'>initialize</a></code></p></td>
+<code><a href='https://rdrr.io/pkg/hyperSpec/man/initialize.html'>hyperSpec::initialize()</a></code></p></td>
     </tr>
     <tr>
       <th>block.lines.skip, block.lines.size</th>
@@ -278,7 +278,7 @@ contents) produced by Bruker Opus' ENVI export.</p>
 <tr><td><code>samples</code></td><td>integer</td><td>no of columns / spectra in x direction</td></tr>
 <tr><td><code>lines</code></td><td>integer</td><td>no of lines / spectra in y direction</td></tr>
 <tr><td><code>bands</code></td><td>integer</td><td>no of wavelengths / data points per spectrum</td></tr>
-<tr><td><code>`data type`</code></td><td></td><td>format of the binary file</td></tr>
+<tr><td><code>data type</code></td><td></td><td>format of the binary file</td></tr>
 <tr><td></td><td>1</td><td>1 byte unsigned integer</td></tr>
 <tr><td></td><td>2</td><td>2 byte signed integer</td></tr>
 <tr><td></td><td>3</td><td>4 byte signed integer</td></tr>
@@ -286,12 +286,12 @@ contents) produced by Bruker Opus' ENVI export.</p>
 <tr><td></td><td>5</td><td>8 byte double</td></tr>
 <tr><td></td><td>9</td><td>16 (2 x 8) byte complex double</td></tr>
 <tr><td></td><td>12</td><td>2 byte unsigned integer</td></tr>
-<tr><td><code>`header offset`</code></td><td>integer</td><td>number of bytes to skip before binary data starts</td></tr>
+<tr><td><code>header offset</code></td><td>integer</td><td>number of bytes to skip before binary data starts</td></tr>
 <tr><td><code>interleave</code></td><td></td><td>directions of the data cube</td></tr>
 <tr><td></td><td>"BSQ"</td><td>band sequential (indexing: [sample, line, band])</td></tr>
 <tr><td></td><td>"BIL"</td><td>band interleave by line (indexing: [sample, line, band])</td></tr>
 <tr><td></td><td>"BIP"</td><td>band interleave by pixel (indexing: [band, line, sample])</td></tr>
-<tr><td><code>`byte order`</code></td><td>0 or "little"</td><td>little endian</td></tr>
+<tr><td><code>byte order</code></td><td>0 or "little"</td><td>little endian</td></tr>
 <tr><td></td><td>1 or "big"</td><td>big endian</td></tr>
 <tr><td></td><td>"swap"</td><td>swap byte order</td></tr>
 </table>
@@ -299,18 +299,17 @@ contents) produced by Bruker Opus' ENVI export.</p>
 
 <p>Some more information that is not provided by the ENVI files may be given:</p>
 <p>Wavelength axis and axis labels in the respective parameters. For more
-information, see <code><a href='https://rdrr.io/pkg/hyperSpec/man/initialize.html'>initialize</a></code>.</p>
+information, see <code><a href='https://rdrr.io/pkg/hyperSpec/man/initialize.html'>hyperSpec::initialize()</a></code>.</p>
 <p>The spatial information is by default a sequence from 0 to
 <code>header$samples - 1</code> and <code>header$lines - 1</code>, respectively.
 <code>x</code> and <code>y</code> give offset of the first spectrum and step size.</p>
-<p>Thus, the object's <code>$x</code> colum is: <code>(0 : header$samples - 1) * x
-[2] + x [1]</code>.  The <code>$y</code> colum is calculated analogously.</p>
+<p>Thus, the object's <code>$x</code> colum is: <code>(0 : header$samples - 1) * x [2] + x [1]</code>.  The <code>$y</code> colum is calculated analogously.</p>
 <p>Nicolet uses some more keywords in their header file.
 They are interpreted as follows:</p><table class='table'>
 <tr><td>description</td><td>giving the position of the first spectrum</td></tr>
 <tr><td>z plot titles</td><td>wavelength and intensity axis units, comma separated</td></tr>
 <tr><td>pixel size</td><td>interpreted as x and y step size
-                   (specify <code>x = NA</code> and <code>y = NA</code>)</td></tr>
+(specify <code>x = NA</code> and <code>y = NA</code>)</td></tr>
 </table>
 <p>These parameters can be overwritten by giving a list with the respective
 elements in parameter <code>header</code>.</p>
@@ -327,13 +326,13 @@ pixel size values (i.e. the step sizes) are multiplied by 1000.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>This function was adapted from
-  <code><a href='https://rdrr.io/pkg/caTools/man/ENVI.html'>read.ENVI</a></code>:</p>
+<code><a href='https://rdrr.io/pkg/caTools/man/ENVI.html'>caTools::read.ENVI()</a></code>:</p>
 <p>Jarek Tuszynski (2008). caTools: Tools: moving window statistics, GIF,
-  Base64, ROC AUC, etc.. R package version 1.9.</p>
+Base64, ROC AUC, etc.. R package version 1.9.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/caTools/man/ENVI.html'>read.ENVI</a></code></p>
-<p><code>textio</code></p></div>
+    <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/caTools/man/ENVI.html'>caTools::read.ENVI()</a></code></p>
+<p><code>hyperSpec::textio()</code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>C. Beleites, testing for the Nicolet files C. Dicko</p>

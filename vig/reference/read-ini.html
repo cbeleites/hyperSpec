@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Read INI files — read.ini • hyperSpec</title>
+<title>Read INI files. — read.ini • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,8 +41,13 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Read INI files — read.ini" />
-<meta property="og:description" content="read.ini reads ini files of the form" />
+<meta property="og:title" content="Read INI files. — read.ini" />
+<meta property="og:description" content="read.ini reads ini files of the form
+
+[section]
+key = value
+
+into a list." />
 
 <meta name="robots" content="noindex" />
 <meta name="robots" content="noindex">
@@ -155,13 +160,18 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Read INI files</h1>
+    <h1>Read INI files.</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/read.ini.R'><code>R/read.ini.R</code></a></small>
     <div class="hidden name"><code>read-ini.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p><code>read.ini</code> reads ini files of the form</p>
+    <p><code>read.ini</code> reads ini files of the form
+<br /><br />
+<code>[section]</code><br />
+<code>key = value</code>
+<br /><br />
+into a list.</p>
     </div>
 
     <pre class="usage"><span class='fu'>read.ini</span>(
@@ -183,7 +193,7 @@
     </tr>
     <tr>
       <th>encoding</th>
-      <td><p>see <code><a href='https://rdrr.io/r/base/readLines.html'>readLines</a></code></p></td>
+      <td><p>see <code><a href='https://rdrr.io/r/base/readLines.html'>base::readLines()</a></code></p></td>
     </tr>
     </table>
 
@@ -193,10 +203,7 @@
 for the key-value-pairs.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>[section]
-key = value</p>
-<p>into a list.</p>
-<p><code>read.ini</code> sanitizes the element names and tries to convert scalars and comma separated
+    <p><code>read.ini</code> sanitizes the element names and tries to convert scalars and comma separated
 numeric vectors to numeric.</p>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
