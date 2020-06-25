@@ -17,12 +17,13 @@
   x
 }
 
-#' Sweep Summary Statistic out of an hyperSpec Object
-#' \code{\link[base]{sweep}} for \code{hyperSpec} objects.
+#' Sweep Summary Statistic out of an hyperSpec Object.
 #'
-#' Calls \code{\link[base]{sweep}} for the spectra matrix.
+#' [base::sweep()] for `hyperSpec` objects.
 #'
-#' \code{sweep} is useful for some spectra preprocessing, like offset
+#' Calls [base::sweep()] for the spectra matrix.
+#'
+#' `sweep` is useful for some spectra preprocessing, like offset
 #' correction, substraction of background spectra, and normalization of the
 #' spectra.
 #'
@@ -30,26 +31,28 @@
 #' @rdname sweep
 #' @aliases sweep-methods sweep,hyperSpec-method
 #' @docType methods
-#' @param x a \code{hyperSpec object.}
-#' @param MARGIN direction of the spectra matrix that \code{STATS} goees
+#' @param x a `hyperSpec object.`
+#' @param MARGIN direction of the spectra matrix that `STATS` goees
 #'   along.
 #' @param STATS the summary statistic to sweep out. Either a vector or a
-#'   \code{hyperSpec} object.
+#'   `hyperSpec` object.
 #'
-#' hyperSpec offers a non-standard convenience function: if \code{STATS} is a
-#'   function, this function is applied first (with the same \code{MARGIN}) to
+#' hyperSpec offers a non-standard convenience function: if `STATS` is a
+#'   function, this function is applied first (with the same `MARGIN`) to
 #'   compute the statistic. However, no further arguments to the apply
 #'   function can be given.  See the examples.
 #' @param FUN the function to do the sweeping, e.g. `-` or `/`.
-#' @param check.margin If \code{TRUE} (the default), warn if the length or
-#'   dimensions of \code{STATS} do not match the specified dimensions of
-#'   \code{x}.  Set to \code{FALSE} for a small speed gain when you
-#'   \emph{know} that dimensions match.
-#' @param ... further arguments for \code{FUN}
-#' @return A \code{hyperSpec} object.
+#' @param check.margin If `TRUE` (the default), warn if the length or
+#'   dimensions of `STATS` do not match the specified dimensions of
+#'   `x`.  Set to `FALSE` for a small speed gain when you
+#'   *know* that dimensions match.
+#' @param ... further arguments for `FUN`
+#' @return A `hyperSpec` object.
 #' @author C. Beleites
-#' @seealso \code{\link[base]{sweep}}
+#' @seealso [base::sweep()]
 #' @keywords methods
+#' @concept summary
+#' @concept preprocessing
 #' @export
 #' @examples
 #'

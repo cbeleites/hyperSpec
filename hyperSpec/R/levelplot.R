@@ -94,13 +94,13 @@ setGeneric("levelplot", package = "lattice")
 #' @include plotmap.R
 #' @rdname levelplot
 #' @param transform.factor If the color-coded variable is a factor, should
-#'   \code{\link{trellis.factor.key}} be used to compute the color coding and
+#'   [trellis.factor.key()] be used to compute the color coding and
 #'   legend?
-#' @param contour,useRaster see  \code{\link[lattice]{levelplot}}
+#' @param contour,useRaster see  [lattice::levelplot()]
 #' @export
-#' @seealso  \code{\link[lattice]{levelplot}}
+#' @seealso  [lattice::levelplot()]
 #'
-#'  \code{\link{trellis.factor.key}} for improved color coding of factors
+#'  [trellis.factor.key()] for improved color coding of factors
 #' @importFrom lattice levelplot
 setMethod(
   f = "levelplot", signature = signature(x = "hyperSpec", data = "missing"),

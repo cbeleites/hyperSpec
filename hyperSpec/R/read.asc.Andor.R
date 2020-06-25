@@ -1,16 +1,15 @@
-#' Import Raman Spectra/Maps from Andor Cameras/Solis ASCII files
+#' Import Raman Spectra/Maps from Andor Cameras/Solis ASCII files.
 #'
-#' \code{read.asc.Andor} reads Andor Solis ASCII (\code{.asc}) files where the first column gives the wavelength
+#' `read.asc.Andor()` reads Andor Solis ASCII (`.asc`) files where the first column gives the wavelength
 #' axes and the other columns the spectra.
 #'
-#' @title File Import Andor Solis
 #' @param file filename or connection to ASCII file
-#' @param ...,quiet,dec,sep handed to \code{\link[base]{scan}}
+#' @param ...,quiet,dec,sep handed to [base::scan()]
 #' @return a hyperSpec object
 #' @author Claudia Beleites
-#' @seealso \code{vignette ("fileio")} for more information on file import and
+#' @seealso `vignette ("fileio")` for more information on file import and
 #'
-#' \code{\link{options}} for details on options.
+#' [options()] for details on options.
 #' @include read.txt.Witec.R
 #' @include fileio.optional.R
 #' @export

@@ -1,13 +1,14 @@
-#' command line completion for $
+#' @title command line completion for `$`.
+#' @description
+#' Command line completion for `$`.
 #'
 #' @aliases .DollarNames .DollarNames,hyperSpec-method
 #' @author C. Beleites
-#' @seealso \code{\link[utils]{.DollarNames}}
+#' @seealso [utils::.DollarNames()]
 #' @export
 #' @rdname dollarnames
 #' @keywords utilities
-#' @title command line completion for $
-#' @param x the hyperSpecobject
+#' @param x the `hyperSpec` object
 #' @param pattern pattern to look for
 #' @return the name of the extra data slot
 #' @importFrom utils .DollarNames

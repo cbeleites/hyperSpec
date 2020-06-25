@@ -17,12 +17,9 @@ By contributing, you understand and agree that your work becomes the part of the
 
 * This project adheres to the [Tidyverse styleguide](https://style.tidyverse.org/).
 * This guide applies both to the code and the [`roxygen2` documentation](https://style.tidyverse.org/documentation.html).  
-
-  We're currently transitioning the documentation to markdown.
-  - Please write any new documentation in markdown already.
-  - Enable markdown for a particular help page with `#' @md`.
-  - Whenever touching a function whose documentation is still LaTeX-style, please take the time to convert it to markdown.  
-    [Here are some regexps to help with search and replace of `\code{}` and `\link[]{}`.](https://gist.github.com/cbeleites/cc1c964bc5416ca285acf24f1d4e30ef)
+* The documentation is written in markdown
+  - Whenever touching a function, please take the time to check its documentation.
+    Large parts have been converted automatically from LaTeX, and may still need some manual polishing. 
 
 * Use package [styler](http://styler.r-lib.org/) with RStudio add-in to easily re-style your code to comply with the guidelines.
 * If a unit test needs to be disabled temporarily, please use `skip("reason for switching off")`.

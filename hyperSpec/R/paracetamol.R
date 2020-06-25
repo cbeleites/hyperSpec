@@ -1,4 +1,5 @@
-#' Paracetamol Spectrum
+#' Paracetamol Spectrum.
+#'
 #' A Raman spectrum of a paracetamol tablet.
 #'
 #'
@@ -9,6 +10,7 @@
 #'   overlapping wavelength regions.
 #' @author C. Beleites
 #' @keywords datasets
+#' @concept datasets
 #' @examples
 #'
 #' paracetamol

@@ -1,8 +1,10 @@
-#' Spectra plotting with ggplot2
+#' @title Spectra plotting with \pkg{ggplot2}: `qplotspc().`
+#' @description
+#' Spectra plotting with \pkg{ggplot2}.
 #'
 #' These functions are still experimental and may change in future.
-#' @title Spectra plotting with ggplot2
-#' @param x hyperSpec object
+#'
+#' @param x `hyperSpec` object
 #' @param wl.range wavelength ranges to plot
 #' @param ... handed to [ggplot2::geom_line()]
 #' @param mapping see  [ggplot2::geom_line()]
@@ -12,6 +14,8 @@
 #' @param debuglevel if > 0, additional debug output is produced
 #' @return a [ggplot2::ggplot()] object
 #' @author Claudia Beleites
+#' @concept ggplot2
+#' @concept plots
 #' @export
 #' @md
 #' @seealso [plotspc()]
@@ -96,15 +100,15 @@ qplotspc <- function(x,
   p
 }
 
-
-#' Spectra plotting with ggplot2
+#' @title Spectra plotting with \pkg{ggplot2}: `qplotmap().`
+#' @description
+#' Spectra plotting with \pkg{ggplot2}.
 #'
 #' These functions are still experimental and may change in future.
 #'
 #' Note that `qplotmap()` will currently produce the wrong scales if x or y are
 #' discrete.
 #'
-#' @title Spectra plotting with ggplot2
 #' @param object  hyperSpec object
 #' @param mapping see  [ggplot2::geom_tile()]
 #' @param ... handed to [ggplot2::geom_tile()]
@@ -116,6 +120,8 @@ qplotspc <- function(x,
 #' @export
 #' @md
 #' @author Claudia Beleites
+#' @concept ggplot2
+#' @concept plots
 #' @seealso [plotmap()]
 #'
 #'   [ggplot2::ggplot()], [ggplot2::geom_tile()]
@@ -177,7 +183,9 @@ qplotmap <- function(object,
 }
 
 
-#' Spectra plotting with ggplot2
+#' @title Spectra plotting with \pkg{ggplot2}: `qplotc().`
+#' @description
+#' Spectra plotting with \pkg{ggplot2}.
 #'
 #' These functions are still experimental and may change in future.
 #' @title Spectra plotting with ggplot2
@@ -192,6 +200,8 @@ qplotmap <- function(object,
 #'   [ggplot2::geom_point()] instead of [ggplot2::ggplot()].
 #' @return a [ggplot2::ggplot()] object
 #' @author Claudia Beleites
+#' @concept ggplot2
+#' @concept plots
 #' @md
 #' @seealso [plotc()]
 #'

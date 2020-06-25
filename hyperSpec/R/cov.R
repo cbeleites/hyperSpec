@@ -1,27 +1,29 @@
-#' Covariance matrices for hyperSpec objects
+#' Covariance matrices for `hyperSpec` objects.
 #'
 #'
-#' @param x hyperSpec object
+#' @param x `hyperSpec` object
 #' @param y not supported
-#' @param use,method handed to  \code{\link[stats]{cov}}
-#' @return covariance matrix of size \code{nwl (x)} x  \code{nwl (x)}
-#' @seealso \code{\link[stats]{cov}}
+#' @param use,method handed to  [stats::cov()]
+#' @return covariance matrix of size `nwl (x)` x  `nwl (x)`
+#' @seealso [stats::cov()]
 #' @author C. Beleites
+#' @concept stats
 #' @rdname cov
 #' @export
 #' @examples
 #' image(cov(faux_cell))
-setMethod("cov", signature = signature(x = "hyperSpec", y = "missing"), function(x, y, use, method) {
-  validObject(x)
+setMethod("cov", signature = signature(x = "hyperSpec", y = "missing"),
+  function(x, y, use, method) {
+    validObject(x)
 
-  cov(x@data$spc, use = use, method = method)
-})
+    cov(x@data$spc, use = use, method = method)
+  })
 
 
 #' @param ... ignored
-#' @param regularize regularization of the covariance matrix. Set \code{0} to switch off
+#' @param regularize regularization of the covariance matrix. Set `0` to switch off
 #'
-#' \code{pooled.cov} calculates pooled covariance like e.g. in LDA.
+#' `pooled.cov` calculates pooled covariance like e.g. in LDA.
 #' @param groups factor indicating the groups
 #' @rdname cov
 #' @export
@@ -37,8 +39,8 @@ pooled.cov <- function(x, groups, ..., regularize = 1e-5 * max(abs(COV))) {
     stop("groups must be a factor")
   }
 
-  x <- x      [!is.na(groups)]
-  groups <- groups [!is.na(groups)]
+  x      <-      x[!is.na(groups)]
+  groups <- groups[!is.na(groups)]
 
   means <- aggregate(x, groups, "mean") # TODO: speed up?
 

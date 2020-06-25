@@ -1,7 +1,9 @@
-#' Laser Emission
+#' Laser Emission Dataset.
+#'
 #' A time series of an unstable laser emission.
 #'
-#' see the Vignette
+#' @seealso
+#' See the vignette `vignette("laser", package = "hyperSpec")`.
 #'
 #' @name laser
 #' @docType data
@@ -10,6 +12,7 @@
 #'   405.8 nm.
 #' @author C. Beleites
 #' @keywords datasets
+#' @concept datasets
 #' @examples
 #'
 #' laser

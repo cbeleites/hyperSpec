@@ -1,23 +1,23 @@
-#' Rubberband baseline
-#'
+#' @title Rubberband baseline correction.
+#' @description
 #' Baseline with support points determined from a convex hull of the spectrum.
 #'
-#' Use \code{debuglevel >= 1} to obtain debug plots, either directly via function argument or by setting hyperSpec's \code{debuglevel} option.
-#' @title Rubberband baseline correction
-#' @param spc hyperSpec object
-#' @param ... further parameters handed to \code{\link[stats]{smooth.spline}}
+#' Use `debuglevel >= 1` to obtain debug plots, either directly via function
+#' argument or by setting hyperSpec's `debuglevel` option.
+#' @param spc `hyperSpec` object
+#' @param ... further parameters handed to [stats::smooth.spline()]
 #' @param upper logical indicating whether the lower or upper part of the hull should be used
 #' @param noise noise level to be taken into account
 #' @param spline logical indicating whether the baseline should be an interpolating spline through
 #' the support points or piecewise linear.
-#' @return hyperSpec object containing the baselines
+#' @return `hyperSpec` object containing the baselines
 #' @rdname spc-rubberband
 #' @author Claudia Beleites
-#' @seealso \code{\link[hyperSpec]{spc.fit.poly}}, \code{\link[hyperSpec]{spc.fit.poly.below}}
+#' @seealso [hyperSpec::spc.fit.poly()], [hyperSpec::spc.fit.poly.below()]
 #'
-#' \code{vignette ("baseline")}
+#' `vignette ("baseline")`
 #'
-#' \code{\link[hyperSpec]{hy.setOptions}}
+#' [hyperSpec::hy.setOptions()]
 #'
 #' @note This function is still experimental
 #' @export

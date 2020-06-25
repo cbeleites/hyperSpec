@@ -21,13 +21,13 @@
 }
 
 #' @rdname mean_sd
-#' @return For hyperSpec object, \code{quantile} returns a hyperSpec object containing the
-#' respective quantile spectra.
-#' @param probs the quantiles, see \code{\link[stats]{quantile}}
-#' @param names \code{"pretty"} results in percentages (like \code{\link[stats]{quantile}}'s
-#' \code{names = TRUE}), \code{"num"} results in the row names being \code{as.character (probs)}
+#' @return For `hyperSpec` object, `quantile()` returns a `hyperSpec` object
+#' containing the respective quantile spectra.
+#' @param probs the quantiles, see [stats::quantile()]
+#' @param names `"pretty"` results in percentages (like [stats::quantile()]'s
+#' `names = TRUE`), `"num"` results in the row names being `as.character (probs)`
 #' (good for ggplot2 getting the order of the quantiles right). Otherwise, no names are assigned.
-#' @seealso  \code{\link[stats]{quantile}}
+#' @seealso  [stats::quantile()]
 #' @export
 #' @examples
 #'

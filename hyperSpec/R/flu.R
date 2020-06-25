@@ -1,8 +1,9 @@
-#' Quinine Fluorescence Spectra
+#' Quinine Fluorescence Spectra.
+#'
 #' Fluorescence spectra of different dilutions of quinine forming a
 #' calibration set.
 #'
-#' See the vignette: \code{vignette ("flu", package = "hyperSpec")}
+#' See the vignette: `vignette("flu", package = "hyperSpec")`
 #'
 #' @name flu
 #' @docType data
@@ -11,6 +12,7 @@
 #'   consists of 181 data points in the range of 405 nm to 495 nm.
 #' @author M. Kammer and C. Beleites
 #' @keywords datasets
+#' @concept datasets
 #' @include wl2i.R
 #' @examples
 #'

@@ -1,7 +1,8 @@
-#' line/word/character count of ASCII files
+#' Line/word/character count of ASCII files (DEPRECATED).
 #'
 #' `wc()` uses the system command `wc`. Use at your own risk.
-#' @note `wc()` now is deprecated and will be removed from hyperSpec in future. Consider using [count_lines()] instead for line counting.
+#' @note `wc()` now is deprecated and will be removed from \pkg{hyperSpec}
+#' in the future. Consider using [count_lines()] instead for line counting.
 #'
 #' @param file the file name or pattern
 #' @param flags the parameters to count, character vector with the long form
@@ -9,6 +10,7 @@
 #' @return data.frame with the counts and file names, or `NULL` if wc is
 #'   not available on the system.
 #' @seealso [count_lines()]
+#' @concept deprecated
 #' @export
 #' @author C. Beleites
 #' @importFrom utils read.table

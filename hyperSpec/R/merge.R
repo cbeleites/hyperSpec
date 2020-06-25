@@ -1,28 +1,28 @@
-#' Merge hyperSpec objects
+#' Merge `hyperSpec` objects.
 #'
-#' Merges two hyperSpec objects and \code{\link[base]{cbind}}s their spectra
-#' matrices, or merges additional extra data into a hyperSpec object.
+#' Merges two `hyperSpec` objects and [base::cbind()]s their spectra
+#' matrices, or merges additional extra data into a `hyperSpec` object.
 #'
 #' After merging, the spectra matrix can contain duplicates, and is not
 #' ordered according to the wavelength.
 #'
-#' If the wavelength axis should be ordered, use \code{\link{orderwl}}.
+#' If the wavelength axis should be ordered, use [orderwl()].
 #'
-#' If a \code{hyperSpec} object and  a \code{data.frame} are merged, the result is of the class of the first (\code{x}) object.
+#' If a `hyperSpec` object and  a `data.frame` are merged, the result is of the class of the first (`x`) object.
 #'
 #' @aliases merge,hyperSpec,hyperSpec-method merge
-#' @param x a hyperSpec object or data.frame
-#' @param y a hyperSpec object or data.frame (including derived classes like tibble)
-#' @param ... handed to \code{\link[base]{merge.data.frame}}
+#' @param x a `hyperSpec` object or data.frame
+#' @param y a `hyperSpec` object or data.frame (including derived classes like tibble)
+#' @param ... handed to [base::merge.data.frame()]
 #' @author C. Beleites
 #' @export
 #' @rdname merge
 #' @docType methods
 #' @aliases merge
-#' @seealso \code{\link[base]{merge}}.
+#' @seealso [base::merge()].
 #'
-#' \code{\link{collapse}} combines hyperSpec objects that do not share the wavelength axis.
-#' \code{\link{rbind}}, and \code{\link{cbind}} for combining hyperSpec objects that.
+#' [collapse()] combines `hyperSpec` objects that do not share the wavelength axis.
+#' [rbind()], and [cbind()] for combining `hyperSpec` objects that.
 #' @keywords manip
 #' @examples
 #'

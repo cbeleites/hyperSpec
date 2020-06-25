@@ -1,8 +1,9 @@
-#' Empty hyperSpec object
+#' Empty `hyperSpec` object.
 #'
-#' Empty produces an hyperSpec object with the same columns and wavelengths as \code{x}.  The new
-#' object will either contain no rows at all (default), or the given number of rows with all data
-#' initialized to \code{spc} and \code{extra}, respectively.
+#' Empty produces an `hyperSpec` object with the same columns and wavelengths
+#' as `x`. The new object will either contain no rows at all (default), or the
+#' given number of rows with all data initialized to `spc` and `extra`,
+#' respectively.
 #'
 #' @aliases empty
 #' @author C. Beleites
@@ -19,10 +20,10 @@ empty <- function(x, nrow = 0, spc = NA, extra = NA) {
     stop("Empty is not implemented for empty (0 row) objects")
   }
 
-  x@data <- x@data [rep(1L, nrow), ]
+  x@data <- x@data[rep(1L, nrow), ]
 
   if (nrow > 0) {
-    x@data$spc [TRUE] <- spc
+    x@data$spc[TRUE] <- spc
     x@data[, !grepl("^spc$", colnames(x@data))] <- extra
   }
 
