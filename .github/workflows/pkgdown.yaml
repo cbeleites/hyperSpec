@@ -6,7 +6,7 @@ on:
       - develop
       - feature/polish-vignettes
       - feature/update-pkgdown-settings
-      - feature/187-roxygen2Rd
+      - feature/intro-vig
 
 name: Update pkgdown website
 
@@ -68,4 +68,3 @@ jobs:
         run: |
           pkgdown::deploy_to_branch("./hyperSpec", new_process = FALSE)
         shell: Rscript {0}
-
