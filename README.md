@@ -64,6 +64,9 @@ install.packages(c("akima", "roxygen2", "devtools", "knitr", "rmarkdown", "bookd
 You can use package `remotes` to automatically install all dependencies from the `Suggests` list:
 
 ```
+# Do not abort installation even if some packages are not available
+Sys.setenv(R_REMOTES_NO_ERRORS_FROM_WARNINGS="true")
+
 remotes::install_deps('hyperSpec', dependencies = 'Suggests')
 ```
 
