@@ -169,7 +169,10 @@
 <p>In order to build the package from source, first install packages listed under the section <code>Suggests:</code> in file <code>hyperSpec/DESCRIPTION</code>. At the very minimum at least the following packages are necessary:</p>
 <pre><code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages(c("akima", "roxygen2", "devtools", "knitr", "rmarkdown", "bookdown", "ggplotify", "ggpubr", "R.matlab", "kableExtra", "mvtnorm", "plotrix", "pls", "baseline", "deldir", "tripack"))</a></code></pre>
 <p>You can use package <code>remotes</code> to automatically install all dependencies from the <code>Suggests</code> list:</p>
-<pre><code><a href="https://remotes.r-lib.org/reference/install_deps.html">remotes::install_deps('hyperSpec', dependencies = 'Suggests')</a></code></pre>
+<pre><code><a href="https://rdrr.io/r/base/Sys.setenv.html"># Do not abort installation even if some packages are not available
+Sys.setenv(R_REMOTES_NO_ERRORS_FROM_WARNINGS="true")
+
+remotes::install_deps('hyperSpec', dependencies = 'Suggests')</a></code></pre>
 <p>If using RStudio, go to menu <em>Build/configure build tools</em>, use ‘Package’ build system, set <code>hyperSpec</code> as the package directory, and make sure that the checkboxes for ‘Use devtools package’ and ‘Generate documentation with Roxygen’ are checked. Under the <em>Roxygen configuration</em> dialog set all checkboxes except of ‘install and restart’.</p>
 <p>Once everything is configured, you would need to invoke ‘document’ and then ‘build’ in RStudio, or the following in the terminal:</p>
 <pre><code><a href="https://devtools.r-lib.org//reference/document.html">devtools::document('hyperSpec')
