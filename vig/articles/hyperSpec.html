@@ -140,28 +140,47 @@
     
 <!-- \tableofcontents -->
 <!-- this chunk inserts common info about all the vignettes -->
-<blockquote>
-<p><strong>Note</strong> <a name="abt-vigs"></a>
-Package <code>hyperSpec</code> and it’s friends provide a number of vignettes to help you get started.</p>
-</blockquote>
+<!-- ======================================================================= -->
+<div class="note-t">
+<p>
+<strong>Note</strong>: <a name="abt-vigs"></a>
+</p>
+<p>
+Package <code>hyperSpec</code> and it’s friends provide a number of vignettes to help you get started.
+</p>
 <ul>
-<li>You can access the vignettes via these links:
+<li>
+You can access the vignettes via these links:
 <ul>
 <li>
 <a href="http://cbeleites.github.io/hyperSpec/articles/hyperSpec.html">Introduction to <code>hyperSpec</code></a>
-<ul>
-<li><a href="http://cbeleites.github.io/hyperSpec/articles/plotting.html">Plotting Functions in <code>hyperSpec</code></a></li>
-<li><a href="http://cbeleites.github.io/hyperSpec/articles/baseline.html">Fitting Baselines to Spectra</a></li>
-<li><a href="http://cbeleites.github.io/hyperSpec/articles/fileio.html">Importing Files into <code>hyperSpec</code></a></li>
-<li><a href="http://cbeleites.github.io/hyperSpec/articles/chondro.html">chondro: Example Workflow for 2D Raman Spectra</a></li>
-<li><a href="http://cbeleites.github.io/hyperSpec/articles/flu.html">flu: Example Workflow for Fluorescene Emission</a></li>
-<li><a href="http://cbeleites.github.io/hyperSpec/articles/laser.html">laser: Example Workflow for Spectral Time Series</a></li>
-</ul>
+</li>
+<li>
+<a href="http://cbeleites.github.io/hyperSpec/articles/plotting.html">Plotting Functions in <code>hyperSpec</code></a>
+</li>
+<li>
+<a href="http://cbeleites.github.io/hyperSpec/articles/baseline.html">Fitting Baselines to Spectra</a>
+</li>
+<li>
+<a href="http://cbeleites.github.io/hyperSpec/articles/fileio.html">Importing Files into <code>hyperSpec</code></a>
+</li>
+<li>
+<a href="http://cbeleites.github.io/hyperSpec/articles/chondro.html">chondro: Example Workflow for 2D Raman Spectra</a>
+</li>
+<li>
+<a href="http://cbeleites.github.io/hyperSpec/articles/flu.html">flu: Example Workflow for Fluorescene Emission</a>
+</li>
+<li>
+<a href="http://cbeleites.github.io/hyperSpec/articles/laser.html">laser: Example Workflow for Spectral Time Series</a>
 </li>
 </ul>
 </li>
-<li>Alternatively, if you are offline or prefer accessing the vignettes with <code>R</code>, simply type <code class="sourceCode r"><span class="kw">browseVignettes</span>(<span class="st">"hyperSpec"</span>)</code> to get a clickable list in a browser window.</li>
+<li>
+Alternatively, if you are offline or prefer accessing the vignettes with <code>R</code>, simply type <code class="sourceCode r"><span class="kw">browseVignettes</span>(<span class="st">“hyperSpec”</span>)</code> to get a clickable list in a browser window.
+</li>
 </ul>
+</div>
+<!-- ======================================================================= -->
 <div id="things-to-know-about-hyperspec" class="section level1">
 <h1 class="hasAnchor">
 <a href="#things-to-know-about-hyperspec" class="anchor"></a><span class="header-section-number">1</span> Things to Know About <strong><em>hyperSpec</em></strong>
@@ -2263,7 +2282,7 @@ Please refer to the documentation of the respective functions for details about 
   }
 })
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.046   0.002   0.048</span>
+<span class="co">#&gt;   0.051   0.002   0.052</span>
 </pre></div>
 <p>Calculations that involve a lot of subsetting (i.e., extracting or changing the spectra matrix or extra data) can be sped up considerably if the required parts of the <code>hyperSpec</code> object are extracted beforehand.
 This is somewhat similar to model fitting in <code>R</code> in general: many model fitting functions in <code>R</code> are much faster if the formula interface is avoided and the appropriate <code class="sourceCode r">data.frame</code>s or matrices are handed over directly.</p>
@@ -2278,7 +2297,7 @@ This is somewhat similar to model fitting in <code>R</code> in general: many mod
   <span class="kw">tmp</span>[[]] <span class="op">&lt;-</span> <span class="kw">tmp.matrix</span>
 })
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;    0.01    0.00    0.01</span>
+<span class="co">#&gt;   0.010   0.000   0.009</span>
 </pre></div>
 <p>In general, it is not recommended to work with variables that are more than approximately a third of the available RAM in size. Particularly the import of raw spectroscopic data can consume large amounts of memory.
 At certain points, package <strong>hyperSpec</strong> provides switches that allow working with data sets that are actually close to this memory limit.</p>
