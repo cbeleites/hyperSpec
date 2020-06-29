@@ -233,6 +233,8 @@ The column names of the spectra matrix contain the wavelengths as a character ve
 
 # Accessing & Manipulating **_hyperSpec_** Objects {#sec:access-parts}
 
+<!-- If you edit the general description here or the getters/setters tables below, please make the corresponding changes in Extract.R where the same material is used to create the Rd files. Unfortunately the material is not formatted exactly the same in each place so you have to do more than simple cut and paste. -->
+
 While the parts of the `hyperSpec` object can be accessed directly, it is good practice to use the functions provided by the package to handle the objects rather than accessing the slots directly.
 This also ensures that proper (i.e. *valid*) objects are returned.
 In some cases, however, direct access to the slots can considerably speed up calculations (see the appendicies).
