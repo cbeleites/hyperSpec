@@ -33,105 +33,112 @@
   x
 }
 
-#' These Methods allow to extract and replace parts of the `hyperSpec` object.
+#' These methods allow one to extract and replace parts of the `hyperSpec` object.
+#' They can be used for selecting/deleting spectra, cutting the spectral range, and extracting
+#' or setting the extra data belonging to the object. Convenient shortcuts are provided
+#' for commonly used operations.
 #'
-#' They work with respect to the spectra (rows of `x`), the columns of the data matrix, and the
-#' wavelengths (columns of the spectra matrix).
+#' While the parts of the `hyperSpec` object can be accessed directly, it is good practice to
+#' use the functions provided by the package to handle the objects rather than accessing the
+#' slots directly. This also ensures that proper (i.e. *valid*) objects are returned.
+#'  In some cases, however, direct access to the slots can considerably speed up calculations.
+#' 
+#' The main functions to retrieve the data of a `hyperSpec` object are `[]` and `[[]]`.
+#' The difference between these functions is that `[]` returns a `hyperSpec` object, whereas
+#' `[[]]` returns a `data.frame` containing `x$spc`, the spectral data.
+#' To modify a `hyperSpec` object, the corresponding functions are `[<-` and `[[<-`.
+#' The first form is used to modify the entire `hyperSpec` object and the second form modifies
+#' the spectral data in `x$spc`.
 #'
-#' Thus, they can be used for selecting/deleting spectra, cutting the spectral range, and extracting
-#' or setting the data belonging to the spectra.
+#
+# IF THE FOLLOWING MATERIAL IS EDITTED THE CORRESPONDING MATERIAL IN hyperSpec.Rmd
+# SHOULD BE EDITTED AS WELL.
+#
+#' `hyperSpec` objects are triple indexed:
+#' 
+#' * `x[i, j, l, wl.index = TRUE/FALSE]`
+#' * `x[[i, j, l, wl.ndex = TRUE/FALSE]]`
+#' * `i` refers to rows of the `@data` slot. `i` can be integer indices or a logical vector.
+#' * `j` refers to columns of the `@data` slot. `j` can be integer indices, a logical vector
+#'    or the name of a column.  _However, there is no guaranteed order to_ `colnames(x)`
+#'    _so using integer indices and logical vectors is unwise._
+#' * `l` refers to wavelengths. Note the argument `wl.index` which determines how `l` is interpreted.
+#' * If there is only one index given, e.g. `x[1:3]`, it refers to the row index `i`.
+#'   Likewise if there are only two indices given they refer to `i` and `j`.
+#' 
+#' ## Extraction (Getter) Actions
+#' 
+#' | **Getter** | **Action** |
+#' | ------ | ------ |
+#' | `x[]` | Returns the entire `hyperSpec` object unchanged. |
+#' | `x[i, , ]` | Returns the `hyperSpec` object with selected rows; equivalent to `x[i]`. |
+#' | `x[, j, ]` | Returns the `hyperSpec` object with empty `x$spc` slot. If you want the column `j`, `x[["name"]]` returns a `data.frame` containing `j` or `x$name` returns it as a vector. |
+#' | `x[, , l, wl.index = TRUE/FALSE]` | Returns the `hyperSpec` object with selected wavelengths. |
+#' | `x[[]]` | Returns the spectra matrix (`x$spc`). |
+#' | `x[[i, , ]]` | Returns the spectra matrix (`x$spc`) with selected rows. |
+#' | `x[[, j, ]]` | Returns a `data.frame` with the selected columns.  Safest to give `j` as a character string. |
+#' | `x[[, , l, wl.index = TRUE/FALSE]]` | Returns the spectra matrix (`x$spc`) with selected wavelengths. |
+#' | `x$name` | Returns the column `name` as a vector. |
+#' | `x$.` | Returns the complete `data.frame` `x@data`, with the spectra in column `$spc`. |
+#' | `x$..` | Returns all the extra data (`x@data` without `x$spc`). |
+#' | `wl()` | Returns the wavelengths. |
+#' | `labels()` | Returns the labels. |
 #'
-#' Convenient shortcuts for access of the spectra matrix and the `data.frame` in slot
-#' `data` are provided.
+#' One can see that there are several ways to get the spectral data:
+#' `x$spc`, `x[[]]`, `x$..`.  The first two forms return a matrix,
+#' while the last returns a `data.frame`.
 #'
-#' *Extracting: `[`, `[[`, and `$`*.
+#' ## Replacement (Setter) Actions
+#' 
+#' | **Setter** | **Action** |
+#' | ------ | ------ |
+#' | `x[i, ,] <-` | Replaces the specified rows of the `@data` slot, including `x$spc` and any extra data columns. Other approaches are probably easier. |
+#' | `x[, j,] <-` | Replaces the specified columns.  Safest to give `j` as a character string. |
+#' | `x[i, j] <-` | Replaces the specified column limited to the specified rows.  Safest to give `j` as a character string. |
+#' `x[, , l, wl.index = TRUE/FALSE] <-` | Replaces the specified wavelengths. |
+#' | `x[[i, ,]] <-` | Replaces the specified row of `x$spc` |
+#' | `x[[, j,]] <-` | As `[[]]` refers to just the spectral data in `x$spc`, this operation is not valid.  See below. |
+#' | `x[[, , l, wl.index = TRUE/FALSE]] <-` | Replaces the intensity values in `x$spc` for the specified wavelengths. |
+#' | `x[[i, , l, wl.index = TRUE/FALSE]] <-` | Replaces the intensity values in `x$spc` for the specified wavelengths limited to the specified rows. |
+#' | `x$.. <-` | Sets the extra data (`x@data` without touching `x$spc`). The column names must match exactly in this case. |
+#' | `wl<-` | Sets the wavelength vector. |
+#' | `labels<-` | Sets the labels. |
 #'
-#' The version with single square brackets (`[`) returns the resulting `hyperSpec` object.
 #'
-#' `[[` yields `data.frame` of slot `@@data` of that corresponding `hyperSpec`
-#' object returned with the same arguments by `[` if columns were selected (i.e. `j` is
-#' given), otherwise the spectra `matrix` `x@@data$spc`.
-#'
-#' `$` returns the selected column of the `data.frame` in slot `@@data`.
-#'
-#' *Shortcuts.* Three shortcuts to conveniently extract much needed parts of the object are
-#' defined:
-#'
-#' `x[[]]` returns the spectra matrix.
-#'
-#' `x$.` returns the complete slot `@@data`, including the spectra matrix in column
-#' `$spc`, as a `data.frame`.
-#'
-#' `x$..` returns a `data.frame` like `x$.` but without the spectra matrix.
-#'
-#' *Replacing: `[<-`, `[[<-`, and `$<-`*.
-#' \preformatted{
-#' ## S4 method for signature 'hyperSpec':
-#' x [i, j, l, \dots] <- value
-#'
-#' ## S4 method for signature 'hyperSpec':
-#' x[[i, j, l, wl.index = FALSE, \dots]] <- value
-#'
-#' ## S4 method for signature 'hyperSpec':
-#' x$name <- value
-#' }
-#'
-#' `value` gives the values to be assigned.\cr
-#'
-#' For `$`, this can also be a list of the form `list (value =
-#' value, label = label)`, with `label` containing the label for data
-#' column `name`.
-#'
-#' `[[<-` replaces parts of the spectra matrix.
-#'
-#' `[<-` replaces parts of the `data.frame` in slot `x@@data`.
-#'
-#' `$<-` replaces a column of the `data.frame` in slot
-#' `x@@data`.  The `value` may be a list with two elements,
-#' `value` and `label`.  In this case the label of the data column
-#' is changed accordingly.
-#'
-#' `$..<-` is again an abbreviation for the data.frame without the
-#' spectra matrix.
-#'
-
 #' @title Extract and Replace parts of `hyperSpec` objects.
 #' @rdname extractreplace
 #' @docType methods
 #' @aliases [ [,hyperSpec-method
-#' @param x a `hyperSpec` Object
-#' @param i row index: selects spectra
-#'
-#' `[[` and `[[<-` accept indexing with logical matrix or a n by 2
-#'   integer index matrix. In this case the indexing is done inside the
-#'   spectra matrix. See the examples below.
-#' @param j selecting columns of `x@@data`
-#' @param l selecting columns of the spectra matrix. If `l` is numeric,
-#'   the default behaviour is treating `l` as wavelengths, *not* as
-#'   indices.
-#' @param wl.index If `TRUE` (default), the value(s) in `l` are
-#'   treated as column indices for the spectral matrix. Otherwise, the numbers
-#'   in `l` are treated as wavelengths and the corresponding column
-#'   indices are looked up first via [wl2i()].
+#' @param x A `hyperSpec` Object.
+#' @param i Index of rows in `x@@data`. Integer, logical, or in the case of 
+#'          `[[` and `[[<-`, a `nrow` by 2 logical matrix or 
+#'          integer index matrix. In this case the indexing is done
+#'          inside the spectra matrix. See the examples.
+#' @param j Index of `x@@data` columns.  Integer, logical or character.  The order
+#'          of columns in a `hyperSpec` object is not fixed and thus
+#'          using integer or logical vectors may not be safe.
+#' @param l Index of wavelengths in the spectra matrix. The behavior of `l` depends
+#'          upon the value of `wl.index`.
+#' @param wl.index If `FALSE` (the default), the values in `l` are
+#'          taken to be wavelengths.  If `TRUE`, the values in `l` are
+#'          taken to be indices for the spectral matrix. 
 #' @param drop For `[[`: drop unnecessary dimensions, see
-#'   [base::drop()] and [base::Extract()]. Ignored for
-#'   `[`, as otherwise invalid `hyperSpec` objects might result.
-#' @param ... ignored
-#' @return For `[`, `[<-`, `[[<-`, and `$<-` a `hyperSpec` object,
+#'          [base::drop()] and [base::Extract()]. Ignored (quietly) for
+#'          `[`, as otherwise invalid `hyperSpec` objects might result.
+#' @param ... Ignored.
+#' @param name Name of the data column to extract. `$spc` yields the spectra matrix.
+#' @return
+#'  * For `[`, `[<-`, `[[<-`, and `$<-` a `hyperSpec` object.
+#'  * For `[[` a matrix or `data.frame`.
+#'  * For `$` the given column of the `data.frame` `x@@data`.
+#'  * `x[[]]` returns the complete spectra matrix.
+#'  * `x$.` returns the complete slot `@@data`,
+#'  * `x$..` returns the `data.frame` in `@@data` but without the column
+#'               `@@data$spc` containing the spectra matrix.
 #'
-#' for `[[` a matrix or `data.frame`, and
-#'
-#' for `$` the column of the `data.frame` `@@data`.
-#'
-#' `x[[]]` returns the complete spectra matrix.
-#'
-#' `x$.` returns the complete slot `@@data`,
-#'
-#' `x$..` returns the `data.frame` in `@@data` but without the column
-#' `@@data$spc` containing the spectra matrix.
 #' @seealso [wl2i()] on conversion of wavelength ranges to indices.
+#'          [base::drop()] and [base::Extract()] for details on `drop`.
 #'
-#' [base::drop()] and [base::Extract()] on `drop`.
 #' @keywords methods manip
 #' @examples
 #'
@@ -266,7 +273,6 @@ setMethod("[[",
 )
 
 #' @rdname extractreplace
-#' @param name name of the data column to extract. `$spc` yields the spectra matrix.
 #' @aliases $ $,hyperSpec-method
 #' @export
 setMethod("$",
