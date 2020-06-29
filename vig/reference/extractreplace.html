@@ -42,7 +42,10 @@
   
 
 <meta property="og:title" content="Extract and Replace parts of <code>hyperSpec</code> objects. — [,hyperSpec-method" />
-<meta property="og:description" content="These Methods allow to extract and replace parts of the hyperSpec object." />
+<meta property="og:description" content="These methods allow one to extract and replace parts of the hyperSpec object.
+They can be used for selecting/deleting spectra, cutting the spectral range, and extracting
+or setting the extra data belonging to the object. Convenient shortcuts are provided
+for commonly used operations." />
 
 <meta name="robots" content="noindex" />
 <meta name="robots" content="noindex">
@@ -161,7 +164,10 @@
     </div>
 
     <div class="ref-description">
-    <p>These Methods allow to extract and replace parts of the <code>hyperSpec</code> object.</p>
+    <p>These methods allow one to extract and replace parts of the <code>hyperSpec</code> object.
+They can be used for selecting/deleting spectra, cutting the spectral range, and extracting
+or setting the extra data belonging to the object. Convenient shortcuts are provided
+for commonly used operations.</p>
     </div>
 
     <pre class="usage"># S4 method for hyperSpec
@@ -187,45 +193,45 @@ $(x, name) &lt;- value</pre>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>a <code>hyperSpec</code> Object</p></td>
+      <td><p>A <code>hyperSpec</code> Object.</p></td>
     </tr>
     <tr>
       <th>i</th>
-      <td><p>row index: selects spectra</p>
-<p><code><a href='https://rdrr.io/r/base/Extract.html'>[[</a></code> and <code>[[&lt;-</code> accept indexing with logical matrix or a n by 2
-integer index matrix. In this case the indexing is done inside the
-spectra matrix. See the examples below.</p></td>
+      <td><p>Index of rows in <code>x@data</code>. Integer, logical, or in the case of
+<code><a href='https://rdrr.io/r/base/Extract.html'>[[</a></code> and <code>[[&lt;-</code>, a <code>nrow</code> by 2 logical matrix or
+integer index matrix. In this case the indexing is done
+inside the spectra matrix. See the examples.</p></td>
     </tr>
     <tr>
       <th>j</th>
-      <td><p>selecting columns of <code>x@data</code></p></td>
+      <td><p>Index of <code>x@data</code> columns.  Integer, logical or character.  The order
+of columns in a <code>hyperSpec</code> object is not fixed and thus
+using integer or logical vectors may not be safe.</p></td>
     </tr>
     <tr>
       <th>l</th>
-      <td><p>selecting columns of the spectra matrix. If <code>l</code> is numeric,
-the default behaviour is treating <code>l</code> as wavelengths, <em>not</em> as
-indices.</p></td>
+      <td><p>Index of wavelengths in the spectra matrix. The behavior of <code>l</code> depends
+upon the value of <code>wl.index</code>.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>ignored</p></td>
+      <td><p>Ignored.</p></td>
     </tr>
     <tr>
       <th>wl.index</th>
-      <td><p>If <code>TRUE</code> (default), the value(s) in <code>l</code> are
-treated as column indices for the spectral matrix. Otherwise, the numbers
-in <code>l</code> are treated as wavelengths and the corresponding column
-indices are looked up first via <code>wl2i()</code>.</p></td>
+      <td><p>If <code>FALSE</code> (the default), the values in <code>l</code> are
+taken to be wavelengths.  If <code>TRUE</code>, the values in <code>l</code> are
+taken to be indices for the spectral matrix.</p></td>
     </tr>
     <tr>
       <th>drop</th>
       <td><p>For <code><a href='https://rdrr.io/r/base/Extract.html'>[[</a></code>: drop unnecessary dimensions, see
-<code><a href='https://rdrr.io/r/base/drop.html'>base::drop()</a></code> and <code><a href='https://rdrr.io/r/base/Extract.html'>base::Extract()</a></code>. Ignored for
+<code><a href='https://rdrr.io/r/base/drop.html'>base::drop()</a></code> and <code><a href='https://rdrr.io/r/base/Extract.html'>base::Extract()</a></code>. Ignored (quietly) for
 <code><a href='https://rdrr.io/r/base/Extract.html'>[</a></code>, as otherwise invalid <code>hyperSpec</code> objects might result.</p></td>
     </tr>
     <tr>
       <th>name</th>
-      <td><p>name of the data column to extract. <code>$spc</code> yields the spectra matrix.</p></td>
+      <td><p>Name of the data column to extract. <code>$spc</code> yields the spectra matrix.</p></td>
     </tr>
     <tr>
       <th>value</th>
@@ -235,59 +241,87 @@ indices are looked up first via <code>wl2i()</code>.</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>For <code><a href='https://rdrr.io/r/base/Extract.html'>[</a></code>, <code>[&lt;-</code>, <code>[[&lt;-</code>, and <code>$&lt;-</code> a <code>hyperSpec</code> object,</p>
-<p>for <code><a href='https://rdrr.io/r/base/Extract.html'>[[</a></code> a matrix or <code>data.frame</code>, and</p>
-<p>for <code><a href='https://rdrr.io/r/base/Extract.html'>$</a></code> the column of the <code>data.frame</code> <code>@data</code>.</p>
-<p><code>x[[]]</code> returns the complete spectra matrix.</p>
-<p><code>x$.</code> returns the complete slot <code>@data</code>,</p>
-<p><code>x$..</code> returns the <code>data.frame</code> in <code>@data</code> but without the column
-<code>@data$spc</code> containing the spectra matrix.</p>
+    
+<ul>
+<li><p>For <code><a href='https://rdrr.io/r/base/Extract.html'>[</a></code>, <code>[&lt;-</code>, <code>[[&lt;-</code>, and <code>$&lt;-</code> a <code>hyperSpec</code> object.</p></li>
+<li><p>For <code><a href='https://rdrr.io/r/base/Extract.html'>[[</a></code> a matrix or <code>data.frame</code>.</p></li>
+<li><p>For <code><a href='https://rdrr.io/r/base/Extract.html'>$</a></code> the given column of the <code>data.frame</code> <code>x@data</code>.</p></li>
+<li><p><code>x[[]]</code> returns the complete spectra matrix.</p></li>
+<li><p><code>x$.</code> returns the complete slot <code>@data</code>,</p></li>
+<li><p><code>x$..</code> returns the <code>data.frame</code> in <code>@data</code> but without the column
+<code>@data$spc</code> containing the spectra matrix.</p></li>
+</ul>
+
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>They work with respect to the spectra (rows of <code>x</code>), the columns of the data matrix, and the
-wavelengths (columns of the spectra matrix).</p>
-<p>Thus, they can be used for selecting/deleting spectra, cutting the spectral range, and extracting
-or setting the data belonging to the spectra.</p>
-<p>Convenient shortcuts for access of the spectra matrix and the <code>data.frame</code> in slot
-<code>data</code> are provided.</p>
-<p><em>Extracting: <code><a href='https://rdrr.io/r/base/Extract.html'>[</a></code>, <code><a href='https://rdrr.io/r/base/Extract.html'>[[</a></code>, and <code><a href='https://rdrr.io/r/base/Extract.html'>$</a></code></em>.</p>
-<p>The version with single square brackets (<code><a href='https://rdrr.io/r/base/Extract.html'>[</a></code>) returns the resulting <code>hyperSpec</code> object.</p>
-<p><code><a href='https://rdrr.io/r/base/Extract.html'>[[</a></code> yields <code>data.frame</code> of slot <code>@data</code> of that corresponding <code>hyperSpec</code>
-object returned with the same arguments by <code><a href='https://rdrr.io/r/base/Extract.html'>[</a></code> if columns were selected (i.e. <code>j</code> is
-given), otherwise the spectra <code>matrix</code> <code>x@data$spc</code>.</p>
-<p><code><a href='https://rdrr.io/r/base/Extract.html'>$</a></code> returns the selected column of the <code>data.frame</code> in slot <code>@data</code>.</p>
-<p><em>Shortcuts.</em> Three shortcuts to conveniently extract much needed parts of the object are
-defined:</p>
-<p><code>x[[]]</code> returns the spectra matrix.</p>
-<p><code>x$.</code> returns the complete slot <code>@data</code>, including the spectra matrix in column
-<code>$spc</code>, as a <code>data.frame</code>.</p>
-<p><code>x$..</code> returns a <code>data.frame</code> like <code>x$.</code> but without the spectra matrix.</p>
-<p><em>Replacing: <code>[&lt;-</code>, <code>[[&lt;-</code>, and <code>$&lt;-</code></em>.</p><pre>
-## S4 method for signature 'hyperSpec':
-x [i, j, l, \dots] &lt;- value
+    <p>While the parts of the <code>hyperSpec</code> object can be accessed directly, it is good practice to
+use the functions provided by the package to handle the objects rather than accessing the
+slots directly. This also ensures that proper (i.e. <em>valid</em>) objects are returned.
+In some cases, however, direct access to the slots can considerably speed up calculations.</p>
+<p>The main functions to retrieve the data of a <code>hyperSpec</code> object are <code>[]</code> and <code>[[]]</code>.
+The difference between these functions is that <code>[]</code> returns a <code>hyperSpec</code> object, whereas
+<code>[[]]</code> returns a <code>data.frame</code> containing <code>x$spc</code>, the spectral data.
+To modify a <code>hyperSpec</code> object, the corresponding functions are <code>[&lt;-</code> and <code>[[&lt;-</code>.
+The first form is used to modify the entire <code>hyperSpec</code> object and the second form modifies
+the spectral data in <code>x$spc</code>.</p>
+<p><code>hyperSpec</code> objects are triple indexed:</p><ul>
+<li><p><code>x[i, j, l, wl.index = TRUE/FALSE]</code></p></li>
+<li><p><code>x[[i, j, l, wl.ndex = TRUE/FALSE]]</code></p></li>
+<li><p><code>i</code> refers to rows of the <code>@data</code> slot. <code>i</code> can be integer indices or a logical vector.</p></li>
+<li><p><code>j</code> refers to columns of the <code>@data</code> slot. <code>j</code> can be integer indices, a logical vector
+or the name of a column.  <em>However, there is no guaranteed order to</em> <code><a href='https://rdrr.io/r/base/colnames.html'>colnames(x)</a></code>
+<em>so using integer indices and logical vectors is unwise.</em></p></li>
+<li><p><code>l</code> refers to wavelengths. Note the argument <code>wl.index</code> which determines how <code>l</code> is interpreted.</p></li>
+<li><p>If there is only one index given, e.g. <code>x[1:3]</code>, it refers to the row index <code>i</code>.
+Likewise if there are only two indices given they refer to <code>i</code> and <code>j</code>.</p></li>
+</ul>
+<h3>Extraction (Getter) Actions</h3>
+<table class='table'>
+<tr><td><strong>Getter</strong></td><td><strong>Action</strong></td></tr>
+<tr><td><code>x[]</code></td><td>Returns the entire <code>hyperSpec</code> object unchanged.</td></tr>
+<tr><td><code>x[i, , ]</code></td><td>Returns the <code>hyperSpec</code> object with selected rows; equivalent to <code>x[i]</code>.</td></tr>
+<tr><td><code>x[, j, ]</code></td><td>Returns the <code>hyperSpec</code> object with empty <code>x$spc</code> slot. If you want the column <code>j</code>, <code>x[["name"]]</code> returns a <code>data.frame</code> containing <code>j</code> or <code>x$name</code> returns it as a vector.</td></tr>
+<tr><td><code>x[, , l, wl.index = TRUE/FALSE]</code></td><td>Returns the <code>hyperSpec</code> object with selected wavelengths.</td></tr>
+<tr><td><code>x[[]]</code></td><td>Returns the spectra matrix (<code>x$spc</code>).</td></tr>
+<tr><td><code>x[[i, , ]]</code></td><td>Returns the spectra matrix (<code>x$spc</code>) with selected rows.</td></tr>
+<tr><td><code>x[[, j, ]]</code></td><td>Returns a <code>data.frame</code> with the selected columns.  Safest to give <code>j</code> as a character string.</td></tr>
+<tr><td><code>x[[, , l, wl.index = TRUE/FALSE]]</code></td><td>Returns the spectra matrix (<code>x$spc</code>) with selected wavelengths.</td></tr>
+<tr><td><code>x$name</code></td><td>Returns the column <code>name</code> as a vector.</td></tr>
+<tr><td><code>x$.</code></td><td>Returns the complete <code>data.frame</code> <code>x@data</code>, with the spectra in column <code>$spc</code>.</td></tr>
+<tr><td><code>x$..</code></td><td>Returns all the extra data (<code>x@data</code> without <code>x$spc</code>).</td></tr>
+<tr><td><code>wl()</code></td><td>Returns the wavelengths.</td></tr>
+<tr><td><code><a href='https://rdrr.io/r/base/labels.html'>labels()</a></code></td><td>Returns the labels.</td></tr>
+</table>
 
-## S4 method for signature 'hyperSpec':
-x[[i, j, l, wl.index = FALSE, \dots]] &lt;- value
 
-## S4 method for signature 'hyperSpec':
-x$name &lt;- value
-</pre>
 
-<p><code>value</code> gives the values to be assigned.<br /></p>
-<p>For <code><a href='https://rdrr.io/r/base/Extract.html'>$</a></code>, this can also be a list of the form <code><a href='https://rdrr.io/r/base/list.html'>list (value = value, label = label)</a></code>, with <code>label</code> containing the label for data
-column <code>name</code>.</p>
-<p><code>[[&lt;-</code> replaces parts of the spectra matrix.</p>
-<p><code>[&lt;-</code> replaces parts of the <code>data.frame</code> in slot <code>x@data</code>.</p>
-<p><code>$&lt;-</code> replaces a column of the <code>data.frame</code> in slot
-<code>x@data</code>.  The <code>value</code> may be a list with two elements,
-<code>value</code> and <code>label</code>.  In this case the label of the data column
-is changed accordingly.</p>
-<p><code>$..&lt;-</code> is again an abbreviation for the data.frame without the
-spectra matrix.</p>
+<p>One can see that there are several ways to get the spectral data:
+<code>x$spc</code>, <code>x[[]]</code>, <code>x$..</code>.  The first two forms return a matrix,
+while the last returns a <code>data.frame</code>.</p>
+
+<h3>Replacement (Setter) Actions</h3>
+<table class='table'>
+<tr><td><strong>Setter</strong></td><td><strong>Action</strong></td></tr>
+<tr><td><code>x[i, ,] &lt;-</code></td><td>Replaces the specified rows of the <code>@data</code> slot, including <code>x$spc</code> and any extra data columns. Other approaches are probably easier.</td></tr>
+<tr><td><code>x[, j,] &lt;-</code></td><td>Replaces the specified columns.  Safest to give <code>j</code> as a character string.</td></tr>
+<tr><td><code>x[i, j] &lt;-</code></td><td>Replaces the specified column limited to the specified rows.  Safest to give <code>j</code> as a character string.</td></tr>
+<tr><td><code>x[, , l, wl.index = TRUE/FALSE] &lt;-</code></td><td>Replaces the specified wavelengths.</td></tr>
+<tr><td><code>x[[i, ,]] &lt;-</code></td><td>Replaces the specified row of <code>x$spc</code></td></tr>
+<tr><td><code>x[[, j,]] &lt;-</code></td><td>As <code>[[]]</code> refers to just the spectral data in <code>x$spc</code>, this operation is not valid.  See below.</td></tr>
+<tr><td><code>x[[, , l, wl.index = TRUE/FALSE]] &lt;-</code></td><td>Replaces the intensity values in <code>x$spc</code> for the specified wavelengths.</td></tr>
+<tr><td><code>x[[i, , l, wl.index = TRUE/FALSE]] &lt;-</code></td><td>Replaces the intensity values in <code>x$spc</code> for the specified wavelengths limited to the specified rows.</td></tr>
+<tr><td><code>x$.. &lt;-</code></td><td>Sets the extra data (<code>x@data</code> without touching <code>x$spc</code>). The column names must match exactly in this case.</td></tr>
+<tr><td><code>wl&lt;-</code></td><td>Sets the wavelength vector.</td></tr>
+<tr><td><code>labels&lt;-</code></td><td>Sets the labels.</td></tr>
+</table>
+
+
+
+
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code>wl2i()</code> on conversion of wavelength ranges to indices.</p>
-<p><code><a href='https://rdrr.io/r/base/drop.html'>base::drop()</a></code> and <code><a href='https://rdrr.io/r/base/Extract.html'>base::Extract()</a></code> on <code>drop</code>.</p></div>
+    <div class='dont-index'><p><code>wl2i()</code> on conversion of wavelength ranges to indices.
+<code><a href='https://rdrr.io/r/base/drop.html'>base::drop()</a></code> and <code><a href='https://rdrr.io/r/base/Extract.html'>base::Extract()</a></code> for details on <code>drop</code>.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
