@@ -8,7 +8,6 @@ Date: 2020-06-15
 Maintainer: Claudia Beleites <Claudia.Beleites@chemometrix.gmbh>
 Authors@R: c(
     person("Claudia",   "Beleites",  role = c("aut", "cre", "dtc"), email = "Claudia.Beleites@chemometrix.gmbh"),
-    person("Valter",    "Sergo",     role = c("aut")),
     person("Alois",     "Bonifacio", role = c("ctb", "dtc")),
     person("Marcel",    "Dahms",     role = "ctb"),
     person("Björn",     "Egert",     role = "ctb"),
@@ -20,7 +19,8 @@ Authors@R: c(
     person("Martin",    "Kammer",    role = "dtc"),
     person("Roman",     "Kiselev",   role = "ctb"),
     person("Sebastian", "Mellor",    role = "ctb"),
-    person("Erick",     "Oduniyi",   role = "ctb")
+    person("Erick",     "Oduniyi",   role = "ctb"),
+    person("Valter",    "Sergo",     role = c("aut"))    
     )
 Description: Comfortable ways to work with hyperspectral data sets,
     i.e. spatially or time-resolved spectra, or spectra with any other kind
