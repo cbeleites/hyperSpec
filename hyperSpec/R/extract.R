@@ -167,7 +167,7 @@
 #'
 #' dim(flu[[]])
 #' fluA <- flu[[, , 420~450]] # matches the wavelength values
-#' dim(fluA[[]])
+#' dim(fluA)
 #' fluB <- flu[[, , 31:91, wl.index = TRUE]]
 #' identical(fluA, fluB)
 #' 
