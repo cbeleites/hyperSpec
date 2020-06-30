@@ -425,7 +425,7 @@ while the last returns a <code>data.frame</code>.</p>
 <span class='co'>##### Access wavelengths using "l" (3rd index)</span>
 
 <span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span>(<span class='kw'>flu</span>[[]])</div><div class='output co'>#&gt; [1]   6 181</div><div class='input'><span class='kw'>fluA</span> <span class='op'>&lt;-</span> <span class='kw'>flu</span>[[, , <span class='fl'>420</span><span class='op'>~</span><span class='fl'>450</span>]] <span class='co'># matches the wavelength values</span>
-<span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span>(<span class='kw'>fluA</span>[[]])</div><div class='output co'>#&gt; <span class='error'>Error in fluA[[]]: subscript out of bounds</span></div><div class='input'><span class='kw'>fluB</span> <span class='op'>&lt;-</span> <span class='kw'>flu</span>[[, , <span class='fl'>31</span><span class='op'>:</span><span class='fl'>91</span>, wl.index = <span class='fl'>TRUE</span>]]
+<span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span>(<span class='kw'>fluA</span>)</div><div class='output co'>#&gt; [1]  6 61</div><div class='input'><span class='kw'>fluB</span> <span class='op'>&lt;-</span> <span class='kw'>flu</span>[[, , <span class='fl'>31</span><span class='op'>:</span><span class='fl'>91</span>, wl.index = <span class='fl'>TRUE</span>]]
 <span class='fu'><a href='https://rdrr.io/r/base/identical.html'>identical</a></span>(<span class='kw'>fluA</span>, <span class='kw'>fluB</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
 <span class='co'>##### Indexing via both j and l, result is data.frame</span>
 
