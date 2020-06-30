@@ -142,64 +142,73 @@
 #' @keywords methods manip
 #' @examples
 #'
-#' ## index into the rows (spectra) -------------------------------------
-#' ## make some "spectra"
+#' ##### Access rows using "i"  (first index)
 #'
-#' ## numeric index
+#' # numeric index
 #' plot(flu, "spc", lines.args = list(lty = 2))
 #' plot(flu[1:3], "spc", add = TRUE, col = "red") # select spectra
 #' plot(flu[-(1:3)], "spc", add = TRUE, col = "blue") # delete spectra
 #'
-#' ## logic index
+#' # logical index
 #' plot(flu, "spc", lines.args = list(lty = 2))
 #' index <- rnorm(6) > 0
 #' index
 #' plot(flu[index], "spc", add = TRUE, col = "red") # select spectra
 #' plot(flu[!index], "spc", add = TRUE, col = "blue") # select spectra
 #'
-#' ## index into the data columns ---------------------------------------
-#' range(faux_cell[[, "x"]])
+#' ##### Access columns using "j" (2nd index)
+#'
+#' range(faux_cell[[, "x"]]) # safest to use the name of the column
 #' colnames(faux_cell[[, 1]])
 #' dim(faux_cell[[, c(TRUE, FALSE, FALSE)]])
-#' faux_cell$x
+#' faux_cell$x # an alternative
 #'
+#' ##### Access wavelengths using "l" (3rd index)
 #'
-#' ## the shortcut functions --------------------------------------------
+#' dim(flu[[]])
+#' fluA <- flu[[, , 420~450]] # matches the wavelength values
+#' dim(fluA[[]])
+#' fluB <- flu[[, , 31:91, wl.index = TRUE]]
+#' identical(fluA, fluB)
+#' 
+#' ##### Indexing via both j and l, result is data.frame
 #'
-#' ## extract the spectra matrix
-#' flu[[]]
-#'
-#' ## indexing via logical matrix
-#' summary(flu[[flu < 125]])
-#'
-#' ## indexing the spectra matrix with index matrix n by 2
-#' ind <- matrix(c(1, 2, 4, 406, 405.5, 409), ncol = 2)
-#' ind
-#' flu[[ind]]
-#'
-#' ind <- matrix(c(1, 2, 4, 4:6), ncol = 2)
-#' ind
-#' flu[[ind, wl.index = TRUE]]
-#'
-#' pca <- prcomp(flu[[]])
-#'
-#' ## result is data.frame, if j is given:
 #' result <- flu[[, 1:2, 405 ~ 410]]
 #' result
 #' class(result)
 #' colnames(result)
 #'
-#' ## extract the data.frame including the spectra matrix
+#' ##### Shortcuts
+#'
+#' # extract the spectra matrix
+#' flu[[]]
+#'
+#' # extract the data.frame including the spectra matrix
 #' flu$.
 #' dim(flu$.)
-#' colnames(flu$.)
+#' colnames(flu$.) # = colnames(flu[])
 #' flu$.$spc
 #'
-#' calibration <- lm(spc ~ c, data = flu[, , 450]$.)
-#' calibration
-#'
+#' # extract the data.frame minus the spectra matrix
 #' flu$..
 #' colnames(flu$..)
+#'
+#' ##### Indexing via matrices
+#'
+#' # indexing the spectra matrix with index matrix nrow by 2
+#' # hyperSpec converts numeric matrices to integers for indexing
+#' ind <- matrix(c(1, 2, 4, 406, 405.5, 409), ncol = 2)
+#' ind
+#' flu[[ind]]
+#'
+#' # same as just above, but using wl.index
+#' ind <- matrix(c(1, 2, 4, c(3, 2, 9)), ncol = 2)
+#' ind
+#' flu[[ind, wl.index = TRUE]]
+#'
+#' # indexing via a logical matrix (applied to spectra matrix)
+#' summary(flu[[flu < 125]])
+#'
 #' @include call.list.R
 #' @export
 setMethod("[",
