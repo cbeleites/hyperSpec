@@ -13,13 +13,20 @@ By contributing, you understand and agree that your work becomes the part of the
 * Refer to the [Bug Reporting in R article](https://www.r-project.org/bugs.html) for guidance.
 * The ideal minimal working example is a unit test.
 
+## Color Use (Vignettes & Perhaps Examples)
+
+* There is a built-in colorblind friendly qualitative palette `CB7`; please use whenever possible.  These next two palettes are also colorblind-friendly:
+* For a diverging palette, please use `diverging_hcl(n, palette = "Blue-Red2")`.
+* For a sequential palette, please use `sequential_hcl(n, palette = "viridis")`.
+
+
 ## Code and Documentation Style Guide
 
 * This project adheres to the [Tidyverse styleguide](https://style.tidyverse.org/).
 * This guide applies both to the code and the [`roxygen2` documentation](https://style.tidyverse.org/documentation.html).  
 * The documentation is written in markdown
   - Whenever touching a function, please take the time to check its documentation.
-    Large parts have been converted automatically from LaTeX, and may still need some manual polishing. 
+    Large parts have been converted automatically from LaTeX, and may still need some manual polishing.
 
 * Use package [styler](http://styler.r-lib.org/) with RStudio add-in to easily re-style your code to comply with the guidelines.
 * If a unit test needs to be disabled temporarily, please use `skip("reason for switching off")`.
