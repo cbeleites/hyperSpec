@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Changelog • hyperSpec</title>
+<title>Color Suggestions for <code>hyperSpec</code> Users — Colors • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,7 +41,15 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Changelog" />
+<meta property="og:title" content="Color Suggestions for <code>hyperSpec</code> Users — Colors" />
+<meta property="og:description" content="In hyperSpec the user may use any color name/format known to R.
+An important fact to keep in mind is that most people with normal vision cannot distinguish
+more than about 8-12 colors, and doing so depends upon the viewing circumstances:
+if on paper, printer, ink and paper type all matter, and if on a screen, the background color
+makes a big difference.  Further, color-blind individuals have additional challenges.
+A great discussion of color issues can be found in the colorspace package.  The
+Polychrome package has further discussion and utilities for choosing qualitative
+colorschemes, including those for color-blind individuals." />
 
 <meta name="robots" content="noindex" />
 <meta name="robots" content="noindex">
@@ -60,7 +68,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-news">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -154,49 +162,44 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1 data-toc-skip>Changelog <small></small></h1>
-      <small>Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
+    <h1>Color Suggestions for <code>hyperSpec</code> Users</h1>
+    <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/Colors.R'><code>R/Colors.R</code></a></small>
+    <div class="hidden name"><code>Colors.Rd</code></div>
     </div>
 
-    <div id="hyperspec-100-2020-xx-xx" class="section level1">
-<h1 class="page-header" data-toc-text="1.0.0">
-<a href="#hyperspec-100-2020-xx-xx" class="anchor"></a>hyperSpec 1.0.0 2020-xx-xx<small> Unreleased </small>
-</h1>
-<div id="acknowledgements" class="section level2">
-<h2 class="hasAnchor">
-<a href="#acknowledgements" class="anchor"></a>Acknowledgements</h2>
-<ul>
-<li>The <code>hyperSpec</code> team gratefully acknowledges support from the Google Summer of Code program, which sponsored student Erick Oduniyi during summer 2020. Erick and the team carried out a significant overhaul of <code>hyperSpec</code> which led to this major release.</li>
-</ul>
-</div>
-<div id="user-facing-changes-from-099-series" class="section level2">
-<h2 class="hasAnchor">
-<a href="#user-facing-changes-from-099-series" class="anchor"></a>User-Facing Changes from 0.99 Series</h2>
-<ul>
-<li>
-<code>NEWS.md</code> (this file) added so that users can readily see changes that may affect the use of the package.</li>
-<li>Documentation now available in <code>pkgdown</code> sites.</li>
-<li>Introductory vignette reorganized and enhanced, thanks to Bryan Hanson.</li>
-<li>Portions of <code>hyperSpec</code> were spun out into their own packages for ease of maintenance. ELABORATE</li>
-</ul>
-</div>
-<div id="non-user-facing-changes-from-099-series" class="section level2">
-<h2 class="hasAnchor">
-<a href="#non-user-facing-changes-from-099-series" class="anchor"></a>Non-User-Facing Changes from 0.99 Series</h2>
-<ul>
-<li>Note: this listing is for the benefit of developers, and should summarize significant infrastructure changes.</li>
-<li>Vignettes converted to <code>.Rmd</code> and formatted consistently, thanks to Vilmantas Gegzna.</li>
-</ul>
-</div>
-</div>
-  </div>
+    <div class="ref-description">
+    <p>In <code>hyperSpec</code> the user may use any color name/format known to <code>R</code>.
+An important fact to keep in mind is that most people with normal vision cannot distinguish
+more than about 8-12 colors, and doing so depends upon the viewing circumstances:
+if on paper, printer, ink and paper type all matter, and if on a screen, the background color
+makes a big difference.  Further, color-blind individuals have additional challenges.
+A great discussion of color issues can be found in the <code>colorspace</code> package.  The
+<code>Polychrome</code> package has further discussion and utilities for choosing qualitative
+colorschemes, including those for color-blind individuals.</p>
+    </div>
 
+
+
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+
+    <p>Colors are stored as character vectors.</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p><code>CB7</code> is a selection of seven colors suitable for use on screens by people with
+normal color vision, as well as people with the most common type of colorblindness,
+deutanomaly.  The last color is a shade of yellow with a gold tone.  In some
+viewing circumstances this may be hard to see on a white background.
+You can see how these colors perform at this <a href='https://tinyurl.com/ycnwaf5v'>website</a>.</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>CB7</span>)
+<span class='fu'><a href='https://rdrr.io/r/graphics/pie.html'>pie</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>1</span>, <span class='fl'>7</span>), col = <span class='kw'>CB7</span>)</div><div class='img'><img src='Colors-1.png' alt='' width='466' height='288' /></div><div class='input'></div></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
     </nav>
   </div>
-
 </div>
 
 
