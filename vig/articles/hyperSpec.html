@@ -498,7 +498,8 @@ To modify a <code>hyperSpec</code> object, the corresponding functions are <code
 <p>The extraction function <code>[]</code> takes the spectra (rows) as the first argument (For detailed help: see <code class="sourceCode r">?<span class="st">"["</span></code>).
 It may be a vector giving the indices of the spectra to extract (select), a vector with negative indices indicating, which spectra should be deleted, or a vector of logical values.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit">
-<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">flu</span>, col = <span class="st">"green2"</span>)
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="kw">CB7</span>) <span class="co"># load colorblind-friendly palette</span>
+<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">flu</span>, col = <span class="kw">CB7</span>[<span class="fl">4</span>])
 <span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">flu</span>[<span class="fl">1</span><span class="op">:</span><span class="fl">3</span>], add = <span class="fl">TRUE</span>)
 </pre></div>
 <div class="figure" style="text-align: center">
@@ -508,7 +509,7 @@ Figure 3.1: An example with <code>[]</code> operator and positive indices.
 </p>
 </div>
 <div class="sourceCode" id="cb8"><pre class="downlit">
-<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">flu</span>, col = <span class="st">"red"</span>)
+<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">flu</span>, col = <span class="kw">CB7</span>[<span class="fl">4</span>])
 <span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">flu</span>[<span class="op">-</span><span class="fl">3</span>], add = <span class="fl">TRUE</span>)
 </pre></div>
 <div class="figure" style="text-align: center">
@@ -518,7 +519,7 @@ Figure 3.2: An example with <code>[]</code> operator and negative indices.
 </p>
 </div>
 <div class="sourceCode" id="cb9"><pre class="downlit">
-<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">flu</span>, col = <span class="st">"gold"</span>)
+<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">flu</span>, col = <span class="kw">CB7</span>[<span class="fl">4</span>])
 <span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">flu</span>[<span class="kw">flu</span><span class="op">$</span><span class="kw">c</span> <span class="op">&gt;</span> <span class="fl">0.2</span>], add = <span class="fl">TRUE</span>)
 </pre></div>
 <div class="figure" style="text-align: center">
@@ -1042,7 +1043,7 @@ Mean spectra and pooled covariance matrix can be calculated using <code class="s
 <span class="kw">rnd</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/rmmvnorm.html">rmmvnorm</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="fl">10</span>, <span class="fl">3</span>), mean = <span class="kw">pcov</span><span class="op">$</span><span class="kw">mean</span>, sigma = <span class="kw">pcov</span><span class="op">$</span><span class="kw">COV</span>)
 </pre></div>
 <div class="sourceCode" id="cb54"><pre class="downlit">
-<span class="kw">cluster.cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"dark blue"</span>, <span class="st">"orange"</span>, <span class="st">"#C02020"</span>)
+<span class="kw">cluster.cols</span> <span class="op">&lt;-</span> <span class="kw">CB7</span>[<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">2</span>, <span class="fl">7</span>, <span class="fl">4</span>)]
 <span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">rnd</span>, col = <span class="kw">cluster.cols</span>[<span class="kw">rnd</span><span class="op">$</span><span class="kw">.group</span>])
 </pre></div>
 <div class="figure" style="text-align: center">
@@ -1077,7 +1078,7 @@ Figure 4.1: Multivariate normally distributed random spectra generated with <cod
 </pre></div>
 <div class="sourceCode" id="cb56"><pre class="downlit">
 <span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">chondro</span>[<span class="fl">135</span>])
-<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">tmp</span>[<span class="fl">135</span>, , ], add = <span class="fl">TRUE</span>, col = <span class="st">"red"</span>)
+<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">tmp</span>[<span class="fl">135</span>, , ], add = <span class="fl">TRUE</span>, col = <span class="kw">CB7</span>[<span class="fl">4</span>])
 </pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:shift-wl"></span>
@@ -1102,7 +1103,7 @@ It is convenient to set it up as a function:</p>
 </pre></div>
 <div class="sourceCode" id="cb59"><pre class="downlit">
 <span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">chondro</span>[<span class="fl">135</span>])
-<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">tmp</span>[<span class="fl">135</span>], add = <span class="fl">TRUE</span>, col = <span class="st">"red"</span>)
+<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">tmp</span>[<span class="fl">135</span>], add = <span class="fl">TRUE</span>, col = <span class="kw">CB7</span>[<span class="fl">4</span>])
 </pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:shift-interp"></span>
@@ -1115,7 +1116,7 @@ Figure 5.2: Shifting the spectra along the wavelength axis: interpolation.
 <span class="kw">tmp</span> <span class="op">&lt;-</span> <span class="kw">chondro</span>[<span class="fl">135</span>, , <span class="fl">990</span> <span class="op">~</span> <span class="fl">1010</span>]
 <span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">tmp</span>, lines.args = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(type = <span class="st">"b"</span>, pch = <span class="fl">19</span>, cex = <span class="fl">0.5</span>))
 <span class="fu"><a href="../reference/wl.html">wl</a></span>(<span class="kw">tmp</span>) <span class="op">&lt;-</span> <span class="fu"><a href="../reference/wl.html">wl</a></span>(<span class="kw">tmp</span>) <span class="op">-</span> <span class="fl">0.5</span>
-<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">tmp</span>, lines.args = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(type = <span class="st">"b"</span>, pch = <span class="fl">19</span>, cex = <span class="fl">0.5</span>), add = <span class="fl">TRUE</span>, col = <span class="st">"red"</span>)
+<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">tmp</span>, lines.args = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(type = <span class="st">"b"</span>, pch = <span class="fl">19</span>, cex = <span class="fl">0.5</span>), add = <span class="fl">TRUE</span>, col = <span class="kw">CB7</span>[<span class="fl">4</span>])
 
 <span class="kw">tmp</span> <span class="op">&lt;-</span> <span class="kw">chondro</span>[<span class="fl">135</span>]
 <span class="kw">tmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/apply.html">apply</a></span>(<span class="kw">tmp</span>, <span class="fl">1</span>, <span class="fu">function</span>(<span class="kw">x</span>, <span class="kw">wl</span>, <span class="kw">shift</span>) {
@@ -1123,7 +1124,7 @@ Figure 5.2: Shifting the spectra along the wavelength axis: interpolation.
 },
 wl = <span class="fu"><a href="../reference/wl.html">wl</a></span>(<span class="kw">tmp</span>), shift = <span class="op">-</span><span class="fl">0.5</span>
 )
-<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">tmp</span>, lines.args = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(type = <span class="st">"b"</span>, pch = <span class="fl">19</span>, cex = <span class="fl">0.5</span>), add = <span class="fl">TRUE</span>, col = <span class="st">"blue"</span>)
+<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">tmp</span>, lines.args = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(type = <span class="st">"b"</span>, pch = <span class="fl">19</span>, cex = <span class="fl">0.5</span>), add = <span class="fl">TRUE</span>, col = <span class="kw">CB7</span>[<span class="fl">3</span>])
 </pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:shift-untsch"></span>
@@ -1246,7 +1247,7 @@ Class <code>hyperSpec</code>’s comparison operators return a logical matrix of
 <div class="sourceCode" id="cb68"><pre class="downlit">
 <span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">chondro</span>[<span class="op">!</span><span class="fu"><a href="../reference/apply.html">apply</a></span>(<span class="kw">OK</span>, <span class="fl">1</span>, <span class="kw">all</span>)])
 <span class="kw">i</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span>(<span class="op">!</span><span class="kw">OK</span>, arr.ind = <span class="fl">TRUE</span>)
-<span class="fu"><a href="https://rdrr.io/r/graphics/points.html">points</a></span>(<span class="fu"><a href="../reference/wl.html">wl</a></span>(<span class="kw">chondro</span>)[<span class="kw">i</span>[, <span class="fl">2</span>]], <span class="kw">chondro</span>[[<span class="op">!</span><span class="kw">OK</span>]], pch = <span class="fl">19</span>, col = <span class="st">"red"</span>, cex = <span class="fl">0.5</span>)
+<span class="fu"><a href="https://rdrr.io/r/graphics/points.html">points</a></span>(<span class="fu"><a href="../reference/wl.html">wl</a></span>(<span class="kw">chondro</span>)[<span class="kw">i</span>[, <span class="fl">2</span>]], <span class="kw">chondro</span>[[<span class="op">!</span><span class="kw">OK</span>]], pch = <span class="fl">19</span>, col = <span class="kw">CB7</span>[<span class="fl">4</span>], cex = <span class="fl">0.5</span>)
 </pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:filter"></span>
@@ -1311,7 +1312,7 @@ Figure 5.5: Filtering data: mean <span class="math inline">\(\pm\)</span> sd fil
 
 <span class="kw">spc</span>[[<span class="kw">spc</span> <span class="op">&lt;</span> <span class="fl">1e-4</span>]] <span class="op">&lt;-</span> <span class="fl">NA</span>
 <span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="fu"><a href="../reference/spc.NA.approx.html">spc.NA.approx</a></span>(<span class="kw">spc</span>),
-  add = <span class="fl">TRUE</span>, col = <span class="st">"blue"</span>,
+  add = <span class="fl">TRUE</span>, col = <span class="kw">CB7</span>[<span class="fl">4</span>],
   lines.args = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(type = <span class="st">"b"</span>, pch = <span class="fl">19</span>, cex = <span class="fl">0.5</span>)
 )
 </pre></div>
@@ -1344,12 +1345,12 @@ Package <strong>hyperSpec</strong> provides two functions to do so: <code class=
 <div class="sourceCode" id="cb73"><pre class="downlit">
 <span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">paracetamol</span>, wl.range = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">300</span> <span class="op">~</span> <span class="fl">1800</span>, <span class="fl">2800</span> <span class="op">~</span> <span class="kw">max</span>), xoffset = <span class="fl">850</span>)
 <span class="kw">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/spc.loess.html">spc.loess</a></span>(<span class="kw">paracetamol</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fu"><a href="../reference/seq.hyperSpec.html">seq</a></span>(<span class="fl">300</span>, <span class="fl">1800</span>, <span class="fl">2</span>), <span class="fu"><a href="../reference/seq.hyperSpec.html">seq</a></span>(<span class="fl">2850</span>, <span class="fl">3150</span>, <span class="fl">2</span>)))
-<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">p</span>, wl.range = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">300</span> <span class="op">~</span> <span class="fl">1800</span>, <span class="fl">2800</span> <span class="op">~</span> <span class="kw">max</span>), xoffset = <span class="fl">850</span>, col = <span class="st">"red"</span>, add = <span class="fl">TRUE</span>)
+<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">p</span>, wl.range = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">300</span> <span class="op">~</span> <span class="fl">1800</span>, <span class="fl">2800</span> <span class="op">~</span> <span class="kw">max</span>), xoffset = <span class="fl">850</span>, col = <span class="kw">CB7</span>[<span class="fl">4</span>], add = <span class="fl">TRUE</span>)
 
 <span class="kw">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/spc.bin.html">spc.bin</a></span>(<span class="kw">paracetamol</span>, <span class="fl">4</span>)
 <span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">b</span>,
   wl.range = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">300</span> <span class="op">~</span> <span class="fl">1800</span>, <span class="fl">2800</span> <span class="op">~</span> <span class="kw">max</span>), xoffset = <span class="fl">850</span>,
-  lines.args = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(pch = <span class="fl">20</span>, cex = <span class="fl">.3</span>, type = <span class="st">"p"</span>), col = <span class="st">"blue"</span>, add = <span class="fl">TRUE</span>
+  lines.args = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(pch = <span class="fl">20</span>, cex = <span class="fl">.3</span>, type = <span class="st">"p"</span>), col = <span class="kw">CB7</span>[<span class="fl">3</span>], add = <span class="fl">TRUE</span>
 )
 </pre></div>
 <div class="figure" style="text-align: center">
@@ -1360,8 +1361,8 @@ Figure 5.7: Smoothing interpolation by <code class="sourceCode r"><span class="k
 </div>
 <div class="sourceCode" id="cb74"><pre class="downlit">
 <span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">paracetamol</span>[, , <span class="fl">1600</span> <span class="op">~</span> <span class="fl">1670</span>])
-<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">p</span>[, , <span class="fl">1600</span> <span class="op">~</span> <span class="fl">1670</span>], col = <span class="st">"red"</span>, add = <span class="fl">TRUE</span>)
-<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">b</span>[, , <span class="fl">1600</span> <span class="op">~</span> <span class="fl">1670</span>], col = <span class="st">"blue"</span>, add = <span class="fl">TRUE</span>)
+<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">p</span>[, , <span class="fl">1600</span> <span class="op">~</span> <span class="fl">1670</span>], col = <span class="kw">CB7</span>[<span class="fl">4</span>], add = <span class="fl">TRUE</span>)
+<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">b</span>[, , <span class="fl">1600</span> <span class="op">~</span> <span class="fl">1670</span>], col = <span class="kw">CB7</span>[<span class="fl">3</span>], add = <span class="fl">TRUE</span>)
 </pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:loess-kl"></span>
@@ -1438,7 +1439,7 @@ The result is a <code class="sourceCode r">baseline</code> object, but can easil
 <span class="kw">baseline</span> <span class="op">&lt;-</span> <span class="kw">corrected</span>
 <span class="kw">baseline</span>[[]] <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/baseline/man/getBaseline.html">getBaseline</a></span>(<span class="kw">bl</span>)
 <span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">hyperSpec</span>::<span class="kw"><a href="../reference/chondro.html">chondro</a></span>[<span class="fl">1</span>], plot.args = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(ylim = <span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span>(<span class="kw">hyperSpec</span>::<span class="kw"><a href="../reference/chondro.html">chondro</a></span>[<span class="fl">1</span>], <span class="fl">0</span>)))
-<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">baseline</span>, add = <span class="fl">TRUE</span>, col = <span class="st">"red"</span>)
+<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">baseline</span>, add = <span class="fl">TRUE</span>, col = <span class="kw">CB7</span>[<span class="fl">4</span>])
 </pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:bl-baseline"></span>
@@ -1728,7 +1729,7 @@ Figure 6.1: The first three loadings.
 ), space = <span class="st">"Lab"</span>)
 </pre></div>
 <div class="sourceCode" id="cb106"><pre class="downlit">
-<span class="fu"><a href="../reference/plotmap.html">plotmap</a></span>(<span class="kw">scores</span>[, , <span class="fl">3</span>], col.regions = <span class="fu">div_palette</span>(<span class="fl">20</span>))
+<span class="fu"><a href="../reference/plotmap.html">plotmap</a></span>(<span class="kw">scores</span>[, , <span class="fl">3</span>], col.regions = <span class="fu">diverging_hcl</span>(<span class="fl">20</span>, palette = <span class="st">"Blue-Red2"</span>))
 </pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:pca-score"></span>
@@ -1922,9 +1923,10 @@ To keep all spectra replacing missing parts by <code class="sourceCode r"><span 
 <span class="co">#&gt; [1] 846</span>
 </pre></div>
 <div class="sourceCode" id="cb124"><pre class="downlit">
+<span class="kw">matcols</span> <span class="op">&lt;-</span> <span class="fu">sequential_hcl</span>(<span class="fl">20</span>, palette = <span class="st">"viridis"</span>)
 <span class="fu">levelplot</span>(<span class="kw">spc</span> <span class="op">~</span> <span class="kw">x</span> <span class="op">*</span> <span class="kw">y</span> <span class="op">|</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="kw">.wavelength</span>, <span class="st">"  1/cm"</span>)),
   <span class="kw">chondro.merged</span>[, , <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1000</span>, <span class="fl">1650</span>)],
-  aspect = <span class="st">"iso"</span>, col.regions = <span class="fu"><a href="../reference/matlab.palette.html">matlab.palette</a></span>()
+  aspect = <span class="st">"iso"</span>, col.regions = <span class="kw">matcols</span>
 )
 </pre></div>
 <div class="figure" style="text-align: center">
@@ -1933,14 +1935,8 @@ To keep all spectra replacing missing parts by <code class="sourceCode r"><span 
 Figure 7.1: For both spectral ranges some spectra are missing.
 </p>
 </div>
-<!-- ```{r merge-mat echo=FALSE, results='hide'} -->
-<!-- png("hyperspec-fig-merged.png", width = 500, height = 425, res = 100) -->
-<!-- plot(chondro.merged[1:100], "mat") -->
-<!-- dev.off() -->
-<!-- rm(chondro) -->
-<!-- ``` -->
 <div class="sourceCode" id="cb125"><pre class="downlit">
-<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">chondro.merged</span>[<span class="fl">1</span><span class="op">:</span><span class="fl">100</span>], <span class="st">"mat"</span>)
+<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">chondro.merged</span>[<span class="fl">1</span><span class="op">:</span><span class="fl">100</span>], <span class="st">"mat"</span>, col = <span class="kw">matcols</span>)
 </pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:merge-mat"></span>
@@ -2283,7 +2279,7 @@ Please refer to the documentation of the respective functions for details about 
   }
 })
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.055   0.004   0.061</span>
+<span class="co">#&gt;   0.051   0.002   0.053</span>
 </pre></div>
 <p>Calculations that involve a lot of subsetting (i.e., extracting or changing the spectra matrix or extra data) can be sped up considerably if the required parts of the <code>hyperSpec</code> object are extracted beforehand.
 This is somewhat similar to model fitting in <code>R</code> in general: many model fitting functions in <code>R</code> are much faster if the formula interface is avoided and the appropriate <code class="sourceCode r">data.frame</code>s or matrices are handed over directly.</p>
@@ -2298,7 +2294,7 @@ This is somewhat similar to model fitting in <code>R</code> in general: many mod
   <span class="kw">tmp</span>[[]] <span class="op">&lt;-</span> <span class="kw">tmp.matrix</span>
 })
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.011   0.000   0.012</span>
+<span class="co">#&gt;    0.01    0.00    0.01</span>
 </pre></div>
 <p>In general, it is not recommended to work with variables that are more than approximately a third of the available RAM in size. Particularly the import of raw spectroscopic data can consume large amounts of memory.
 At certain points, package <strong>hyperSpec</strong> provides switches that allow working with data sets that are actually close to this memory limit.</p>
@@ -2332,7 +2328,7 @@ The memory consumption of <code class="sourceCode r"><span class="kw">read.txt.R
 <span class="co">#&gt;  backports      1.1.8         2020-06-17 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  callr          3.4.3         2020-03-28 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  cli            2.0.2         2020-02-28 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  colorspace     1.4-1         2019-03-18 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  colorspace   * 1.4-1         2019-03-18 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  crayon         1.3.4         2017-09-16 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  desc           1.2.0         2018-05-01 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  digest         0.6.25        2020-02-23 [1] CRAN (R 4.0.0)</span>
