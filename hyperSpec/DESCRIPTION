@@ -89,6 +89,7 @@ Collate:
     'paste.row.R'
     'expand.R'
     'Arith.R'
+    'Colors.R'
     'Compare.R'
     'DollarNames.R'
     'Math.R'
@@ -198,5 +199,5 @@ Collate:
     'write.txt.wide.R'
     'y-pastenames.R'
     'zzz.R'
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 Roxygen: list(markdown = TRUE)
