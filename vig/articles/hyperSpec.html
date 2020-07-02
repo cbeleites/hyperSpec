@@ -2279,7 +2279,7 @@ Please refer to the documentation of the respective functions for details about 
   }
 })
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.051   0.002   0.053</span>
+<span class="co">#&gt;   0.048   0.002   0.050</span>
 </pre></div>
 <p>Calculations that involve a lot of subsetting (i.e., extracting or changing the spectra matrix or extra data) can be sped up considerably if the required parts of the <code>hyperSpec</code> object are extracted beforehand.
 This is somewhat similar to model fitting in <code>R</code> in general: many model fitting functions in <code>R</code> are much faster if the formula interface is avoided and the appropriate <code class="sourceCode r">data.frame</code>s or matrices are handed over directly.</p>
@@ -2294,7 +2294,7 @@ This is somewhat similar to model fitting in <code>R</code> in general: many mod
   <span class="kw">tmp</span>[[]] <span class="op">&lt;-</span> <span class="kw">tmp.matrix</span>
 })
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;    0.01    0.00    0.01</span>
+<span class="co">#&gt;   0.010   0.000   0.009</span>
 </pre></div>
 <p>In general, it is not recommended to work with variables that are more than approximately a third of the available RAM in size. Particularly the import of raw spectroscopic data can consume large amounts of memory.
 At certain points, package <strong>hyperSpec</strong> provides switches that allow working with data sets that are actually close to this memory limit.</p>
@@ -2380,7 +2380,7 @@ The memory consumption of <code class="sourceCode r"><span class="kw">read.txt.R
 <span class="co">#&gt;  withr          2.2.0         2020-04-20 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  xml2         * 1.3.2         2020-04-23 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; [1] /Users/runner/runners/2.169.1/work/_temp/Library</span>
+<span class="co">#&gt; [1] /Users/runner/work/_temp/Library</span>
 <span class="co">#&gt; [2] /Library/Frameworks/R.framework/Versions/4.0/Resources/library</span>
 </pre></div>
 </div>
