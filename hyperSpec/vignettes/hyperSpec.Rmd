@@ -62,6 +62,7 @@ library(mvtnorm)
 library(MASS)
 library(plotrix)
 library(pls)
+library(colorspace)
 
 # Functions ------------------------------------------------------------------
 #
@@ -70,7 +71,7 @@ source("vignette-functions.R", encoding = "UTF-8")
 # Settings -------------------------------------------------------------------
 source("vignette-default-settings.R", encoding = "UTF-8")
 
-# Temporaty options ----------------------------------------------------------
+# Temporary options ----------------------------------------------------------
 # Change the value of this option in "vignette-default-settings.R"
 show_reviewers_notes = getOption("show_reviewers_notes", TRUE)
 ```
@@ -315,7 +316,8 @@ CAPTION <- "An example with `[]` operator and positive indices.  "
 ```
 
 ```{r selspc, fig.cap = CAPTION}
-plot(flu, col = "green2")
+data(CB7) # load colorblind-friendly palette
+plot(flu, col = CB7[4])
 plot(flu[1:3], add = TRUE)
 ```
 
@@ -325,7 +327,7 @@ CAPTION <- "An example with `[]` operator and negative indices.  "
 ```
 
 ```{r delspc, fig.cap = CAPTION}
-plot(flu, col = "red")
+plot(flu, col = CB7[4])
 plot(flu[-3], add = TRUE)
 ```
 
@@ -335,7 +337,7 @@ CAPTION <- "An example with `[]` operator and logical indices.  "
 ```
 
 ```{r selspc2, fig.cap = CAPTION}
-plot(flu, col = "gold")
+plot(flu, col = CB7[4])
 plot(flu[flu$c > 0.2], add = TRUE)
 ```
 
@@ -739,7 +741,7 @@ CAPTION <- "Multivariate normally distributed random spectra generated with `rmm
 ```
 
 ```{r sim-spc, fig.cap = CAPTION}
-cluster.cols <- c("dark blue", "orange", "#C02020")
+cluster.cols <- CB7[c(2, 7, 4)]
 plot(rnd, col = cluster.cols[rnd$.group])
 ```
 
@@ -776,7 +778,7 @@ CAPTION <-
 
 ```{r shift-wl, fig.cap = CAPTION}
 plot(chondro[135])
-plot(tmp[135, , ], add = TRUE, col = "red")
+plot(tmp[135, , ], add = TRUE, col = CB7[4])
 ```
 
 But the method cannot be used if each spectrum (or groups of spectra) are shifted individually.
@@ -807,7 +809,7 @@ CAPTION <- "Shifting the spectra along the wavelength axis: interpolation.  "
 
 ```{r shift-interp, fig.cap = CAPTION, results = "hide"}
 plot(chondro[135])
-plot(tmp[135], add = TRUE, col = "red")
+plot(tmp[135], add = TRUE, col = CB7[4])
 ```
 
 Fig. \@ref(fig:shift-untsch) demonstrates the difference between simple shifting and interpolation.
@@ -821,7 +823,7 @@ Detail view of the phenylalanine band: shifting by `wl<-`{.r} (red) does not aff
 tmp <- chondro[135, , 990 ~ 1010]
 plot(tmp, lines.args = list(type = "b", pch = 19, cex = 0.5))
 wl(tmp) <- wl(tmp) - 0.5
-plot(tmp, lines.args = list(type = "b", pch = 19, cex = 0.5), add = TRUE, col = "red")
+plot(tmp, lines.args = list(type = "b", pch = 19, cex = 0.5), add = TRUE, col = CB7[4])
 
 tmp <- chondro[135]
 tmp <- apply(tmp, 1, function(x, wl, shift) {
@@ -829,7 +831,7 @@ tmp <- apply(tmp, 1, function(x, wl, shift) {
 },
   wl = wl(tmp), shift = -0.5
 )
-plot(tmp, lines.args = list(type = "b", pch = 19, cex = 0.5), add = TRUE, col = "blue")
+plot(tmp, lines.args = list(type = "b", pch = 19, cex = 0.5), add = TRUE, col = CB7[3])
 ```
 
 If different spectra need to be offset by different shift, use a loop^[Function `sweep()`{.r} cannot be used here, and while there is the possibility to use sapply or mapply, they are not faster than the for loop in this case. Make sure to work on a copy of the spectra matrix, as that is much faster than row-wise extracting and changing the spectra by `[[()`{.r} and `[[<-`{.r}.].
@@ -968,7 +970,7 @@ CAPTION <- "Filtering data: mean $\\pm$ sd filter.  "
 ```{r filter, fig.cap = CAPTION, fig.width = 7}
 plot(chondro[!apply(OK, 1, all)])
 i <- which(!OK, arr.ind = TRUE)
-points(wl(chondro)[i[, 2]], chondro[[!OK]], pch = 19, col = "red", cex = 0.5)
+points(wl(chondro)[i[, 2]], chondro[[!OK]], pch = 19, col = CB7[4], cex = 0.5)
 ```
 
 <!-- \begin{figure}[tb] -->
@@ -1021,7 +1023,7 @@ spc[[is.na(spc)]] <- 0
 plot(spc)
 
 spc[[spc < 1e-4]] <- NA
-plot(spc.NA.approx(spc), add = TRUE, col = "blue",
+plot(spc.NA.approx(spc), add = TRUE, col = CB7[4],
   lines.args = list(type = "b", pch = 19, cex = 0.5)
 )
 ```
@@ -1052,12 +1054,12 @@ CAPTION <- "Smoothing interpolation by `spc.loess()`{.r} with new data point spa
 ```{r fig-loess, fig.cap = CAPTION, fig.width = 7}
 plot(paracetamol, wl.range = c(300 ~ 1800, 2800 ~ max), xoffset = 850)
 p <- spc.loess(paracetamol, c(seq(300, 1800, 2), seq(2850, 3150, 2)))
-plot(p, wl.range = c(300 ~ 1800, 2800 ~ max), xoffset = 850, col = "red", add = TRUE)
+plot(p, wl.range = c(300 ~ 1800, 2800 ~ max), xoffset = 850, col = CB7[4], add = TRUE)
 
 b <- spc.bin(paracetamol, 4)
 plot(b,
   wl.range = c(300 ~ 1800, 2800 ~ max), xoffset = 850,
-  lines.args = list(pch = 20, cex = .3, type = "p"), col = "blue", add = TRUE
+  lines.args = list(pch = 20, cex = .3, type = "p"), col = CB7[3], add = TRUE
 )
 ```
 
@@ -1069,8 +1071,8 @@ CAPTION <- "The magnification of Fig. \\@ref(fig:fig-loess) shows how interpolat
 
 ```{r loess-kl, fig.cap = CAPTION}
 plot(paracetamol[, , 1600 ~ 1670])
-plot(p[, , 1600 ~ 1670], col = "red", add = TRUE)
-plot(b[, , 1600 ~ 1670], col = "blue", add = TRUE)
+plot(p[, , 1600 ~ 1670], col = CB7[4], add = TRUE)
+plot(b[, , 1600 ~ 1670], col = CB7[3], add = TRUE)
 ```
 
 Function `spc.loess()`{.r} applies R's `loess()`{.r} function for spectral interpolation.
@@ -1153,7 +1155,7 @@ CAPTION <- "The first spectrum of `chondro`{.r} (raw data) with baseline.  "
 baseline <- corrected
 baseline[[]] <- getBaseline(bl)
 plot(hyperSpec::chondro[1], plot.args = list(ylim = range(hyperSpec::chondro[1], 0)))
-plot(baseline, add = TRUE, col = "red")
+plot(baseline, add = TRUE, col = CB7[4])
 ```
 
 
@@ -1438,7 +1440,7 @@ CAPTION <- "The third score map.  "
 ```
 
 ```{r pca-score, fig.cap = CAPTION}
-plotmap(scores[, , 3], col.regions = div_palette(20))
+plotmap(scores[, , 3], col.regions = diverging_hcl(20, palette = "Blue-Red2"))
 ```
 
 
@@ -1641,26 +1643,19 @@ CAPTION <- "For both spectral ranges some spectra are missing. "
 ```
 
 ```{r merge-map, fig.cap = CAPTION, fig.width = 7}
+matcols <- sequential_hcl(20, palette = "viridis")
 levelplot(spc ~ x * y | as.factor(paste(.wavelength, "  1/cm")),
   chondro.merged[, , c(1000, 1650)],
-  aspect = "iso", col.regions = matlab.palette()
+  aspect = "iso", col.regions = matcols
 )
 ```
 
-
-
-<!-- ```{r merge-mat echo=FALSE, results='hide'} -->
-<!-- png("hyperspec-fig-merged.png", width = 500, height = 425, res = 100) -->
-<!-- plot(chondro.merged[1:100], "mat") -->
-<!-- dev.off() -->
-<!-- rm(chondro) -->
-<!-- ``` -->
 
 ```{r include = FALSE}
 CAPTION <- "The missing parts of the spectra are filled with `NA`{.r}.  "
 ```
 ```{r merge-mat, fig.cap = CAPTION}
-plot(chondro.merged[1:100], "mat")
+plot(chondro.merged[1:100], "mat", col = matcols)
 ```
 
 

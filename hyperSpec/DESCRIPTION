@@ -68,7 +68,8 @@ Suggests:
     ggpubr,
     caTools,
     styler,
-    covr
+    covr,
+    colorspace
 Imports:
     testthat,
     methods,
