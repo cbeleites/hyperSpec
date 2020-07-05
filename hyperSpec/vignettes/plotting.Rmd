@@ -975,7 +975,7 @@ In `levelplot()`{.r}, colour-coded points may be set via special panel function 
 ```{r prep-plotmap-barb}
 library("latticeExtra")
 
-barb <- do.call(collapse, barbiturates[1:50])
+barb <- collapse(barbiturates)
 barb <- orderwl(barb)
 ```
 

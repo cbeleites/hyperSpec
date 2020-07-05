@@ -5,23 +5,25 @@
 #'
 #' @name barbiturates
 #' @docType data
-#' @format The data sets consists of 286 spectra. They are the result of importing the
-#' BARBITUATES.SPC example data from Thermo Galactic's spc file format specification.
+#' @format The data sets consists of a lis of 5 hyperSpec objects with a single
+#'   spectrum each. They are the first five spectra of the BARBITUATES.SPC
+#'   example data from Thermo Galactic's spc file format specification.
+#'
 #' @author C. Beleites and Thermo Galactic
-#' @references The raw data is available at <http://hyperspec.r-forge.r-project.org/blob/fileio.zip>
+#' @references The raw data is available with package hySpc.read.spc.
 #' @keywords datasets
 #' @concept datasets
 #' @examples
 #'
-#' barbiturates[1:3]
+#' barbiturates
 #' length(barbiturates)
 #'
 #' barb <- collapse(barbiturates, collapse.equal = FALSE)
 #' barb <- orderwl(barb)
 #'
-#' plot(barb[1:3],
+#' plot(barb,
 #'   lines.args = list(type = "h"),
-#'   col = matlab.dark.palette(3), stacked = TRUE,
+#'   col = matlab.dark.palette(5), stacked = TRUE,
 #'   stacked.args = list(add.factor = .2)
 #' )
 #'
@@ -35,4 +37,4 @@
 #' plotc(apply(barb[, , 42.9 ~ 43.2], 1, sum, na.rm = TRUE), spc ~ z,
 #'   panel = panel.lines, ylab = expression(I[m / z == 43] / "a.u.")
 #' )
-NULL
+"barbiturates"
