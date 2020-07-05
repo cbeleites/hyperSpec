@@ -205,7 +205,7 @@ spc.fit.poly.below <- function(fit.to, apply.to = fit.to, poly.order = 1,
     use.old <- logical(nwl(fit.to))
     use <- !is.na(y[, i])
 
-    if (debuglevel %in% c(2L, 3L) && i == 1L || debuglevel >= 4L) {
+    if (debuglevel %in% c(2L, 3L) && i == 1L || debuglevel >= 4L)  {
       plot(fit.to[i], title.args = list(main = paste("spectrum", i)))
       message("start: ", sum(use, na.rm = TRUE), " support points")
     }
@@ -216,7 +216,7 @@ spc.fit.poly.below <- function(fit.to, apply.to = fit.to, poly.order = 1,
       use.old <- use
       use <- y[, i] < bl + noise[i] & !is.na(y[, i])
 
-      if (debuglevel == 3L && i == 1L || debuglevel >= 4L) {
+      if ((debuglevel == 3L && i == 1L || debuglevel >= 4L) && sum(use) > 0L) {
         plot(fit.to[i, , use],
           add = TRUE,
           lines.args = list(pch = 20, type = "p"), col = cols[iter]

@@ -158,7 +158,6 @@ Collate:
     'read.txt.Witec.R'
     'read.asc.Andor.R'
     'read.asc.PerkinElmer.R'
-    'read.ini.R'
     'read.jdx.R'
     'read.mat.Cytospec.R'
     'read.mat.Witec.R'
@@ -198,5 +197,5 @@ Collate:
     'write.txt.wide.R'
     'y-pastenames.R'
     'zzz.R'
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 Roxygen: list(markdown = TRUE)

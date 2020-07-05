@@ -769,7 +769,7 @@ barbiturates <- collapse(barbiturates, collapse.equal = FALSE)
 barbiturates
 ```
 ```{r}
-barbiturates[[1:10, , 25 ~ 30]]
+barbiturates[[, , 25 ~ 30]]
 ```
 
 
