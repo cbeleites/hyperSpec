@@ -9,7 +9,7 @@ citEntry (entry="Manual",
           author = authors,
           year = year,
           note = vers,
-          URL = 'https://github.com/cbeleites/hyperSpec',
+          url =  meta$URL,
 
           textVersion =
           paste0(paste (authors, collapse = ", "), ": ",
