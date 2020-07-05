@@ -164,22 +164,24 @@
     <p>A time series of mass spectra in a list of <code>hyperSpec</code> objects.</p>
     </div>
 
+    <pre class="usage"><span class='kw'>barbiturates</span></pre>
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>The data sets consists of 286 spectra. They are the result of importing the
-BARBITUATES.SPC example data from Thermo Galactic's spc file format specification.</p>
+    <p>The data sets consists of a lis of 5 hyperSpec objects with a single
+spectrum each. They are the first five spectra of the BARBITUATES.SPC
+example data from Thermo Galactic's spc file format specification.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>The raw data is available at <a href='http://hyperspec.r-forge.r-project.org/blob/fileio.zip'>http://hyperspec.r-forge.r-project.org/blob/fileio.zip</a></p>
+    <p>The raw data is available with package hySpc.read.spc.</p>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>C. Beleites and Thermo Galactic</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='kw'>barbiturates</span>[<span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>]</div><div class='output co'>#&gt; [[1]]
+<span class='kw'>barbiturates</span></div><div class='output co'>#&gt; [[1]]
 #&gt; hyperSpec object
 #&gt;    1 spectra
 #&gt;    4 data columns
@@ -189,7 +191,7 @@ BARBITUATES.SPC example data from Thermo Galactic's spc file format specificatio
 #&gt;    1. z: t/min [numeric] 4.027184 
 #&gt;    2. z.end: t/min [numeric] 4.027184 
 #&gt;    3. spc: I/"a. u." [matrix, array37] 902 896 ... 562 
-#&gt;    4. filename: filename [character] spc/BARBITUATES.SPC 
+#&gt;    4. filename: filename [character] /home/cb/R/x86_64-pc-linux-gnu-library/3.6/hyperSpec/extdata/BARBITUATES.SPC 
 #&gt; 
 #&gt; [[2]]
 #&gt; hyperSpec object
@@ -201,7 +203,7 @@ BARBITUATES.SPC example data from Thermo Galactic's spc file format specificatio
 #&gt;    1. z: t/min [numeric] 4.034117 
 #&gt;    2. z.end: t/min [numeric] 4.034117 
 #&gt;    3. spc: I/"a. u." [matrix, array34] 857 864 ... 618 
-#&gt;    4. filename: filename [character] spc/BARBITUATES.SPC 
+#&gt;    4. filename: filename [character] /home/cb/R/x86_64-pc-linux-gnu-library/3.6/hyperSpec/extdata/BARBITUATES.SPC 
 #&gt; 
 #&gt; [[3]]
 #&gt; hyperSpec object
@@ -213,14 +215,38 @@ BARBITUATES.SPC example data from Thermo Galactic's spc file format specificatio
 #&gt;    1. z: t/min [numeric] 4.04095 
 #&gt;    2. z.end: t/min [numeric] 4.04095 
 #&gt;    3. spc: I/"a. u." [matrix, array29] 735 1412 ... 638 
-#&gt;    4. filename: filename [character] spc/BARBITUATES.SPC 
-#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='kw'>barbiturates</span>)</div><div class='output co'>#&gt; [1] 286</div><div class='input'>
+#&gt;    4. filename: filename [character] /home/cb/R/x86_64-pc-linux-gnu-library/3.6/hyperSpec/extdata/BARBITUATES.SPC 
+#&gt; 
+#&gt; [[4]]
+#&gt; hyperSpec object
+#&gt;    1 spectra
+#&gt;    4 data columns
+#&gt;    26 data points / spectrum
+#&gt; wavelength: frac(m, z)/frac(u, e) [numeric] 132.95 120.05 ... 28.05 
+#&gt; data:  (1 rows x 4 columns)
+#&gt;    1. z: t/min [numeric] 4.047783 
+#&gt;    2. z.end: t/min [numeric] 4.047783 
+#&gt;    3. spc: I/"a. u." [matrix, array26] 1066 718 ... 10548 
+#&gt;    4. filename: filename [character] /home/cb/R/x86_64-pc-linux-gnu-library/3.6/hyperSpec/extdata/BARBITUATES.SPC 
+#&gt; 
+#&gt; [[5]]
+#&gt; hyperSpec object
+#&gt;    1 spectra
+#&gt;    4 data columns
+#&gt;    22 data points / spectrum
+#&gt; wavelength: frac(m, z)/frac(u, e) [numeric] 158.95 132.95 ... 28.15 
+#&gt; data:  (1 rows x 4 columns)
+#&gt;    1. z: t/min [numeric] 4.0546 
+#&gt;    2. z.end: t/min [numeric] 4.0546 
+#&gt;    3. spc: I/"a. u." [matrix, array22] 704 738 ... 10519 
+#&gt;    4. filename: filename [character] /home/cb/R/x86_64-pc-linux-gnu-library/3.6/hyperSpec/extdata/BARBITUATES.SPC 
+#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='kw'>barbiturates</span>)</div><div class='output co'>#&gt; [1] 5</div><div class='input'>
 <span class='kw'>barb</span> <span class='op'>&lt;-</span> <span class='fu'>collapse</span>(<span class='kw'>barbiturates</span>, collapse.equal = <span class='fl'>FALSE</span>)
 <span class='kw'>barb</span> <span class='op'>&lt;-</span> <span class='fu'>orderwl</span>(<span class='kw'>barb</span>)
 
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>barb</span>[<span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>],
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>barb</span>,
   lines.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(type = <span class='st'>"h"</span>),
-  col = <span class='fu'>matlab.dark.palette</span>(<span class='fl'>3</span>), stacked = <span class='fl'>TRUE</span>,
+  col = <span class='fu'>matlab.dark.palette</span>(<span class='fl'>5</span>), stacked = <span class='fl'>TRUE</span>,
   stacked.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(add.factor = <span class='fl'>.2</span>)
 )</div><div class='img'><img src='barbiturates-1.png' alt='' width='466' height='288' /></div><div class='input'>
 <span class='co'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/library.html'>require</a></span>(<span class='kw'><a href='http://latticeextra.r-forge.r-project.org'>latticeExtra</a></span>)) {

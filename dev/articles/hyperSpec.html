@@ -238,7 +238,7 @@ from 100 to 3200 cm<sup>-1</sup> with overlapping wavelength ranges.</td>
 <td align="left"><strong><code>barbiturates</code></strong></td>
 <td align="left">
 GC-MS spectra with differing wavelength axes as a list of
-286 <strong>hyperSpec</strong> objects.</td>
+5 <strong>hyperSpec</strong> objects.</td>
 </tr>
 </tbody>
 </table>
@@ -1076,23 +1076,23 @@ respectively.</p>
 <p>Function <code class="sourceCode r"><span class="kw">collapse</span>()</code> combines objects that should be bound together by row, but they do not share the columns and/or spectral range.
 The resulting object has all columns from all input objects, and all wavelengths from the input objects.
 If an input object does not have a particular column or wavelength, its value in the resulting object is <code class="sourceCode r"><span class="ot">NA</span></code>.</p>
-<p>The <code class="sourceCode r">barbiturates</code> data is a list of 286 <code class="sourceCode r">hyperSpec</code> objects, each containing one mass spectrum.
-The spectra have between 4 and 101 data points each.</p>
+<p>The <code class="sourceCode r">barbiturates</code> data is a list of 5 <code class="sourceCode r">hyperSpec</code> objects, each containing one mass spectrum.
+The spectra have between 22 and 37 data points each.</p>
 <div class="sourceCode" id="cb61"><pre class="downlit">
 <span class="kw">barb</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/collapse.html">collapse</a></span>(<span class="kw">barbiturates</span>)
 <span class="fu"><a href="../reference/wl.html">wl</a></span>(<span class="kw">barb</span>)[<span class="fl">1</span><span class="op">:</span><span class="fl">25</span>]
-<span class="co">#&gt;  [1] 25.95 26.05 26.15 26.95 27.05 27.15 28.05 28.15 29.05 29.15 29.95 30.05 30.15 30.25 31.05 31.15</span>
-<span class="co">#&gt; [17] 32.05 32.15 36.90 37.00 38.00 38.10 38.90 39.00 39.10</span>
+<span class="co">#&gt;  [1] 27.05 27.15 28.05 28.15 29.05 30.05 30.15 31.15 32.15 38.90 39.00 40.00 40.10 41.10 43.05 43.85</span>
+<span class="co">#&gt; [17] 43.95 44.05 55.00 55.10 56.00 56.10 57.00 57.10 68.90</span>
 </pre></div>
 <p>The resulting object does not have an ordered wavelength axis.
 This can be obtained in the second step:</p>
 <div class="sourceCode" id="cb62"><pre class="downlit">
 <span class="kw">barb</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/orderwl.html">orderwl</a></span>(<span class="kw">barb</span>)
 <span class="kw">barb</span>[[<span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, , <span class="kw">min</span> <span class="op">~</span> <span class="kw">min</span> <span class="op">+</span> <span class="fl">10i</span>]]
-<span class="co">#&gt;      25.95 26.05 26.15 26.95 27.05 27.15 28.05 28.15 29.05 29.15 29.95</span>
-<span class="co">#&gt; [1,]    NA    NA    NA    NA   562    NA    NA 11511  6146    NA    NA</span>
-<span class="co">#&gt; [2,]    NA    NA    NA    NA    NA   618 10151    NA  5040    NA    NA</span>
-<span class="co">#&gt; [3,]    NA    NA    NA    NA   638    NA    NA 10722  5253    NA    NA</span>
+<span class="co">#&gt;      27.05 27.15 28.05 28.15 29.05 30.05 30.15 31.15 32.15 38.9  39</span>
+<span class="co">#&gt; [1,]   562    NA    NA 11511  6146  1253    NA  9851 10751   NA 756</span>
+<span class="co">#&gt; [2,]    NA   618 10151    NA  5040    NA   910  8200 10989   NA 770</span>
+<span class="co">#&gt; [3,]   638    NA    NA 10722  5253   966    NA  8709 10899   NA  NA</span>
 </pre></div>
 </div>
 <div id="sec:merge" class="section level2">
@@ -2805,7 +2805,7 @@ You can also make suggestions in this manner.</p>
   }
 })
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.049   0.002   0.050</span>
+<span class="co">#&gt;   0.049   0.002   0.051</span>
 </pre></div>
 <p>Calculations that involve a lot of subsetting (i.e., extracting or changing the spectra matrix or extra data) can be sped up considerably if the required parts of the <code class="sourceCode r">hyperSpec</code> object are extracted beforehand.
 This is somewhat similar to model fitting in <code>R</code> in general: many model fitting functions in <code>R</code> are much faster if the formula interface is avoided and the appropriate <code class="sourceCode r">data.frame</code>s or matrices are handed over directly.</p>
@@ -2820,7 +2820,7 @@ This is somewhat similar to model fitting in <code>R</code> in general: many mod
   <span class="kw">tmp</span>[[]] <span class="op">&lt;-</span> <span class="kw">tmp.matrix</span>
 })
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.009   0.000   0.010</span>
+<span class="co">#&gt;    0.01    0.00    0.01</span>
 </pre></div>
 <!--
 ## Additional packages
