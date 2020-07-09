@@ -158,6 +158,7 @@ Collate:
     'read.txt.Witec.R'
     'read.asc.Andor.R'
     'read.asc.PerkinElmer.R'
+    'read.ini.R'
     'read.jdx.R'
     'read.mat.Cytospec.R'
     'read.mat.Witec.R'
