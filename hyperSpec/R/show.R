@@ -94,9 +94,10 @@ setMethod("summary",
 #' @param shorten.to if a vector is longer than `max.print`, only the
 #'        first `shorten.to[1]` and the last `shorten.to[2]` elements are
 #'        printed.
-#' @param include Character vector that contains at least one of `"main"`,
-#'       `"wl"`, or `"data"`. If the following sting is icluded:
+#' @param include Character vector that contains at least one (but usually
+#'        several) of `"all"`, `"main"`,`"wl"`, or `"data"`:
 #'
+#'  - `"all"`: the same as `c("main", "wl", "data")`.
 #'  - `"main"`: the output includes the number of spectra, as well as the number
 #'    rows an columns in `@data` field of `hyperSpec` object.
 #'  - `"wl"`: the output includes the summary of `@wavelength` field.
@@ -112,12 +113,14 @@ setMethod("summary",
 setMethod("as.character",
   signature = signature(x = "hyperSpec"),
   function(x, digits = getOption("digits"), range = TRUE,
-    max.print = 5, shorten.to = c(2, 1), include = c("main", "wl", "data")) {
+    max.print = 5, shorten.to = c(2, 1), include = c("all", "main", "wl", "data")) {
     # Input checking ---------------------------------------------------------
     validObject(x)
 
     include <- match.arg(include, several.ok = TRUE)
-
+    if ("all" %in% include) {
+      include <- c("main", "wl", "data")
+    }
     if (is.null(max.print)) {
       max.print <- getOption("max.print")
     }
