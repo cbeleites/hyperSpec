@@ -155,7 +155,7 @@ setMethod("as.character",
       stop("shorten.to needs to be a numeric vector with length 1 or 2")
     }
     if (sum(shorten.to) > max.print) {
-      stop("sum (shorten.to) > max.print: this does not make sense.")
+      stop("sum(shorten.to) > max.print: this does not make sense.")
     }
 
     # Preparing information --------------------------------------------------
@@ -290,11 +290,11 @@ setMethod("as.character",
     expect_output(summary(faux_cell, range = TRUE, include = "data"), " rng ")
   })
 
-}
-
-
-
-.test(as.character) <- function() {
+# }
+#
+#
+#
+# .test(as.character) <- function() {
   context("as.character")
 
   test_that("as.character() works", {
@@ -317,8 +317,18 @@ setMethod("as.character",
     expect_match(res_rng[2:5], " rng ")
   })
 
-  test_that("max.print = NULL in as.character()", {
+  test_that("max.print in as.character() works", {
     expect_is(as.character(faux_cell, max.print = NULL), "character")
+
+    expect_error(as.character(faux_cell, max.print = FALSE))
+    expect_error(as.character(faux_cell, max.print = 1:3))
   })
 
+  test_that("shorten.to in as.character() works", {
+    expect_is(as.character(faux_cell, shorten.to = 2:1), "character")
+
+    expect_error(as.character(faux_cell, shorten.to = 1:3))
+    expect_error(as.character(faux_cell, shorten.to = FALSE))
+    expect_error(as.character(faux_cell, shorten.to = 40))
+  })
 }
