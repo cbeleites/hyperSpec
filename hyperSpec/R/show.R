@@ -62,7 +62,6 @@ setMethod("print", signature = signature(x = "hyperSpec"),
 #'
 #' @export
 
-  invisible(NULL)
 setMethod("show", signature = signature(object = "hyperSpec"),
   function(object) {
     print(object, range = TRUE, include = "all")
