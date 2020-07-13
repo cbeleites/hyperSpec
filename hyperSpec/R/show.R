@@ -128,7 +128,7 @@ setMethod("summary",
 
 setMethod("as.character",
   signature = signature(x = "hyperSpec"),
-  function(x, digits = getOption("digits"), range = TRUE,
+  function(x, digits = getOption("digits"), range = FALSE,
     max.print = 5, shorten.to = c(2, 1), include = c("all", "main", "wl", "data")) {
     # Input checking ---------------------------------------------------------
     validObject(x)
