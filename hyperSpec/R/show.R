@@ -30,6 +30,8 @@
 #'
 #' faux_cell  # Implicitly prints the object
 #'
+#' print(faux_cell)
+#'
 #' show(faux_cell)
 #'
 #' summary(faux_cell)
