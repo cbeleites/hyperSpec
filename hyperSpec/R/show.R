@@ -2,7 +2,7 @@
 #' @aliases print print,hyperSpec-method
 #'
 #'
-#' @title Convert a `hyperSpec` object to character strings for display.
+#' @title Show brief summary of `hyperSpec` object.
 #'
 #'
 #' @description
