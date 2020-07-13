@@ -1,4 +1,4 @@
-citHeader("To cite package 'hyperSpec' please use:")
+citHeader("To cite package 'hyperSpec', please use:")
 
 year <- substring(meta$Date, 1, 4)
 vers <- paste("R package version", meta$Version)
