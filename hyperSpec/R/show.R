@@ -114,7 +114,7 @@ setMethod("show", signature = signature(object = "hyperSpec"), function(object) 
 #' @seealso [base::print()]
 setMethod("print", signature = signature(x = "hyperSpec"), function(x, range = FALSE, ...) {
   validObject(x)
-  cat(as.character(x, range = FALSE, ...), sep = "\n")
+  cat(as.character(x, range = range, ...), sep = "\n")
   invisible(x)
 })
 
