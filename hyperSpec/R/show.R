@@ -203,9 +203,9 @@ setMethod("as.character",
       if (n.cols > 0) {
         for (n in names(x@data)) {
           chr_data <- c(chr_data, .paste.row(x@data[[n]], x@label[[n]], n,
-              ins = 3, i = match(n, names(x@data)), val = TRUE, range = range,
-              shorten.to = shorten.to, max.print = max.print
-            )
+            ins = 3, i = match(n, names(x@data)), val = TRUE, range = range,
+            shorten.to = shorten.to, max.print = max.print
+          )
           )
         }
       }
@@ -219,3 +219,106 @@ setMethod("as.character",
     chr
   }
 )
+
+
+# Unit tests -----------------------------------------------------------------
+.test(show) <- function() {
+  context("show")
+
+  test_that("show() works", {
+    expect_output(show(faux_cell))
+  })
+
+  test_that("show() gives correct output", {
+    expect_output(show(faux_cell), "hyperSpec object")
+    expect_output(show(faux_cell), "300 data points / spectrum")
+  })
+
+  test_that("show() does not give certain output", {
+    # Does not contain line starting with "wavelength:"
+    expect_output(show(faux_cell), "^(?!wavelength: ).*", perl = TRUE)
+    # Does does not contain line starting with "data:"
+    expect_output(show(faux_cell), "^(?!data: )", perl = TRUE)
+  })
+}
+
+
+.test(print) <- function() {
+  context("print")
+
+  test_that("print() works", {
+    expect_output(print(faux_cell))
+  })
+
+  test_that("print() gives correct output", {
+    expect_output(print(faux_cell), "hyperSpec object")
+    expect_output(print(faux_cell), "300 data points / spectrum")
+
+    expect_output(print(faux_cell, range = TRUE, include = "data"), " rng ")
+    expect_output(print(faux_cell, include = "wl"), "^wavelength: ")
+
+  })
+
+  test_that("print() does not give certain output", {
+    # Does not contain line starting with "wavelength:"
+    expect_output(print(faux_cell), "^(?!wavelength: )", perl = TRUE)
+    # Does does not contain line starting with "data:"
+    expect_output(show(faux_cell), "^(?!data: )", perl = TRUE)
+
+    expect_output(print(faux_cell, include = "data"), "^(?!hyperSpec object)", perl = TRUE)
+    expect_output(print(faux_cell, include = "data"), "^(?!wavelength:)", perl = TRUE)
+
+    expect_output(print(faux_cell, include = "wl"), "^(?!hyperSpec object)", perl = TRUE)
+    expect_output(print(faux_cell, include = "wl"), "^(?!data: )", perl = TRUE)
+  })
+}
+
+
+.test(summary) <- function() {
+  context("summary")
+
+  test_that("summary() works", {
+    expect_output(summary(faux_cell))
+  })
+
+  test_that("summary() gives correct output", {
+    expect_output(summary(faux_cell), "hyperSpec object")
+    expect_output(summary(faux_cell), "300 data points / spectrum")
+    expect_output(summary(faux_cell), "wavelength: ")
+    expect_output(summary(faux_cell), "data: ")
+
+    expect_output(summary(faux_cell, range = TRUE, include = "data"), " rng ")
+  })
+
+}
+
+
+
+.test(as.character) <- function() {
+  context("as.character")
+
+  test_that("as.character() works", {
+    expect_is(as.character(faux_cell), "character")
+  })
+
+  test_that("as.character() gives correct output", {
+    res <- as.character(faux_cell)
+
+    expect_length(res, "10")
+    expect_match(res[1], "hyperSpec object")
+    expect_match(res[4], "300 data points / spectrum")
+    expect_match(res[5], "wavelength: ")
+    expect_match(res[6], "data: ")
+    expect_match(res[7], "[numeric]")
+    expect_match(res[7], "   1. x: x position [numeric] -11.55 -10.55 ... 22.45 ")
+    expect_match(res[10], "   4. spc: intensity (arbitrary units) [matrix, array300] 89 43 ... 96 ")
+
+    res_rng <- as.character(faux_cell, range = TRUE, include = "data")
+    expect_match(res_rng[2:5], " rng ")
+  })
+
+  test_that("max.print = NULL in as.character()", {
+    expect_is(as.character(faux_cell, max.print = NULL), "character")
+  })
+
+}
