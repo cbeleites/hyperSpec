@@ -55,8 +55,7 @@ setMethod("print", signature = signature(x = "hyperSpec"),
 #' @aliases show show,hyperSpec-method
 #'
 #' @details
-#' - `show()` additionally prints information on wavelength and each individual
-#'  column as the range of values,
+#' - `show()` the same as `print()`.
 #' @param object a `hyperSpec` object
 #'
 #' @seealso [methods::show()]
@@ -66,7 +65,7 @@ setMethod("print", signature = signature(x = "hyperSpec"),
 
 setMethod("show", signature = signature(object = "hyperSpec"),
   function(object) {
-    print(object, range = TRUE, include = "all")
+    print(object, range = FALSE, include = "main")
     invisible(NULL)
   })
 
