@@ -302,16 +302,17 @@ setMethod("as.character",
   })
 
   test_that("as.character() gives correct output", {
-    res <- as.character(faux_cell)
+    set.seed(1)
+    res <- as.character(flu)
 
-    expect_length(res, "10")
+    expect_length(res, 9)
     expect_match(res[1], "hyperSpec object")
-    expect_match(res[4], "300 data points / spectrum")
+    expect_match(res[4], "181 data points / spectrum")
     expect_match(res[5], "wavelength: ")
     expect_match(res[6], "data: ")
-    expect_match(res[7], "[numeric]")
-    expect_match(res[7], "   1. x: x position [numeric] -11.55 -10.55 ... 22.45 ")
-    expect_match(res[10], "   4. spc: intensity (arbitrary units) [matrix, array300] 89 43 ... 96 ")
+    expect_equal(res[7], "   1. spc: I[fl]/\"a.u.\" [matrix, array181] 27.15000 66.80133 ... 294.6495 ")
+    expect_equal(res[8], "   2. filename: filename [character] rawdata/flu1.txt rawdata/flu2.txt ... rawdata/flu6.txt ")
+    expect_match(res[9], "\\[numeric\\]")
 
     res_rng <- as.character(faux_cell, range = TRUE, include = "data")
     expect_match(res_rng[2:5], " rng ")
