@@ -12,8 +12,8 @@
 #' @details
 #' Functions `print()`, `show()`, and `summary()` differ only in the defaults:
 #'
-#' - `print()` shows the overview giving the first and last values of each
-#' data column (fastest),
+#' - `print()` by default prints the summary with the most basic information on
+#'   `hyperSpec` object (number of rows, columns and spectra),
 #'
 #' @param x a `hyperSpec` object.
 #' @param ... `print` and `summary` hand further arguments to `as.character`.
@@ -37,9 +37,9 @@
 #' as.character(faux_cell)
 
 setMethod("print", signature = signature(x = "hyperSpec"),
-  function(x, range = FALSE, ...) {
+  function(x, range = FALSE, include = "main", ...) {
     validObject(x)
-    cat(as.character(x, range = range, ...), sep = "\n")
+    cat(as.character(x, range = range, include = include, ...), sep = "\n")
     invisible(x)
   })
 
