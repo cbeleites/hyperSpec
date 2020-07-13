@@ -173,7 +173,8 @@ setMethod("as.character",
     if ("data" %in% include) {
       n.cols <- ncol(x@data)
 
-      chr_data <- paste0("data: ", " (", nrow(x@data), " rows x ", n.cols, " columns)")
+      chr_data <-
+        paste0("data: ", " (", nrow(x@data), " rows x ", n.cols, " columns)")
 
       if (n.cols > 0) {
         for (n in names(x@data)) {
