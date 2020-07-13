@@ -48,6 +48,14 @@
 #'
 #' print(faux_cell, range = TRUE, include = "data")
 #'
+#' # The difference between range = TRUE and FALSE
+#' # is evident only when data is not sorted.
+#' set.seed(1)
+#' faux_cell_2 <- sample(faux_cell)
+#' print(faux_cell_2, include = "data")
+#'
+#' print(faux_cell_2, range = TRUE, include = "data")
+#'
 #' summary(faux_cell)
 #'
 #' summary(faux_cell, include = c("wl", "data"))
