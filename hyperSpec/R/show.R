@@ -53,7 +53,8 @@ setMethod("print", signature = signature(x = "hyperSpec"),
 #' @aliases show show,hyperSpec-method
 #'
 #' @details
-#' - `show()` displays the range of values instead,
+#' - `show()` additionally prints information on wavelength and each individual
+#'  column as the range of values,
 #' @param object a `hyperSpec` object
 #'
 #' @seealso [methods::show()]
@@ -61,22 +62,22 @@ setMethod("print", signature = signature(x = "hyperSpec"),
 #'
 #' @export
 
-setMethod("show", signature = signature(object = "hyperSpec"), function(object) {
-  print(object, range = TRUE)
   invisible(NULL)
-})
+setMethod("show", signature = signature(object = "hyperSpec"),
+  function(object) {
+    print(object, range = TRUE, include = "all")
+    invisible(NULL)
+  })
 
 
 # Fun: summary ---------------------------------------------------------------
-
-# FIXME: logbook is mentioned
-# - `summary()` displays the logbook in addition.
 
 #' @rdname show
 #' @aliases summary summary,hyperSpec-method
 #'
 #' @details
-#' - `summary()` ...
+#' - `summary()` prints similar information as `show()` does, but argument
+#'  `range` defaults to `FALSE`.
 #'
 #' @seealso [base::summary()]
 #'
@@ -84,8 +85,8 @@ setMethod("show", signature = signature(object = "hyperSpec"), function(object) 
 
 setMethod("summary",
   signature = signature(object = "hyperSpec"),
-  function(object, ...) {
-    print(object, ...)
+  function(object, ..., include = "all", range = FALSE) {
+    print(object, ..., include = include, range = range)
   }
 )
 
