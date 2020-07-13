@@ -3,24 +3,31 @@
 #' @rdname show
 #' @aliases print print,hyperSpec-method
 #'
-#'
 #' @title Show brief summary of `hyperSpec` object.
 #'
-#'
 #' @description
-#' Functions `print()`, `show()`, and `summary()` show the summary of `hyperSpec`
-#' object, which is technically a result of `as.character()`.
+#' Functions `show()`, `print()`, `summary()`, and `as.character()` show the
+#' summary of `hyperSpec` object.
 #'
 #' @details
-#' Functions `print()`, `show()`, and `summary()` differ only in the defaults:
+#' Functions `show()`, `print()`, and `summary()`printing the results of
+#' `as.character()` and differ only in the defaults:
 #'
-#' - `print()` by default prints the summary with the most basic information on
-#'   `hyperSpec` object (number of rows, columns and spectra),
+#' - `show()` prints the summary with the most basic information on `hyperSpec`
+#'    object (number of rows, columns and spectra),
+#' - `print()` by default does the same as `show()`.
+#' - `summary()` additionally
+#' - `summary()` by default in addition to the results of `show()`, prints the
+#'   information on `@wavelength`s and each individual column of `@data`.
 #'
 #' @param x a `hyperSpec` object.
-#' @param ... `print` and `summary` hand further arguments to `as.character`.
-#' @return `print` invisibly returns `x` after printing, `show` returns
-#'         an invisible `NULL`.
+#' @param ... `print()` and `summary()` hand further arguments to `as.character()`.
+#'
+#' @return
+#' After printing:
+#'
+#'  - `show()` returns an invisible `NULL`,
+#'  - `print()` and `summary()` invisibly returns `x`.
 #'
 #' @seealso [base::print()]
 #'
@@ -28,17 +35,11 @@
 #'
 #' @examples
 #'
-#' faux_cell  # Implicitly prints the object
-#'
 #' print(faux_cell)
-#'
-#' show(faux_cell)
-#'
-#' summary(faux_cell)
 #'
 #' print(faux_cell, range = TRUE)
 #'
-#' as.character(faux_cell)
+#' print(faux_cell, range = TRUE, include = "data")
 
 setMethod("print", signature = signature(x = "hyperSpec"),
   function(x, range = FALSE, include = "main", ...) {
@@ -54,14 +55,17 @@ setMethod("print", signature = signature(x = "hyperSpec"),
 #' @rdname show
 #' @aliases show show,hyperSpec-method
 #'
-#' @details
-#' - `show()` the same as `print()`.
-#' @param object a `hyperSpec` object
+#' @param object a `hyperSpec` object.
 #'
 #' @seealso [methods::show()]
 #' @keywords methods print
 #'
 #' @export
+#' @examples
+#'
+#' faux_cell # Implicitly prints the object. The same as show(faux_cell)
+#'
+#' show(faux_cell)
 
 setMethod("show", signature = signature(object = "hyperSpec"),
   function(object) {
@@ -75,13 +79,14 @@ setMethod("show", signature = signature(object = "hyperSpec"),
 #' @rdname show
 #' @aliases summary summary,hyperSpec-method
 #'
-#' @details
-#' - `summary()` prints similar information as `show()` does, but argument
-#'  `range` defaults to `FALSE`.
-#'
 #' @seealso [base::summary()]
 #'
 #' @export
+#' @examples
+#'
+#' summary(faux_cell)
+#'
+#' summary(faux_cell, include = c("wl", "data"))
 
 setMethod("summary",
   signature = signature(object = "hyperSpec"),
@@ -112,13 +117,22 @@ setMethod("summary",
 #'    rows an columns in `@data` field of `hyperSpec` object.
 #'  - `"wl"`: the output includes the summary of `@wavelength` field.
 #'  - `"data`: the output includes the summary of each column in `@data` field.
-#' @return `as.character` returns a character vector with summary of `hyperSpec`
+#'
+#' @return
+#' Function `as.character()` returns a character vector with summary of
+#' `hyperSpec`.
 #'
 #' @seealso [base::as.character()]
 #'
 #' @import methods
 #' @include paste.row.R
 #' @export
+#'
+#' @examples
+#'
+#' as.character(faux_cell)
+#'
+#' as.character(faux_cell, include = c("wl", "data"))
 
 setMethod("as.character",
   signature = signature(x = "hyperSpec"),
