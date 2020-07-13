@@ -16,7 +16,7 @@
 #' data column (fastest),
 #'
 #' @param x a `hyperSpec` object.
-#' @param ... `print` and `summary`  hand further arguments to `as.character`.
+#' @param ... `print` and `summary` hand further arguments to `as.character`.
 #' @return `print` invisibly returns `x` after printing, `show` returns
 #'         an invisible `NULL`.
 #'
@@ -94,9 +94,14 @@ setMethod("summary",
 #' @param shorten.to if a vector is longer than `max.print`, only the
 #'        first `shorten.to[1]` and the last `shorten.to[2]` elements are
 #'        printed.
+#' @param include Character vector that contains at least one of `"main"`,
+#'       `"wl"`, or `"data"`. If the following sting is icluded:
 #'
-#' @return `as.character` returns a character vector fit to be printed by
-#'         `cat` with `sep = "\n"`.
+#'  - `"main"`: the output includes the number of spectra, as well as the number
+#'    rows an columns in `@data` field of `hyperSpec` object.
+#'  - `"wl"`: the output includes the summary of `@wavelength` field.
+#'  - `"data`: the output includes the summary of each column in `@data` field.
+#' @return `as.character` returns a character vector with summary of `hyperSpec`
 #'
 #' @seealso [base::as.character()]
 #'
@@ -107,14 +112,15 @@ setMethod("summary",
 setMethod("as.character",
   signature = signature(x = "hyperSpec"),
   function(x, digits = getOption("digits"), range = TRUE,
-           max.print = 5, shorten.to = c(2, 1)) {
-    ## input checking
+    max.print = 5, shorten.to = c(2, 1), include = c("main", "wl", "data")) {
+    # Input checking ---------------------------------------------------------
     validObject(x)
+
+    include <- match.arg(include, several.ok = TRUE)
 
     if (is.null(max.print)) {
       max.print <- getOption("max.print")
     }
-
     if ((length(max.print) != 1) | !is.numeric(max.print)) {
       stop("max.print needs to be a number")
     }
@@ -125,36 +131,62 @@ setMethod("as.character",
       stop("sum (shorten.to) > max.print: this does not make sense.")
     }
 
-    ## printing information
-    chr <- c(
-      "hyperSpec object",
-      paste("  ", nrow(x), "spectra"),
-      paste("  ", ncol(x), "data columns"),
-      paste("  ", nwl(x), "data points / spectrum")
-    )
+    # Preparing information --------------------------------------------------
+    # ~ Main summary ---------------------------------------------------------
+    chr_main <- if ("main" %in% include) {
+      c(
+        "hyperSpec object",
+        paste("  ", nrow(x), "spectra"),
+        paste("  ", ncol(x), "data columns"),
+        paste("  ", nwl(x),  "data points / spectrum")
+      )
 
-    chr <- c(chr, .paste.row(x@wavelength, x@label$.wavelength, "wavelength",
-      ins = 0, val = TRUE, range = FALSE,
-      shorten.to = shorten.to, max.print = max.print
-    ))
-
-    n.cols <- ncol(x@data)
-
-    chr <- c(chr, paste("data: ", " (", nrow(x@data), " rows x ", n.cols,
-      " columns)",
-      sep = ""
-    ))
-
-    if (n.cols > 0) {
-      for (n in names(x@data)) {
-        chr <- c(chr, .paste.row(x@data[[n]], x@label[[n]], n,
-          ins = 3,
-          i = match(n, names(x@data)),
-          val = TRUE, range = range,
-          shorten.to = shorten.to, max.print = max.print
-        ))
-      }
+    } else {
+      NULL
     }
+
+    if (all(include %in% "main")) {
+      return(chr_main)
+    }
+
+    # ~ Wavelength summary ----------------------------------------------------
+    chr_wl <- if ("wl" %in% include) {
+      .paste.row(x@wavelength, x@label$.wavelength, "wavelength",
+        ins = 0, val = TRUE, range = FALSE,
+        shorten.to = shorten.to, max.print = max.print
+      )
+    } else {
+      NULL
+    }
+
+    if (all(include %in% "wl")) {
+      return(chr_wl)
+
+    } else if (all(include %in% c("main", "wl"))) {
+      return(c(chr_main, chr_wl))
+    }
+
+    # ~ Summary of each column ------------------------------------------------
+    if ("data" %in% include) {
+      n.cols <- ncol(x@data)
+
+      chr_data <- paste0("data: ", " (", nrow(x@data), " rows x ", n.cols, " columns)")
+
+      if (n.cols > 0) {
+        for (n in names(x@data)) {
+          chr_data <- c(chr_data, .paste.row(x@data[[n]], x@label[[n]], n,
+              ins = 3, i = match(n, names(x@data)), val = TRUE, range = range,
+              shorten.to = shorten.to, max.print = max.print
+            )
+          )
+        }
+      }
+
+    } else {
+      NULL
+    }
+
+    chr <- c(chr_main, chr_wl, chr_data)
 
     chr
   }
