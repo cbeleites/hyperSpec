@@ -1,45 +1,69 @@
 # Fun: print -----------------------------------------------------------------
 
+#' @name show
 #' @rdname show
-#' @aliases print print,hyperSpec-method
+#' @aliases show show,hyperSpec-method
 #'
 #' @title Show brief summary of `hyperSpec` object.
 #'
 #' @description
-#' Functions `show()`, `print()`, `summary()`, and `as.character()` show the
-#' summary of `hyperSpec` object.
+#' Functions `show()`, `print()`, `summary()`, and `as.character()` calculate
+#' and show a basic summary of a `hyperSpec` object.
 #'
 #' @details
-#' Functions `show()`, `print()`, and `summary()`printing the results of
-#' `as.character()` and differ only in the defaults:
+#' Function `as.character()` does the main calculations. Functions `show()`,
+#' `print()`, and `summary()` use `as.character()` and print its results with
+#' different defaults:
 #'
 #' - `show()` prints the summary with the most basic information on `hyperSpec`
 #'    object (number of rows, columns and spectra),
-#' - `print()` by default does the same as `show()`.
-#' - `summary()` additionally
+#' - `print()` by default does the same as `show()`,
 #' - `summary()` by default in addition to the results of `show()`, prints the
 #'   information on `@wavelength`s and each individual column of `@data`.
 #'
-#' @param x a `hyperSpec` object.
+#' @param object,x A `hyperSpec` object.
 #' @param ... `print()` and `summary()` hand further arguments to `as.character()`.
 #'
 #' @return
 #' After printing:
 #'
-#'  - `show()` returns an invisible `NULL`,
+#'  - `show()` invisibly returns `NULL`,
 #'  - `print()` and `summary()` invisibly returns `x`.
 #'
-#' @seealso [base::print()]
+#' @keywords methods print
+#' @concept summary
+#'
+#' @seealso [methods::show()], [base::print()], [base::summary()].
 #'
 #' @export
 #'
 #' @examples
+#' faux_cell # Implicitly prints the object. The same as show(faux_cell)
+#'
+#' show(faux_cell)
 #'
 #' print(faux_cell)
 #'
-#' print(faux_cell, range = TRUE)
+#' print(faux_cell, include = "data")
 #'
 #' print(faux_cell, range = TRUE, include = "data")
+#'
+#' summary(faux_cell)
+#'
+#' summary(faux_cell, include = c("wl", "data"))
+
+setMethod("show", signature = signature(object = "hyperSpec"),
+  function(object) {
+    print(object, range = FALSE, include = "main")
+    invisible(NULL)
+  })
+
+
+# Fun: show ------------------------------------------------------------------
+
+#' @rdname show
+#' @aliases print print,hyperSpec-method
+#' @export
 
 setMethod("print", signature = signature(x = "hyperSpec"),
   function(x, range = FALSE, include = "main", ...) {
@@ -49,44 +73,12 @@ setMethod("print", signature = signature(x = "hyperSpec"),
   })
 
 
-# Fun: show ------------------------------------------------------------------
-
-#' @name show
-#' @rdname show
-#' @aliases show show,hyperSpec-method
-#'
-#' @param object a `hyperSpec` object.
-#'
-#' @seealso [methods::show()]
-#' @keywords methods print
-#'
-#' @export
-#' @examples
-#'
-#' faux_cell # Implicitly prints the object. The same as show(faux_cell)
-#'
-#' show(faux_cell)
-
-setMethod("show", signature = signature(object = "hyperSpec"),
-  function(object) {
-    print(object, range = FALSE, include = "main")
-    invisible(NULL)
-  })
-
 
 # Fun: summary ---------------------------------------------------------------
 
 #' @rdname show
 #' @aliases summary summary,hyperSpec-method
-#'
-#' @seealso [base::summary()]
-#'
 #' @export
-#' @examples
-#'
-#' summary(faux_cell)
-#'
-#' summary(faux_cell, include = c("wl", "data"))
 
 setMethod("summary",
   signature = signature(object = "hyperSpec"),
@@ -102,11 +94,11 @@ setMethod("summary",
 #' @docType methods
 #' @aliases as.character
 #'
-#' @param digits number of digits handed over to `format`.
-#' @param range should the values be indicated as range rather then first and
-#'        last elements?
-#' @param max.print maximum number of elements to be printed (of a variable).
-#' @param shorten.to if a vector is longer than `max.print`, only the
+#' @param digits Number of digits handed over to `format`.
+#' @param range Should the values be indicated as a range (from the smallest to
+#'        the largest value) rather than as first and last elements?
+#' @param max.print Maximum number of elements to be printed (of a variable).
+#' @param shorten.to If a vector is longer than `max.print`, only the
 #'        first `shorten.to[1]` and the last `shorten.to[2]` elements are
 #'        printed.
 #' @param include Character vector that contains at least one (but usually
@@ -122,7 +114,7 @@ setMethod("summary",
 #' Function `as.character()` returns a character vector with summary of
 #' `hyperSpec`.
 #'
-#' @seealso [base::as.character()]
+#' @seealso [base::as.character()].
 #'
 #' @import methods
 #' @include paste.row.R
