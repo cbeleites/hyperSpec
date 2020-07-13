@@ -26,13 +26,16 @@
 #'
 #' @examples
 #'
-#' faux_cell
+#' faux_cell  # Implicitly prints the object
 #'
 #' show(faux_cell)
 #'
 #' summary(faux_cell)
 #'
 #' print(faux_cell, range = TRUE)
+#'
+#' as.character(faux_cell)
+
 setMethod("print", signature = signature(x = "hyperSpec"),
   function(x, range = FALSE, ...) {
     validObject(x)
