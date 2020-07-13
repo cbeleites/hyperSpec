@@ -4,16 +4,18 @@ year <- substring(meta$Date, 1, 4)
 vers <- paste("R package version", meta$Version)
 authors <- eval(parse(text = meta$`Authors@R`))
 
-citEntry (entry="Manual",
-          title = "hyperSpec: a package to handle hyperspectral data sets in R",
-          author = authors,
-          year = year,
-          note = vers,
-          url =  meta$URL,
+citEntry(
+  entry = "Manual",
+  title = "hyperSpec: a package to handle hyperspectral data sets in R",
+  author = authors,
+  year = year,
+  note = vers,
+  url = meta$URL,
 
-          textVersion =
-          paste0(paste (authors, collapse = ", "), ": ",
-                "`hyperSpec: a package to handle hyperspectral data sets in R', ",
-                vers, ". URL ", meta$URL,
-                sep="")
+  textVersion =
+    paste0(paste(authors, collapse = ", "), ": ",
+      "`hyperSpec: a package to handle hyperspectral data sets in R', ",
+      vers, ". URL ", meta$URL,
+      sep = ""
+    )
 )
