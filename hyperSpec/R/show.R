@@ -1,18 +1,21 @@
 #' @rdname show
 #' @docType methods
-#' @import methods
 #' @aliases as.character
-#' @param digits number of digits handed over to `format`
+#'
+#' @param digits number of digits handed over to `format`.
 #' @param range should the values be indicated as range rather then first and
-#'   last elements?
-#' @param max.print maximum number of elements to be printed (of a variable)
+#'        last elements?
+#' @param max.print maximum number of elements to be printed (of a variable).
 #' @param shorten.to if a vector is longer than `max.print`, only the
-#'   first `shorten.to[1]` and the last `shorten.to[2]` elements are
-#'   printed
+#'        first `shorten.to[1]` and the last `shorten.to[2]` elements are
+#'        printed.
+#'
 #' @return `as.character` returns a character vector fit to be printed by
-#'   `cat` with `sep = "\n"`.
+#'         `cat` with `sep = "\n"`.
 #'
 #' @seealso [base::as.character()]
+#'
+#' @import methods
 #' @include paste.row.R
 #' @export
 
@@ -72,21 +75,27 @@ setMethod("as.character",
   }
 )
 
-#' Convert a `hyperSpec` object to character strings for display.
-#'
-#' `print()`, `show()`, and `summary()` show the result of `as.character()`.
-#'
-#' @details
-#' `print()`, `show()`, and `summary()` differ only in the defaults:
-#'
-#' - `show()` displays the range of values instead,
 #' @name show
 #' @rdname show
 #' @aliases show show,hyperSpec-method
+#'
+#' @title Convert a `hyperSpec` object to character strings for display.
+#'
+#' @details
+#' Functions `print()`, `show()`, and `summary()` show the result of
+#' `as.character()`.
+#'
+#' @details
+#' Functions `print()`, `show()`, and `summary()` differ only in the defaults:
+#'
+#' - `show()` displays the range of values instead,
 #' @param object a `hyperSpec` object
+#'
 #' @seealso [methods::show()]
 #' @keywords methods print
+#'
 #' @export
+#'
 #' @examples
 #'
 #' faux_cell
@@ -101,17 +110,21 @@ setMethod("show", signature = signature(object = "hyperSpec"), function(object) 
   invisible(NULL)
 })
 
+#' @rdname show
+#' @aliases print print,hyperSpec-method
+#'
 #' @details
 #' - `print()` shows the overview giving the first and last values of each
 #' data column (fastest),
-#' @aliases print print,hyperSpec-method
-#' @param x a `hyperSpec` object
-#' @param ... `print` and `summary`  hand further arguments to `as.character`
+#'
+#' @param x a `hyperSpec` object.
+#' @param ... `print` and `summary`  hand further arguments to `as.character`.
 #' @return `print` invisibly returns `x` after printing, `show` returns
-#'   an invisible `NULL`.
-#' @rdname show
-#' @export
+#'         an invisible `NULL`.
+#'
 #' @seealso [base::print()]
+#'
+#' @export
 setMethod("print", signature = signature(x = "hyperSpec"), function(x, range = FALSE, ...) {
   validObject(x)
   cat(as.character(x, range = range, ...), sep = "\n")
@@ -122,12 +135,15 @@ setMethod("print", signature = signature(x = "hyperSpec"), function(x, range = F
 # FIXME: logbook is mentioned
 # - `summary()` displays the logbook in addition.
 
+#' @rdname show
+#' @aliases summary summary,hyperSpec-method
+#'
 #' @details
 #' - `summary()` ...
-#' @aliases summary summary,hyperSpec-method
+#'
 #' @seealso [base::summary()]
+#'
 #' @export
-#' @rdname show
 setMethod("summary",
   signature = signature(object = "hyperSpec"),
   function(object, ...) {
