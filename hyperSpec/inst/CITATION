@@ -3,6 +3,7 @@ citHeader("To cite package 'hyperSpec', please use:")
 year <- substring(meta$Date, 1, 4)
 vers <- paste("R package version", meta$Version)
 authors <- eval(parse(text = meta$`Authors@R`))
+first_url <- sub(",.*$", "", meta$URL) # To use the first URL only
 
 citEntry(
   entry = "Manual",
@@ -10,12 +11,12 @@ citEntry(
   author = authors,
   year = year,
   note = vers,
-  url = meta$URL,
+  url = first_url,
 
   textVersion =
     paste0(paste(authors, collapse = ", "), ": ",
       "`hyperSpec: a package to handle hyperspectral data sets in R', ",
-      vers, ". URL ", meta$URL,
+      vers, ". URL ", first_url,
       sep = ""
     )
 )
