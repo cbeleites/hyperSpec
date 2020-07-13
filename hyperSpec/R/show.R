@@ -1,3 +1,5 @@
+# Fun: print -----------------------------------------------------------------
+
 #' @rdname show
 #' @aliases print print,hyperSpec-method
 #'
@@ -44,6 +46,8 @@ setMethod("print", signature = signature(x = "hyperSpec"),
   })
 
 
+# Fun: show ------------------------------------------------------------------
+
 #' @name show
 #' @rdname show
 #' @aliases show show,hyperSpec-method
@@ -62,6 +66,8 @@ setMethod("show", signature = signature(object = "hyperSpec"), function(object) 
   invisible(NULL)
 })
 
+
+# Fun: summary ---------------------------------------------------------------
 
 # FIXME: logbook is mentioned
 # - `summary()` displays the logbook in addition.
@@ -82,6 +88,9 @@ setMethod("summary",
     print(object, ...)
   }
 )
+
+
+# Fun: as.character ----------------------------------------------------------
 
 #' @rdname show
 #' @docType methods
