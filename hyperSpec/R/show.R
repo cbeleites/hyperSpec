@@ -14,6 +14,7 @@
 #'
 #' @seealso [base::as.character()]
 #' @include paste.row.R
+#' @importFrom tibble glimpse
 #' @export
 
 setMethod("as.character",
@@ -58,15 +59,9 @@ setMethod("as.character",
     ))
 
     if (n.cols > 0) {
-      for (n in names(x@data)) {
-        chr <- c(chr, .paste.row(x@data[[n]], x@label[[n]], n,
-          ins = 3,
-          i = match(n, names(x@data)),
-          val = TRUE, range = range,
-          shorten.to = shorten.to, max.print = max.print
-        ))
+      # glimpse at the contents of the extra data
+      chr <- c(chr, paste0(strsplit(capture.output(glimpse(x$.)), split="\n")[-(1:2)]))
       }
-    }
 
     chr
   }
