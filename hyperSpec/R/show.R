@@ -59,6 +59,8 @@
 #' summary(faux_cell)
 #'
 #' summary(faux_cell, include = c("wl", "data"))
+#'
+#' summary(faux_cell, data_summary = "glimpse")
 
 setMethod("show", signature = signature(object = "hyperSpec"),
   function(object) {
@@ -117,6 +119,10 @@ setMethod("summary",
 #'    rows an columns in `@data` field of `hyperSpec` object.
 #'  - `"wl"`: the output includes the summary of `@wavelength` field.
 #'  - `"data`: the output includes the summary of each column in `@data` field.
+#' @param data_summary Method to oveview/summarize `@data`. One of:
+#'
+#'  - `"default"`: native method in \pkg{hyperSpec},
+#'  - `"glimpse"`: modified version of [tibble::glimpse()].
 #'
 #' @return
 #' Function `as.character()` returns a character vector with summary of
@@ -125,6 +131,7 @@ setMethod("summary",
 #' @seealso [base::as.character()].
 #'
 #' @import methods
+#' @importFrom utils capture.output
 #' @include paste.row.R
 #' @export
 #'
@@ -137,7 +144,8 @@ setMethod("summary",
 setMethod("as.character",
   signature = signature(x = "hyperSpec"),
   function(x, digits = getOption("digits"), range = FALSE,
-    max.print = 5, shorten.to = c(2, 1), include = c("all", "main", "wl", "data")) {
+    max.print = 5, shorten.to = c(2, 1), include = c("all", "main", "wl", "data"),
+    data_summary = c("default", "glimpse")) {
     # Input checking ---------------------------------------------------------
     validObject(x)
 
@@ -145,6 +153,7 @@ setMethod("as.character",
     if ("all" %in% include) {
       include <- c("main", "wl", "data")
     }
+    data_summary <- match.arg(data_summary)
     if (is.null(max.print)) {
       max.print <- getOption("max.print")
     }
@@ -177,14 +186,16 @@ setMethod("as.character",
     }
 
     # ~ Wavelength summary ----------------------------------------------------
-    chr_wl <- if ("wl" %in% include) {
-      .paste.row(x@wavelength, x@label$.wavelength, "wavelength",
-        ins = 0, val = TRUE, range = FALSE,
-        shorten.to = shorten.to, max.print = max.print
-      )
-    } else {
-      NULL
-    }
+    chr_wl <-
+      if ("wl" %in% include) {
+        .paste.row(x@wavelength, x@label$.wavelength, "wavelength",
+          ins = 0, val = TRUE, range = FALSE,
+          shorten.to = shorten.to, max.print = max.print
+        )
+
+      } else {
+        NULL
+      }
 
     if (all(include %in% "wl")) {
       return(chr_wl)
@@ -201,17 +212,25 @@ setMethod("as.character",
         paste0("data: ", " (", nrow(x@data), " rows x ", n.cols, " columns)")
 
       if (n.cols > 0) {
+      switch(
+        data_summary,
+        "default" = {
         for (n in names(x@data)) {
           chr_data <- c(chr_data, .paste.row(x@data[[n]], x@label[[n]], n,
             ins = 3, i = match(n, names(x@data)), val = TRUE, range = range,
             shorten.to = shorten.to, max.print = max.print
-          )
-          )
+          ))
         }
+        },
+
+          "glimpse" = {
+            chr_data <- capture.output(tibble::glimpse(x@data))[-(1:2)]
+        }
+      )
       }
 
     } else {
-      NULL
+      chr_data <- NULL
     }
 
     chr <- c(chr_main, chr_wl, chr_data)
