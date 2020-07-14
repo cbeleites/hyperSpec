@@ -212,21 +212,21 @@ setMethod("as.character",
         paste0("data: ", " (", nrow(x@data), " rows x ", n.cols, " columns)")
 
       if (n.cols > 0) {
-      switch(
-        data_summary,
-        "default" = {
-        for (n in names(x@data)) {
-          chr_data <- c(chr_data, .paste.row(x@data[[n]], x@label[[n]], n,
-            ins = 3, i = match(n, names(x@data)), val = TRUE, range = range,
-            shorten.to = shorten.to, max.print = max.print
-          ))
-        }
-        },
+        switch(
+          data_summary,
+          "default" = {
+            for (n in names(x@data)) {
+              chr_data <- c(chr_data, .paste.row(x@data[[n]], x@label[[n]], n,
+                ins = 3, i = match(n, names(x@data)), val = TRUE, range = range,
+                shorten.to = shorten.to, max.print = max.print
+              ))
+            }
+          },
 
           "glimpse" = {
             chr_data <- capture.output(tibble::glimpse(x@data))[-(1:2)]
-        }
-      )
+          }
+        )
       }
 
     } else {
