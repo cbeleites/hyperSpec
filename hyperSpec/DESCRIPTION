@@ -68,7 +68,8 @@ Suggests:
     ggpubr,
     caTools,
     styler,
-    covr
+    covr,
+    tibble
 Imports:
     testthat,
     methods,
