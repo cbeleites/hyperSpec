@@ -76,6 +76,7 @@ Imports:
     latticeExtra,
     lazyeval,
     dplyr,
+    tibble,
     rlang
 URL: 
     https://cbeleites.github.io/hyperSpec,
