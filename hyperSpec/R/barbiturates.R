@@ -5,12 +5,12 @@
 #'
 #' @name barbiturates
 #' @docType data
-#' @format The data sets consists of a lis of 5 hyperSpec objects with a single
+#' @format The data sets consists of a list of 5 hyperSpec objects with a single
 #'   spectrum each. They are the first five spectra of the BARBITUATES.SPC
 #'   example data from Thermo Galactic's spc file format specification.
 #'
 #' @author C. Beleites and Thermo Galactic
-#' @references The raw data is available with package hySpc.read.spc.
+#' @references The raw data is available with package **hySpc.read.spc**.
 #' @keywords datasets
 #' @concept datasets
 #' @examples
