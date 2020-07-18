@@ -553,7 +553,7 @@ For more details refer to <code class="sourceCode r"><span class="kw">vignette</
 <a href="#plot-several-wavelength-ranges" class="anchor"></a><span class="header-section-number">3.2</span> Plot Several Wavelength Ranges</h2>
 <p>To plot severel wavelength ranges (Fig. <a href="#fig:wavelength-2">3.2</a>), use <code class="sourceCode r">wl.range =<span class="st"> </span><span class="kw">list</span> (<span class="dv">600</span> <span class="op">~</span><span class="st"> </span><span class="dv">1800</span>, <span class="dv">2800</span> <span class="op">~</span><span class="st"> </span><span class="dv">3100</span>)</code>.
 Cut the wavelength axis appropriately with <code class="sourceCode r">xoffset =<span class="st"> </span><span class="dv">750</span></code>.
-If available, the package package <strong>plotrix</strong><code>[r cite_pkg(pkg_bib, "plotrix")</code>] is used to produce the cut mark.</p>
+If available, the package package <strong>plotrix</strong><code>[r cite_pkg("plotrix", bib = pkg_bib)</code>] is used to produce the cut mark.</p>
 <div class="sourceCode" id="cb23"><pre class="downlit">
 <span class="fu"><a href="../reference/plotspc.html">plotspc</a></span>(<span class="kw">paracetamol</span>,
   wl.range = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">300</span> <span class="op">~</span> <span class="fl">1800</span>, <span class="fl">2800</span> <span class="op">~</span> <span class="kw">max</span>),
