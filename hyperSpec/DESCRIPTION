@@ -97,6 +97,7 @@ Collate:
     'all.equal.R'
     'apply.R'
     'as.data.frame.R'
+    'attach_hySpc.R'
     'barbiturates.R'
     'bind.R'
     'call.list.R'
