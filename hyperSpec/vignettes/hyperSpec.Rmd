@@ -2234,7 +2234,7 @@ At certain points, package **hyperSpec** provides switches that allow working wi
 \index{options!gc}
 The initialization method `new("hyperSpec", ...)`{.r} takes particular care to avoid unneccessary copies of the spectra matrix.
 In addition, frequent calls to `gc()`{.r} can be requested by `hy.setOption(gc = TRUE)`{.r}.
-The same behaviour is triggered in `read.ENVI()`{.r} and its derivatives (`read.ENVI.<it>Manufacturer</it>()`{.r}).
+The same behaviour is triggered in `read.ENVI()`{.r} and its derivatives (`read.ENVI.`_`Manufacturer`_`()`{.r}).
 The memory consumption of `read.txt.Renishaw()`{.r} can be lowered by importing the data in chunks (argument `nlines`{.r}).
 
 # Appendix 5. Remarks on R, or How **_hyperSpec_** Works Under the Hood {-}
