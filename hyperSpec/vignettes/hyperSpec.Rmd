@@ -781,7 +781,7 @@ More information about converting existing data into `hyperSpec`{.r} objects can
 ```
 
 \mFun{rmmvnorm}
-If package **mvtnorm**[`r cite_pkg(pkg_bib, "mvtnorm")`] is available, multivariate normally distributed spectra can be generated from mean and covariance matrix using `rmmvnorm()`{.r} (Fig. \@ref(fig:sim-spc)).
+If package **mvtnorm**[`r cite_pkg("mvtnorm", bib = pkg_bib)`] is available, multivariate normally distributed spectra can be generated from mean and covariance matrix using `rmmvnorm()`{.r} (Fig. \@ref(fig:sim-spc)).
 Note that the package **hyperSpec** function's name has an additional "m": it already takes care of multiple groups.
 Mean spectra and pooled covariance matrix can be calculated using `pooled.cov()`{.r}\mFun{pooled.cov}:
 
@@ -1487,7 +1487,7 @@ chondro <- chondro - bl
 
 For details, see `vignette("baseline")`{.r}.
 
-Package package **baseline**[`r cite_pkg(pkg_bib, "baseline")`] offers many more functions for baseline correction.
+Package package **baseline**[`r cite_pkg("baseline", bib = pkg_bib)`] offers many more functions for baseline correction.
 The `baseline()`{.r} function works on the spectra matrix, which is extracted by `[[]]`.
 The result is a `baseline`{.r} object, but can easily be re-imported into the `hyperSpec`{.r} object:
 
@@ -1664,7 +1664,7 @@ See section the appendices for some tips to speed up these calculations.
 ## Multiplicative Scatter Correction
 
 \mFun{`pls::msc()`{.r}}
-Multiplicative scatter correction (MSC) can be done using `msc()`{.r} from package package **pls** [`r cite_pkg(pkg_bib, "pls")`].
+Multiplicative scatter correction (MSC) can be done using `msc()`{.r} from package package **pls** [`r cite_pkg("pls", bib = pkg_bib)`].
 It operates on the spectra matrix:
 
 ```{r msc, eval = FALSE}
@@ -2223,7 +2223,7 @@ system.time({
 ## Additional packages
 
 
-Package **matrixStats**[`r cite_pkg(pkg_bib, "matrixStats")`] implements fast functions to calculate summary statistics for each row  or each column of a matrix.
+Package **matrixStats**[`r cite_pkg("matrixStats", bib = pkg_bib)`] implements fast functions to calculate summary statistics for each row  or each column of a matrix.
 
 ## Memory usage
 

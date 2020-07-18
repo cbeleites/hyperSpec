@@ -147,7 +147,7 @@ set.seed(2020)
 ```
 
 
-Besides, package **tripack**[`r cite_pkg(pkg_bib, "tripack")`] is mentioned, but not used in this vignette.
+Besides, package **tripack**[`r cite_pkg("tripack", bib = pkg_bib)`] is mentioned, but not used in this vignette.
 
 
 # Preliminary Calculations {-}
@@ -187,7 +187,7 @@ Package **hyperSpec** comes with 6 major predefined plotting functions:
    (`plotc()`{.r} is a package **lattice** function)
 
 **`levelplot()`{.r}**
-:  package **hyperSpec** has a method for package **lattice**[`r cite_pkg(pkg_bib, "lattice")`] function `levelplot()`{.r}.
+:  package **hyperSpec** has a method for package **lattice**[`r cite_pkg("lattice", bib = pkg_bib)`] function `levelplot()`{.r}.
    More details in sections \@ref(exm-levelplot), and \@ref(fun-levelplot).
 
 **`plotmat()`{.r}**
@@ -491,7 +491,7 @@ For more details refer to `vignette("hyperspec", package = "hyperSpec")`{.r}.
 
 To plot severel wavelength ranges (Fig. \@ref(fig:wavelength-2)), use `wl.range = list (600 ~ 1800, 2800 ~ 3100)`{.r}.
 Cut the wavelength axis appropriately with `xoffset = 750`{.r}.
-If available, the package package **plotrix**`[r cite_pkg(pkg_bib, "plotrix")`] is used to produce the cut mark.
+If available, the package package **plotrix**`[r cite_pkg("plotrix", bib = pkg_bib)`] is used to produce the cut mark.
 
 ```{r include=FALSE}
 CAPTION = "Plot of several wavelength (wavenumber) ranges.  "
@@ -1197,8 +1197,8 @@ levelplot(spc ~ y * x | as.factor(.wavelength),
 ## Voronoi Plot
 
 Fig. \@ref(fig:voronoi-2) shows an example of a Voronoi plot.
-Voronoi uses `panel.voronoi()`{.r} from package **latticeExtra**[`r cite_pkg(pkg_bib, "latticeExtra")`].
-The tesselation is calculated by default using package **deldir**[`r cite_pkg(pkg_bib, "deldir")`], but package **tripack**[`r cite_pkg(pkg_bib, "tripack")`] can also be used.
+Voronoi uses `panel.voronoi()`{.r} from package **latticeExtra**[`r cite_pkg("latticeExtra", bib = pkg_bib)`].
+The tesselation is calculated by default using package **deldir**[`r cite_pkg("deldir", bib = pkg_bib)`], but package **tripack**[`r cite_pkg("tripack", bib = pkg_bib)`] can also be used.
 Package **tripack** seems to be faster in general, but may "hang" with certain data sets (particularly regular grids with missing spectra as in this example).
 Furthermore, it is not FOSS (free and open-source software), so users are kindly asked to review package **tripack**'s license before using it.
 
@@ -1312,7 +1312,7 @@ plotmap(uneven)
 
 # 3D Plots (with package **_rgl_**) {#plots-3d}
 
-Package **rgl**[`r cite_pkg(pkg_bib, "rgl")`] offers fast 3d plotting in R.
+Package **rgl**[`r cite_pkg("rgl", bib = pkg_bib)`] offers fast 3d plotting in R.
 As package **rgl**'s axis annotations are sometimes awkward, they may better be set manually:
 
 
@@ -1386,7 +1386,7 @@ if (require(rgl)) {
 # Using **_ggplot2_** with **_hyperSpec_** objects {#plots-ggplot2}
 
 
-Class `hyperSpec`{.r} objects do not yet directly support plotting with package **ggplot2**[`r cite_pkg(pkg_bib, "ggplot2")`].
+Class `hyperSpec`{.r} objects do not yet directly support plotting with package **ggplot2**[`r cite_pkg("ggplot2", bib = pkg_bib)`].
 Nevertheless, package **ggplot2** graphics can easily be obtained, and `qplot*`{.r} equivalents to `plotspc()`{.r} and `plotmap()`{.r}.
 
 
