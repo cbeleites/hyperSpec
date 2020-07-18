@@ -6,6 +6,7 @@ on:
       - develop
       - feature/polish-vignettes
       - feature/update-pkgdown-settings
+      - feature/220-write-bib
 
 name: Update pkgdown website
 
