@@ -71,17 +71,9 @@ show_reviewers_notes = getOption("show_reviewers_notes", TRUE)
 ```{r bib, echo=FALSE, paged.print=FALSE}
 dir.create("resources", showWarnings = FALSE)
 
-make_bib(
-  c(
-    "hyperSpec",
-    "baseline"
-  ),
-  file = "resources/baseline-pkg.bib"
-)
+pkg_bib <- knitr::write_bib(c("hyperSpec", "baseline"),
+                            file = "resources/baseline-pkg.bib")
 ```
-
-
-
 
 # Introduction {#sec:introduction}
 
@@ -90,7 +82,7 @@ Package **hyperSpec** provides two fitting functions for polynomial baselines, `
 Another possibility is `spc.rubberband()`{.r}, a "rubberband" method that determines support points by finding the convex hull of each spectrum.
 The baselines are then piecewise linear or (smoothing) splines through the support points.
 
-Please note that a specialized package for baseline fitting, package **baseline**`r cite_pkg("baseline")`, exists that provides many more methods to fit baselines to spectroscopic data.
+Please note that a specialized package for baseline fitting, package **baseline**[`r cite_pkg(pkg_bib, "baseline")`], exists that provides many more methods to fit baselines to spectroscopic data.
 Using package **baseline** with `hyperSpec`{.r} objects is demonstrated in `vignette ("hyperspec")`{.r}.
 
 
