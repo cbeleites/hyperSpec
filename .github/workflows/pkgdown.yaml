@@ -26,11 +26,6 @@ jobs:
 
       - uses: r-lib/actions/setup-pandoc@master
 
-      # # May be needed for "rgl" package
-      # - name: Install XQuartz on macOS
-      #   if: runner.os == 'macOS'
-      #   run: brew cask install xquartz
-
       - name: Query dependencies
         run: |
           install.packages('remotes')
@@ -66,6 +61,6 @@ jobs:
 
       - name: Deploy package
         run: |
-          pkgdown::deploy_to_branch("./hyperSpec", new_process = FALSE)
-        shell: Rscript {0}
-
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          Rscript -e 'pkgdown::deploy_to_branch("./hyperSpec", new_process = FALSE)'
