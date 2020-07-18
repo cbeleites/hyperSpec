@@ -331,7 +331,7 @@ levelplot(spc ~ .wavelength * t, laser, contour = TRUE, col = "#00000080")
 
 # A 3d plot of the spectral intensity over wavelength and time {#sec:3d-plot-spectral}
 
-Class `hyperSpec`{.r} objects  can be drawn with package **rgl**[`r cite_pkg("rgl", bib = pkg_bib)`]:
+Class `hyperSpec`{.r} objects  can be drawn with package **rgl**[`r cite_pkg("rgl")`]:
 
 
 Package **rgl**'s function `persp3d()`{.r} plots a surface in 3d defined by points in x, y, and z.
