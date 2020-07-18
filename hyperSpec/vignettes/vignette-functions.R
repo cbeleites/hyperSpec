@@ -13,7 +13,7 @@
 #' cite_pkg("Rcpp")
 
 cite_pkg <- function(bib = write_bib(...), ..., prefix = "R-") {
-  keys <- sapply(bib, function(x) x [[1]])
+  keys <- sapply(bib, function(x) x[[1]])
   keys <- gsub("@[A-Za-z]*[{]|,$", "", keys)
 
   keys <- grep(paste0("^(R-)?", ...), keys, value = TRUE)
