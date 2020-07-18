@@ -12,7 +12,7 @@
 #'
 #' cite_pkg("Rcpp")
 
-cite_pkg <- function(bib = write_bib(...), ..., prefix = "R-") {
+cite_pkg <- function(bib = knitr::write_bib(...), ..., prefix = "R-") {
   keys <- sapply(bib, function(x) x[[1]])
   keys <- gsub("@[A-Za-z]*[{]|,$", "", keys)
 
