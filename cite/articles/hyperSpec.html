@@ -2805,7 +2805,7 @@ You can also make suggestions in this manner.</p>
   }
 })
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.064   0.004   0.071</span>
+<span class="co">#&gt;   0.049   0.002   0.052</span>
 </pre></div>
 <p>Calculations that involve a lot of subsetting (i.e., extracting or changing the spectra matrix or extra data) can be sped up considerably if the required parts of the <code class="sourceCode r">hyperSpec</code> object are extracted beforehand.
 This is somewhat similar to model fitting in <code>R</code> in general: many model fitting functions in <code>R</code> are much faster if the formula interface is avoided and the appropriate <code class="sourceCode r">data.frame</code>s or matrices are handed over directly.</p>
@@ -2820,7 +2820,7 @@ This is somewhat similar to model fitting in <code>R</code> in general: many mod
   <span class="kw">tmp</span>[[]] <span class="op">&lt;-</span> <span class="kw">tmp.matrix</span>
 })
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;    0.01    0.00    0.01</span>
+<span class="co">#&gt;   0.009   0.000   0.009</span>
 </pre></div>
 <div id="additional-packages" class="section level2">
 <h2 class="hasAnchor">
@@ -2836,7 +2836,7 @@ At certain points, package <strong>hyperSpec</strong> provides switches that all
 <p>
 The initialization method <code class="sourceCode r"><span class="kw">new</span>(<span class="st">"hyperSpec"</span>, ...)</code> takes particular care to avoid unneccessary copies of the spectra matrix.
 In addition, frequent calls to <code class="sourceCode r"><span class="kw">gc</span>()</code> can be requested by <code class="sourceCode r"><span class="kw">hy.setOption</span>(<span class="dt">gc =</span> <span class="ot">TRUE</span>)</code>.
-The same behaviour is triggered in <code class="sourceCode r"><span class="kw">read.ENVI</span>()</code> and its derivatives (<code class="sourceCode r">read.ENVI.<span class="op">&lt;</span>it<span class="op">&gt;</span>Manufacturer<span class="op">&lt;</span><span class="er">/</span>it<span class="op">&gt;</span>()</code>).
+The same behaviour is triggered in <code class="sourceCode r"><span class="kw">read.ENVI</span>()</code> and its derivatives (<code>read.ENVI.</code><em><code>Manufacturer</code></em><code class="sourceCode r">()</code>).
 The memory consumption of <code class="sourceCode r"><span class="kw">read.txt.Renishaw</span>()</code> can be lowered by importing the data in chunks (argument <code class="sourceCode r">nlines</code>).</p>
 </div>
 </div>
