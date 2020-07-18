@@ -5,6 +5,7 @@ template:
   params:
     bootswatch: cerulean
     noindex: true
+    destination: cite
 
 # -------------------------------------------------------------------------
 
