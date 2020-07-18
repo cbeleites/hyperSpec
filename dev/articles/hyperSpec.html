@@ -994,7 +994,7 @@ spectral intensity axis label in <code class="sourceCode r"><span class="op">$</
 <h2 class="hasAnchor">
 <a href="#creating-random-spectra" class="anchor"></a><span class="header-section-number">4.2</span> Creating Random Spectra</h2>
 
-<p>If package <strong>mvtnorm</strong><span class="citation">[<a href="#ref-mvtnorm" role="doc-biblioref">1</a>]</span> is available, multivariate normally distributed spectra can be generated from mean and covariance matrix using <code class="sourceCode r"><span class="kw">rmmvnorm</span>()</code> (Fig. <a href="#fig:sim-spc">4.1</a>).
+<p>If package <strong>mvtnorm</strong><span class="citation">[<a href="#ref-R-mvtnorm" role="doc-biblioref">1</a>,<a href="#ref-mvtnorm2009" role="doc-biblioref">2</a>]</span> is available, multivariate normally distributed spectra can be generated from mean and covariance matrix using <code class="sourceCode r"><span class="kw">rmmvnorm</span>()</code> (Fig. <a href="#fig:sim-spc">4.1</a>).
 Note that the package <strong>hyperSpec</strong> function’s name has an additional “m”: it already takes care of multiple groups.
 Mean spectra and pooled covariance matrix can be calculated using <code class="sourceCode r"><span class="kw">pooled.cov</span>()</code>:</p>
 <div class="sourceCode" id="cb54"><pre class="downlit">
@@ -1697,7 +1697,7 @@ They need to be subtracted afterwards:</p>
 <span class="kw">chondro</span> <span class="op">&lt;-</span> <span class="kw">chondro</span> <span class="op">-</span> <span class="kw">bl</span>
 </pre></div>
 <p>For details, see <code class="sourceCode r"><span class="kw">vignette</span>(<span class="st">"baseline"</span>)</code>.</p>
-<p>Package package <strong>baseline</strong><span class="citation">[<a href="#ref-baseline" role="doc-biblioref">2</a>]</span> offers many more functions for baseline correction.
+<p>Package package <strong>baseline</strong><span class="citation">[<a href="#ref-R-baseline" role="doc-biblioref">3</a>,<a href="#ref-baseline2010" role="doc-biblioref">4</a>]</span> offers many more functions for baseline correction.
 The <code class="sourceCode r"><span class="kw">baseline</span>()</code> function works on the spectra matrix, which is extracted by <code>[[]]</code>.
 The result is a <code class="sourceCode r">baseline</code> object, but can easily be re-imported into the <code class="sourceCode r">hyperSpec</code> object:</p>
 <div class="sourceCode" id="cb104"><pre class="downlit">
@@ -1876,7 +1876,7 @@ Figure 7.12: The summary spectra of <code>chondro</code> with 5<sup>th</sup> per
 <h2 class="hasAnchor">
 <a href="#multiplicative-scatter-correction" class="anchor"></a><span class="header-section-number">7.11</span> Multiplicative Scatter Correction</h2>
 
-<p>Multiplicative scatter correction (MSC) can be done using <code class="sourceCode r"><span class="kw">msc</span>()</code> from package package <strong>pls</strong> <span class="citation">[<a href="#ref-pls" role="doc-biblioref">3</a>]</span>.
+<p>Multiplicative scatter correction (MSC) can be done using <code class="sourceCode r"><span class="kw">msc</span>()</code> from package package <strong>pls</strong> <span class="citation">[<a href="#ref-R-pls" role="doc-biblioref">5</a>]</span>.
 It operates on the spectra matrix:</p>
 <div class="sourceCode" id="cb120"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="http://mevik.net/work/software/pls.html">pls</a></span>)
@@ -2805,7 +2805,7 @@ You can also make suggestions in this manner.</p>
   }
 })
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.075   0.004   0.081</span>
+<span class="co">#&gt;   0.160   0.007   0.170</span>
 </pre></div>
 <p>Calculations that involve a lot of subsetting (i.e., extracting or changing the spectra matrix or extra data) can be sped up considerably if the required parts of the <code class="sourceCode r">hyperSpec</code> object are extracted beforehand.
 This is somewhat similar to model fitting in <code>R</code> in general: many model fitting functions in <code>R</code> are much faster if the formula interface is avoided and the appropriate <code class="sourceCode r">data.frame</code>s or matrices are handed over directly.</p>
@@ -2820,32 +2820,25 @@ This is somewhat similar to model fitting in <code>R</code> in general: many mod
   <span class="kw">tmp</span>[[]] <span class="op">&lt;-</span> <span class="kw">tmp.matrix</span>
 })
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;    0.01    0.00    0.01</span>
+<span class="co">#&gt;   0.015   0.000   0.015</span>
 </pre></div>
-<!--
-## Additional packages
-
-
-Package **matrixStats** implements fast functions to calculate summary statistics for each row  or each column of a matrix.
-This functionality can be enabled for package **hyperSpec** by installing package package **hyperSpec.matrixStats** which is available in package **hyperSpec**'s development repository at <http://hyperSpec.r-forge.r-project.org/>
-
-
-## Compiled code
-
-R provides interfaces to Fortran and C code, see the manual "Writing `R` Extensions" package **Rcpp**[@Rcpp] allows to conveniently integrate C++ code.
-Package **inline**[@inline] adds another layer of convenience: inline definition of functions in C, C++, or Fortran.
-
-An intermediate level is byte compilation of `R` code, which is done by package **compiler**[@compiler].
-
-## Memory usage -->
+<div id="additional-packages" class="section level2">
+<h2 class="hasAnchor">
+<a href="#additional-packages" class="anchor"></a><span class="header-section-number">8.9</span> Additional packages</h2>
+<p>Package <strong>matrixStats</strong><span class="citation">[<a href="#ref-R-matrixStats" role="doc-biblioref">6</a>]</span> implements fast functions to calculate summary statistics for each row or each column of a matrix.</p>
+</div>
+<div id="memory-usage" class="section level2">
+<h2 class="hasAnchor">
+<a href="#memory-usage" class="anchor"></a><span class="header-section-number">8.10</span> Memory usage</h2>
 <p>In general, it is not recommended to work with variables that are more than approximately a third of the available RAM in size. Particularly the import of raw spectroscopic data can consume large amounts of memory.
 At certain points, package <strong>hyperSpec</strong> provides switches that allow working with data sets that are actually close to this memory limit.</p>
 
 <p>
 The initialization method <code class="sourceCode r"><span class="kw">new</span>(<span class="st">"hyperSpec"</span>, ...)</code> takes particular care to avoid unneccessary copies of the spectra matrix.
 In addition, frequent calls to <code class="sourceCode r"><span class="kw">gc</span>()</code> can be requested by <code class="sourceCode r"><span class="kw">hy.setOption</span>(<span class="dt">gc =</span> <span class="ot">TRUE</span>)</code>.
-The same behaviour is triggered in <code class="sourceCode r"><span class="kw">read.ENVI</span>()</code> and its derivatives (<code class="sourceCode r"><span class="kw">read.ENVI</span>()</code>, <code class="sourceCode r"><span class="kw">read.ENVI.HySpex</span>()</code>, and <code class="sourceCode r"><span class="kw">read.ENVI.Nicolet</span>()</code>).
+The same behaviour is triggered in <code class="sourceCode r"><span class="kw">read.ENVI</span>()</code> and its derivatives (<code class="sourceCode r">read.ENVI.<span class="op">&lt;</span>it<span class="op">&gt;</span>Manufacturer<span class="op">&lt;</span><span class="er">/</span>it<span class="op">&gt;</span>()</code>).
 The memory consumption of <code class="sourceCode r"><span class="kw">read.txt.Renishaw</span>()</code> can be lowered by importing the data in chunks (argument <code class="sourceCode r">nlines</code>).</p>
+</div>
 </div>
 <div id="appendix-5--remarks-on-r-or-how-hyperspec-works-under-the-hood" class="section level1 unnumbered">
 <h1 class="hasAnchor">
@@ -2853,13 +2846,13 @@ The memory consumption of <code class="sourceCode r"><span class="kw">read.txt.R
 <p><code class="sourceCode r">hyperSpec</code> objects are defined using an S4 class. Much of <strong>hyperSpec</strong> is devoted to manipulating these objects using the methods instrinsic to <code>R</code>.</p>
 <div id="generic-functions" class="section level2">
 <h2 class="hasAnchor">
-<a href="#generic-functions" class="anchor"></a><span class="header-section-number">8.9</span> Generic Functions</h2>
+<a href="#generic-functions" class="anchor"></a><span class="header-section-number">8.11</span> Generic Functions</h2>
 <p> <em>Generic Functions</em> are functions that apply to a wide range of data types or classes, e.g., <code class="sourceCode r"><span class="kw">plot</span>()</code>, <code class="sourceCode r"><span class="kw">print</span>()</code>, mathematical operators, etc. These functions can be implemented in a specialized way by each class.
 Package <strong>hyperSpec</strong> implements a variety of such functions, see Table <a href="#tab:functions">8.1</a>.</p>
 </div>
 <div id="functionality-can-be-extended-at-runtime" class="section level2">
 <h2 class="hasAnchor">
-<a href="#functionality-can-be-extended-at-runtime" class="anchor"></a><span class="header-section-number">8.10</span> Functionality Can be Extended at Runtime</h2>
+<a href="#functionality-can-be-extended-at-runtime" class="anchor"></a><span class="header-section-number">8.12</span> Functionality Can be Extended at Runtime</h2>
 <p><code>R</code>’s concept of functions offers much flexibility.
 Functions may be added or changed by the user in his <em>workspace</em> at any time.
 This is also true for methods belonging to a certain class.
@@ -2874,7 +2867,7 @@ For the code, check the <code>vignettes.defs</code> file accompanying all packag
 </div>
 <div id="validity-checking" class="section level2">
 <h2 class="hasAnchor">
-<a href="#validity-checking" class="anchor"></a><span class="header-section-number">8.11</span> Validity Checking</h2>
+<a href="#validity-checking" class="anchor"></a><span class="header-section-number">8.13</span> Validity Checking</h2>
 <p>S4 classes have a mechanism to define and enforce that the data actually stored in the object is appropriate for this class.
 In other words, there is a mechanism of  <em>validity checking</em>.</p>
 <p>The functions provided by package <strong>hyperSpec</strong> check the validity of <code class="sourceCode r">hyperSpec</code> objects at the beginning, and – if the validity could be broken by inappropriate arguments – also before leaving the function.
@@ -2893,10 +2886,10 @@ Both functions return <code class="sourceCode r"><span class="ot">TRUE</span></c
 </div>
 <div id="sec:spec-funct-names" class="section level2">
 <h2 class="hasAnchor">
-<a href="#sec:spec-funct-names" class="anchor"></a><span class="header-section-number">8.12</span> Special Function Names</h2>
+<a href="#sec:spec-funct-names" class="anchor"></a><span class="header-section-number">8.14</span> Special Function Names</h2>
 <div id="sec:names-operators" class="section level3">
 <h3 class="hasAnchor">
-<a href="#sec:names-operators" class="anchor"></a><span class="header-section-number">8.12.1</span> The Names of Operators</h3>
+<a href="#sec:names-operators" class="anchor"></a><span class="header-section-number">8.14.1</span> The Names of Operators</h3>
 <p>Operators such as <code><a href="https://rdrr.io/r/base/Arithmetic.html">+</a></code>, <code><a href="https://rdrr.io/r/base/Arithmetic.html">-</a></code>,<code><a href="https://rdrr.io/r/base/Arithmetic.html">*</a></code>, <code><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></code>, etc. are, in fact, functions in <code>R</code>.
 Thus they can be handed over as arguments to other functions (particularly to the vectorization functions <code class="sourceCode r"><span class="op">*</span><span class="kw">apply</span>()</code>, <code class="sourceCode r"><span class="kw">sweep</span>()</code>, etc.).
 In this case, the name of the function must be quoted: `-` is the recommended style (although <code>"-"</code> will often work as well), e.g.,:</p>
@@ -2911,7 +2904,7 @@ In this case, the name of the function must be quoted: `-` is the recommended st
 </div>
 <div id="sec:assignment-functions" class="section level3">
 <h3 class="hasAnchor">
-<a href="#sec:assignment-functions" class="anchor"></a><span class="header-section-number">8.12.2</span> Assignment Functions</h3>
+<a href="#sec:assignment-functions" class="anchor"></a><span class="header-section-number">8.14.2</span> Assignment Functions</h3>
 <p>
 
 <code>R</code> allows the definition of functions that do an assignment (set some part of the object), such as:</p>
@@ -3005,14 +2998,23 @@ In this case, the name of the function must be quoted: `-` is the recommended st
 <h1 class="hasAnchor">
 <a href="#references" class="anchor"></a>References</h1>
 <div id="refs" class="references">
-<div id="ref-mvtnorm">
+<div id="ref-R-mvtnorm">
 <p>[1] A. Genz, F. Bretz, T. Miwa, X. Mi, T. Hothorn, Mvtnorm: Multivariate normal and t distributions, 2020. <a href="https://CRAN.R-project.org/package=mvtnorm">https://CRAN.R-project.org/package=mvtnorm</a>.</p>
 </div>
-<div id="ref-baseline">
-<p>[2] K.H. Liland, B.-H. Mevik, Baseline: Baseline correction of spectra, 2020. <a href="https://CRAN.R-project.org/package=baseline">https://CRAN.R-project.org/package=baseline</a>.</p>
+<div id="ref-mvtnorm2009">
+<p>[2] A. Genz, F. Bretz, Computation of multivariate normal and t probabilities, Springer-Verlag, Heidelberg, 2009.</p>
 </div>
-<div id="ref-pls">
-<p>[3] B.-H. Mevik, R. Wehrens, K.H. Liland, Pls: Partial least squares and principal component regression, 2019. <a href="https://CRAN.R-project.org/package=pls">https://CRAN.R-project.org/package=pls</a>.</p>
+<div id="ref-R-baseline">
+<p>[3] K.H. Liland, B.-H. Mevik, Baseline: Baseline correction of spectra, 2020. <a href="https://CRAN.R-project.org/package=baseline">https://CRAN.R-project.org/package=baseline</a>.</p>
+</div>
+<div id="ref-baseline2010">
+<p>[4] K.H. Liland, T. Almøy, B.-H. Mevik, Optimal choice of baseline correction for multivariate calibration of spectra, Applied Spectroscopy. 64 (2010) 1007–1016.</p>
+</div>
+<div id="ref-R-pls">
+<p>[5] B.-H. Mevik, R. Wehrens, K.H. Liland, Pls: Partial least squares and principal component regression, 2019. <a href="https://CRAN.R-project.org/package=pls">https://CRAN.R-project.org/package=pls</a>.</p>
+</div>
+<div id="ref-R-matrixStats">
+<p>[6] H. Bengtsson, MatrixStats: Functions that apply to rows and columns of matrices (and to vectors), 2020. <a href="https://CRAN.R-project.org/package=matrixStats">https://CRAN.R-project.org/package=matrixStats</a>.</p>
 </div>
 </div>
 </div>

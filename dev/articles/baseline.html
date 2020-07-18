@@ -145,7 +145,7 @@
 Package <strong>hyperSpec</strong> provides two fitting functions for polynomial baselines, <code class="sourceCode r"><span class="kw">spc.fit.poly</span>()</code> and <code class="sourceCode r"><span class="kw">spc.fit.poly.below</span>()</code>.
 Another possibility is <code class="sourceCode r"><span class="kw">spc.rubberband</span>()</code>, a “rubberband” method that determines support points by finding the convex hull of each spectrum.
 The baselines are then piecewise linear or (smoothing) splines through the support points.</p>
-<p>Please note that a specialized package for baseline fitting, package <strong>baseline</strong><span class="citation">[<a href="#ref-baseline" role="doc-biblioref">1</a>]</span>, exists that provides many more methods to fit baselines to spectroscopic data.
+<p>Please note that a specialized package for baseline fitting, package <strong>baseline</strong><span class="citation">[<a href="#ref-R-baseline" role="doc-biblioref">1</a>,<a href="#ref-baseline2010" role="doc-biblioref">2</a>]</span>, exists that provides many more methods to fit baselines to spectroscopic data.
 Using package <strong>baseline</strong> with <code class="sourceCode r">hyperSpec</code> objects is demonstrated in <code class="sourceCode r"><span class="kw">vignette</span> (<span class="st">"hyperspec"</span>)</code>.</p>
 </div>
 <div id="sec:polynomial-baselines" class="section level1">
@@ -288,10 +288,10 @@ Thus one should also consider requiring more support points than the default val
 <div class="sourceCode" id="cb5"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span>(<span class="fu"><a href="../reference/spc.fit.poly.html">spc.fit.poly.below</a></span>(<span class="kw">chondro</span>, <span class="kw">NULL</span>, npts.min = <span class="fl">20</span>))
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   1.005   0.058   1.069</span>
+<span class="co">#&gt;   2.854   0.192   3.328</span>
 <span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span>(<span class="fu"><a href="../reference/spc.fit.poly.html">spc.fit.poly.below</a></span>(<span class="kw">chondro</span>[, , <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">min</span> <span class="op">~</span> <span class="fl">700</span>, <span class="fl">1700</span> <span class="op">~</span> <span class="kw">max</span>)], <span class="kw">NULL</span>, npts.min = <span class="fl">20</span>))
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.643   0.021   0.677</span>
+<span class="co">#&gt;   1.144   0.038   1.314</span>
 </pre></div>
 <p>The choice of the spectral range in <code class="sourceCode r">fit.to</code> influences the resulting baselines to a certain extent, as becomes clear from figure <a href="#fig:spectralrange">2.3</a>.</p>
 </div>
@@ -536,8 +536,11 @@ Figure 3.4: Rubberband baselines for the paracetamol spectrum after bendin: corr
 <h1 class="hasAnchor">
 <a href="#references" class="anchor"></a>References</h1>
 <div id="refs" class="references">
-<div id="ref-baseline">
+<div id="ref-R-baseline">
 <p>[1] K.H. Liland, B.-H. Mevik, Baseline: Baseline correction of spectra, 2020. <a href="https://CRAN.R-project.org/package=baseline">https://CRAN.R-project.org/package=baseline</a>.</p>
+</div>
+<div id="ref-baseline2010">
+<p>[2] K.H. Liland, T. Almøy, B.-H. Mevik, Optimal choice of baseline correction for multivariate calibration of spectra, Applied Spectroscopy. 64 (2010) 1007–1016.</p>
 </div>
 </div>
 </div>
