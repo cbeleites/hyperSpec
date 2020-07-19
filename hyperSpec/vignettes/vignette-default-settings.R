@@ -71,15 +71,15 @@ set_trellis_layout_hw_custom()
 # knitr Settings =============================================================
 # Notes on Figure Sizes.  There are (at least) 2 standard figure aspect ratios in
 # the vignettes.  One is a full width figure, suitable for spectra or spectra-like
-# plots.  This is set below in the chunk options as height = 2.6, width = 4.
+# plots.  This is set below in the chunk options as height = 3, width = 7.
 # This is the default setting.
 # The other is a square plot, typically used by maps.  This is defined by the
 # sq.fig hook below, and can be called in the chunk by setting sq.fig = TRUE
 # to override the default settings.
 knitr::knit_hooks$set(sq.fig = function(before, options, envir) {
   if (before) {
-    fig.width = 4
-    fig.height = 4
+    fig.width = 5
+    fig.height = 5
   }
 })
 
@@ -88,8 +88,8 @@ knitr::opts_chunk$set(
   echo       = TRUE,     # Should blocks with program code be shown in knitted documents?
   eval       = TRUE,     # Should program code be evaluated?
   tidy       = "styler", # Use code output styled in the Tidyverse style
-  fig.height = 2.6,      # Default height for plots.
-  fig.width  = 4,        # Default width for plots.
+  fig.height = 3,      # Default height for plots.
+  fig.width  = 7,        # Default width for plots.
   fig.align  = "center", # Default alignment for plots in knitted documents.
   collapse   = TRUE,
   comment    = "#>"

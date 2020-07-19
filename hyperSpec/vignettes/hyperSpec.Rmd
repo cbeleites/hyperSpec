@@ -918,7 +918,7 @@ CAPTION <-
   "The shifts used to disturb the chondrocyte data (original), and the remaining shift after correction with the two methods discussed here.  "
 ```
 
-```{r fit-shift, fig.cap = CAPTION, fig.width = 7}
+```{r fit-shift, fig.cap = CAPTION}
 df <- data.frame(
   shift = c(shifts, shifts + shift1, shifts + shift2),
   method = rep(c("original", "find maximum", "interpolation"),
@@ -967,7 +967,7 @@ spc.OK <- chondro[apply(OK, 1, all)]
 CAPTION <- "Filtering data: mean $\\pm$ sd filter.  "
 ```
 
-```{r filter, fig.cap = CAPTION, fig.width = 7}
+```{r filter, fig.cap = CAPTION}
 plot(chondro[!apply(OK, 1, all)])
 i <- which(!OK, arr.ind = TRUE)
 points(wl(chondro)[i[, 2]], chondro[[!OK]], pch = 19, col = CB7[4], cex = 0.5)
@@ -1018,7 +1018,7 @@ spc.corrected[[]]
 CAPTION <- "Filtering data: remove bad points.  "
 ```
 
-```{r bad, fig.cap = CAPTION, fig.width=7}
+```{r bad, fig.cap = CAPTION}
 spc[[is.na(spc)]] <- 0
 plot(spc)
 
@@ -1051,7 +1051,7 @@ Function `spc.bin()`{.r} bins the spectral axis by averaging every `by`{.r} data
 CAPTION <- "Smoothing interpolation by `spc.loess()`{.r} with new data point spacing of 2 cm^-1^ (red) and `spc.bin()`{.r} (blue).  "
 ```
 
-```{r fig-loess, fig.cap = CAPTION, fig.width = 7}
+```{r fig-loess, fig.cap = CAPTION}
 plot(paracetamol, wl.range = c(300 ~ 1800, 2800 ~ max), xoffset = 850)
 p <- spc.loess(paracetamol, c(seq(300, 1800, 2), seq(2850, 3150, 2)))
 plot(p, wl.range = c(300 ~ 1800, 2800 ~ max), xoffset = 850, col = CB7[4], add = TRUE)
@@ -1439,7 +1439,7 @@ div_palette <- colorRampPalette(c(
 CAPTION <- "The third score map.  "
 ```
 
-```{r pca-score, fig.cap = CAPTION}
+```{r pca-score, fig.cap = CAPTION, sq.fig = TRUE}
 plotmap(scores[, , 3], col.regions = diverging_hcl(20, palette = "Blue-Red2"))
 ```
 
@@ -1505,7 +1505,7 @@ dendrogram <- hclust(dist, method = "ward.D")
 CAPTION <- "The results of the cluster analysis: the dendrogram.  "
 ```
 
-```{r dend, fig.cap = CAPTION, fig.width = 7, fig.height = 7}
+```{r dend, fig.cap = CAPTION, sq.fig = TRUE}
 plot(dendrogram)
 ```
 
@@ -1528,7 +1528,7 @@ Then the result may be plotted (Figure \@ref(fig:clust-map)):
 CAPTION <- "The results of the cluster analysis: the map of the 3 clusters.  "
 ```
 
-```{r clust-map, fig.cap = CAPTION}
+```{r clust-map, fig.cap = CAPTION, sq.fig = TRUE}
 plotmap(chondro, clusters ~ x * y, col.regions = cluster.cols)
 ```
 
@@ -1642,7 +1642,7 @@ nrow(chondro.merged)
 CAPTION <- "For both spectral ranges some spectra are missing. "
 ```
 
-```{r merge-map, fig.cap = CAPTION, fig.width = 7}
+```{r merge-map, fig.cap = CAPTION}
 matcols <- sequential_hcl(20, palette = "viridis")
 levelplot(spc ~ x * y | as.factor(paste(.wavelength, "  1/cm")),
   chondro.merged[, , c(1000, 1650)],
@@ -1654,7 +1654,7 @@ levelplot(spc ~ x * y | as.factor(paste(.wavelength, "  1/cm")),
 ```{r include = FALSE}
 CAPTION <- "The missing parts of the spectra are filled with `NA`{.r}.  "
 ```
-```{r merge-mat, fig.cap = CAPTION}
+```{r merge-mat, fig.cap = CAPTION, sq.fig = TRUE}
 plot(chondro.merged[1:100], "mat", col = matcols)
 ```
 
