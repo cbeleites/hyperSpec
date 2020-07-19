@@ -10,7 +10,6 @@ template:
 
 development:
   mode: auto
-  destination: cite
 
 # -------------------------------------------------------------------------
 
