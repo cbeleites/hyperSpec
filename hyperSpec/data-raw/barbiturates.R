@@ -8,14 +8,12 @@ library(usethis)
 
 # Read the raw data ----------------------------------------------------------
 file <- system.file("extdata/BARBITUATES.SPC", package = "hyperSpec")
-barbiturates0 <- read.spc(file)
-
-# Pre-process ----------------------------------------------------------------
-barbiturates <-
-  lapply(barbiturates0, function(x) {
-    x$filename <- basename(x$filename)
-    x
-  })
+barbiturates <- read.spc(file)
+barbiturates <- barbiturates[1:5]
 
 # Save the prepared dataset as package data ----------------------------------
 usethis::use_data(barbiturates, overwrite = TRUE)
+# use_data will work only once the package root directory is also the root
+# directory of the project.
+# Until then, with working directory project root, use:
+# save(barbiturates, file="hyperSpec/data/barbiturates.rda", compress = TRUE)

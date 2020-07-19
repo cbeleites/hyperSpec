@@ -13,3 +13,5 @@ coverage:
         threshold: 1%
         informational: true
 
+fixes:
+  - "::hyperSpec/"

@@ -333,8 +333,6 @@ split.line <- function(x, separator, trim.blank = TRUE) {
 #' @return a `hyperSpec` object
 #' @author C. Beleites, testing for the Nicolet files C. Dicko
 #' @seealso [caTools::read.ENVI()]
-#'
-#' [hyperSpec::textio()]
 #' @references This function was adapted from
 #'   [caTools::read.ENVI()]:
 #'

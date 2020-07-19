@@ -108,7 +108,7 @@ jobs:
           rcmdcheck::rcmdcheck(
             "./hyperSpec",
             args = c("--no-manual", "--as-cran"),
-            error_on = "error",
+            error_on = "warning",
             check_dir = "check"
           )
         shell: Rscript {0}
@@ -125,6 +125,11 @@ jobs:
         with:
           name: ${{ runner.os }}-r${{ matrix.config.r }}-results
           path: check
+
+      - name: Test coverage
+        run: covr::codecov()
+        shell: Rscript {0}
+        working-directory: ./hyperSpec
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
