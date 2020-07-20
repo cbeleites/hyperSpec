@@ -69,19 +69,15 @@ set_trellis_layout_hw_custom <- function() {
 set_trellis_layout_hw_custom()
 
 # knitr Settings =============================================================
-# Notes on Figure Sizes.  There are (at least) 2 standard figure aspect ratios in
-# the vignettes.  One is a full width figure, suitable for spectra or spectra-like
-# plots.  This is set below in the chunk options as height = 3, width = 7.
-# This is the default setting.
-# The other is a square plot, typically used by maps.  This is defined by the
-# sq.fig hook below, and can be called in the chunk by setting sq.fig = TRUE
-# to override the default settings.
 
-# knitr::knit_hooks$set(sq.fig = function(before) {
-  # if (before) {
-    # knitr::opts_chunk$set(fig.width = 5, fig.height = 5)
-  # }
-# })
+# Notes on Figure Sizes.  There are (at least) 2 common figure aspect ratios in
+# the vignettes.  One is a full width figure, suitable for spectra or spectra-like
+# plots.  The other is a square plot, typically used by maps.
+# Default figure size is set below using the standard opts_check$set approach.
+# To get the square plot, we define a new hook sq.fig using opts_hooks$set,
+# which is then called in a chunk with sq.fig = TRUE
+# This will change the plot aspect ratio and change it back if needed.
+# TO CHANGE THE DEFAULT fig.width and fig.height, change it in 2 places below!
 
 knitr::opts_hooks$set(sq.fig = function(options) {
   if (isTRUE(options$sq.fig)) {
@@ -99,8 +95,9 @@ knitr::opts_chunk$set(
   echo       = TRUE,     # Should blocks with program code be shown in knitted documents?
   eval       = TRUE,     # Should program code be evaluated?
   tidy       = "styler", # Use code output styled in the Tidyverse style
-  fig.height = 3,        # Default height for plots.
-  fig.width  = 7,        # Default width for plots.
+  sq.fig     = FALSE     #
+  # fig.height = 3,        # Default height for plots.
+  # fig.width  = 7,        # Default width for plots.
   fig.align  = "center", # Default alignment for plots in knitted documents.
   collapse   = TRUE,
   comment    = "#>"
