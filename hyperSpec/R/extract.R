@@ -83,8 +83,8 @@
 #' | `x$name` | Returns the column `name` as a vector. |
 #' | `x$.` | Returns the complete `data.frame` `x@data`, with the spectra in column `$spc`. |
 #' | `x$..` | Returns all the extra data (`x@data` without `x$spc`). |
-#' | `wl()` | Returns the wavelengths. |
-#' | `labels()` | Returns the labels. |
+#' | [wl()] | Returns the wavelengths. |
+#' | [labels()][hyperSpec::labels()] | Returns the labels. |
 #'
 #' One can see that there are several ways to get the spectral data:
 #' `x$spc`, `x[[]]`, `x$..`.  The first two forms return a matrix,
