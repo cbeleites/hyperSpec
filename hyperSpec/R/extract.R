@@ -51,8 +51,10 @@
 #' the spectral data in `x$spc`.
 #'
 #
-# IF THE FOLLOWING MATERIAL IS EDITTED THE CORRESPONDING MATERIAL IN hyperSpec.Rmd
-# SHOULD BE EDITTED AS WELL.
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#     IF THE FOLLOWING MATERIAL IS EDITTED THE CORRESPONDING MATERIAL IN
+#                 hyperSpec.Rmd SHOULD BE EDITTED AS WELL.
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
 #' `hyperSpec` objects are triple indexed:
 #'
