@@ -128,7 +128,7 @@
 <br><a class="author_email" href="mailto:#"></a><a href="mailto:chemometrie@beleites.de" class="email">chemometrie@beleites.de</a>
       </address>
                   
-            <h4 class="date">2020-07-18</h4>
+            <h4 class="date">2020-07-20</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/cbeleites/hyperSpec/blob/master/../vignettes/plotting.Rmd"><code>../vignettes/plotting.Rmd</code></a></small>
       <div class="hidden name"><code>plotting.Rmd</code></div>
@@ -173,7 +173,7 @@ Throughout the documentation of the package, the following terms are used:</p>
 
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">2020</span>)
 </pre></div>
-<p>Besides, package <strong>tripack</strong><span class="citation">[<a href="#ref-R-tripack" role="doc-biblioref">1</a>]</span> is mentioned, but not used in this vignette.</p>
+<p>Besides, package <strong>tripack</strong><span class="citation">[<a href="#ref-tripack" role="doc-biblioref">1</a>]</span> is mentioned, but not used in this vignette.</p>
 </div>
 <div id="preliminary-calculations" class="section level1 unnumbered">
 <h1 class="hasAnchor">
@@ -211,7 +211,7 @@ More details in sections <a href="#exm-plotc">1.3</a>, <a href="#arg-c">2.5</a>,
 (<code class="sourceCode r"><span class="kw">plotc</span>()</code> is a package <strong>lattice</strong> function)
 </dd>
 <dt><strong><code class="sourceCode r"><span class="kw">levelplot</span>()</code></strong></dt>
-<dd>package <strong>hyperSpec</strong> has a method for package <strong>lattice</strong><span class="citation">[<a href="#ref-R-lattice" role="doc-biblioref">2</a>–<a href="#ref-lattice2008" role="doc-biblioref">4</a>]</span> function <code class="sourceCode r"><span class="kw">levelplot</span>()</code>.
+<dd>package <strong>hyperSpec</strong> has a method for package <strong>lattice</strong><span class="citation">[<a href="#ref-lattice" role="doc-biblioref">2</a>]</span> function <code class="sourceCode r"><span class="kw">levelplot</span>()</code>.
 More details in sections <a href="#exm-levelplot">1.4</a>, and <a href="#fun-levelplot">5</a>.
 </dd>
 <dt><strong><code class="sourceCode r"><span class="kw">plotmat</span>()</code></strong></dt>
@@ -553,7 +553,7 @@ For more details refer to <code class="sourceCode r"><span class="kw">vignette</
 <a href="#plot-several-wavelength-ranges" class="anchor"></a><span class="header-section-number">3.2</span> Plot Several Wavelength Ranges</h2>
 <p>To plot severel wavelength ranges (Fig. <a href="#fig:wavelength-2">3.2</a>), use <code class="sourceCode r">wl.range =<span class="st"> </span><span class="kw">list</span> (<span class="dv">600</span> <span class="op">~</span><span class="st"> </span><span class="dv">1800</span>, <span class="dv">2800</span> <span class="op">~</span><span class="st"> </span><span class="dv">3100</span>)</code>.
 Cut the wavelength axis appropriately with <code class="sourceCode r">xoffset =<span class="st"> </span><span class="dv">750</span></code>.
-If available, the package package <strong>plotrix</strong><code>[r cite_pkg(pkg_bib, "plotrix")</code>] is used to produce the cut mark.</p>
+If available, the package package <strong>plotrix</strong><span class="citation">[<a href="#ref-plotrix" role="doc-biblioref">3</a>]</span> is used to produce the cut mark.</p>
 <div class="sourceCode" id="cb23"><pre class="downlit">
 <span class="fu"><a href="../reference/plotspc.html">plotspc</a></span>(<span class="kw">paracetamol</span>,
   wl.range = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">300</span> <span class="op">~</span> <span class="fl">1800</span>, <span class="fl">2800</span> <span class="op">~</span> <span class="kw">max</span>),
@@ -1272,8 +1272,8 @@ Figure 8.6: The maps of the scores of the first two principal components (II).
 <h2 class="hasAnchor">
 <a href="#voronoi-plot" class="anchor"></a><span class="header-section-number">8.6</span> Voronoi Plot</h2>
 <p>Fig. <a href="#fig:voronoi-2">8.7</a> shows an example of a Voronoi plot.
-Voronoi uses <code class="sourceCode r"><span class="kw">panel.voronoi</span>()</code> from package <strong>latticeExtra</strong><span class="citation">[<a href="#ref-R-latticeExtra" role="doc-biblioref">3</a>]</span>.
-The tesselation is calculated by default using package <strong>deldir</strong><span class="citation">[<a href="#ref-R-deldir" role="doc-biblioref">5</a>]</span>, but package <strong>tripack</strong><span class="citation">[<a href="#ref-R-tripack" role="doc-biblioref">1</a>]</span> can also be used.
+Voronoi uses <code class="sourceCode r"><span class="kw">panel.voronoi</span>()</code> from package <strong>latticeExtra</strong><span class="citation">[<a href="#ref-latticeExtra" role="doc-biblioref">4</a>]</span>.
+The tesselation is calculated by default using package <strong>deldir</strong><span class="citation">[<a href="#ref-deldir" role="doc-biblioref">5</a>]</span>, but package <strong>tripack</strong><span class="citation">[<a href="#ref-tripack" role="doc-biblioref">1</a>]</span> can also be used.
 Package <strong>tripack</strong> seems to be faster in general, but may “hang” with certain data sets (particularly regular grids with missing spectra as in this example).
 Furthermore, it is not FOSS (free and open-source software), so users are kindly asked to review package <strong>tripack</strong>’s license before using it.</p>
 <div class="sourceCode" id="cb66"><pre class="downlit">
@@ -1384,7 +1384,7 @@ Figure 8.12: Unevenly spaced measurement grid: example IV.
 <div id="plots-3d" class="section level1">
 <h1 class="hasAnchor">
 <a href="#plots-3d" class="anchor"></a><span class="header-section-number">9</span> 3D Plots (with package <strong><em>rgl</em></strong>)</h1>
-<p>Package <strong>rgl</strong><span class="citation">[<a href="#ref-R-rgl" role="doc-biblioref">6</a>]</span> offers fast 3d plotting in R.
+<p>Package <strong>rgl</strong><span class="citation">[<a href="#ref-rgl" role="doc-biblioref">6</a>]</span> offers fast 3d plotting in R.
 As package <strong>rgl</strong>’s axis annotations are sometimes awkward, they may better be set manually:</p>
 <!-- evaluation in rgl-do -->
 <div class="sourceCode" id="cb73"><pre class="downlit">
@@ -1416,7 +1416,7 @@ Figure 9.1: A snapshot of an <strong>rgl</strong> plot.
 <div id="plots-ggplot2" class="section level1">
 <h1 class="hasAnchor">
 <a href="#plots-ggplot2" class="anchor"></a><span class="header-section-number">10</span> Using <strong><em>ggplot2</em></strong> with <strong><em>hyperSpec</em></strong> objects</h1>
-<p>Class <code class="sourceCode r">hyperSpec</code> objects do not yet directly support plotting with package <strong>ggplot2</strong><span class="citation">[<a href="#ref-R-ggplot2" role="doc-biblioref">7</a>,<a href="#ref-ggplot22016" role="doc-biblioref">8</a>]</span>.
+<p>Class <code class="sourceCode r">hyperSpec</code> objects do not yet directly support plotting with package <strong>ggplot2</strong><span class="citation">[<a href="#ref-ggplot2" role="doc-biblioref">7</a>]</span>.
 Nevertheless, package <strong>ggplot2</strong> graphics can easily be obtained, and <code class="sourceCode r">qplot<span class="op">*</span></code> equivalents to <code class="sourceCode r"><span class="kw">plotspc</span>()</code> and <code class="sourceCode r"><span class="kw">plotmap</span>()</code>.</p>
 <div id="qplotspc" class="section level2">
 <h2 class="hasAnchor">
@@ -1564,7 +1564,7 @@ The same holds for package <strong>ggplot2</strong> graphics.</p>
 <span class="co">#&gt;  collate  en_US.UTF-8                 </span>
 <span class="co">#&gt;  ctype    en_US.UTF-8                 </span>
 <span class="co">#&gt;  tz       UTC                         </span>
-<span class="co">#&gt;  date     2020-07-18                  </span>
+<span class="co">#&gt;  date     2020-07-20                  </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; ─ Packages ───────────────────────────────────────────────────────────────────────────────────────</span>
 <span class="co">#&gt;  package      * version       date       lib source        </span>
@@ -1585,7 +1585,7 @@ The same holds for package <strong>ggplot2</strong> graphics.</p>
 <span class="co">#&gt;  ggplot2      * 3.3.2         2020-06-19 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  glue           1.4.1         2020-05-13 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  gtable         0.3.0         2019-03-25 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  hyperSpec    * 0.99-20200615 2020-07-18 [1] local         </span>
+<span class="co">#&gt;  hyperSpec    * 0.99-20200615 2020-07-20 [1] local         </span>
 <span class="co">#&gt;  isoband        0.2.2         2020-06-20 [1] CRAN (R 4.0.1)</span>
 <span class="co">#&gt;  jpeg           0.1-8.1       2019-10-24 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  labeling       0.3           2014-08-23 [1] CRAN (R 4.0.0)</span>
@@ -1622,7 +1622,7 @@ The same holds for package <strong>ggplot2</strong> graphics.</p>
 <span class="co">#&gt;  vctrs          0.3.2         2020-07-15 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  viridisLite    0.3.0         2018-02-01 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  withr          2.2.0         2020-04-20 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  xml2         * 1.3.2         2020-04-23 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  xml2           1.3.2         2020-04-23 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [1] /Users/runner/work/_temp/Library</span>
 <span class="co">#&gt; [2] /Library/Frameworks/R.framework/Versions/4.0/Resources/library</span>
@@ -1632,29 +1632,26 @@ The same holds for package <strong>ggplot2</strong> graphics.</p>
 <h1 class="hasAnchor">
 <a href="#references" class="anchor"></a>References</h1>
 <div id="refs" class="references">
-<div id="ref-R-tripack">
+<div id="ref-tripack">
 <p>[1] F. code by R. J. Renka. R functions by Albrecht Gebhardt. With contributions from Stephen Eglen &lt;stephen@anc.ed.ac.uk&gt;, S. Zuyev, D. White, Tripack: Triangulation of irregularly spaced data, 2020. <a href="https://CRAN.R-project.org/package=tripack">https://CRAN.R-project.org/package=tripack</a>.</p>
 </div>
-<div id="ref-R-lattice">
+<div id="ref-lattice">
 <p>[2] D. Sarkar, Lattice: Trellis graphics for r, 2020. <a href="https://CRAN.R-project.org/package=lattice">https://CRAN.R-project.org/package=lattice</a>.</p>
 </div>
-<div id="ref-R-latticeExtra">
-<p>[3] D. Sarkar, F. Andrews, LatticeExtra: Extra graphical utilities based on lattice, 2019. <a href="https://CRAN.R-project.org/package=latticeExtra">https://CRAN.R-project.org/package=latticeExtra</a>.</p>
+<div id="ref-plotrix">
+<p>[3] J. Lemon, B. Bolker, S. Oom, E. Klein, B. Rowlingson, H. Wickham, A. Tyagi, O. Eterradossi, G. Grothendieck, M. Toews, J. Kane, R. Turner, C. Witthoft, J. Stander, T. Petzoldt, R. Duursma, E. Biancotto, O. Levy, C. Dutang, P. Solymos, R. Engelmann, M. Hecker, F. Steinbeck, H. Borchers, H. Singmann, T. Toal, D. Ogle, D. Baral, U. Groemping, B. Venables, Plotrix: Various plotting functions, 2020. <a href="https://CRAN.R-project.org/package=plotrix">https://CRAN.R-project.org/package=plotrix</a>.</p>
 </div>
-<div id="ref-lattice2008">
-<p>[4] D. Sarkar, Lattice: Multivariate data visualization with r, Springer, New York, 2008. <a href="http://lmdvr.r-forge.r-project.org">http://lmdvr.r-forge.r-project.org</a>.</p>
+<div id="ref-latticeExtra">
+<p>[4] D. Sarkar, F. Andrews, LatticeExtra: Extra graphical utilities based on lattice, 2019. <a href="https://CRAN.R-project.org/package=latticeExtra">https://CRAN.R-project.org/package=latticeExtra</a>.</p>
 </div>
-<div id="ref-R-deldir">
+<div id="ref-deldir">
 <p>[5] R. Turner, Deldir: Delaunay triangulation and dirichlet (voronoi) tessellation, 2020. <a href="https://CRAN.R-project.org/package=deldir">https://CRAN.R-project.org/package=deldir</a>.</p>
 </div>
-<div id="ref-R-rgl">
+<div id="ref-rgl">
 <p>[6] D. Adler, D. Murdoch, Rgl: 3D visualization using opengl, 2020. <a href="https://CRAN.R-project.org/package=rgl">https://CRAN.R-project.org/package=rgl</a>.</p>
 </div>
-<div id="ref-R-ggplot2">
+<div id="ref-ggplot2">
 <p>[7] H. Wickham, W. Chang, L. Henry, T.L. Pedersen, K. Takahashi, C. Wilke, K. Woo, H. Yutani, D. Dunnington, Ggplot2: Create elegant data visualisations using the grammar of graphics, 2020. <a href="https://CRAN.R-project.org/package=ggplot2">https://CRAN.R-project.org/package=ggplot2</a>.</p>
-</div>
-<div id="ref-ggplot22016">
-<p>[8] H. Wickham, Ggplot2: Elegant graphics for data analysis, Springer-Verlag New York, 2016. <a href="https://ggplot2.tidyverse.org">https://ggplot2.tidyverse.org</a>.</p>
 </div>
 </div>
 </div>
