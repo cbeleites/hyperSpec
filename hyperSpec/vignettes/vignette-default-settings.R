@@ -79,8 +79,6 @@ set_trellis_layout_hw_custom()
 knitr::knit_hooks$set(sq.fig = function(before) {
   if (before) {
     knitr::opts_chunk$set(fig.width = 5, fig.height = 5)
-  } else {
-    knitr::opts_chunk$set(fig.width = 7, fig.height = 3)
   }
 })
 
@@ -89,8 +87,8 @@ knitr::opts_chunk$set(
   echo       = TRUE,     # Should blocks with program code be shown in knitted documents?
   eval       = TRUE,     # Should program code be evaluated?
   tidy       = "styler", # Use code output styled in the Tidyverse style
-  # fig.height = 3,        # Default height for plots.
-  # fig.width  = 7,        # Default width for plots.
+  fig.height = 3,        # Default height for plots.
+  fig.width  = 7,        # Default width for plots.
   fig.align  = "center", # Default alignment for plots in knitted documents.
   collapse   = TRUE,
   comment    = "#>"
