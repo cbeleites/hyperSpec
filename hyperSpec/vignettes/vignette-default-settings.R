@@ -95,7 +95,7 @@ knitr::opts_chunk$set(
   echo       = TRUE,     # Should blocks with program code be shown in knitted documents?
   eval       = TRUE,     # Should program code be evaluated?
   tidy       = "styler", # Use code output styled in the Tidyverse style
-  sq.fig     = FALSE     #
+  sq.fig     = FALSE,     #
   # fig.height = 3,        # Default height for plots.
   # fig.width  = 7,        # Default width for plots.
   fig.align  = "center", # Default alignment for plots in knitted documents.
