@@ -1502,7 +1502,7 @@ dendrogram <- hclust(dist, method = "ward.D")
 ```
 
 ```{r include = FALSE}
-CAPTION <- "The results of the cluster analysis: the dendrogram.  "
+CAPTION <- "The results of the cluster analysis: the dendrogram."
 ```
 
 ```{r dend, fig.cap = CAPTION, sq.fig = TRUE}
