@@ -159,7 +159,7 @@ Package **hyperSpec** comes with several data sets:
 **`chondro`**      \index{data sets!chondro}
                    A Raman map of chondrocytes in cartilage.
 
-**`fauxCell`**      \index{data sets!fauxCell}
+**`faux_cell`**      \index{data sets!fauxCell}
                     A synthetic data set similar to `chondro`.
 
 **`flu`**          \index{data sets!flu}
