@@ -50,6 +50,7 @@ By contributing, you understand and agree that your work becomes the part of the
 * Sourced files should make vignette authors' life easier, and should not contain anything important to end users/readers.
 * The first code block should start with `rm(list = ls())` to ensure a clean, reproducible workspace.
 * If you need to leave a note in a vignette, please use this [method](https://github.com/cbeleites/hyperSpec/pull/147#issuecomment-646685392).
+* Figure sizes are largely standardized, via the hook defined in `vignette-default-settings`.  See the discussion there.
 
 
 ## Working With Git

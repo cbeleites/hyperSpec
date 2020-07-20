@@ -1,6 +1,7 @@
 # Plotting settings ==========================================================
 
 # Base plot parameters -------------------------------------------------------
+# Note:  more knitr settings further down!
 knitr::knit_hooks$set(small.mar = function(before, options, envir) {
   if (before) {
     par(mar = c(4.1, 4.1, 1, .6))
@@ -78,8 +79,8 @@ set_trellis_layout_hw_custom()
 
 knitr::opts_hooks$set(sq.fig = function(options) {
   if (isTRUE(options$sq.fig)) {
-    options$fig.width = 5
-    options$fig.height = 5
+    options$fig.width = 6
+    options$fig.height = 6
   } else {
     options$fig.width = 7
     options$fig.height = 3
