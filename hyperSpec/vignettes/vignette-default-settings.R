@@ -78,7 +78,7 @@ set_trellis_layout_hw_custom()
 # to override the default settings.
 knitr::knit_hooks$set(sq.fig = function(before) {
   if (before) {
-    opts_chunk$set(fig.width = 5, fig.height = 5)
+    knitr::opts_chunk$set(fig.width = 5, fig.height = 5)
   }
 })
 
