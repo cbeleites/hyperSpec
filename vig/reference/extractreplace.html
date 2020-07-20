@@ -266,7 +266,7 @@ The first form is used to modify the entire <code>hyperSpec</code> object and th
 the spectral data in <code>x$spc</code>.</p>
 <p><code>hyperSpec</code> objects are triple indexed:</p><ul>
 <li><p><code>x[i, j, l, wl.index = TRUE/FALSE]</code></p></li>
-<li><p><code>x[[i, j, l, wl.ndex = TRUE/FALSE]]</code></p></li>
+<li><p><code>x[[i, j, l, wl.index = TRUE/FALSE]]</code></p></li>
 <li><p><code>i</code> refers to rows of the <code>@data</code> slot. <code>i</code> can be integer indices or a logical vector.</p></li>
 <li><p><code>j</code> refers to columns of the <code>@data</code> slot. <code>j</code> can be integer indices, a logical vector
 or the name of a column.  <em>However, there is no guaranteed order to</em> <code><a href='https://rdrr.io/r/base/colnames.html'>colnames(x)</a></code>
@@ -290,7 +290,7 @@ Likewise if there are only two indices given they refer to <code>i</code> and <c
 <tr><td><code>x$.</code></td><td>Returns the complete <code>data.frame</code> <code>x@data</code>, with the spectra in column <code>$spc</code>.</td></tr>
 <tr><td><code>x$..</code></td><td>Returns all the extra data (<code>x@data</code> without <code>x$spc</code>).</td></tr>
 <tr><td><code>wl()</code></td><td>Returns the wavelengths.</td></tr>
-<tr><td><code><a href='https://rdrr.io/r/base/labels.html'>labels()</a></code></td><td>Returns the labels.</td></tr>
+<tr><td><a href='https://rdrr.io/r/base/labels.html'>labels()</a></td><td>Returns the labels.</td></tr>
 </table>
 
 
