@@ -1506,7 +1506,7 @@ CAPTION <- "The results of the cluster analysis: the dendrogram.  "
 ```
 
 ```{r dend, fig.cap = CAPTION, sq.fig = TRUE}
-plot(dendrogram)
+plot(dendrogram, labels = FALSE)
 ```
 
 In order to plot a cluster map, the cluster membership needs to be calculated from the dendrogram.
