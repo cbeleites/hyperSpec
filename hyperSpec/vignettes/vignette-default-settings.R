@@ -87,6 +87,9 @@ knitr::opts_hooks$set(sq.fig = function(options) {
   if (isTRUE(options$sq.fig)) {
     options$fig.width = 5
     options$fig.height = 5
+  } else {
+    options$fig.width = 7
+    options$fig.height = 3
   }
   options
 })
@@ -96,8 +99,8 @@ knitr::opts_chunk$set(
   echo       = TRUE,     # Should blocks with program code be shown in knitted documents?
   eval       = TRUE,     # Should program code be evaluated?
   tidy       = "styler", # Use code output styled in the Tidyverse style
-  fig.height = 3,        # Default height for plots.
-  fig.width  = 7,        # Default width for plots.
+  # fig.height = 3,        # Default height for plots.
+  # fig.width  = 7,        # Default width for plots.
   fig.align  = "center", # Default alignment for plots in knitted documents.
   collapse   = TRUE,
   comment    = "#>"
