@@ -41,8 +41,8 @@
 #' While the parts of the `hyperSpec` object can be accessed directly, it is good practice to
 #' use the functions provided by the package to handle the objects rather than accessing the
 #' slots directly. This also ensures that proper (i.e. *valid*) objects are returned.
-#'  In some cases, however, direct access to the slots can considerably speed up calculations.
-#' 
+#' In some cases, however, direct access to the slots can considerably speed up calculations.
+#'
 #' The main functions to retrieve the data of a `hyperSpec` object are `[]` and `[[]]`.
 #' The difference between these functions is that `[]` returns a `hyperSpec` object, whereas
 #' `[[]]` returns a `data.frame` containing `x$spc`, the spectral data.
@@ -55,7 +55,7 @@
 # SHOULD BE EDITTED AS WELL.
 #
 #' `hyperSpec` objects are triple indexed:
-#' 
+#'
 #' * `x[i, j, l, wl.index = TRUE/FALSE]`
 #' * `x[[i, j, l, wl.ndex = TRUE/FALSE]]`
 #' * `i` refers to rows of the `@data` slot. `i` can be integer indices or a logical vector.
@@ -65,9 +65,9 @@
 #' * `l` refers to wavelengths. Note the argument `wl.index` which determines how `l` is interpreted.
 #' * If there is only one index given, e.g. `x[1:3]`, it refers to the row index `i`.
 #'   Likewise if there are only two indices given they refer to `i` and `j`.
-#' 
+#'
 #' ## Extraction (Getter) Actions
-#' 
+#'
 #' | **Getter** | **Action** |
 #' | ------ | ------ |
 #' | `x[]` | Returns the entire `hyperSpec` object unchanged. |
@@ -89,7 +89,7 @@
 #' while the last returns a `data.frame`.
 #'
 #' ## Replacement (Setter) Actions
-#' 
+#'
 #' | **Setter** | **Action** |
 #' | ------ | ------ |
 #' | `x[i, ,] <-` | Replaces the specified rows of the `@data` slot, including `x$spc` and any extra data columns. Other approaches are probably easier. |
@@ -110,8 +110,8 @@
 #' @docType methods
 #' @aliases [ [,hyperSpec-method
 #' @param x A `hyperSpec` Object.
-#' @param i Index of rows in `x@@data`. Integer, logical, or in the case of 
-#'          `[[` and `[[<-`, a `nrow` by 2 logical matrix or 
+#' @param i Index of rows in `x@@data`. Integer, logical, or in the case of
+#'          `[[` and `[[<-`, a `nrow` by 2 logical matrix or
 #'          integer index matrix. In this case the indexing is done
 #'          inside the spectra matrix. See the examples.
 #' @param j Index of `x@@data` columns.  Integer, logical or character.  The order
@@ -121,7 +121,7 @@
 #'          upon the value of `wl.index`.
 #' @param wl.index If `FALSE` (the default), the values in `l` are
 #'          taken to be wavelengths.  If `TRUE`, the values in `l` are
-#'          taken to be indices for the spectral matrix. 
+#'          taken to be indices for the spectral matrix.
 #' @param drop For `[[`: drop unnecessary dimensions, see
 #'          [base::drop()] and [base::Extract()]. Ignored (quietly) for
 #'          `[`, as otherwise invalid `hyperSpec` objects might result.
@@ -170,7 +170,7 @@
 #' dim(fluA)
 #' fluB <- flu[[, , 31:91, wl.index = TRUE]]
 #' identical(fluA, fluB)
-#' 
+#'
 #' ##### Indexing via both j and l, result is data.frame
 #'
 #' result <- flu[[, 1:2, 405 ~ 410]]
