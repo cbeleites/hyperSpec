@@ -76,10 +76,9 @@ set_trellis_layout_hw_custom()
 # The other is a square plot, typically used by maps.  This is defined by the
 # sq.fig hook below, and can be called in the chunk by setting sq.fig = TRUE
 # to override the default settings.
-knitr::knit_hooks$set(sq.fig = function(before, options, envir) {
+knitr::knit_hooks$set(sq.fig = function(before) {
   if (before) {
-    fig.width = 5
-    fig.height = 5
+    opts_chunk$set(fig.width = 5, fig.height = 5)
   }
 })
 
