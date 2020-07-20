@@ -59,7 +59,7 @@
 #' `hyperSpec` objects are triple indexed:
 #'
 #' * `x[i, j, l, wl.index = TRUE/FALSE]`
-#' * `x[[i, j, l, wl.ndex = TRUE/FALSE]]`
+#' * `x[[i, j, l, wl.index = TRUE/FALSE]]`
 #' * `i` refers to rows of the `@data` slot. `i` can be integer indices or a logical vector.
 #' * `j` refers to columns of the `@data` slot. `j` can be integer indices, a logical vector
 #'    or the name of a column.  _However, there is no guaranteed order to_ `colnames(x)`
