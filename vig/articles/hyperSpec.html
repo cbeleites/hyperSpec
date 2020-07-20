@@ -129,7 +129,7 @@
 <br><a class="author_email" href="mailto:#"></a><a href="mailto:chemometrie@beleites.de" class="email">chemometrie@beleites.de</a>
       </address>
                   
-            <h4 class="date">2020-07-19</h4>
+            <h4 class="date">2020-07-20</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/cbeleites/hyperSpec/blob/master/../vignettes/hyperSpec.Rmd"><code>../vignettes/hyperSpec.Rmd</code></a></small>
       <div class="hidden name"><code>hyperSpec.Rmd</code></div>
@@ -2279,7 +2279,7 @@ Please refer to the documentation of the respective functions for details about 
   }
 })
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.060   0.002   0.063</span>
+<span class="co">#&gt;   0.053   0.003   0.056</span>
 </pre></div>
 <p>Calculations that involve a lot of subsetting (i.e., extracting or changing the spectra matrix or extra data) can be sped up considerably if the required parts of the <code>hyperSpec</code> object are extracted beforehand.
 This is somewhat similar to model fitting in <code>R</code> in general: many model fitting functions in <code>R</code> are much faster if the formula interface is avoided and the appropriate <code class="sourceCode r">data.frame</code>s or matrices are handed over directly.</p>
@@ -2294,7 +2294,7 @@ This is somewhat similar to model fitting in <code>R</code> in general: many mod
   <span class="kw">tmp</span>[[]] <span class="op">&lt;-</span> <span class="kw">tmp.matrix</span>
 })
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.010   0.000   0.011</span>
+<span class="co">#&gt;   0.012   0.000   0.012</span>
 </pre></div>
 <p>In general, it is not recommended to work with variables that are more than approximately a third of the available RAM in size. Particularly the import of raw spectroscopic data can consume large amounts of memory.
 At certain points, package <strong>hyperSpec</strong> provides switches that allow working with data sets that are actually close to this memory limit.</p>
@@ -2341,7 +2341,7 @@ The memory consumption of <code class="sourceCode r"><span class="kw">read.txt.R
 <span class="co">#&gt;  ggplot2      * 3.3.2         2020-06-19 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  glue           1.4.1         2020-05-13 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  gtable         0.3.0         2019-03-25 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  hyperSpec    * 0.99-20200615 2020-07-19 [1] local         </span>
+<span class="co">#&gt;  hyperSpec    * 0.99-20200615 2020-07-20 [1] local         </span>
 <span class="co">#&gt;  isoband        0.2.2         2020-06-20 [1] CRAN (R 4.0.1)</span>
 <span class="co">#&gt;  jpeg           0.1-8.1       2019-10-24 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  labeling       0.3           2014-08-23 [1] CRAN (R 4.0.0)</span>
