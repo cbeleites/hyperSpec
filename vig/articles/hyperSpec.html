@@ -285,7 +285,7 @@ GC-MS spectra with differing wavelength axes as a list of
 </tbody>
 </table>
 <p>In this vignette, the data sets are used to illustrate appropriate procedures for different tasks and different spectra.
-In addition, <a href="#abt-vigs">chondro</a>, <a href="#abt-vigs">laser</a> and <a href="#abt-vigs">flu</a> are accompanied by their own vignettes showing sample work flows for the respective data type.</p>
+In addition, <a href="#abt-vigs"><code>chondro</code></a>, <a href="#abt-vigs"><code>laser</code></a> and <a href="#abt-vigs"><code>flu</code></a> are accompanied by their own vignettes showing sample work flows for the respective data type.</p>
 <p>This document describes how to accomplish typical tasks in the analysis of spectra.
 It does not give a complete reference on particular functions.
 It is therefore recommended to look up the methods in the <code>R</code> help system using <code class="sourceCode r">?command</code>.</p>
@@ -2279,7 +2279,7 @@ Please refer to the documentation of the respective functions for details about 
   }
 })
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.050   0.003   0.052</span>
+<span class="co">#&gt;   0.049   0.002   0.052</span>
 </pre></div>
 <p>Calculations that involve a lot of subsetting (i.e., extracting or changing the spectra matrix or extra data) can be sped up considerably if the required parts of the <code>hyperSpec</code> object are extracted beforehand.
 This is somewhat similar to model fitting in <code>R</code> in general: many model fitting functions in <code>R</code> are much faster if the formula interface is avoided and the appropriate <code class="sourceCode r">data.frame</code>s or matrices are handed over directly.</p>
@@ -2294,7 +2294,7 @@ This is somewhat similar to model fitting in <code>R</code> in general: many mod
   <span class="kw">tmp</span>[[]] <span class="op">&lt;-</span> <span class="kw">tmp.matrix</span>
 })
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.011   0.000   0.012</span>
+<span class="co">#&gt;    0.01    0.00    0.01</span>
 </pre></div>
 <p>In general, it is not recommended to work with variables that are more than approximately a third of the available RAM in size. Particularly the import of raw spectroscopic data can consume large amounts of memory.
 At certain points, package <strong>hyperSpec</strong> provides switches that allow working with data sets that are actually close to this memory limit.</p>
