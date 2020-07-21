@@ -1,4 +1,4 @@
- ---
+---
 # For bookdown ---------------------------------------------------------------
 bookdown_file_name: hyperspec
 bookdown_titles: |
