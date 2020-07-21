@@ -58,6 +58,7 @@ rm(list = ls(all.names = TRUE))
 library(hyperSpec)
 library(mvtnorm)
 library(pls)
+library("colorspace")
 
 # Functions ------------------------------------------------------------------
 #
