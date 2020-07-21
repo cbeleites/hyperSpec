@@ -178,7 +178,7 @@ Package **hyperSpec** comes with several data sets:
 -----------------  ----------------------------------------------------------------------
 
 In this vignette, the data sets are used to illustrate appropriate procedures for different tasks and different spectra.
-In addition, [`chondro`](#abt-vigs), [`laser`](#abt-vigs) and [`flu`](#abt-vigs) are accompanied by their own vignettes showing sample work flows for the respective data type.
+In addition, [`chondro`](#list-of-vignettes), [`laser`](#list-of-vignettes) and [`flu`](#list-of-vignettes) are accompanied by their own vignettes showing sample work flows for the respective data type.
 
 This document describes how to accomplish typical tasks in the analysis of spectra.
 It does not give a complete reference on particular functions.
@@ -560,7 +560,7 @@ plot(paracetamol[, , c(min ~ 1750, 2800 ~ max)])
 ```
 
 It is possible to produce a plot of this data where the cut range is actually omitted and the wavelength axis is optionally cut in order to save space.
-For details see the [plotting](#abt-vigs) vignette.
+For details see the [plotting](#list-of-vignettes) vignette.
 
 
 
@@ -653,7 +653,7 @@ flu[[, c("c", "spc")]]
 This can be combined with extracting certain spectra and wavelengths, see \@ref(sec:conv-matrix).
 
 \mFun{`as.t.df()`{.r}}
-The transpose of a wide format `data.frame`{.r} can be obtained by `as.t.df()`{.r}. For further examples, see the discussion of package **ggplot2** in the [plotting](#abt-vigs) vignette.
+The transpose of a wide format `data.frame`{.r} can be obtained by `as.t.df()`{.r}. For further examples, see the discussion of package **ggplot2** in the [plotting](#list-of-vignettes) vignette.
 
 ```{r}
 as.t.df(apply(flu, 2, mean_pm_sd))
@@ -696,7 +696,7 @@ flu[[1:3, c("filename", "spc"), 406 ~ 407]]
 # Creating a **_hyperSpec_** Object, Data Import and Export {#sec:create}
 
 Package **hyperSpec** comes with filters for a variety of file formats.
-These are discussed in detail in a separate [fileio](#abt-vigs) vignette.  Here we just mention a couple of basic operations.
+These are discussed in detail in a separate [fileio](#list-of-vignettes) vignette.  Here we just mention a couple of basic operations.
 
 
 ## Creating a `hyperSpec` Object from Spectra Matrix and Wavelength Vector
@@ -721,7 +721,7 @@ The most frequently needed arguments are:
                      spectral intensity axis label in `$spc`{.r}.
 ---------------- ---------------------------------------------------------------------------------
 
-More information about converting existing data into `hyperSpec` objects can be found in the [fileio](#abt-vigs) vignette.
+More information about converting existing data into `hyperSpec` objects can be found in the [fileio](#list-of-vignettes) vignette.
 
 
 ## Creating Random Spectra
@@ -1130,7 +1130,7 @@ bl <- spc.fit.poly.below(chondro)
 chondro <- chondro - bl
 ```
 
-For details, see [baseline](#abt-vigs) vignette.
+For details, see [baseline](#list-of-vignettes) vignette.
 
 Package package **baseline**`r cite_pkg("baseline")` offers many more functions for baseline correction.
 The `baseline()`{.r} function works on the spectra matrix, which is extracted by `[[]]`.
@@ -1781,7 +1781,7 @@ table(tmp$clusters)
 # Plotting {#plotting-hyperspec}
 
 Package **hyperSpec** offers a variety of possibilities to plot spectra, spectral maps, the spectra matrix, time series, depth profiles, etc.
-See the [plotting](#abt-vigs) vignette.
+See the [plotting](#list-of-vignettes) vignette.
 
 
 
@@ -1801,8 +1801,8 @@ name  | default value (range)  | description | used by
 `gc`                   | `FALSE`{.r} | Triggers frequent calling of `gc()`{.r} | `read.ENVI()`{.r}, <br>\newline`new("hyperSpec")`{.r}
 `tolerance`            | `sqrt(.Machine$.double.eps)`{.r} | Tolerance for numerical comparisons   | File import functions (removing empty spectra), `normalize01()`{.r}
 `wl.tolerance`         | `sqrt(.Machine$.double.eps)`{.r} | Tolerance for comparisons of the wavelength axis | `rbind()`{.r}, `rbind2()`{.r}, `bind("r", ...)`{.r}, `all.equal()`{.r}, `collapse()`{.r}
-`file.remove.emptyspc` | `TRUE`{.r} | Automatic removing of empty spectra                         | File import functions, see [fileio](#abt-vigs)
-`file.keep.name`       | `TRUE`{.r} | Automatic recording of file name in column `filename`{.r}   | File import functions, see [fileio](#abt-vigs)
+`file.remove.emptyspc` | `TRUE`{.r} | Automatic removing of empty spectra                         | File import functions, see [fileio](#list-of-vignettes)
+`file.keep.name`       | `TRUE`{.r} | Automatic recording of file name in column `filename`{.r}   | File import functions, see [fileio](#list-of-vignettes)
 `plot.spc.nmax`        | `25`{.r}   | Number of spectra to be plotted by default                  | `plotspc()`{.r}
 `ggplot.spc.nmax`      | `10`{.r}   |                                                             | `qplotspc()`{.r}
 
