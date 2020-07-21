@@ -947,7 +947,7 @@ low.int  <- apply(ir.spc, 1, max) < 0.1 # the maximum should be at least 0.1
 ir.spc   <- ir.spc [!high.int & !low.int]
 ```
 
-### Removing Spectra outside mean $\pm$ $n$ sd
+### Removing Spectra Outside Mean $\pm$ $n$ Standard Deviations
 
 ```{r}
 mean_sd_filter <- function(x, n = 5) {
@@ -1177,7 +1177,7 @@ rm(bl, chondro)
 
 ## Intensity Calibration
 
-### Correcting by a constant, e. g. Readout Bias
+### Correcting by a Constant, e. g. Readout Bias
 
 CCD cameras often operate with a bias, causing a constant value for each pixel. Such a constant can be immediately subtracted: `spectra - constant`{.r}.
 
@@ -1696,7 +1696,7 @@ merged <- apply(merged, 1, approxfun,
 merged$.
 ```
 
-## Merging extra data to objects that do not (necessarily) share the same spectra {#sec:merge-df}
+## Merging Extra Data to Objects That Do Not (Necessarily) Share the Same Spectra {#sec:merge-df}
 
 Assume we obtained duplicate reference measurements for some of the concentrations in `flu`{.r}:
 
@@ -1764,7 +1764,7 @@ summary(rbind(cells, lacunae)$clusters)
 summary(collapse(cells, lacunae)$clusters)
 ```
 
-## Factor columns in `hyperSpec` Objects: dropping factor levels that are not needed
+## Factor Columns in `hyperSpec` Objects: Dropping Factor Levels That Are Not Needed
 
 \mFun{`droplevels()`{.r}}
 For subsections of `hyperSpec` objects that do not contain all levels of a factor column, `droplevels()`{.r} drops the "unpopulated" levels:
