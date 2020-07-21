@@ -882,8 +882,8 @@ A second possibility is to optimize the shift.
 For this strategy, the spectra must be sufficiently similar, while low spectral resolution is compensated by using larger spectral windows.
 
 ```{r}
-faux_cell <- faux_cell - spc.fit.poly.below(faux_cell[, , min + 3i ~ max - 3i], faux_cell)
-faux_cell <- sweep(faux_cell, 1, rowMeans(faux_cell[[]], na.rm = TRUE), "/")
+faux_cell.tmp <- faux_cell - spc.fit.poly.below(faux_cell[, , min + 3i ~ max - 3i], faux_cell)
+faux_cell.tmp <- sweep(faux_cell.tmp, 1, rowMeans(faux_cell[[]], na.rm = TRUE), "/")
 ```
 
 
@@ -1123,7 +1123,7 @@ They need to be subtracted afterwards:
 
 ```{r bl}
 bl <- spc.fit.poly.below(faux_cell)
-faux_cell <- faux_cell - bl
+faux_cell.tmp <- faux_cell - bl
 ```
 
 For details, see [baseline](#list-of-vignettes) vignette.
@@ -1215,7 +1215,7 @@ Again, `sweep()`{.r} is the function of choice.
 E.g., for area normalization, use:
 
 ```{r normalize1}
-faux_cell <- sweep(faux_cell, 1, mean, "/")
+faux_cell.tmp <- sweep(faux_cell, 1, mean, "/")
 ```
 (Using the mean instead of the sum results in conveniently scaled spectra with intensities around 1.)
 
@@ -1231,7 +1231,7 @@ If the calculation of the normalization factors is more elaborate, use a two ste
 
 ```{r norm}
 factors <- 1 / apply(faux_cell[, , 1600 ~ 1700], 1, mean)
-faux_cell <- sweep(faux_cell, 1, factors, "*")
+faux_cell.tmp <- sweep(faux_cell, 1, factors, "*")
 ```
 
 For the special case of area normalization using the `mean`{.r} spectra, the factors can be more conveniently calculated by
@@ -1243,13 +1243,13 @@ factors <- 1 / rowMeans(faux_cell[, , 1600 ~ 1700])
 and instead of `sweep`{.r} the arithmetic operators (here `*`{.r}) can be used directly with the normalization factor:
 
 ```{r norm-2}
-faux_cell <- faux_cell * factors
+faux_cell.tmp <- faux_cell * factors
 ```
 
 Put together, this results in:
 
 ```{r areanorm-shortcut}
-faux_cell <- faux_cell / rowMeans(faux_cell[, , 1600 ~ 1700])
+faux_cell.tmp <- faux_cell / rowMeans(faux_cell[, , 1600 ~ 1700])
 ```
 
 For minimum-maximum-normalization, first do an offset- or baseline correction, then normalize using `max()`{.r}.
@@ -1295,8 +1295,8 @@ CAPTION <- "The summary spectra of `faux_cell` with 5^th^ percentile subtracted.
 ```
 
 ```{r perc, fig.cap = CAPTION, include=TRUE}
-faux_cell <- scale(faux_cell, center = quantile(faux_cell, 0.05), scale = FALSE)
-plot(faux_cell, "spcprctl5")
+faux_cell.tmp <- scale(faux_cell, center = quantile(faux_cell, 0.05), scale = FALSE)
+plot(faux_cell.tmp, "spcprctl5")
 ```
 
 See section the appendices for some tips to speed up these calculations.
