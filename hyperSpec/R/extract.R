@@ -163,7 +163,7 @@
 #' range(faux_cell[[, "x"]]) # safest to use the name of the column
 #' colnames(faux_cell[[, 1]])
 #' dim(faux_cell[[, c(TRUE, FALSE, FALSE)]])
-#' faux_cell$x # an alternative
+#' head(faux_cell$x) # get "j" via name
 #'
 #' ##### Access wavelengths using "l" (3rd index)
 #'
@@ -183,7 +183,7 @@
 #' ##### Shortcuts
 #'
 #' # extract the spectra matrix
-#' flu[[]]
+#' flu[[]][1:5, 1:5] # show only a bit here
 #'
 #' # extract the data.frame including the spectra matrix
 #' flu$.
