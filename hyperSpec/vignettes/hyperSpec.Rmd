@@ -93,7 +93,7 @@ make_bib(
 
 <!-- \tableofcontents -->
 <!-- this chunk inserts common info about all the vignettes -->
-```{r child = "about-vignettes.Rmd", echo = FALSE}
+```{r child = "about-vignettes.md", echo = FALSE}
 ```
 
 # Things to Know About **_hyperSpec_**
