@@ -73,17 +73,28 @@ set_trellis_layout_hw_custom()
 
 # Notes on Figure Sizes.  There are (at least) 2 common figure aspect ratios in
 # the vignettes.  One is a full width figure, suitable for spectra or spectra-like
-# plots.  The other is a square plot, typically used by maps.
+# plots.  The other is a square plot, desirable for maps.
 # Figure size is controlled by the hook defined just below, and notice that
 # in the opts_chunk sq.fig = FALSE as the default.
+# Also, one may pass any fig.width and fig.height in a chunk; these will override
+# other settings.
 
 knitr::opts_hooks$set(sq.fig = function(options) {
+
+  if (isFALSE(options$sq.fig)) {
+    # custom fig dimensions given, use w/o further delay
+    if ((!is.null(options$fig.width)) & (!is.null(options$fig.height))) return(options)
+
+    # otherwise set the default wide aspect ratio
+    if ((is.null(options$fig.width)) & (is.null(options$fig.height))) {
+      options$fig.width = 7
+      options$fig.height = 3
+    }
+  }
+
   if (isTRUE(options$sq.fig)) {
-    options$fig.width = 6
-    options$fig.height = 6
-  } else {
-    options$fig.width = 7
-    options$fig.height = 3
+    options$fig.width = 5
+    options$fig.height = 5
   }
   options
 })
