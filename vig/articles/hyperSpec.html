@@ -239,12 +239,6 @@
 <td align="right">% </td>
 </tr>
 <tr class="even">
-<td align="right">% </td>
-</tr>
-<tr class="odd">
-<td align="right">% </td>
-</tr>
-<tr class="even">
 <td align="right">Citations/References ——————————————————-</td>
 </tr>
 <tr class="odd">
@@ -1383,6 +1377,7 @@ Filtering data: remove bad points.
 <p>Function <code class="sourceCode r"><span class="kw">spc.bin</span>()</code> bins the spectral axis by averaging every <code class="sourceCode r">by</code> data points.</p>
 <div class="sourceCode" id="cb73"><pre class="downlit">
 <span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">paracetamol</span>, wl.range = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">300</span> <span class="op">~</span> <span class="fl">1800</span>, <span class="fl">2800</span> <span class="op">~</span> <span class="kw">max</span>), xoffset = <span class="fl">850</span>)
+<span class="co">#&gt; Loading required namespace: plotrix</span>
 <span class="kw">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/spc.loess.html">spc.loess</a></span>(<span class="kw">paracetamol</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fu"><a href="../reference/seq.hyperSpec.html">seq</a></span>(<span class="fl">300</span>, <span class="fl">1800</span>, <span class="fl">2</span>), <span class="fu"><a href="../reference/seq.hyperSpec.html">seq</a></span>(<span class="fl">2850</span>, <span class="fl">3150</span>, <span class="fl">2</span>)))
 <span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">p</span>, wl.range = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">300</span> <span class="op">~</span> <span class="fl">1800</span>, <span class="fl">2800</span> <span class="op">~</span> <span class="kw">max</span>), xoffset = <span class="fl">850</span>, col = <span class="kw">CB7</span>[<span class="fl">4</span>], add = <span class="fl">TRUE</span>)
 
@@ -2243,7 +2238,7 @@ The missing parts of the spectra are filled with <code class="sourceCode r"><spa
   }
 })
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.047   0.001   0.050</span>
+<span class="co">#&gt;   0.050   0.002   0.053</span>
 </pre></div>
 <p>Calculations that involve a lot of subsetting (i.e., extracting or changing the spectra matrix or extra data) can be sped up considerably if the required parts of the <code>hyperSpec</code> object are extracted beforehand. This is somewhat similar to model fitting in <code>R</code> in general: many model fitting functions in <code>R</code> are much faster if the formula interface is avoided and the appropriate <code class="sourceCode r">data.frame</code>s or matrices are handed over directly.</p>
 <div class="sourceCode" id="cb142"><pre class="downlit">
@@ -2257,7 +2252,7 @@ The missing parts of the spectra are filled with <code class="sourceCode r"><spa
   <span class="kw">tmp</span>[[]] <span class="op">&lt;-</span> <span class="kw">tmp.matrix</span>
 })
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.010   0.000   0.009</span>
+<span class="co">#&gt;    0.01    0.00    0.01</span>
 </pre></div>
 <p>In general, it is not recommended to work with variables that are more than approximately a third of the available RAM in size. Particularly the import of raw spectroscopic data can consume large amounts of memory. At certain points, package <strong>hyperSpec</strong> provides switches that allow working with data sets that are actually close to this memory limit.</p>
 
@@ -2308,7 +2303,7 @@ The missing parts of the spectra are filled with <code class="sourceCode r"><spa
 <span class="co">#&gt;  lazyeval       0.2.2         2019-03-15 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  lifecycle      0.2.0         2020-03-06 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  magrittr       1.5           2014-11-22 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  MASS         * 7.3-51.6      2020-04-26 [2] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  MASS           7.3-51.6      2020-04-26 [2] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  Matrix         1.2-18        2019-11-27 [2] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  mgcv           1.8-31        2019-11-09 [2] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  munsell        0.5.0         2018-06-12 [1] CRAN (R 4.0.0)</span>
