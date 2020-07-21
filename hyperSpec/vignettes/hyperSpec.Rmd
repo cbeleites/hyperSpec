@@ -375,16 +375,16 @@ They can be given like any column specification for a `data.frame`{.r}, i.e., nu
 ```{r data}
 colnames(faux_cell)
 ```
-```{r data-faux_cell-b}
+```{r data-faux-cell-b}
 faux_cell[[1:3, 1]]
 ```
-```{r data-faux_cell-c}
+```{r data-faux-cell-c}
 faux_cell[[1:3, -5]]
 ```
-```{r data-faux_cell-d}
+```{r data-faux-cell-d}
 faux_cell[[1:3, "x"]]
 ```
-```{r data-faux_cell-e}
+```{r data-faux-cell-e}
 faux_cell[[1:3, c(FALSE, TRUE)]] # note the recycling!
 ```
 
