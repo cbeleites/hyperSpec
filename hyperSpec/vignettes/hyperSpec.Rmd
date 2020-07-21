@@ -1,4 +1,4 @@
-$region---
+---
 # For bookdown ---------------------------------------------------------------
 bookdown_file_name: hyperspec
 bookdown_titles: |
@@ -195,34 +195,34 @@ Table \@ref(tab:options) gives an overview of the options.  You should not worry
 Any of `print()`{.r}, `show()`{.r} or `summary()`{.r} provides an overview of the object (the output of each is identical):
 
 ```{r print}
-faux_cell
+chondro
 ```
 
 \mFun{nrow, ncol, nwl, dim}
-The data set `faux_cell`{.r} consists of `r nrow(faux_cell)` spectra with `r nwl(faux_cell)` data points each, and `r ncol(faux_cell)` data columns: two for the spatial information, one giving the cell region of each pixel plus `$spc`{.r}.
+The data set `chondro`{.r} consists of `r nrow(chondro)` spectra with `r nwl(chondro)` data points each, and `r ncol(chondro)` data columns: two for the spatial information, one factor with the results of a cluster analysis plus `$spc`{.r}.
 These details can be directly obtained by
 
 ```{r nwl}
-nrow(faux_cell)
+nrow(chondro)
 ```
 
 ```{r nwl2}
-nwl(faux_cell)
+nwl(chondro)
 ```
 
 ```{r nwl3}
-ncol(faux_cell)
+ncol(chondro)
 ```
 
 ```{r nwl4}
-dim(faux_cell)
+dim(chondro)
 ```
 
 \mFun{colnames, rownames, dimnames, wl}
 The names of the columns in `@data`{.r} are accessed by `colnames()`{.r}.
 
 ```{r names}
-colnames(faux_cell)
+colnames(chondro)
 ```
 
 Likewise, `rownames()`{.r} returns the names assigned to the spectra, and `dimnames()`{.r} yields a list of these three vectors (including also the column names of `$spc`{.r}).
@@ -344,14 +344,14 @@ plot(flu[flu$c > 0.2], add = TRUE)
 A random subset of spectra can be conveniently selected by `sample()`{.r}:
 
 ```{r sample}
-sample(faux_cell, 3)
+sample(chondro, 3)
 ```
 
 \mFun{`isample()`{.r}}
 If indices into the selected spectra are needed instead, use `isample()`{.r}:
 
 ```{r isample}
-isample(faux_cell, 3)
+isample(chondro, 3)
 ```
 
 
@@ -361,8 +361,8 @@ isample(faux_cell, 3)
 Sequences of every n^th^ spectrum or the like can be retrieved with `seq()`{.r}:
 
 ```{r seq}
-seq(faux_cell, length.out = 3, index = TRUE)
-seq(faux_cell, by = 100)
+seq(chondro, length.out = 3, index = TRUE)
+seq(chondro, by = 100)
 ```
 Here, indices may be requested using `index = TRUE`{.r}.
 
@@ -373,19 +373,19 @@ The second argument of the extraction functions `[]` and `[[]]` specifies the ex
 They can be given like any column specification for a `data.frame`{.r}, i.e., numeric, logical, or by a vector of the column names.  However, since there is intrinsic order the column names of a `hyperSpec` object, using the column names is safest:
 
 ```{r data}
-colnames(faux_cell)
+colnames(chondro)
 ```
-```{r data-faux-cell-b}
-faux_cell[[1:3, 1]]
+```{r data-chondro-b}
+chondro[[1:3, 1]]
 ```
-```{r data-faux-cell-c}
-faux_cell[[1:3, -5]]
+```{r data-chondro-c}
+chondro[[1:3, -5]]
 ```
-```{r data-faux-cell-d}
-faux_cell[[1:3, "x"]]
+```{r data-chondro-d}
+chondro[[1:3, "x"]]
 ```
-```{r data-faux-cell-e}
-faux_cell[[1:3, c(FALSE, TRUE)]] # note the recycling!
+```{r data-chondro-e}
+chondro[[1:3, c(FALSE, TRUE)]] # note the recycling!
 ```
 
 \mFun{`$`{.r}}
@@ -421,11 +421,11 @@ indexmatrix
 ```
 
 ```{r data4b}
-faux_cell[[indexmatrix, wl.index = TRUE]]
+chondro[[indexmatrix, wl.index = TRUE]]
 ```
 
 ```{r data4c}
-diag(faux_cell[[1:3, , min ~ min + 2i]])
+diag(chondro[[1:3, , min ~ min + 2i]])
 ```
 
 Operator `[[]]<-` also accepts index matrices of size $n × 2$.
@@ -462,11 +462,11 @@ wl2i(flu, 405 ~ 410)
 ```
 
 ```{r wl2ivec3}
-wl2i(faux_cell, 1000:1010)
+wl2i(chondro, 1000:1010)
 ```
 
 ```{r wl2ivec4}
-wl2i(faux_cell, 1000 ~ 1010)
+wl2i(chondro, 1000 ~ 1010)
 ```
 
 - If the object's wavelength axis is not ordered, the formula approach will give weird results.
@@ -728,7 +728,7 @@ Note that the package **hyperSpec** function's name has an additional "m": it al
 Mean spectra and pooled covariance matrix can be calculated using `pooled.cov()`{.r}\mFun{pooled.cov}:
 
 ```{r}
-pcov <- pooled.cov(faux_cell, faux_cell$region)
+pcov <- pooled.cov(chondro, chondro$clusters)
 rnd  <- rmmvnorm(rep(10, 3), mean = pcov$mean, sigma = pcov$COV)
 ```
 
@@ -761,7 +761,7 @@ The first method is very straightforward (Fig. \@ref(fig:shift-wl)):
 
 
 ```{r}
-tmp <- faux_cell
+tmp <- chondro
 wl(tmp) <- wl(tmp) - 10
 ```
 
@@ -773,7 +773,7 @@ CAPTION <-
 ```
 
 ```{r shift-wl, fig.cap = CAPTION}
-plot(faux_cell[135])
+plot(chondro[135])
 plot(tmp[135, , ], add = TRUE, col = CB7[4])
 ```
 
@@ -794,7 +794,7 @@ interpolate <- function(spc, shift, wl) {
 This function can now be applied to a set of spectra (Fig. \@ref(fig:shift-interp)):
 
 ```{r}
-tmp <- apply(faux_cell, 1, interpolate, shift = -10, wl = wl(faux_cell))
+tmp <- apply(chondro, 1, interpolate, shift = -10, wl = wl(chondro))
 ```
 
 
@@ -804,7 +804,7 @@ CAPTION <- "Shifting the spectra along the wavelength axis: interpolation.  "
 ```
 
 ```{r shift-interp, fig.cap = CAPTION, results = "hide"}
-plot(faux_cell[135])
+plot(chondro[135])
 plot(tmp[135], add = TRUE, col = CB7[4])
 ```
 
@@ -816,12 +816,12 @@ Detail view of the phenylalanine band: shifting by `wl<-`{.r} (red) does not aff
 ```
 
 ```{r shift-untsch, fig.cap = CAPTION, results = "hide"}
-tmp <- faux_cell[135, , 990 ~ 1010]
+tmp <- chondro[135, , 990 ~ 1010]
 plot(tmp, lines.args = list(type = "b", pch = 19, cex = 0.5))
 wl(tmp) <- wl(tmp) - 0.5
 plot(tmp, lines.args = list(type = "b", pch = 19, cex = 0.5), add = TRUE, col = CB7[4])
 
-tmp <- faux_cell[135]
+tmp <- chondro[135]
 tmp <- apply(tmp, 1, function(x, wl, shift) {
   spline(wl + shift, x, xout = wl)$y
 },
@@ -833,12 +833,12 @@ plot(tmp, lines.args = list(type = "b", pch = 19, cex = 0.5), add = TRUE, col = 
 If different spectra need to be offset by different shift, use a loop^[Function `sweep()`{.r} cannot be used here, and while there is the possibility to use sapply or mapply, they are not faster than the for loop in this case. Make sure to work on a copy of the spectra matrix, as that is much faster than row-wise extracting and changing the spectra by `[[()`{.r} and `[[<-`{.r}.].
 
 ```{r}
-shifts <- rnorm(nrow(faux_cell))
-tmp <- faux_cell[[]]
-for (i in seq_len(nrow(faux_cell))) {
-  tmp[i, ] <- interpolate(tmp[i, ], shifts[i], wl = wl(faux_cell))
+shifts <- rnorm(nrow(chondro))
+tmp <- chondro[[]]
+for (i in seq_len(nrow(chondro))) {
+  tmp[i, ] <- interpolate(tmp[i, ], shifts[i], wl = wl(chondro))
 }
-faux_cell[[]] <- tmp
+chondro[[]] <- tmp
 ```
 
 
@@ -847,7 +847,7 @@ faux_cell[[]] <- tmp
 Often, the shift in the spectra is determined by aligning a particular signal.
 This strategy works best with spectrally oversampled data that allows accurate determination of the signal position.
 
-For the `faux_cell`{.r} data, let's use the maximum of the peak between around 1200 cm^-1^.
+For the `chondro`{.r} data, let's use the maximum of the phenylalanine band between 990 and 1020 cm^-1^.
 As just the very maximum is too coarse, we'll use the maximum of a square polynomial fitted to the maximum and its two neighbours.
 
 <!-- ======================================================================= -->
@@ -871,8 +871,8 @@ find.max <- function(y, x) {
   - coef[2] / coef[3] / 2 + x[pos[2]]
 }
 
-bandpos <- apply(faux_cell[[, , 1190 ~ 1210]], 1, find.max, wl(faux_cell[, , 1190 ~ 1210]))
-refpos <- find.max(colMeans(faux_cell[[, , 1190 ~ 1210]]),  wl(faux_cell[, , 1190 ~ 1210]))
+bandpos <- apply(chondro[[, , 990 ~ 1020]], 1, find.max, wl(chondro[, , 990 ~ 1020]))
+refpos <- find.max(colMeans(chondro[[, , 990 ~ 1020]]),  wl(chondro[, , 990 ~ 1020]))
 
 shift1 <- refpos - bandpos
 ```
@@ -882,8 +882,8 @@ A second possibility is to optimize the shift.
 For this strategy, the spectra must be sufficiently similar, while low spectral resolution is compensated by using larger spectral windows.
 
 ```{r}
-faux_cell.tmp <- faux_cell - spc.fit.poly.below(faux_cell[, , min + 3i ~ max - 3i], faux_cell)
-faux_cell.tmp <- sweep(faux_cell.tmp, 1, rowMeans(faux_cell[[]], na.rm = TRUE), "/")
+chondro <- chondro - spc.fit.poly.below(chondro[, , min + 3i ~ max - 3i], chondro)
+chondro <- sweep(chondro, 1, rowMeans(chondro[[]], na.rm = TRUE), "/")
 ```
 
 
@@ -893,32 +893,32 @@ targetfn <- function(shift, wl, spc, targetspc) {
   sum(error^2)
 }
 
-shift2 <- numeric(nrow(faux_cell))
-tmp <- faux_cell[[]]
-target <- colMeans(faux_cell[[]])
-for (i in 1:nrow(faux_cell)) {
+shift2 <- numeric(nrow(chondro))
+tmp <- chondro[[]]
+target <- colMeans(chondro[[]])
+for (i in 1:nrow(chondro)) {
   shift2[i] <- unlist(optimize(targetfn,
     interval = c(-5, 5),
-    wl = faux_cell@wavelength,
+    wl = chondro@wavelength,
     spc = tmp[i, ], targetspc = target
   )$minimum)
 }
 ```
 
-Figure \@ref(fig:fit-shift) shows that the second correction method works better for the `faux_cell` data.
+Figure \@ref(fig:fit-shift) shows that the second correction method works better for the chondrocyte data.
 This was expected, as the spectra are hardly or not oversampled, but are very similar to each other.
 
 
 ```{r include = FALSE}
 CAPTION <-
-  "The shifts used to disturb the `faux_cell` data (original), and the remaining shift after correction with the two methods discussed here.  "
+  "The shifts used to disturb the chondrocyte data (original), and the remaining shift after correction with the two methods discussed here.  "
 ```
 
 ```{r fit-shift, fig.cap = CAPTION}
 df <- data.frame(
   shift = c(shifts, shifts + shift1, shifts + shift2),
   method = rep(c("original", "find maximum", "interpolation"),
-    each = nrow(faux_cell)
+    each = nrow(chondro)
   )
 )
 plot(histogram(~ shift | method,
@@ -937,7 +937,7 @@ E.g., for infrared spectra one may state that the absorbance maximum should be, 
 Class `hyperSpec`'s comparison operators return a logical matrix of the size of the spectra that is suitable for later indexing:
 
 ```{r eval = FALSE}
-ir.spc   <- faux_cell / 1500 ## fake IR data
+ir.spc   <- chondro / 1500 ## fake IR data
 high.int <- apply(ir.spc > 1, 1, any) # any point above 1 is bad
 low.int  <- apply(ir.spc, 1, max) < 0.1 # the maximum should be at least 0.1
 ir.spc   <- ir.spc [!high.int & !low.int]
@@ -952,9 +952,9 @@ mean_sd_filter <- function(x, n = 5) {
   (x <= s) & (x > -s)
 }
 
-OK <- apply(faux_cell[[]], 2, mean_sd_filter, n = 4) # logical matrix
+OK <- apply(chondro[[]], 2, mean_sd_filter, n = 4) # logical matrix
 
-spc.OK <- faux_cell[apply(OK, 1, all)]
+spc.OK <- chondro[apply(OK, 1, all)]
 ```
 
 
@@ -964,9 +964,9 @@ CAPTION <- "Filtering data: mean $\\pm$ sd filter.  "
 ```
 
 ```{r filter, fig.cap = CAPTION}
-plot(faux_cell[!apply(OK, 1, all)])
+plot(chondro[!apply(OK, 1, all)])
 i <- which(!OK, arr.ind = TRUE)
-points(wl(faux_cell)[i[, 2]], faux_cell[[!OK]], pch = 19, col = CB7[4], cex = 0.5)
+points(wl(chondro)[i[, 2]], chondro[[!OK]], pch = 19, col = CB7[4], cex = 0.5)
 ```
 
 <!-- \begin{figure}[tb] -->
@@ -982,7 +982,7 @@ points(wl(faux_cell)[i[, 2]], faux_cell[[!OK]], pch = 19, col = CB7[4], cex = 0.
 Assume the data occasionally has a detector readout of 0:
 
 ```{r}
-spc <- faux_cell[1:3, , min ~ min + 15i]
+spc <- chondro[1:3, , min ~ min + 15i]
 spc[[cbind(1:3, sample(nwl(spc), 3)), wl.index = TRUE]] <- 0
 spc[[]]
 ```
@@ -1095,14 +1095,14 @@ sweep(spectra, 2, background.spectrum, "-")
 Calculate the offsets and adjust the spectra accordingly:
 
 ```{r ofs}
-offsets <- apply(faux_cell, 1, min)
-faux_cell.offset.corrected <- sweep(faux_cell, 1, offsets, "-")
+offsets <- apply(chondro, 1, min)
+chondro.offset.corrected <- sweep(chondro, 1, offsets, "-")
 ```
 
 If the offset is calculated by a function, as here with the `min()`{.r}, `hyperSpec`'s `sweep()`{.r} method offers a shortcut: `sweep()`{.r}'s `STATS`{.r} argument may be the function instead of a numeric vector:
 
 ```{r ofs2}
-faux_cell.offset.corrected <- sweep(faux_cell, 1, min, "-")
+chondro.offset.corrected <- sweep(chondro, 1, min, "-")
 ```
 
 
@@ -1122,8 +1122,8 @@ Both functions return a `hyperSpec` object containing the fitted baselines.
 They need to be subtracted afterwards:
 
 ```{r bl}
-bl <- spc.fit.poly.below(faux_cell)
-faux_cell.tmp <- faux_cell - bl
+bl <- spc.fit.poly.below(chondro)
+chondro <- chondro - bl
 ```
 
 For details, see [baseline](#list-of-vignettes) vignette.
@@ -1133,24 +1133,24 @@ The `baseline()`{.r} function works on the spectra matrix, which is extracted by
 The result is a `baseline`{.r} object, but can easily be re-imported into the `hyperSpec` object:
 
 ```{r do-bl}
-corrected <- hyperSpec::faux_cell[1] # start with the unchanged data set
+corrected <- hyperSpec::chondro[1] # start with the unchanged data set
 
 library("baseline")
 bl <- baseline(corrected[[]], method = "modpolyfit", degree = 4)
 corrected[[]] <- getCorrected(bl)
 ```
 
-Fig. \@ref(fig:bl-baseline) and \@ref(fig:bl-baseline-2) show raw data and the result for the first spectrum of `faux_cell`{.r}.
+Fig. \@ref(fig:bl-baseline) and \@ref(fig:bl-baseline-2) show raw data and the result for the first spectrum of `chondro`{.r}.
 
 
 ```{r include = FALSE}
-CAPTION <- "The first spectrum of `faux_cell`{.r} (raw data) with baseline.  "
+CAPTION <- "The first spectrum of `chondro`{.r} (raw data) with baseline.  "
 ```
 
 ```{r bl-baseline, fig.cap = CAPTION}
 baseline <- corrected
 baseline[[]] <- getBaseline(bl)
-plot(hyperSpec::faux_cell[1], plot.args = list(ylim = range(hyperSpec::faux_cell[1], 0)))
+plot(hyperSpec::chondro[1], plot.args = list(ylim = range(hyperSpec::chondro[1], 0)))
 plot(baseline, add = TRUE, col = CB7[4])
 ```
 
@@ -1158,16 +1158,16 @@ plot(baseline, add = TRUE, col = CB7[4])
 
 ```{r include = FALSE}
 CAPTION <- 'Baseline correction using the **baseline** package:
-the first spectrum of `faux_cell`{.r}  after baseline correction with method "odpolyfi".  '
+the first spectrum of `chondro`{.r}  after baseline correction with method "odpolyfi".  '
 ```
 
 ```{r bl-baseline-2, fig.cap = CAPTION}
-plot(corrected, plot.args = list(ylim = range(hyperSpec::faux_cell[1], 0)))
+plot(corrected, plot.args = list(ylim = range(hyperSpec::chondro[1], 0)))
 ```
 
 
 ```{r}
-rm(bl, faux_cell)
+rm(bl, chondro)
 ```
 
 
@@ -1215,7 +1215,7 @@ Again, `sweep()`{.r} is the function of choice.
 E.g., for area normalization, use:
 
 ```{r normalize1}
-faux_cell.tmp <- sweep(faux_cell, 1, mean, "/")
+chondro <- sweep(chondro, 1, mean, "/")
 ```
 (Using the mean instead of the sum results in conveniently scaled spectra with intensities around 1.)
 
@@ -1230,26 +1230,26 @@ If the calculation of the normalization factors is more elaborate, use a two ste
 
 
 ```{r norm}
-factors <- 1 / apply(faux_cell[, , 1600 ~ 1700], 1, mean)
-faux_cell.tmp <- sweep(faux_cell, 1, factors, "*")
+factors <- 1 / apply(chondro[, , 1600 ~ 1700], 1, mean)
+chondro <- sweep(chondro, 1, factors, "*")
 ```
 
 For the special case of area normalization using the `mean`{.r} spectra, the factors can be more conveniently calculated by
 
 ```{r norm-rowmeans}
-factors <- 1 / rowMeans(faux_cell[, , 1600 ~ 1700])
+factors <- 1 / rowMeans(chondro[, , 1600 ~ 1700])
 ```
 
 and instead of `sweep`{.r} the arithmetic operators (here `*`{.r}) can be used directly with the normalization factor:
 
 ```{r norm-2}
-faux_cell.tmp <- faux_cell * factors
+chondro <- chondro * factors
 ```
 
 Put together, this results in:
 
 ```{r areanorm-shortcut}
-faux_cell.tmp <- faux_cell / rowMeans(faux_cell[, , 1600 ~ 1700])
+chondro <- chondro / rowMeans(chondro[, , 1600 ~ 1700])
 ```
 
 For minimum-maximum-normalization, first do an offset- or baseline correction, then normalize using `max()`{.r}.
@@ -1281,7 +1281,7 @@ flu.centered <- scale(flu, scale = FALSE)
 plot(flu.centered)
 ```
 
-On the other hand, the `faux_cell`{.r} data set consists of Raman spectra, so the spectroscopic interpretation of centering is getting rid of the the average chemical composition of the sample.
+On the other hand, the `chondro`{.r} data set consists of Raman spectra, so the spectroscopic interpretation of centering is getting rid of the the average chemical composition of the sample.
 But what is the meaning of the "Average spectrum" of an inhomogeneous sample?
 In this case it may be better to subtract the minimum spectrum (which will hopefully have almost the same benefit on the data analysis) as it is the spectrum of that chemical composition that is underlying the whole sample.
 
@@ -1291,12 +1291,12 @@ In order to avoid that, using, e.g., the 5^th^ percentile spectrum is more suita
 
 
 ```{r include = FALSE}
-CAPTION <- "The summary spectra of `faux_cell` with 5^th^ percentile subtracted.  "
+CAPTION <- "The summary spectra of `chondro` with 5^th^ percentile subtracted.  "
 ```
 
 ```{r perc, fig.cap = CAPTION, include=TRUE}
-faux_cell.tmp <- scale(faux_cell, center = quantile(faux_cell, 0.05), scale = FALSE)
-plot(faux_cell.tmp, "spcprctl5")
+chondro <- scale(chondro, center = quantile(chondro, 0.05), scale = FALSE)
+plot(chondro, "spcprctl5")
 ```
 
 See section the appendices for some tips to speed up these calculations.
@@ -1310,8 +1310,8 @@ It operates on the spectra matrix:
 
 ```{r msc, eval = FALSE}
 library(pls)
-faux_cell.msc <- faux_cell
-faux_cell.msc[[]] <- msc(faux_cell[[]])
+chondro.msc <- chondro
+chondro.msc[[]] <- msc(chondro[[]])
 ```
 
 
@@ -1353,14 +1353,14 @@ The `$.`{.r} notation is handy, if a data analysis function expects a `data.fram
 The column names can then be used in the formula:
 
 ```{r pca}
-pca <- prcomp(~spc, data = faux_cell$., center = FALSE)
+pca <- prcomp(~spc, data = chondro$., center = FALSE)
 ```
 
 However, many modeling functions call `as.data.frame`{.r} on their `data`{.r} argument, including `prcomp()`{.r}.
 In that case, the conversion is done automatically so the following gives the same result as above:
 
 ```{r pca-auto}
-pca <- prcomp(~spc, data = faux_cell, center = FALSE)
+pca <- prcomp(~spc, data = chondro, center = FALSE)
 ```
 
 ### Plotting the Results of PCA
@@ -1369,7 +1369,7 @@ The results of such a \mFun{`decomposition()`{.r}} decomposition can be put back
 This conveniently allows one to use the regular `hyperSpec` plotting functions, e.g., the loading-like spectra, or score maps, see Figures \@ref(fig:pca-load) and  \@ref(fig:pca-score).
 
 ```{r decomp}
-scores <- decomposition(faux_cell, pca$x,
+scores <- decomposition(chondro, pca$x,
   label.wavelength = "PC",
   label.spc = "score / a.u."
 )
@@ -1379,7 +1379,7 @@ scores
 The loadings can be similarly re-imported:
 
 ```{r loadings}
-loadings <- decomposition(faux_cell, t(pca$rotation),
+loadings <- decomposition(chondro, t(pca$rotation),
   scores = FALSE,
   label.spc = "loading I / a.u."
 )
@@ -1395,7 +1395,7 @@ Argument `retain.columns`{.r} triggers whether columns that contain different va
 If it is set to `TRUE`{.r}, the columns are retained, but contain `NA`{.r}s:
 
 ```{r retain.col}
-loadings <- decomposition(faux_cell, t(pca$rotation),
+loadings <- decomposition(chondro, t(pca$rotation),
   scores = FALSE,
   retain.columns = TRUE, label.spc = "loading I / a.u."
 )
@@ -1404,8 +1404,8 @@ loadings[1]$..
 If an extra data column does contain only one unique value, it is retained regardless:
 
 ```{r retain}
-faux_cell$measurement <- 1
-loadings <- decomposition(faux_cell, t(pca$rotation),
+chondro$measurement <- 1
+loadings <- decomposition(chondro, t(pca$rotation),
   scores = FALSE,
   label.spc = "loading I / a.u."
 )
@@ -1478,7 +1478,7 @@ If we decide that only the first 10 components actually carry spectroscopic info
 smoothed <- scores[, , 1:10] %*% loadings[1:10]
 ```
 Keep in mind, though, that we cannot be sure how much *useful* information was discarded with the higher components.
-This kind of noise reduction may influence further modeling of the data. Mathematically speaking, the rank of the new `r nrow (faux_cell)` $×$ `r nwl (faux_cell)` spectra matrix is only 10.
+This kind of noise reduction may influence further modeling of the data. Mathematically speaking, the rank of the new `r nrow (chondro)` $×$ `r nwl (chondro)` spectra matrix is only 10.
 
 
 ## Hierarchical Cluster Analysis {#HCA}
@@ -1487,13 +1487,13 @@ This kind of noise reduction may influence further modeling of the data. Mathema
 Some `R` functions expect their input data in a matrix, including those related to HCA. Conveniently, the `[[]]`{.r} extraction function returns a matrix.
 
 ```{r hca}
-dist <- pearson.dist(faux_cell[[]])
+dist <- pearson.dist(chondro[[]])
 ```
 
 Again, many such functions coerce the data to a matrix automatically, so the `hyperSpec` object can be handed over without the explicit conversion above (as we saw for PCA):
 
 ```{r hca-asmatrix}
-dist <- pearson.dist(faux_cell)
+dist <- pearson.dist(chondro)
 dendrogram <- hclust(dist, method = "ward.D")
 ```
 
@@ -1510,12 +1510,12 @@ In order to plot a cluster map, the cluster membership needs to be calculated fr
 First, cut the dendrogram so that three clusters result:
 
 ```{r dendcut}
-faux_cell$region <- as.factor(cutree(dendrogram, k = 3))
+chondro$clusters <- as.factor(cutree(dendrogram, k = 3))
 ```
 As the cluster membership was stored as factor, the levels can be meaningful names, which are displayed in the color legend.
 
 ```{r clustname}
-levels(faux_cell$region) <- c("matrix", "lacuna", "cell")
+levels(chondro$clusters) <- c("matrix", "lacuna", "cell")
 ```
 
 Then the result may be plotted (Figure \@ref(fig:clust-map)):
@@ -1525,7 +1525,7 @@ CAPTION <- "The results of the cluster analysis: the map of the 3 clusters.  "
 ```
 
 ```{r clust-map, fig.cap = CAPTION, sq.fig = TRUE}
-plotmap(faux_cell, clusters ~ x * y, col.regions = cluster.cols)
+plotmap(chondro, clusters ~ x * y, col.regions = cluster.cols)
 ```
 
 
@@ -1543,7 +1543,7 @@ CAPTION <- "The results of the cluster analysis: the the mean spectra.  "
 ```
 
 ```{r clustmean, fig.cap = CAPTION}
-means <- aggregate(faux_cell, by = faux_cell$region, mean_pm_sd)
+means <- aggregate(chondro, by = chondro$clusters, mean_pm_sd)
 plot(means, col = cluster.cols, stacked = ".aggregate", fill = ".aggregate")
 ```
 
@@ -1605,31 +1605,31 @@ The arguments `by`{.r}, `by.x`{.r}, and `by.y`{.r} specify which columns should 
 The arguments `all`{.r}, `all.x`{.r}, and `all.y`{.r} determine whether spectra should be kept for the result set if they appear in only one of the objects.
 For details, see also the help on the base function `merge()`{.r}.
 
-As an example, let's construct a version of the `faux_cell`{.r} data like being taken as two maps with different spectral ranges.
+As an example, let's construct a version of the `chondro`{.r} data like being taken as two maps with different spectral ranges.
 In each data set, some spectra are missing.
 
 ```{r merge-sample}
-faux_cell.low <- sample(faux_cell[, , min ~ 1200], 700)
-nrow(faux_cell.low)
+chondro.low <- sample(chondro[, , 600 ~ 1200], 700)
+nrow(chondro.low)
 ```
 ```{r merge-sample-2}
-faux_cell.high <- sample(faux_cell[, , 1400 ~ max], 700)
-nrow(faux_cell.high)
+chondro.high <- sample(chondro[, , 1400 ~ 1800], 700)
+nrow(chondro.high)
 ```
 
 As all extra data columns are the same, no special declarations are needed for merging the data:
 
 ```{r merge}
-faux_cell.merged <- merge(faux_cell.low, faux_cell.high)
-nrow(faux_cell.merged)
+chondro.merged <- merge(chondro.low, chondro.high)
+nrow(chondro.merged)
 ```
 
 By default, the result consists of only those spectra, where *both* spectral ranges were available.
 To keep all spectra replacing missing parts by `NA`{.r} (see Fig. \@ref(fig:merge-map), \@ref(fig:merge-mat)):
 
 ```{r}
-faux_cell.merged <- merge(faux_cell.low, faux_cell.high, all = TRUE)
-nrow(faux_cell.merged)
+chondro.merged <- merge(chondro.low, chondro.high, all = TRUE)
+nrow(chondro.merged)
 ```
 
 
@@ -1641,7 +1641,7 @@ CAPTION <- "For both spectral ranges some spectra are missing. "
 ```{r merge-map, fig.cap = CAPTION}
 matcols <- sequential_hcl(20, palette = "viridis")
 levelplot(spc ~ x * y | as.factor(paste(.wavelength, "  1/cm")),
-  faux_cell.merged[, , c(1000, 1650)],
+  chondro.merged[, , c(1000, 1650)],
   aspect = "iso", col.regions = matcols
 )
 ```
@@ -1651,12 +1651,12 @@ levelplot(spc ~ x * y | as.factor(paste(.wavelength, "  1/cm")),
 CAPTION <- "The missing parts of the spectra are filled with `NA`{.r}.  "
 ```
 ```{r merge-mat, fig.cap = CAPTION, sq.fig = TRUE}
-plot(faux_cell.merged[1:100], "mat", col = matcols)
+plot(chondro.merged[1:100], "mat", col = matcols)
 ```
 
 
 ```{r}
-merged <- merge(faux_cell[1:7, , 610 ~ 620], faux_cell[5:10, , 615 ~ 625], all = TRUE)
+merged <- merge(chondro[1:7, , 610 ~ 620], chondro[5:10, , 615 ~ 625], all = TRUE)
 merged$.
 ```
 
@@ -1734,7 +1734,7 @@ class(merge(flu.ref, flu))
 A `hyperSpec` object may also be split into a list of `hyperSpec` objects:
 
 ```{r split}
-clusters <- split(faux_cell, faux_cell$region)
+clusters <- split(chondro, chondro$clusters)
 clusters
 ```
 
@@ -1746,18 +1746,18 @@ Another, similar way to combine a number of `hyperSpec` objects with different w
 Both `rbind()`{.r} and `collapse()`{.r} take care that factor levels are expanded as necessary:
 
 ```{r}
-lacunae <- droplevels(faux_cell[faux_cell$region == "matrix" & !is.na(faux_cell$region)])
-summary(lacunae$region)
+lacunae <- droplevels(chondro[chondro$clusters == "lacuna" & !is.na(chondro$clusters)])
+summary(lacunae$clusters)
 ```
 ```{r}
-cells <- droplevels(faux_cell[faux_cell$region == "cell" & !is.na(faux_cell$region)])
-summary(cells$region)
+cells <- droplevels(chondro[chondro$clusters == "cell" & !is.na(chondro$clusters)])
+summary(cells$clusters)
 ```
 ```{r}
-summary(rbind(cells, lacunae)$region)
+summary(rbind(cells, lacunae)$clusters)
 ```
 ```{r}
-summary(collapse(cells, lacunae)$region)
+summary(collapse(cells, lacunae)$clusters)
 ```
 
 ## Factor Columns in `hyperSpec` Objects: Dropping Factor Levels That Are Not Needed
@@ -1766,12 +1766,12 @@ summary(collapse(cells, lacunae)$region)
 For subsections of `hyperSpec` objects that do not contain all levels of a factor column, `droplevels()`{.r} drops the "unpopulated" levels:
 
 ```{r droplevels}
-tmp <- faux_cell[1:50]
-table(tmp$region)
+tmp <- chondro[1:50]
+table(tmp$clusters)
 ```
 ```{r droplevels-2}
 tmp <- droplevels(tmp)
-table(tmp$region)
+table(tmp$clusters)
 ```
 
 # Plotting {#plotting-hyperspec}
@@ -1820,7 +1820,7 @@ While most of package **hyperSpec**'s functions work at a decent speed for inter
 As an example, consider the code for shifting the spectra:
 
 ```{r speed1}
-tmp <- faux_cell[1:50]
+tmp <- chondro[1:50]
 shifts <- rnorm(nrow(tmp))
 system.time({
   for (i in seq_len(nrow(tmp))) {
@@ -1833,7 +1833,7 @@ Calculations that involve a lot of subsetting (i.e., extracting or changing the 
 This is somewhat similar to model fitting in `R` in general: many model fitting functions in `R` are much faster if the formula interface is avoided and the appropriate `data.frame`{.r}s or matrices are handed over directly.
 
 ```{r speed3}
-tmp <- faux_cell[1:50]
+tmp <- chondro[1:50]
 system.time({
   tmp.matrix <- tmp[[]]
   wl <- wl(tmp)
