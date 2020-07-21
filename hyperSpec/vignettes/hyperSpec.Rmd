@@ -34,8 +34,6 @@ vignette: >
     % \VignetteIndexEntry{Introduction to Package "hyperSpec"}
     % \VignetteKeyword{hyperSpec}
     % \VignettePackage{hyperSpec}
-    % \VignetteDepends{MASS}
-    % \VignetteDepends{styler}
     % \VignetteEngine{knitr::rmarkdown}
     % \VignetteEncoding{UTF-8}
 # Citations/References -------------------------------------------------------
@@ -59,10 +57,7 @@ rm(list = ls(all.names = TRUE))
 # Packages -------------------------------------------------------------------
 library(hyperSpec)
 library(mvtnorm)
-library(MASS)
-library(plotrix)
 library(pls)
-library(colorspace)
 
 # Functions ------------------------------------------------------------------
 #
