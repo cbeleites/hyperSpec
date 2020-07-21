@@ -871,8 +871,8 @@ find.max <- function(y, x) {
   - coef[2] / coef[3] / 2 + x[pos[2]]
 }
 
-bandpos <- apply(faux_cell[[, , 1150 ~ 1250]], 1, find.max, wl(faux_cell[, , 1150 ~ 1250]))
-refpos <- find.max(colMeans(faux_cell[[, , 1150 ~ 1250]]),  wl(faux_cell[, , 1150 ~ 1250]))
+bandpos <- apply(faux_cell[[, , 1190 ~ 1210]], 1, find.max, wl(faux_cell[, , 1190 ~ 1210]))
+refpos <- find.max(colMeans(faux_cell[[, , 1190 ~ 1210]]),  wl(faux_cell[, , 1190 ~ 1210]))
 
 shift1 <- refpos - bandpos
 ```
@@ -911,7 +911,7 @@ This was expected, as the spectra are hardly or not oversampled, but are very si
 
 ```{r include = FALSE}
 CAPTION <-
-  "The shifts used to disturb the faux_cell data (original), and the remaining shift after correction with the two methods discussed here.  "
+  "The shifts used to disturb the `faux_cell` data (original), and the remaining shift after correction with the two methods discussed here.  "
 ```
 
 ```{r fit-shift, fig.cap = CAPTION}
