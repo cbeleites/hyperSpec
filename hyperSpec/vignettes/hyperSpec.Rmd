@@ -178,7 +178,7 @@ Package **hyperSpec** comes with several data sets:
 -----------------  ----------------------------------------------------------------------
 
 In this vignette, the data sets are used to illustrate appropriate procedures for different tasks and different spectra.
-In addition, [chondro](#abt-vigs), [laser](#abt-vigs) and [flu](#abt-vigs) are accompanied by their own vignettes showing sample work flows for the respective data type.
+In addition, [`chondro`](#abt-vigs), [`laser`](#abt-vigs) and [`flu`](#abt-vigs) are accompanied by their own vignettes showing sample work flows for the respective data type.
 
 This document describes how to accomplish typical tasks in the analysis of spectra.
 It does not give a complete reference on particular functions.
