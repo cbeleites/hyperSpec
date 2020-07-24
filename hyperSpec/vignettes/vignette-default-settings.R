@@ -83,7 +83,9 @@ knitr::opts_hooks$set(sq.fig = function(options) {
 
   if (isFALSE(options$sq.fig)) {
     # custom fig dimensions given, use w/o further delay
-    if ((!is.null(options$fig.width)) & (!is.null(options$fig.height))) return(options)
+    if ((!is.null(options$fig.width)) & (!is.null(options$fig.height))) {
+      return(options)
+    }
 
     # otherwise set the default wide aspect ratio
     if ((is.null(options$fig.width)) & (is.null(options$fig.height))) {
