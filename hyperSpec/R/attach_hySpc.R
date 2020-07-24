@@ -1,10 +1,13 @@
-#' Load all installed packages of the hySpc.\* package family.
+#' Load all installed packages of the `hySpc.*` package family.
 #'
-#' This function loads all installed packages of the **hySpc._something_**
+#' This function loads all installed packages of the **`hySpc.`_something_**
 #' package family.
 #'
 #' @param dont_attach Packages that should *not* be attached.
 #' @param ... Further parameters are handed to [base::library()].
+#'
+#' @return Invisibly returns a list with the output of [base::library()] for
+#'   each **`hySpc.*`** package that was attached.
 #'
 #' @export
 #' @importFrom utils installed.packages
