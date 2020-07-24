@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Import for Thermo Galactic's <code>spc</code> file format. — read.spc • hyperSpec</title>
+<title>Color Suggestions for <code>hyperSpec</code> Users — Colors • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,8 +41,15 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Import for Thermo Galactic's <code>spc</code> file format. — read.spc" />
-<meta property="og:description" content="These functions allow to import Thermo Galactic/Grams .spc files." />
+<meta property="og:title" content="Color Suggestions for <code>hyperSpec</code> Users — Colors" />
+<meta property="og:description" content="In hyperSpec the user may use any color name/format known to R.
+An important fact to keep in mind is that most people with normal vision cannot distinguish
+more than about 8-12 colors, and doing so depends upon the viewing circumstances:
+if on paper, printer, ink and paper type all matter, and if on a screen, the background color
+makes a big difference.  Further, color-blind individuals have additional challenges.
+A great discussion of color issues can be found in the colorspace package.  The
+Polychrome package has further discussion and utilities for choosing qualitative
+colorschemes, including those for color-blind individuals." />
 
 <meta name="robots" content="noindex" />
 <meta name="robots" content="noindex">
@@ -155,106 +162,38 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Import for Thermo Galactic's <code>spc</code> file format.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/read.spc.R'><code>R/read.spc.R</code></a></small>
-    <div class="hidden name"><code>read-spc.Rd</code></div>
+    <h1>Color Suggestions for <code>hyperSpec</code> Users</h1>
+    <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/Colors.R'><code>R/Colors.R</code></a></small>
+    <div class="hidden name"><code>Colors.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>These functions allow to import Thermo Galactic/Grams <code>.spc</code> files.</p>
+    <p>In <span class="pkg">hyperSpec</span> the user may use any color name/format known to <code>R</code>.
+An important fact to keep in mind is that most people with normal vision cannot distinguish
+more than about 8-12 colors, and doing so depends upon the viewing circumstances:
+if on paper, printer, ink and paper type all matter, and if on a screen, the background color
+makes a big difference.  Further, color-blind individuals have additional challenges.
+A great discussion of color issues can be found in the <span class="pkg">colorspace</span> package.  The
+<span class="pkg">Polychrome</span> package has further discussion and utilities for choosing qualitative
+colorschemes, including those for color-blind individuals.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>read.spc</span>(
-  <span class='kw'>filename</span>,
-  keys.hdr2data = <span class='fl'>FALSE</span>,
-  keys.log2data = <span class='fl'>FALSE</span>,
-  log.txt = <span class='fl'>TRUE</span>,
-  log.bin = <span class='fl'>FALSE</span>,
-  log.disk = <span class='fl'>FALSE</span>,
-  hdr = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  no.object = <span class='fl'>FALSE</span>
-)</pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>filename</th>
-      <td><p>The complete file name of the <code>.spc</code> file.</p></td>
-    </tr>
-    <tr>
-      <th>keys.hdr2data, keys.log2data</th>
-      <td><p>character vectors with the names of parameters in the <code>.spc</code>
-file's log block (log2xxx) or header (hdr2xxx) that should go into the extra data (yyy2data) of
-the returned hyperSpec object.</p>
-<p>All header fields specified in the <code>.spc</code> file format specification (see
-below) are imported and can be referred to by their de-capitalized names.</p></td>
-    </tr>
-    <tr>
-      <th>log.txt</th>
-      <td><p>Should the text part of the <code>.spc</code> file's log block be read?</p></td>
-    </tr>
-    <tr>
-      <th>log.bin, log.disk</th>
-      <td><p>Should the normal and on-disk binary parts of the
-<code>.spc</code> file's log block be read?  If so, they will be put as raw vectors
-into the hyperSpec object's log.</p></td>
-    </tr>
-    <tr>
-      <th>hdr</th>
-      <td><p>A list with fileheader fields that overwrite the settings of
-actual file's header.</p>
-<p>Use with care, and look into the source code for detailed insight on the
-elements of this list.</p></td>
-    </tr>
-    <tr>
-      <th>no.object</th>
-      <td><p>If <code>TRUE</code>, a list with wavelengths, spectra, labels,
-log and data are returned instead of a hyperSpec object.</p>
-<p>This parameter will likely be subject to change in future - use with care.</p></td>
-    </tr>
-    </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>If the file contains multiple spectra with individual wavelength
-axes, <code>read.spc</code> returns a list of hyperSpec objects.  Otherwise the
-result is a hyperSpec object.</p>
-<p><code>read.spc.KaiserMap</code> returns a hyperSpec object with data columns x,
-y, and z containing the stage position as recorded in the <code>.spc</code> files'
-log.</p>
-    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+    <p>Colors are stored as character vectors.</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Only a restricted set of test files was available for development.
-Particularly, the w-planes feature could not be tested.</p>
-<p>If you have <code>.spc</code> files that cannot be read with these function, don't
-hesitate to contact the package maintainer with your code patch or asking
-advice.</p>
-    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
-
-    <p>Source development kit and file format specification of <code>.spc</code>
-files.</p>
-    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
-
-    <p>C. Beleites</p>
+    <p><code>CB7</code> is a selection of seven colors suitable for use on screens by people with
+normal color vision, as well as people with the most common type of colorblindness,
+deutanomaly.  The last color is a shade of yellow with a gold tone.  In some
+viewing circumstances this may be hard to see on a white background.
+You can see how these colors perform at this <a href='https://tinyurl.com/ycnwaf5v'>website</a>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='co'>## get the sample .spc files from ftirsearch.com (see above)</span>
-<span class='co'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='co'># single spectrum</span>
-<span class='kw'>spc</span> <span class='op'>&lt;-</span> <span class='fu'>read.spc</span>(<span class='st'>"BENZENE.SPC"</span>)
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>spc</span>)
-
-<span class='co'># multi-spectra .spc file with common wavelength axis</span>
-<span class='kw'>spc</span> <span class='op'>&lt;-</span> <span class='fu'>read.spc</span>(<span class='st'>"IG_MULTI.SPC"</span>)
-<span class='kw'>spc</span>
-
-<span class='co'># multi-spectra .spc file with individual wavelength axes</span>
-<span class='kw'>spc</span> <span class='op'>&lt;-</span> <span class='fu'>read.spc</span>(<span class='st'>"BARBITUATES.SPC"</span>)
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>spc</span>[[<span class='fl'>1</span>]], lines.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(type = <span class='st'>"h"</span>))
-}
-</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>CB7</span>)
+<span class='fu'><a href='https://rdrr.io/r/graphics/pie.html'>pie</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>1</span>, <span class='fl'>7</span>), col = <span class='kw'>CB7</span>)</div><div class='img'><img src='Colors-1.png' alt='' width='466' height='288' /></div><div class='input'></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
