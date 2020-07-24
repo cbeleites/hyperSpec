@@ -78,8 +78,9 @@ show_reviewers_notes = getOption("show_reviewers_notes", TRUE)
 ```{r bib, echo = FALSE, paged.print = FALSE}
 dir.create("resources", showWarnings = FALSE)
 
-pkg_bib <- knitr::write_bib(
-  c("hyperSpec",
+knitr::write_bib(
+  c(
+    "hyperSpec",
     "baseline",
     "matrixStats",
     "mvtnorm",

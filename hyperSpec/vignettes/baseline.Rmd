@@ -71,8 +71,13 @@ show_reviewers_notes = getOption("show_reviewers_notes", TRUE)
 ```{r bib, echo=FALSE, paged.print=FALSE}
 dir.create("resources", showWarnings = FALSE)
 
-pkg_bib <- knitr::write_bib(c("hyperSpec", "baseline"),
-                            file = "resources/baseline-pkg.bib")
+knitr::write_bib(
+  c(
+    "hyperSpec",
+    "baseline"
+  ),
+  file = "resources/baseline-pkg.bib"
+)
 ```
 
 # Introduction {#sec:introduction}
@@ -94,10 +99,7 @@ However, the baselines can be forced through particular points, if this behaviou
 The main difference between the two functions is that `spc.fit.poly()`{.r} returns a least squares fit through the complete spectrum that is given in `fit.to`{.r} whereas `spc.fit.poly.below()`{.r} tries to find appropriate spectral regions to fit the baseline to.
 
 
-<!-- \newlength{\tmplength} -->
-
 ## Syntax & parameters
-
 
 ```{r eval=FALSE}
 spc.fit.poly(fit.to, apply.to = fit.to, poly.order = 1)
