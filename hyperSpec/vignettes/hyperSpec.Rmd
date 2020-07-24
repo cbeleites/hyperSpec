@@ -90,8 +90,8 @@ make_bib(
 ```
 
 
-<!-- this chunk inserts common info about all the vignettes -->
-```{r child = "about-vignettes.md", echo = FALSE}
+<!-- This chunk inserts common info about all the vignettes -->
+```{r child = "list-of-vignettes.md", echo = FALSE}
 ```
 
 
