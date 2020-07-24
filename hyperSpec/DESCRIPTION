@@ -3,8 +3,8 @@ Encoding: UTF-8
 Type: Package
 Title: Work with Hyperspectral Data, i.e. Spectra + Meta Information (Spatial,
     Time, Concentration, ...)
-Version: 0.99-20200615
-Date: 2020-06-15
+Version: 0.99-20200719
+Date: 2020-07-19
 Maintainer: Claudia Beleites <Claudia.Beleites@chemometrix.gmbh>
 Authors@R: c(
     person("Claudia",   "Beleites",  role = c("aut", "cre", "dtc"), email = "Claudia.Beleites@chemometrix.gmbh"),
@@ -36,8 +36,7 @@ Depends:
     R (>= 3.6.0),
     lattice,
     grid,
-    ggplot2 (>= 2.3.0),
-    xml2
+    ggplot2 (>= 2.3.0)
 Suggests:
     R.matlab,
     tripack,
@@ -68,7 +67,8 @@ Suggests:
     ggpubr,
     caTools,
     styler,
-    covr
+    covr,
+    colorspace
 Imports:
     testthat,
     methods,
@@ -76,7 +76,8 @@ Imports:
     latticeExtra,
     lazyeval,
     dplyr,
-    rlang
+    rlang,
+    xml2
 URL: 
     https://cbeleites.github.io/hyperSpec,
     https://github.com/cbeleites/hyperSpec
@@ -89,6 +90,7 @@ Collate:
     'paste.row.R'
     'expand.R'
     'Arith.R'
+    'Colors.R'
     'Compare.R'
     'DollarNames.R'
     'Math.R'
