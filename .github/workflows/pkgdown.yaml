@@ -4,9 +4,6 @@ on:
       - release
       - master
       - develop
-      - feature/polish-vignettes
-      - feature/update-pkgdown-settings
-      - feature/intro-vig
 
 name: Update pkgdown website
 

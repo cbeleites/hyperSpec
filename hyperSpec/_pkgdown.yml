@@ -9,10 +9,7 @@ template:
 # -------------------------------------------------------------------------
 
 development:
-  mode: devel
-  destination: vig
-  version_label: warning
-  version_tooltip: "Website to preview the output of vignettes"
+  mode: auto
 
 # -------------------------------------------------------------------------
 
