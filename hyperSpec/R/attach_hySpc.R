@@ -64,3 +64,33 @@ attach_hySpc <- function(dont_attach = "hySpc.testthat", ..., quiet = NA) {
   invisible(out)
 }
 
+# Unit tests -----------------------------------------------------------------
+.test(attach_hySpc) <- function() {
+  context("attach_hySpc")
+
+  test_that("attach_hySpc() works", {
+
+    # Check with hyperSpec package only
+    installed_pkgs <- row.names(installed.packages())
+    exclude <- grep("^hySpc[.]", installed_pkgs, value = TRUE)
+
+    # First check
+    expect_silent(attach_hySpc(exclude, quiet = TRUE))
+
+    # quiet = NA
+    suppressWarnings({detach("package:hyperSpec", force = TRUE)})
+    expect_message(attach_hySpc(exclude, quiet = NA), "hyperSpec")
+    expect_message(attach_hySpc(exclude, quiet = NA), "are already attached")
+
+    # quiet = TRUE
+    suppressWarnings({detach("package:hyperSpec", force = TRUE)})
+    expect_silent(attach_hySpc(exclude, quiet = TRUE))
+    expect_silent(attach_hySpc(exclude, quiet = TRUE))
+
+    # quiet = FALSE
+    suppressWarnings({detach("package:hyperSpec", force = TRUE)})
+    expect_message(attach_hySpc(exclude, quiet = FALSE), "To get started, try:")
+    expect_message(attach_hySpc(exclude, quiet = FALSE), "are already attached")
+  })
+}
+
