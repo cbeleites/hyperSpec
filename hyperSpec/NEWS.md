@@ -4,6 +4,7 @@
 * The `hyperSpec` team gratefully acknowledges support from the Google Summer of Code program, which sponsored student Erick Oduniyi during summer 2020. Erick and the team carried out a significant overhaul of `hyperSpec` which led to this major release.
 
 ## User-Facing Changes from 0.99 Series
+* Function `attach_hySpc()` to quickly attach all installed **hySpc** family packages was added (@cbeleites, @GegznaV, #219)
 * `NEWS.md` (this file) added so that users can readily see changes that may affect the use of the package.
 * Documentation now available in `pkgdown` sites.
 * Introductory vignette reorganized and enhanced, thanks to Bryan Hanson.
