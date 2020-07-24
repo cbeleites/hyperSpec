@@ -58,7 +58,7 @@ rm(list = ls(all.names = TRUE))
 library(hyperSpec)
 library(mvtnorm)
 library(pls)
-library("colorspace")
+library(colorspace)
 
 # Functions ------------------------------------------------------------------
 source("vignette-functions.R", encoding = "UTF-8")
