@@ -58,8 +58,8 @@ attach_hySpc <- function(dont_attach = "hySpc.testthat", ..., quiet = NA) {
       suppressPackageStartupMessages({attach_pkgs()})
 
     } else {
-    attach_pkgs()
-  }
+      attach_pkgs()
+    }
 
   invisible(out)
 }
