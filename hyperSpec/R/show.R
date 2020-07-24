@@ -227,20 +227,26 @@ setMethod("as.character",
 .test(show) <- function() {
   context("show")
 
+  # Create data
+  set.seed(1)
+  spc <- matrix(rnorm(12), ncol = 4)
+  hs <- new("hyperSpec",
+    data = data.frame(
+      x = letters[1:3],
+      g = letters[11:13],
+      y = 3:5
+    ),
+    spc = spc
+  )
+
+  # Perform tests
   test_that("show() works", {
-    expect_output(show(faux_cell))
+    expect_output(show(hs))
   })
 
   test_that("show() gives correct output", {
-    expect_output(show(faux_cell), "hyperSpec object")
-    expect_output(show(faux_cell), "300 data points / spectrum")
-  })
-
-  test_that("show() does not give certain output", {
-    # Does not contain line starting with "wavelength:"
-    expect_output(show(faux_cell), "^(?!wavelength: ).*", perl = TRUE)
-    # Does does not contain line starting with "data:"
-    expect_output(show(faux_cell), "^(?!data: )", perl = TRUE)
+    expect_output(show(hs), "hyperSpec object")
+    expect_output(show(hs), "4 data points / spectrum")
   })
 }
 
@@ -248,30 +254,33 @@ setMethod("as.character",
 .test(print) <- function() {
   context("print")
 
+  # Create data
+  set.seed(1)
+  spc <- matrix(rnorm(12), ncol = 4)
+  hs <- new("hyperSpec",
+    data = data.frame(x = letters[1:3], g = letters[13:11], y = 3:5),
+    spc = spc
+  )
+
+  # Perform tests
   test_that("print() works", {
-    expect_output(print(faux_cell))
+    expect_output(print(hs))
   })
 
   test_that("print() gives correct output", {
-    expect_output(print(faux_cell), "hyperSpec object")
-    expect_output(print(faux_cell), "300 data points / spectrum")
+    expect_output(print(hs), "hyperSpec object")
+    expect_output(print(hs), "4 data points / spectrum")
 
-    expect_output(print(faux_cell, range = TRUE, include = "data"), " rng ")
-    expect_output(print(faux_cell, include = "wl"), "^wavelength: ")
+    expect_output(print(hs, range = TRUE, include = "data"), " rng ")
+    expect_output(print(hs, include = "wl"), "^wavelength: ")
 
   })
 
   test_that("print() does not give certain output", {
-    # Does not contain line starting with "wavelength:"
-    expect_output(print(faux_cell), "^(?!wavelength: )", perl = TRUE)
-    # Does does not contain line starting with "data:"
-    expect_output(show(faux_cell), "^(?!data: )", perl = TRUE)
+    expect_output(print(hs, include = "data"), "^(?!hyperSpec object)", perl = TRUE)
+    expect_output(print(hs, include = "data"), "^(?!wavelength:)", perl = TRUE)
 
-    expect_output(print(faux_cell, include = "data"), "^(?!hyperSpec object)", perl = TRUE)
-    expect_output(print(faux_cell, include = "data"), "^(?!wavelength:)", perl = TRUE)
-
-    expect_output(print(faux_cell, include = "wl"), "^(?!hyperSpec object)", perl = TRUE)
-    expect_output(print(faux_cell, include = "wl"), "^(?!data: )", perl = TRUE)
+    expect_output(print(hs, include = "wl"), "^(?!hyperSpec object)", perl = TRUE)
   })
 }
 
@@ -279,17 +288,26 @@ setMethod("as.character",
 .test(summary) <- function() {
   context("summary")
 
+  # Create data
+  set.seed(1)
+  spc <- matrix(rnorm(12), ncol = 4)
+  hs <- new("hyperSpec",
+    data = data.frame(x = letters[1:3], g = letters[13:11], y = 3:5),
+    spc = spc
+  )
+
+  # Perform tests
   test_that("summary() works", {
-    expect_output(summary(faux_cell))
+    expect_output(summary(hs))
   })
 
   test_that("summary() gives correct output", {
-    expect_output(summary(faux_cell), "hyperSpec object")
-    expect_output(summary(faux_cell), "300 data points / spectrum")
-    expect_output(summary(faux_cell), "wavelength: ")
-    expect_output(summary(faux_cell), "data: ")
+    expect_output(summary(hs), "hyperSpec object")
+    expect_output(summary(hs), "4 data points / spectrum")
+    expect_output(summary(hs), "wavelength: ")
+    expect_output(summary(hs), "data: ")
 
-    expect_output(summary(faux_cell, range = TRUE, include = "data"), " rng ")
+    expect_output(summary(hs, include = "data"), " rng ")
   })
 
 # }
@@ -299,39 +317,48 @@ setMethod("as.character",
 # .test(as.character) <- function() {
   context("as.character")
 
+  # Create data
+  set.seed(1)
+  spc <- matrix(rnorm(12), ncol = 4)
+  hs <- new("hyperSpec",
+    data = data.frame(x = letters[1:3], g = letters[13:11], y = 3:5),
+    spc = spc
+  )
+
+  # Perform tests
   test_that("as.character() works", {
-    expect_is(as.character(faux_cell), "character")
+    expect_is(as.character(hs), "character")
   })
 
   test_that("as.character() gives correct output", {
-    set.seed(1)
-    res <- as.character(flu)
+    res <- as.character(hs)
 
-    expect_length(res, 9)
+    expect_length(res, 10)
     expect_match(res[1], "hyperSpec object")
-    expect_match(res[4], "181 data points / spectrum")
+    expect_match(res[4], "4 data points / spectrum")
     expect_match(res[5], "wavelength: ")
     expect_match(res[6], "data: ")
-    expect_equal(res[7], "   1. spc: I[fl]/\"a.u.\" [matrix, array181] 27.15000 66.80133 ... 294.6495 ")
-    expect_equal(res[8], "   2. filename: filename [character] rawdata/flu1.txt rawdata/flu2.txt ... rawdata/flu6.txt ")
-    expect_match(res[9], "\\[numeric\\]")
+    expect_equal(res[7], "   1. x:  [character] a b c ")
+    expect_equal(res[8], "   2. g:  [character] m l k ")
+    expect_equal(res[9], "   3. y:  [integer] 3 4 5 ")
 
-    res_rng <- as.character(faux_cell, range = TRUE, include = "data")
+    res_rng <- as.character(hs, range = TRUE, include = "data")
     expect_match(res_rng[2:5], " rng ")
+    expect_equal(res_rng[3], "   2. g:  [character] rng  k l m ")
   })
 
   test_that("max.print in as.character() works", {
-    expect_is(as.character(faux_cell, max.print = NULL), "character")
+    expect_is(as.character(hs, max.print = NULL), "character")
 
-    expect_error(as.character(faux_cell, max.print = FALSE))
-    expect_error(as.character(faux_cell, max.print = 1:3))
+    expect_error(as.character(hs, max.print = FALSE))
+    expect_error(as.character(hs, max.print = 1:3))
   })
 
   test_that("shorten.to in as.character() works", {
-    expect_is(as.character(faux_cell, shorten.to = 2:1), "character")
+    expect_is(as.character(hs, shorten.to = 2:1), "character")
 
-    expect_error(as.character(faux_cell, shorten.to = 1:3))
-    expect_error(as.character(faux_cell, shorten.to = FALSE))
-    expect_error(as.character(faux_cell, shorten.to = 40))
+    expect_error(as.character(hs, shorten.to = 1:3))
+    expect_error(as.character(hs, shorten.to = FALSE))
+    expect_error(as.character(hs, shorten.to = 40))
   })
 }
