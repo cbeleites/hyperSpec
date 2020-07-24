@@ -20,15 +20,18 @@ attach_hySpc <- function(dont_attach = "hySpc.testthat", ...) {
 
   if (length(hySpc_packages) > 0) {
     message(
-      "\n",  "The following packages are being attached: \n\n",
+      "\n",  "The following `hySpc` family packages are being attached: \n\n",
       paste0("  ", hySpc_packages, collapse = "\n"),  "\n"
     )
 
   } else {
-    message("All installed `hySpc` family packages are already attached.")
+    message("\nAll installed `hySpc` family packages are already attached.\n")
   }
 
-  lapply(hySpc_packages, function(x) {
+  out <- lapply(hySpc_packages, function(x) {
     do.call("library", list(package = x))
   })
+
+  invisible(out)
 }
+
