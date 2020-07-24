@@ -1,7 +1,7 @@
 
 <!-- ======================================================================= -->
 ```{block, type="note-t", echo = TRUE}
-**Note**: <a name = "abt-vigs"></a>
+**Note**: <a name = "list-of-vignettes"></a>
 
 Package **hyperSpec** and it's friends provide a number of vignettes to help you get started.
 
