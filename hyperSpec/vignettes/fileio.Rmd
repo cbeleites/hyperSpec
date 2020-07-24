@@ -100,7 +100,7 @@ knitr::opts_chunk$set(eval = knit_eval)
 ```{r bib, echo=FALSE, paged.print=FALSE, eval=TRUE}
 dir.create("resources", showWarnings = FALSE)
 
-make_bib(
+knitr::write_bib(
   c(
     "hyperSpec",
     "R.matlab"

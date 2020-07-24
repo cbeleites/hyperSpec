@@ -25,6 +25,7 @@ output:
     bookdown::html_document2:
       base_format: rmarkdown::html_vignette
       toc: yes
+      toc_depth: 2
       fig_caption: yes
       css:
         - vignette.css
@@ -33,8 +34,6 @@ vignette: >
     % \VignetteIndexEntry{Introduction to Package "hyperSpec"}
     % \VignetteKeyword{hyperSpec}
     % \VignettePackage{hyperSpec}
-    % \VignetteDepends{MASS}
-    % \VignetteDepends{styler}
     % \VignetteEngine{knitr::rmarkdown}
     % \VignetteEncoding{UTF-8}
 # Citations/References -------------------------------------------------------
@@ -58,18 +57,16 @@ rm(list = ls(all.names = TRUE))
 # Packages -------------------------------------------------------------------
 library(hyperSpec)
 library(mvtnorm)
-library(MASS)
-library(plotrix)
 library(pls)
+library(colorspace)
 
 # Functions ------------------------------------------------------------------
-#
 source("vignette-functions.R", encoding = "UTF-8")
 
 # Settings -------------------------------------------------------------------
 source("vignette-default-settings.R", encoding = "UTF-8")
 
-# Temporaty options ----------------------------------------------------------
+# Temporary options ----------------------------------------------------------
 # Change the value of this option in "vignette-default-settings.R"
 show_reviewers_notes = getOption("show_reviewers_notes", TRUE)
 ```
@@ -78,12 +75,10 @@ show_reviewers_notes = getOption("show_reviewers_notes", TRUE)
 ```{r bib, echo = FALSE, paged.print = FALSE}
 dir.create("resources", showWarnings = FALSE)
 
-make_bib(
+knitr::write_bib(
   c("hyperSpec",
     "baseline",
-    "compiler",
-    "Rcpp",
-    "inline",
+    "matrixStats",
     "mvtnorm",
     "plotrix",
     "pls"
@@ -93,36 +88,10 @@ make_bib(
 ```
 
 
-```{block, type = "note-t", echo = show_reviewers_notes}
-**V. Gegzna's notes** `hyperspec-1`
-
-1. I suggest keeping tags `\\mFun{}` and `\\index{}`.
-They are not useful for HTML format yet, but in the future we can come up with useful ideas how to create an index of functions.
-But they are ignored by HTML rendering engine (as they are LaTeX tags) and removed from the output.
-
-2. I general, it seems that this tutorial could be split into several smaller tutorials:
-    a. I think, there should be one additional short tutorial "Quick-start".
-    b. I suggest moving sections such as `Spectral (Pre)processing`, `Data Analysis` to separate vignettes.
-
-3. Some ideas should be more clearly explained for beginner-level users without assuming that they know technical details.
+<!-- This chunk inserts common info about all the vignettes -->
+```{r child = "list-of-vignettes.md", echo = FALSE}
 ```
 
-```{block, type = "note-t", echo = show_reviewers_notes}
-**B. Hansons's notes** `Some remaining issues`
-
-There is still a lot of work and polishing to be done.  Here are some of the remaining organizational and document processing issues as I see it:
-
-1. I think we can greatly simplify the bibliography processing by just letting `markdown` take care of it.
-
-2. For all vignettes we should probably settle on one or two color schemes for plots.  At least some are defined in `vignette-functions.R`.
-
-3.  I'm not sure if any of the `\index ` and related items do anything in this type of document.  Remove if possible.  html files can be search via the browser.  Note: **VG wants to keep for now.**
-
-4.  Some maintenance simplification might be gained by putting the contents of all tables into data frames and using `kableExtra` to print them.
-
-```
-
-<!-- \tableofcontents -->
 
 # Things to Know About **_hyperSpec_**
 
@@ -152,6 +121,7 @@ In R, slots of an S4 class are accessed by the \index{`"@`{.r} operator}`@`{.r} 
 In this vignette, the notation `@xxx`{.r} will thus mean *"slot xxx of an object"*.
 Likewise, named elements of a `list` and columns of a `data.frame` are accessed by the \index{`$`{.r} operator} `$`{.r} operator, and `$xxx`{.r} will be used for *"column xxx"*, and as an abbreviation for *"column xxx of the `data.frame` in slot data of the object"* (the structure of `hyperSpec` objects is discussed in section \@ref(sec:structure-chy)).
 
+
 ## The Structure of **_hyperSpec_** Objects {#sec:structure-chy}
 
 `hyperSpec` objects are defined using an S4 class. It contains the following slots:
@@ -174,6 +144,7 @@ They are accessed by their names which must be the same for columns of `@data`{.
 The elements of the list may be anything suitable for axis annotations, i.e., they should be either character strings or expressions for "pretty" axis annotations (see, e.g., Figure \@ref(fig:loess-kl)).
 To get familiar with expressions for axis annotation, see `?plotmath` and `demo(plotmath)`{.r}.
 
+
 ## Data Sets
 
 Package **hyperSpec** comes with several data sets:
@@ -183,8 +154,8 @@ Package **hyperSpec** comes with several data sets:
 **`chondro`**      \index{data sets!chondro}
                    A Raman map of chondrocytes in cartilage.
 
-**`fauxCell`**      \index{data sets!fauxCell}
-                    A synthetic data set similar to `chondro`.
+**`faux_cell`**    \index{data sets!faux_cell}
+                   A synthetic data set similar to `chondro`.
 
 **`flu`**          \index{data sets!flu}
                    A set of fluorescence spectra of a calibration series.
@@ -202,13 +173,15 @@ Package **hyperSpec** comes with several data sets:
 -----------------  ----------------------------------------------------------------------
 
 In this vignette, the data sets are used to illustrate appropriate procedures for different tasks and different spectra.
-In addition, `chondro`, `laser` and `flue` are accompanied by their own vignettes showing sample work flows for the respective data type.
+In addition, [`chondro`](#list-of-vignettes), [`laser`](#list-of-vignettes) and [`flu`](#list-of-vignettes) are accompanied by their own vignettes showing sample work flows for the respective data type.
 
 This document describes how to accomplish typical tasks in the analysis of spectra.
 It does not give a complete reference on particular functions.
 It is therefore recommended to look up the methods in the `R` help system using `?command`{.r}.
 
+
 ## Options
+
 \index{options|textbf}
 \index{options!debuglevel}
 \index{options!gc}
@@ -216,20 +189,11 @@ The global behaviour of package **hyperSpec** can be configured via options.
 The values of the options are retrieved with `hy.getOptions()`{.r} and `hy.getOption()`{.r}, and changed with `hy.setOptions()`{.r}.
 Table \@ref(tab:options) gives an overview of the options.  You should not worry about these at the start of your exploration of **hyperSpec**.
 
+
 # Obtaining Basic Information about **_hyperSpec_** Objects {#info-hyperspec-objs}
 
-
-```{block, type = "note-t", echo = show_reviewers_notes}
-**V. Gegzna's notes** `hyperspec-6`
-
-1. The output of print() and summary() is identical. Is it expected?
-I think, the `print()`{.r} method should give less details than it does now.
-```
-
-
-
 \mFun{print, show, summary}
-As usual, the `print()`{.r}, `show()`{.r} and `summary()`{.r} methods provide an overview of the object (only `print` is shown here):
+Any of `print()`{.r}, `show()`{.r} or `summary()`{.r} provides an overview of the object (the output of each is identical):
 
 ```{r print}
 chondro
@@ -263,107 +227,98 @@ colnames(chondro)
 ```
 
 Likewise, `rownames()`{.r} returns the names assigned to the spectra, and `dimnames()`{.r} yields a list of these three vectors (including also the column names of `$spc`{.r}).
-The column names of the spectra matrix contain the wavelengths as character, while `wl()`{.r} (see section \@ref(sec:wavel-axis-conv)) yields the numeric vector of wavelengths.
+The column names of the spectra matrix contain the wavelengths as a character vector, while `wl()`{.r} (see section \@ref(sec:wavel-axis-conv)) returns the numeric vector of wavelengths.
 
-\mFun{colnames<-, rownames<-}
-Extra data column names and rownames of the object may be set by `colnames<-`{.r} and `rownames<-`{.r}, respectively.
-Function `colnames<-`{.r} renames the labels as well.
-
-```{block, type = "note-t", echo = show_reviewers_notes}
-**B. Hansons's notes** `This is not clear`
-
-This line: _Function `colnames<-`{.r} renames the labels as well._ is not clear and the documentation doesn't seem to say anything about it.
-```
 
 # Accessing & Manipulating **_hyperSpec_** Objects {#sec:access-parts}
+
+<!-- If you edit the general description here or the getters/setters tables below, please make the corresponding changes in Extract.R where the same material is used to create the Rd files. Unfortunately the material is not formatted exactly the same in each place so you have to do more than simple cut and paste. -->
 
 While the parts of the `hyperSpec` object can be accessed directly, it is good practice to use the functions provided by the package to handle the objects rather than accessing the slots directly.
 This also ensures that proper (i.e. *valid*) objects are returned.
 In some cases, however, direct access to the slots can considerably speed up calculations (see the appendicies).
 
-<!-- ======================================================================= -->
-```{block, type = "note-t", echo = show_reviewers_notes}
-**B. Hanson's notes**
+The main functions to retrieve the data of a `hyperSpec` object are `[]` and `[[]]`. \mFun{`[]`,`[[]]`}
+The difference between these functions is that `[]` returns a `hyperSpec` object, whereas `[[]]` returns a `data.frame` containing `x$spc`{.r}, the spectral data.
+To modify a `hyperSpec` object, the corresponding functions are `[<-`{.r} and `[[<-`{.r}. The first form is used to modify the entire `hyperSpec` object and the second form modifies the spectral data in `x$spc`{.r}.
 
-* I consolidated all the various parts dealing with getters and setters here.
-* In the tables, I tried to be systematic and put in every combination of getters and setters.  In the process I discovered some that don't work.  These should be fixed if they are logical operations, or intercepted if not and the user warned. The setters table has some open questions that need to be investigated.
-* This material would be good in a cheatsheet... eventually.
-```
-<!-- ======================================================================= -->
-
-
-The main functions to retrieve the data of a `hyperSpec`{.r} object are `[]` and `[[]]`. \mFun{`[]`,`[[]]`}
-The difference between these functions is that `[]` returns a `hyperSpec`{.r} object, whereas the result of `[[]]` is a `data.frame`{.r}.
 **hyperSpec** objects are triple indexed:
 
-* `x[i, j, l]`{.r}
-* `x[[i, j, l]]`{.r}
-* `i` refers to rows of the `@data`{.r} slot.
-* `j` refers to columns of the `@data`{.r} slot.
-* `l` refers to wavelengths.
+* `x[i, j, l, wl.index = TRUE/FALSE]`{.r}
+* `x[[i, j, l, wl.ndex = TRUE/FALSE]]`{.r}
+* `i` refers to rows of the `@data`{.r} slot. `i` can be integer indices or a logical vector.
+* `j` refers to columns of the `@data`{.r} slot. `j` can be integer indices, a logical vector or the name of a column.  _However, there is no guaranteed order to_ `colnames(x)`{.r} _so using integer indices and logical vectors is unwise._
+* `l` refers to wavelengths. Note the argument `wl.index` which determines how `l` is interpreted.
 * If there is only one index given, e.g. `x[1:3]`{.r}, it refers to the row index `i`. Likewise if there are only two indices given they refer to `i` and `j`.
+* See \@ref(sec:square-brack-replace) and \@ref(sec:accessing-extra-data) for even more ways to specify the indices.
 
 
-## Access Functions for **_hyperSpec_** Objects {#sec:fast-access-parts}
+## Summary of Extraction Functions for **_hyperSpec_** Objects (getters) {#sec:getters}
 
-Table \@ref(tab:getters) shows the main functions that can be used with class `hyperSpec`{.r} to access the object ("getters").  Table \@ref(tab:setters) shows the main functions that can be used with class `hyperSpec`{.r} to modify the object ("setters").
-
-<!-- ---------------------------------------------------------------------- -->
-: **(\#tab:getters)** Getter functions for the slots of `hyperSpec`{.r} objects
-
------------------------- -----------------------------------------------------------------------------------------------------------------------
-**`x[]`{.r}**            Returns the entire `hyperSpec` object unchanged.
-**`x[i, , ]`{.r}**       Returns the `hyperSpec` object with selected rows; equivalent to `x[i]`{.r}.
-**`x[, j, ]`{.r}**       **returns damaged object -- investigate!**
-**`x[, , l]`{.r}**       Returns the `hyperSpec` object with selected wavelengths.
-**`x[[]]`{.r}**          Returns the spectra matrix (`x$spc`{.r}).
-**`x[[i, , ]]`{.r}**     Returns the spectra matrix (`x$spc`{.r}) with selected rows.
-**`x[[, j, ]]`{.r}**     Returns a `data.frame`{.r} with the selected columns.
-**`x[[, , l]]`{.r}**     Returns the spectra matrix (`x$spc`{.r}) with selected wavelengths.
-**`x$.`{.r}**            Returns the complete `data.frame`{.r} `x@data`{.r}, with the spectra in column `$spc`{.r}.
-**`x$..`{.r}**           Returns all the extra data (`x@data`{.r} without `x$spc`{.r}).
-**`wl()`{.r}**           Returns the wavelengths.
-**`labels()`{.r}**       Returns the labels.
------------------------- -----------------------------------------------------------------------------------------------------------------------
+Table \@ref(tab:getters) shows the main functions that can be used with class `hyperSpec` to access the object ("getters").
 
 <!-- ---------------------------------------------------------------------- -->
+: **(\#tab:getters)** Getter functions for the slots of `hyperSpec` objects
 
+------------------------------------------- -----------------------------------------------------------------------------------------------------------------------
+**`x[]`{.r}**                               Returns the entire `hyperSpec` object unchanged.
+**`x[i, , ]`{.r}**                          Returns the `hyperSpec` object with selected rows; equivalent to `x[i]`{.r}.
+**`x[, j, ]`{.r}**                          Returns the `hyperSpec` object with empty `x$spc`{.r} slot. If you want the column `j`, `x[["name"]]` returns a `data.frame` containing `j` or `x$name`{.r} returns it as a vector.
+**`x[, , l, wl.index = TRUE/FALSE]`{.r}**   Returns the `hyperSpec` object with selected wavelengths.
+**`x[[]]`{.r}**                             Returns the spectra matrix (`x$spc`{.r}).
+**`x[[i, , ]]`{.r}**                        Returns the spectra matrix (`x$spc`{.r}) with selected rows.
+**`x[[, j, ]]`{.r}**                        Returns a `data.frame`{.r} with the selected columns.  Safest to give `j` as a character string.
+**`x[[, , l, wl.index = TRUE/FALSE]]`{.r}** Returns the spectra matrix (`x$spc`{.r}) with selected wavelengths.
+**`x$name`{.r}**                            Returns the column `name` as a vector.
+**`x$.`{.r}**                               Returns the complete `data.frame`{.r} `x@data`{.r}, with the spectra in column `$spc`{.r}.
+**`x$..`{.r}**                              Returns all the extra data (`x@data`{.r} without `x$spc`{.r}).
+**`wl()`{.r}**                              Returns the wavelengths.
+**`labels()`{.r}**                          Returns the labels.
+------------------------------------------- -----------------------------------------------------------------------------------------------------------------------
 
 <!-- ---------------------------------------------------------------------- -->
-: **(\#tab:setters)** Setter functions for the slots of `hyperSpec`{.r} objects
 
------------------------- -----------------------------------------------------------------------------------------------------------------------
-**`x[i, ,] <-`{.r}**     Replaces the specified rows.
-**`x[, j,] <-`{.r}**     Replaces the specified columns.
-**`x[, , l] <-`{.r}**    Replace the specified wavelengths.
-**`x[[i, ,]] <-`{.r}**   **does this make sense? -- investigate!**
-**`x[[, j,]] <-`{.r}**   **does this make sense? -- investigate!**
-**`x[[, , l]] <-`{.r}**  **does this make sense? -- investigate!**
-**`x[[i, , l]] <-`{.r}** Also, parts of the spectra matrix can be set (only indices for spectra and wavelength are allowed for this function).
-**`x[i, j] <-`{.r}**     Sets parts of `x@data`{.r}.
-**`x$.. <-`{.r}**        Sets the extra data (`x@data`{.r} without touching `x$spc`{.r}). The column names must match exactly in this case.
-**`wl<-`{.r}**           Set the wavelength vector.
-**`labels<-`{.r}**       Set the labels.
------------------------- -----------------------------------------------------------------------------------------------------------------------
+One can see that there are several ways to get the spectral data: `x$spc`{.r}, `x[[]]`{.r}, `x$..`{.r}.
+The first two forms return a matrix, while the last returns a `data.frame`.
+
+
+## Summary of Replacement Functions for **_hyperSpec_** Objects (setters) {#sec:setters}
+
+Table \@ref(tab:setters) shows the main functions that can be used with class `hyperSpec` to modify the object ("setters").
+
+<!-- ---------------------------------------------------------------------- -->
+: **(\#tab:setters)** Setter functions for the slots of `hyperSpec` objects
+
+----------------------------------------------- -----------------------------------------------------------------------------------------------------------------------
+**`x[i, ,] <-`{.r}**                            Replaces the specified rows of the `@data`{.r} slot, including `x$spc`{.r} and any extra data columns. Other approaches are probably easier.
+**`x[, j,] <-`{.r}**                            Replaces the specified columns.  Safest to give `j` as a character string.
+**`x[i, j] <-`{.r}**                            Replaces the specified column limited to the specified rows.  Safest to give `j` as a character string.**`x[, , l, wl.index = TRUE/FALSE] <-`{.r}**    Replaces the specified wavelengths.
+**`x[[i, ,]] <-`{.r}**                          Replaces the specified row of `x$spc`{.r}
+**`x[[, j,]] <-`{.r}**                          As `[[]]`{.r} refers to just the spectral data in `x$spc`{.r}, this operation is not valid.  See below.
+**`x[[, , l, wl.index = TRUE/FALSE]] <-`{.r}**  Replaces the intensity values in `x$spc`{.r} for the specified wavelengths.
+**`x[[i, , l, wl.index = TRUE/FALSE]] <-`{.r}** Replaces the intensity values in `x$spc`{.r} for the specified wavelengths limited to the specified rows.
+**`x$.. <-`{.r}**                               Sets the extra data (`x@data`{.r} without touching `x$spc`{.r}). The column names must match exactly in this case.
+**`wl<-`{.r}**                                  Sets the wavelength vector.
+**`labels<-`{.r}**                              Sets the labels.
+----------------------------------------------- -----------------------------------------------------------------------------------------------------------------------
 <!-- ---------------------------------------------------------------------- -->
 
 \mFun{`[]<-`, `[[]]<-`, `$<-`}
 For more details on `[]<-`, `[[]]<-`, and `$<-`, see \@ref(sec:square-brack-replace) and \@ref(sec:accessing-extra-data).
 
+
 ## Selecting and Deleting Spectra {#sec:select-delete-spectra}
 
 The extraction function `[]` takes the spectra (rows) as the first argument (For detailed help: see `?"["`{.r}).
 It may be a vector giving the indices of the spectra to extract (select), a vector with negative indices indicating, which spectra should be deleted, or a vector of logical values.
-Note that a matrix given to `[]` will be treated as a vector.
-
-
 
 ```{r include = FALSE}
 CAPTION <- "An example with `[]` operator and positive indices.  "
 ```
 
 ```{r selspc, fig.cap = CAPTION}
-plot(flu, col = "green2")
+data(CB7) # load colorblind-friendly palette
+plot(flu, col = CB7[4])
 plot(flu[1:3], add = TRUE)
 ```
 
@@ -373,7 +328,7 @@ CAPTION <- "An example with `[]` operator and negative indices.  "
 ```
 
 ```{r delspc, fig.cap = CAPTION}
-plot(flu, col = "red")
+plot(flu, col = CB7[4])
 plot(flu[-3], add = TRUE)
 ```
 
@@ -383,7 +338,7 @@ CAPTION <- "An example with `[]` operator and logical indices.  "
 ```
 
 ```{r selspc2, fig.cap = CAPTION}
-plot(flu, col = "gold")
+plot(flu, col = CB7[4])
 plot(flu[flu$c > 0.2], add = TRUE)
 ```
 
@@ -414,26 +369,31 @@ Sequences of every n^th^ spectrum or the like can be retrieved with `seq()`{.r}:
 seq(chondro, length.out = 3, index = TRUE)
 seq(chondro, by = 100)
 ```
+
 Here, indices may be requested using `index = TRUE`{.r}.
 
 
 ## Selecting Extra Data Columns  {#sec:accessing-extra-data}
 
-The second argument of the extraction functions `[]` and `[[]]` specifies the (extra) data columns.
-They can be given like any column specification for a `data.frame`{.r}, i.e., numeric, logical, or by a vector of the column names:
+The second argument of the extraction functions `[]` and `[[]]` specifies the extra data columns.
+They can be given like any column specification for a `data.frame`{.r}, i.e., numeric, logical, or by a vector of the column names.  However, since there is intrinsic order the column names of a `hyperSpec` object, using the column names is safest:
 
 ```{r data}
 colnames(chondro)
 ```
+
 ```{r data-chondro-b}
 chondro[[1:3, 1]]
 ```
+
 ```{r data-chondro-c}
 chondro[[1:3, -5]]
 ```
+
 ```{r data-chondro-d}
 chondro[[1:3, "x"]]
 ```
+
 ```{r data-chondro-e}
 chondro[[1:3, c(FALSE, TRUE)]] # note the recycling!
 ```
@@ -445,7 +405,7 @@ To select one column, the `$`{.r} operator is more convenient:
 flu$c
 ```
 
-Class `hyperSpec`{.r} supports command line completion for the `$`{.r} operator.
+Class `hyperSpec` supports command line completion for the `$`{.r} operator.
 
 \mFun{`$<-`{.r}}
 The extra data may also be set this way:
@@ -489,18 +449,16 @@ Operator `[[]]<-` also accepts index matrices of size $n × 2$.
 \index{wavelength indices!conversion to wavelength}
 
 
-### Converting Wavelengths to Indices and vice versa {#sec:wavelength-indices}
+### Converting Wavelengths to Indices and Vice Versa {#sec:wavelength-indices}
 
 \mFun{`wl2i()`{.r} `i2wl()`{.r}}
-Spectra in package **hyperSpec** always have discretized wavelength axes, stored in a matrix with each column corresponding to one wavelength.
-Package **hyperSpec** provides two functions to convert the respective column indices into wavelengths and vice versa: `i2wl()`{.r} and `wl2i()`{.r}.
-
-If the wavelengths are given as a numeric vector, they are each converted to the corresponding wavelength.
-In addition there is a more sophisticated possibility of specifying wavelength ranges using a *formula*.
-The basic syntax is **`start ~ end`**.
+Spectra in package **hyperSpec** always have discrete wavelength axes, and are stored in a matrix with each column corresponding to one wavelength.
+Two functions are provided to convert the respective column indices into wavelengths and vice versa: `i2wl()`{.r} and `wl2i()`{.r}.
+For `i2wl()`{.r} you should provide a vector of integers to serve as the indices.  For `wl2i()`{.r} you can provide a vector of integers giving the wavelength range, or you can use a *formula* interface.
+The basic syntax for the formula is **`start ~ end`**.
 This yields a vector **`index_of_start : index_of_end`**.
 
-The result of the formula conversion differs from the numeric vector conversion in three ways:
+The result of the formula conversion differs from the integer vector conversion in three ways:
 
 -  The colon operator for constructing vectors accepts only integer numbers, the tilde (for   formulas) does not have this restriction.
 -  If the vector does not take into account the spectral resolution, one may get only every $n$^th^ point or repetitions of the same index:
@@ -582,8 +540,6 @@ Section \@ref(sec:wavelength-indices) delves into the different possibilities of
 
 Deleting wavelength ranges may be accomplished using negative index vectors together with `wl.index = TRUE`{.r}.
 
-
-
 ```{r include = FALSE}
 CAPTION <- "Spectra of `paracetamol` with 500^th^ to 1000^th^ *wavelength* axis point removed.  "
 ```
@@ -608,7 +564,7 @@ plot(paracetamol[, , c(min ~ 1750, 2800 ~ max)])
 ```
 
 It is possible to produce a plot of this data where the cut range is actually omitted and the wavelength axis is optionally cut in order to save space.
-For details see the "Plotting" vignette.
+For details see the [plotting](#list-of-vignettes) vignette.
 
 
 
@@ -636,7 +592,7 @@ laser
 rm(laser)
 ```
 
-There are other possibilities of invoking `wl<-`{.r} including the new label, e.g.,
+You can also accomplish these steps in a single line, e.g.,
 
 ```{r}
 wl(laser, "f / THz") <- frequencies
@@ -674,12 +630,15 @@ Function `as.data.frame()`{.r} extracts the `@data`{.r} slot as a `data.frame`{.
 flu <- flu[, , 400 ~ 407] # make a small and handy version of the flu data set
 as.data.frame(flu)
 ```
+
 ```{r}
 colnames(as.data.frame(flu))
 ```
+
 ```{r}
 as.data.frame(flu)$spc
 ```
+
 Note that the spectra matrix is still a matrix inside column `$spc`{.r}.
 
 \mFun{`$.`{.r}, `$..`{.r}}
@@ -688,9 +647,11 @@ Function `as.data.frame()`{.r} and the abbreviations `$.`{.r} and `$..`{.r} retr
 ```{r}
 flu$.
 ```
+
 ```{r}
 flu$..
 ```
+
 \mFun{`[[]]`}
 If another subset of colums needs to be extracted, use `[[]]`:
 
@@ -701,53 +662,56 @@ flu[[, c("c", "spc")]]
 This can be combined with extracting certain spectra and wavelengths, see \@ref(sec:conv-matrix).
 
 \mFun{`as.t.df()`{.r}}
-The transpose of a wide format `data.frame`{.r} can be obtained by `as.t.df()`{.r}. For further examples, see the discussion of package **ggplot2** in `vignette("plotting")`{.r}.
+The transpose of a wide format `data.frame`{.r} can be obtained by `as.t.df()`{.r}.
+For further examples, see the discussion of package **ggplot2** in the [plotting](#list-of-vignettes) vignette.
 
 ```{r}
 as.t.df(apply(flu, 2, mean_pm_sd))
 ```
 
 \mFun{`as.long.df()`{.r}}
-Some functions need the data being an *unstacked* or *long-format* `data.frame`{.r}.
+Some functions need the data in an *unstacked* or *long-format* `data.frame`{.r}.
 Function `as.long.df()`{.r} is the appropriate conversion function.
 
 ```{r}
 head(as.long.df(flu), 20)
 ```
 
+
 ## Conversion to Matrix {#sec:conv-matrix}
 
 \mFun{`as.matrix()`{.r}, `[[]]`}
-The spectra matrix is extracted by `as.matrix()`{.r}, the convenient abbreviation is `[[]]`:
+To obtain the spectral data as a matrix, simply use the `[[]]` extractor:
 
 ```{r}
 flu[[]]
 ```
+
 ```{r}
 class(flu[[]])
 ```
+
 Operator `[[]]` takes the same arguments as `[]`, and can be used to extract a matrix containing parts of the spectra matrix:
 
 ```{r}
 flu[[1:3, , 406 ~ 407]]
 ```
-If indices for the columns to extract are given, a `data.frame`{.r} is returned instead of a matrix:
+
+If wavelengths or indices for the columns to extract are given, a `data.frame`{.r} is returned instead of a matrix:
 
 ```{r}
 flu[[1:3, c("filename", "spc"), 406 ~ 407]]
 ```
 
-```{r}
-rm(flu)
-```
 
 # Creating a **_hyperSpec_** Object, Data Import and Export {#sec:create}
 
 Package **hyperSpec** comes with filters for a variety of file formats.
-These are discussed in detail in a separate vignette accessible via `vignette("fileio")`.  Here we just mention a couple of basic operations.
+These are discussed in detail in a separate [fileio](#list-of-vignettes) vignette.
+Here we just mention a couple of basic operations.
 
 
-## Creating a `hyperSpec`{.r} Object from Spectra Matrix and Wavelength Vector
+## Creating a `hyperSpec` Object from Spectra Matrix and Wavelength Vector
 
 If the data is in `R`'s workspace, a `hyperSpec` object is created by:
 
@@ -757,33 +721,27 @@ spc <- new("hyperSpec", spc = spectra.matrix, wavelength = wavelength.vector, da
 
 The most frequently needed arguments are:
 
--------------------- ---------------------------------------------------------------------------------
+---------------- ---------------------------------------------------------------------------------
 **`spc`**        The spectra matrix; may be a matrix or a `data.frame`.
 
 **`wavelength`** The wavelength axis as a numeric vector.
 
-**`data`**       Any extra data as a `data.frame`.  It is possible to pass `spc` via this argument if the data frame has a column `$spc`{.r}.
+**`data`**       Any extra data as a `data.frame`.
+                 It is possible to pass `spc` via this argument if the data frame has a column
+                 `$spc`{.r}.
 
 **`label`**      A list with the proper labels.
-                     Do not forget the wavelength axis label in  `$.wavelength`{.r} and the
-                     spectral intensity axis label in `$spc`{.r}.
--------------------- ---------------------------------------------------------------------------------
+                 Do not forget the wavelength axis label in  `$.wavelength`{.r} and the spectral
+                 intensity axis label in `$spc`{.r}.
+---------------- ---------------------------------------------------------------------------------
 
-More information about converting existing data into `hyperSpec`{.r} objects can be found in `vignette ("fileio")`{.r}.
+More information about converting existing data into `hyperSpec` objects can be found in the [fileio](#list-of-vignettes) vignette.
 
 
 ## Creating Random Spectra
 
-```{block, type = "note-t", echo = show_reviewers_notes}
-**B. Hansons's notes** `Clarifications`
-
-1. Need more explanation of the pooled covariance approach.
-2. Here's a place that we should standardize the color scheme.
-3. Why not generate `rnd` only once here, and use it for the plot and LDA?  As it stands now it seemed like the first set of spectra were somehow related to the 2nd set.
-```
-
 \mFun{rmmvnorm}
-If package **mvtnorm**`r cite_pkg("mvtnorm")` is available, multivariate normally distributed spectra can be generated from mean and covariance matrix using `rmmvnorm()`{.r} (Fig. \@ref(fig:sim-spc)).
+If package **mvtnorm**[`r cite_pkg("mvtnorm")`] is available, multivariate normally distributed spectra can be generated from mean and covariance matrix using `rmmvnorm()`{.r} (Fig. \@ref(fig:sim-spc)).
 Note that the package **hyperSpec** function's name has an additional "m": it already takes care of multiple groups.
 Mean spectra and pooled covariance matrix can be calculated using `pooled.cov()`{.r}\mFun{pooled.cov}:
 
@@ -797,284 +755,16 @@ CAPTION <- "Multivariate normally distributed random spectra generated with `rmm
 ```
 
 ```{r sim-spc, fig.cap = CAPTION}
-cluster.cols <- c("dark blue", "orange", "#C02020")
+cluster.cols <- CB7[c(2, 7, 4)]
 plot(rnd, col = cluster.cols[rnd$.group])
 ```
 
-Fig. \@ref(fig:sim-lda) shows the linear discriminant analysis (LDA) scores of simulated spectra in comparison to the real spectra in the `chondro`{.r} object:
 
-
-
-```{r lda}
-library("MASS")
-
-rnd <- rmmvnorm(rep(200, 3), mean = pcov$mean, sigma = pcov$COV)
-lda <- lda(clusters ~ spc, rnd)
-
-pred.chondro <- predict(lda, newdata = chondro)
-pred.sim <- predict(lda)
-```
-
-<!-- ======================================================================= -->
-```{block, type = "note-t", echo = show_reviewers_notes}
-**V. Gegzna's notes** `hyperspec-7`
-
-1. `# FIXME: `{.r}
-
-    # pred.chondro <- predict(lda, newdata = chondro)
-    # #> Warning in predict.lda(lda, chondro): variable names in 'newdata' do not match those in 'object'
-```
-<!-- ======================================================================= -->
-
-
-
-```{r include = FALSE}
-CAPTION <- "LDA of simulated spectra. Crosses mark real spectra. "
-```
-
-```{r sim-lda, fig.cap = CAPTION}
-colors <- c("#00008040", "#FFA50040", "#C0202040")
-plot(pred.chondro$x, col = colors[chondro$clusters], pch = 3)
-points(pred.sim$x,   col = colors[rnd$clusters], pch = 20, cex = 0.5)
-```
-
-If individual covariance matrices should be used for each group, `sigma`{.r} should be an array with the 3rd dimension corresponding to the group.
-
-# Combining and Decomposing `hyperSpec`{.r} Objects {#sec:combine}
-
-## Binding Objects together {#sec:bind}
-
-\mFun{`cbind()`{.r} `rbind()`{.r}}
-Class `hyperspec`{.r} objects can be bound together, either by columns (`cbind()`{.r}) to append a new spectral range or by row (`rbind()`{.r}) to append new spectra:
-
-```{r cbind}
-dim(flu)
-```
-```{r}
-dim(cbind(flu, flu))
-```
-```{r}
-dim(rbind(flu, flu))
-```
-
-There is also a more general function, `bind()`{.r}, taking the direction (`"r"`{.r} or `"c"`{.r}) as first argument followed by the objects to bind either in separate arguments or in a list.
-
-As usual for `rbind()`{.r} and `cbind()`{.r}, the objects that should be bound together must have
-the same number of columns (for `rbind()`{.r}) and the same number of rows (for `cbind()`{.r}),
-respectively.
-
-\mFun{`collapse()`{.r}}
-For binding row-wise (`rbind()`{.r}), `collapse()`{.r} is more flexible and faster as well.
-
-
-## Binding Objects that do not Share the Same Extra Data and/or Wavelength Axis {#sec:collapse}
-
-\mFun{`collapse()`{.r}}
-Function `collapse()`{.r} combines objects that should be bound together by row, but they do not share the columns and/or spectral range.
-The resulting object has all columns from all input objects, and all wavelengths from the input objects.
-If an input object does not have a particular column or wavelength, its value in the resulting object is `NA`{.r}.
-
-The `barbiturates`{.r} data is a list of `r length(barbiturates)` `hyperSpec`{.r} objects, each containing one mass spectrum.
-The spectra have between `r (min(sapply(barbiturates, nwl)))` and `r (max(sapply(barbiturates, nwl)))` data points each.
-
-```{r collapse}
-barb <- collapse(barbiturates)
-wl(barb)[1:25]
-```
-The resulting object does not have an ordered wavelength axis.
-This can be obtained in the second step:
-
-```{r collapse-orderwl}
-barb <- orderwl(barb)
-barb[[1:3, , min ~ min + 10i]]
-```
-
-
-## Binding Objects that do not Share the Same Spectra {#sec:merge}
-
-\mFun{`merge()`{.r}}
-Function `merge()`{.r} adds a new spectral range (like `cbind()`{.r}), but works also if spectra are missing in one of the objects.
-The arguments `by`{.r}, `by.x`{.r}, and `by.y`{.r} specify which columns should be used to decide which spectra are the same.
-The arguments `all`{.r}, `all.x`{.r}, and `all.y`{.r} determine whether spectra should be kept for the result set if they appear in only one of the objects.
-For details, see also the help on the base function `merge()`{.r}.
-
-As an example, let's construct a version of the `chondro`{.r} data like being taken as two maps with different spectral ranges.
-In each data set, some spectra are missing.
-
-```{r merge-sample}
-chondro.low <- sample(chondro[, , 600 ~ 1200], 700)
-nrow(chondro.low)
-```
-```{r merge-sample-2}
-chondro.high <- sample(chondro[, , 1400 ~ 1800], 700)
-nrow(chondro.high)
-```
-
-As all extra data columns are the same, no special declarations are needed for merging the data:
-
-```{r merge}
-chondro.merged <- merge(chondro.low, chondro.high)
-nrow(chondro.merged)
-```
-
-By default, the result consists of only those spectra, where *both* spectral ranges were available.
-To keep all spectra replacing missing parts by `NA`{.r} (see Fig. \@ref(fig:merge-map), \@ref(fig:merge-mat)):
-
-```{r}
-chondro.merged <- merge(chondro.low, chondro.high, all = TRUE)
-nrow(chondro.merged)
-```
-
-
-
-```{r include = FALSE}
-CAPTION <- "For both spectral ranges some spectra are missing. "
-```
-
-```{r merge-map, fig.cap = CAPTION, fig.width = 7}
-levelplot(spc ~ x * y | as.factor(paste(.wavelength, "  1/cm")),
-  chondro.merged[, , c(1000, 1650)],
-  aspect = "iso", col.regions = matlab.palette()
-)
-```
-
-
-
-<!-- ```{r merge-mat echo=FALSE, results='hide'} -->
-<!-- png("hyperspec-fig-merged.png", width = 500, height = 425, res = 100) -->
-<!-- plot(chondro.merged[1:100], "mat") -->
-<!-- dev.off() -->
-<!-- rm(chondro) -->
-<!-- ``` -->
-
-```{r include = FALSE}
-CAPTION <- "The missing parts of the spectra are filled with `NA`{.r}.  "
-```
-```{r merge-mat, fig.cap = CAPTION}
-plot(chondro.merged[1:100], "mat")
-```
-
-
-```{r}
-merged <- merge(chondro[1:7, , 610 ~ 620], chondro[5:10, , 615 ~ 625], all = TRUE)
-merged$.
-```
-
-If the spectra overlap, the result will have both data points.
-In the example here one could easily delete duplicate wavelengths.
-For real data, however, the duplicated wavelength will hardly ever contain the same values.
-The appropriate method to deal with this situation depends on the data at hand, but it will usually be some kind of spectral interpolation.
-
-One possibility is removing duplicated wavelengths by using the mean intensity.
-This can conveniently be done by using `approx()`{.r} using `method = "constant"`{.r}.
-For duplicated wavelengths, the intensities will be combined by the tie function.
-This already defaults to the mean, but we need `na.rm = TRUE`{.r}.
-
-Thus, the function to calculate the new spectral intensities is
-
-```{r approxfun}
-approxfun <- function(y, wl, new.wl) {
-  approx(wl, y, new.wl,
-    method = "constant",
-    ties = function(x) mean(x, na.rm = TRUE)
-  )$y
-}
-```
-
-which can be applied to the spectra:
-
-```{r}
-merged <- apply(merged, 1, approxfun,
-  wl = wl(merged),
-  new.wl = unique(wl(merged)),
-  new.wavelength = "new.wl"
-)
-merged$.
-```
-
-## Merging extra data to objects that do not (necessarily) share the same spectra {#sec:merge-df}
-
-Assume we obtained duplicate reference measurements for some of the concentrations in `flu`{.r}:
-
-```{r}
-flu.ref <- data.frame(
-  filename = rep(flu$filename[1:2], each = 2),
-  cref     = rep(flu$c[1:2], each = 2) + rnorm(4, sd = 0.01)
-)
-flu.ref
-```
-
-This information can be merged into the extra data of `flu`{.r} by:
-
-```{r}
-flu.merged <- merge(flu, flu.ref)
-flu.merged$..
-```
-
-The usual rules for `merge()`{.r} apply.
-E. g., if to preserver all spectra of flu, use `all.x = TRUE`{.r}:
-
-```{r}
-flu.merged <- merge(flu, flu.ref, all.x = TRUE)
-flu.merged$..
-```
-
-The class of the first object (`x`{.r}) determines the resulting class:
-
-```{r}
-class(merge(flu, flu.ref))
-```
-```{r}
-class(merge(flu.ref, flu))
-```
-
-
-## Matrix Multiplication {#sec:matmult}
-
-\mFun{`\%*\%`}
-Two `hyperSpec`{.r} objects can be matrix multiplied by `%*%`{.r}.
-For an example, see the principal component analysis below (section \@ref(sec:pca)).
-
-
-## Decomposition {#sec:decomposition}
-
-Matrix decompositions are common operations during chemometric data analysis.
-The results, e.g., of a principal component analysis are two matrices, the so-called scores and loadings.
-The results can have either the same number of rows as the spectra matrix they were calculated from (scores-like), or
-they have as many wavelengths as the spectra (loadings-like).
-
-\mFun{`decomposition()`{.r}}
-Both types of result objects can be "re-imported" into `hyperSpec`{.r} objects with function `decomposition()`{.r}.
-A scores-like object retains all per-spectrum information (i.e., the extra data) while the spectra matrix and wavelength vector are replaced.
-A loadings-like object retains the wavelength information, while extra data is deleted (set to `NA`{.r}) unless the value is constant for all spectra.
-
-A demonstration can be found in the principal component analysis example (section \@ref(sec:pca)).
-
-
-
-# Plotting {#plotting-hyperspec}
-
-Package **hyperSpec** offers a variety of possibilities to plot spectra, spectral maps, the spectra matrix, time
-series, depth profiles, etc.
-This all is discussed in a separate document: see `vignette ("plotting")`.
-
-
-
-# Spectral (Pre)processing
+# Spectral Pre-Processing
 
 ## Cutting the Spectral Range
 
-\mFun{`[]` `[[]]`}
-The extraction operators `[]` and `[[]]` can be used to cut the spectra.
-Their third argument takes wavelength specifications as discussed above and also logicals (i.e. vectors specifying with `TRUE`{.r}/`FALSE`{.r} for each column of `$spc`{.r} whether it should be included or not.
-
-Operator`[]` returns a `hyperSpec`{.r} object, `[[]]` the spectra matrix `$spc`{.r} (or the `data.frame`{.r} `@data`{.r} if in addition data columns were specified) only.
-
-```{r cut.wl}
-flu[, , min ~ 408.5]
-flu[[, , c(min ~ min + 2i, max - 2i ~ max)]]
-```
-
+Please refer to Table \@ref(tab:getters), Table \@ref(tab:setters) and Section \@ref(sec:wavelength-axis) for information and examples of cutting the spectral range.
 
 ## Shifting Spectra {#sec:shifting-spectra}
 
@@ -1103,7 +793,7 @@ CAPTION <-
 
 ```{r shift-wl, fig.cap = CAPTION}
 plot(chondro[135])
-plot(tmp[135, , ], add = TRUE, col = "red")
+plot(tmp[135, , ], add = TRUE, col = CB7[4])
 ```
 
 But the method cannot be used if each spectrum (or groups of spectra) are shifted individually.
@@ -1134,7 +824,7 @@ CAPTION <- "Shifting the spectra along the wavelength axis: interpolation.  "
 
 ```{r shift-interp, fig.cap = CAPTION, results = "hide"}
 plot(chondro[135])
-plot(tmp[135], add = TRUE, col = "red")
+plot(tmp[135], add = TRUE, col = CB7[4])
 ```
 
 Fig. \@ref(fig:shift-untsch) demonstrates the difference between simple shifting and interpolation.
@@ -1148,7 +838,7 @@ Detail view of the phenylalanine band: shifting by `wl<-`{.r} (red) does not aff
 tmp <- chondro[135, , 990 ~ 1010]
 plot(tmp, lines.args = list(type = "b", pch = 19, cex = 0.5))
 wl(tmp) <- wl(tmp) - 0.5
-plot(tmp, lines.args = list(type = "b", pch = 19, cex = 0.5), add = TRUE, col = "red")
+plot(tmp, lines.args = list(type = "b", pch = 19, cex = 0.5), add = TRUE, col = CB7[4])
 
 tmp <- chondro[135]
 tmp <- apply(tmp, 1, function(x, wl, shift) {
@@ -1156,10 +846,11 @@ tmp <- apply(tmp, 1, function(x, wl, shift) {
 },
   wl = wl(tmp), shift = -0.5
 )
-plot(tmp, lines.args = list(type = "b", pch = 19, cex = 0.5), add = TRUE, col = "blue")
+plot(tmp, lines.args = list(type = "b", pch = 19, cex = 0.5), add = TRUE, col = CB7[3])
 ```
 
-If different spectra need to be offset by different shift, use a loop^[Function `sweep()`{.r} cannot be used here, and while there is the possibility to use sapply or mapply, they are not faster than the for loop in this case. Make sure to work on a copy of the spectra matrix, as that is much faster than row-wise extracting and changing the spectra by `[[()`{.r} and `[[<-`{.r}.].
+If different spectra need to be offset by different shift, use a loop^[Function `sweep()`{.r} cannot be used here, and while there is the possibility to use sapply or mapply, they are not faster than the for loop in this case.
+Make sure to work on a copy of the spectra matrix, as that is much faster than row-wise extracting and changing the spectra by `[[()`{.r} and `[[<-`{.r}.].
 
 ```{r}
 shifts <- rnorm(nrow(chondro))
@@ -1178,10 +869,6 @@ This strategy works best with spectrally oversampled data that allows accurate d
 
 For the `chondro`{.r} data, let's use the maximum of the phenylalanine band between 990 and 1020 cm^-1^.
 As just the very maximum is too coarse, we'll use the maximum of a square polynomial fitted to the maximum and its two neighbours.
-
-```{r TODO-1}
-#  TODO: use vanderMonde
-```
 
 <!-- ======================================================================= -->
 ```{block, type= "note-t", echo = show_reviewers_notes}
@@ -1247,7 +934,7 @@ CAPTION <-
   "The shifts used to disturb the chondrocyte data (original), and the remaining shift after correction with the two methods discussed here.  "
 ```
 
-```{r fit-shift, fig.cap = CAPTION, fig.width = 7}
+```{r fit-shift, fig.cap = CAPTION}
 df <- data.frame(
   shift = c(shifts, shifts + shift1, shifts + shift2),
   method = rep(c("original", "find maximum", "interpolation"),
@@ -1267,7 +954,7 @@ plot(histogram(~ shift | method,
 
 Occasionally, one may want to remove spectra because of too low or too high signal.
 E.g., for infrared spectra one may state that the absorbance maximum should be, say, between 0.1 and 1.
-Class `hyperSpec`{.r}'s comparison operators return a logical matrix of the size of the spectra that is suitable for later indexing:
+Class `hyperSpec`'s comparison operators return a logical matrix of the size of the spectra that is suitable for later indexing:
 
 ```{r eval = FALSE}
 ir.spc   <- chondro / 1500 ## fake IR data
@@ -1276,7 +963,7 @@ low.int  <- apply(ir.spc, 1, max) < 0.1 # the maximum should be at least 0.1
 ir.spc   <- ir.spc [!high.int & !low.int]
 ```
 
-### Removing Spectra outside mean $\pm$ $n$ sd
+### Removing Spectra Outside Mean $\pm$ $n$ Standard Deviations
 
 ```{r}
 mean_sd_filter <- function(x, n = 5) {
@@ -1296,23 +983,17 @@ spc.OK <- chondro[apply(OK, 1, all)]
 CAPTION <- "Filtering data: mean $\\pm$ sd filter.  "
 ```
 
-```{r filter, fig.cap = CAPTION, fig.width = 7}
+```{r filter, fig.cap = CAPTION}
 plot(chondro[!apply(OK, 1, all)])
 i <- which(!OK, arr.ind = TRUE)
-points(wl(chondro)[i[, 2]], chondro[[!OK]], pch = 19, col = "red", cex = 0.5)
+points(wl(chondro)[i[, 2]], chondro[[!OK]], pch = 19, col = CB7[4], cex = 0.5)
 ```
 
-<!-- \begin{figure}[tb] -->
-<!--   \subfloat[]{\includegraphics[width=0.49\textwidth]{hyperspec-fig-filter}} -->
-<!--   \subfloat[remove bad points]{\includegraphics[width=0.49\textwidth]{hyperspec-fig-bad}} -->
-<!--   \caption{filtering data} -->
-<!--    {#fig:filter} -->
-<!-- \end{figure} -->
 
 
 ### Bad Data Points {#sec:bad-data-points}
 
-Assume the data contains once in a while a detector readout of 0:
+Assume the data occasionally has a detector readout of 0:
 
 ```{r}
 spc <- chondro[1:3, , min ~ min + 15i]
@@ -1328,7 +1009,8 @@ spc[[]]
 ```
 
 \mFun{`spc.NA.approx()`{.r}, `spc.loess()`{.r}, `spc.bin()`{.r}}
-Depending on the type of analysis, one may wants to replace the `NA`{.r}s by interpolating the neighbour values. So far, package **hyperSpec** provides three functions that can interpolate the `NA`{.r}s: `spc.NA.approx()`{.r}, `spc.loess()`{.r}, and `spc.bin()`{.r} with `na.rm = TRUE`{.r} (the latter two are discussed below).
+Depending on the type of analysis, one may wish to replace the `NA`{.r}s by interpolating the neighbour values.
+Package **hyperSpec** provides three functions that can interpolate the `NA`{.r}s: `spc.NA.approx()`{.r}, `spc.loess()`{.r}, and `spc.bin()`{.r} with `na.rm = TRUE`{.r} (the latter two are discussed below).
 
 ```{r include = FALSE}
 if (!exists("spc.NA.approx")) {
@@ -1347,41 +1029,23 @@ spc.corrected[[]]
 CAPTION <- "Filtering data: remove bad points.  "
 ```
 
-```{r bad, fig.cap = CAPTION, fig.width=7}
+```{r bad, fig.cap = CAPTION}
 spc[[is.na(spc)]] <- 0
 plot(spc)
 
 spc[[spc < 1e-4]] <- NA
-plot(spc.NA.approx(spc), add = TRUE, col = "blue",
+plot(spc.NA.approx(spc), add = TRUE, col = CB7[4],
   lines.args = list(type = "b", pch = 19, cex = 0.5)
 )
 ```
 
+
 ### Spikes in Raman Spectra {#sec:spikes-raman-spectra}
 
-> ...coming soon...
-
-```{r}
-# TODO: ...coming soon...
-```
-
-<!-- ======================================================================= -->
-```{block, type = "note-t", echo = show_reviewers_notes}
-**V. Gegzna's notes** `hyperspec-10`
-
-
-1. Empty chapter. What to do with it?
-
-Comment from Roman: I suggest for now to write the following:
-
-Correction of cosmic spikes is not a part of `hyperSpec` package, and can be addressed with algorithms presented in these papers:
+Correction of cosmic spikes is not a part of `hyperSpec` package, but can be addressed with algorithms presented in these papers:
 
 * [A Simple Algorithm for Despiking Raman Spectra](https://chemrxiv.org/articles/A_Simple_Algorithm_for_Despiking_Raman_Spectra/5993011/2)
 * [Automatization of spike correction in Raman spectra of biological samples](https://www.sciencedirect.com/science/article/abs/pii/S0169743916300600)
-
-```
-<!-- ======================================================================= -->
-
 
 
 ## Smoothing Interpolation
@@ -1400,15 +1064,15 @@ Function `spc.bin()`{.r} bins the spectral axis by averaging every `by`{.r} data
 CAPTION <- "Smoothing interpolation by `spc.loess()`{.r} with new data point spacing of 2 cm^-1^ (red) and `spc.bin()`{.r} (blue).  "
 ```
 
-```{r fig-loess, fig.cap = CAPTION, fig.width = 7}
+```{r fig-loess, fig.cap = CAPTION}
 plot(paracetamol, wl.range = c(300 ~ 1800, 2800 ~ max), xoffset = 850)
 p <- spc.loess(paracetamol, c(seq(300, 1800, 2), seq(2850, 3150, 2)))
-plot(p, wl.range = c(300 ~ 1800, 2800 ~ max), xoffset = 850, col = "red", add = TRUE)
+plot(p, wl.range = c(300 ~ 1800, 2800 ~ max), xoffset = 850, col = CB7[4], add = TRUE)
 
 b <- spc.bin(paracetamol, 4)
 plot(b,
   wl.range = c(300 ~ 1800, 2800 ~ max), xoffset = 850,
-  lines.args = list(pch = 20, cex = .3, type = "p"), col = "blue", add = TRUE
+  lines.args = list(pch = 20, cex = .3, type = "p"), col = CB7[3], add = TRUE
 )
 ```
 
@@ -1420,17 +1084,9 @@ CAPTION <- "The magnification of Fig. \\@ref(fig:fig-loess) shows how interpolat
 
 ```{r loess-kl, fig.cap = CAPTION}
 plot(paracetamol[, , 1600 ~ 1670])
-plot(p[, , 1600 ~ 1670], col = "red", add = TRUE)
-plot(b[, , 1600 ~ 1670], col = "blue", add = TRUE)
+plot(p[, , 1600 ~ 1670], col = CB7[4], add = TRUE)
+plot(b[, , 1600 ~ 1670], col = CB7[3], add = TRUE)
 ```
-
-
-<!-- \begin{figure} -->
-<!-- \includegraphics[width=0.33\textwidth]{hyperspec-fig-fig-loess} -->
-<!-- \includegraphics[width=0.33\textwidth]{hyperspec-fig-fig-loess-kl} -->
-<!-- \caption{ {#fig-spcloess} -->
-<!-- Smoothing interpolation by `spc.loess()`{.r} with new data point spacing of 2 cm^-1^ (red) and `spc.bin()`{.r} (blue). The magnification on the right shows how interpolation may cause a loss in signal height.} -->
-<!-- \end{figure} -->
 
 Function `spc.loess()`{.r} applies R's `loess()`{.r} function for spectral interpolation.
 Figures \@ref(fig:fig-loess) and \@ref(fig:loess-kl) show the result of interpolating from 300 to 1800 and 2850 to 3150 cm^-1^ with 2 cm^-1^ data point distance.
@@ -1453,14 +1109,14 @@ sweep(spectra, 2, background.spectrum, "-")
 
 \mFun{`apply()`{.r} `sweep()`{.r}}
 
-Calculate the offsets and sweep them off the spectra:
+Calculate the offsets and adjust the spectra accordingly:
 
 ```{r ofs}
 offsets <- apply(chondro, 1, min)
 chondro.offset.corrected <- sweep(chondro, 1, offsets, "-")
 ```
 
-If the offset is calculated by a function, as here with the `min()`{.r}, `hyperSpec`{.r}'s `sweep()`{.r} method offers a shortcut: `sweep()`{.r}'s `STATS`{.r} argument may be the function instead of a numeric vector:
+If the offset is calculated by a function, as here with the `min()`{.r}, `hyperSpec`'s `sweep()`{.r} method offers a shortcut: `sweep()`{.r}'s `STATS`{.r} argument may be the function instead of a numeric vector:
 
 ```{r ofs2}
 chondro.offset.corrected <- sweep(chondro, 1, min, "-")
@@ -1479,7 +1135,7 @@ Particularly, the supplied wavelength ranges are not weighted.
 
 Function `spc.fit.poly.below()`{.r} tries to find appropriate support points for the baseline iteratively.
 
-Both functions return a `hyperSpec`{.r} object containing the fitted baselines.
+Both functions return a `hyperSpec` object containing the fitted baselines.
 They need to be subtracted afterwards:
 
 ```{r bl}
@@ -1487,11 +1143,11 @@ bl <- spc.fit.poly.below(chondro)
 chondro <- chondro - bl
 ```
 
-For details, see `vignette("baseline")`{.r}.
+For details, see [baseline](#list-of-vignettes) vignette.
 
-Package package **baseline**`r cite_pkg("baseline")` offers many more functions for baseline correction.
+Package package **baseline**[`r cite_pkg("baseline")`] offers many more functions for baseline correction.
 The `baseline()`{.r} function works on the spectra matrix, which is extracted by `[[]]`.
-The result is a `baseline`{.r} object, but can easily be re-imported into the `hyperSpec`{.r} object:
+The result is a `baseline`{.r} object, but can easily be re-imported into the `hyperSpec` object:
 
 ```{r do-bl}
 corrected <- hyperSpec::chondro[1] # start with the unchanged data set
@@ -1512,7 +1168,7 @@ CAPTION <- "The first spectrum of `chondro`{.r} (raw data) with baseline.  "
 baseline <- corrected
 baseline[[]] <- getBaseline(bl)
 plot(hyperSpec::chondro[1], plot.args = list(ylim = range(hyperSpec::chondro[1], 0)))
-plot(baseline, add = TRUE, col = "red")
+plot(baseline, add = TRUE, col = CB7[4])
 ```
 
 
@@ -1534,9 +1190,10 @@ rm(bl, chondro)
 
 ## Intensity Calibration
 
-### Correcting by a constant, e. g. Readout Bias
+### Correcting by a Constant, e. g. Readout Bias
 
-CCD cameras often operate with a bias, causing a constant value for each pixel. Such a constant can be immediately subtracted: `spectra - constant`{.r}.
+CCD cameras often operate with a bias, causing a constant value for each pixel.
+Such a constant can be immediately subtracted: `spectra - constant`{.r}.
 
 ### Correcting Wavelength Dependence
 
@@ -1615,6 +1272,7 @@ chondro <- chondro / rowMeans(chondro[, , 1600 ~ 1700])
 
 For minimum-maximum-normalization, first do an offset- or baseline correction, then normalize using `max()`{.r}.
 
+
 ## Centering and Variance Scaling the Spectra
 
 \mFun{`scale()`{.r}}
@@ -1624,7 +1282,7 @@ From a spectroscopic point of view it depends on the particular data set whether
 
 Variance scaling is often used in multivariate analysis to adjust the influence and scaling of the variates (that are typically different physical values).
 However, spectra already do have the same scale of the same physical value.
-Thus one has to trade off the the expected numeric benefit with the fact that for wavelengths with low signal the noise level will"xplod"by variance scaling.
+Thus one has to trade off the the expected numeric benefit with the fact that for wavelengths with low signal the noise level will greatly increase when using variance scaling.
 Scaling usually makes sense only for centered data.
 
 Both tasks are carried out by the same method in `R`, `scale()`{.r}, which will by default both mean center and variance scale the spectra matrix.
@@ -1666,7 +1324,7 @@ See section the appendices for some tips to speed up these calculations.
 ## Multiplicative Scatter Correction
 
 \mFun{`pls::msc()`{.r}}
-Multiplicative scatter correction (MSC) can be done using `msc()`{.r} from package package **pls** `r cite_pkg("pls")`.
+Multiplicative scatter correction (MSC) can be done using `msc()`{.r} from package package **pls** [`r cite_pkg("pls")`].
 It operates on the spectra matrix:
 
 ```{r msc, eval = FALSE}
@@ -1680,8 +1338,8 @@ chondro.msc[[]] <- msc(chondro[[]])
 
 \mFun{`+ - * / log() log10()`{.r}}
 
-Basic mathematical functions are defined for `hyperSpec`{.r} objects.
-You may convert spectra:
+Basic mathematical functions are defined for `hyperSpec` objects.
+You may convert spectra to their log:
 
 ```{r eval = FALSE}
 absorbance.spectra = - log10 (transmission.spectra)
@@ -1697,32 +1355,40 @@ labels(absorbance.spectra)$spc <- "A"
 Be careful: `R`'s `log()`{.r} function calculates the *natural* logarithm if no base is given.
 
 The basic arithmetic operators work element-wise in `R`.
-Thus they all need either a scalar, or a matrix (or `hyperSpec`{.r} object) of the correct size.
+Thus they all need either a scalar, or a matrix (or `hyperSpec` object) of the correct size.
 
-Matrix multiplication is done by `\%*%`\mFun{`\%*\%`}, again each of the operands may be a matrix or a `hyperSpec`{.r} object, and must have the correct dimensions.
+Matrix multiplication is done by `%*%`\mFun{`\%*\%`}, again each of the operands may be a matrix or a `hyperSpec` object, and must have the correct dimensions.
+
+There are many more mathematical functions that understand a `hyperSpec` object.
+See `?Arith` for more details.
 
 
 # Data Analysis
 
-## Data Analysis Methods using a `data.frame`{.r}, e.g., Principal Component Analysis with `prcomp()`{.r} {#sec:pca}
+## Principal Component Analysis with `prcomp()`{.r} {#sec:pca}
+
+### Carrying out PCA
 
 \mFun{`$.`{.r}}
-The `$.`{.r} notation is handy, if a data analysis function expects a `data.frame`{.r}.
+The `$.`{.r} notation is handy, if a data analysis function expects a `data.frame`{.r}, as `prcomp()`{.r} does.
 The column names can then be used in the formula:
 
 ```{r pca}
 pca <- prcomp(~spc, data = chondro$., center = FALSE)
 ```
 
-Many modeling functions call `as.data.frame`{.r} on their `data`{.r} argument.
-In that case, the conversion is done automatically:
+However, many modeling functions call `as.data.frame`{.r} on their `data`{.r} argument, including `prcomp()`{.r}.
+In that case, the conversion is done automatically so the following gives the same result as above:
 
 ```{r pca-auto}
 pca <- prcomp(~spc, data = chondro, center = FALSE)
 ```
 
-Results of such a \mFun{`decomposition()`{.r}} decomposition can be put again into `hyperSpec`{.r} objects.
-This allows to plot, e.g., the loading like spectra, or score maps, see Figures \@ref(fig:pca-load) and  \@ref(fig:pca-score).
+
+### Plotting the Results of PCA
+
+The results of such a \mFun{`decomposition()`{.r}} decomposition can be put back into `hyperSpec` objects.
+This conveniently allows one to use the regular `hyperSpec` plotting functions, e.g., the loading-like spectra, or score maps, see Figures \@ref(fig:pca-load) and  \@ref(fig:pca-score).
 
 ```{r decomp}
 scores <- decomposition(chondro, pca$x,
@@ -1757,7 +1423,7 @@ loadings <- decomposition(chondro, t(pca$rotation),
 )
 loadings[1]$..
 ```
-If an extra data column does contain only one unique value, it is retained anyways:
+If an extra data column does contain only one unique value, it is retained regardless:
 
 ```{r retain}
 chondro$measurement <- 1
@@ -1791,16 +1457,15 @@ div_palette <- colorRampPalette(c(
 CAPTION <- "The third score map.  "
 ```
 
-```{r pca-score, fig.cap = CAPTION}
-plotmap(scores[, , 3], col.regions = div_palette(20))
+```{r pca-score, fig.cap = CAPTION, sq.fig = TRUE}
+plotmap(scores[, , 3], col.regions = diverging_hcl(20, palette = "Blue-Red2"))
 ```
-
 
 
 ### PCA as Noise Filter {#sec:pca-as-noise}
 
 Principal component analysis is sometimes used as a noise filtering technique.
-The idea is that the relevant differences are captured in the first components while the higher components contain noise only.
+The idea is that the relevant differences are captured in the first few components while the higher components contain noise only.
 Thus the spectra are reconstructed using only the first $p$ components.
 
 This reconstruction is in fact a matrix multiplication:
@@ -1835,53 +1500,33 @@ If we decide that only the first 10 components actually carry spectroscopic info
 smoothed <- scores[, , 1:10] %*% loadings[1:10]
 ```
 Keep in mind, though, that we cannot be sure how much *useful* information was discarded with the higher components.
-This kind of noise reduction may influence further modeling of the data. Mathematically speaking, the rank of the new `r nrow (chondro)` $×$ `r nwl (chondro)` spectra matrix is only 10.
+This kind of noise reduction may influence further modeling of the data.
+Mathematically speaking, the rank of the new `r nrow (chondro)` $×$ `r nwl (chondro)` spectra matrix is only 10.
 
 
-## Data Analysis using long-format `data.frame` e.g., plotting with **_ggplot2_** {#sec:as.long.df}
-
-\mFun{`as.long.df()`{.r}}
-Some functions need the data being an *unstacked* or *long-format* `data.frame`{.r}.
-Function `as.long.df()`{.r} is the appropriate conversion function.
-
-
-```{r include = FALSE}
-CAPTION <- "A plot of spectrum created with **ggplot2**.  "
-```
-
-```{r ggplot, fig.cap = CAPTION}
-library(ggplot2)
-ggplot(as.long.df(chondro[1]), aes(x = .wavelength, y = spc)) + geom_line()
-```
-
-
-
-
-## Data Analysis Methods using a matrix e.g., Hierarchical Cluster Analysis {#HCA}
+## Hierarchical Cluster Analysis {#HCA}
 
 \mFun{`[[]]`{.r}}
-Some functions expect their input data in a matrix, so either `as.matrix(object)`{.r} or the abbreviation `object[[]]`{.r} can be used:
+Some `R` functions expect their input data in a matrix, including those related to HCA.
+Conveniently, the `[[]]`{.r} extraction function returns a matrix.
 
 ```{r hca}
 dist <- pearson.dist(chondro[[]])
 ```
 
-Again, many such functions coerce the data to a matrix automatically, so the `hyperSpec`{.r} object can be
-handed over:
+Again, many such functions coerce the data to a matrix automatically, so the `hyperSpec` object can be handed over without the explicit conversion above (as we saw for PCA):
 
 ```{r hca-asmatrix}
 dist <- pearson.dist(chondro)
 dendrogram <- hclust(dist, method = "ward.D")
 ```
 
-
-
 ```{r include = FALSE}
 CAPTION <- "The results of the cluster analysis: the dendrogram.  "
 ```
 
-```{r dend, fig.cap = CAPTION, fig.width = 7}
-plot(dendrogram)
+```{r dend, fig.cap = CAPTION, sq.fig = TRUE}
+plot(dendrogram, labels = FALSE, hang = -1)
 ```
 
 In order to plot a cluster map, the cluster membership needs to be calculated from the dendrogram.
@@ -1896,20 +1541,19 @@ As the cluster membership was stored as factor, the levels can be meaningful nam
 ```{r clustname}
 levels(chondro$clusters) <- c("matrix", "lacuna", "cell")
 ```
+
 Then the result may be plotted (Figure \@ref(fig:clust-map)):
-
-
 
 ```{r include = FALSE}
 CAPTION <- "The results of the cluster analysis: the map of the 3 clusters.  "
 ```
 
-```{r clust-map, fig.cap = CAPTION}
+```{r clust-map, fig.cap = CAPTION, sq.fig = TRUE}
 plotmap(chondro, clusters ~ x * y, col.regions = cluster.cols)
 ```
 
 
-## Calculating group-wise Sum Characteristics, e. g. Cluster Mean Spectra
+## Calculating Group-Wise Sum Characteristics, e. g. Cluster Mean Spectra
 
 \mFun{`aggregate()`{.r}}
 Function `aggregate()`{.r} applies the function given in `FUN`{.r} to each of the groups of spectra specified in `by`{.r}.
@@ -1928,24 +1572,197 @@ plot(means, col = cluster.cols, stacked = ".aggregate", fill = ".aggregate")
 ```
 
 
-## Factor columns in `hyperSpec`{.r} Objects: dropping factor levels that are not needed
+# Combining and Splitting `hyperSpec` Objects {#sec:combine}
 
-\mFun{`droplevels()`{.r}}
-For subsections of `hyperSpec`{.r} objects that do not contain all levels of a factor column, `droplevels()`{.r} drops the "unpopulated" levels:
+## Binding Objects Together {#sec:bind}
 
-```{r droplevels}
-tmp <- chondro[1:50]
-table(tmp$clusters)
+\mFun{`cbind()`{.r} `rbind()`{.r}}
+Class `hyperspec` objects can be bound together, either by columns (`cbind()`{.r}) to append a new spectral range or by row (`rbind()`{.r}) to append new spectra:
+
+```{r cbind}
+dim(flu)
 ```
-```{r droplevels-2}
-tmp <- droplevels(tmp)
-table(tmp$clusters)
+```{r}
+dim(cbind(flu, flu))
 ```
 
-## Splitting an Object, and Binding a List of `hyperSpec`{.r} Objects
+```{r}
+dim(rbind(flu, flu))
+```
+
+There is also a more general function, `bind()`{.r}, taking the direction (`"r"`{.r} or `"c"`{.r}) as first argument followed by the objects to bind either in separate arguments or in a list.
+
+As usual for `rbind()`{.r} and `cbind()`{.r}, the objects that should be bound together must have
+the same number of columns (for `rbind()`{.r}) and the same number of rows (for `cbind()`{.r}),
+respectively.
+
+\mFun{`collapse()`{.r}}
+For binding row-wise (`rbind()`{.r}), `collapse()`{.r} is more flexible and faster as well.
+
+
+## Binding Objects that Do not Share the Same Extra Data and/or Wavelength Axis {#sec:collapse}
+
+\mFun{`collapse()`{.r}}
+Function `collapse()`{.r} combines objects that should be bound together by row, but they do not share the columns and/or spectral range.
+The resulting object has all columns from all input objects, and all wavelengths from the input objects.
+If an input object does not have a particular column or wavelength, its value in the resulting object is `NA`{.r}.
+
+The `barbiturates`{.r} data is a list of `r length(barbiturates)` `hyperSpec` objects, each containing one mass spectrum.
+The spectra have between `r (min(sapply(barbiturates, nwl)))` and `r (max(sapply(barbiturates, nwl)))` data points each.
+
+```{r collapse}
+barb <- collapse(barbiturates)
+wl(barb)[1:25]
+```
+The resulting object does not have an ordered wavelength axis.
+This can be obtained in the second step:
+
+```{r collapse-orderwl}
+barb <- orderwl(barb)
+barb[[1:3, , min ~ min + 10i]]
+```
+
+
+## Binding Objects that Do not Share the Same Spectra {#sec:merge}
+
+\mFun{`merge()`{.r}}
+Function `merge()`{.r} adds a new spectral range (like `cbind()`{.r}), but works also if spectra are missing in one of the objects.
+The arguments `by`{.r}, `by.x`{.r}, and `by.y`{.r} specify which columns should be used to decide which spectra are the same.
+The arguments `all`{.r}, `all.x`{.r}, and `all.y`{.r} determine whether spectra should be kept for the result set if they appear in only one of the objects.
+For details, see also the help on the base function `merge()`{.r}.
+
+As an example, let's construct a version of the `chondro`{.r} data like being taken as two maps with different spectral ranges.
+In each data set, some spectra are missing.
+
+```{r merge-sample}
+chondro.low <- sample(chondro[, , 600 ~ 1200], 700)
+nrow(chondro.low)
+```
+
+```{r merge-sample-2}
+chondro.high <- sample(chondro[, , 1400 ~ 1800], 700)
+nrow(chondro.high)
+```
+
+As all extra data columns are the same, no special declarations are needed for merging the data:
+
+```{r merge}
+chondro.merged <- merge(chondro.low, chondro.high)
+nrow(chondro.merged)
+```
+
+By default, the result consists of only those spectra, where *both* spectral ranges were available.
+To keep all spectra replacing missing parts by `NA`{.r} (see Fig. \@ref(fig:merge-map), \@ref(fig:merge-mat)):
+
+```{r}
+chondro.merged <- merge(chondro.low, chondro.high, all = TRUE)
+nrow(chondro.merged)
+```
+
+
+
+```{r include = FALSE}
+CAPTION <- "For both spectral ranges some spectra are missing. "
+```
+
+```{r merge-map, fig.cap = CAPTION}
+matcols <- sequential_hcl(20, palette = "viridis")
+levelplot(spc ~ x * y | as.factor(paste(.wavelength, "  1/cm")),
+  chondro.merged[, , c(1000, 1650)],
+  aspect = "iso", col.regions = matcols
+)
+```
+
+
+```{r include = FALSE}
+CAPTION <- "The missing parts of the spectra are filled with `NA`{.r}.  "
+```
+
+```{r merge-mat, fig.cap = CAPTION, sq.fig = TRUE}
+plot(chondro.merged[1:100], "mat", col = matcols)
+```
+
+
+```{r}
+merged <- merge(chondro[1:7, , 610 ~ 620], chondro[5:10, , 615 ~ 625], all = TRUE)
+merged$.
+```
+
+If the spectra overlap, the result will have both data points.
+In the example here one could easily delete duplicate wavelengths.
+For real data, however, the duplicated wavelength will hardly ever contain the same values.
+The appropriate method to deal with this situation depends on the data at hand, but it will usually be some kind of spectral interpolation.
+
+One possibility is removing duplicated wavelengths by using the mean intensity.
+This can conveniently be done by using `approx()`{.r} using `method = "constant"`{.r}.
+For duplicated wavelengths, the intensities will be combined by the tie function.
+This already defaults to the mean, but we need `na.rm = TRUE`{.r}.
+
+Thus, the function to calculate the new spectral intensities is
+
+```{r approxfun}
+approxfun <- function(y, wl, new.wl) {
+  approx(wl, y, new.wl,
+    method = "constant",
+    ties = function(x) mean(x, na.rm = TRUE)
+  )$y
+}
+```
+
+which can be applied to the spectra:
+
+```{r}
+merged <- apply(merged, 1, approxfun,
+  wl = wl(merged),
+  new.wl = unique(wl(merged)),
+  new.wavelength = "new.wl"
+)
+merged$.
+```
+
+
+## Merging Extra Data to Objects That Do Not (Necessarily) Share the Same Spectra {#sec:merge-df}
+
+Assume we obtained duplicate reference measurements for some of the concentrations in `flu`{.r}:
+
+```{r}
+flu.ref <- data.frame(
+  filename = rep(flu$filename[1:2], each = 2),
+  cref     = rep(flu$c[1:2], each = 2) + rnorm(4, sd = 0.01)
+)
+flu.ref
+```
+
+This information can be merged into the extra data of `flu`{.r} by:
+
+```{r}
+flu.merged <- merge(flu, flu.ref)
+flu.merged$..
+```
+
+The usual rules for `merge()`{.r} apply.
+E. g., if to preserver all spectra of flu, use `all.x = TRUE`{.r}:
+
+```{r}
+flu.merged <- merge(flu, flu.ref, all.x = TRUE)
+flu.merged$..
+```
+
+The class of the first object (`x`{.r}) determines the resulting class:
+
+```{r}
+class(merge(flu, flu.ref))
+```
+
+```{r}
+class(merge(flu.ref, flu))
+```
+
+
+## Splitting an Object, and Binding a List of `hyperSpec` Objects
 
 \mFun{`split()`{.r}}
-A `hyperSpec`{.r} object may also be split into a list of `hyperSpec`{.r} objects:
+A `hyperSpec` object may also be split into a list of `hyperSpec` objects:
 
 ```{r split}
 clusters <- split(chondro, chondro$clusters)
@@ -1955,7 +1772,7 @@ clusters
 \mFun{`rbind()`{.r}}
 Splitting can be reversed by `rbind()`{.r} (see section \@ref(sec:bind)).
 \mFun{`collapse()`{.r}}
-Another, similar way to combine a number of `hyperSpec`{.r} objects with different wavelength axes or extra data columns is `collapse()`{.r} (see section \@ref(sec:collapse)).
+Another, similar way to combine a number of `hyperSpec` objects with different wavelength axes or extra data columns is `collapse()`{.r} (see section \@ref(sec:collapse)).
 
 Both `rbind()`{.r} and `collapse()`{.r} take care that factor levels are expanded as necessary:
 
@@ -1963,176 +1780,49 @@ Both `rbind()`{.r} and `collapse()`{.r} take care that factor levels are expande
 lacunae <- droplevels(chondro[chondro$clusters == "lacuna" & !is.na(chondro$clusters)])
 summary(lacunae$clusters)
 ```
+
 ```{r}
 cells <- droplevels(chondro[chondro$clusters == "cell" & !is.na(chondro$clusters)])
 summary(cells$clusters)
 ```
+
 ```{r}
 summary(rbind(cells, lacunae)$clusters)
 ```
+
 ```{r}
 summary(collapse(cells, lacunae)$clusters)
 ```
 
 
+## Factor Columns in `hyperSpec` Objects: Dropping Factor Levels That Are Not Needed
+
+\mFun{`droplevels()`{.r}}
+For subsections of `hyperSpec` objects that do not contain all levels of a factor column, `droplevels()`{.r} drops the "unpopulated" levels:
+
+```{r droplevels}
+tmp <- chondro[1:50]
+table(tmp$clusters)
+```
+
+```{r droplevels-2}
+tmp <- droplevels(tmp)
+table(tmp$clusters)
+```
+
+
+# Plotting {#plotting-hyperspec}
+
+Package **hyperSpec** offers a variety of possibilities to plot spectra, spectral maps, the spectra matrix, time series, depth profiles, etc.
+See the [plotting](#list-of-vignettes) vignette.
+
+
 
 \printindex
 
+# Appendices
 
-# Appendix 1. Overview of the functions provided by package **hyperSpec** {-}
-
-
-
-```{r tab-fn, results = "asis", echo = FALSE, eval = FALSE}
-make.fn.table <- function() {
-  load("intro--functions.RData")
-  functions <- subset(functions, !internal)
-  functions$group <- functions$group[, drop = TRUE]
-
-  TeX.escape <- function(x) {
-    #  x <- gsub ("^\\\\([^\\\\])", "\\\\\\\\\\1", x)
-    #  x <- gsub ("[^\\\\]\\\\$", "\\1\\\\\\\\", x)
-    x <- gsub("([^\\\\]|^)\\$", "\\1\\\\$", x)
-    x <- gsub("([^\\\\]|^)_",   "\\1\\\\_", x)
-    x <- gsub("([^\\\\]|^)%",   "\\1\\\\%", x)
-    x
-  }
-
-  for (g in levels(functions$group)) {
-    cat("**", g, "** | \n", sep = "")
-    df <- t(functions[functions$group == g, c("name", "description")])
-    cat(paste(paste0("`", df[1, ], "`{.r}"), df[2, ], sep = " | ", collapse = "\n"), "\n")
-  }
-}
-make.fn.table()
-```
-
-
-<!-- ======================================================================= -->
-```{block, type = "note-t", echo = show_reviewers_notes}
-**V. Gegzna's note** `hyperspec-12`
-
-`# TODO`{.r}  A better version of the table could be created if `pkgdown` website
- (documentation) is used. The index/list of functions could be created automatically.
-
-```
-<!-- ======================================================================= -->
-
-
-
-: **(\#tab:functions)** Overview of the functions provided by package **_hyperSpec_**
-
-**Function**                         | **Explanation**
--------------------------------------|-----------------------------------------------------------------------------------------------------------------
-**Access parts of the object**       |
-`[`{.r}                              | Select / extract / delete  spectra, wavelength ranges or extra data
-`[<-`{.r}                            | Set parts of spectra or extra data
-`[[`{.r}                             | Select / extract / delete  spectra, wavelength ranges or extra data, get the result as `matrix` or `data.frame`
-`[[<-`                               | Set parts of spectra matrix
-`$`{.r}                              | extract a data column (including `$spc`)
-`$<-`                                | replace a data column (including `$spc`)
-`i2wl`{.r}                           | convert spectra matrix column indices to wavelengths
-`isample`{.r}                        | get a random sample of the spectra as index vector
-`labels`{.r}                         | get column labels
-`labels<-`{.r}                       | set column labels
-`rownames<-`{.r}                     |
-`sample`{.r}                         | generate random sample of the spectra
-`seq.hyperSpec`{.r}                  | sequence along the spectra, either as `hyperSpec`{.r} object or index vector
-`wl`{.r}                             | extract the wavelengths
-`wl<-`{.r}                           | replace the wavelengths
-`wl2i`{.r}                           | convert wavelengths to spectra matrix column indices
-**Maths**                            |
-`%*%`{.r}                            | matrix multiplication
-**Vectorization**                    |
-`aggregate`{.r}                      |
-`apply`{.r}                          |
-`sweep`{.r}                          |
-**Comparison**                       |
-`all.equal`{.r}                      |
-**Plotting**                         |
-`alois.palette`{.r}                  | another palette
-`levelplot`{.r}                      |
-`map.identify`{.r}                   | identify spectra in map plot
-`map.sel.poly`{.r}                   | identify spectra in map plot: select polygon
-`mark.dendrogram`{.r}                | mark samples in hclust dendrogram
-`matlab.dark.palette`{.r}            | darker version of `matlab.palette()`{.r}
-`matlab.palette`{.r}                 | palette resembling Matlab's jet colors
-`plot`{.r}                           | main switchyard for plotting
-`plotc`{.r}                          | intensity over one other dimension: calibration plots, time series, depth series, etc.
-`plotmap`{.r}                        | false-colour intensity over two other dimensions: spectral images, maps, etc. (rectangular tesselation)
-`plotspc`{.r}                        | spectra plots: intensity over wavelength
-`plotvoronoi`{.r}                    | false-colour intensity over two other dimensions: spectral images, maps, etc. (Voronoi tesselation)
-`sel.poly`{.r}                       | polygon selection in lattice plot
-`spc.identify`{.r}                   | identify spectra and wavelengths in spectra plot
-`spc.label.default`{.r}              | helper for `spc.identify()`{.r}
-`spc.label.wlonly`{.r}               | helper for `spc.identify()`{.r}
-`spc.point.default`{.r}              | helper for `spc.identify()`{.r}
-`spc.point.max`{.r}                  | helper for `spc.identify()`{.r}
-`spc.point.min`{.r}                  | helper for `spc.identify()`{.r}
-`spc.point.sqr`{.r}                  | helper for `spc.identify()`{.r}
-`stacked.offsets`{.r}                | calculate intensity axis offsets for stacked spectral plots
-`trellis.factor.key`{.r}             | modify list of `levelplot()`{.r} arguments according to factor levels
-**Type conversion**                  |
-`as.data.frame`{.r}                  |
-`as.long.df`{.r}                     | convert to a long-format data.frame.
-`as.matrix`{.r}                      |
-`as.t.df`{.r}                        | convert to a transposed data.frame (spectra in columns)
-`as.wide.df`{.r}                     | convert to a wide-format data.frame with each wavelength one column
-`decomposition`{.r}                  | re-import results of spectral matrix decomposition (or the like) into `hyperSpec`{.r} object
-**Combine/split**                    |
-`bind`{.r}                           | commom interface for `rbind()`{.r} and `cbind()`{.r}
-`cbind.hyperSpec`{.r}                |
-`collapse`{.r}                       | combine objects by adding columns if necessary. See `plyr::rbind.fill()`{.r}.
-`merge`{.r}                          | combines spectral ranges. works if spectra are in only one of the data sets
-`rbind.hyperSpec`{.r}                | bind objects by row, i.e., add wavelength ranges or extra data
-`split`{.r}                          |
-**Basic information**                |
-`chk.hy`{.r}                         | checks whether the object is a hyperSpec object
-`colnames`{.r}                       |
-`colnames<-`{.r}                     |
-`ncol`{.r}                           | number of data columns (extra data plus spectra matrix)
-`nrow`{.r}                           | number of spectra
-`nwl`{.r}                            | number of data points per spectrum
-`print`{.r}                          | summary information
-`rownames`{.r}                       |
-`summary`{.r}                        | summary information
-**Create and initialize an object**  |
-`empty`{.r}                          | creates an hyperSpec object with 0 rows, but the same wavelengths as another object
-**Options**                          |
-`hy.getOption`{.r}                   | get an option
-`hy.getOptions`{.r}                  | get more options
-`hy.setOptions`{.r}                  | set options
-**Tests**                            |
-`hy.unittest`{.r}                    | run all unit tests
-**Utility functions**                |
-`mean`{.r}                           | mean spectrum
-`mean_pm_sd`{.r}                     | mean $\pm$ one standard deviation of a vector
-`mean_sd`{.r}                        | mean and standard deviation of a vector
-`pearson.dist`{.r}                   | distance measure based on Pearson's $R^2$
-`quantile`{.r}                       | quantile spectra
-`rbind.fill.matrix`{.r}              | transitional until `plyr::rbind.fill.matrix()`{.r} is out
-`wc`{.r}                             | word count using **wc** if available on the system
-**Spectra-specific transformations** |
-`orderwl`{.r}                        | sort columns of spectra matrix according to the wavelengths
-`spc.bin`{.r}                        | spectral binning
-`spc.fit.poly`{.r}                   | least sqares fit of a polynomial
-`spc.fit.poly.below`{.r}             | least sqares fit of a polynomial with automatic support point determination
-`spc.loess`{.r}                      | `loess()`{.r} smoothing interpolation
-**File import/export**               |
-`read.ENVI`{.r}                      | import ENVI file
-`read.ENVI.Nicolet`{.r}              | import ENVI files writen by Nicolet spectrometers
-`read.spc`{.r}                       | import .spc file
-`read.spc.KaiserMap`{.r}             | import a Raman map saved by Kaiser Optical Systems' Hologram software as multiple .spc files
-`read.txt.long`{.r}                  | import long-type ASCII file
-`read.txt.wide`{.r}                  | imort wide-type ASCII file
-`scan.txt.Renishaw`{.r}              | import ASCII files produced by Renishaw (InVia) spectrometers
-`scan.txt.Witec`{.r}                 | import ASCII files produced by Witec Raman spectrometers
-`scan.zip.Renishaw`{.r}              | directly read zip packed ASCII files produced by Renishaw spectrometers
-`write.txt.long`{.r}                 | export as long-type ASCII file
-`write.txt.wide`{.r}                 | export as wide-type ASCII file
-
-
-# Appendix 2.  Package Options {-}
+## Package Options {-}
 
 <!-- ----------------------------------------------------------------------- -->
 : **(\#tab:options)** Package **hyperSpec**'s options.
@@ -2144,8 +1834,8 @@ name  | default value (range)  | description | used by
 `gc`                   | `FALSE`{.r} | Triggers frequent calling of `gc()`{.r} | `read.ENVI()`{.r}, <br>\newline`new("hyperSpec")`{.r}
 `tolerance`            | `sqrt(.Machine$.double.eps)`{.r} | Tolerance for numerical comparisons   | File import functions (removing empty spectra), `normalize01()`{.r}
 `wl.tolerance`         | `sqrt(.Machine$.double.eps)`{.r} | Tolerance for comparisons of the wavelength axis | `rbind()`{.r}, `rbind2()`{.r}, `bind("r", ...)`{.r}, `all.equal()`{.r}, `collapse()`{.r}
-`file.remove.emptyspc` | `TRUE`{.r} | Automatic removing of empty spectra                         | File import functions, see `vignette("fileio")`{.r}
-`file.keep.name`       | `TRUE`{.r} | Automatic recording of file name in column `filename`{.r}   | File import functions, see `vignette("fileio")`{.r}
+`file.remove.emptyspc` | `TRUE`{.r} | Automatic removing of empty spectra                         | File import functions, see [fileio](#list-of-vignettes)
+`file.keep.name`       | `TRUE`{.r} | Automatic recording of file name in column `filename`{.r}   | File import functions, see [fileio](#list-of-vignettes)
 `plot.spc.nmax`        | `25`{.r}   | Number of spectra to be plotted by default                  | `plotspc()`{.r}
 `ggplot.spc.nmax`      | `10`{.r}   |                                                             | `qplotspc()`{.r}
 
@@ -2159,39 +1849,8 @@ stopifnot(all(names(hy.getOptions(TRUE)) %in% c(
 )))
 ```
 
-# Appendix 3. Reporting Bugs and Getting Help {-}
 
-```{block, type= "note-t", echo = show_reviewers_notes}
-**B. Hanson's notes**
-
-* This material probably belongs elsewhere.
-* Should also add something about using StackOverflow etc.
-```
-
-## Reporting an issue
-
-`R` packages include contact information of the package maintainer, which you can access e.g., by:
-
-```{r}
-maintainer("hyperSpec")
-```
-
-In case you want to report an issue, `R` provides a function to do so:
-`bug.report()`{.r} will either open an e-mail to the package maintainer or the issue tracker URL given in the package `DESCRIPTION`.
-
-```{r eval = FALSE}
-bug.report(package = "hyperSpec")
-```
-Will take you to package **hyperSpec**'s issue tracking page at <https://github.com/cbeleites/hyperSpec/issues>.
-It also displays essential information about your installation which can help in tracking down the bug.
-You can also make suggestions in this manner.
-
-## Getting Help
-
-This section needs to be written.
-
-
-# Appendix 4. Speed and Memory Considerations {- #sec:speed-considerations}
+## Speed and Memory Considerations {- #sec:speed-considerations}
 
 While most of package **hyperSpec**'s functions work at a decent speed for interactive sessions (of course depending on the size of the object), iterated (repeated) calculations as for bootstrapping or iterated cross validation may ask for special speed considerations.
 
@@ -2207,7 +1866,7 @@ system.time({
 })
 ```
 
-Calculations that involve a lot of subsetting (i.e., extracting or changing the spectra matrix or extra data) can be sped up considerably if the required parts of the `hyperSpec`{.r} object are extracted beforehand.
+Calculations that involve a lot of subsetting (i.e., extracting or changing the spectra matrix or extra data) can be sped up considerably if the required parts of the `hyperSpec` object are extracted beforehand.
 This is somewhat similar to model fitting in `R` in general: many model fitting functions in `R` are much faster if the formula interface is avoided and the appropriate `data.frame`{.r}s or matrices are handed over directly.
 
 ```{r speed3}
@@ -2221,130 +1880,31 @@ system.time({
   tmp[[]] <- tmp.matrix
 })
 ```
-<!--
+
 ## Additional packages
 
 
-Package **matrixStats** implements fast functions to calculate summary statistics for each row  or each column of a matrix.
-This functionality can be enabled for package **hyperSpec** by installing package package **hyperSpec.matrixStats** which is available in package **hyperSpec**'s development repository at <http://hyperSpec.r-forge.r-project.org/>
+Package **matrixStats**[`r cite_pkg("matrixStats")`] implements fast functions to calculate summary statistics for each row  or each column of a matrix.
 
+## Memory usage
 
-## Compiled code
-
-R provides interfaces to Fortran and C code, see the manual "Writing `R` Extensions" package **Rcpp**`r cite_pkg("Rcpp")` allows to conveniently integrate C++ code.
-Package **inline**`r cite_pkg("inline")` adds another layer of convenience: inline definition of functions in C, C++, or Fortran.
-
-An intermediate level is byte compilation of `R` code, which is done by package **compiler**`r cite_pkg("compiler")`.
-
-## Memory usage -->
-
-In general, it is not recommended to work with variables that are more than approximately a third of the available RAM in size. Particularly the import of raw spectroscopic data can consume large amounts of memory.
+In general, it is not recommended to work with variables that are more than approximately a third of the available RAM in size.
+Particularly the import of raw spectroscopic data can consume large amounts of memory.
 At certain points, package **hyperSpec** provides switches that allow working with data sets that are actually close to this memory limit.
 
 \mFun{`new ("hyperSpec")`{.r}, `read.ENVI*()`{.r},`read.txt.Renishaw()`{.r}}
 \index{options!gc}
 The initialization method `new("hyperSpec", ...)`{.r} takes particular care to avoid unneccessary copies of the spectra matrix.
 In addition, frequent calls to `gc()`{.r} can be requested by `hy.setOption(gc = TRUE)`{.r}.
-The same behaviour is triggered in `read.ENVI()`{.r} and its derivatives (`r list_funs_rmd("read.ENVI")`).
+The same behaviour is triggered in `read.ENVI()`{.r} and its derivatives (`read.ENVI.`_`Manufacturer`_`()`{.r}).
 The memory consumption of `read.txt.Renishaw()`{.r} can be lowered by importing the data in chunks (argument `nlines`{.r}).
 
-# Appendix 5. Remarks on R, or How **_hyperSpec_** Works Under the Hood {-}
 
-```{block, type= "note-t", echo = show_reviewers_notes}
-**B. Hanson's notes**
-
-* This is more of an explanation of how R works, I don't think it is needed here at all.
-```
-
-`hyperSpec`{.r} objects are defined using an S4 class. Much of **hyperSpec** is devoted to manipulating these objects using the methods instrinsic to `R`.
-
-
-## Generic Functions
-
-\index{Generic Functions} *Generic Functions* are functions that apply to a wide range of data types or classes, e.g., `plot()`{.r}, `print()`{.r}, mathematical operators, etc. These functions can be implemented in a specialized way by each class.
-Package **hyperSpec** implements a variety of such functions, see Table \@ref(tab:functions).
-
-
-## Functionality Can be Extended at Runtime
-
-`R`'s concept of functions offers much flexibility.
-Functions may be added or changed by the user in his *workspace* at any time.
-This is also true for methods belonging to a certain class.
-Neither restart of `R` nor reloading of the package or anything the like is needed.
-If the original function resides in a namespace (as it is the case for all functions in package **hyperSpec**), the original function is not deleted.
-It is just masked by the user's new function but stays accessible via the `::`{.r} operator.
-
-The same is true for "normal" variables: you may create changed copies of the example data sets, work with these and then "reset" to package **hyperSpec**'s version of the data set by removing the object in your workspace.
-
-This offers the opportunity of easily writing specialized functions that are adapted to specific
-tasks.
-Package **hyperSpec**'s vignettes use this to set up special versions of the lattice graphics functions that are already wrapped in `print()`{.r} (see also [R FAQ: Why do lattice/trellis graphics not work?](http://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-do-lattice_002ftrellis-graphics-not-work_003f)) and allow the code in the code chunks of the vignettes to be exactly what one would type during an interactive `R` session.
-For the code, check the `vignettes.defs` file accompanying all package **hyperSpec** vignettes.
-
-
-## Validity Checking
-
-S4 classes have a mechanism to define and enforce that the data actually stored in the object is appropriate for this class.
-In other words, there is a mechanism of \index{validity checking} *validity checking*.
-
-The functions provided by package **hyperSpec** check the validity of `hyperSpec`{.r} objects at the beginning, and -- if the validity could be broken by inappropriate arguments -- also before leaving the function.
-\index{validObject|texttt}
-\index{chk.hy|texttt}
-\mFun{validObject, chk.hy}
-
-It is highly recommended to use validity checking also for user-defined functions.
-In addition, non-generic functions should first ensure that the argument actually is a `hyperSpec`{.r} object.
-The two tasks are accomplished by:
-
-```{r eval = FALSE}
-chk.hy(object)
-validObject(object)
-```
-
-The first line checks whether `object`{.r} is a `hyperSpec`{.r} object, the second checks its validity.
-Both functions return `TRUE`{.r} if the checks succeed, otherwise they raise an error and stop.
-
-
-## Special Function Names {#sec:spec-funct-names}
-
-### The Names of Operators {#sec:names-operators}
-
-\index{operators}Operators such as `+`, `-`,`*`, `%%`, etc. are, in fact, functions in `R`.
-Thus they can be handed over as arguments to other functions (particularly to the vectorization functions `*apply()`{.r}, `sweep()`{.r}, etc.).
-In this case, the name of the function must be quoted: \`-\` is the recommended style (although `"-"` will often work as well), e.g.,:
-
-```{r eval = FALSE}
-sweep(flu, 2, mean, `-`)
-```
-
-
-These functions can also be called in a more function-like style (prefix notation):
-
-```{r}
-`+`(3, 5)
-```
-
-
-### Assignment Functions {#sec:assignment-functions}
-
-\index{assignment functions}
-\index{<-@see assignment functions}
-`R` allows the definition of functions that do an assignment (set some part of the object), such as:
-
-```{r eval = FALSE}
-wl(flu) <- new.wavelength.values
-```
-
-The actual name of the function is `wl<-` and must be quoted in order to avoid confusion with an assignment to variable `wl`:
-```{r eval = FALSE}
-`wl<-`
-```
-
-
-Session Info {-}
+## Session Info {-}
 
 ```{r session-info-hyperspec, paged.print = FALSE}
 sessioninfo::session_info("hyperSpec")
 ```
+
 
 # References {-}

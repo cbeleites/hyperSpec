@@ -1,5 +1,7 @@
 # Plotting settings ==========================================================
+
 # Base plot parameters -------------------------------------------------------
+# Note:  more knitr settings further down!
 knitr::knit_hooks$set(small.mar = function(before, options, envir) {
   if (before) {
     par(mar = c(4.1, 4.1, 1, .6))
@@ -68,12 +70,30 @@ set_trellis_layout_hw_custom <- function() {
 set_trellis_layout_hw_custom()
 
 # knitr Settings =============================================================
+
+# Notes on Figure Sizes.
+#
+# There are (at least) 2 common figure aspect ratios in  the vignettes.
+# One is a full width figure, suitable for spectra or spectra-like plots.
+# The other is a square plot, desirable for maps.
+# Option `sq.fig = TRUE` should be used for square plots.
+
+knitr::opts_hooks$set(sq.fig = function(options) {
+
+  if (isTRUE(options$sq.fig)) {
+    options$fig.width  <- 4
+    options$fig.height <- 3
+  }
+
+  options
+})
+
 knitr::opts_chunk$set(
   echo       = TRUE,     # Should blocks with program code be shown in knitted documents?
   eval       = TRUE,     # Should program code be evaluated?
   tidy       = "styler", # Use code output styled in the Tidyverse style
-  fig.height = 2.6,      # Default height for plots.
-  fig.width  = 4,        # Default width for plots.
+  fig.height = 2.5,      # Default width for plots.
+  fig.width  = 6,        # Default height for plots.
   fig.align  = "center", # Default alignment for plots in knitted documents.
   collapse   = TRUE,
   comment    = "#>"

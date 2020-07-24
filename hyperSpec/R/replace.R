@@ -12,7 +12,9 @@
 #' @examples
 #' ## replacement functions
 #' spc <- flu
+#' \dontrun{
 #' spc$.
+#' }
 #' spc[, "c"] <- 16:11
 #' ## be careful:
 #' plot(spc)

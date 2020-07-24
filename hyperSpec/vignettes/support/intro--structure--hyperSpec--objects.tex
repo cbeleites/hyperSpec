@@ -1,0 +1,78 @@
+%
+% Create a Diagram of the Structure of a hyperSpec Object
+%
+% This is derived from the original by Claudia Belietes
+% Additional modifications to the diagram inspired by a version created by Roman Kiselev (I think)
+% This document rearranged and code documented by Bryan Hanson
+% Color scheme changed to accomodate colorblind individuals
+%
+\documentclass[a4paper,  10pt]{scrartcl}
+\usepackage[utf8x]{inputenc}
+\usepackage{tikz}
+\usepackage{contour}
+\usepackage[active, pdftex, tightpage]{preview}
+\PreviewEnvironment[]{tikzpicture}
+
+\begin{document}
+\usetikzlibrary{decorations}
+\usetikzlibrary{snakes}
+
+\begin{tikzpicture}[scale = 0.5, line width = 1pt]
+
+% origin of drawing is lower left corner
+% draw the @data boxes
+\foreach \x in {0, 1, ..., 15}
+ 	\foreach \y in {0, 1, ..., 6}
+ 	\draw (\x, \y) rectangle (1, 1);
+
+% add the wavelength boxes
+\foreach \x in {7, 8, ..., 14} \draw (\x, 7) rectangle +(1, 1);
+
+% add the visual guides to the wavelength boxes
+% overdraws selected vertical lines in $spc section
+\foreach \x in {7, 8, ..., 15} {
+%	\draw[color = black] (\x, 0) -- (\x, 6);
+	\draw[color = gray,  dash pattern = on 2pt off 2pt] (\x, 6.9) -- (\x, 6.1);
+%	\draw[color = black] (\x, 7) -- (\x, 8);
+	}
+
+% add various decorations. do last, so whitespace is under the remaining features
+% draw braces
+\draw [snake = brace,  segment amplitude = 5,  mirror snake,  raise snake = 10,  line width = 1 pt] (15, 0) -- (15, 6);
+\draw [red, snake = brace,  segment amplitude = 5,  raise snake = 10,  line width = 1 pt] (0.1, 5.75) -- (6.9, 5.75);
+
+% draw labels
+\draw (3.5, 7.5) node [red] {\texttt{extra data}};
+\draw (2.5, 3) node [red,  fill = white, text height = 1.5 ex] {\texttt{\$c}};
+\draw (5.5, 3) node [red,  fill = white, text height = 1.5 ex,] {\texttt{\$x}};
+\draw (6.5, 3) node [red,  fill = white, text height = 1.5 ex, text depth = 0.25 ex] {\texttt{\$y}};
+\draw (11, 3) node [black,  fill = white, text height = 1.5 ex, anchor = center] {\texttt{\$spc}};
+\draw (15.2, 7.5) node [right,  ] () {\texttt{@wavelength}};
+\draw (16, 3) node [right,  ] () {\texttt{@data}};
+
+% label dimensions with | <-- text --> |
+\draw [<->,  >=|,  color = black] (7, 8.6) -- +(8, 0) node [fill = white,  pos = 0.5] {\texttt{nwl} = 8};
+\draw [<->,  >=|,  color = black] (0, -.6) -- +(15, 0) node [fill = white,  pos = 0.5] {\texttt{ncol} = 4};
+\draw [<->,  >=|] (-.6, 0) -- +(0, 6) node [fill = white,  pos = 0.5,  rotate = 90] {\texttt{nrow} = 6};
+
+% overdraw to highlight portions
+% vertical lines to set off spc vs extra data
+\foreach \x in {0, 5, 6, 7.0} {
+	\draw[color = red,  line width = 2 pt] (\x, 0) -- (\x, 6);
+	}
+
+\foreach \x in {7.1, 15} {
+	\draw[color = black,  line width = 2 pt] (\x, 0) -- (\x, 6);
+	}
+
+% horizontal lines to set off spc vs extra data
+\foreach \y in {0, 6} {
+	\draw[color = black, line width = 2 pt] (7, \y) -- (15, \y);
+	}
+
+\foreach \y in {0, 6} {
+	\draw[color = red, line width = 2 pt] (0, \y) -- (7, \y);
+	}
+
+\end{tikzpicture}
+\end{document}
