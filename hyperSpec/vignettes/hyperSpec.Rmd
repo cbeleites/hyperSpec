@@ -78,9 +78,7 @@ dir.create("resources", showWarnings = FALSE)
 make_bib(
   c("hyperSpec",
     "baseline",
-    "compiler",
-    "Rcpp",
-    "inline",
+    "matrixStats",
     "mvtnorm",
     "plotrix",
     "pls"
@@ -743,7 +741,7 @@ More information about converting existing data into `hyperSpec` objects can be 
 ## Creating Random Spectra
 
 \mFun{rmmvnorm}
-If package **mvtnorm**`r cite_pkg("mvtnorm")` is available, multivariate normally distributed spectra can be generated from mean and covariance matrix using `rmmvnorm()`{.r} (Fig. \@ref(fig:sim-spc)).
+If package **mvtnorm**[`r cite_pkg("mvtnorm")`] is available, multivariate normally distributed spectra can be generated from mean and covariance matrix using `rmmvnorm()`{.r} (Fig. \@ref(fig:sim-spc)).
 Note that the package **hyperSpec** function's name has an additional "m": it already takes care of multiple groups.
 Mean spectra and pooled covariance matrix can be calculated using `pooled.cov()`{.r}\mFun{pooled.cov}:
 
@@ -1147,7 +1145,7 @@ chondro <- chondro - bl
 
 For details, see [baseline](#list-of-vignettes) vignette.
 
-Package package **baseline**`r cite_pkg("baseline")` offers many more functions for baseline correction.
+Package package **baseline**[`r cite_pkg("baseline")`] offers many more functions for baseline correction.
 The `baseline()`{.r} function works on the spectra matrix, which is extracted by `[[]]`.
 The result is a `baseline`{.r} object, but can easily be re-imported into the `hyperSpec` object:
 
@@ -1326,7 +1324,7 @@ See section the appendices for some tips to speed up these calculations.
 ## Multiplicative Scatter Correction
 
 \mFun{`pls::msc()`{.r}}
-Multiplicative scatter correction (MSC) can be done using `msc()`{.r} from package package **pls** `r cite_pkg("pls")`.
+Multiplicative scatter correction (MSC) can be done using `msc()`{.r} from package package **pls** [`r cite_pkg("pls")`].
 It operates on the spectra matrix:
 
 ```{r msc, eval = FALSE}
@@ -1524,7 +1522,7 @@ dendrogram <- hclust(dist, method = "ward.D")
 ```
 
 ```{r include = FALSE}
-CAPTION <- "The results of the cluster analysis: the dendrogram."
+CAPTION <- "The results of the cluster analysis: the dendrogram.  "
 ```
 
 ```{r dend, fig.cap = CAPTION, sq.fig = TRUE}
@@ -1587,6 +1585,7 @@ dim(flu)
 ```{r}
 dim(cbind(flu, flu))
 ```
+
 ```{r}
 dim(rbind(flu, flu))
 ```
@@ -1639,6 +1638,7 @@ In each data set, some spectra are missing.
 chondro.low <- sample(chondro[, , 600 ~ 1200], 700)
 nrow(chondro.low)
 ```
+
 ```{r merge-sample-2}
 chondro.high <- sample(chondro[, , 1400 ~ 1800], 700)
 nrow(chondro.high)
@@ -1753,6 +1753,7 @@ The class of the first object (`x`{.r}) determines the resulting class:
 ```{r}
 class(merge(flu, flu.ref))
 ```
+
 ```{r}
 class(merge(flu.ref, flu))
 ```
@@ -1880,6 +1881,13 @@ system.time({
 })
 ```
 
+## Additional packages
+
+
+Package **matrixStats**[`r cite_pkg("matrixStats")`] implements fast functions to calculate summary statistics for each row  or each column of a matrix.
+
+## Memory usage
+
 In general, it is not recommended to work with variables that are more than approximately a third of the available RAM in size.
 Particularly the import of raw spectroscopic data can consume large amounts of memory.
 At certain points, package **hyperSpec** provides switches that allow working with data sets that are actually close to this memory limit.
@@ -1888,7 +1896,7 @@ At certain points, package **hyperSpec** provides switches that allow working wi
 \index{options!gc}
 The initialization method `new("hyperSpec", ...)`{.r} takes particular care to avoid unneccessary copies of the spectra matrix.
 In addition, frequent calls to `gc()`{.r} can be requested by `hy.setOption(gc = TRUE)`{.r}.
-The same behaviour is triggered in `read.ENVI()`{.r} and its derivatives (`r list_funs_rmd("read.ENVI")`).
+The same behaviour is triggered in `read.ENVI()`{.r} and its derivatives (`read.ENVI.`_`Manufacturer`_`()`{.r}).
 The memory consumption of `read.txt.Renishaw()`{.r} can be lowered by importing the data in chunks (argument `nlines`{.r}).
 
 
