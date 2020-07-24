@@ -16,10 +16,9 @@ attach_hySpc <- function(dont_attach = "hySpc.testthat", ...) {
   installed_pkgs <- row.names(installed.packages())
   hySpc_packages <- grep("^hySpc[.]", installed_pkgs, value = TRUE)
 
-  hySpc_packages <- setdiff(hySpc_packages, dont_attach)
+  hySpc_packages <- setdiff(hySpc_packages, unique(c(dont_attach, .packages())))
 
   lapply(hySpc_packages, function(x) {
-    do.call("library", list(package = x, ...))
-    }
-  )
+    do.call("library", list(package = x))
+  })
 }
