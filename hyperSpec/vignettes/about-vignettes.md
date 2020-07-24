@@ -3,7 +3,7 @@
 ```{block, type="note-t", echo = TRUE}
 **Note**: <a name = "abt-vigs"></a>
 
-Package `hyperSpec` and it's friends provide a number of vignettes to help you get started.
+Package **hyperSpec** and it's friends provide a number of vignettes to help you get started.
 
 * You can access the vignettes via these links:
     + [Introduction to `hyperSpec`](http://cbeleites.github.io/hyperSpec/articles/hyperSpec.html)
