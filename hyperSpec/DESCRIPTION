@@ -67,7 +67,8 @@ Suggests:
     ggpubr,
     caTools,
     styler,
-    covr
+    covr,
+    colorspace
 Imports:
     testthat,
     methods,
@@ -89,6 +90,7 @@ Collate:
     'paste.row.R'
     'expand.R'
     'Arith.R'
+    'Colors.R'
     'Compare.R'
     'DollarNames.R'
     'Math.R'
