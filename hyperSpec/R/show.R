@@ -17,9 +17,11 @@
 #'
 #' - `show()` prints the summary with the most basic information on `hyperSpec`
 #'    object (number of rows, columns and spectra),
-#' - `print()` by default does the same as `show()`,
-#' - `summary()` by default in addition to the results of `show()`, prints the
-#'   information on `@wavelength`s and each individual column of `@data`.
+#' - `print()` in addition to the results of `show()`, prints the information
+#'    on `@wavelength`s and each individual column of `@data` (several first
+#'    and last values are shown).
+#' - `summary()` by default the result is similar to `print()`, but the range
+#'    of values (the smallest and the largest values) is printed.
 #'
 #' @param object,x A `hyperSpec` object.
 #' @param ... `print()` and `summary()` hand further arguments to `as.character()`.
@@ -74,7 +76,7 @@ setMethod("show", signature = signature(object = "hyperSpec"),
 #' @export
 
 setMethod("print", signature = signature(x = "hyperSpec"),
-  function(x, range = FALSE, include = "main", ...) {
+  function(x, range = FALSE, include = "all", ...) {
     validObject(x)
     cat(as.character(x, range = range, include = include, ...), sep = "\n")
     invisible(x)
@@ -90,7 +92,7 @@ setMethod("print", signature = signature(x = "hyperSpec"),
 
 setMethod("summary",
   signature = signature(object = "hyperSpec"),
-  function(object, ..., include = "all", range = FALSE) {
+  function(object, ..., include = "all", range = TRUE) {
     print(object, ..., include = include, range = range)
   }
 )
