@@ -77,6 +77,7 @@ reference:
 - contents:
   - has_keyword("package")
   - has_keyword("classes")
+  - has_concept("hyperSpec-main")
 - title: Datasets
   desc: "Datasets to try functionality of **hyperSpec** functions."
 - contents:
