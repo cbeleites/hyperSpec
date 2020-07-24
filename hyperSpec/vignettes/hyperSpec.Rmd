@@ -439,7 +439,7 @@ Operator `[[]]<-` also accepts index matrices of size $n × 2$.
 \index{wavelength indices!conversion to wavelength}
 
 
-### Converting Wavelengths to Indices and vice versa {#sec:wavelength-indices}
+### Converting Wavelengths to Indices and Vice Versa {#sec:wavelength-indices}
 
 \mFun{`wl2i()`{.r} `i2wl()`{.r}}
 Spectra in package **hyperSpec** always have discrete wavelength axes, and are stored in a matrix with each column corresponding to one wavelength.
@@ -1529,7 +1529,7 @@ plotmap(chondro, clusters ~ x * y, col.regions = cluster.cols)
 ```
 
 
-## Calculating group-wise Sum Characteristics, e. g. Cluster Mean Spectra
+## Calculating Group-Wise Sum Characteristics, e. g. Cluster Mean Spectra
 
 \mFun{`aggregate()`{.r}}
 Function `aggregate()`{.r} applies the function given in `FUN`{.r} to each of the groups of spectra specified in `by`{.r}.
@@ -1549,7 +1549,7 @@ plot(means, col = cluster.cols, stacked = ".aggregate", fill = ".aggregate")
 
 # Combining and Splitting `hyperSpec` Objects {#sec:combine}
 
-## Binding Objects together {#sec:bind}
+## Binding Objects Together {#sec:bind}
 
 \mFun{`cbind()`{.r} `rbind()`{.r}}
 Class `hyperspec` objects can be bound together, either by columns (`cbind()`{.r}) to append a new spectral range or by row (`rbind()`{.r}) to append new spectra:
@@ -1574,7 +1574,7 @@ respectively.
 For binding row-wise (`rbind()`{.r}), `collapse()`{.r} is more flexible and faster as well.
 
 
-## Binding Objects that do not Share the Same Extra Data and/or Wavelength Axis {#sec:collapse}
+## Binding Objects that Do not Share the Same Extra Data and/or Wavelength Axis {#sec:collapse}
 
 \mFun{`collapse()`{.r}}
 Function `collapse()`{.r} combines objects that should be bound together by row, but they do not share the columns and/or spectral range.
@@ -1597,7 +1597,7 @@ barb[[1:3, , min ~ min + 10i]]
 ```
 
 
-## Binding Objects that do not Share the Same Spectra {#sec:merge}
+## Binding Objects that Do not Share the Same Spectra {#sec:merge}
 
 \mFun{`merge()`{.r}}
 Function `merge()`{.r} adds a new spectral range (like `cbind()`{.r}), but works also if spectra are missing in one of the objects.
