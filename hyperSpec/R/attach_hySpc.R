@@ -32,7 +32,7 @@ attach_hySpc <- function(dont_attach = "hySpc.testthat", ...) {
   }
 
   out <- lapply(hySpc_packages, function(x) {
-    do.call("library", list(package = x))
+    do.call("library", list(package = x, ...))
   })
 
   invisible(out)
