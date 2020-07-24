@@ -23,8 +23,10 @@ attach_hySpc <- function(dont_attach = "hySpc.testthat", ...) {
 
   if (length(hySpc_packages) > 0) {
     message(
-      "\n",  "The following `hySpc` family packages are being attached: \n\n",
-      paste0("  ", hySpc_packages, collapse = "\n"),  "\n"
+      "\n-----------------------------------------------------------\n",
+      "The following `hySpc` family packages are being attached: \n\n",
+      paste0("  ", hySpc_packages, collapse = "\n"), "\n",
+      "\n-----------------------------------------------------------\n"
     )
 
   } else {
