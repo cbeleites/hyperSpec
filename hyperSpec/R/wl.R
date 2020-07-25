@@ -260,8 +260,68 @@ freq2raman <- function(x, laser) nm2raman(freq2nm(x), laser)
   stop(paste0("'", unit, "': Unknown unit type"))
 }
 
-
 # Some physical constants
 q <- 1.60217656535e-19 # elementary charge
 h <- 6.6260695729e-34 # Planck's constant
 c <- 299792458 # speed of light
+
+
+# Unit tests -----------------------------------------------------------------
+
+.test(wl) <- function() {
+
+  context("wl")
+  # Perform tests
+  test_that("wl() works", {
+    expect_silent(wl(laser))
+    expect_is(wl(laser), "numeric")
+  })
+
+  test_that("`wl<-`() works", {
+    expect_silent(wl(laser) <-  rep(100, nwl(laser)))
+    expect_is(wl(laser), "numeric")
+    expect_equal(min(wl(laser)), 100)
+
+    expect_silent(
+      wl(laser) <- list(wl = wl(laser) + 10, label = expression(lambda / nm))
+    )
+    expect_equal(min(wl(laser)), 110)
+  })
+}
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.test(wlconv) <- function() {
+
+  context("wlconv")
+
+
+    test_that(".fixunitname() works", {
+
+    expect_equal(.fixunitname("raman"), "raman")
+    expect_equal(.fixunitname("invcm"), "invcm")
+    expect_equal(.fixunitname("nm"),    "nm")
+    expect_equal(.fixunitname("ev"),    "ev")
+    expect_equal(.fixunitname("freq"),  "freq")
+    expect_equal(.fixunitname("px"),    "px")
+    expect_equal(.fixunitname("file"),  "file")
+    expect_error(.fixunitname("ddd"),  "Unknown unit type")
+
+  })
+
+
+  test_that("wlconv() works", {
+    expect_error(wlconv())
+    expect_error(wlconv(1000, "raman", "nm"), "Working with Raman shift")
+
+    x <- c("raman", "invcm", "nm", "ev", "freq")
+    y <- expand.grid(x, x)
+    y <- y[y[[1]] != y[[2]], ]
+    expect_silent(
+      d <- apply(y, MARGIN = 1, function(x) {
+        wlconv(10, x[["Var1"]], x[["Var2"]], 200)
+      })
+    )
+    expect_is(d, "numeric")
+  })
+}
+
