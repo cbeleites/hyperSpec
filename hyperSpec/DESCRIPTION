@@ -68,7 +68,8 @@ Suggests:
     caTools,
     styler,
     covr,
-    colorspace
+    colorspace,
+    vdiffr
 Imports:
     testthat,
     methods,
