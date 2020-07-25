@@ -176,3 +176,64 @@ setReplaceMethod("$",
     x
   }
 )
+
+# Unit tests -----------------------------------------------------------------
+.test(replace) <- function() {
+  ## replacement functions
+  context("replace")
+
+  test_that("replacement function `[<-` works", {
+
+    # [ ]
+    data(flu)
+    spc <- flu
+
+    expect_silent(spc[, "c"] <- 16:11)
+
+    expect_silent(spc[] <- 6:1)
+    expect_silent(spc$..)
+
+  })
+
+
+  test_that("replacement function `[[<-` works", {
+    data(flu)
+    expect_silent(spc <- flu[, , 405 ~ 410])
+
+    # [[ ]]
+    expect_silent(spc[[]])
+    expect_silent(spc[[3]] <- -spc[[3]])
+    expect_silent(spc[[]])
+    expect_silent(spc[[, , 405:410]] <- -spc[[, , 405:410]])
+    expect_silent(spc[[]])
+    expect_silent(spc[[, , 405 ~ 410]] <- -spc[[, , 405 ~ 410]])
+
+    ## indexing with logical matrix
+    spc <- flu[, , min ~ 410]
+    expect_silent(spc < 125)
+    expect_silent(spc[[spc < 125]] <- NA)
+    expect_silent(spc[[]])
+
+    ## indexing with n by 2 matrix
+    ind <- matrix(c(1, 2, 4, 406, 405.5, 409), ncol = 2)
+
+    expect_silent(spc[[ind]] <- 3)
+    expect_silent(spc[[]])
+
+    ind <- matrix(c(1, 2, 4, 4:6), ncol = 2)
+    expect_silent(spc[[ind, wl.index = TRUE]] <- 9999)
+    expect_silent(spc[[]])
+
+  })
+
+  test_that("replacement function `[[<-` works", {
+    data(flu)
+    spc <- flu[, , 405 ~ 410]
+    # $
+    expect_silent(spc$.)
+    expect_silent(spc$..)
+    expect_silent(spc$z <- 1:6)
+    expect_silent(spc$z <- list(1:6, "z / a.u."))
+  })
+
+}
