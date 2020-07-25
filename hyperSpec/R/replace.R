@@ -90,22 +90,22 @@ setReplaceMethod("[[",
     ## check wheter a index matrix is used
     if (!missing(i) && is.matrix(i)) {
       if (is.logical(i)) {
-        x@data$spc [i] <- value
+        x@data$spc[i] <- value
       } else if (is.numeric(i) && ncol(i) == 2) {
         if (!wl.index) {
-          i [, 2] <- .getindex(x, i [, 2], extrapolate = FALSE)
-          if (any(is.na(i [, 2]))) {
+          i[, 2] <- .getindex(x, i[, 2], extrapolate = FALSE)
+          if (any(is.na(i[, 2]))) {
             stop("wavelength specification outside spectral range")
           }
         }
-        x@data$spc [i] <- value
+        x@data$spc[i] <- value
       } else {
         stop(
           "Index matrix i  must either be logical of the size of x$spc,",
           "or a n by 2 matrix."
         )
       }
-    } else { # index by row and columns
+    } else {# index by row and columns
       if (!missing(j)) {
         stop(
           "The spectra matrix may only be indexed by i (spectra) and l",
