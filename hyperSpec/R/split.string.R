@@ -37,3 +37,17 @@ split.string <- function(x, separator, trim.blank = TRUE, remove.empty = TRUE) {
   x
 }
 
+# Unit tests -----------------------------------------------------------------
+.test(split.string) <- function() {
+
+  context("split.string")
+
+  # Perform tests
+  test_that("split.string() works", {
+    expect_error(split.string())
+    expect_error(split.string(letters))
+
+    expect_equal(split.string("letters", "e"),  c("l", "tt", "rs"))
+    expect_equal(split.string("lette rs ", "e"), c("l", "tt", "rs"))
+  })
+}
