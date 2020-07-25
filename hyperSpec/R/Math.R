@@ -79,3 +79,29 @@ setMethod(
     x
   }
 )
+
+
+# Unit tests -----------------------------------------------------------------
+.test(abs) <- function() {
+
+  context("log")
+
+  # Perform tests
+  test_that("log() works", {
+    expect_silent(flu + flu)
+    expect_silent(flu ^ flu)
+    expect_silent(flu == flu)
+    expect_silent(flu >= flu | flu > flu)
+    expect_silent(all(flu == flu[[]]))
+    expect_silent(all(flu[[]] == flu))
+    expect_silent(flu[, , 445 ~ 450] > 300)
+
+    expect_silent(abs(flu))
+    expect_silent(sqrt(flu))
+    expect_silent(round(flu, 2))
+    expect_silent(max(flu))
+    expect_silent(log(flu))
+    expect_warning(cumsum(flu), "Do you really want to use")
+  })
+}
+
