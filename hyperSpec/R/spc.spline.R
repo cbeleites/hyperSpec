@@ -13,10 +13,10 @@
 #' @note This function is still experimental
 #' @export
 #' @examples
-#' p <- paracetamol [, , 2200 ~ max]
+#' p <- paracetamol[, , 2200 ~ max]
 #' plot(p, col = "gray")
-#' smooth <- spc.smooth.spline(p [, , c(2200 ~ 2400, 2500 ~ 2825, 3150 ~ max)],
-#'   wl(paracetamol [, , 2200 ~ max]),
+#' smooth <- spc.smooth.spline(p[, , c(2200 ~ 2400, 2500 ~ 2825, 3150 ~ max)],
+#'   wl(paracetamol[, , 2200 ~ max]),
 #'   df = 4, spar = 1
 #' )
 #' plot(smooth, col = "red", add = TRUE)
@@ -52,3 +52,14 @@ spc.smooth.spline <- function(spc, newx = wl(spc), ...) {
   spc
 }
 
+# Unit tests -----------------------------------------------------------------
+.test(spc.smooth.spline) <- function() {
+
+  context("spc.smooth.spline")
+
+  # Perform tests
+  test_that("spc.smooth.spline() works", {
+    expect_error(spc.smooth.spline())
+    expect_silent(spc.smooth.spline(flu))
+  })
+}
