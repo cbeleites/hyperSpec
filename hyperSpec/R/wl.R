@@ -294,7 +294,6 @@ c <- 299792458 # speed of light
 
   context("wlconv")
 
-
     test_that(".fixunitname() works", {
 
     expect_equal(.fixunitname("raman"), "raman")
@@ -312,6 +311,7 @@ c <- 299792458 # speed of light
   test_that("wlconv() works", {
     expect_error(wlconv())
     expect_error(wlconv(1000, "raman", "nm"), "Working with Raman shift")
+    expect_equal(wlconv(1000, "nm", "nm"), 1000)
 
     x <- c("raman", "invcm", "nm", "ev", "freq")
     y <- expand.grid(x, x)
