@@ -29,16 +29,3 @@ empty <- function(x, nrow = 0, spc = NA, extra = NA) {
 
   x
 }
-
-# Unit tests -----------------------------------------------------------------
-.test(empty) <- function() {
-
-  context("empty")
-
-  # Perform tests
-  test_that("empty() works", {
-    expect_equal(nrow(empty(flu)), 0)
-    expect_silent(empty(faux_cell, nrow = 2, spc = 0))
-    expect_error(empty(new("hyperSpec")))
-  })
-}
