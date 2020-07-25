@@ -183,21 +183,15 @@ setReplaceMethod("$",
   context("replace")
 
   test_that("replacement function `[<-` works", {
-
-    # [ ]
-    data(flu)
     spc <- flu
 
+    # [ ]
     expect_silent(spc[, "c"] <- 16:11)
-
     expect_silent(spc[] <- 6:1)
     expect_silent(spc$..)
-
   })
 
-
   test_that("replacement function `[[<-` works", {
-    data(flu)
     expect_silent(spc <- flu[, , 405 ~ 410])
 
     # [[ ]]
@@ -223,11 +217,10 @@ setReplaceMethod("$",
     ind <- matrix(c(1, 2, 4, 4:6), ncol = 2)
     expect_silent(spc[[ind, wl.index = TRUE]] <- 9999)
     expect_silent(spc[[]])
-
   })
 
+
   test_that("replacement function `[[<-` works", {
-    data(flu)
     spc <- flu[, , 405 ~ 410]
     # $
     expect_silent(spc$.)

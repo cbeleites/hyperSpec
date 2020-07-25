@@ -87,7 +87,6 @@ spc.bin <- function(spc, by = stop("reduction factor needed"), na.rm = TRUE, ...
   # Perform tests
   test_that("spc.bin() works", {
 
-    data(flu)
     expect_error(spc.bin(flu), "reduction factor needed")
     expect_silent(spc.bin(flu, 1))
     expect_warning(spc.bin(flu, 2), "Last data point averages only 1 points.")
