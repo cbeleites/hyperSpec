@@ -54,3 +54,18 @@ setMethod("scale",
     x
   }
 )
+
+
+# Unit tests -----------------------------------------------------------------
+.test(scale) <- function() {
+
+  context("scale")
+
+  # Perform tests
+  test_that("scale() works", {
+
+    expect_silent(scale(flu))
+    expect_silent(scale(flu, scale  = FALSE))
+    expect_silent(scale(flu, center = FALSE))
+  })
+}
