@@ -81,3 +81,17 @@
 #' ## checking
 #' stopifnot(all(mm.corrected2 == mm.corrected))
 setMethod("sweep", signature = signature(x = "hyperSpec"), .sweep)
+
+
+# Unit tests -----------------------------------------------------------------
+.test(sweep) <- function() {
+
+  context("sweep")
+
+  # Perform tests
+  test_that("sweep() works", {
+    expect_silent(sweep(flu, 1, max, "/"))
+    expect_silent(sweep(flu, 1, max(flu), "/"))
+  })
+
+}
