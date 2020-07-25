@@ -125,6 +125,7 @@ Collate:
     'fileio.optional.R'
     'fix_spc_colnames.R'
     'flu.R'
+    'generate-test-data.R'
     'getbynames.R'
     'paracetamol.R'
     'laser.R'
