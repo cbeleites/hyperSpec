@@ -108,6 +108,7 @@ spc.rubberband <- function(spc, ..., upper = FALSE, noise = 0, spline = TRUE) {
   ## use data that yields fairly stable baseline solution
   paracetamol <- paracetamol[, , 300 ~ 550]
 
+
   test_that("spectrum containing NA inside", {
     tmp <- paracetamol
     tmp[[, , 400]] <- NA
@@ -145,5 +146,3 @@ spc.rubberband <- function(spc, ..., upper = FALSE, noise = 0, spline = TRUE) {
   })
 }
 
-
-}
