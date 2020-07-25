@@ -16,3 +16,23 @@ getbynames <- function(x, e) {
     list()
   }
 }
+
+
+
+# Unit tests -----------------------------------------------------------------
+.test(getbynames) <- function() {
+
+  context("getbynames")
+
+  # Perform tests
+  test_that("getbynames() works", {
+
+    lst <- list(a = 1, b = "b", c = 2i)
+
+    expect_equal(getbynames(lst, "a"), list(a = 1))
+    expect_equal(getbynames(lst, 1),   list(a = 1))
+    expect_equal(getbynames(lst, 2),   list(b = "b"))
+    expect_equal(getbynames(lst, 6)[[1]], NA)
+
+  })
+}
