@@ -44,3 +44,22 @@
 #' # difference in cluster mean spectra
 #' plot(apply(region[[2]], 2, mean) - apply(region[[1]], 2, mean))
 setMethod("split", signature = signature(x = "hyperSpec"), .split)
+
+
+# Unit tests -----------------------------------------------------------------
+.test(split) <- function() {
+
+  context("split")
+
+  # Perform tests
+  test_that("split() works", {
+    expect_silent(split(flu, factor(c(1, 1, 1, 2, 2, 2))))
+  })
+
+  test_that("split() gives correct results", {
+    expect_silent(obj <- split(flu, factor(c(1, 1, 1, 2, 2, 2))))
+    expect_is(obj, "list")
+    expect_length(obj, 2)
+    expect_equal(names(obj), c("1", "2"))
+  })
+}
