@@ -146,16 +146,3 @@
 #'   bg = mapcols[faux_cell$region], col = "black", pch = 21
 #' )
 delayedAssign("faux_cell", .faux_cell())
-
-
-# Unit tests -----------------------------------------------------------------
-.test(.faux_cell) <- function() {
-
-  context(".faux_cell")
-
-  # Perform tests
-  test_that(".faux_cell", {
-    expect_silent(faux_cell_data <- .faux_cell())
-    expect_is(faux_cell_data, "hyperSpec")
-  })
-}
