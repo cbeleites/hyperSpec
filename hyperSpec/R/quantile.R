@@ -47,7 +47,7 @@ setMethod("quantile", signature = signature(x = "hyperSpec"), .quantile)
 
 # Unit tests -----------------------------------------------------------------
 
-.test(quantile) <- function() {
+.test(.quantile) <- function() {
   context("quantile")
 
   test_that("quantile() works", {
