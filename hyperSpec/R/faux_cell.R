@@ -1,4 +1,4 @@
-.faux_cell <- function() {
+generate_faux_cell <- function() {
 
 
   # Check for points inside ellipse
@@ -145,4 +145,4 @@
 #'   xlab = "PC 1", ylab = "PC 2",
 #'   bg = mapcols[faux_cell$region], col = "black", pch = 21
 #' )
-delayedAssign("faux_cell", .faux_cell())
+delayedAssign("faux_cell", generate_faux_cell())
