@@ -191,14 +191,19 @@ setReplaceMethod("$",
   })
 
   test_that("replacement function `[[<-` works", {
-    expect_silent(spc <- flu[, , 405 ~ 410])
+    expect_silent(spc0 <- flu[, , 405 ~ 410])
 
     # [[ ]]
+    spc <- spc0
     expect_silent(spc[[]])
     expect_silent(spc[[3]] <- -spc[[3]])
     expect_silent(spc[[]])
+
+    spc <- spc0
     expect_silent(spc[[, , 405:410]] <- -spc[[, , 405:410]])
     expect_silent(spc[[]])
+
+    spc <- spc0
     expect_silent(spc[[, , 405 ~ 410]] <- -spc[[, , 405 ~ 410]])
 
     ## indexing with logical matrix
@@ -220,12 +225,27 @@ setReplaceMethod("$",
 
 
   test_that("replacement function `$<-` works", {
-    spc <- flu[, , 405 ~ 410]
+    spc0 <- flu[, , 405 ~ 410]
+
     # $
-    expect_silent(spc$.)
-    expect_silent(spc$..)
+    spc <- spc0
+    expect_is(spc$.,  "data.frame")
+    expect_is(spc$.., "data.frame")
+
+    spc <- spc0
     expect_silent(spc$z <- 1:6)
+    expect_true("z" %in% colnames(spc))
+    expect_equal(spc$z, 1:6)
+
+    spc <- spc0
     expect_silent(spc$z <- list(1:6, "z / a.u."))
+    expect_equal(labels(spc, "z"),   "z / a.u.")
+    expect_true("z" %in%  colnames(spc))
+
+    spc <- spc0
+    expect_silent(spc$.. <- NULL)
+    expect_equal(ncol(spc$..), 0) # empty data frame.
+    expect_equal(ncol(spc),    1) # only "spc" column is left.
   })
 
 }
