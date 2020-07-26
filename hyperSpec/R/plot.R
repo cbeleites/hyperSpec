@@ -175,7 +175,7 @@ setMethod(
 
 # Unit tests -----------------------------------------------------------------
 
-.test(plot) <- function() {
+.test(.plot) <- function() {
   context("plot")
   # To update reference data for visual unit tests, run:
   # vdiffr::manage_cases(package = "./hyperSpec")
