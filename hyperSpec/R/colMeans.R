@@ -80,8 +80,17 @@ setMethod("rowSums", signature = signature(x = "hyperSpec"), function(x, na.rm =
   decomposition(x, result, scores = TRUE, label.wavelength = label.wavelength)
 })
 
+# Unit tests -----------------------------------------------------------------
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# FIXME: this pseudo-function is added so to attach unit test.
+# Otherwise the test are not performed and included in the code coverage reports.
+.colMeans  <- function() {}
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 #' @include unittest.R
-.test(colMeans) <- function() {
+.test(.colMeans) <- function() {
+
   for (fun in c("colMeans", "colSums", "rowMeans", "rowSums")) {
     context(fun)
     f <- get(fun, mode = "function")
