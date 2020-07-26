@@ -4,32 +4,40 @@
 #' Faux Cell Data Set for Testing & Demonstration.
 #'
 #' This is a synthetic data set intended for testing and demonstration.
+#' Function `generate_faux_cell()` simulates the faux cell data (*note:* in
+#' the future, it is planned to parameterize thefuncion) and object `faux_cell`
+#' is an instance of this dataset generated first time it is used.
 #'
 #' The data set resembles the `chondro` data set but is entirely synthetic.
 #'
-#' @format The object contains 875 Raman-like spectra, allocated to three
-#'   groups/regions in column region: the matrix/background, the cell and the
-#'   cell nucleus. Each spectrum is composed of 300 data points.  The spectrum
-#'   of each region is unique and simple, with a single peak at a particular
-#'   frequency and line width.  Poisson noise has been added.  The data is
-#'   indexed along the x and y dimensions, simulating data collected on a grid.
+#' @format The object `faux_cell` is a `hyperSpec` object that contains 875
+#'  Raman-like spectra, allocated to three groups/regions in column region:
+#'  the matrix/background, the cell and the cell nucleus. Each spectrum is
+#'  composed of 300 data points. The spectrum of each region is unique and
+#'  simple, with a single peak at a particular frequency and line width.
+#'  Poisson noise has been added. The data is indexed along the x and y
+#'  dimensions, simulating data collected on a grid.
 #'
 #' @rdname faux_cell
+#' @aliases faux_cell generate_faux_cell
 #' @docType data
 #' @include initialize.R
 #' @keywords datasets
 #' @concept datasets
+#' @concept data generation
 #' @export
 #' @author Claudia Beleites, Bryan A. Hanson
 #' @examples
+#' set.seed(1)
+#' faux_cell <- generate_faux_cell()
 #'
 #' faux_cell
 #'
 #' plot(sample(faux_cell, 10), stacked = TRUE)
 #'
 #' # Plot mean spectra
-#' FCgrps <- aggregate(faux_cell, faux_cell$region, mean_pm_sd)
-#' plotspc(FCgrps,
+#' fc_groups <- aggregate(faux_cell, faux_cell$region, mean_pm_sd)
+#' plotspc(fc_groups,
 #'   stacked = ".aggregate",
 #'   col = c("red", "green", "blue"), fill = ".aggregate"
 #' )
