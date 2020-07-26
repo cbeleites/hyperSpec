@@ -188,7 +188,6 @@ setReplaceMethod("$",
     # [ ]
     expect_silent(spc[, "c"] <- 16:11)
     expect_silent(spc[] <- 6:1)
-    expect_silent(spc$..)
   })
 
   test_that("replacement function `[[<-` works", {
@@ -220,7 +219,7 @@ setReplaceMethod("$",
   })
 
 
-  test_that("replacement function `[[<-` works", {
+  test_that("replacement function `$<-` works", {
     spc <- flu[, , 405 ~ 410]
     # $
     expect_silent(spc$.)
