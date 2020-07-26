@@ -77,11 +77,13 @@ all_wl <- function(expression, na.rm = FALSE) {
   res <- rowSums(!expression, na.rm = TRUE) == 0
 
   if (!na.rm) {
-    res [res] <- rowSums(expression [res, , drop = FALSE], na.rm = FALSE) == ncol(expression)
+    res[res] <- rowSums(expression[res, , drop = FALSE], na.rm = FALSE) == ncol(expression)
   }
 
   res
 }
+
+# Unit tests -----------------------------------------------------------------
 
 .test(all_wl) <- function() {
   context("all_wl")
@@ -120,6 +122,8 @@ all_wl <- function(expression, na.rm = FALSE) {
   })
 }
 
+# ... ------------------------------------------------------------------------
+
 #' @rdname summary
 #' @export
 #' @examples
@@ -130,7 +134,7 @@ any_wl <- function(expression, na.rm = FALSE) {
   res <- rowSums(expression, na.rm = TRUE) > 0
 
   if (!na.rm) {
-    res [!res] <- !rowSums(expression [!res, , drop = FALSE], na.rm = FALSE) == 0
+    res[!res] <- !rowSums(expression[!res, , drop = FALSE], na.rm = FALSE) == 0
   }
 
   res
