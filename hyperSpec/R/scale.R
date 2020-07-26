@@ -55,9 +55,15 @@ setMethod("scale",
   }
 )
 
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# FIXME: this pseudo-function is added so to attach unit test.
+# Otherwise the test are not performed and included in the code coverage reports.
+.scale  <- function() {
+
+}
 
 # Unit tests -----------------------------------------------------------------
-.test(scale) <- function() {
+.test(.scale) <- function() {
 
   context("scale")
 
