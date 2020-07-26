@@ -180,14 +180,74 @@ setMethod(
   # To update reference data for visual unit tests, run:
   # vdiffr::manage_cases(package = "./hyperSpec")
 
-  test_that("plot() gives expected output", {
+  test_that("warnings and errors in plot()", {
+
     # Data ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     expect_silent(hy_spectra <- generate_hy_spectra())
     expect_silent(hy_profile <- generate_hy_profile())
     expect_silent(hy_map     <- generate_hy_map())
 
-    # Prepare plot functions ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    # Base plots
+    # Regular tests: warnings ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    expect_warning(plot(hy_spectra, "ts"), "Intensity at first wavelengh only is used.")
+    expect_warning(plot(hy_spectra, "c"),  "Intensity at first wavelengh only is used.")
+
+    # Regular tests: errors ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    expect_error(plot(hy_spectra, "depth"), "object 'z' not found")
+    expect_error(plot(hy_spectra[0, ]),     "No spectra.")
+    expect_error(plot(hy_spectra, xoffset = "a"), "xoffset must be a numeric")
+    expect_error(plot(hy_spectra, func = "a"), "func needs to be a function")
+
+    expect_error(plot(hy_spectra, "???"), '??? unknown')
+    expect_error(plot(hy_spectra, contour = TRUE))
+  })
+
+
+  # Lattice-based plots
+  test_that("lattice-based plot() gives expected output", {
+
+    # Data ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    expect_silent(hy_spectra <- generate_hy_spectra())
+    expect_silent(hy_profile <- generate_hy_profile())
+    expect_silent(hy_map     <- generate_hy_map())
+
+    # Preparation ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    plot_c       <- plot(hy_profile, "c")
+    plot_ts      <- plot(hy_profile, "ts")
+    plot_depth   <- plot(hy_profile, "depth")
+
+    plot_map     <- plot(hy_map, "map")
+    plot_voronoi <- plot(hy_map, "voronoi")
+
+    # Perform tests ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    # Regular tests
+    expect_silent(plot_c)
+    expect_silent(plot_ts)
+    expect_silent(plot_depth)
+
+    expect_silent(plot_map)
+    expect_message(print(plot_voronoi))
+
+    # Visual tests
+    vdiffr::expect_doppelganger("plot-c",       plot_c)
+    vdiffr::expect_doppelganger("plot-ts",      plot_ts)
+    vdiffr::expect_doppelganger("plot-depth",   plot_depth)
+
+    vdiffr::expect_doppelganger("plot-map",     plot_map)
+    vdiffr::expect_doppelganger("plot-voronoi", plot_voronoi)
+  })
+
+
+  # Base R based plots
+  test_that("base R based plot() gives expected output", {
+
+    # Data ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    expect_silent(hy_spectra <- generate_hy_spectra())
+    expect_silent(hy_profile <- generate_hy_profile())
+    expect_silent(hy_map     <- generate_hy_map())
+
+
+    # Preparation ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     plot_1           <- function() plot(hy_spectra)
     plot_spc         <- function() plot(hy_spectra, "spc")
     plot_spcmeansd   <- function() plot(hy_spectra, "spcmeansd")
@@ -199,29 +259,10 @@ setMethod(
     plot_1_rev       <- function() plot(hy_spectra, wl.reverse = TRUE)
     plot_1_fill      <- function() plot(hy_spectra, fill = TRUE)
 
-    # Lattice plots
-    plot_c       <- plot(hy_profile, "c")
-    plot_ts      <- plot(hy_profile, "ts")
-    plot_depth   <- plot(hy_profile, "depth")
-
-    plot_map     <- plot(hy_map, "map")
-    plot_voronoi <- plot(hy_map, "voronoi")
-
 
     # Perform tests ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    expect_silent(plot_1())
-    expect_warning(plot(hy_spectra, "ts"), "Intensity at first wavelengh only is used.")
-    expect_warning(plot(hy_spectra, "c"),  "Intensity at first wavelengh only is used.")
-
-    expect_error(plot(hy_spectra, "depth"), "object 'z' not found")
-    expect_error(plot(hy_spectra[0, ]),     "No spectra.")
-    expect_error(plot(hy_spectra, xoffset = "a"), "xoffset must be a numeric")
-    expect_error(plot(hy_spectra, func = "a"), "func needs to be a function")
-
-    expect_error(plot(hy_spectra, "???"), '??? unknown')
-    expect_error(plot(hy_spectra, contour = TRUE))
-
+    # Regular tests
     expect_silent(plot_1())
     expect_silent(plot_spc())
     expect_silent(plot_spcmeansd())
@@ -232,29 +273,18 @@ setMethod(
     expect_silent(plot_mat())
     expect_silent(plot_mat_contour())
 
+    # Visual tests
     vdiffr::expect_doppelganger("plot",             plot_1)
     vdiffr::expect_doppelganger("plot-spc",         plot_spc)
     vdiffr::expect_doppelganger("plot-spcmeansd",   plot_spcmeansd)
     vdiffr::expect_doppelganger("plot-spcprctile",  plot_spcprctile)
     vdiffr::expect_doppelganger("plot-spcprctl5",   plot_spcprctl5)
     vdiffr::expect_doppelganger("plot_1_rev",       plot_1_rev)
-    vdiffr::expect_doppelganger("plot_1_fill",      plot_1_fill)
     vdiffr::expect_doppelganger("plot-mat",         plot_mat)
     vdiffr::expect_doppelganger("plot-mat-contour", plot_mat_contour)
 
 
-    expect_silent(plot_c)
-    expect_silent(plot_ts)
-    expect_silent(plot_depth)
-
-    vdiffr::expect_doppelganger("plot-c",       plot_c)
-    vdiffr::expect_doppelganger("plot-ts",      plot_ts)
-    vdiffr::expect_doppelganger("plot-depth",   plot_depth)
-
-    expect_silent(plot_map)
-    expect_message(print(plot_voronoi))
-    vdiffr::expect_doppelganger("plot-map",     plot_map)
-    vdiffr::expect_doppelganger("plot-voronoi", plot_voronoi)
+    vdiffr::expect_doppelganger("plot_1_fill",      plot_1_fill)
 
   })
 }
