@@ -220,6 +220,7 @@ setMethod(
     expect_error(plot(hy_spectra, func = "a"), "func needs to be a function")
 
     expect_error(plot(hy_spectra, "???"), '??? unknown')
+    expect_error(plot(hy_spectra, contour = TRUE))
 
     expect_silent(plot_1())
     expect_silent(plot_spc())
