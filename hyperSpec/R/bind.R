@@ -71,10 +71,12 @@ bind <- function(direction = stop("direction ('c' or 'r') required"), ...,
 
   if (length(dots) == 0) {
     NULL
+
   } else if (length(dots) == 1) {
     validObject(dots[[1]])
     dots[[1]]
-  } else { # binding is actually needed.
+
+  } else {# binding is actually needed.
     lapply(dots, chk.hy)
     lapply(dots, validObject)
 
@@ -93,9 +95,24 @@ bind <- function(direction = stop("direction ('c' or 'r') required"), ...,
   }
 }
 
+# Unit tests -----------------------------------------------------------------
+
 #' @include unittest.R
 .test(bind) <- function() {
   context("bind")
+
+    test_that("bind() works", {
+
+    expect_error(bind("r"))
+    expect_error(bind("c"))
+
+    expect_equal(bind("r", flu), flu)
+    expect_equal(bind("c", flu), flu)
+
+    expect_equal(bind("r", flu, flu), rbind(flu, flu))
+    expect_equal(bind("c", flu, flu), cbind(flu, flu))
+  })
+
 
   test_that("wl.tolerance for rbind", {
     tmp <- flu
@@ -119,6 +136,7 @@ bind <- function(direction = stop("direction ('c' or 'r') required"), ...,
   })
 }
 
+# ... ------------------------------------------------------------------------
 
 #' @description  `cbind2` binds the spectral matrices of two `hyperSpec` objects by column. All columns
 #' besides `spc` with the same name in `x@@data` and `y@@data` must have the same
@@ -143,6 +161,8 @@ cbind.hyperSpec <- function(...) bind("c", ...)
 #' @export
 #' @aliases rbind.hyperSpec
 rbind.hyperSpec <- function(...) bind("r", ...)
+
+# Unit tests -----------------------------------------------------------------
 
 .test(rbind.hyperSpec) <- function() {
   context("rbind.hyperSpec")
@@ -171,6 +191,7 @@ rbind.hyperSpec <- function(...) bind("r", ...)
   })
 }
 
+# ... ------------------------------------------------------------------------
 
 .cbind2 <- function(x, y) {
   validObject(x)
@@ -209,6 +230,35 @@ rbind.hyperSpec <- function(...) bind("r", ...)
 
   x
 }
+
+
+# Unit tests -----------------------------------------------------------------
+
+.test(.cbind2) <- function() {
+  context(".cbind2")
+
+  test_that("flu", {
+    expect_equal(cbind(flu[, 1], flu[, -1]), flu, check.attributes = FALSE)
+    expect_equal(cbind(flu[, -1], flu[, 1]), flu, check.attributes = FALSE)
+    expect_equal(cbind(flu[, 1:2], flu[, 3]), flu, check.attributes = FALSE)
+  })
+
+  test_that("empty objects", {
+    expect_equal(cbind(flu[, 0], flu[, 0]), flu[, 0], check.attributes = FALSE)
+    expect_equal(cbind(flu[, 1], flu[, 0]), flu[, 1], check.attributes = FALSE)
+    expect_equal(cbind(flu[, 0], flu[, 1]), flu[, 1], check.attributes = FALSE)
+  })
+
+  test_that("cbind2", {
+    expect_equal(cbind2(flu), flu)
+    expect_equal(cbind2(flu, flu), cbind(flu, flu))
+  })
+
+}
+
+
+# ... ------------------------------------------------------------------------
+
 #' @rdname bind
 #' @export
 #' @aliases cbind2,hyperSpec,hyperSpec-method
@@ -236,6 +286,8 @@ setMethod("cbind2", signature = signature(x = "hyperSpec", y = "missing"), funct
   x
 }
 
+# Unit tests -----------------------------------------------------------------
+
 .test(.rbind2) <- function() {
   context(".rbind2")
 
@@ -251,14 +303,20 @@ setMethod("cbind2", signature = signature(x = "hyperSpec", y = "missing"), funct
     expect_equal(rbind(flu[0], flu[1]), flu[1], check.attributes = FALSE)
   })
 
-
   test_that("wl.tolerance", {
     tmp <- flu
     wl(tmp) <- wl(tmp) + 0.01
     expect_error(rbind2(tmp, flu))
     expect_equivalent(nwl(rbind2(tmp, flu, wl.tolerance = 0.1)), nwl(flu))
   })
+
+  test_that("rbind2", {
+    expect_equal(rbind2(flu), flu)
+    expect_equal(rbind2(flu, flu), rbind(flu, flu))
+  })
 }
+
+# ... ------------------------------------------------------------------------
 
 #' @rdname bind
 #' @export
@@ -269,3 +327,4 @@ setMethod("rbind2", signature = signature(x = "hyperSpec", y = "hyperSpec"), .rb
 #' @export
 #' @aliases rbind2,hyperSpec,missing-method
 setMethod("rbind2", signature = signature(x = "hyperSpec", y = "missing"), function(x, y, wl.tolerance) x)
+
