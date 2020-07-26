@@ -25,11 +25,22 @@
 #' containing the respective quantile spectra.
 #' @param probs the quantiles, see [stats::quantile()]
 #' @param names `"pretty"` results in percentages (like [stats::quantile()]'s
-#' `names = TRUE`), `"num"` results in the row names being `as.character (probs)`
-#' (good for ggplot2 getting the order of the quantiles right). Otherwise, no names are assigned.
+#' `names = TRUE`), `"num"` results in the row names being `as.character(probs)`
+#' (good for ggplot2 getting the order of the quantiles right). Otherwise, no
+#' names are assigned.
 #' @seealso  [stats::quantile()]
 #' @export
 #' @examples
 #'
 #' plot(quantile(faux_cell))
+#'
+#' flu_quantiles <- quantile(flu)
+#' rownames(flu_quantiles)
+#' flu_quantiles$..
+#'
+#' flu_pretty_quantiles <- quantile(flu, names = "pretty")
+#' rownames(flu_pretty_quantiles)
+#' flu_pretty_quantiles$..
+#'
 setMethod("quantile", signature = signature(x = "hyperSpec"), .quantile)
+
