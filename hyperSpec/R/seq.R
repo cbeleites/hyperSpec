@@ -109,10 +109,9 @@ wl.seq <- function(x, from = 1, to = ncol(x@data$spc), ...) {
     expect_equal(max(row.seq(sp)), nrow(sp))
     expect_equal(row.seq(sp), seq(sp, index = TRUE))
 
-    x <- wl.seq(sp[0, ])
+    x <- row.seq(sp[0, ])
     expect_length(x, 0)
     expect_is(x, "integer")
-
   })
 
 
