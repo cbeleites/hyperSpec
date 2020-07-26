@@ -233,6 +233,11 @@ setMethod(
     vdiffr::expect_doppelganger("plot-ts",      plot_ts)
     vdiffr::expect_doppelganger("plot-depth",   plot_depth)
 
+
+    # Skip if R < 4.0.0 (due to different defaults)
+    # Reason: these visual tests fail on CI system
+    testthat::skip_if(R.version < "4.0.0", "R version is < 4.0.0")
+
     vdiffr::expect_doppelganger("plot-map",     plot_map)
     vdiffr::expect_doppelganger("plot-voronoi", plot_voronoi)
   })
@@ -280,12 +285,19 @@ setMethod(
     vdiffr::expect_doppelganger("plot-spcprctile",  plot_spcprctile)
     vdiffr::expect_doppelganger("plot-spcprctl5",   plot_spcprctl5)
     vdiffr::expect_doppelganger("plot_1_rev",       plot_1_rev)
+    vdiffr::expect_doppelganger("plot_1_fill",      plot_1_fill)
+
+
+    # These tests are skipped on CI systems, as they fail on R devel.
+    testthat::skip_if(
+      isTRUE(as.logical(Sys.getenv("CI"))), # if on CI system
+      "Failures on devel version of R"
+    )
+
     vdiffr::expect_doppelganger("plot-mat",         plot_mat)
     vdiffr::expect_doppelganger("plot-mat-contour", plot_mat_contour)
 
-    # Skip for R < 4.0.0 (due to different defaults)
-    testthat::skip_if(R.version < "4.0.0", "R version is < 4.0.0")
-    vdiffr::expect_doppelganger("plot_1_fill",      plot_1_fill)
-
   })
 }
+
+
