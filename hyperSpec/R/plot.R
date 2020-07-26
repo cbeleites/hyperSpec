@@ -283,7 +283,8 @@ setMethod(
     vdiffr::expect_doppelganger("plot-mat",         plot_mat)
     vdiffr::expect_doppelganger("plot-mat-contour", plot_mat_contour)
 
-
+    # Skip for R < 4.0.0 (due to different defaults)
+    testthat::skip_if(R.version < "4.0.0", "R version is < 4.0.0")
     vdiffr::expect_doppelganger("plot_1_fill",      plot_1_fill)
 
   })
