@@ -86,12 +86,25 @@ setMethod("rowSums", signature = signature(x = "hyperSpec"), function(x, na.rm =
     context(fun)
     f <- get(fun, mode = "function")
     test_that("basic operation", {
-      expect_equal(as.numeric(f(flu)                 [[]]), as.numeric(f(flu[[]],   na.rm = TRUE)), label = fun)
+      expect_equal(
+        as.numeric(f(flu)[[]]),
+        as.numeric(f(flu[[]],   na.rm = TRUE)),
+        label = fun
+      )
     })
 
     test_that("behaviour with NAs", {
-      expect_equal(as.numeric(f(fluNA)               [[]]), as.numeric(f(fluNA[[]], na.rm = TRUE)), label = fun)
-      expect_equal(as.numeric(f(fluNA, na.rm = FALSE)[[]]), as.numeric(f(fluNA[[]], na.rm = FALSE)), label = fun)
+      expect_equal(
+        as.numeric(f(fluNA)[[]]),
+        as.numeric(f(fluNA[[]], na.rm = TRUE)),
+        label = fun
+      )
+
+      expect_equal(
+        as.numeric(f(fluNA, na.rm = FALSE)[[]]),
+        as.numeric(f(fluNA[[]], na.rm = FALSE)),
+        label = fun
+      )
     })
   }
 }
