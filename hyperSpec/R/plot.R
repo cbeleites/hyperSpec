@@ -176,43 +176,54 @@ setMethod(
 # Unit tests -----------------------------------------------------------------
 
 .test(plot) <- function() {
+  context("plot")
   # To update reference data for visual unit tests, run:
   # vdiffr::manage_cases(package = "./hyperSpec")
 
-  # Data
-  expect_silent(hy_spectra <- generate_hy_spectra())
-  expect_silent(hy_profile <- generate_hy_profile())
-  expect_silent(hy_map     <- generate_hy_map())
+  test_that("plot() gives expected output", {
+    # Data ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    expect_silent(hy_spectra <- generate_hy_spectra())
+    expect_silent(hy_profile <- generate_hy_profile())
+    expect_silent(hy_map     <- generate_hy_map())
 
-  plot(hy_spectra, "ts")
+    # Prepare plot functions ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    # Base plots
+    plot_1          <- function() plot(hy_spectra)
+    plot_spc        <- function() plot(hy_spectra, "spc")
+    plot_spcmeansd  <- function() plot(hy_spectra, "spcmeansd")
+    plot_spcprctile <- function() plot(hy_spectra, "spcprctile")
+    plot_spcprctl5  <- function() plot(hy_spectra, "spcprctl5")
 
-  # Prepare plot functions
-  # Base plots
-  plot_1          <- function() plot(hy_spectra)
-  plot_spc        <- function() plot(hy_spectra, "spc")
-  plot_spcmeansd  <- function() plot(hy_spectra, "spcmeansd")
-  plot_spcprctile <- function() plot(hy_spectra, "spcprctile")
-  plot_spcprctl5  <- function() plot(hy_spectra, "spcprctl5")
+    # Lattice plots
+    plot_c       <- plot(hy_profile, "c")
+    plot_ts      <- plot(hy_profile, "ts")
+    plot_depth   <- plot(hy_profile, "depth")
 
-  # Lattice plots
-  plot_c       <- plot(hy_profile, "c")
-  plot_ts      <- plot(hy_profile, "ts")
-  plot_depth   <- plot(hy_profile, "depth")
+    plot_map     <- plot(hy_map, "map")
+    plot_voronoi <- plot(hy_map, "voronoi")
 
-  plot_voronoi <- suppressPackageStartupMessages(plot(hy_map, "voronoi"))
-  plot_map     <- plot(hy_map, "map")
 
-  # Perform tests
-  vdiffr::expect_doppelganger("plot",            plot_1)
-  vdiffr::expect_doppelganger("plot-spc",        plot_spc)
-  vdiffr::expect_doppelganger("plot-spcmeansd",  plot_spcmeansd)
-  vdiffr::expect_doppelganger("plot-spcprctile", plot_spcprctile)
-  vdiffr::expect_doppelganger("plot-spcprctl5",  plot_spcprctl5)
+    # Perform tests ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-  vdiffr::expect_doppelganger("plot-c",     plot_c)
-  vdiffr::expect_doppelganger("plot-ts",    plot_ts)
-  vdiffr::expect_doppelganger("plot-depth", plot_depth)
+    expect_silent(plot_1())
+    expect_warning(plot(hy_spectra, "ts"), "Intensity at first wavelengh only is used.")
+    expect_warning(plot(hy_spectra, "c"),  "Intensity at first wavelengh only is used.")
 
-  vdiffr::expect_doppelganger("plot-map",     plot_map)
-  vdiffr::expect_doppelganger("plot-voronoi", plot_voronoi)
+    expect_error(plot(hy_spectra, "depth"), "object 'z' not found")
+
+    vdiffr::expect_doppelganger("plot",            plot_1)
+    vdiffr::expect_doppelganger("plot-spc",        plot_spc)
+    vdiffr::expect_doppelganger("plot-spcmeansd",  plot_spcmeansd)
+    vdiffr::expect_doppelganger("plot-spcprctile", plot_spcprctile)
+    vdiffr::expect_doppelganger("plot-spcprctl5",  plot_spcprctl5)
+
+    vdiffr::expect_doppelganger("plot-c",       plot_c)
+    vdiffr::expect_doppelganger("plot-ts",      plot_ts)
+    vdiffr::expect_doppelganger("plot-depth",   plot_depth)
+
+    expect_message(print(plot_voronoi))
+    vdiffr::expect_doppelganger("plot-map",     plot_map)
+    vdiffr::expect_doppelganger("plot-voronoi", plot_voronoi)
+
+  })
 }
