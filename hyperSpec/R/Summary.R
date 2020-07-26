@@ -136,6 +136,8 @@ any_wl <- function(expression, na.rm = FALSE) {
   res
 }
 
+
+# Unit tests -----------------------------------------------------------------
 .test(any_wl) <- function() {
   context("any_wl")
 
@@ -170,5 +172,18 @@ any_wl <- function(expression, na.rm = FALSE) {
       any_wl(tmp > 400, na.rm = FALSE),
       apply(tmp > 400, 1, any, na.rm = FALSE)
     )
+  })
+
+  test_that("Summary warnings", {
+    expect_warning(
+      prod(flu),
+      "Do you really want to use prod on a hyperSpec object?"
+    )
+
+    expect_warning(
+      sum(flu),
+      "Do you really want to use sum on a hyperSpec object?"
+    )
+
   })
 }
