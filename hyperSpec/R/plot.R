@@ -188,14 +188,16 @@ setMethod(
 
     # Prepare plot functions ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     # Base plots
-    plot_1          <- function() plot(hy_spectra)
-    plot_spc        <- function() plot(hy_spectra, "spc")
-    plot_spcmeansd  <- function() plot(hy_spectra, "spcmeansd")
-    plot_spcprctile <- function() plot(hy_spectra, "spcprctile")
-    plot_spcprctl5  <- function() plot(hy_spectra, "spcprctl5")
+    plot_1           <- function() plot(hy_spectra)
+    plot_spc         <- function() plot(hy_spectra, "spc")
+    plot_spcmeansd   <- function() plot(hy_spectra, "spcmeansd")
+    plot_spcprctile  <- function() plot(hy_spectra, "spcprctile")
+    plot_spcprctl5   <- function() plot(hy_spectra, "spcprctl5")
+    plot_mat         <- function() plot(hy_spectra, "mat")
+    plot_mat_contour <- function() plot(hy_spectra, "mat", contour = TRUE)
 
-    plot_1_rev      <- function() plot(hy_spectra, wl.reverse = TRUE)
-    plot_1_fill     <- function() plot(hy_spectra, fill = TRUE)
+    plot_1_rev       <- function() plot(hy_spectra, wl.reverse = TRUE)
+    plot_1_fill      <- function() plot(hy_spectra, fill = TRUE)
 
     # Lattice plots
     plot_c       <- plot(hy_profile, "c")
@@ -224,14 +226,18 @@ setMethod(
     expect_silent(plot_spcprctl5())
     expect_silent(plot_1_rev())
     expect_silent(plot_1_fill())
+    expect_silent(plot_mat())
+    expect_silent(plot_mat_contour())
 
-    vdiffr::expect_doppelganger("plot",            plot_1)
-    vdiffr::expect_doppelganger("plot-spc",        plot_spc)
-    vdiffr::expect_doppelganger("plot-spcmeansd",  plot_spcmeansd)
-    vdiffr::expect_doppelganger("plot-spcprctile", plot_spcprctile)
-    vdiffr::expect_doppelganger("plot-spcprctl5",  plot_spcprctl5)
-    vdiffr::expect_doppelganger("plot_1_rev",      plot_1_rev)
-    vdiffr::expect_doppelganger("plot_1_fill",     plot_1_fill)
+    vdiffr::expect_doppelganger("plot",             plot_1)
+    vdiffr::expect_doppelganger("plot-spc",         plot_spc)
+    vdiffr::expect_doppelganger("plot-spcmeansd",   plot_spcmeansd)
+    vdiffr::expect_doppelganger("plot-spcprctile",  plot_spcprctile)
+    vdiffr::expect_doppelganger("plot-spcprctl5",   plot_spcprctl5)
+    vdiffr::expect_doppelganger("plot_1_rev",       plot_1_rev)
+    vdiffr::expect_doppelganger("plot_1_fill",      plot_1_fill)
+    vdiffr::expect_doppelganger("plot-mat",         plot_mat)
+    vdiffr::expect_doppelganger("plot-mat-contour", plot_mat_contour)
 
 
     expect_silent(plot_c)
