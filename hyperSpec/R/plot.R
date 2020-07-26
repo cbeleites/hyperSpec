@@ -236,7 +236,10 @@ setMethod(
 
     # Skip if R < 4.0.0 (due to different defaults)
     # Reason: these visual tests fail on CI system
-    testthat::skip_if(R.version < "4.0.0", "R version is < 4.0.0")
+    r_version <-
+      numeric_version(paste0(R.Version()[c("major", "minor")], collapse = "."))
+
+    testthat::skip_if(r_version < "4.0.0", "R version is < 4.0.0")
 
     vdiffr::expect_doppelganger("plot-map",     plot_map)
     vdiffr::expect_doppelganger("plot-voronoi", plot_voronoi)
