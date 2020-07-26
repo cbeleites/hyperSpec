@@ -165,3 +165,20 @@ generate_faux_cell <- function() {
 delayedAssign("faux_cell", generate_faux_cell())
 
 
+# Unit tests -----------------------------------------------------------------
+.test(generate_faux_cell) <- function() {
+
+  context("generate_faux_cell")
+
+  # Perform tests
+  test_that("generate_faux_cell() works", {
+    set.seed(1)
+    expect_silent(faux_cell_data <- generate_faux_cell())
+    expect_is(faux_cell_data, "hyperSpec")
+
+    set.seed(1)
+    expect_silent(faux_cell_data_2 <- generate_faux_cell())
+    expect_identical(faux_cell_data, faux_cell_data_2)
+  })
+}
+
