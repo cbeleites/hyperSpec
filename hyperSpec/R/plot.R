@@ -194,6 +194,9 @@ setMethod(
     plot_spcprctile <- function() plot(hy_spectra, "spcprctile")
     plot_spcprctl5  <- function() plot(hy_spectra, "spcprctl5")
 
+    plot_1_rev      <- function() plot(hy_spectra, wl.reverse = TRUE)
+    plot_1_fill     <- function() plot(hy_spectra, fill = TRUE)
+
     # Lattice plots
     plot_c       <- plot(hy_profile, "c")
     plot_ts      <- plot(hy_profile, "ts")
@@ -210,17 +213,36 @@ setMethod(
     expect_warning(plot(hy_spectra, "c"),  "Intensity at first wavelengh only is used.")
 
     expect_error(plot(hy_spectra, "depth"), "object 'z' not found")
+    expect_error(plot(hy_spectra[0, ]),     "No spectra.")
+    expect_error(plot(hy_spectra, xoffset = "a"), "xoffset must be a numeric")
+    expect_error(plot(hy_spectra, func = "a"), "func needs to be a function")
+
+    expect_silent(plot_1())
+    expect_silent(plot_spc())
+    expect_silent(plot_spcmeansd())
+    expect_silent(plot_spcprctile())
+    expect_silent(plot_spcprctl5())
+    expect_silent(plot_1_rev())
+    expect_silent(plot_1_fill())
 
     vdiffr::expect_doppelganger("plot",            plot_1)
     vdiffr::expect_doppelganger("plot-spc",        plot_spc)
     vdiffr::expect_doppelganger("plot-spcmeansd",  plot_spcmeansd)
     vdiffr::expect_doppelganger("plot-spcprctile", plot_spcprctile)
     vdiffr::expect_doppelganger("plot-spcprctl5",  plot_spcprctl5)
+    vdiffr::expect_doppelganger("plot_1_rev",      plot_1_rev)
+    vdiffr::expect_doppelganger("plot_1_fill",     plot_1_fill)
+
+
+    expect_silent(plot_c)
+    expect_silent(plot_ts)
+    expect_silent(plot_depth)
 
     vdiffr::expect_doppelganger("plot-c",       plot_c)
     vdiffr::expect_doppelganger("plot-ts",      plot_ts)
     vdiffr::expect_doppelganger("plot-depth",   plot_depth)
 
+    expect_silent(plot_map)
     expect_message(print(plot_voronoi))
     vdiffr::expect_doppelganger("plot-map",     plot_map)
     vdiffr::expect_doppelganger("plot-voronoi", plot_voronoi)
