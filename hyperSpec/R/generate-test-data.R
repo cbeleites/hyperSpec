@@ -79,3 +79,37 @@ generate_hy_map <- function(n_wl = 5, n_xy = 7, k = 5) {
     )
   )
 }
+
+
+# Unit tests -----------------------------------------------------------------
+
+.test(generate_hy_spectra) <- function() {
+  context("data for unit tests")
+
+  test_that("generate_hy_spectra() data dimensions did not change", {
+    hy_spectra <- generate_hy_spectra()
+
+    expect_is(hy_spectra, "hyperSpec")
+    expect_equal(nrow(hy_spectra), 20)
+    expect_equal(ncol(hy_spectra),  5)
+    expect_equal(nwl(hy_spectra),  50)
+  })
+
+  test_that("generate_hy_profile() data dimensions did not change", {
+    hy_profile <- generate_hy_profile()
+
+    expect_is(hy_profile, "hyperSpec")
+    expect_equal(nrow(hy_profile), 20)
+    expect_equal(ncol(hy_profile),  4)
+    expect_equal(nwl(hy_profile),   1)
+  })
+
+  test_that("generate_hy_map() data dimensions did not change", {
+    hy_map <- generate_hy_map()
+
+    expect_is(hy_map, "hyperSpec")
+    expect_equal(nrow(hy_map), 35)
+    expect_equal(ncol(hy_map),  4)
+    expect_equal(nwl(hy_map),   5)
+  })
+}
