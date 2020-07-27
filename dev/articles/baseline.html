@@ -287,10 +287,10 @@ Thus one should also consider requiring more support points than the default val
 <div class="sourceCode" id="cb5"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span>(<span class="fu"><a href="../reference/spc.fit.poly.html">spc.fit.poly.below</a></span>(<span class="kw">chondro</span>, <span class="kw">NULL</span>, npts.min = <span class="fl">20</span>))
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.860   0.064   0.936</span>
+<span class="co">#&gt;   0.858   0.059   0.929</span>
 <span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span>(<span class="fu"><a href="../reference/spc.fit.poly.html">spc.fit.poly.below</a></span>(<span class="kw">chondro</span>[, , <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">min</span> <span class="op">~</span> <span class="fl">700</span>, <span class="fl">1700</span> <span class="op">~</span> <span class="kw">max</span>)], <span class="kw">NULL</span>, npts.min = <span class="fl">20</span>))
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.409   0.011   0.452</span>
+<span class="co">#&gt;   0.432   0.019   0.495</span>
 </pre></div>
 <p>The choice of the spectral range in <code class="sourceCode r">fit.to</code> influences the resulting baselines to a certain extent, as becomes clear from figure <a href="#fig:spectralrange">2.3</a>.</p>
 </div>
