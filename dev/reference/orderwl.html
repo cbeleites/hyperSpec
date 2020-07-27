@@ -206,15 +206,15 @@ decreasing) order.</p>
 <span class='kw'>spc</span> <span class='op'>&lt;-</span> <span class='fu'>new</span>(<span class='st'>"hyperSpec"</span>, spc = <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>5</span>) <span class='op'>*</span> <span class='fl'>2</span> <span class='op'>+</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>, ncol = <span class='fl'>5</span>))
 <span class='kw'>spc</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span>(<span class='kw'>spc</span>, <span class='kw'>spc</span>)
 
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq_len</a></span>(<span class='fu'>nwl</span>(<span class='kw'>spc</span>)), <span class='kw'>spc</span>[[]], type = <span class='st'>"b"</span>)</div><div class='input'><span class='kw'>spc</span>[[]]</div><div class='output co'>#&gt;             1            2        3        4        5        1            2
-#&gt; [1,] 2.751102 -0.001093134 3.915239 4.633674 6.456792 2.751102 -0.001093134
-#&gt;             3        4        5
-#&gt; [1,] 3.915239 4.633674 6.456792</div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq_len</a></span>(<span class='fu'>nwl</span>(<span class='kw'>spc</span>)), <span class='kw'>spc</span>[[]], type = <span class='st'>"b"</span>)</div><div class='input'><span class='kw'>spc</span>[[]]</div><div class='output co'>#&gt;              1        2        3        4        5         1        2        3
+#&gt; [1,] 0.6526606 3.209341 3.136269 2.110489 6.626358 0.6526606 3.209341 3.136269
+#&gt;             4        5
+#&gt; [1,] 2.110489 6.626358</div><div class='input'>
 <span class='kw'>spc</span> <span class='op'>&lt;-</span> <span class='fu'>orderwl</span>(<span class='kw'>spc</span>)
-<span class='fu'><a href='https://rdrr.io/r/graphics/lines.html'>lines</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq_len</a></span>(<span class='fu'>nwl</span>(<span class='kw'>spc</span>)), <span class='kw'>spc</span>[[]], type = <span class='st'>"l"</span>, col = <span class='st'>"red"</span>)</div><div class='img'><img src='orderwl-3.png' alt='' width='466' height='288' /></div><div class='input'><span class='kw'>spc</span>[[]]</div><div class='output co'>#&gt;             1        1            2            2        3        3        4
-#&gt; [1,] 2.751102 2.751102 -0.001093134 -0.001093134 3.915239 3.915239 4.633674
-#&gt;             4        5        5
-#&gt; [1,] 4.633674 6.456792 6.456792</div></pre>
+<span class='fu'><a href='https://rdrr.io/r/graphics/lines.html'>lines</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq_len</a></span>(<span class='fu'>nwl</span>(<span class='kw'>spc</span>)), <span class='kw'>spc</span>[[]], type = <span class='st'>"l"</span>, col = <span class='st'>"red"</span>)</div><div class='img'><img src='orderwl-3.png' alt='' width='466' height='288' /></div><div class='input'><span class='kw'>spc</span>[[]]</div><div class='output co'>#&gt;              1         1        2        2        3        3        4        4
+#&gt; [1,] 0.6526606 0.6526606 3.209341 3.209341 3.136269 3.136269 2.110489 2.110489
+#&gt;             5        5
+#&gt; [1,] 6.626358 6.626358</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
