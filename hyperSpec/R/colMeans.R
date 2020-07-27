@@ -1,4 +1,4 @@
-#' `colSums`, `colMeans`, `rowSums` and `rowMeans` functions for `hyperSpec` objects.
+#' Functions `colSums`, `colMeans`, `rowSums` and `rowMeans` for `hyperSpec` objects.
 #'
 #' `hyperSpec` objects can use the base functions [base::colMeans()],
 #' [base::colSums()], [base::rowMeans()] and [base::rowSums()].
@@ -18,75 +18,81 @@ NULL
 #' @noRd
 setGeneric("colMeans") # , package = 'matrixStats')
 
-#' @rdname colSums
-#' @export
-#' @examples
-#' colMeans(flu)
-setMethod("colMeans", signature = signature(x = "hyperSpec"), function(x, na.rm = TRUE, ..., label.spc) {
+.colMeans <- function(x, na.rm = TRUE, ..., label.spc) {
   result <- colMeans(x@data$spc, na.rm = na.rm, ...)
   if (is.matrix(result) && ncol(result) != nwl(x) && nrow(result) == nwl(x)) {
     result <- t(result)
   }
 
   decomposition(x, result, scores = FALSE, label.spc = label.spc)
-})
-
-#' @noRd
-setGeneric("colSums") # , package = 'matrixStats')
+}
 
 #' @rdname colSums
 #' @export
 #' @examples
-#' colSums(flu)
-setMethod("colSums", signature = signature(x = "hyperSpec"), function(x, na.rm = TRUE, ..., label.spc) {
+#' colMeans(flu)
+setMethod("colMeans", signature = signature(x = "hyperSpec"), .colMeans)
+
+
+#' @noRd
+setGeneric("colSums") # , package = 'matrixStats')
+
+.colSums <- function(x, na.rm = TRUE, ..., label.spc) {
   result <- colSums(x@data$spc, na.rm = na.rm, ...)
   if (is.matrix(result) && ncol(result) != nwl(x) && nrow(result) == nwl(x)) {
     result <- t(result)
   }
 
   decomposition(x, result, scores = FALSE, label.spc = label.spc)
-})
-
-
-#' @noRd
-setGeneric("rowMeans") # , package = 'matrixStats')
+}
 
 #' @rdname colSums
 #' @export
 #' @examples
 #' colSums(flu)
-setMethod("rowMeans", signature = signature(x = "hyperSpec"), function(x, na.rm = TRUE, ..., label.wavelength) {
+setMethod("colSums", signature = signature(x = "hyperSpec"), .colSums)
+
+
+#' @noRd
+setGeneric("rowMeans") # , package = 'matrixStats')
+
+.rowMeans <- function(x, na.rm = TRUE, ..., label.wavelength) {
   result <- rowMeans(x@data$spc, na.rm = na.rm, ...)
   if (is.matrix(result) && nrow(result) != nrow(x) && ncol(result) == nrow(x)) {
     result <- t(result)
   }
 
   decomposition(x, result, scores = TRUE, label.wavelength = label.wavelength)
-})
-
-#' @noRd
-setGeneric("rowSums") # , package = 'matrixStats')
+}
 
 #' @rdname colSums
 #' @export
 #' @examples
-#' rowSums(flu)
-setMethod("rowSums", signature = signature(x = "hyperSpec"), function(x, na.rm = TRUE, ..., label.wavelength) {
+#' colSums(flu)
+setMethod("rowMeans", signature = signature(x = "hyperSpec"), .rowMeans)
+
+
+#' @noRd
+setGeneric("rowSums") # , package = 'matrixStats')
+
+
+.rowSums <- function(x, na.rm = TRUE, ..., label.wavelength) {
   result <- rowSums(x@data$spc, na.rm = na.rm, ...)
   if (is.matrix(result) && nrow(result) != nrow(x) && ncol(result) == nrow(x)) {
     result <- t(result)
   }
 
   decomposition(x, result, scores = TRUE, label.wavelength = label.wavelength)
-})
+}
+
+#' @rdname colSums
+#' @export
+#' @examples
+#' rowSums(flu)
+setMethod("rowSums", signature = signature(x = "hyperSpec"), .rowSums)
+
 
 # Unit tests -----------------------------------------------------------------
-
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# FIXME: this pseudo-function is added so to attach unit test.
-# Otherwise the test are not performed and included in the code coverage reports.
-.colMeans  <- function() {}
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 #' @include unittest.R
 .test(.colMeans) <- function() {
@@ -117,3 +123,4 @@ setMethod("rowSums", signature = signature(x = "hyperSpec"), function(x, na.rm =
     })
   }
 }
+

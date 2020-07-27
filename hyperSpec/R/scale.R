@@ -1,3 +1,14 @@
+.scale <- function(x, center = TRUE, scale = TRUE) {
+  validObject(x)
+
+  if (!is.logical(center)) center <- as.matrix(center)
+  if (!is.logical(scale)) scale <- as.matrix(scale)
+
+  x@data$spc <- scale(x@data$spc, center, scale)
+
+  x
+}
+
 #' Center and scale `hyperSpec` object.
 #'
 #' Scales the spectra matrix. `scale(x, scale = FALSE)` centers the data.
@@ -41,26 +52,8 @@
 #' tmp <- sweep(faux_cell, 1, mean, `/`)
 #' plot(tmp, "spcmeansd")
 #' tmp <- scale(tmp, center = quantile(tmp, .05), scale = FALSE)
-setMethod("scale",
-  signature = signature(x = "hyperSpec"),
-  function(x, center = TRUE, scale = TRUE) {
-    validObject(x)
+setMethod("scale",  signature = signature(x = "hyperSpec"), .scale)
 
-    if (!is.logical(center)) center <- as.matrix(center)
-    if (!is.logical(scale)) scale <- as.matrix(scale)
-
-    x@data$spc <- scale(x@data$spc, center, scale)
-
-    x
-  }
-)
-
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# FIXME: this pseudo-function is added so to attach unit test.
-# Otherwise the test are not performed and included in the code coverage reports.
-.scale  <- function() {
-
-}
 
 # Unit tests -----------------------------------------------------------------
 .test(.scale) <- function() {
