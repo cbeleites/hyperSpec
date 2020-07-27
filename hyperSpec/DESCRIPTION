@@ -37,6 +37,15 @@ Depends:
     lattice,
     grid,
     ggplot2 (>= 2.3.0)
+Imports:
+    testthat,
+    methods,
+    utils,
+    latticeExtra,
+    lazyeval,
+    dplyr,
+    rlang,
+    xml2
 Suggests:
     R.matlab,
     tripack,
@@ -69,15 +78,6 @@ Suggests:
     styler,
     covr,
     colorspace
-Imports:
-    testthat,
-    methods,
-    utils,
-    latticeExtra,
-    lazyeval,
-    dplyr,
-    rlang,
-    xml2
 URL: 
     https://cbeleites.github.io/hyperSpec,
     https://github.com/cbeleites/hyperSpec
