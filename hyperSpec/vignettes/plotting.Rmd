@@ -491,7 +491,7 @@ For more details refer to `vignette("hyperspec", package = "hyperSpec")`{.r}.
 
 To plot severel wavelength ranges (Fig. \@ref(fig:wavelength-2)), use `wl.range = list (600 ~ 1800, 2800 ~ 3100)`{.r}.
 Cut the wavelength axis appropriately with `xoffset = 750`{.r}.
-If available, the package package **plotrix**`[r cite_pkg("plotrix")`] is used to produce the cut mark.
+If available, the package package **plotrix**[`r cite_pkg("plotrix")`] is used to produce the cut mark.
 
 ```{r include=FALSE}
 CAPTION = "Plot of several wavelength (wavenumber) ranges.  "
