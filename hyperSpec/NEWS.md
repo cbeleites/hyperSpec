@@ -8,7 +8,7 @@
 * Documentation now available in `pkgdown` sites.
 * Introductory vignette reorganized and enhanced, thanks to Bryan Hanson.
 * Portions of `hyperSpec` were spun out into their own packages for ease of maintenance.  ELABORATE
-* Dataset `faux_cell` and function `generate_faux_cell` replace `chondro` dataset #125, #156, #180, #229).
+* Dataset `faux_cell` and function `generate_faux_cell` replace `chondro` dataset (#125, #156, #180, #229).
 
 ## Non-User-Facing Changes from 0.99 Series
 * Note: this listing is for the benefit of developers, and should summarize significant infrastructure changes.
