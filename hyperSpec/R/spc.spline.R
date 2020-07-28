@@ -60,6 +60,7 @@ spc.smooth.spline <- function(spc, newx = wl(spc), ...) {
   # Perform tests
   test_that("spc.smooth.spline() works", {
     expect_error(spc.smooth.spline())
-    expect_silent(spc.smooth.spline(flu))
+    expect_silent(hy <- spc.smooth.spline(flu))
+    expect_is(hy, "hyperSpec")
   })
 }
