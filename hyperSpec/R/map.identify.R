@@ -1,7 +1,10 @@
 #' @aliases levelplot,hyperSpec,missing-method
 #' @include plotmap.R
 #' @rdname levelplot
+#'
 #' @export
+#' @concept plotting
+#'
 #' @seealso  [`hyperSpec options()`][hyperSpec::options] [spc.identify()]
 #' [map.sel.poly()]
 #' @param tol tolerance for `map.identify` as fraction of the viewport

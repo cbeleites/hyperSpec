@@ -14,6 +14,9 @@
 #' @param label.right should the side labels be at the right side?
 #' @param ... handed to [graphics::rect()] and [graphics::text()]
 #' @author Claudia Beleites
+#'
+#' @concept plotting
+#'
 #' @export
 #' @rdname mark.dendrogram
 #' @examples

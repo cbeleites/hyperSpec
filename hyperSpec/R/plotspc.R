@@ -122,7 +122,10 @@
 #'
 #' [graphics::identify()] and [graphics::locator()] about
 #'   interaction with plots.
+#'
 #' @keywords hplot
+#' @concept plotting
+#'
 #' @export
 #' @examples
 #'
@@ -567,6 +570,9 @@ plotspc <- function(object,
 #' @author C. Beleites
 #' @seealso [hyperSpec::plotspc()]
 #' @rdname plotspc
+#'
+#' @concept plotting
+#'
 #' @export
 #' @examples
 #'

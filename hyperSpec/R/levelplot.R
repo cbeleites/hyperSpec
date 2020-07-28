@@ -98,6 +98,9 @@ setGeneric("levelplot", package = "lattice")
 #'   legend?
 #' @param contour,useRaster see  [lattice::levelplot()]
 #' @export
+#'
+#' @concept plotting
+#'
 #' @seealso  [lattice::levelplot()]
 #'
 #'  [trellis.factor.key()] for improved color coding of factors

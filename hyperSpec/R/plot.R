@@ -140,7 +140,9 @@ setGeneric("plot")
 #'
 #' [graphics::plot()]
 #' @keywords methods hplot
-#' @concept plots
+#'
+#' @concept plotting
+#'
 #' @export
 #' @examples
 #'

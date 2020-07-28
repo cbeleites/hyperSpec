@@ -9,6 +9,9 @@
 #'
 #'
 #' @author R. Kiselev
+#'
+#' @concept plotting
+#'
 #' @export
 #' @examples
 #' plot(faux_cell[7])

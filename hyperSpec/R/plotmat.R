@@ -12,9 +12,14 @@
 #' @param ... further parameters for [graphics::image()]
 #' @param contour should [graphics::contour()] be called instead of
 #' [graphics::image()]?
+#'
 #' @author Claudia Beleites
 #' @seealso  [graphics::image()], [graphics::contour()], [hyperSpec::levelplot()]
+#'
+#' @concept plotting
+#'
 #' @export
+#'
 #' @examples
 #' plotmat(laser, col = alois.palette(100))
 #'
