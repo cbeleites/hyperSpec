@@ -3,8 +3,8 @@ Encoding: UTF-8
 Type: Package
 Title: Work with Hyperspectral Data, i.e. Spectra + Meta Information (Spatial,
     Time, Concentration, ...)
-Version: 0.99-20200719
-Date: 2020-07-19
+Version: 0.99-20200728
+Date: 2020-07-28
 Maintainer: Claudia Beleites <Claudia.Beleites@chemometrix.gmbh>
 Authors@R: c(
     person("Claudia",   "Beleites",  role = c("aut", "cre", "dtc"), email = "Claudia.Beleites@chemometrix.gmbh"),
@@ -37,48 +37,48 @@ Depends:
     lattice,
     grid,
     ggplot2 (>= 2.3.0)
-Suggests:
-    R.matlab,
-    tripack,
-    deldir,
-    rgl,
-    plotrix,
-    sp,
-    baseline,
-    compiler,
-    inline,
-    Rcpp,
-    MASS,
-    fastcluster,
-    pls,
-    mvtnorm,
-    digest,
-    reshape,
-    devtools,
-    R.rsp,
-    tibble,
-    knitr,
-    kableExtra,
-    rmarkdown,
-    bookdown,
-    sessioninfo,
-    ggplotify,
-    akima,
-    ggpubr,
-    caTools,
-    styler,
-    covr,
-    colorspace,
-    vdiffr
 Imports:
-    testthat,
-    methods,
-    utils,
+    dplyr,
     latticeExtra,
     lazyeval,
-    dplyr,
+    methods,
     rlang,
+    testthat,
+    utils,
     xml2
+Suggests:
+    akima,
+    baseline,
+    bookdown,
+    caTools,
+    colorspace,
+    compiler,
+    covr,
+    deldir,
+    devtools,
+    digest,
+    fastcluster,
+    ggplotify,
+    ggpubr,
+    inline,
+    kableExtra,
+    knitr,
+    MASS,
+    mvtnorm,
+    plotrix,
+    pls,
+    R.matlab,
+    R.rsp,
+    Rcpp,
+    reshape,
+    rgl,
+    rmarkdown,
+    sessioninfo,
+    sp,
+    styler,
+    tibble,
+    tripack,
+    vdiffr
 URL: 
     https://cbeleites.github.io/hyperSpec,
     https://github.com/cbeleites/hyperSpec
