@@ -8,12 +8,14 @@
 #' @return invisible list with ggplot2 objects map and legend
 #' @seealso [hyperSpec::qmixtile()]
 #' @author Claudia Beleites
-#' @concept ggplot2
-#' @concept plots
+#'
+#' @concept deprecated
+#' @concept moved to hySpc.ggplot2
+#'
 #' @importFrom grid pushViewport viewport popViewport grid.layout unit
 #' @import ggplot2
 #' @export
-#' @md
+#'
 #' @examples
 #' faux_cell <- faux_cell - spc.fit.poly.below(faux_cell)
 #' faux_cell <- sweep(faux_cell, 1, apply(faux_cell, 1, mean), "/")
@@ -58,8 +60,10 @@ qplotmixmap <- function(object, ...) {
 #' @return invisible `NULL`
 #' @author Claudia Beleites
 #' @rdname qplotmix
-#' @concept ggplot2
-#' @concept plots
+#'
+#' @concept deprecated
+#' @concept moved to hySpc.ggplot2
+#'
 #' @export
 legendright <- function(p, l, legend.width = 8, legend.unit = "lines") {
   plot.new()
@@ -216,8 +220,10 @@ normalize.minmax <- function(x, min = 0, max = 1, legend = FALSE, n = 100,
 #' @param labels component names
 #' @return ggplot object with legend
 #' @author Claudia Beleites
-#' @concept ggplot2
-#' @concept plots
+#'
+#' @concept deprecated
+#' @concept moved to hySpc.ggplot2
+#'
 #' @export
 qmixlegend <- function(x, purecol, dx = 0.33, ny = 100, labels = names(purecol),
                        normalize = normalize.colrange, ...) {
@@ -276,14 +282,15 @@ qmixlegend <- function(x, purecol, dx = 0.33, ny = 100, labels = names(purecol),
 #' @rdname qplotmix
 #' @title Multi channel colour mixing.
 #' @param x matrix with component intensities in columns
-#' @param against value to mix against
-#'                (for `sub = TRUE` only, 1 = white, 0 = black)
+#' @param against value to mix against (for `sub = TRUE` only, 1 = white, 0 = black)
 #' @param sub subtractive color mixing?
 #' @param normalize function to normalize the values.
 #' @return character with colours
 #' @author Claudia Beleites
-#' @concept ggplot2
-#' @concept plots
+#'
+#' @concept deprecated
+#' @concept moved to hySpc.ggplot2
+#'
 #' @export
 #' @importFrom grDevices col2rgb rgb
 colmix.rgb <- function(x, purecol, against = 1, sub = TRUE,

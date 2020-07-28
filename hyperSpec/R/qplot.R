@@ -14,10 +14,12 @@
 #' @param debuglevel if > 0, additional debug output is produced
 #' @return a [ggplot2::ggplot()] object
 #' @author Claudia Beleites
-#' @concept ggplot2
-#' @concept plots
+#'
+#' @concept deprecated
+#' @concept moved to hySpc.ggplot2
+#'
 #' @export
-#' @md
+#'
 #' @seealso [plotspc()]
 #'
 #' [ggplot2::ggplot()], [ggplot2::geom_line()]
@@ -118,10 +120,12 @@ qplotspc <- function(x,
 #'   [ggplot2::geom_tile()] instead of [ggplot2::ggplot()].
 #' @return a [ggplot2::ggplot()] object
 #' @export
-#' @md
+#'
 #' @author Claudia Beleites
-#' @concept ggplot2
-#' @concept plots
+#'
+#' @concept deprecated
+#' @concept moved to hySpc.ggplot2
+#'
 #' @seealso [plotmap()]
 #'
 #'   [ggplot2::ggplot()], [ggplot2::geom_tile()]
@@ -200,9 +204,10 @@ qplotmap <- function(object,
 #'   [ggplot2::geom_point()] instead of [ggplot2::ggplot()].
 #' @return a [ggplot2::ggplot()] object
 #' @author Claudia Beleites
-#' @concept ggplot2
-#' @concept plots
-#' @md
+#'
+#' @concept deprecated
+#' @concept moved to hySpc.ggplot2
+#'
 #' @seealso [plotc()]
 #'
 #'   [ggplot2::ggplot()], [ggplot2::geom_point()]
