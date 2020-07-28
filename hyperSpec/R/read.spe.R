@@ -159,6 +159,8 @@ read.spe <- function(filename, xaxis = "file", acc2avg = F, cts_sec = F,
 #'
 #' @return xml data from the file converted to R list
 #' @importFrom xml2 as_list read_xml
+#'
+#' @concept io
 .read.spe.xml <- function(filename) {
   as_list(read_xml(.read.spe.xml_string(filename)))
 }
@@ -174,6 +176,10 @@ read.spe <- function(filename, xaxis = "file", acc2avg = F, cts_sec = F,
 #' @param filename - SPE filename
 #'
 #' @return string containing XML footer
+#'
+#' @concept io
+#'
+
 .read.spe.xml_string <- function(filename) {
   hdr <- .read.spe.header(filename)
 

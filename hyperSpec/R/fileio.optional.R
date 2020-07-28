@@ -21,6 +21,10 @@
 #' @keywords internal
 #' @return hyperSpec object
 #' @export
+#'
+#' @concept io
+#' @concept manipulation
+#'
 .fileio.optional <- function(spc, filename, ...,
                              file.remove.emptyspc = hy.getOption("file.remove.emptyspc"),
                              file.keep.name = hy.getOption("file.keep.name"),
