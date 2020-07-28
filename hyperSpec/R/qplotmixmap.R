@@ -9,7 +9,6 @@
 #' @seealso [hyperSpec::qmixtile()]
 #' @author Claudia Beleites
 #'
-#' @concept deprecated
 #' @concept moved to hySpc.ggplot2
 #'
 #' @importFrom grid pushViewport viewport popViewport grid.layout unit
@@ -61,7 +60,6 @@ qplotmixmap <- function(object, ...) {
 #' @author Claudia Beleites
 #' @rdname qplotmix
 #'
-#' @concept deprecated
 #' @concept moved to hySpc.ggplot2
 #'
 #' @export
@@ -221,7 +219,6 @@ normalize.minmax <- function(x, min = 0, max = 1, legend = FALSE, n = 100,
 #' @return ggplot object with legend
 #' @author Claudia Beleites
 #'
-#' @concept deprecated
 #' @concept moved to hySpc.ggplot2
 #'
 #' @export
@@ -288,7 +285,6 @@ qmixlegend <- function(x, purecol, dx = 0.33, ny = 100, labels = names(purecol),
 #' @return character with colours
 #' @author Claudia Beleites
 #'
-#' @concept deprecated
 #' @concept moved to hySpc.ggplot2
 #'
 #' @export

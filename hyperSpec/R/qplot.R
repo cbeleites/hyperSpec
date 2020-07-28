@@ -15,7 +15,6 @@
 #' @return a [ggplot2::ggplot()] object
 #' @author Claudia Beleites
 #'
-#' @concept deprecated
 #' @concept moved to hySpc.ggplot2
 #'
 #' @export
@@ -123,7 +122,6 @@ qplotspc <- function(x,
 #'
 #' @author Claudia Beleites
 #'
-#' @concept deprecated
 #' @concept moved to hySpc.ggplot2
 #'
 #' @seealso [plotmap()]
@@ -205,7 +203,6 @@ qplotmap <- function(object,
 #' @return a [ggplot2::ggplot()] object
 #' @author Claudia Beleites
 #'
-#' @concept deprecated
 #' @concept moved to hySpc.ggplot2
 #'
 #' @seealso [plotc()]
