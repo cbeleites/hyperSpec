@@ -1,3 +1,12 @@
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.math2 <-  function(x, digits) {
+    validObject(x)
+
+    x[[]] <- callGeneric(x[[]], digits)
+
+    x
+  }
+
 #' Mathematical Functions for `hyperSpec` Objects.
 #'
 #' The functions `abs()`, `sign()`, `sqrt()`, `floor()`, `ceiling()`, `trunc()`,
@@ -27,45 +36,37 @@
 #' [base::Math()] for the base math functions.
 #'
 #' [hyperSpec::Arith()] for arithmetic operators,
-#'   [hyperSpec::Comparison()] for comparison operators, and
-#'   [hyperSpec::Summary()] for group generic functions working on
-#'   `hyperSpec` objects.
+#' [hyperSpec::Comparison()] for comparison operators, and
+#' [hyperSpec::Summary()] for group generic functions working on `hyperSpec`
+#' objects.
+#'
 #' @keywords methods math
 #' @export
 #' @examples
 #'
 #' log(flu)
 setMethod(
-  "Math2", signature(x = "hyperSpec"),
-  function(x, digits) {
+  "Math2", signature(x = "hyperSpec"), .math2)
+
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.log <- function(x, base = exp(1), ...) {
     validObject(x)
 
-    x[[]] <- callGeneric(x[[]], digits)
-
+    x[[]] <- log(x[[]], base = base)
     x
   }
-)
 
 #' @rdname math
 #' @param ... ignored
 #' @param base base of logarithm
 #' @export
 #' @aliases log log,hyperSpec-method
-setMethod(
-  "log", signature(x = "hyperSpec"),
-  function(x, base = exp(1), ...) {
-    validObject(x)
+setMethod("log", signature(x = "hyperSpec"), .log)
 
-    x[[]] <- log(x[[]], base = base)
-    x
-  }
-)
 
-#' @rdname math
-#' @export
-setMethod(
-  "Math", signature(x = "hyperSpec"),
-  function(x) {
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.math <- function(x) {
     validObject(x)
 
     if (grepl("^cum", .Generic) || grepl("gamma$", .Generic)) {
@@ -75,7 +76,11 @@ setMethod(
     x[[]] <- callGeneric(x[[]])
     x
   }
-)
+
+
+#' @rdname math
+#' @export
+setMethod("Math", signature(x = "hyperSpec"), .math)
 
 
 # Unit tests -----------------------------------------------------------------
