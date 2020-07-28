@@ -339,7 +339,10 @@ split.line <- function(x, separator, trim.blank = TRUE) {
 #' Jarek Tuszynski (2008). caTools: Tools: moving window statistics, GIF,
 #'   Base64, ROC AUC, etc.. R package version 1.9.
 #' @export
+#'
 #' @keywords IO file
+#' @concept io
+#'
 #' @importFrom utils modifyList
 read.ENVI <- function(file = stop("read.ENVI: file name needed"), headerfile = NULL,
                       header = list(),

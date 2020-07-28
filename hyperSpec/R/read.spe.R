@@ -36,6 +36,9 @@
 #'
 #' @author R. Kiselev, C. Beleites
 #' @export
+#'
+#' @concept io
+#'
 read.spe <- function(filename, xaxis = "file", acc2avg = F, cts_sec = F,
                      keys.hdr2data = c(
                        "exposure_sec",
@@ -266,6 +269,9 @@ read.spe <- function(filename, xaxis = "file", acc2avg = F, cts_sec = F,
 #' @describeIn read.spe Plot the WinSpec SPE file (version 2.5) and show the
 #' calibration points stored inside of it (x-axis calibration)
 #' @export
+#'
+#' @concept io
+#'
 spe.showcalpoints <- function(filename, xaxis = "file", acc2avg = F, cts_sec = F) {
   hdr <- .read.spe.header(filename)
   xaxis <- .fixunitname(xaxis)

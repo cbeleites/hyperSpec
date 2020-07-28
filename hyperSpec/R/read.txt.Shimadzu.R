@@ -9,6 +9,9 @@
 #' @param quiet suppress printing of progress
 #' @return list of spectra tables
 #' @author Bjoern Egert
+#'
+#' @concept io
+#'
 #' @export
 #' @importFrom utils read.table
 read.txt.Shimadzu <- function(filename, encoding = "", quiet = TRUE) {

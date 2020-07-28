@@ -664,7 +664,10 @@ raw.split.nul <- function(raw, trunc = c(TRUE, TRUE), firstonly = FALSE, paste.c
 #' @references Source development kit and file format specification of `.spc`
 #'   files.
 #' @export
+#'
 #' @keywords IO file
+#' @concept io
+#'
 #' @examples
 #'
 #' ## get the sample .spc files from ftirsearch.com (see above)

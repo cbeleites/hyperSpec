@@ -9,6 +9,8 @@
 #' @importFrom utils packageDescription
 #' @export
 #'
+#' @concept io
+#'
 read.asc.PerkinElmer <- function(file = stop("filename or connection needed"), ...) {
   content <- readLines(con = file)
 
