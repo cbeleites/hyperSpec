@@ -46,7 +46,7 @@ as.data.frame.hyperSpec <- function(x, row.names = TRUE, optional = NULL, ...) {
 #' @param ... ignored
 #' @aliases as.matrix as.matrix,hyperSpec-method
 #' @export
-#' @md
+#'
 #' @seealso and [base::as.matrix()]
 #'
 #' [`[[`()] (`[[]]`) for a shortcut to `as.matrix`
@@ -65,7 +65,7 @@ as.matrix.hyperSpec <- function(x, ...) {
 #' @rdname asdataframe
 #' @aliases  as.wide.df
 #' @export
-#' @md
+#'
 #' @return
 #'
 #' `as.wide.df` returns a data.frame that consists of the extra data and

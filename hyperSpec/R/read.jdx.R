@@ -30,7 +30,7 @@
 #' @param wl.tolerance,collapse.equal see [collapse]
 #' @return hyperSpec object
 #' @author C. Beleites with contributions by Bryan Hanson
-#' @md
+#'
 #' @export
 #' @importFrom utils head modifyList maintainer
 read.jdx <- function(filename = stop("filename is needed"), encoding = "",

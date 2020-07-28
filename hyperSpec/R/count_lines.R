@@ -5,7 +5,7 @@
 #' @return number of lines in file
 #' @export
 #' @concept io
-#' @md
+#'
 #' @author C. Beleites
 count_lines <- function(file, chunksize = 1e4) {
   nlines <- 0

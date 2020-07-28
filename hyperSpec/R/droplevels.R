@@ -13,7 +13,7 @@
 #'
 #' @return hyperSpec object with unused levels of all factors in `@data` dropped.
 #' @seealso [base::droplevels()]
-#' @md
+#'
 #' @export
 #'
 #' @examples

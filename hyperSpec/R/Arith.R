@@ -79,7 +79,7 @@
 #' If you want to calculate on the extra data as well, use the data.frame
 #' `hyperSpec@data` directly or [`as.data.frame(x)`][as.data.frame()].
 #' @author C. Beleites
-#' @md
+#'
 #' @rdname Arith
 #' @docType methods
 #' @param e1,e2 or
@@ -328,7 +328,7 @@ setMethod("Arith", signature(e1 = "matrix", e2 = "hyperSpec"), .arith_nh)
 #' @rdname Arith
 #' @concept hyperSpec matrix multiplication
 #' @export
-#' @md
+#'
 #' @seealso  [base::matmult] for matrix multiplications with `%*%`.
 setMethod("%*%", signature(x = "hyperSpec", y = "hyperSpec"), .matmul_hh)
 

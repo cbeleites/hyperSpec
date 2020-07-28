@@ -23,7 +23,7 @@
 #' the same applies to possible column names of the spectra matrix.
 #'
 #' @author C. Beleites
-#' @md
+#'
 #' @export
 #' @param ... hyperSpec objects to be collapsed into one object. Instead of giving several
 #' arguments, a list with all objects to be collapsed may be given.

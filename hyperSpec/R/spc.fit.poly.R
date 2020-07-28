@@ -25,7 +25,7 @@
 #'   matrix, either as polynomial coefficients or as polynomials evaluted on
 #'   the spectral range of `apply.to`
 #' @author C. Beleites
-#' @md
+#'
 #' @seealso `vignette ("baseline", package = "hyperSpec")`
 #' @keywords manip datagen
 #' @export

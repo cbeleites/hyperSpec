@@ -9,7 +9,7 @@
 #'
 #' @param x object to evaluate the polynomial on
 #' @param order of the polynomial
-#' @md
+#'
 #' @rdname vanderMonde
 #' @return Vandermonde matrix
 #' @author C. Beleites
