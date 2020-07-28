@@ -11,6 +11,7 @@
 #' @author R. Kiselev
 #'
 #' @concept plotting
+#' @concept plotting tools
 #'
 #' @export
 #' @examples

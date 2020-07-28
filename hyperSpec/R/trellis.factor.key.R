@@ -15,6 +15,7 @@
 #'
 #' @keywords aplot
 #' @concept plotting
+#' @concept plotting tools
 #'
 #' @export
 #' @importFrom lattice level.colors

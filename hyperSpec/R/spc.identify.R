@@ -89,6 +89,7 @@
 #'
 #' @keywords iplot
 #' @concept plotting
+#' @concept plotting tools
 #'
 #' @rdname spc-identify
 #' @export

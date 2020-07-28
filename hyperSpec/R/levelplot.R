@@ -100,6 +100,7 @@ setGeneric("levelplot", package = "lattice")
 #' @export
 #'
 #' @concept plotting
+#' @concept plot generation
 #'
 #' @seealso  [lattice::levelplot()]
 #'

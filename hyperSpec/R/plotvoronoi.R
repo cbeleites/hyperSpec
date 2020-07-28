@@ -14,6 +14,7 @@
 #' @include levelplot.R
 #'
 #' @concept plotting
+#' @concept plot generation
 #'
 #' @export
 #' @seealso [latticeExtra::panel.voronoi()]

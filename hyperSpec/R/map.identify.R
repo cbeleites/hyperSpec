@@ -4,6 +4,7 @@
 #'
 #' @export
 #' @concept plotting
+#' @concept plotting tools
 #'
 #' @seealso  [`hyperSpec options()`][hyperSpec::options] [spc.identify()]
 #' [map.sel.poly()]

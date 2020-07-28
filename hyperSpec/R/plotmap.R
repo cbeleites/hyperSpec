@@ -77,6 +77,7 @@
 #'
 #' @keywords hplot
 #' @concept plotting
+#' @concept plot generation
 #'
 #' @examples
 #'

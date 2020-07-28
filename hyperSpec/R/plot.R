@@ -142,6 +142,7 @@ setGeneric("plot")
 #' @keywords methods hplot
 #'
 #' @concept plotting
+#' @concept plot generation
 #'
 #' @export
 #' @examples

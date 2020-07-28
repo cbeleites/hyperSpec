@@ -40,6 +40,7 @@
 #'
 #' @keywords hplot
 #' @concept plotting
+#' @concept plot generation
 #'
 #' @export
 #' @import graphics

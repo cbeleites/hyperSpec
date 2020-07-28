@@ -17,6 +17,7 @@
 #' @seealso  [graphics::image()], [graphics::contour()], [hyperSpec::levelplot()]
 #'
 #' @concept plotting
+#' @concept plot generation
 #'
 #' @export
 #'

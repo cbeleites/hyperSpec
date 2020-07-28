@@ -125,6 +125,7 @@
 #'
 #' @keywords hplot
 #' @concept plotting
+#' @concept plot generation
 #'
 #' @export
 #' @examples
@@ -572,6 +573,7 @@ plotspc <- function(object,
 #' @rdname plotspc
 #'
 #' @concept plotting
+#' @concept plot generation
 #'
 #' @export
 #' @examples

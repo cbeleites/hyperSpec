@@ -23,6 +23,7 @@
 #'
 #' @keywords iplot
 #' @concept plotting
+#' @concept plotting tools
 #'
 #' @examples
 #' \dontrun{\donttest{
@@ -95,6 +96,7 @@ map.sel.poly <- function(data, pch = 19, size = 0.3, ...) {
 #'
 #' @keywords iplot
 #' @concept plotting
+#' @concept plotting tools
 #'
 #' @rdname map-sel-poly
 #' @importFrom grid grid.lines grid.points

@@ -16,6 +16,7 @@
 #' @author Claudia Beleites
 #'
 #' @concept plotting
+#' @concept plotting tools
 #'
 #' @export
 #' @rdname mark.dendrogram
