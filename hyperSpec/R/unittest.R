@@ -8,9 +8,13 @@
 #'
 #' @author Claudia Beleites
 #'
-#' @keywords programming utilities
 #' @import testthat
+#'
 #' @export
+#'
+#' @keywords programming utilities
+#' @concept utils
+#'
 #' @examples
 #'
 #' hy.unittest()
