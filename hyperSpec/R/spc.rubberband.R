@@ -21,6 +21,9 @@
 #'
 #' @note This function is still experimental
 #' @export
+#'
+#' @concept baseline
+#'
 #' @examples
 #' plot(paracetamol[, , 175 ~ 1800])
 #' bl <- spc.rubberband(paracetamol[, , 175 ~ 1800], noise = 300, df = 20)

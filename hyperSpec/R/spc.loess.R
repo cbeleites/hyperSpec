@@ -15,10 +15,15 @@
 #' [stats::loess.control()].
 #' @return A new `hyperSpec` object.
 #' @rdname spc-loess
-#' @export
 #' @author C. Beleites
 #' @seealso [stats::loess()], [stats::loess.control()]
+#'
+#' @export
+#'
 #' @keywords manip datagen
+#' @concept spectra smoothing
+#'
+#'
 #' @examples
 #'
 #' plot(flu, col = "darkgray")

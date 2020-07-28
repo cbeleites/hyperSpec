@@ -16,7 +16,10 @@
 #' @method as.data.frame hyperSpec
 #' @export
 #' @seealso [base::as.data.frame()]
+#'
 #' @keywords methods
+#' @concept hyperSpec conversion
+#'
 #' @examples
 #'
 #' as.data.frame(faux_cell [1:3, , 600 ~ 620])
@@ -47,6 +50,8 @@ as.data.frame.hyperSpec <- function(x, row.names = TRUE, optional = NULL, ...) {
 #' @aliases as.matrix as.matrix,hyperSpec-method
 #' @export
 #'
+#' @concept hyperSpec conversion
+#'
 #' @seealso and [base::as.matrix()]
 #'
 #' [`[[`()] (`[[]]`) for a shortcut to `as.matrix`
@@ -65,6 +70,8 @@ as.matrix.hyperSpec <- function(x, ...) {
 #' @rdname asdataframe
 #' @aliases  as.wide.df
 #' @export
+#'
+#' @concept hyperSpec conversion
 #'
 #' @return
 #'
@@ -148,6 +155,9 @@ as.wide.df <- function(x, wl.prefix = "") {
 #'   numeric)?
 #' @param na.rm if `TRUE`, rows where spc is not `NA` are deleted.
 #' @export
+#'
+#' @concept hyperSpec conversion
+#'
 #' @return `as.long.df` returns the stacked or molten version of `x@@data`. The
 #'   wavelengths are in column `.wavelength`.
 #' @seealso

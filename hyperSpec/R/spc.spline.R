@@ -11,7 +11,11 @@
 #'
 #' [stats::smooth.spline()]
 #' @note This function is still experimental
+#'
 #' @export
+#'
+#' @concept spectra smoothing
+#'
 #' @examples
 #' p <- paracetamol[, , 2200 ~ max]
 #' plot(p, col = "gray")

@@ -187,7 +187,10 @@
 #'   for slot `label`.
 #'
 #' [hy.setOptions()]
+#'
 #' @keywords methods datagen
+#' @concept hyperSpec conversion
+#'
 #' @examples
 #'
 #' new("hyperSpec")
@@ -330,6 +333,9 @@ setMethod("initialize", "hyperSpec", .initialize)
 #' @return hyperSpec object
 #' @seealso [hyperSpec::initialize()]
 #' @export
+#'
+#' @concept hyperSpec conversion
+#'
 setGeneric(
   "as.hyperSpec",
   function(X, ...) {
@@ -347,6 +353,8 @@ setGeneric(
 #' @param spc spectra matrix
 #' @param labels list with labels
 #' @export
+#'
+#' @concept hyperSpec conversion
 #'
 #' @examples
 #' tmp <- data.frame(flu[[, , 400 ~ 410]])

@@ -24,9 +24,13 @@
 #' @param ... ignored
 #' @return A `hyperSpec` object with `ceiling (nwl (spc) / by)` data points per spectrum.
 #' @rdname spc-bin
+#'
 #' @export
-#' @author C. Beleites
+#'
 #' @keywords manip datagen
+#' @concept spectra smoothing
+#'
+#' @author C. Beleites
 #' @examples
 #'
 #' spc <- spc.bin(flu, 5)
