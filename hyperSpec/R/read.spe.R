@@ -178,7 +178,7 @@ read.spe <- function(filename, xaxis = "file", acc2avg = F, cts_sec = F,
 #' @return string containing XML footer
 #'
 #' @concept io
-#'
+#' @noRd
 
 .read.spe.xml_string <- function(filename) {
   hdr <- .read.spe.header(filename)
@@ -203,6 +203,7 @@ read.spe <- function(filename, xaxis = "file", acc2avg = F, cts_sec = F,
 
 #' @describeIn read.spe Read only header of a WinSpec SPE file (version 2.5)
 #' @return hdr list with `key=value` pairs
+#' @noRd
 .read.spe.header <- function(filename) {
   # Read the 4100-byte long binary header from the SPE file and parse it
 

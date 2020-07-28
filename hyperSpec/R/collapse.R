@@ -353,6 +353,7 @@ collapse <- function(..., wl.tolerance = hy.getOption("wl.tolerance"), collapse.
 #' @param wl.tolerance wavelength difference tolerance
 #'
 #' @return possible shorter list of dots
+#' @noRd
 .collapse.equal <- function(dots, wl.tolerance) {
   ## bind groups of objects that have *all* wavelengths equal
   ## within wl.tolerance from 1st object of potential group
@@ -404,6 +405,7 @@ collapse <- function(..., wl.tolerance = hy.getOption("wl.tolerance"), collapse.
 #' @concept wavelengths
 #'
 #' @return data.frame with information about suitable wavelength bins
+#' @noRd
 .cluster.wavelengths <- function(dots, wl.tolerance) {
 
   # set up data.frame to hold relevant information
