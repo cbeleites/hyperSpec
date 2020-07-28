@@ -10,7 +10,9 @@
 #'
 #' `na.rm` defaults to `TRUE` for `hyperSpec` objects.
 #' @seealso [colSums][base::colSums]
-#' @concept summary
+#'
+#' @concept stats
+#'
 #' @rdname colSums
 #' @name colSums
 NULL
@@ -29,6 +31,9 @@ setGeneric("colMeans") # , package = 'matrixStats')
 
 #' @rdname colSums
 #' @export
+#'
+#' @concept stats
+#'
 #' @examples
 #' colMeans(flu)
 setMethod("colMeans", signature = signature(x = "hyperSpec"), .colMeans)
@@ -48,6 +53,9 @@ setGeneric("colSums") # , package = 'matrixStats')
 
 #' @rdname colSums
 #' @export
+#'
+#' @concept stats
+#'
 #' @examples
 #' colSums(flu)
 setMethod("colSums", signature = signature(x = "hyperSpec"), .colSums)
@@ -67,6 +75,9 @@ setGeneric("rowMeans") # , package = 'matrixStats')
 
 #' @rdname colSums
 #' @export
+#'
+#' @concept stats
+#'
 #' @examples
 #' colSums(flu)
 setMethod("rowMeans", signature = signature(x = "hyperSpec"), .rowMeans)
@@ -87,6 +98,9 @@ setGeneric("rowSums") # , package = 'matrixStats')
 
 #' @rdname colSums
 #' @export
+#'
+#' @concept stats
+#'
 #' @examples
 #' rowSums(flu)
 setMethod("rowSums", signature = signature(x = "hyperSpec"), .rowSums)

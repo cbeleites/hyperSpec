@@ -12,9 +12,12 @@
 #' @author C. Beleites
 #' @seealso [stats::as.dist()]
 #' @references S. Theodoridis and K. Koutroumbas: Pattern Recognition, 3rd ed., p. 495
+#'
+#' @export
+#'
 #' @keywords cluster
 #' @concept stats
-#' @export
+#'
 #' @examples
 #'
 #' pearson.dist(flu[[]])

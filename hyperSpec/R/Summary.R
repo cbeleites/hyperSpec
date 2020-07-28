@@ -27,7 +27,11 @@
 #' @return `sum`, `prod`, `min`, `max`, and `range` return  a numeric,
 #' `all`, `any`, and `is.na` a logical.
 #' @seealso [base::Summary()] for the base summary functions.
+#'
 #' @export
+#'
+#' @concept stats
+#'
 #' @examples
 #'
 #' range(flu)
