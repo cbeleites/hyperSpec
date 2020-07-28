@@ -1,14 +1,11 @@
-#' Math Functions for `hyperSpec` Objects.
+#' Mathematical Functions for `hyperSpec` Objects.
 #'
-#' Mathematical functions for hyperSpec Objects.
-#'
-#' The functions `abs`, `sign`, `sqrt`, `floor`,
-#' `ceiling`, `trunc`, `round`, `signif`, `exp`,
-#' `log`, `expm1`, `log1p`, `cos`, `sin`, `tan`,
-#' `acos`, `asin`, `atan`, `cosh`, `sinh`,
-#' `tanh`, `acosh`, `asinh`, `atanh`, `lgamma`,
-#' `gamma`, `digamma`, `trigamma`, `cumsum`,
-#' `cumprod`, `cummax`, `cummin` for `hyperSpec` objects.
+#' The functions `abs()`, `sign()`, `sqrt()`, `floor()`, `ceiling()`, `trunc()`,
+#' `round()`, `signif()`, `exp()`, `log()`, `expm1()`, `log1p()`, `cos()`,
+#' `sin()`, `tan()`, `acos()`, `asin()`, `atan()`, `cosh()`, `sinh()`, `tanh()`,
+#' `acosh()`, `asinh`, `atanh()`, `lgamma()`, `gamma()`, `digamma()`,
+#' `trigamma()`, `cumsum()`, `cumprod()`, `cummax()`, `cummin()` for `hyperSpec`
+#'  objects.
 #'
 #' @aliases  Math Math2 Math,hyperSpec-method Math2,hyperSpec-method abs,hyperSpec-method
 #' sign,hyperSpec-method sqrt,hyperSpec-method floor,hyperSpec-method ceiling,hyperSpec-method
