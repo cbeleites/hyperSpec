@@ -4,9 +4,10 @@
 #' [stats::loess()].
 #'
 #' Applying [stats::loess()] to each of the spectra, an interpolation onto a new
-#' wavelength axis is performed.  At the same time, the specta are smoothed in order to increase the
-#' signal : noise ratio. See [stats::loess()] and [stats::loess.control()] on
-#' the parameters that control the amount of smoothing.
+#' wavelength axis is performed.  At the same time, the specta are smoothed in
+#' order to increase the signal : noise ratio. See [stats::loess()] and
+#' [stats::loess.control()] on the parameters that control the amount of
+#' smoothing.
 #'
 #' @param spc the `hyperSpec` object
 #' @param newx wavelengh axis to interpolate on
