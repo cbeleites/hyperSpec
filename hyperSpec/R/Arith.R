@@ -98,7 +98,10 @@
 #' dropped silently.
 #'
 #' @export
+#'
 #' @keywords methods arith
+#' @concept manipulation
+#'
 #' @include paste.row.R
 #' @include unittest.R
 #' @include hyperspec-class.R
@@ -326,8 +329,10 @@ setMethod("Arith", signature(e1 = "matrix", e2 = "hyperSpec"), .arith_nh)
 
 
 #' @rdname Arith
-#' @concept hyperSpec matrix multiplication
 #' @export
+#'
+#' @concept hyperSpec matrix multiplication
+#' @concept manipulation
 #'
 #' @seealso  [base::matmult] for matrix multiplications with `%*%`.
 setMethod("%*%", signature(x = "hyperSpec", y = "hyperSpec"), .matmul_hh)

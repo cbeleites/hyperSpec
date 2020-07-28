@@ -43,8 +43,12 @@
 #' [hyperSpec::Arith()] for arithmetic operators,
 #'   [hyperSpec::Math()] for mathematical group generic functions
 #'   (groups Math and Math2) working on `hyperSpec` objects.
-#' @keywords methods arith
+#'
 #' @export
+#'
+#' @keywords methods arith
+#' @concept manipulation
+#'
 #' @examples
 #'
 #' flu[, , 445 ~ 450] > 300

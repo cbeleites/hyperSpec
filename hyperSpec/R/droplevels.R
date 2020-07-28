@@ -16,6 +16,8 @@
 #'
 #' @export
 #'
+#' @concept manipulation
+#'
 #' @examples
 #' faux_cell[1:3]$region
 #' droplevels(faux_cell [1:3])$region

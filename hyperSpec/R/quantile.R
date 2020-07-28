@@ -30,6 +30,10 @@
 #' names are assigned.
 #' @seealso  [stats::quantile()]
 #' @export
+#'
+#' @concept stats
+#' @concept manipulation
+#'
 #' @examples
 #'
 #' plot(quantile(faux_cell))

@@ -18,5 +18,9 @@
 #' @return `hyperSpec` object containing the respective subset of spectra.
 #' @author Claudia Beleites
 #' @seealso [base::subset()]
+#'
 #' @export
+#'
+#' @concept manipulation
+#'
 setMethod("subset", signature = signature(x = "hyperSpec"), .subset)

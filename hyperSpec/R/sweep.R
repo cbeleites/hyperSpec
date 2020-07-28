@@ -50,10 +50,14 @@
 #' @return A `hyperSpec` object.
 #' @author C. Beleites
 #' @seealso [base::sweep()]
-#' @keywords methods
-#' @concept summary
-#' @concept preprocessing
+#'
 #' @export
+#'
+#' @keywords methods
+#' @concept stats
+#' @concept preprocessing
+#' @concept manipulation
+#'
 #' @examples
 #'
 #' ## Substract the background / slide / blank spectrum

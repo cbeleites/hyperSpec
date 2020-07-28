@@ -213,6 +213,9 @@
 #'
 #' @include call.list.R
 #' @export
+#'
+#' @concept manipulation
+#'
 setMethod("[",
   signature = signature(x = "hyperSpec"),
   function(x, i, j, l, ...,
@@ -243,6 +246,9 @@ setMethod("[",
 
 #' @rdname extractreplace
 #' @export
+#'
+#' @concept manipulation
+#'
 #' @aliases [[ [[,hyperSpec-method
 ## ' @name [[
 setMethod("[[",
@@ -286,6 +292,9 @@ setMethod("[[",
 #' @rdname extractreplace
 #' @aliases $ $,hyperSpec-method
 #' @export
+#'
+#' @concept manipulation
+#'
 setMethod("$",
   signature = signature(x = "hyperSpec"),
   function(x, name) {

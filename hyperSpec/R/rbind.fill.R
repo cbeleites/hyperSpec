@@ -9,7 +9,10 @@
 #' Much faster.
 #'
 #' @param list list to convert to data frame
+#'
 #' @keywords internal
+#' @concept manipulation
+#'
 quickdf <- function(list) {
   if (is.matrix(list[[1]])) {
     n <- nrow(list[[1]])
@@ -45,7 +48,10 @@ quickdf <- function(list) {
 #'
 #' @author C. Beleites
 #' @seealso   [base::rbind()], [base::cbind()], [plyr::rbind.fill()]
+#'
 #' @keywords manip
+#' @concept manipulation
+#'
 #' @rdname rbind.fill
 #' @examples
 #' A <- matrix(1:4, 2)
@@ -119,7 +125,10 @@ rbind.fill.matrix <- function(...) {
 #' operates substantially faster
 #'
 #' @param ... data frames/matrices to row bind together
+#'
 #' @keywords manip
+#' @concept manipulation
+#'
 #' @rdname rbind.fill
 #' @examples
 #' # rbind.fill(mtcars[c("mpg", "wt")], mtcars[c("wt", "cyl")])

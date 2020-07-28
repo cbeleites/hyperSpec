@@ -103,9 +103,13 @@
 #' @author C. Beleites
 #' @seealso [base::tapply()], [stats::aggregate()],
 #'   [stats::ave()]
-#' @keywords methods category array
 #' @rdname aggregate
 #' @export
+#'
+#' @keywords methods category array
+#' @concept manipulation
+#' @concept stats
+#'
 #' @import stats
 #' @include hyperspec-class.R
 #' @examples

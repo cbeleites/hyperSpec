@@ -15,6 +15,8 @@
 #' @return x amended with columns from y
 #' @export
 #'
+#' @concept manipulation
+#'
 #' @examples
 #' tmp <- flu [, FALSE, ]
 #' tmp$prediction <- 1:6

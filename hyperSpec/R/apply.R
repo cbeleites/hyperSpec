@@ -162,8 +162,12 @@
 #' @author C. Beleites
 #' @seealso [base::apply()], for applying `FUN` to subgroups of
 #'   the `hyperSpec` object: [hyperSpec::aggregate()].
-#' @keywords methods iteration
 #' @export
+#'
+#' @keywords methods iteration
+#' @concept manipulation
+#' @concept stats
+#'
 #' @examples
 #'
 #'

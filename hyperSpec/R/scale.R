@@ -33,9 +33,13 @@
 #' @seealso [base::scale()]
 #'
 #' package scale.
-#' @keywords methods
-#' @concept preprocessing
+#'
 #' @export
+#'
+#' @keywords methods
+#' @concept manipulation
+#' @concept preprocessing
+#'
 #' @examples
 #'
 #' ## mean center & variance scale

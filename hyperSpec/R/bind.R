@@ -34,13 +34,16 @@
 #'
 #' @author C. Beleites
 #' @export
+#'
+#' @keywords methods manip
+#' @concept manipulation
+#'
 #' @seealso
 #' [methods::rbind2()], [methods::cbind2()]
 #' [base::rbind()], [base::cbind()]
 #'
 #' [merge()] and [collapse()] for combining objects that do not share spectra
 #' or wavelengths, respectively.
-#' @keywords methods manip
 #' @examples
 #'
 #' faux_cell
@@ -155,6 +158,9 @@ bind <- function(direction = stop("direction('c' or 'r') required"), ...,
 #' @param x,y `hyperSpec` objects
 #' @rdname bind
 #' @export
+#'
+#' @concept manipulation
+#'
 #' @aliases cbind.hyperSpec
 
 cbind.hyperSpec <- function(...) bind("c", ...)
@@ -166,6 +172,9 @@ cbind.hyperSpec <- function(...) bind("c", ...)
 #' @aliases  rbind.hyperSpec
 #' @rdname bind
 #' @export
+#'
+#' @concept manipulation
+#'
 #' @aliases rbind.hyperSpec
 rbind.hyperSpec <- function(...) bind("r", ...)
 
@@ -269,11 +278,17 @@ rbind.hyperSpec <- function(...) bind("r", ...)
 
 #' @rdname bind
 #' @export
+#'
+#' @concept manipulation
+#'
 #' @aliases cbind2,hyperSpec,hyperSpec-method
 setMethod("cbind2", signature = signature(x = "hyperSpec", y = "hyperSpec"), .cbind2)
 
 #' @rdname bind
 #' @export
+#'
+#' @concept manipulation
+#'
 #' @aliases cbind2,hyperSpec,missing-method
 setMethod("cbind2", signature = signature(x = "hyperSpec", y = "missing"), function(x, y) x)
 
@@ -328,11 +343,17 @@ setMethod("cbind2", signature = signature(x = "hyperSpec", y = "missing"), funct
 
 #' @rdname bind
 #' @export
+#'
+#' @concept manipulation
+#'
 #' @aliases rbind2,hyperSpec,hyperSpec-method
 setMethod("rbind2", signature = signature(x = "hyperSpec", y = "hyperSpec"), .rbind2)
 
 #' @rdname bind
 #' @export
+#'
+#' @concept manipulation
+#'
 #' @aliases rbind2,hyperSpec,missing-method
 setMethod("rbind2", signature = signature(x = "hyperSpec", y = "missing"), function(x, y, wl.tolerance) x)
 

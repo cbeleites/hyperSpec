@@ -27,7 +27,11 @@
 #' @param value the replacement value
 #' @include wl2i.R
 #' @include paste.row.R
+#'
 #' @export
+#'
+#' @concept manipulation
+#'
 #' @examples
 #' ## replacement functions
 #' spc <- flu
@@ -97,7 +101,11 @@ setReplaceMethod("[", signature = signature(x = "hyperSpec"), .replace)
 #'
 #' @aliases [[<-,hyperSpec-method
 #' @name [[<-
+#'
 #' @export
+#'
+#' @concept manipulation
+#'
 #' @include wl2i.R
 #' @examples
 #' spc <- flu [, , 405 ~ 410]
@@ -172,6 +180,9 @@ setReplaceMethod("[[", signature = signature(x = "hyperSpec"), .replace2)
 #' @aliases $<-,hyperSpec-method
 #' @name $<-
 #' @export
+#'
+#' @concept manipulation
+#'
 #' @examples
 #' spc$.
 #' spc$z <- 1:6

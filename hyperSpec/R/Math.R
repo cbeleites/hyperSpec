@@ -42,6 +42,9 @@
 #'
 #' @keywords methods math
 #' @export
+#'
+#' @concept manipulation
+#'
 #' @examples
 #'
 #' log(flu)
@@ -61,6 +64,9 @@ setMethod(
 #' @param ... ignored
 #' @param base base of logarithm
 #' @export
+#'
+#' @concept manipulation
+#'
 #' @aliases log log,hyperSpec-method
 setMethod("log", signature(x = "hyperSpec"), .log)
 
@@ -80,6 +86,9 @@ setMethod("log", signature(x = "hyperSpec"), .log)
 
 #' @rdname math
 #' @export
+#'
+#' @concept manipulation
+#'
 setMethod("Math", signature(x = "hyperSpec"), .math)
 
 

@@ -30,8 +30,12 @@
 #' @return A list of `hyperSpec` objects.
 #' @author C. Beleites
 #' @seealso [base::split()]
-#' @keywords methods
+#'
 #' @export
+#'
+#' @keywords methods
+#' @concept manipulation
+#'
 #' @examples
 #'
 #' dist <- pearson.dist(faux_cell[[]])

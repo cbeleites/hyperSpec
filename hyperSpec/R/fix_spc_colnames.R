@@ -5,6 +5,9 @@
 #' @return hyperSpec object with wavelengths in column names of `$spc`
 #'
 #' @export
+#'
+#' @concept manipulation
+#'
 .fix_spc_colnames <- function(spc) {
   colnames(spc@data$spc) <- signif(spc@wavelength, digits = 6)
 

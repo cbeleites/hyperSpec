@@ -11,7 +11,12 @@
 #' @param w,df,spar see [stats::smooth.spline()]
 #' @param debuglevel  see [hyperSpec::options()]
 #' @return hyperSpec object
+#'
 #' @export
+#'
+#' @concept manipulation
+#' @concept imputation
+#'
 #' @author Claudia Beleites
 #' @examples
 #' fluNA <- hyperSpec:::fluNA
