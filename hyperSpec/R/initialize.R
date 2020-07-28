@@ -219,6 +219,9 @@
 #' plotc(h, spc ~ pos)
 setMethod("initialize", "hyperSpec", .initialize)
 
+
+# Unit tests -----------------------------------------------------------------
+
 #' @include unittest.R
 .test(.initialize) <- function() {
   context(".initialize / new (\"hyperSpec\")")
@@ -312,7 +315,7 @@ setMethod("initialize", "hyperSpec", .initialize)
   })
 }
 
-
+# ... ------------------------------------------------------------------------
 
 #' `as.hyperSpec`: convenience conversion functions.
 #'
@@ -351,10 +354,14 @@ setGeneric(
 #' guess.wavelength(wl)
 setMethod("as.hyperSpec", "matrix", .as.hyperSpec.matrix)
 
-.as.hyperSpec.data.frame <- function(X, spc = NULL, wl = guess.wavelength(spc), labels = attr(X, "labels"), ...) {
+.as.hyperSpec.data.frame <- function(X, spc = NULL, wl = guess.wavelength(spc),
+  labels = attr(X, "labels"), ...) {
   # TODO: remove after 31.12.2020
   if (!all(!is.na(guess.wavelength(colnames(X))))) {
-    warning("as.hyperSpec.data.frame has changed its behaviour. Use as.hyperSpec (as.matrix (X)) instead.")
+    warning(
+      "as.hyperSpec.data.frame has changed its behaviour. ",
+      "Use as.hyperSpec(as.matrix(X)) instead."
+    )
   }
 
   if (is.null(spc)) {
