@@ -11,6 +11,9 @@
 #' @return A `hyperSpec` object.
 #' @author C. Beleites
 #' @export
+#'
+#' @concept wavelengths
+#'
 #' @seealso [base::order()]
 #' @examples
 #'

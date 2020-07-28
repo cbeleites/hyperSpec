@@ -22,7 +22,11 @@
 #'   [hyperSpec::spc.loess()] and for spectral binning
 #'   [hyperSpec::spc.bin()].
 #' @author C. Beleites
+#'
 #' @export
+#'
+#' @concept wavelengths
+#'
 #' @seealso [base::signif()]
 #'
 #' cutting the spectral range: \code{\link[hyperSpec:extractreplace]{[}}
@@ -56,7 +60,7 @@ wl <- function(x) {
 #' @export "wl<-"
 #' @aliases wl<-
 #' @usage
-#' wl (x, label=NULL, digits=6) <- value
+#' wl(x, label = NULL, digits = 6) <- value
 #'
 #' @param value either a numeric containing the new wavelength vector, or a
 #'   list with `value$wl` containing the new wavelength vector and
@@ -65,6 +69,9 @@ wl <- function(x) {
 #'   for details.
 #' @param digits handed to [base::signif()]. See details.
 #' @return `hyperSpec` object
+#'
+#' @concept wavelengths
+#'
 #' @examples
 #' # convert from wavelength to frequency
 #' plot(laser)
@@ -111,6 +118,9 @@ wl <- function(x) {
 #' @param laser laser wavelength (required for work with Raman shift)
 #' @author R. Kiselev
 #' @export
+#'
+#' @concept wavelengths
+#'
 #' @examples
 #' wlconv(3200, "Raman shift", "nm", laser = 785.04)
 #' wlconv(785, "nm", "invcm")
@@ -260,7 +270,9 @@ freq2raman <- function(x, laser) nm2raman(freq2nm(x), laser)
   stop(paste0("'", unit, "': Unknown unit type"))
 }
 
+
 # Some physical constants
+# @concept constants
 q <- 1.60217656535e-19 # elementary charge
 h <- 6.6260695729e-34 # Planck's constant
 c <- 299792458 # speed of light
