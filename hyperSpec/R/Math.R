@@ -1,11 +1,11 @@
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .math2 <-  function(x, digits) {
-    validObject(x)
+  validObject(x)
 
-    x[[]] <- callGeneric(x[[]], digits)
+  x[[]] <- callGeneric(x[[]], digits)
 
-    x
-  }
+  x
+}
 
 #' Mathematical Functions for `hyperSpec` Objects.
 #'
@@ -51,11 +51,11 @@ setMethod(
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .log <- function(x, base = exp(1), ...) {
-    validObject(x)
+  validObject(x)
 
-    x[[]] <- log(x[[]], base = base)
-    x
-  }
+  x[[]] <- log(x[[]], base = base)
+  x
+}
 
 #' @rdname math
 #' @param ... ignored
@@ -67,15 +67,15 @@ setMethod("log", signature(x = "hyperSpec"), .log)
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .math <- function(x) {
-    validObject(x)
+  validObject(x)
 
-    if (grepl("^cum", .Generic) || grepl("gamma$", .Generic)) {
-      warning(paste("Do you really want to use", .Generic, "on a hyperSpec object?"))
-    }
-
-    x[[]] <- callGeneric(x[[]])
-    x
+  if (grepl("^cum", .Generic) || grepl("gamma$", .Generic)) {
+    warning(paste("Do you really want to use", .Generic, "on a hyperSpec object?"))
   }
+
+  x[[]] <- callGeneric(x[[]])
+  x
+}
 
 
 #' @rdname math
