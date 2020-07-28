@@ -369,6 +369,9 @@ setMethod("as.hyperSpec", "matrix", .as.hyperSpec.matrix)
 #' @note *Note that the behaviour of `as.hyperSpec(X)` was changed: it now
 #' assumes `X` to be extra data, and returns a hyperSpec object with 0
 #' wavelengths. To get the old behaviour*
+
+# FIXME: it seems that the documentation sentence in incomplete.
+
 setMethod("as.hyperSpec", "data.frame", .as.hyperSpec.data.frame)
 
 
