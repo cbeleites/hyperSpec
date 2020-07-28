@@ -1,30 +1,37 @@
 #' Binding `hyperSpec` Objects.
 #'
-#' The former difficulties with binding S4 objects
-#' are resolved since R version 3.2.0 and `cbind` and `rbind` now work as intended and
-#' expected for `hyperSpec` objects.
+#' Functions to bind `hyperSpec` objects.
+#'
+#'
+#' The former difficulties with binding S4 objects are resolved since R version
+#' 3.2.0 and `cbind()` and `rbind()` now work as intended and expected for
+#' `hyperSpec` objects.
 #'
 #' Therefore, calling `rbind.hyperSpec` and `cbind.hyperSpec` is now depecated:
-#'  `cbind` and `rbind` should now be called directly.
+#' `cbind` and `rbind` should now be called directly.
 #'
-#' However, in consequence it is no longer possible to call `cbind` or `rbind` with a
-#' list of `hyperSpec` objects. In that case, use `bind` or [base::do.call()] (see example).
+#' However, in consequence it is no longer possible to call `cbind()` or `rbind()`
+#' with a list of `hyperSpec` objects. In that case, use `bind()` or
+#' [base::do.call()] (see example).
 #'
-#' `bind` does the common work for both column- and row-wise binding.
+#' `bind()` does the common work for both column- and row-wise binding.
 #'
 #' @aliases bind
 #' @param ... The `hyperSpec` objects to be combined.
 #'
-#' Alternatively, *one* list of `hyperSpec` objects can be given to
-#'   `bind`.
+#' Alternatively, *one* list of `hyperSpec` objects can be given to `bind()`.
+#'
 #' @param wl.tolerance `rbind` and `rbind2` check for equal wavelengths
 #' with this tolerance.
 #' @include paste.row.R
 #' @param direction "r" or "c" to bind rows or columns
+#'
 #' @return a `hyperSpec` object, possibly with different row order (for
 #'   \code{bind ("c", \dots{})} and `cbind2`).
+#'
 #' @note You might have to make sure that the objects either all have or all
 #'   do not have rownames and/or colnames.
+#'
 #' @author C. Beleites
 #' @export
 #' @seealso
@@ -60,7 +67,7 @@
 #' lhy <- list(flu, flu)
 #' do.call("rbind", lhy)
 #' bind("r", lhy)
-bind <- function(direction = stop("direction ('c' or 'r') required"), ...,
+bind <- function(direction = stop("direction('c' or 'r') required"), ...,
                  wl.tolerance = hy.getOption("wl.tolerance")) {
   wl.tolerance <- .checkpos(wl.tolerance, "wl.tolerance")
   dots <- list(...)
@@ -138,9 +145,10 @@ bind <- function(direction = stop("direction ('c' or 'r') required"), ...,
 
 # ... ------------------------------------------------------------------------
 
-#' @description  `cbind2` binds the spectral matrices of two `hyperSpec` objects by column. All columns
-#' besides `spc` with the same name in `x@@data` and `y@@data` must have the same
-#' elements.  Rows are ordered before checking.
+#' @description `cbind2` binds the spectral matrices of two `hyperSpec` objects
+#' by column. All columns besides `spc` with the same name in `x@@data` and
+#' `y@@data` must have the same elements.  Rows are ordered before checking.
+#'
 #' @aliases bind cbind.hyperSpec rbind.hyperSpec
 #'   cbind2,hyperSpec,hyperSpec-method rbind2,hyperSpec,hyperSpec-method
 #'   cbind2,hyperSpec,missing-method rbind2,hyperSpec,missing-method
@@ -149,18 +157,18 @@ bind <- function(direction = stop("direction ('c' or 'r') required"), ...,
 #' @export
 #' @aliases cbind.hyperSpec
 
-#'
 cbind.hyperSpec <- function(...) bind("c", ...)
 
-#'
-#' `rbind2` binds two `hyperSpec` objects by row. They need to have
-#' the same columns.
+
+#' `rbind2` binds two `hyperSpec` objects by row. They need to have the same
+#' columns.
 #'
 #' @aliases  rbind.hyperSpec
 #' @rdname bind
 #' @export
 #' @aliases rbind.hyperSpec
 rbind.hyperSpec <- function(...) bind("r", ...)
+
 
 # Unit tests -----------------------------------------------------------------
 
@@ -320,7 +328,7 @@ setMethod("cbind2", signature = signature(x = "hyperSpec", y = "missing"), funct
 
 #' @rdname bind
 #' @export
-#' @aliases  rbind2,hyperSpec,hyperSpec-method
+#' @aliases rbind2,hyperSpec,hyperSpec-method
 setMethod("rbind2", signature = signature(x = "hyperSpec", y = "hyperSpec"), .rbind2)
 
 #' @rdname bind
