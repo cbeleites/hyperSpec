@@ -1,4 +1,4 @@
-#' Functions `colSums`, `colMeans`, `rowSums` and `rowMeans` for `hyperSpec` objects.
+#' Functions `colSums()`, `colMeans()`, `rowSums()` and `rowMeans()` for hyperSpec objects.
 #'
 #' `hyperSpec` objects can use the base functions [base::colMeans()],
 #' [base::colSums()], [base::rowMeans()] and [base::rowSums()].
