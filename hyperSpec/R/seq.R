@@ -93,8 +93,8 @@ wl.seq <- function(x, from = 1, to = ncol(x@data$spc), ...) {
 
     expect_equal(seq(sp, index = TRUE), 1:nrow(sp))
 
-    expect_is(seq(sp),      "hyperSpec")
-    expect_is(seq_along(sp),"integer")
+    expect_is(seq(sp),       "hyperSpec")
+    expect_is(seq_along(sp), "integer")
 
     expect_equal(seq_along(sp), seq(sp, index = TRUE))
 
