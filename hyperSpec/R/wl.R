@@ -282,23 +282,40 @@ c <- 299792458 # speed of light
 
 .test(wl) <- function() {
 
-  context("wl")
-  # Perform tests
+  context("get wl")
+
   test_that("wl() works", {
-    expect_silent(wl(laser))
-    expect_is(wl(laser), "numeric")
+    # Data
+    hy_obj <- new("hyperSpec", spc = matrix(1:100, nrow = 1), wavelength = 601:700)
+
+    # Perform tests
+    expect_silent(res <- wl(hy_obj))
+    expect_true(is.numeric(res)) # Can be either integer or double
+    expect_length(res, 100)
+    expect_equal(res, 601:700)
   })
 
-  test_that("`wl<-`() works", {
-    expect_silent(wl(laser) <-  rep(100, nwl(laser)))
-    expect_is(wl(laser), "numeric")
-    expect_equal(min(wl(laser)), 100)
 
+  context("set wl")
+
+  test_that("`wl<-` works", {
+    # Data
+    hy_obj <- new("hyperSpec", spc = matrix(1:100, nrow = 1), wavelength = 601:700)
+
+    # Set new wavelengths
+    expect_silent(wl(hy_obj) <- (1:nwl(hy_obj)) + 1000)
+    expect_true(is.numeric(hy_obj@wavelength))
+    expect_equal(hy_obj@wavelength, 1001:1100)
+
+    # Set new wavelengths and label
+    expect_equal(labels(hy_obj, ".wavelength"), ".wavelength")
     expect_silent(
-      wl(laser) <- list(wl = wl(laser) + 10, label = expression(lambda / nm))
+      wl(hy_obj) <- list(wl = 101:200, label = "new label")
     )
-    expect_equal(min(wl(laser)), 110)
+    expect_equal(hy_obj@wavelength, 101:200)
+    expect_equal(labels(hy_obj, ".wavelength"), "new label")
   })
+
 }
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
