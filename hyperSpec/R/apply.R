@@ -3,7 +3,7 @@
 }
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-.apply <- function(data, MARGIN, FUN, ...) {
+.apply_workhorse <- function(data, MARGIN, FUN, ...) {
   if (length(data$spc) == 0) {
     stop("empty spectra matrix.")
   }
@@ -50,7 +50,7 @@
   data
 }
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-.apply_hyperSpec <- function(X, MARGIN, FUN, ..., label.wl = NULL,
+.apply <- function(X, MARGIN, FUN, ..., label.wl = NULL,
   label.spc = NULL, new.wavelength = NULL, simplify) {
   validObject(X)
 
@@ -72,7 +72,7 @@
   } else {
     ## the usual: for each row / for each column
 
-    X@data <- .apply(X@data, MARGIN = MARGIN, FUN = FUN, ...)
+    X@data <- .apply_workhorse(X@data, MARGIN = MARGIN, FUN = FUN, ...)
 
     if (all(MARGIN == 1)) {
 
@@ -187,13 +187,13 @@
 #'
 #' ## whereas MARGIN = 1 : 2 leads to FUN being called for each element separately
 #' apply(flu [, , 405:407], 1:2, print)[[]]
-setMethod("apply", signature = signature(X = "hyperSpec"), .apply_hyperSpec)
+setMethod("apply", signature = signature(X = "hyperSpec"), .apply)
 
 
 # Unit tests -----------------------------------------------------------------
 
 #' @include unittest.R
-.test(.apply_hyperSpec) <- function() {
+.test(.apply) <- function() {
   context("apply")
 
   test_that("check whether .na.if.different is working correctly", {
@@ -211,11 +211,11 @@ setMethod("apply", signature = signature(X = "hyperSpec"), .apply_hyperSpec)
 
   test_that("POSIXct", {
     flu$ct <- as.POSIXct(Sys.time())
-    expect_equal(apply(flu, 2, mean)$ct, flu$ct [1])
+    expect_equal(apply(flu, 2, mean)$ct, flu$ct[1])
   })
 
   test_that("POSIXlt", {
     flu$lt <- as.POSIXlt(Sys.time())
-    expect_equal(apply(flu, 2, mean)$lt, flu$lt [1])
+    expect_equal(apply(flu, 2, mean)$lt, flu$lt[1])
   })
 }
