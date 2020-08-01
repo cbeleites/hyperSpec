@@ -57,12 +57,22 @@ setMethod("quantile", signature = signature(x = "hyperSpec"), .quantile)
   test_that("quantile() works", {
     sp <- generate_hy_spectra()
 
+    # Check ronames
     expect_silent(hy_q <- quantile(sp))
     expect_is(hy_q, "hyperSpec")
     expect_equal(rownames(hy_q), c("0", "0.5", "1"))
 
+    # Check ronames (%)
     expect_silent(hy_q_pretty <- quantile(sp, names = "pretty"))
     expect_equal(rownames(hy_q_pretty), c("  0 %", " 50 %", "100 %"))
+
+    # Check values
+    probs <- c(0, .25, .50, .75, 1)
+    expect_equal(
+      quantile(sp, probs = probs)$spc,           # on hyperSpec
+      apply(sp$spc, 2, quantile, probs = probs), # on matrix
+      check.attributes = FALSE
+    )
   })
 }
 
