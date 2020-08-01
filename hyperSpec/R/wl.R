@@ -306,7 +306,7 @@ c <- 299792458 # speed of light
 
   context("wlconv")
 
-    test_that(".fixunitname() works", {
+  test_that(".fixunitname() works", {
 
     expect_equal(.fixunitname("raman"), "raman")
     expect_equal(.fixunitname("invcm"), "invcm")
@@ -320,14 +320,35 @@ c <- 299792458 # speed of light
   })
 
 
-  test_that("wlconv() works", {
+
+  test_that("wlconv() throws error", {
     expect_error(wlconv())
-    expect_error(wlconv(1000, "raman", "nm"), "Working with Raman shift")
-    expect_equal(wlconv(1000, "nm", "nm"), 1000)
+
+    expect_error(
+      wlconv(1000, "raman", "nm"),
+      "Working with Raman shift requires knowledge of laser wavelength"
+    )
+    expect_error(wlconv(1000, "non-existing", "nm"),  "Unknown unit type")
+    expect_error(wlconv(1000, "nm", "non-existing"),  "Unknown unit type")
+  })
+
+
+  test_that("wlconv() output is coreect if units do not change", {
+    # No conversion is expected
+    expect_equal(wlconv(1000, "raman", "raman"), 1000)
+    expect_equal(wlconv(1000, "invcm", "invcm"), 1000)
+    expect_equal(wlconv(1000, "nm",    "nm"),    1000)
+    expect_equal(wlconv(1000, "ev",    "ev"),    1000)
+    expect_equal(wlconv(1000, "freq", "freq"),   1000)
+  })
+
+
+  test_that("wlconv() returns correct data type", {
 
     x <- c("raman", "invcm", "nm", "ev", "freq")
     y <- expand.grid(x, x)
     y <- y[y[[1]] != y[[2]], ]
+
     expect_silent(
       d <- apply(y, MARGIN = 1, function(x) {
         wlconv(10, x[["Var1"]], x[["Var2"]], 200)
@@ -335,5 +356,14 @@ c <- 299792458 # speed of light
     )
     expect_is(d, "numeric")
   })
+
+
+  # TODO (tests): Add expected results to the conversion grid and check against them.
+
+  # test_that("wlconv() performs conversion correctly", {
+  #  # ...
+  #
+  # })
+
 }
 
