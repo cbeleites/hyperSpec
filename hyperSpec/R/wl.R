@@ -302,9 +302,9 @@ c <- 299792458 # speed of light
 }
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-.test(wlconv) <- function() {
+.test(.fixunitname) <- function() {
 
-  context("wlconv")
+  context(".fixunitname")
 
   test_that(".fixunitname() works", {
 
@@ -315,11 +315,17 @@ c <- 299792458 # speed of light
     expect_equal(.fixunitname("freq"),  "freq")
     expect_equal(.fixunitname("px"),    "px")
     expect_equal(.fixunitname("file"),  "file")
-    expect_error(.fixunitname("ddd"),  "Unknown unit type")
+    expect_error(.fixunitname("ddd"),   "Unknown unit type")
 
   })
 
+  # TODO (tests): add more specific tests.
+}
 
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.test(wlconv) <- function() {
+
+  context("wlconv")
 
   test_that("wlconv() throws error", {
     expect_error(wlconv())
