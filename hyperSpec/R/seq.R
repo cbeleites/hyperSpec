@@ -91,8 +91,7 @@ wl.seq <- function(x, from = 1, to = ncol(x@data$spc), ...) {
   test_that("seq.hyperSpec() works", {
     sp <- generate_hy_spectra()
 
-    expect_equal(max(seq(sp, index = TRUE)), nrow(sp))
-    expect_equal(min(seq(sp, index = TRUE)), 1)
+    expect_equal(seq(sp, index = TRUE), 1:nrow(sp))
 
     expect_is(seq(sp),      "hyperSpec")
     expect_is(seq_along(sp),"integer")
