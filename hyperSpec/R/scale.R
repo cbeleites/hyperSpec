@@ -56,19 +56,19 @@
 #' tmp <- sweep(faux_cell, 1, mean, `/`)
 #' plot(tmp, "spcmeansd")
 #' tmp <- scale(tmp, center = quantile(tmp, .05), scale = FALSE)
-setMethod("scale",  signature = signature(x = "hyperSpec"), .scale)
+setMethod("scale", signature = signature(x = "hyperSpec"), .scale)
 
 
 # Unit tests -----------------------------------------------------------------
 .test(.scale) <- function() {
-
   context("scale")
 
   # Perform tests
-  test_that("scale() works", {
-
+  test_that("scale() returnts output silently", {
     expect_silent(scale(flu))
-    expect_silent(scale(flu, scale  = FALSE))
+    expect_silent(scale(flu, scale = FALSE))
     expect_silent(scale(flu, center = FALSE))
   })
+
+  # FIXME (tests): add tests to check the correctness of the output!!!
 }

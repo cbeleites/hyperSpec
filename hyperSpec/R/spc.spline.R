@@ -52,19 +52,19 @@ spc.smooth.spline <- function(spc, newx = wl(spc), ...) {
 
   validObject(spc)
 
-
   spc
 }
 
 # Unit tests -----------------------------------------------------------------
 .test(spc.smooth.spline) <- function() {
-
   context("spc.smooth.spline")
 
   # Perform tests
-  test_that("spc.smooth.spline() works", {
+  test_that("spc.smooth.spline() returnts output silently", {
     expect_error(spc.smooth.spline())
     expect_silent(hy <- spc.smooth.spline(flu))
     expect_is(hy, "hyperSpec")
   })
+
+  # FIXME (tests): add tests to check the correctness of the output!!!
 }

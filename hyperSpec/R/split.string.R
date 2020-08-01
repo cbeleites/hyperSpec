@@ -39,14 +39,15 @@ split.string <- function(x, separator, trim.blank = TRUE, remove.empty = TRUE) {
 
 # Unit tests -----------------------------------------------------------------
 .test(split.string) <- function() {
-
   context("split.string")
 
   # Perform tests
-  test_that("split.string() works", {
+  test_that("split.string() returnts output silently", {
     expect_error(split.string())
     expect_error(split.string(letters))
 
     expect_silent(split.string("letters", "r"))
   })
+
+  # FIXME (tests): add tests to check the correctness of the output!!!
 }

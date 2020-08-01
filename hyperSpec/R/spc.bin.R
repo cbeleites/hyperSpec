@@ -59,7 +59,7 @@ spc.bin <- function(spc, by = stop("reduction factor needed"), na.rm = TRUE, ...
     if (na.rm == 1) {
       na <- apply(!na, 1, tapply, bin, sum, na.rm = FALSE)
       spc@data$spc <- t(apply(spc@data$spc, 1, tapply, bin, sum, na.rm = TRUE) / na)
-    } else {# faster for small numbers of NA
+    } else { # faster for small numbers of NA
       tmp <- t(apply(spc@data$spc, 1, tapply, bin, sum, na.rm = FALSE))
       tmp <- sweep(tmp, 2, rle(bin)$lengths, "/")
 
@@ -71,7 +71,7 @@ spc.bin <- function(spc, by = stop("reduction factor needed"), na.rm = TRUE, ...
       }
       spc@data$spc <- tmp
     }
-  } else {# considerably faster
+  } else { # considerably faster
     spc@data$spc <- t(apply(spc@data$spc, 1, tapply, bin, sum, na.rm = FALSE))
     spc@data$spc <- sweep(spc@data$spc, 2, rle(bin)$lengths, "/")
   }
@@ -85,18 +85,24 @@ spc.bin <- function(spc, by = stop("reduction factor needed"), na.rm = TRUE, ...
 
 # Unit tests -----------------------------------------------------------------
 .test(spc.bin) <- function() {
-
   context("spc.bin")
 
   # Perform tests
-  test_that("spc.bin() works", {
-
-    expect_error(spc.bin(flu), "reduction factor needed")
+  test_that("spc.bin() returnts output silently", {
     expect_silent(spc.bin(flu, 1))
+  })
+
+  test_that("spc.bin() returns errors", {
+    expect_error(spc.bin(flu), "reduction factor needed")
+  })
+
+  test_that("spc.bin() returns warnings", {
     expect_warning(spc.bin(flu, 2), "Last data point averages only 1 points.")
     expect_warning(spc.bin(flu, 2, na.rm = TRUE), "Last data point averages only 1 points.")
 
     flu[[3, ]] <- NA_real_
     expect_warning(spc.bin(flu, 2, na.rm = TRUE), "Last data point averages only 1 points.")
   })
+
+  # FIXME (tests): add tests to check the correctness of the output!!!
 }

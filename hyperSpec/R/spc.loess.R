@@ -69,16 +69,22 @@ spc.loess <- function(spc, newx, enp.target = nwl(spc) / 4,
 
 # Unit tests -----------------------------------------------------------------
 .test(spc.loess) <- function() {
-
   context("spc.loess")
 
   # Perform tests
-  test_that("spc.loess() works", {
+  test_that("spc.loess() returnts output silently", {
     expect_silent(spc.loess(flu, seq(420, 470, 5)))
-    expect_error(spc.loess())
+  })
 
+  test_that("spc.loess() returns errors", {
+    expect_error(spc.loess())
+  })
+
+  test_that("spc.loess() returns warnings", {
     flu[[3, ]] <- NA_real_
     expect_warning(spc.loess(flu, seq(420, 470, 5)), "NAs were generated.")
   })
-}
 
+
+  # FIXME (tests): add tests to check the correctness of the output!!!
+}
