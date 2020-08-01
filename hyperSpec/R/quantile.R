@@ -45,7 +45,6 @@
 #' flu_pretty_quantiles <- quantile(flu, names = "pretty")
 #' rownames(flu_pretty_quantiles)
 #' flu_pretty_quantiles$..
-#'
 setMethod("quantile", signature = signature(x = "hyperSpec"), .quantile)
 
 
@@ -69,10 +68,9 @@ setMethod("quantile", signature = signature(x = "hyperSpec"), .quantile)
     # Check values
     probs <- c(0, .25, .50, .75, 1)
     expect_equal(
-      quantile(sp, probs = probs)$spc,           # on hyperSpec
+      quantile(sp, probs = probs)$spc, # on hyperSpec
       apply(sp$spc, 2, quantile, probs = probs), # on matrix
       check.attributes = FALSE
     )
   })
 }
-
