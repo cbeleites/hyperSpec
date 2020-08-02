@@ -81,12 +81,10 @@ bind <- function(direction = stop("direction('c' or 'r') required"), ...,
 
   if (length(dots) == 0) {
     NULL
-
   } else if (length(dots) == 1) {
     validObject(dots[[1]])
     dots[[1]]
-
-  } else {# binding is actually needed.
+  } else { # binding is actually needed.
     lapply(dots, chk.hy)
     lapply(dots, validObject)
 
@@ -109,42 +107,37 @@ bind <- function(direction = stop("direction('c' or 'r') required"), ...,
 
 #' @include unittest.R
 .test(bind) <- function() {
-
   context("bind")
 
   test_that("bind() throws error", {
-
     expect_error(bind("r"))
     expect_error(bind("c"))
   })
 
-
   test_that("bind() works", {
-
     expect_equal(bind("r", flu), flu)
     expect_equal(bind("c", flu), flu)
-
-    expect_equal(bind("r", flu, flu), rbind(flu, flu))
-    expect_equal(bind("c", flu, flu), cbind(flu, flu))
   })
-
 
   test_that("wl.tolerance for rbind", {
     tmp <- flu
     wl(tmp) <- wl(tmp) + 0.01
     expect_error(bind("r", tmp, flu))
-    expect_equivalent(nwl(bind("r", tmp, flu, tmp, flu, wl.tolerance = 0.1)), nwl(flu))
-
+    expect_equivalent(
+      nwl(bind("r", tmp, flu, tmp, flu, wl.tolerance = 0.1)),
+      nwl(flu)
+    )
 
     tmp.list <- list(flu, tmp, flu)
-
     expect_error(bind("r", tmp.list))
-    expect_true(all.equal(bind("r", tmp.list, wl.tolerance = 0.1),
+    expect_true(all.equal(
+      bind("r", tmp.list, wl.tolerance = 0.1),
       flu[rep(row.seq(flu), 3)],
       check.label = TRUE
     ))
 
-    expect_true(all.equal(do.call("bind", list("r", tmp.list, wl.tolerance = 0.1)),
+    expect_true(all.equal(
+      do.call("bind", list("r", tmp.list, wl.tolerance = 0.1)),
       flu[rep(row.seq(flu), 3)],
       check.label = TRUE
     ))
@@ -211,6 +204,60 @@ rbind.hyperSpec <- function(...) bind("r", ...)
     expect_equal(nrow(rbind(flu, flu)), 2 * nrow(flu))
     expect_error(rbind(flu, flu[, , min ~ min + 3i]))
   })
+
+  test_that("rbind.hyperSpec() uses bind('r', ...) correctly", {
+    expect_equal(bind("r", flu, flu), rbind(flu, flu))
+  })
+
+  test_that("rbind.hyperSpec() works", {
+
+    # One dataset
+    expect_equal(rbind(flu), flu)
+
+    # Two datasets
+    expect_equal(rbind(flu[1:3, , ], flu[4:6, , ]), flu)
+    expect_equal(
+      rbind(flu[c(1, 3, 6), , ], flu[c(2, 4, 5), , ]),
+      flu[c(1, 3, 6, 2, 4, 5), , ]
+    )
+
+    # Three datasets
+    expect_equal(
+      rbind(flu[1, , ], flu[6, , ], flu[5, , ]),
+      flu[c(1, 6, 5), , ]
+    )
+  })
+}
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.test(cbind.hyperSpec) <- function() {
+  context("cbind.hyperSpec")
+
+  test_that("cbind.hyperSpec() uses bind('c', ...) correctly", {
+    expect_equal(bind("c", flu, flu), cbind(flu, flu))
+  })
+
+  test_that("cbind.hyperSpec() works", {
+
+    # One dataset
+    expect_equal(cbind(flu), flu)
+
+    # Two datasets
+    expect_equal(
+      cbind(flu[, , 1:10, wl.index = TRUE], flu[, , 21:30, wl.index = TRUE]),
+      flu[, , c(1:10, 21:30), wl.index = TRUE]
+    )
+
+    # Three datasets
+    expect_equal(
+      cbind(
+        flu[, , 1:10, wl.index = TRUE],
+        flu[, , 21:30, wl.index = TRUE],
+        flu[, , 51:80, wl.index = TRUE]
+      ),
+      flu[, , c(1:10, 21:30, 51:80), wl.index = TRUE]
+    )
+  })
 }
 
 # ... ------------------------------------------------------------------------
@@ -275,7 +322,6 @@ rbind.hyperSpec <- function(...) bind("r", ...)
     expect_equal(cbind2(flu), flu)
     expect_equal(cbind2(flu, flu), cbind(flu, flu))
   })
-
 }
 
 
@@ -361,4 +407,3 @@ setMethod("rbind2", signature = signature(x = "hyperSpec", y = "hyperSpec"), .rb
 #'
 #' @aliases rbind2,hyperSpec,missing-method
 setMethod("rbind2", signature = signature(x = "hyperSpec", y = "missing"), function(x, y, wl.tolerance) x)
-
