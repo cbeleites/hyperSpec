@@ -109,12 +109,17 @@ bind <- function(direction = stop("direction('c' or 'r') required"), ...,
 
 #' @include unittest.R
 .test(bind) <- function() {
+
   context("bind")
 
-    test_that("bind() works", {
+  test_that("bind() throws error", {
 
     expect_error(bind("r"))
     expect_error(bind("c"))
+  })
+
+
+  test_that("bind() works", {
 
     expect_equal(bind("r", flu), flu)
     expect_equal(bind("c", flu), flu)
