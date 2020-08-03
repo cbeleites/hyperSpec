@@ -1,29 +1,31 @@
-#' Wavelength Binning.
+#' @rdname spc-bin
+#' @title Wavelength Binning
 #'
+#' @description
 #' In order to reduce the spectral resolution and thus gain signal to noise
 #' ratio or to reduce the dimensionality of the spectral data set, the
 #' spectral resolution can be reduced.
 #'
+#' @details
 #' The mean of every `by` data points in the spectra is calculated.
 #'
 #' Using `na.rm = TRUE` always takes about twice as long as `na.rm = FALSE`.
 #'
-#' If the spectra matrix does not contain too many `NA`s, `na.rm = 2` is faster than
-#' `na.rm = TRUE`.
+#' If the spectra matrix does not contain too many `NA`s, `na.rm = 2` is
+#' faster than `na.rm = TRUE`.
 #'
-#' @param spc the `hyperSpec` object
-#' @param by reduction factor
+#' @param spc The `hyperSpec` object.
+#' @param by Reduction factor.
 #' @param na.rm decides about the treatment of `NA`s:
 #'
-#' if `FALSE` or `0`, the binning is done using `na.rm = FALSE`
+#' - if `FALSE` or `0`, the binning is done using `na.rm = FALSE`,
+#' - if `TRUE` or `1`, the binning is done using `na.rm = TRUE`,
+#' - if `2`, the binning is done using `na.rm = FALSE`, and resulting `NA`s are
+#'   corrected with `mean(..., na.rm = TRUE)`. See section "Details".
+#' @param ... Ignored.
 #'
-#' if `TRUE` or `1`, the binning is done using `na.rm = TRUE`
-#'
-#' if `2`, the binning is done using `na.rm = FALSE`, and resulting `NA`s are
-#' corrected with \code{mean(\dots{}, na.rm = TRUE)}.
-#' @param ... ignored
-#' @return A `hyperSpec` object with `ceiling (nwl (spc) / by)` data points per spectrum.
-#' @rdname spc-bin
+#' @return A [`hyperSpec`][hyperSpec::hyperSpec-class] object with
+#'        `ceiling(nwl(spc)/by)` data points per spectrum.
 #'
 #' @export
 #'
@@ -31,8 +33,8 @@
 #' @concept spectra smoothing
 #'
 #' @author C. Beleites
-#' @examples
 #'
+#' @examples
 #' spc <- spc.bin(flu, 5)
 #'
 #' plot(flu[1, , 425:475])
