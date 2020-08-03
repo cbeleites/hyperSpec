@@ -58,7 +58,7 @@ We assume that your current working directory is in the root of repository, i.e.
 In order to build the package from source, first install packages listed under the section `Suggests:` in file `hyperSpec/DESCRIPTION`. At the very minimum at least the following packages are necessary:
 
 ```
-install.packages(c("akima", "roxygen2", "devtools", "knitr", "rmarkdown", "bookdown", "ggplotify", "ggpubr", "R.matlab", "kableExtra", "mvtnorm", "plotrix", "pls", "baseline", "deldir", "tripack"))
+install.packages(c("roxygen2", "devtools", "knitr", "rmarkdown", "bookdown", "R.matlab", "kableExtra", "mvtnorm", "plotrix", "pls", "baseline", "deldir", "tripack"))
 ```
 
 You can use package `remotes` to automatically install all dependencies from the `Suggests` list:
