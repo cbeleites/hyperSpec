@@ -48,7 +48,8 @@ spc.bin <- function(spc, by = stop("reduction factor needed"), na.rm = TRUE, ...
 
   small <- nwl(spc) %% by
   if (small != 0) {
-    warning(paste(c("Last data point averages only ", small, " points.")))
+    s <- if (small == 1) "" else "s"
+    warning("Last data point averages only ", small, " point", s, ".")
   }
 
   bin <- rep(seq_len(n), each = by, length.out = nwl(spc))
