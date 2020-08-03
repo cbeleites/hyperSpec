@@ -103,7 +103,6 @@ Collate:
     'bind.R'
     'call.list.R'
     'chk.hy.R'
-    'chondro.R'
     'colMeans.R'
     'collapse.R'
     'count_lines.R'
