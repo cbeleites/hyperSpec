@@ -4,6 +4,7 @@ on:
       - release
       - master
       - develop
+      - feature/remove-chondro
 
 name: Update pkgdown website
 
