@@ -8,7 +8,6 @@
 # n - number of spectra.
 
 generate_hy_spectra <- function(n_wl = 50, n = 20) {
-
   gr <- rep(c("A", "B"), length.out = n)
   x <- seq(-3, 3, length.out = n_wl)
 
@@ -16,15 +15,15 @@ generate_hy_spectra <- function(n_wl = 50, n = 20) {
   amp <- sqrt(seq(160, 2, length.out = n))
   wls <- seq(400, 700, length.out = n_wl)
 
-  mat <- apply(data.frame(mean, amp), 1,  function(i) {
+  mat <- apply(data.frame(mean, amp), 1, function(i) {
     i[["amp"]] * dnorm(x, mean = i[["mean"]])
   })
 
   new("hyperSpec",
     spc = t(mat),
-    data = data.frame(gr = gr, x = (1:n)/4, c = amp, t = mean - min(mean)),
+    data = data.frame(gr = gr, x = (1:n) / 4, c = amp, t = mean - min(mean)),
     wavelength = wls,
-    labels = list(spc = "I / a.u.",  x = "l, cm", .wavelength = "lambda, nm")
+    labels = list(spc = "I, a.u.", x = "l, cm", .wavelength = "lambda, nm")
   )
 }
 
@@ -35,9 +34,8 @@ generate_hy_spectra <- function(n_wl = 50, n = 20) {
 # wavelength - a single numeric value for `wavelength`.
 
 generate_hy_profile <- function(n = 20, wavelength = 550) {
-
   new("hyperSpec",
-    spc = as.matrix(cos((1:n)/pi)),
+    spc = as.matrix(cos((1:n) / pi)),
     data = data.frame(
       z = log(1:n),
       c = sin(1:n),
@@ -62,11 +60,10 @@ generate_hy_profile <- function(n = 20, wavelength = 550) {
 # in the map.
 
 generate_hy_map <- function(n_wl = 5, n_xy = 7, k = 5) {
-
   new("hyperSpec",
     spc = matrix(rep(c(1:5, 2), length.out = n_wl * n_xy * k), ncol = n_wl),
     data = data.frame(
-      x = rep(1:n_xy, each  = k),
+      x = rep(1:n_xy, each = k),
       y = rep(1:n_xy, times = k),
       gr = factor(rep(LETTERS[1:3], length.out = n_xy * k))
     ),
@@ -91,8 +88,8 @@ generate_hy_map <- function(n_wl = 5, n_xy = 7, k = 5) {
 
     expect_is(hy_spectra, "hyperSpec")
     expect_equal(nrow(hy_spectra), 20)
-    expect_equal(ncol(hy_spectra),  5)
-    expect_equal(nwl(hy_spectra),  50)
+    expect_equal(ncol(hy_spectra), 5)
+    expect_equal(nwl(hy_spectra), 50)
   })
 
   test_that("generate_hy_profile() data dimensions did not change", {
@@ -100,8 +97,8 @@ generate_hy_map <- function(n_wl = 5, n_xy = 7, k = 5) {
 
     expect_is(hy_profile, "hyperSpec")
     expect_equal(nrow(hy_profile), 20)
-    expect_equal(ncol(hy_profile),  4)
-    expect_equal(nwl(hy_profile),   1)
+    expect_equal(ncol(hy_profile), 4)
+    expect_equal(nwl(hy_profile), 1)
   })
 
   test_that("generate_hy_map() data dimensions did not change", {
@@ -109,7 +106,7 @@ generate_hy_map <- function(n_wl = 5, n_xy = 7, k = 5) {
 
     expect_is(hy_map, "hyperSpec")
     expect_equal(nrow(hy_map), 35)
-    expect_equal(ncol(hy_map),  4)
-    expect_equal(nwl(hy_map),   5)
+    expect_equal(ncol(hy_map), 4)
+    expect_equal(nwl(hy_map), 5)
   })
 }
