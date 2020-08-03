@@ -160,5 +160,14 @@ spc.bin <- function(spc, by = stop("reduction factor needed"), na.rm = TRUE, ...
     expect_equal(ncol(na_rm_true1), 3)
     expect_equal(nrow(na_rm_true1), 5)
     expect_false(any(is.na(na_rm_true1)))
+
+    # NA's are removed (2nd algorithm)
+
+    # FIXME (tests): add appropriate example to work with na.rm = 2
+
+    # expect_silent(na_rm_true2 <- spc.bin(sp_na, 3, na.rm = 2)[[]])
+    # expect_equal(ncol(na_rm_true2), 3)
+    # expect_equal(nrow(na_rm_true2), 5)
+    # expect_false(any(is.na(na_rm_true2)))
   })
 }
