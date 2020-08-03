@@ -116,4 +116,19 @@ spc.bin <- function(spc, by = stop("reduction factor needed"), na.rm = TRUE, ...
     expect_warning(spc.bin(sp, 3), "Last data point averages only 2 points.")
   })
 
+
+  test_that("spc.bin() sets spc matrix column names correctly", {
+    # Wavelengths should be identical
+    sp_binned <- spc.bin(sp, 1)
+
+    # Wavelengths should be identical
+    expect_silent(wl_regular <- wl(sp))
+    expect_silent(wl_binned  <- wl(sp_binned))
+    expect_equal(wl_regular, wl_binned)
+
+    # Column names in wide-format dataset should be identical too (issue #237)
+    expect_silent(names_regular <- colnames(as.wide.df(sp)))
+    expect_silent(names_binned  <- colnames(as.wide.df(sp_binned)))
+    expect_equal(names_regular, names_binned)
+  })
 }
