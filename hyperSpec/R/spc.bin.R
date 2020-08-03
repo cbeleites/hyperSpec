@@ -73,6 +73,7 @@ spc.bin <- function(spc, by = stop("reduction factor needed"), na.rm = TRUE, ...
   }
 
   .wl(spc) <- as.numeric(tapply(spc@wavelength, bin, mean, na.rm = na.rm > 0))
+  spc <- .fix_spc_colnames(spc)
 
   validObject(spc)
   spc
