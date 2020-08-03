@@ -93,25 +93,27 @@ spc.bin <- function(spc, by = stop("reduction factor needed"), na.rm = TRUE, ...
 
 
 # Unit tests -----------------------------------------------------------------
+# Unit tests -----------------------------------------------------------------
 .test(spc.bin) <- function() {
   context("spc.bin")
 
+  sp <- generate_hy_spectra()
+
   # Perform tests
   test_that("spc.bin() returnts output silently", {
-    expect_silent(spc.bin(flu, 1))
+    expect_silent(spc.bin(sp, 1))
+    expect_silent(spc.bin(sp, 10))
   })
+
 
   test_that("spc.bin() returns errors", {
-    expect_error(spc.bin(flu), "reduction factor needed")
+    expect_error(spc.bin(sp), "reduction factor needed")
   })
+
 
   test_that("spc.bin() returns warnings", {
-    expect_warning(spc.bin(flu, 2), "Last data point averages only 1 points.")
-    expect_warning(spc.bin(flu, 2, na.rm = TRUE), "Last data point averages only 1 points.")
-
-    flu[[3, ]] <- NA_real_
-    expect_warning(spc.bin(flu, 2, na.rm = TRUE), "Last data point averages only 1 points.")
+    expect_warning(spc.bin(sp, 7), "Last data point averages only 1 point.")
+    expect_warning(spc.bin(sp, 3), "Last data point averages only 2 points.")
   })
 
-  # FIXME (tests): add tests to check the correctness of the output!!!
 }
