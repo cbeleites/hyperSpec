@@ -151,11 +151,9 @@ Package **hyperSpec** comes with several data sets:
 
 
 -----------------  ----------------------------------------------------------------------
-**`chondro`**      \index{data sets!chondro}
-                   A Raman map of chondrocytes in cartilage.
-
 **`faux_cell`**    \index{data sets!faux_cell}
-                   A synthetic data set similar to `chondro`.
+                   A synthetic data set similar to
+                   [`chondro`](https://r-hyperspec.github.io/hySpc.chondro/).
 
 **`flu`**          \index{data sets!flu}
                    A set of fluorescence spectra of a calibration series.
@@ -173,7 +171,7 @@ Package **hyperSpec** comes with several data sets:
 -----------------  ----------------------------------------------------------------------
 
 In this vignette, the data sets are used to illustrate appropriate procedures for different tasks and different spectra.
-In addition, [`chondro`](#list-of-vignettes), [`laser`](#list-of-vignettes) and [`flu`](#list-of-vignettes) are accompanied by their own vignettes showing sample work flows for the respective data type.
+In addition, [`laser`](#list-of-vignettes) and [`flu`](#list-of-vignettes) are accompanied by their own vignettes showing sample work flows for the respective data type.
 
 This document describes how to accomplish typical tasks in the analysis of spectra.
 It does not give a complete reference on particular functions.
