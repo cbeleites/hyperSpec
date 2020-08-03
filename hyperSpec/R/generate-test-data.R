@@ -1,12 +1,63 @@
-# These functions generate datasets that are mainly used for unit testing.
-# V. Gegzna
+
+# Generate spectroscopic data for testing and exploration --------------------
+
+#' @name generate_test_data
+#' @title Generate Spectroscopic Data
+#' @description
+#' These functions generate hyper-spectral datasets that are mainly used for
+#' exploring and testing functionality of \pkg{hyperSpec}.
+#'
+#' - `generate_hy_spectra()` generates several spectra.
+#' - `generate_hy_profile()` generates depth, concentration, time-series
+#'    profiles at a single wavelength.
+#' - `generate_hy_map()` generates hyper-spectral map.
+#'
+#' @param n_wl (integer) Number of wavelengths (points per spectrum).
+#' @param n (integer) Number of spectra.
+#' @param wavelength (numeric) A single numeric value for `wavelength`.
+#' @param n_xy (integer)number of pixels in x and y directions of
+#'        hyper-spectral map.
+#' @param k integer not larger than `n_xy`. If `k = n_xy`, there are no empty
+#'        pixels in the map. Otherwise, some pixels are empty.
+#'
+#' @return A [`hyperSpec`][hyperSpec::hyperSpec-class] object.
+#'
+#' @concept data generation
+#'
+#' @seealso [generate_faux_cell()]
+#'
+#' @author V. Gegzna
+#'
+#' @examples
+#' # Generate spectra
+#' hy_spectra <- generate_hy_spectra()
+#' hy_spectra
+#'
+#' plot(hy_spectra)
+#'
+#'
+#' # Generate profiles
+#' hy_profile <- generate_hy_profile()
+#' hy_profile
+#'
+#' plotc(hy_profile, model = spc ~ t)
+#' plotc(hy_profile, model = spc ~ z)
+#' plotc(hy_profile, model = spc ~ c)
+#'
+#'
+#' # Generate hyper-spectral map
+#' hy_map <- generate_hy_map()
+#' hy_map
+#'
+#' plotmap(hy_map)
+#' plotmap(hy_map[, , 8000])
+NULL
+
 
 # Generate spectra -----------------------------------------------------------
-# Generate data that contains several spectra
 
-# n_wl - number of wavelengths (points / spectrum).
-# n - number of spectra.
-
+#' @rdname generate_test_data
+#' @export
 generate_hy_spectra <- function(n_wl = 50, n = 20) {
   gr <- rep(c("A", "B"), length.out = n)
   x <- seq(-3, 3, length.out = n_wl)
@@ -27,12 +78,11 @@ generate_hy_spectra <- function(n_wl = 50, n = 20) {
   )
 }
 
+
 # Generate profiles ----------------------------------------------------------
-# Generate data that contains depth, concentration, ts profiles at a single wl
 
-# n - number of spectra.
-# wavelength - a single numeric value for `wavelength`.
-
+#' @rdname generate_test_data
+#' @export
 generate_hy_profile <- function(n = 20, wavelength = 550) {
   new("hyperSpec",
     spc = as.matrix(cos((1:n) / pi)),
@@ -52,13 +102,11 @@ generate_hy_profile <- function(n = 20, wavelength = 550) {
   )
 }
 
-# Generate spectroscopic map -------------------------------------------------
 
-# n_wl - number of wavelengths (points / spectrum).
-# n_xy - number of pixels in x and y directions.
-# k - integer not larger than n_xy. If k = n_xy, there are no empty pixels
-# in the map.
+# Generate hyper-spectral map -------------------------------------------------
 
+#' @rdname generate_test_data
+#' @export
 generate_hy_map <- function(n_wl = 5, n_xy = 7, k = 5) {
   new("hyperSpec",
     spc = matrix(rep(c(1:5, 2), length.out = n_wl * n_xy * k), ncol = n_wl),
