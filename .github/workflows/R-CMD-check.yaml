@@ -4,8 +4,6 @@ on:
       - release
       - master
       - develop
-      - feature/remove-chondro
-
 
   pull_request:
     branches:
