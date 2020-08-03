@@ -131,4 +131,34 @@ spc.bin <- function(spc, by = stop("reduction factor needed"), na.rm = TRUE, ...
     expect_silent(names_binned  <- colnames(as.wide.df(sp_binned)))
     expect_equal(names_regular, names_binned)
   })
+
+      test_that("na.rm in spc.bin() works", {
+    sp_na <- generate_hy_spectra(n_wl = 9, n = 5)
+    sp_na[[, , 3, wl.index = TRUE]] <- NA_real_
+    expect_true(any(is.na(sp_na[[]])))
+
+    # NA's are present
+    na_rm_false <- spc.bin(sp_na, 3, na.rm = FALSE)[[]]
+    expect_equal(ncol(na_rm_false), 3)
+    expect_equal(nrow(na_rm_false), 5)
+    expect_true(any(is.na(na_rm_false)))
+
+    # All rows should contain NA's (in the first column)
+    expect_equal(
+      apply(na_rm_false, 1, function(x) any(is.na(x))),
+      c(TRUE, TRUE, TRUE, TRUE, TRUE)
+    )
+
+    # Only the first column should contain NA's
+    expect_equal(
+      unname(apply(na_rm_false, 2, function(x) any(is.na(x)))),
+      c(TRUE, FALSE, FALSE)
+    )
+
+    # NA's are removed (1st algorithm)
+    expect_silent(na_rm_true1 <- spc.bin(sp_na, 3, na.rm = TRUE)[[]])
+    expect_equal(ncol(na_rm_true1), 3)
+    expect_equal(nrow(na_rm_true1), 5)
+    expect_false(any(is.na(na_rm_true1)))
+  })
 }
