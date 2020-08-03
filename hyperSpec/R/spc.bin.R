@@ -110,6 +110,18 @@ spc.bin <- function(spc, by = stop("reduction factor needed"), na.rm = TRUE, ...
     expect_error(spc.bin(sp), "reduction factor needed")
   })
 
+  test_that("$spc after spc.bin() is correct", {
+    bin_1_6 <- new("hyperSpec", matrix(rep(1:6, 5), nrow = 1))
+
+    expect_silent(res1 <- spc.bin(bin_1_6, 5)[[]])
+    expect_equal(ncol(res1), 6)
+    expect_equal(as.vector(res1), c(3.0, 3.2, 3.4, 3.6, 3.8, 4.0))
+
+    expect_silent(res2 <- spc.bin(bin_1_6, 6)[[]])
+    expect_equal(ncol(res2), 5)
+    expect_equal(as.vector(res2), c(3.5, 3.5, 3.5, 3.5, 3.5))
+  })
+
 
   test_that("spc.bin() returns warnings", {
     expect_warning(spc.bin(sp, 7), "Last data point averages only 1 point.")
@@ -132,7 +144,8 @@ spc.bin <- function(spc, by = stop("reduction factor needed"), na.rm = TRUE, ...
     expect_equal(names_regular, names_binned)
   })
 
-      test_that("na.rm in spc.bin() works", {
+
+  test_that("na.rm in spc.bin() works", {
     sp_na <- generate_hy_spectra(n_wl = 9, n = 5)
     sp_na[[, , 3, wl.index = TRUE]] <- NA_real_
     expect_true(any(is.na(sp_na[[]])))
