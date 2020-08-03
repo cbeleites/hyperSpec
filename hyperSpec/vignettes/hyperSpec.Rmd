@@ -151,10 +151,6 @@ Package **hyperSpec** comes with several data sets:
 
 
 -----------------  ----------------------------------------------------------------------
-**`faux_cell`**    \index{data sets!faux_cell}
-                   A synthetic data set similar to
-                   [`chondro`](https://r-hyperspec.github.io/hySpc.chondro/).
-
 **`flu`**          \index{data sets!flu}
                    A set of fluorescence spectra of a calibration series.
 
@@ -164,6 +160,10 @@ Package **hyperSpec** comes with several data sets:
 **`paracetamol`**  \index{data sets!paracetamol}
                    A Raman spectrum of paracetamol (acetaminophen) ranging
                    from 100 to 3200 cm^-1^ with overlapping wavelength ranges.
+
+**`faux_cell`**    \index{data sets!faux_cell}
+                   A synthetic data set similar to
+                   [`chondro`](https://r-hyperspec.github.io/hySpc.chondro/).
 
 **`barbiturates`** \index{data sets!barbiturates}
                    GC-MS spectra with differing wavelength axes as a list of
