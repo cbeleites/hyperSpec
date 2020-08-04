@@ -22,8 +22,7 @@ author:
 # Document -------------------------------------------------------------------
 date:        "`r Sys.Date()`"
 output:
-    bookdown::html_document2:
-      base_format: rmarkdown::html_vignette
+    bookdown::html_vignette2:
       toc: yes
       toc_depth: 2
       fig_caption: yes
