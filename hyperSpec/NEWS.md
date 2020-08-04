@@ -13,6 +13,7 @@
 * Portions of `hyperSpec` were spun out into their own packages for ease of maintenance.  ELABORATE
 * Dataset `faux_cell` and function `generate_faux_cell` replace `chondro` dataset (#125, #156, #180, #229).
 * Dataset `chondro` was moved to package **hySpc.chondro** (https://r-hyperspec.github.io/hySpc.chondro/).
+* Column names in spectra matrix (`$spc` column of `hyperSpec` object) are now returned correctly by functions `spc.bin()` (#237), and `spc.loess()` (#245).
 
 
 ## Non-User-Facing Changes from 0.99 Series
