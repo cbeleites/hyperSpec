@@ -1016,12 +1016,6 @@ spc[[]]
 Depending on the type of analysis, one may wish to replace the `NA`{.r}s by interpolating the neighbour values.
 Package **hyperSpec** provides three functions that can interpolate the `NA`{.r}s: `spc.NA.approx()`{.r}, `spc.loess()`{.r}, and `spc.bin()`{.r} with `na.rm = TRUE`{.r} (the latter two are discussed below).
 
-```{r include = FALSE}
-if (!exists("spc.NA.approx")) {
-  spc.NA.approx <- spc.NA.linapprox
-}
-```
-
 ```{r}
 spc.corrected <- spc.NA.approx(spc)
 spc.corrected[[]]
