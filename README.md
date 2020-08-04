@@ -11,7 +11,7 @@
 <!-- ---------------------------------------------------------------------- -->
 
 
-# R package **hyperSpec**
+# R Package **hyperSpec**
 
 [**R**](https://www.r-project.org/) package **hyperSpec** is the main package in the [**`r-hyperspec`**](https://r-hyperspec.github.io/) family of packages.
 The goal of **hyperSpec** (and whole **`r-hyperspec`**) is to make the work with hyperspectral data sets, (i.e. spatially or time-resolved spectra, or spectra with any other kind of information associated with each of the spectra) more comfortable.
@@ -38,11 +38,11 @@ There are two versions of **hyperSpec** online documentation:
 a. for the [released version](https://cbeleites.github.io/hyperSpec/) and
 b. for the [development version](https://cbeleites.github.io/hyperSpec/dev/) of **hyperSpec**.
 
-The documentation of other **`r-hyperspec`** family packages can be found [here](https://r-hyperspec.github.io/).
+The documentation of the other **`r-hyperspec`** family packages can be found at [r-hyperspec.github.io](https://r-hyperspec.github.io/).
 
 <!-- ---------------------------------------------------------------------- -->
 
-## Issues, bug repotrs and feature requests
+## Issues, Bug Repotrs and Feature Requests
 
 Issues, bug repotrs and feature requests should go [here](https://github.com/cbeleites/hyperSpec/issues)!
 <!-- ---------------------------------------------------------------------- -->
@@ -57,6 +57,7 @@ You can install the released version of **hyperSpec** from [CRAN](https://cran.r
 install.packages("hyperSpec")
 ```
 
+
 ### Install from GitHub
 
 You can install the development version of the package from [GitHub](https://github.com/cbeleites/hyperSpec):
@@ -66,9 +67,12 @@ if (!require(remotes)) {install.packages("remotes")}
 remotes::install_github("cbeleites/hyperSpec/hyperSpec")
 ```
 
-> **NOTE:** 
-> This method will not install package's documentation (help pages and vignettes) into your computer.
-> So you can either use the [online documentation](https://cbeleites.github.io/hyperSpec/dev/) or build the package from source (see the next section).
+**NOTE 1:**
+Usually, "Windows" users need to download, install and properly configure **Rtools** (see [these instructions](https://cran.r-project.org/bin/windows/Rtools/)) to make the code above work.
+
+**NOTE 2:** 
+This method will **not** install package's documentation (help pages and vignettes) into your computer.
+So you can either use the [online documentation](https://cbeleites.github.io/hyperSpec/dev/) or build the package from source (see the next section).
 
 
 ## How to build from source
