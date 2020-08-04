@@ -1,38 +1,53 @@
-#' LOESS smoothing interpolation for spectra.
+#' @rdname spc-loess
 #'
-#' Spectra can be smoothed and interpolated on a new wavelength axis using
+#' @title LOESS Smoothing Interpolation for Spectra
+#'
+#' @description
+#' Spectra smoothing and interpolation on a new wavelength axis using
 #' [stats::loess()].
 #'
+#' @details
 #' Applying [stats::loess()] to each of the spectra, an interpolation onto a new
-#' wavelength axis is performed.  At the same time, the specta are smoothed in
-#' order to increase the signal : noise ratio. See [stats::loess()] and
+#' wavelength axis is performed. At the same time, the spectra are smoothed in
+#' order to increase the signal to noise ratio. See [stats::loess()] and
 #' [stats::loess.control()] on the parameters that control the amount of
 #' smoothing.
 #'
-#' @param spc the `hyperSpec` object
-#' @param newx wavelengh axis to interpolate on
-#' @param enp.target,surface,... parameters for [stats::loess()] and
-#' [stats::loess.control()].
-#' @return A new `hyperSpec` object.
-#' @rdname spc-loess
-#' @author C. Beleites
+#' @param spc The `hyperSpec` object.
+#' @param newx Wavelength axis to interpolate on.
+#' @param enp.target,surface,... Further parameters for [stats::loess()] and
+#'        [stats::loess.control()].
+#'
+#' @return A new  [`hyperSpec`][hyperSpec::hyperSpec-class] object.
+#'
 #' @seealso [stats::loess()], [stats::loess.control()]
 #'
 #' @export
 #'
 #' @keywords manip datagen
 #' @concept spectra smoothing
+#' @concept spectra preprocessing
 #'
+#' @author C. Beleites
 #'
 #' @examples
+#' data(flu, package = "hyperSpec")
+#' nwl(flu)
+#'
+#' smoothed_flu <- spc.loess(flu, seq(420, 470, 5))
+#' nwl(smoothed_flu)
 #'
 #' plot(flu, col = "darkgray")
-#' plot(spc.loess(flu, seq(420, 470, 5)), add = TRUE, col = "red")
+#' plot(smoothed_flu, add = TRUE, col = "red")
 #'
-#' flu[[3, ]] <- NA_real_
-#' smooth <- spc.loess(flu, seq(420, 470, 5))
-#' smooth[[, ]]
-#' plot(smooth, add = TRUE, col = "blue")
+#'
+#' flu_na <- flu
+#' flu_na[[3, ]] <- NA_real_
+#' flu_na_smoothed <- spc.loess(flu_na, seq(420, 470, 5))
+#' flu_na_smoothed[[]]
+#'
+#' plot(flu, col = "darkgray")
+#' plot(flu_na_smoothed, add = TRUE, col = "blue")
 spc.loess <- function(spc, newx, enp.target = nwl(spc) / 4, surface = "direct",
                       ...) {
 
