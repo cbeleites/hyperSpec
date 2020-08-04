@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Impute missing data points. — spc.NA.approx • hyperSpec</title>
+<title>Impute Missing Data Points — spc.NA.approx • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,7 +41,7 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Impute missing data points. — spc.NA.approx" />
+<meta property="og:title" content="Impute Missing Data Points — spc.NA.approx" />
 <meta property="og:description" content="Replace NAs in the spectra matrix by interpolation. With
 less than 4 points available linear interpolation of the 2 neighbour points
 is used. For larger numbers of neighbour points, smoothing interpolation is
@@ -158,7 +158,7 @@ performed by stats::smooth.spline()." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Impute missing data points.</h1>
+    <h1>Impute Missing Data Points</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/spc.NA.approx.R'><code>R/spc.NA.approx.R</code></a></small>
     <div class="hidden name"><code>spc.NA.approx.Rd</code></div>
     </div>
@@ -177,9 +177,7 @@ performed by <code><a href='https://rdrr.io/r/stats/smooth.spline.html'>stats::s
   df = <span class='fl'>1</span> <span class='op'>+</span> <span class='kw'>.Machine</span><span class='op'>$</span><span class='kw'>double.eps</span>,
   spar = <span class='kw'>NULL</span>,
   debuglevel = <span class='fu'>hy.getOption</span>(<span class='st'>"debuglevel"</span>)
-)
-
-<span class='fu'>spc.NA.linapprox</span>(<span class='kw'>...</span>)</pre>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -201,18 +199,11 @@ line</p></td>
       <th>debuglevel</th>
       <td><p>see <code><a href='https://rdrr.io/r/base/options.html'>options()</a></code></p></td>
     </tr>
-    <tr>
-      <th>...</th>
-      <td><p>ignored</p></td>
-    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>hyperSpec object</p>
-    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
-
-    <p>The function has been renamed from <code>spc.NA.linapprox</code> to <code>spc.NA.approx</code></p>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Claudia Beleites</p>
