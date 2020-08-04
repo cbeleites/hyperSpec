@@ -1,8 +1,4 @@
 ---
-# For bookdown ---------------------------------------------------------------
-bookdown_file_name: fileio
-bookdown_titles: |
-  # `fileio`: Import and Export Files with Spectra {#fileio}
 # For vignette ---------------------------------------------------------------
 title:       Import and Export Files with Spectra
 subtitle:    'Tutorial on Spectra File Import and Export for "hyperSpec"'

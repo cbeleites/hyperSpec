@@ -1,9 +1,4 @@
 ---
-# For bookdown ---------------------------------------------------------------
-bookdown_file_name: hyperspec
-bookdown_titles: |
-  # (PART\*) I Principles {-}
-  # `hyperspec`: Introduction to Package **_hyperSpec_** {#hyperspec}
 # For vignette ---------------------------------------------------------------
 title:        Introduction to Package "hyperSpec"
 subtitle:     'The Main Manual of Package "hyperSpec"'

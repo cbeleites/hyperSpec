@@ -1,8 +1,4 @@
 ---
-# For bookdown ---------------------------------------------------------------
-bookdown_file_name: laser
-bookdown_titles: |
-  # `laser`: Unstable Laser Emission {#laser}
 # For vignette ---------------------------------------------------------------
 title:       Unstable Laser Emission
 subtitle:    "Example Workflow for Time-Series Spectra Dataset `laser`"

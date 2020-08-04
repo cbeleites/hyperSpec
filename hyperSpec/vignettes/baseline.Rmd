@@ -1,8 +1,4 @@
 ---
-# For bookdown ---------------------------------------------------------------
-bookdown_file_name: baseline
-bookdown_titles: |
-  # `baseline`: Fitting Baselines to Spectra {#baseline}
 # For vignette ---------------------------------------------------------------
 title:       Fitting Baselines to Spectra
 subtitle:    "Tutorial Explaining hyperSpec's Baseline Fitting Functions"

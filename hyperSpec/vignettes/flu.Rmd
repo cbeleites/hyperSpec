@@ -1,8 +1,4 @@
 ---
-# For bookdown ---------------------------------------------------------------
-bookdown_file_name: flu
-bookdown_titles: |
-  # `flu`: Calibration of Quinine Fluorescence Emission {#flu}
 # For vignette ---------------------------------------------------------------
 title:       Calibration of Quinine Fluorescence Emission
 subtitle:    "Example Workflow for Fluorescence Emission Dataset `flu`"
