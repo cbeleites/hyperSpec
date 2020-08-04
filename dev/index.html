@@ -167,7 +167,7 @@
 <p><strong>NOTE:</strong> Windows users need to download, install and properly configure <strong>Rtools</strong> (see <a href="https://cran.r-project.org/bin/windows/Rtools/">these instructions</a>). These are required by a number of dependencies of hyperSpec. RStudio will offer to automatically install them if necessary.</p>
 <p>We assume that your current working directory is in the root of repository, i.e. the directory with <code>README.md</code> file.</p>
 <p>In order to build the package from source, first install packages listed under the section <code>Suggests:</code> in file <code>hyperSpec/DESCRIPTION</code>. At the very minimum at least the following packages are necessary:</p>
-<pre><code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages(c("akima", "roxygen2", "devtools", "knitr", "rmarkdown", "bookdown", "ggplotify", "ggpubr", "R.matlab", "kableExtra", "mvtnorm", "plotrix", "pls", "baseline", "deldir", "tripack"))</a></code></pre>
+<pre><code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages(c("roxygen2", "devtools", "knitr", "rmarkdown", "bookdown", "R.matlab", "kableExtra", "mvtnorm", "plotrix", "pls", "baseline", "deldir", "tripack"))</a></code></pre>
 <p>You can use package <code>remotes</code> to automatically install all dependencies from the <code>Suggests</code> list:</p>
 <pre><code><a href="https://rdrr.io/r/base/Sys.setenv.html"># Do not abort installation even if some packages are not available
 Sys.setenv(R_REMOTES_NO_ERRORS_FROM_WARNINGS="true")

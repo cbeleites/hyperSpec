@@ -164,7 +164,7 @@ You can access the vignettes via these links:
 <a href="http://cbeleites.github.io/hyperSpec/articles/fileio.html">Importing Files into <code>hyperSpec</code></a>
 </li>
 <li>
-<a href="http://cbeleites.github.io/hyperSpec/articles/chondro.html">chondro: Example Workflow for 2D Raman Spectra</a>
+<a href="https://r-hyperspec.github.io/hySpc.chondro/articles/chondro.html">chondro: Example Workflow for 2D Raman Spectra</a>
 </li>
 <li>
 <a href="http://cbeleites.github.io/hyperSpec/articles/flu.html">flu: Example Workflow for Fluorescene Emission</a>
@@ -236,7 +236,7 @@ Figure 1.1: The structure of the data in a <code>hyperSpec</code> object. In thi
 </div>
 <p>Slot <code class="sourceCode r"><span class="op">@</span>label</code> contains an element for each of the columns in <code class="sourceCode r"><span class="op">@</span>data</code> plus one holding the label for the wavelength axis, <code>.wavelength</code>.
 They are accessed by their names which must be the same for columns of <code class="sourceCode r"><span class="op">@</span>data</code> and the list elements.
-The elements of the list may be anything suitable for axis annotations, i.e., they should be either character strings or expressions for “pretty” axis annotations (see, e.g., Figure <a href="#fig:loess-kl">5.8</a>).
+The elements of the list may be anything suitable for axis annotations, i.e., they should be either character strings or expressions for “pretty” axis annotations (see, e.g., Figure <a href="#fig:loess-kl">5.7</a>).
 To get familiar with expressions for axis annotation, see <code><a href="https://rdrr.io/r/grDevices/plotmath.html">?plotmath</a></code> and <code class="sourceCode r"><span class="kw">demo</span>(plotmath)</code>.</p>
 </div>
 <div id="data-sets" class="section level2">
@@ -249,16 +249,6 @@ To get familiar with expressions for axis annotation, see <code><a href="https:/
 <col width="78%">
 </colgroup>
 <tbody>
-<tr class="odd">
-<td align="left"><strong><code>chondro</code></strong></td>
-<td align="left">
-A Raman map of chondrocytes in cartilage.</td>
-</tr>
-<tr class="even">
-<td align="left"><strong><code>faux_cell</code></strong></td>
-<td align="left">
-A synthetic data set similar to <code>chondro</code>.</td>
-</tr>
 <tr class="odd">
 <td align="left"><strong><code>flu</code></strong></td>
 <td align="left">
@@ -276,6 +266,12 @@ A Raman spectrum of paracetamol (acetaminophen) ranging
 from 100 to 3200 cm<sup>-1</sup> with overlapping wavelength ranges.</td>
 </tr>
 <tr class="even">
+<td align="left"><strong><code>faux_cell</code></strong></td>
+<td align="left">
+A synthetic data set similar to
+<a href="https://r-hyperspec.github.io/hySpc.chondro/"><code>chondro</code></a>.</td>
+</tr>
+<tr class="odd">
 <td align="left"><strong><code>barbiturates</code></strong></td>
 <td align="left">
 GC-MS spectra with differing wavelength axes as a list of
@@ -284,7 +280,7 @@ GC-MS spectra with differing wavelength axes as a list of
 </tbody>
 </table>
 <p>In this vignette, the data sets are used to illustrate appropriate procedures for different tasks and different spectra.
-In addition, <a href="#list-of-vignettes"><code>chondro</code></a>, <a href="#list-of-vignettes"><code>laser</code></a> and <a href="#list-of-vignettes"><code>flu</code></a> are accompanied by their own vignettes showing sample work flows for the respective data type.</p>
+In addition, <a href="#list-of-vignettes"><code>laser</code></a> and <a href="#list-of-vignettes"><code>flu</code></a> are accompanied by their own vignettes showing sample work flows for the respective data type.</p>
 <p>This document describes how to accomplish typical tasks in the analysis of spectra.
 It does not give a complete reference on particular functions.
 It is therefore recommended to look up the methods in the <code>R</code> help system using <code class="sourceCode r">?command</code>.</p>
@@ -306,44 +302,43 @@ Table <a href="#tab:options">9.1</a> gives an overview of the options. You shoul
 
 <p>Any of <code class="sourceCode r"><span class="kw">print</span>()</code>, <code class="sourceCode r"><span class="kw">show</span>()</code> or <code class="sourceCode r"><span class="kw">summary</span>()</code> provides an overview of the object (the output of each is identical):</p>
 <div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="kw">chondro</span>
+<span class="kw">faux_cell</span>
 <span class="co">#&gt; hyperSpec object</span>
 <span class="co">#&gt;    875 spectra</span>
-<span class="co">#&gt;    5 data columns</span>
+<span class="co">#&gt;    4 data columns</span>
 <span class="co">#&gt;    300 data points / spectrum</span>
 <span class="co">#&gt; wavelength: Delta * tilde(nu)/cm^-1 [numeric] 602 606 ... 1798 </span>
-<span class="co">#&gt; data:  (875 rows x 5 columns)</span>
-<span class="co">#&gt;    1. y: y [numeric] -4.77 -4.77 ... 19.23 </span>
-<span class="co">#&gt;    2. x: x [numeric] -11.55 -10.55 ... 22.45 </span>
-<span class="co">#&gt;    3. filename: filename [character] rawdata/chondro.txt rawdata/chondro.txt ... rawdata/chondro.txt </span>
-<span class="co">#&gt;    4. clusters: clusters [factor] matrix matrix ... lacuna + NA</span>
-<span class="co">#&gt;    5. spc: I / a.u. [matrix, array300] 501.82 500.46 ... 169.29</span>
+<span class="co">#&gt; data:  (875 rows x 4 columns)</span>
+<span class="co">#&gt;    1. x: x position [numeric] -11.55 -10.55 ... 22.45 </span>
+<span class="co">#&gt;    2. y: y position [numeric] -4.77 -4.77 ... 19.23 </span>
+<span class="co">#&gt;    3. region:  [factor] matrix matrix ... matrix </span>
+<span class="co">#&gt;    4. spc: intensity (arbitrary units) [matrix, array300] 132 72 ... 130</span>
 </pre></div>
 
-<p>The data set <code class="sourceCode r">chondro</code> consists of 875 spectra with 300 data points each, and 5 data columns: two for the spatial information, one factor with the results of a cluster analysis plus <code class="sourceCode r"><span class="op">$</span>spc</code>.
+<p>The data set <code class="sourceCode r">faux_cell</code> consists of 875 spectra with 300 data points each, and 4 data columns: two for the spatial information, one giving the cell region of each pixel plus <code class="sourceCode r"><span class="op">$</span>spc</code>.
 These details can be directly obtained by</p>
 <div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="kw">chondro</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="kw">faux_cell</span>)
 <span class="co">#&gt; [1] 875</span>
 </pre></div>
 <div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="fu"><a href="../reference/ncol,hyperSpec-method.html">nwl</a></span>(<span class="kw">chondro</span>)
+<span class="fu"><a href="../reference/ncol,hyperSpec-method.html">nwl</a></span>(<span class="kw">faux_cell</span>)
 <span class="co">#&gt; [1] 300</span>
 </pre></div>
 <div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span>(<span class="kw">chondro</span>)
-<span class="co">#&gt; [1] 5</span>
+<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span>(<span class="kw">faux_cell</span>)
+<span class="co">#&gt; [1] 4</span>
 </pre></div>
 <div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span>(<span class="kw">chondro</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span>(<span class="kw">faux_cell</span>)
 <span class="co">#&gt; nrow ncol  nwl </span>
-<span class="co">#&gt;  875    5  300</span>
+<span class="co">#&gt;  875    4  300</span>
 </pre></div>
 
 <p>The names of the columns in <code class="sourceCode r"><span class="op">@</span>data</code> are accessed by <code class="sourceCode r"><span class="kw">colnames</span>()</code>.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit">
-<span class="fu"><a href="../reference/dimnames,hyperSpec-method.html">colnames</a></span>(<span class="kw">chondro</span>)
-<span class="co">#&gt; [1] "y"        "x"        "filename" "clusters" "spc"</span>
+<span class="fu"><a href="../reference/dimnames,hyperSpec-method.html">colnames</a></span>(<span class="kw">faux_cell</span>)
+<span class="co">#&gt; [1] "x"      "y"      "region" "spc"</span>
 </pre></div>
 <p>Likewise, <code class="sourceCode r"><span class="kw">rownames</span>()</code> returns the names assigned to the spectra, and <code class="sourceCode r"><span class="kw">dimnames</span>()</code> yields a list of these three vectors (including also the column names of <code class="sourceCode r"><span class="op">$</span>spc</code>).
 The column names of the spectra matrix contain the wavelengths as a character vector, while <code class="sourceCode r"><span class="kw">wl</span>()</code> (see section <a href="#sec:wavel-axis-conv">3.6.4</a>) returns the numeric vector of wavelengths.</p>
@@ -534,24 +529,23 @@ Figure 3.3: An example with <code>[]</code> operator and logical indices.
 
 <p>A random subset of spectra can be conveniently selected by <code class="sourceCode r"><span class="kw">sample</span>()</code>:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="kw">chondro</span>, <span class="fl">3</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="kw">faux_cell</span>, <span class="fl">3</span>)
 <span class="co">#&gt; hyperSpec object</span>
 <span class="co">#&gt;    3 spectra</span>
-<span class="co">#&gt;    5 data columns</span>
+<span class="co">#&gt;    4 data columns</span>
 <span class="co">#&gt;    300 data points / spectrum</span>
 <span class="co">#&gt; wavelength: Delta * tilde(nu)/cm^-1 [numeric] 602 606 ... 1798 </span>
-<span class="co">#&gt; data:  (3 rows x 5 columns)</span>
-<span class="co">#&gt;    1. y: y [numeric] 6.23 1.23 12.23 </span>
-<span class="co">#&gt;    2. x: x [numeric] 14.45 13.45 -8.55 </span>
-<span class="co">#&gt;    3. filename: filename [character] rawdata/chondro.txt rawdata/chondro.txt rawdata/chondro.txt </span>
-<span class="co">#&gt;    4. clusters: clusters [factor] cell   matrix matrix </span>
-<span class="co">#&gt;    5. spc: I / a.u. [matrix, array300] 366.83 276.39 ... 127.09</span>
+<span class="co">#&gt; data:  (3 rows x 4 columns)</span>
+<span class="co">#&gt;    1. x: x position [numeric] 20.45 3.45 15.45 </span>
+<span class="co">#&gt;    2. y: y position [numeric] 13.23 0.23 16.23 </span>
+<span class="co">#&gt;    3. region:  [factor] matrix matrix matrix </span>
+<span class="co">#&gt;    4. spc: intensity (arbitrary units) [matrix, array300] 151 36 ... 79</span>
 </pre></div>
 
 <p>If indices into the selected spectra are needed instead, use <code class="sourceCode r"><span class="kw">isample</span>()</code>:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit">
-<span class="fu"><a href="../reference/sample,hyperSpec-method.html">isample</a></span>(<span class="kw">chondro</span>, <span class="fl">3</span>)
-<span class="co">#&gt; [1] 534 728 321</span>
+<span class="fu"><a href="../reference/sample,hyperSpec-method.html">isample</a></span>(<span class="kw">faux_cell</span>, <span class="fl">3</span>)
+<span class="co">#&gt; [1] 183 797 279</span>
 </pre></div>
 </div>
 <div id="sec:seq" class="section level3">
@@ -560,20 +554,19 @@ Figure 3.3: An example with <code>[]</code> operator and logical indices.
 
 <p>Sequences of every n<sup>th</sup> spectrum or the like can be retrieved with <code class="sourceCode r"><span class="kw">seq</span>()</code>:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit">
-<span class="fu"><a href="../reference/seq.hyperSpec.html">seq</a></span>(<span class="kw">chondro</span>, length.out = <span class="fl">3</span>, index = <span class="fl">TRUE</span>)
+<span class="fu"><a href="../reference/seq.hyperSpec.html">seq</a></span>(<span class="kw">faux_cell</span>, length.out = <span class="fl">3</span>, index = <span class="fl">TRUE</span>)
 <span class="co">#&gt; [1]   1 438 875</span>
-<span class="fu"><a href="../reference/seq.hyperSpec.html">seq</a></span>(<span class="kw">chondro</span>, by = <span class="fl">100</span>)
+<span class="fu"><a href="../reference/seq.hyperSpec.html">seq</a></span>(<span class="kw">faux_cell</span>, by = <span class="fl">100</span>)
 <span class="co">#&gt; hyperSpec object</span>
 <span class="co">#&gt;    9 spectra</span>
-<span class="co">#&gt;    5 data columns</span>
+<span class="co">#&gt;    4 data columns</span>
 <span class="co">#&gt;    300 data points / spectrum</span>
 <span class="co">#&gt; wavelength: Delta * tilde(nu)/cm^-1 [numeric] 602 606 ... 1798 </span>
-<span class="co">#&gt; data:  (9 rows x 5 columns)</span>
-<span class="co">#&gt;    1. y: y [numeric] -4.77 -2.77 ... 17.23 </span>
-<span class="co">#&gt;    2. x: x [numeric] -11.55 18.45 ... 18.45 </span>
-<span class="co">#&gt;    3. filename: filename [character] rawdata/chondro.txt rawdata/chondro.txt ... rawdata/chondro.txt </span>
-<span class="co">#&gt;    4. clusters: clusters [factor] matrix matrix ... lacuna </span>
-<span class="co">#&gt;    5. spc: I / a.u. [matrix, array300] 501.82 400.94 ... 124.64</span>
+<span class="co">#&gt; data:  (9 rows x 4 columns)</span>
+<span class="co">#&gt;    1. x: x position [numeric] -11.55 18.45 ... 18.45 </span>
+<span class="co">#&gt;    2. y: y position [numeric] -4.77 -2.77 ... 17.23 </span>
+<span class="co">#&gt;    3. region:  [factor] matrix matrix ... matrix </span>
+<span class="co">#&gt;    4. spc: intensity (arbitrary units) [matrix, array300] 132 88 ... 11</span>
 </pre></div>
 <p>Here, indices may be requested using <code class="sourceCode r">index =<span class="st"> </span><span class="ot">TRUE</span></code>.</p>
 </div>
@@ -584,36 +577,260 @@ Figure 3.3: An example with <code>[]</code> operator and logical indices.
 <p>The second argument of the extraction functions <code>[]</code> and <code>[[]]</code> specifies the extra data columns.
 They can be given like any column specification for a <code class="sourceCode r">data.frame</code>, i.e., numeric, logical, or by a vector of the column names. However, since there is intrinsic order the column names of a <code>hyperSpec</code> object, using the column names is safest:</p>
 <div class="sourceCode" id="cb13"><pre class="downlit">
-<span class="fu"><a href="../reference/dimnames,hyperSpec-method.html">colnames</a></span>(<span class="kw">chondro</span>)
-<span class="co">#&gt; [1] "y"        "x"        "filename" "clusters" "spc"</span>
+<span class="fu"><a href="../reference/dimnames,hyperSpec-method.html">colnames</a></span>(<span class="kw">faux_cell</span>)
+<span class="co">#&gt; [1] "x"      "y"      "region" "spc"</span>
 </pre></div>
 <div class="sourceCode" id="cb14"><pre class="downlit">
-<span class="kw">chondro</span>[[<span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="fl">1</span>]]
-<span class="co">#&gt;       y</span>
-<span class="co">#&gt; 1 -4.77</span>
-<span class="co">#&gt; 2 -4.77</span>
-<span class="co">#&gt; 3 -4.77</span>
+<span class="kw">faux_cell</span>[[<span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="fl">1</span>]]
+<span class="co">#&gt;        x</span>
+<span class="co">#&gt; 1 -11.55</span>
+<span class="co">#&gt; 2 -10.55</span>
+<span class="co">#&gt; 3  -9.55</span>
 </pre></div>
 <div class="sourceCode" id="cb15"><pre class="downlit">
-<span class="kw">chondro</span>[[<span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="op">-</span><span class="fl">5</span>]]
-<span class="co">#&gt;       y      x            filename clusters</span>
-<span class="co">#&gt; 1 -4.77 -11.55 rawdata/chondro.txt   matrix</span>
-<span class="co">#&gt; 2 -4.77 -10.55 rawdata/chondro.txt   matrix</span>
-<span class="co">#&gt; 3 -4.77  -9.55 rawdata/chondro.txt   matrix</span>
+<span class="kw">faux_cell</span>[[<span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="op">-</span><span class="fl">5</span>]]
+<span class="co">#&gt;        x     y region spc.602 spc.606 spc.610 spc.614 spc.618 spc.622 spc.626 spc.630 spc.634</span>
+<span class="co">#&gt; 1 -11.55 -4.77 matrix     132     132     150     128     143     113     121     125     121</span>
+<span class="co">#&gt; 2 -10.55 -4.77 matrix      72      73      99      84      54      74      68      79      73</span>
+<span class="co">#&gt; 3  -9.55 -4.77 matrix     120     132     142     118     125     123     111     146     122</span>
+<span class="co">#&gt;   spc.638 spc.642 spc.646 spc.650 spc.654 spc.658 spc.662 spc.666 spc.670 spc.674 spc.678 spc.682</span>
+<span class="co">#&gt; 1     123     135     139     151     143     133     113     124     104     127     127     131</span>
+<span class="co">#&gt; 2      98      83      74      73      69      90      84      80      69      61      65      76</span>
+<span class="co">#&gt; 3     123     142     137     141     114     127     120     137     115     127     137     142</span>
+<span class="co">#&gt;   spc.686 spc.690 spc.694 spc.698 spc.702 spc.706 spc.710 spc.714 spc.718 spc.722 spc.726 spc.730</span>
+<span class="co">#&gt; 1     145     134     127     136     121     131     132     131     141     139     109     124</span>
+<span class="co">#&gt; 2      80      93      76      80      79      93      81      72      74      76      90      78</span>
+<span class="co">#&gt; 3     128     137     118     115     116     126     116     125     111     125     106     123</span>
+<span class="co">#&gt;   spc.734 spc.738 spc.742 spc.746 spc.750 spc.754 spc.758 spc.762 spc.766 spc.770 spc.774 spc.778</span>
+<span class="co">#&gt; 1     136     124     111     127     128     152     133     122     166     132     146     136</span>
+<span class="co">#&gt; 2      78      94      86      72      77      76      79      91      69      63      84     109</span>
+<span class="co">#&gt; 3     128     119     111     142     139     123     111     138     119     109     126     111</span>
+<span class="co">#&gt;   spc.782 spc.786 spc.790 spc.794 spc.798 spc.802 spc.806 spc.810 spc.814 spc.818 spc.822 spc.826</span>
+<span class="co">#&gt; 1     159     232     267     288     324     312     263     267     216     185     130     150</span>
+<span class="co">#&gt; 2     129     160     193     237     260     272     238     203     154     115     104      93</span>
+<span class="co">#&gt; 3     172     216     267     282     313     324     280     232     186     182     127     127</span>
+<span class="co">#&gt;   spc.830 spc.834 spc.838 spc.842 spc.846 spc.850 spc.854 spc.858 spc.862 spc.866 spc.870 spc.874</span>
+<span class="co">#&gt; 1     136     156     123     123     131     131     134     128     133     151     143     124</span>
+<span class="co">#&gt; 2      98      71      77      66      92      64      84      80      75      79      81      77</span>
+<span class="co">#&gt; 3     117     135     123     119     121     125     134     130     125     136     125     135</span>
+<span class="co">#&gt;   spc.878 spc.882 spc.886 spc.890 spc.894 spc.898 spc.902 spc.906 spc.910 spc.914 spc.918 spc.922</span>
+<span class="co">#&gt; 1     132     120     123     117     111     128     117     145     147     116     121     137</span>
+<span class="co">#&gt; 2      85      82      85      74      81      76      66      77      74      81      87      85</span>
+<span class="co">#&gt; 3     117     144     126     143     148     124     138     131     126     138     110     132</span>
+<span class="co">#&gt;   spc.926 spc.930 spc.934 spc.938 spc.942 spc.946 spc.950 spc.954 spc.958 spc.962 spc.966 spc.970</span>
+<span class="co">#&gt; 1     147     124     137     139     143     128     123     113     120     139     162     108</span>
+<span class="co">#&gt; 2      72      91      94      69      75      81      72      84      82      80      70      80</span>
+<span class="co">#&gt; 3     135     140     131     123     144     126     118     135     138     144     142     116</span>
+<span class="co">#&gt;   spc.974 spc.978 spc.982 spc.986 spc.990 spc.994 spc.998 spc.1002 spc.1006 spc.1010 spc.1014</span>
+<span class="co">#&gt; 1     141     138     132     145     122     118     105      116      132      122      137</span>
+<span class="co">#&gt; 2      86      84      78      80      97      83      66       67       78       90       77</span>
+<span class="co">#&gt; 3     146     139     135     134     131     143     135      128      131      139      128</span>
+<span class="co">#&gt;   spc.1018 spc.1022 spc.1026 spc.1030 spc.1034 spc.1038 spc.1042 spc.1046 spc.1050 spc.1054</span>
+<span class="co">#&gt; 1      133      105      114      127      129      142      139      122      114      122</span>
+<span class="co">#&gt; 2       89       74       76       82       79       96       83       72       69       86</span>
+<span class="co">#&gt; 3      119      126      136      136      138      113      126      150      115      133</span>
+<span class="co">#&gt;   spc.1058 spc.1062 spc.1066 spc.1070 spc.1074 spc.1078 spc.1082 spc.1086 spc.1090 spc.1094</span>
+<span class="co">#&gt; 1      130      136      143      116      147      132      138      137      108      130</span>
+<span class="co">#&gt; 2       84       83       95       66       95       96       87       90       80       85</span>
+<span class="co">#&gt; 3      126      130      135      133      124      141      135      131      128      141</span>
+<span class="co">#&gt;   spc.1098 spc.1102 spc.1106 spc.1110 spc.1114 spc.1118 spc.1122 spc.1126 spc.1130 spc.1134</span>
+<span class="co">#&gt; 1      154      134      125      155      123      111      132      146      146      122</span>
+<span class="co">#&gt; 2       77       88       74       86       76       70       85       71       71       94</span>
+<span class="co">#&gt; 3      136      124      136      132      116      148      144      145      147      124</span>
+<span class="co">#&gt;   spc.1138 spc.1142 spc.1146 spc.1150 spc.1154 spc.1158 spc.1162 spc.1166 spc.1170 spc.1174</span>
+<span class="co">#&gt; 1      130      123      122      131      150      144      129      132      133      130</span>
+<span class="co">#&gt; 2       96       72       75       86       85       81       87       75       72       82</span>
+<span class="co">#&gt; 3      147      137      144      126      124      146      121      155      139      150</span>
+<span class="co">#&gt;   spc.1178 spc.1182 spc.1186 spc.1190 spc.1194 spc.1198 spc.1202 spc.1206 spc.1210 spc.1214</span>
+<span class="co">#&gt; 1      125      118      113      141      131      117      129      136      120      124</span>
+<span class="co">#&gt; 2       81       87       82       84       77       80       60       87       81       89</span>
+<span class="co">#&gt; 3      103      120      126      135      147      138      124      127      128      124</span>
+<span class="co">#&gt;   spc.1218 spc.1222 spc.1226 spc.1230 spc.1234 spc.1238 spc.1242 spc.1246 spc.1250 spc.1254</span>
+<span class="co">#&gt; 1      152      117      126      126      151      132      134      138      127      117</span>
+<span class="co">#&gt; 2       74       80       71       88       77       95       75       78       76       79</span>
+<span class="co">#&gt; 3      132      135      151      137      136      132      135      138      136      109</span>
+<span class="co">#&gt;   spc.1258 spc.1262 spc.1266 spc.1270 spc.1274 spc.1278 spc.1282 spc.1286 spc.1290 spc.1294</span>
+<span class="co">#&gt; 1      134      131      122      128      128      153      131      116      143      127</span>
+<span class="co">#&gt; 2       81       85       92       83       88       79       88       90       81       87</span>
+<span class="co">#&gt; 3      158      143      135      122      129      127      128      135      134      123</span>
+<span class="co">#&gt;   spc.1298 spc.1302 spc.1306 spc.1310 spc.1314 spc.1318 spc.1322 spc.1326 spc.1330 spc.1334</span>
+<span class="co">#&gt; 1      120      125      111      132      144      129      124      128      124      121</span>
+<span class="co">#&gt; 2       73       78       91       79       95       96       90       69       87       82</span>
+<span class="co">#&gt; 3      140      140      128      134      139      116      123      145      128      134</span>
+<span class="co">#&gt;   spc.1338 spc.1342 spc.1346 spc.1350 spc.1354 spc.1358 spc.1362 spc.1366 spc.1370 spc.1374</span>
+<span class="co">#&gt; 1      123      134      140      136      141      131      149      117      131      134</span>
+<span class="co">#&gt; 2       90      101       79       69       63       83       84       73       85       78</span>
+<span class="co">#&gt; 3      125      146      149      145      145      129      132      116      126      123</span>
+<span class="co">#&gt;   spc.1378 spc.1382 spc.1386 spc.1390 spc.1394 spc.1398 spc.1402 spc.1406 spc.1410 spc.1414</span>
+<span class="co">#&gt; 1      115      154      127      123      124      120      170      130      138      139</span>
+<span class="co">#&gt; 2       77       82       92       92       87       79       77       80       89       75</span>
+<span class="co">#&gt; 3      133      136      151      133      165      148      150      111      133      133</span>
+<span class="co">#&gt;   spc.1418 spc.1422 spc.1426 spc.1430 spc.1434 spc.1438 spc.1442 spc.1446 spc.1450 spc.1454</span>
+<span class="co">#&gt; 1      128      125      134      139      157      130      146      131      128      137</span>
+<span class="co">#&gt; 2       89       78      100       83       80       91       84       98       82       95</span>
+<span class="co">#&gt; 3      125      146      142      143      101      149      130      139      135      143</span>
+<span class="co">#&gt;   spc.1458 spc.1462 spc.1466 spc.1470 spc.1474 spc.1478 spc.1482 spc.1486 spc.1490 spc.1494</span>
+<span class="co">#&gt; 1      142      130      143      121      123      138      148      131      132      125</span>
+<span class="co">#&gt; 2       72       95       85       93       84      101       94       95       90       73</span>
+<span class="co">#&gt; 3      133      149      144      132      147      150      145      130      122      116</span>
+<span class="co">#&gt;   spc.1498 spc.1502 spc.1506 spc.1510 spc.1514 spc.1518 spc.1522 spc.1526 spc.1530 spc.1534</span>
+<span class="co">#&gt; 1      126      134      112      117      120      145      148      134      131      121</span>
+<span class="co">#&gt; 2       84       78       92       70       80       82       78       87       87      105</span>
+<span class="co">#&gt; 3      143      122      134      132      149      121      158      143      123      143</span>
+<span class="co">#&gt;   spc.1538 spc.1542 spc.1546 spc.1550 spc.1554 spc.1558 spc.1562 spc.1566 spc.1570 spc.1574</span>
+<span class="co">#&gt; 1      143      116      134      123      132      135      117      130      129      118</span>
+<span class="co">#&gt; 2       84       85       76       86       90       87       86       86       95       69</span>
+<span class="co">#&gt; 3      160      127      143      149      140      129      145      137      149      138</span>
+<span class="co">#&gt;   spc.1578 spc.1582 spc.1586 spc.1590 spc.1594 spc.1598 spc.1602 spc.1606 spc.1610 spc.1614</span>
+<span class="co">#&gt; 1      122      139      109      115      154      118      124      131      123      148</span>
+<span class="co">#&gt; 2       94       97       92       79       90       72       82       81       79       90</span>
+<span class="co">#&gt; 3      134      168      154      134      134      153      132      148      129      152</span>
+<span class="co">#&gt;   spc.1618 spc.1622 spc.1626 spc.1630 spc.1634 spc.1638 spc.1642 spc.1646 spc.1650 spc.1654</span>
+<span class="co">#&gt; 1      134      132      132      115      125      119      130      129      128      118</span>
+<span class="co">#&gt; 2       90       79       94       84      105       71       74       88       83       74</span>
+<span class="co">#&gt; 3      149      147      148      138      166      152      122      144      124      150</span>
+<span class="co">#&gt;   spc.1658 spc.1662 spc.1666 spc.1670 spc.1674 spc.1678 spc.1682 spc.1686 spc.1690 spc.1694</span>
+<span class="co">#&gt; 1      128      143      113      143      128      126      121      126      134      126</span>
+<span class="co">#&gt; 2       81       82      104       85       76       98       79       85      108       86</span>
+<span class="co">#&gt; 3      128      140      144      127      124      131      143      142      135      134</span>
+<span class="co">#&gt;   spc.1698 spc.1702 spc.1706 spc.1710 spc.1714 spc.1718 spc.1722 spc.1726 spc.1730 spc.1734</span>
+<span class="co">#&gt; 1      151      125      159      130      130      139      127      129      122      138</span>
+<span class="co">#&gt; 2       65       75       93       95       94       77       73       82       83       85</span>
+<span class="co">#&gt; 3      124      147      133      143      143      127      139      141      169      137</span>
+<span class="co">#&gt;   spc.1738 spc.1742 spc.1746 spc.1750 spc.1754 spc.1758 spc.1762 spc.1766 spc.1770 spc.1774</span>
+<span class="co">#&gt; 1      142      115      128      136      123      124      122      122      129      128</span>
+<span class="co">#&gt; 2       69       89       82       87       88       78      103       79       92       85</span>
+<span class="co">#&gt; 3      132      153      132      147      155      154      147      143      138      131</span>
+<span class="co">#&gt;   spc.1778 spc.1782 spc.1786 spc.1790 spc.1794 spc.1798</span>
+<span class="co">#&gt; 1      136      133      139      123      119      129</span>
+<span class="co">#&gt; 2       66       83       75       87       92       90</span>
+<span class="co">#&gt; 3      144      147      143      120      149      154</span>
 </pre></div>
 <div class="sourceCode" id="cb16"><pre class="downlit">
-<span class="kw">chondro</span>[[<span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="st">"x"</span>]]
+<span class="kw">faux_cell</span>[[<span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="st">"x"</span>]]
 <span class="co">#&gt;        x</span>
 <span class="co">#&gt; 1 -11.55</span>
 <span class="co">#&gt; 2 -10.55</span>
 <span class="co">#&gt; 3  -9.55</span>
 </pre></div>
 <div class="sourceCode" id="cb17"><pre class="downlit">
-<span class="kw">chondro</span>[[<span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">FALSE</span>, <span class="fl">TRUE</span>)]] <span class="co"># note the recycling!</span>
-<span class="co">#&gt;        x clusters</span>
-<span class="co">#&gt; 1 -11.55   matrix</span>
-<span class="co">#&gt; 2 -10.55   matrix</span>
-<span class="co">#&gt; 3  -9.55   matrix</span>
+<span class="kw">faux_cell</span>[[<span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">FALSE</span>, <span class="fl">TRUE</span>)]] <span class="co"># note the recycling!</span>
+<span class="co">#&gt;       y spc.602 spc.606 spc.610 spc.614 spc.618 spc.622 spc.626 spc.630 spc.634 spc.638 spc.642</span>
+<span class="co">#&gt; 1 -4.77     132     132     150     128     143     113     121     125     121     123     135</span>
+<span class="co">#&gt; 2 -4.77      72      73      99      84      54      74      68      79      73      98      83</span>
+<span class="co">#&gt; 3 -4.77     120     132     142     118     125     123     111     146     122     123     142</span>
+<span class="co">#&gt;   spc.646 spc.650 spc.654 spc.658 spc.662 spc.666 spc.670 spc.674 spc.678 spc.682 spc.686 spc.690</span>
+<span class="co">#&gt; 1     139     151     143     133     113     124     104     127     127     131     145     134</span>
+<span class="co">#&gt; 2      74      73      69      90      84      80      69      61      65      76      80      93</span>
+<span class="co">#&gt; 3     137     141     114     127     120     137     115     127     137     142     128     137</span>
+<span class="co">#&gt;   spc.694 spc.698 spc.702 spc.706 spc.710 spc.714 spc.718 spc.722 spc.726 spc.730 spc.734 spc.738</span>
+<span class="co">#&gt; 1     127     136     121     131     132     131     141     139     109     124     136     124</span>
+<span class="co">#&gt; 2      76      80      79      93      81      72      74      76      90      78      78      94</span>
+<span class="co">#&gt; 3     118     115     116     126     116     125     111     125     106     123     128     119</span>
+<span class="co">#&gt;   spc.742 spc.746 spc.750 spc.754 spc.758 spc.762 spc.766 spc.770 spc.774 spc.778 spc.782 spc.786</span>
+<span class="co">#&gt; 1     111     127     128     152     133     122     166     132     146     136     159     232</span>
+<span class="co">#&gt; 2      86      72      77      76      79      91      69      63      84     109     129     160</span>
+<span class="co">#&gt; 3     111     142     139     123     111     138     119     109     126     111     172     216</span>
+<span class="co">#&gt;   spc.790 spc.794 spc.798 spc.802 spc.806 spc.810 spc.814 spc.818 spc.822 spc.826 spc.830 spc.834</span>
+<span class="co">#&gt; 1     267     288     324     312     263     267     216     185     130     150     136     156</span>
+<span class="co">#&gt; 2     193     237     260     272     238     203     154     115     104      93      98      71</span>
+<span class="co">#&gt; 3     267     282     313     324     280     232     186     182     127     127     117     135</span>
+<span class="co">#&gt;   spc.838 spc.842 spc.846 spc.850 spc.854 spc.858 spc.862 spc.866 spc.870 spc.874 spc.878 spc.882</span>
+<span class="co">#&gt; 1     123     123     131     131     134     128     133     151     143     124     132     120</span>
+<span class="co">#&gt; 2      77      66      92      64      84      80      75      79      81      77      85      82</span>
+<span class="co">#&gt; 3     123     119     121     125     134     130     125     136     125     135     117     144</span>
+<span class="co">#&gt;   spc.886 spc.890 spc.894 spc.898 spc.902 spc.906 spc.910 spc.914 spc.918 spc.922 spc.926 spc.930</span>
+<span class="co">#&gt; 1     123     117     111     128     117     145     147     116     121     137     147     124</span>
+<span class="co">#&gt; 2      85      74      81      76      66      77      74      81      87      85      72      91</span>
+<span class="co">#&gt; 3     126     143     148     124     138     131     126     138     110     132     135     140</span>
+<span class="co">#&gt;   spc.934 spc.938 spc.942 spc.946 spc.950 spc.954 spc.958 spc.962 spc.966 spc.970 spc.974 spc.978</span>
+<span class="co">#&gt; 1     137     139     143     128     123     113     120     139     162     108     141     138</span>
+<span class="co">#&gt; 2      94      69      75      81      72      84      82      80      70      80      86      84</span>
+<span class="co">#&gt; 3     131     123     144     126     118     135     138     144     142     116     146     139</span>
+<span class="co">#&gt;   spc.982 spc.986 spc.990 spc.994 spc.998 spc.1002 spc.1006 spc.1010 spc.1014 spc.1018 spc.1022</span>
+<span class="co">#&gt; 1     132     145     122     118     105      116      132      122      137      133      105</span>
+<span class="co">#&gt; 2      78      80      97      83      66       67       78       90       77       89       74</span>
+<span class="co">#&gt; 3     135     134     131     143     135      128      131      139      128      119      126</span>
+<span class="co">#&gt;   spc.1026 spc.1030 spc.1034 spc.1038 spc.1042 spc.1046 spc.1050 spc.1054 spc.1058 spc.1062</span>
+<span class="co">#&gt; 1      114      127      129      142      139      122      114      122      130      136</span>
+<span class="co">#&gt; 2       76       82       79       96       83       72       69       86       84       83</span>
+<span class="co">#&gt; 3      136      136      138      113      126      150      115      133      126      130</span>
+<span class="co">#&gt;   spc.1066 spc.1070 spc.1074 spc.1078 spc.1082 spc.1086 spc.1090 spc.1094 spc.1098 spc.1102</span>
+<span class="co">#&gt; 1      143      116      147      132      138      137      108      130      154      134</span>
+<span class="co">#&gt; 2       95       66       95       96       87       90       80       85       77       88</span>
+<span class="co">#&gt; 3      135      133      124      141      135      131      128      141      136      124</span>
+<span class="co">#&gt;   spc.1106 spc.1110 spc.1114 spc.1118 spc.1122 spc.1126 spc.1130 spc.1134 spc.1138 spc.1142</span>
+<span class="co">#&gt; 1      125      155      123      111      132      146      146      122      130      123</span>
+<span class="co">#&gt; 2       74       86       76       70       85       71       71       94       96       72</span>
+<span class="co">#&gt; 3      136      132      116      148      144      145      147      124      147      137</span>
+<span class="co">#&gt;   spc.1146 spc.1150 spc.1154 spc.1158 spc.1162 spc.1166 spc.1170 spc.1174 spc.1178 spc.1182</span>
+<span class="co">#&gt; 1      122      131      150      144      129      132      133      130      125      118</span>
+<span class="co">#&gt; 2       75       86       85       81       87       75       72       82       81       87</span>
+<span class="co">#&gt; 3      144      126      124      146      121      155      139      150      103      120</span>
+<span class="co">#&gt;   spc.1186 spc.1190 spc.1194 spc.1198 spc.1202 spc.1206 spc.1210 spc.1214 spc.1218 spc.1222</span>
+<span class="co">#&gt; 1      113      141      131      117      129      136      120      124      152      117</span>
+<span class="co">#&gt; 2       82       84       77       80       60       87       81       89       74       80</span>
+<span class="co">#&gt; 3      126      135      147      138      124      127      128      124      132      135</span>
+<span class="co">#&gt;   spc.1226 spc.1230 spc.1234 spc.1238 spc.1242 spc.1246 spc.1250 spc.1254 spc.1258 spc.1262</span>
+<span class="co">#&gt; 1      126      126      151      132      134      138      127      117      134      131</span>
+<span class="co">#&gt; 2       71       88       77       95       75       78       76       79       81       85</span>
+<span class="co">#&gt; 3      151      137      136      132      135      138      136      109      158      143</span>
+<span class="co">#&gt;   spc.1266 spc.1270 spc.1274 spc.1278 spc.1282 spc.1286 spc.1290 spc.1294 spc.1298 spc.1302</span>
+<span class="co">#&gt; 1      122      128      128      153      131      116      143      127      120      125</span>
+<span class="co">#&gt; 2       92       83       88       79       88       90       81       87       73       78</span>
+<span class="co">#&gt; 3      135      122      129      127      128      135      134      123      140      140</span>
+<span class="co">#&gt;   spc.1306 spc.1310 spc.1314 spc.1318 spc.1322 spc.1326 spc.1330 spc.1334 spc.1338 spc.1342</span>
+<span class="co">#&gt; 1      111      132      144      129      124      128      124      121      123      134</span>
+<span class="co">#&gt; 2       91       79       95       96       90       69       87       82       90      101</span>
+<span class="co">#&gt; 3      128      134      139      116      123      145      128      134      125      146</span>
+<span class="co">#&gt;   spc.1346 spc.1350 spc.1354 spc.1358 spc.1362 spc.1366 spc.1370 spc.1374 spc.1378 spc.1382</span>
+<span class="co">#&gt; 1      140      136      141      131      149      117      131      134      115      154</span>
+<span class="co">#&gt; 2       79       69       63       83       84       73       85       78       77       82</span>
+<span class="co">#&gt; 3      149      145      145      129      132      116      126      123      133      136</span>
+<span class="co">#&gt;   spc.1386 spc.1390 spc.1394 spc.1398 spc.1402 spc.1406 spc.1410 spc.1414 spc.1418 spc.1422</span>
+<span class="co">#&gt; 1      127      123      124      120      170      130      138      139      128      125</span>
+<span class="co">#&gt; 2       92       92       87       79       77       80       89       75       89       78</span>
+<span class="co">#&gt; 3      151      133      165      148      150      111      133      133      125      146</span>
+<span class="co">#&gt;   spc.1426 spc.1430 spc.1434 spc.1438 spc.1442 spc.1446 spc.1450 spc.1454 spc.1458 spc.1462</span>
+<span class="co">#&gt; 1      134      139      157      130      146      131      128      137      142      130</span>
+<span class="co">#&gt; 2      100       83       80       91       84       98       82       95       72       95</span>
+<span class="co">#&gt; 3      142      143      101      149      130      139      135      143      133      149</span>
+<span class="co">#&gt;   spc.1466 spc.1470 spc.1474 spc.1478 spc.1482 spc.1486 spc.1490 spc.1494 spc.1498 spc.1502</span>
+<span class="co">#&gt; 1      143      121      123      138      148      131      132      125      126      134</span>
+<span class="co">#&gt; 2       85       93       84      101       94       95       90       73       84       78</span>
+<span class="co">#&gt; 3      144      132      147      150      145      130      122      116      143      122</span>
+<span class="co">#&gt;   spc.1506 spc.1510 spc.1514 spc.1518 spc.1522 spc.1526 spc.1530 spc.1534 spc.1538 spc.1542</span>
+<span class="co">#&gt; 1      112      117      120      145      148      134      131      121      143      116</span>
+<span class="co">#&gt; 2       92       70       80       82       78       87       87      105       84       85</span>
+<span class="co">#&gt; 3      134      132      149      121      158      143      123      143      160      127</span>
+<span class="co">#&gt;   spc.1546 spc.1550 spc.1554 spc.1558 spc.1562 spc.1566 spc.1570 spc.1574 spc.1578 spc.1582</span>
+<span class="co">#&gt; 1      134      123      132      135      117      130      129      118      122      139</span>
+<span class="co">#&gt; 2       76       86       90       87       86       86       95       69       94       97</span>
+<span class="co">#&gt; 3      143      149      140      129      145      137      149      138      134      168</span>
+<span class="co">#&gt;   spc.1586 spc.1590 spc.1594 spc.1598 spc.1602 spc.1606 spc.1610 spc.1614 spc.1618 spc.1622</span>
+<span class="co">#&gt; 1      109      115      154      118      124      131      123      148      134      132</span>
+<span class="co">#&gt; 2       92       79       90       72       82       81       79       90       90       79</span>
+<span class="co">#&gt; 3      154      134      134      153      132      148      129      152      149      147</span>
+<span class="co">#&gt;   spc.1626 spc.1630 spc.1634 spc.1638 spc.1642 spc.1646 spc.1650 spc.1654 spc.1658 spc.1662</span>
+<span class="co">#&gt; 1      132      115      125      119      130      129      128      118      128      143</span>
+<span class="co">#&gt; 2       94       84      105       71       74       88       83       74       81       82</span>
+<span class="co">#&gt; 3      148      138      166      152      122      144      124      150      128      140</span>
+<span class="co">#&gt;   spc.1666 spc.1670 spc.1674 spc.1678 spc.1682 spc.1686 spc.1690 spc.1694 spc.1698 spc.1702</span>
+<span class="co">#&gt; 1      113      143      128      126      121      126      134      126      151      125</span>
+<span class="co">#&gt; 2      104       85       76       98       79       85      108       86       65       75</span>
+<span class="co">#&gt; 3      144      127      124      131      143      142      135      134      124      147</span>
+<span class="co">#&gt;   spc.1706 spc.1710 spc.1714 spc.1718 spc.1722 spc.1726 spc.1730 spc.1734 spc.1738 spc.1742</span>
+<span class="co">#&gt; 1      159      130      130      139      127      129      122      138      142      115</span>
+<span class="co">#&gt; 2       93       95       94       77       73       82       83       85       69       89</span>
+<span class="co">#&gt; 3      133      143      143      127      139      141      169      137      132      153</span>
+<span class="co">#&gt;   spc.1746 spc.1750 spc.1754 spc.1758 spc.1762 spc.1766 spc.1770 spc.1774 spc.1778 spc.1782</span>
+<span class="co">#&gt; 1      128      136      123      124      122      122      129      128      136      133</span>
+<span class="co">#&gt; 2       82       87       88       78      103       79       92       85       66       83</span>
+<span class="co">#&gt; 3      132      147      155      154      147      143      138      131      144      147</span>
+<span class="co">#&gt;   spc.1786 spc.1790 spc.1794 spc.1798</span>
+<span class="co">#&gt; 1      139      123      119      129</span>
+<span class="co">#&gt; 2       75       87       92       90</span>
+<span class="co">#&gt; 3      143      120      149      154</span>
 </pre></div>
 
 <p>To select one column, the <code class="sourceCode r"><span class="op">$</span></code> operator is more convenient:</p>
@@ -648,12 +865,12 @@ In this case, a vector of values from the spectra matrix is returned.</p>
 <span class="co">#&gt; [3,]    3    3</span>
 </pre></div>
 <div class="sourceCode" id="cb21"><pre class="downlit">
-<span class="kw">chondro</span>[[<span class="kw">indexmatrix</span>, wl.index = <span class="fl">TRUE</span>]]
-<span class="co">#&gt; [1] 501.82 507.81 456.03</span>
+<span class="kw">faux_cell</span>[[<span class="kw">indexmatrix</span>, wl.index = <span class="fl">TRUE</span>]]
+<span class="co">#&gt; [1] 132  73 142</span>
 </pre></div>
 <div class="sourceCode" id="cb22"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/diag.html">diag</a></span>(<span class="kw">chondro</span>[[<span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, , <span class="kw">min</span> <span class="op">~</span> <span class="kw">min</span> <span class="op">+</span> <span class="fl">2i</span>]])
-<span class="co">#&gt; [1] 501.82 507.81 456.03</span>
+<span class="fu"><a href="https://rdrr.io/r/base/diag.html">diag</a></span>(<span class="kw">faux_cell</span>[[<span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, , <span class="kw">min</span> <span class="op">~</span> <span class="kw">min</span> <span class="op">+</span> <span class="fl">2i</span>]])
+<span class="co">#&gt; [1] 132  73 142</span>
 </pre></div>
 <p>Operator <code>[[]]&lt;-</code> also accepts index matrices of size <span class="math inline">\(n × 2\)</span>.</p>
 </div>
@@ -687,11 +904,11 @@ This yields a vector <strong><code>index_of_start : index_of_end</code></strong>
 <span class="co">#&gt;  [1]  1  2  3  4  5  6  7  8  9 10 11</span>
 </pre></div>
 <div class="sourceCode" id="cb25"><pre class="downlit">
-<span class="fu"><a href="../reference/wl2i.html">wl2i</a></span>(<span class="kw">chondro</span>, <span class="fl">1000</span><span class="op">:</span><span class="fl">1010</span>)
+<span class="fu"><a href="../reference/wl2i.html">wl2i</a></span>(<span class="kw">faux_cell</span>, <span class="fl">1000</span><span class="op">:</span><span class="fl">1010</span>)
 <span class="co">#&gt;  [1] 100 101 101 101 101 102 102 102 102 103 103</span>
 </pre></div>
 <div class="sourceCode" id="cb26"><pre class="downlit">
-<span class="fu"><a href="../reference/wl2i.html">wl2i</a></span>(<span class="kw">chondro</span>, <span class="fl">1000</span> <span class="op">~</span> <span class="fl">1010</span>)
+<span class="fu"><a href="../reference/wl2i.html">wl2i</a></span>(<span class="kw">faux_cell</span>, <span class="fl">1000</span> <span class="op">~</span> <span class="fl">1010</span>)
 <span class="co">#&gt; [1] 100 101 102 103</span>
 </pre></div>
 <ul>
@@ -1043,7 +1260,7 @@ intensity axis label in <code class="sourceCode r"><span class="op">$</span>spc<
 Note that the package <strong>hyperSpec</strong> function’s name has an additional “m”: it already takes care of multiple groups.
 Mean spectra and pooled covariance matrix can be calculated using <code class="sourceCode r"><span class="kw">pooled.cov</span>()</code>:</p>
 <div class="sourceCode" id="cb53"><pre class="downlit">
-<span class="kw">pcov</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cov,hyperSpec,missing-method.html">pooled.cov</a></span>(<span class="kw">chondro</span>, <span class="kw">chondro</span><span class="op">$</span><span class="kw">clusters</span>)
+<span class="kw">pcov</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cov,hyperSpec,missing-method.html">pooled.cov</a></span>(<span class="kw">faux_cell</span>, <span class="kw">faux_cell</span><span class="op">$</span><span class="kw">region</span>)
 <span class="kw">rnd</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/rmmvnorm.html">rmmvnorm</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="fl">10</span>, <span class="fl">3</span>), mean = <span class="kw">pcov</span><span class="op">$</span><span class="kw">mean</span>, sigma = <span class="kw">pcov</span><span class="op">$</span><span class="kw">COV</span>)
 </pre></div>
 <div class="sourceCode" id="cb54"><pre class="downlit">
@@ -1077,11 +1294,11 @@ Figure 4.1: Multivariate normally distributed random spectra generated with <cod
 </ol>
 <p>The first method is very straightforward (Fig. <a href="#fig:shift-wl">5.1</a>):</p>
 <div class="sourceCode" id="cb55"><pre class="downlit">
-<span class="kw">tmp</span> <span class="op">&lt;-</span> <span class="kw">chondro</span>
+<span class="kw">tmp</span> <span class="op">&lt;-</span> <span class="kw">faux_cell</span>
 <span class="fu"><a href="../reference/wl.html">wl</a></span>(<span class="kw">tmp</span>) <span class="op">&lt;-</span> <span class="fu"><a href="../reference/wl.html">wl</a></span>(<span class="kw">tmp</span>) <span class="op">-</span> <span class="fl">10</span>
 </pre></div>
 <div class="sourceCode" id="cb56"><pre class="downlit">
-<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">chondro</span>[<span class="fl">135</span>])
+<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">faux_cell</span>[<span class="fl">135</span>])
 <span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">tmp</span>[<span class="fl">135</span>, , ], add = <span class="fl">TRUE</span>, col = <span class="kw">CB7</span>[<span class="fl">4</span>])
 </pre></div>
 <div class="figure" style="text-align: center">
@@ -1103,10 +1320,10 @@ It is convenient to set it up as a function:</p>
 </pre></div>
 <p>This function can now be applied to a set of spectra (Fig. <a href="#fig:shift-interp">5.2</a>):</p>
 <div class="sourceCode" id="cb58"><pre class="downlit">
-<span class="kw">tmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/apply.html">apply</a></span>(<span class="kw">chondro</span>, <span class="fl">1</span>, <span class="kw">interpolate</span>, shift = <span class="op">-</span><span class="fl">10</span>, wl = <span class="fu"><a href="../reference/wl.html">wl</a></span>(<span class="kw">chondro</span>))
+<span class="kw">tmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/apply.html">apply</a></span>(<span class="kw">faux_cell</span>, <span class="fl">1</span>, <span class="kw">interpolate</span>, shift = <span class="op">-</span><span class="fl">10</span>, wl = <span class="fu"><a href="../reference/wl.html">wl</a></span>(<span class="kw">faux_cell</span>))
 </pre></div>
 <div class="sourceCode" id="cb59"><pre class="downlit">
-<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">chondro</span>[<span class="fl">135</span>])
+<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">faux_cell</span>[<span class="fl">135</span>])
 <span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">tmp</span>[<span class="fl">135</span>], add = <span class="fl">TRUE</span>, col = <span class="kw">CB7</span>[<span class="fl">4</span>])
 </pre></div>
 <div class="figure" style="text-align: center">
@@ -1117,12 +1334,12 @@ Figure 5.2: Shifting the spectra along the wavelength axis: interpolation.
 </div>
 <p>Fig. <a href="#fig:shift-untsch">5.3</a> demonstrates the difference between simple shifting and interpolation.</p>
 <div class="sourceCode" id="cb60"><pre class="downlit">
-<span class="kw">tmp</span> <span class="op">&lt;-</span> <span class="kw">chondro</span>[<span class="fl">135</span>, , <span class="fl">990</span> <span class="op">~</span> <span class="fl">1010</span>]
+<span class="kw">tmp</span> <span class="op">&lt;-</span> <span class="kw">faux_cell</span>[<span class="fl">135</span>, , <span class="fl">990</span> <span class="op">~</span> <span class="fl">1010</span>]
 <span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">tmp</span>, lines.args = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(type = <span class="st">"b"</span>, pch = <span class="fl">19</span>, cex = <span class="fl">0.5</span>))
 <span class="fu"><a href="../reference/wl.html">wl</a></span>(<span class="kw">tmp</span>) <span class="op">&lt;-</span> <span class="fu"><a href="../reference/wl.html">wl</a></span>(<span class="kw">tmp</span>) <span class="op">-</span> <span class="fl">0.5</span>
 <span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">tmp</span>, lines.args = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(type = <span class="st">"b"</span>, pch = <span class="fl">19</span>, cex = <span class="fl">0.5</span>), add = <span class="fl">TRUE</span>, col = <span class="kw">CB7</span>[<span class="fl">4</span>])
 
-<span class="kw">tmp</span> <span class="op">&lt;-</span> <span class="kw">chondro</span>[<span class="fl">135</span>]
+<span class="kw">tmp</span> <span class="op">&lt;-</span> <span class="kw">faux_cell</span>[<span class="fl">135</span>]
 <span class="kw">tmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/apply.html">apply</a></span>(<span class="kw">tmp</span>, <span class="fl">1</span>, <span class="fu">function</span>(<span class="kw">x</span>, <span class="kw">wl</span>, <span class="kw">shift</span>) {
   <span class="fu"><a href="https://rdrr.io/r/stats/splinefun.html">spline</a></span>(<span class="kw">wl</span> <span class="op">+</span> <span class="kw">shift</span>, <span class="kw">x</span>, xout = <span class="kw">wl</span>)<span class="op">$</span><span class="kw">y</span>
 },
@@ -1140,24 +1357,25 @@ Detail view of the phenylalanine band: shifting by <code class="sourceCode r">wl
 </div>
 <p>If different spectra need to be offset by different shift, use a loop<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>.</p>
 <div class="sourceCode" id="cb61"><pre class="downlit">
-<span class="kw">shifts</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="kw">chondro</span>))
-<span class="kw">tmp</span> <span class="op">&lt;-</span> <span class="kw">chondro</span>[[]]
-<span class="co">for</span> (<span class="kw">i</span> <span class="co">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="kw">chondro</span>))) {
-  <span class="kw">tmp</span>[<span class="kw">i</span>, ] <span class="op">&lt;-</span> <span class="fu">interpolate</span>(<span class="kw">tmp</span>[<span class="kw">i</span>, ], <span class="kw">shifts</span>[<span class="kw">i</span>], wl = <span class="fu"><a href="../reference/wl.html">wl</a></span>(<span class="kw">chondro</span>))
+<span class="kw">shifts</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="kw">faux_cell</span>))
+<span class="kw">tmp</span> <span class="op">&lt;-</span> <span class="kw">faux_cell</span>[[]]
+<span class="co">for</span> (<span class="kw">i</span> <span class="co">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="kw">faux_cell</span>))) {
+  <span class="kw">tmp</span>[<span class="kw">i</span>, ] <span class="op">&lt;-</span> <span class="fu">interpolate</span>(<span class="kw">tmp</span>[<span class="kw">i</span>, ], <span class="kw">shifts</span>[<span class="kw">i</span>], wl = <span class="fu"><a href="../reference/wl.html">wl</a></span>(<span class="kw">faux_cell</span>))
 }
-<span class="kw">chondro</span>[[]] <span class="op">&lt;-</span> <span class="kw">tmp</span>
+<span class="kw">faux_cell</span>[[]] <span class="op">&lt;-</span> <span class="kw">tmp</span>
 </pre></div>
 <div id="sec:calculating-shift" class="section level3">
 <h3 class="hasAnchor">
 <a href="#sec:calculating-shift" class="anchor"></a><span class="header-section-number">5.2.1</span> Calculating the Shift</h3>
 <p>Often, the shift in the spectra is determined by aligning a particular signal.
 This strategy works best with spectrally oversampled data that allows accurate determination of the signal position.</p>
-<p>For the <code class="sourceCode r">chondro</code> data, let’s use the maximum of the phenylalanine band between 990 and 1020 cm<sup>-1</sup>.
+<p>For the <code class="sourceCode r">faux_cell</code> data, let’s use the maximum of the peak around 1200 cm<sup>-1</sup>.
 As just the very maximum is too coarse, we’ll use the maximum of a square polynomial fitted to the maximum and its two neighbours.</p>
 <!-- ======================================================================= -->
 <!-- ======================================================================= -->
 <div class="sourceCode" id="cb62"><pre class="downlit">
-<span class="kw">find.max</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">y</span>, <span class="kw">x</span>) {
+<span class="co"># FIXME: this code currently does not work.</span>
+<span class="kw">find_max</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">y</span>, <span class="kw">x</span>) {
   <span class="kw">pos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/which.min.html">which.max</a></span>(<span class="kw">y</span>) <span class="op">+</span> (<span class="op">-</span><span class="fl">1</span><span class="op">:</span><span class="fl">1</span>)
   <span class="kw">X</span> <span class="op">&lt;-</span> <span class="kw">x</span>[<span class="kw">pos</span>] <span class="op">-</span> <span class="kw">x</span>[<span class="kw">pos</span>[<span class="fl">2</span>]]
   <span class="kw">Y</span> <span class="op">&lt;-</span> <span class="kw">y</span>[<span class="kw">pos</span>] <span class="op">-</span> <span class="kw">y</span>[<span class="kw">pos</span>[<span class="fl">2</span>]]
@@ -1168,16 +1386,16 @@ As just the very maximum is too coarse, we’ll use the maximum of a square poly
   <span class="op">-</span><span class="kw">coef</span>[<span class="fl">2</span>] <span class="op">/</span> <span class="kw">coef</span>[<span class="fl">3</span>] <span class="op">/</span> <span class="fl">2</span> <span class="op">+</span> <span class="kw">x</span>[<span class="kw">pos</span>[<span class="fl">2</span>]]
 }
 
-<span class="kw">bandpos</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/apply.html">apply</a></span>(<span class="kw">chondro</span>[[, , <span class="fl">990</span> <span class="op">~</span> <span class="fl">1020</span>]], <span class="fl">1</span>, <span class="kw">find.max</span>, <span class="fu"><a href="../reference/wl.html">wl</a></span>(<span class="kw">chondro</span>[, , <span class="fl">990</span> <span class="op">~</span> <span class="fl">1020</span>]))
-<span class="kw">refpos</span> <span class="op">&lt;-</span> <span class="fu">find.max</span>(<span class="fu"><a href="https://rdrr.io/r/base/colSums.html">colMeans</a></span>(<span class="kw">chondro</span>[[, , <span class="fl">990</span> <span class="op">~</span> <span class="fl">1020</span>]]), <span class="fu"><a href="../reference/wl.html">wl</a></span>(<span class="kw">chondro</span>[, , <span class="fl">990</span> <span class="op">~</span> <span class="fl">1020</span>]))
+<span class="kw">bandpos</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/apply.html">apply</a></span>(<span class="kw">faux_cell</span>[[, , <span class="fl">1190</span> <span class="op">~</span> <span class="fl">1210</span>]], <span class="fl">1</span>, <span class="kw">find_max</span>, <span class="fu"><a href="../reference/wl.html">wl</a></span>(<span class="kw">faux_cell</span>[, , <span class="fl">1190</span> <span class="op">~</span> <span class="fl">1210</span>]))
+<span class="kw">refpos</span> <span class="op">&lt;-</span> <span class="fu">find_max</span>(<span class="fu"><a href="https://rdrr.io/r/base/colSums.html">colMeans</a></span>(<span class="kw">faux_cell</span>[[, , <span class="fl">1190</span> <span class="op">~</span> <span class="fl">1210</span>]]), <span class="fu"><a href="../reference/wl.html">wl</a></span>(<span class="kw">faux_cell</span>[, , <span class="fl">1190</span> <span class="op">~</span> <span class="fl">1210</span>]))
 
 <span class="kw">shift1</span> <span class="op">&lt;-</span> <span class="kw">refpos</span> <span class="op">-</span> <span class="kw">bandpos</span>
 </pre></div>
 <p>A second possibility is to optimize the shift.
 For this strategy, the spectra must be sufficiently similar, while low spectral resolution is compensated by using larger spectral windows.</p>
 <div class="sourceCode" id="cb63"><pre class="downlit">
-<span class="kw">chondro</span> <span class="op">&lt;-</span> <span class="kw">chondro</span> <span class="op">-</span> <span class="fu"><a href="../reference/spc.fit.poly.html">spc.fit.poly.below</a></span>(<span class="kw">chondro</span>[, , <span class="kw">min</span> <span class="op">+</span> <span class="fl">3i</span> <span class="op">~</span> <span class="kw">max</span> <span class="op">-</span> <span class="fl">3i</span>], <span class="kw">chondro</span>)
-<span class="kw">chondro</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sweep.html">sweep</a></span>(<span class="kw">chondro</span>, <span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/colSums.html">rowMeans</a></span>(<span class="kw">chondro</span>[[]], na.rm = <span class="fl">TRUE</span>), <span class="st">"/"</span>)
+<span class="kw">faux_cell_tmp</span> <span class="op">&lt;-</span> <span class="kw">faux_cell</span> <span class="op">-</span> <span class="fu"><a href="../reference/spc.fit.poly.html">spc.fit.poly.below</a></span>(<span class="kw">faux_cell</span>[, , <span class="kw">min</span> <span class="op">+</span> <span class="fl">3i</span> <span class="op">~</span> <span class="kw">max</span> <span class="op">-</span> <span class="fl">3i</span>], <span class="kw">faux_cell</span>)
+<span class="kw">faux_cell_tmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sweep.html">sweep</a></span>(<span class="kw">faux_cell_tmp</span>, <span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/colSums.html">rowMeans</a></span>(<span class="kw">faux_cell</span>[[]], na.rm = <span class="fl">TRUE</span>), <span class="st">"/"</span>)
 </pre></div>
 <div class="sourceCode" id="cb64"><pre class="downlit">
 <span class="kw">targetfn</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">shift</span>, <span class="kw">wl</span>, <span class="kw">spc</span>, <span class="kw">targetspc</span>) {
@@ -1185,24 +1403,25 @@ For this strategy, the spectra must be sufficiently similar, while low spectral 
   <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="kw">error</span><span class="op">^</span><span class="fl">2</span>)
 }
 
-<span class="kw">shift2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">numeric</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="kw">chondro</span>))
-<span class="kw">tmp</span> <span class="op">&lt;-</span> <span class="kw">chondro</span>[[]]
-<span class="kw">target</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html">colMeans</a></span>(<span class="kw">chondro</span>[[]])
-<span class="co">for</span> (<span class="kw">i</span> <span class="co">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="kw">chondro</span>)) {
+<span class="kw">shift2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">numeric</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="kw">faux_cell</span>))
+<span class="kw">tmp</span> <span class="op">&lt;-</span> <span class="kw">faux_cell</span>[[]]
+<span class="kw">target</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html">colMeans</a></span>(<span class="kw">faux_cell</span>[[]])
+<span class="co">for</span> (<span class="kw">i</span> <span class="co">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="kw">faux_cell</span>)) {
   <span class="kw">shift2</span>[<span class="kw">i</span>] <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/optimize.html">optimize</a></span>(<span class="kw">targetfn</span>,
     interval = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="op">-</span><span class="fl">5</span>, <span class="fl">5</span>),
-    wl = <span class="kw">chondro</span><span class="op">@</span>wavelength,
+    wl = <span class="kw">faux_cell</span><span class="op">@</span>wavelength,
     spc = <span class="kw">tmp</span>[<span class="kw">i</span>, ], targetspc = <span class="kw">target</span>
   )<span class="op">$</span><span class="kw">minimum</span>)
 }
 </pre></div>
-<p>Figure <a href="#fig:fit-shift">5.4</a> shows that the second correction method works better for the chondrocyte data.
+<p>Figure <a href="#fig:fit-shift"><strong>??</strong></a> shows that the second correction method works better for the <code>faux_cell</code> data.
 This was expected, as the spectra are hardly or not oversampled, but are very similar to each other.</p>
 <div class="sourceCode" id="cb65"><pre class="downlit">
+<span class="co"># FIXME: this code currently does not work.</span>
 <span class="kw">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(
   shift = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">shifts</span>, <span class="kw">shifts</span> <span class="op">+</span> <span class="kw">shift1</span>, <span class="kw">shifts</span> <span class="op">+</span> <span class="kw">shift2</span>),
   method = <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"original"</span>, <span class="st">"find maximum"</span>, <span class="st">"interpolation"</span>),
-    each = <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="kw">chondro</span>)
+    each = <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="kw">faux_cell</span>)
   )
 )
 <span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="fu">histogram</span>(<span class="op">~</span> <span class="kw">shift</span> <span class="op">|</span> <span class="kw">method</span>,
@@ -1210,12 +1429,6 @@ This was expected, as the spectra are hardly or not oversampled, but are very si
   layout = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">3</span>, <span class="fl">1</span>)
 ))
 </pre></div>
-<div class="figure" style="text-align: center">
-<span id="fig:fit-shift"></span>
-<img src="hyperSpec_files/figure-html/fit-shift-1.png" alt="The shifts used to disturb the chondrocyte data (original), and the remaining shift after correction with the two methods discussed here.  "><p class="caption">
-Figure 5.4: The shifts used to disturb the chondrocyte data (original), and the remaining shift after correction with the two methods discussed here.
-</p>
-</div>
 </div>
 </div>
 <div id="removing-bad-data" class="section level2">
@@ -1228,10 +1441,10 @@ Figure 5.4: The shifts used to disturb the chondrocyte data (original), and the 
 E.g., for infrared spectra one may state that the absorbance maximum should be, say, between 0.1 and 1.
 Class <code>hyperSpec</code>’s comparison operators return a logical matrix of the size of the spectra that is suitable for later indexing:</p>
 <div class="sourceCode" id="cb66"><pre class="downlit">
-<span class="kw">ir.spc</span> <span class="op">&lt;-</span> <span class="kw">chondro</span> <span class="op">/</span> <span class="fl">1500</span> <span class="co">## fake IR data</span>
-<span class="kw">high.int</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/apply.html">apply</a></span>(<span class="kw">ir.spc</span> <span class="op">&gt;</span> <span class="fl">1</span>, <span class="fl">1</span>, <span class="kw">any</span>) <span class="co"># any point above 1 is bad</span>
-<span class="kw">low.int</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/apply.html">apply</a></span>(<span class="kw">ir.spc</span>, <span class="fl">1</span>, <span class="kw">max</span>) <span class="op">&lt;</span> <span class="fl">0.1</span> <span class="co"># the maximum should be at least 0.1</span>
-<span class="kw">ir.spc</span> <span class="op">&lt;-</span> <span class="kw">ir.spc</span> [<span class="op">!</span><span class="kw">high.int</span> <span class="op">&amp;</span> <span class="op">!</span><span class="kw">low.int</span>]
+<span class="kw">ir_spc</span> <span class="op">&lt;-</span> <span class="kw">faux_cell</span> <span class="op">/</span> <span class="fl">1500</span> <span class="co">## fake IR data</span>
+<span class="kw">high_int</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/apply.html">apply</a></span>(<span class="kw">ir_spc</span> <span class="op">&gt;</span> <span class="fl">1</span>, <span class="fl">1</span>, <span class="kw">any</span>) <span class="co"># any point above 1 is bad</span>
+<span class="kw">low_int</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/apply.html">apply</a></span>(<span class="kw">ir_spc</span>, <span class="fl">1</span>, <span class="kw">max</span>) <span class="op">&lt;</span> <span class="fl">0.1</span> <span class="co"># the maximum should be at least 0.1</span>
+<span class="kw">ir_spc</span> <span class="op">&lt;-</span> <span class="kw">ir_spc</span>[<span class="op">!</span><span class="kw">high_int</span> <span class="op">&amp;</span> <span class="op">!</span><span class="kw">low_int</span>]
 </pre></div>
 </div>
 <div id="removing-spectra-outside-mean-pm-n-standard-deviations" class="section level3">
@@ -1244,19 +1457,19 @@ Class <code>hyperSpec</code>’s comparison operators return a logical matrix of
   (<span class="kw">x</span> <span class="op">&lt;=</span> <span class="kw">s</span>) <span class="op">&amp;</span> (<span class="kw">x</span> <span class="op">&gt;</span> <span class="op">-</span><span class="kw">s</span>)
 }
 
-<span class="kw">OK</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/apply.html">apply</a></span>(<span class="kw">chondro</span>[[]], <span class="fl">2</span>, <span class="kw">mean_sd_filter</span>, n = <span class="fl">4</span>) <span class="co"># logical matrix</span>
+<span class="kw">OK</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/apply.html">apply</a></span>(<span class="kw">faux_cell</span>[[]], <span class="fl">2</span>, <span class="kw">mean_sd_filter</span>, n = <span class="fl">4</span>) <span class="co"># logical matrix</span>
 
-<span class="kw">spc.OK</span> <span class="op">&lt;-</span> <span class="kw">chondro</span>[<span class="fu"><a href="../reference/apply.html">apply</a></span>(<span class="kw">OK</span>, <span class="fl">1</span>, <span class="kw">all</span>)]
+<span class="kw">spc.OK</span> <span class="op">&lt;-</span> <span class="kw">faux_cell</span>[<span class="fu"><a href="../reference/apply.html">apply</a></span>(<span class="kw">OK</span>, <span class="fl">1</span>, <span class="kw">all</span>)]
 </pre></div>
 <div class="sourceCode" id="cb68"><pre class="downlit">
-<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">chondro</span>[<span class="op">!</span><span class="fu"><a href="../reference/apply.html">apply</a></span>(<span class="kw">OK</span>, <span class="fl">1</span>, <span class="kw">all</span>)])
+<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">faux_cell</span>[<span class="op">!</span><span class="fu"><a href="../reference/apply.html">apply</a></span>(<span class="kw">OK</span>, <span class="fl">1</span>, <span class="kw">all</span>)])
 <span class="kw">i</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span>(<span class="op">!</span><span class="kw">OK</span>, arr.ind = <span class="fl">TRUE</span>)
-<span class="fu"><a href="https://rdrr.io/r/graphics/points.html">points</a></span>(<span class="fu"><a href="../reference/wl.html">wl</a></span>(<span class="kw">chondro</span>)[<span class="kw">i</span>[, <span class="fl">2</span>]], <span class="kw">chondro</span>[[<span class="op">!</span><span class="kw">OK</span>]], pch = <span class="fl">19</span>, col = <span class="kw">CB7</span>[<span class="fl">4</span>], cex = <span class="fl">0.5</span>)
+<span class="fu"><a href="https://rdrr.io/r/graphics/points.html">points</a></span>(<span class="fu"><a href="../reference/wl.html">wl</a></span>(<span class="kw">faux_cell</span>)[<span class="kw">i</span>[, <span class="fl">2</span>]], <span class="kw">faux_cell</span>[[<span class="op">!</span><span class="kw">OK</span>]], pch = <span class="fl">19</span>, col = <span class="kw">CB7</span>[<span class="fl">4</span>], cex = <span class="fl">0.5</span>)
 </pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:filter"></span>
 <img src="hyperSpec_files/figure-html/filter-1.png" alt="Filtering data: mean $\pm$ sd filter.  "><p class="caption">
-Figure 5.5: Filtering data: mean <span class="math inline">\(\pm\)</span> sd filter.
+Figure 5.4: Filtering data: mean <span class="math inline">\(\pm\)</span> sd filter.
 </p>
 </div>
 </div>
@@ -1265,30 +1478,30 @@ Figure 5.5: Filtering data: mean <span class="math inline">\(\pm\)</span> sd fil
 <a href="#sec:bad-data-points" class="anchor"></a><span class="header-section-number">5.3.3</span> Bad Data Points</h3>
 <p>Assume the data occasionally has a detector readout of 0:</p>
 <div class="sourceCode" id="cb69"><pre class="downlit">
-<span class="kw">spc</span> <span class="op">&lt;-</span> <span class="kw">chondro</span>[<span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, , <span class="kw">min</span> <span class="op">~</span> <span class="kw">min</span> <span class="op">+</span> <span class="fl">15i</span>]
+<span class="kw">spc</span> <span class="op">&lt;-</span> <span class="kw">faux_cell</span>[<span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, , <span class="kw">min</span> <span class="op">~</span> <span class="kw">min</span> <span class="op">+</span> <span class="fl">15i</span>]
 <span class="kw">spc</span>[[<span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span>(<span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="fu"><a href="../reference/ncol,hyperSpec-method.html">nwl</a></span>(<span class="kw">spc</span>), <span class="fl">3</span>)), wl.index = <span class="fl">TRUE</span>]] <span class="op">&lt;-</span> <span class="fl">0</span>
 <span class="kw">spc</span>[[]]
-<span class="co">#&gt;           602     606      610      614      618     622       626       630       634       638</span>
-<span class="co">#&gt; [1,] 0.094107 0.10481 0.077731 0.000000 0.066388 0.15334  0.017500 -0.050715 -0.058129 -0.038050</span>
-<span class="co">#&gt; [2,] 0.093196 0.11056 0.076936 0.027859 0.076737 0.15369  0.008562 -0.048678 -0.056702 -0.026668</span>
-<span class="co">#&gt; [3,] 0.100132 0.11065 0.064260 0.035309 0.103665 0.13752 -0.013804 -0.051869 -0.055693  0.000000</span>
-<span class="co">#&gt;           642      646         650       654       658      662</span>
-<span class="co">#&gt; [1,] 0.058259 0.031157 -4.3409e-03 0.0010698 0.0045476 0.010159</span>
-<span class="co">#&gt; [2,] 0.068384 0.035642 -1.5248e-03 0.0000000 0.0096910 0.017621</span>
-<span class="co">#&gt; [3,] 0.074132 0.025519  7.3441e-05 0.0076722 0.0094602 0.017589</span>
+<span class="co">#&gt;         602     606     610     614    618     622     626    630     634     638     642     646</span>
+<span class="co">#&gt; [1,] 138.13 129.659 138.745 144.504 131.23 136.949 111.078 124.11 123.946   0.000 126.461 136.325</span>
+<span class="co">#&gt; [2,]   0.00  73.371  99.227  83.301  54.00  74.184  68.029  79.00  73.236  98.166  82.623  73.986</span>
+<span class="co">#&gt; [3,] 120.10 132.189   0.000 117.864 125.13 122.796 111.221 146.10 121.732 123.221 142.052 137.024</span>
+<span class="co">#&gt;          650     654     658     662</span>
+<span class="co">#&gt; [1,] 142.723 150.316 140.794 125.848</span>
+<span class="co">#&gt; [2,]  72.874  69.232  90.187  83.842</span>
+<span class="co">#&gt; [3,] 140.820 113.921 127.047 120.082</span>
 </pre></div>
 <p>We can set these points to <code class="sourceCode r"><span class="ot">NA</span></code>, again using that the comparison returns a suitable logical matrix:</p>
 <div class="sourceCode" id="cb70"><pre class="downlit">
 <span class="kw">spc</span>[[<span class="kw">spc</span> <span class="op">&lt;</span> <span class="fl">1e-4</span>]] <span class="op">&lt;-</span> <span class="fl">NA</span>
 <span class="kw">spc</span>[[]]
-<span class="co">#&gt;           602     606      610      614      618     622      626 630 634 638      642      646 650</span>
-<span class="co">#&gt; [1,] 0.094107 0.10481 0.077731       NA 0.066388 0.15334 0.017500  NA  NA  NA 0.058259 0.031157  NA</span>
-<span class="co">#&gt; [2,] 0.093196 0.11056 0.076936 0.027859 0.076737 0.15369 0.008562  NA  NA  NA 0.068384 0.035642  NA</span>
-<span class="co">#&gt; [3,] 0.100132 0.11065 0.064260 0.035309 0.103665 0.13752       NA  NA  NA  NA 0.074132 0.025519  NA</span>
-<span class="co">#&gt;            654       658      662</span>
-<span class="co">#&gt; [1,] 0.0010698 0.0045476 0.010159</span>
-<span class="co">#&gt; [2,]        NA 0.0096910 0.017621</span>
-<span class="co">#&gt; [3,] 0.0076722 0.0094602 0.017589</span>
+<span class="co">#&gt;         602     606     610     614    618     622     626    630     634     638     642     646</span>
+<span class="co">#&gt; [1,] 138.13 129.659 138.745 144.504 131.23 136.949 111.078 124.11 123.946      NA 126.461 136.325</span>
+<span class="co">#&gt; [2,]     NA  73.371  99.227  83.301  54.00  74.184  68.029  79.00  73.236  98.166  82.623  73.986</span>
+<span class="co">#&gt; [3,] 120.10 132.189      NA 117.864 125.13 122.796 111.221 146.10 121.732 123.221 142.052 137.024</span>
+<span class="co">#&gt;          650     654     658     662</span>
+<span class="co">#&gt; [1,] 142.723 150.316 140.794 125.848</span>
+<span class="co">#&gt; [2,]  72.874  69.232  90.187  83.842</span>
+<span class="co">#&gt; [3,] 140.820 113.921 127.047 120.082</span>
 </pre></div>
 
 <p>Depending on the type of analysis, one may wish to replace the <code class="sourceCode r"><span class="ot">NA</span></code>s by interpolating the neighbour values.
@@ -1296,14 +1509,14 @@ Package <strong>hyperSpec</strong> provides three functions that can interpolate
 <div class="sourceCode" id="cb71"><pre class="downlit">
 <span class="kw">spc.corrected</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/spc.NA.approx.html">spc.NA.approx</a></span>(<span class="kw">spc</span>)
 <span class="kw">spc.corrected</span>[[]]
-<span class="co">#&gt;           602     606      610      614      618     622      626      630      634      638</span>
-<span class="co">#&gt; [1,] 0.094107 0.10481 0.077731 0.072059 0.066388 0.15334 0.017500 0.027690 0.037880 0.048069</span>
-<span class="co">#&gt; [2,] 0.093196 0.11056 0.076936 0.027859 0.076737 0.15369 0.008562 0.023518 0.038473 0.053429</span>
-<span class="co">#&gt; [3,] 0.100132 0.11065 0.064260 0.035309 0.103665 0.13752 0.124845 0.112166 0.099488 0.086810</span>
-<span class="co">#&gt;           642      646      650       654       658      662</span>
-<span class="co">#&gt; [1,] 0.058259 0.031157 0.016113 0.0010698 0.0045476 0.010159</span>
-<span class="co">#&gt; [2,] 0.068384 0.035642 0.026991 0.0183412 0.0096910 0.017621</span>
-<span class="co">#&gt; [3,] 0.074132 0.025519 0.016596 0.0076722 0.0094602 0.017589</span>
+<span class="co">#&gt;          602     606     610     614    618     622     626    630     634     638     642     646</span>
+<span class="co">#&gt; [1,] 138.127 129.659 138.745 144.504 131.23 136.949 111.078 124.11 123.946 125.204 126.461 136.325</span>
+<span class="co">#&gt; [2,]  73.371  73.371  99.227  83.301  54.00  74.184  68.029  79.00  73.236  98.166  82.623  73.986</span>
+<span class="co">#&gt; [3,] 120.105 132.189 125.026 117.864 125.13 122.796 111.221 146.10 121.732 123.221 142.052 137.024</span>
+<span class="co">#&gt;          650     654     658     662</span>
+<span class="co">#&gt; [1,] 142.723 150.316 140.794 125.848</span>
+<span class="co">#&gt; [2,]  72.874  69.232  90.187  83.842</span>
+<span class="co">#&gt; [3,] 140.820 113.921 127.047 120.082</span>
 </pre></div>
 <div class="sourceCode" id="cb72"><pre class="downlit">
 <span class="kw">spc</span>[[<span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span>(<span class="kw">spc</span>)]] <span class="op">&lt;-</span> <span class="fl">0</span>
@@ -1318,7 +1531,7 @@ Package <strong>hyperSpec</strong> provides three functions that can interpolate
 <div class="figure" style="text-align: center">
 <span id="fig:bad"></span>
 <img src="hyperSpec_files/figure-html/bad-1.png" alt="Filtering data: remove bad points.  "><p class="caption">
-Figure 5.6: Filtering data: remove bad points.
+Figure 5.5: Filtering data: remove bad points.
 </p>
 </div>
 </div>
@@ -1356,7 +1569,7 @@ Package <strong>hyperSpec</strong> provides two functions to do so: <code class=
 <div class="figure" style="text-align: center">
 <span id="fig:fig-loess"></span>
 <img src="hyperSpec_files/figure-html/fig-loess-1.png" alt="Smoothing interpolation by `spc.loess()`{.r} with new data point spacing of 2 cm^-1^ (red) and `spc.bin()`{.r} (blue).  "><p class="caption">
-Figure 5.7: Smoothing interpolation by <code class="sourceCode r"><span class="kw">spc.loess</span>()</code> with new data point spacing of 2 cm<sup>-1</sup> (red) and <code class="sourceCode r"><span class="kw">spc.bin</span>()</code> (blue).
+Figure 5.6: Smoothing interpolation by <code class="sourceCode r"><span class="kw">spc.loess</span>()</code> with new data point spacing of 2 cm<sup>-1</sup> (red) and <code class="sourceCode r"><span class="kw">spc.bin</span>()</code> (blue).
 </p>
 </div>
 <div class="sourceCode" id="cb74"><pre class="downlit">
@@ -1367,11 +1580,11 @@ Figure 5.7: Smoothing interpolation by <code class="sourceCode r"><span class="k
 <div class="figure" style="text-align: center">
 <span id="fig:loess-kl"></span>
 <img src="hyperSpec_files/figure-html/loess-kl-1.png" alt="The magnification of Fig. \@ref(fig:fig-loess) shows how interpolation may cause a loss in signal height.  "><p class="caption">
-Figure 5.8: The magnification of Fig. <a href="#fig:fig-loess">5.7</a> shows how interpolation may cause a loss in signal height.
+Figure 5.7: The magnification of Fig. <a href="#fig:fig-loess">5.6</a> shows how interpolation may cause a loss in signal height.
 </p>
 </div>
 <p>Function <code class="sourceCode r"><span class="kw">spc.loess</span>()</code> applies R’s <code class="sourceCode r"><span class="kw">loess</span>()</code> function for spectral interpolation.
-Figures <a href="#fig:fig-loess">5.7</a> and <a href="#fig:loess-kl">5.8</a> show the result of interpolating from 300 to 1800 and 2850 to 3150 cm<sup>-1</sup> with 2 cm<sup>-1</sup> data point distance.
+Figures <a href="#fig:fig-loess">5.6</a> and <a href="#fig:loess-kl">5.7</a> show the result of interpolating from 300 to 1800 and 2850 to 3150 cm<sup>-1</sup> with 2 cm<sup>-1</sup> data point distance.
 This corresponds to a spectral resolution of about 4 cm<sup>-1</sup>, and the decrease in spectral resolution can be seen at the sharp bands where the maxima are not reached (due to the fact that the interpolation wavelength axis does not necessarily hit the maxima.
 The original spectrum had 4064 data points with unequal data point spacing (between 0 and 1.4 cm<sup>-1</sup>).
 The interpolated spectrum has 902 data points.</p>
@@ -1391,12 +1604,12 @@ The interpolated spectrum has 902 data points.</p>
 
 <p>Calculate the offsets and adjust the spectra accordingly:</p>
 <div class="sourceCode" id="cb76"><pre class="downlit">
-<span class="kw">offsets</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/apply.html">apply</a></span>(<span class="kw">chondro</span>, <span class="fl">1</span>, <span class="kw">min</span>)
-<span class="kw">chondro.offset.corrected</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sweep.html">sweep</a></span>(<span class="kw">chondro</span>, <span class="fl">1</span>, <span class="kw">offsets</span>, <span class="st">"-"</span>)
+<span class="kw">offsets</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/apply.html">apply</a></span>(<span class="kw">faux_cell</span>, <span class="fl">1</span>, <span class="kw">min</span>)
+<span class="kw">faux_cell_offset_corrected</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sweep.html">sweep</a></span>(<span class="kw">faux_cell</span>, <span class="fl">1</span>, <span class="kw">offsets</span>, <span class="st">"-"</span>)
 </pre></div>
 <p>If the offset is calculated by a function, as here with the <code class="sourceCode r"><span class="kw">min</span>()</code>, <code>hyperSpec</code>’s <code class="sourceCode r"><span class="kw">sweep</span>()</code> method offers a shortcut: <code class="sourceCode r"><span class="kw">sweep</span>()</code>’s <code class="sourceCode r">STATS</code> argument may be the function instead of a numeric vector:</p>
 <div class="sourceCode" id="cb77"><pre class="downlit">
-<span class="kw">chondro.offset.corrected</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sweep.html">sweep</a></span>(<span class="kw">chondro</span>, <span class="fl">1</span>, <span class="kw">min</span>, <span class="st">"-"</span>)
+<span class="kw">faux_cell_offset_corrected</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sweep.html">sweep</a></span>(<span class="kw">faux_cell</span>, <span class="fl">1</span>, <span class="kw">min</span>, <span class="st">"-"</span>)
 </pre></div>
 </div>
 <div id="baseline-correction" class="section level2">
@@ -1412,15 +1625,15 @@ Particularly, the supplied wavelength ranges are not weighted.</p>
 <p>Both functions return a <code>hyperSpec</code> object containing the fitted baselines.
 They need to be subtracted afterwards:</p>
 <div class="sourceCode" id="cb78"><pre class="downlit">
-<span class="kw">bl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/spc.fit.poly.html">spc.fit.poly.below</a></span>(<span class="kw">chondro</span>)
-<span class="kw">chondro</span> <span class="op">&lt;-</span> <span class="kw">chondro</span> <span class="op">-</span> <span class="kw">bl</span>
+<span class="kw">bl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/spc.fit.poly.html">spc.fit.poly.below</a></span>(<span class="kw">faux_cell</span>)
+<span class="kw">faux_cell_tmp</span> <span class="op">&lt;-</span> <span class="kw">faux_cell</span> <span class="op">-</span> <span class="kw">bl</span>
 </pre></div>
 <p>For details, see <a href="#list-of-vignettes">baseline</a> vignette.</p>
 <p>Package package <strong>baseline</strong><span class="citation">[<a href="#ref-R-baseline" role="doc-biblioref">3</a>,<a href="#ref-baseline2010" role="doc-biblioref">4</a>]</span> offers many more functions for baseline correction.
 The <code class="sourceCode r"><span class="kw">baseline</span>()</code> function works on the spectra matrix, which is extracted by <code>[[]]</code>.
 The result is a <code class="sourceCode r">baseline</code> object, but can easily be re-imported into the <code>hyperSpec</code> object:</p>
 <div class="sourceCode" id="cb79"><pre class="downlit">
-<span class="kw">corrected</span> <span class="op">&lt;-</span> <span class="kw">hyperSpec</span>::<span class="kw"><a href="../reference/chondro.html">chondro</a></span>[<span class="fl">1</span>] <span class="co"># start with the unchanged data set</span>
+<span class="kw">corrected</span> <span class="op">&lt;-</span> <span class="kw">hyperSpec</span>::<span class="kw"><a href="../reference/generate_faux_cell.html">faux_cell</a></span>[<span class="fl">1</span>] <span class="co"># start with the unchanged data set</span>
 
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"baseline"</span>)
 <span class="co">#&gt; </span>
@@ -1434,32 +1647,32 @@ The result is a <code class="sourceCode r">baseline</code> object, but can easil
 <span class="kw">bl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/baseline/man/baseline.html">baseline</a></span>(<span class="kw">corrected</span>[[]], method = <span class="st">"modpolyfit"</span>, degree = <span class="fl">4</span>)
 <span class="kw">corrected</span>[[]] <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/baseline/man/getBaseline.html">getCorrected</a></span>(<span class="kw">bl</span>)
 </pre></div>
-<p>Fig. <a href="#fig:bl-baseline">5.9</a> and <a href="#fig:bl-baseline-2">5.10</a> show raw data and the result for the first spectrum of <code class="sourceCode r">chondro</code>.</p>
+<p>Fig. <a href="#fig:bl-baseline">5.8</a> and <a href="#fig:bl-baseline-2">5.9</a> show raw data and the result for the first spectrum of <code class="sourceCode r">faux_cell</code>.</p>
 <div class="sourceCode" id="cb80"><pre class="downlit">
 <span class="kw">baseline</span> <span class="op">&lt;-</span> <span class="kw">corrected</span>
 <span class="kw">baseline</span>[[]] <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/baseline/man/getBaseline.html">getBaseline</a></span>(<span class="kw">bl</span>)
-<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">hyperSpec</span>::<span class="kw"><a href="../reference/chondro.html">chondro</a></span>[<span class="fl">1</span>], plot.args = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(ylim = <span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span>(<span class="kw">hyperSpec</span>::<span class="kw"><a href="../reference/chondro.html">chondro</a></span>[<span class="fl">1</span>], <span class="fl">0</span>)))
+<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">hyperSpec</span>::<span class="kw"><a href="../reference/generate_faux_cell.html">faux_cell</a></span>[<span class="fl">1</span>], plot.args = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(ylim = <span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span>(<span class="kw">hyperSpec</span>::<span class="kw"><a href="../reference/generate_faux_cell.html">faux_cell</a></span>[<span class="fl">1</span>], <span class="fl">0</span>)))
 <span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">baseline</span>, add = <span class="fl">TRUE</span>, col = <span class="kw">CB7</span>[<span class="fl">4</span>])
 </pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:bl-baseline"></span>
-<img src="hyperSpec_files/figure-html/bl-baseline-1.png" alt="The first spectrum of `chondro`{.r} (raw data) with baseline.  "><p class="caption">
-Figure 5.9: The first spectrum of <code class="sourceCode r">chondro</code> (raw data) with baseline.
+<img src="hyperSpec_files/figure-html/bl-baseline-1.png" alt="The first spectrum of `faux_cell`{.r} (raw data) with baseline.  "><p class="caption">
+Figure 5.8: The first spectrum of <code class="sourceCode r">faux_cell</code> (raw data) with baseline.
 </p>
 </div>
 <div class="sourceCode" id="cb81"><pre class="downlit">
-<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">corrected</span>, plot.args = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(ylim = <span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span>(<span class="kw">hyperSpec</span>::<span class="kw"><a href="../reference/chondro.html">chondro</a></span>[<span class="fl">1</span>], <span class="fl">0</span>)))
+<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">corrected</span>, plot.args = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(ylim = <span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span>(<span class="kw">hyperSpec</span>::<span class="kw"><a href="../reference/generate_faux_cell.html">faux_cell</a></span>[<span class="fl">1</span>], <span class="fl">0</span>)))
 </pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:bl-baseline-2"></span>
 <img src="hyperSpec_files/figure-html/bl-baseline-2-1.png" alt='Baseline correction using the **baseline** package:
-the first spectrum of `chondro`{.r}  after baseline correction with method "odpolyfi".  '><p class="caption">
-Figure 5.10: Baseline correction using the <strong>baseline</strong> package:
-the first spectrum of <code class="sourceCode r">chondro</code> after baseline correction with method “odpolyfi”.
+the first spectrum of `faux_cell`{.r}  after baseline correction with method "odpolyfi".  '><p class="caption">
+Figure 5.9: Baseline correction using the <strong>baseline</strong> package:
+the first spectrum of <code class="sourceCode r">faux_cell</code> after baseline correction with method “odpolyfi”.
 </p>
 </div>
 <div class="sourceCode" id="cb82"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/rm.html">rm</a></span>(<span class="kw">bl</span>, <span class="kw">chondro</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/rm.html">rm</a></span>(<span class="kw">bl</span>, <span class="kw">faux_cell</span>)
 </pre></div>
 </div>
 <div id="intensity-calibration" class="section level2">
@@ -1520,7 +1733,7 @@ They are subtracted:</p>
 <p>Again, <code class="sourceCode r"><span class="kw">sweep</span>()</code> is the function of choice.
 E.g., for area normalization, use:</p>
 <div class="sourceCode" id="cb87"><pre class="downlit">
-<span class="kw">chondro</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sweep.html">sweep</a></span>(<span class="kw">chondro</span>, <span class="fl">1</span>, <span class="kw">mean</span>, <span class="st">"/"</span>)
+<span class="kw">faux_cell_tmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sweep.html">sweep</a></span>(<span class="kw">faux_cell</span>, <span class="fl">1</span>, <span class="kw">mean</span>, <span class="st">"/"</span>)
 </pre></div>
 <p>(Using the mean instead of the sum results in conveniently scaled spectra with intensities around 1.)</p>
 <p>If the calculation of the normalization factors is more elaborate, use a two step procedure:</p>
@@ -1535,20 +1748,20 @@ You may calculate the factors using only a certain wavelength range, thereby nor
 </li>
 </ol>
 <div class="sourceCode" id="cb89"><pre class="downlit">
-<span class="kw">factors</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">/</span> <span class="fu"><a href="../reference/apply.html">apply</a></span>(<span class="kw">chondro</span>[, , <span class="fl">1600</span> <span class="op">~</span> <span class="fl">1700</span>], <span class="fl">1</span>, <span class="kw">mean</span>)
-<span class="kw">chondro</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sweep.html">sweep</a></span>(<span class="kw">chondro</span>, <span class="fl">1</span>, <span class="kw">factors</span>, <span class="st">"*"</span>)
+<span class="kw">factors</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">/</span> <span class="fu"><a href="../reference/apply.html">apply</a></span>(<span class="kw">faux_cell</span>[, , <span class="fl">1600</span> <span class="op">~</span> <span class="fl">1700</span>], <span class="fl">1</span>, <span class="kw">mean</span>)
+<span class="kw">faux_cell_tmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sweep.html">sweep</a></span>(<span class="kw">faux_cell</span>, <span class="fl">1</span>, <span class="kw">factors</span>, <span class="st">"*"</span>)
 </pre></div>
 <p>For the special case of area normalization using the <code class="sourceCode r">mean</code> spectra, the factors can be more conveniently calculated by</p>
 <div class="sourceCode" id="cb90"><pre class="downlit">
-<span class="kw">factors</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html">rowMeans</a></span>(<span class="kw">chondro</span>[, , <span class="fl">1600</span> <span class="op">~</span> <span class="fl">1700</span>])
+<span class="kw">factors</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html">rowMeans</a></span>(<span class="kw">faux_cell</span>[, , <span class="fl">1600</span> <span class="op">~</span> <span class="fl">1700</span>])
 </pre></div>
 <p>and instead of <code class="sourceCode r">sweep</code> the arithmetic operators (here <code class="sourceCode r"><span class="op">*</span></code>) can be used directly with the normalization factor:</p>
 <div class="sourceCode" id="cb91"><pre class="downlit">
-<span class="kw">chondro</span> <span class="op">&lt;-</span> <span class="kw">chondro</span> <span class="op">*</span> <span class="kw">factors</span>
+<span class="kw">faux_cell_tmp</span> <span class="op">&lt;-</span> <span class="kw">faux_cell</span> <span class="op">*</span> <span class="kw">factors</span>
 </pre></div>
 <p>Put together, this results in:</p>
 <div class="sourceCode" id="cb92"><pre class="downlit">
-<span class="kw">chondro</span> <span class="op">&lt;-</span> <span class="kw">chondro</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html">rowMeans</a></span>(<span class="kw">chondro</span>[, , <span class="fl">1600</span> <span class="op">~</span> <span class="fl">1700</span>])
+<span class="kw">faux_cell_tmp</span> <span class="op">&lt;-</span> <span class="kw">faux_cell</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html">rowMeans</a></span>(<span class="kw">faux_cell</span>[, , <span class="fl">1600</span> <span class="op">~</span> <span class="fl">1700</span>])
 </pre></div>
 <p>For minimum-maximum-normalization, first do an offset- or baseline correction, then normalize using <code class="sourceCode r"><span class="kw">max</span>()</code>.</p>
 </div>
@@ -1572,22 +1785,22 @@ Scaling usually makes sense only for centered data.</p>
 <div class="figure" style="text-align: center">
 <span id="fig:centre-flu"></span>
 <img src="hyperSpec_files/figure-html/centre-flu-1.png" alt="Mean-centered spectra of `flu`.  "><p class="caption">
-Figure 5.11: Mean-centered spectra of <code>flu</code>.
+Figure 5.10: Mean-centered spectra of <code>flu</code>.
 </p>
 </div>
-<p>On the other hand, the <code class="sourceCode r">chondro</code> data set consists of Raman spectra, so the spectroscopic interpretation of centering is getting rid of the the average chemical composition of the sample.
+<p>On the other hand, the <code class="sourceCode r">faux_cell</code> data set consists of Raman spectra, so the spectroscopic interpretation of centering is getting rid of the the average chemical composition of the sample.
 But what is the meaning of the “Average spectrum” of an inhomogeneous sample?
 In this case it may be better to subtract the minimum spectrum (which will hopefully have almost the same benefit on the data analysis) as it is the spectrum of that chemical composition that is underlying the whole sample.</p>
 <p>One more point to consider is that the actual minimum spectrum will pick up (negative) noise.
 In order to avoid that, using, e.g., the 5<sup>th</sup> percentile spectrum is more suitable:</p>
 <div class="sourceCode" id="cb94"><pre class="downlit">
-<span class="kw">chondro</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/scale,hyperSpec-method.html">scale</a></span>(<span class="kw">chondro</span>, center = <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span>(<span class="kw">chondro</span>, <span class="fl">0.05</span>), scale = <span class="fl">FALSE</span>)
-<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">chondro</span>, <span class="st">"spcprctl5"</span>)
+<span class="kw">faux_cell_tmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/scale,hyperSpec-method.html">scale</a></span>(<span class="kw">faux_cell</span>, center = <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span>(<span class="kw">faux_cell</span>, <span class="fl">0.05</span>), scale = <span class="fl">FALSE</span>)
+<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">faux_cell_tmp</span>, <span class="st">"spcprctl5"</span>)
 </pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:perc"></span>
-<img src="hyperSpec_files/figure-html/perc-1.png" alt="The summary spectra of `chondro` with 5^th^ percentile subtracted.  "><p class="caption">
-Figure 5.12: The summary spectra of <code>chondro</code> with 5<sup>th</sup> percentile subtracted.
+<img src="hyperSpec_files/figure-html/perc-1.png" alt="The summary spectra of `faux_cell` with 5^th^ percentile subtracted.  "><p class="caption">
+Figure 5.11: The summary spectra of <code>faux_cell</code> with 5<sup>th</sup> percentile subtracted.
 </p>
 </div>
 <p>See section the appendices for some tips to speed up these calculations.</p>
@@ -1600,8 +1813,8 @@ Figure 5.12: The summary spectra of <code>chondro</code> with 5<sup>th</sup> per
 It operates on the spectra matrix:</p>
 <div class="sourceCode" id="cb95"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="http://mevik.net/work/software/pls.html">pls</a></span>)
-<span class="kw">chondro.msc</span> <span class="op">&lt;-</span> <span class="kw">chondro</span>
-<span class="kw">chondro.msc</span>[[]] <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/pls/man/msc.html">msc</a></span>(<span class="kw">chondro</span>[[]])
+<span class="kw">faux_cell_msc</span> <span class="op">&lt;-</span> <span class="kw">faux_cell</span>
+<span class="kw">faux_cell_msc</span>[[]] <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/pls/man/msc.html">msc</a></span>(<span class="kw">faux_cell</span>[[]])
 </pre></div>
 </div>
 <div id="spectral-arithmetic" class="section level2">
@@ -1640,12 +1853,12 @@ See <code>?Arith</code> for more details.</p>
 <p>The <code class="sourceCode r"><span class="op">$</span>.</code> notation is handy, if a data analysis function expects a <code class="sourceCode r">data.frame</code>, as <code class="sourceCode r"><span class="kw">prcomp</span>()</code> does.
 The column names can then be used in the formula:</p>
 <div class="sourceCode" id="cb98"><pre class="downlit">
-<span class="kw">pca</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/prcomp.html">prcomp</a></span>(<span class="op">~</span><span class="kw">spc</span>, data = <span class="kw">chondro</span><span class="op">$</span><span class="kw">.</span>, center = <span class="fl">FALSE</span>)
+<span class="kw">pca</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/prcomp.html">prcomp</a></span>(<span class="op">~</span><span class="kw">spc</span>, data = <span class="kw">faux_cell</span><span class="op">$</span><span class="kw">.</span>, center = <span class="fl">FALSE</span>)
 </pre></div>
 <p>However, many modeling functions call <code class="sourceCode r">as.data.frame</code> on their <code class="sourceCode r">data</code> argument, including <code class="sourceCode r"><span class="kw">prcomp</span>()</code>.
 In that case, the conversion is done automatically so the following gives the same result as above:</p>
 <div class="sourceCode" id="cb99"><pre class="downlit">
-<span class="kw">pca</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/prcomp.html">prcomp</a></span>(<span class="op">~</span><span class="kw">spc</span>, data = <span class="kw">chondro</span>, center = <span class="fl">FALSE</span>)
+<span class="kw">pca</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/prcomp.html">prcomp</a></span>(<span class="op">~</span><span class="kw">spc</span>, data = <span class="kw">faux_cell</span>, center = <span class="fl">FALSE</span>)
 </pre></div>
 </div>
 <div id="plotting-the-results-of-pca" class="section level3">
@@ -1654,38 +1867,36 @@ In that case, the conversion is done automatically so the following gives the sa
 <p>The results of such a  decomposition can be put back into <code>hyperSpec</code> objects.
 This conveniently allows one to use the regular <code>hyperSpec</code> plotting functions, e.g., the loading-like spectra, or score maps, see Figures <a href="#fig:pca-load">6.1</a> and <a href="#fig:pca-score">6.2</a>.</p>
 <div class="sourceCode" id="cb100"><pre class="downlit">
-<span class="kw">scores</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/decomposition.html">decomposition</a></span>(<span class="kw">chondro</span>, <span class="kw">pca</span><span class="op">$</span><span class="kw">x</span>,
+<span class="kw">scores</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/decomposition.html">decomposition</a></span>(<span class="kw">faux_cell</span>, <span class="kw">pca</span><span class="op">$</span><span class="kw">x</span>,
   label.wavelength = <span class="st">"PC"</span>,
   label.spc = <span class="st">"score / a.u."</span>
 )
 <span class="kw">scores</span>
 <span class="co">#&gt; hyperSpec object</span>
 <span class="co">#&gt;    875 spectra</span>
-<span class="co">#&gt;    5 data columns</span>
+<span class="co">#&gt;    4 data columns</span>
 <span class="co">#&gt;    300 data points / spectrum</span>
 <span class="co">#&gt; wavelength: PC [integer] 1 2 ... 300 </span>
-<span class="co">#&gt; data:  (875 rows x 5 columns)</span>
-<span class="co">#&gt;    1. y: y [numeric] -4.77 -4.77 ... 19.23 </span>
-<span class="co">#&gt;    2. x: x [numeric] -11.55 -10.55 ... 22.45 </span>
-<span class="co">#&gt;    3. filename: filename [character] rawdata/chondro.txt rawdata/chondro.txt ... rawdata/chondro.txt </span>
-<span class="co">#&gt;    4. clusters: clusters [factor] matrix matrix ... lacuna + NA</span>
-<span class="co">#&gt;    5. spc: score / a.u. [matrix, array300] -0.43543 -0.92192 ... -1.249e-16</span>
+<span class="co">#&gt; data:  (875 rows x 4 columns)</span>
+<span class="co">#&gt;    1. x: x position [numeric] -11.55 -10.55 ... 22.45 </span>
+<span class="co">#&gt;    2. y: y position [numeric] -4.77 -4.77 ... 19.23 </span>
+<span class="co">#&gt;    3. region:  [factor] matrix matrix ... matrix </span>
+<span class="co">#&gt;    4. spc: score / a.u. [matrix, array300] -2358.9 -1528.2 ... 4.0023</span>
 </pre></div>
 <p>The loadings can be similarly re-imported:</p>
 <div class="sourceCode" id="cb101"><pre class="downlit">
-<span class="kw">loadings</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/decomposition.html">decomposition</a></span>(<span class="kw">chondro</span>, <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span>(<span class="kw">pca</span><span class="op">$</span><span class="kw">rotation</span>),
+<span class="kw">loadings</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/decomposition.html">decomposition</a></span>(<span class="kw">faux_cell</span>, <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span>(<span class="kw">pca</span><span class="op">$</span><span class="kw">rotation</span>),
   scores = <span class="fl">FALSE</span>,
   label.spc = <span class="st">"loading I / a.u."</span>
 )
 <span class="kw">loadings</span>
 <span class="co">#&gt; hyperSpec object</span>
 <span class="co">#&gt;    300 spectra</span>
-<span class="co">#&gt;    2 data columns</span>
+<span class="co">#&gt;    1 data columns</span>
 <span class="co">#&gt;    300 data points / spectrum</span>
 <span class="co">#&gt; wavelength: Delta * tilde(nu)/cm^-1 [numeric] 602 606 ... 1798 </span>
-<span class="co">#&gt; data:  (300 rows x 2 columns)</span>
-<span class="co">#&gt;    1. filename: filename [character] rawdata/chondro.txt rawdata/chondro.txt ... rawdata/chondro.txt </span>
-<span class="co">#&gt;    2. spc: loading I / a.u. [matrix, array300] -0.0258979 -0.0014762 ... -0.17923</span>
+<span class="co">#&gt; data:  (300 rows x 1 columns)</span>
+<span class="co">#&gt;    1. spc: loading I / a.u. [matrix, array300] -0.052136 -0.011645 ... -0.10036</span>
 </pre></div>
 <p>There is, however, one important difference.
 The loadings are thought of as values computed from all spectra together.
@@ -1694,24 +1905,24 @@ Therefore, the loadings object lost all extra data (see above).</p>
 <p>Argument <code class="sourceCode r">retain.columns</code> triggers whether columns that contain different values should be dropped.
 If it is set to <code class="sourceCode r"><span class="ot">TRUE</span></code>, the columns are retained, but contain <code class="sourceCode r"><span class="ot">NA</span></code>s:</p>
 <div class="sourceCode" id="cb102"><pre class="downlit">
-<span class="kw">loadings</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/decomposition.html">decomposition</a></span>(<span class="kw">chondro</span>, <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span>(<span class="kw">pca</span><span class="op">$</span><span class="kw">rotation</span>),
+<span class="kw">loadings</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/decomposition.html">decomposition</a></span>(<span class="kw">faux_cell</span>, <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span>(<span class="kw">pca</span><span class="op">$</span><span class="kw">rotation</span>),
   scores = <span class="fl">FALSE</span>,
   retain.columns = <span class="fl">TRUE</span>, label.spc = <span class="st">"loading I / a.u."</span>
 )
 <span class="kw">loadings</span>[<span class="fl">1</span>]<span class="op">$</span><span class="kw">..</span>
-<span class="co">#&gt;      y  x            filename clusters</span>
-<span class="co">#&gt; PC1 NA NA rawdata/chondro.txt     &lt;NA&gt;</span>
+<span class="co">#&gt;      x  y region</span>
+<span class="co">#&gt; PC1 NA NA   &lt;NA&gt;</span>
 </pre></div>
 <p>If an extra data column does contain only one unique value, it is retained regardless:</p>
 <div class="sourceCode" id="cb103"><pre class="downlit">
-<span class="kw">chondro</span><span class="op">$</span><span class="kw">measurement</span> <span class="op">&lt;-</span> <span class="fl">1</span>
-<span class="kw">loadings</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/decomposition.html">decomposition</a></span>(<span class="kw">chondro</span>, <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span>(<span class="kw">pca</span><span class="op">$</span><span class="kw">rotation</span>),
+<span class="kw">faux_cell</span><span class="op">$</span><span class="kw">measurement</span> <span class="op">&lt;-</span> <span class="fl">1</span>
+<span class="kw">loadings</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/decomposition.html">decomposition</a></span>(<span class="kw">faux_cell</span>, <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span>(<span class="kw">pca</span><span class="op">$</span><span class="kw">rotation</span>),
   scores = <span class="fl">FALSE</span>,
   label.spc = <span class="st">"loading I / a.u."</span>
 )
 <span class="kw">loadings</span>[<span class="fl">1</span>]<span class="op">$</span><span class="kw">..</span>
-<span class="co">#&gt;                filename measurement</span>
-<span class="co">#&gt; PC1 rawdata/chondro.txt           1</span>
+<span class="co">#&gt;     measurement</span>
+<span class="co">#&gt; PC1           1</span>
 </pre></div>
 <div class="sourceCode" id="cb104"><pre class="downlit">
 <span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">loadings</span>[<span class="fl">1</span><span class="op">:</span><span class="fl">3</span>], stacked = <span class="fl">TRUE</span>)
@@ -1783,11 +1994,11 @@ Mathematically speaking, the rank of the new 875 <span class="math inline">\(×\
 <p>Some <code>R</code> functions expect their input data in a matrix, including those related to HCA.
 Conveniently, the <code class="sourceCode r">[[]]</code> extraction function returns a matrix.</p>
 <div class="sourceCode" id="cb108"><pre class="downlit">
-<span class="kw">dist</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pearson.dist.html">pearson.dist</a></span>(<span class="kw">chondro</span>[[]])
+<span class="kw">dist</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pearson.dist.html">pearson.dist</a></span>(<span class="kw">faux_cell</span>[[]])
 </pre></div>
 <p>Again, many such functions coerce the data to a matrix automatically, so the <code>hyperSpec</code> object can be handed over without the explicit conversion above (as we saw for PCA):</p>
 <div class="sourceCode" id="cb109"><pre class="downlit">
-<span class="kw">dist</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pearson.dist.html">pearson.dist</a></span>(<span class="kw">chondro</span>)
+<span class="kw">dist</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pearson.dist.html">pearson.dist</a></span>(<span class="kw">faux_cell</span>)
 <span class="kw">dendrogram</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span>(<span class="kw">dist</span>, method = <span class="st">"ward.D"</span>)
 </pre></div>
 <div class="sourceCode" id="cb110"><pre class="downlit">
@@ -1802,15 +2013,15 @@ Figure 6.3: The results of the cluster analysis: the dendrogram.
 <p>In order to plot a cluster map, the cluster membership needs to be calculated from the dendrogram.</p>
 <p>First, cut the dendrogram so that three clusters result:</p>
 <div class="sourceCode" id="cb111"><pre class="downlit">
-<span class="kw">chondro</span><span class="op">$</span><span class="kw">clusters</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/cutree.html">cutree</a></span>(<span class="kw">dendrogram</span>, k = <span class="fl">3</span>))
+<span class="kw">faux_cell</span><span class="op">$</span><span class="kw">region</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/cutree.html">cutree</a></span>(<span class="kw">dendrogram</span>, k = <span class="fl">3</span>))
 </pre></div>
 <p>As the cluster membership was stored as factor, the levels can be meaningful names, which are displayed in the color legend.</p>
 <div class="sourceCode" id="cb112"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span>(<span class="kw">chondro</span><span class="op">$</span><span class="kw">clusters</span>) <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"matrix"</span>, <span class="st">"lacuna"</span>, <span class="st">"cell"</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span>(<span class="kw">faux_cell</span><span class="op">$</span><span class="kw">region</span>) <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"matrix"</span>, <span class="st">"lacuna"</span>, <span class="st">"cell"</span>)
 </pre></div>
 <p>Then the result may be plotted (Figure <a href="#fig:clust-map">6.4</a>):</p>
 <div class="sourceCode" id="cb113"><pre class="downlit">
-<span class="fu"><a href="../reference/plotmap.html">plotmap</a></span>(<span class="kw">chondro</span>, <span class="kw">clusters</span> <span class="op">~</span> <span class="kw">x</span> <span class="op">*</span> <span class="kw">y</span>, col.regions = <span class="kw">cluster.cols</span>)
+<span class="fu"><a href="../reference/plotmap.html">plotmap</a></span>(<span class="kw">faux_cell</span>, <span class="kw">region</span> <span class="op">~</span> <span class="kw">x</span> <span class="op">*</span> <span class="kw">y</span>, col.regions = <span class="kw">cluster.cols</span>)
 </pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:clust-map"></span>
@@ -1826,7 +2037,7 @@ Figure 6.4: The results of the cluster analysis: the map of the 3 clusters.
 <p>Function <code class="sourceCode r"><span class="kw">aggregate</span>()</code> applies the function given in <code class="sourceCode r">FUN</code> to each of the groups of spectra specified in <code class="sourceCode r">by</code>.</p>
 <p>So we may plot the cluster mean spectra:</p>
 <div class="sourceCode" id="cb114"><pre class="downlit">
-<span class="kw">means</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/aggregate.html">aggregate</a></span>(<span class="kw">chondro</span>, by = <span class="kw">chondro</span><span class="op">$</span><span class="kw">clusters</span>, <span class="kw">mean_pm_sd</span>)
+<span class="kw">means</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/aggregate.html">aggregate</a></span>(<span class="kw">faux_cell</span>, by = <span class="kw">faux_cell</span><span class="op">$</span><span class="kw">region</span>, <span class="kw">mean_pm_sd</span>)
 <span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">means</span>, col = <span class="kw">cluster.cols</span>, stacked = <span class="st">".aggregate"</span>, fill = <span class="st">".aggregate"</span>)
 </pre></div>
 <div class="figure" style="text-align: center">
@@ -1901,35 +2112,35 @@ This can be obtained in the second step:</p>
 The arguments <code class="sourceCode r">by</code>, <code class="sourceCode r">by.x</code>, and <code class="sourceCode r">by.y</code> specify which columns should be used to decide which spectra are the same.
 The arguments <code class="sourceCode r">all</code>, <code class="sourceCode r">all.x</code>, and <code class="sourceCode r">all.y</code> determine whether spectra should be kept for the result set if they appear in only one of the objects.
 For details, see also the help on the base function <code class="sourceCode r"><span class="kw">merge</span>()</code>.</p>
-<p>As an example, let’s construct a version of the <code class="sourceCode r">chondro</code> data like being taken as two maps with different spectral ranges.
+<p>As an example, let’s construct a version of the <code class="sourceCode r">faux_cell</code> data like being taken as two maps with different spectral ranges.
 In each data set, some spectra are missing.</p>
 <div class="sourceCode" id="cb120"><pre class="downlit">
-<span class="kw">chondro.low</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="kw">chondro</span>[, , <span class="fl">600</span> <span class="op">~</span> <span class="fl">1200</span>], <span class="fl">700</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="kw">chondro.low</span>)
+<span class="kw">faux_cell_low</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="kw">faux_cell</span>[, , <span class="kw">min</span> <span class="op">~</span> <span class="fl">1200</span>], <span class="fl">700</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="kw">faux_cell_low</span>)
 <span class="co">#&gt; [1] 700</span>
 </pre></div>
 <div class="sourceCode" id="cb121"><pre class="downlit">
-<span class="kw">chondro.high</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="kw">chondro</span>[, , <span class="fl">1400</span> <span class="op">~</span> <span class="fl">1800</span>], <span class="fl">700</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="kw">chondro.high</span>)
+<span class="kw">faux_cell_high</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="kw">faux_cell</span>[, , <span class="fl">1400</span> <span class="op">~</span> <span class="kw">max</span>], <span class="fl">700</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="kw">faux_cell_high</span>)
 <span class="co">#&gt; [1] 700</span>
 </pre></div>
 <p>As all extra data columns are the same, no special declarations are needed for merging the data:</p>
 <div class="sourceCode" id="cb122"><pre class="downlit">
-<span class="kw">chondro.merged</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/merge,hyperSpec,hyperSpec-method.html">merge</a></span>(<span class="kw">chondro.low</span>, <span class="kw">chondro.high</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="kw">chondro.merged</span>)
-<span class="co">#&gt; [1] 554</span>
+<span class="kw">faux_cell_merged</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/merge,hyperSpec,hyperSpec-method.html">merge</a></span>(<span class="kw">faux_cell_low</span>, <span class="kw">faux_cell_high</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="kw">faux_cell_merged</span>)
+<span class="co">#&gt; [1] 559</span>
 </pre></div>
 <p>By default, the result consists of only those spectra, where <em>both</em> spectral ranges were available.
 To keep all spectra replacing missing parts by <code class="sourceCode r"><span class="ot">NA</span></code> (see Fig. <a href="#fig:merge-map">7.1</a>, <a href="#fig:merge-mat">7.2</a>):</p>
 <div class="sourceCode" id="cb123"><pre class="downlit">
-<span class="kw">chondro.merged</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/merge,hyperSpec,hyperSpec-method.html">merge</a></span>(<span class="kw">chondro.low</span>, <span class="kw">chondro.high</span>, all = <span class="fl">TRUE</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="kw">chondro.merged</span>)
-<span class="co">#&gt; [1] 846</span>
+<span class="kw">faux_cell_merged</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/merge,hyperSpec,hyperSpec-method.html">merge</a></span>(<span class="kw">faux_cell_low</span>, <span class="kw">faux_cell_high</span>, all = <span class="fl">TRUE</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="kw">faux_cell_merged</span>)
+<span class="co">#&gt; [1] 841</span>
 </pre></div>
 <div class="sourceCode" id="cb124"><pre class="downlit">
 <span class="kw">matcols</span> <span class="op">&lt;-</span> <span class="fu">sequential_hcl</span>(<span class="fl">20</span>, palette = <span class="st">"viridis"</span>)
 <span class="fu">levelplot</span>(<span class="kw">spc</span> <span class="op">~</span> <span class="kw">x</span> <span class="op">*</span> <span class="kw">y</span> <span class="op">|</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="kw">.wavelength</span>, <span class="st">"  1/cm"</span>)),
-  <span class="kw">chondro.merged</span>[, , <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1000</span>, <span class="fl">1650</span>)],
+  <span class="kw">faux_cell_merged</span>[, , <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1000</span>, <span class="fl">1650</span>)],
   aspect = <span class="st">"iso"</span>, col.regions = <span class="kw">matcols</span>
 )
 </pre></div>
@@ -1940,7 +2151,7 @@ Figure 7.1: For both spectral ranges some spectra are missing.
 </p>
 </div>
 <div class="sourceCode" id="cb125"><pre class="downlit">
-<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">chondro.merged</span>[<span class="fl">1</span><span class="op">:</span><span class="fl">100</span>], <span class="st">"mat"</span>, col = <span class="kw">matcols</span>)
+<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">faux_cell_merged</span>[<span class="fl">1</span><span class="op">:</span><span class="fl">100</span>], <span class="st">"mat"</span>, col = <span class="kw">matcols</span>)
 </pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:merge-mat"></span>
@@ -1949,30 +2160,19 @@ Figure 7.2: The missing parts of the spectra are filled with <code class="source
 </p>
 </div>
 <div class="sourceCode" id="cb126"><pre class="downlit">
-<span class="kw">merged</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/merge,hyperSpec,hyperSpec-method.html">merge</a></span>(<span class="kw">chondro</span>[<span class="fl">1</span><span class="op">:</span><span class="fl">7</span>, , <span class="fl">610</span> <span class="op">~</span> <span class="fl">620</span>], <span class="kw">chondro</span>[<span class="fl">5</span><span class="op">:</span><span class="fl">10</span>, , <span class="fl">615</span> <span class="op">~</span> <span class="fl">625</span>], all = <span class="fl">TRUE</span>)
+<span class="kw">merged</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/merge,hyperSpec,hyperSpec-method.html">merge</a></span>(<span class="kw">faux_cell</span>[<span class="fl">1</span><span class="op">:</span><span class="fl">7</span>, , <span class="fl">610</span> <span class="op">~</span> <span class="fl">620</span>], <span class="kw">faux_cell</span>[<span class="fl">5</span><span class="op">:</span><span class="fl">10</span>, , <span class="fl">615</span> <span class="op">~</span> <span class="fl">625</span>], all = <span class="fl">TRUE</span>)
 <span class="kw">merged</span><span class="op">$</span><span class="kw">.</span>
-<span class="co">#&gt;        y      x            filename clusters measurement .nx .ny     spc.1     spc.2     spc.3</span>
-<span class="co">#&gt; 1  -4.77 -11.55 rawdata/chondro.txt   matrix           1   1  NA 0.0105814 0.0065180 0.0055385</span>
-<span class="co">#&gt; 2  -4.77 -10.55 rawdata/chondro.txt   matrix           1   2  NA 0.0227902 0.0161758 0.0154434</span>
-<span class="co">#&gt; 3  -4.77  -9.55 rawdata/chondro.txt   matrix           1   3  NA 0.0257833 0.0227415 0.0196002</span>
-<span class="co">#&gt; 4  -4.77  -8.55 rawdata/chondro.txt   lacuna           1   4  NA 0.0366870 0.0329718 0.0340441</span>
-<span class="co">#&gt; 5  -4.77  -7.55 rawdata/chondro.txt   lacuna           1   5   1 0.0304752 0.0276863 0.0273671</span>
-<span class="co">#&gt; 6  -4.77  -6.55 rawdata/chondro.txt   lacuna           1   6   2 0.0306000 0.0272554 0.0283430</span>
-<span class="co">#&gt; 7  -4.77  -5.55 rawdata/chondro.txt   lacuna           1   7   3 0.0235087 0.0226264 0.0259797</span>
-<span class="co">#&gt; 8  -4.77  -4.55 rawdata/chondro.txt   lacuna           1  NA   4        NA        NA        NA</span>
-<span class="co">#&gt; 9  -4.77  -3.55 rawdata/chondro.txt   lacuna           1  NA   5        NA        NA        NA</span>
-<span class="co">#&gt; 10 -4.77  -2.55 rawdata/chondro.txt   lacuna           1  NA   6        NA        NA        NA</span>
-<span class="co">#&gt;        spc.4     spc.5     spc.6     spc.7</span>
-<span class="co">#&gt; 1         NA        NA        NA        NA</span>
-<span class="co">#&gt; 2         NA        NA        NA        NA</span>
-<span class="co">#&gt; 3         NA        NA        NA        NA</span>
-<span class="co">#&gt; 4         NA        NA        NA        NA</span>
-<span class="co">#&gt; 5  0.0276863 0.0273671 0.0337304 0.0264207</span>
-<span class="co">#&gt; 6  0.0272554 0.0283430 0.0335579 0.0255747</span>
-<span class="co">#&gt; 7  0.0226264 0.0259797 0.0285421 0.0205110</span>
-<span class="co">#&gt; 8  0.0166919 0.0202168 0.0224749 0.0145115</span>
-<span class="co">#&gt; 9  0.0215005 0.0259485 0.0266341 0.0172004</span>
-<span class="co">#&gt; 10 0.0170160 0.0216253 0.0223888 0.0127480</span>
+<span class="co">#&gt;         x     y region measurement .nx .ny spc.1 spc.2 spc.3 spc.4 spc.5 spc.6 spc.7</span>
+<span class="co">#&gt; 1  -11.55 -4.77 matrix           1   1  NA   150   128   143    NA    NA    NA    NA</span>
+<span class="co">#&gt; 2  -10.55 -4.77 matrix           1   2  NA    99    84    54    NA    NA    NA    NA</span>
+<span class="co">#&gt; 3   -9.55 -4.77 matrix           1   3  NA   142   118   125    NA    NA    NA    NA</span>
+<span class="co">#&gt; 4   -8.55 -4.77 matrix           1   4  NA    83   108   126    NA    NA    NA    NA</span>
+<span class="co">#&gt; 5   -7.55 -4.77 matrix           1   5   1    27    19    23    19    23    27    31</span>
+<span class="co">#&gt; 6   -6.55 -4.77 matrix           1   6   2    14    18    12    18    12    20    17</span>
+<span class="co">#&gt; 7   -5.55 -4.77 matrix           1   7   3    22    24    23    24    23    28    31</span>
+<span class="co">#&gt; 8   -4.55 -4.77 matrix           1  NA   4    NA    NA    NA    74    78    86    81</span>
+<span class="co">#&gt; 9   -3.55 -4.77 matrix           1  NA   5    NA    NA    NA     0     0     0     1</span>
+<span class="co">#&gt; 10  -2.55 -4.77 matrix           1  NA   6    NA    NA    NA   122   129   135   119</span>
 </pre></div>
 <p>If the spectra overlap, the result will have both data points.
 In the example here one could easily delete duplicate wavelengths.
@@ -1999,28 +2199,17 @@ This already defaults to the mean, but we need <code class="sourceCode r">na.rm 
   new.wavelength = <span class="st">"new.wl"</span>
 )
 <span class="kw">merged</span><span class="op">$</span><span class="kw">.</span>
-<span class="co">#&gt;        y      x            filename clusters measurement .nx .ny     spc.1     spc.2     spc.3</span>
-<span class="co">#&gt; 1  -4.77 -11.55 rawdata/chondro.txt   matrix           1   1  NA 0.0105814 0.0065180 0.0055385</span>
-<span class="co">#&gt; 2  -4.77 -10.55 rawdata/chondro.txt   matrix           1   2  NA 0.0227902 0.0161758 0.0154434</span>
-<span class="co">#&gt; 3  -4.77  -9.55 rawdata/chondro.txt   matrix           1   3  NA 0.0257833 0.0227415 0.0196002</span>
-<span class="co">#&gt; 4  -4.77  -8.55 rawdata/chondro.txt   lacuna           1   4  NA 0.0366870 0.0329718 0.0340441</span>
-<span class="co">#&gt; 5  -4.77  -7.55 rawdata/chondro.txt   lacuna           1   5   1 0.0304752 0.0276863 0.0273671</span>
-<span class="co">#&gt; 6  -4.77  -6.55 rawdata/chondro.txt   lacuna           1   6   2 0.0306000 0.0272554 0.0283430</span>
-<span class="co">#&gt; 7  -4.77  -5.55 rawdata/chondro.txt   lacuna           1   7   3 0.0235087 0.0226264 0.0259797</span>
-<span class="co">#&gt; 8  -4.77  -4.55 rawdata/chondro.txt   lacuna           1  NA   4        NA 0.0166919 0.0202168</span>
-<span class="co">#&gt; 9  -4.77  -3.55 rawdata/chondro.txt   lacuna           1  NA   5        NA 0.0215005 0.0259485</span>
-<span class="co">#&gt; 10 -4.77  -2.55 rawdata/chondro.txt   lacuna           1  NA   6        NA 0.0170160 0.0216253</span>
-<span class="co">#&gt;        spc.4     spc.5</span>
-<span class="co">#&gt; 1         NA        NA</span>
-<span class="co">#&gt; 2         NA        NA</span>
-<span class="co">#&gt; 3         NA        NA</span>
-<span class="co">#&gt; 4         NA        NA</span>
-<span class="co">#&gt; 5  0.0337304 0.0264207</span>
-<span class="co">#&gt; 6  0.0335579 0.0255747</span>
-<span class="co">#&gt; 7  0.0285421 0.0205110</span>
-<span class="co">#&gt; 8  0.0224749 0.0145115</span>
-<span class="co">#&gt; 9  0.0266341 0.0172004</span>
-<span class="co">#&gt; 10 0.0223888 0.0127480</span>
+<span class="co">#&gt;         x     y region measurement .nx .ny spc.1 spc.2 spc.3 spc.4 spc.5</span>
+<span class="co">#&gt; 1  -11.55 -4.77 matrix           1   1  NA   150   128   143    NA    NA</span>
+<span class="co">#&gt; 2  -10.55 -4.77 matrix           1   2  NA    99    84    54    NA    NA</span>
+<span class="co">#&gt; 3   -9.55 -4.77 matrix           1   3  NA   142   118   125    NA    NA</span>
+<span class="co">#&gt; 4   -8.55 -4.77 matrix           1   4  NA    83   108   126    NA    NA</span>
+<span class="co">#&gt; 5   -7.55 -4.77 matrix           1   5   1    27    19    23    27    31</span>
+<span class="co">#&gt; 6   -6.55 -4.77 matrix           1   6   2    14    18    12    20    17</span>
+<span class="co">#&gt; 7   -5.55 -4.77 matrix           1   7   3    22    24    23    28    31</span>
+<span class="co">#&gt; 8   -4.55 -4.77 matrix           1  NA   4    NA    74    78    86    81</span>
+<span class="co">#&gt; 9   -3.55 -4.77 matrix           1  NA   5    NA     0     0     0     1</span>
+<span class="co">#&gt; 10  -2.55 -4.77 matrix           1  NA   6    NA   122   129   135   119</span>
 </pre></div>
 </div>
 <div id="sec:merge-df" class="section level2">
@@ -2034,20 +2223,20 @@ This already defaults to the mean, but we need <code class="sourceCode r">na.rm 
 )
 <span class="kw">flu.ref</span>
 <span class="co">#&gt;           filename     cref</span>
-<span class="co">#&gt; 1 rawdata/flu1.txt 0.069573</span>
-<span class="co">#&gt; 2 rawdata/flu1.txt 0.029013</span>
-<span class="co">#&gt; 3 rawdata/flu2.txt 0.113071</span>
-<span class="co">#&gt; 4 rawdata/flu2.txt 0.114015</span>
+<span class="co">#&gt; 1 rawdata/flu1.txt 0.044329</span>
+<span class="co">#&gt; 2 rawdata/flu1.txt 0.044622</span>
+<span class="co">#&gt; 3 rawdata/flu2.txt 0.087589</span>
+<span class="co">#&gt; 4 rawdata/flu2.txt 0.119215</span>
 </pre></div>
 <p>This information can be merged into the extra data of <code class="sourceCode r">flu</code> by:</p>
 <div class="sourceCode" id="cb130"><pre class="downlit">
 <span class="kw">flu.merged</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/merge,hyperSpec,hyperSpec-method.html">merge</a></span>(<span class="kw">flu</span>, <span class="kw">flu.ref</span>)
 <span class="kw">flu.merged</span><span class="op">$</span><span class="kw">..</span>
 <span class="co">#&gt;           filename    c n     cref</span>
-<span class="co">#&gt; 1 rawdata/flu1.txt 0.05 1 0.069573</span>
-<span class="co">#&gt; 2 rawdata/flu1.txt 0.05 1 0.029013</span>
-<span class="co">#&gt; 3 rawdata/flu2.txt 0.10 2 0.113071</span>
-<span class="co">#&gt; 4 rawdata/flu2.txt 0.10 2 0.114015</span>
+<span class="co">#&gt; 1 rawdata/flu1.txt 0.05 1 0.044329</span>
+<span class="co">#&gt; 2 rawdata/flu1.txt 0.05 1 0.044622</span>
+<span class="co">#&gt; 3 rawdata/flu2.txt 0.10 2 0.087589</span>
+<span class="co">#&gt; 4 rawdata/flu2.txt 0.10 2 0.119215</span>
 </pre></div>
 <p>The usual rules for <code class="sourceCode r"><span class="kw">merge</span>()</code> apply.
 E. g., if to preserver all spectra of flu, use <code class="sourceCode r">all.x =<span class="st"> </span><span class="ot">TRUE</span></code>:</p>
@@ -2055,10 +2244,10 @@ E. g., if to preserver all spectra of flu, use <code class="sourceCode r">all.x 
 <span class="kw">flu.merged</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/merge,hyperSpec,hyperSpec-method.html">merge</a></span>(<span class="kw">flu</span>, <span class="kw">flu.ref</span>, all.x = <span class="fl">TRUE</span>)
 <span class="kw">flu.merged</span><span class="op">$</span><span class="kw">..</span>
 <span class="co">#&gt;           filename    c n     cref</span>
-<span class="co">#&gt; 1 rawdata/flu1.txt 0.05 1 0.069573</span>
-<span class="co">#&gt; 2 rawdata/flu1.txt 0.05 1 0.029013</span>
-<span class="co">#&gt; 3 rawdata/flu2.txt 0.10 2 0.113071</span>
-<span class="co">#&gt; 4 rawdata/flu2.txt 0.10 2 0.114015</span>
+<span class="co">#&gt; 1 rawdata/flu1.txt 0.05 1 0.044329</span>
+<span class="co">#&gt; 2 rawdata/flu1.txt 0.05 1 0.044622</span>
+<span class="co">#&gt; 3 rawdata/flu2.txt 0.10 2 0.087589</span>
+<span class="co">#&gt; 4 rawdata/flu2.txt 0.10 2 0.119215</span>
 <span class="co">#&gt; 5 rawdata/flu3.txt 0.15 3       NA</span>
 <span class="co">#&gt; 6 rawdata/flu4.txt 0.20 4       NA</span>
 <span class="co">#&gt; 7 rawdata/flu5.txt 0.25 5       NA</span>
@@ -2082,49 +2271,46 @@ E. g., if to preserver all spectra of flu, use <code class="sourceCode r">all.x 
 
 <p>A <code>hyperSpec</code> object may also be split into a list of <code>hyperSpec</code> objects:</p>
 <div class="sourceCode" id="cb134"><pre class="downlit">
-<span class="kw">clusters</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/split.html">split</a></span>(<span class="kw">chondro</span>, <span class="kw">chondro</span><span class="op">$</span><span class="kw">clusters</span>)
+<span class="kw">clusters</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/split.html">split</a></span>(<span class="kw">faux_cell</span>, <span class="kw">faux_cell</span><span class="op">$</span><span class="kw">region</span>)
 <span class="kw">clusters</span>
 <span class="co">#&gt; $matrix</span>
 <span class="co">#&gt; hyperSpec object</span>
-<span class="co">#&gt;    187 spectra</span>
-<span class="co">#&gt;    6 data columns</span>
+<span class="co">#&gt;    682 spectra</span>
+<span class="co">#&gt;    5 data columns</span>
 <span class="co">#&gt;    300 data points / spectrum</span>
 <span class="co">#&gt; wavelength: Delta * tilde(nu)/cm^-1 [numeric] 602 606 ... 1798 </span>
-<span class="co">#&gt; data:  (187 rows x 6 columns)</span>
-<span class="co">#&gt;    1. y: y [numeric] -4.77 -4.77 ... 19.23 </span>
-<span class="co">#&gt;    2. x: x [numeric] -11.55 -10.55 ... -11.55 </span>
-<span class="co">#&gt;    3. filename: filename [character] rawdata/chondro.txt rawdata/chondro.txt ... rawdata/chondro.txt </span>
-<span class="co">#&gt;    4. clusters: clusters [factor] matrix matrix ... matrix </span>
-<span class="co">#&gt;    5. spc: I / a.u. [matrix, array300] 0.011964 0.022204 ... 0.13706 </span>
-<span class="co">#&gt;    6. measurement: measurement [numeric] 1 1 ... 1 </span>
+<span class="co">#&gt; data:  (682 rows x 5 columns)</span>
+<span class="co">#&gt;    1. x: x position [numeric] -11.55 -10.55 ... 22.45 </span>
+<span class="co">#&gt;    2. y: y position [numeric] -4.77 -4.77 ... 19.23 </span>
+<span class="co">#&gt;    3. region: region [factor] matrix matrix ... matrix </span>
+<span class="co">#&gt;    4. spc: intensity (arbitrary units) [matrix, array300] 132 72 ... 130 </span>
+<span class="co">#&gt;    5. measurement: measurement [numeric] 1 1 ... 1 </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $lacuna</span>
 <span class="co">#&gt; hyperSpec object</span>
-<span class="co">#&gt;    546 spectra</span>
-<span class="co">#&gt;    6 data columns</span>
+<span class="co">#&gt;    155 spectra</span>
+<span class="co">#&gt;    5 data columns</span>
 <span class="co">#&gt;    300 data points / spectrum</span>
 <span class="co">#&gt; wavelength: Delta * tilde(nu)/cm^-1 [numeric] 602 606 ... 1798 </span>
-<span class="co">#&gt; data:  (546 rows x 6 columns)</span>
-<span class="co">#&gt;    1. y: y [numeric] -4.77 -4.77 ... 19.23 </span>
-<span class="co">#&gt;    2. x: x [numeric] -8.55 -7.55 ... 22.45 </span>
-<span class="co">#&gt;    3. filename: filename [character] rawdata/chondro.txt rawdata/chondro.txt ... rawdata/chondro.txt </span>
-<span class="co">#&gt;    4. clusters: clusters [factor] lacuna lacuna ... lacuna </span>
-<span class="co">#&gt;    5. spc: I / a.u. [matrix, array300] 0.038900 0.031386 ... 0.049803 </span>
-<span class="co">#&gt;    6. measurement: measurement [numeric] 1 1 ... 1 </span>
+<span class="co">#&gt; data:  (155 rows x 5 columns)</span>
+<span class="co">#&gt;    1. x: x position [numeric] 10.45 11.45 ... 8.45 </span>
+<span class="co">#&gt;    2. y: y position [numeric] 1.23 1.23 ... 19.23 </span>
+<span class="co">#&gt;    3. region: region [factor] lacuna lacuna ... lacuna </span>
+<span class="co">#&gt;    4. spc: intensity (arbitrary units) [matrix, array300] 18 131 ... 172 </span>
+<span class="co">#&gt;    5. measurement: measurement [numeric] 1 1 ... 1 </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $cell</span>
 <span class="co">#&gt; hyperSpec object</span>
-<span class="co">#&gt;    142 spectra</span>
-<span class="co">#&gt;    6 data columns</span>
+<span class="co">#&gt;    38 spectra</span>
+<span class="co">#&gt;    5 data columns</span>
 <span class="co">#&gt;    300 data points / spectrum</span>
 <span class="co">#&gt; wavelength: Delta * tilde(nu)/cm^-1 [numeric] 602 606 ... 1798 </span>
-<span class="co">#&gt; data:  (142 rows x 6 columns)</span>
-<span class="co">#&gt;    1. y: y [numeric] 4.23 4.23 ... 16.23 </span>
-<span class="co">#&gt;    2. x: x [numeric] -7.55 -6.55 ... 14.45 </span>
-<span class="co">#&gt;    3. filename: filename [character] rawdata/chondro.txt rawdata/chondro.txt ... rawdata/chondro.txt </span>
-<span class="co">#&gt;    4. clusters: clusters [factor] cell cell ... cell </span>
-<span class="co">#&gt;    5. spc: I / a.u. [matrix, array300] 0.024574 0.027541 ... 0.017377 </span>
-<span class="co">#&gt;    6. measurement: measurement [numeric] 1 1 ... 1</span>
+<span class="co">#&gt; data:  (38 rows x 5 columns)</span>
+<span class="co">#&gt;    1. x: x position [numeric] 10.45 11.45 ... 14.45 </span>
+<span class="co">#&gt;    2. y: y position [numeric] 5.23 5.23 ... 11.23 </span>
+<span class="co">#&gt;    3. region: region [factor] cell cell ... cell </span>
+<span class="co">#&gt;    4. spc: intensity (arbitrary units) [matrix, array300] 150 89 ... 83 </span>
+<span class="co">#&gt;    5. measurement: measurement [numeric] 1 1 ... 1</span>
 </pre></div>
 
 <p>Splitting can be reversed by <code class="sourceCode r"><span class="kw">rbind</span>()</code> (see section <a href="#sec:bind">7.1</a>).
@@ -2132,26 +2318,26 @@ E. g., if to preserver all spectra of flu, use <code class="sourceCode r">all.x 
 Another, similar way to combine a number of <code>hyperSpec</code> objects with different wavelength axes or extra data columns is <code class="sourceCode r"><span class="kw">collapse</span>()</code> (see section <a href="#sec:collapse">7.2</a>).</p>
 <p>Both <code class="sourceCode r"><span class="kw">rbind</span>()</code> and <code class="sourceCode r"><span class="kw">collapse</span>()</code> take care that factor levels are expanded as necessary:</p>
 <div class="sourceCode" id="cb135"><pre class="downlit">
-<span class="kw">lacunae</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/droplevels.html">droplevels</a></span>(<span class="kw">chondro</span>[<span class="kw">chondro</span><span class="op">$</span><span class="kw">clusters</span> <span class="op">==</span> <span class="st">"lacuna"</span> <span class="op">&amp;</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span>(<span class="kw">chondro</span><span class="op">$</span><span class="kw">clusters</span>)])
-<span class="fu"><a href="../reference/as.character,hyperSpec-method.html">summary</a></span>(<span class="kw">lacunae</span><span class="op">$</span><span class="kw">clusters</span>)
-<span class="co">#&gt; lacuna </span>
-<span class="co">#&gt;    546</span>
+<span class="kw">lacunae</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/droplevels.html">droplevels</a></span>(<span class="kw">faux_cell</span>[<span class="kw">faux_cell</span><span class="op">$</span><span class="kw">region</span> <span class="op">==</span> <span class="st">"matrix"</span> <span class="op">&amp;</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span>(<span class="kw">faux_cell</span><span class="op">$</span><span class="kw">region</span>)])
+<span class="fu"><a href="../reference/as.character,hyperSpec-method.html">summary</a></span>(<span class="kw">lacunae</span><span class="op">$</span><span class="kw">region</span>)
+<span class="co">#&gt; matrix </span>
+<span class="co">#&gt;    682</span>
 </pre></div>
 <div class="sourceCode" id="cb136"><pre class="downlit">
-<span class="kw">cells</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/droplevels.html">droplevels</a></span>(<span class="kw">chondro</span>[<span class="kw">chondro</span><span class="op">$</span><span class="kw">clusters</span> <span class="op">==</span> <span class="st">"cell"</span> <span class="op">&amp;</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span>(<span class="kw">chondro</span><span class="op">$</span><span class="kw">clusters</span>)])
-<span class="fu"><a href="../reference/as.character,hyperSpec-method.html">summary</a></span>(<span class="kw">cells</span><span class="op">$</span><span class="kw">clusters</span>)
+<span class="kw">cells</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/droplevels.html">droplevels</a></span>(<span class="kw">faux_cell</span>[<span class="kw">faux_cell</span><span class="op">$</span><span class="kw">region</span> <span class="op">==</span> <span class="st">"cell"</span> <span class="op">&amp;</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span>(<span class="kw">faux_cell</span><span class="op">$</span><span class="kw">region</span>)])
+<span class="fu"><a href="../reference/as.character,hyperSpec-method.html">summary</a></span>(<span class="kw">cells</span><span class="op">$</span><span class="kw">region</span>)
 <span class="co">#&gt; cell </span>
-<span class="co">#&gt;  142</span>
+<span class="co">#&gt;   38</span>
 </pre></div>
 <div class="sourceCode" id="cb137"><pre class="downlit">
-<span class="fu"><a href="../reference/as.character,hyperSpec-method.html">summary</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span>(<span class="kw">cells</span>, <span class="kw">lacunae</span>)<span class="op">$</span><span class="kw">clusters</span>)
-<span class="co">#&gt;   cell lacuna </span>
-<span class="co">#&gt;    142    546</span>
+<span class="fu"><a href="../reference/as.character,hyperSpec-method.html">summary</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span>(<span class="kw">cells</span>, <span class="kw">lacunae</span>)<span class="op">$</span><span class="kw">region</span>)
+<span class="co">#&gt;   cell matrix </span>
+<span class="co">#&gt;     38    682</span>
 </pre></div>
 <div class="sourceCode" id="cb138"><pre class="downlit">
-<span class="fu"><a href="../reference/as.character,hyperSpec-method.html">summary</a></span>(<span class="fu"><a href="../reference/collapse.html">collapse</a></span>(<span class="kw">cells</span>, <span class="kw">lacunae</span>)<span class="op">$</span><span class="kw">clusters</span>)
-<span class="co">#&gt;   cell lacuna </span>
-<span class="co">#&gt;    142    546</span>
+<span class="fu"><a href="../reference/as.character,hyperSpec-method.html">summary</a></span>(<span class="fu"><a href="../reference/collapse.html">collapse</a></span>(<span class="kw">cells</span>, <span class="kw">lacunae</span>)<span class="op">$</span><span class="kw">region</span>)
+<span class="co">#&gt;   cell matrix </span>
+<span class="co">#&gt;     38    682</span>
 </pre></div>
 </div>
 <div id="factor-columns-in-hyperspec-objects-dropping-factor-levels-that-are-not-needed" class="section level2">
@@ -2160,18 +2346,18 @@ Another, similar way to combine a number of <code>hyperSpec</code> objects with 
 
 <p>For subsections of <code>hyperSpec</code> objects that do not contain all levels of a factor column, <code class="sourceCode r"><span class="kw">droplevels</span>()</code> drops the “unpopulated” levels:</p>
 <div class="sourceCode" id="cb139"><pre class="downlit">
-<span class="kw">tmp</span> <span class="op">&lt;-</span> <span class="kw">chondro</span>[<span class="fl">1</span><span class="op">:</span><span class="fl">50</span>]
-<span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span>(<span class="kw">tmp</span><span class="op">$</span><span class="kw">clusters</span>)
+<span class="kw">tmp</span> <span class="op">&lt;-</span> <span class="kw">faux_cell</span>[<span class="fl">1</span><span class="op">:</span><span class="fl">50</span>]
+<span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span>(<span class="kw">tmp</span><span class="op">$</span><span class="kw">region</span>)
 <span class="co">#&gt; </span>
 <span class="co">#&gt; matrix lacuna   cell </span>
-<span class="co">#&gt;     22     28      0</span>
+<span class="co">#&gt;     50      0      0</span>
 </pre></div>
 <div class="sourceCode" id="cb140"><pre class="downlit">
 <span class="kw">tmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/droplevels.html">droplevels</a></span>(<span class="kw">tmp</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span>(<span class="kw">tmp</span><span class="op">$</span><span class="kw">clusters</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span>(<span class="kw">tmp</span><span class="op">$</span><span class="kw">region</span>)
 <span class="co">#&gt; </span>
-<span class="co">#&gt; matrix lacuna </span>
-<span class="co">#&gt;     22     28</span>
+<span class="co">#&gt; matrix </span>
+<span class="co">#&gt;     50</span>
 </pre></div>
 </div>
 </div>
@@ -2275,7 +2461,7 @@ Please refer to the documentation of the respective functions for details about 
 <p>While most of package <strong>hyperSpec</strong>’s functions work at a decent speed for interactive sessions (of course depending on the size of the object), iterated (repeated) calculations as for bootstrapping or iterated cross validation may ask for special speed considerations.</p>
 <p>As an example, consider the code for shifting the spectra:</p>
 <div class="sourceCode" id="cb141"><pre class="downlit">
-<span class="kw">tmp</span> <span class="op">&lt;-</span> <span class="kw">chondro</span>[<span class="fl">1</span><span class="op">:</span><span class="fl">50</span>]
+<span class="kw">tmp</span> <span class="op">&lt;-</span> <span class="kw">faux_cell</span>[<span class="fl">1</span><span class="op">:</span><span class="fl">50</span>]
 <span class="kw">shifts</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="kw">tmp</span>))
 <span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span>({
   <span class="co">for</span> (<span class="kw">i</span> <span class="co">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="kw">tmp</span>))) {
@@ -2283,12 +2469,12 @@ Please refer to the documentation of the respective functions for details about 
   }
 })
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.049   0.002   0.053</span>
+<span class="co">#&gt;   0.046   0.002   0.048</span>
 </pre></div>
 <p>Calculations that involve a lot of subsetting (i.e., extracting or changing the spectra matrix or extra data) can be sped up considerably if the required parts of the <code>hyperSpec</code> object are extracted beforehand.
 This is somewhat similar to model fitting in <code>R</code> in general: many model fitting functions in <code>R</code> are much faster if the formula interface is avoided and the appropriate <code class="sourceCode r">data.frame</code>s or matrices are handed over directly.</p>
 <div class="sourceCode" id="cb142"><pre class="downlit">
-<span class="kw">tmp</span> <span class="op">&lt;-</span> <span class="kw">chondro</span>[<span class="fl">1</span><span class="op">:</span><span class="fl">50</span>]
+<span class="kw">tmp</span> <span class="op">&lt;-</span> <span class="kw">faux_cell</span>[<span class="fl">1</span><span class="op">:</span><span class="fl">50</span>]
 <span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span>({
   <span class="kw">tmp.matrix</span> <span class="op">&lt;-</span> <span class="kw">tmp</span>[[]]
   <span class="kw">wl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/wl.html">wl</a></span>(<span class="kw">tmp</span>)

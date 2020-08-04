@@ -178,19 +178,19 @@ Throughout the documentation of the package, the following terms are used:</p>
 <div id="preliminary-calculations" class="section level1 unnumbered">
 <h1 class="hasAnchor">
 <a href="#preliminary-calculations" class="anchor"></a>Preliminary Calculations</h1>
-<p>For some plots of the <code class="sourceCode r">chondro</code> dataset, the pre-processed spectra and their cluster averages <span class="math inline">\(\pm\)</span> one standard deviation are more suitable:</p>
+<p>For some plots of the <code class="sourceCode r">faux_cell</code> dataset, the pre-processed spectra and their cluster averages <span class="math inline">\(\pm\)</span> one standard deviation are more suitable:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="kw">chondro</span> <span class="op">&lt;-</span> <span class="kw">hyperSpec</span>::<span class="kw"><a href="../reference/chondro.html">chondro</a></span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">1</span>)
+<span class="kw">faux_cell</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/generate_faux_cell.html">generate_faux_cell</a></span>()
 
-<span class="kw">chondro.preproc</span> <span class="op">&lt;-</span> <span class="kw">chondro</span> <span class="op">-</span> <span class="fu"><a href="../reference/spc.fit.poly.html">spc.fit.poly.below</a></span>(<span class="kw">chondro</span>)
-<span class="kw">chondro.preproc</span> <span class="op">&lt;-</span> <span class="kw">chondro.preproc</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html">rowMeans</a></span>(<span class="kw">chondro</span>)
-<span class="kw">chondro.preproc</span> <span class="op">&lt;-</span> <span class="kw">chondro.preproc</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span>(<span class="kw">chondro.preproc</span>, <span class="fl">0.05</span>)
+<span class="kw">faux_cell_preproc</span> <span class="op">&lt;-</span> <span class="kw">faux_cell</span> <span class="op">-</span> <span class="fu"><a href="../reference/spc.fit.poly.html">spc.fit.poly.below</a></span>(<span class="kw">faux_cell</span>)
+<span class="kw">faux_cell_preproc</span> <span class="op">&lt;-</span> <span class="kw">faux_cell_preproc</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html">rowMeans</a></span>(<span class="kw">faux_cell</span>)
+<span class="kw">faux_cell_preproc</span> <span class="op">&lt;-</span> <span class="kw">faux_cell_preproc</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span>(<span class="kw">faux_cell_preproc</span>, <span class="fl">0.05</span>)
 
-<span class="kw">cluster.cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"dark blue"</span>, <span class="st">"orange"</span>, <span class="st">"#C02020"</span>)
-<span class="kw">cluster.meansd</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/aggregate.html">aggregate</a></span>(<span class="kw">chondro.preproc</span>, <span class="kw">chondro</span><span class="op">$</span><span class="kw">clusters</span>, <span class="kw">mean_pm_sd</span>)
-<span class="kw">cluster.means</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/aggregate.html">aggregate</a></span>(<span class="kw">chondro.preproc</span>, <span class="kw">chondro</span><span class="op">$</span><span class="kw">clusters</span>, <span class="kw">mean</span>)
+<span class="kw">cluster_cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"dark blue"</span>, <span class="st">"orange"</span>, <span class="st">"#C02020"</span>)
+<span class="kw">cluster_meansd</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/aggregate.html">aggregate</a></span>(<span class="kw">faux_cell_preproc</span>, <span class="kw">faux_cell</span><span class="op">$</span><span class="kw">region</span>, <span class="kw">mean_pm_sd</span>)
+<span class="kw">cluster_means</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/aggregate.html">aggregate</a></span>(<span class="kw">faux_cell_preproc</span>, <span class="kw">faux_cell</span><span class="op">$</span><span class="kw">region</span>, <span class="kw">mean</span>)
 </pre></div>
-<p>For details about the pre-processing, please refer to the example workflow in <code><a href="../articles/chondro.html">vignette("chondro")</a></code>, or the help <code><a href="../reference/chondro.html">?chondro</a></code>.</p>
 </div>
 <div id="predefined-functions" class="section level1">
 <h1 class="hasAnchor">
@@ -289,8 +289,7 @@ Figure 1.3: Calibration plot: an intensity over concentration.
 </h2>
 <p>Function <code class="sourceCode r"><span class="kw">levelplot</span>()</code> plots a false colour map, defined by a formula (Fig. <a href="#fig:levelplot">5.1</a>).</p>
 <div class="sourceCode" id="cb7"><pre class="downlit">
-<span class="fu">levelplot</span>(<span class="kw">spc</span> <span class="op">~</span> <span class="kw">x</span> <span class="op">*</span> <span class="kw">y</span>, <span class="kw">chondro</span>, aspect = <span class="st">"iso"</span>)
-<span class="co">#&gt; Warning in .local(x, data, ...): Only first wavelength is used for plotting</span>
+<span class="fu">levelplot</span>(<span class="kw">spc</span> <span class="op">~</span> <span class="kw">x</span> <span class="op">*</span> <span class="kw">y</span>, <span class="kw">faux_cell</span>[, , <span class="fl">1200</span>], aspect = <span class="st">"iso"</span>)
 </pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:levelplot-1"></span>
@@ -309,7 +308,7 @@ Figure 1.4: False colour map (1).
 <p>Function <code class="sourceCode r"><span class="kw">plotmap</span>()</code> is a specialized version of <code class="sourceCode r"><span class="kw">levelplot</span>()</code>.
 It uses a single value (e.g., average intensity or cluster membership) over two data columns (default are <code class="sourceCode r"><span class="op">$</span>x</code> and <code class="sourceCode r"><span class="op">$</span>y</code>) to plot a false colour map (Fig. <a href="#fig:plotmap">1.5</a>).</p>
 <div class="sourceCode" id="cb8"><pre class="downlit">
-<span class="fu"><a href="../reference/plotmap.html">plotmap</a></span>(<span class="kw">chondro</span>)
+<span class="fu"><a href="../reference/plotmap.html">plotmap</a></span>(<span class="kw">faux_cell</span>[, , <span class="fl">1200</span>])
 </pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:plotmap"></span>
@@ -324,7 +323,7 @@ Figure 1.5: False colour map created with <code class="sourceCode r"><span class
 </h2>
 <p>Function <code class="sourceCode r"><span class="kw">plotvoronoi</span>()</code> is a special version of <code class="sourceCode r"><span class="kw">plotmap</span>()</code> that produces Voronoi diagram of the <code>hyperSpec</code> object (Fig. <a href="#fig:voronoi">1.6</a>).</p>
 <div class="sourceCode" id="cb9"><pre class="downlit">
-<span class="fu"><a href="../reference/plotmap.html">plotvoronoi</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="kw">chondro</span>, <span class="fl">300</span>), <span class="kw">clusters</span> <span class="op">~</span> <span class="kw">x</span> <span class="op">*</span> <span class="kw">y</span>)
+<span class="fu"><a href="../reference/plotmap.html">plotvoronoi</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="kw">faux_cell</span>, <span class="fl">300</span>), <span class="kw">region</span> <span class="op">~</span> <span class="kw">x</span> <span class="op">*</span> <span class="kw">y</span>)
 <span class="co">#&gt; </span>
 <span class="co">#&gt;      PLEASE NOTE:  The components "delsgs" and "summary" of the</span>
 <span class="co">#&gt;  object returned by deldir() are now DATA FRAMES rather than</span>
@@ -337,8 +336,8 @@ Figure 1.5: False colour map created with <code class="sourceCode r"><span class
 </pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:voronoi"></span>
-<img src="plotting_files/figure-html/voronoi-1.png" alt="Voronoi diagram: an example with `chondro` dataset.  "><p class="caption">
-Figure 1.6: Voronoi diagram: an example with <code>chondro</code> dataset.
+<img src="plotting_files/figure-html/voronoi-1.png" alt="Voronoi diagram: an example with `faux_cell` dataset.  "><p class="caption">
+Figure 1.6: Voronoi diagram: an example with <code>faux_cell</code> dataset.
 </p>
 </div>
 </div>
@@ -371,7 +370,7 @@ Figure 2.1: All spectra of dataset <code>flu</code>.
 </h2>
 <p>Command <code class="sourceCode r"><span class="kw">plot</span>(x, <span class="st">"spcmeansd"</span>)</code> plots mean spectrum <span class="math inline">\(\pm\)</span> 1 standard deviation (Fig. <a href="#fig:plotchomean">2.2</a>).</p>
 <div class="sourceCode" id="cb11"><pre class="downlit">
-<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">chondro.preproc</span>, <span class="st">"spcmeansd"</span>)
+<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">faux_cell_preproc</span>, <span class="st">"spcmeansd"</span>)
 </pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:plotchomean"></span>
@@ -390,7 +389,7 @@ Spectroscopic data frequently are not Gaussian distributed.
 The percentiles give a better idea of the true distribution.
 They are also less sensitive to outliers.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit">
-<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">chondro.preproc</span>, <span class="st">"spcprctile"</span>)
+<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">faux_cell_preproc</span>, <span class="st">"spcprctile"</span>)
 </pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:plotchoprctl"></span>
@@ -405,7 +404,7 @@ Figure 2.3: Summary spectra: median, 16<sup>th</sup> and 84<sup>th</sup> percent
 </h2>
 <p>The code <code class="sourceCode r"><span class="kw">plot</span>(x, <span class="st">"spcprctl5"</span>)</code> is like <code class="sourceCode r"><span class="st">"spcprctile"</span></code> plus 5<sup>th</sup> and 95<sup>th</sup> percentile (Fig. <a href="#fig:plotchoprctl5">2.4</a>).</p>
 <div class="sourceCode" id="cb13"><pre class="downlit">
-<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">chondro.preproc</span>, <span class="st">"spcprctl5"</span>)
+<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">faux_cell_preproc</span>, <span class="st">"spcprctl5"</span>)
 </pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:plotchoprctl5"></span>
@@ -497,9 +496,9 @@ Figure 2.8: Spectra matrix.
 <h2 class="hasAnchor">
 <a href="#arg-map" class="anchor"></a><span class="header-section-number">2.9</span> Argument <code class="sourceCode r"><span class="st">"map"</span></code>
 </h2>
-<p>Code <code class="sourceCode r"><span class="kw">plot</span>(x, <span class="st">"map"</span>)</code> is equivalent to <code class="sourceCode r"><span class="kw">plotmap</span>(chondro)</code> (Fig. <a href="#fig:plotmapcho2">2.9</a>).</p>
+<p>Code <code class="sourceCode r"><span class="kw">plot</span>(x, <span class="st">"map"</span>)</code> is equivalent to <code class="sourceCode r"><span class="kw">plotmap</span>(faux_cell)</code> (Fig. <a href="#fig:plotmapcho2">2.9</a>).</p>
 <div class="sourceCode" id="cb20"><pre class="downlit">
-<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">chondro</span>, <span class="st">"map"</span>)
+<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">faux_cell</span>[, , <span class="fl">1200</span>], <span class="st">"map"</span>)
 </pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:plotmapcho2"></span>
@@ -514,7 +513,7 @@ Figure 2.9: False color map: alternative R syntax.
 </h2>
 <p>Use <code class="sourceCode r"><span class="kw">plot</span>(x, <span class="st">"voronoi"</span>)</code> for a Voronoi plot (Fig. <a href="#fig:plotvoronoi">2.10</a>).</p>
 <div class="sourceCode" id="cb21"><pre class="downlit">
-<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="kw">chondro</span>, <span class="fl">300</span>), <span class="st">"voronoi"</span>)
+<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="kw">faux_cell</span>[, , <span class="fl">1200</span>], <span class="fl">300</span>), <span class="st">"voronoi"</span>)
 </pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:plotvoronoi"></span>
@@ -630,8 +629,8 @@ Figure 3.6: An example of mass spectrum.
 <a href="#add-more-spectra-into-an-existing-plot" class="anchor"></a><span class="header-section-number">3.7</span> Add More Spectra into an Existing Plot</h2>
 <p>To plot additional spectra onto an existing plot (Fig. <a href="#fig:add">3.7</a>), use <code class="sourceCode r">add =<span class="st"> </span><span class="ot">TRUE</span></code></p>
 <div class="sourceCode" id="cb28"><pre class="downlit">
-<span class="fu"><a href="../reference/plotspc.html">plotspc</a></span>(<span class="kw">chondro</span>[<span class="fl">30</span>, , ])
-<span class="fu"><a href="../reference/plotspc.html">plotspc</a></span>(<span class="kw">chondro</span>[<span class="fl">300</span>, , ], add = <span class="fl">TRUE</span>, col = <span class="st">"blue"</span>)
+<span class="fu"><a href="../reference/plotspc.html">plotspc</a></span>(<span class="kw">faux_cell</span>[<span class="fl">30</span>, , ])
+<span class="fu"><a href="../reference/plotspc.html">plotspc</a></span>(<span class="kw">faux_cell</span>[<span class="fl">35</span>, , ], add = <span class="fl">TRUE</span>, col = <span class="st">"blue"</span>)
 </pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:add"></span>
@@ -646,7 +645,7 @@ Figure 3.7: A spectrum added to an existing plot.
 <p>Argument <code class="sourceCode r">func</code> may be used to calculate summary characteristics before plotting.
 To plot, e.g., the standard deviation of the spectra, use <code class="sourceCode r"><span class="kw">plotspc</span>(..., <span class="dt">func =</span> sd)</code> (Fig. <a href="#fig:sd">3.8</a>).</p>
 <div class="sourceCode" id="cb29"><pre class="downlit">
-<span class="fu"><a href="../reference/plotspc.html">plotspc</a></span>(<span class="kw">chondro.preproc</span>, func = <span class="kw">sd</span>)
+<span class="fu"><a href="../reference/plotspc.html">plotspc</a></span>(<span class="kw">faux_cell_preproc</span>, func = <span class="kw">sd</span>)
 </pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:sd"></span>
@@ -702,8 +701,9 @@ Figure 3.10: A summary spectrum with annotation lines.
 <a href="#simple-stacking" class="anchor"></a><span class="header-section-number">3.11.1</span> Simple Stacking</h3>
 <p>To stack spectra, use <code class="sourceCode r">stacked =<span class="st"> </span><span class="ot">TRUE</span></code> (Fig. <a href="#fig:stacked1">3.11</a>).</p>
 <div class="sourceCode" id="cb32"><pre class="downlit">
-<span class="fu"><a href="../reference/plotspc.html">plotspc</a></span>(<span class="kw">cluster.means</span>,
-  col = <span class="kw">cluster.cols</span>,
+<span class="fu"><a href="../reference/plotspc.html">plotspc</a></span>(
+  <span class="kw">cluster_means</span>,
+  col = <span class="kw">cluster_cols</span>,
   stacked = <span class="fl">TRUE</span>
 )
 </pre></div>
@@ -724,10 +724,11 @@ Alternatively, the name of an extra data column can be used for grouping (Fig. <
 <div class="sourceCode" id="cb33"><pre class="downlit">
 <span class="kw">op</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(las = <span class="fl">1</span>, mgp = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">3.1</span>, <span class="fl">.7</span>, <span class="fl">0</span>))
 
-<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">cluster.meansd</span>,
+<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(
+  <span class="kw">cluster_meansd</span>,
   stacked = <span class="st">".aggregate"</span>,
   fill    = <span class="st">".aggregate"</span>,
-  col     = <span class="kw">cluster.cols</span>
+  col     = <span class="kw">cluster_cols</span>
 )
 </pre></div>
 <div class="figure" style="text-align: center">
@@ -743,9 +744,10 @@ Figure 3.12: Stacked summary spectra (mean <span class="math inline">\(\pm\)</sp
 </h3>
 <p>Stacking values can also be given manually as numeric values in <code class="sourceCode r">yoffset</code> (Fig. <a href="#fig:stacked3">3.13</a>).</p>
 <div class="sourceCode" id="cb34"><pre class="downlit">
-<span class="fu"><a href="../reference/plotspc.html">plotspc</a></span>(<span class="kw">cluster.meansd</span>,
+<span class="fu"><a href="../reference/plotspc.html">plotspc</a></span>(
+  <span class="kw">cluster_meansd</span>,
   yoffset = <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="fl">0</span><span class="op">:</span><span class="fl">2</span>, each = <span class="fl">3</span>),
-  col = <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="kw">cluster.cols</span>, each = <span class="fl">3</span>)
+  col = <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="kw">cluster_cols</span>, each = <span class="fl">3</span>)
 )
 </pre></div>
 <div class="figure" style="text-align: center">
@@ -760,11 +762,11 @@ Figure 3.13: Stacked spectra with customized y offset.
 <a href="#dense-stacking" class="anchor"></a><span class="header-section-number">3.11.4</span> Dense Stacking</h3>
 <p>It is possible to obtain a denser stacking (Fig. <a href="#fig:stacked4">3.14</a>).</p>
 <div class="sourceCode" id="cb35"><pre class="downlit">
-<span class="kw">yoffsets</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/apply.html">apply</a></span>(<span class="kw">cluster.means</span>[[]], <span class="fl">2</span>, <span class="kw">diff</span>)
+<span class="kw">yoffsets</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/apply.html">apply</a></span>(<span class="kw">cluster_means</span>[[]], <span class="fl">2</span>, <span class="kw">diff</span>)
 <span class="kw">yoffsets</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="fu"><a href="../reference/apply.html">apply</a></span>(<span class="kw">yoffsets</span>, <span class="fl">1</span>, <span class="kw">min</span>)
-<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">cluster.means</span>,
+<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">cluster_means</span>,
   yoffset = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>, <span class="fu"><a href="https://rdrr.io/r/base/cumsum.html">cumsum</a></span>(<span class="kw">yoffsets</span>)),
-  col = <span class="kw">cluster.cols</span>
+  col = <span class="kw">cluster_cols</span>
 )
 </pre></div>
 <div class="figure" style="text-align: center">
@@ -781,19 +783,19 @@ Figure 3.14: Dense-stacked spectra.
 This is possible by giving arguments to the functions that actually perform the plotting <code class="sourceCode r"><span class="kw">plot</span>()</code> for setting up the plot area, <code class="sourceCode r"><span class="kw">lines</span>()</code> for the plotting of the lines, <code class="sourceCode r"><span class="kw">axis</span>()</code> for the axes, etc.
 The arguments for these functions should be given in lists as <code class="sourceCode r">plot.args</code>, <code class="sourceCode r">lines.args</code>, <code class="sourceCode r">axis.args</code>, etc.</p>
 <div class="sourceCode" id="cb36"><pre class="downlit">
-<span class="kw">yoffset</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/apply.html">apply</a></span>(<span class="kw">chondro.preproc</span>, <span class="fl">2</span>, <span class="kw">quantile</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0.05</span>, <span class="fl">0.95</span>))
+<span class="kw">yoffset</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/apply.html">apply</a></span>(<span class="kw">faux_cell_preproc</span>, <span class="fl">2</span>, <span class="kw">quantile</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0.05</span>, <span class="fl">0.95</span>))
 <span class="kw">yoffset</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span>(<span class="kw">yoffset</span>)
-<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">chondro.preproc</span>[<span class="fl">1</span>],
+<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">faux_cell_preproc</span>[<span class="fl">1</span>],
   plot.args = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(ylim = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>, <span class="fl">2</span>) <span class="op">*</span> <span class="kw">yoffset</span>),
   lines.args = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(type = <span class="st">"n"</span>)
 )
 <span class="kw">yoffset</span> <span class="op">&lt;-</span> (<span class="fl">0</span><span class="op">:</span><span class="fl">1</span>) <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/diff.html">diff</a></span>(<span class="kw">yoffset</span>)
 <span class="co">for</span> (<span class="kw">i</span> <span class="co">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>) {
-  <span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">chondro.preproc</span>, <span class="st">"spcprctl5"</span>,
+  <span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">faux_cell_preproc</span>, <span class="st">"spcprctl5"</span>,
     yoffset = <span class="kw">yoffset</span>[<span class="kw">i</span>],
     col = <span class="st">"gray"</span>, add = <span class="fl">TRUE</span>
   )
-  <span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">chondro.preproc</span>[<span class="kw">i</span>],
+  <span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">faux_cell_preproc</span>[<span class="kw">i</span>],
     yoffset = <span class="kw">yoffset</span>[<span class="kw">i</span>],
     col = <span class="fu"><a href="../reference/matlab.palette.html">matlab.dark.palette</a></span>(<span class="fl">3</span>) [<span class="kw">i</span>], add = <span class="fl">TRUE</span>,
     lines.args = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(lwd = <span class="fl">2</span>)
@@ -958,8 +960,7 @@ Figure 4.7: Plot with abscissae explicitly indicated by model formula.
 <p>Besides that, it behaves exactly like <strong>lattice</strong> <code class="sourceCode r"><span class="kw">levelplot</span>()</code>.
 Particularly, the data is given as the <em>second</em> argument (Fig. <a href="#fig:levelplot">5.1</a>).</p>
 <div class="sourceCode" id="cb45"><pre class="downlit">
-<span class="fu">levelplot</span>(<span class="kw">spc</span> <span class="op">~</span> <span class="kw">x</span> <span class="op">*</span> <span class="kw">y</span>, data = <span class="kw">chondro</span>)
-<span class="co">#&gt; Warning in .local(x, data, ...): Only first wavelength is used for plotting</span>
+<span class="fu">levelplot</span>(<span class="kw">spc</span> <span class="op">~</span> <span class="kw">x</span> <span class="op">*</span> <span class="kw">y</span>, data = <span class="kw">faux_cell</span>[, , <span class="fl">800</span>])
 </pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:levelplot"></span>
@@ -970,7 +971,7 @@ Figure 5.1: An example of a levelplot.
 <p>If the colour-coded value is a factor, the display is adjusted to this fact (Fig. <a href="#fig:levelplot-factor">5.2</a>).</p>
 <!-- Factors as `z` -->
 <div class="sourceCode" id="cb46"><pre class="downlit">
-<span class="fu">levelplot</span>(<span class="kw">clusters</span> <span class="op">~</span> <span class="kw">x</span> <span class="op">*</span> <span class="kw">y</span>, data = <span class="kw">chondro</span>)
+<span class="fu">levelplot</span>(<span class="kw">region</span> <span class="op">~</span> <span class="kw">x</span> <span class="op">*</span> <span class="kw">y</span>, data = <span class="kw">faux_cell</span>)
 </pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:levelplot-factor"></span>
@@ -1074,11 +1075,11 @@ Figure 6.4: Colour-coded points via special panel function.
 The spectral intensities may be summarized by a function before plotting (default: <code class="sourceCode r"><span class="kw">mean</span>()</code>).
 The same scale is used for x and y axes (<code class="sourceCode r">aspect =<span class="st"> "iso"</span></code>).</p>
 <div class="sourceCode" id="cb54"><pre class="downlit">
-<span class="fu"><a href="../reference/plotmap.html">plotmap</a></span>(<span class="kw">chondro</span>)
+<span class="fu"><a href="../reference/plotmap.html">plotmap</a></span>(<span class="kw">faux_cell</span>[, , <span class="fl">1200</span>])
 </pre></div>
 <div class="figure" style="text-align: center">
-<span id="fig:plotmap-chondro"></span>
-<img src="plotting_files/figure-html/plotmap-chondro-1.png" alt="An example of a false colour map.  "><p class="caption">
+<span id="fig:plotmap-faux-cell"></span>
+<img src="plotting_files/figure-html/plotmap-faux-cell-1.png" alt="An example of a false colour map.  "><p class="caption">
 Figure 7.1: An example of a false colour map.
 </p>
 </div>
@@ -1088,7 +1089,7 @@ Figure 7.1: An example of a false colour map.
 <a href="#plotmap-manual-xy" class="anchor"></a><span class="header-section-number">7.2</span> Plotting Maps with Manually Specified X and Y Axes</h2>
 <p>Specify the colour-coded variable, abscissa and ordinate as formula: <code class="sourceCode r">colour.coded <span class="op">~</span><span class="st"> </span>abscissa <span class="op">*</span><span class="st"> </span>ordinate</code> (Fig. <a href="#fig:plotmap-yx">7.2</a>).</p>
 <div class="sourceCode" id="cb55"><pre class="downlit">
-<span class="fu"><a href="../reference/plotmap.html">plotmap</a></span>(<span class="kw">chondro</span>, <span class="kw">spc</span> <span class="op">~</span> <span class="kw">y</span> <span class="op">*</span> <span class="kw">x</span>)
+<span class="fu"><a href="../reference/plotmap.html">plotmap</a></span>(<span class="kw">faux_cell</span>[, , <span class="fl">1200</span>], <span class="kw">spc</span> <span class="op">~</span> <span class="kw">y</span> <span class="op">*</span> <span class="kw">x</span>)
 </pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:plotmap-yx"></span>
@@ -1102,7 +1103,7 @@ Figure 7.2: False colour map with an explicit specification of x and y axes.
 <a href="#discrete-colours" class="anchor"></a><span class="header-section-number">7.3</span> Discrete Colours</h2>
 <p>Factor variables may be used for discrete colour coding (Fig. <a href="#fig:plotmap-clu">7.3</a>).</p>
 <div class="sourceCode" id="cb56"><pre class="downlit">
-<span class="fu"><a href="../reference/plotmap.html">plotmap</a></span>(<span class="kw">chondro</span>, <span class="kw">clusters</span> <span class="op">~</span> <span class="kw">x</span> <span class="op">*</span> <span class="kw">y</span>)
+<span class="fu"><a href="../reference/plotmap.html">plotmap</a></span>(<span class="kw">faux_cell</span>, <span class="kw">region</span> <span class="op">~</span> <span class="kw">x</span> <span class="op">*</span> <span class="kw">y</span>)
 </pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:plotmap-clu"></span>
@@ -1117,9 +1118,7 @@ Figure 7.3: False colour map with colours defined by a factor variable.
 <a href="#different-palette-1" class="anchor"></a><span class="header-section-number">7.4</span> Different Palette</h2>
 <p>To use a different palette, use argument <code class="sourceCode r">col.regions</code> (Fig. <a href="#fig:plotmap-col">7.4</a>).</p>
 <div class="sourceCode" id="cb57"><pre class="downlit">
-<span class="fu"><a href="../reference/plotmap.html">plotmap</a></span>(<span class="kw">chondro</span>, <span class="kw">clusters</span> <span class="op">~</span> <span class="kw">x</span> <span class="op">*</span> <span class="kw">y</span>,
-  col.regions = <span class="kw">cluster.cols</span>
-)
+<span class="fu"><a href="../reference/plotmap.html">plotmap</a></span>(<span class="kw">faux_cell</span>, <span class="kw">region</span> <span class="op">~</span> <span class="kw">x</span> <span class="op">*</span> <span class="kw">y</span>, col.regions = <span class="kw">cluster_cols</span>)
 </pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:plotmap-col"></span>
@@ -1135,8 +1134,8 @@ Figure 7.4: False colour map with non-default colour palette.
 <p>The plotting of colour maps is done via R package <strong>lattice</strong> (aka Trellis graphic approach), which is highly customizable.
 Use function <code class="sourceCode r"><span class="kw">trellis.par.get</span>()</code> and <code class="sourceCode r"><span class="kw">trellis.par.set</span>()</code> to get/set the settings for the current graphics device.</p>
 <div class="sourceCode" id="cb58"><pre class="downlit">
-<span class="kw">my.theme</span> <span class="op">&lt;-</span> <span class="fu">trellis.par.get</span>()
-<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="kw">my.theme</span>) <span class="co"># note how many parameters are tunable</span>
+<span class="kw">my_theme</span> <span class="op">&lt;-</span> <span class="fu">trellis.par.get</span>()
+<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="kw">my_theme</span>) <span class="co"># note how many parameters are tunable</span>
 <span class="co">#&gt;  [1] "grid.pars"         "fontsize"          "background"        "panel.background" </span>
 <span class="co">#&gt;  [5] "clip"              "add.line"          "add.text"          "plot.polygon"     </span>
 <span class="co">#&gt;  [9] "box.dot"           "box.rectangle"     "box.umbrella"      "dot.line"         </span>
@@ -1148,15 +1147,15 @@ Use function <code class="sourceCode r"><span class="kw">trellis.par.get</span>(
 <span class="co">#&gt; [33] "par.zlab.text"     "par.main.text"     "par.sub.text"</span>
 </pre></div>
 <p>Any of these parameters can be fine-tuned to produce the desired output.
-For example, parameter <code class="sourceCode r">my.theme<span class="op">$</span>region</code> is responsible for the appearance of color maps, and it contains elements <code class="sourceCode r"><span class="op">$</span>alpha</code> and <code class="sourceCode r"><span class="op">$</span>col</code>.
+For example, parameter <code class="sourceCode r">my_theme<span class="op">$</span>region</code> is responsible for the appearance of color maps, and it contains elements <code class="sourceCode r"><span class="op">$</span>alpha</code> and <code class="sourceCode r"><span class="op">$</span>col</code>.
 By changing these parameters you can create your own theme for plotting and pass it to the plotting function via <code class="sourceCode r">par.settings</code>.</p>
 <div id="changed-palette" class="section level2">
 <h2 class="hasAnchor">
 <a href="#changed-palette" class="anchor"></a><span class="header-section-number">8.1</span> Changed Palette</h2>
 <p>Fig. <a href="#fig:plotmap-col-default">8.1</a> uses a customized <strong>lattice</strong> theme.</p>
 <div class="sourceCode" id="cb59"><pre class="downlit">
-<span class="kw">my.theme</span><span class="op">$</span><span class="kw">regions</span><span class="op">$</span><span class="kw">col</span> <span class="op">&lt;-</span> <span class="kw">grDevices</span>::<span class="kw"><a href="https://rdrr.io/r/grDevices/palettes.html">terrain.colors</a></span>
-<span class="fu"><a href="../reference/plotmap.html">plotmap</a></span>(<span class="kw">chondro</span>, par.settings = <span class="kw">my.theme</span>)
+<span class="kw">my_theme</span><span class="op">$</span><span class="kw">regions</span><span class="op">$</span><span class="kw">col</span> <span class="op">&lt;-</span> <span class="kw">grDevices</span>::<span class="kw"><a href="https://rdrr.io/r/grDevices/palettes.html">terrain.colors</a></span>
+<span class="fu"><a href="../reference/plotmap.html">plotmap</a></span>(<span class="kw">faux_cell</span>[, , <span class="fl">1200</span>], par.settings = <span class="kw">my_theme</span>)
 </pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:plotmap-col-default"></span>
@@ -1165,7 +1164,7 @@ Figure 8.1: A false-colour map that uses <code>terrain.colors</code> palette.
 </p>
 </div>
 <p>It is possible to <strong>persistently</strong> (i.e. inside of the current R session) set <strong>lattice</strong> parameters, so they would apply to all further plots.
-This is done via a call to <code class="sourceCode r"><span class="kw">trellis.par.set</span>()</code>, for example <code class="sourceCode r"><span class="kw">trellis.par.set</span>(my.theme)</code>.</p>
+This is done via a call to <code class="sourceCode r"><span class="kw">trellis.par.set</span>()</code>, for example <code class="sourceCode r"><span class="kw">trellis.par.set</span>(my_theme)</code>.</p>
 <p>The current settings can be visualized via a call to <code class="sourceCode r"><span class="kw">show.settings</span>()</code></p>
 </div>
 <div id="show-current-lattice-settings" class="section level2">
@@ -1177,7 +1176,7 @@ This is done via a call to <code class="sourceCode r"><span class="kw">trellis.p
 <span class="fu">show.settings</span>()
 </pre></div>
 <div class="sourceCode" id="cb61"><pre class="downlit">
-<span class="fu">show.settings</span>(<span class="kw">my.theme</span>)
+<span class="fu">show.settings</span>(<span class="kw">my_theme</span>)
 </pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:lattice-settings"></span>
@@ -1193,11 +1192,9 @@ in the <a href="https://www.nceas.ucsb.edu/~frazier/RSpatialGuides/colorPaletteC
 <a href="#defined-wavelengths" class="anchor"></a><span class="header-section-number">8.3</span> Defined Wavelengths</h2>
 <p>A map of the average intensity at particular wavelengths can be plotted if the wavelengths of interested are explicitly extracted (Fig. <a href="#fig:plotmap-wave">8.3</a>).</p>
 <div class="sourceCode" id="cb62"><pre class="downlit">
-<span class="fu"><a href="../reference/plotmap.html">plotmap</a></span>(<span class="kw">chondro.preproc</span>[, , <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(
-  <span class="fl">728</span>, <span class="fl">782</span>, <span class="fl">1098</span>,
-  <span class="fl">1240</span>, <span class="fl">1482</span>, <span class="fl">1577</span>
-)],
-col.regions = <span class="kw">matlab.palette</span>
+<span class="fu"><a href="../reference/plotmap.html">plotmap</a></span>(
+  <span class="kw">faux_cell_preproc</span>[, , <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">800</span>, <span class="fl">1500</span>)],
+  col.regions = <span class="kw">matlab.palette</span>
 )
 </pre></div>
 <div class="figure" style="text-align: center">
@@ -1212,7 +1209,8 @@ Figure 8.3: A map of average intensity at explicitly indicated wavelengths.
 <a href="#conditioning" class="anchor"></a><span class="header-section-number">8.4</span> Conditioning</h2>
 <p>Logical conditions may be used to create subplots (Fig. <a href="#fig:plotmap-pca">8.4</a>).</p>
 <div class="sourceCode" id="cb63"><pre class="downlit">
-<span class="fu"><a href="../reference/plotmap.html">plotmap</a></span>(<span class="kw">chondro</span>,
+<span class="fu"><a href="../reference/plotmap.html">plotmap</a></span>(
+  <span class="kw">faux_cell</span>[, , <span class="fl">1500</span>],
   <span class="kw">spc</span> <span class="op">~</span> <span class="kw">y</span> <span class="op">*</span> <span class="kw">x</span> <span class="op">|</span> <span class="kw">x</span> <span class="op">&gt;</span> <span class="fl">5</span>,
   col.regions = <span class="fu"><a href="../reference/matlab.palette.html">matlab.palette</a></span>(<span class="fl">20</span>)
 )
@@ -1234,14 +1232,15 @@ In order to suppress this, use <code class="sourceCode r">func =<span class="st"
 This allows conditioning on the wavelengths.</p>
 <p>Fig. <a href="#fig:plotmap-pca2">8.5</a> demonstrates an example to plot the maps of principal components scores.</p>
 <div class="sourceCode" id="cb64"><pre class="downlit">
-<span class="kw">pca</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/prcomp.html">prcomp</a></span>(<span class="op">~</span><span class="kw">spc</span>, data = <span class="kw">chondro.preproc</span><span class="op">$</span><span class="kw">.</span>)
+<span class="kw">pca</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/prcomp.html">prcomp</a></span>(<span class="op">~</span><span class="kw">spc</span>, data = <span class="kw">faux_cell_preproc</span><span class="op">$</span><span class="kw">.</span>)
 
-<span class="kw">scores</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/decomposition.html">decomposition</a></span>(<span class="kw">chondro</span>, <span class="kw">pca</span><span class="op">$</span><span class="kw">x</span>,
+<span class="kw">scores</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/decomposition.html">decomposition</a></span>(<span class="kw">faux_cell</span>, <span class="kw">pca</span><span class="op">$</span><span class="kw">x</span>,
   label.wavelength = <span class="st">"PC"</span>,
   label.spc = <span class="st">"score /  a.u."</span>
 )
 
-<span class="fu"><a href="../reference/plotmap.html">plotmap</a></span>(<span class="kw">scores</span>[, , <span class="fl">1</span><span class="op">:</span><span class="fl">2</span>],
+<span class="fu"><a href="../reference/plotmap.html">plotmap</a></span>(
+  <span class="kw">scores</span>[, , <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>],
   <span class="kw">spc</span> <span class="op">~</span> <span class="kw">y</span> <span class="op">*</span> <span class="kw">x</span> <span class="op">|</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span>(<span class="kw">.wavelength</span>),
   func = <span class="kw">NULL</span>,
   col.regions = <span class="fu"><a href="../reference/matlab.palette.html">matlab.palette</a></span>(<span class="fl">20</span>)
@@ -1255,8 +1254,9 @@ Figure 8.5: The maps of the scores of the first two principal components (I).
 </div>
 <p>Alternatively, use <code class="sourceCode r"><span class="kw">levelplot</span>()</code> directly (Fig. <a href="#fig:plotmap-pca3">8.6</a>).</p>
 <div class="sourceCode" id="cb65"><pre class="downlit">
-<span class="fu">levelplot</span>(<span class="kw">spc</span> <span class="op">~</span> <span class="kw">y</span> <span class="op">*</span> <span class="kw">x</span> <span class="op">|</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span>(<span class="kw">.wavelength</span>),
-  <span class="kw">scores</span>[, , <span class="fl">1</span><span class="op">:</span><span class="fl">2</span>],
+<span class="fu">levelplot</span>(
+  <span class="kw">spc</span> <span class="op">~</span> <span class="kw">y</span> <span class="op">*</span> <span class="kw">x</span> <span class="op">|</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span>(<span class="kw">.wavelength</span>),
+  <span class="kw">scores</span>[, , <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>],
   aspect = <span class="st">"iso"</span>,
   col.regions = <span class="fu"><a href="../reference/matlab.palette.html">matlab.palette</a></span>(<span class="fl">20</span>)
 )
@@ -1277,7 +1277,8 @@ The tesselation is calculated by default using package <strong>deldir</strong><s
 Package <strong>tripack</strong> seems to be faster in general, but may “hang” with certain data sets (particularly regular grids with missing spectra as in this example).
 Furthermore, it is not FOSS (free and open-source software), so users are kindly asked to review package <strong>tripack</strong>’s license before using it.</p>
 <div class="sourceCode" id="cb66"><pre class="downlit">
-<span class="fu"><a href="../reference/plotmap.html">plotvoronoi</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="kw">chondro</span>, <span class="fl">300</span>), <span class="kw">clusters</span> <span class="op">~</span> <span class="kw">x</span> <span class="op">*</span> <span class="kw">y</span>,
+<span class="fu"><a href="../reference/plotmap.html">plotvoronoi</a></span>(
+  <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="kw">faux_cell</span>, <span class="fl">300</span>), <span class="kw">region</span> <span class="op">~</span> <span class="kw">x</span> <span class="op">*</span> <span class="kw">y</span>,
   col.regions = <span class="fu"><a href="../reference/matlab.palette.html">matlab.palette</a></span>(<span class="fl">20</span>)
 )
 </pre></div>
@@ -1304,7 +1305,7 @@ Figure 8.7: Voronoi plot that uses non-default discrette colour palette.
 </pre></div>
 <p>Fig. <a href="#fig:missing">8.8</a> shows the result.</p>
 <div class="sourceCode" id="cb68"><pre class="downlit">
-<span class="fu"><a href="../reference/plotmap.html">plotmap</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="kw">chondro</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="kw">chondro</span>) <span class="op">-</span> <span class="fl">20</span>),
+<span class="fu"><a href="../reference/plotmap.html">plotmap</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="kw">faux_cell</span>[, , <span class="fl">1200</span>], <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="kw">faux_cell</span>) <span class="op">-</span> <span class="fl">20</span>),
   col.regions = <span class="fu"><a href="../reference/matlab.palette.html">matlab.palette</a></span>(<span class="fl">20</span>),
   col = <span class="st">"black"</span>,
   panel = <span class="kw">mark.missing</span>
@@ -1324,6 +1325,11 @@ Figure 8.8: Marks of missing spectra in a false-colour map.
 Even if the spectra are measured on a nominally evenly spaced grid, the actual stage position may slightly vary due to positioning inaccuracy and some manufacturers (e.g., Kaiser) record the position reported by the stage rather than the position requested by the stage control.
 This leads to weird-looking output with holes, and possibly wrong columns (Fig. <a href="#fig:uneven-I">8.9</a>).</p>
 <div class="sourceCode" id="cb69"><pre class="downlit">
+<span class="kw">uneven</span> <span class="op">&lt;-</span> <span class="kw">faux_cell</span>[, , <span class="fl">1200</span>]
+<span class="kw">uneven</span><span class="op">$</span><span class="kw">x</span> <span class="op">&lt;-</span> <span class="kw">uneven</span><span class="op">$</span><span class="kw">x</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="kw">uneven</span>), sd = <span class="fl">0.05</span>), digits = <span class="fl">1</span>)
+<span class="kw">uneven</span><span class="op">$</span><span class="kw">y</span> <span class="op">&lt;-</span> <span class="kw">uneven</span><span class="op">$</span><span class="kw">y</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="kw">uneven</span>), sd = <span class="fl">0.05</span>), digits = <span class="fl">1</span>)
+</pre></div>
+<div class="sourceCode" id="cb70"><pre class="downlit">
 <span class="fu"><a href="../reference/plotmap.html">plotmap</a></span>(<span class="kw">uneven</span>)
 <span class="co">#&gt; Warning in (function (x, y, z, subscripts, at = pretty(z), ..., col.regions = regions$col, : 'x'</span>
 <span class="co">#&gt; values are not equispaced; output may be wrong</span>
@@ -1340,7 +1346,7 @@ Note warnings <code>values are not equispaced; output may be wrong</code>.
 </div>
 <p>The symptom of this situation are warnings about values in x and/or y not being equispaced; and that the output, therefore, may be wrong.</p>
 <p>One possibility to obtain a correct map is using <code class="sourceCode r"><span class="kw">plotvoronoi</span>()</code> instead which will construct a mosaic-like image with the respective “pixel” areas being centred around the actually recorded <code>$x</code> and <code>$y</code> position (Fig. <a href="#fig:uneven-II">8.10</a>).</p>
-<div class="sourceCode" id="cb70"><pre class="downlit">
+<div class="sourceCode" id="cb71"><pre class="downlit">
 <span class="fu"><a href="../reference/plotmap.html">plotvoronoi</a></span>(<span class="kw">uneven</span>)
 </pre></div>
 <div class="figure" style="text-align: center">
@@ -1350,8 +1356,9 @@ Figure 8.10: Unevenly spaced measurement grid: example II.
 </p>
 </div>
 <p>Another possibility that underlines a point shape of the measurements is switching to <code class="sourceCode r">latticeExtra<span class="op">::</span><span class="kw">panel.levelplot.points</span>()</code> (Fig. <a href="#fig:uneven-III">8.11</a>).</p>
-<div class="sourceCode" id="cb71"><pre class="downlit">
-<span class="fu"><a href="../reference/plotmap.html">plotmap</a></span>(<span class="kw">uneven</span>,
+<div class="sourceCode" id="cb72"><pre class="downlit">
+<span class="fu"><a href="../reference/plotmap.html">plotmap</a></span>(
+  <span class="kw">uneven</span>,
   panel = <span class="kw">panel.levelplot.points</span>,
   cex = <span class="fl">0.75</span>,
   col.symbol = <span class="fl">NA</span>
@@ -1364,7 +1371,7 @@ Figure 8.11: Unevenly spaced measurement grid: example III.
 </p>
 </div>
 <p>Alternatively, the measurement raster positions can be rounded to their nominal raster (e.g. Fig. <a href="#fig:uneven-IV">8.12</a>).</p>
-<div class="sourceCode" id="cb72"><pre class="downlit">
+<div class="sourceCode" id="cb73"><pre class="downlit">
 <span class="kw">rx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/makeraster.html">makeraster</a></span>(<span class="kw">uneven</span><span class="op">$</span><span class="kw">x</span>, startx = <span class="op">-</span><span class="fl">11.55</span>, d = <span class="fl">1</span>, tol = <span class="fl">0.3</span>)
 <span class="kw">uneven</span><span class="op">$</span><span class="kw">x</span> <span class="op">&lt;-</span> <span class="kw">rx</span><span class="op">$</span><span class="kw">x</span>
 
@@ -1387,7 +1394,7 @@ Figure 8.12: Unevenly spaced measurement grid: example IV.
 <p>Package <strong>rgl</strong><span class="citation">[<a href="#ref-R-rgl" role="doc-biblioref">8</a>]</span> offers fast 3d plotting in R.
 As package <strong>rgl</strong>’s axis annotations are sometimes awkward, they may better be set manually:</p>
 <!-- evaluation in rgl-do -->
-<div class="sourceCode" id="cb73"><pre class="downlit">
+<div class="sourceCode" id="cb74"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://r-forge.r-project.org/projects/rgl">rgl</a></span>)
 
 <span class="kw">laser</span> <span class="op">&lt;-</span> <span class="kw">laser</span> [, , <span class="fl">404.8</span> <span class="op">~</span> <span class="fl">405.6</span>] <span class="op">/</span> <span class="fl">10000</span>
@@ -1413,122 +1420,47 @@ Figure 9.1: A snapshot of an <strong>rgl</strong> plot.
 <!-- ======================================================================= -->
 <!-- ======================================================================= -->
 </div>
-<div id="plots-ggplot2" class="section level1">
-<h1 class="hasAnchor">
-<a href="#plots-ggplot2" class="anchor"></a><span class="header-section-number">10</span> Using <strong><em>ggplot2</em></strong> with <strong><em>hyperSpec</em></strong> objects</h1>
-<p>Class <code class="sourceCode r">hyperSpec</code> objects do not yet directly support plotting with package <strong>ggplot2</strong><span class="citation">[<a href="#ref-R-ggplot2" role="doc-biblioref">9</a>,<a href="#ref-ggplot22016" role="doc-biblioref">10</a>]</span>.
-Nevertheless, package <strong>ggplot2</strong> graphics can easily be obtained, and <code class="sourceCode r">qplot<span class="op">*</span></code> equivalents to <code class="sourceCode r"><span class="kw">plotspc</span>()</code> and <code class="sourceCode r"><span class="kw">plotmap</span>()</code>.</p>
-<div id="qplotspc" class="section level2">
-<h2 class="hasAnchor">
-<a href="#qplotspc" class="anchor"></a><span class="header-section-number">10.1</span> Function <code class="sourceCode r"><span class="kw">qplotspc</span>()</code>
-</h2>
-<p>Plot spectra with <code class="sourceCode r"><span class="kw">qplotspc</span>()</code> (Fig. <a href="#fig:ggplotspc">10.1</a>).<!-- `as.long.df()`{.r}" --></p>
-<div class="sourceCode" id="cb74"><pre class="downlit">
-<span class="fu"><a href="../reference/qplotspc.html">qplotspc</a></span>(<span class="kw">flu</span>) <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(colour = <span class="kw">c</span>)
-</pre></div>
-<div class="figure" style="text-align: center">
-<span id="fig:ggplotspc"></span>
-<img src="plotting_files/figure-html/ggplotspc-1.png" alt="Plot spectra with `as.long.df()`{.r}  "><p class="caption">
-Figure 10.1: Plot spectra with <code class="sourceCode r"><span class="kw">as.long.df</span>()</code>
-</p>
-</div>
-</div>
-<div id="ggplotmap" class="section level2">
-<h2 class="hasAnchor">
-<a href="#ggplotmap" class="anchor"></a><span class="header-section-number">10.2</span> Function <code class="sourceCode r"><span class="kw">ggplotmap</span>()</code>
-</h2>
-<p>Fig. <a href="#fig:ggplotmap">10.2</a> shows a map created with package <strong>ggplot2</strong>.</p>
-<div class="sourceCode" id="cb75"><pre class="downlit">
-<span class="fu"><a href="../reference/qplotmap.html">qplotmap</a></span>(<span class="kw">chondro</span>) <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_gradient.html">scale_fill_gradientn</a></span>(<span class="st">"spc"</span>, colours = <span class="fu"><a href="../reference/matlab.palette.html">matlab.palette</a></span>())
-</pre></div>
-<div class="figure" style="text-align: center">
-<span id="fig:ggplotmap"></span>
-<img src="plotting_files/figure-html/ggplotmap-1.png" alt="False-colour map with package **ggplot2**  "><p class="caption">
-Figure 10.2: False-colour map with package <strong>ggplot2</strong>
-</p>
-</div>
-<p>The two special columns <code class="sourceCode r">.wavelength</code> and <code class="sourceCode r">.rownames</code> contain the wavelength axis and allow to distinguish the spectra.</p>
-</div>
-<div id="general-plotting-ggplot2" class="section level2">
-<h2 class="hasAnchor">
-<a href="#general-plotting-ggplot2" class="anchor"></a><span class="header-section-number">10.3</span> More General Plotting with <strong><em>ggplot2</em></strong>
-</h2>
-<p>For more general plotting, <code class="sourceCode r"><span class="kw">as.long.df</span>()</code> transforms a <code class="sourceCode r">hyperSpec</code> object into a long-form <code class="sourceCode r">data.frame</code> that is suitable for <code class="sourceCode r"><span class="kw">qplot</span>()</code>, while <code class="sourceCode r"><span class="kw">as.t.df</span>()</code> produces a <code class="sourceCode r">data.frame</code> where each spectrum is one column, and an additional first column gives the wavelength.
-Long <code class="sourceCode r">data.frame</code>s can be <em>very</em> memory consuming as they are of size <span class="math inline">\(nrow · nwl × (ncol + 2)\)</span> with respect to the dimensions of the <code class="sourceCode r">hyperSpec</code> object.
-Thus, e.g., the <code class="sourceCode r">chondro</code> data set (2 MB) as <code class="sourceCode r">hyperSpec</code> object) needs 28 MB as long-format <code class="sourceCode r">data.frame</code>.
-It is therefore highly recommended to calculate the particular data to be plotted beforehand<!-- (Fig. \@ref(fig:ggplotmeansd))-->.</p>
-<div class="sourceCode" id="cb76"><pre class="downlit">
-<span class="fu"><a href="../reference/qplotspc.html">qplotspc</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="kw">chondro</span>)) <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_ribbon.html">geom_ribbon</a></span>(<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(
-    ymin = <span class="kw">mean</span> <span class="op">+</span> <span class="kw">sd</span>,
-    ymax = <span class="kw">mean</span> <span class="op">-</span> <span class="kw">sd</span>,
-    y = <span class="fl">0</span>,
-    group = <span class="fl">NA</span>
-  ),
-  alpha = <span class="fl">0.25</span>,
-  data = <span class="fu"><a href="../reference/as.data.frame.html">as.t.df</a></span>(<span class="fu"><a href="../reference/mean_sd,numeric-method.html">mean_sd</a></span>(<span class="kw">chondro</span>))
-  )
-</pre></div>
-<p>Note that <code class="sourceCode r"><span class="kw">qpotspc</span>()</code> specifies aesthetics <code>y = spc</code> and <code>groups = .rownames</code>, which do not have corresponding columns in the <code>data.frame</code> returned by <code class="sourceCode r"><span class="kw">as.t.df</span>()</code>.
-These aesthetics must therefore be set manually in the aesthetics definition in <code class="sourceCode r"><span class="kw">geom_ribbon</span>()</code> (or any other <code class="sourceCode r">geom_<span class="op">*</span>()</code> that uses <code class="sourceCode r"><span class="kw">as.t.df</span>()</code>).
-Otherwise, errors occur that object <code>spc</code> (and/or <code>.rownames</code>) cannot be found.
-Cut axes can be implemented by faceting (Fig. <a href="#fig:ggplotspccut">10.3</a>).</p>
-<div class="sourceCode" id="cb77"><pre class="downlit">
-<span class="fu"><a href="../reference/qplotspc.html">qplotspc</a></span>(<span class="kw">paracetamol</span> <span class="op">/</span> <span class="fl">1e4</span>, wl.range = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">min</span> <span class="op">~</span> <span class="fl">1800</span>, <span class="fl">2800</span> <span class="op">~</span> <span class="kw">max</span>)) <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span>(breaks = <span class="fu"><a href="../reference/seq.hyperSpec.html">seq</a></span>(<span class="fl">0</span>, <span class="fl">3200</span>, <span class="fl">400</span>))
-</pre></div>
-<div class="figure" style="text-align: center">
-<span id="fig:ggplotspccut"></span>
-<img src="plotting_files/figure-html/ggplotspccut-1.png" alt="Cut spectra with package **ggplot2**.   "><p class="caption">
-Figure 10.3: Cut spectra with package <strong>ggplot2</strong>.
-</p>
-</div>
-<!-- ======================================================================= -->
-<!-- ======================================================================= -->
-</div>
-</div>
 <div id="interactive-plots" class="section level1">
 <h1 class="hasAnchor">
-<a href="#interactive-plots" class="anchor"></a><span class="header-section-number">11</span> Interactive Graphics</h1>
+<a href="#interactive-plots" class="anchor"></a><span class="header-section-number">10</span> Interactive Graphics</h1>
 <p>Package <strong>hyperSpec</strong> offers basic interaction, <code class="sourceCode r"><span class="kw">spc.identify</span>()</code> for spectra plots, and <code class="sourceCode r"><span class="kw">map.identify</span>()</code> and <code class="sourceCode r"><span class="kw">map.sel.poly</span>()</code> for maps.
 The first two identify points in spectra plots and map plots, respectively.
 Function <code class="sourceCode r"><span class="kw">map.sel.poly</span>()</code> selects the part of a <code class="sourceCode r">hyperSpec</code> object that lies inside the user defined polygon.</p>
 <div id="sec:spc-identify" class="section level2">
 <h2 class="hasAnchor">
-<a href="#sec:spc-identify" class="anchor"></a><span class="header-section-number">11.1</span> <code class="sourceCode r"><span class="kw">spc.identify</span>()</code> Finding Out Wavelength, Intensity and Spectrum</h2>
+<a href="#sec:spc-identify" class="anchor"></a><span class="header-section-number">10.1</span> <code class="sourceCode r"><span class="kw">spc.identify</span>()</code> Finding Out Wavelength, Intensity and Spectrum</h2>
 <p>Function <code class="sourceCode r"><span class="kw">spc.identify</span>()</code> allows to measure points in graphics produced by <code class="sourceCode r"><span class="kw">plotspc</span>()</code>.
 It works correctly with reversed and cut wavelength axes.</p>
-<div class="sourceCode" id="cb78"><pre class="downlit">
+<div class="sourceCode" id="cb75"><pre class="downlit">
 <span class="fu"><a href="../reference/spc.identify.html">spc.identify</a></span>(<span class="fu"><a href="../reference/plotspc.html">plotspc</a></span>(<span class="kw">paracetamol</span>, wl.range = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">600</span> <span class="op">~</span> <span class="fl">1800</span>, <span class="fl">2800</span> <span class="op">~</span> <span class="fl">3200</span>), xoffset = <span class="fl">800</span>))
 </pre></div>
 <p>The result is a data.frame with the indices of the spectra, the wavelength, and its intensity.</p>
 </div>
 <div id="sec:map-identify" class="section level2">
 <h2 class="hasAnchor">
-<a href="#sec:map-identify" class="anchor"></a><span class="header-section-number">11.2</span> <code class="sourceCode r"><span class="kw">map.identify</span>()</code> finding a spectrum in a map plot</h2>
+<a href="#sec:map-identify" class="anchor"></a><span class="header-section-number">10.2</span> <code class="sourceCode r"><span class="kw">map.identify</span>()</code> finding a spectrum in a map plot</h2>
 <p>Function <code class="sourceCode r"><span class="kw">map.identify</span>()</code> returns the spectra indices of the clicked points.</p>
-<div class="sourceCode" id="cb79"><pre class="downlit">
-<span class="fu"><a href="../reference/plotmap.html">map.identify</a></span>(<span class="kw">chondro</span>)
+<div class="sourceCode" id="cb76"><pre class="downlit">
+<span class="fu"><a href="../reference/plotmap.html">map.identify</a></span>(<span class="kw">faux_cell</span>[, , <span class="fl">1200</span>])
 </pre></div>
 </div>
 <div id="sec:map-sel-poly" class="section level2">
 <h2 class="hasAnchor">
-<a href="#sec:map-sel-poly" class="anchor"></a><span class="header-section-number">11.3</span> <code class="sourceCode r"><span class="kw">map.sel.poly</span>()</code> selecting spectra inside a polygon in a map plot</h2>
+<a href="#sec:map-sel-poly" class="anchor"></a><span class="header-section-number">10.3</span> <code class="sourceCode r"><span class="kw">map.sel.poly</span>()</code> selecting spectra inside a polygon in a map plot</h2>
 <p>Function <code class="sourceCode r"><span class="kw">map.sel.poly</span>()</code> returns a logical indicating which spectra are inside the polygon drawn by the user:</p>
-<div class="sourceCode" id="cb80"><pre class="downlit">
-<span class="fu"><a href="../reference/map.sel.poly.html">map.sel.poly</a></span>(<span class="kw">chondro</span>)
+<div class="sourceCode" id="cb77"><pre class="downlit">
+<span class="fu"><a href="../reference/map.sel.poly.html">map.sel.poly</a></span>(<span class="kw">faux_cell</span>[, , <span class="fl">1200</span>])
 </pre></div>
 </div>
 <div id="sec:identify-other" class="section level2">
 <h2 class="hasAnchor">
-<a href="#sec:identify-other" class="anchor"></a><span class="header-section-number">11.4</span> Related Functions Provided by Base Graphics and <strong><em>lattice</em></strong>
+<a href="#sec:identify-other" class="anchor"></a><span class="header-section-number">10.4</span> Related Functions Provided by Base Graphics and <strong><em>lattice</em></strong>
 </h2>
 <p>For base graphics (as produced by <code class="sourceCode r"><span class="kw">plotspc</span>()</code>), <code class="sourceCode r"><span class="kw">locator</span>()</code> may be useful as well.
 It returns the clicked coordinates. Note that these are <em>not</em> transformed according to <code>xoffset</code> &amp; Co.</p>
 <p>For lattice graphics, <code class="sourceCode r"><span class="kw">grid.locator</span>()</code> may be used instead.
 If it is not called in the panel function, a preceding call to <code class="sourceCode r"><span class="kw">trellis.focus</span>()</code> is needed:</p>
-<div class="sourceCode" id="cb81"><pre class="downlit">
+<div class="sourceCode" id="cb78"><pre class="downlit">
 <span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">laser</span>, <span class="st">"mat"</span>)
 <span class="fu">trellis.focus</span>()
 <span class="fu">grid.locator</span>()
@@ -1539,10 +1471,10 @@ Note that the returned indices correspond to the plotted object.</p>
 </div>
 <div id="sec:troubleshooting" class="section level1">
 <h1 class="hasAnchor">
-<a href="#sec:troubleshooting" class="anchor"></a><span class="header-section-number">12</span> Troubleshooting</h1>
+<a href="#sec:troubleshooting" class="anchor"></a><span class="header-section-number">11</span> Troubleshooting</h1>
 <div id="sec:no-output-produced" class="section level2">
 <h2 class="hasAnchor">
-<a href="#sec:no-output-produced" class="anchor"></a><span class="header-section-number">12.1</span> No Output Is Produced</h2>
+<a href="#sec:no-output-produced" class="anchor"></a><span class="header-section-number">11.1</span> No Output Is Produced</h2>
 <p>Methods <code class="sourceCode r">plotmap</code>, <code class="sourceCode r">plotvoronoi</code>, <code class="sourceCode r">levelplot</code>, and <code class="sourceCode r">plotc</code> use package <strong>lattice</strong> functions.
 Therefore, in loops, functions, Sweave, R Markdown chunks, etc. the lattice object needs to be printed explicitly by <code class="sourceCode r"><span class="kw">print</span>(<span class="kw">plotmap</span>(object))</code>
 (<a href="http://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-do-lattice_002ftrellis-graphics-not-work_003f">R FAQ: Why do lattice/trellis graphics not work?</a>).
@@ -1552,7 +1484,7 @@ The same holds for package <strong>ggplot2</strong> graphics.</p>
 <div id="session-info" class="section level1 unnumbered">
 <h1 class="hasAnchor">
 <a href="#session-info" class="anchor"></a>Session Info</h1>
-<div class="sourceCode" id="cb82"><pre class="downlit">
+<div class="sourceCode" id="cb79"><pre class="downlit">
 <span class="kw">sessioninfo</span>::<span class="fu"><a href="https://rdrr.io/pkg/sessioninfo/man/session_info.html">session_info</a></span>(<span class="st">"hyperSpec"</span>)
 <span class="co">#&gt; ─ Session info ───────────────────────────────────────────────────────────────────────────────────</span>
 <span class="co">#&gt;  setting  value                       </span>
@@ -1655,12 +1587,6 @@ The same holds for package <strong>ggplot2</strong> graphics.</p>
 </div>
 <div id="ref-R-rgl">
 <p>[8] D. Adler, D. Murdoch, Rgl: 3D visualization using opengl, 2020. <a href="https://CRAN.R-project.org/package=rgl">https://CRAN.R-project.org/package=rgl</a>.</p>
-</div>
-<div id="ref-R-ggplot2">
-<p>[9] H. Wickham, W. Chang, L. Henry, T.L. Pedersen, K. Takahashi, C. Wilke, K. Woo, H. Yutani, D. Dunnington, Ggplot2: Create elegant data visualisations using the grammar of graphics, 2020. <a href="https://CRAN.R-project.org/package=ggplot2">https://CRAN.R-project.org/package=ggplot2</a>.</p>
-</div>
-<div id="ref-ggplot22016">
-<p>[10] H. Wickham, Ggplot2: Elegant graphics for data analysis, Springer-Verlag New York, 2016. <a href="https://ggplot2.tidyverse.org">https://ggplot2.tidyverse.org</a>.</p>
 </div>
 </div>
 </div>
