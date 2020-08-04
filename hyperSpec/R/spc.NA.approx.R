@@ -1,10 +1,10 @@
-#' Impute missing data points.
+#' Impute Missing Data Points
 #'
 #' Replace `NA`s in the spectra matrix by interpolation. With
 #' less than 4 points available linear interpolation of the 2 neighbour points
 #' is used. For larger numbers of neighbour points, smoothing interpolation is
 #'  performed by [stats::smooth.spline()].
-#' @note The function has been renamed from `spc.NA.linapprox` to `spc.NA.approx`
+#'
 #' @param spc hyperSpec object with spectra matrix containing `NA`s
 #' @param neighbours how many neighbour data points should be used to fit the
 #'   line
@@ -115,12 +115,6 @@ spc.NA.approx <- function(spc, neighbours = 1, w = rep(1, 2 * neighbours),
   spc
 }
 
-#' @rdname spc.NA.approx
-#' @param ... ignored
-spc.NA.linapprox <- function(...) {
-  stop("spc.NA.linapprox has been renamed to spc.NA.approx")
-}
-
 
 # Unit tests -----------------------------------------------------------------
 
@@ -165,10 +159,5 @@ spc.NA.linapprox <- function(...) {
         )
       }
     }
-  })
-
-
-  test_that("spc.NA.linapprox deprecated", {
-    expect_error(spc.NA.linapprox(fluNA))
   })
 }
