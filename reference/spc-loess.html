@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>LOESS smoothing interpolation for spectra. — spc.loess • hyperSpec</title>
+<title>LOESS Smoothing Interpolation for Spectra — spc.loess • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,8 +41,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="LOESS smoothing interpolation for spectra. — spc.loess" />
-<meta property="og:description" content="Spectra can be smoothed and interpolated on a new wavelength axis using
+<meta property="og:title" content="LOESS Smoothing Interpolation for Spectra — spc.loess" />
+<meta property="og:description" content="Spectra smoothing and interpolation on a new wavelength axis using
 stats::loess()." />
 
 <meta name="robots" content="noindex" />
@@ -156,13 +156,13 @@ stats::loess()." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>LOESS smoothing interpolation for spectra.</h1>
+    <h1>LOESS Smoothing Interpolation for Spectra</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/spc.loess.R'><code>R/spc.loess.R</code></a></small>
     <div class="hidden name"><code>spc-loess.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Spectra can be smoothed and interpolated on a new wavelength axis using
+    <p>Spectra smoothing and interpolation on a new wavelength axis using
 <code><a href='https://rdrr.io/r/stats/loess.html'>stats::loess()</a></code>.</p>
     </div>
 
@@ -173,28 +173,29 @@ stats::loess()." />
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>spc</th>
-      <td><p>the <code>hyperSpec</code> object</p></td>
+      <td><p>The <code>hyperSpec</code> object.</p></td>
     </tr>
     <tr>
       <th>newx</th>
-      <td><p>wavelengh axis to interpolate on</p></td>
+      <td><p>Wavelength axis to interpolate on.</p></td>
     </tr>
     <tr>
       <th>enp.target, surface, ...</th>
-      <td><p>parameters for <code><a href='https://rdrr.io/r/stats/loess.html'>stats::loess()</a></code> and
+      <td><p>Further parameters for <code><a href='https://rdrr.io/r/stats/loess.html'>stats::loess()</a></code> and
 <code><a href='https://rdrr.io/r/stats/loess.control.html'>stats::loess.control()</a></code>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A new <code>hyperSpec</code> object.</p>
+    <p>A new  <code>hyperSpec</code> object.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Applying <code><a href='https://rdrr.io/r/stats/loess.html'>stats::loess()</a></code> to each of the spectra, an interpolation onto a new
-wavelength axis is performed.  At the same time, the specta are smoothed in order to increase the
-signal : noise ratio. See <code><a href='https://rdrr.io/r/stats/loess.html'>stats::loess()</a></code> and <code><a href='https://rdrr.io/r/stats/loess.control.html'>stats::loess.control()</a></code> on
-the parameters that control the amount of smoothing.</p>
+wavelength axis is performed. At the same time, the spectra are smoothed in
+order to increase the signal to noise ratio. See <code><a href='https://rdrr.io/r/stats/loess.html'>stats::loess()</a></code> and
+<code><a href='https://rdrr.io/r/stats/loess.control.html'>stats::loess.control()</a></code> on the parameters that control the amount of
+smoothing.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='https://rdrr.io/r/stats/loess.html'>stats::loess()</a></code>, <code><a href='https://rdrr.io/r/stats/loess.control.html'>stats::loess.control()</a></code></p></div>
@@ -203,23 +204,29 @@ the parameters that control the amount of smoothing.</p>
     <p>C. Beleites</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>flu</span>, col = <span class='st'>"darkgray"</span>)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='fu'>spc.loess</span>(<span class='kw'>flu</span>, <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>420</span>, <span class='fl'>470</span>, <span class='fl'>5</span>)), add = <span class='fl'>TRUE</span>, col = <span class='st'>"red"</span>)</div><div class='input'>
-<span class='kw'>flu</span>[[<span class='fl'>3</span>, ]] <span class='op'>&lt;-</span> <span class='fl'>NA_real_</span>
-<span class='kw'>smooth</span> <span class='op'>&lt;-</span> <span class='fu'>spc.loess</span>(<span class='kw'>flu</span>, <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>420</span>, <span class='fl'>470</span>, <span class='fl'>5</span>))</div><div class='output co'>#&gt; <span class='warning'>Warning: NAs were generated. Probably newx was outside the spectral range covered by spc.</span></div><div class='input'><span class='kw'>smooth</span>[[, ]]</div><div class='output co'>#&gt;           [,1]      [,2]      [,3]     [,4]     [,5]     [,6]     [,7]     [,8]
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>flu</span>, package = <span class='st'>"hyperSpec"</span>)
+<span class='fu'>nwl</span>(<span class='kw'>flu</span>)</div><div class='output co'>#&gt; [1] 181</div><div class='input'>
+<span class='kw'>smoothed_flu</span> <span class='op'>&lt;-</span> <span class='fu'>spc.loess</span>(<span class='kw'>flu</span>, <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>420</span>, <span class='fl'>470</span>, <span class='fl'>5</span>))
+<span class='fu'>nwl</span>(<span class='kw'>smoothed_flu</span>)</div><div class='output co'>#&gt; [1] 11</div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>flu</span>, col = <span class='st'>"darkgray"</span>)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>smoothed_flu</span>, add = <span class='fl'>TRUE</span>, col = <span class='st'>"red"</span>)</div><div class='img'><img src='spc-loess-1.png' alt='' width='466' height='288' /></div><div class='input'>
+
+<span class='kw'>flu_na</span> <span class='op'>&lt;-</span> <span class='kw'>flu</span>
+<span class='kw'>flu_na</span>[[<span class='fl'>3</span>, ]] <span class='op'>&lt;-</span> <span class='fl'>NA_real_</span>
+<span class='kw'>flu_na_smoothed</span> <span class='op'>&lt;-</span> <span class='fu'>spc.loess</span>(<span class='kw'>flu_na</span>, <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>420</span>, <span class='fl'>470</span>, <span class='fl'>5</span>))</div><div class='output co'>#&gt; <span class='warning'>Warning: NAs were generated. Probably `newx` was outside the spectral range covered by `spc`.</span></div><div class='input'><span class='kw'>flu_na_smoothed</span>[[]]</div><div class='output co'>#&gt;            420       425       430      435      440      445      450      455
 #&gt; [1,]  69.37812  80.30948  91.84728 100.2360 104.5292 104.9064 105.7577 104.8149
 #&gt; [2,] 139.77571 164.01308 186.70646 202.3563 210.6401 213.3784 213.4778 211.8374
 #&gt; [3,]        NA        NA        NA       NA       NA       NA       NA       NA
 #&gt; [4,] 294.90432 342.15512 392.92353 425.2415 440.4607 445.2538 447.5044 440.8911
 #&gt; [5,] 362.00455 427.75670 487.47455 529.7585 550.0944 556.9861 554.9146 548.4495
 #&gt; [6,] 442.89661 519.84822 593.45501 644.1054 669.0614 674.8410 672.3328 666.8127
-#&gt;           [,9]    [,10]     [,11]
+#&gt;            460      465       470
 #&gt; [1,]  99.62751  92.9669  84.80506
 #&gt; [2,] 201.97621 187.6462 169.38644
 #&gt; [3,]        NA       NA        NA
 #&gt; [4,] 421.76483 391.7258 354.35753
 #&gt; [5,] 524.96452 487.5104 441.95012
-#&gt; [6,] 639.70144 594.3875 539.25115</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>smooth</span>, add = <span class='fl'>TRUE</span>, col = <span class='st'>"blue"</span>)</div><div class='img'><img src='spc-loess-1.png' alt='' width='466' height='288' /></div></pre>
+#&gt; [6,] 639.70144 594.3875 539.25115</div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>flu</span>, col = <span class='st'>"darkgray"</span>)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>flu_na_smoothed</span>, add = <span class='fl'>TRUE</span>, col = <span class='st'>"blue"</span>)</div><div class='img'><img src='spc-loess-2.png' alt='' width='466' height='288' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

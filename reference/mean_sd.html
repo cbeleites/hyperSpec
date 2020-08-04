@@ -212,8 +212,9 @@ standard deviation, respectively.</p>
     <tr>
       <th>names</th>
       <td><p><code>"pretty"</code> results in percentages (like <code><a href='https://rdrr.io/r/stats/quantile.html'>stats::quantile()</a></code>'s
-<code>names = TRUE</code>), <code>"num"</code> results in the row names being <code><a href='https://rdrr.io/r/base/character.html'>as.character (probs)</a></code>
-(good for ggplot2 getting the order of the quantiles right). Otherwise, no names are assigned.</p></td>
+<code>names = TRUE</code>), <code>"num"</code> results in the row names being <code><a href='https://rdrr.io/r/base/character.html'>as.character(probs)</a></code>
+(good for ggplot2 getting the order of the quantiles right). Otherwise, no
+names are assigned.</p></td>
     </tr>
     </table>
 
@@ -443,7 +444,17 @@ containing the respective quantile spectra.</p>
 #&gt; data:  (3 rows x 1 columns)
 #&gt;    1. spc: I[fl]/"a.u." [matrix, array181] 49.95778 113.90939 ... 264.2841 </div><div class='input'>
 <span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span>(<span class='kw'>faux_cell</span>))</div><div class='img'><img src='mean_sd-1.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/quantile.html'>quantile</a></span>(<span class='kw'>faux_cell</span>))</div><div class='img'><img src='mean_sd-2.png' alt='' width='466' height='288' /></div></pre>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/quantile.html'>quantile</a></span>(<span class='kw'>faux_cell</span>))</div><div class='img'><img src='mean_sd-2.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='kw'>flu_quantiles</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/quantile.html'>quantile</a></span>(<span class='kw'>flu</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span>(<span class='kw'>flu_quantiles</span>)</div><div class='output co'>#&gt; [1] "0"   "0.5" "1"  </div><div class='input'><span class='kw'>flu_quantiles</span><span class='op'>$</span><span class='kw'>..</span></div><div class='output co'>#&gt;     filename  c
+#&gt; 0       &lt;NA&gt; NA
+#&gt; 0.5     &lt;NA&gt; NA
+#&gt; 1       &lt;NA&gt; NA</div><div class='input'>
+<span class='kw'>flu_pretty_quantiles</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/quantile.html'>quantile</a></span>(<span class='kw'>flu</span>, names = <span class='st'>"pretty"</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span>(<span class='kw'>flu_pretty_quantiles</span>)</div><div class='output co'>#&gt; [1] "  0 %" " 50 %" "100 %"</div><div class='input'><span class='kw'>flu_pretty_quantiles</span><span class='op'>$</span><span class='kw'>..</span></div><div class='output co'>#&gt;       filename  c
+#&gt;   0 %     &lt;NA&gt; NA
+#&gt;  50 %     &lt;NA&gt; NA
+#&gt; 100 %     &lt;NA&gt; NA</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

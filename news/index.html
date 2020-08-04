@@ -175,8 +175,13 @@
 <ul>
 <li>
 <code>NEWS.md</code> (this file) added so that users can readily see changes that may affect the use of the package.</li>
-<li>
-</li>
+<li>Documentation now available in <code>pkgdown</code> sites (<a href="https://r-hyperspec.github.io/" class="uri">https://r-hyperspec.github.io/</a>).</li>
+<li>Introductory vignette reorganized and enhanced, thanks to Bryan Hanson.</li>
+<li>Portions of <code>hyperSpec</code> were spun out into their own packages for ease of maintenance. ELABORATE</li>
+<li>Dataset <code>faux_cell</code> and function <code>generate_faux_cell</code> replace <code>chondro</code> dataset (<a href='https://github.com/cbeleites/hyperSpec/issues/125'>#125</a>, <a href='https://github.com/cbeleites/hyperSpec/issues/156'>#156</a>, <a href='https://github.com/cbeleites/hyperSpec/issues/180'>#180</a>, <a href='https://github.com/cbeleites/hyperSpec/issues/229'>#229</a>).</li>
+<li>Dataset <code>chondro</code> was moved to package <strong>hySpc.chondro</strong> (<a href="https://r-hyperspec.github.io/hySpc.chondro/" class="uri">https://r-hyperspec.github.io/hySpc.chondro/</a>).</li>
+<li>Function <code>spc.NA.linapprox()</code>, which was deprecated for long time, is now completely removed (<a href='https://github.com/cbeleites/hyperSpec/issues/239'>#239</a>).</li>
+<li>Column names in spectra matrix (<code>$spc</code> column of <code>hyperSpec</code> object) are now returned correctly by functions <code><a href="https://rdrr.io/pkg/hyperSpec/man/spc-bin.html">spc.bin()</a></code> (<a href='https://github.com/cbeleites/hyperSpec/issues/237'>#237</a>), and <code><a href="https://rdrr.io/pkg/hyperSpec/man/spc-loess.html">spc.loess()</a></code> (<a href='https://github.com/cbeleites/hyperSpec/issues/245'>#245</a>).</li>
 </ul>
 </div>
 <div id="non-user-facing-changes-from-099-series" class="section level2">
@@ -184,8 +189,7 @@
 <a href="#non-user-facing-changes-from-099-series" class="anchor"></a>Non-User-Facing Changes from 0.99 Series</h2>
 <ul>
 <li>Note: this listing is for the benefit of developers, and should summarize significant infrastructure changes.</li>
-<li>
-</li>
+<li>Vignettes converted to <code>.Rmd</code> and formatted consistently, thanks to Vilmantas Gegzna.</li>
 </ul>
 </div>
 </div>

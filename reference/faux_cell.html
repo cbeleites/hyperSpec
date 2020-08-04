@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Faux Cell Data Set for Testing &amp; Demonstration. — faux_cell • hyperSpec</title>
+<title>Faux Cell Data Set for Testing &amp; Demonstration — generate_faux_cell • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,8 +41,14 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Faux Cell Data Set for Testing &amp; Demonstration. — faux_cell" />
-<meta property="og:description" content="This is a synthetic data set intended for testing and demonstration." />
+<meta property="og:title" content="Faux Cell Data Set for Testing &amp; Demonstration — generate_faux_cell" />
+<meta property="og:description" content="This is a synthetic data set intended for testing and demonstration.
+Function generate_faux_cell() simulates the faux cell data (note: in
+the future, it is planned to parameterize thefuncion) and object faux_cell
+is an instance of this dataset generated first time it is used.
+The data set resembles the
+chondro
+data set but is entirely synthetic." />
 
 <meta name="robots" content="noindex" />
 
@@ -155,35 +161,44 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Faux Cell Data Set for Testing &amp; Demonstration.</h1>
+    <h1>Faux Cell Data Set for Testing &amp; Demonstration</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/faux_cell.R'><code>R/faux_cell.R</code></a></small>
     <div class="hidden name"><code>faux_cell.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This is a synthetic data set intended for testing and demonstration.</p>
+    <p>This is a synthetic data set intended for testing and demonstration.
+Function <code>generate_faux_cell()</code> simulates the faux cell data (<em>note:</em> in
+the future, it is planned to parameterize thefuncion) and object <code>faux_cell</code>
+is an instance of this dataset generated first time it is used.</p>
+<p>The data set resembles the
+<a href='https://r-hyperspec.github.io/hySpc.chondro/'><code>chondro</code></a>
+data set but is entirely synthetic.</p>
     </div>
 
-    <pre class="usage"><span class='kw'>faux_cell</span></pre>
+    <pre class="usage"><span class='fu'>generate_faux_cell</span>()
+
+<span class='kw'>faux_cell</span></pre>
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>The object contains 875 Raman-like spectra, allocated to three
-groups/regions in column region: the matrix/background, the cell and the
-cell nucleus. Each spectrum is composed of 300 data points.  The spectrum
-of each region is unique and simple, with a single peak at a particular
-frequency and line width.  Poisson noise has been added.  The data is
-indexed along the x and y dimensions, simulating data collected on a grid.</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>The data set resembles the <code>chondro</code> data set but is entirely synthetic.</p>
+    <p>The object <code>faux_cell</code> is a <code>hyperSpec</code> object that contains 875
+Raman-like spectra, allocated to three groups/regions in column region:
+the matrix/background, the cell and the cell nucleus. Each spectrum is
+composed of 300 data points. The spectrum of each region is unique and
+simple, with a single peak at a particular frequency and line width.
+Poisson noise has been added. The data is indexed along the x and y
+dimensions, simulating data collected on a grid.</p>
+<p>An object of class <code>hyperSpec</code> of dimension 875 x 4 x 300.</p>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Claudia Beleites, Bryan A. Hanson</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>1</span>)
+<span class='kw'>faux_cell</span> <span class='op'>&lt;-</span> <span class='fu'>generate_faux_cell</span>()
+
 <span class='kw'>faux_cell</span></div><div class='output co'>#&gt; hyperSpec object
 #&gt;    875 spectra
 #&gt;    4 data columns
@@ -193,11 +208,11 @@ indexed along the x and y dimensions, simulating data collected on a grid.</p>
 #&gt;    1. x: x position [numeric] -11.55 -10.55 ... 22.45 
 #&gt;    2. y: y position [numeric] -4.77 -4.77 ... 19.23 
 #&gt;    3. region:  [factor] matrix matrix ... matrix 
-#&gt;    4. spc: intensity (arbitrary units) [matrix, array300] 15 168 ... 93 </div><div class='input'>
+#&gt;    4. spc: intensity (arbitrary units) [matrix, array300] 54 75 ... 108 </div><div class='input'>
 <span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='kw'>faux_cell</span>, <span class='fl'>10</span>), stacked = <span class='fl'>TRUE</span>)</div><div class='img'><img src='faux_cell-1.png' alt='' width='466' height='288' /></div><div class='input'>
 <span class='co'># Plot mean spectra</span>
-<span class='kw'>FCgrps</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/aggregate.html'>aggregate</a></span>(<span class='kw'>faux_cell</span>, <span class='kw'>faux_cell</span><span class='op'>$</span><span class='kw'>region</span>, <span class='kw'>mean_pm_sd</span>)
-<span class='fu'>plotspc</span>(<span class='kw'>FCgrps</span>,
+<span class='kw'>fc_groups</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/aggregate.html'>aggregate</a></span>(<span class='kw'>faux_cell</span>, <span class='kw'>faux_cell</span><span class='op'>$</span><span class='kw'>region</span>, <span class='kw'>mean_pm_sd</span>)
+<span class='fu'>plotspc</span>(<span class='kw'>fc_groups</span>,
   stacked = <span class='st'>".aggregate"</span>,
   col = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"red"</span>, <span class='st'>"green"</span>, <span class='st'>"blue"</span>), fill = <span class='st'>".aggregate"</span>
 )</div><div class='img'><img src='faux_cell-2.png' alt='' width='466' height='288' /></div><div class='input'>

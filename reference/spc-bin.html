@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Wavelength Binning. — spc.bin • hyperSpec</title>
+<title>Wavelength Binning — spc.bin • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,7 +41,7 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Wavelength Binning. — spc.bin" />
+<meta property="og:title" content="Wavelength Binning — spc.bin" />
 <meta property="og:description" content="In order to reduce the spectral resolution and thus gain signal to noise
 ratio or to reduce the dimensionality of the spectral data set, the
 spectral resolution can be reduced." />
@@ -157,7 +157,7 @@ spectral resolution can be reduced." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Wavelength Binning.</h1>
+    <h1>Wavelength Binning</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/spc.bin.R'><code>R/spc.bin.R</code></a></small>
     <div class="hidden name"><code>spc-bin.Rd</code></div>
     </div>
@@ -175,42 +175,43 @@ spectral resolution can be reduced.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>spc</th>
-      <td><p>the <code>hyperSpec</code> object</p></td>
+      <td><p>The <code>hyperSpec</code> object.</p></td>
     </tr>
     <tr>
       <th>by</th>
-      <td><p>reduction factor</p></td>
+      <td><p>Reduction factor.</p></td>
     </tr>
     <tr>
       <th>na.rm</th>
-      <td><p>decides about the treatment of <code>NA</code>s:</p>
-<p>if <code>FALSE</code> or <code>0</code>, the binning is done using <code>na.rm = FALSE</code></p>
-<p>if <code>TRUE</code> or <code>1</code>, the binning is done using <code>na.rm = TRUE</code></p>
-<p>if <code>2</code>, the binning is done using <code>na.rm = FALSE</code>, and resulting <code>NA</code>s are
-corrected with <code>mean(...{}, na.rm = TRUE)</code>.</p></td>
+      <td><p>decides about the treatment of <code>NA</code>s:</p><ul>
+<li><p>if <code>FALSE</code> or <code>0</code>, the binning is done using <code>na.rm = FALSE</code>,</p></li>
+<li><p>if <code>TRUE</code> or <code>1</code>, the binning is done using <code>na.rm = TRUE</code>,</p></li>
+<li><p>if <code>2</code>, the binning is done using <code>na.rm = FALSE</code>, and resulting <code>NA</code>s are
+corrected with <code><a href='https://rdrr.io/r/base/mean.html'>mean(..., na.rm = TRUE)</a></code>. See section "Details".</p></li>
+</ul></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>ignored</p></td>
+      <td><p>Ignored.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A <code>hyperSpec</code> object with <code><a href='https://rdrr.io/r/base/Round.html'>ceiling (nwl (spc) / by)</a></code> data points per spectrum.</p>
+    <p>A <code>hyperSpec</code> object with
+<code><a href='https://rdrr.io/r/base/Round.html'>ceiling(nwl(spc)/by)</a></code> data points per spectrum.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>The mean of every <code>by</code> data points in the spectra is calculated.</p>
 <p>Using <code>na.rm = TRUE</code> always takes about twice as long as <code>na.rm = FALSE</code>.</p>
-<p>If the spectra matrix does not contain too many <code>NA</code>s, <code>na.rm = 2</code> is faster than
-<code>na.rm = TRUE</code>.</p>
+<p>If the spectra matrix does not contain too many <code>NA</code>s, <code>na.rm = 2</code> is
+faster than <code>na.rm = TRUE</code>.</p>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>C. Beleites</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='kw'>spc</span> <span class='op'>&lt;-</span> <span class='fu'>spc.bin</span>(<span class='kw'>flu</span>, <span class='fl'>5</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Last data point averages only 1 points.</span></div><div class='input'>
+    <pre class="examples"><div class='input'><span class='kw'>spc</span> <span class='op'>&lt;-</span> <span class='fu'>spc.bin</span>(<span class='kw'>flu</span>, <span class='fl'>5</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Last data point averages only 1 point.</span></div><div class='input'>
 <span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>flu</span>[<span class='fl'>1</span>, , <span class='fl'>425</span><span class='op'>:</span><span class='fl'>475</span>])</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>spc</span>[<span class='fl'>1</span>, , <span class='fl'>425</span><span class='op'>:</span><span class='fl'>475</span>], add = <span class='fl'>TRUE</span>, col = <span class='st'>"blue"</span>)</div><div class='img'><img src='spc-bin-1.png' alt='' width='466' height='288' /></div><div class='input'>
 <span class='fu'>nwl</span>(<span class='kw'>flu</span>)</div><div class='output co'>#&gt; [1] 181</div><div class='input'><span class='fu'>nwl</span>(<span class='kw'>spc</span>)</div><div class='output co'>#&gt; [1] 37</div></pre>
   </div>

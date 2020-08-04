@@ -129,7 +129,7 @@
 <br><a class="author_email" href="mailto:#"></a><a href="mailto:chemometrie@beleites.de" class="email">chemometrie@beleites.de</a>
       </address>
                   
-            <h4 class="date">2020-06-23</h4>
+            <h4 class="date">2020-08-04</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/cbeleites/hyperSpec/blob/master/../vignettes/flu.Rmd"><code>../vignettes/flu.Rmd</code></a></small>
       <div class="hidden name"><code>flu.Rmd</code></div>
@@ -153,7 +153,7 @@ They were acquired during an student practicum and were kindly provided by M. Ka
 Spectra were acquired with a Perkin Elmer LS50-B fluorescence spectrometer at 350 nm excitation.</p>
 <div id="writing-an-import-function" class="section level1">
 <h1 class="hasAnchor">
-<a href="#writing-an-import-function" class="anchor"></a><span class="header-section-number">1</span> Writing an Import Function</h1>
+<a href="#writing-an-import-function" class="anchor"></a>Writing an Import Function</h1>
 <p>The raw spectra are in Perkin Elmer’s ASCII file format, one spectrum per file.
 The files are completely ASCII text, with the actual spectra starting at line 55.</p>
 <!-- ======================================================================= -->
@@ -181,7 +181,7 @@ The files are completely ASCII text, with the actual spectra starting at line 55
 <span class="co">#&gt; wavelength: lambda/nm [numeric] 405.0 405.5 ... 495 </span>
 <span class="co">#&gt; data:  (6 rows x 2 columns)</span>
 <span class="co">#&gt;    1. spc: I[fl]/"a.u." [matrix, array181] 27.150 66.801 ... 294.65 </span>
-<span class="co">#&gt;    2. filename: filename [character] /Users/runner/runners/2.169.1/work/_temp/Library/hyperSpec/extdata/flu/flu1.txt /Users/runner/runners/2.169.1/work/_temp/Library/hyperSpec/extdata/flu/flu2.txt ... /Users/runner/runners/2.169.1/work/_temp/Library/hyperSpec/extdata/flu/flu6.txt</span>
+<span class="co">#&gt;    2. filename: filename [character] /Users/runner/work/_temp/Library/hyperSpec/extdata/flu/flu1.txt /Users/runner/work/_temp/Library/hyperSpec/extdata/flu/flu2.txt ... /Users/runner/work/_temp/Library/hyperSpec/extdata/flu/flu6.txt</span>
 </pre></div>
 <div class="sourceCode" id="cb3"><pre class="downlit">
 <span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">flu</span>)
@@ -189,13 +189,13 @@ The files are completely ASCII text, with the actual spectra starting at line 55
 <div class="figure" style="text-align: center">
 <span id="fig:rawfig"></span>
 <img src="flu_files/figure-html/rawfig-1.png" alt="Six spectra of `flu` dataset.  "><p class="caption">
-Figure 1.1: Six spectra of <code>flu</code> dataset.
+Figure 1: Six spectra of <code>flu</code> dataset.
 </p>
 </div>
 </div>
 <div id="adding-further-data-columns" class="section level1">
 <h1 class="hasAnchor">
-<a href="#adding-further-data-columns" class="anchor"></a><span class="header-section-number">2</span> Adding further Data Columns</h1>
+<a href="#adding-further-data-columns" class="anchor"></a>Adding further Data Columns</h1>
 <p>The calibration model needs the quinine concentrations for the spectra.
 This information can be stored together with the spectra, and also gets an appropriate label:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit">
@@ -210,7 +210,7 @@ This information can be stored together with the spectra, and also gets an appro
 <span class="co">#&gt; wavelength: lambda/nm [numeric] 405.0 405.5 ... 495 </span>
 <span class="co">#&gt; data:  (6 rows x 3 columns)</span>
 <span class="co">#&gt;    1. spc: I[fl]/"a.u." [matrix, array181] 27.150 66.801 ... 294.65 </span>
-<span class="co">#&gt;    2. filename: filename [character] /Users/runner/runners/2.169.1/work/_temp/Library/hyperSpec/extdata/flu/flu1.txt /Users/runner/runners/2.169.1/work/_temp/Library/hyperSpec/extdata/flu/flu2.txt ... /Users/runner/runners/2.169.1/work/_temp/Library/hyperSpec/extdata/flu/flu6.txt </span>
+<span class="co">#&gt;    2. filename: filename [character] /Users/runner/work/_temp/Library/hyperSpec/extdata/flu/flu1.txt /Users/runner/work/_temp/Library/hyperSpec/extdata/flu/flu2.txt ... /Users/runner/work/_temp/Library/hyperSpec/extdata/flu/flu6.txt </span>
 <span class="co">#&gt;    3. c: c, mg/l [numeric] 0.05 0.10 ... 0.3</span>
 </pre></div>
 <!-- ======================================================================= -->
@@ -226,17 +226,17 @@ This information can be stored together with the spectra, and also gets an appro
 </div>
 <div id="sec:dropp-data-columns" class="section level1">
 <h1 class="hasAnchor">
-<a href="#sec:dropp-data-columns" class="anchor"></a><span class="header-section-number">3</span> Dropping data columns</h1>
+<a href="#sec:dropp-data-columns" class="anchor"></a>Dropping data columns</h1>
 <p>Function <code class="sourceCode r"><span class="kw">read.txt.PerkinElmer</span>()</code> added a column with the file names that we don’t need.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit">
 <span class="kw">flu</span><span class="op">$</span><span class="kw">..</span>
-<span class="co">#&gt;                                                                          filename    c</span>
-<span class="co">#&gt; 1 /Users/runner/runners/2.169.1/work/_temp/Library/hyperSpec/extdata/flu/flu1.txt 0.05</span>
-<span class="co">#&gt; 2 /Users/runner/runners/2.169.1/work/_temp/Library/hyperSpec/extdata/flu/flu2.txt 0.10</span>
-<span class="co">#&gt; 3 /Users/runner/runners/2.169.1/work/_temp/Library/hyperSpec/extdata/flu/flu3.txt 0.15</span>
-<span class="co">#&gt; 4 /Users/runner/runners/2.169.1/work/_temp/Library/hyperSpec/extdata/flu/flu4.txt 0.20</span>
-<span class="co">#&gt; 5 /Users/runner/runners/2.169.1/work/_temp/Library/hyperSpec/extdata/flu/flu5.txt 0.25</span>
-<span class="co">#&gt; 6 /Users/runner/runners/2.169.1/work/_temp/Library/hyperSpec/extdata/flu/flu6.txt 0.30</span>
+<span class="co">#&gt;                                                          filename    c</span>
+<span class="co">#&gt; 1 /Users/runner/work/_temp/Library/hyperSpec/extdata/flu/flu1.txt 0.05</span>
+<span class="co">#&gt; 2 /Users/runner/work/_temp/Library/hyperSpec/extdata/flu/flu2.txt 0.10</span>
+<span class="co">#&gt; 3 /Users/runner/work/_temp/Library/hyperSpec/extdata/flu/flu3.txt 0.15</span>
+<span class="co">#&gt; 4 /Users/runner/work/_temp/Library/hyperSpec/extdata/flu/flu4.txt 0.20</span>
+<span class="co">#&gt; 5 /Users/runner/work/_temp/Library/hyperSpec/extdata/flu/flu5.txt 0.25</span>
+<span class="co">#&gt; 6 /Users/runner/work/_temp/Library/hyperSpec/extdata/flu/flu6.txt 0.30</span>
 </pre></div>
 <p>It is therefore deleted:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit">
@@ -245,7 +245,7 @@ This information can be stored together with the spectra, and also gets an appro
 </div>
 <div id="linear-calibration" class="section level1">
 <h1 class="hasAnchor">
-<a href="#linear-calibration" class="anchor"></a><span class="header-section-number">4</span> Linear Calibration</h1>
+<a href="#linear-calibration" class="anchor"></a>Linear Calibration</h1>
 <p>As R is developed for the purpose of statistical analysis, tools for a least squares calibration
 model are readily available.</p>
 <p>The original spectra range from 405 to 495 nm.
@@ -258,7 +258,7 @@ Plotting them over the concentration is done by:</p>
 <div class="figure" style="text-align: center">
 <span id="fig:calplot1"></span>
 <img src="flu_files/figure-html/calplot1-1.png" alt="Spectra intensities at 450 nm. "><p class="caption">
-Figure 4.1: Spectra intensities at 450 nm.
+Figure 2: Spectra intensities at 450 nm.
 </p>
 </div>
 <p>The square bracket operator extracts parts of a <code class="sourceCode r">hyperSpec</code> object.
@@ -276,7 +276,7 @@ Also the axes should start at the origin, so that it is easier to see whether th
 <div class="figure" style="text-align: center">
 <span id="fig:calplot2"></span>
 <img src="flu_files/figure-html/calplot2-1.png" alt="Spectra intensities at 450 nm with updated labels. "><p class="caption">
-Figure 4.2: Spectra intensities at 450 nm with updated labels.
+Figure 3: Spectra intensities at 450 nm with updated labels.
 </p>
 </div>
 <p>The actual calibration is a linear model, which can be fitted by the R function <code class="sourceCode r"><span class="kw">lm</span>()</code>.
@@ -388,7 +388,7 @@ In order to draw the confidence interval into the calibration graph, we can eith
 <div class="figure" style="text-align: center">
 <span id="fig:calplot3"></span>
 <img src="flu_files/figure-html/calplot3-1.png" alt="Calibration function and its 99% confidence interval.  "><p class="caption">
-Figure 4.3: Calibration function and its 99% confidence interval.
+Figure 4: Calibration function and its 99% confidence interval.
 </p>
 </div>
 <p>Or, we can add the respective data to the <code class="sourceCode r">hyperSpec</code> object. The meaning of the data can be saved in a new extra data column that acts as grouping variable for the plot.</p>
@@ -439,7 +439,7 @@ Our prediction example is handled by another customized panel function:</p>
 <div class="figure" style="text-align: center">
 <span id="fig:calplot4"></span>
 <img src="flu_files/figure-html/calplot4-1.png" alt="calibration function and its 99% confidence interval and predicted points. "><p class="caption">
-Figure 4.4: calibration function and its 99% confidence interval and predicted points.
+Figure 5: calibration function and its 99% confidence interval and predicted points.
 </p>
 </div>
 </div>
@@ -450,15 +450,15 @@ Figure 4.4: calibration function and its 99% confidence interval and predicted p
 <span class="kw">sessioninfo</span>::<span class="fu"><a href="https://rdrr.io/pkg/sessioninfo/man/session_info.html">session_info</a></span>(<span class="st">"hyperSpec"</span>)
 <span class="co">#&gt; ─ Session info ───────────────────────────────────────────────────────────────────────────────────</span>
 <span class="co">#&gt;  setting  value                       </span>
-<span class="co">#&gt;  version  R version 4.0.1 (2020-06-06)</span>
-<span class="co">#&gt;  os       macOS Catalina 10.15.5      </span>
+<span class="co">#&gt;  version  R version 4.0.2 (2020-06-22)</span>
+<span class="co">#&gt;  os       macOS Catalina 10.15.6      </span>
 <span class="co">#&gt;  system   x86_64, darwin17.0          </span>
 <span class="co">#&gt;  ui       X11                         </span>
 <span class="co">#&gt;  language (EN)                        </span>
 <span class="co">#&gt;  collate  en_US.UTF-8                 </span>
 <span class="co">#&gt;  ctype    en_US.UTF-8                 </span>
 <span class="co">#&gt;  tz       UTC                         </span>
-<span class="co">#&gt;  date     2020-06-23                  </span>
+<span class="co">#&gt;  date     2020-08-04                  </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; ─ Packages ───────────────────────────────────────────────────────────────────────────────────────</span>
 <span class="co">#&gt;  package      * version  date       lib source        </span>
@@ -470,7 +470,7 @@ Figure 4.4: calibration function and its 99% confidence interval and predicted p
 <span class="co">#&gt;  crayon         1.3.4    2017-09-16 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  desc           1.2.0    2018-05-01 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  digest         0.6.25   2020-02-23 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  dplyr          1.0.0    2020-05-29 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  dplyr          1.0.1    2020-07-31 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  ellipsis       0.3.1    2020-05-15 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  evaluate       0.14     2019-05-28 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  fansi          0.4.1    2020-01-08 [1] CRAN (R 4.0.0)</span>
@@ -479,46 +479,46 @@ Figure 4.4: calibration function and its 99% confidence interval and predicted p
 <span class="co">#&gt;  ggplot2      * 3.3.2    2020-06-19 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  glue           1.4.1    2020-05-13 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  gtable         0.3.0    2019-03-25 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  hyperSpec    * 0.99     2020-06-23 [1] local         </span>
-<span class="co">#&gt;  isoband        0.2.2    2020-06-20 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  hyperSpec    * 0.99     2020-08-04 [1] local         </span>
+<span class="co">#&gt;  isoband        0.2.2    2020-06-20 [1] CRAN (R 4.0.1)</span>
 <span class="co">#&gt;  jpeg           0.1-8.1  2019-10-24 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  labeling       0.3      2014-08-23 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  lattice      * 0.20-41  2020-04-02 [2] CRAN (R 4.0.1)</span>
+<span class="co">#&gt;  lattice      * 0.20-41  2020-04-02 [2] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  latticeExtra   0.6-29   2019-12-19 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  lazyeval       0.2.2    2019-03-15 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  lifecycle      0.2.0    2020-03-06 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  magrittr       1.5      2014-11-22 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  MASS           7.3-51.6 2020-04-26 [2] CRAN (R 4.0.1)</span>
-<span class="co">#&gt;  Matrix         1.2-18   2019-11-27 [2] CRAN (R 4.0.1)</span>
-<span class="co">#&gt;  mgcv           1.8-31   2019-11-09 [2] CRAN (R 4.0.1)</span>
+<span class="co">#&gt;  MASS           7.3-51.6 2020-04-26 [2] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  Matrix         1.2-18   2019-11-27 [2] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  mgcv           1.8-31   2019-11-09 [2] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  munsell        0.5.0    2018-06-12 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  nlme           3.1-148  2020-05-24 [2] CRAN (R 4.0.1)</span>
-<span class="co">#&gt;  pillar         1.4.4    2020-05-05 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  pkgbuild       1.0.8    2020-05-07 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  nlme           3.1-148  2020-05-24 [2] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  pillar         1.4.6    2020-07-10 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  pkgbuild       1.1.0    2020-07-13 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  pkgconfig      2.0.3    2019-09-22 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  pkgload        1.1.0    2020-05-29 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  png            0.1-7    2013-12-03 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  praise         1.0.0    2015-08-11 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  prettyunits    1.1.1    2020-01-24 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  processx       3.4.2    2020-02-09 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  processx       3.4.3    2020-07-05 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  ps             1.3.3    2020-05-08 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  purrr          0.3.4    2020-04-17 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  R6             2.4.1    2019-11-12 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  RColorBrewer   1.1-2    2014-12-07 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  rlang          0.4.6    2020-05-02 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  rlang          0.4.7    2020-07-09 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  rprojroot      1.3-2    2018-01-03 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  rstudioapi     0.11     2020-02-07 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  scales         1.1.1    2020-05-11 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  testthat       2.3.2    2020-03-02 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  tibble         3.0.1    2020-04-20 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  tibble         3.0.3    2020-07-10 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  tidyselect     1.1.0    2020-05-11 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  utf8           1.1.4    2018-05-24 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  vctrs          0.3.1    2020-06-05 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  vctrs          0.3.2    2020-07-15 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  viridisLite    0.3.0    2018-02-01 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  withr          2.2.0    2020-04-20 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  xml2         * 1.3.2    2020-04-23 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  xml2           1.3.2    2020-04-23 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; [1] /Users/runner/runners/2.169.1/work/_temp/Library</span>
+<span class="co">#&gt; [1] /Users/runner/work/_temp/Library</span>
 <span class="co">#&gt; [2] /Library/Frameworks/R.framework/Versions/4.0/Resources/library</span>
 </pre></div>
 </div>

@@ -42,12 +42,10 @@
   
 
 <meta property="og:title" content="Binding <code>hyperSpec</code> Objects. — bind" />
-<meta property="og:description" content="The former difficulties with binding S4 objects
-are resolved since R version 3.2.0 and cbind and rbind now work as intended and
-expected for hyperSpec objects.
-cbind2 binds the spectral matrices of two hyperSpec objects by column. All columns
-besides spc with the same name in x@data and y@data must have the same
-elements.  Rows are ordered before checking." />
+<meta property="og:description" content="Functions to bind hyperSpec objects.
+cbind2 binds the spectral matrices of two hyperSpec objects
+by column. All columns besides spc with the same name in x@data and
+y@data must have the same elements.  Rows are ordered before checking." />
 
 <meta name="robots" content="noindex" />
 
@@ -166,16 +164,14 @@ elements.  Rows are ordered before checking." />
     </div>
 
     <div class="ref-description">
-    <p>The former difficulties with binding S4 objects
-are resolved since R version 3.2.0 and <code>cbind</code> and <code>rbind</code> now work as intended and
-expected for <code>hyperSpec</code> objects.</p>
-<p><code>cbind2</code> binds the spectral matrices of two <code>hyperSpec</code> objects by column. All columns
-besides <code>spc</code> with the same name in <code>x@data</code> and <code>y@data</code> must have the same
-elements.  Rows are ordered before checking.</p>
+    <p>Functions to bind <code>hyperSpec</code> objects.</p>
+<p><code>cbind2</code> binds the spectral matrices of two <code>hyperSpec</code> objects
+by column. All columns besides <code>spc</code> with the same name in <code>x@data</code> and
+<code>y@data</code> must have the same elements.  Rows are ordered before checking.</p>
     </div>
 
     <pre class="usage"><span class='fu'>bind</span>(
-  direction = <span class='fu'><a href='https://rdrr.io/r/base/stop.html'>stop</a></span>(<span class='st'>"direction ('c' or 'r') required"</span>),
+  direction = <span class='fu'><a href='https://rdrr.io/r/base/stop.html'>stop</a></span>(<span class='st'>"direction('c' or 'r') required"</span>),
   <span class='kw'>...</span>,
   wl.tolerance = <span class='fu'>hy.getOption</span>(<span class='st'>"wl.tolerance"</span>)
 )
@@ -208,8 +204,7 @@ elements.  Rows are ordered before checking.</p>
     <tr>
       <th>...</th>
       <td><p>The <code>hyperSpec</code> objects to be combined.</p>
-<p>Alternatively, <em>one</em> list of <code>hyperSpec</code> objects can be given to
-<code>bind</code>.</p></td>
+<p>Alternatively, <em>one</em> list of <code>hyperSpec</code> objects can be given to <code>bind()</code>.</p></td>
     </tr>
     <tr>
       <th>wl.tolerance</th>
@@ -228,11 +223,15 @@ with this tolerance.</p></td>
 <code>bind ("c", ...{})</code> and <code>cbind2</code>).</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Therefore, calling <code>rbind.hyperSpec</code> and <code>cbind.hyperSpec</code> is now depecated:
+    <p>The former difficulties with binding S4 objects are resolved since R version
+3.2.0 and <code><a href='https://rdrr.io/r/base/cbind.html'>cbind()</a></code> and <code><a href='https://rdrr.io/r/base/cbind.html'>rbind()</a></code> now work as intended and expected for
+<code>hyperSpec</code> objects.</p>
+<p>Therefore, calling <code>rbind.hyperSpec</code> and <code>cbind.hyperSpec</code> is now depecated:
 <code>cbind</code> and <code>rbind</code> should now be called directly.</p>
-<p>However, in consequence it is no longer possible to call <code>cbind</code> or <code>rbind</code> with a
-list of <code>hyperSpec</code> objects. In that case, use <code>bind</code> or <code><a href='https://rdrr.io/r/base/do.call.html'>base::do.call()</a></code> (see example).</p>
-<p><code>bind</code> does the common work for both column- and row-wise binding.</p>
+<p>However, in consequence it is no longer possible to call <code><a href='https://rdrr.io/r/base/cbind.html'>cbind()</a></code> or <code><a href='https://rdrr.io/r/base/cbind.html'>rbind()</a></code>
+with a list of <code>hyperSpec</code> objects. In that case, use <code>bind()</code> or
+<code><a href='https://rdrr.io/r/base/do.call.html'>base::do.call()</a></code> (see example).</p>
+<p><code>bind()</code> does the common work for both column- and row-wise binding.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>You might have to make sure that the objects either all have or all

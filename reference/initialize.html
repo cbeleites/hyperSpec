@@ -240,7 +240,7 @@ for slot <code>label</code>.</p>
 #&gt;    4 data points / spectrum
 #&gt; wavelength:  [integer] 1 2 3 4 
 #&gt; data:  (3 rows x 1 columns)
-#&gt;    1. spc:  [matrix, array4] 0.2539920 0.5706299 ... -1.070747 </div><div class='input'><span class='fu'>new</span>(<span class='st'>"hyperSpec"</span>,
+#&gt;    1. spc:  [matrix, array4] -1.075224 -2.553725 ... -0.5495588 </div><div class='input'><span class='fu'>new</span>(<span class='st'>"hyperSpec"</span>,
   data = <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(x = <span class='kw'>letters</span>[<span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>]),
   spc = <span class='kw'>spc</span>
 )</div><div class='output co'>#&gt; hyperSpec object
@@ -250,7 +250,7 @@ for slot <code>label</code>.</p>
 #&gt; wavelength:  [integer] 1 2 3 4 
 #&gt; data:  (3 rows x 2 columns)
 #&gt;    1. x:  [character] a b c 
-#&gt;    2. spc:  [matrix, array4] 0.2539920 0.5706299 ... -1.070747 </div><div class='input'>
+#&gt;    2. spc:  [matrix, array4] -1.075224 -2.553725 ... -0.5495588 </div><div class='input'>
 <span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span>(<span class='kw'>spc</span>) <span class='op'>&lt;-</span> <span class='fl'>600</span><span class='op'>:</span><span class='fl'>603</span>
 <span class='fu'>new</span>(<span class='st'>"hyperSpec"</span>, spc = <span class='kw'>spc</span>) <span class='co'># wavelength taken from colnames (spc)</span></div><div class='output co'>#&gt; hyperSpec object
 #&gt;    3 spectra
@@ -258,7 +258,7 @@ for slot <code>label</code>.</p>
 #&gt;    4 data points / spectrum
 #&gt; wavelength:  [numeric] 600 601 602 603 
 #&gt; data:  (3 rows x 1 columns)
-#&gt;    1. spc:  [matrix, array4] 0.2539920 0.5706299 ... -1.070747 </div><div class='input'>
+#&gt;    1. spc:  [matrix, array4] -1.075224 -2.553725 ... -0.5495588 </div><div class='input'>
 <span class='co'># given wavelengths precede over colnames of spc</span>
 <span class='fu'>new</span>(<span class='st'>"hyperSpec"</span>, spc = <span class='kw'>spc</span>, wavelength = <span class='fl'>700</span><span class='op'>:</span><span class='fl'>703</span>)</div><div class='output co'>#&gt; hyperSpec object
 #&gt;    3 spectra
@@ -266,7 +266,7 @@ for slot <code>label</code>.</p>
 #&gt;    4 data points / spectrum
 #&gt; wavelength:  [integer] 700 701 702 703 
 #&gt; data:  (3 rows x 1 columns)
-#&gt;    1. spc:  [matrix, array4] 0.2539920 0.5706299 ... -1.070747 </div><div class='input'>
+#&gt;    1. spc:  [matrix, array4] -1.075224 -2.553725 ... -0.5495588 </div><div class='input'>
 <span class='co'># specifying labels</span>
 <span class='kw'>h</span> <span class='op'>&lt;-</span> <span class='fu'>new</span>(<span class='st'>"hyperSpec"</span>,
   spc = <span class='kw'>spc</span>, data = <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(pos = <span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>),

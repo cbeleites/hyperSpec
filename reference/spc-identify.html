@@ -199,24 +199,21 @@ in a plot produced by <code>plotspc()</code>.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>either the abscissa coordinates or the list returned by
-<code>plotspc()</code></p></td>
+      <td><p>either the abscissa coordinates or the list returned by <code>plotspc()</code></p></td>
     </tr>
     <tr>
       <th>y</th>
-      <td><p>the ordinate values. Giving <code>y</code> will override any values from
-<code>x$y</code>.</p></td>
+      <td><p>the ordinate values. Giving <code>y</code> will override any values from <code>x$y</code>.</p></td>
     </tr>
     <tr>
       <th>wavelengths</th>
-      <td><p>the wavelengths for the data points. Giving
-<code>wavelengths</code> will override any values from <code>x$wavelengths</code>.</p></td>
+      <td><p>the wavelengths for the data points.
+Giving <code>wavelengths</code> will override any values from <code>x$wavelengths</code>.</p></td>
     </tr>
     <tr>
       <th>ispc</th>
       <td><p>if a selection of spectra was plotted, their indices can be
-given in <code>ispc</code>. In this case <code>ispc [i]</code> is returned rather
-than <code>i</code>.</p></td>
+given in <code>ispc</code>. In this case <code>ispc [i]</code> is returned rather than <code>i</code>.</p></td>
     </tr>
     <tr>
       <th>tol.wl, tol.spc</th>
@@ -225,13 +222,13 @@ search around the clicked point. See details.</p></td>
     </tr>
     <tr>
       <th>point.fn</th>
-      <td><p><code>function (wl, spc, wlclick)</code> to determine the actual
+      <td><p><code>function(wl, spc, wlclick)</code> to determine the actual
 point to label, see details.</p></td>
     </tr>
     <tr>
       <th>formatter</th>
-      <td><p><code>function (i, wl, spc)</code> that produces the labels. If
-<code>NULL</code>, no labels are displayed.</p></td>
+      <td><p><code>function(i, wl, spc)</code> that produces the labels.
+If <code>NULL</code>, no labels are displayed.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -246,9 +243,9 @@ labels</p></td>
       <th>warn</th>
       <td><p>Should the user be warned if no point is in the considered
 window? In addition, see the discussion of option <code>debuglevel</code> in
-the details.</p>
-<p>If <code>FALSE</code>, the resulting data.frame will have a row of <code>NA</code>s
-instead.</p></td>
+the details.</p><pre>        If `FALSE`, the resulting data.frame will have a row of `NA`s
+        instead.
+</pre></td>
     </tr>
     <tr>
       <th>wl</th>
@@ -304,9 +301,9 @@ two surrounding points</td></tr>
 respective intensities of the closest spectrum, and <code>wlclick</code> the
 wavelength that was clicked. They return a vector of two elements
 (wavelength and intensity).</p>
-<p>As a last step, a label for the point produced by <code>formatter</code> and
-plotted using <code><a href='https://rdrr.io/r/graphics/text.html'>graphics::text()</a></code>. Currently, the following
-<code>formatter</code>s are available:</p><table class='table'>
+<p>As a last step, a label for the point produced by <code>formatter</code> and plotted
+using <code><a href='https://rdrr.io/r/graphics/text.html'>graphics::text()</a></code>. Currently, the following <code>formatter</code>s are
+available:</p><table class='table'>
 <tr><td>spc.label.default</td><td>spectrum number, wavelength</td></tr>
 <tr><td>spc.label.wlonly</td><td>wavelength</td></tr>
 </table>
@@ -318,18 +315,19 @@ offset from the point of the spectrum.</p>
 <p>The warning issued if no spectral point is inside the tolerance window may
 be switched of by <code>warn = FALSE</code>. In that case, the click will produce
 a row of <code>NA</code>s in the resulting data.frame.</p>
-<p><code>spc.identify</code> uses option <code>debuglevel</code> to determine whether debugging output should be
-produced. <code>debuglevel == 2</code> will plot the tolerance window for every clicked point,
-<code>debuglevel == 1</code> will plot the tolerance window only if no data point was inside.  See
-<code>hyperSpec options()</code> for details about retrieving and setting
+<p><code>spc.identify</code> uses option <code>debuglevel</code> to determine whether debugging output
+should be produced. <code>debuglevel == 2</code> will plot the tolerance window for
+every clicked point, <code>debuglevel == 1</code> will plot the tolerance window only
+if no data point was inside. See <code><a href='https://rdrr.io/r/base/options.html'>hyperSpec options</a></code>
+for details about retrieving and setting
 options.</p>
 <p>You may want to adjust the plot's <code>ylim</code> to ensure that the labels are
 not clipped. As a dirty shortcut, <code>xpd = NA</code> may help.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='https://rdrr.io/r/graphics/locator.html'>graphics::locator()</a></code>, <code>plotspc()</code>,
-<code>hyperSpec options()</code></p>
-<p><code>map.identify()</code> <code>map.sel.poly()</code></p></div>
+<code><a href='https://rdrr.io/r/base/options.html'>hyperSpec options()</a></code></p>
+<p><code>map.identify()</code>, <code>map.sel.poly()</code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>C. Beleites</p>

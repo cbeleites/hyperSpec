@@ -128,7 +128,7 @@
 <br><a class="author_email" href="mailto:#"></a><a href="mailto:chemometrie@beleites.de" class="email">chemometrie@beleites.de</a>
       </address>
                   
-            <h4 class="date">2020-06-23</h4>
+            <h4 class="date">2020-08-04</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/cbeleites/hyperSpec/blob/master/../vignettes/fileio.Rmd"><code>../vignettes/fileio.Rmd</code></a></small>
       <div class="hidden name"><code>fileio.Rmd</code></div>
@@ -202,24 +202,24 @@ To run the code examples, you should create a folder named “fileio” in your 
 </pre></div>
 <div id="introduction" class="section level1">
 <h1 class="hasAnchor">
-<a href="#introduction" class="anchor"></a><span class="header-section-number">1</span> Introduction</h1>
+<a href="#introduction" class="anchor"></a>Introduction</h1>
 <p>This document describes how spectra can be imported into <code class="sourceCode r">hyperSpec</code> objects.
 Some possibilities to export <code class="sourceCode r">hyperSpec</code> objects as files are mentioned, too.</p>
-<p>The most basic funtion to create <code class="sourceCode r">hyperSpec</code> objects is <code class="sourceCode r"><span class="kw">new</span>(<span class="st">"hyperSpec"</span>)</code> (section <a href="#sec:new">2</a>).
+<p>The most basic funtion to create <code class="sourceCode r">hyperSpec</code> objects is <code class="sourceCode r"><span class="kw">new</span>(<span class="st">"hyperSpec"</span>)</code> (section <a href="#sec:new"><strong>??</strong></a>).
 It makes a <code class="sourceCode r">hyperSpec</code> object from data already in R’s workspace.
 Thus, once the spectra are imported into R, conversion to <code class="sourceCode r">hyperSpec</code> objects is straightforward.</p>
 <p>In addition, package <strong>hyperSpec</strong> comes with predifined import functions for different data formats.
-This document divides the discussion into dealing with ASCII files (section <a href="#sec:ascii">5</a><!--, p. \pageref{sec:ascii}-->) and binary file formats (section <a href="#sec:binary-file-formats">6</a><!--, p. \pageref{sec:binary-file-formats}-->).
+This document divides the discussion into dealing with ASCII files (section <a href="#sec:ascii"><strong>??</strong></a><!--, p. \pageref{sec:ascii}-->) and binary file formats (section <a href="#sec:binary-file-formats"><strong>??</strong></a><!--, p. \pageref{sec:binary-file-formats}-->).
 If data export for the respective format is possible, it is discussed in the same sections.
 As sometimes the actual data written by the spectrometer software exhibits peculiarities, package <strong>hyperSpec</strong> offers several specialized import functions.
 These are in general named after the data format followed by the manufacturer (e.g., <code>read.ENVI.Nicolet</code>).</p>
 <!-- ======================================================================= -->
 <!-- ======================================================================= -->
-<p>Overview lists of the directly supported file formats are in the appendix: sorted by file format (<!--appendix --><a href="#sec:format">9.1</a><!--, p. \pageref{sec:format}-->), manufacturer (<!--appendix --><a href="#sec:manufacturer">9.2</a><!--, p. \pageref{sec:manufacturer}-->), and by spectroscopy (<!--appendix --><a href="#sec:spectroscopy">9.3</a><!--, p. \pageref{sec:spectroscopy}-->).</p>
+<p>Overview lists of the directly supported file formats are in the appendix: sorted by file format (<!--appendix --><a href="#sec:format"><strong>??</strong></a><!--, p. \pageref{sec:format}-->), manufacturer (<!--appendix --><a href="#sec:manufacturer"><strong>??</strong></a><!--, p. \pageref{sec:manufacturer}-->), and by spectroscopy (<!--appendix --><a href="#sec:spectroscopy"><strong>??</strong></a><!--, p. \pageref{sec:spectroscopy}-->).</p>
 </div>
 <div id="sec:new" class="section level1">
 <h1 class="hasAnchor">
-<a href="#sec:new" class="anchor"></a><span class="header-section-number">2</span> Creating a <code class="sourceCode r">hyperSpec</code> object with <code class="sourceCode r"><span class="kw">new</span>()</code>
+<a href="#sec:new" class="anchor"></a>Creating a <code class="sourceCode r">hyperSpec</code> object with <code class="sourceCode r"><span class="kw">new</span>()</code>
 </h1>
 <!-- ======================================================================= -->
 <!-- ======================================================================= -->
@@ -263,10 +263,10 @@ and the spectral intensity axis label in <code class="sourceCode r"><span class=
 <p>Thus, once your data is in R’s workspace, creating a <code class="sourceCode r">hyperSpec</code> object is easy.
 I suggest wrapping the code to import your data and the line joining it into a <code class="sourceCode r">hyperSpec</code> object by your own import function.
 You are more than welcome to contribute such import code to package <strong>hyperSpec</strong>.
-Secion <a href="#sec:writing-Import">8</a><!--, (p. \pageref{sec:writing-Import})--> discusses examples of custom import functions.</p>
+Secion <a href="#sec:writing-Import"><strong>??</strong></a><!--, (p. \pageref{sec:writing-Import})--> discusses examples of custom import functions.</p>
 <div id="import-spectra-matrix" class="section level2">
 <h2 class="hasAnchor">
-<a href="#import-spectra-matrix" class="anchor"></a><span class="header-section-number">2.1</span> Creating a <code class="sourceCode r">hyperSpec</code> Object from a Data Matrix (Spectra Matrix)</h2>
+<a href="#import-spectra-matrix" class="anchor"></a>Creating a <code class="sourceCode r">hyperSpec</code> Object from a Data Matrix (Spectra Matrix)</h2>
 <p>As spectra matices are the internal format of <code class="sourceCode r">hyperSpec</code>, the consructor can directly be used:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit">
 <span class="kw">spc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/initialize.html">new</a></span>(<span class="st">"hyperSpec"</span>, <span class="kw">spc</span>, <span class="kw">wavelength</span>, <span class="kw">data</span>, <span class="kw">labels</span>)
@@ -274,7 +274,7 @@ Secion <a href="#sec:writing-Import">8</a><!--, (p. \pageref{sec:writing-Import}
 </div>
 <div id="import-spectra-array" class="section level2">
 <h2 class="hasAnchor">
-<a href="#import-spectra-array" class="anchor"></a><span class="header-section-number">2.2</span> Creating a <code class="sourceCode r">hyperSpec</code> Object from a Data Cube (Spectra Array)</h2>
+<a href="#import-spectra-array" class="anchor"></a>Creating a <code class="sourceCode r">hyperSpec</code> Object from a Data Cube (Spectra Array)</h2>
 <p>Roberto Moscetti asked how to convert a hyperspectral data cube into a <code class="sourceCode r">hyperSpec</code> object:</p>
 <blockquote>
 <p>The problem is that I have a hypercube with the following dimensions: 67 × 41 × 256
@@ -322,13 +322,13 @@ Note that this should accounted for in the decreasing order of the original <cod
 </div>
 <div id="io-options" class="section level1">
 <h1 class="hasAnchor">
-<a href="#io-options" class="anchor"></a><span class="header-section-number">3</span> General behaviour of file import functions: Options <code>file.keep.name</code> and <code>file.remove.emptyspc</code>
+<a href="#io-options" class="anchor"></a>General behaviour of file import functions: Options <code>file.keep.name</code> and <code>file.remove.emptyspc</code>
 </h1>
 </div>
 <div id="sec:read-mult-files" class="section level1">
 <h1 class="hasAnchor">
-<a href="#sec:read-mult-files" class="anchor"></a><span class="header-section-number">4</span> Reading Multiple files into one <code class="sourceCode r">hyperSpec</code> object</h1>
-<p>Many of the function described below will work on one file, even though derived functions such as <code class="sourceCode r"><span class="kw">read.spc.KaiserMap</span>()</code> (see section <a href="#sec:read-spc-KaiserMap">7.5.2</a><!--, p. \pageref{sec:read-spc-KaiserMap}-->) may take care of measurements consisting of multiple files.</p>
+<a href="#sec:read-mult-files" class="anchor"></a>Reading Multiple files into one <code class="sourceCode r">hyperSpec</code> object</h1>
+<p>Many of the function described below will work on one file, even though derived functions such as <code class="sourceCode r"><span class="kw">read.spc.KaiserMap</span>()</code> (see section <a href="#sec:read-spc-KaiserMap"><strong>??</strong></a><!--, p. \pageref{sec:read-spc-KaiserMap}-->) may take care of measurements consisting of multiple files.</p>
 <p>Usually, the most convenient way to import multiple files into one <code class="sourceCode r">hyperSpec</code> object is reading all files into a list of <code class="sourceCode r">hyperSpec</code> objects, and then <code class="sourceCode r"><span class="kw">collapse</span>()</code>ing this list into a single <code class="sourceCode r">hyperSpec</code> object:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit">
 <span class="kw">files</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.glob.html">Sys.glob</a></span>(<span class="st">"fileio/spc.Kaisermap/*.spc"</span>)
@@ -339,14 +339,14 @@ Note that this should accounted for in the decreasing order of the original <cod
 <span class="kw">spc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/collapse.html">collapse</a></span>(<span class="kw">spc</span>)
 <span class="kw">spc</span>
 </pre></div>
-<p>Note that in this particular case, the spectra are more efficiently read by <code class="sourceCode r"><span class="kw">read.spc.KaiserMap</span>()</code> (see section <a href="#sec:read-spc-KaiserMap">7.5.2</a><!--, p. \pageref{sec:read-spc-KaiserMap}-->).</p>
+<p>Note that in this particular case, the spectra are more efficiently read by <code class="sourceCode r"><span class="kw">read.spc.KaiserMap</span>()</code> (see section <a href="#sec:read-spc-KaiserMap"><strong>??</strong></a><!--, p. \pageref{sec:read-spc-KaiserMap}-->).</p>
 <p>If you regularly import huge maps or images, writing a customized import function is highly encouraged.
 You may gain speed and memory by using the internal workhorse functions for the file import.
 In that case, please contact the package maintainer (<a href="https://github.com/cbeleites/hyperSpec/issues" target="_blank"><strong>hyperSpec</strong>’s GitHub repository</a>) for advise (contributions to package <strong>hyperSpec</strong> are welcome and all authors are listed appropriately in the function help page’s author section).</p>
 </div>
 <div id="sec:ascii" class="section level1">
 <h1 class="hasAnchor">
-<a href="#sec:ascii" class="anchor"></a><span class="header-section-number">5</span> ASCII files</h1>
+<a href="#sec:ascii" class="anchor"></a>ASCII files</h1>
 <!-- {#sec:ascii} {#sec:read-txt-long} {#sec:read-txt-wide} -->
 <p>
 </p>
@@ -362,11 +362,11 @@ In that case, please contact the package maintainer (<a href="https://github.com
 R supplies another ASCII import function, <code class="sourceCode r"><span class="kw">scan</span>()</code>.
 Function <code class="sourceCode r"><span class="kw">scan</span>()</code> imports numeric data matrices and is faster than <code class="sourceCode r"><span class="kw">read.table</span>()</code>, but cannot import column names.
 If your data does not contain a header or it is not important and can safely be skipped, you may want to import your data using <code class="sourceCode r"><span class="kw">scan</span>()</code>.</p>
-<p>Note that R allows to use a variety of compressed file formats directly as ASCII files (for example, see section <a href="#sec:read-txt-Renishaw">7.6</a><!-- on p. \pageref{sec:read-txt-Renishaw}-->).
+<p>Note that R allows to use a variety of compressed file formats directly as ASCII files (for example, see section <a href="#sec:read-txt-Renishaw"><strong>??</strong></a><!-- on p. \pageref{sec:read-txt-Renishaw}-->).
 Also, both <code class="sourceCode r"><span class="kw">read.txt.long</span>()</code> and <code class="sourceCode r"><span class="kw">read.txt.wide</span>()</code> accept connections instead of file names.</p>
 <div id="sec:ascii-files-cols" class="section level2">
 <h2 class="hasAnchor">
-<a href="#sec:ascii-files-cols" class="anchor"></a><span class="header-section-number">5.1</span> ASCII files with samples in columns</h2>
+<a href="#sec:ascii-files-cols" class="anchor"></a>ASCII files with samples in columns</h2>
 <p>
 
 
@@ -402,11 +402,11 @@ Import is straightforward, just the spectra matrix needs to be transposed to mak
 <div class="sourceCode" id="cb10"><pre class="downlit">
 <span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">triazine</span>[<span class="fl">1</span>])
 </pre></div>
-<p>Witec also saves ASCII data with spectra in columns (Export <span class="math inline">\(\rightarrow\)</span> Table), see <a href="#sec:read-txt-Witec">7.9</a>.</p>
+<p>Witec also saves ASCII data with spectra in columns (Export <span class="math inline">\(\rightarrow\)</span> Table), see <a href="#sec:read-txt-Witec"><strong>??</strong></a>.</p>
 </div>
 <div id="sec:jcamp-dx" class="section level2">
 <h2 class="hasAnchor">
-<a href="#sec:jcamp-dx" class="anchor"></a><span class="header-section-number">5.2</span> JCAMP-DX</h2>
+<a href="#sec:jcamp-dx" class="anchor"></a>JCAMP-DX</h2>
 <p>
 
 
@@ -440,7 +440,7 @@ An R package dedicated to importing JCAMP-DX is currently under development by B
 </div>
 <div id="sec:aes-nist" class="section level2">
 <h2 class="hasAnchor">
-<a href="#sec:aes-nist" class="anchor"></a><span class="header-section-number">5.3</span> Basic Atomic Spectra from NIST Tables</h2>
+<a href="#sec:aes-nist" class="anchor"></a>Basic Atomic Spectra from NIST Tables</h2>
 <p>
 
 
@@ -495,22 +495,22 @@ emission spectra see <a href="http://physics.nist.gov/PhysRefData/Handbook/perio
 </div>
 <div id="further-ascii-formats" class="section level2">
 <h2 class="hasAnchor">
-<a href="#further-ascii-formats" class="anchor"></a><span class="header-section-number">5.4</span> Further ASCII Formats</h2>
-<p>Further import filters are provided for manufacturer/software specific ASCII formats, see table <a href="#sec:format">9.1</a><!-- (p. \pageref{sec:format})--> and section <a href="#sec:manuf-spec-import">7.1</a><!--(p. \pageref{sec:manuf-spec-import})-->.</p>
+<a href="#further-ascii-formats" class="anchor"></a>Further ASCII Formats</h2>
+<p>Further import filters are provided for manufacturer/software specific ASCII formats, see table <a href="#sec:format"><strong>??</strong></a><!-- (p. \pageref{sec:format})--> and section <a href="#sec:manuf-spec-import"><strong>??</strong></a><!--(p. \pageref{sec:manuf-spec-import})-->.</p>
 </div>
 <div id="ascii-export" class="section level2">
 <h2 class="hasAnchor">
-<a href="#ascii-export" class="anchor"></a><span class="header-section-number">5.5</span> ASCII Export</h2>
+<a href="#ascii-export" class="anchor"></a>ASCII Export</h2>
 <p>ASCII export can be done in wide and long format using <code class="sourceCode r"><span class="kw">write.txt.long</span>()</code> and <code class="sourceCode r"><span class="kw">write.txt.wide</span>()</code>.
 If you need a specific header or footer, use R’s functions for writing files: <code class="sourceCode r"><span class="kw">write.table</span>()</code>, <code class="sourceCode r"><span class="kw">write</span>()</code>, <code class="sourceCode r"><span class="kw">cat</span>()</code> and so on offer fine-grained control of writing ASCII files.</p>
 </div>
 </div>
 <div id="sec:binary-file-formats" class="section level1">
 <h1 class="hasAnchor">
-<a href="#sec:binary-file-formats" class="anchor"></a><span class="header-section-number">6</span> Binary file formats</h1>
+<a href="#sec:binary-file-formats" class="anchor"></a>Binary file formats</h1>
 <div id="sec:readMat" class="section level2">
 <h2 class="hasAnchor">
-<a href="#sec:readMat" class="anchor"></a><span class="header-section-number">6.1</span> Matlab Files</h2>
+<a href="#sec:readMat" class="anchor"></a>Matlab Files</h2>
 <p></p>
 <p>Matlab files can be read and written using the package package <strong>R.matlab</strong>, which is available at CRAN and can be installed by <code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">"R.matlab"</span>)</code>.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit">
@@ -531,11 +531,11 @@ It can be installed from omegahat:</p>
 <p>See the documentation of package <strong>R.matlab</strong> for more details and possibly needed further packages.</p>
 <p>Function <code class="sourceCode r"><span class="kw">readMat</span>()</code> imports the <code>.mat</code> file’s contents as a list.
 The variables in the <code>.mat</code> file are properly named elements of the list.
-The <code class="sourceCode r">hyperSpec</code> object can be created using <code class="sourceCode r"><span class="kw">new</span>()</code>, see section <a href="#sec:new">2</a><!-- (p. \pageref{sec:new})-->.</p>
+The <code class="sourceCode r">hyperSpec</code> object can be created using <code class="sourceCode r"><span class="kw">new</span>()</code>, see section <a href="#sec:new"><strong>??</strong></a><!-- (p. \pageref{sec:new})-->.</p>
 <p>Again, you probably want to wrap the import of your matlab files into a function.</p>
 <div id="sec:writing-matlab-files" class="section level3">
 <h3 class="hasAnchor">
-<a href="#sec:writing-matlab-files" class="anchor"></a><span class="header-section-number">6.1.1</span> Matlab Export</h3>
+<a href="#sec:writing-matlab-files" class="anchor"></a>Matlab Export</h3>
 <p>package <strong>R.matlab</strong>’s function <code class="sourceCode r"><span class="kw">writeMat</span>()</code> can be used to write R objects into <code>.mat</code> files.
 To save an <code class="sourceCode r">hyperSpec</code> object <code class="sourceCode r">x</code> for use in Matlab, you most likely want to save:</p>
 <ul>
@@ -551,7 +551,7 @@ The functions <code class="sourceCode r"><span class="kw">as.long.df</span>()</c
 </div>
 <div id="sec:read-mat-Cytospec" class="section level3">
 <h3 class="hasAnchor">
-<a href="#sec:read-mat-Cytospec" class="anchor"></a><span class="header-section-number">6.1.2</span> Import of Matlab files written by Cytospec</h3>
+<a href="#sec:read-mat-Cytospec" class="anchor"></a>Import of Matlab files written by Cytospec</h3>
 <p></p>
 <p>A custom import function for <code>.mat</code> files written by <a href="http://www.cytospec.com/" target="_blank">Cytospec</a> is available:</p>
 <p>Note that Cytospec files can contain multiple versions of the data, the so-called blocks.
@@ -579,7 +579,7 @@ Please use <code class="sourceCode r"><span class="kw">read.mat.Cytospec</span>(
 </div>
 <div id="sec:read-ENVI" class="section level2">
 <h2 class="hasAnchor">
-<a href="#sec:read-ENVI" class="anchor"></a><span class="header-section-number">6.2</span> ENVI Files</h2>
+<a href="#sec:read-ENVI" class="anchor"></a>ENVI Files</h2>
 <p>    
    
 </p>
@@ -588,22 +588,22 @@ Package <strong>hyperSpec</strong>’s function <code class="sourceCode r"><span
 Usually, the header file name is the same as the binary data file name with the suffix replaced by <code>.hdr</code>. Otherwise, the header file name can be given via parameter <strong><code class="sourceCode r">headerfile</code></strong>.</p>
 <p>As we experienced missing header files (Bruker’s Opus software frequently produced header files without any content), the data that would usually be read from the header file can also be handed to <code class="sourceCode r"><span class="kw">read.ENVI</span>()</code> as a list in parameter **<code class="sourceCode r">header<span class="op">**</span></code>.
 Arguments given in <code class="sourceCode r">header</code> replace corresponding entries of the header file.
-The help page gives details on what elements the list should contain, see also the discussion of ENVI files written by Bruker’s OPUS software (section <a href="#sec:read-ENVI-Bruker">7.2</a><!--, p. \pageref{sec:read-ENVI-Bruker})-->.</p>
+The help page gives details on what elements the list should contain, see also the discussion of ENVI files written by Bruker’s OPUS software (section <a href="#sec:read-ENVI-Bruker"><strong>??</strong></a><!--, p. \pageref{sec:read-ENVI-Bruker})-->.</p>
 <p>Here is how to use <code class="sourceCode r"><span class="kw">read.ENVI</span>()</code>:</p>
 <div class="sourceCode" id="cb20"><pre class="downlit">
 <span class="kw">spc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read.ENVI.html">read.ENVI</a></span>(<span class="st">"fileio/ENVI/example2.img"</span>)
 <span class="kw">spc</span>
 </pre></div>
-<p>Please see also the manufacturer specific notes in section <a href="#sec:manuf-spec-import">7.1</a><!--, p. \pageref{sec:manuf-spec-import}-->.</p>
+<p>Please see also the manufacturer specific notes in section <a href="#sec:manuf-spec-import"><strong>??</strong></a><!--, p. \pageref{sec:manuf-spec-import}-->.</p>
 <div id="sec:envi-export" class="section level3">
 <h3 class="hasAnchor">
-<a href="#sec:envi-export" class="anchor"></a><span class="header-section-number">6.2.1</span> ENVI Export</h3>
+<a href="#sec:envi-export" class="anchor"></a>ENVI Export</h3>
 <p>Use package package <strong>caTools</strong> or package <strong>rgdal</strong> with GDAL for writing ENVI files.</p>
 </div>
 </div>
 <div id="sec:read-spc" class="section level2">
 <h2 class="hasAnchor">
-<a href="#sec:read-spc" class="anchor"></a><span class="header-section-number">6.3</span> spc Files</h2>
+<a href="#sec:read-spc" class="anchor"></a>spc Files</h2>
 <p>
 
 
@@ -689,11 +689,11 @@ Function <code class="sourceCode r"><span class="kw">collapse</span>()</code> ma
 <span class="kw">barbiturates</span>
 </pre></div>
 <div class="sourceCode" id="cb27"><pre class="downlit">
-<span class="kw">barbiturates</span>[[<span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, , <span class="fl">25</span> <span class="op">~</span> <span class="fl">30</span>]]
+<span class="kw">barbiturates</span>[[, , <span class="fl">25</span> <span class="op">~</span> <span class="fl">30</span>]]
 </pre></div>
 <div id="deriving-manufacturer-specific-import-filters" class="section level3">
 <h3 class="hasAnchor">
-<a href="#deriving-manufacturer-specific-import-filters" class="anchor"></a><span class="header-section-number">6.3.1</span> Deriving manufacturer specific import filters</h3>
+<a href="#deriving-manufacturer-specific-import-filters" class="anchor"></a>Deriving manufacturer specific import filters</h3>
 <p>Please note that future changes inside the read.spc function are likely to occur.
 However, if you just post-process the <code class="sourceCode r">hyperSpec</code> object returned by <code class="sourceCode r"><span class="kw">read.spc</span>()</code>, you should be fine.</p>
 </div>
@@ -701,10 +701,10 @@ However, if you just post-process the <code class="sourceCode r">hyperSpec</code
 </div>
 <div id="manufacturer-specific-discussion-of-file-import" class="section level1">
 <h1 class="hasAnchor">
-<a href="#manufacturer-specific-discussion-of-file-import" class="anchor"></a><span class="header-section-number">7</span> Manufacturer-Specific Discussion of File Import</h1>
+<a href="#manufacturer-specific-discussion-of-file-import" class="anchor"></a>Manufacturer-Specific Discussion of File Import</h1>
 <div id="sec:manuf-spec-import" class="section level2">
 <h2 class="hasAnchor">
-<a href="#sec:manuf-spec-import" class="anchor"></a><span class="header-section-number">7.1</span> Manufacturer Specific Import Functions</h2>
+<a href="#sec:manuf-spec-import" class="anchor"></a>Manufacturer Specific Import Functions</h2>
 <p>Many spectrometer manufacturers provide a function to export their spectra into ASCII files.
 The functions discussed above are written in a very general way, and are highly customizable.
 I recommend wrapping these calls with the appropriate settings for your spectra format in an import function.
@@ -713,7 +713,7 @@ If you are able to import data of any format not mentioned in this document (eve
 </div>
 <div id="sec:read-ENVI-Bruker" class="section level2">
 <h2 class="hasAnchor">
-<a href="#sec:read-ENVI-Bruker" class="anchor"></a><span class="header-section-number">7.2</span> Bruker FT-IR Imaging</h2>
+<a href="#sec:read-ENVI-Bruker" class="anchor"></a>Bruker FT-IR Imaging</h2>
 <p>
 
 
@@ -739,7 +739,7 @@ For details please see the help page.</p>
 </div>
 <div id="sec:read-ENVI-Nicolet" class="section level2">
 <h2 class="hasAnchor">
-<a href="#sec:read-ENVI-Nicolet" class="anchor"></a><span class="header-section-number">7.3</span> Nicolet FT-IR Imaging</h2>
+<a href="#sec:read-ENVI-Nicolet" class="anchor"></a>Nicolet FT-IR Imaging</h2>
 <p>
 
 
@@ -759,7 +759,7 @@ Alternatively, the correct offset and pixel size values may be given as function
 </div>
 <div id="sec:varianagilent-ft-ir" class="section level2">
 <h2 class="hasAnchor">
-<a href="#sec:varianagilent-ft-ir" class="anchor"></a><span class="header-section-number">7.4</span> Varian/Agilent FT-IR Imaging</h2>
+<a href="#sec:varianagilent-ft-ir" class="anchor"></a>Varian/Agilent FT-IR Imaging</h2>
 <p>
 
 
@@ -771,7 +771,7 @@ Alternatively, the correct offset and pixel size values may be given as function
 </div>
 <div id="sec:Kaiser" class="section level2">
 <h2 class="hasAnchor">
-<a href="#sec:Kaiser" class="anchor"></a><span class="header-section-number">7.5</span> Kaiser Optical Systems Raman</h2>
+<a href="#sec:Kaiser" class="anchor"></a>Kaiser Optical Systems Raman</h2>
 <p>
 
 
@@ -788,13 +788,13 @@ In this case, the full spectra consist of two files with consecutive file names:
 See the example for <code>.spc</code> import.</p>
 <div id="sec:KaiserASCII" class="section level3">
 <h3 class="hasAnchor">
-<a href="#sec:KaiserASCII" class="anchor"></a><span class="header-section-number">7.5.1</span> Kaiser Optical Systems ASCII Files</h3>
+<a href="#sec:KaiserASCII" class="anchor"></a>Kaiser Optical Systems ASCII Files</h3>
 <p>
 
 
 
 </p>
-<p>The ASCII files are long format that can be imported by <code class="sourceCode r"><span class="kw">read.txt.long</span>()</code> (see section <!--\@ref(sec:read-txt-long)--><a href="#sec:ascii">5</a><!--, p. \pageref{sec:read-txt-long}-->).</p>
+<p>The ASCII files are long format that can be imported by <code class="sourceCode r"><span class="kw">read.txt.long</span>()</code> (see section <!--\@ref(sec:read-txt-long)--><a href="#sec:ascii"><strong>??</strong></a><!--, p. \pageref{sec:read-txt-long}-->).</p>
 <p>We experienced two different problems with these files:</p>
 <ul>
 <li>If the instrument computer’s locale is set so that also the decimal separator is a comma, commas are used both as decimal and as column separator.</li>
@@ -819,7 +819,7 @@ This may be a problem for certain conversion functions (<code class="sourceCode 
 </div>
 <div id="sec:read-spc-KaiserMap" class="section level3">
 <h3 class="hasAnchor">
-<a href="#sec:read-spc-KaiserMap" class="anchor"></a><span class="header-section-number">7.5.2</span> Kaiser Optical Systems Raman Maps</h3>
+<a href="#sec:read-spc-KaiserMap" class="anchor"></a>Kaiser Optical Systems Raman Maps</h3>
 <p>
 
 
@@ -845,7 +845,7 @@ Thus, a file name pattern is difficult to give and a vector of file names is use
 </div>
 <div id="sec:read-txt-Renishaw" class="section level2">
 <h2 class="hasAnchor">
-<a href="#sec:read-txt-Renishaw" class="anchor"></a><span class="header-section-number">7.6</span> Renishaw Raman</h2>
+<a href="#sec:read-txt-Renishaw" class="anchor"></a>Renishaw Raman</h2>
 <p>
 
 
@@ -858,7 +858,7 @@ We therefore recommend using the ASCII format.
 Otherwise the import using <code class="sourceCode r"><span class="kw">read.spc</span>()</code> worked.</p>
 <div id="sec:read-txt-Renishaw-ASCII" class="section level3">
 <h3 class="hasAnchor">
-<a href="#sec:read-txt-Renishaw-ASCII" class="anchor"></a><span class="header-section-number">7.6.1</span> Renishaw ASCII data</h3>
+<a href="#sec:read-txt-Renishaw-ASCII" class="anchor"></a>Renishaw ASCII data</h3>
 <p>
 
 
@@ -923,7 +923,7 @@ Supported types are:</p>
 </div>
 <div id="sec:read-txt-Horiba" class="section level2">
 <h2 class="hasAnchor">
-<a href="#sec:read-txt-Horiba" class="anchor"></a><span class="header-section-number">7.7</span> Horiba / Jobin Yvon (e.g. LabRAM)</h2>
+<a href="#sec:read-txt-Horiba" class="anchor"></a>Horiba / Jobin Yvon (e.g. LabRAM)</h2>
 <p>
 
 
@@ -971,7 +971,7 @@ These spectra are by removed by default if option <code class="sourceCode r">fil
 </div>
 <div id="sec:read-asc-Andor" class="section level2">
 <h2 class="hasAnchor">
-<a href="#sec:read-asc-Andor" class="anchor"></a><span class="header-section-number">7.8</span> Andor Solis</h2>
+<a href="#sec:read-asc-Andor" class="anchor"></a>Andor Solis</h2>
 <p>
 
 </p>
@@ -982,7 +982,7 @@ These spectra are by removed by default if option <code class="sourceCode r">fil
 </div>
 <div id="sec:read-txt-Witec" class="section level2">
 <h2 class="hasAnchor">
-<a href="#sec:read-txt-Witec" class="anchor"></a><span class="header-section-number">7.9</span> Witec</h2>
+<a href="#sec:read-txt-Witec" class="anchor"></a>Witec</h2>
 <p>
 
 
@@ -1036,13 +1036,13 @@ Otherwise, at least one, <code class="sourceCode r">points.per.line</code> or <c
 </div>
 <div id="sec:writing-Import" class="section level1">
 <h1 class="hasAnchor">
-<a href="#sec:writing-Import" class="anchor"></a><span class="header-section-number">8</span> Writing your own Import Function</h1>
+<a href="#sec:writing-Import" class="anchor"></a>Writing your own Import Function</h1>
 <p>This section gives examples how to write import functions. The first example implements an import
 filter for an ASCII file format basically from scratch. The second example shows how to implement
 more details for an already existing import filter.</p>
 <div id="sec:read-txt-PerkinElmer" class="section level2">
 <h2 class="hasAnchor">
-<a href="#sec:read-txt-PerkinElmer" class="anchor"></a><span class="header-section-number">8.1</span> A new ASCII Import Function: <code>read.txt.PerkinElmer</code>
+<a href="#sec:read-txt-PerkinElmer" class="anchor"></a>A new ASCII Import Function: <code>read.txt.PerkinElmer</code>
 </h2>
 <p>
 
@@ -1137,7 +1137,7 @@ Thus information like the excitation wavelength is lost.</p>
 </div>
 <div id="deriving-a-more-specific-function-read-envi-nicolet" class="section level2">
 <h2 class="hasAnchor">
-<a href="#deriving-a-more-specific-function-read-envi-nicolet" class="anchor"></a><span class="header-section-number">8.2</span> Deriving a More Specific Function: <code class="sourceCode r"><span class="kw">read.ENVI.Nicolet</span>()</code>
+<a href="#deriving-a-more-specific-function-read-envi-nicolet" class="anchor"></a>Deriving a More Specific Function: <code class="sourceCode r"><span class="kw">read.ENVI.Nicolet</span>()</code>
 </h2>
 <p>
 
@@ -1155,7 +1155,7 @@ The units of the spectra are saved as well.</p>
 <p>Function <code class="sourceCode r"><span class="kw">read.ENVI.Nicolet</span>()</code> thus first adjusts the parameters for <code class="sourceCode r"><span class="kw">read.ENVI</span>()</code>.
 Then <code class="sourceCode r"><span class="kw">read.ENVI</span>()</code> does the main work of importing the file.
 The resulting <code class="sourceCode r">hyperSpec</code> object is post-processed according to the special header entries.</p>
-<p>For using the function, see section <a href="#sec:read-ENVI-Nicolet">7.3</a><!--(p. \pageref{sec:read-ENVI-Nicolet})-->.</p>
+<p>For using the function, see section <a href="#sec:read-ENVI-Nicolet"><strong>??</strong></a><!--(p. \pageref{sec:read-ENVI-Nicolet})-->.</p>
 <!-- \VerbatimInput[frame=single, label={read.ENVI.Nicolet.R}, formatcom=\footnotesize]{read.ENVI.Nicolet.R} -->
 <div class="sourceCode" id="cb45"><pre class="sourceCode add-border r"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a><span class="co"># The contents of "read.ENVI.Nicolet.R"</span></span>
 <span id="cb45-2"><a href="#cb45-2"></a></span>
@@ -1260,19 +1260,19 @@ The resulting <code class="sourceCode r">hyperSpec</code> object is post-process
 </div>
 <div id="deriving-import-filters-for-spc-files" class="section level2">
 <h2 class="hasAnchor">
-<a href="#deriving-import-filters-for-spc-files" class="anchor"></a><span class="header-section-number">8.3</span> Deriving import filters for <code>spc</code> files</h2>
+<a href="#deriving-import-filters-for-spc-files" class="anchor"></a>Deriving import filters for <code>spc</code> files</h2>
 <p>Please note that future changes inside the <code class="sourceCode r"><span class="kw">read.spc</span>()</code> function are likely to occur.
 However, if you just post-process the <code class="sourceCode r">hyperSpec</code> object returned by <code class="sourceCode r"><span class="kw">read.spc</span>()</code>, you should be fine.</p>
 </div>
 </div>
 <div id="appendix-a" class="section level1">
 <h1 class="hasAnchor">
-<a href="#appendix-a" class="anchor"></a><span class="header-section-number">9</span> <strong>Appendix A:</strong> File Import Functions</h1>
+<a href="#appendix-a" class="anchor"></a><strong>Appendix A:</strong> File Import Functions</h1>
 <!-- ======================================================================= -->
 <!-- ======================================================================= -->
 <div id="sec:format" class="section level2">
 <h2 class="hasAnchor">
-<a href="#sec:format" class="anchor"></a><span class="header-section-number">9.1</span> File Import Functions by Format</h2>
+<a href="#sec:format" class="anchor"></a>File Import Functions by Format</h2>
 <table class="table">
 <thead><tr>
 <th style="text-align:left;">
@@ -1320,7 +1320,7 @@ Raman
 <code class="sourceCode r"><span class="kw">read.asc.Andor</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-asc-Andor">7.8</a>
+<a href="#sec:read-asc-Andor"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 </td>
@@ -1344,7 +1344,7 @@ array
 <td style="text-align:left;">
 </td>
 <td style="text-align:left;">
-<a href="#sec:new">2</a>
+<a href="#sec:new"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 </td>
@@ -1369,7 +1369,7 @@ ASCII long
 <code class="sourceCode r"><span class="kw">read.txt.long</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:ascii">5</a>
+<a href="#sec:ascii"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 </td>
@@ -1391,7 +1391,7 @@ Raman
 <code class="sourceCode r"><span class="kw">read.txt.Renishaw</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-txt-Renishaw">7.6</a>
+<a href="#sec:read-txt-Renishaw"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 </td>
@@ -1413,7 +1413,7 @@ Raman
 <code class="sourceCode r"><span class="kw">read.txt.long</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:KaiserASCII">7.5.1</a>
+<a href="#sec:KaiserASCII"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 <strong>Not</strong> recommended, see discussion
@@ -1436,7 +1436,7 @@ Fluorescence
 <code class="sourceCode r"><span class="kw">read.txt.PerkinElmer</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-txt-PerkinElmer">8.1</a>
+<a href="#sec:read-txt-PerkinElmer"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 Reads multiple files, needs to be sourced.
@@ -1464,7 +1464,7 @@ Raman
 <code class="sourceCode r"><span class="kw">read.zip.Renishaw</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-txt-Renishaw">7.6</a>
+<a href="#sec:read-txt-Renishaw"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 </td>
@@ -1489,7 +1489,7 @@ ASCII wide
 <code class="sourceCode r"><span class="kw">read.txt.wide</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:ascii">5</a>
+<a href="#sec:ascii"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 </td>
@@ -1511,7 +1511,7 @@ Raman
 <code class="sourceCode r"><span class="kw">read.txt.Horiba</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-txt-Horiba">7.7</a>
+<a href="#sec:read-txt-Horiba"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 e.g., LabRAM spectrometers
@@ -1534,7 +1534,7 @@ Raman
 <code class="sourceCode r"><span class="kw">read.txt.Horiba.xy</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-txt-Horiba">7.7</a>
+<a href="#sec:read-txt-Horiba"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 e.g., LabRAM spectrometer maps
@@ -1557,7 +1557,7 @@ Raman
 <code class="sourceCode r"><span class="kw">read.txt.Horiba.t</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-txt-Horiba">7.7</a>
+<a href="#sec:read-txt-Horiba"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 e.g., LabRAM spectrometer time series
@@ -1585,7 +1585,7 @@ Raman
 <code class="sourceCode r"><span class="kw">read.txt.Witec</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-txt-Witec">7.9</a>
+<a href="#sec:read-txt-Witec"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 Export Table
@@ -1611,7 +1611,7 @@ ENVI
 <code class="sourceCode r"><span class="kw">read.ENVI</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-ENVI">6.2</a>
+<a href="#sec:read-ENVI"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 </td>
@@ -1633,7 +1633,7 @@ Infrared Imaging
 <code class="sourceCode r"><span class="kw">read.ENVI</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-ENVI-Bruker">7.2</a>
+<a href="#sec:read-ENVI-Bruker"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 </td>
@@ -1655,7 +1655,7 @@ Infrared Imaging
 <code class="sourceCode r"><span class="kw">read.ENVI.Nicolet</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-ENVI-Nicolet">7.3</a>
+<a href="#sec:read-ENVI-Nicolet"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 </td>
@@ -1681,7 +1681,7 @@ Raman
 <td style="text-align:left;">
 </td>
 <td style="text-align:left;">
-<a href="#sec:Kaiser">7.5</a>
+<a href="#sec:Kaiser"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 via Matlab
@@ -1707,7 +1707,7 @@ JCAMP-DX
 <code class="sourceCode r"><span class="kw">read.jdx</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:jcamp-dx">5.2</a>
+<a href="#sec:jcamp-dx"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 </td>
@@ -1729,7 +1729,7 @@ Raman
 <code class="sourceCode r"><span class="kw">read.jdx</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:jcamp-dx">5.2</a>
+<a href="#sec:jcamp-dx"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 </td>
@@ -1772,7 +1772,7 @@ Infrared
 <code class="sourceCode r"><span class="kw">read.jdx</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:jcamp-dx">5.2</a>
+<a href="#sec:jcamp-dx"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 import for subset of the JCAMP-DX standard
@@ -1799,7 +1799,7 @@ Matlab
 <code class="sourceCode r">R.matlab<span class="op">::</span><span class="kw">readMat</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:readMat">6.1</a>
+<a href="#sec:readMat"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 </td>
@@ -1820,7 +1820,7 @@ Cytospec
 <code class="sourceCode r"><span class="kw">read.mat.Cytospec</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-mat-Cytospec">6.1.2</a>
+<a href="#sec:read-mat-Cytospec"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 </td>
@@ -1865,7 +1865,7 @@ matrix
 <td style="text-align:left;">
 </td>
 <td style="text-align:left;">
-<a href="#sec:new">2</a>
+<a href="#sec:new"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 </td>
@@ -1891,7 +1891,7 @@ Infrared Imaging
 <td style="text-align:left;">
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-ENVI-Bruker">7.2</a>
+<a href="#sec:read-ENVI-Bruker"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 </td>
@@ -1918,7 +1918,7 @@ GC,GC-MS
 <code class="sourceCode r"><span class="kw">read.jdx</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:jcamp-dx">5.2</a>
+<a href="#sec:jcamp-dx"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 import for subset of the JCAMP-DX standard
@@ -1944,7 +1944,7 @@ spc
 <code class="sourceCode r"><span class="kw">read.spc</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-spc">6.3</a>
+<a href="#sec:read-spc"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 </td>
@@ -1966,7 +1966,7 @@ Raman Map
 <code class="sourceCode r"><span class="kw">read.spc.KaiserMap</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-spc-KaiserMap">7.5.2</a>
+<a href="#sec:read-spc-KaiserMap"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 Reads multiple files
@@ -2033,7 +2033,7 @@ Raman
 <code class="sourceCode r"><span class="kw">read.spc</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-spc">6.3</a>
+<a href="#sec:read-spc"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 </td>
@@ -2055,7 +2055,7 @@ Raman
 <code class="sourceCode r"><span class="kw">read.spc</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-txt-Renishaw">7.6</a>
+<a href="#sec:read-txt-Renishaw"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 <strong>Not</strong> recommended, see discussion of ASCII files.
@@ -2078,7 +2078,7 @@ Raman
 <code class="sourceCode r"><span class="kw">read.spc</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-spc">6.3</a>
+<a href="#sec:read-spc"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 spc export not available for images
@@ -2101,7 +2101,7 @@ Raman
 <code class="sourceCode r"><span class="kw">read.spc</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-spc">6.3</a>
+<a href="#sec:read-spc"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 </td>
@@ -2156,7 +2156,7 @@ Raman
 <code class="sourceCode r"><span class="kw">read.dat.Witec</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-txt-Witec">7.9</a>
+<a href="#sec:read-txt-Witec"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 Save ASCII X, Save ASCII Y
@@ -2184,7 +2184,7 @@ Raman
 <code class="sourceCode r"><span class="kw">read.txt.Witec.Graph</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-txt-Witec">7.9</a>
+<a href="#sec:read-txt-Witec"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 Export Table in 3 separate files (Header, X-Axis, Y-Axis)
@@ -2195,7 +2195,7 @@ Export Table in 3 separate files (Header, X-Axis, Y-Axis)
 </div>
 <div id="sec:manufacturer" class="section level2">
 <h2 class="hasAnchor">
-<a href="#sec:manufacturer" class="anchor"></a><span class="header-section-number">9.2</span> File Import Functions by Manufacturer</h2>
+<a href="#sec:manufacturer" class="anchor"></a>File Import Functions by Manufacturer</h2>
 <table class="table">
 <thead><tr>
 <th style="text-align:left;">
@@ -2243,7 +2243,7 @@ Raman
 <code class="sourceCode r"><span class="kw">read.asc.Andor</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-asc-Andor">7.8</a>
+<a href="#sec:read-asc-Andor"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 </td>
@@ -2270,7 +2270,7 @@ Infrared Imaging
 <code class="sourceCode r"><span class="kw">read.ENVI</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-ENVI-Bruker">7.2</a>
+<a href="#sec:read-ENVI-Bruker"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 </td>
@@ -2291,7 +2291,7 @@ Infrared Imaging
 <td style="text-align:left;">
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-ENVI-Bruker">7.2</a>
+<a href="#sec:read-ENVI-Bruker"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 </td>
@@ -2317,7 +2317,7 @@ Cytospec
 <code class="sourceCode r"><span class="kw">read.mat.Cytospec</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-mat-Cytospec">6.1.2</a>
+<a href="#sec:read-mat-Cytospec"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 </td>
@@ -2344,7 +2344,7 @@ Raman
 <code class="sourceCode r"><span class="kw">read.spc</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-spc">6.3</a>
+<a href="#sec:read-spc"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 </td>
@@ -2371,7 +2371,7 @@ Raman
 <code class="sourceCode r"><span class="kw">read.txt.Horiba</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-txt-Horiba">7.7</a>
+<a href="#sec:read-txt-Horiba"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 e.g., LabRAM spectrometers
@@ -2394,7 +2394,7 @@ Raman
 <code class="sourceCode r"><span class="kw">read.txt.Horiba.xy</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-txt-Horiba">7.7</a>
+<a href="#sec:read-txt-Horiba"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 e.g., LabRAM spectrometer maps
@@ -2417,7 +2417,7 @@ Raman
 <code class="sourceCode r"><span class="kw">read.txt.Horiba.t</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-txt-Horiba">7.7</a>
+<a href="#sec:read-txt-Horiba"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 e.g., LabRAM spectrometer time series
@@ -2445,7 +2445,7 @@ Raman
 <code class="sourceCode r"><span class="kw">read.txt.long</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:KaiserASCII">7.5.1</a>
+<a href="#sec:KaiserASCII"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 <strong>Not</strong> recommended, see discussion
@@ -2467,7 +2467,7 @@ Raman
 <td style="text-align:left;">
 </td>
 <td style="text-align:left;">
-<a href="#sec:Kaiser">7.5</a>
+<a href="#sec:Kaiser"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 via Matlab
@@ -2490,7 +2490,7 @@ Raman Map
 <code class="sourceCode r"><span class="kw">read.spc.KaiserMap</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-spc-KaiserMap">7.5.2</a>
+<a href="#sec:read-spc-KaiserMap"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 Reads multiple files
@@ -2557,7 +2557,7 @@ Raman
 <code class="sourceCode r"><span class="kw">read.spc</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-spc">6.3</a>
+<a href="#sec:read-spc"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 </td>
@@ -2583,7 +2583,7 @@ Matlab
 <code class="sourceCode r">R.matlab<span class="op">::</span><span class="kw">readMat</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:readMat">6.1</a>
+<a href="#sec:readMat"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 </td>
@@ -2610,7 +2610,7 @@ Infrared Imaging
 <code class="sourceCode r"><span class="kw">read.ENVI.Nicolet</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-ENVI-Nicolet">7.3</a>
+<a href="#sec:read-ENVI-Nicolet"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 </td>
@@ -2637,7 +2637,7 @@ Fluorescence
 <code class="sourceCode r"><span class="kw">read.txt.PerkinElmer</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-txt-PerkinElmer">8.1</a>
+<a href="#sec:read-txt-PerkinElmer"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 Reads multiple files, needs to be sourced.
@@ -2665,7 +2665,7 @@ Infrared
 <code class="sourceCode r"><span class="kw">read.jdx</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:jcamp-dx">5.2</a>
+<a href="#sec:jcamp-dx"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 import for subset of the JCAMP-DX standard
@@ -2721,7 +2721,7 @@ Raman
 <code class="sourceCode r"><span class="kw">read.txt.Renishaw</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-txt-Renishaw">7.6</a>
+<a href="#sec:read-txt-Renishaw"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 </td>
@@ -2743,7 +2743,7 @@ Raman
 <code class="sourceCode r"><span class="kw">read.zip.Renishaw</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-txt-Renishaw">7.6</a>
+<a href="#sec:read-txt-Renishaw"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 </td>
@@ -2765,7 +2765,7 @@ Raman
 <code class="sourceCode r"><span class="kw">read.jdx</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:jcamp-dx">5.2</a>
+<a href="#sec:jcamp-dx"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 </td>
@@ -2787,7 +2787,7 @@ Raman
 <code class="sourceCode r"><span class="kw">read.spc</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-txt-Renishaw">7.6</a>
+<a href="#sec:read-txt-Renishaw"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 <strong>Not</strong> recommended, see discussion of ASCII files.
@@ -2815,7 +2815,7 @@ GC,GC-MS
 <code class="sourceCode r"><span class="kw">read.jdx</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:jcamp-dx">5.2</a>
+<a href="#sec:jcamp-dx"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 import for subset of the JCAMP-DX standard
@@ -2864,7 +2864,7 @@ Raman
 <code class="sourceCode r"><span class="kw">read.dat.Witec</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-txt-Witec">7.9</a>
+<a href="#sec:read-txt-Witec"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 Save ASCII X, Save ASCII Y
@@ -2887,7 +2887,7 @@ Raman
 <code class="sourceCode r"><span class="kw">read.txt.Witec</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-txt-Witec">7.9</a>
+<a href="#sec:read-txt-Witec"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 Export Table
@@ -2910,7 +2910,7 @@ Raman
 <code class="sourceCode r"><span class="kw">read.txt.Witec.Graph</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-txt-Witec">7.9</a>
+<a href="#sec:read-txt-Witec"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 Export Table in 3 separate files (Header, X-Axis, Y-Axis)
@@ -2954,7 +2954,7 @@ Raman
 <code class="sourceCode r"><span class="kw">read.spc</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-spc">6.3</a>
+<a href="#sec:read-spc"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 spc export not available for images
@@ -2975,7 +2975,7 @@ ASCII long
 <code class="sourceCode r"><span class="kw">read.txt.long</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:ascii">5</a>
+<a href="#sec:ascii"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 </td>
@@ -2995,7 +2995,7 @@ ASCII wide
 <code class="sourceCode r"><span class="kw">read.txt.wide</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:ascii">5</a>
+<a href="#sec:ascii"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 </td>
@@ -3015,7 +3015,7 @@ JCAMP-DX
 <code class="sourceCode r"><span class="kw">read.jdx</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:jcamp-dx">5.2</a>
+<a href="#sec:jcamp-dx"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 </td>
@@ -3035,7 +3035,7 @@ ENVI
 <code class="sourceCode r"><span class="kw">read.ENVI</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-ENVI">6.2</a>
+<a href="#sec:read-ENVI"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 </td>
@@ -3055,7 +3055,7 @@ spc
 <code class="sourceCode r"><span class="kw">read.spc</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-spc">6.3</a>
+<a href="#sec:read-spc"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 </td>
@@ -3074,7 +3074,7 @@ array
 <td style="text-align:left;">
 </td>
 <td style="text-align:left;">
-<a href="#sec:new">2</a>
+<a href="#sec:new"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 </td>
@@ -3093,7 +3093,7 @@ matrix
 <td style="text-align:left;">
 </td>
 <td style="text-align:left;">
-<a href="#sec:new">2</a>
+<a href="#sec:new"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 </td>
@@ -3103,7 +3103,7 @@ matrix
 </div>
 <div id="sec:spectroscopy" class="section level2">
 <h2 class="hasAnchor">
-<a href="#sec:spectroscopy" class="anchor"></a><span class="header-section-number">9.3</span> File Import Functions by Spectroscopy</h2>
+<a href="#sec:spectroscopy" class="anchor"></a>File Import Functions by Spectroscopy</h2>
 <table class="table">
 <thead><tr>
 <th style="text-align:left;">
@@ -3151,7 +3151,7 @@ Fluorescence
 <code class="sourceCode r"><span class="kw">read.txt.PerkinElmer</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-txt-PerkinElmer">8.1</a>
+<a href="#sec:read-txt-PerkinElmer"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 Reads multiple files, needs to be sourced.
@@ -3179,7 +3179,7 @@ GC,GC-MS
 <code class="sourceCode r"><span class="kw">read.jdx</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:jcamp-dx">5.2</a>
+<a href="#sec:jcamp-dx"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 import for subset of the JCAMP-DX standard
@@ -3233,7 +3233,7 @@ Infrared
 <code class="sourceCode r"><span class="kw">read.jdx</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:jcamp-dx">5.2</a>
+<a href="#sec:jcamp-dx"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 import for subset of the JCAMP-DX standard
@@ -3261,7 +3261,7 @@ Infrared Imaging
 <code class="sourceCode r"><span class="kw">read.ENVI</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-ENVI-Bruker">7.2</a>
+<a href="#sec:read-ENVI-Bruker"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 </td>
@@ -3282,7 +3282,7 @@ Infrared Imaging
 <td style="text-align:left;">
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-ENVI-Bruker">7.2</a>
+<a href="#sec:read-ENVI-Bruker"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 </td>
@@ -3304,7 +3304,7 @@ Infrared Imaging
 <code class="sourceCode r"><span class="kw">read.ENVI.Nicolet</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-ENVI-Nicolet">7.3</a>
+<a href="#sec:read-ENVI-Nicolet"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 </td>
@@ -3331,7 +3331,7 @@ Raman
 <code class="sourceCode r"><span class="kw">read.txt.Horiba</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-txt-Horiba">7.7</a>
+<a href="#sec:read-txt-Horiba"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 e.g., LabRAM spectrometers
@@ -3354,7 +3354,7 @@ Raman
 <code class="sourceCode r"><span class="kw">read.txt.Horiba.xy</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-txt-Horiba">7.7</a>
+<a href="#sec:read-txt-Horiba"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 e.g., LabRAM spectrometer maps
@@ -3377,7 +3377,7 @@ Raman
 <code class="sourceCode r"><span class="kw">read.txt.Horiba.t</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-txt-Horiba">7.7</a>
+<a href="#sec:read-txt-Horiba"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 e.g., LabRAM spectrometer time series
@@ -3400,7 +3400,7 @@ Raman
 <code class="sourceCode r"><span class="kw">read.txt.Renishaw</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-txt-Renishaw">7.6</a>
+<a href="#sec:read-txt-Renishaw"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 </td>
@@ -3422,7 +3422,7 @@ Raman
 <code class="sourceCode r"><span class="kw">read.zip.Renishaw</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-txt-Renishaw">7.6</a>
+<a href="#sec:read-txt-Renishaw"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 </td>
@@ -3444,7 +3444,7 @@ Raman
 <code class="sourceCode r"><span class="kw">read.txt.long</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:KaiserASCII">7.5.1</a>
+<a href="#sec:KaiserASCII"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 <strong>Not</strong> recommended, see discussion
@@ -3467,7 +3467,7 @@ Raman
 <code class="sourceCode r"><span class="kw">read.jdx</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:jcamp-dx">5.2</a>
+<a href="#sec:jcamp-dx"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 </td>
@@ -3489,7 +3489,7 @@ Raman
 <code class="sourceCode r"><span class="kw">read.dat.Witec</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-txt-Witec">7.9</a>
+<a href="#sec:read-txt-Witec"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 Save ASCII X, Save ASCII Y
@@ -3512,7 +3512,7 @@ Raman
 <code class="sourceCode r"><span class="kw">read.txt.Witec</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-txt-Witec">7.9</a>
+<a href="#sec:read-txt-Witec"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 Export Table
@@ -3535,7 +3535,7 @@ Raman
 <code class="sourceCode r"><span class="kw">read.txt.Witec.Graph</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-txt-Witec">7.9</a>
+<a href="#sec:read-txt-Witec"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 Export Table in 3 separate files (Header, X-Axis, Y-Axis)
@@ -3558,7 +3558,7 @@ Raman
 <code class="sourceCode r"><span class="kw">read.asc.Andor</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-asc-Andor">7.8</a>
+<a href="#sec:read-asc-Andor"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 </td>
@@ -3600,7 +3600,7 @@ Raman
 <td style="text-align:left;">
 </td>
 <td style="text-align:left;">
-<a href="#sec:Kaiser">7.5</a>
+<a href="#sec:Kaiser"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 via Matlab
@@ -3667,7 +3667,7 @@ Raman
 <code class="sourceCode r"><span class="kw">read.spc</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-spc">6.3</a>
+<a href="#sec:read-spc"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 </td>
@@ -3689,7 +3689,7 @@ Raman
 <code class="sourceCode r"><span class="kw">read.spc</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-txt-Renishaw">7.6</a>
+<a href="#sec:read-txt-Renishaw"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 <strong>Not</strong> recommended, see discussion of ASCII files.
@@ -3712,7 +3712,7 @@ Raman
 <code class="sourceCode r"><span class="kw">read.spc</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-spc">6.3</a>
+<a href="#sec:read-spc"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 spc export not available for images
@@ -3735,7 +3735,7 @@ Raman
 <code class="sourceCode r"><span class="kw">read.spc</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-spc">6.3</a>
+<a href="#sec:read-spc"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 </td>
@@ -3785,7 +3785,7 @@ Raman Map
 <code class="sourceCode r"><span class="kw">read.spc.KaiserMap</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-spc-KaiserMap">7.5.2</a>
+<a href="#sec:read-spc-KaiserMap"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 Reads multiple files
@@ -3806,7 +3806,7 @@ ASCII long
 <code class="sourceCode r"><span class="kw">read.txt.long</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:ascii">5</a>
+<a href="#sec:ascii"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 </td>
@@ -3826,7 +3826,7 @@ ASCII wide
 <code class="sourceCode r"><span class="kw">read.txt.wide</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:ascii">5</a>
+<a href="#sec:ascii"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 </td>
@@ -3846,7 +3846,7 @@ JCAMP-DX
 <code class="sourceCode r"><span class="kw">read.jdx</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:jcamp-dx">5.2</a>
+<a href="#sec:jcamp-dx"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 </td>
@@ -3867,7 +3867,7 @@ Matlab
 <code class="sourceCode r">R.matlab<span class="op">::</span><span class="kw">readMat</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:readMat">6.1</a>
+<a href="#sec:readMat"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 </td>
@@ -3888,7 +3888,7 @@ Cytospec
 <code class="sourceCode r"><span class="kw">read.mat.Cytospec</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-mat-Cytospec">6.1.2</a>
+<a href="#sec:read-mat-Cytospec"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 </td>
@@ -3908,7 +3908,7 @@ ENVI
 <code class="sourceCode r"><span class="kw">read.ENVI</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-ENVI">6.2</a>
+<a href="#sec:read-ENVI"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 </td>
@@ -3928,7 +3928,7 @@ spc
 <code class="sourceCode r"><span class="kw">read.spc</span>()</code>
 </td>
 <td style="text-align:left;">
-<a href="#sec:read-spc">6.3</a>
+<a href="#sec:read-spc"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 </td>
@@ -3947,7 +3947,7 @@ array
 <td style="text-align:left;">
 </td>
 <td style="text-align:left;">
-<a href="#sec:new">2</a>
+<a href="#sec:new"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 </td>
@@ -3966,7 +3966,7 @@ matrix
 <td style="text-align:left;">
 </td>
 <td style="text-align:left;">
-<a href="#sec:new">2</a>
+<a href="#sec:new"><strong>??</strong></a>
 </td>
 <td style="text-align:left;">
 </td>
@@ -3982,26 +3982,26 @@ matrix
 <span class="kw">sessioninfo</span>::<span class="fu"><a href="https://rdrr.io/pkg/sessioninfo/man/session_info.html">session_info</a></span>()
 <span class="co">#&gt; ─ Session info ───────────────────────────────────────────────────────────────────────────────────</span>
 <span class="co">#&gt;  setting  value                       </span>
-<span class="co">#&gt;  version  R version 4.0.1 (2020-06-06)</span>
-<span class="co">#&gt;  os       macOS Catalina 10.15.5      </span>
+<span class="co">#&gt;  version  R version 4.0.2 (2020-06-22)</span>
+<span class="co">#&gt;  os       macOS Catalina 10.15.6      </span>
 <span class="co">#&gt;  system   x86_64, darwin17.0          </span>
 <span class="co">#&gt;  ui       X11                         </span>
 <span class="co">#&gt;  language (EN)                        </span>
 <span class="co">#&gt;  collate  en_US.UTF-8                 </span>
 <span class="co">#&gt;  ctype    en_US.UTF-8                 </span>
 <span class="co">#&gt;  tz       UTC                         </span>
-<span class="co">#&gt;  date     2020-06-23                  </span>
+<span class="co">#&gt;  date     2020-08-04                  </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; ─ Packages ───────────────────────────────────────────────────────────────────────────────────────</span>
 <span class="co">#&gt;  package      * version date       lib source                            </span>
 <span class="co">#&gt;  assertthat     0.2.1   2019-03-21 [1] CRAN (R 4.0.0)                    </span>
 <span class="co">#&gt;  backports      1.1.8   2020-06-17 [1] CRAN (R 4.0.0)                    </span>
-<span class="co">#&gt;  bookdown       0.19    2020-05-15 [1] CRAN (R 4.0.0)                    </span>
+<span class="co">#&gt;  bookdown       0.20    2020-06-23 [1] CRAN (R 4.0.2)                    </span>
 <span class="co">#&gt;  cli            2.0.2   2020-02-28 [1] CRAN (R 4.0.0)                    </span>
 <span class="co">#&gt;  colorspace     1.4-1   2019-03-18 [1] CRAN (R 4.0.0)                    </span>
 <span class="co">#&gt;  crayon         1.3.4   2017-09-16 [1] CRAN (R 4.0.0)                    </span>
 <span class="co">#&gt;  digest         0.6.25  2020-02-23 [1] CRAN (R 4.0.0)                    </span>
-<span class="co">#&gt;  dplyr          1.0.0   2020-05-29 [1] CRAN (R 4.0.0)                    </span>
+<span class="co">#&gt;  dplyr          1.0.1   2020-07-31 [1] CRAN (R 4.0.2)                    </span>
 <span class="co">#&gt;  ellipsis       0.3.1   2020-05-15 [1] CRAN (R 4.0.0)                    </span>
 <span class="co">#&gt;  evaluate       0.14    2019-05-28 [1] CRAN (R 4.0.0)                    </span>
 <span class="co">#&gt;  fansi          0.4.1   2020-01-08 [1] CRAN (R 4.0.0)                    </span>
@@ -4012,18 +4012,18 @@ matrix
 <span class="co">#&gt;  highr          0.8     2019-03-20 [1] CRAN (R 4.0.0)                    </span>
 <span class="co">#&gt;  hms            0.5.3   2020-01-08 [1] CRAN (R 4.0.0)                    </span>
 <span class="co">#&gt;  htmltools      0.5.0   2020-06-16 [1] CRAN (R 4.0.0)                    </span>
-<span class="co">#&gt;  httr           1.4.1   2019-08-05 [1] CRAN (R 4.0.0)                    </span>
-<span class="co">#&gt;  hyperSpec    * 0.99    2020-06-23 [1] local                             </span>
+<span class="co">#&gt;  httr           1.4.2   2020-07-20 [1] CRAN (R 4.0.2)                    </span>
+<span class="co">#&gt;  hyperSpec    * 0.99    2020-08-04 [1] local                             </span>
 <span class="co">#&gt;  jpeg           0.1-8.1 2019-10-24 [1] CRAN (R 4.0.0)                    </span>
 <span class="co">#&gt;  kableExtra     1.1.0   2019-03-16 [1] CRAN (R 4.0.0)                    </span>
 <span class="co">#&gt;  knitr          1.29    2020-06-23 [1] CRAN (R 4.0.1)                    </span>
-<span class="co">#&gt;  lattice      * 0.20-41 2020-04-02 [2] CRAN (R 4.0.1)                    </span>
+<span class="co">#&gt;  lattice      * 0.20-41 2020-04-02 [2] CRAN (R 4.0.2)                    </span>
 <span class="co">#&gt;  latticeExtra   0.6-29  2019-12-19 [1] CRAN (R 4.0.0)                    </span>
 <span class="co">#&gt;  lazyeval       0.2.2   2019-03-15 [1] CRAN (R 4.0.0)                    </span>
 <span class="co">#&gt;  lifecycle      0.2.0   2020-03-06 [1] CRAN (R 4.0.0)                    </span>
 <span class="co">#&gt;  magrittr       1.5     2014-11-22 [1] CRAN (R 4.0.0)                    </span>
 <span class="co">#&gt;  munsell        0.5.0   2018-06-12 [1] CRAN (R 4.0.0)                    </span>
-<span class="co">#&gt;  pillar         1.4.4   2020-05-05 [1] CRAN (R 4.0.0)                    </span>
+<span class="co">#&gt;  pillar         1.4.6   2020-07-10 [1] CRAN (R 4.0.2)                    </span>
 <span class="co">#&gt;  pkgconfig      2.0.3   2019-09-22 [1] CRAN (R 4.0.0)                    </span>
 <span class="co">#&gt;  png            0.1-7   2013-12-03 [1] CRAN (R 4.0.0)                    </span>
 <span class="co">#&gt;  purrr          0.3.4   2020-04-17 [1] CRAN (R 4.0.0)                    </span>
@@ -4034,30 +4034,30 @@ matrix
 <span class="co">#&gt;  R.utils        2.9.2   2019-12-08 [1] CRAN (R 4.0.0)                    </span>
 <span class="co">#&gt;  R6             2.4.1   2019-11-12 [1] CRAN (R 4.0.0)                    </span>
 <span class="co">#&gt;  RColorBrewer   1.1-2   2014-12-07 [1] CRAN (R 4.0.0)                    </span>
-<span class="co">#&gt;  Rcpp           1.0.4.6 2020-04-09 [1] CRAN (R 4.0.0)                    </span>
+<span class="co">#&gt;  Rcpp           1.0.5   2020-07-06 [1] CRAN (R 4.0.0)                    </span>
 <span class="co">#&gt;  readr          1.3.1   2018-12-21 [1] CRAN (R 4.0.0)                    </span>
 <span class="co">#&gt;  rematch2       2.1.2   2020-05-01 [1] CRAN (R 4.0.0)                    </span>
-<span class="co">#&gt;  rlang          0.4.6   2020-05-02 [1] CRAN (R 4.0.0)                    </span>
-<span class="co">#&gt;  rmarkdown      2.3.1   2020-06-23 [1] Github (rstudio/rmarkdown@b53a85a)</span>
+<span class="co">#&gt;  rlang          0.4.7   2020-07-09 [1] CRAN (R 4.0.2)                    </span>
+<span class="co">#&gt;  rmarkdown      2.3.3   2020-07-27 [1] Github (rstudio/rmarkdown@204aa41)</span>
 <span class="co">#&gt;  rstudioapi     0.11    2020-02-07 [1] CRAN (R 4.0.0)                    </span>
-<span class="co">#&gt;  rvest          0.3.5   2019-11-08 [1] CRAN (R 4.0.0)                    </span>
+<span class="co">#&gt;  rvest          0.3.6   2020-07-25 [1] CRAN (R 4.0.2)                    </span>
 <span class="co">#&gt;  scales         1.1.1   2020-05-11 [1] CRAN (R 4.0.0)                    </span>
 <span class="co">#&gt;  sessioninfo    1.1.1   2018-11-05 [1] CRAN (R 4.0.0)                    </span>
 <span class="co">#&gt;  stringi        1.4.6   2020-02-17 [1] CRAN (R 4.0.0)                    </span>
 <span class="co">#&gt;  stringr        1.4.0   2019-02-10 [1] CRAN (R 4.0.0)                    </span>
 <span class="co">#&gt;  styler         1.3.2   2020-02-23 [1] CRAN (R 4.0.0)                    </span>
 <span class="co">#&gt;  testthat       2.3.2   2020-03-02 [1] CRAN (R 4.0.0)                    </span>
-<span class="co">#&gt;  tibble         3.0.1   2020-04-20 [1] CRAN (R 4.0.0)                    </span>
+<span class="co">#&gt;  tibble         3.0.3   2020-07-10 [1] CRAN (R 4.0.2)                    </span>
 <span class="co">#&gt;  tidyselect     1.1.0   2020-05-11 [1] CRAN (R 4.0.0)                    </span>
-<span class="co">#&gt;  vctrs          0.3.1   2020-06-05 [1] CRAN (R 4.0.0)                    </span>
+<span class="co">#&gt;  vctrs          0.3.2   2020-07-15 [1] CRAN (R 4.0.2)                    </span>
 <span class="co">#&gt;  viridisLite    0.3.0   2018-02-01 [1] CRAN (R 4.0.0)                    </span>
 <span class="co">#&gt;  webshot        0.5.2   2019-11-22 [1] CRAN (R 4.0.0)                    </span>
 <span class="co">#&gt;  withr          2.2.0   2020-04-20 [1] CRAN (R 4.0.0)                    </span>
-<span class="co">#&gt;  xfun           0.15    2020-06-21 [1] CRAN (R 4.0.0)                    </span>
-<span class="co">#&gt;  xml2         * 1.3.2   2020-04-23 [1] CRAN (R 4.0.0)                    </span>
+<span class="co">#&gt;  xfun           0.16    2020-07-24 [1] CRAN (R 4.0.2)                    </span>
+<span class="co">#&gt;  xml2           1.3.2   2020-04-23 [1] CRAN (R 4.0.0)                    </span>
 <span class="co">#&gt;  yaml           2.2.1   2020-02-01 [1] CRAN (R 4.0.0)                    </span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; [1] /Users/runner/runners/2.169.1/work/_temp/Library</span>
+<span class="co">#&gt; [1] /Users/runner/work/_temp/Library</span>
 <span class="co">#&gt; [2] /Library/Frameworks/R.framework/Versions/4.0/Resources/library</span>
 </pre></div>
 
