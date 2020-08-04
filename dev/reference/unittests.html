@@ -75,7 +75,7 @@ display the results." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">hyperSpec</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.99-20200719</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.99-20200728</span>
       </span>
     </div>
 
@@ -178,188 +178,213 @@ display the results.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>hy.unittest</span>()</div><div class='output co'>#&gt; generate_faux_cell: <span style='color: #00BB00;'>....</span><span>
-#&gt; all_wl: </span><span style='color: #00BB00;'>.......</span><span>
-#&gt; wc: </span><span style='color: #0000BB;'>SS</span><span>
+<span class='fu'>hy.unittest</span>()</div><div class='output co'>#&gt; read.ENVI.HySpex: <span style='color: #0000BB;'>S</span><span>
+#&gt; spc.bin: </span><span style='color: #00BB00;'>...........................</span><span>
 #&gt; sample data.frame: </span><span style='color: #00BB00;'>...</span><span>
-#&gt; .cut.ticks: </span><span style='color: #00BB00;'>..</span><span>
-#&gt; mergeextra: </span><span style='color: #00BB00;'>........................</span><span style='color: #0000BB;'>S</span><span>
+#&gt; spc.loess: </span><span style='color: #00BB00;'>...</span><span>
+#&gt; aggregate: </span><span style='color: #00BB00;'>........</span><span>
 #&gt; count_lines: </span><span style='color: #00BB00;'>..</span><span>
 #&gt; guess.wavelength: </span><span style='color: #00BB00;'>....</span><span>
 #&gt; read.txt.Witec.Graph: </span><span style='color: #0000BB;'>SSSSSS</span><span>
-#&gt; Unary arithmetic operators: </span><span style='color: #00BB00;'>...............</span><span>
+#&gt; spc.rubberband: </span><span style='color: #00BB00;'>....</span><span>
 #&gt; collapse: </span><span style='color: #00BB00;'>..................................</span><span>
-#&gt; read.spc: </span><span style='color: #0000BB;'>SSSSSSSSSS</span><span>
-#&gt; hy.getOptions: </span><span style='color: #00BB00;'>...</span><span style='color: #0000BB;'>SSSSSS</span><span>
-#&gt; test-read.jdx: </span><span style='color: #0000BB;'>SS</span><span>
-#&gt; Arithmetic operators, 2 hyperSpec objects: </span><span style='color: #00BB00;'>............................</span><span style='color: #0000BB;'>SSS</span><span>
+#&gt; any_wl: </span><span style='color: #00BB00;'>.........</span><span>
+#&gt; scale: </span><span style='color: #00BB00;'>...</span><span>
+#&gt; .labels: </span><span style='color: #00BB00;'>....</span><span>
+#&gt; all_wl: </span><span style='color: #00BB00;'>.......</span><span>
+#&gt; .cluster.wavelengths: </span><span style='color: #00BB00;'>...</span><span>
+#&gt; read.dat.Witec: </span><span style='color: #0000BB;'>SSSSS</span><span>
+#&gt; wlconv: </span><span style='color: #00BB00;'>...........</span><span>
+#&gt; .sample: </span><span style='color: #00BB00;'>.....</span><span>
+#&gt; empty: </span><span style='color: #00BB00;'>...</span><span>
+#&gt; .fix_spc_colnames: </span><span style='color: #00BB00;'>.</span><span>
+#&gt; .fileio.optional: </span><span style='color: #00BB00;'>....</span><span style='color: #0000BB;'>S</span><span>
+#&gt; spc.fit.poly.below: </span><span style='color: #0000BB;'>S</span><span style='color: #00BB00;'>......</span><span>
 #&gt; read.asc.Andor: </span><span style='color: #0000BB;'>S</span><span>
 #&gt; .initialize / new ("hyperSpec"): </span><span style='color: #00BB00;'>...............................</span><span>
-#&gt; Arithmetic operators, hyperSpec object x: </span><span style='color: #00BB00;'>..............................................................................</span><span>
-#&gt; read.txt.Witec: </span><span style='color: #0000BB;'>SSSSSSSSSSSS</span><span>
-#&gt; .rbind2: </span><span style='color: #00BB00;'>........</span><span>
-#&gt; pearson.dist: </span><span style='color: #00BB00;'>.</span><span>
-#&gt; bind: </span><span style='color: #00BB00;'>.....</span><span>
-#&gt; rbind.hyperSpec: </span><span style='color: #00BB00;'>.......</span><span>
-#&gt; .fix_spc_colnames: </span><span style='color: #00BB00;'>.</span><span>
-#&gt; .sample.matrix: </span><span style='color: #00BB00;'>..</span><span>
-#&gt; .fileio.optional: </span><span style='color: #00BB00;'>....</span><span style='color: #0000BB;'>S</span><span>
-#&gt; .expand helper function for sweep shortcut operators: </span><span style='color: #00BB00;'>..........................................</span><span>
-#&gt; spc.fit.poly.below: </span><span style='color: #0000BB;'>S</span><span style='color: #00BB00;'>......</span><span>
-#&gt; droplevels: </span><span style='color: #00BB00;'>.....</span><span>
 #&gt; as.hyperSpec: </span><span style='color: #00BB00;'>.................</span><span>
-#&gt; wl2i: </span><span style='color: #0000BB;'>S</span><span style='color: #00BB00;'>..................</span><span style='color: #0000BB;'>S</span><span>
-#&gt; spc.NA.approx: </span><span style='color: #00BB00;'>.....</span><span></div><div class='img'><img src='unittests-1.png' alt='' width='466' height='288' /></div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>.</span><span></div><div class='img'><img src='unittests-2.png' alt='' width='466' height='288' /></div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>.</span><span></div><div class='img'><img src='unittests-3.png' alt='' width='466' height='288' /></div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>.</span><span></div><div class='img'><img src='unittests-4.png' alt='' width='466' height='288' /></div><div class='img'><img src='unittests-5.png' alt='' width='466' height='288' /></div><div class='img'><img src='unittests-6.png' alt='' width='466' height='288' /></div><div class='img'><img src='unittests-7.png' alt='' width='466' height='288' /></div><div class='img'><img src='unittests-8.png' alt='' width='466' height='288' /></div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>.</span><span></div><div class='img'><img src='unittests-9.png' alt='' width='466' height='288' /></div><div class='img'><img src='unittests-10.png' alt='' width='466' height='288' /></div><div class='img'><img src='unittests-11.png' alt='' width='466' height='288' /></div><div class='img'><img src='unittests-12.png' alt='' width='466' height='288' /></div><div class='img'><img src='unittests-13.png' alt='' width='466' height='288' /></div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>.</span><span></div><div class='img'><img src='unittests-14.png' alt='' width='466' height='288' /></div><div class='img'><img src='unittests-15.png' alt='' width='466' height='288' /></div><div class='img'><img src='unittests-16.png' alt='' width='466' height='288' /></div><div class='img'><img src='unittests-17.png' alt='' width='466' height='288' /></div><div class='img'><img src='unittests-18.png' alt='' width='466' height='288' /></div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>..</span><span>
-#&gt; .DollarNames: </span><span style='color: #00BB00;'>...</span><span>
-#&gt; aggregate: </span><span style='color: #00BB00;'>........</span><span>
-#&gt; .sample: </span><span style='color: #00BB00;'>.....</span><span>
-#&gt; normalize01: </span><span style='color: #00BB00;'>...........</span><span>
-#&gt; stacked.offsets: </span><span style='color: #00BB00;'>.....</span><span>
-#&gt; spc.fit.poly: </span><span style='color: #0000BB;'>S</span><span style='color: #00BB00;'>....</span><span>
-#&gt; merge: </span><span style='color: #00BB00;'>..............</span><span>
-#&gt; hy.setOptions: </span><span style='color: #00BB00;'>..............................</span><span>
-#&gt; read.ENVI.HySpex: </span><span style='color: #0000BB;'>S</span><span>
-#&gt; isample: </span><span style='color: #00BB00;'>.....</span><span>
-#&gt; .levelplot: </span><span style='color: #00BB00;'>....</span><span>
-#&gt; read.dat.Witec: </span><span style='color: #0000BB;'>SSSSS</span><span>
+#&gt; sweep: </span><span style='color: #00BB00;'>..</span><span>
+#&gt; getbynames: </span><span style='color: #00BB00;'>....</span><span>
+#&gt; seq.hyperSpec: </span><span style='color: #00BB00;'>..................</span><span>
+#&gt; matrix multiplication: matrix x hyperSpec: </span><span style='color: #00BB00;'>....</span><span>
+#&gt; .cut.ticks: </span><span style='color: #00BB00;'>..</span><span>
+#&gt; mergeextra: </span><span style='color: #00BB00;'>........................</span><span style='color: #0000BB;'>S</span><span>
 #&gt; matrix multiplication: 2 hyperSpec objects: </span><span style='color: #00BB00;'>.....</span><span>
 #&gt; matrix multiplication hyperSpec x matrix: </span><span style='color: #00BB00;'>....</span><span>
-#&gt; as.wide.df: </span><span style='color: #00BB00;'>.....</span><span>
-#&gt; any_wl: </span><span style='color: #00BB00;'>.......</span><span>
+#&gt; .expand helper function for sweep shortcut operators: </span><span style='color: #00BB00;'>..........................................</span><span>
+#&gt; hy.getOptions: </span><span style='color: #00BB00;'>...</span><span>
 #&gt; decomposition: </span><span style='color: #00BB00;'>.........</span><span>
-#&gt; wl.eval: </span><span style='color: #00BB00;'>.........</span><span>
-#&gt; apply: </span><span style='color: #00BB00;'>....</span><span>
-#&gt; .cluster.wavelengths: </span><span style='color: #00BB00;'>...</span><span>
-#&gt; read.zip.Renishaw: </span><span style='color: #0000BB;'>S</span><span>
-#&gt; matrix multiplication: matrix x hyperSpec: </span><span style='color: #00BB00;'>....</span><span>
-#&gt; read.spc.Shimadzu: </span><span style='color: #00BB00;'>.</span><span>
-#&gt; read.ENVI: </span><span style='color: #0000BB;'>SSSSS</span><span>
-#&gt; spc.rubberband: </span><span style='color: #00BB00;'>....</span><span>
-#&gt; read.txt.Renishaw: </span><span style='color: #0000BB;'>SSSSS</span><span>
-#&gt; vanderMonde: </span><span style='color: #00BB00;'>......</span><span></div><div class='img'><img src='unittests-19.png' alt='' width='466' height='288' /></div><div class='output co'>#&gt; plotmat: </span><span style='color: #00BB00;'>.</span><span>
 #&gt; .all.equal: </span><span style='color: #00BB00;'>.........</span><span>
-#&gt; .labels: </span><span style='color: #00BB00;'>....</span><span>
+#&gt; data for unit tests: </span><span style='color: #00BB00;'>............</span><span>
+#&gt; spc.fit.poly: </span><span style='color: #0000BB;'>S</span><span style='color: #00BB00;'>....</span><span>
+#&gt; read.txt.Witec: </span><span style='color: #0000BB;'>SSSSSSSSSSSS</span><span>
+#&gt; isample: </span><span style='color: #00BB00;'>.....</span><span>
+#&gt; .levelplot: </span><span style='color: #00BB00;'>....</span><span>
+#&gt; colMeans: </span><span style='color: #00BB00;'>...</span><span>
+#&gt; colSums: </span><span style='color: #00BB00;'>...</span><span>
+#&gt; rowMeans: </span><span style='color: #00BB00;'>...</span><span>
+#&gt; rowSums: </span><span style='color: #00BB00;'>...</span><span>
+#&gt; plot: </span><span style='color: #00BB00;'>..................</span><span></div><div class='output co'>#&gt; </span><span style='color: #BB0000;'>1</span><span></div><div class='img'><img src='unittests-1.png' alt='' width='466' height='288' /></div><div class='img'><img src='unittests-2.png' alt='' width='466' height='288' /></div><div class='img'><img src='unittests-3.png' alt='' width='466' height='288' /></div><div class='img'><img src='unittests-4.png' alt='' width='466' height='288' /></div><div class='img'><img src='unittests-5.png' alt='' width='466' height='288' /></div><div class='img'><img src='unittests-6.png' alt='' width='466' height='288' /></div><div class='img'><img src='unittests-7.png' alt='' width='466' height='288' /></div><div class='img'><img src='unittests-8.png' alt='' width='466' height='288' /></div><div class='output co'>#&gt; </span><span style='color: #BB0000;'>2</span><span style='color: #00BB00;'>............</span><span></div><div class='img'><img src='unittests-9.png' alt='' width='466' height='288' /></div><div class='output co'>#&gt; </span><span style='color: #BB0000;'>3</span><span>
+#&gt; read.zip.Renishaw: </span><span style='color: #0000BB;'>S</span><span>
+#&gt; replace: </span><span style='color: #00BB00;'>...........................</span><span>
+#&gt; .DollarNames: </span><span style='color: #00BB00;'>...</span><span>
+#&gt; math: </span><span style='color: #00BB00;'>.............</span><span>
+#&gt; rbind.hyperSpec: </span><span style='color: #00BB00;'>............</span><span>
+#&gt; read.ENVI: </span><span style='color: #0000BB;'>SSSSS</span><span>
+#&gt; Unary arithmetic operators: </span><span style='color: #00BB00;'>...............</span><span>
+#&gt; .sample.matrix: </span><span style='color: #00BB00;'>..</span><span>
+#&gt; Arithmetic operators, 2 hyperSpec objects: </span><span style='color: #00BB00;'>............................</span><span style='color: #0000BB;'>SSS</span><span>
+#&gt; droplevels: </span><span style='color: #00BB00;'>.....</span><span>
+#&gt; Arithmetic operators, hyperSpec object x: </span><span style='color: #00BB00;'>..............................................................................</span><span>
+#&gt; .cbind2: </span><span style='color: #00BB00;'>........</span><span>
+#&gt; generate_faux_cell: </span><span style='color: #00BB00;'>....</span><span>
+#&gt; wl2i: </span><span style='color: #0000BB;'>S</span><span style='color: #00BB00;'>..................</span><span style='color: #0000BB;'>S</span><span>
+#&gt; pearson.dist: </span><span style='color: #00BB00;'>.</span><span>
+#&gt; spc.NA.approx: </span><span style='color: #00BB00;'>.....</span><span></div><div class='img'><img src='unittests-10.png' alt='' width='466' height='288' /></div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>.</span><span></div><div class='img'><img src='unittests-11.png' alt='' width='466' height='288' /></div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>.</span><span></div><div class='img'><img src='unittests-12.png' alt='' width='466' height='288' /></div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>.</span><span></div><div class='img'><img src='unittests-13.png' alt='' width='466' height='288' /></div><div class='img'><img src='unittests-14.png' alt='' width='466' height='288' /></div><div class='img'><img src='unittests-15.png' alt='' width='466' height='288' /></div><div class='img'><img src='unittests-16.png' alt='' width='466' height='288' /></div><div class='img'><img src='unittests-17.png' alt='' width='466' height='288' /></div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>.</span><span></div><div class='img'><img src='unittests-18.png' alt='' width='466' height='288' /></div><div class='img'><img src='unittests-19.png' alt='' width='466' height='288' /></div><div class='img'><img src='unittests-20.png' alt='' width='466' height='288' /></div><div class='img'><img src='unittests-21.png' alt='' width='466' height='288' /></div><div class='img'><img src='unittests-22.png' alt='' width='466' height='288' /></div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>.</span><span></div><div class='img'><img src='unittests-23.png' alt='' width='466' height='288' /></div><div class='img'><img src='unittests-24.png' alt='' width='466' height='288' /></div><div class='img'><img src='unittests-25.png' alt='' width='466' height='288' /></div><div class='img'><img src='unittests-26.png' alt='' width='466' height='288' /></div><div class='img'><img src='unittests-27.png' alt='' width='466' height='288' /></div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>..</span><span>
+#&gt; spc.smooth.spline: </span><span style='color: #00BB00;'>...</span><span>
+#&gt; read.spc.Shimadzu: </span><span style='color: #00BB00;'>.</span><span>
+#&gt; bind: </span><span style='color: #00BB00;'>.........</span><span>
+#&gt; split.string: </span><span style='color: #00BB00;'>...</span><span>
+#&gt; stacked.offsets: </span><span style='color: #00BB00;'>.....</span><span>
+#&gt; quantile: </span><span style='color: #00BB00;'>......</span><span>
+#&gt; read.spc: </span><span style='color: #0000BB;'>SSSSSSSSSS</span><span></div><div class='img'><img src='unittests-28.png' alt='' width='466' height='288' /></div><div class='output co'>#&gt; plotmat: </span><span style='color: #00BB00;'>.</span><span style='color: #0000BB;'>SSSSSS</span><span>
+#&gt; test-read.jdx: </span><span style='color: #0000BB;'>SS</span><span>
+#&gt; merge: </span><span style='color: #00BB00;'>..............</span><span>
+#&gt; wl.eval: </span><span style='color: #00BB00;'>.........</span><span>
+#&gt; .rbind2: </span><span style='color: #00BB00;'>..........</span><span>
+#&gt; apply: </span><span style='color: #00BB00;'>....</span><span>
+#&gt; wc: </span><span style='color: #0000BB;'>SS</span><span>
+#&gt; cbind.hyperSpec: </span><span style='color: #00BB00;'>....</span><span>
+#&gt; get wl: </span><span style='color: #00BB00;'>....</span><span>
+#&gt; set wl: </span><span style='color: #00BB00;'>.......</span><span>
+#&gt; .fixunitname: </span><span style='color: #00BB00;'>........</span><span>
+#&gt; normalize01: </span><span style='color: #00BB00;'>...........</span><span>
+#&gt; as.wide.df: </span><span style='color: #00BB00;'>.....</span><span>
+#&gt; read.txt.Renishaw: </span><span style='color: #0000BB;'>SSSSS</span><span>
+#&gt; vanderMonde: </span><span style='color: #00BB00;'>......</span><span>
+#&gt; split: </span><span style='color: #00BB00;'>.........</span><span>
+#&gt; hy.setOptions: </span><span style='color: #00BB00;'>..............................</span><span>
 #&gt; 
 #&gt; ══ Skipped ═════════════════════════════════════════════════════════════════════
-#&gt; </span><span style='color: #0000BB;'>1. wc defaults</span><span> - Reason: file import test files not installed is not TRUE
+#&gt; </span><span style='color: #0000BB;'>1. Hyspex ENVI file</span><span> - Reason: file import test files not installed is not TRUE
 #&gt; 
-#&gt; </span><span style='color: #0000BB;'>2. wc --lines</span><span> - Reason: file import test files not installed is not TRUE
+#&gt; </span><span style='color: #0000BB;'>2. defaults and (X-Axis)/(Y-Axis) file guessing</span><span> - Reason: file import test files not installed is not TRUE
 #&gt; 
-#&gt; </span><span style='color: #0000BB;'>3. x missing labels</span><span> - Reason: empty test
+#&gt; </span><span style='color: #0000BB;'>3. encoding</span><span> - Reason: file import test files not installed is not TRUE
 #&gt; 
-#&gt; </span><span style='color: #0000BB;'>4. defaults and (X-Axis)/(Y-Axis) file guessing</span><span> - Reason: file import test files not installed is not TRUE
+#&gt; </span><span style='color: #0000BB;'>4. Time Series</span><span> - Reason: file import test files not installed is not TRUE
 #&gt; 
-#&gt; </span><span style='color: #0000BB;'>5. encoding</span><span> - Reason: file import test files not installed is not TRUE
+#&gt; </span><span style='color: #0000BB;'>5. Map</span><span> - Reason: file import test files not installed is not TRUE
 #&gt; 
-#&gt; </span><span style='color: #0000BB;'>6. Time Series</span><span> - Reason: file import test files not installed is not TRUE
+#&gt; </span><span style='color: #0000BB;'>6. missing filename</span><span> - Reason: file import test files not installed is not TRUE
 #&gt; 
-#&gt; </span><span style='color: #0000BB;'>7. Map</span><span> - Reason: file import test files not installed is not TRUE
+#&gt; </span><span style='color: #0000BB;'>7. wrong combination of file names</span><span> - Reason: file import test files not installed is not TRUE
 #&gt; 
-#&gt; </span><span style='color: #0000BB;'>8. missing filename</span><span> - Reason: file import test files not installed is not TRUE
+#&gt; </span><span style='color: #0000BB;'>8. -y file guessing</span><span> - Reason: file import test files not installed is not TRUE
 #&gt; 
-#&gt; </span><span style='color: #0000BB;'>9. wrong combination of file names</span><span> - Reason: file import test files not installed is not TRUE
+#&gt; </span><span style='color: #0000BB;'>9. encoding</span><span> - Reason: file import test files not installed is not TRUE
 #&gt; 
-#&gt; </span><span style='color: #0000BB;'>10. old file format -&gt; error</span><span> - Reason: file import test files not installed is not TRUE
+#&gt; </span><span style='color: #0000BB;'>10. Time series</span><span> - Reason: file import test files not installed is not TRUE
 #&gt; 
-#&gt; </span><span style='color: #0000BB;'>11. SPC SDK example files</span><span> - Reason: file import test files not installed is not TRUE
+#&gt; </span><span style='color: #0000BB;'>11. Map: .dat does not have spatial information</span><span> - Reason: file import test files not installed is not TRUE
 #&gt; 
-#&gt; </span><span style='color: #0000BB;'>12. LabRam spc files</span><span> - Reason: file import test files not installed is not TRUE
+#&gt; </span><span style='color: #0000BB;'>12. Map</span><span> - Reason: file import test files not installed is not TRUE
 #&gt; 
-#&gt; </span><span style='color: #0000BB;'>13. Shimadzu spc files do not yet work</span><span> - Reason: file import test files not installed is not TRUE
+#&gt; </span><span style='color: #0000BB;'>13. option treatment</span><span> - Reason: TODO: implement
 #&gt; 
-#&gt; </span><span style='color: #0000BB;'>14. Witec: some files supported</span><span> - Reason: file import test files not installed is not TRUE
+#&gt; </span><span style='color: #0000BB;'>14. no normalization</span><span> - Reason: empty test
 #&gt; 
-#&gt; </span><span style='color: #0000BB;'>15. wplanes</span><span> - Reason: file import test files not installed is not TRUE
+#&gt; </span><span style='color: #0000BB;'>15. Andor Solis .asc text files</span><span> - Reason: file import test files not installed is not TRUE
 #&gt; 
-#&gt; </span><span style='color: #0000BB;'>16. option file.keep.name</span><span> - Reason: file import test files not installed is not TRUE
+#&gt; </span><span style='color: #0000BB;'>16. x missing labels</span><span> - Reason: empty test
 #&gt; 
-#&gt; </span><span style='color: #0000BB;'>17. option file.remove.emptyspc</span><span> - Reason: no spc files with empty spectra available so far
+#&gt; </span><span style='color: #0000BB;'>17. no normalization</span><span> - Reason: empty test
 #&gt; 
-#&gt; </span><span style='color: #0000BB;'>18. hdr2data</span><span> - Reason: file import test files not installed is not TRUE
+#&gt; </span><span style='color: #0000BB;'>18. Map with neither header nor label lines</span><span> - Reason: file import test files not installed is not TRUE
 #&gt; 
-#&gt; </span><span style='color: #0000BB;'>19. log2data</span><span> - Reason: file import test files not installed is not TRUE
+#&gt; </span><span style='color: #0000BB;'>19. Map: one of points.per.line and lines.per.image is sufficient</span><span> - Reason: file import test files not installed is not TRUE
 #&gt; 
-#&gt; </span><span style='color: #0000BB;'>20. read.spe correctly extracts spectral data from SPE file</span><span> - Reason: file import test files not installed is not TRUE
+#&gt; </span><span style='color: #0000BB;'>20. Map with label line but no units header</span><span> - Reason: file import test files not installed is not TRUE
 #&gt; 
-#&gt; </span><span style='color: #0000BB;'>21. read.spe detects an XML footer in SPE 3.0 file</span><span> - Reason: file import test files not installed is not TRUE
+#&gt; </span><span style='color: #0000BB;'>21. Map with units header line but no labels</span><span> - Reason: file import test files not installed is not TRUE
 #&gt; 
-#&gt; </span><span style='color: #0000BB;'>22. read.spe correctly parses XML footer with SPE 3.0 file and saves metadata in hyperSpec object</span><span> - Reason: file import test files not installed is not TRUE
+#&gt; </span><span style='color: #0000BB;'>22. Map with header and label lines</span><span> - Reason: file import test files not installed is not TRUE
 #&gt; 
-#&gt; </span><span style='color: #0000BB;'>23. .read.spe.xml_string throws error on SPE format below v3.0</span><span> - Reason: file import test files not installed is not TRUE
+#&gt; </span><span style='color: #0000BB;'>23. Map can be read as time series</span><span> - Reason: file import test files not installed is not TRUE
 #&gt; 
-#&gt; </span><span style='color: #0000BB;'>24. We can correctly read XML footer from SPE3.0 file</span><span> - Reason: file import test files not installed is not TRUE
+#&gt; </span><span style='color: #0000BB;'>24. parameter default type = 'single'</span><span> - Reason: file import test files not installed is not TRUE
 #&gt; 
-#&gt; </span><span style='color: #0000BB;'>25. .read.spe.xml correctly parses the XML footer and can extract the actual data</span><span> - Reason: file import test files not installed is not TRUE
+#&gt; </span><span style='color: #0000BB;'>25. Time series with neither header nor label lines</span><span> - Reason: file import test files not installed is not TRUE
 #&gt; 
-#&gt; </span><span style='color: #0000BB;'>26. JCAMP-DX examples that need particular parameter sets</span><span> - Reason: file import test files not installed is not TRUE
+#&gt; </span><span style='color: #0000BB;'>26. Time series with label line but no units header</span><span> - Reason: file import test files not installed is not TRUE
 #&gt; 
-#&gt; </span><span style='color: #0000BB;'>27. JCAMP-DX example files</span><span> - Reason: file import test files not installed is not TRUE
+#&gt; </span><span style='color: #0000BB;'>27. Time series with units header line but no labels</span><span> - Reason: file import test files not installed is not TRUE
 #&gt; 
-#&gt; </span><span style='color: #0000BB;'>28. correct results with row-sized object</span><span> - Reason: empty test
+#&gt; </span><span style='color: #0000BB;'>28. Time series with header and label lines</span><span> - Reason: file import test files not installed is not TRUE
 #&gt; 
-#&gt; </span><span style='color: #0000BB;'>29. correct results with column-sized object</span><span> - Reason: empty test
+#&gt; </span><span style='color: #0000BB;'>29. encoding</span><span> - Reason: file import test files not installed is not TRUE
 #&gt; 
-#&gt; </span><span style='color: #0000BB;'>30. correct results with 1x1 object</span><span> - Reason: empty test
+#&gt; </span><span style='color: #0000BB;'>30. compressed files</span><span> - Reason: file import test files not installed is not TRUE
 #&gt; 
-#&gt; </span><span style='color: #0000BB;'>31. Andor Solis .asc text files</span><span> - Reason: file import test files not installed is not TRUE
+#&gt; </span><span style='color: #0000BB;'>31. full spectrum BIL</span><span> - Reason: file import test files not installed is not TRUE
 #&gt; 
-#&gt; </span><span style='color: #0000BB;'>32. Map with neither header nor label lines</span><span> - Reason: file import test files not installed is not TRUE
+#&gt; </span><span style='color: #0000BB;'>32. block reading BIL</span><span> - Reason: file import test files not installed is not TRUE
 #&gt; 
-#&gt; </span><span style='color: #0000BB;'>33. Map: one of points.per.line and lines.per.image is sufficient</span><span> - Reason: file import test files not installed is not TRUE
+#&gt; </span><span style='color: #0000BB;'>33. block reading BIL: block longer than file</span><span> - Reason: file import test files not installed is not TRUE
 #&gt; 
-#&gt; </span><span style='color: #0000BB;'>34. Map with label line but no units header</span><span> - Reason: file import test files not installed is not TRUE
+#&gt; </span><span style='color: #0000BB;'>34. Guessing messages</span><span> - Reason: file import test files not installed is not TRUE
 #&gt; 
-#&gt; </span><span style='color: #0000BB;'>35. Map with units header line but no labels</span><span> - Reason: file import test files not installed is not TRUE
+#&gt; </span><span style='color: #0000BB;'>35. empty spectra</span><span> - Reason: file import test files not installed is not TRUE
 #&gt; 
-#&gt; </span><span style='color: #0000BB;'>36. Map with header and label lines</span><span> - Reason: file import test files not installed is not TRUE
+#&gt; </span><span style='color: #0000BB;'>36. correct results with row-sized object</span><span> - Reason: empty test
 #&gt; 
-#&gt; </span><span style='color: #0000BB;'>37. Map can be read as time series</span><span> - Reason: file import test files not installed is not TRUE
+#&gt; </span><span style='color: #0000BB;'>37. correct results with column-sized object</span><span> - Reason: empty test
 #&gt; 
-#&gt; </span><span style='color: #0000BB;'>38. parameter default type = 'single'</span><span> - Reason: file import test files not installed is not TRUE
+#&gt; </span><span style='color: #0000BB;'>38. correct results with 1x1 object</span><span> - Reason: empty test
 #&gt; 
-#&gt; </span><span style='color: #0000BB;'>39. Time series with neither header nor label lines</span><span> - Reason: file import test files not installed is not TRUE
+#&gt; </span><span style='color: #0000BB;'>39. : sequence of wavelengths</span><span> - Reason: skip
 #&gt; 
-#&gt; </span><span style='color: #0000BB;'>40. Time series with label line but no units header</span><span> - Reason: file import test files not installed is not TRUE
+#&gt; </span><span style='color: #0000BB;'>40. inside extraction</span><span> - Reason: empty test
 #&gt; 
-#&gt; </span><span style='color: #0000BB;'>41. Time series with units header line but no labels</span><span> - Reason: file import test files not installed is not TRUE
+#&gt; </span><span style='color: #0000BB;'>41. old file format -&gt; error</span><span> - Reason: file import test files not installed is not TRUE
 #&gt; 
-#&gt; </span><span style='color: #0000BB;'>42. Time series with header and label lines</span><span> - Reason: file import test files not installed is not TRUE
+#&gt; </span><span style='color: #0000BB;'>42. SPC SDK example files</span><span> - Reason: file import test files not installed is not TRUE
 #&gt; 
-#&gt; </span><span style='color: #0000BB;'>43. encoding</span><span> - Reason: file import test files not installed is not TRUE
+#&gt; </span><span style='color: #0000BB;'>43. LabRam spc files</span><span> - Reason: file import test files not installed is not TRUE
 #&gt; 
-#&gt; </span><span style='color: #0000BB;'>44. option treatment</span><span> - Reason: TODO: implement
+#&gt; </span><span style='color: #0000BB;'>44. Shimadzu spc files do not yet work</span><span> - Reason: file import test files not installed is not TRUE
 #&gt; 
-#&gt; </span><span style='color: #0000BB;'>45. no normalization</span><span> - Reason: empty test
+#&gt; </span><span style='color: #0000BB;'>45. Witec: some files supported</span><span> - Reason: file import test files not installed is not TRUE
 #&gt; 
-#&gt; </span><span style='color: #0000BB;'>46. : sequence of wavelengths</span><span> - Reason: skip
+#&gt; </span><span style='color: #0000BB;'>46. wplanes</span><span> - Reason: file import test files not installed is not TRUE
 #&gt; 
-#&gt; </span><span style='color: #0000BB;'>47. inside extraction</span><span> - Reason: empty test
+#&gt; </span><span style='color: #0000BB;'>47. option file.keep.name</span><span> - Reason: file import test files not installed is not TRUE
 #&gt; 
-#&gt; </span><span style='color: #0000BB;'>48. no normalization</span><span> - Reason: empty test
+#&gt; </span><span style='color: #0000BB;'>48. option file.remove.emptyspc</span><span> - Reason: no spc files with empty spectra available so far
 #&gt; 
-#&gt; </span><span style='color: #0000BB;'>49. Hyspex ENVI file</span><span> - Reason: file import test files not installed is not TRUE
+#&gt; </span><span style='color: #0000BB;'>49. hdr2data</span><span> - Reason: file import test files not installed is not TRUE
 #&gt; 
-#&gt; </span><span style='color: #0000BB;'>50. -y file guessing</span><span> - Reason: file import test files not installed is not TRUE
+#&gt; </span><span style='color: #0000BB;'>50. log2data</span><span> - Reason: file import test files not installed is not TRUE
 #&gt; 
-#&gt; </span><span style='color: #0000BB;'>51. encoding</span><span> - Reason: file import test files not installed is not TRUE
+#&gt; </span><span style='color: #0000BB;'>51. read.spe correctly extracts spectral data from SPE file</span><span> - Reason: file import test files not installed is not TRUE
 #&gt; 
-#&gt; </span><span style='color: #0000BB;'>52. Time series</span><span> - Reason: file import test files not installed is not TRUE
+#&gt; </span><span style='color: #0000BB;'>52. read.spe detects an XML footer in SPE 3.0 file</span><span> - Reason: file import test files not installed is not TRUE
 #&gt; 
-#&gt; </span><span style='color: #0000BB;'>53. Map: .dat does not have spatial information</span><span> - Reason: file import test files not installed is not TRUE
+#&gt; </span><span style='color: #0000BB;'>53. read.spe correctly parses XML footer with SPE 3.0 file and saves metadata in hyperSpec object</span><span> - Reason: file import test files not installed is not TRUE
 #&gt; 
-#&gt; </span><span style='color: #0000BB;'>54. Map</span><span> - Reason: file import test files not installed is not TRUE
+#&gt; </span><span style='color: #0000BB;'>54. .read.spe.xml_string throws error on SPE format below v3.0</span><span> - Reason: file import test files not installed is not TRUE
 #&gt; 
-#&gt; </span><span style='color: #0000BB;'>55. compressed files</span><span> - Reason: file import test files not installed is not TRUE
+#&gt; </span><span style='color: #0000BB;'>55. We can correctly read XML footer from SPE3.0 file</span><span> - Reason: file import test files not installed is not TRUE
 #&gt; 
-#&gt; </span><span style='color: #0000BB;'>56. full spectrum BIL</span><span> - Reason: file import test files not installed is not TRUE
+#&gt; </span><span style='color: #0000BB;'>56. .read.spe.xml correctly parses the XML footer and can extract the actual data</span><span> - Reason: file import test files not installed is not TRUE
 #&gt; 
-#&gt; </span><span style='color: #0000BB;'>57. block reading BIL</span><span> - Reason: file import test files not installed is not TRUE
+#&gt; </span><span style='color: #0000BB;'>57. JCAMP-DX examples that need particular parameter sets</span><span> - Reason: file import test files not installed is not TRUE
 #&gt; 
-#&gt; </span><span style='color: #0000BB;'>58. block reading BIL: block longer than file</span><span> - Reason: file import test files not installed is not TRUE
+#&gt; </span><span style='color: #0000BB;'>58. JCAMP-DX example files</span><span> - Reason: file import test files not installed is not TRUE
 #&gt; 
-#&gt; </span><span style='color: #0000BB;'>59. Guessing messages</span><span> - Reason: file import test files not installed is not TRUE
+#&gt; </span><span style='color: #0000BB;'>59. wc defaults</span><span> - Reason: file import test files not installed is not TRUE
 #&gt; 
-#&gt; </span><span style='color: #0000BB;'>60. empty spectra</span><span> - Reason: file import test files not installed is not TRUE
+#&gt; </span><span style='color: #0000BB;'>60. wc --lines</span><span> - Reason: file import test files not installed is not TRUE
 #&gt; 
 #&gt; </span><span style='color: #0000BB;'>61. single spectrum</span><span> - Reason: file import test files not installed is not TRUE
 #&gt; 
@@ -370,6 +395,22 @@ display the results.</p>
 #&gt; </span><span style='color: #0000BB;'>64. chunked reading</span><span> - Reason: file import test files not installed is not TRUE
 #&gt; 
 #&gt; </span><span style='color: #0000BB;'>65. compressed files</span><span> - Reason: file import test files not installed is not TRUE
+#&gt; 
+#&gt; ══ Failed ══════════════════════════════════════════════════════════════════════
+#&gt; </span><span style='color: #BB0000;'>──</span><span> </span><span style='color: #BB0000;'>1. Failure: lattice-based plot() gives expected output </span><span> </span><span style='color: #BB0000;'>─────────────────────</span><span>
+#&gt; `print(plot_voronoi)` did not produce any messages.
+#&gt; 
+#&gt; </span><span style='color: #BB0000;'>──</span><span> </span><span style='color: #BB0000;'>2. Error: lattice-based plot() gives expected output </span><span> </span><span style='color: #BB0000;'>───────────────────────</span><span>
+#&gt; Can't find `tests/testthat` in current directory.
+#&gt; </span><span style='font-weight: bold;'>Backtrace:</span><span>
+#&gt; </span><span style='color: #555555;'> 1. </span><span>vdiffr::expect_doppelganger("plot-c", plot_c)
+#&gt; </span><span style='color: #555555;'> 2. </span><span>testthat::test_path("..", "figs", path)
+#&gt; 
+#&gt; </span><span style='color: #BB0000;'>──</span><span> </span><span style='color: #BB0000;'>3. Error: base R based plot() gives expected output </span><span> </span><span style='color: #BB0000;'>────────────────────────</span><span>
+#&gt; Can't find `tests/testthat` in current directory.
+#&gt; </span><span style='font-weight: bold;'>Backtrace:</span><span>
+#&gt; </span><span style='color: #555555;'> 1. </span><span>vdiffr::expect_doppelganger("plot", plot_1)
+#&gt; </span><span style='color: #555555;'> 2. </span><span>testthat::test_path("..", "figs", path)
 #&gt; 
 #&gt; ══ DONE ════════════════════════════════════════════════════════════════════════</div></span></pre>
   </div>

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Math Functions for <code>hyperSpec</code> Objects. — Math2,hyperSpec-method • hyperSpec</title>
+<title>Mathematical Functions for <code>hyperSpec</code> Objects. — Math2,hyperSpec-method • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,8 +41,13 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Math Functions for <code>hyperSpec</code> Objects. — Math2,hyperSpec-method" />
-<meta property="og:description" content="Mathematical functions for hyperSpec Objects." />
+<meta property="og:title" content="Mathematical Functions for <code>hyperSpec</code> Objects. — Math2,hyperSpec-method" />
+<meta property="og:description" content="The functions abs(), sign(), sqrt(), floor(), ceiling(), trunc(),
+round(), signif(), exp(), log(), expm1(), log1p(), cos(),
+sin(), tan(), acos(), asin(), atan(), cosh(), sinh(), tanh(),
+acosh(), asinh, atanh(), lgamma(), gamma(), digamma(),
+trigamma(), cumsum(), cumprod(), cummax(), cummin() for hyperSpec
+objects." />
 
 <meta name="robots" content="noindex" />
 <meta name="robots" content="noindex">
@@ -74,7 +79,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">hyperSpec</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.99-20200719</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.99-20200728</span>
       </span>
     </div>
 
@@ -155,13 +160,18 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Math Functions for <code>hyperSpec</code> Objects.</h1>
+    <h1>Mathematical Functions for <code>hyperSpec</code> Objects.</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/Math.R'><code>R/Math.R</code></a></small>
     <div class="hidden name"><code>math.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Mathematical functions for hyperSpec Objects.</p>
+    <p>The functions <code><a href='https://rdrr.io/r/base/MathFun.html'>abs()</a></code>, <code><a href='https://rdrr.io/r/base/sign.html'>sign()</a></code>, <code><a href='https://rdrr.io/r/base/MathFun.html'>sqrt()</a></code>, <code><a href='https://rdrr.io/r/base/Round.html'>floor()</a></code>, <code><a href='https://rdrr.io/r/base/Round.html'>ceiling()</a></code>, <code><a href='https://rdrr.io/r/base/Round.html'>trunc()</a></code>,
+<code><a href='https://rdrr.io/r/base/Round.html'>round()</a></code>, <code><a href='https://rdrr.io/r/base/Round.html'>signif()</a></code>, <code><a href='https://rdrr.io/r/base/Log.html'>exp()</a></code>, <code><a href='https://rdrr.io/r/base/Log.html'>log()</a></code>, <code><a href='https://rdrr.io/r/base/Log.html'>expm1()</a></code>, <code><a href='https://rdrr.io/r/base/Log.html'>log1p()</a></code>, <code><a href='https://rdrr.io/r/base/Trig.html'>cos()</a></code>,
+<code><a href='https://rdrr.io/r/base/Trig.html'>sin()</a></code>, <code><a href='https://rdrr.io/r/base/Trig.html'>tan()</a></code>, <code><a href='https://rdrr.io/r/base/Trig.html'>acos()</a></code>, <code><a href='https://rdrr.io/r/base/Trig.html'>asin()</a></code>, <code><a href='https://rdrr.io/r/base/Trig.html'>atan()</a></code>, <code><a href='https://rdrr.io/r/base/Hyperbolic.html'>cosh()</a></code>, <code><a href='https://rdrr.io/r/base/Hyperbolic.html'>sinh()</a></code>, <code><a href='https://rdrr.io/r/base/Hyperbolic.html'>tanh()</a></code>,
+<code><a href='https://rdrr.io/r/base/Hyperbolic.html'>acosh()</a></code>, <code>asinh</code>, <code><a href='https://rdrr.io/r/base/Hyperbolic.html'>atanh()</a></code>, <code><a href='https://rdrr.io/r/base/Special.html'>lgamma()</a></code>, <code><a href='https://rdrr.io/r/base/Special.html'>gamma()</a></code>, <code><a href='https://rdrr.io/r/base/Special.html'>digamma()</a></code>,
+<code><a href='https://rdrr.io/r/base/Special.html'>trigamma()</a></code>, <code><a href='https://rdrr.io/r/base/cumsum.html'>cumsum()</a></code>, <code><a href='https://rdrr.io/r/base/cumsum.html'>cumprod()</a></code>, <code><a href='https://rdrr.io/r/base/cumsum.html'>cummax()</a></code>, <code><a href='https://rdrr.io/r/base/cumsum.html'>cummin()</a></code> for <code>hyperSpec</code>
+objects.</p>
     </div>
 
     <pre class="usage"><span class='co'># S4 method for hyperSpec</span>
@@ -197,23 +207,14 @@
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>a <code>hyperSpec</code> object</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>The functions <code>abs</code>, <code>sign</code>, <code>sqrt</code>, <code>floor</code>,
-<code>ceiling</code>, <code>trunc</code>, <code>round</code>, <code>signif</code>, <code>exp</code>,
-<code>log</code>, <code>expm1</code>, <code>log1p</code>, <code>cos</code>, <code>sin</code>, <code>tan</code>,
-<code>acos</code>, <code>asin</code>, <code>atan</code>, <code>cosh</code>, <code>sinh</code>,
-<code>tanh</code>, <code>acosh</code>, <code>asinh</code>, <code>atanh</code>, <code>lgamma</code>,
-<code>gamma</code>, <code>digamma</code>, <code>trigamma</code>, <code>cumsum</code>,
-<code>cumprod</code>, <code>cummax</code>, <code>cummin</code> for <code>hyperSpec</code> objects.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='https://rdrr.io/r/methods/S4groupGeneric.html'>methods::S4groupGeneric()</a></code> for group generic methods.</p>
 <p><code><a href='https://rdrr.io/r/base/groupGeneric.html'>base::Math()</a></code> for the base math functions.</p>
 <p><code>Arith()</code> for arithmetic operators,
 <code><a href='https://rdrr.io/r/base/Comparison.html'>Comparison()</a></code> for comparison operators, and
-<code><a href='https://rdrr.io/r/base/groupGeneric.html'>Summary()</a></code> for group generic functions working on
-<code>hyperSpec</code> objects.</p></div>
+<code><a href='https://rdrr.io/r/base/groupGeneric.html'>Summary()</a></code> for group generic functions working on <code>hyperSpec</code>
+objects.</p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>C. Beleites</p>
