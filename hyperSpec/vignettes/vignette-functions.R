@@ -20,11 +20,11 @@
 #' @examples
 #' cite_pkg()
 #'
-#' cite_pkg("Rcpp")
+#' cite_pkg("bookdown")
 #'
-#' cite_pkg("Rcpp", prefix = "")
+#' cite_pkg("bookdown", prefix = "")
 #'
-#' cite_pkg("Rcpp", prefix = "pkg-")
+#' cite_pkg("bookdown", prefix = "pkg-")
 #'
 #' # Issues to consider: -------------------------------------
 #' # All core R base packages should be cited by using

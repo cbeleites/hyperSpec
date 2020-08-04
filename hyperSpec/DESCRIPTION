@@ -47,20 +47,13 @@ Imports:
     utils,
     xml2
 Suggests:
-    akima,
     baseline,
     bookdown,
     caTools,
     colorspace,
-    compiler,
     covr,
     deldir,
-    devtools,
     digest,
-    fastcluster,
-    ggplotify,
-    ggpubr,
-    inline,
     kableExtra,
     knitr,
     MASS,
@@ -68,9 +61,8 @@ Suggests:
     plotrix,
     pls,
     R.matlab,
-    R.rsp,
-    Rcpp,
     reshape,
+    reshape2,
     rgl,
     rmarkdown,
     sessioninfo,
@@ -104,7 +96,6 @@ Collate:
     'bind.R'
     'call.list.R'
     'chk.hy.R'
-    'chondro.R'
     'colMeans.R'
     'collapse.R'
     'count_lines.R'

@@ -13,7 +13,9 @@
 #' the future, it is planned to parameterize thefuncion) and object `faux_cell`
 #' is an instance of this dataset generated first time it is used.
 #'
-#' The data set resembles the `chondro` data set but is entirely synthetic.
+#' The data set resembles the
+#' [`chondro`](https://r-hyperspec.github.io/hySpc.chondro/)
+#' data set but is entirely synthetic.
 #'
 #' @format The object `faux_cell` is a `hyperSpec` object that contains 875
 #'  Raman-like spectra, allocated to three groups/regions in column region:
