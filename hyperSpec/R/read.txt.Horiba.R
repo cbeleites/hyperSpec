@@ -8,6 +8,9 @@
 #' @rdname read.txt.Horiba
 #' @author C. Beleites
 #' @return hyperSpec object
+#'
+#' @concept io
+#'
 #' @export
 read.txt.Horiba <- function(file, cols = c(
                               spc = "I / a.u.",
@@ -29,6 +32,9 @@ read.txt.Horiba <- function(file, cols = c(
 
 #' @rdname read.txt.Horiba
 #' @export
+#'
+#' @concept io
+#'
 read.txt.Horiba.xy <- function(file, ...) {
   read.txt.Horiba(
     file = file,
@@ -45,6 +51,9 @@ read.txt.Horiba.xy <- function(file, ...) {
 #' `read.txt.Horiba.t`  reads time series, i.e. .txt files with the time in the first column
 #' @rdname read.txt.Horiba
 #' @export
+#'
+#' @concept io
+#'
 read.txt.Horiba.t <- function(file, header = TRUE, sep = "\t", row.names = NULL,
                               check.names = FALSE, ...) {
   read.txt.Horiba(file,

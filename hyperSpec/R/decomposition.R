@@ -58,7 +58,12 @@
 #'   See e.g. [stats::prcomp()] and [stats::princomp()] for
 #'   principal component analysis, and package `pls` for Partial Least
 #'   Squares Regression.
+#'
+#' @export
+#'
 #' @keywords methods manip
+#' @concept manipulation
+#'
 #' @include apply.R
 #' @examples
 #' pca <- prcomp(flu)
@@ -70,7 +75,6 @@
 #' plot(pca.center)
 #' plot(pca.loadings, col = c("red", "gray50"))
 #' plotc(pca.scores, groups = .wavelength)
-#' @export
 decomposition <- function(object, x, wavelength = seq_len(ncol(x)),
                           label.wavelength, label.spc,
                           scores = TRUE, retain.columns = FALSE,

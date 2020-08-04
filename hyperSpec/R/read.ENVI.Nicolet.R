@@ -17,6 +17,9 @@
 #' @param nicolet.correction see details
 #' @describeIn  read.ENVI
 #' @export
+#'
+#' @concept io
+#'
 #' @importFrom utils modifyList
 read.ENVI.Nicolet <- function(file = stop("read.ENVI: file name needed"),
                               headerfile = NULL, header = list(), ...,

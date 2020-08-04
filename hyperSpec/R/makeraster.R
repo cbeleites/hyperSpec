@@ -17,7 +17,11 @@
 #' @return list with elements
 #' \item{x}{the values of `x`, possibly rounded to the raster values}
 #' \item{levels}{the values of the raster}
+#'
 #' @export
+#'
+#' @concept manipulation
+#'
 #' @author Claudia Beleites
 #' @examples
 #' x <- c(sample(1:20, 10), (0:5) + 0.5)
@@ -63,6 +67,9 @@ makeraster <- function(x, startx, d, newlevels, tol = 0.1) {
 
 #' @rdname makeraster
 #' @export
+#'
+#' @concept manipulation
+#'
 #' @examples
 #'
 #' raster <- fitraster(x)

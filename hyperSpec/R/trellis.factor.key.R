@@ -12,7 +12,11 @@
 #' @return the modified list with levelplot arguments.
 #' @author C. Beleites
 #' @seealso [lattice::levelplot()]
+#'
 #' @keywords aplot
+#' @concept plotting
+#' @concept plotting tools
+#'
 #' @export
 #' @importFrom lattice level.colors
 #' @examples

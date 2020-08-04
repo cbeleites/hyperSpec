@@ -1,39 +1,49 @@
 #' Binding `hyperSpec` Objects.
 #'
-#' The former difficulties with binding S4 objects
-#' are resolved since R version 3.2.0 and `cbind` and `rbind` now work as intended and
-#' expected for `hyperSpec` objects.
+#' Functions to bind `hyperSpec` objects.
+#'
+#'
+#' The former difficulties with binding S4 objects are resolved since R version
+#' 3.2.0 and `cbind()` and `rbind()` now work as intended and expected for
+#' `hyperSpec` objects.
 #'
 #' Therefore, calling `rbind.hyperSpec` and `cbind.hyperSpec` is now depecated:
-#'  `cbind` and `rbind` should now be called directly.
+#' `cbind` and `rbind` should now be called directly.
 #'
-#' However, in consequence it is no longer possible to call `cbind` or `rbind` with a
-#' list of `hyperSpec` objects. In that case, use `bind` or [base::do.call()] (see example).
+#' However, in consequence it is no longer possible to call `cbind()` or `rbind()`
+#' with a list of `hyperSpec` objects. In that case, use `bind()` or
+#' [base::do.call()] (see example).
 #'
-#' `bind` does the common work for both column- and row-wise binding.
+#' `bind()` does the common work for both column- and row-wise binding.
 #'
 #' @aliases bind
 #' @param ... The `hyperSpec` objects to be combined.
 #'
-#' Alternatively, *one* list of `hyperSpec` objects can be given to
-#'   `bind`.
+#' Alternatively, *one* list of `hyperSpec` objects can be given to `bind()`.
+#'
 #' @param wl.tolerance `rbind` and `rbind2` check for equal wavelengths
 #' with this tolerance.
 #' @include paste.row.R
 #' @param direction "r" or "c" to bind rows or columns
+#'
 #' @return a `hyperSpec` object, possibly with different row order (for
 #'   \code{bind ("c", \dots{})} and `cbind2`).
+#'
 #' @note You might have to make sure that the objects either all have or all
 #'   do not have rownames and/or colnames.
+#'
 #' @author C. Beleites
 #' @export
+#'
+#' @keywords methods manip
+#' @concept manipulation
+#'
 #' @seealso
 #' [methods::rbind2()], [methods::cbind2()]
 #' [base::rbind()], [base::cbind()]
 #'
 #' [merge()] and [collapse()] for combining objects that do not share spectra
 #' or wavelengths, respectively.
-#' @keywords methods manip
 #' @examples
 #'
 #' faux_cell
@@ -60,7 +70,7 @@
 #' lhy <- list(flu, flu)
 #' do.call("rbind", lhy)
 #' bind("r", lhy)
-bind <- function(direction = stop("direction ('c' or 'r') required"), ...,
+bind <- function(direction = stop("direction('c' or 'r') required"), ...,
                  wl.tolerance = hy.getOption("wl.tolerance")) {
   wl.tolerance <- .checkpos(wl.tolerance, "wl.tolerance")
   dots <- list(...)
@@ -93,56 +103,81 @@ bind <- function(direction = stop("direction ('c' or 'r') required"), ...,
   }
 }
 
+# Unit tests -----------------------------------------------------------------
+
 #' @include unittest.R
 .test(bind) <- function() {
   context("bind")
+
+  test_that("bind() throws error", {
+    expect_error(bind("r"))
+    expect_error(bind("c"))
+  })
+
+  test_that("bind() works", {
+    expect_equal(bind("r", flu), flu)
+    expect_equal(bind("c", flu), flu)
+  })
 
   test_that("wl.tolerance for rbind", {
     tmp <- flu
     wl(tmp) <- wl(tmp) + 0.01
     expect_error(bind("r", tmp, flu))
-    expect_equivalent(nwl(bind("r", tmp, flu, tmp, flu, wl.tolerance = 0.1)), nwl(flu))
-
+    expect_equivalent(
+      nwl(bind("r", tmp, flu, tmp, flu, wl.tolerance = 0.1)),
+      nwl(flu)
+    )
 
     tmp.list <- list(flu, tmp, flu)
-
     expect_error(bind("r", tmp.list))
-    expect_true(all.equal(bind("r", tmp.list, wl.tolerance = 0.1),
+    expect_true(all.equal(
+      bind("r", tmp.list, wl.tolerance = 0.1),
       flu[rep(row.seq(flu), 3)],
       check.label = TRUE
     ))
 
-    expect_true(all.equal(do.call("bind", list("r", tmp.list, wl.tolerance = 0.1)),
+    expect_true(all.equal(
+      do.call("bind", list("r", tmp.list, wl.tolerance = 0.1)),
       flu[rep(row.seq(flu), 3)],
       check.label = TRUE
     ))
   })
 }
 
+# ... ------------------------------------------------------------------------
 
-#' @description  `cbind2` binds the spectral matrices of two `hyperSpec` objects by column. All columns
-#' besides `spc` with the same name in `x@@data` and `y@@data` must have the same
-#' elements.  Rows are ordered before checking.
+#' @description `cbind2` binds the spectral matrices of two `hyperSpec` objects
+#' by column. All columns besides `spc` with the same name in `x@@data` and
+#' `y@@data` must have the same elements.  Rows are ordered before checking.
+#'
 #' @aliases bind cbind.hyperSpec rbind.hyperSpec
 #'   cbind2,hyperSpec,hyperSpec-method rbind2,hyperSpec,hyperSpec-method
 #'   cbind2,hyperSpec,missing-method rbind2,hyperSpec,missing-method
 #' @param x,y `hyperSpec` objects
 #' @rdname bind
 #' @export
+#'
+#' @concept manipulation
+#'
 #' @aliases cbind.hyperSpec
 
-#'
 cbind.hyperSpec <- function(...) bind("c", ...)
 
-#'
-#' `rbind2` binds two `hyperSpec` objects by row. They need to have
-#' the same columns.
+
+#' `rbind2` binds two `hyperSpec` objects by row. They need to have the same
+#' columns.
 #'
 #' @aliases  rbind.hyperSpec
 #' @rdname bind
 #' @export
+#'
+#' @concept manipulation
+#'
 #' @aliases rbind.hyperSpec
 rbind.hyperSpec <- function(...) bind("r", ...)
+
+
+# Unit tests -----------------------------------------------------------------
 
 .test(rbind.hyperSpec) <- function() {
   context("rbind.hyperSpec")
@@ -169,8 +204,63 @@ rbind.hyperSpec <- function(...) bind("r", ...)
     expect_equal(nrow(rbind(flu, flu)), 2 * nrow(flu))
     expect_error(rbind(flu, flu[, , min ~ min + 3i]))
   })
+
+  test_that("rbind.hyperSpec() uses bind('r', ...) correctly", {
+    expect_equal(bind("r", flu, flu), rbind(flu, flu))
+  })
+
+  test_that("rbind.hyperSpec() works", {
+
+    # One dataset
+    expect_equal(rbind(flu), flu)
+
+    # Two datasets
+    expect_equal(rbind(flu[1:3, , ], flu[4:6, , ]), flu)
+    expect_equal(
+      rbind(flu[c(1, 3, 6), , ], flu[c(2, 4, 5), , ]),
+      flu[c(1, 3, 6, 2, 4, 5), , ]
+    )
+
+    # Three datasets
+    expect_equal(
+      rbind(flu[1, , ], flu[6, , ], flu[5, , ]),
+      flu[c(1, 6, 5), , ]
+    )
+  })
 }
 
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.test(cbind.hyperSpec) <- function() {
+  context("cbind.hyperSpec")
+
+  test_that("cbind.hyperSpec() uses bind('c', ...) correctly", {
+    expect_equal(bind("c", flu, flu), cbind(flu, flu))
+  })
+
+  test_that("cbind.hyperSpec() works", {
+
+    # One dataset
+    expect_equal(cbind(flu), flu)
+
+    # Two datasets
+    expect_equal(
+      cbind(flu[, , 1:10, wl.index = TRUE], flu[, , 21:30, wl.index = TRUE]),
+      flu[, , c(1:10, 21:30), wl.index = TRUE]
+    )
+
+    # Three datasets
+    expect_equal(
+      cbind(
+        flu[, , 1:10, wl.index = TRUE],
+        flu[, , 21:30, wl.index = TRUE],
+        flu[, , 51:80, wl.index = TRUE]
+      ),
+      flu[, , c(1:10, 21:30, 51:80), wl.index = TRUE]
+    )
+  })
+}
+
+# ... ------------------------------------------------------------------------
 
 .cbind2 <- function(x, y) {
   validObject(x)
@@ -209,13 +299,47 @@ rbind.hyperSpec <- function(...) bind("r", ...)
 
   x
 }
+
+
+# Unit tests -----------------------------------------------------------------
+
+.test(.cbind2) <- function() {
+  context(".cbind2")
+
+  test_that("flu", {
+    expect_equal(cbind(flu[, 1], flu[, -1]), flu, check.attributes = FALSE)
+    expect_equal(cbind(flu[, -1], flu[, 1]), flu, check.attributes = FALSE)
+    expect_equal(cbind(flu[, 1:2], flu[, 3]), flu, check.attributes = FALSE)
+  })
+
+  test_that("empty objects", {
+    expect_equal(cbind(flu[, 0], flu[, 0]), flu[, 0], check.attributes = FALSE)
+    expect_equal(cbind(flu[, 1], flu[, 0]), flu[, 1], check.attributes = FALSE)
+    expect_equal(cbind(flu[, 0], flu[, 1]), flu[, 1], check.attributes = FALSE)
+  })
+
+  test_that("cbind2", {
+    expect_equal(cbind2(flu), flu)
+    expect_equal(cbind2(flu, flu), cbind(flu, flu))
+  })
+}
+
+
+# ... ------------------------------------------------------------------------
+
 #' @rdname bind
 #' @export
+#'
+#' @concept manipulation
+#'
 #' @aliases cbind2,hyperSpec,hyperSpec-method
 setMethod("cbind2", signature = signature(x = "hyperSpec", y = "hyperSpec"), .cbind2)
 
 #' @rdname bind
 #' @export
+#'
+#' @concept manipulation
+#'
 #' @aliases cbind2,hyperSpec,missing-method
 setMethod("cbind2", signature = signature(x = "hyperSpec", y = "missing"), function(x, y) x)
 
@@ -236,6 +360,8 @@ setMethod("cbind2", signature = signature(x = "hyperSpec", y = "missing"), funct
   x
 }
 
+# Unit tests -----------------------------------------------------------------
+
 .test(.rbind2) <- function() {
   context(".rbind2")
 
@@ -251,21 +377,33 @@ setMethod("cbind2", signature = signature(x = "hyperSpec", y = "missing"), funct
     expect_equal(rbind(flu[0], flu[1]), flu[1], check.attributes = FALSE)
   })
 
-
   test_that("wl.tolerance", {
     tmp <- flu
     wl(tmp) <- wl(tmp) + 0.01
     expect_error(rbind2(tmp, flu))
     expect_equivalent(nwl(rbind2(tmp, flu, wl.tolerance = 0.1)), nwl(flu))
   })
+
+  test_that("rbind2", {
+    expect_equal(rbind2(flu), flu)
+    expect_equal(rbind2(flu, flu), rbind(flu, flu))
+  })
 }
+
+# ... ------------------------------------------------------------------------
 
 #' @rdname bind
 #' @export
-#' @aliases  rbind2,hyperSpec,hyperSpec-method
+#'
+#' @concept manipulation
+#'
+#' @aliases rbind2,hyperSpec,hyperSpec-method
 setMethod("rbind2", signature = signature(x = "hyperSpec", y = "hyperSpec"), .rbind2)
 
 #' @rdname bind
 #' @export
+#'
+#' @concept manipulation
+#'
 #' @aliases rbind2,hyperSpec,missing-method
 setMethod("rbind2", signature = signature(x = "hyperSpec", y = "missing"), function(x, y, wl.tolerance) x)

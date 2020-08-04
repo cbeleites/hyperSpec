@@ -13,8 +13,10 @@
 #'
 #' @return hyperSpec object with unused levels of all factors in `@data` dropped.
 #' @seealso [base::droplevels()]
-#' @md
+#'
 #' @export
+#'
+#' @concept manipulation
 #'
 #' @examples
 #' faux_cell[1:3]$region

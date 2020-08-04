@@ -1,3 +1,6 @@
+
+#' @concept utils
+
 .validate <- function(object) {
   ncol <- ncol(object@data$spc)
 

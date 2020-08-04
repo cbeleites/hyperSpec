@@ -15,7 +15,11 @@
 #' @param y a `hyperSpec` object or data.frame (including derived classes like tibble)
 #' @param ... handed to [base::merge.data.frame()]
 #' @author C. Beleites
+#'
 #' @export
+#'
+#' @concept manipulation
+#'
 #' @rdname merge
 #' @docType methods
 #' @aliases merge

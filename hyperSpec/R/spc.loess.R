@@ -4,9 +4,10 @@
 #' [stats::loess()].
 #'
 #' Applying [stats::loess()] to each of the spectra, an interpolation onto a new
-#' wavelength axis is performed.  At the same time, the specta are smoothed in order to increase the
-#' signal : noise ratio. See [stats::loess()] and [stats::loess.control()] on
-#' the parameters that control the amount of smoothing.
+#' wavelength axis is performed.  At the same time, the specta are smoothed in
+#' order to increase the signal : noise ratio. See [stats::loess()] and
+#' [stats::loess.control()] on the parameters that control the amount of
+#' smoothing.
 #'
 #' @param spc the `hyperSpec` object
 #' @param newx wavelengh axis to interpolate on
@@ -14,10 +15,15 @@
 #' [stats::loess.control()].
 #' @return A new `hyperSpec` object.
 #' @rdname spc-loess
-#' @export
 #' @author C. Beleites
 #' @seealso [stats::loess()], [stats::loess.control()]
+#'
+#' @export
+#'
 #' @keywords manip datagen
+#' @concept spectra smoothing
+#'
+#'
 #' @examples
 #'
 #' plot(flu, col = "darkgray")
@@ -58,4 +64,27 @@ spc.loess <- function(spc, newx, enp.target = nwl(spc) / 4,
   }
 
   spc
+}
+
+
+# Unit tests -----------------------------------------------------------------
+.test(spc.loess) <- function() {
+  context("spc.loess")
+
+  # Perform tests
+  test_that("spc.loess() returnts output silently", {
+    expect_silent(spc.loess(flu, seq(420, 470, 5)))
+  })
+
+  test_that("spc.loess() returns errors", {
+    expect_error(spc.loess())
+  })
+
+  test_that("spc.loess() returns warnings", {
+    flu[[3, ]] <- NA_real_
+    expect_warning(spc.loess(flu, seq(420, 470, 5)), "NAs were generated.")
+  })
+
+
+  # FIXME (tests): add tests to check the correctness of the output!!!
 }

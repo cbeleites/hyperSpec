@@ -37,7 +37,11 @@
 #' @param ... further arguments to [lattice::xyplot()].
 #' @author C. Beleites
 #' @seealso [lattice::xyplot()]
+#'
 #' @keywords hplot
+#' @concept plotting
+#' @concept plot generation
+#'
 #' @export
 #' @import graphics
 #' @importFrom lattice xyplot

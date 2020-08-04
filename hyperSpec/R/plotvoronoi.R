@@ -12,6 +12,10 @@
 #'   hyperSpec object circumvents this problem.
 #' @rdname levelplot
 #' @include levelplot.R
+#'
+#' @concept plotting
+#' @concept plot generation
+#'
 #' @export
 #' @seealso [latticeExtra::panel.voronoi()]
 #' @importFrom latticeExtra panel.voronoi

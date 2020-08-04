@@ -25,10 +25,14 @@
 #'   matrix, either as polynomial coefficients or as polynomials evaluted on
 #'   the spectral range of `apply.to`
 #' @author C. Beleites
-#' @md
-#' @seealso `vignette ("baseline", package = "hyperSpec")`
-#' @keywords manip datagen
+#'
+#' @seealso `vignette("baseline", package = "hyperSpec")`
+#'
 #' @export
+#'
+#' @keywords manip datagen
+#' @concept baseline
+#'
 #' @examples
 #'
 #' \dontrun{
@@ -143,7 +147,11 @@ spc.fit.poly <- function(fit.to, apply.to = NULL, poly.order = 1,
 #'   `3` plots support points for 1st spectrum, `4` plots support
 #'   points for all spectra.
 #' @seealso  see [hyperSpec::options()] for more on `debuglevel`
+#'
 #' @export
+#'
+#' @concept baseline
+#'
 #' @examples
 #'
 #' baselines <- spc.fit.poly.below(spc)

@@ -4,12 +4,15 @@
 
 #' Quick data frame.
 #'
-#' Experimental version of [as.data.frame()] that converts a
-#' list to a data frame, but doesn't do any checks to make sure it's a
-#' valid format. Much faster.
+#' Experimental version of [as.data.frame()] that converts a list to a data
+#' frame, but doesn't do any checks to make sure it's a valid format.
+#' Much faster.
 #'
 #' @param list list to convert to data frame
+#'
 #' @keywords internal
+#' @concept manipulation
+#'
 quickdf <- function(list) {
   if (is.matrix(list[[1]])) {
     n <- nrow(list[[1]])
@@ -45,7 +48,10 @@ quickdf <- function(list) {
 #'
 #' @author C. Beleites
 #' @seealso   [base::rbind()], [base::cbind()], [plyr::rbind.fill()]
+#'
 #' @keywords manip
+#' @concept manipulation
+#'
 #' @rdname rbind.fill
 #' @examples
 #' A <- matrix(1:4, 2)
@@ -74,7 +80,7 @@ rbind.fill.matrix <- function(...) {
   }
 
   tmp <- !unlist(lapply(matrices, is.matrix))
-  matrices [tmp] <- lapply(matrices [tmp], as.matrix)
+  matrices[tmp] <- lapply(matrices[tmp], as.matrix)
 
   ## if the matrices have column names, use them
   lcols <- lapply(matrices, .cols)
@@ -94,7 +100,7 @@ rbind.fill.matrix <- function(...) {
   ## fill in the new matrix
   for (i in seq_along(matrices)) {
     icols <- match(lcols[[i]], cols)
-    result [(pos [i] + 1):pos [i + 1], icols] <- matrices[[i]]
+    result[(pos[i] + 1):pos[i + 1], icols] <- matrices[[i]]
   }
 
   colnames(result) <- cols
@@ -119,10 +125,14 @@ rbind.fill.matrix <- function(...) {
 #' operates substantially faster
 #'
 #' @param ... data frames/matrices to row bind together
+#'
 #' @keywords manip
+#' @concept manipulation
+#'
 #' @rdname rbind.fill
 #' @examples
-#' #' rbind.fill(mtcars[c("mpg", "wt")], mtcars[c("wt", "cyl")])
+#' # rbind.fill(mtcars[c("mpg", "wt")], mtcars[c("wt", "cyl")])
+#'
 rbind.fill <- function(...) {
   dfs <- list(...)
   if (length(dfs) == 0) {
@@ -131,7 +141,7 @@ rbind.fill <- function(...) {
   if (is.list(dfs[[1]]) && !is.data.frame(dfs[[1]])) {
     dfs <- dfs[[1]]
   }
-  dfs <- dfs [!sapply(dfs, is.null)] # compact(dfs) -> dependency plyr.
+  dfs <- dfs[!sapply(dfs, is.null)] # compact(dfs) -> dependency plyr.
 
   if (length(dfs) == 1) {
     return(dfs[[1]])
@@ -153,7 +163,7 @@ rbind.fill <- function(...) {
   matrixcols <- unique(unlist(lapply(dfs, function(x) {
     names(x) [sapply(x, is.matrix)]
   })))
-  seen [matrixcols] <- TRUE # class<- will fail if the matrix is not protected by I
+  seen[matrixcols] <- TRUE # class<- will fail if the matrix is not protected by I
   # because 2 dims are needed
 
   for (df in dfs) {

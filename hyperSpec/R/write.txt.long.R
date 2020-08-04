@@ -21,7 +21,12 @@
 #' @param append Should the output be appended to an existing file?
 #' @aliases write.txt.long
 #' @rdname textio
+#'
 #' @export
+#'
+#' @concept io
+#' @concept write to file
+#'
 #' @importFrom utils write.table
 write.txt.long <- function(object,
                            file = "",
