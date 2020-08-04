@@ -68,12 +68,17 @@ spc.loess <- function(spc, newx, enp.target = nwl(spc) / 4,
 
 
 # Unit tests -----------------------------------------------------------------
+
 .test(spc.loess) <- function() {
   context("spc.loess")
 
   # Perform tests
-  test_that("spc.loess() returnts output silently", {
-    expect_silent(spc.loess(flu, seq(420, 470, 5)))
+  test_that("spc.loess() returns correct spc colnames", {
+    expect_silent(res <- spc.loess(flu, seq(420, 470, 5)))
+
+    spc_col_names <- as.numeric(colnames(res$spc))
+    expect_equal(spc_col_names, wl(res))
+    expect_equal(spc_col_names, seq(420, 470, 5))
   })
 
   test_that("spc.loess() returns errors", {
