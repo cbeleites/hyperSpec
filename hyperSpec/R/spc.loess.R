@@ -63,7 +63,7 @@ spc.loess <- function(spc, newx, enp.target = nwl(spc) / 4,
     warning("NAs were generated. Probably newx was outside the spectral range covered by spc.")
   }
 
-  spc
+  .fix_spc_colnames(spc)
 }
 
 
