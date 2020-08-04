@@ -33,8 +33,9 @@
 #' smooth <- spc.loess(flu, seq(420, 470, 5))
 #' smooth[[, ]]
 #' plot(smooth, add = TRUE, col = "blue")
-spc.loess <- function(spc, newx, enp.target = nwl(spc) / 4,
-                      surface = "direct", ...) {
+spc.loess <- function(spc, newx, enp.target = nwl(spc) / 4, surface = "direct",
+                      ...) {
+
   .loess <- function(y, x) {
     if (all(is.na(y))) {
       NA
@@ -60,7 +61,10 @@ spc.loess <- function(spc, newx, enp.target = nwl(spc) / 4,
   .wl(spc) <- newx
 
   if (any(is.na(spc@data$spc))) {
-    warning("NAs were generated. Probably newx was outside the spectral range covered by spc.")
+    warning(
+      "NAs were generated. ",
+      "Probably `newx` was outside the spectral range covered by `spc`."
+    )
   }
 
   .fix_spc_colnames(spc)
