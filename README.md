@@ -85,7 +85,7 @@ So you can either use the [online documentation](https://cbeleites.github.io/hyp
 
 2. Open the downloaded directory in RStudio (preferably, as an RStudio project).
     - The code below works correctly only if your current working directory coincides with the root of the repository, i.e., if it is in the directory that contains file `README.md` and sub-directory `hyperSpec`.
-    - If you open RStudio project correctly, then the working directory is set correctly by default.
+    - If you open RStudio project correctly (e.g., by clicking `project.Rproj` icon ![image](https://user-images.githubusercontent.com/12725868/89340903-26621280-d6a9-11ea-8299-0ec5e9cf7e3e.png) in the directory), then the working directory is set correctly by default.
 
 3. In RStudio 'Console' window, run the code (provided below) to:
     a. Install packages **remotes** and **devtools**.
