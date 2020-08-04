@@ -25,6 +25,7 @@ hyperSpec_*.tar.gz
 
 # Session Data files
 .RData
+.Ruserdata
 
 # Example code in package build process
 *-Ex.R
