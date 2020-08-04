@@ -49,7 +49,6 @@ jobs:
       - name: Roxygenize
         run: |
           devtools::document("./hyperSpec", roclets = c('rd', 'collate', 'namespace'))
-          devtools::document("./hyperSpec", roclets = c('vignette'))
         shell: Rscript {0}
 
       - name: Test coverage
