@@ -122,23 +122,28 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="r-package-hyperspec" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#r-package-hyperspec" class="anchor"></a>R package <strong>hyperSpec</strong>
-</h1></div>
-<!-- badges: start -->
+
 
 <!-- ---------------------------------------------------------------------- -->
-<p>Package <strong>hyperSpec</strong> is an <a href="https://www.r-project.org/"><strong>R</strong></a> package. The goal of <strong>hyperSpec</strong> is to makethe work with hyperspectral data sets, (i.e. spatially or time-resolved spectra, or spectra with any other kind of information associated with each of the spectra) more confortable. The spectra can be data as obtained during XRF, UV/VIS, Fluorescence, AES, NIR, IR, Raman, NMR, MS, etc. spectroscopy measurements. More generally, any data that is recorded over a discretized variable, e.g. <code>absorbance = f(wavelength)</code>, stored as a vector of absorbance values for discrete wavelengths is suitable.</p>
-<p>Issues and feature requests should go <a href="https://github.com/cbeleites/hyperSpec/issues">here</a>!</p>
+<div id="r-package-hyperspec" class="section level1">
+<div class="page-header"><h1 class="hasAnchor">
+<a href="#r-package-hyperspec" class="anchor"></a>R Package <strong>hyperSpec</strong>
+</h1></div>
+<p><a href="https://www.r-project.org/"><strong>R</strong></a> package <strong>hyperSpec</strong> is the main package in the <a href="https://r-hyperspec.github.io/"><strong><code>r-hyperspec</code></strong></a> family of packages. The goal of <strong>hyperSpec</strong> (and whole <strong><code>r-hyperspec</code></strong>) is to make the work with hyperspectral data sets, (i.e. spatially or time-resolved spectra, or spectra with any other kind of information associated with each of the spectra) more comfortable. The spectra can be data as obtained during <a href="https://en.wikipedia.org/wiki/X-ray_fluorescence">XRF</a>, <a href="https://en.wikipedia.org/wiki/Ultraviolet%E2%80%93visible_spectroscopy">UV/VIS</a>, <a href="https://en.wikipedia.org/wiki/Fluorescence_spectroscopy">Fluorescence</a>, <a href="https://en.wikipedia.org/wiki/Auger_electron_spectroscopy">AES</a>, <a href="https://en.wikipedia.org/wiki/Near-infrared_spectroscopy">NIR</a>, <a href="https://en.wikipedia.org/wiki/Infrared_spectroscopy">IR</a>, <a href="https://en.wikipedia.org/wiki/Raman_spectroscopy">Raman</a>, <a href="https://en.wikipedia.org/wiki/Nuclear_magnetic_resonance_spectroscopy">NMR</a>, <a href="https://en.wikipedia.org/wiki/Mass_spectrometry">MS</a>, etc. spectroscopy measurements. More generally, any data that is recorded over a discretized variable, e.g. <code>absorbance = f(wavelength)</code>, stored as a vector of absorbance values for discrete wavelengths is suitable.</p>
 <!-- ---------------------------------------------------------------------- -->
 <div id="documentation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#documentation" class="anchor"></a>Documentation</h2>
-<p>There are two versions of online documentation:</p>
-<p>a) for the <a href="https://cbeleites.github.io/hyperSpec/">released version</a> and</p>
-<p>b) for the <a href="https://cbeleites.github.io/hyperSpec/dev/">development version</a> of <strong>hyperSpec</strong>.</p>
+<p>There are two versions of <strong>hyperSpec</strong> online documentation:</p>
+<p>a. for the <a href="https://cbeleites.github.io/hyperSpec/">released version</a> and</p>
+<p>b. for the <a href="https://cbeleites.github.io/hyperSpec/dev/">development version</a> of <strong>hyperSpec</strong>.</p>
+<p>The documentation of the other <strong><code>r-hyperspec</code></strong> family packages can be found at <a href="https://r-hyperspec.github.io/">r-hyperspec.github.io</a>.</p>
 <!-- ---------------------------------------------------------------------- -->
+</div>
+<div id="issues-bug-repotrs-and-feature-requests" class="section level2">
+<h2 class="hasAnchor">
+<a href="#issues-bug-repotrs-and-feature-requests" class="anchor"></a>Issues, Bug Repotrs and Feature Requests</h2>
+<p>Issues, bug repotrs and feature requests should go <a href="https://github.com/cbeleites/hyperSpec/issues">here</a>! <!-- ---------------------------------------------------------------------- --></p>
 </div>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
@@ -157,28 +162,55 @@
 <p>You can install the development version of the package from <a href="https://github.com/cbeleites/hyperSpec">GitHub</a>:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit">
 <span class="co">if</span> (<span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="kw"><a href="https://remotes.r-lib.org">remotes</a></span>)) {<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"remotes"</span>)}
-<span class="kw">remotes</span>::<span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"cbeleites/hyperSpec/hyperSpec"</span>, ref = <span class="st">"develop"</span>)
+<span class="kw">remotes</span>::<span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"cbeleites/hyperSpec/hyperSpec"</span>)
 </pre></div>
+<p><strong>NOTE 1:</strong> Usually, “Windows” users need to download, install and properly configure <strong>Rtools</strong> (see <a href="https://cran.r-project.org/bin/windows/Rtools/">these instructions</a>) to make the code above work.</p>
+<p><strong>NOTE 2:</strong> This method will <strong>not</strong> install package’s documentation (help pages and vignettes) into your computer. So you can either use the <a href="https://cbeleites.github.io/hyperSpec/dev/">online documentation</a> or build the package from source (see the next section).</p>
 </div>
-</div>
-<div id="how-to-build-from-source" class="section level2">
-<h2 class="hasAnchor">
-<a href="#how-to-build-from-source" class="anchor"></a>How to build from source</h2>
-<p><strong>NOTE:</strong> Windows users need to download, install and properly configure <strong>Rtools</strong> (see <a href="https://cran.r-project.org/bin/windows/Rtools/">these instructions</a>). These are required by a number of dependencies of hyperSpec. RStudio will offer to automatically install them if necessary.</p>
-<p>We assume that your current working directory is in the root of repository, i.e. the directory with <code>README.md</code> file.</p>
-<p>In order to build the package from source, first install packages listed under the section <code>Suggests:</code> in file <code>hyperSpec/DESCRIPTION</code>. At the very minimum at least the following packages are necessary:</p>
-<pre><code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages(c("roxygen2", "devtools", "knitr", "rmarkdown", "bookdown", "R.matlab", "kableExtra", "mvtnorm", "plotrix", "pls", "baseline", "deldir", "tripack"))</a></code></pre>
-<p>You can use package <code>remotes</code> to automatically install all dependencies from the <code>Suggests</code> list:</p>
-<pre><code><a href="https://rdrr.io/r/base/Sys.setenv.html"># Do not abort installation even if some packages are not available
-Sys.setenv(R_REMOTES_NO_ERRORS_FROM_WARNINGS="true")
+<div id="install-from-source" class="section level3">
+<h3 class="hasAnchor">
+<a href="#install-from-source" class="anchor"></a>Install from Source</h3>
+<ol>
+<li>From the <strong>hyperSpec</strong>’s GitHub <a href="https://github.com/cbeleites/hyperSpec">repository</a>:
+<ul>
+<li>If you use Git, <code>git clone</code> the branch of interest. You may need to fork it before cloning.</li>
+<li>Or just chose the branch of interest (1 in Figure below), download a ZIP archive with the code (2, 3) and unzip it on your computer.<br><img src="https://user-images.githubusercontent.com/12725868/89338263-ffa1dd00-d6a4-11ea-94c2-fa36ee026691.png" alt="image">
+</li>
+</ul>
+</li>
+<li>Open the downloaded directory in RStudio (preferably, as an RStudio project).
+<ul>
+<li>The code below works correctly only if your current working directory coincides with the root of the repository, i.e., if it is in the directory that contains file <code>README.md</code> and sub-directory <code>hyperSpec</code>.</li>
+<li>If you open RStudio project correctly (e.g., by clicking <code>project.Rproj</code> icon <img src="https://user-images.githubusercontent.com/12725868/89340903-26621280-d6a9-11ea-8299-0ec5e9cf7e3e.png" alt="image"> in the directory), then the working directory is set correctly by default.</li>
+</ul>
+</li>
+<li>In RStudio ‘Console’ window, run the code (provided below) to:
+a. Install packages <strong>remotes</strong> and <strong>devtools</strong>.
+b. Install <strong>hyperSpec</strong>’s dependencies.
+c. Create <strong>hyperSpec</strong>’s documentation.
+d. Install package <strong>hyperSpec</strong>.</li>
+</ol>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="co"># Do not abort installation even if some packages are not available</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Sys.setenv.html">Sys.setenv</a></span>(R_REMOTES_NO_ERRORS_FROM_WARNINGS = <span class="fl">TRUE</span>)
 
-remotes::install_deps('hyperSpec', dependencies = 'Suggests')</a></code></pre>
-<p>If using RStudio, go to menu <em>Build/configure build tools</em>, use ‘Package’ build system, set <code>hyperSpec</code> as the package directory, and make sure that the checkboxes for ‘Use devtools package’ and ‘Generate documentation with Roxygen’ are checked. Under the <em>Roxygen configuration</em> dialog set all checkboxes except of ‘install and restart’.</p>
-<p>Once everything is configured, you would need to invoke ‘document’ and then ‘build’ in RStudio, or the following in the terminal:</p>
-<pre><code><a href="https://devtools.r-lib.org//reference/document.html">devtools::document('hyperSpec')
-devtools::build('hyperSpec')</a></code></pre>
+<span class="co"># Install packages remotes and devtools</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"remotes"</span>, <span class="st">"devtools"</span>))
+
+<span class="co"># Install hyperSpec's dependencies</span>
+<span class="kw">remotes</span>::<span class="fu"><a href="https://remotes.r-lib.org/reference/install_deps.html">install_deps</a></span>(<span class="st">"hyperSpec"</span>, dependencies = <span class="fl">TRUE</span>)
+
+<span class="co"># Create hyperSpec's documentation</span>
+<span class="kw">devtools</span>::<span class="fu"><a href="https://devtools.r-lib.org//reference/document.html">document</a></span>(<span class="st">"hyperSpec"</span>)
+
+<span class="co"># Install package hyperSpec and its dependencies</span>
+<span class="kw">devtools</span>::<span class="fu"><a href="https://devtools.r-lib.org//reference/install.html">install</a></span>(<span class="st">"hyperSpec"</span>, build_vignettes = <span class="fl">TRUE</span>)
+</pre></div>
+<p><strong>NOTE 1:</strong> Usually, “Windows” users need to download, install and properly configure <strong>Rtools</strong> (see <a href="https://cran.r-project.org/bin/windows/Rtools/">these instructions</a>) to make the code above work.</p>
 </div>
 </div>
+</div>
+
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -221,8 +253,8 @@ devtools::build('hyperSpec')</a></code></pre>
 <li><a href="https://cran.r-project.org/package=hyperSpec"><img src="https://www.r-pkg.org/badges/version-last-release/hyperSpec" alt="CRAN status"></a></li>
 <li><a href="https://cran.r-project.org/package=hyperSpec"><img src="https://cranlogs.r-pkg.org/badges/grand-total/hyperSpec" alt="metacran downloads"></a></li>
 <li><a href="https://cran.r-project.org/package=hyperSpec"><img src="https://cranlogs.r-pkg.org/badges/hyperSpec" alt="metacran downloads"></a></li>
-<li><a href="https://github.com/cbeleites/hyperSpec/actions"><img src="https://github.com/cbeleites/hyperSpec/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
-<li><a href="https://codecov.io/gh/cbeleites/hyperSpec?branch=develop"><img src="https://codecov.io/gh/cbeleites/hyperSpec/branch/develop/graph/badge.svg" alt="Codecov test coverage"></a></li>
+<li><a href="https://github.com/cbeleites/hyperSpec/actions"><img src="https://github.com/cbeleites/hyperSpec/workflows/R-CMD-check/badge.svg?branch=develop" alt="R-CMD-check"></a></li>
+<li><a href="https://codecov.io/gh/cbeleites/hyperSpec?branch=develop"><img src="https://codecov.io/gh/cbeleites/hyperSpec/branch/develop/graph/badge.svg" alt="Codecov"></a></li>
 <li><a href="https://www.gnu.org/licenses/gpl-3.0.en.html"><img src="https://img.shields.io/badge/license-GPL--3-blue.svg" alt="license"></a></li>
 </ul>
 </div>
