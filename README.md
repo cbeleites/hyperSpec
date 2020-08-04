@@ -75,32 +75,41 @@ This method will **not** install package's documentation (help pages and vignett
 So you can either use the [online documentation](https://cbeleites.github.io/hyperSpec/dev/) or build the package from source (see the next section).
 
 
-## How to build from source
+### Install from Source
 
-**NOTE:** Windows users need to download, install and properly configure **Rtools** (see [these instructions](https://cran.r-project.org/bin/windows/Rtools/)). These are required by a number of dependencies of hyperSpec. RStudio will offer to automatically install them if necessary.
+1. From the **hyperSpec**'s GitHub [repository](https://github.com/cbeleites/hyperSpec):
+    - If you use Git, `git clone` the branch of interest.
+      You may need to fork it before cloning.
+    - Or just chose the branch of interest (1 in Figure below), download a ZIP archive with the code (2, 3) and unzip it on your computer.  
+![image](https://user-images.githubusercontent.com/12725868/89338263-ffa1dd00-d6a4-11ea-94c2-fa36ee026691.png)
 
-We assume that your current working directory is in the root of repository, i.e. the directory with `README.md` file.
+2. Open the downloaded directory in RStudio (preferably, as an RStudio project).
+    - The code below works correctly only if your current working directory coincides with the root of the repository, i.e., if it is in the directory that contains file `README.md` and sub-directory `hyperSpec`.
+    - If you open RStudio project correctly, then the working directory is set correctly by default.
 
-In order to build the package from source, first install packages listed under the section `Suggests:` in file `hyperSpec/DESCRIPTION`. At the very minimum at least the following packages are necessary:
+3. In RStudio 'Console' window, run the code (provided below) to:
+    a. Install packages **remotes** and **devtools**.
+    b. Install **hyperSpec**'s dependencies.
+    c. Create **hyperSpec**'s documentation.
+    d. Install package **hyperSpec**.
 
-```
-install.packages(c("roxygen2", "devtools", "knitr", "rmarkdown", "bookdown", "R.matlab", "kableExtra", "mvtnorm", "plotrix", "pls", "baseline", "deldir", "tripack"))
-```
-
-You can use package `remotes` to automatically install all dependencies from the `Suggests` list:
-
-```
+```r
 # Do not abort installation even if some packages are not available
-Sys.setenv(R_REMOTES_NO_ERRORS_FROM_WARNINGS="true")
+Sys.setenv(R_REMOTES_NO_ERRORS_FROM_WARNINGS = TRUE)
 
-remotes::install_deps('hyperSpec', dependencies = 'Suggests')
+# Install packages remotes and devtools
+install.packages(c("remotes", "devtools"))
+
+# Install hyperSpec's dependencies
+remotes::install_deps("hyperSpec", dependencies = TRUE)
+
+# Create hyperSpec's documentation
+devtools::document("hyperSpec")
+
+# Install package hyperSpec and its dependencies
+devtools::install("hyperSpec", build_vignettes = TRUE)
 ```
 
-If using RStudio, go to menu *Build/configure build tools*, use 'Package' build system, set `hyperSpec` as the package directory, and make sure that the checkboxes for 'Use devtools package' and 'Generate documentation with Roxygen' are checked. Under the *Roxygen configuration* dialog set all checkboxes except of 'install and restart'.
+**NOTE 1:**
+Usually, "Windows" users need to download, install and properly configure **Rtools** (see [these instructions](https://cran.r-project.org/bin/windows/Rtools/)) to make the code above work.
 
-Once everything is configured, you would need to invoke 'document' and then 'build' in RStudio, or the following in the terminal:
-
-```
-devtools::document('hyperSpec')
-devtools::build('hyperSpec')
-```
