@@ -11,7 +11,7 @@ on:
       - master
       - develop
 
-name: test-coverage
+name: Test coverage
 
 jobs:
   test-coverage:
