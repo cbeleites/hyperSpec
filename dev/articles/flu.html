@@ -154,7 +154,7 @@ They were acquired during an student practicum and were kindly provided by M. Ka
 Spectra were acquired with a Perkin Elmer LS50-B fluorescence spectrometer at 350 nm excitation.</p>
 <div id="writing-an-import-function" class="section level1">
 <h1 class="hasAnchor">
-<a href="#writing-an-import-function" class="anchor"></a><span class="header-section-number">1</span> Writing an Import Function</h1>
+<a href="#writing-an-import-function" class="anchor"></a>Writing an Import Function</h1>
 <p>The raw spectra are in Perkin Elmer’s ASCII file format, one spectrum per file.
 The files are completely ASCII text, with the actual spectra starting at line 55.</p>
 <!-- ======================================================================= -->
@@ -190,13 +190,13 @@ The files are completely ASCII text, with the actual spectra starting at line 55
 <div class="figure" style="text-align: center">
 <span id="fig:rawfig"></span>
 <img src="flu_files/figure-html/rawfig-1.png" alt="Six spectra of `flu` dataset.  "><p class="caption">
-Figure 1.1: Six spectra of <code>flu</code> dataset.
+Figure 1: Six spectra of <code>flu</code> dataset.
 </p>
 </div>
 </div>
 <div id="adding-further-data-columns" class="section level1">
 <h1 class="hasAnchor">
-<a href="#adding-further-data-columns" class="anchor"></a><span class="header-section-number">2</span> Adding further Data Columns</h1>
+<a href="#adding-further-data-columns" class="anchor"></a>Adding further Data Columns</h1>
 <p>The calibration model needs the quinine concentrations for the spectra.
 This information can be stored together with the spectra, and also gets an appropriate label:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit">
@@ -227,7 +227,7 @@ This information can be stored together with the spectra, and also gets an appro
 </div>
 <div id="sec:dropp-data-columns" class="section level1">
 <h1 class="hasAnchor">
-<a href="#sec:dropp-data-columns" class="anchor"></a><span class="header-section-number">3</span> Dropping data columns</h1>
+<a href="#sec:dropp-data-columns" class="anchor"></a>Dropping data columns</h1>
 <p>Function <code class="sourceCode r"><span class="kw">read.txt.PerkinElmer</span>()</code> added a column with the file names that we don’t need.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit">
 <span class="kw">flu</span><span class="op">$</span><span class="kw">..</span>
@@ -246,7 +246,7 @@ This information can be stored together with the spectra, and also gets an appro
 </div>
 <div id="linear-calibration" class="section level1">
 <h1 class="hasAnchor">
-<a href="#linear-calibration" class="anchor"></a><span class="header-section-number">4</span> Linear Calibration</h1>
+<a href="#linear-calibration" class="anchor"></a>Linear Calibration</h1>
 <p>As R is developed for the purpose of statistical analysis, tools for a least squares calibration
 model are readily available.</p>
 <p>The original spectra range from 405 to 495 nm.
@@ -259,7 +259,7 @@ Plotting them over the concentration is done by:</p>
 <div class="figure" style="text-align: center">
 <span id="fig:calplot1"></span>
 <img src="flu_files/figure-html/calplot1-1.png" alt="Spectra intensities at 450 nm. "><p class="caption">
-Figure 4.1: Spectra intensities at 450 nm.
+Figure 2: Spectra intensities at 450 nm.
 </p>
 </div>
 <p>The square bracket operator extracts parts of a <code class="sourceCode r">hyperSpec</code> object.
@@ -277,7 +277,7 @@ Also the axes should start at the origin, so that it is easier to see whether th
 <div class="figure" style="text-align: center">
 <span id="fig:calplot2"></span>
 <img src="flu_files/figure-html/calplot2-1.png" alt="Spectra intensities at 450 nm with updated labels. "><p class="caption">
-Figure 4.2: Spectra intensities at 450 nm with updated labels.
+Figure 3: Spectra intensities at 450 nm with updated labels.
 </p>
 </div>
 <p>The actual calibration is a linear model, which can be fitted by the R function <code class="sourceCode r"><span class="kw">lm</span>()</code>.
@@ -389,7 +389,7 @@ In order to draw the confidence interval into the calibration graph, we can eith
 <div class="figure" style="text-align: center">
 <span id="fig:calplot3"></span>
 <img src="flu_files/figure-html/calplot3-1.png" alt="Calibration function and its 99% confidence interval.  "><p class="caption">
-Figure 4.3: Calibration function and its 99% confidence interval.
+Figure 4: Calibration function and its 99% confidence interval.
 </p>
 </div>
 <p>Or, we can add the respective data to the <code class="sourceCode r">hyperSpec</code> object. The meaning of the data can be saved in a new extra data column that acts as grouping variable for the plot.</p>
@@ -440,7 +440,7 @@ Our prediction example is handled by another customized panel function:</p>
 <div class="figure" style="text-align: center">
 <span id="fig:calplot4"></span>
 <img src="flu_files/figure-html/calplot4-1.png" alt="calibration function and its 99% confidence interval and predicted points. "><p class="caption">
-Figure 4.4: calibration function and its 99% confidence interval and predicted points.
+Figure 5: calibration function and its 99% confidence interval and predicted points.
 </p>
 </div>
 </div>

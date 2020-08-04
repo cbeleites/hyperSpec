@@ -144,7 +144,7 @@
 <!-- ======================================================================= -->
 <div id="introduction" class="section level1">
 <h1 class="hasAnchor">
-<a href="#introduction" class="anchor"></a><span class="header-section-number">1</span> Introduction</h1>
+<a href="#introduction" class="anchor"></a>Introduction</h1>
 <!-- ======================================================================= -->
 <!-- ======================================================================= -->
 <p>This data set consists of a time series of 84 spectra of an unstable laser emission at 405 nm recorded during ca. 1.5 h.</p>
@@ -159,7 +159,7 @@ There is no Raman scattering involved in this data, but the Raman software recor
 </div>
 <div id="loading-the-data-and-preprocessing" class="section level1">
 <h1 class="hasAnchor">
-<a href="#loading-the-data-and-preprocessing" class="anchor"></a><span class="header-section-number">2</span> Loading the Data and Preprocessing</h1>
+<a href="#loading-the-data-and-preprocessing" class="anchor"></a>Loading the Data and Preprocessing</h1>
 <p>Load the <strong>hyperSpec</strong> package.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://cbeleites.github.io/hyperSpec">hyperSpec</a></span>)
@@ -176,13 +176,13 @@ There is no Raman scattering involved in this data, but the Raman software recor
 <div class="figure" style="text-align: center">
 <span id="fig:rawspc"></span>
 <img src="laser_files/figure-html/rawspc-1.png" alt="The raw laser emission spectra.  "><p class="caption">
-Figure 2.1: The raw laser emission spectra.
+Figure 1: The raw laser emission spectra.
 </p>
 </div>
 <p>As the laser emission was recorded with a Raman spectrometer, the wavelength axis initially is the Raman shift in wavenumbers (cm<sup>-1</sup>).</p>
-<p>As most of the spectra do not show any signal (fig. <a href="#fig:rawspc">2.1</a>), so the spectral range can be cut to -75 – 0 cm<sup>-1</sup>.
+<p>As most of the spectra do not show any signal (fig. <a href="#fig:rawspc">1</a>), so the spectral range can be cut to -75 – 0 cm<sup>-1</sup>.
 Note that negative numbers in the spectral range specification with the tilde do not exclude the spectral range but rather mean negative values of the wavelength axis.
-The results are shown in figure <a href="#fig:cutspc">2.2</a>.</p>
+The results are shown in figure <a href="#fig:cutspc">2</a>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit">
 <span class="kw">laser</span> <span class="op">&lt;-</span> <span class="kw">laser</span>[, , <span class="op">-</span><span class="fl">75</span> <span class="op">~</span> <span class="fl">0</span>]
 <span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">laser</span>, <span class="st">"spcprctl5"</span>)
@@ -190,7 +190,7 @@ The results are shown in figure <a href="#fig:cutspc">2.2</a>.</p>
 <div class="figure" style="text-align: center">
 <span id="fig:cutspc"></span>
 <img src="laser_files/figure-html/cutspc-1.png" alt="The cut spectra laser emission spectra.   "><p class="caption">
-Figure 2.2: The cut spectra laser emission spectra.
+Figure 2: The cut spectra laser emission spectra.
 </p>
 </div>
 <p>The wavelength axis was recorded as Raman shift from 405 nm.
@@ -200,12 +200,12 @@ The band at -50 cm<sup>-1</sup> is known to be at 405 nm.</p>
 <span class="fu"><a href="../reference/wl.html">wl</a></span>(<span class="kw">laser</span>) <span class="op">&lt;-</span> <span class="fu"><a href="../reference/wl.html">wl</a></span>(<span class="kw">laser</span>) <span class="op">+</span> <span class="fl">50</span>
 </pre></div>
 <p>Furthermore, as the spectra are not Raman shift but emission, the wavelength axis should be converted to proper wavelengths in nm.</p>
-<p>The Raman shift is calculated from the wavelength as follows in equation <a href="#eq:laser-eq-1">(2.1)</a> with <span class="math inline">\(\Delta\tilde\nu\)</span> being the Raman shift, and <span class="math inline">\(\lambda_0\)</span> the excitation wavelength for a Raman process, here 405 nm.</p>
+<p>The Raman shift is calculated from the wavelength as follows in equation <a href="#eq:laser-eq-1">(1)</a> with <span class="math inline">\(\Delta\tilde\nu\)</span> being the Raman shift, and <span class="math inline">\(\lambda_0\)</span> the excitation wavelength for a Raman process, here 405 nm.</p>
 <!-- Equation ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  -->
 <p><span class="math display" id="eq:laser-eq-1">\[\begin{equation}
 
   \Delta\tilde\nu = \frac{1}{\lambda_0} -  \frac{1}{\lambda}
-  \tag{2.1}
+  \tag{1}
 
 \end{equation}\]</span>
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  --></p>
@@ -214,7 +214,7 @@ The band at -50 cm<sup>-1</sup> is known to be at 405 nm.</p>
 <p><span class="math display" id="eq:laser-eq-2">\[\begin{equation}
 
   \lambda = \frac{1}{ \frac{1}{\lambda_0} - \Delta\tilde\nu}
-  \tag{2.2}
+  \tag{2}
 
 \end{equation}\]</span>
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  --></p>
@@ -231,7 +231,7 @@ The band at -50 cm<sup>-1</sup> is known to be at 405 nm.</p>
 <div class="figure" style="text-align: center">
 <span id="fig:wlspc"></span>
 <img src="laser_files/figure-html/wlspc-1.png" alt="The spectra with wavelength axis. "><p class="caption">
-Figure 2.3: The spectra with wavelength axis.
+Figure 3: The spectra with wavelength axis.
 </p>
 </div>
 <p>Note that the new wavelength axis label is immediately assigned as well.</p>
@@ -251,8 +251,8 @@ Figure 2.3: The spectra with wavelength axis.
 </div>
 <div id="inspecting-the-time-dependency-of-the-laser-emission" class="section level1">
 <h1 class="hasAnchor">
-<a href="#inspecting-the-time-dependency-of-the-laser-emission" class="anchor"></a><span class="header-section-number">3</span> Inspecting the time dependency of the laser emission</h1>
-<p>The maxima of the different emission lines encountered during this measurement are at 405.0, 405.1, 405.3, and 405.4 nm (fig. <a href="#fig:markspc">3.1</a>).</p>
+<a href="#inspecting-the-time-dependency-of-the-laser-emission" class="anchor"></a>Inspecting the time dependency of the laser emission</h1>
+<p>The maxima of the different emission lines encountered during this measurement are at 405.0, 405.1, 405.3, and 405.4 nm (fig. <a href="#fig:markspc">4</a>).</p>
 <p>Alternatively they can be extracted from the graph using <code class="sourceCode r"><span class="kw">locator</span>()</code> which reads out the coordinates of the points the user clicks with the mouse (use middle or right click to end the input):</p>
 <div class="sourceCode" id="cb10"><pre class="downlit">
 <span class="kw">wls</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/locator.html">locator</a></span>()<span class="op">$</span><span class="kw">x</span>
@@ -266,13 +266,13 @@ Figure 2.3: The spectra with wavelength axis.
 <div class="figure" style="text-align: center">
 <span id="fig:markspc"></span>
 <img src="laser_files/figure-html/markspc-1.png" alt="The spectral position of the bands in the laser emission time series. "><p class="caption">
-Figure 3.1: The spectral position of the bands in the laser emission time series.
+Figure 4: The spectral position of the bands in the laser emission time series.
 </p>
 </div>
 <p>Function <code class="sourceCode r"><span class="kw">plotc</span>()</code> can also be used to plot time-series.
 In that case, the abscissa needs to be specified in parameter <code class="sourceCode r">use.c</code>.
 The collection time is stored in column <code class="sourceCode r"><span class="op">$</span>t</code> in seconds from start of the measurement, and can be handed over as the column name.
-The resulting time series are shown in figure <a href="#fig:ts">3.2</a>.</p>
+The resulting time series are shown in figure <a href="#fig:ts">5</a>.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit">
 <span class="fu"><a href="../reference/plotc.html">plotc</a></span>(<span class="kw">laser</span>[, , <span class="kw">wls</span>], <span class="kw">spc</span> <span class="op">~</span> <span class="kw">t</span>, groups = <span class="kw">.wavelength</span>, type = <span class="st">"b"</span>, cex = <span class="fl">0.3</span>, col = <span class="kw">cols</span>)
 </pre></div>
@@ -280,24 +280,24 @@ The resulting time series are shown in figure <a href="#fig:ts">3.2</a>.</p>
 <span id="fig:ts"></span>
 <img src="laser_files/figure-html/ts-1.png" alt="The time series data.
 The colors in this plot correspond to colors in fig. \@ref(fig:ts).  "><p class="caption">
-Figure 3.2: The time series data.
-The colors in this plot correspond to colors in fig. <a href="#fig:ts">3.2</a>.
+Figure 5: The time series data.
+The colors in this plot correspond to colors in fig. <a href="#fig:ts">5</a>.
 </p>
 </div>
-<p>Another option is to condition the plot on <span class="math inline">\(\lambda\)</span> <a href="#fig:tsextra">3.3</a>.</p>
+<p>Another option is to condition the plot on <span class="math inline">\(\lambda\)</span> <a href="#fig:tsextra">6</a>.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit">
 <span class="fu"><a href="../reference/plotc.html">plotc</a></span>(<span class="kw">laser</span>[, , <span class="kw">wls</span>], <span class="kw">spc</span> <span class="op">~</span> <span class="kw">t</span> <span class="op">|</span> <span class="kw">.wavelength</span>, type = <span class="st">"b"</span>, cex = <span class="fl">0.3</span>, col = <span class="st">"black"</span>)
 </pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:tsextra"></span>
 <img src="laser_files/figure-html/tsextra-1.png" alt="The time series plots can also be conditioned on `$.wavelength`{.r}. "><p class="caption">
-Figure 3.3: The time series plots can also be conditioned on <code class="sourceCode r"><span class="op">$</span>.wavelength</code>.
+Figure 6: The time series plots can also be conditioned on <code class="sourceCode r"><span class="op">$</span>.wavelength</code>.
 </p>
 </div>
 </div>
 <div id="sec:plotmat" class="section level1">
 <h1 class="hasAnchor">
-<a href="#sec:plotmat" class="anchor"></a><span class="header-section-number">4</span> False-colour plot of the spectral intensity over wavelength and time</h1>
+<a href="#sec:plotmat" class="anchor"></a>False-colour plot of the spectral intensity over wavelength and time</h1>
 <p>Package <strong>hyperSpec</strong> supplies functions to draw the spectral matrix using package <strong>lattice</strong>’s <code class="sourceCode r"><span class="kw">levelplot</span>()</code>.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit">
 <span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">laser</span>, <span class="st">"mat"</span>, contour = <span class="fl">TRUE</span>, col = <span class="st">"#00000060"</span>)
@@ -306,11 +306,11 @@ Figure 3.3: The time series plots can also be conditioned on <code class="source
 <span id="fig:plotmatr"></span>
 <img src="laser_files/figure-html/plotmatr-1.png" alt="The spectra matrix of the `laser`{.r} data set.
 The ordinate of the plot may be the number of the spectrum accessed by `$.row`{.r} (here) or any other extra data column, as, e.g., `$t`{.r} in fig. \@ref(fig:plotmatt).  "><p class="caption">
-Figure 4.1: The spectra matrix of the <code class="sourceCode r">laser</code> data set.
-The ordinate of the plot may be the number of the spectrum accessed by <code class="sourceCode r"><span class="op">$</span>.row</code> (here) or any other extra data column, as, e.g., <code class="sourceCode r"><span class="op">$</span>t</code> in fig. <a href="#fig:plotmatt">4.2</a>.
+Figure 7: The spectra matrix of the <code class="sourceCode r">laser</code> data set.
+The ordinate of the plot may be the number of the spectrum accessed by <code class="sourceCode r"><span class="op">$</span>.row</code> (here) or any other extra data column, as, e.g., <code class="sourceCode r"><span class="op">$</span>t</code> in fig. <a href="#fig:plotmatt">8</a>.
 </p>
 </div>
-<p>Package <strong>hyperSpec</strong>’s <code class="sourceCode r"><span class="kw">levelplot</span>()</code> method can be used to display the spectra matrix over a data column (instead of the row number): fig. <a href="#fig:plotmatr">4.1</a>, <a href="#fig:plotmatt">4.2</a>.
+<p>Package <strong>hyperSpec</strong>’s <code class="sourceCode r"><span class="kw">levelplot</span>()</code> method can be used to display the spectra matrix over a data column (instead of the row number): fig. <a href="#fig:plotmatr">7</a>, <a href="#fig:plotmatt">8</a>.
 Note that the <code class="sourceCode r">hyperSpec</code> object is the <em>second</em> argument to the function (according to the notation in <code class="sourceCode r"><span class="kw">levelplot</span>()</code>).</p>
 <div class="sourceCode" id="cb15"><pre class="downlit">
 <span class="fu">levelplot</span>(<span class="kw">spc</span> <span class="op">~</span> <span class="kw">.wavelength</span> <span class="op">*</span> <span class="kw">t</span>, <span class="kw">laser</span>, contour = <span class="fl">TRUE</span>, col = <span class="st">"#00000080"</span>)
@@ -319,17 +319,17 @@ Note that the <code class="sourceCode r">hyperSpec</code> object is the <em>seco
 <span id="fig:plotmatt"></span>
 <img src="laser_files/figure-html/plotmatt-1.png" alt="The spectra matrix of the `laser`{.r} data set.
 The ordinate of the plot may be any extra data column, here `$t`{.r}.  "><p class="caption">
-Figure 4.2: The spectra matrix of the <code class="sourceCode r">laser</code> data set.
+Figure 8: The spectra matrix of the <code class="sourceCode r">laser</code> data set.
 The ordinate of the plot may be any extra data column, here <code class="sourceCode r"><span class="op">$</span>t</code>.
 </p>
 </div>
 </div>
 <div id="sec:3d-plot-spectral" class="section level1">
 <h1 class="hasAnchor">
-<a href="#sec:3d-plot-spectral" class="anchor"></a><span class="header-section-number">5</span> A 3d plot of the spectral intensity over wavelength and time</h1>
+<a href="#sec:3d-plot-spectral" class="anchor"></a>A 3d plot of the spectral intensity over wavelength and time</h1>
 <p>Class <code class="sourceCode r">hyperSpec</code> objects can be drawn with package <strong>rgl</strong><span class="citation">[<a href="#ref-R-rgl" role="doc-biblioref">1</a>]</span>:</p>
 <p>Package <strong>rgl</strong>’s function <code class="sourceCode r"><span class="kw">persp3d</span>()</code> plots a surface in 3d defined by points in x, y, and z.
-Handing over the appropriate data columns of the <code class="sourceCode r">hyperSpec</code> object is easy (fig. <a href="#fig:laser3d">5.1</a>).</p>
+Handing over the appropriate data columns of the <code class="sourceCode r">hyperSpec</code> object is easy (fig. <a href="#fig:laser3d">9</a>).</p>
 <div class="sourceCode" id="cb16"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://r-forge.r-project.org/projects/rgl">rgl</a></span>)
 </pre></div>
@@ -355,7 +355,7 @@ Handing over the appropriate data columns of the <code class="sourceCode r">hype
 <div class="figure" style="text-align: center">
 <span id="fig:laser3d"></span>
 <img src="laser--rgl-3d.png" alt="The 3d plot of the laser data.  " width="400"><p class="caption">
-Figure 5.1: The 3d plot of the laser data.
+Figure 9: The 3d plot of the laser data.
 </p>
 </div>
 </div>

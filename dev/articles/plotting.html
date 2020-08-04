@@ -194,38 +194,38 @@ Throughout the documentation of the package, the following terms are used:</p>
 </div>
 <div id="predefined-functions" class="section level1">
 <h1 class="hasAnchor">
-<a href="#predefined-functions" class="anchor"></a><span class="header-section-number">1</span> Predefined Functions</h1>
+<a href="#predefined-functions" class="anchor"></a>Predefined Functions</h1>
 <p>Package <strong>hyperSpec</strong> comes with 6 major predefined plotting functions:</p>
 <dl>
 <dt><strong><code class="sourceCode r"><span class="kw">plot</span>()</code></strong></dt>
 <dd>main switchyard for most plotting tasks.
-More details in section <a href="#fun-plot">2</a>.
+More details in section <a href="#fun-plot"><strong>??</strong></a>.
 </dd>
 <dt><strong><code class="sourceCode r"><span class="kw">plotspc</span>()</code></strong></dt>
 <dd>plots spectra.
-More details in sections <a href="#exm-plotspc">1.1</a>, <a href="#arg-spc">2.1</a>, and <a href="#fun-plotspc">3</a>.
+More details in sections <a href="#exm-plotspc"><strong>??</strong></a>, <a href="#arg-spc"><strong>??</strong></a>, and <a href="#fun-plotspc"><strong>??</strong></a>.
 </dd>
 <dt><strong><code class="sourceCode r"><span class="kw">plotc</span>()</code></strong></dt>
 <dd>calibration plot, time series, depth profile.
-More details in sections <a href="#exm-plotc">1.3</a>, <a href="#arg-c">2.5</a>, <a href="#arg-ts">2.6</a>, <a href="#arg-depth">2.7</a>, and <a href="#fun-plotc">4</a>.
+More details in sections <a href="#exm-plotc"><strong>??</strong></a>, <a href="#arg-c"><strong>??</strong></a>, <a href="#arg-ts"><strong>??</strong></a>, <a href="#arg-depth"><strong>??</strong></a>, and <a href="#fun-plotc"><strong>??</strong></a>.
 (<code class="sourceCode r"><span class="kw">plotc</span>()</code> is a package <strong>lattice</strong> function)
 </dd>
 <dt><strong><code class="sourceCode r"><span class="kw">levelplot</span>()</code></strong></dt>
 <dd>package <strong>hyperSpec</strong> has a method for package <strong>lattice</strong><span class="citation">[<a href="#ref-R-lattice" role="doc-biblioref">2</a>,<a href="#ref-lattice2008" role="doc-biblioref">3</a>]</span> function <code class="sourceCode r"><span class="kw">levelplot</span>()</code>.
-More details in sections <a href="#exm-levelplot">1.4</a>, and <a href="#fun-levelplot">5</a>.
+More details in sections <a href="#exm-levelplot"><strong>??</strong></a>, and <a href="#fun-levelplot"><strong>??</strong></a>.
 </dd>
 <dt><strong><code class="sourceCode r"><span class="kw">plotmat</span>()</code></strong></dt>
 <dd>plots the spectra matrix.
-More details in sections <a href="#exm-plotmat">1.2</a>, <a href="#arg-mat">2.8</a>, and <a href="#fun-plotmat">6</a>.
+More details in sections <a href="#exm-plotmat"><strong>??</strong></a>, <a href="#arg-mat"><strong>??</strong></a>, and <a href="#fun-plotmat"><strong>??</strong></a>.
 </dd>
 <dt><strong><code class="sourceCode r"><span class="kw">plotmap</span>()</code></strong></dt>
 <dd>more specialized version of <code class="sourceCode r"><span class="kw">levelplot</span>()</code> for map or image plots.
-More details in sections <a href="#exm-plotmap">1.5</a>, <a href="#arg-map">2.9</a>, and <a href="#fun-plotmap">7</a>.
+More details in sections <a href="#exm-plotmap"><strong>??</strong></a>, <a href="#arg-map"><strong>??</strong></a>, and <a href="#fun-plotmap"><strong>??</strong></a>.
 (<code class="sourceCode r"><span class="kw">plotmap</span>()</code> is a package <strong>lattice</strong> function)
 </dd>
 <dt><strong><code class="sourceCode r"><span class="kw">plotvoronoi</span>()</code></strong></dt>
 <dd>more specialized version of <code class="sourceCode r"><span class="kw">plotmap</span>()</code> that produces Voronoi tesselations.
-More details in sections <a href="#exm-plotvoronoi">1.6</a>, and <a href="#arg-voronoi">2.10</a>.
+More details in sections <a href="#exm-plotvoronoi"><strong>??</strong></a>, and <a href="#arg-voronoi"><strong>??</strong></a>.
 (<code class="sourceCode r"><span class="kw">plotvoronoi</span>()</code> is a package <strong>lattice</strong> function)
 </dd>
 </dl>
@@ -236,39 +236,39 @@ More details in sections <a href="#exm-plotvoronoi">1.6</a>, and <a href="#arg-v
 </div>
 <div id="exm-plotspc" class="section level2">
 <h2 class="hasAnchor">
-<a href="#exm-plotspc" class="anchor"></a><span class="header-section-number">1.1</span> Function <code class="sourceCode r"><span class="kw">plotspc</span>()</code>
+<a href="#exm-plotspc" class="anchor"></a>Function <code class="sourceCode r"><span class="kw">plotspc</span>()</code>
 </h2>
-<p>Function <code class="sourceCode r"><span class="kw">plotspc</span>()</code> plots the spectra (Fig. <a href="#fig:plotspc">1.1</a>), i.e., the intensities (<code class="sourceCode r"><span class="op">$</span>spc</code>) over the wavelengths (<code class="sourceCode r"><span class="op">@</span>wavelength</code>).</p>
+<p>Function <code class="sourceCode r"><span class="kw">plotspc</span>()</code> plots the spectra (Fig. <a href="#fig:plotspc">1</a>), i.e., the intensities (<code class="sourceCode r"><span class="op">$</span>spc</code>) over the wavelengths (<code class="sourceCode r"><span class="op">@</span>wavelength</code>).</p>
 <div class="sourceCode" id="cb4"><pre class="downlit">
 <span class="fu"><a href="../reference/plotspc.html">plotspc</a></span>(<span class="kw">flu</span>)
 </pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:plotspc"></span>
 <img src="plotting_files/figure-html/plotspc-1.png" alt="Spectra in dataset `flu`.  "><p class="caption">
-Figure 1.1: Spectra in dataset <code>flu</code>.
+Figure 1: Spectra in dataset <code>flu</code>.
 </p>
 </div>
 </div>
 <div id="exm-plotmat" class="section level2">
 <h2 class="hasAnchor">
-<a href="#exm-plotmat" class="anchor"></a><span class="header-section-number">1.2</span> Function <code class="sourceCode r"><span class="kw">plotmat</span>()</code>
+<a href="#exm-plotmat" class="anchor"></a>Function <code class="sourceCode r"><span class="kw">plotmat</span>()</code>
 </h2>
-<p>Function <code class="sourceCode r"><span class="kw">plotmat</span>()</code> plots the spectra, i.e., the colour coded intensities (<code class="sourceCode r"><span class="op">$</span>spc</code>) over the wavelengths (<code class="sourceCode r"><span class="op">@</span>wavelength</code>) and the row number (Fig. <a href="#fig:plotmat-flu">1.2</a>).</p>
+<p>Function <code class="sourceCode r"><span class="kw">plotmat</span>()</code> plots the spectra, i.e., the colour coded intensities (<code class="sourceCode r"><span class="op">$</span>spc</code>) over the wavelengths (<code class="sourceCode r"><span class="op">@</span>wavelength</code>) and the row number (Fig. <a href="#fig:plotmat-flu">2</a>).</p>
 <div class="sourceCode" id="cb5"><pre class="downlit">
 <span class="fu"><a href="../reference/plotmat.html">plotmat</a></span>(<span class="kw">flu</span>)
 </pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:plotmat-flu"></span>
 <img src="plotting_files/figure-html/plotmat-flu-1.png" alt="Matrix of spectra: the colour coded intensities over the wavelengths and the row number.  "><p class="caption">
-Figure 1.2: Matrix of spectra: the colour coded intensities over the wavelengths and the row number.
+Figure 2: Matrix of spectra: the colour coded intensities over the wavelengths and the row number.
 </p>
 </div>
 </div>
 <div id="exm-plotc" class="section level2">
 <h2 class="hasAnchor">
-<a href="#exm-plotc" class="anchor"></a><span class="header-section-number">1.3</span> Function <code class="sourceCode r"><span class="kw">plotc</span>()</code>
+<a href="#exm-plotc" class="anchor"></a>Function <code class="sourceCode r"><span class="kw">plotc</span>()</code>
 </h2>
-<p>Function <code class="sourceCode r"><span class="kw">plotc</span>()</code> plots an intensity over a single other data column, e.g., concentration (calibration plot, e.g., Fig. <a href="#fig:plotflu">1.3</a>), depth (depth profile plot), or time (time series plot).</p>
+<p>Function <code class="sourceCode r"><span class="kw">plotc</span>()</code> plots an intensity over a single other data column, e.g., concentration (calibration plot, e.g., Fig. <a href="#fig:plotflu">3</a>), depth (depth profile plot), or time (time series plot).</p>
 <div class="sourceCode" id="cb6"><pre class="downlit">
 <span class="fu"><a href="../reference/plotc.html">plotc</a></span>(<span class="kw">flu</span>)
 <span class="co">#&gt; Warning in plotc(flu): Intensity at first wavelengh only is used.</span>
@@ -276,7 +276,7 @@ Figure 1.2: Matrix of spectra: the colour coded intensities over the wavelengths
 <div class="figure" style="text-align: center">
 <span id="fig:plotflu"></span>
 <img src="plotting_files/figure-html/plotflu-1.png" alt="Calibration plot: an intensity over concentration.  "><p class="caption">
-Figure 1.3: Calibration plot: an intensity over concentration.
+Figure 3: Calibration plot: an intensity over concentration.
 </p>
 </div>
 <blockquote>
@@ -285,16 +285,16 @@ Figure 1.3: Calibration plot: an intensity over concentration.
 </div>
 <div id="exm-levelplot" class="section level2">
 <h2 class="hasAnchor">
-<a href="#exm-levelplot" class="anchor"></a><span class="header-section-number">1.4</span> Function <code class="sourceCode r"><span class="kw">levelplot</span>()</code>
+<a href="#exm-levelplot" class="anchor"></a>Function <code class="sourceCode r"><span class="kw">levelplot</span>()</code>
 </h2>
-<p>Function <code class="sourceCode r"><span class="kw">levelplot</span>()</code> plots a false colour map, defined by a formula (Fig. <a href="#fig:levelplot">5.1</a>).</p>
+<p>Function <code class="sourceCode r"><span class="kw">levelplot</span>()</code> plots a false colour map, defined by a formula (Fig. <a href="#fig:levelplot">39</a>).</p>
 <div class="sourceCode" id="cb7"><pre class="downlit">
 <span class="fu">levelplot</span>(<span class="kw">spc</span> <span class="op">~</span> <span class="kw">x</span> <span class="op">*</span> <span class="kw">y</span>, <span class="kw">faux_cell</span>[, , <span class="fl">1200</span>], aspect = <span class="st">"iso"</span>)
 </pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:levelplot-1"></span>
 <img src="plotting_files/figure-html/levelplot-1-1.png" alt="False colour map (1).  "><p class="caption">
-Figure 1.4: False colour map (1).
+Figure 4: False colour map (1).
 </p>
 </div>
 <blockquote>
@@ -303,25 +303,25 @@ Figure 1.4: False colour map (1).
 </div>
 <div id="exm-plotmap" class="section level2">
 <h2 class="hasAnchor">
-<a href="#exm-plotmap" class="anchor"></a><span class="header-section-number">1.5</span> Function <code class="sourceCode r"><span class="kw">plotmap</span>()</code>
+<a href="#exm-plotmap" class="anchor"></a>Function <code class="sourceCode r"><span class="kw">plotmap</span>()</code>
 </h2>
 <p>Function <code class="sourceCode r"><span class="kw">plotmap</span>()</code> is a specialized version of <code class="sourceCode r"><span class="kw">levelplot</span>()</code>.
-It uses a single value (e.g., average intensity or cluster membership) over two data columns (default are <code class="sourceCode r"><span class="op">$</span>x</code> and <code class="sourceCode r"><span class="op">$</span>y</code>) to plot a false colour map (Fig. <a href="#fig:plotmap">1.5</a>).</p>
+It uses a single value (e.g., average intensity or cluster membership) over two data columns (default are <code class="sourceCode r"><span class="op">$</span>x</code> and <code class="sourceCode r"><span class="op">$</span>y</code>) to plot a false colour map (Fig. <a href="#fig:plotmap">5</a>).</p>
 <div class="sourceCode" id="cb8"><pre class="downlit">
 <span class="fu"><a href="../reference/plotmap.html">plotmap</a></span>(<span class="kw">faux_cell</span>[, , <span class="fl">1200</span>])
 </pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:plotmap"></span>
 <img src="plotting_files/figure-html/plotmap-1.png" alt="False colour map created with `plotmap()`{.r}.  "><p class="caption">
-Figure 1.5: False colour map created with <code class="sourceCode r"><span class="kw">plotmap</span>()</code>.
+Figure 5: False colour map created with <code class="sourceCode r"><span class="kw">plotmap</span>()</code>.
 </p>
 </div>
 </div>
 <div id="exm-plotvoronoi" class="section level2">
 <h2 class="hasAnchor">
-<a href="#exm-plotvoronoi" class="anchor"></a><span class="header-section-number">1.6</span> Function <code class="sourceCode r"><span class="kw">plotvoronoi</span>()</code>
+<a href="#exm-plotvoronoi" class="anchor"></a>Function <code class="sourceCode r"><span class="kw">plotvoronoi</span>()</code>
 </h2>
-<p>Function <code class="sourceCode r"><span class="kw">plotvoronoi</span>()</code> is a special version of <code class="sourceCode r"><span class="kw">plotmap</span>()</code> that produces Voronoi diagram of the <code>hyperSpec</code> object (Fig. <a href="#fig:voronoi">1.6</a>).</p>
+<p>Function <code class="sourceCode r"><span class="kw">plotvoronoi</span>()</code> is a special version of <code class="sourceCode r"><span class="kw">plotmap</span>()</code> that produces Voronoi diagram of the <code>hyperSpec</code> object (Fig. <a href="#fig:voronoi">6</a>).</p>
 <div class="sourceCode" id="cb9"><pre class="downlit">
 <span class="fu"><a href="../reference/plotmap.html">plotvoronoi</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="kw">faux_cell</span>, <span class="fl">300</span>), <span class="kw">region</span> <span class="op">~</span> <span class="kw">x</span> <span class="op">*</span> <span class="kw">y</span>)
 <span class="co">#&gt; </span>
@@ -337,53 +337,53 @@ Figure 1.5: False colour map created with <code class="sourceCode r"><span class
 <div class="figure" style="text-align: center">
 <span id="fig:voronoi"></span>
 <img src="plotting_files/figure-html/voronoi-1.png" alt="Voronoi diagram: an example with `faux_cell` dataset.  "><p class="caption">
-Figure 1.6: Voronoi diagram: an example with <code>faux_cell</code> dataset.
+Figure 6: Voronoi diagram: an example with <code>faux_cell</code> dataset.
 </p>
 </div>
 </div>
 </div>
 <div id="fun-plot" class="section level1">
 <h1 class="hasAnchor">
-<a href="#fun-plot" class="anchor"></a><span class="header-section-number">2</span> Arguments for <code class="sourceCode r"><span class="kw">plot</span>()</code>
+<a href="#fun-plot" class="anchor"></a>Arguments for <code class="sourceCode r"><span class="kw">plot</span>()</code>
 </h1>
 <p>The <strong>hyperSpec</strong>’s <code class="sourceCode r"><span class="kw">plot</span>()</code> method uses its second argument to determine which of the specialized plots to produce.
 This allows some handy abbreviations.
 All further arguments are handed over to the function actually producing the plot.</p>
 <div id="arg-spc" class="section level2">
 <h2 class="hasAnchor">
-<a href="#arg-spc" class="anchor"></a><span class="header-section-number">2.1</span> Argument <code class="sourceCode r"><span class="st">"spc"</span></code>
+<a href="#arg-spc" class="anchor"></a>Argument <code class="sourceCode r"><span class="st">"spc"</span></code>
 </h2>
-<p>Command <code class="sourceCode r"><span class="kw">plot</span>(x, <span class="st">"spc"</span>)</code> is equivalent to <code class="sourceCode r"><span class="kw">plotspc</span>(flu)</code> (Fig. <a href="#fig:plotspcflu">2.1</a>).</p>
+<p>Command <code class="sourceCode r"><span class="kw">plot</span>(x, <span class="st">"spc"</span>)</code> is equivalent to <code class="sourceCode r"><span class="kw">plotspc</span>(flu)</code> (Fig. <a href="#fig:plotspcflu">7</a>).</p>
 <div class="sourceCode" id="cb10"><pre class="downlit">
 <span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">flu</span>, <span class="st">"spc"</span>)
 </pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:plotspcflu"></span>
 <img src="plotting_files/figure-html/plotspcflu-1.png" alt="All spectra of dataset `flu`.  "><p class="caption">
-Figure 2.1: All spectra of dataset <code>flu</code>.
+Figure 7: All spectra of dataset <code>flu</code>.
 </p>
 </div>
 </div>
 <div id="arg-spcmeansd" class="section level2">
 <h2 class="hasAnchor">
-<a href="#arg-spcmeansd" class="anchor"></a><span class="header-section-number">2.2</span> Argument <code class="sourceCode r"><span class="st">"spcmeansd"</span></code>
+<a href="#arg-spcmeansd" class="anchor"></a>Argument <code class="sourceCode r"><span class="st">"spcmeansd"</span></code>
 </h2>
-<p>Command <code class="sourceCode r"><span class="kw">plot</span>(x, <span class="st">"spcmeansd"</span>)</code> plots mean spectrum <span class="math inline">\(\pm\)</span> 1 standard deviation (Fig. <a href="#fig:plotchomean">2.2</a>).</p>
+<p>Command <code class="sourceCode r"><span class="kw">plot</span>(x, <span class="st">"spcmeansd"</span>)</code> plots mean spectrum <span class="math inline">\(\pm\)</span> 1 standard deviation (Fig. <a href="#fig:plotchomean">8</a>).</p>
 <div class="sourceCode" id="cb11"><pre class="downlit">
 <span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">faux_cell_preproc</span>, <span class="st">"spcmeansd"</span>)
 </pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:plotchomean"></span>
 <img src="plotting_files/figure-html/plotchomean-1.png" alt="Summary spectra: mean $\pm$ one standard deviation at each wavelength (wavenumber).  "><p class="caption">
-Figure 2.2: Summary spectra: mean <span class="math inline">\(\pm\)</span> one standard deviation at each wavelength (wavenumber).
+Figure 8: Summary spectra: mean <span class="math inline">\(\pm\)</span> one standard deviation at each wavelength (wavenumber).
 </p>
 </div>
 </div>
 <div id="arg-spcprctile" class="section level2">
 <h2 class="hasAnchor">
-<a href="#arg-spcprctile" class="anchor"></a><span class="header-section-number">2.3</span> Argument <code class="sourceCode r"><span class="st">"spcprctile"</span></code>
+<a href="#arg-spcprctile" class="anchor"></a>Argument <code class="sourceCode r"><span class="st">"spcprctile"</span></code>
 </h2>
-<p>Code <code class="sourceCode r"><span class="kw">plot</span>(x, <span class="st">"spcprctile"</span>)</code> plots median, 16<sup>th</sup> and 84<sup>th</sup> percentile for each wavelength (Fig. <a href="#fig:plotchoprctl">2.3</a>).
+<p>Code <code class="sourceCode r"><span class="kw">plot</span>(x, <span class="st">"spcprctile"</span>)</code> plots median, 16<sup>th</sup> and 84<sup>th</sup> percentile for each wavelength (Fig. <a href="#fig:plotchoprctl">9</a>).
 For Gaussian distributed data, 16<sup>th</sup>, 50<sup>th</sup> and 84<sup>th</sup> percentile are equal to mean <span class="math inline">\(\pm\)</span> standard deviation.
 Spectroscopic data frequently are not Gaussian distributed.
 The percentiles give a better idea of the true distribution.
@@ -394,30 +394,30 @@ They are also less sensitive to outliers.</p>
 <div class="figure" style="text-align: center">
 <span id="fig:plotchoprctl"></span>
 <img src="plotting_files/figure-html/plotchoprctl-1.png" alt="Summary spectra: median, 16^th^ and 84^th^ percentiles at each wavelength (wavenumber).  "><p class="caption">
-Figure 2.3: Summary spectra: median, 16<sup>th</sup> and 84<sup>th</sup> percentiles at each wavelength (wavenumber).
+Figure 9: Summary spectra: median, 16<sup>th</sup> and 84<sup>th</sup> percentiles at each wavelength (wavenumber).
 </p>
 </div>
 </div>
 <div id="arg-spcprctl5" class="section level2">
 <h2 class="hasAnchor">
-<a href="#arg-spcprctl5" class="anchor"></a><span class="header-section-number">2.4</span> Argument <code class="sourceCode r"><span class="st">"spcprctl5"</span></code>
+<a href="#arg-spcprctl5" class="anchor"></a>Argument <code class="sourceCode r"><span class="st">"spcprctl5"</span></code>
 </h2>
-<p>The code <code class="sourceCode r"><span class="kw">plot</span>(x, <span class="st">"spcprctl5"</span>)</code> is like <code class="sourceCode r"><span class="st">"spcprctile"</span></code> plus 5<sup>th</sup> and 95<sup>th</sup> percentile (Fig. <a href="#fig:plotchoprctl5">2.4</a>).</p>
+<p>The code <code class="sourceCode r"><span class="kw">plot</span>(x, <span class="st">"spcprctl5"</span>)</code> is like <code class="sourceCode r"><span class="st">"spcprctile"</span></code> plus 5<sup>th</sup> and 95<sup>th</sup> percentile (Fig. <a href="#fig:plotchoprctl5">10</a>).</p>
 <div class="sourceCode" id="cb13"><pre class="downlit">
 <span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">faux_cell_preproc</span>, <span class="st">"spcprctl5"</span>)
 </pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:plotchoprctl5"></span>
 <img src="plotting_files/figure-html/plotchoprctl5-1.png" alt="Summary spectra: median, 5^th^, 16^th^, 84^th^, 95^th^ percentiles at each wavelength (wavenumber).  "><p class="caption">
-Figure 2.4: Summary spectra: median, 5<sup>th</sup>, 16<sup>th</sup>, 84<sup>th</sup>, 95<sup>th</sup> percentiles at each wavelength (wavenumber).
+Figure 10: Summary spectra: median, 5<sup>th</sup>, 16<sup>th</sup>, 84<sup>th</sup>, 95<sup>th</sup> percentiles at each wavelength (wavenumber).
 </p>
 </div>
 </div>
 <div id="arg-c" class="section level2">
 <h2 class="hasAnchor">
-<a href="#arg-c" class="anchor"></a><span class="header-section-number">2.5</span> Argument <code class="sourceCode r"><span class="st">"c"</span></code>
+<a href="#arg-c" class="anchor"></a>Argument <code class="sourceCode r"><span class="st">"c"</span></code>
 </h2>
-<p>Command <code class="sourceCode r"><span class="kw">plot</span>(x, <span class="st">"c"</span>)</code> is equivalent to <code class="sourceCode r"><span class="kw">plotc</span>(flu)</code> (Fig. <a href="#fig:plotflu2">2.5</a>).</p>
+<p>Command <code class="sourceCode r"><span class="kw">plot</span>(x, <span class="st">"c"</span>)</code> is equivalent to <code class="sourceCode r"><span class="kw">plotc</span>(flu)</code> (Fig. <a href="#fig:plotflu2">11</a>).</p>
 <div class="sourceCode" id="cb14"><pre class="downlit">
 <span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">flu</span>, <span class="st">"c"</span>)
 <span class="co">#&gt; Warning in plotc(x, ...): Intensity at first wavelengh only is used.</span>
@@ -425,30 +425,30 @@ Figure 2.4: Summary spectra: median, 5<sup>th</sup>, 16<sup>th</sup>, 84<sup>th<
 <div class="figure" style="text-align: center">
 <span id="fig:plotflu2"></span>
 <img src="plotting_files/figure-html/plotflu2-1.png" alt="Calibration plot: spectra intensities over concentration.  "><p class="caption">
-Figure 2.5: Calibration plot: spectra intensities over concentration.
+Figure 11: Calibration plot: spectra intensities over concentration.
 </p>
 </div>
 </div>
 <div id="arg-ts" class="section level2">
 <h2 class="hasAnchor">
-<a href="#arg-ts" class="anchor"></a><span class="header-section-number">2.6</span> Argument <code class="sourceCode r"><span class="st">"ts"</span></code>
+<a href="#arg-ts" class="anchor"></a>Argument <code class="sourceCode r"><span class="st">"ts"</span></code>
 </h2>
-<p>Function <code class="sourceCode r"><span class="kw">plot</span>(x, <span class="st">"ts"</span>)</code> plots a time series plot and is equivalent to <code class="sourceCode r"><span class="kw">plotc</span>(laser, spc <span class="op">~</span><span class="st"> </span>t)</code> (Fig. <a href="#fig:plotts">2.6</a>).</p>
+<p>Function <code class="sourceCode r"><span class="kw">plot</span>(x, <span class="st">"ts"</span>)</code> plots a time series plot and is equivalent to <code class="sourceCode r"><span class="kw">plotc</span>(laser, spc <span class="op">~</span><span class="st"> </span>t)</code> (Fig. <a href="#fig:plotts">12</a>).</p>
 <div class="sourceCode" id="cb15"><pre class="downlit">
 <span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">laser</span>[, , <span class="fl">405</span>], <span class="st">"ts"</span>)
 </pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:plotts"></span>
 <img src="plotting_files/figure-html/plotts-1.png" alt="Time series plot: spectra intensities over time.  "><p class="caption">
-Figure 2.6: Time series plot: spectra intensities over time.
+Figure 12: Time series plot: spectra intensities over time.
 </p>
 </div>
 </div>
 <div id="arg-depth" class="section level2">
 <h2 class="hasAnchor">
-<a href="#arg-depth" class="anchor"></a><span class="header-section-number">2.7</span> Argument <code class="sourceCode r"><span class="st">"depth"</span></code>
+<a href="#arg-depth" class="anchor"></a>Argument <code class="sourceCode r"><span class="st">"depth"</span></code>
 </h2>
-<p>Code <code class="sourceCode r"><span class="kw">plot</span>(x, <span class="st">"depth"</span>)</code> plots a depth profile plot and is the same as <code class="sourceCode r"><span class="kw">plotc</span>(laser, spc <span class="op">~</span><span class="st"> </span>z)</code> (Fig. <a href="#fig:plotdepth">2.7</a>).</p>
+<p>Code <code class="sourceCode r"><span class="kw">plot</span>(x, <span class="st">"depth"</span>)</code> plots a depth profile plot and is the same as <code class="sourceCode r"><span class="kw">plotc</span>(laser, spc <span class="op">~</span><span class="st"> </span>z)</code> (Fig. <a href="#fig:plotdepth">13</a>).</p>
 <div class="sourceCode" id="cb16"><pre class="downlit">
 <span class="kw">depth.profile</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/initialize.html">new</a></span>(<span class="st">"hyperSpec"</span>,
   spc = <span class="fu"><a href="../reference/as.data.frame.html">as.matrix</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">20</span>) <span class="op">+</span> <span class="fl">1</span><span class="op">:</span><span class="fl">20</span>),
@@ -465,22 +465,22 @@ Figure 2.6: Time series plot: spectra intensities over time.
 <div class="figure" style="text-align: center">
 <span id="fig:plotdepth"></span>
 <img src="plotting_files/figure-html/plotdepth-1.png" alt="Depth profile plot.  "><p class="caption">
-Figure 2.7: Depth profile plot.
+Figure 13: Depth profile plot.
 </p>
 </div>
 </div>
 <div id="arg-mat" class="section level2">
 <h2 class="hasAnchor">
-<a href="#arg-mat" class="anchor"></a><span class="header-section-number">2.8</span> Argument <code class="sourceCode r"><span class="st">"mat"</span></code>
+<a href="#arg-mat" class="anchor"></a>Argument <code class="sourceCode r"><span class="st">"mat"</span></code>
 </h2>
-<p>Code <code class="sourceCode r"><span class="kw">plot</span>(x, <span class="st">"mat"</span>)</code> plots the spectra matrix (Fig. <a href="#fig:plotmat">2.8</a>).</p>
+<p>Code <code class="sourceCode r"><span class="kw">plot</span>(x, <span class="st">"mat"</span>)</code> plots the spectra matrix (Fig. <a href="#fig:plotmat">14</a>).</p>
 <div class="sourceCode" id="cb17"><pre class="downlit">
 <span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">laser</span>, <span class="st">"mat"</span>)
 </pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:plotmat"></span>
 <img src="plotting_files/figure-html/plotmat-1.png" alt="Spectra matrix.  "><p class="caption">
-Figure 2.8: Spectra matrix.
+Figure 14: Spectra matrix.
 </p>
 </div>
 <p>The code is equivalent to:</p>
@@ -494,31 +494,31 @@ Figure 2.8: Spectra matrix.
 </div>
 <div id="arg-map" class="section level2">
 <h2 class="hasAnchor">
-<a href="#arg-map" class="anchor"></a><span class="header-section-number">2.9</span> Argument <code class="sourceCode r"><span class="st">"map"</span></code>
+<a href="#arg-map" class="anchor"></a>Argument <code class="sourceCode r"><span class="st">"map"</span></code>
 </h2>
-<p>Code <code class="sourceCode r"><span class="kw">plot</span>(x, <span class="st">"map"</span>)</code> is equivalent to <code class="sourceCode r"><span class="kw">plotmap</span>(faux_cell)</code> (Fig. <a href="#fig:plotmapcho2">2.9</a>).</p>
+<p>Code <code class="sourceCode r"><span class="kw">plot</span>(x, <span class="st">"map"</span>)</code> is equivalent to <code class="sourceCode r"><span class="kw">plotmap</span>(faux_cell)</code> (Fig. <a href="#fig:plotmapcho2">15</a>).</p>
 <div class="sourceCode" id="cb20"><pre class="downlit">
 <span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">faux_cell</span>[, , <span class="fl">1200</span>], <span class="st">"map"</span>)
 </pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:plotmapcho2"></span>
 <img src="plotting_files/figure-html/plotmapcho2-1.png" alt="False color map: alternative R syntax.   "><p class="caption">
-Figure 2.9: False color map: alternative R syntax.
+Figure 15: False color map: alternative R syntax.
 </p>
 </div>
 </div>
 <div id="arg-voronoi" class="section level2">
 <h2 class="hasAnchor">
-<a href="#arg-voronoi" class="anchor"></a><span class="header-section-number">2.10</span> Argument <code class="sourceCode r"><span class="st">"voronoi"</span></code>
+<a href="#arg-voronoi" class="anchor"></a>Argument <code class="sourceCode r"><span class="st">"voronoi"</span></code>
 </h2>
-<p>Use <code class="sourceCode r"><span class="kw">plot</span>(x, <span class="st">"voronoi"</span>)</code> for a Voronoi plot (Fig. <a href="#fig:plotvoronoi">2.10</a>).</p>
+<p>Use <code class="sourceCode r"><span class="kw">plot</span>(x, <span class="st">"voronoi"</span>)</code> for a Voronoi plot (Fig. <a href="#fig:plotvoronoi">16</a>).</p>
 <div class="sourceCode" id="cb21"><pre class="downlit">
 <span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="kw">faux_cell</span>[, , <span class="fl">1200</span>], <span class="fl">300</span>), <span class="st">"voronoi"</span>)
 </pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:plotvoronoi"></span>
 <img src="plotting_files/figure-html/plotvoronoi-1.png" alt="Voronoi plot: alternative R syntax.  "><p class="caption">
-Figure 2.10: Voronoi plot: alternative R syntax.
+Figure 16: Voronoi plot: alternative R syntax.
 </p>
 </div>
 <p>See <code class="sourceCode r"><a href="../reference/plotmap.html">?plotvoronoi</a></code> and <code class="sourceCode r">?latticeExtra<span class="op">::</span>panel.voronoi</code>.</p>
@@ -526,21 +526,21 @@ Figure 2.10: Voronoi plot: alternative R syntax.
 </div>
 <div id="fun-plotspc" class="section level1">
 <h1 class="hasAnchor">
-<a href="#fun-plotspc" class="anchor"></a><span class="header-section-number">3</span> Customized Plots of Spectra: <code class="sourceCode r"><span class="kw">plotspc</span>()</code>
+<a href="#fun-plotspc" class="anchor"></a>Customized Plots of Spectra: <code class="sourceCode r"><span class="kw">plotspc</span>()</code>
 </h1>
 <!-- \mFun{`plotspc()`{.r}} -->
 <p>Function <code class="sourceCode r"><span class="kw">plotspc</span>()</code> offers a variety of parameters for customized plots.</p>
 <div id="plot-particular-wavelength-range" class="section level2">
 <h2 class="hasAnchor">
-<a href="#plot-particular-wavelength-range" class="anchor"></a><span class="header-section-number">3.1</span> Plot Particular Wavelength Range</h2>
-<p>If only one wavelength range is needed (Fig. <a href="#fig:wavelength">3.1</a>), the extract command is handiest.</p>
+<a href="#plot-particular-wavelength-range" class="anchor"></a>Plot Particular Wavelength Range</h2>
+<p>If only one wavelength range is needed (Fig. <a href="#fig:wavelength">17</a>), the extract command is handiest.</p>
 <div class="sourceCode" id="cb22"><pre class="downlit">
 <span class="fu"><a href="../reference/plotspc.html">plotspc</a></span>(<span class="kw">paracetamol</span>[, , <span class="fl">700</span> <span class="op">~</span> <span class="fl">1200</span>])
 </pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:wavelength"></span>
 <img src="plotting_files/figure-html/wavelength-1.png" alt="Plot of wavelength (wavenumber) range from 700 to 1200 $cm^{-1}.$  "><p class="caption">
-Figure 3.1: Plot of wavelength (wavenumber) range from 700 to 1200 <span class="math inline">\(cm^{-1}.\)</span>
+Figure 17: Plot of wavelength (wavenumber) range from 700 to 1200 <span class="math inline">\(cm^{-1}.\)</span>
 </p>
 </div>
 <p>Numbers connected with the tilde (<code><a href="https://rdrr.io/r/base/tilde.html">~</a></code>) are interpreted as having the same units as the wavelengths.
@@ -549,8 +549,8 @@ For more details refer to <code class="sourceCode r"><span class="kw">vignette</
 </div>
 <div id="plot-several-wavelength-ranges" class="section level2">
 <h2 class="hasAnchor">
-<a href="#plot-several-wavelength-ranges" class="anchor"></a><span class="header-section-number">3.2</span> Plot Several Wavelength Ranges</h2>
-<p>To plot severel wavelength ranges (Fig. <a href="#fig:wavelength-2">3.2</a>), use <code class="sourceCode r">wl.range =<span class="st"> </span><span class="kw">list</span> (<span class="dv">600</span> <span class="op">~</span><span class="st"> </span><span class="dv">1800</span>, <span class="dv">2800</span> <span class="op">~</span><span class="st"> </span><span class="dv">3100</span>)</code>.
+<a href="#plot-several-wavelength-ranges" class="anchor"></a>Plot Several Wavelength Ranges</h2>
+<p>To plot severel wavelength ranges (Fig. <a href="#fig:wavelength-2">18</a>), use <code class="sourceCode r">wl.range =<span class="st"> </span><span class="kw">list</span> (<span class="dv">600</span> <span class="op">~</span><span class="st"> </span><span class="dv">1800</span>, <span class="dv">2800</span> <span class="op">~</span><span class="st"> </span><span class="dv">3100</span>)</code>.
 Cut the wavelength axis appropriately with <code class="sourceCode r">xoffset =<span class="st"> </span><span class="dv">750</span></code>.
 If available, the package package <strong>plotrix</strong><span class="citation">[<a href="#ref-R-plotrix" role="doc-biblioref">4</a>,<a href="#ref-plotrix2006" role="doc-biblioref">5</a>]</span> is used to produce the cut mark.</p>
 <div class="sourceCode" id="cb23"><pre class="downlit">
@@ -562,42 +562,42 @@ If available, the package package <strong>plotrix</strong><span class="citation"
 <div class="figure" style="text-align: center">
 <span id="fig:wavelength-2"></span>
 <img src="plotting_files/figure-html/wavelength-2-1.png" alt="Plot of several wavelength (wavenumber) ranges.  "><p class="caption">
-Figure 3.2: Plot of several wavelength (wavenumber) ranges.
+Figure 18: Plot of several wavelength (wavenumber) ranges.
 </p>
 </div>
 </div>
 <div id="plot-with-reversed-abscissa" class="section level2">
 <h2 class="hasAnchor">
-<a href="#plot-with-reversed-abscissa" class="anchor"></a><span class="header-section-number">3.3</span> Plot with Reversed Abscissa</h2>
-<p>To create a plot with reversed abscissa (Fig. <a href="#fig:abscissa">3.3</a>), use <code class="sourceCode r">wl.reverse =<span class="st"> </span><span class="ot">TRUE</span></code></p>
+<a href="#plot-with-reversed-abscissa" class="anchor"></a>Plot with Reversed Abscissa</h2>
+<p>To create a plot with reversed abscissa (Fig. <a href="#fig:abscissa">19</a>), use <code class="sourceCode r">wl.reverse =<span class="st"> </span><span class="ot">TRUE</span></code></p>
 <div class="sourceCode" id="cb24"><pre class="downlit">
 <span class="fu"><a href="../reference/plotspc.html">plotspc</a></span>(<span class="kw">paracetamol</span>, wl.reverse = <span class="fl">TRUE</span>)
 </pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:abscissa"></span>
 <img src="plotting_files/figure-html/abscissa-1.png" alt="Plot with reversed/descending wavelength (wavenumber) range.  "><p class="caption">
-Figure 3.3: Plot with reversed/descending wavelength (wavenumber) range.
+Figure 19: Plot with reversed/descending wavelength (wavenumber) range.
 </p>
 </div>
 </div>
 <div id="plot-in-different-colours" class="section level2">
 <h2 class="hasAnchor">
-<a href="#plot-in-different-colours" class="anchor"></a><span class="header-section-number">3.4</span> Plot in Different Colours</h2>
-<p>To have different colours of spectra (Fig. <a href="#fig:colours">3.4</a>), use <code class="sourceCode r">col =<span class="st"> </span>vector_of_colours</code>.</p>
+<a href="#plot-in-different-colours" class="anchor"></a>Plot in Different Colours</h2>
+<p>To have different colours of spectra (Fig. <a href="#fig:colours">20</a>), use <code class="sourceCode r">col =<span class="st"> </span>vector_of_colours</code>.</p>
 <div class="sourceCode" id="cb25"><pre class="downlit">
 <span class="fu"><a href="../reference/plotspc.html">plotspc</a></span>(<span class="kw">flu</span>, col = <span class="fu"><a href="../reference/matlab.palette.html">matlab.dark.palette</a></span>(<span class="fl">6</span>))
 </pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:colours"></span>
 <img src="plotting_files/figure-html/colours-1.png" alt="Spectra plotted in different colours.  "><p class="caption">
-Figure 3.4: Spectra plotted in different colours.
+Figure 20: Spectra plotted in different colours.
 </p>
 </div>
 </div>
 <div id="plot-dots-instead-of-lines" class="section level2">
 <h2 class="hasAnchor">
-<a href="#plot-dots-instead-of-lines" class="anchor"></a><span class="header-section-number">3.5</span> Plot Dots Instead of Lines</h2>
-<p>To plot dots instead of lines (Fig. <a href="#fig:dots">3.5</a>), use, e.g., <code class="sourceCode r">lines.args =<span class="st"> </span><span class="kw">list</span> (<span class="dt">pch =</span> <span class="dv">20</span>, <span class="dt">type =</span> <span class="st">"p"</span>)</code></p>
+<a href="#plot-dots-instead-of-lines" class="anchor"></a>Plot Dots Instead of Lines</h2>
+<p>To plot dots instead of lines (Fig. <a href="#fig:dots">21</a>), use, e.g., <code class="sourceCode r">lines.args =<span class="st"> </span><span class="kw">list</span> (<span class="dt">pch =</span> <span class="dv">20</span>, <span class="dt">type =</span> <span class="st">"p"</span>)</code></p>
 <div class="sourceCode" id="cb26"><pre class="downlit">
 <span class="fu"><a href="../reference/plotspc.html">plotspc</a></span>(<span class="kw">paracetamol</span>[, , <span class="fl">2800</span> <span class="op">~</span> <span class="fl">3200</span>],
   lines.args = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(pch = <span class="fl">20</span>, type = <span class="st">"p"</span>)
@@ -606,28 +606,28 @@ Figure 3.4: Spectra plotted in different colours.
 <div class="figure" style="text-align: center">
 <span id="fig:dots"></span>
 <img src="plotting_files/figure-html/dots-1.png" alt="Spectrum with dots instead of lines.  "><p class="caption">
-Figure 3.5: Spectrum with dots instead of lines.
+Figure 21: Spectrum with dots instead of lines.
 </p>
 </div>
 </div>
 <div id="plot-mass-spectra" class="section level2">
 <h2 class="hasAnchor">
-<a href="#plot-mass-spectra" class="anchor"></a><span class="header-section-number">3.6</span> Plot Mass Spectra</h2>
-<p>TO plot mass spectra (Fig. <a href="#fig:mass">3.6</a>), use <code class="sourceCode r">lines.args =<span class="st"> </span><span class="kw">list</span>(<span class="dt">type =</span> <span class="st">"h"</span>)</code></p>
+<a href="#plot-mass-spectra" class="anchor"></a>Plot Mass Spectra</h2>
+<p>TO plot mass spectra (Fig. <a href="#fig:mass">22</a>), use <code class="sourceCode r">lines.args =<span class="st"> </span><span class="kw">list</span>(<span class="dt">type =</span> <span class="st">"h"</span>)</code></p>
 <div class="sourceCode" id="cb27"><pre class="downlit">
 <span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">barbiturates</span>[[<span class="fl">1</span>]], lines.args = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(type = <span class="st">"h"</span>))
 </pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:mass"></span>
 <img src="plotting_files/figure-html/mass-1.png" alt="An example of mass spectrum.  "><p class="caption">
-Figure 3.6: An example of mass spectrum.
+Figure 22: An example of mass spectrum.
 </p>
 </div>
 </div>
 <div id="add-more-spectra-into-an-existing-plot" class="section level2">
 <h2 class="hasAnchor">
-<a href="#add-more-spectra-into-an-existing-plot" class="anchor"></a><span class="header-section-number">3.7</span> Add More Spectra into an Existing Plot</h2>
-<p>To plot additional spectra onto an existing plot (Fig. <a href="#fig:add">3.7</a>), use <code class="sourceCode r">add =<span class="st"> </span><span class="ot">TRUE</span></code></p>
+<a href="#add-more-spectra-into-an-existing-plot" class="anchor"></a>Add More Spectra into an Existing Plot</h2>
+<p>To plot additional spectra onto an existing plot (Fig. <a href="#fig:add">23</a>), use <code class="sourceCode r">add =<span class="st"> </span><span class="ot">TRUE</span></code></p>
 <div class="sourceCode" id="cb28"><pre class="downlit">
 <span class="fu"><a href="../reference/plotspc.html">plotspc</a></span>(<span class="kw">faux_cell</span>[<span class="fl">30</span>, , ])
 <span class="fu"><a href="../reference/plotspc.html">plotspc</a></span>(<span class="kw">faux_cell</span>[<span class="fl">35</span>, , ], add = <span class="fl">TRUE</span>, col = <span class="st">"blue"</span>)
@@ -635,15 +635,15 @@ Figure 3.6: An example of mass spectrum.
 <div class="figure" style="text-align: center">
 <span id="fig:add"></span>
 <img src="plotting_files/figure-html/add-1.png" alt="A spectrum added to an existing plot.  "><p class="caption">
-Figure 3.7: A spectrum added to an existing plot.
+Figure 23: A spectrum added to an existing plot.
 </p>
 </div>
 </div>
 <div id="plot-summary-characteristics" class="section level2">
 <h2 class="hasAnchor">
-<a href="#plot-summary-characteristics" class="anchor"></a><span class="header-section-number">3.8</span> Plot Summary Characteristics</h2>
+<a href="#plot-summary-characteristics" class="anchor"></a>Plot Summary Characteristics</h2>
 <p>Argument <code class="sourceCode r">func</code> may be used to calculate summary characteristics before plotting.
-To plot, e.g., the standard deviation of the spectra, use <code class="sourceCode r"><span class="kw">plotspc</span>(..., <span class="dt">func =</span> sd)</code> (Fig. <a href="#fig:sd">3.8</a>).</p>
+To plot, e.g., the standard deviation of the spectra, use <code class="sourceCode r"><span class="kw">plotspc</span>(..., <span class="dt">func =</span> sd)</code> (Fig. <a href="#fig:sd">24</a>).</p>
 <div class="sourceCode" id="cb29"><pre class="downlit">
 <span class="fu"><a href="../reference/plotspc.html">plotspc</a></span>(<span class="kw">faux_cell_preproc</span>, func = <span class="kw">sd</span>)
 </pre></div>
@@ -651,16 +651,16 @@ To plot, e.g., the standard deviation of the spectra, use <code class="sourceCod
 <span id="fig:sd"></span>
 <img src="plotting_files/figure-html/sd-1.png" alt="A spectrum of summary statistics calculated via `func` parameter.
 In the example, the standard deviation is used.  "><p class="caption">
-Figure 3.8: A spectrum of summary statistics calculated via <code>func</code> parameter.
+Figure 24: A spectrum of summary statistics calculated via <code>func</code> parameter.
 In the example, the standard deviation is used.
 </p>
 </div>
 </div>
 <div id="plot-different-line-at-i-0" class="section level2">
 <h2 class="hasAnchor">
-<a href="#plot-different-line-at-i-0" class="anchor"></a><span class="header-section-number">3.9</span> Plot Different Line at <span class="math inline">\(I = 0\)</span>
+<a href="#plot-different-line-at-i-0" class="anchor"></a>Plot Different Line at <span class="math inline">\(I = 0\)</span>
 </h2>
-<p>To plot a different line at zero intensity <span class="math inline">\((I = 0)\)</span>, argument <code class="sourceCode r">zeroline</code> may be used (Fig. <a href="#fig:diffline">3.9</a>).
+<p>To plot a different line at zero intensity <span class="math inline">\((I = 0)\)</span>, argument <code class="sourceCode r">zeroline</code> may be used (Fig. <a href="#fig:diffline">25</a>).
 Argument <code class="sourceCode r">zeroline</code> takes a list with parameters that are passed to function <code class="sourceCode r"><span class="kw">abline</span>()</code>, <code class="sourceCode r"><span class="ot">NA</span></code> suppresses the line.</p>
 <div class="sourceCode" id="cb30"><pre class="downlit">
 <span class="fu"><a href="../reference/plotspc.html">plotspc</a></span>(<span class="kw">paracetamol</span>,
@@ -670,15 +670,15 @@ Argument <code class="sourceCode r">zeroline</code> takes a list with parameters
 <div class="figure" style="text-align: center">
 <span id="fig:diffline"></span>
 <img src="plotting_files/figure-html/diffline-1.png" alt="Spectrum with added zero-intensity line.  "><p class="caption">
-Figure 3.9: Spectrum with added zero-intensity line.
+Figure 25: Spectrum with added zero-intensity line.
 </p>
 </div>
 </div>
 <div id="adding-annotations-to-a-spectra-plot" class="section level2">
 <h2 class="hasAnchor">
-<a href="#adding-annotations-to-a-spectra-plot" class="anchor"></a><span class="header-section-number">3.10</span> Adding Annotations to a Spectra Plot</h2>
+<a href="#adding-annotations-to-a-spectra-plot" class="anchor"></a>Adding Annotations to a Spectra Plot</h2>
 <p>Function <code class="sourceCode r"><span class="kw">plotspc</span>()</code> uses base graphics.
-After plotting the spectra, more content may be added to the graphic by <code class="sourceCode r"><span class="kw">abline</span>()</code>, <code class="sourceCode r"><span class="kw">lines</span>()</code>, <code class="sourceCode r"><span class="kw">points</span>()</code>, etc. (Fig. <a href="#fig:add-line">3.10</a>).</p>
+After plotting the spectra, more content may be added to the graphic by <code class="sourceCode r"><span class="kw">abline</span>()</code>, <code class="sourceCode r"><span class="kw">lines</span>()</code>, <code class="sourceCode r"><span class="kw">points</span>()</code>, etc. (Fig. <a href="#fig:add-line">26</a>).</p>
 <div class="sourceCode" id="cb31"><pre class="downlit">
 <span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">laser</span>, <span class="st">"spcmeansd"</span>)
 <span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span>(
@@ -689,17 +689,17 @@ After plotting the spectra, more content may be added to the graphic by <code cl
 <div class="figure" style="text-align: center">
 <span id="fig:add-line"></span>
 <img src="plotting_files/figure-html/add-line-1.png" alt="A summary spectrum with annotation lines.  "><p class="caption">
-Figure 3.10: A summary spectrum with annotation lines.
+Figure 26: A summary spectrum with annotation lines.
 </p>
 </div>
 </div>
 <div id="sec:stacked-spectra" class="section level2">
 <h2 class="hasAnchor">
-<a href="#sec:stacked-spectra" class="anchor"></a><span class="header-section-number">3.11</span> Stacked Spectra</h2>
+<a href="#sec:stacked-spectra" class="anchor"></a>Stacked Spectra</h2>
 <div id="simple-stacking" class="section level3">
 <h3 class="hasAnchor">
-<a href="#simple-stacking" class="anchor"></a><span class="header-section-number">3.11.1</span> Simple Stacking</h3>
-<p>To stack spectra, use <code class="sourceCode r">stacked =<span class="st"> </span><span class="ot">TRUE</span></code> (Fig. <a href="#fig:stacked1">3.11</a>).</p>
+<a href="#simple-stacking" class="anchor"></a>Simple Stacking</h3>
+<p>To stack spectra, use <code class="sourceCode r">stacked =<span class="st"> </span><span class="ot">TRUE</span></code> (Fig. <a href="#fig:stacked1">27</a>).</p>
 <div class="sourceCode" id="cb32"><pre class="downlit">
 <span class="fu"><a href="../reference/plotspc.html">plotspc</a></span>(
   <span class="kw">cluster_means</span>,
@@ -710,17 +710,17 @@ Figure 3.10: A summary spectrum with annotation lines.
 <div class="figure" style="text-align: center">
 <span id="fig:stacked1"></span>
 <img src="plotting_files/figure-html/stacked1-1.png" alt="Stacked spectra of means.  "><p class="caption">
-Figure 3.11: Stacked spectra of means.
+Figure 27: Stacked spectra of means.
 </p>
 </div>
 </div>
 <div id="stacking-groups-of-spectra" class="section level3">
 <h3 class="hasAnchor">
-<a href="#stacking-groups-of-spectra" class="anchor"></a><span class="header-section-number">3.11.2</span> Stacking Groups of Spectra</h3>
+<a href="#stacking-groups-of-spectra" class="anchor"></a>Stacking Groups of Spectra</h3>
 <!-- ======================================================================= -->
 <!-- ======================================================================= -->
 <p>The spectra to be stacked can be grouped: <code class="sourceCode r">stacked =<span class="st"> "factor"</span></code>.
-Alternatively, the name of an extra data column can be used for grouping (Fig. <a href="#fig:stacked2">3.12</a>).</p>
+Alternatively, the name of an extra data column can be used for grouping (Fig. <a href="#fig:stacked2">28</a>).</p>
 <div class="sourceCode" id="cb33"><pre class="downlit">
 <span class="kw">op</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(las = <span class="fl">1</span>, mgp = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">3.1</span>, <span class="fl">.7</span>, <span class="fl">0</span>))
 
@@ -734,15 +734,15 @@ Alternatively, the name of an extra data column can be used for grouping (Fig. <
 <div class="figure" style="text-align: center">
 <span id="fig:stacked2"></span>
 <img src="plotting_files/figure-html/stacked2-1.png" alt="Stacked summary spectra (mean $\pm$ one standard deviation).  "><p class="caption">
-Figure 3.12: Stacked summary spectra (mean <span class="math inline">\(\pm\)</span> one standard deviation).
+Figure 28: Stacked summary spectra (mean <span class="math inline">\(\pm\)</span> one standard deviation).
 </p>
 </div>
 </div>
 <div id="manually-giving-yoffset" class="section level3">
 <h3 class="hasAnchor">
-<a href="#manually-giving-yoffset" class="anchor"></a><span class="header-section-number">3.11.3</span> Manually Giving <code>yoffset</code>
+<a href="#manually-giving-yoffset" class="anchor"></a>Manually Giving <code>yoffset</code>
 </h3>
-<p>Stacking values can also be given manually as numeric values in <code class="sourceCode r">yoffset</code> (Fig. <a href="#fig:stacked3">3.13</a>).</p>
+<p>Stacking values can also be given manually as numeric values in <code class="sourceCode r">yoffset</code> (Fig. <a href="#fig:stacked3">29</a>).</p>
 <div class="sourceCode" id="cb34"><pre class="downlit">
 <span class="fu"><a href="../reference/plotspc.html">plotspc</a></span>(
   <span class="kw">cluster_meansd</span>,
@@ -753,14 +753,14 @@ Figure 3.12: Stacked summary spectra (mean <span class="math inline">\(\pm\)</sp
 <div class="figure" style="text-align: center">
 <span id="fig:stacked3"></span>
 <img src="plotting_files/figure-html/stacked3-1.png" alt="Stacked spectra with customized y offset.  "><p class="caption">
-Figure 3.13: Stacked spectra with customized y offset.
+Figure 29: Stacked spectra with customized y offset.
 </p>
 </div>
 </div>
 <div id="dense-stacking" class="section level3">
 <h3 class="hasAnchor">
-<a href="#dense-stacking" class="anchor"></a><span class="header-section-number">3.11.4</span> Dense Stacking</h3>
-<p>It is possible to obtain a denser stacking (Fig. <a href="#fig:stacked4">3.14</a>).</p>
+<a href="#dense-stacking" class="anchor"></a>Dense Stacking</h3>
+<p>It is possible to obtain a denser stacking (Fig. <a href="#fig:stacked4">30</a>).</p>
 <div class="sourceCode" id="cb35"><pre class="downlit">
 <span class="kw">yoffsets</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/apply.html">apply</a></span>(<span class="kw">cluster_means</span>[[]], <span class="fl">2</span>, <span class="kw">diff</span>)
 <span class="kw">yoffsets</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="fu"><a href="../reference/apply.html">apply</a></span>(<span class="kw">yoffsets</span>, <span class="fl">1</span>, <span class="kw">min</span>)
@@ -772,14 +772,14 @@ Figure 3.13: Stacked spectra with customized y offset.
 <div class="figure" style="text-align: center">
 <span id="fig:stacked4"></span>
 <img src="plotting_files/figure-html/stacked4-1.png" alt="Dense-stacked spectra.  "><p class="caption">
-Figure 3.14: Dense-stacked spectra.
+Figure 30: Dense-stacked spectra.
 </p>
 </div>
 </div>
 <div id="elaborate-example" class="section level3">
 <h3 class="hasAnchor">
-<a href="#elaborate-example" class="anchor"></a><span class="header-section-number">3.11.5</span> Elaborate Example</h3>
-<p>Function <code class="sourceCode r"><span class="kw">plotspc</span>()</code> allows fine grained customization of almost all aspects of the plot (see example in Fig. <a href="#fig:stacked5">3.15</a>).
+<a href="#elaborate-example" class="anchor"></a>Elaborate Example</h3>
+<p>Function <code class="sourceCode r"><span class="kw">plotspc</span>()</code> allows fine grained customization of almost all aspects of the plot (see example in Fig. <a href="#fig:stacked5">31</a>).
 This is possible by giving arguments to the functions that actually perform the plotting <code class="sourceCode r"><span class="kw">plot</span>()</code> for setting up the plot area, <code class="sourceCode r"><span class="kw">lines</span>()</code> for the plotting of the lines, <code class="sourceCode r"><span class="kw">axis</span>()</code> for the axes, etc.
 The arguments for these functions should be given in lists as <code class="sourceCode r">plot.args</code>, <code class="sourceCode r">lines.args</code>, <code class="sourceCode r">axis.args</code>, etc.</p>
 <div class="sourceCode" id="cb36"><pre class="downlit">
@@ -805,7 +805,7 @@ The arguments for these functions should be given in lists as <code class="sourc
 <div class="figure" style="text-align: center">
 <span id="fig:stacked5"></span>
 <img src="plotting_files/figure-html/stacked5-1.png" alt="An example of highly customized spectra.  "><p class="caption">
-Figure 3.15: An example of highly customized spectra.
+Figure 31: An example of highly customized spectra.
 </p>
 </div>
 </div>
@@ -813,43 +813,43 @@ Figure 3.15: An example of highly customized spectra.
 </div>
 <div id="fun-plotc" class="section level1">
 <h1 class="hasAnchor">
-<a href="#fun-plotc" class="anchor"></a><span class="header-section-number">4</span> Calibration, (Depth) Profile, and Time Series Plots: <code class="sourceCode r"><span class="kw">plotc</span>()</code>
+<a href="#fun-plotc" class="anchor"></a>Calibration, (Depth) Profile, and Time Series Plots: <code class="sourceCode r"><span class="kw">plotc</span>()</code>
 </h1>
 <!-- \mFun{`plotc()`{.r}} -->
 <div id="intensities-over-concentration" class="section level2">
 <h2 class="hasAnchor">
-<a href="#intensities-over-concentration" class="anchor"></a><span class="header-section-number">4.1</span> Intensities over Concentration</h2>
-<p>Spectra intensities of one wavelength can be plotted over the concentration for univariate calibration (Fig. <a href="#fig:lin-cal-1">4.1</a>).</p>
+<a href="#intensities-over-concentration" class="anchor"></a>Intensities over Concentration</h2>
+<p>Spectra intensities of one wavelength can be plotted over the concentration for univariate calibration (Fig. <a href="#fig:lin-cal-1">32</a>).</p>
 <div class="sourceCode" id="cb37"><pre class="downlit">
 <span class="fu"><a href="../reference/plotc.html">plotc</a></span>(<span class="kw">flu</span>[, , <span class="fl">450</span>])
 </pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:lin-cal-1"></span>
 <img src="plotting_files/figure-html/lin-cal-1-1.png" alt="Intensities at 450 nm over concentration.  "><p class="caption">
-Figure 4.1: Intensities at 450 nm over concentration.
+Figure 32: Intensities at 450 nm over concentration.
 </p>
 </div>
 <p>The default is to use the first intensity only.</p>
 </div>
 <div id="summary-intensities-over-concentration" class="section level2">
 <h2 class="hasAnchor">
-<a href="#summary-intensities-over-concentration" class="anchor"></a><span class="header-section-number">4.2</span> Summary Intensities over Concentration</h2>
-<p>A function to compute a summary of the intensities before the drawing can be used via argument <code>func</code> (Fig. <a href="#fig:lin-cal-3">4.2</a>).</p>
+<a href="#summary-intensities-over-concentration" class="anchor"></a>Summary Intensities over Concentration</h2>
+<p>A function to compute a summary of the intensities before the drawing can be used via argument <code>func</code> (Fig. <a href="#fig:lin-cal-3">33</a>).</p>
 <div class="sourceCode" id="cb38"><pre class="downlit">
 <span class="fu"><a href="../reference/plotc.html">plotc</a></span>(<span class="kw">flu</span>, func = <span class="kw">range</span>, groups = <span class="kw">.wavelength</span>)
 </pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:lin-cal-3"></span>
 <img src="plotting_files/figure-html/lin-cal-3-1.png" alt="The summary (minimum and maximum) of intensities at each measured concentration.  "><p class="caption">
-Figure 4.2: The summary (minimum and maximum) of intensities at each measured concentration.
+Figure 33: The summary (minimum and maximum) of intensities at each measured concentration.
 </p>
 </div>
 <p>If <code class="sourceCode r"><span class="kw">func</span>()</code> returns more than one value, the different results are accessible by <code>.wavelength</code>.</p>
 </div>
 <div id="conditioning-plotting-more-traces-separately" class="section level2">
 <h2 class="hasAnchor">
-<a href="#conditioning-plotting-more-traces-separately" class="anchor"></a><span class="header-section-number">4.3</span> Conditioning: Plotting More Traces Separately</h2>
-<p><strong>Lattice</strong> conditioning (operator <code><a href="https://rdrr.io/r/base/Logic.html">|</a></code>) can be used to plot more traces separately (Fig. <a href="#fig:plotc2">4.3</a>).</p>
+<a href="#conditioning-plotting-more-traces-separately" class="anchor"></a>Conditioning: Plotting More Traces Separately</h2>
+<p><strong>Lattice</strong> conditioning (operator <code><a href="https://rdrr.io/r/base/Logic.html">|</a></code>) can be used to plot more traces separately (Fig. <a href="#fig:plotc2">34</a>).</p>
 <div class="sourceCode" id="cb39"><pre class="downlit">
 <span class="fu"><a href="../reference/plotc.html">plotc</a></span>(<span class="kw">flu</span>[, , <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">405</span>, <span class="fl">445</span>)], <span class="kw">spc</span> <span class="op">~</span> <span class="kw">c</span> <span class="op">|</span> <span class="kw">.wavelength</span>,
   cex = <span class="fl">.3</span>, scales = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(alternating = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">1</span>))
@@ -858,28 +858,28 @@ Figure 4.2: The summary (minimum and maximum) of intensities at each measured co
 <div class="figure" style="text-align: center">
 <span id="fig:plotc2"></span>
 <img src="plotting_files/figure-html/plotc2-1.png" alt="Conditioning: several calibration spectra on separate subplots.  "><p class="caption">
-Figure 4.3: Conditioning: several calibration spectra on separate subplots.
+Figure 34: Conditioning: several calibration spectra on separate subplots.
 </p>
 </div>
 </div>
 <div id="grouping-plot-more-traces-in-one-panel" class="section level2">
 <h2 class="hasAnchor">
-<a href="#grouping-plot-more-traces-in-one-panel" class="anchor"></a><span class="header-section-number">4.4</span> Grouping: Plot More Traces in One Panel</h2>
-<p>Argument <code class="sourceCode r">groups</code> may be used as a grouping parameter to plot more traces in one panel (Fig. <a href="#fig:plotc3">4.4</a>).</p>
+<a href="#grouping-plot-more-traces-in-one-panel" class="anchor"></a>Grouping: Plot More Traces in One Panel</h2>
+<p>Argument <code class="sourceCode r">groups</code> may be used as a grouping parameter to plot more traces in one panel (Fig. <a href="#fig:plotc3">35</a>).</p>
 <div class="sourceCode" id="cb40"><pre class="downlit">
 <span class="fu"><a href="../reference/plotc.html">plotc</a></span>(<span class="kw">flu</span>[, , <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">405</span>, <span class="fl">445</span>)], groups = <span class="kw">.wavelength</span>)
 </pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:plotc3"></span>
 <img src="plotting_files/figure-html/plotc3-1.png" alt="Grouping: several calibration spectra on one plot.  "><p class="caption">
-Figure 4.4: Grouping: several calibration spectra on one plot.
+Figure 35: Grouping: several calibration spectra on one plot.
 </p>
 </div>
 </div>
 <div id="changing-axis-labels-and-other-parameters" class="section level2">
 <h2 class="hasAnchor">
-<a href="#changing-axis-labels-and-other-parameters" class="anchor"></a><span class="header-section-number">4.5</span> Changing Axis Labels (and Other Parameters)</h2>
-<p>Arguments of <strong>lattice</strong> function <code class="sourceCode r"><span class="kw">xyplot</span>()</code> can be given to <code class="sourceCode r"><span class="kw">plotc</span>()</code> (Fig. <a href="#fig:lin-cal-4">4.5</a>).</p>
+<a href="#changing-axis-labels-and-other-parameters" class="anchor"></a>Changing Axis Labels (and Other Parameters)</h2>
+<p>Arguments of <strong>lattice</strong> function <code class="sourceCode r"><span class="kw">xyplot</span>()</code> can be given to <code class="sourceCode r"><span class="kw">plotc</span>()</code> (Fig. <a href="#fig:lin-cal-4">36</a>).</p>
 <div class="sourceCode" id="cb41"><pre class="downlit">
 <span class="fu"><a href="../reference/plotc.html">plotc</a></span>(<span class="kw">flu</span>[, , <span class="fl">450</span>],
   ylab = <span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span>(<span class="kw">I</span>[<span class="st">"450 nm"</span>] <span class="op">/</span> <span class="kw">a.u.</span>),
@@ -891,14 +891,14 @@ Figure 4.4: Grouping: several calibration spectra on one plot.
 <div class="figure" style="text-align: center">
 <span id="fig:lin-cal-4"></span>
 <img src="plotting_files/figure-html/lin-cal-4-1.png" alt="Modified axis labels and point characters.  "><p class="caption">
-Figure 4.5: Modified axis labels and point characters.
+Figure 36: Modified axis labels and point characters.
 </p>
 </div>
 </div>
 <div id="adding-things-to-the-plot-customized-panel-function" class="section level2">
 <h2 class="hasAnchor">
-<a href="#adding-things-to-the-plot-customized-panel-function" class="anchor"></a><span class="header-section-number">4.6</span> Adding Things to the Plot: Customized Panel Function</h2>
-<p>As <code class="sourceCode r"><span class="kw">plotc</span>()</code> uses the package <strong>lattice</strong> function <code class="sourceCode r"><span class="kw">xyplot</span>()</code>, additions to the plot must be made via the panel function (Fig. <a href="#fig:lin-cal-5">4.6</a>).</p>
+<a href="#adding-things-to-the-plot-customized-panel-function" class="anchor"></a>Adding Things to the Plot: Customized Panel Function</h2>
+<p>As <code class="sourceCode r"><span class="kw">plotc</span>()</code> uses the package <strong>lattice</strong> function <code class="sourceCode r"><span class="kw">xyplot</span>()</code>, additions to the plot must be made via the panel function (Fig. <a href="#fig:lin-cal-5">37</a>).</p>
 <div class="sourceCode" id="cb42"><pre class="downlit">
 <span class="kw">panelcalibration</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">x</span>, <span class="kw">y</span>, <span class="kw">...</span>, <span class="kw">clim</span> = <span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span>(<span class="kw">x</span>), <span class="kw">level</span> = <span class="fl">.95</span>) {
   <span class="fu">panel.xyplot</span>(<span class="kw">x</span>, <span class="kw">y</span>, <span class="kw">...</span>)
@@ -922,14 +922,14 @@ Figure 4.5: Modified axis labels and point characters.
 <div class="figure" style="text-align: center">
 <span id="fig:lin-cal-5"></span>
 <img src="plotting_files/figure-html/lin-cal-5-1.png" alt="Plot that uses a customized paanel function.  "><p class="caption">
-Figure 4.6: Plot that uses a customized paanel function.
+Figure 37: Plot that uses a customized paanel function.
 </p>
 </div>
 </div>
 <div id="sec:time-series" class="section level2">
 <h2 class="hasAnchor">
-<a href="#sec:time-series" class="anchor"></a><span class="header-section-number">4.7</span> Time Series and Other Plots of the Type “Intensity-over-Something”</h2>
-<p>Abscissae other than <code>c</code> may be specified by explicitly giving the model formula (Fig. <a href="#fig:plotc4">4.7</a>).</p>
+<a href="#sec:time-series" class="anchor"></a>Time Series and Other Plots of the Type “Intensity-over-Something”</h2>
+<p>Abscissae other than <code>c</code> may be specified by explicitly giving the model formula (Fig. <a href="#fig:plotc4">38</a>).</p>
 <div class="sourceCode" id="cb44"><pre class="downlit">
 <span class="fu"><a href="../reference/plotc.html">plotc</a></span>(<span class="kw">laser</span>[, , <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">405.0063</span>, <span class="fl">405.1121</span>, <span class="fl">405.2885</span>, <span class="fl">405.3591</span>)],
   <span class="kw">spc</span> <span class="op">~</span> <span class="kw">t</span>,
@@ -941,14 +941,14 @@ Figure 4.6: Plot that uses a customized paanel function.
 <div class="figure" style="text-align: center">
 <span id="fig:plotc4"></span>
 <img src="plotting_files/figure-html/plotc4-1.png" alt="Plot with abscissae explicitly indicated by model formula.  "><p class="caption">
-Figure 4.7: Plot with abscissae explicitly indicated by model formula.
+Figure 38: Plot with abscissae explicitly indicated by model formula.
 </p>
 </div>
 </div>
 </div>
 <div id="fun-levelplot" class="section level1">
 <h1 class="hasAnchor">
-<a href="#fun-levelplot" class="anchor"></a><span class="header-section-number">5</span> Levelplot: <code class="sourceCode r"><span class="kw">levelplot</span>()</code>
+<a href="#fun-levelplot" class="anchor"></a>Levelplot: <code class="sourceCode r"><span class="kw">levelplot</span>()</code>
 </h1>
 <p>Package <strong>hyperSpec</strong>’s function <code class="sourceCode r"><span class="kw">levelplot</span>()</code> can use two special column names:</p>
 <ul>
@@ -958,17 +958,17 @@ Figure 4.7: Plot with abscissae explicitly indicated by model formula.
 <strong>.row</strong> for the row index (i.e., spectrum number) in the data.</li>
 </ul>
 <p>Besides that, it behaves exactly like <strong>lattice</strong> <code class="sourceCode r"><span class="kw">levelplot</span>()</code>.
-Particularly, the data is given as the <em>second</em> argument (Fig. <a href="#fig:levelplot">5.1</a>).</p>
+Particularly, the data is given as the <em>second</em> argument (Fig. <a href="#fig:levelplot">39</a>).</p>
 <div class="sourceCode" id="cb45"><pre class="downlit">
 <span class="fu">levelplot</span>(<span class="kw">spc</span> <span class="op">~</span> <span class="kw">x</span> <span class="op">*</span> <span class="kw">y</span>, data = <span class="kw">faux_cell</span>[, , <span class="fl">800</span>])
 </pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:levelplot"></span>
 <img src="plotting_files/figure-html/levelplot-1.png" alt="An example of a levelplot.  "><p class="caption">
-Figure 5.1: An example of a levelplot.
+Figure 39: An example of a levelplot.
 </p>
 </div>
-<p>If the colour-coded value is a factor, the display is adjusted to this fact (Fig. <a href="#fig:levelplot-factor">5.2</a>).</p>
+<p>If the colour-coded value is a factor, the display is adjusted to this fact (Fig. <a href="#fig:levelplot-factor">40</a>).</p>
 <!-- Factors as `z` -->
 <div class="sourceCode" id="cb46"><pre class="downlit">
 <span class="fu">levelplot</span>(<span class="kw">region</span> <span class="op">~</span> <span class="kw">x</span> <span class="op">*</span> <span class="kw">y</span>, data = <span class="kw">faux_cell</span>)
@@ -976,13 +976,13 @@ Figure 5.1: An example of a levelplot.
 <div class="figure" style="text-align: center">
 <span id="fig:levelplot-factor"></span>
 <img src="plotting_files/figure-html/levelplot-factor-1.png" alt="Levelplot when colour-coded value is a factor.  "><p class="caption">
-Figure 5.2: Levelplot when colour-coded value is a factor.
+Figure 40: Levelplot when colour-coded value is a factor.
 </p>
 </div>
 </div>
 <div id="fun-plotmat" class="section level1">
 <h1 class="hasAnchor">
-<a href="#fun-plotmat" class="anchor"></a><span class="header-section-number">6</span> Spectra Matrix: <code class="sourceCode r"><span class="kw">plotmat</span>()</code>
+<a href="#fun-plotmat" class="anchor"></a>Spectra Matrix: <code class="sourceCode r"><span class="kw">plotmat</span>()</code>
 </h1>
 <p>It is often useful to plot the spectra against an additional coordinate, e.g., the time for time
 series, the depth for depth profiles, etc.
@@ -990,15 +990,15 @@ This can be done by <code class="sourceCode r"><span class="kw">plot</span>(obje
 The actual plotting is done by <code class="sourceCode r"><span class="kw">image</span>()</code>, but <code class="sourceCode r"><span class="kw">levelplot</span>()</code> can produce spectra matrix plots as well and these plots can be grouped or conditioned.</p>
 <div id="different-palette" class="section level2">
 <h2 class="hasAnchor">
-<a href="#different-palette" class="anchor"></a><span class="header-section-number">6.1</span> Different Palette</h2>
-<p>Argument <code>col</code> can be used to provide a different colour palette (Fig. <a href="#fig:plotmat1">6.1</a>).</p>
+<a href="#different-palette" class="anchor"></a>Different Palette</h2>
+<p>Argument <code>col</code> can be used to provide a different colour palette (Fig. <a href="#fig:plotmat1">41</a>).</p>
 <div class="sourceCode" id="cb47"><pre class="downlit">
 <span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">laser</span>, <span class="st">"mat"</span>, col = <span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html">heat.colors</a></span>(<span class="fl">20</span>))
 </pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:plotmat1"></span>
 <img src="plotting_files/figure-html/plotmat1-1.png" alt="Spectra matrix with non-default palette.  "><p class="caption">
-Figure 6.1: Spectra matrix with non-default palette.
+Figure 41: Spectra matrix with non-default palette.
 </p>
 </div>
 <p>This is the same as:</p>
@@ -1008,15 +1008,15 @@ Figure 6.1: Spectra matrix with non-default palette.
 </div>
 <div id="different-y-axis" class="section level2">
 <h2 class="hasAnchor">
-<a href="#different-y-axis" class="anchor"></a><span class="header-section-number">6.2</span> Different Y-Axis</h2>
-<p>Different extra data column can be used as y-axis (Fig. <a href="#fig:plotmat2">6.2</a>).</p>
+<a href="#different-y-axis" class="anchor"></a>Different Y-Axis</h2>
+<p>Different extra data column can be used as y-axis (Fig. <a href="#fig:plotmat2">42</a>).</p>
 <div class="sourceCode" id="cb49"><pre class="downlit">
 <span class="fu"><a href="../reference/plotmat.html">plotmat</a></span>(<span class="kw">laser</span>, y = <span class="st">"t"</span>)
 </pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:plotmat2"></span>
 <img src="plotting_files/figure-html/plotmat2-1.png" alt="Spectra matrix with time (in column `t`) on y axis.    "><p class="caption">
-Figure 6.2: Spectra matrix with time (in column <code>t</code>) on y axis.
+Figure 42: Spectra matrix with time (in column <code>t</code>) on y axis.
 </p>
 </div>
 <p>Alternatively, y values and axis label can be given separately.</p>
@@ -1026,8 +1026,8 @@ Figure 6.2: Spectra matrix with time (in column <code>t</code>) on y axis.
 </div>
 <div id="contour-lines" class="section level2">
 <h2 class="hasAnchor">
-<a href="#contour-lines" class="anchor"></a><span class="header-section-number">6.3</span> Contour Lines</h2>
-<p>Contour lines may also be added (Fig. <a href="#fig:plotmat3">6.3</a>).</p>
+<a href="#contour-lines" class="anchor"></a>Contour Lines</h2>
+<p>Contour lines may also be added (Fig. <a href="#fig:plotmat3">43</a>).</p>
 <div class="sourceCode" id="cb51"><pre class="downlit">
 <span class="fu"><a href="../reference/plotmat.html">plotmat</a></span>(<span class="kw">flu</span>, col = <span class="fu"><a href="../reference/matlab.palette.html">matlab.dark.palette</a></span>(<span class="fl">20</span>))
 <span class="fu"><a href="../reference/plotmat.html">plotmat</a></span>(<span class="kw">flu</span>, col = <span class="st">"white"</span>, contour = <span class="fl">TRUE</span>, add = <span class="fl">TRUE</span>)
@@ -1035,14 +1035,14 @@ Figure 6.2: Spectra matrix with time (in column <code>t</code>) on y axis.
 <div class="figure" style="text-align: center">
 <span id="fig:plotmat3"></span>
 <img src="plotting_files/figure-html/plotmat3-1.png" alt="Spectra matrix with added contour lines.  "><p class="caption">
-Figure 6.3: Spectra matrix with added contour lines.
+Figure 43: Spectra matrix with added contour lines.
 </p>
 </div>
 </div>
 <div id="colour-coded-points-special-panel-function" class="section level2">
 <h2 class="hasAnchor">
-<a href="#colour-coded-points-special-panel-function" class="anchor"></a><span class="header-section-number">6.4</span> Colour-Coded Points: Special Panel Function</h2>
-<p>In <code class="sourceCode r"><span class="kw">levelplot</span>()</code>, colour-coded points may be set via special panel function (Fig. <a href="#fig:plotmap-barb">6.4</a>).</p>
+<a href="#colour-coded-points-special-panel-function" class="anchor"></a>Colour-Coded Points: Special Panel Function</h2>
+<p>In <code class="sourceCode r"><span class="kw">levelplot</span>()</code>, colour-coded points may be set via special panel function (Fig. <a href="#fig:plotmap-barb">44</a>).</p>
 <div class="sourceCode" id="cb52"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st"><a href="http://latticeextra.r-forge.r-project.org">"latticeExtra"</a></span>)
 
@@ -1059,19 +1059,19 @@ Figure 6.3: Spectra matrix with added contour lines.
 <div class="figure" style="text-align: center">
 <span id="fig:plotmap-barb"></span>
 <img src="plotting_files/figure-html/plotmap-barb-1.png" alt="Colour-coded points via special panel function.  "><p class="caption">
-Figure 6.4: Colour-coded points via special panel function.
+Figure 44: Colour-coded points via special panel function.
 </p>
 </div>
 </div>
 </div>
 <div id="fun-plotmap" class="section level1">
 <h1 class="hasAnchor">
-<a href="#fun-plotmap" class="anchor"></a><span class="header-section-number">7</span> False-Colour Maps: <code class="sourceCode r"><span class="kw">plotmap</span>()</code>
+<a href="#fun-plotmap" class="anchor"></a>False-Colour Maps: <code class="sourceCode r"><span class="kw">plotmap</span>()</code>
 </h1>
 <div id="plotmap" class="section level2">
 <h2 class="hasAnchor">
-<a href="#plotmap" class="anchor"></a><span class="header-section-number">7.1</span> Plotting map</h2>
-<p>Function <code class="sourceCode r"><span class="kw">plotmap</span>()</code> is a specialized version of <code class="sourceCode r"><span class="kw">levelplot</span>()</code> (Fig. <a href="#fig:plotmap-clu">7.3</a>).
+<a href="#plotmap" class="anchor"></a>Plotting map</h2>
+<p>Function <code class="sourceCode r"><span class="kw">plotmap</span>()</code> is a specialized version of <code class="sourceCode r"><span class="kw">levelplot</span>()</code> (Fig. <a href="#fig:plotmap-clu">47</a>).
 The spectral intensities may be summarized by a function before plotting (default: <code class="sourceCode r"><span class="kw">mean</span>()</code>).
 The same scale is used for x and y axes (<code class="sourceCode r">aspect =<span class="st"> "iso"</span></code>).</p>
 <div class="sourceCode" id="cb54"><pre class="downlit">
@@ -1080,57 +1080,57 @@ The same scale is used for x and y axes (<code class="sourceCode r">aspect =<spa
 <div class="figure" style="text-align: center">
 <span id="fig:plotmap-faux-cell"></span>
 <img src="plotting_files/figure-html/plotmap-faux-cell-1.png" alt="An example of a false colour map.  "><p class="caption">
-Figure 7.1: An example of a false colour map.
+Figure 45: An example of a false colour map.
 </p>
 </div>
 </div>
 <div id="plotmap-manual-xy" class="section level2">
 <h2 class="hasAnchor">
-<a href="#plotmap-manual-xy" class="anchor"></a><span class="header-section-number">7.2</span> Plotting Maps with Manually Specified X and Y Axes</h2>
-<p>Specify the colour-coded variable, abscissa and ordinate as formula: <code class="sourceCode r">colour.coded <span class="op">~</span><span class="st"> </span>abscissa <span class="op">*</span><span class="st"> </span>ordinate</code> (Fig. <a href="#fig:plotmap-yx">7.2</a>).</p>
+<a href="#plotmap-manual-xy" class="anchor"></a>Plotting Maps with Manually Specified X and Y Axes</h2>
+<p>Specify the colour-coded variable, abscissa and ordinate as formula: <code class="sourceCode r">colour.coded <span class="op">~</span><span class="st"> </span>abscissa <span class="op">*</span><span class="st"> </span>ordinate</code> (Fig. <a href="#fig:plotmap-yx">46</a>).</p>
 <div class="sourceCode" id="cb55"><pre class="downlit">
 <span class="fu"><a href="../reference/plotmap.html">plotmap</a></span>(<span class="kw">faux_cell</span>[, , <span class="fl">1200</span>], <span class="kw">spc</span> <span class="op">~</span> <span class="kw">y</span> <span class="op">*</span> <span class="kw">x</span>)
 </pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:plotmap-yx"></span>
 <img src="plotting_files/figure-html/plotmap-yx-1.png" alt="False colour map with an explicit specification of x and y axes.  "><p class="caption">
-Figure 7.2: False colour map with an explicit specification of x and y axes.
+Figure 46: False colour map with an explicit specification of x and y axes.
 </p>
 </div>
 </div>
 <div id="discrete-colours" class="section level2">
 <h2 class="hasAnchor">
-<a href="#discrete-colours" class="anchor"></a><span class="header-section-number">7.3</span> Discrete Colours</h2>
-<p>Factor variables may be used for discrete colour coding (Fig. <a href="#fig:plotmap-clu">7.3</a>).</p>
+<a href="#discrete-colours" class="anchor"></a>Discrete Colours</h2>
+<p>Factor variables may be used for discrete colour coding (Fig. <a href="#fig:plotmap-clu">47</a>).</p>
 <div class="sourceCode" id="cb56"><pre class="downlit">
 <span class="fu"><a href="../reference/plotmap.html">plotmap</a></span>(<span class="kw">faux_cell</span>, <span class="kw">region</span> <span class="op">~</span> <span class="kw">x</span> <span class="op">*</span> <span class="kw">y</span>)
 </pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:plotmap-clu"></span>
 <img src="plotting_files/figure-html/plotmap-clu-1.png" alt="False colour map with colours defined by a factor variable.  "><p class="caption">
-Figure 7.3: False colour map with colours defined by a factor variable.
+Figure 47: False colour map with colours defined by a factor variable.
 </p>
 </div>
 <p>If the colour-coded variable is a factor, each level gets its own colour, and the legend is labelled accordingly.</p>
 </div>
 <div id="different-palette-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#different-palette-1" class="anchor"></a><span class="header-section-number">7.4</span> Different Palette</h2>
-<p>To use a different palette, use argument <code class="sourceCode r">col.regions</code> (Fig. <a href="#fig:plotmap-col">7.4</a>).</p>
+<a href="#different-palette-1" class="anchor"></a>Different Palette</h2>
+<p>To use a different palette, use argument <code class="sourceCode r">col.regions</code> (Fig. <a href="#fig:plotmap-col">48</a>).</p>
 <div class="sourceCode" id="cb57"><pre class="downlit">
 <span class="fu"><a href="../reference/plotmap.html">plotmap</a></span>(<span class="kw">faux_cell</span>, <span class="kw">region</span> <span class="op">~</span> <span class="kw">x</span> <span class="op">*</span> <span class="kw">y</span>, col.regions = <span class="kw">cluster_cols</span>)
 </pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:plotmap-col"></span>
 <img src="plotting_files/figure-html/plotmap-col-1.png" alt="False colour map with non-default colour palette.  "><p class="caption">
-Figure 7.4: False colour map with non-default colour palette.
+Figure 48: False colour map with non-default colour palette.
 </p>
 </div>
 </div>
 </div>
 <div id="fine-tuning-lattice-parameters" class="section level1">
 <h1 class="hasAnchor">
-<a href="#fine-tuning-lattice-parameters" class="anchor"></a><span class="header-section-number">8</span> Fine-Tuning <strong><em>lattice</em></strong> Parameters</h1>
+<a href="#fine-tuning-lattice-parameters" class="anchor"></a>Fine-Tuning <strong><em>lattice</em></strong> Parameters</h1>
 <p>The plotting of colour maps is done via R package <strong>lattice</strong> (aka Trellis graphic approach), which is highly customizable.
 Use function <code class="sourceCode r"><span class="kw">trellis.par.get</span>()</code> and <code class="sourceCode r"><span class="kw">trellis.par.set</span>()</code> to get/set the settings for the current graphics device.</p>
 <div class="sourceCode" id="cb58"><pre class="downlit">
@@ -1151,8 +1151,8 @@ For example, parameter <code class="sourceCode r">my_theme<span class="op">$</sp
 By changing these parameters you can create your own theme for plotting and pass it to the plotting function via <code class="sourceCode r">par.settings</code>.</p>
 <div id="changed-palette" class="section level2">
 <h2 class="hasAnchor">
-<a href="#changed-palette" class="anchor"></a><span class="header-section-number">8.1</span> Changed Palette</h2>
-<p>Fig. <a href="#fig:plotmap-col-default">8.1</a> uses a customized <strong>lattice</strong> theme.</p>
+<a href="#changed-palette" class="anchor"></a>Changed Palette</h2>
+<p>Fig. <a href="#fig:plotmap-col-default">49</a> uses a customized <strong>lattice</strong> theme.</p>
 <div class="sourceCode" id="cb59"><pre class="downlit">
 <span class="kw">my_theme</span><span class="op">$</span><span class="kw">regions</span><span class="op">$</span><span class="kw">col</span> <span class="op">&lt;-</span> <span class="kw">grDevices</span>::<span class="kw"><a href="https://rdrr.io/r/grDevices/palettes.html">terrain.colors</a></span>
 <span class="fu"><a href="../reference/plotmap.html">plotmap</a></span>(<span class="kw">faux_cell</span>[, , <span class="fl">1200</span>], par.settings = <span class="kw">my_theme</span>)
@@ -1160,7 +1160,7 @@ By changing these parameters you can create your own theme for plotting and pass
 <div class="figure" style="text-align: center">
 <span id="fig:plotmap-col-default"></span>
 <img src="plotting_files/figure-html/plotmap-col-default-1.png" alt="A false-colour map that uses `terrain.colors` palette.   "><p class="caption">
-Figure 8.1: A false-colour map that uses <code>terrain.colors</code> palette.
+Figure 49: A false-colour map that uses <code>terrain.colors</code> palette.
 </p>
 </div>
 <p>It is possible to <strong>persistently</strong> (i.e. inside of the current R session) set <strong>lattice</strong> parameters, so they would apply to all further plots.
@@ -1169,8 +1169,8 @@ This is done via a call to <code class="sourceCode r"><span class="kw">trellis.p
 </div>
 <div id="show-current-lattice-settings" class="section level2">
 <h2 class="hasAnchor">
-<a href="#show-current-lattice-settings" class="anchor"></a><span class="header-section-number">8.2</span> Show Current <strong><em>lattice</em></strong> Settings</h2>
-<p>Graphical parameters for <em>trellis</em> may be displayed via <code class="sourceCode r"><span class="kw">show.settings</span>()</code> (Fig. <a href="#fig:lattice-settings">8.2</a>).</p>
+<a href="#show-current-lattice-settings" class="anchor"></a>Show Current <strong><em>lattice</em></strong> Settings</h2>
+<p>Graphical parameters for <em>trellis</em> may be displayed via <code class="sourceCode r"><span class="kw">show.settings</span>()</code> (Fig. <a href="#fig:lattice-settings">50</a>).</p>
 <div class="sourceCode" id="cb60"><pre class="downlit">
 <span class="co"># Display current trellis parameters</span>
 <span class="fu">show.settings</span>()
@@ -1181,7 +1181,7 @@ This is done via a call to <code class="sourceCode r"><span class="kw">trellis.p
 <div class="figure" style="text-align: center">
 <span id="fig:lattice-settings"></span>
 <img src="plotting_files/figure-html/lattice-settings-1.png" alt="Show **lattice** settings.  "><p class="caption">
-Figure 8.2: Show <strong>lattice</strong> settings.
+Figure 50: Show <strong>lattice</strong> settings.
 </p>
 </div>
 <p>An overview of different colour palettes, and ways to create your own, can be found
@@ -1189,8 +1189,8 @@ in the <a href="https://www.nceas.ucsb.edu/~frazier/RSpatialGuides/colorPaletteC
 </div>
 <div id="defined-wavelengths" class="section level2">
 <h2 class="hasAnchor">
-<a href="#defined-wavelengths" class="anchor"></a><span class="header-section-number">8.3</span> Defined Wavelengths</h2>
-<p>A map of the average intensity at particular wavelengths can be plotted if the wavelengths of interested are explicitly extracted (Fig. <a href="#fig:plotmap-wave">8.3</a>).</p>
+<a href="#defined-wavelengths" class="anchor"></a>Defined Wavelengths</h2>
+<p>A map of the average intensity at particular wavelengths can be plotted if the wavelengths of interested are explicitly extracted (Fig. <a href="#fig:plotmap-wave">51</a>).</p>
 <div class="sourceCode" id="cb62"><pre class="downlit">
 <span class="fu"><a href="../reference/plotmap.html">plotmap</a></span>(
   <span class="kw">faux_cell_preproc</span>[, , <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">800</span>, <span class="fl">1500</span>)],
@@ -1200,14 +1200,14 @@ in the <a href="https://www.nceas.ucsb.edu/~frazier/RSpatialGuides/colorPaletteC
 <div class="figure" style="text-align: center">
 <span id="fig:plotmap-wave"></span>
 <img src="plotting_files/figure-html/plotmap-wave-1.png" alt="A map of average intensity at explicitly indicated wavelengths.  "><p class="caption">
-Figure 8.3: A map of average intensity at explicitly indicated wavelengths.
+Figure 51: A map of average intensity at explicitly indicated wavelengths.
 </p>
 </div>
 </div>
 <div id="conditioning" class="section level2">
 <h2 class="hasAnchor">
-<a href="#conditioning" class="anchor"></a><span class="header-section-number">8.4</span> Conditioning</h2>
-<p>Logical conditions may be used to create subplots (Fig. <a href="#fig:plotmap-pca">8.4</a>).</p>
+<a href="#conditioning" class="anchor"></a>Conditioning</h2>
+<p>Logical conditions may be used to create subplots (Fig. <a href="#fig:plotmap-pca">52</a>).</p>
 <div class="sourceCode" id="cb63"><pre class="downlit">
 <span class="fu"><a href="../reference/plotmap.html">plotmap</a></span>(
   <span class="kw">faux_cell</span>[, , <span class="fl">1500</span>],
@@ -1218,19 +1218,19 @@ Figure 8.3: A map of average intensity at explicitly indicated wavelengths.
 <div class="figure" style="text-align: center">
 <span id="fig:plotmap-pca"></span>
 <img src="plotting_files/figure-html/plotmap-pca-1.png" alt="Subplots created by logical conditions.  "><p class="caption">
-Figure 8.4: Subplots created by logical conditions.
+Figure 52: Subplots created by logical conditions.
 </p>
 </div>
 </div>
 <div id="conditioning-on--wavelength" class="section level2">
 <h2 class="hasAnchor">
-<a href="#conditioning-on--wavelength" class="anchor"></a><span class="header-section-number">8.5</span> Conditioning on <code class="sourceCode r">.wavelength</code>
+<a href="#conditioning-on--wavelength" class="anchor"></a>Conditioning on <code class="sourceCode r">.wavelength</code>
 </h2>
 <p>Function <code class="sourceCode r"><span class="kw">plotmap</span>()</code> automatically applies the function in <code class="sourceCode r">func</code> before plotting.
 Argument <code class="sourceCode r">func</code> defaults to function <code class="sourceCode r"><span class="kw">mean</span>()</code>.
 In order to suppress this, use <code class="sourceCode r">func =<span class="st"> </span><span class="ot">NULL</span></code>.
 This allows conditioning on the wavelengths.</p>
-<p>Fig. <a href="#fig:plotmap-pca2">8.5</a> demonstrates an example to plot the maps of principal components scores.</p>
+<p>Fig. <a href="#fig:plotmap-pca2">53</a> demonstrates an example to plot the maps of principal components scores.</p>
 <div class="sourceCode" id="cb64"><pre class="downlit">
 <span class="kw">pca</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/prcomp.html">prcomp</a></span>(<span class="op">~</span><span class="kw">spc</span>, data = <span class="kw">faux_cell_preproc</span><span class="op">$</span><span class="kw">.</span>)
 
@@ -1249,10 +1249,10 @@ This allows conditioning on the wavelengths.</p>
 <div class="figure" style="text-align: center">
 <span id="fig:plotmap-pca2"></span>
 <img src="plotting_files/figure-html/plotmap-pca2-1.png" alt="The maps of the scores of the first two principal components (I).  "><p class="caption">
-Figure 8.5: The maps of the scores of the first two principal components (I).
+Figure 53: The maps of the scores of the first two principal components (I).
 </p>
 </div>
-<p>Alternatively, use <code class="sourceCode r"><span class="kw">levelplot</span>()</code> directly (Fig. <a href="#fig:plotmap-pca3">8.6</a>).</p>
+<p>Alternatively, use <code class="sourceCode r"><span class="kw">levelplot</span>()</code> directly (Fig. <a href="#fig:plotmap-pca3">54</a>).</p>
 <div class="sourceCode" id="cb65"><pre class="downlit">
 <span class="fu">levelplot</span>(
   <span class="kw">spc</span> <span class="op">~</span> <span class="kw">y</span> <span class="op">*</span> <span class="kw">x</span> <span class="op">|</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span>(<span class="kw">.wavelength</span>),
@@ -1264,14 +1264,14 @@ Figure 8.5: The maps of the scores of the first two principal components (I).
 <div class="figure" style="text-align: center">
 <span id="fig:plotmap-pca3"></span>
 <img src="plotting_files/figure-html/plotmap-pca3-1.png" alt="The maps of the scores of the first two principal components (II).  "><p class="caption">
-Figure 8.6: The maps of the scores of the first two principal components (II).
+Figure 54: The maps of the scores of the first two principal components (II).
 </p>
 </div>
 </div>
 <div id="voronoi-plot" class="section level2">
 <h2 class="hasAnchor">
-<a href="#voronoi-plot" class="anchor"></a><span class="header-section-number">8.6</span> Voronoi Plot</h2>
-<p>Fig. <a href="#fig:voronoi-2">8.7</a> shows an example of a Voronoi plot.
+<a href="#voronoi-plot" class="anchor"></a>Voronoi Plot</h2>
+<p>Fig. <a href="#fig:voronoi-2">55</a> shows an example of a Voronoi plot.
 Voronoi uses <code class="sourceCode r"><span class="kw">panel.voronoi</span>()</code> from package <strong>latticeExtra</strong><span class="citation">[<a href="#ref-R-latticeExtra" role="doc-biblioref">6</a>]</span>.
 The tesselation is calculated by default using package <strong>deldir</strong><span class="citation">[<a href="#ref-R-deldir" role="doc-biblioref">7</a>]</span>, but package <strong>tripack</strong><span class="citation">[<a href="#ref-R-tripack" role="doc-biblioref">1</a>]</span> can also be used.
 Package <strong>tripack</strong> seems to be faster in general, but may “hang” with certain data sets (particularly regular grids with missing spectra as in this example).
@@ -1285,13 +1285,13 @@ Furthermore, it is not FOSS (free and open-source software), so users are kindly
 <div class="figure" style="text-align: center">
 <span id="fig:voronoi-2"></span>
 <img src="plotting_files/figure-html/voronoi-2-1.png" alt="Voronoi plot that uses non-default discrette colour palette.  "><p class="caption">
-Figure 8.7: Voronoi plot that uses non-default discrette colour palette.
+Figure 55: Voronoi plot that uses non-default discrette colour palette.
 </p>
 </div>
 </div>
 <div id="mark-missing-spectra" class="section level2">
 <h2 class="hasAnchor">
-<a href="#mark-missing-spectra" class="anchor"></a><span class="header-section-number">8.7</span> Mark Missing Spectra</h2>
+<a href="#mark-missing-spectra" class="anchor"></a>Mark Missing Spectra</h2>
 <p>If the spectra come from a rectangular grid, missing positions can be marked with the following panel function:</p>
 <div class="sourceCode" id="cb67"><pre class="downlit">
 <span class="kw">mark.missing</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">x</span>, <span class="kw">y</span>, <span class="kw">z</span>, <span class="kw">...</span>) {
@@ -1303,7 +1303,7 @@ Figure 8.7: Voronoi plot that uses non-default discrette colour palette.
   <span class="fu">panel.xyplot</span>(<span class="kw">miss</span>[, <span class="fl">1</span>], <span class="kw">miss</span>[, <span class="fl">2</span>], pch = <span class="fl">4</span>, <span class="kw">...</span>)
 }
 </pre></div>
-<p>Fig. <a href="#fig:missing">8.8</a> shows the result.</p>
+<p>Fig. <a href="#fig:missing">56</a> shows the result.</p>
 <div class="sourceCode" id="cb68"><pre class="downlit">
 <span class="fu"><a href="../reference/plotmap.html">plotmap</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="kw">faux_cell</span>[, , <span class="fl">1200</span>], <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="kw">faux_cell</span>) <span class="op">-</span> <span class="fl">20</span>),
   col.regions = <span class="fu"><a href="../reference/matlab.palette.html">matlab.palette</a></span>(<span class="fl">20</span>),
@@ -1314,16 +1314,16 @@ Figure 8.7: Voronoi plot that uses non-default discrette colour palette.
 <div class="figure" style="text-align: center">
 <span id="fig:missing"></span>
 <img src="plotting_files/figure-html/missing-1.png" alt="Marks of missing spectra in a false-colour map.  "><p class="caption">
-Figure 8.8: Marks of missing spectra in a false-colour map.
+Figure 56: Marks of missing spectra in a false-colour map.
 </p>
 </div>
 </div>
 <div id="unevenly-spaced-measurement-grid" class="section level2">
 <h2 class="hasAnchor">
-<a href="#unevenly-spaced-measurement-grid" class="anchor"></a><span class="header-section-number">8.8</span> Unevenly Spaced Measurement Grid</h2>
+<a href="#unevenly-spaced-measurement-grid" class="anchor"></a>Unevenly Spaced Measurement Grid</h2>
 <p>The panel function used by <code class="sourceCode r"><span class="kw">plotmap</span>()</code> defaults to <code class="sourceCode r"><span class="kw">panel.levelplot.raster</span>()</code> which assumes an evenly spaced measurement grid.
 Even if the spectra are measured on a nominally evenly spaced grid, the actual stage position may slightly vary due to positioning inaccuracy and some manufacturers (e.g., Kaiser) record the position reported by the stage rather than the position requested by the stage control.
-This leads to weird-looking output with holes, and possibly wrong columns (Fig. <a href="#fig:uneven-I">8.9</a>).</p>
+This leads to weird-looking output with holes, and possibly wrong columns (Fig. <a href="#fig:uneven-I">57</a>).</p>
 <div class="sourceCode" id="cb69"><pre class="downlit">
 <span class="kw">uneven</span> <span class="op">&lt;-</span> <span class="kw">faux_cell</span>[, , <span class="fl">1200</span>]
 <span class="kw">uneven</span><span class="op">$</span><span class="kw">x</span> <span class="op">&lt;-</span> <span class="kw">uneven</span><span class="op">$</span><span class="kw">x</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="kw">uneven</span>), sd = <span class="fl">0.05</span>), digits = <span class="fl">1</span>)
@@ -1340,22 +1340,22 @@ This leads to weird-looking output with holes, and possibly wrong columns (Fig. 
 <span id="fig:uneven-I"></span>
 <img src="plotting_files/figure-html/uneven-I-1.png" alt="Unevenly spaced measurement grid: example I.
 Note warnings `values are not equispaced; output may be wrong`."><p class="caption">
-Figure 8.9: Unevenly spaced measurement grid: example I.
+Figure 57: Unevenly spaced measurement grid: example I.
 Note warnings <code>values are not equispaced; output may be wrong</code>.
 </p>
 </div>
 <p>The symptom of this situation are warnings about values in x and/or y not being equispaced; and that the output, therefore, may be wrong.</p>
-<p>One possibility to obtain a correct map is using <code class="sourceCode r"><span class="kw">plotvoronoi</span>()</code> instead which will construct a mosaic-like image with the respective “pixel” areas being centred around the actually recorded <code>$x</code> and <code>$y</code> position (Fig. <a href="#fig:uneven-II">8.10</a>).</p>
+<p>One possibility to obtain a correct map is using <code class="sourceCode r"><span class="kw">plotvoronoi</span>()</code> instead which will construct a mosaic-like image with the respective “pixel” areas being centred around the actually recorded <code>$x</code> and <code>$y</code> position (Fig. <a href="#fig:uneven-II">58</a>).</p>
 <div class="sourceCode" id="cb71"><pre class="downlit">
 <span class="fu"><a href="../reference/plotmap.html">plotvoronoi</a></span>(<span class="kw">uneven</span>)
 </pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:uneven-II"></span>
 <img src="plotting_files/figure-html/uneven-II-1.png" alt="Unevenly spaced measurement grid: example II.  "><p class="caption">
-Figure 8.10: Unevenly spaced measurement grid: example II.
+Figure 58: Unevenly spaced measurement grid: example II.
 </p>
 </div>
-<p>Another possibility that underlines a point shape of the measurements is switching to <code class="sourceCode r">latticeExtra<span class="op">::</span><span class="kw">panel.levelplot.points</span>()</code> (Fig. <a href="#fig:uneven-III">8.11</a>).</p>
+<p>Another possibility that underlines a point shape of the measurements is switching to <code class="sourceCode r">latticeExtra<span class="op">::</span><span class="kw">panel.levelplot.points</span>()</code> (Fig. <a href="#fig:uneven-III">59</a>).</p>
 <div class="sourceCode" id="cb72"><pre class="downlit">
 <span class="fu"><a href="../reference/plotmap.html">plotmap</a></span>(
   <span class="kw">uneven</span>,
@@ -1367,10 +1367,10 @@ Figure 8.10: Unevenly spaced measurement grid: example II.
 <div class="figure" style="text-align: center">
 <span id="fig:uneven-III"></span>
 <img src="plotting_files/figure-html/uneven-III-1.png" alt="Unevenly spaced measurement grid: example III.  "><p class="caption">
-Figure 8.11: Unevenly spaced measurement grid: example III.
+Figure 59: Unevenly spaced measurement grid: example III.
 </p>
 </div>
-<p>Alternatively, the measurement raster positions can be rounded to their nominal raster (e.g. Fig. <a href="#fig:uneven-IV">8.12</a>).</p>
+<p>Alternatively, the measurement raster positions can be rounded to their nominal raster (e.g. Fig. <a href="#fig:uneven-IV">60</a>).</p>
 <div class="sourceCode" id="cb73"><pre class="downlit">
 <span class="kw">rx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/makeraster.html">makeraster</a></span>(<span class="kw">uneven</span><span class="op">$</span><span class="kw">x</span>, startx = <span class="op">-</span><span class="fl">11.55</span>, d = <span class="fl">1</span>, tol = <span class="fl">0.3</span>)
 <span class="kw">uneven</span><span class="op">$</span><span class="kw">x</span> <span class="op">&lt;-</span> <span class="kw">rx</span><span class="op">$</span><span class="kw">x</span>
@@ -1383,14 +1383,14 @@ Figure 8.11: Unevenly spaced measurement grid: example III.
 <div class="figure" style="text-align: center">
 <span id="fig:uneven-IV"></span>
 <img src="plotting_files/figure-html/uneven-IV-1.png" alt="Unevenly spaced measurement grid: example IV.  "><p class="caption">
-Figure 8.12: Unevenly spaced measurement grid: example IV.
+Figure 60: Unevenly spaced measurement grid: example IV.
 </p>
 </div>
 </div>
 </div>
 <div id="plots-3d" class="section level1">
 <h1 class="hasAnchor">
-<a href="#plots-3d" class="anchor"></a><span class="header-section-number">9</span> 3D Plots (with package <strong><em>rgl</em></strong>)</h1>
+<a href="#plots-3d" class="anchor"></a>3D Plots (with package <strong><em>rgl</em></strong>)</h1>
 <p>Package <strong>rgl</strong><span class="citation">[<a href="#ref-R-rgl" role="doc-biblioref">8</a>]</span> offers fast 3d plotting in R.
 As package <strong>rgl</strong>’s axis annotations are sometimes awkward, they may better be set manually:</p>
 <!-- evaluation in rgl-do -->
@@ -1414,7 +1414,7 @@ As package <strong>rgl</strong>’s axis annotations are sometimes awkward, they
 <div class="figure" style="text-align: center">
 <span id="fig:rgl-plot-png"></span>
 <img src="plotting--fig-3D-01.png" alt="A snapshot of an **rgl** plot.  " width="100%"><p class="caption">
-Figure 9.1: A snapshot of an <strong>rgl</strong> plot.
+Figure 61: A snapshot of an <strong>rgl</strong> plot.
 </p>
 </div>
 <!-- ======================================================================= -->
@@ -1422,13 +1422,13 @@ Figure 9.1: A snapshot of an <strong>rgl</strong> plot.
 </div>
 <div id="interactive-plots" class="section level1">
 <h1 class="hasAnchor">
-<a href="#interactive-plots" class="anchor"></a><span class="header-section-number">10</span> Interactive Graphics</h1>
+<a href="#interactive-plots" class="anchor"></a>Interactive Graphics</h1>
 <p>Package <strong>hyperSpec</strong> offers basic interaction, <code class="sourceCode r"><span class="kw">spc.identify</span>()</code> for spectra plots, and <code class="sourceCode r"><span class="kw">map.identify</span>()</code> and <code class="sourceCode r"><span class="kw">map.sel.poly</span>()</code> for maps.
 The first two identify points in spectra plots and map plots, respectively.
 Function <code class="sourceCode r"><span class="kw">map.sel.poly</span>()</code> selects the part of a <code class="sourceCode r">hyperSpec</code> object that lies inside the user defined polygon.</p>
 <div id="sec:spc-identify" class="section level2">
 <h2 class="hasAnchor">
-<a href="#sec:spc-identify" class="anchor"></a><span class="header-section-number">10.1</span> <code class="sourceCode r"><span class="kw">spc.identify</span>()</code> Finding Out Wavelength, Intensity and Spectrum</h2>
+<a href="#sec:spc-identify" class="anchor"></a><code class="sourceCode r"><span class="kw">spc.identify</span>()</code> Finding Out Wavelength, Intensity and Spectrum</h2>
 <p>Function <code class="sourceCode r"><span class="kw">spc.identify</span>()</code> allows to measure points in graphics produced by <code class="sourceCode r"><span class="kw">plotspc</span>()</code>.
 It works correctly with reversed and cut wavelength axes.</p>
 <div class="sourceCode" id="cb75"><pre class="downlit">
@@ -1438,7 +1438,7 @@ It works correctly with reversed and cut wavelength axes.</p>
 </div>
 <div id="sec:map-identify" class="section level2">
 <h2 class="hasAnchor">
-<a href="#sec:map-identify" class="anchor"></a><span class="header-section-number">10.2</span> <code class="sourceCode r"><span class="kw">map.identify</span>()</code> finding a spectrum in a map plot</h2>
+<a href="#sec:map-identify" class="anchor"></a><code class="sourceCode r"><span class="kw">map.identify</span>()</code> finding a spectrum in a map plot</h2>
 <p>Function <code class="sourceCode r"><span class="kw">map.identify</span>()</code> returns the spectra indices of the clicked points.</p>
 <div class="sourceCode" id="cb76"><pre class="downlit">
 <span class="fu"><a href="../reference/plotmap.html">map.identify</a></span>(<span class="kw">faux_cell</span>[, , <span class="fl">1200</span>])
@@ -1446,7 +1446,7 @@ It works correctly with reversed and cut wavelength axes.</p>
 </div>
 <div id="sec:map-sel-poly" class="section level2">
 <h2 class="hasAnchor">
-<a href="#sec:map-sel-poly" class="anchor"></a><span class="header-section-number">10.3</span> <code class="sourceCode r"><span class="kw">map.sel.poly</span>()</code> selecting spectra inside a polygon in a map plot</h2>
+<a href="#sec:map-sel-poly" class="anchor"></a><code class="sourceCode r"><span class="kw">map.sel.poly</span>()</code> selecting spectra inside a polygon in a map plot</h2>
 <p>Function <code class="sourceCode r"><span class="kw">map.sel.poly</span>()</code> returns a logical indicating which spectra are inside the polygon drawn by the user:</p>
 <div class="sourceCode" id="cb77"><pre class="downlit">
 <span class="fu"><a href="../reference/map.sel.poly.html">map.sel.poly</a></span>(<span class="kw">faux_cell</span>[, , <span class="fl">1200</span>])
@@ -1454,7 +1454,7 @@ It works correctly with reversed and cut wavelength axes.</p>
 </div>
 <div id="sec:identify-other" class="section level2">
 <h2 class="hasAnchor">
-<a href="#sec:identify-other" class="anchor"></a><span class="header-section-number">10.4</span> Related Functions Provided by Base Graphics and <strong><em>lattice</em></strong>
+<a href="#sec:identify-other" class="anchor"></a>Related Functions Provided by Base Graphics and <strong><em>lattice</em></strong>
 </h2>
 <p>For base graphics (as produced by <code class="sourceCode r"><span class="kw">plotspc</span>()</code>), <code class="sourceCode r"><span class="kw">locator</span>()</code> may be useful as well.
 It returns the clicked coordinates. Note that these are <em>not</em> transformed according to <code>xoffset</code> &amp; Co.</p>
@@ -1471,10 +1471,10 @@ Note that the returned indices correspond to the plotted object.</p>
 </div>
 <div id="sec:troubleshooting" class="section level1">
 <h1 class="hasAnchor">
-<a href="#sec:troubleshooting" class="anchor"></a><span class="header-section-number">11</span> Troubleshooting</h1>
+<a href="#sec:troubleshooting" class="anchor"></a>Troubleshooting</h1>
 <div id="sec:no-output-produced" class="section level2">
 <h2 class="hasAnchor">
-<a href="#sec:no-output-produced" class="anchor"></a><span class="header-section-number">11.1</span> No Output Is Produced</h2>
+<a href="#sec:no-output-produced" class="anchor"></a>No Output Is Produced</h2>
 <p>Methods <code class="sourceCode r">plotmap</code>, <code class="sourceCode r">plotvoronoi</code>, <code class="sourceCode r">levelplot</code>, and <code class="sourceCode r">plotc</code> use package <strong>lattice</strong> functions.
 Therefore, in loops, functions, Sweave, R Markdown chunks, etc. the lattice object needs to be printed explicitly by <code class="sourceCode r"><span class="kw">print</span>(<span class="kw">plotmap</span>(object))</code>
 (<a href="http://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-do-lattice_002ftrellis-graphics-not-work_003f">R FAQ: Why do lattice/trellis graphics not work?</a>).
