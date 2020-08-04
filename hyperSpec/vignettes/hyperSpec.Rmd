@@ -1,9 +1,4 @@
 ---
-# For bookdown ---------------------------------------------------------------
-bookdown_file_name: hyperspec
-bookdown_titles: |
-  # (PART\*) I Principles {-}
-  # `hyperspec`: Introduction to Package **_hyperSpec_** {#hyperspec}
 # For vignette ---------------------------------------------------------------
 title:        Introduction to Package "hyperSpec"
 subtitle:     'The Main Manual of Package "hyperSpec"'
@@ -22,8 +17,7 @@ author:
 # Document -------------------------------------------------------------------
 date:        "`r Sys.Date()`"
 output:
-    bookdown::html_document2:
-      base_format: rmarkdown::html_vignette
+    bookdown::html_vignette2:
       toc: yes
       toc_depth: 2
       fig_caption: yes

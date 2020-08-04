@@ -1,8 +1,4 @@
 ---
-# For bookdown ---------------------------------------------------------------
-bookdown_file_name: baseline
-bookdown_titles: |
-  # `baseline`: Fitting Baselines to Spectra {#baseline}
 # For vignette ---------------------------------------------------------------
 title:       Fitting Baselines to Spectra
 subtitle:    "Tutorial Explaining hyperSpec's Baseline Fitting Functions"
@@ -21,8 +17,7 @@ author:
 # Document -------------------------------------------------------------------
 date:        "`r Sys.Date()`"
 output:
-    bookdown::html_document2:
-      base_format: rmarkdown::html_vignette
+    bookdown::html_vignette2:
       toc: yes
       fig_caption: yes
       css:
