@@ -83,7 +83,7 @@ wl.seq <- function(x, from = 1, to = ncol(x@data$spc), ...) {
 
 # Unit tests -----------------------------------------------------------------
 
-.test(seq.hyperSpec) <- function() {
+hySpc.testthat::test(seq.hyperSpec) <- function() {
 
   context("seq.hyperSpec")
 

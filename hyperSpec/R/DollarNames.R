@@ -21,7 +21,7 @@
   grep(pattern, colnames(x@data), value = TRUE)
 }
 
-.test(.DollarNames.hyperSpec) <- function() {
+hySpc.testthat::test(.DollarNames.hyperSpec) <- function() {
   context(".DollarNames")
 
   test_that("expansion on missing pattern", {

@@ -38,7 +38,7 @@ split.string <- function(x, separator, trim.blank = TRUE, remove.empty = TRUE) {
 }
 
 # Unit tests -----------------------------------------------------------------
-.test(split.string) <- function() {
+hySpc.testthat::test(split.string) <- function() {
   context("split.string")
 
   # Perform tests

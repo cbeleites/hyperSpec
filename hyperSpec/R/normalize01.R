@@ -66,8 +66,8 @@ setMethod(normalize01, signature(x = "hyperSpec"), function(x, ...) {
   x
 })
 
-#' @include unittest.R
-.test(normalize01) <- function() {
+
+hySpc.testthat::test(normalize01) <- function() {
   context("normalize01")
 
   test_that("random numbers", {

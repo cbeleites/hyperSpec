@@ -178,7 +178,7 @@ setMethod(
 
 # Unit tests -----------------------------------------------------------------
 
-.test(.plot) <- function() {
+hySpc.testthat::test(.plot) <- function() {
   context("plot")
   # To update reference data for visual unit tests, run:
   # vdiffr::manage_cases(package = "./hyperSpec")
@@ -242,7 +242,7 @@ setMethod(
     r_version <-
       numeric_version(paste0(R.Version()[c("major", "minor")], collapse = "."))
 
-    testthat::skip_if(r_version < "4.0.0", "R version is < 4.0.0")
+    skip_if(r_version < "4.0.0", "R version is < 4.0.0")
 
     vdiffr::expect_doppelganger("plot-map",     plot_map)
     vdiffr::expect_doppelganger("plot-voronoi", plot_voronoi)
@@ -295,7 +295,7 @@ setMethod(
 
 
     # These tests are skipped on CI systems, as they fail on R devel.
-    testthat::skip_if(
+    skip_if(
       isTRUE(as.logical(Sys.getenv("CI"))), # if on CI system
       "Failures on devel version of R"
     )

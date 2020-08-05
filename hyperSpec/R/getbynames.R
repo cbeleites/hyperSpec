@@ -20,7 +20,7 @@ getbynames <- function(x, e) {
 
 
 # Unit tests -----------------------------------------------------------------
-.test(getbynames) <- function() {
+hySpc.testthat::test(getbynames) <- function() {
 
   context("getbynames")
 

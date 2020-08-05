@@ -108,8 +108,8 @@ setMethod("rowSums", signature = signature(x = "hyperSpec"), .rowSums)
 
 # Unit tests -----------------------------------------------------------------
 
-#' @include unittest.R
-.test(.colMeans) <- function() {
+
+hySpc.testthat::test(.colMeans) <- function() {
 
   for (fun in c("colMeans", "colSums", "rowMeans", "rowSums")) {
     context(fun)

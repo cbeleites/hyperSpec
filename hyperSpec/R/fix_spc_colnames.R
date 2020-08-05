@@ -14,7 +14,7 @@
   spc
 }
 
-.test(.fix_spc_colnames) <- function() {
+hySpc.testthat::test(.fix_spc_colnames) <- function() {
   context(".fix_spc_colnames")
 
   test_that("colnames get fixed", {

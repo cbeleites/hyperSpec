@@ -128,7 +128,7 @@ generate_hy_map <- function(n_wl = 5, n_xy = 7, k = 5) {
 
 # Unit tests -----------------------------------------------------------------
 
-.test(generate_hy_spectra) <- function() {
+hySpc.testthat::test(generate_hy_spectra) <- function() {
   context("data for unit tests")
 
   test_that("generate_hy_spectra() data dimensions did not change", {

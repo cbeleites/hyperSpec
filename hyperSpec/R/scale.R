@@ -60,7 +60,7 @@ setMethod("scale", signature = signature(x = "hyperSpec"), .scale)
 
 
 # Unit tests -----------------------------------------------------------------
-.test(.scale) <- function() {
+hySpc.testthat::test(.scale) <- function() {
   context("scale")
 
   # Perform tests

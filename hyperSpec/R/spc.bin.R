@@ -93,8 +93,8 @@ spc.bin <- function(spc, by = stop("reduction factor needed"), na.rm = TRUE, ...
 
 
 # Unit tests -----------------------------------------------------------------
-# Unit tests -----------------------------------------------------------------
-.test(spc.bin) <- function() {
+
+hySpc.testthat::test(spc.bin) <- function() {
   context("spc.bin")
 
   sp <- generate_hy_spectra()

@@ -109,7 +109,7 @@ as.wide.df <- function(x, wl.prefix = "") {
   x
 }
 
-.test(as.wide.df) <- function() {
+hySpc.testthat::test(as.wide.df) <- function() {
   context("as.wide.df")
 
   test_that("faux_cell", {

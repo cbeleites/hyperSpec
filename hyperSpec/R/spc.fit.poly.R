@@ -92,7 +92,7 @@ spc.fit.poly <- function(fit.to, apply.to = NULL, poly.order = 1,
   }
 }
 
-.test(spc.fit.poly) <- function() {
+hySpc.testthat::test(spc.fit.poly) <- function() {
   context("spc.fit.poly")
 
   test_that(
@@ -315,7 +315,7 @@ spc.fit.poly.below <- function(fit.to, apply.to = fit.to, poly.order = 1,
   }
 }
 
-.test(spc.fit.poly.below) <- function() {
+hySpc.testthat::test(spc.fit.poly.below) <- function() {
   context("spc.fit.poly.below")
 
   test_that(

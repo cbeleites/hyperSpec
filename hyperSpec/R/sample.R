@@ -8,7 +8,7 @@
   x [s]
 }
 
-.test(.sample) <- function() {
+hySpc.testthat::test(.sample) <- function() {
   context(".sample")
 
   test_that("defaults", {
@@ -91,7 +91,7 @@ isample <- function(x, size = nrow(x), replace = FALSE, prob = NULL) {
   sample.int(nrow(x), size = size, replace = replace, prob = prob)
 }
 
-.test(isample) <- function() {
+hySpc.testthat::test(isample) <- function() {
   context("isample")
 
   test_that("defaults", {
@@ -129,7 +129,7 @@ isample <- function(x, size = nrow(x), replace = FALSE, prob = NULL) {
 #' sample(cars, 2)
 setMethod("sample", signature = signature(x = "data.frame"), .sample.data.frame)
 
-.test(.sample.data.frame) <- function() {
+hySpc.testthat::test(.sample.data.frame) <- function() {
   context("sample data.frame")
   test_that("data.frame", {
     set.seed(101)
@@ -172,7 +172,7 @@ setMethod("sample", signature = signature(x = "data.frame"), .sample.data.frame)
 #' sample(matrix(1:24, 6), 2)
 setMethod("sample", signature = signature(x = "matrix"), .sample.matrix)
 
-.test(.sample.matrix) <- function() {
+hySpc.testthat::test(.sample.matrix) <- function() {
   context(".sample.matrix")
   test_that("matrix", {
     set.seed(101)

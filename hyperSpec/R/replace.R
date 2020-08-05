@@ -192,7 +192,7 @@ setReplaceMethod("$", signature = signature(x = "hyperSpec"), .replace_dollar)
 
 
 # Unit tests -----------------------------------------------------------------
-.test(.replace) <- function() {
+hySpc.testthat::test(.replace) <- function() {
   ## replacement functions
   context("replace")
 

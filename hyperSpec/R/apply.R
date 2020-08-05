@@ -192,8 +192,8 @@ setMethod("apply", signature = signature(X = "hyperSpec"), .apply)
 
 # Unit tests -----------------------------------------------------------------
 
-#' @include unittest.R
-.test(.apply) <- function() {
+
+hySpc.testthat::test(.apply) <- function() {
   context("apply")
 
   test_that("check whether .na.if.different is working correctly", {
