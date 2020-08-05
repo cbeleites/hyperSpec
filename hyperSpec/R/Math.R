@@ -1,14 +1,20 @@
-#' Math Functions for `hyperSpec` Objects.
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.math2 <-  function(x, digits) {
+  validObject(x)
+
+  x[[]] <- callGeneric(x[[]], digits)
+
+  x
+}
+
+#' Mathematical Functions for `hyperSpec` Objects.
 #'
-#' Mathematical functions for hyperSpec Objects.
-#'
-#' The functions `abs`, `sign`, `sqrt`, `floor`,
-#' `ceiling`, `trunc`, `round`, `signif`, `exp`,
-#' `log`, `expm1`, `log1p`, `cos`, `sin`, `tan`,
-#' `acos`, `asin`, `atan`, `cosh`, `sinh`,
-#' `tanh`, `acosh`, `asinh`, `atanh`, `lgamma`,
-#' `gamma`, `digamma`, `trigamma`, `cumsum`,
-#' `cumprod`, `cummax`, `cummin` for `hyperSpec` objects.
+#' The functions `abs()`, `sign()`, `sqrt()`, `floor()`, `ceiling()`, `trunc()`,
+#' `round()`, `signif()`, `exp()`, `log()`, `expm1()`, `log1p()`, `cos()`,
+#' `sin()`, `tan()`, `acos()`, `asin()`, `atan()`, `cosh()`, `sinh()`, `tanh()`,
+#' `acosh()`, `asinh`, `atanh()`, `lgamma()`, `gamma()`, `digamma()`,
+#' `trigamma()`, `cumsum()`, `cumprod()`, `cummax()`, `cummin()` for `hyperSpec`
+#'  objects.
 #'
 #' @aliases  Math Math2 Math,hyperSpec-method Math2,hyperSpec-method abs,hyperSpec-method
 #' sign,hyperSpec-method sqrt,hyperSpec-method floor,hyperSpec-method ceiling,hyperSpec-method
@@ -30,52 +36,91 @@
 #' [base::Math()] for the base math functions.
 #'
 #' [hyperSpec::Arith()] for arithmetic operators,
-#'   [hyperSpec::Comparison()] for comparison operators, and
-#'   [hyperSpec::Summary()] for group generic functions working on
-#'   `hyperSpec` objects.
+#' [hyperSpec::Comparison()] for comparison operators, and
+#' [hyperSpec::Summary()] for group generic functions working on `hyperSpec`
+#' objects.
+#'
 #' @keywords methods math
 #' @export
+#'
+#' @concept manipulation
+#'
 #' @examples
 #'
 #' log(flu)
 setMethod(
-  "Math2", signature(x = "hyperSpec"),
-  function(x, digits) {
-    validObject(x)
+  "Math2", signature(x = "hyperSpec"), .math2)
 
-    x[[]] <- callGeneric(x[[]], digits)
 
-    x
-  }
-)
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.log <- function(x, base = exp(1), ...) {
+  validObject(x)
+
+  x[[]] <- log(x[[]], base = base)
+  x
+}
 
 #' @rdname math
 #' @param ... ignored
 #' @param base base of logarithm
 #' @export
+#'
+#' @concept manipulation
+#'
 #' @aliases log log,hyperSpec-method
-setMethod(
-  "log", signature(x = "hyperSpec"),
-  function(x, base = exp(1), ...) {
-    validObject(x)
+setMethod("log", signature(x = "hyperSpec"), .log)
 
-    x[[]] <- log(x[[]], base = base)
-    x
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.math <- function(x) {
+  validObject(x)
+
+  if (grepl("^cum", .Generic) || grepl("gamma$", .Generic)) {
+    warning(paste("Do you really want to use", .Generic, "on a hyperSpec object?"))
   }
-)
+
+  x[[]] <- callGeneric(x[[]])
+  x
+}
+
 
 #' @rdname math
 #' @export
-setMethod(
-  "Math", signature(x = "hyperSpec"),
-  function(x) {
-    validObject(x)
+#'
+#' @concept manipulation
+#'
+setMethod("Math", signature(x = "hyperSpec"), .math)
 
-    if (grepl("^cum", .Generic) || grepl("gamma$", .Generic)) {
-      warning(paste("Do you really want to use", .Generic, "on a hyperSpec object?"))
-    }
 
-    x[[]] <- callGeneric(x[[]])
-    x
-  }
-)
+# Unit tests -----------------------------------------------------------------
+.test(.math) <- function() {
+
+  context("math")
+
+  # Perform tests
+  test_that("math warnings work", {
+    expect_warning(cumsum(flu), "Do you really want to use")
+  })
+
+  test_that("math works", {
+    expect_silent(flu + flu)
+    expect_silent(flu ^ flu)
+
+    expect_silent(abs(flu))
+    expect_silent(sqrt(flu))
+    expect_silent(round(flu, 2))
+    expect_silent(max(flu))
+  })
+
+  test_that("log() works", {
+    expect_silent(log(flu))
+  })
+
+  test_that("comparison works", {
+    expect_silent(flu == flu)
+    expect_silent(flu >= flu | flu > flu)
+    expect_silent(all(flu == flu[[]]))
+    expect_silent(all(flu[[]] == flu))
+    expect_silent(flu[, , 445 ~ 450] > 300)
+  })
+}

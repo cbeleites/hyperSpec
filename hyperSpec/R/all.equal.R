@@ -102,4 +102,7 @@
 #' [base::isTRUE()].
 #' @seealso [base::all.equal()] and [base::isTRUE()]
 #' @export
+#'
+#' @concept manipulation
+#'
 setMethod("all.equal", signature(target = "hyperSpec", current = "hyperSpec"), .all.equal)

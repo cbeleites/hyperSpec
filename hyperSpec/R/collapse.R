@@ -23,8 +23,7 @@
 #' the same applies to possible column names of the spectra matrix.
 #'
 #' @author C. Beleites
-#' @md
-#' @export
+#'
 #' @param ... hyperSpec objects to be collapsed into one object. Instead of giving several
 #' arguments, a list with all objects to be collapsed may be given.
 #' @param wl.tolerance tolerance to decide which wavelengths are considered equal.
@@ -36,7 +35,12 @@
 #' @return a hyperSpec object
 #' @importFrom dplyr group_by
 #' @importFrom dplyr summarise
+#'
+#' @export
+#'
 #' @keywords manip
+#' @concept manipulation
+#'
 #' @examples
 #' barbiturates [1:3]
 #' collapse(barbiturates [1:3])
@@ -349,6 +353,7 @@ collapse <- function(..., wl.tolerance = hy.getOption("wl.tolerance"), collapse.
 #' @param wl.tolerance wavelength difference tolerance
 #'
 #' @return possible shorter list of dots
+#' @noRd
 .collapse.equal <- function(dots, wl.tolerance) {
   ## bind groups of objects that have *all* wavelengths equal
   ## within wl.tolerance from 1st object of potential group
@@ -397,7 +402,10 @@ collapse <- function(..., wl.tolerance = hy.getOption("wl.tolerance"), collapse.
 #' @param dots list of hyperSpec objects to collapse
 #' @param wl.tolerance wavelength difference tolerance
 #'
+#' @concept wavelengths
+#'
 #' @return data.frame with information about suitable wavelength bins
+#' @noRd
 .cluster.wavelengths <- function(dots, wl.tolerance) {
 
   # set up data.frame to hold relevant information

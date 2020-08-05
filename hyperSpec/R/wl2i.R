@@ -55,7 +55,11 @@
 #' @param unlist if multiple wavelength ranges are given, should the indices be unlisted or kept in a list?
 #' @return A numeric containing the resulting indices for `wl2i`
 #' @author C. Beleites
+#'
 #' @export
+#'
+#' @concept wavelengths
+#'
 #' @examples
 #'
 #' flu

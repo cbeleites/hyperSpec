@@ -25,11 +25,52 @@
 #' containing the respective quantile spectra.
 #' @param probs the quantiles, see [stats::quantile()]
 #' @param names `"pretty"` results in percentages (like [stats::quantile()]'s
-#' `names = TRUE`), `"num"` results in the row names being `as.character (probs)`
-#' (good for ggplot2 getting the order of the quantiles right). Otherwise, no names are assigned.
+#' `names = TRUE`), `"num"` results in the row names being `as.character(probs)`
+#' (good for ggplot2 getting the order of the quantiles right). Otherwise, no
+#' names are assigned.
 #' @seealso  [stats::quantile()]
 #' @export
+#'
+#' @concept stats
+#' @concept manipulation
+#'
 #' @examples
 #'
 #' plot(quantile(faux_cell))
+#'
+#' flu_quantiles <- quantile(flu)
+#' rownames(flu_quantiles)
+#' flu_quantiles$..
+#'
+#' flu_pretty_quantiles <- quantile(flu, names = "pretty")
+#' rownames(flu_pretty_quantiles)
+#' flu_pretty_quantiles$..
 setMethod("quantile", signature = signature(x = "hyperSpec"), .quantile)
+
+
+# Unit tests -----------------------------------------------------------------
+
+.test(.quantile) <- function() {
+  context("quantile")
+
+  test_that("quantile() works", {
+    sp <- generate_hy_spectra()
+
+    # Check ronames
+    expect_silent(hy_q <- quantile(sp))
+    expect_is(hy_q, "hyperSpec")
+    expect_equal(rownames(hy_q), c("0", "0.5", "1"))
+
+    # Check ronames (%)
+    expect_silent(hy_q_pretty <- quantile(sp, names = "pretty"))
+    expect_equal(rownames(hy_q_pretty), c("  0 %", " 50 %", "100 %"))
+
+    # Check values
+    probs <- c(0, .25, .50, .75, 1)
+    expect_equal(
+      quantile(sp, probs = probs)$spc, # on hyperSpec
+      apply(sp$spc, 2, quantile, probs = probs), # on matrix
+      check.attributes = FALSE
+    )
+  })
+}

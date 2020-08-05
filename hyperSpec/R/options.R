@@ -43,8 +43,12 @@
 #' `hy.getOption`  \tab returns the value of the requested option \cr
 #' }
 #' @author C. Beleites
-#' @keywords misc
+#'
 #' @export
+#'
+#' @keywords misc
+#' @concept utils
+#'
 #' @examples
 #'
 #' hy.getOptions()
@@ -77,6 +81,9 @@ hy.getOptions <- function(...) {
 
 #' @rdname options
 #' @export
+#'
+#' @concept utils
+#'
 #' @param name the name of the option
 hy.getOption <- function(name) {
   .options[[name]]
@@ -84,6 +91,9 @@ hy.getOption <- function(name) {
 
 #' @rdname options
 #' @export
+#'
+#' @concept utils
+#'
 #' @importFrom utils modifyList
 hy.setOptions <- function(...) {
   new <- list(...)

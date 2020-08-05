@@ -88,20 +88,6 @@ jobs:
         shell: Rscript {0}
 
       - name: Check
-        if: matrix.config.r != 'devel'
-        env:
-          _R_CHECK_CRAN_INCOMING_: false
-        run: |
-          rcmdcheck::rcmdcheck(
-            "./hyperSpec",
-            args = c("--no-manual", "--as-cran"),
-            error_on = "warning",
-            check_dir = "check"
-          )
-        shell: Rscript {0}
-
-      - name: Check (R-devel)
-        if: matrix.config.r == 'devel'
         env:
           _R_CHECK_CRAN_INCOMING_: false
         run: |
@@ -126,10 +112,3 @@ jobs:
           name: ${{ runner.os }}-r${{ matrix.config.r }}-results
           path: check
 
-      - name: Test coverage
-        run: covr::codecov()
-        shell: Rscript {0}
-        working-directory: ./hyperSpec
-
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v1

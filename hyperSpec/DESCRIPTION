@@ -3,8 +3,8 @@ Encoding: UTF-8
 Type: Package
 Title: Work with Hyperspectral Data, i.e. Spectra + Meta Information (Spatial,
     Time, Concentration, ...)
-Version: 0.99-20200719
-Date: 2020-07-19
+Version: 0.99-20200728
+Date: 2020-07-28
 Maintainer: Claudia Beleites <Claudia.Beleites@chemometrix.gmbh>
 Authors@R: c(
     person("Claudia",   "Beleites",  role = c("aut", "cre", "dtc"), email = "Claudia.Beleites@chemometrix.gmbh"),
@@ -47,20 +47,13 @@ Imports:
     utils,
     xml2
 Suggests:
-    akima,
     baseline,
     bookdown,
     caTools,
     colorspace,
-    compiler,
     covr,
     deldir,
-    devtools,
     digest,
-    fastcluster,
-    ggplotify,
-    ggpubr,
-    inline,
     kableExtra,
     knitr,
     MASS,
@@ -68,16 +61,16 @@ Suggests:
     plotrix,
     pls,
     R.matlab,
-    R.rsp,
-    Rcpp,
     reshape,
+    reshape2,
     rgl,
     rmarkdown,
     sessioninfo,
     sp,
     styler,
     tibble,
-    tripack
+    tripack,
+    vdiffr
 URL: 
     https://cbeleites.github.io/hyperSpec,
     https://github.com/cbeleites/hyperSpec
@@ -104,7 +97,6 @@ Collate:
     'bind.R'
     'call.list.R'
     'chk.hy.R'
-    'chondro.R'
     'colMeans.R'
     'collapse.R'
     'count_lines.R'
@@ -126,6 +118,7 @@ Collate:
     'fileio.optional.R'
     'fix_spc_colnames.R'
     'flu.R'
+    'generate-test-data.R'
     'getbynames.R'
     'paracetamol.R'
     'laser.R'

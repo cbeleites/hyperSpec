@@ -17,8 +17,11 @@
 #' @seealso [base::ncol()]
 #'
 #' @return `nrow()`, `ncol()`, `nwl()`, and `length()`, return an `integer`.
-#' @concept summary
+#'
 #' @export
+#'
+#' @concept summary
+#'
 #' @examples
 #' ncol(faux_cell)
 setMethod("ncol", signature = signature("hyperSpec"), function(x) {

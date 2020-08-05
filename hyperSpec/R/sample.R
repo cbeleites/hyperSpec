@@ -51,8 +51,12 @@
 #' integer vector for `isample` that is suitable for indexing (into the spectra) of x.
 #' @author C. Beleites
 #' @seealso [base::sample()]
-#' @keywords methods distribution
+#'
 #' @export
+#'
+#' @keywords methods distribution
+#' @concept stats
+#'
 #' @examples
 #'
 #' sample(flu, 3)
@@ -73,6 +77,9 @@ setMethod("sample", signature = signature(x = "hyperSpec"), .sample)
 #' @rdname sample
 #' @return vector with indices suitable for row-indexing x
 #' @export
+#'
+#' @concept stats
+#'
 #' @examples
 #' isample(flu, 3)
 #' isample(flu, 3, replace = TRUE)
@@ -115,6 +122,9 @@ isample <- function(x, size = nrow(x), replace = FALSE, prob = NULL) {
 #' @rdname sample
 #' @param drop see [base::drop()]: by default, do not drop dimensions of the result
 #' @export
+#'
+#' @concept stats
+#'
 #' @examples
 #' sample(cars, 2)
 setMethod("sample", signature = signature(x = "data.frame"), .sample.data.frame)
@@ -155,6 +165,9 @@ setMethod("sample", signature = signature(x = "data.frame"), .sample.data.frame)
 
 #' @rdname sample
 #' @export
+#'
+#' @concept stats
+#'
 #' @examples
 #' sample(matrix(1:24, 6), 2)
 setMethod("sample", signature = signature(x = "matrix"), .sample.matrix)

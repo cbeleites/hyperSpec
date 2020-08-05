@@ -19,9 +19,12 @@ setGeneric("mean_pm_sd", function(x, na.rm = TRUE, ...) standardGeneric("mean_pm
 #' @return `mean_sd` returns a vector with two values (mean and standard
 #'   deviation) of `x`.
 #' @seealso [base::mean()], [stats::sd()]
+#'
+#' @export
+#'
 #' @keywords multivar
 #' @concept stats
-#' @export
+#'
 #' @examples
 #'
 #' mean_sd(flu [, , 405 ~ 410])

@@ -9,11 +9,15 @@
 #'
 #' @param x object to evaluate the polynomial on
 #' @param order of the polynomial
-#' @md
+#'
 #' @rdname vanderMonde
 #' @return Vandermonde matrix
 #' @author C. Beleites
+#'
 #' @export
+#'
+#' @concept data generation
+#'
 #' @include unittest.R
 vanderMonde <- function(x, order, ...) {
   if (nargs() > 2) {
@@ -36,6 +40,9 @@ setGeneric("vanderMonde")
 #'
 #' [hyperSpec::normalize01()]
 #' @export
+#'
+#' @concept data generation
+#'
 #' @examples
 #' plot(vanderMonde(flu, 2))
 #' plot(vanderMonde(flu, 2, normalize.wl = I))

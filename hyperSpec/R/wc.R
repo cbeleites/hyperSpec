@@ -10,8 +10,11 @@
 #' @return data.frame with the counts and file names, or `NULL` if wc is
 #'   not available on the system.
 #' @seealso [count_lines()]
-#' @concept deprecated
+#'
 #' @export
+#'
+#' @concept deprecated
+#'
 #' @author C. Beleites
 #' @importFrom utils read.table
 wc <- function(file, flags = c("lines", "words", "bytes")) {

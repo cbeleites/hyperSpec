@@ -36,6 +36,9 @@
 #'
 #' @author R. Kiselev, C. Beleites
 #' @export
+#'
+#' @concept io
+#'
 read.spe <- function(filename, xaxis = "file", acc2avg = F, cts_sec = F,
                      keys.hdr2data = c(
                        "exposure_sec",
@@ -156,6 +159,8 @@ read.spe <- function(filename, xaxis = "file", acc2avg = F, cts_sec = F,
 #'
 #' @return xml data from the file converted to R list
 #' @importFrom xml2 as_list read_xml
+#'
+#' @concept io
 .read.spe.xml <- function(filename) {
   as_list(read_xml(.read.spe.xml_string(filename)))
 }
@@ -171,6 +176,10 @@ read.spe <- function(filename, xaxis = "file", acc2avg = F, cts_sec = F,
 #' @param filename - SPE filename
 #'
 #' @return string containing XML footer
+#'
+#' @concept io
+#' @noRd
+
 .read.spe.xml_string <- function(filename) {
   hdr <- .read.spe.header(filename)
 
@@ -194,6 +203,7 @@ read.spe <- function(filename, xaxis = "file", acc2avg = F, cts_sec = F,
 
 #' @describeIn read.spe Read only header of a WinSpec SPE file (version 2.5)
 #' @return hdr list with `key=value` pairs
+#' @noRd
 .read.spe.header <- function(filename) {
   # Read the 4100-byte long binary header from the SPE file and parse it
 
@@ -266,6 +276,9 @@ read.spe <- function(filename, xaxis = "file", acc2avg = F, cts_sec = F,
 #' @describeIn read.spe Plot the WinSpec SPE file (version 2.5) and show the
 #' calibration points stored inside of it (x-axis calibration)
 #' @export
+#'
+#' @concept io
+#'
 spe.showcalpoints <- function(filename, xaxis = "file", acc2avg = F, cts_sec = F) {
   hdr <- .read.spe.header(filename)
   xaxis <- .fixunitname(xaxis)

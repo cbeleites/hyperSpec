@@ -11,7 +11,10 @@
 #' @param X character with numbers hidden inside
 #'
 #' @return numeric
+#'
 #' @export
+#'
+#' @concept wavelengths
 #'
 #' @examples
 #' tmp <- data.frame(flu[[, , 400 ~ 410]])

@@ -43,6 +43,9 @@ setGeneric("rmmvnorm", .rmmvnorm)
 #' (`ncol(mean)` x `ncol(mean)` x `nrow(mean)`) with individual covariance
 #' matrices for the groups.
 #' @export
+#'
+#' @concept data generation
+#'
 #' @seealso [mvtnorm::rmvnorm()]
 #'
 #' [hyperSpec::cov()] and [hyperSpec::pooled.cov()] about calculating covariance

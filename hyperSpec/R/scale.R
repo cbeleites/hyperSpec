@@ -1,3 +1,14 @@
+.scale <- function(x, center = TRUE, scale = TRUE) {
+  validObject(x)
+
+  if (!is.logical(center)) center <- as.matrix(center)
+  if (!is.logical(scale)) scale <- as.matrix(scale)
+
+  x@data$spc <- scale(x@data$spc, center, scale)
+
+  x
+}
+
 #' Center and scale `hyperSpec` object.
 #'
 #' Scales the spectra matrix. `scale(x, scale = FALSE)` centers the data.
@@ -22,9 +33,13 @@
 #' @seealso [base::scale()]
 #'
 #' package scale.
-#' @keywords methods
-#' @concept preprocessing
+#'
 #' @export
+#'
+#' @keywords methods
+#' @concept manipulation
+#' @concept preprocessing
+#'
 #' @examples
 #'
 #' ## mean center & variance scale
@@ -41,16 +56,19 @@
 #' tmp <- sweep(faux_cell, 1, mean, `/`)
 #' plot(tmp, "spcmeansd")
 #' tmp <- scale(tmp, center = quantile(tmp, .05), scale = FALSE)
-setMethod("scale",
-  signature = signature(x = "hyperSpec"),
-  function(x, center = TRUE, scale = TRUE) {
-    validObject(x)
+setMethod("scale", signature = signature(x = "hyperSpec"), .scale)
 
-    if (!is.logical(center)) center <- as.matrix(center)
-    if (!is.logical(scale)) scale <- as.matrix(scale)
 
-    x@data$spc <- scale(x@data$spc, center, scale)
+# Unit tests -----------------------------------------------------------------
+.test(.scale) <- function() {
+  context("scale")
 
-    x
-  }
-)
+  # Perform tests
+  test_that("scale() returnts output silently", {
+    expect_silent(scale(flu))
+    expect_silent(scale(flu, scale = FALSE))
+    expect_silent(scale(flu, center = FALSE))
+  })
+
+  # FIXME (tests): add tests to check the correctness of the output!!!
+}

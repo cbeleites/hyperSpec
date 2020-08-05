@@ -22,7 +22,11 @@
 #'   [hyperSpec::spc.loess()] and for spectral binning
 #'   [hyperSpec::spc.bin()].
 #' @author C. Beleites
+#'
 #' @export
+#'
+#' @concept wavelengths
+#'
 #' @seealso [base::signif()]
 #'
 #' cutting the spectral range: \code{\link[hyperSpec:extractreplace]{[}}
@@ -56,7 +60,7 @@ wl <- function(x) {
 #' @export "wl<-"
 #' @aliases wl<-
 #' @usage
-#' wl (x, label=NULL, digits=6) <- value
+#' wl(x, label = NULL, digits = 6) <- value
 #'
 #' @param value either a numeric containing the new wavelength vector, or a
 #'   list with `value$wl` containing the new wavelength vector and
@@ -65,6 +69,9 @@ wl <- function(x) {
 #'   for details.
 #' @param digits handed to [base::signif()]. See details.
 #' @return `hyperSpec` object
+#'
+#' @concept wavelengths
+#'
 #' @examples
 #' # convert from wavelength to frequency
 #' plot(laser)
@@ -111,6 +118,9 @@ wl <- function(x) {
 #' @param laser laser wavelength (required for work with Raman shift)
 #' @author R. Kiselev
 #' @export
+#'
+#' @concept wavelengths
+#'
 #' @examples
 #' wlconv(3200, "Raman shift", "nm", laser = 785.04)
 #' wlconv(785, "nm", "invcm")
@@ -262,6 +272,121 @@ freq2raman <- function(x, laser) nm2raman(freq2nm(x), laser)
 
 
 # Some physical constants
+# @concept constants
 q <- 1.60217656535e-19 # elementary charge
 h <- 6.6260695729e-34 # Planck's constant
 c <- 299792458 # speed of light
+
+
+# Unit tests -----------------------------------------------------------------
+
+.test(wl) <- function() {
+
+  context("get wl")
+
+  test_that("wl() works", {
+    # Data
+    hy_obj <- new("hyperSpec", spc = matrix(1:100, nrow = 1), wavelength = 601:700)
+
+    # Perform tests
+    expect_silent(res <- wl(hy_obj))
+    expect_true(is.numeric(res)) # Can be either integer or double
+    expect_length(res, 100)
+    expect_equal(res, 601:700)
+  })
+
+
+  context("set wl")
+
+  test_that("`wl<-` works", {
+    # Data
+    hy_obj <- new("hyperSpec", spc = matrix(1:100, nrow = 1), wavelength = 601:700)
+
+    # Set new wavelengths
+    expect_silent(wl(hy_obj) <- (1:nwl(hy_obj)) + 1000)
+    expect_true(is.numeric(hy_obj@wavelength))
+    expect_equal(hy_obj@wavelength, 1001:1100)
+
+    # Set new wavelengths and label
+    expect_equal(labels(hy_obj, ".wavelength"), ".wavelength")
+    expect_silent(
+      wl(hy_obj) <- list(wl = 101:200, label = "new label")
+    )
+    expect_equal(hy_obj@wavelength, 101:200)
+    expect_equal(labels(hy_obj, ".wavelength"), "new label")
+  })
+
+}
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.test(.fixunitname) <- function() {
+
+  context(".fixunitname")
+
+  test_that(".fixunitname() works", {
+
+    expect_equal(.fixunitname("raman"), "raman")
+    expect_equal(.fixunitname("invcm"), "invcm")
+    expect_equal(.fixunitname("nm"),    "nm")
+    expect_equal(.fixunitname("ev"),    "ev")
+    expect_equal(.fixunitname("freq"),  "freq")
+    expect_equal(.fixunitname("px"),    "px")
+    expect_equal(.fixunitname("file"),  "file")
+    expect_error(.fixunitname("ddd"),   "Unknown unit type")
+
+  })
+
+  # TODO (tests): add more specific tests.
+}
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.test(wlconv) <- function() {
+
+  context("wlconv")
+
+  test_that("wlconv() throws error", {
+    expect_error(wlconv())
+
+    expect_error(
+      wlconv(1000, "raman", "nm"),
+      "Working with Raman shift requires knowledge of laser wavelength"
+    )
+    expect_error(wlconv(1000, "non-existing", "nm"),  "Unknown unit type")
+    expect_error(wlconv(1000, "nm", "non-existing"),  "Unknown unit type")
+  })
+
+
+  test_that("wlconv() output is coreect if units do not change", {
+    # No conversion is expected
+    expect_equal(wlconv(1000, "raman", "raman"), 1000)
+    expect_equal(wlconv(1000, "invcm", "invcm"), 1000)
+    expect_equal(wlconv(1000, "nm",    "nm"),    1000)
+    expect_equal(wlconv(1000, "ev",    "ev"),    1000)
+    expect_equal(wlconv(1000, "freq", "freq"),   1000)
+  })
+
+
+  test_that("wlconv() returns correct data type", {
+
+    x <- c("raman", "invcm", "nm", "ev", "freq")
+    y <- expand.grid(x, x)
+    y <- y[y[[1]] != y[[2]], ]
+
+    expect_silent(
+      d <- apply(y, MARGIN = 1, function(x) {
+        wlconv(10, x[["Var1"]], x[["Var2"]], 200)
+      })
+    )
+    expect_is(d, "numeric")
+  })
+
+
+  # TODO (tests): Add expected results to the conversion grid and check against them.
+
+  # test_that("wlconv() performs conversion correctly", {
+  #  # ...
+  #
+  # })
+
+}
+

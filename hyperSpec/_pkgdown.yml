@@ -60,7 +60,6 @@ articles:
     desc: >
       The example workflows.
     contents:
-    - chondro
     - flu
     - laser
 
@@ -73,68 +72,122 @@ authors:
 # -------------------------------------------------------------------------
 
 reference:
-- title: 'Package and class "hyperSpec"'
+- title: '1. Package and class "hyperSpec"' # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - contents:
   - has_keyword("package")
   - has_keyword("classes")
   - has_concept("hyperSpec-main")
-- title: Datasets
+
+
+- title: '2. Utility functions' # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- contents:
+  - has_concept("utils")
+
+
+- title: '3. Datasets' # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   desc: "Datasets to try functionality of **hyperSpec** functions."
 - contents:
   - has_concept("datasets")
-- title: Input and output
+
+
+- title: '4. Input and output' # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- subtitle: Create or convert from/into `hyperSpec`
 - contents:
   - "initialize"
-  - has_keyword("IO")
-  - has_keyword("file")
-- title: Plots
-- subtitle: R base and package "lattice" based plots
+  - has_concept("hyperSpec conversion")
+
+- subtitle: Read/Write from/to files
+- contents:
+  - has_concept("io")
+  - has_concept("IO")
+
+
+- title: '5. Plotting' # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- subtitle: Plots
 - contents:
   - "plot-methods"
-  - has_keyword("aplot")
-  - has_keyword("dplot")
-  - has_keyword("hplot")
-  - has_keyword("iplot")
-  - has_keyword("color")
-- subtitle: Package "ggplot2" based plots
+  - has_concept("plot generation")
+
+- subtitle: Color palettes
 - contents:
-  - has_concept("ggplot2")
-- title: Data manipulation
-- subtitle: Arithmetics and comparison
+  - has_concept("color palette")
+
+- subtitle: Plotting tools
 - contents:
-  - has_keyword("array")
-  - has_keyword("arith")
-  - has_keyword("math")
+  - has_concept("plotting tools")
+
+- subtitle: '! Moved to package hySpc.ggplot2'
+  desc: |
+    You should use analogous functions from package **hySpc.ggplot2**
+    as these functions will be removed soon.
+- contents:
+  - has_concept("moved to hySpc.ggplot2", internal = TRUE)
+
+
+- title: '6. Data manipulation' # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- subtitle: Summary and data preview
+- contents:
+  - has_concept("summary")
+
 - subtitle: Manipulation
 - contents:
-  - has_keyword("manip")
-- subtitle: Methods
+  - has_concept("manipulation")
+
+- subtitle: Baseline manipulation
 - contents:
-  - has_keyword("methods")
-- subtitle: Utilities
+  - has_concept("baseline")
+
+- subtitle: Binning and smoothing
 - contents:
-  - has_keyword("utilities")
-  - has_keyword("programming")
-  - has_keyword("iteration")
-- subtitle: Data generation
+  - has_concept("spectra smoothing")
+
+
+- subtitle: Data generation functions
 - contents:
-  - has_keyword("datagen")
-  - has_keyword("distribution")
-- title: Summary and data analysis
+  - has_concept("data generation")
+
+- subtitle: 'Statistics, analysis, randomization'
 - contents:
-  - has_keyword("multivar")
-  - has_keyword("univar")
-  - has_keyword("cluster")
-- title: Miscellaneous functions
+  - has_concept("stats")
+
+- subtitle: Wavelength manipulation
 - contents:
-  - has_keyword("misc")
-- title: All functions
-  desc: "All functions including those that are not mentioned above."
-- subtitle: Active functions
+  - has_concept("wavelengths")
+
+- subtitle: Label manipulation
 - contents:
-  - lacks_concepts("deprecated")
-- subtitle: Deprecated and defunct functions
-  desc: "You should **not** use these functions."
+  - has_concept("labels")
+
+- title: '8. Other functions' # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  desc: "Include functions not mentioned."
+- contents:
+  - lacks_concepts(c(
+    "hyperSpec-main",
+    "utils",
+    "datasets",
+    "hyperSpec conversion", "io", "IO",
+    "plot generation", "color palette", "plotting tools",
+
+    "summary", "manipulation", "spectra smoothing", "baseline", "labels",
+    "wavelengths", "data generation", "stats",
+
+    "moved to hySpc.ggplot2",
+    "deprecated"
+    ))
+
+
+- title: '9. Removed or deprecated functions' # ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- subtitle: Functions moved to other packages
+  desc: "You should use analogues of these functions from appropriate packages."
+- contents:
+  - has_concept("moved to hySpc.ggplot2", internal = TRUE)
+
+- subtitle: Deprecated, renamed, or defunct functions
+  desc: "You should **not** use these functions any more."
 - contents:
   - has_concept("deprecated", internal = TRUE)
 

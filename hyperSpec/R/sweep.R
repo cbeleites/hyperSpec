@@ -50,10 +50,14 @@
 #' @return A `hyperSpec` object.
 #' @author C. Beleites
 #' @seealso [base::sweep()]
-#' @keywords methods
-#' @concept summary
-#' @concept preprocessing
+#'
 #' @export
+#'
+#' @keywords methods
+#' @concept stats
+#' @concept preprocessing
+#' @concept manipulation
+#'
 #' @examples
 #'
 #' ## Substract the background / slide / blank spectrum
@@ -81,3 +85,17 @@
 #' ## checking
 #' stopifnot(all(mm.corrected2 == mm.corrected))
 setMethod("sweep", signature = signature(x = "hyperSpec"), .sweep)
+
+
+# Unit tests -----------------------------------------------------------------
+.test(.sweep) <- function() {
+  context("sweep")
+
+  # Perform tests
+  test_that("sweep() returnts output silently", {
+    expect_silent(sweep(flu, 1, max, "/"))
+    expect_silent(sweep(flu, 1, max(flu), "/"))
+  })
+
+  # FIXME (tests): add tests to check the correctness of the output!!!
+}

@@ -13,7 +13,10 @@
 #' @rdname read.mat.Cytospec
 #' @seealso [R.matlab::readMat()]
 #' @export
+#'
 #' @keywords IO file
+#' @concept io
+#'
 read.mat.Cytospec <- function(file, keys2data = FALSE, blocks = TRUE) {
   if (!requireNamespace("R.matlab")) {
     stop("package 'R.matlab' needed.")
