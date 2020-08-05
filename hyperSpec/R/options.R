@@ -27,7 +27,7 @@
 #' tolerance            \tab `sqrt (.Machine$double.eps)` \tab tolerance for numerical comparisons              \tab [normalize01()], file import: `file.remove.emptyspc`\cr
 #' wl.tolerance         \tab `sqrt (.Machine$double.eps)` \tab tolerance for comparisons of the wavelength axis \tab [all.equal()], [collapse()], [rbind()]\cr
 #' plot.spc.nmax        \tab 25                                \tab number of spectra to be plotted by default       \tab [plotspc()]\cr
-#' ggplot.spc.nmax      \tab 10                                \tab                                                  \tab [qplotspc()]\cr
+#' ggplot.spc.nmax      \tab 10                                \tab                                                  \tab [`qplotspc()`](https://r-hyperspec.github.io/hySpc.ggplot2/reference/qplotspc.html)\cr
 #' }
 #'
 #' `hy.setOptions` will discard any values that were given without a  name.
