@@ -18,7 +18,7 @@
 #'
 #' @concept data generation
 #'
-#' @include unittest.R
+
 vanderMonde <- function(x, order, ...) {
   if (nargs() > 2) {
     stop("Unknown arguments: ", names(c(...)))
@@ -61,7 +61,7 @@ setMethod("vanderMonde",
   }
 )
 
-.test(vanderMonde) <- function() {
+hySpc.testthat::test(vanderMonde) <- function() {
   context("vanderMonde")
 
   test_that("vector against manual calculation", {

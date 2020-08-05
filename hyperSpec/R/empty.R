@@ -35,7 +35,7 @@ empty <- function(x, nrow = 0, spc = NA, extra = NA) {
 }
 
 # Unit tests -----------------------------------------------------------------
-.test(empty) <- function() {
+hySpc.testthat::test(empty) <- function() {
 
   context("empty")
 

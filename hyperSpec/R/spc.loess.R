@@ -88,7 +88,7 @@ spc.loess <- function(spc, newx, enp.target = nwl(spc) / 4, surface = "direct",
 
 # Unit tests -----------------------------------------------------------------
 
-.test(spc.loess) <- function() {
+hySpc.testthat::test(spc.loess) <- function() {
   context("spc.loess")
 
   # Perform tests

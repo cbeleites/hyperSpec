@@ -147,8 +147,8 @@ decomposition <- function(object, x, wavelength = seq_len(ncol(x)),
   object
 }
 
-#' @include unittest.R
-.test(decomposition) <- function() {
+
+hySpc.testthat::test(decomposition) <- function() {
   context("decomposition")
 
   test_that("scores-like", {

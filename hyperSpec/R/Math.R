@@ -93,7 +93,7 @@ setMethod("Math", signature(x = "hyperSpec"), .math)
 
 
 # Unit tests -----------------------------------------------------------------
-.test(.math) <- function() {
+hySpc.testthat::test(.math) <- function() {
 
   context("math")
 

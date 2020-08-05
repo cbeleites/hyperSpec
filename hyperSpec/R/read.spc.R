@@ -834,7 +834,7 @@ read.spc <- function(filename,
 }
 
 
-.test(read.spc) <- function() {
+hySpc.testthat::test(read.spc) <- function() {
   context("read.spc")
 
   old.spc <- paste0("fileio/spc/", c("CONTOUR.SPC", "DEMO 3D.SPC", "LC DIODE ARRAY.SPC"))

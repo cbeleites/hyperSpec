@@ -40,7 +40,7 @@ read.asc.Andor <- function(file = stop("filename or connection needed"),
   .fileio.optional(spc, file)
 }
 
-.test(read.asc.Andor) <- function() {
+hySpc.testthat::test(read.asc.Andor) <- function() {
   context("read.asc.Andor")
   test_that("Andor Solis .asc text files", {
     skip_if_not_fileio_available()

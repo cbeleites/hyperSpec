@@ -105,7 +105,7 @@ spc.rubberband <- function(spc, ..., upper = FALSE, noise = 0, spline = TRUE) {
 
 # Unit tests -----------------------------------------------------------------
 
-.test(spc.rubberband) <- function() {
+hySpc.testthat::test(spc.rubberband) <- function() {
   context("spc.rubberband")
 
   ## use data that yields fairly stable baseline solution

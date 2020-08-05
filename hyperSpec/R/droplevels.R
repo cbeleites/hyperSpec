@@ -23,7 +23,7 @@
 #' droplevels(faux_cell [1:3])$region
 setMethod("droplevels", signature = "hyperSpec", definition = .droplevels)
 
-.test(.droplevels) <- function() {
+hySpc.testthat::test(.droplevels) <- function() {
   context("droplevels")
 
   test_that("no change on object without levels to drop", {

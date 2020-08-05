@@ -75,8 +75,8 @@ setGeneric("levelplot", package = "lattice")
   do.call(levelplot, c(list(x, data), dots))
 }
 
-#' @include unittest.R
-.test(.levelplot) <- function() {
+
+hySpc.testthat::test(.levelplot) <- function() {
   context(".levelplot")
 
   test_that("no errors", {

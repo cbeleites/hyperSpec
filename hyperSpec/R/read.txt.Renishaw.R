@@ -152,7 +152,7 @@ read.txt.Renishaw <- function(file = stop("file is required"),
   .fileio.optional(spc, file)
 }
 
-.test(read.txt.Renishaw) <- function() {
+hySpc.testthat::test(read.txt.Renishaw) <- function() {
   context("read.txt.Renishaw")
 
   test_that("single spectrum", {
@@ -215,7 +215,7 @@ read.zip.Renishaw <- function(file = stop("filename is required"),
   read.txt.Renishaw(file = unz(file, filename = txt.file, "r"), ...)
 }
 
-.test(read.zip.Renishaw) <- function() {
+hySpc.testthat::test(read.zip.Renishaw) <- function() {
   context("read.zip.Renishaw")
 
   test_that("compressed files", {

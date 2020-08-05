@@ -162,7 +162,10 @@
 setMethod("aggregate", signature = signature(x = "hyperSpec"), .aggregate)
 
 
-.test(.aggregate) <- function() {
+# Unit tests -----------------------------------------------------------------
+
+#' @import hySpc.testthat
+hySpc.testthat::test(.aggregate) <- function() {
   context("aggregate")
   test_that("faux_cell region means", {
     region.means <- aggregate(faux_cell, faux_cell$region, mean_pm_sd)

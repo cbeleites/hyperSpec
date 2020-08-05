@@ -655,8 +655,8 @@ stacked.offsets <- function(x, stacked = TRUE,
   )
 }
 
-#' @include unittest.R
-.test(stacked.offsets) <- function() {
+
+hySpc.testthat::test(stacked.offsets) <- function() {
   context("stacked.offsets")
 
   test_that("ranges do not overlap", {
@@ -742,8 +742,8 @@ stacked.offsets <- function(x, stacked = TRUE,
   )
 }
 
-#' @include unittest.R
-.test(.cut.ticks) <- function() {
+
+hySpc.testthat::test(.cut.ticks) <- function() {
   context(".cut.ticks")
 
   ## bugfix:

@@ -57,8 +57,8 @@
   spc
 }
 
-#' @include unittest.R
-.test(.fileio.optional) <- function() {
+
+hySpc.testthat::test(.fileio.optional) <- function() {
   context(".fileio.optional")
 
   test_that("removing of zero/NA spectra", {

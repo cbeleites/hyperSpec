@@ -88,7 +88,7 @@ setMethod("sweep", signature = signature(x = "hyperSpec"), .sweep)
 
 
 # Unit tests -----------------------------------------------------------------
-.test(.sweep) <- function() {
+hySpc.testthat::test(.sweep) <- function() {
   context("sweep")
 
   # Perform tests

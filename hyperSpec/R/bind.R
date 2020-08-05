@@ -105,8 +105,8 @@ bind <- function(direction = stop("direction('c' or 'r') required"), ...,
 
 # Unit tests -----------------------------------------------------------------
 
-#' @include unittest.R
-.test(bind) <- function() {
+
+hySpc.testthat::test(bind) <- function() {
   context("bind")
 
   test_that("bind() throws error", {
@@ -179,7 +179,7 @@ rbind.hyperSpec <- function(...) bind("r", ...)
 
 # Unit tests -----------------------------------------------------------------
 
-.test(rbind.hyperSpec) <- function() {
+hySpc.testthat::test(rbind.hyperSpec) <- function() {
   context("rbind.hyperSpec")
 
   test_that("wl.tolerance", {
@@ -230,7 +230,7 @@ rbind.hyperSpec <- function(...) bind("r", ...)
 }
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-.test(cbind.hyperSpec) <- function() {
+hySpc.testthat::test(cbind.hyperSpec) <- function() {
   context("cbind.hyperSpec")
 
   test_that("cbind.hyperSpec() uses bind('c', ...) correctly", {
@@ -303,7 +303,7 @@ rbind.hyperSpec <- function(...) bind("r", ...)
 
 # Unit tests -----------------------------------------------------------------
 
-.test(.cbind2) <- function() {
+hySpc.testthat::test(.cbind2) <- function() {
   context(".cbind2")
 
   test_that("flu", {
@@ -362,7 +362,7 @@ setMethod("cbind2", signature = signature(x = "hyperSpec", y = "missing"), funct
 
 # Unit tests -----------------------------------------------------------------
 
-.test(.rbind2) <- function() {
+hySpc.testthat::test(.rbind2) <- function() {
   context(".rbind2")
 
   test_that("flu", {

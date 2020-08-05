@@ -3,7 +3,7 @@ read.spc.Shimadzu <- function(filename) {
   stop("Import of Shimadzu SPC file format (OLE CF) is not yet implemented.")
 }
 
-.test(read.spc.Shimadzu) <- function() {
+hySpc.testthat::test(read.spc.Shimadzu) <- function() {
   context("read.spc.Shimadzu")
 
   test_that("not implemented error", {
