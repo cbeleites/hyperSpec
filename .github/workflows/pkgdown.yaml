@@ -5,7 +5,7 @@ on:
       - master
       - develop
 
-name: Update pkgdown website
+name: Website (pkgdown)
 
 jobs:
   pkgdown:
@@ -39,8 +39,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          install.packages("remotes")
-          install.packages("devtools")
+          install.packages(c("remotes", "devtools"))
           remotes::install_deps("./hyperSpec", dependencies = TRUE)
           # remotes::install_dev("pkgdown")
           remotes::install_github("forked-packages/pkgdown")
