@@ -42,9 +42,9 @@ The documentation of the other **`r-hyperspec`** family packages can be found at
 
 <!-- ---------------------------------------------------------------------- -->
 
-## Issues, Bug Repotrs and Feature Requests
+## Issues, Bug Reports and Feature Requests
 
-Issues, bug repotrs and feature requests should go [here](https://github.com/cbeleites/hyperSpec/issues)!
+Issues, bug reports and feature requests should go [here](https://github.com/cbeleites/hyperSpec/issues)!
 <!-- ---------------------------------------------------------------------- -->
 
 ## Installation
