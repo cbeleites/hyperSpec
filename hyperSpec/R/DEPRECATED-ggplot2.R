@@ -1,8 +1,30 @@
-#' @title Spectra plotting with \pkg{ggplot2}: `qplotspc().`
-#' @description
-#' Spectra plotting with \pkg{ggplot2}.
+#' @name hyperSpec-deprecated-ggplot2
 #'
-#' These functions are still experimental and may change in future.
+#' @title Spectra Plotting with \pkg{ggplot2} Was Moved to \pkg{hySpc.ggplot2}
+#'       (DEPRECATED)
+#'
+#' @description
+#'
+#' These \pkg{ggplot2}-related \pkg{hyperSpec} functions are **deprecated**
+#' and they will be removed in the next release of the package.
+#' Now functions from package \pkg{hySpc.ggplot2}
+#' ([link](https://r-hyperspec.github.io/hySpc.ggplot2/reference/index.html))
+#' should be used as alternatives to plot `hyperSpec` objects with \pkg{ggplot2}.
+#'
+#' @author Claudia Beleites
+#'
+#' @concept moved to hySpc.ggplot2
+#'
+#' @import ggplot2
+#' @importFrom grid pushViewport viewport popViewport grid.layout unit
+#' @importFrom utils tail
+#' @importFrom rlang as_label
+#' @importFrom lazyeval f_rhs
+#' @importFrom grDevices col2rgb rgb
+NULL
+
+
+#' @rdname hyperSpec-deprecated-ggplot2
 #'
 #' @param x `hyperSpec` object
 #' @param wl.range wavelength ranges to plot
@@ -12,32 +34,12 @@
 #' @param map.lineonly if `TRUE`, `mapping` will be handed to
 #' [ggplot2::geom_line()] instead of [ggplot2::ggplot()].
 #' @param debuglevel if > 0, additional debug output is produced
-#' @return a [ggplot2::ggplot()] object
-#' @author Claudia Beleites
-#'
-#' @concept moved to hySpc.ggplot2
 #'
 #' @export
 #'
-#' @seealso [plotspc()]
-#'
-#' [ggplot2::ggplot()], [ggplot2::geom_line()]
 #' @examples
+#' qplotspc(flu)
 #'
-#' qplotspc(faux_cell)
-#'
-#' qplotspc(paracetamol, c(2800 ~ max, min ~ 1800)) +
-#'   scale_x_reverse(breaks = seq(0, 3200, 400))
-#'
-#' qplotspc(aggregate(faux_cell, faux_cell$region, mean),
-#'   mapping = aes(x = .wavelength, y = spc, colour = region)
-#' ) +
-#'   facet_grid(region ~ .)
-#'
-#' qplotspc(aggregate(faux_cell, faux_cell$region, mean_pm_sd),
-#'   mapping = aes(x = .wavelength, y = spc, colour = region, group = .rownames)
-#' ) +
-#'   facet_grid(region ~ .)
 qplotspc <- function(x,
                      wl.range = TRUE, ...,
                      mapping = aes_string(
@@ -47,6 +49,11 @@ qplotspc <- function(x,
                      spc.nmax = hy.getOption("ggplot.spc.nmax"),
                      map.lineonly = FALSE,
                      debuglevel = hy.getOption("debuglevel")) {
+
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  deprecated_ggplot2(new = "qplotspc")
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
   chk.hy(x)
   validObject(x)
 
@@ -101,14 +108,8 @@ qplotspc <- function(x,
   p
 }
 
-#' @title Spectra plotting with \pkg{ggplot2}: `qplotmap().`
-#' @description
-#' Spectra plotting with \pkg{ggplot2}.
-#'
-#' These functions are still experimental and may change in future.
-#'
-#' Note that `qplotmap()` will currently produce the wrong scales if x or y are
-#' discrete.
+
+#' @rdname hyperSpec-deprecated-ggplot2
 #'
 #' @param object  hyperSpec object
 #' @param mapping see  [ggplot2::geom_tile()]
@@ -117,26 +118,23 @@ qplotspc <- function(x,
 #' @param func.args arguments to `func`
 #' @param map.tileonly if `TRUE`, `mapping` will be handed to
 #'   [ggplot2::geom_tile()] instead of [ggplot2::ggplot()].
-#' @return a [ggplot2::ggplot()] object
-#' @export
 #'
-#' @author Claudia Beleites
-#'
-#' @concept moved to hySpc.ggplot2
-#'
-#' @seealso [plotmap()]
-#'
-#'   [ggplot2::ggplot()], [ggplot2::geom_tile()]
-#' @examples
-#' qplotmap(faux_cell)
-#' qplotmap(faux_cell) + scale_fill_gradientn(colours = alois.palette())
 #' @importFrom utils tail
 #' @importFrom rlang as_label
+#'
+#' @export
+#'
+#' @examples
+#' qplotmap(faux_cell[, , 1200])
+#'
 qplotmap <- function(object,
                      mapping = aes_string(x = "x", y = "y", fill = "spc"),
                      ...,
                      func = mean, func.args = list(),
                      map.tileonly = FALSE) {
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  deprecated_ggplot2(new = "qplotmap")
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   chk.hy(object)
   validObject(object)
 
@@ -185,35 +183,28 @@ qplotmap <- function(object,
 }
 
 
-#' @title Spectra plotting with \pkg{ggplot2}: `qplotc().`
-#' @description
-#' Spectra plotting with \pkg{ggplot2}.
+#' @rdname hyperSpec-deprecated-ggplot2
 #'
-#' These functions are still experimental and may change in future.
-#' @title Spectra plotting with ggplot2
 #' @param object hyperSpec object
 #' @param mapping see  [ggplot2::geom_point()]
 #' @param ... handed to [ggplot2::geom_point()]
-#' @export
 #' @param func function to summarize the wavelengths, if `NULL`, only the first
 #'   wavelength is used
 #' @param func.args arguments to `func`
 #' @param map.pointonly if `TRUE`, `mapping` will be handed to
 #'   [ggplot2::geom_point()] instead of [ggplot2::ggplot()].
-#' @return a [ggplot2::ggplot()] object
-#' @author Claudia Beleites
 #'
-#' @concept moved to hySpc.ggplot2
+#' @export
 #'
-#' @seealso [plotc()]
-#'
-#'   [ggplot2::ggplot()], [ggplot2::geom_point()]
 #' @examples
 #' qplotc(flu)
-#' qplotc(flu) + geom_smooth(method = "lm")
+#'
 qplotc <- function(object, mapping = aes_string(x = "c", y = "spc"), ...,
                    func = NULL, func.args = list(),
                    map.pointonly = FALSE) {
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  deprecated_ggplot2(new = "qplotc")
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   chk.hy(object)
   validObject(object)
 
@@ -304,72 +295,69 @@ make.fn.expr <- function(fn, l = list()) {
 }
 
 
-#' @title `qplotmap` with colour mixing for multivariate overlay.
-#' @description
-#' Map plot with colour overlay.
+#' @rdname hyperSpec-deprecated-ggplot2
 #'
 #' @param object `hyperSpec` object
-#' @param ... handed over to [hyperSpec::qmixlegend()] and
-#'   [hyperSpec::qmixtile()]
-#' @return invisible list with ggplot2 objects map and legend
-#' @seealso [hyperSpec::qmixtile()]
-#' @author Claudia Beleites
+#' @param ... handed over to [hyperSpec::qmixlegend()] and [hyperSpec::qmixtile()]
 #'
 #' @concept moved to hySpc.ggplot2
 #'
-#' @importFrom grid pushViewport viewport popViewport grid.layout unit
 #' @import ggplot2
+#' @importFrom grid pushViewport viewport popViewport grid.layout unit
+#' @importFrom lazyeval f_rhs
+#'
 #' @export
 #'
 #' @examples
 #' faux_cell <- faux_cell - spc.fit.poly.below(faux_cell)
-#' faux_cell <- sweep(faux_cell, 1, apply(faux_cell, 1, mean), "/")
-#' faux_cell <- sweep(faux_cell, 2, apply(faux_cell, 2, quantile, 0.05), "-")
 #'
-#' qplotmixmap(faux_cell [, , c(940, 1002, 1440)],
-#'   purecol = c(colg = "red", Phe = "green", Lipid = "blue")
+#' qplotmixmap(faux_cell [, , c(800, 1200, 1500)],
+#'   purecol = c(A = "green4", B = "yellow", C = "royalblue")
 #' )
-#' @importFrom lazyeval f_rhs
+#'
 qplotmixmap <- function(object, ...) {
-  p <- qmixtile(object@data, ...) +
-    coord_equal()
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  deprecated_ggplot2(new = "qplotmixmap")
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  # Suppress excessive deprecation warnings from internally used functions.
+  suppressWarnings(classes = "deprecatedWarning", {
 
-  xlabel <- labels(object)[[as_label(p$mapping$x)]]
-  if (is.null(xlabel)) {
-    xlabel <- as_label(p$mapping$x)
-  }
+    p <- qmixtile(object@data, ...) +
+      coord_equal()
 
-  ylabel <- labels(object)[[as_label(p$mapping$y)]]
-  if (is.null(ylabel)) {
-    ylabel <- as_label(p$mapping$y)
-  }
+    xlabel <- labels(object)[[as_label(p$mapping$x)]]
+    if (is.null(xlabel)) {
+      xlabel <- as_label(p$mapping$x)
+    }
 
-  p <- p +
-    xlab(xlabel) +
-    ylab(ylabel)
+    ylabel <- labels(object)[[as_label(p$mapping$y)]]
+    if (is.null(ylabel)) {
+      ylabel <- as_label(p$mapping$y)
+    }
 
-  l <- qmixlegend(object@data$spc, ...)
+    p <- p +
+      xlab(xlabel) +
+      ylab(ylabel)
 
-  legendright(p, l)
+    l <- qmixlegend(object@data$spc, ...)
+
+    legendright(p, l)
+  })
 
   invisible(list(map = p, legend = l))
 }
 
-#' @title Plot multivariate data into colour channels.
-#' @description
-#' Plot graph with legend right of it.
+#' @rdname hyperSpec-deprecated-ggplot2
 #'
 #' @param p plot object
 #' @param l legend object
 #' @param legend.width,legend.unit size of legend part
-#' @return invisible `NULL`
-#' @author Claudia Beleites
-#' @rdname qplotmix
-#'
-#' @concept moved to hySpc.ggplot2
 #'
 #' @export
 legendright <- function(p, l, legend.width = 8, legend.unit = "lines") {
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  deprecated_ggplot2()
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   plot.new()
   pushViewport(viewport(layout = grid.layout(1, 2,
     widths = unit(c(1, legend.width), c("null", legend.unit))
@@ -379,9 +367,9 @@ legendright <- function(p, l, legend.width = 8, legend.unit = "lines") {
   popViewport()
 }
 
-#' @description
-#' Plot multivariate data into colour channels using [ggplot2::geom_tile()]
-#' @rdname qplotmix
+
+#' @rdname hyperSpec-deprecated-ggplot2
+#'
 #' @param object matrix to be plotted with mixed colour channels
 #' @param purecol pure component colours, names determine legend labels
 #' @param mapping see [ggplot2::geom_tile()]
@@ -397,6 +385,9 @@ qmixtile <- function(object,
                      mapping = aes_string(x = "x", y = "y", fill = "spc"),
                      ...,
                      map.tileonly = FALSE) {
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  deprecated_ggplot2()
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   ## calculate fill colours
   fill <- colmix.rgb(object[[f_rhs(mapping$fill)]], purecol, ...)
@@ -413,18 +404,17 @@ qmixtile <- function(object,
   p + scale_fill_identity() + theme(legend.position = "none")
 }
 
-#' @description
-#' `normalize.colrange()` normalizes the range of each column to \[0, 1\].
-#' @rdname qplotmix
-#' @export
+#' @rdname hyperSpec-deprecated-ggplot2
 #'
 #' @param na.rm see [base::min()]
 #' @param legend should a legend be produced instead of normalized values?
 #' @param n of colours to produce in legend
-#' @return list with components `ymin`, `max` and `fill` to specify value and
-#'   fill colour value (still numeric!) for the legend, otherwise the
-#'   normalized values
+#'
+#' @export
 normalize.colrange <- function(x, na.rm = TRUE, legend = FALSE, n = 100, ...) {
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  deprecated_ggplot2()
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   ## legend
   if (legend) {
     y <- apply(x, 2, function(x) seq(min(x), max(x), length.out = n))
@@ -442,12 +432,12 @@ normalize.colrange <- function(x, na.rm = TRUE, legend = FALSE, n = 100, ...) {
   }
 }
 
-#' @description
-#' `normalize.range()` normalizes the range of all columns to \[0, 1\].
-#' @rdname qplotmix
+#' @rdname hyperSpec-deprecated-ggplot2
 #' @export
-#'
 normalize.range <- function(x, na.rm = TRUE, legend = FALSE, n = 100, ...) {
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  deprecated_ggplot2()
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   if (legend) {
     y <- matrix(seq(min(x), max(x), length.out = n), nrow = n, ncol = ncol(x))
     dy2 <- abs(y[2, ] - y[1, ]) / 2
@@ -463,12 +453,12 @@ normalize.range <- function(x, na.rm = TRUE, legend = FALSE, n = 100, ...) {
   }
 }
 
-#' @description
-#' `normalize.null()` does not touch the values.
-#' @rdname qplotmix
+#' @rdname hyperSpec-deprecated-ggplot2
 #' @export
-#'
 normalize.null <- function(x, na.rm = TRUE, legend = FALSE, n = 100, ...) {
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  deprecated_ggplot2()
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   if (legend) {
     y <- apply(x, 2, function(x) seq(min(x), max(x), length.out = n))
 
@@ -482,16 +472,17 @@ normalize.null <- function(x, na.rm = TRUE, legend = FALSE, n = 100, ...) {
   }
 }
 
-#' @description
-#' `normalize.minmax()` normalizes the range of each column j to \[min_j, max_j\]
-#' @rdname qplotmix
+#' @rdname hyperSpec-deprecated-ggplot2
+#'
+#' @param min numeric with value corresponding to "lowest" colour for each column
+#' @param max numeric with value corresponding to "hightest" colour for each column
+#'
 #' @export
-#' @param min numeric with value corresponding to "lowest" colour for each
-#'   column
-#' @param max numeric with value corresponding to "hightest" colour for each
-#'   column
 normalize.minmax <- function(x, min = 0, max = 1, legend = FALSE, n = 100,
                              ...) {
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  deprecated_ggplot2()
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   if (legend) {
     y <- matrix(seq(0, 1, length.out = n), nrow = n, ncol = ncol(x))
     y <- sweep(y, 2, max - min, `*`)
@@ -516,20 +507,18 @@ normalize.minmax <- function(x, min = 0, max = 1, legend = FALSE, n = 100,
   }
 }
 
-#' @description
-#' legends for mixed colour plots
-#' @rdname qplotmix
+#' @rdname hyperSpec-deprecated-ggplot2
+#'
 #' @param dx width of label bar
 #' @param ny number of colours in legend
 #' @param labels component names
-#' @return ggplot object with legend
-#' @author Claudia Beleites
-#'
-#' @concept moved to hySpc.ggplot2
 #'
 #' @export
 qmixlegend <- function(x, purecol, dx = 0.33, ny = 100, labels = names(purecol),
                        normalize = normalize.colrange, ...) {
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  deprecated_ggplot2()
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   if (!is.matrix(x)) {
     x <- matrix(x, ncol = 1)
   }
@@ -582,21 +571,22 @@ qmixlegend <- function(x, purecol, dx = 0.33, ny = 100, labels = names(purecol),
   l
 }
 
-#' @rdname qplotmix
-#' @title Multi channel colour mixing.
+#' @rdname hyperSpec-deprecated-ggplot2
+#'
 #' @param x matrix with component intensities in columns
 #' @param against value to mix against (for `sub = TRUE` only, 1 = white, 0 = black)
 #' @param sub subtractive color mixing?
 #' @param normalize function to normalize the values.
-#' @return character with colours
-#' @author Claudia Beleites
 #'
 #' @concept moved to hySpc.ggplot2
 #'
-#' @export
 #' @importFrom grDevices col2rgb rgb
+#' @export
 colmix.rgb <- function(x, purecol, against = 1, sub = TRUE,
                        normalize = normalize.colrange, ...) {
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  deprecated_ggplot2()
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   if (!is.null(normalize)) {
     x <- normalize(x, ...)
   }
