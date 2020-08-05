@@ -118,7 +118,7 @@ spc.NA.approx <- function(spc, neighbours = 1, w = rep(1, 2 * neighbours),
 
 # Unit tests -----------------------------------------------------------------
 
-.test(spc.NA.approx) <- function() {
+hySpc.testthat::test(spc.NA.approx) <- function() {
   context("spc.NA.approx")
 
   test_that("linear interpolation", {

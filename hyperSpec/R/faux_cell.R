@@ -174,7 +174,7 @@ delayedAssign("faux_cell", generate_faux_cell())
 
 
 # Unit tests -----------------------------------------------------------------
-.test(generate_faux_cell) <- function() {
+hySpc.testthat::test(generate_faux_cell) <- function() {
 
   context("generate_faux_cell")
 

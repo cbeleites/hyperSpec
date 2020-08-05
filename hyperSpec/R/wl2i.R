@@ -168,7 +168,7 @@ wl2i <- function(x, wavelength = stop("wavelengths are required."), unlist = TRU
   }
 }
 
-.test(wl2i) <- function() {
+hySpc.testthat::test(wl2i) <- function() {
   context("wl2i")
   test_that(": sequence of wavelengths", {
     skip("skip")

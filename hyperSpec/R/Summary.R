@@ -89,7 +89,7 @@ all_wl <- function(expression, na.rm = FALSE) {
 
 # Unit tests -----------------------------------------------------------------
 
-.test(all_wl) <- function() {
+hySpc.testthat::test(all_wl) <- function() {
   context("all_wl")
 
   test_that(
@@ -146,7 +146,7 @@ any_wl <- function(expression, na.rm = FALSE) {
 
 
 # Unit tests -----------------------------------------------------------------
-.test(any_wl) <- function() {
+hySpc.testthat::test(any_wl) <- function() {
   context("any_wl")
 
   test_that(

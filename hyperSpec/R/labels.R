@@ -28,8 +28,8 @@
   label
 }
 
-#' @include unittest.R
-.test(.labels) <- function() {
+
+hySpc.testthat::test(.labels) <- function() {
   context(".labels")
 
   .sort <- function(x) {

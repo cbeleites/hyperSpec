@@ -21,3 +21,4 @@
 
 * Note: this listing is for the benefit of developers, and should summarize significant infrastructure changes.
 * Vignettes converted to `.Rmd` and formatted consistently, thanks to Vilmantas Gegzna.
+* Package **hySpc.testthat** is now used for unit testing (#228).

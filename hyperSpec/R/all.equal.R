@@ -49,8 +49,8 @@
   }
 }
 
-#' @include unittest.R
-.test(.all.equal) <- function() {
+
+hySpc.testthat::test(.all.equal) <- function() {
   context(".all.equal")
 
   test_that("basic equalities", {

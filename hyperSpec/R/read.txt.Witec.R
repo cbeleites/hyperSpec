@@ -72,7 +72,7 @@ read.txt.Witec <- function(file = stop("filename or connection needed"),
   .fileio.optional(spc, file)
 }
 
-.test(read.txt.Witec) <- function() {
+hySpc.testthat::test(read.txt.Witec) <- function() {
   context("read.txt.Witec")
 
   test_that("Map with neither header nor label lines", {
@@ -213,7 +213,7 @@ read.dat.Witec <- function(filex = stop("filename or connection needed"),
   .fileio.optional(spc, filey)
 }
 
-.test(read.dat.Witec) <- function() {
+hySpc.testthat::test(read.dat.Witec) <- function() {
   context("read.dat.Witec")
 
   test_that("-y file guessing", {
@@ -309,7 +309,7 @@ read.txt.Witec.Graph <- function(headerfile = stop("filename or connection neede
   .fileio.optional(spc, filex)
 }
 
-.test(read.txt.Witec.Graph) <- function() {
+hySpc.testthat::test(read.txt.Witec.Graph) <- function() {
   context("read.txt.Witec.Graph")
 
   test_that("defaults and (X-Axis)/(Y-Axis) file guessing", {

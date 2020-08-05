@@ -51,7 +51,7 @@ setMethod("split", signature = signature(x = "hyperSpec"), .split)
 
 
 # Unit tests -----------------------------------------------------------------
-.test(.split) <- function() {
+hySpc.testthat::test(.split) <- function() {
 
   context("split")
 

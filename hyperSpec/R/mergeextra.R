@@ -70,7 +70,7 @@ mergeextra <- function(x, y) {
   x
 }
 
-.test(mergeextra) <- function() {
+hySpc.testthat::test(mergeextra) <- function() {
   context("mergeextra")
 
   test_that("nothing to do", {

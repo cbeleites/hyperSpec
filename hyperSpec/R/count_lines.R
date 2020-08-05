@@ -20,7 +20,7 @@ count_lines <- function(file, chunksize = 1e4) {
   nlines
 }
 
-.test(count_lines) <- function() {
+hySpc.testthat::test(count_lines) <- function() {
   context("count_lines")
 
   tmpfile <- tempfile()

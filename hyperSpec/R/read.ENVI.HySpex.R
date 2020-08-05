@@ -28,7 +28,7 @@ read.ENVI.HySpex <- function(file = stop("read.ENVI.HySpex: file name needed"),
   spc
 }
 
-.test(read.ENVI.HySpex) <- function() {
+hySpc.testthat::test(read.ENVI.HySpex) <- function() {
   context("read.ENVI.HySpex")
 
   test_that("Hyspex ENVI file", {

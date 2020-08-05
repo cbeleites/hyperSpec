@@ -27,7 +27,7 @@
 #' @include laser.R
 #' @include paracetamol.R
 #' @include barbiturates.R
-#' @include unittest.R
+
 #'
 #' @keywords package
 #' @concept hyperSpec-main

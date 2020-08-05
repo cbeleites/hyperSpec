@@ -63,7 +63,7 @@
   m
 }
 
-.test(.expand) <- function() {
+hySpc.testthat::test(.expand) <- function() {
   context(".expand helper function for sweep shortcut operators")
 
   test_that("scalar", {

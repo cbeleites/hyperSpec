@@ -416,7 +416,7 @@ read.ENVI <- function(file = stop("read.ENVI: file name needed"), headerfile = N
   .fileio.optional(spc, file)
 }
 
-.test(read.ENVI) <- function() {
+hySpc.testthat::test(read.ENVI) <- function() {
   context("read.ENVI")
 
   test_that("full spectrum BIL", {

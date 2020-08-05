@@ -225,8 +225,8 @@ setMethod("initialize", "hyperSpec", .initialize)
 
 # Unit tests -----------------------------------------------------------------
 
-#' @include unittest.R
-.test(.initialize) <- function() {
+
+hySpc.testthat::test(.initialize) <- function() {
   context(".initialize / new (\"hyperSpec\")")
 
   test_that("empty hyperSpec object", {
@@ -392,8 +392,8 @@ setMethod("as.hyperSpec", "data.frame", .as.hyperSpec.data.frame)
 
 # Unit tests -----------------------------------------------------------------
 
-#' @include unittest.R
-.test(as.hyperSpec) <- function() {
+
+hySpc.testthat::test(as.hyperSpec) <- function() {
   context("as.hyperSpec")
 
   spc <- matrix(1:12, ncol = 3)

@@ -100,8 +100,8 @@ plotmat <- function(object, y = ".row", ylab, col = alois.palette(20), ...,
   }
 }
 
-#' @include unittest.R
-.test(plotmat) <- function() {
+
+hySpc.testthat::test(plotmat) <- function() {
   context("plotmat")
 
   test_that("non-increasing wavelength axis", {
