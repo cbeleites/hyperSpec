@@ -1,8 +1,4 @@
 ---
-# For bookdown ---------------------------------------------------------------
-bookdown_file_name: flu
-bookdown_titles: |
-  # `flu`: Calibration of Quinine Fluorescence Emission {#flu}
 # For vignette ---------------------------------------------------------------
 title:       Calibration of Quinine Fluorescence Emission
 subtitle:    "Example Workflow for Fluorescence Emission Dataset `flu`"
@@ -21,8 +17,7 @@ author:
 # Document -------------------------------------------------------------------
 date: "`r Sys.Date()`"
 output:
-    bookdown::html_document2:
-      base_format: rmarkdown::html_vignette
+    bookdown::html_vignette2:
       toc: yes
       fig_caption: yes
       css:

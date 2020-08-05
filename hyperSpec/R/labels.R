@@ -76,6 +76,9 @@
 #'
 #' @aliases labels<-,hyperSpec-method
 #' @export "labels<-"
+#'
+#' @concept labels
+#'
 #' @param value the new label(s)
 #' @return  `labels<-` returns a `hyperSpec` object.
 #' @examples
@@ -133,6 +136,9 @@
 #' @author C. Beleites
 #' @seealso [base::labels()]
 #' @export
+#'
+#' @concept labels
+#'
 #' @examples
 #'
 #' labels(faux_cell)

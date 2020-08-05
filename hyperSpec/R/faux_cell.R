@@ -1,14 +1,21 @@
 
 # Faux cell data generation function -----------------------------------------
 
-#' Faux Cell Data Set for Testing & Demonstration.
+#' @rdname faux_cell
+#' @aliases faux_cell generate_faux_cell
+#' @docType data
 #'
+#' @title Faux Cell Data Set for Testing & Demonstration
+#'
+#' @description
 #' This is a synthetic data set intended for testing and demonstration.
 #' Function `generate_faux_cell()` simulates the faux cell data (*note:* in
 #' the future, it is planned to parameterize thefuncion) and object `faux_cell`
 #' is an instance of this dataset generated first time it is used.
 #'
-#' The data set resembles the `chondro` data set but is entirely synthetic.
+#' The data set resembles the
+#' [`chondro`](https://r-hyperspec.github.io/hySpc.chondro/)
+#' data set but is entirely synthetic.
 #'
 #' @format The object `faux_cell` is a `hyperSpec` object that contains 875
 #'  Raman-like spectra, allocated to three groups/regions in column region:
@@ -18,15 +25,16 @@
 #'  Poisson noise has been added. The data is indexed along the x and y
 #'  dimensions, simulating data collected on a grid.
 #'
-#' @rdname faux_cell
-#' @aliases faux_cell generate_faux_cell
-#' @docType data
 #' @include initialize.R
+#'
+#' @export
+#'
 #' @keywords datasets
 #' @concept datasets
 #' @concept data generation
-#' @export
+#'
 #' @author Claudia Beleites, Bryan A. Hanson
+#'
 #' @examples
 #' set.seed(1)
 #' faux_cell <- generate_faux_cell()

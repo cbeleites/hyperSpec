@@ -45,6 +45,9 @@
 #' @rdname textio
 #' @param check.names handed to [utils::read.table()]. Make sure this is `FALSE`, if
 #' the column names of the spectra are the wavelength values.
+#'
+#' @concept io
+#'
 #' @export
 #' @importFrom utils read.table head
 read.txt.wide <- function(file = stop("file is required"),

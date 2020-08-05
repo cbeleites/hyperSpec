@@ -1,8 +1,4 @@
 ---
-# For bookdown ---------------------------------------------------------------
-bookdown_file_name: plotting
-bookdown_titles: |
-  # `plotting`: **_hyperSpec_** Plotting Functions {#plotting}
 # For vignette ---------------------------------------------------------------
 title:       Plotting Functions in "hyperSpec"
 sutitle:     "Manual of hyperSpec's Plotting Functions"
@@ -21,8 +17,7 @@ author:
 # Document -------------------------------------------------------------------
 date:      "`r Sys.Date()`"
 output:
-    bookdown::html_document2:
-      base_format: rmarkdown::html_vignette
+    bookdown::html_vignette2:
       toc: yes
       fig_caption: yes
       css:
@@ -152,21 +147,20 @@ Besides, package **tripack**[`r cite_pkg("tripack")`] is mentioned, but not used
 
 # Preliminary Calculations {-}
 
-For some plots of the `chondro`{.r} dataset, the pre-processed spectra and their cluster averages $\pm$ one standard deviation are more suitable:
+For some plots of the `faux_cell`{.r} dataset, the pre-processed spectra and their cluster averages $\pm$ one standard deviation are more suitable:
 
-```{r preproc-chondro}
-chondro <- hyperSpec::chondro
+```{r preproc-faux-cell}
+set.seed(1)
+faux_cell <- generate_faux_cell()
 
-chondro.preproc <- chondro - spc.fit.poly.below(chondro)
-chondro.preproc <- chondro.preproc / rowMeans(chondro)
-chondro.preproc <- chondro.preproc - quantile(chondro.preproc, 0.05)
+faux_cell_preproc <- faux_cell - spc.fit.poly.below(faux_cell)
+faux_cell_preproc <- faux_cell_preproc / rowMeans(faux_cell)
+faux_cell_preproc <- faux_cell_preproc - quantile(faux_cell_preproc, 0.05)
 
-cluster.cols   <- c("dark blue", "orange", "#C02020")
-cluster.meansd <- aggregate(chondro.preproc, chondro$clusters, mean_pm_sd)
-cluster.means  <- aggregate(chondro.preproc, chondro$clusters, mean)
+cluster_cols   <- c("dark blue", "orange", "#C02020")
+cluster_meansd <- aggregate(faux_cell_preproc, faux_cell$region, mean_pm_sd)
+cluster_means  <- aggregate(faux_cell_preproc, faux_cell$region, mean)
 ```
-
-For details about the pre-processing, please refer to the example workflow in `vignette("chondro")`, or the help `?chondro`.
 
 
 # Predefined Functions
@@ -266,7 +260,7 @@ CAPTION = "False colour map (1).  "
 ```
 
 ```{r levelplot-1, fig.cap=CAPTION}
-levelplot(spc ~ x * y, chondro, aspect = "iso")
+levelplot(spc ~ x * y, faux_cell[ , , 1200], aspect = "iso")
 ```
 
 > The following warning is expected: `Only first wavelength is used for plotting`.
@@ -282,7 +276,7 @@ CAPTION = "False colour map created with `plotmap()`{.r}.  "
 ```
 
 ```{r plotmap, fig.cap=CAPTION}
-plotmap(chondro)
+plotmap(faux_cell[ , , 1200])
 ```
 
 ## Function `plotvoronoi()`{.r} {#exm-plotvoronoi}
@@ -291,11 +285,11 @@ Function `plotvoronoi()`{.r} is a special version of `plotmap()`{.r} that produc
 
 
 ```{r include=FALSE}
-CAPTION = "Voronoi diagram: an example with `chondro` dataset.  "
+CAPTION = "Voronoi diagram: an example with `faux_cell` dataset.  "
 ```
 
 ```{r voronoi, fig.cap=CAPTION}
-plotvoronoi(sample(chondro, 300), clusters ~ x * y)
+plotvoronoi(sample(faux_cell, 300), region ~ x * y)
 ```
 
 
@@ -329,7 +323,7 @@ CAPTION = "Summary spectra: mean $\\pm$ one standard deviation at each wavelengt
 ```
 
 ```{r plotchomean, fig.cap=CAPTION}
-plot(chondro.preproc, "spcmeansd")
+plot(faux_cell_preproc, "spcmeansd")
 ```
 
 
@@ -346,7 +340,7 @@ CAPTION = "Summary spectra: median, 16^th^ and 84^th^ percentiles at each wavele
 ```
 
 ```{r plotchoprctl, fig.cap=CAPTION}
-plot(chondro.preproc, "spcprctile")
+plot(faux_cell_preproc, "spcprctile")
 ```
 
 
@@ -359,7 +353,7 @@ CAPTION = "Summary spectra: median, 5^th^, 16^th^, 84^th^, 95^th^ percentiles at
 ```
 
 ```{r plotchoprctl5, fig.cap=CAPTION}
-plot(chondro.preproc, "spcprctl5")
+plot(faux_cell_preproc, "spcprctl5")
 ```
 
 
@@ -439,14 +433,14 @@ levelplot(spc ~ .wavelength * .row, data = laser)
 
 ## Argument `"map"`{.r}  {#arg-map}
 
-Code `plot(x, "map")`{.r} is equivalent to `plotmap(chondro)`{.r} (Fig. \@ref(fig:plotmapcho2)).
+Code `plot(x, "map")`{.r} is equivalent to `plotmap(faux_cell)`{.r} (Fig. \@ref(fig:plotmapcho2)).
 
 ```{r include=FALSE}
 CAPTION = "False color map: alternative R syntax.   "
 ```
 
 ```{r plotmapcho2, fig.cap=CAPTION}
-plot(chondro, "map")
+plot(faux_cell[ , , 1200], "map")
 ```
 
 
@@ -459,7 +453,7 @@ CAPTION = "Voronoi plot: alternative R syntax.  "
 ```
 
 ```{r plotvoronoi, fig.cap=CAPTION}
-plot(sample(chondro, 300), "voronoi")
+plot(sample(faux_cell[ , , 1200], 300), "voronoi")
 ```
 
 See `?plotvoronoi`{.r} and `?latticeExtra::panel.voronoi`{.r}.
@@ -567,8 +561,8 @@ CAPTION = "A spectrum added to an existing plot.  "
 ```
 
 ```{r add, fig.cap=CAPTION}
-plotspc(chondro[ 30, , ])
-plotspc(chondro[300, , ], add = TRUE, col = "blue")
+plotspc(faux_cell[30, , ])
+plotspc(faux_cell[35, , ], add = TRUE, col = "blue")
 ```
 
 
@@ -583,7 +577,7 @@ In the example, the standard deviation is used.  "
 ```
 
 ```{r sd, fig.cap=CAPTION}
-plotspc(chondro.preproc, func = sd)
+plotspc(faux_cell_preproc, func = sd)
 ```
 
 ## Plot Different Line at $I = 0$
@@ -632,8 +626,9 @@ CAPTION = "Stacked spectra of means.  "
 ```
 
 ```{r stacked1, fig.cap=CAPTION}
-plotspc(cluster.means,
-  col = cluster.cols,
+plotspc(
+  cluster_means,
+  col = cluster_cols,
   stacked = TRUE
 )
 ```
@@ -673,10 +668,11 @@ CAPTION = "Stacked summary spectra (mean $\\pm$ one standard deviation).  "
 ```{r stacked2, fig.cap=CAPTION}
 op <- par(las = 1, mgp = c(3.1, .7, 0))
 
-plot(cluster.meansd,
+plot(
+  cluster_meansd,
   stacked = ".aggregate",
   fill    = ".aggregate",
-  col     = cluster.cols
+  col     = cluster_cols
 )
 ```
 
@@ -690,9 +686,10 @@ CAPTION = "Stacked spectra with customized y offset.  "
 ```
 
 ```{r stacked3, fig.cap=CAPTION}
-plotspc(cluster.meansd,
+plotspc(
+  cluster_meansd,
   yoffset = rep(0:2, each = 3),
-  col = rep(cluster.cols, each = 3)
+  col = rep(cluster_cols, each = 3)
 )
 ```
 
@@ -706,11 +703,11 @@ CAPTION = "Dense-stacked spectra.  "
 ```
 
 ```{r stacked4, fig.cap=CAPTION}
-yoffsets <- apply(cluster.means[[]], 2, diff)
+yoffsets <- apply(cluster_means[[]], 2, diff)
 yoffsets <- -apply(yoffsets, 1, min)
-plot(cluster.means,
+plot(cluster_means,
   yoffset = c(0, cumsum(yoffsets)),
-  col = cluster.cols
+  col = cluster_cols
 )
 ```
 
@@ -726,19 +723,19 @@ CAPTION = "An example of highly customized spectra.  "
 ```
 
 ```{r stacked5, fig.cap=CAPTION}
-yoffset <- apply(chondro.preproc, 2, quantile, c(0.05, 0.95))
+yoffset <- apply(faux_cell_preproc, 2, quantile, c(0.05, 0.95))
 yoffset <- range(yoffset)
-plot(chondro.preproc[1],
+plot(faux_cell_preproc[1],
   plot.args = list(ylim = c(0, 2) * yoffset),
   lines.args = list(type = "n")
 )
 yoffset <- (0:1) * diff(yoffset)
 for (i in 1:3) {
-  plot(chondro.preproc, "spcprctl5",
+  plot(faux_cell_preproc, "spcprctl5",
     yoffset = yoffset[i],
     col = "gray", add = TRUE
   )
-  plot(chondro.preproc[i],
+  plot(faux_cell_preproc[i],
     yoffset = yoffset[i],
     col = matlab.dark.palette(3) [i], add = TRUE,
     lines.args = list(lwd = 2)
@@ -892,7 +889,7 @@ CAPTION = "An example of a levelplot.  "
 ```
 
 ```{r levelplot, fig.cap=CAPTION}
-levelplot(spc ~ x * y, data = chondro)
+levelplot(spc ~ x * y, data = faux_cell[ , , 800])
 ```
 
 If the colour-coded value is a factor, the display is adjusted to this fact (Fig. \@ref(fig:levelplot-factor)).
@@ -903,7 +900,7 @@ CAPTION = "Levelplot when colour-coded value is a factor.  "
 ```
 
 ```{r levelplot-factor, fig.cap=CAPTION}
-levelplot(clusters ~ x * y, data = chondro)
+levelplot(region ~ x * y, data = faux_cell)
 ```
 
 
@@ -1005,8 +1002,8 @@ The same scale is used for x and y axes (`aspect = "iso"`{.r}).
 CAPTION = "An example of a false colour map.  "
 ```
 
-```{r plotmap-chondro, fig.cap=CAPTION}
-plotmap(chondro)
+```{r plotmap-faux-cell, fig.cap=CAPTION}
+plotmap(faux_cell[ , , 1200])
 ```
 
 
@@ -1020,7 +1017,7 @@ CAPTION = "False colour map with an explicit specification of x and y axes.  "
 ```
 
 ```{r plotmap-yx, fig.cap=CAPTION}
-plotmap(chondro, spc ~ y * x)
+plotmap(faux_cell[ , , 1200], spc ~ y * x)
 ```
 
 
@@ -1033,7 +1030,7 @@ CAPTION = "False colour map with colours defined by a factor variable.  "
 ```
 
 ```{r plotmap-clu, fig.cap=CAPTION}
-plotmap(chondro, clusters ~ x * y)
+plotmap(faux_cell, region ~ x * y)
 ```
 
 If the colour-coded variable is a factor, each level gets its own colour, and the legend is labelled accordingly.
@@ -1048,9 +1045,7 @@ CAPTION = "False colour map with non-default colour palette.  "
 ```
 
 ```{r plotmap-col, fig.cap=CAPTION}
-plotmap(chondro, clusters ~ x * y,
-  col.regions = cluster.cols
-)
+plotmap(faux_cell, region ~ x * y, col.regions = cluster_cols)
 ```
 
 
@@ -1060,12 +1055,12 @@ The plotting of colour maps is done via R package **lattice** (aka Trellis graph
 Use function `trellis.par.get()`{.r} and `trellis.par.set()`{.r} to get/set the settings for the current graphics device.
 
 ```{r lattice-params}
-my.theme <- trellis.par.get()
-names(my.theme) # note how many parameters are tunable
+my_theme <- trellis.par.get()
+names(my_theme) # note how many parameters are tunable
 ```
 
 Any of these parameters can be fine-tuned to produce the desired output.
-For example, parameter `my.theme$region`{.r} is responsible for the appearance of color maps, and it contains elements `$alpha`{.r} and `$col`{.r}.
+For example, parameter `my_theme$region`{.r} is responsible for the appearance of color maps, and it contains elements `$alpha`{.r} and `$col`{.r}.
 By changing these parameters you can create your own theme for plotting and pass it to the plotting function via `par.settings`{.r}.
 
 
@@ -1078,12 +1073,12 @@ CAPTION = "A false-colour map that uses `terrain.colors` palette.   "
 ```
 
 ```{r plotmap-col-default, fig.cap=CAPTION}
-my.theme$regions$col <- grDevices::terrain.colors
-plotmap(chondro, par.settings = my.theme)
+my_theme$regions$col <- grDevices::terrain.colors
+plotmap(faux_cell[ , , 1200], par.settings = my_theme)
 ```
 
 It is possible to **persistently** (i.e. inside of the current R session) set **lattice** parameters, so they would apply to all further plots.
-This is done via a call to `trellis.par.set()`{.r}, for example `trellis.par.set(my.theme)`{.r}.
+This is done via a call to `trellis.par.set()`{.r}, for example `trellis.par.set(my_theme)`{.r}.
 
 The current settings can be visualized via a call to `show.settings()`{.r}
 
@@ -1099,7 +1094,7 @@ CAPTION = "Show **lattice** settings.  "
 
 ```{block, type="note-t", echo=show_reviewers_notes}
 
-`# FIXME: padding in these figures must be fixed`{.r}
+`# FIXME:`{.r} padding in these figures must be fixed!
 
 ```
 
@@ -1109,7 +1104,7 @@ show.settings()
 ```
 
 ```{r lattice-settings, fig.width=7, fig.height=4, fig.cap=CAPTION}
-show.settings(my.theme)
+show.settings(my_theme)
 ```
 
 
@@ -1126,10 +1121,8 @@ CAPTION = "A map of average intensity at explicitly indicated wavelengths.  "
 ```
 
 ```{r plotmap-wave, fig.cap=CAPTION}
-plotmap(chondro.preproc[, , c(
-   728,  782, 1098,
-  1240, 1482, 1577
-)],
+plotmap(
+  faux_cell_preproc[, , c(800, 1500)],
   col.regions = matlab.palette
 )
 ```
@@ -1144,7 +1137,8 @@ CAPTION = "Subplots created by logical conditions.  "
 ```
 
 ```{r plotmap-pca, fig.cap=CAPTION}
-plotmap(chondro,
+plotmap(
+  faux_cell[ , , 1500],
   spc ~ y * x | x > 5,
   col.regions = matlab.palette(20)
 )
@@ -1165,14 +1159,15 @@ CAPTION = "The maps of the scores of the first two principal components (I).  "
 ```
 
 ```{r plotmap-pca2, fig.cap=CAPTION}
-pca <- prcomp(~spc, data = chondro.preproc$.)
+pca <- prcomp(~spc, data = faux_cell_preproc$.)
 
-scores <- decomposition(chondro, pca$x,
+scores <- decomposition(faux_cell, pca$x,
   label.wavelength = "PC",
   label.spc = "score /  a.u."
 )
 
-plotmap(scores[, , 1:2],
+plotmap(
+  scores[, , 1:3],
   spc ~ y * x | as.factor(.wavelength),
   func = NULL,
   col.regions = matlab.palette(20)
@@ -1186,8 +1181,9 @@ CAPTION = "The maps of the scores of the first two principal components (II).  "
 ```
 
 ```{r plotmap-pca3, fig.cap=CAPTION}
-levelplot(spc ~ y * x | as.factor(.wavelength),
-  scores[, , 1:2],
+levelplot(
+  spc ~ y * x | as.factor(.wavelength),
+  scores[, , 1:3],
   aspect = "iso",
   col.regions = matlab.palette(20)
 )
@@ -1208,7 +1204,8 @@ CAPTION = "Voronoi plot that uses non-default discrette colour palette.  "
 ```
 
 ```{r voronoi-2, fig.cap=CAPTION}
-plotvoronoi(sample(chondro, 300), clusters ~ x * y,
+plotvoronoi(
+  sample(faux_cell, 300), region ~ x * y,
   col.regions = matlab.palette(20)
 )
 ```
@@ -1236,7 +1233,7 @@ CAPTION = "Marks of missing spectra in a false-colour map.  "
 ```
 
 ```{r missing, fig.cap=CAPTION}
-plotmap(sample(chondro, length(chondro) - 20),
+plotmap(sample(faux_cell[, , 1200], length(faux_cell) - 20),
   col.regions = matlab.palette(20),
   col = "black",
   panel = mark.missing
@@ -1250,8 +1247,8 @@ The panel function used by `plotmap()`{.r} defaults to `panel.levelplot.raster()
 Even if the spectra are measured on a nominally evenly spaced grid, the actual stage position may slightly vary due to positioning inaccuracy and some manufacturers (e.g., Kaiser) record the position reported by the stage rather than the position requested by the stage control.
 This leads to weird-looking output with holes, and possibly wrong columns (Fig. \@ref(fig:uneven-I)).
 
-```{r uneven-prep, echo=FALSE, results='hide'}
-uneven <- chondro
+```{r uneven-prep}
+uneven <- faux_cell[, , 1200]
 uneven$x <- uneven$x + round(rnorm(nrow(uneven), sd = 0.05), digits = 1)
 uneven$y <- uneven$y + round(rnorm(nrow(uneven), sd = 0.05), digits = 1)
 ```
@@ -1285,7 +1282,8 @@ CAPTION = "Unevenly spaced measurement grid: example III.  "
 ```
 
 ```{r uneven-III, fig.cap=CAPTION}
-plotmap(uneven,
+plotmap(
+  uneven,
   panel = panel.levelplot.points,
   cex = 0.75,
   col.symbol = NA
@@ -1383,117 +1381,6 @@ if (require(rgl)) {
 ```
 
 
-# Using **_ggplot2_** with **_hyperSpec_** objects {#plots-ggplot2}
-
-
-Class `hyperSpec`{.r} objects do not yet directly support plotting with package **ggplot2**[`r cite_pkg("ggplot2")`].
-Nevertheless, package **ggplot2** graphics can easily be obtained, and `qplot*`{.r} equivalents to `plotspc()`{.r} and `plotmap()`{.r}.
-
-
-## Function `qplotspc()`{.r} {#qplotspc}
-
-Plot spectra with `qplotspc()`{.r} (Fig. \@ref(fig:ggplotspc)).<!-- `as.long.df()`{.r}" -->
-
-```{r include=FALSE}
-CAPTION = "Plot spectra with `as.long.df()`{.r}  "
-```
-
-```{r ggplotspc, fig.cap=CAPTION}
-qplotspc(flu) + aes(colour = c)
-```
-
-
-## Function `ggplotmap()`{.r} {#ggplotmap}
-
-Fig. \@ref(fig:ggplotmap) shows a map created with package **ggplot2**.
-
-```{r include=FALSE}
-CAPTION = "False-colour map with package **ggplot2**  "
-```
-
-```{r ggplotmap, fig.cap=CAPTION}
-qplotmap(chondro) +
-    scale_fill_gradientn("spc", colours = matlab.palette())
-```
-
-The two special columns `.wavelength`{.r} and `.rownames`{.r} contain the wavelength axis and allow to distinguish the spectra.
-
-
-
-## More General Plotting with **_ggplot2_** {#general-plotting-ggplot2}
-
-
-For more general plotting, `as.long.df()`{.r} transforms a `hyperSpec`{.r} object into a long-form `data.frame`{.r} that is suitable for `qplot()`{.r}, while `as.t.df()`{.r} produces a `data.frame`{.r} where each spectrum is one column, and an additional first column gives the wavelength.
-Long `data.frame`{.r}s can be *very* memory consuming as they are of size $nrow · nwl × (ncol + 2)$ with respect to the dimensions of the `hyperSpec`{.r} object.
-Thus, e.g., the `chondro`{.r} data set (`r round (object.size (chondro) / 1048576, digits = 0)` MB) as `hyperSpec`{.r} object) needs `r round (object.size (as.long.df (chondro, rownames = TRUE)) / 1048576, digits = 0)` MB as long-format `data.frame`{.r}.
-It is therefore highly recommended to calculate the particular data to be plotted beforehand<!-- (Fig. \@ref(fig:ggplotmeansd))-->.
-
-
-```{r include=FALSE}
-CAPTION = "Mean $\\pm$ standard deviation with package **ggplot2**.  "
-```
-
-```{r ggplotmeansd, fig.cap=CAPTION, eval=FALSE}
-qplotspc(mean(chondro)) +
-  geom_ribbon(aes(
-    ymin = mean + sd,
-    ymax = mean - sd,
-    y = 0,
-    group = NA
-  ),
-    alpha = 0.25,
-    data = as.t.df(mean_sd(chondro))
-  )
-```
-
-Note that `qpotspc()`{.r} specifies aesthetics `y = spc` and `groups = .rownames`, which do not have corresponding columns in the `data.frame` returned by `as.t.df()`{.r}.
-These aesthetics must therefore be set manually in the aesthetics definition in `geom_ribbon()`{.r} (or any other `geom_*()`{.r} that uses `as.t.df()`{.r}).
-Otherwise, errors occur that object `spc` (and/or `.rownames`) cannot be found.
-Cut axes can be implemented by faceting (Fig. \@ref(fig:ggplotspccut)).
-
-```{r include=FALSE}
-CAPTION = "Cut spectra with package **ggplot2**.   "
-```
-
-```{r ggplotspccut, fig.cap=CAPTION}
-qplotspc(paracetamol / 1e4, wl.range = c(min ~ 1800, 2800 ~ max)) +
-  scale_x_continuous(breaks = seq(0, 3200, 400))
-```
-
-
-<!-- ======================================================================= -->
-```{block, type="note-t", echo=show_reviewers_notes}
-**V. Gegzna's notes** `plotting-4`
-
-
-1. `FIXME:`{.r} Is the block below needed?
-```
-<!-- ======================================================================= -->
-
-```{r ggplot2-do, echo=show_reviewers_notes, results='hide', eval=FALSE}
-
-# FIXME: is this code block needed at all?
-
-if (require(ggplot2)) {
-  # <<ggplotspc>>
-  ggsave("plotting-fig--ggplotspc.pdf", width = 4, height = 2.6)
-  # <<ggplotmap>>
-  ggsave("plotting-fig--ggplotmap.pdf", width = 4, height = 2.6)
-  # <<ggplotmeansd>>
-  ggsave("plotting-fig--ggplotmeansd.pdf", width = 4, height = 2.6)
-  # <<ggplotspccut>>
-  ggsave("plotting-fig--ggplotspccut.pdf", width = 4, height = 2.6)
-
-} else {
-  for (f in c("ggplotspc", "ggplotmap", "ggplotmeansd", "ggplotspccut")) {
-    pdf(sprintf("plotting-fig--%s.pdf", f), width = 4, height = 2.6)
-    ploterrormsg("", "ggplot2")
-    dev.off()
-  }
-}
-```
-
-
 # Interactive Graphics {#interactive-plots}
 
 Package **hyperSpec** offers basic interaction, `spc.identify()`{.r} for spectra plots, and `map.identify()`{.r} and `map.sel.poly()`{.r} for maps.
@@ -1519,7 +1406,7 @@ The result is a data.frame with the indices of the spectra, the wavelength, and 
 Function `map.identify()`{.r} returns the spectra indices of the clicked points.
 
 ```{r eval=FALSE}
-map.identify(chondro)
+map.identify(faux_cell[ , , 1200])
 ```
 
 
@@ -1528,7 +1415,7 @@ map.identify(chondro)
 Function `map.sel.poly()`{.r} returns a logical indicating which spectra are inside the polygon drawn by the user:
 
 ```{r eval=FALSE}
-map.sel.poly(chondro)
+map.sel.poly(faux_cell[ , , 1200])
 ```
 
 

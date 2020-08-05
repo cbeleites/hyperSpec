@@ -21,6 +21,8 @@
 #' @format Colors are stored as character vectors.
 #'
 #' @keywords utilities color datasets
+#' @concept plotting
+#' @concept color palette
 #'
 #' @name Colors
 #' @aliases CB7

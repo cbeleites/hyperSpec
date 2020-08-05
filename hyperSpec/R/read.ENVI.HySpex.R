@@ -1,6 +1,9 @@
 #' @describeIn  read.ENVI
 #' @include read.ENVI.R
 #' @export
+#'
+#' @concept io
+#'
 read.ENVI.HySpex <- function(file = stop("read.ENVI.HySpex: file name needed"),
                              headerfile = NULL, header = list(), keys.hdr2data = NULL, ...) {
   headerfile <- .find.ENVI.header(file, headerfile)

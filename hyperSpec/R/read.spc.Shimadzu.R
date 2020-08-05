@@ -1,3 +1,4 @@
+#' @concept io
 read.spc.Shimadzu <- function(filename) {
   stop("Import of Shimadzu SPC file format (OLE CF) is not yet implemented.")
 }

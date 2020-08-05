@@ -19,11 +19,11 @@ split.string <- function(x, separator, trim.blank = TRUE, remove.empty = TRUE) {
   ncol = 2
   )
 
-  if (pos [nrow(pos), 1] > nchar(x)) {
-    pos <- pos [-nrow(pos), ]
+  if (pos[nrow(pos), 1] > nchar(x)) {
+    pos <- pos[-nrow(pos), ]
   }
 
-  x <- apply(pos, 1, function(p, x) substr(x, p [1], p [2]), x)
+  x <- apply(pos, 1, function(p, x) substr(x, p[1], p[2]), x)
 
   if (trim.blank) {
     blank.pattern <- "^[[:blank:]]*([^[:blank:]]+.*[^[:blank:]]+)[[:blank:]]*$"
@@ -31,8 +31,23 @@ split.string <- function(x, separator, trim.blank = TRUE, remove.empty = TRUE) {
   }
 
   if (remove.empty) {
-    x <- x [sapply(x, nchar) > 0]
+    x <- x[sapply(x, nchar) > 0]
   }
 
   x
+}
+
+# Unit tests -----------------------------------------------------------------
+.test(split.string) <- function() {
+  context("split.string")
+
+  # Perform tests
+  test_that("split.string() returnts output silently", {
+    expect_error(split.string())
+    expect_error(split.string(letters))
+
+    expect_silent(split.string("letters", "r"))
+  })
+
+  # FIXME (tests): add tests to check the correctness of the output!!!
 }

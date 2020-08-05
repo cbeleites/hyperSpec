@@ -4,6 +4,7 @@
 ###
 ###
 ## TODO: export
+#' @concept manipulation
 
 factor2num <- function(f) {
   as.numeric(levels(f))[as.numeric(f)]

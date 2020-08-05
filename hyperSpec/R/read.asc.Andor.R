@@ -12,6 +12,9 @@
 #' [options()] for details on options.
 #' @include read.txt.Witec.R
 #' @include fileio.optional.R
+#'
+#' @concept io
+#'
 #' @export
 read.asc.Andor <- function(file = stop("filename or connection needed"),
                            ..., quiet = TRUE, dec = ".", sep = ",") {

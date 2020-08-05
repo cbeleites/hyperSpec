@@ -19,6 +19,9 @@
 #'
 #' [options()] for details on options.
 #' @export
+#'
+#' @concept io
+#'
 #' @importFrom utils head
 read.txt.Witec <- function(file = stop("filename or connection needed"),
                            points.per.line = NULL,
@@ -172,6 +175,9 @@ read.txt.Witec <- function(file = stop("filename or connection needed"),
 #' @rdname read.txt.Witec
 #' @param filex filename wavelength axis file
 #' @param filey filename intensity file
+#'
+#' @concept io
+#'
 #' @export
 read.dat.Witec <- function(filex = stop("filename or connection needed"),
                            filey = sub("-x", "-y", filex),
@@ -252,6 +258,9 @@ read.dat.Witec <- function(filex = stop("filename or connection needed"),
 
 #' @rdname read.txt.Witec
 #' @param headerfile filename or connection to ASCII file with header information
+#'
+#' @concept io
+#'
 #' @export
 read.txt.Witec.Graph <- function(headerfile = stop("filename or connection needed"),
                                  filex = gsub("Header", "X-Axis", headerfile),

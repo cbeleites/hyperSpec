@@ -14,9 +14,15 @@
 #' @author C. Beleites
 #' @seealso [hyperSpec::wl.eval()], [hyperSpec::vanderMonde()]
 #' @export
+#'
+#' @concept manipulation
+#'
 setGeneric("normalize01", function(x, ...) standardGeneric("normalize01"))
 
 #' @export
+#'
+#' @concept manipulation
+#'
 #' @rdname normalize01
 setMethod(
   normalize01, signature(x = "matrix"),
@@ -31,6 +37,9 @@ setMethod(
 )
 
 #' @export
+#'
+#' @concept manipulation
+#'
 #' @rdname normalize01
 setMethod("normalize01", signature(x = "numeric"), function(x, tolerance = hy.getOption("tolerance")) {
   x <- x - min(x)
@@ -44,6 +53,9 @@ setMethod("normalize01", signature(x = "numeric"), function(x, tolerance = hy.ge
 })
 
 #' @export
+#'
+#' @concept manipulation
+#'
 #' @rdname normalize01
 setMethod(normalize01, signature(x = "hyperSpec"), function(x, ...) {
   validObject(x)

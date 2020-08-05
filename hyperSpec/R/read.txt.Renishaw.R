@@ -40,7 +40,10 @@
 #' @author C. Beleites
 #' @seealso [read.txt.long()], [read.txt.wide()],
 #'   [base::scan()]
+#'
 #' @keywords IO file
+#' @concept io
+#'
 #' @importFrom utils head
 read.txt.Renishaw <- function(file = stop("file is required"),
                               data = "xyspc", nlines = 0, nspc = NULL) {
@@ -204,6 +207,9 @@ read.txt.Renishaw <- function(file = stop("file is required"),
 #' @param txt.file name of the .txt file in the .zip archive. Defaults to zip
 #'   file's name with suffix .txt instead of .zip
 #' @rdname read.txt.Renishaw
+#'
+#' @concept io
+#'
 read.zip.Renishaw <- function(file = stop("filename is required"),
                               txt.file = sub("[.]zip", ".txt", basename(file)), ...) {
   read.txt.Renishaw(file = unz(file, filename = txt.file, "r"), ...)

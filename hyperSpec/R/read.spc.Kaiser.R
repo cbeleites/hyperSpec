@@ -6,6 +6,9 @@
 #'
 #' @title read Kaiser `.spc` files
 #' @export
+#'
+#' @concept io
+#'
 #' @rdname read-spc-Kaiser
 #' @param files If `glob = TRUE`, `filename` can contain wildcards.
 #'   Thus all files matching the name pattern in `filename` can be
@@ -56,6 +59,9 @@ read.spc.Kaiser <- function(files, ..., glob = TRUE) {
 #' to fetch the stage position for each file.
 #' @rdname read-spc-Kaiser
 #' @export
+#'
+#' @concept io
+#'
 read.spc.KaiserMap <- function(files, keys.log2data = NULL, ...) {
   keys.log2data <- c("Stage_X_Position", "Stage_Y_Position", "Stage_Z_Position", keys.log2data)
 
@@ -84,6 +90,9 @@ read.spc.KaiserMap <- function(files, keys.log2data = NULL, ...) {
 #' @param type what kind of measurement was done? If `"map"`, `read.spc.KaiserMap` is used
 #' instead of `read.spc.Kaiser`.
 #' @export
+#'
+#' @concept io
+#'
 read.spc.KaiserLowHigh <- function(files = stop("file names needed"),
                                    type = c("single", "map"),
                                    ..., glob = TRUE) {

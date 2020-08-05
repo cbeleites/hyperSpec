@@ -1,4 +1,4 @@
-#' Matlab-like Palettes.
+#' Matlab-Like Color Palettes.
 #'
 #' Two palettes going from blue over green to red, approximately as the
 #' standard palette of Matlab does. The second one has darker green values and
@@ -13,6 +13,10 @@
 #' @return A vector containing the color values in the form "\#rrbbggaa".
 #' @author C. Beleites and A. Bonifacio
 #' @seealso [grDevices::rainbow()]
+#'
+#' @concept plotting
+#' @concept color palette
+#'
 #' @export
 #' @importFrom grDevices rainbow
 #' @keywords color
@@ -25,6 +29,10 @@ matlab.palette <- function(n = 100, ...) {
 
 #' @rdname palettes
 #' @aliases  matlab.dark.palette
+#'
+#' @concept plotting
+#' @concept color palette
+#'
 #' @export
 #' @examples
 #'
@@ -33,13 +41,17 @@ matlab.palette <- function(n = 100, ...) {
 matlab.dark.palette <- function(n = 100, ...) {
   pal <- rev(rainbow(n, start = 0, end = 4 / 6, ...))
   pal <- col2rgb(pal)
-  pal ["green", ] <- pal ["green", ] / 2
+  pal["green", ] <- pal["green", ] / 2
 
   rgb(t(pal) / 255)
 }
 
 #' @rdname palettes
 #' @export
+#'
+#' @concept plotting
+#' @concept color palette
+#'
 #' @examples
 #'
 #' plotmap(faux_cell, col = alois.palette)

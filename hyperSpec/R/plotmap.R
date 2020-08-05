@@ -74,7 +74,11 @@
 #'
 #' [plot()]
 #' @export
+#'
 #' @keywords hplot
+#' @concept plotting
+#' @concept plot generation
+#'
 #' @examples
 #'
 #' \dontrun{

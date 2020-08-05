@@ -7,9 +7,12 @@
 #' @return covariance matrix of size `nwl (x)` x  `nwl (x)`
 #' @seealso [stats::cov()]
 #' @author C. Beleites
-#' @concept stats
 #' @rdname cov
+#'
 #' @export
+#'
+#' @concept stats
+#'
 #' @examples
 #' image(cov(faux_cell))
 setMethod("cov", signature = signature(x = "hyperSpec", y = "missing"),

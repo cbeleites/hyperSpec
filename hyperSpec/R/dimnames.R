@@ -5,14 +5,18 @@
 #'
 #' @param x the `hyperSpec` object
 #' @aliases dimnames
-#' @keywords methods
 #' @rdname dimnames
 #' @docType methods
 #' @author C. Beleites
 #' @seealso [wl()] for the wavelength dimension
 #'
 #' [base::dimnames()]
+#'
 #' @export
+#'
+#' @keywords methods
+#' @concept manipulation
+#'
 #' @examples
 #' dimnames(flu)
 setMethod("dimnames", signature = signature(x = "hyperSpec"), function(x) {
@@ -31,6 +35,9 @@ setMethod("dimnames", signature = signature(x = "hyperSpec"), function(x) {
 #' @param prefix handed to [base::rownames()] or [base::colnames()]
 #' @seealso [base::rownames()]
 #' @export
+#'
+#' @concept manipulation
+#'
 #' @examples
 #' rownames(flu)
 setMethod("rownames", signature = signature(x = "hyperSpec"), function(x, do.NULL = TRUE, prefix = "row") {
@@ -46,6 +53,9 @@ setMethod("rownames", signature = signature(x = "hyperSpec"), function(x, do.NUL
 #' @rdname dimnames
 #' @name rownames<-
 #' @export "rownames<-"
+#'
+#' @concept manipulation
+#'
 setReplaceMethod("rownames", signature = signature(x = "hyperSpec"), function(x, value) {
   validObject(x)
 
@@ -57,6 +67,9 @@ setReplaceMethod("rownames", signature = signature(x = "hyperSpec"), function(x,
 #' @aliases colnames
 #' @seealso [base::colnames()]
 #' @export
+#'
+#' @concept manipulation
+#'
 #' @examples
 #' colnames(faux_cell)
 setMethod("colnames",
@@ -73,6 +86,9 @@ setMethod("colnames",
 #' @aliases colnames<-,hyperSpec-method
 #' @name colnames<-
 #' @export "colnames<-"
+#'
+#' @concept manipulation
+#'
 setReplaceMethod("colnames",
   signature = signature(x = "hyperSpec"),
   function(x, value) {

@@ -20,7 +20,11 @@
 #' @seealso [grid::grid.locator()], [map.identify()]
 #' @export
 #' @rdname map-sel-poly
+#'
 #' @keywords iplot
+#' @concept plotting
+#' @concept plotting tools
+#'
 #' @examples
 #' \dontrun{\donttest{
 #'   ## convenience wrapper
@@ -89,7 +93,11 @@ map.sel.poly <- function(data, pch = 19, size = 0.3, ...) {
 #' @author Claudia Beleites
 #' @seealso [grid::grid.locator()]
 #' @export
+#'
 #' @keywords iplot
+#' @concept plotting
+#' @concept plotting tools
+#'
 #' @rdname map-sel-poly
 #' @importFrom grid grid.lines grid.points
 #' @importFrom utils tail

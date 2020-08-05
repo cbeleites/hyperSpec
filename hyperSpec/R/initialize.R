@@ -119,7 +119,7 @@
     data <- data.frame(spc = spc)
   } else if (!is.null(spc)) {
     if (nrow(data) == 1 && nrow(spc) > 1) {
-      data <- data [rep(1, nrow(spc)), , drop = FALSE]
+      data <- data[rep(1, nrow(spc)), , drop = FALSE]
     }
 
     data$spc <- spc
@@ -187,7 +187,10 @@
 #'   for slot `label`.
 #'
 #' [hy.setOptions()]
+#'
 #' @keywords methods datagen
+#' @concept hyperSpec conversion
+#'
 #' @examples
 #'
 #' new("hyperSpec")
@@ -218,6 +221,9 @@
 #' plot(h)
 #' plotc(h, spc ~ pos)
 setMethod("initialize", "hyperSpec", .initialize)
+
+
+# Unit tests -----------------------------------------------------------------
 
 #' @include unittest.R
 .test(.initialize) <- function() {
@@ -294,11 +300,11 @@ setMethod("initialize", "hyperSpec", .initialize)
   })
 
   test_that("spectra matrix class cannot be converted to numeric", {
-    expect_error(new("hyperSpec", matrix(letters [1:6], 3)))
+    expect_error(new("hyperSpec", matrix(letters[1:6], 3)))
   })
 
   test_that("error if wavelength is not numeric", {
-    expect_error(new("hyperSpec", spc = NA, wavelength = letters [1:3]))
+    expect_error(new("hyperSpec", spc = NA, wavelength = letters[1:3]))
   })
 
 
@@ -312,7 +318,7 @@ setMethod("initialize", "hyperSpec", .initialize)
   })
 }
 
-
+# ... ------------------------------------------------------------------------
 
 #' `as.hyperSpec`: convenience conversion functions.
 #'
@@ -321,11 +327,15 @@ setMethod("initialize", "hyperSpec", .initialize)
 #' @param X the object to convert.
 #' A matrix is assumed to contain the spectra matrix,
 #' a data.frame is assumed to contain extra data.
-#' @param ... additional parameters that should be handed over to `new ("hyperSpec")` (initialize)
+#' @param ... additional parameters that should be handed over to
+#'       `new("hyperSpec")` (initialize)
 #'
 #' @return hyperSpec object
 #' @seealso [hyperSpec::initialize()]
 #' @export
+#'
+#' @concept hyperSpec conversion
+#'
 setGeneric(
   "as.hyperSpec",
   function(X, ...) {
@@ -344,16 +354,22 @@ setGeneric(
 #' @param labels list with labels
 #' @export
 #'
+#' @concept hyperSpec conversion
+#'
 #' @examples
 #' tmp <- data.frame(flu[[, , 400 ~ 410]])
 #' (wl <- colnames(tmp))
 #' guess.wavelength(wl)
 setMethod("as.hyperSpec", "matrix", .as.hyperSpec.matrix)
 
-.as.hyperSpec.data.frame <- function(X, spc = NULL, wl = guess.wavelength(spc), labels = attr(X, "labels"), ...) {
+.as.hyperSpec.data.frame <- function(X, spc = NULL, wl = guess.wavelength(spc),
+  labels = attr(X, "labels"), ...) {
   # TODO: remove after 31.12.2020
   if (!all(!is.na(guess.wavelength(colnames(X))))) {
-    warning("as.hyperSpec.data.frame has changed its behaviour. Use as.hyperSpec (as.matrix (X)) instead.")
+    warning(
+      "as.hyperSpec.data.frame has changed its behaviour. ",
+      "Use as.hyperSpec(as.matrix(X)) instead."
+    )
   }
 
   if (is.null(spc)) {
@@ -365,9 +381,16 @@ setMethod("as.hyperSpec", "matrix", .as.hyperSpec.matrix)
 }
 
 #' @rdname as.hyperSpec
-#' @note *Note that the behaviour of `as.hyperSpec (X)` was changed: it now assumes `X` to be extra data,
-#' and returns a hyperSpec object with 0 wavelengths. To get the old behaviour*
+#' @note *Note that the behaviour of `as.hyperSpec(X)` was changed: it now
+#' assumes `X` to be extra data, and returns a hyperSpec object with 0
+#' wavelengths. To get the old behaviour*
+
+# FIXME: it seems that the documentation sentence in incomplete.
+
 setMethod("as.hyperSpec", "data.frame", .as.hyperSpec.data.frame)
+
+
+# Unit tests -----------------------------------------------------------------
 
 #' @include unittest.R
 .test(as.hyperSpec) <- function() {
@@ -414,15 +437,20 @@ setMethod("as.hyperSpec", "data.frame", .as.hyperSpec.data.frame)
 
   test_that("ignore colnames if wl is set", {
     colnames(spc) <- c(601, 602, 603)
-    expect_identical(new("hyperSpec", spc = spc, wavelength = wl), as.hyperSpec(X = spc, wl = wl))
+    expect_identical(
+      new("hyperSpec", spc = spc, wavelength = wl),
+      as.hyperSpec(X = spc, wl = wl)
+    )
   })
 
   test_that("set additional parameters", {
     dt <- data.frame(x = 1:4, y = letters[1:4])
     lbs <- list(spc = "I / a.u.", .wavelength = expression(tilde(nu) / cm^-1))
-    expect_identical(new("hyperSpec", spc = spc, data = dt, label = lbs), as.hyperSpec(X = spc, data = dt, label = lbs))
+    expect_identical(
+      new("hyperSpec", spc = spc, data = dt, label = lbs),
+      as.hyperSpec(X = spc, data = dt, label = lbs)
+    )
   })
-
 
   test_that("error on unknown class", {
     tmp <- NA

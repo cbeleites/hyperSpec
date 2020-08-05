@@ -57,7 +57,10 @@
 #' - Manufacturer specific file formats: [read.txt.Renishaw()].
 #'
 #' @rdname textio
+#'
 #' @keywords IO file
+#' @concept io
+#'
 #' @export
 #' @importFrom utils read.table unstack
 #' @examples

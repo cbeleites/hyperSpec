@@ -30,8 +30,12 @@
 #' @return A list of `hyperSpec` objects.
 #' @author C. Beleites
 #' @seealso [base::split()]
-#' @keywords methods
+#'
 #' @export
+#'
+#' @keywords methods
+#' @concept manipulation
+#'
 #' @examples
 #'
 #' dist <- pearson.dist(faux_cell[[]])
@@ -44,3 +48,31 @@
 #' # difference in cluster mean spectra
 #' plot(apply(region[[2]], 2, mean) - apply(region[[1]], 2, mean))
 setMethod("split", signature = signature(x = "hyperSpec"), .split)
+
+
+# Unit tests -----------------------------------------------------------------
+.test(.split) <- function() {
+
+  context("split")
+
+  # Perform tests
+  test_that("split() works", {
+    expect_silent(split(flu, factor(c(1, 1, 1, 2, 2, 2))))
+  })
+
+  test_that("split() gives correct results", {
+    expect_silent(obj <- split(flu, factor(c(1, 2, 1, 2, 2, 1))))
+
+    # Check list properties
+    expect_is(obj, "list")
+    expect_length(obj, 2)
+    expect_equal(names(obj), c("1", "2"))
+
+    # Compare hyperSpec objects
+    expect_is(obj$`1`, "hyperSpec")
+    expect_is(obj$`2`, "hyperSpec")
+    expect_equal(obj$`1`, flu[c(1, 3, 6), , ])
+    expect_equal(obj$`2`, flu[c(2, 4, 5), , ])
+
+  })
+}

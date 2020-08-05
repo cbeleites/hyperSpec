@@ -27,7 +27,11 @@
 #' @return `sum`, `prod`, `min`, `max`, and `range` return  a numeric,
 #' `all`, `any`, and `is.na` a logical.
 #' @seealso [base::Summary()] for the base summary functions.
+#'
 #' @export
+#'
+#' @concept stats
+#'
 #' @examples
 #'
 #' range(flu)
@@ -77,11 +81,13 @@ all_wl <- function(expression, na.rm = FALSE) {
   res <- rowSums(!expression, na.rm = TRUE) == 0
 
   if (!na.rm) {
-    res [res] <- rowSums(expression [res, , drop = FALSE], na.rm = FALSE) == ncol(expression)
+    res[res] <- rowSums(expression[res, , drop = FALSE], na.rm = FALSE) == ncol(expression)
   }
 
   res
 }
+
+# Unit tests -----------------------------------------------------------------
 
 .test(all_wl) <- function() {
   context("all_wl")
@@ -120,6 +126,8 @@ all_wl <- function(expression, na.rm = FALSE) {
   })
 }
 
+# ... ------------------------------------------------------------------------
+
 #' @rdname summary
 #' @export
 #' @examples
@@ -130,12 +138,14 @@ any_wl <- function(expression, na.rm = FALSE) {
   res <- rowSums(expression, na.rm = TRUE) > 0
 
   if (!na.rm) {
-    res [!res] <- !rowSums(expression [!res, , drop = FALSE], na.rm = FALSE) == 0
+    res[!res] <- !rowSums(expression[!res, , drop = FALSE], na.rm = FALSE) == 0
   }
 
   res
 }
 
+
+# Unit tests -----------------------------------------------------------------
 .test(any_wl) <- function() {
   context("any_wl")
 
@@ -170,5 +180,18 @@ any_wl <- function(expression, na.rm = FALSE) {
       any_wl(tmp > 400, na.rm = FALSE),
       apply(tmp > 400, 1, any, na.rm = FALSE)
     )
+  })
+
+  test_that("Summary warnings", {
+    expect_warning(
+      prod(flu),
+      "Do you really want to use prod on a hyperSpec object?"
+    )
+
+    expect_warning(
+      sum(flu),
+      "Do you really want to use sum on a hyperSpec object?"
+    )
+
   })
 }
