@@ -65,7 +65,7 @@ attach_hySpc <- function(dont_attach = "hySpc.testthat", ..., quiet = NA) {
 }
 
 # Unit tests -----------------------------------------------------------------
-.test(attach_hySpc) <- function() {
+hySpc.testthat::test(attach_hySpc) <- function() {
   context("attach_hySpc")
 
   test_that("attach_hySpc() works", {
