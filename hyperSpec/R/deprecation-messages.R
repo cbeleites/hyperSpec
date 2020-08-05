@@ -47,13 +47,13 @@ deprecated_ggplot2 <- function(new = "", old = as.character(sys.call(sys.parent(
 
 # suppress_warnings() is created to overcome issue that suppressWarnings()
 # in R < 4.0.0 does not have argument "classes"
-suppress_warnings <- function(expr, classes = "warnings") {
+suppress_warnings <- function(...) {
   if (R.version$major < 4) {
     # Suppress all warnings
-    suppressWarnings(expr)
+    suppressWarnings(..1)
   } else {
     # Selectively suppress certain class of warnings
-    suppressWarnings(expr, classes)
+    suppressWarnings(...)
   }
 }
 
