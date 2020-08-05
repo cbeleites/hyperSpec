@@ -224,7 +224,7 @@ setMethod("as.character",
 
 
 # Unit tests -----------------------------------------------------------------
-.test(show) <- function() {
+hySpc.testthat::test(show) <- function() {
   context("show")
 
   # Create data
@@ -251,7 +251,7 @@ setMethod("as.character",
 }
 
 
-.test(print) <- function() {
+hySpc.testthat::test(print) <- function() {
   context("print")
 
   # Create data
@@ -285,7 +285,7 @@ setMethod("as.character",
 }
 
 
-.test(summary) <- function() {
+hySpc.testthat::test(summary) <- function() {
   context("summary")
 
   # Create data
@@ -314,7 +314,7 @@ setMethod("as.character",
 #
 #
 #
-# .test(as.character) <- function() {
+# hySpc.testthat::test(as.character) <- function() {
   context("as.character")
 
   # Create data
