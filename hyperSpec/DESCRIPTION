@@ -39,6 +39,7 @@ Depends:
     ggplot2 (>= 2.3.0)
 Imports:
     dplyr,
+    hySpc.testthat,
     latticeExtra,
     lazyeval,
     methods,
@@ -79,7 +80,6 @@ VignetteBuilder: knitr
 Collate:
     'validate.R'
     'hyperspec-class.R'
-    'unittest.R'
     'paste.row.R'
     'expand.R'
     'Arith.R'
@@ -185,6 +185,7 @@ Collate:
     'sweep.R'
     'trellis.factor.key.R'
     'units.R'
+    'unittest.R'
     'vandermonde.R'
     'wc.R'
     'wl.R'
