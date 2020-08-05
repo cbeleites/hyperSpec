@@ -19,11 +19,11 @@ hySpc_deprecated <- function(new = "", package = NULL, url = NULL,
 
     url_msg <-
       if (is.null(url)) {
-        paste0("\n\n", "https://r-hyperspec.github.io/", package, "\n")
+        paste0("\n", "https://r-hyperspec.github.io/", package, "\n")
       } else if (url == "") {
         ""
       } else {
-        paste0("\n\n", url, "\n")
+        paste0("\n", url, "\n")
       }
   } else {
     fun_msg <-
