@@ -320,7 +320,7 @@ qplotmixmap <- function(object, ...) {
   deprecated_ggplot2(new = "qplotmixmap")
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   # Suppress excessive deprecation warnings from internally used functions.
-  suppressWarnings(classes = "deprecatedWarning", {
+  suppress_warnings(classes = "deprecatedWarning", {
 
     p <- qmixtile(object@data, ...) +
       coord_equal()

@@ -45,6 +45,19 @@ deprecated_ggplot2 <- function(new = "", old = as.character(sys.call(sys.parent(
   hySpc_deprecated(new = new, package = "hySpc.ggplot2", old = old)
 }
 
+# suppress_warnings() is created to overcome issue that suppressWarnings()
+# in R < 4.0.0 does not have argument "classes"
+suppress_warnings <- function(expr, classes = "warnings") {
+  if (R.version$major < 4) {
+    # Suppress all warnings
+    suppressWarnings(expr)
+  } else {
+    # Selectively suppress certain class of warnings
+    suppressWarnings(expr, classes)
+  }
+}
+
+
 # Unit tests -----------------------------------------------------------------
 
 hySpc.testthat::test(deprecated_ggplot2) <- function() {
