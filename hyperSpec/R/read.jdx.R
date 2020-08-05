@@ -336,7 +336,7 @@ read.jdx <- function(filename = stop("filename is needed"), encoding = "",
 }
 
 
-.test(read.jdx) <- function() {
+hySpc.testthat::test(read.jdx) <- function() {
   context("test-read.jdx")
 
   files <- c(

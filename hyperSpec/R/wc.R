@@ -35,7 +35,7 @@ wc <- function(file, flags = c("lines", "words", "bytes")) {
   output
 }
 
-.test(wc) <- function() {
+hySpc.testthat::test(wc) <- function() {
   context("wc")
 
   tmpfile <- tempfile()

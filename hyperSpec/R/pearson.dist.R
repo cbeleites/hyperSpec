@@ -41,8 +41,8 @@ pearson.dist <- function(x) {
   0.5 - x / 2
 }
 
-#' @include unittest.R
-.test(pearson.dist) <- function() {
+
+hySpc.testthat::test(pearson.dist) <- function() {
   context("pearson.dist")
 
   test_that("pearson.dist against manual calculation", {

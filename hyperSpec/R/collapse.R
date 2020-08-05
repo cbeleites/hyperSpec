@@ -137,8 +137,8 @@ collapse <- function(..., wl.tolerance = hy.getOption("wl.tolerance"), collapse.
   new("hyperSpec", wavelength = wl, data = dots, labels = labels)
 }
 
-#' @include unittest.R
-.test(collapse) <- function() {
+
+hySpc.testthat::test(collapse) <- function() {
   context("collapse")
 
   test_that("correctly assembled", {
@@ -486,7 +486,7 @@ collapse <- function(..., wl.tolerance = hy.getOption("wl.tolerance"), collapse.
   wl.df
 }
 
-.test(.cluster.wavelengths) <- function() {
+hySpc.testthat::test(.cluster.wavelengths) <- function() {
   context(".cluster.wavelengths")
 
   test_that("clustering with last window being long", {

@@ -280,7 +280,7 @@ c <- 299792458 # speed of light
 
 # Unit tests -----------------------------------------------------------------
 
-.test(wl) <- function() {
+hySpc.testthat::test(wl) <- function() {
 
   context("get wl")
 
@@ -319,7 +319,7 @@ c <- 299792458 # speed of light
 }
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-.test(.fixunitname) <- function() {
+hySpc.testthat::test(.fixunitname) <- function() {
 
   context(".fixunitname")
 
@@ -340,7 +340,7 @@ c <- 299792458 # speed of light
 }
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-.test(wlconv) <- function() {
+hySpc.testthat::test(wlconv) <- function() {
 
   context("wlconv")
 

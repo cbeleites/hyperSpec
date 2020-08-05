@@ -56,7 +56,7 @@ spc.smooth.spline <- function(spc, newx = wl(spc), ...) {
 }
 
 # Unit tests -----------------------------------------------------------------
-.test(spc.smooth.spline) <- function() {
+hySpc.testthat::test(spc.smooth.spline) <- function() {
   context("spc.smooth.spline")
 
   # Perform tests

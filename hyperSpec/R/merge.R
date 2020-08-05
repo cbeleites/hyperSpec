@@ -149,8 +149,8 @@ setMethod("merge",
 
 
 
-#' @include unittest.R
-.test(.merge) <- function() {
+
+hySpc.testthat::test(.merge) <- function() {
   context("merge")
 
   test_that("correct number of rows", {

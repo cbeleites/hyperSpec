@@ -25,7 +25,7 @@
   e1
 }
 
-.test(.arith_hh) <- function() {
+hySpc.testthat::test(.arith_hh) <- function() {
   context("Arithmetic operators, 2 hyperSpec objects")
 
   tmp <- as.hyperSpec(matrix(1:length(flu[[]]), nrow = nrow(flu)))
@@ -103,7 +103,7 @@
 #' @concept manipulation
 #'
 #' @include paste.row.R
-#' @include unittest.R
+
 #' @include hyperspec-class.R
 #' @concept hyperSpec arithmetic
 #' @concept hyperSpec arithmetical operators
@@ -139,7 +139,7 @@ setMethod("Arith", signature(e1 = "hyperSpec", e2 = "hyperSpec"), .arith_hh)
   e1[[]] <- callGeneric(e1[[]])
   e1
 }
-.test(.arith_h_) <- function() {
+hySpc.testthat::test(.arith_h_) <- function() {
   context("Unary arithmetic operators")
 
   test_that("correct results", {
@@ -185,7 +185,7 @@ setMethod("Arith", signature(e1 = "hyperSpec", e2 = "missing"), .arith_h_)
   e1
 }
 
-.test(.arith_hn) <- function() {
+hySpc.testthat::test(.arith_hn) <- function() {
   context("Arithmetic operators, hyperSpec object x")
 
   test_that("correct results with scalar", {
@@ -307,7 +307,7 @@ setMethod("Arith", signature(e1 = "matrix", e2 = "hyperSpec"), .arith_nh)
   x
 }
 
-.test(.matmul_hh) <- function() {
+hySpc.testthat::test(.matmul_hh) <- function() {
   context("matrix multiplication: 2 hyperSpec objects")
   h <- flu[, , 1:nrow(flu), wl.index = TRUE]
   h$filename <- NULL
@@ -349,7 +349,7 @@ setMethod("%*%", signature(x = "hyperSpec", y = "hyperSpec"), .matmul_hh)
   x
 }
 
-.test(.matmul_hm) <- function() {
+hySpc.testthat::test(.matmul_hm) <- function() {
   context("matrix multiplication hyperSpec x matrix")
 
   m <- matrix(1:(2 * nwl(flu)), nrow = nwl(flu))
@@ -377,7 +377,7 @@ setMethod("%*%", signature(x = "hyperSpec", y = "matrix"), .matmul_hm)
   new("hyperSpec", wavelength = y@wavelength, spc = x %*% y@data$spc)
 }
 
-.test(.matmul_mh) <- function() {
+hySpc.testthat::test(.matmul_mh) <- function() {
   context("matrix multiplication: matrix x hyperSpec")
 
   m <- matrix(1:(2 * nrow(flu)), ncol = nrow(flu))

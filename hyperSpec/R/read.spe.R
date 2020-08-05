@@ -321,7 +321,7 @@ spe.showcalpoints <- function(filename, xaxis = "file", acc2avg = F, cts_sec = F
 
 
 ############# UNIT TESTS ################
-.test(read.spe) <- function() {
+hySpc.testthat::test(read.spe) <- function() {
 
   # Filenames
   polystyrene <- "fileio/spe/polystyrene.SPE"

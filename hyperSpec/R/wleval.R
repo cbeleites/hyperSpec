@@ -35,8 +35,8 @@ wl.eval <- function(x, ..., normalize.wl = I) {
   x
 }
 
-#' @include unittest.R
-.test(wl.eval) <- function() {
+
+hySpc.testthat::test(wl.eval) <- function() {
   context("wl.eval")
 
   test_that("error on function not returning same length as input", {

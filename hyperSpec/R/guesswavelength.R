@@ -36,7 +36,7 @@ guess.wavelength <- function(X) {
 
 #' @include regexps.R
 #' @include options.R
-.test(guess.wavelength) <- function() {
+hySpc.testthat::test(guess.wavelength) <- function() {
   context("guess.wavelength")
 
   test_that("simple test", {
