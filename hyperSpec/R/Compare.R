@@ -1,4 +1,4 @@
-#' @title Comparison of `hyperSpec` objects.
+#' @title Comparison of `hyperSpec` objects
 #' @description
 #' The comparison operators `>`, `<`, `>=`, `<=`, `==`, and `!=` for `hyperSpec` objects.
 #'
@@ -74,12 +74,16 @@ setMethod(
   callGeneric(e1, e2[[]])
 }
 
+
 #' @rdname Comparison
 setMethod("Compare", signature(e1 = "hyperSpec", e2 = "numeric"), .compx)
+
 #' @rdname Comparison
 setMethod("Compare", signature(e1 = "hyperSpec", e2 = "matrix"), .compx)
 
+
 #' @rdname Comparison
 setMethod("Compare", signature(e1 = "numeric", e2 = "hyperSpec"), .compy)
+
 #' @rdname Comparison
 setMethod("Compare", signature(e1 = "matrix", e2 = "hyperSpec"), .compy)

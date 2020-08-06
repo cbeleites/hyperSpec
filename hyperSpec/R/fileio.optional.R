@@ -1,4 +1,4 @@
-#' Helper function to harmonize treatment of file import results
+#' Helper Function to Harmonize Treatment of File Import Results
 #'
 #' This function provides two ways of post-processing imported spectra:
 #'
@@ -14,16 +14,19 @@
 #' @param filename filename(s) to become extra data column of `spc`
 #' @param ... (ignored)
 #' @param file.remove.emptyspc should empty (all `NA` or all `0`) spectra be
-#'   removed?
+#'        removed?
 #' @param file.keep.name should file names be kept and put into `spc$filename`?
 #' @param tolerance intensities in +/- `tolerance` are considered `0` for
-#'   `file.remove.emptyspc = TRUE`
-#' @keywords internal
+#'        `file.remove.emptyspc = TRUE`
+#'
 #' @return hyperSpec object
-#' @export
+#'
+#' @keywords internal
 #'
 #' @concept io
 #' @concept manipulation
+#'
+#' @export
 #'
 .fileio.optional <- function(spc, filename, ...,
                              file.remove.emptyspc = hy.getOption("file.remove.emptyspc"),

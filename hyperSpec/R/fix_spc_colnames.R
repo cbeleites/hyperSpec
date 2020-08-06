@@ -1,12 +1,12 @@
-#' Ensure that the spectra matrix has the wavelengths in column names.
+#' Ensure That the Spectra Matrix Has the Wavelengths in Column Names
 #'
-#' @param spc hyperSpec object
+#' @param spc `hyperSpec` object.
 #'
-#' @return hyperSpec object with wavelengths in column names of `$spc`
-#'
-#' @export
+#' @return `hyperSpec` object with wavelengths in column names of `$spc`.
 #'
 #' @concept manipulation
+#'
+#' @export
 #'
 .fix_spc_colnames <- function(spc) {
   colnames(spc@data$spc) <- signif(spc@wavelength, digits = 6)
