@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Matlab-Like Color Palettes. — matlab.palette • hyperSpec</title>
+<title>Matlab-Like Color Palettes — matlab.palette • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,7 +41,7 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Matlab-Like Color Palettes. — matlab.palette" />
+<meta property="og:title" content="Matlab-Like Color Palettes — matlab.palette" />
 <meta property="og:description" content="Two palettes going from blue over green to red, approximately as the
 standard palette of Matlab does. The second one has darker green values and
 is better suited for plotting lines on white background." />
@@ -157,7 +157,7 @@ is better suited for plotting lines on white background." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Matlab-Like Color Palettes.</h1>
+    <h1>Matlab-Like Color Palettes</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/matlab.palette.R'><code>R/matlab.palette.R</code></a></small>
     <div class="hidden name"><code>palettes.Rd</code></div>
     </div>
@@ -184,13 +184,13 @@ is better suited for plotting lines on white background.</p>
     <tr>
       <th>...</th>
       <td><p>further arguments are handed to <code><a href='https://rdrr.io/r/grDevices/palettes.html'>grDevices::rainbow()</a></code>
-(<code>alois.palette</code>: <code><a href='https://rdrr.io/r/grDevices/colorRamp.html'>grDevices::colorRampPalette()</a></code>)</p></td>
+(<code>alois.palette</code>: <code><a href='https://rdrr.io/r/grDevices/colorRamp.html'>grDevices::colorRampPalette()</a></code>).</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A vector containing the color values in the form "\#rrbbggaa".</p>
+    <p>A vector containing the color values in the form <code>"#rrbbggaa"</code>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='https://rdrr.io/r/grDevices/palettes.html'>grDevices::rainbow()</a></code></p></div>
@@ -199,10 +199,27 @@ is better suited for plotting lines on white background.</p>
     <p>C. Beleites and A. Bonifacio</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='fu'>plotmap</span>(<span class='kw'>faux_cell</span> [, , <span class='fl'>778</span>], col.regions = <span class='fu'>matlab.palette</span>())</div><div class='img'><img src='palettes-1.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>flu</span>, col = <span class='fu'>matlab.dark.palette</span>(<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='kw'>flu</span>)))</div><div class='img'><img src='palettes-2.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='fu'>plotmap</span>(<span class='kw'>faux_cell</span>, col = <span class='kw'>alois.palette</span>)</div><div class='img'><img src='palettes-3.png' alt='' width='466' height='288' /></div></pre>
+    <pre class="examples"><div class='input'><span class='co'># Matlab dark palette</span>
+
+<span class='kw'>op</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(mar = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>0</span>, <span class='fl'>0</span>, <span class='fl'>0</span>))
+<span class='fu'><a href='https://rdrr.io/r/graphics/pie.html'>pie</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>1</span>, <span class='fl'>12</span>), col = <span class='fu'>matlab.palette</span>(<span class='fl'>12</span>))</div><div class='img'><img src='palettes-1.png' alt='' width='466' height='288' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(<span class='kw'>op</span>)
+
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>flu</span>, col = <span class='fu'>matlab.palette</span>(<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='kw'>flu</span>)))</div><div class='img'><img src='palettes-2.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='fu'>plotmap</span>(<span class='kw'>faux_cell</span>[, , <span class='fl'>1200</span>], col.regions = <span class='fu'>matlab.palette</span>())</div><div class='img'><img src='palettes-3.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='co'># Matlab dark palette</span>
+
+<span class='kw'>op</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(mar = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>0</span>, <span class='fl'>0</span>, <span class='fl'>0</span>))
+<span class='fu'><a href='https://rdrr.io/r/graphics/pie.html'>pie</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>1</span>, <span class='fl'>12</span>), col = <span class='fu'>matlab.dark.palette</span>(<span class='fl'>12</span>))</div><div class='img'><img src='palettes-4.png' alt='' width='466' height='288' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(<span class='kw'>op</span>)
+
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>flu</span>, col = <span class='fu'>matlab.dark.palette</span>(<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='kw'>flu</span>)))</div><div class='img'><img src='palettes-5.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='fu'>plotmap</span>(<span class='kw'>faux_cell</span>[, , <span class='fl'>1200</span>], col.regions = <span class='fu'>matlab.dark.palette</span>())</div><div class='img'><img src='palettes-6.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='co'># Alois palette</span>
+
+<span class='kw'>op</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(mar = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>0</span>, <span class='fl'>0</span>, <span class='fl'>0</span>))
+<span class='fu'><a href='https://rdrr.io/r/graphics/pie.html'>pie</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>1</span>, <span class='fl'>12</span>), col = <span class='fu'>alois.palette</span>(<span class='fl'>12</span>))</div><div class='img'><img src='palettes-7.png' alt='' width='466' height='288' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(<span class='kw'>op</span>)
+
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>flu</span>, col = <span class='fu'>alois.palette</span>(<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='kw'>flu</span>)))</div><div class='img'><img src='palettes-8.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='fu'>plotmap</span>(<span class='kw'>faux_cell</span>[, , <span class='fl'>1200</span>], col.regions = <span class='fu'>alois.palette</span>())</div><div class='img'><img src='palettes-9.png' alt='' width='466' height='288' /></div><div class='input'></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

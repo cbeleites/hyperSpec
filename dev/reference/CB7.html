@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Functions <code>colSums()</code>, <code>colMeans()</code>, <code>rowSums()</code>, and <code>rowMeans()</code> for <code>hyperSpec</code> Objects — colSums • hyperSpec</title>
+<title>Color Suggestions for <code>hyperSpec</code> Users — CB7 • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,9 +41,24 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Functions <code>colSums()</code>, <code>colMeans()</code>, <code>rowSums()</code>, and <code>rowMeans()</code> for <code>hyperSpec</code> Objects — colSums" />
-<meta property="og:description" content="hyperSpec objects can use the base functions base::colMeans(),
-base::colSums(), base::rowMeans() and base::rowSums()." />
+<meta property="og:title" content="Color Suggestions for <code>hyperSpec</code> Users — CB7" />
+<meta property="og:description" content="In hyperSpec the user may use any color name/format known to R.
+An important fact to keep in mind is that most people with normal vision
+cannot distinguish more than about 8-12 colors, and doing so depends upon
+the viewing circumstances: if on paper, printer, ink and paper type all
+matter, and if on a screen, the background color makes a big difference.
+Further, color-blind individuals have additional challenges. A great
+discussion of color issues can be found in the colorspace package.
+The Polychrome
+package has further discussion and utilities for choosing qualitative
+colorschemes, including those for color-blind individuals.
+CB7 is a selection of seven colors suitable for use on screens by people
+with normal color vision, as well as people with the most common type of
+colorblindness, deutanomaly. The last color is a shade of yellow with a
+gold tone. In some  viewing circumstances this may be hard to see on a
+white background.
+You can see how these colors perform at this
+website." />
 
 <meta name="robots" content="noindex" />
 <meta name="robots" content="noindex">
@@ -156,82 +171,44 @@ base::colSums(), base::rowMeans() and base::rowSums()." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Functions <code>colSums()</code>, <code>colMeans()</code>, <code>rowSums()</code>, and <code>rowMeans()</code> for <code>hyperSpec</code> Objects</h1>
-    <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/colMeans.R'><code>R/colMeans.R</code></a></small>
-    <div class="hidden name"><code>colSums.Rd</code></div>
+    <h1>Color Suggestions for <code>hyperSpec</code> Users</h1>
+    <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/Colors.R'><code>R/Colors.R</code></a></small>
+    <div class="hidden name"><code>CB7.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p><code>hyperSpec</code> objects can use the base functions <code><a href='https://rdrr.io/r/base/colSums.html'>base::colMeans()</a></code>,
-<code><a href='https://rdrr.io/r/base/colSums.html'>base::colSums()</a></code>, <code><a href='https://rdrr.io/r/base/colSums.html'>base::rowMeans()</a></code> and <code><a href='https://rdrr.io/r/base/colSums.html'>base::rowSums()</a></code>.</p>
+    <p>In <span class="pkg">hyperSpec</span> the user may use any color name/format known to <code>R</code>.
+An important fact to keep in mind is that most people with normal vision
+cannot distinguish more than about 8-12 colors, and doing so depends upon
+the viewing circumstances: if on paper, printer, ink and paper type all
+matter, and if on a screen, the background color makes a big difference.
+Further, color-blind individuals have additional challenges. A great
+discussion of color issues can be found in the <span class="pkg">colorspace</span> package.
+The <a href='https://CRAN.R-project.org/package=Polychrome'><span class="pkg">Polychrome</span></a>
+package has further discussion and utilities for choosing qualitative
+colorschemes, including those for color-blind individuals.</p>
+<p><code>CB7</code> is a selection of seven colors suitable for use on screens by people
+with normal color vision, as well as people with the most common type of
+colorblindness, deutanomaly. The last color is a shade of yellow with a
+gold tone. In some  viewing circumstances this may be hard to see on a
+white background.
+You can see how these colors perform at this
+<a href='https://tinyurl.com/ycnwaf5v'>website</a>.</p>
     </div>
 
-    <pre class="usage"><span class='co'># S4 method for hyperSpec</span>
-<span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>colMeans</a></span>(<span class='kw'>x</span>, na.rm = <span class='fl'>TRUE</span>, <span class='kw'>...</span>, <span class='kw'>label.spc</span>)
 
-<span class='co'># S4 method for hyperSpec</span>
-<span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>colSums</a></span>(<span class='kw'>x</span>, na.rm = <span class='fl'>TRUE</span>, <span class='kw'>...</span>, <span class='kw'>label.spc</span>)
 
-<span class='co'># S4 method for hyperSpec</span>
-<span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>rowMeans</a></span>(<span class='kw'>x</span>, na.rm = <span class='fl'>TRUE</span>, <span class='kw'>...</span>, <span class='kw'>label.wavelength</span>)
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-<span class='co'># S4 method for hyperSpec</span>
-<span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>rowSums</a></span>(<span class='kw'>x</span>, na.rm = <span class='fl'>TRUE</span>, <span class='kw'>...</span>, <span class='kw'>label.wavelength</span>)</pre>
-
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>x</th>
-      <td><p><code>hyperSpec</code> object</p></td>
-    </tr>
-    <tr>
-      <th>na.rm, ...</th>
-      <td><p>further parameters to the base functions</p>
-<p><code>na.rm</code> defaults to <code>TRUE</code> for <code>hyperSpec</code> objects.</p></td>
-    </tr>
-    <tr>
-      <th>label.spc</th>
-      <td><p>labels for the intensity axis for loadings-like (col) statistics</p></td>
-    </tr>
-    <tr>
-      <th>label.wavelength</th>
-      <td><p>labels for the wavelength axis for scores-like (row) statistics</p></td>
-    </tr>
-    </table>
-
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><a href='https://rdrr.io/r/base/colSums.html'>colSums</a></p></div>
+    <p>Colors are stored as character vectors.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>colMeans</a></span>(<span class='kw'>flu</span>)</div><div class='output co'>#&gt; hyperSpec object
-#&gt;    1 spectra
-#&gt;    1 data columns
-#&gt;    181 data points / spectrum
-#&gt; wavelength: lambda/nm [numeric] 405.0 405.5 ... 495 
-#&gt; data:  (1 rows x 1 columns)
-#&gt;    1. spc: I[fl]/"a.u." [matrix, array181] 113.9094 120.0804 ... 170.5215 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>colSums</a></span>(<span class='kw'>flu</span>)</div><div class='output co'>#&gt; hyperSpec object
-#&gt;    1 spectra
-#&gt;    1 data columns
-#&gt;    181 data points / spectrum
-#&gt; wavelength: lambda/nm [numeric] 405.0 405.5 ... 495 
-#&gt; data:  (1 rows x 1 columns)
-#&gt;    1. spc: I[fl]/"a.u." [matrix, array181] 683.4563 720.4823 ... 1023.129 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>colSums</a></span>(<span class='kw'>flu</span>)</div><div class='output co'>#&gt; hyperSpec object
-#&gt;    1 spectra
-#&gt;    1 data columns
-#&gt;    181 data points / spectrum
-#&gt; wavelength: lambda/nm [numeric] 405.0 405.5 ... 495 
-#&gt; data:  (1 rows x 1 columns)
-#&gt;    1. spc: I[fl]/"a.u." [matrix, array181] 683.4563 720.4823 ... 1023.129 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>rowSums</a></span>(<span class='kw'>flu</span>)</div><div class='output co'>#&gt; hyperSpec object
-#&gt;    6 spectra
-#&gt;    3 data columns
-#&gt;    1 data points / spectrum
-#&gt; wavelength: lambda/nm [integer] 1 
-#&gt; data:  (6 rows x 3 columns)
-#&gt;    1. spc: I[fl]/"a.u." [matrix, array1] 14410.97 29120.14 ... 92422.77 
-#&gt;    2. filename: filename [character] rawdata/flu1.txt rawdata/flu2.txt ... rawdata/flu6.txt 
-#&gt;    3. c: c / (mg / l) [numeric] 0.05 0.10 ... 0.3 </div></pre>
+    <pre class="examples"><div class='input'><span class='co'># Palette CB7</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>CB7</span>, package = <span class='st'>"hyperSpec"</span>)
+
+<span class='kw'>op</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(mar = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>0</span>, <span class='fl'>0</span>, <span class='fl'>0</span>))
+<span class='fu'><a href='https://rdrr.io/r/graphics/pie.html'>pie</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>1</span>, <span class='fl'>7</span>), col = <span class='kw'>CB7</span>)</div><div class='img'><img src='CB7-1.png' alt='' width='466' height='288' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(<span class='kw'>op</span>)
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
