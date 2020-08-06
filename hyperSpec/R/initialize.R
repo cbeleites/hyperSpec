@@ -143,7 +143,7 @@
   .Object
 }
 
-#' Creating a `hyperSpec` Object.
+#' Creating a `hyperSpec` Object
 #'
 #' Like other S4 objects, a `hyperSpec` object can be created by `new`. The
 #' `hyperSpec` object is then `initialize`d using the given parameters.
@@ -320,7 +320,7 @@ hySpc.testthat::test(.initialize) <- function() {
 
 # ... ------------------------------------------------------------------------
 
-#' `as.hyperSpec`: convenience conversion functions.
+#' `as.hyperSpec`: Convenience Conversion Functions
 #'
 #' These functions are shortcuts to convert other objects into hypeSpec objects.
 #'

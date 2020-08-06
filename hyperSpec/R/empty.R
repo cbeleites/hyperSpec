@@ -1,4 +1,4 @@
-#' Empty `hyperSpec` object.
+#' Empty `hyperSpec` Object
 #'
 #' Empty produces an `hyperSpec` object with the same columns and wavelengths
 #' as `x`. The new object will either contain no rows at all (default), or the
@@ -45,4 +45,5 @@ hySpc.testthat::test(empty) <- function() {
     expect_silent(empty(faux_cell, nrow = 2, spc = 0))
     expect_error(empty(new("hyperSpec")))
   })
+  # FIXME: better tests are needed.
 }

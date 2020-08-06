@@ -1,9 +1,10 @@
-#' Count lines (of an ASCII file).
+#' Count Lines (of an ASCII File)
 #'
 #' @param file the file name or connection
 #' @param chunksize `file` is read in chunks of `chunksize` lines.
 #' @return number of lines in file
 #' @export
+#'
 #' @concept io
 #'
 #' @author C. Beleites

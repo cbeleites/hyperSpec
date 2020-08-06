@@ -1,4 +1,4 @@
-#' @title Collapse/bind several `hyperSpec` objects into one object.
+#' @title Collapse/Bind Several `hyperSpec` Objects into One Object
 #' @description
 #' The spectra from all objects will be put into one object.
 #' The resulting object has all wavelengths that occur in any of the input objects,
