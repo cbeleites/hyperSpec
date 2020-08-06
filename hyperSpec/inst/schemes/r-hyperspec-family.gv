@@ -1,0 +1,91 @@
+
+digraph r_hyperspec_family {
+
+  graph [overlap = true, fontsize = 25, rankdir = LR, fontname = "Helvetica",
+         label = "Model of r-hyperspec family packages (Version 1.1)"]
+
+  # Packages -----------------------------------------------------------------
+  node [shape     = box,
+        fontname  = "Helvetica",
+        width     = 3,
+        fontsize  = 15,
+        penwidth  = 3,
+        style     = filled;
+		    fillcolor = snow1;
+       ]
+
+  // Main
+  hy   [label = "hyperSpec"]
+
+  // Plots
+  subgraph cluster_plots {
+    label = "Plotting"
+    style = filled;
+		fillcolor = lightcyan;
+
+    gg   [label = "hySpc.ggplot2"]
+  }
+
+  // Manipulation
+  subgraph cluster_manipulation {
+    label = "Data manipulation";
+    style = filled;
+		fillcolor = honeydew;
+
+    d    [label = "hySpc.dplyr"]
+    mstat[label = "hySpc.matrixStats **"  , color = "red3"]
+    bline[label = "hySpc.baseline **"     , color = "red3"]
+    emsc [label = "hySpc.EMSC **"         , color = "red3"]
+  }
+
+  // Input-Output
+  subgraph cluster_input_output {
+    label = "Input-Output";
+    style = filled;
+		fillcolor = papayawhip;
+
+    rtxt [label = "hySpc.read.txt  *"     , color = "red3"]
+    rw   [label = "hySpc.read.Witec"]
+    renv [label = "hySpc.read.ENVI  *"    , color = "red3"]
+    rj   [label = "hySpc.read.JCAMP.DX *" , color = "red3"]
+    rmat [label = "hySpc.read.mat  *"     , color = "red3"]
+    rspc [label = "hySpc.read.spc  *"     , color = "red3"]
+    rspe [label = "hySpc.read.spe  *"     , color = "red3"]
+  }
+
+  // Example data
+  subgraph cluster_data {
+    label = "Example data"
+    style = filled;
+		fillcolor = lavender;
+
+    ch   [label = "hySpc.chondro *"]
+  }
+
+  // Utilities
+  tt   [label = "hySpc.testthat"]
+
+
+  # Non-package repos --------------------------------------------------------
+  node [shape = oval, fontcolor = "limegreen"]
+
+  // web  [label = "r-hyperspec.github.io"]
+  // pkgs [label = "hySpc.pkgs"]
+  sk   [label = "hySpc.skeleton"]
+
+
+  # Relationship between packages / repos ------------------------------------
+
+  // Relationship: package dependencies (e.g., imports)
+  edge [color = "RoyalBlue"]
+
+  tt -> {hy sk rtxt rw rj renv rmat rspc rspe gg d mstat bline emsc ch}
+  hy -> {      rtxt rw rj renv rmat rspc rspe gg d mstat bline emsc ch}
+  rtxt -> ch
+
+  // Relationship: via CI only
+  edge [arrowhead = "dot", color = "red4", style = "solid"]
+
+  // ...
+
+}
