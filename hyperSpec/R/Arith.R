@@ -52,7 +52,7 @@ hySpc.testthat::test(.arith_hh) <- function() {
   })
 }
 
-#' @title Arithmetical Operators: `+`, `-`, `*`, `/`, `^`, `%%`, `%/%`, `%*%` for `hyperSpec` objects.
+#' @title Arithmetical Operators: `+`, `-`, `*`, `/`, `^`, `%%`, `%/%`, `%*%` for `hyperSpec` Objects
 #' @description
 #' The arithmetical operators `+`, `-`, `*`, `/`, `^`, `%%`, `%/%`, and `%*%`
 #' `hyperSpec` objects.
@@ -103,7 +103,7 @@ hySpc.testthat::test(.arith_hh) <- function() {
 #' @concept manipulation
 #'
 #' @include paste.row.R
-
+#'
 #' @include hyperspec-class.R
 #' @concept hyperSpec arithmetic
 #' @concept hyperSpec arithmetical operators

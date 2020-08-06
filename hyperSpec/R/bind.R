@@ -1,4 +1,4 @@
-#' Binding `hyperSpec` Objects.
+#' Binding `hyperSpec` Objects
 #'
 #' Functions to bind `hyperSpec` objects.
 #'

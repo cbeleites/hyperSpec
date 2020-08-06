@@ -1,5 +1,5 @@
 #' @name deprecated
-#' @title Deprecated and defunct functions.
+#' @title Deprecated and Defunct Functions
 #' @description Deprecated and defunct functions. You should not use these.
 #' See section "Details" for proposed replacement.
 #'

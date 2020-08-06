@@ -108,7 +108,7 @@ hySpc.testthat::test(.labels) <- function() {
 }
 
 
-#' Get and Set Labels of a `hyperSpec` Object.
+#' Get and Set Labels of a `hyperSpec` Object
 #'
 #' `value` may be a list or vector of labels giving the new label for
 #' each of the entries specified by `which`.
