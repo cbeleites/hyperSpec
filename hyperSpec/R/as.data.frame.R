@@ -1,6 +1,6 @@
-#' Conversion of a hyperSpec object into a data.frame or matrix.
+#' Conversion of a `hyperSpec` Object into a Data Frame or Matrix
 #'
-#' `as.data.frame` returns `x@@data` (as data.frame) `as.matrix`
+#' `as.data.frame()` returns `x@@data` (as data.frame), `as.matrix()`
 #' returns the spectra matrix `x@@data$spc` as matrix.
 #'
 #' @rdname asdataframe
@@ -62,7 +62,7 @@ as.matrix.hyperSpec <- function(x, ...) {
 }
 
 
-#' `as.wide.df` converts the spectra matrix to a data.frame. The extra
+#' `as.wide.df()` converts the spectra matrix to a data.frame. The extra
 #' data together with this data is returned. The column names of the spectra
 #' matrix are retained (if they are numbers, without preceeding letters).
 #'

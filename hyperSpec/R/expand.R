@@ -1,4 +1,4 @@
-#' Expand scalar, vector, matrix or similarly shaped `hyperSpec` objec to matrix.
+#' Expand Scalar, Vector, Matrix or Similarly Shaped `hyperSpec` Objec to Matrix
 #'
 #' Helper function for `hyperSpec` arithmetics.
 #'

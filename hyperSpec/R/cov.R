@@ -1,4 +1,4 @@
-#' Covariance matrices for `hyperSpec` objects.
+#' Covariance Matrices for `hyperSpec` Objects
 #'
 #'
 #' @param x `hyperSpec` object
