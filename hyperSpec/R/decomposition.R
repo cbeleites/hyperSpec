@@ -1,4 +1,4 @@
-#' Convert Principal Component Decomposition or the like into a `hyperSpec` Object.
+#' Convert Principal Component Decomposition or the Like into a `hyperSpec` Object
 #'
 #' Decomposition of the spectra matrix is a common procedure in chemometric
 #' data analysis. `scores` and `loadings` convert the result matrices
@@ -52,8 +52,7 @@
 #' @param ... ignored.
 #' @return A `hyperSpec` object, updated according to `x`
 #' @author C. Beleites
-#' @seealso See [%*%] for matrix multiplication of
-#'   `hyperSpec` objects.
+#' @seealso See [%*%] for matrix multiplication of `hyperSpec` objects.
 #'
 #'   See e.g. [stats::prcomp()] and [stats::princomp()] for
 #'   principal component analysis, and package `pls` for Partial Least

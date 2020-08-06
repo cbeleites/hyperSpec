@@ -61,7 +61,7 @@
 }
 
 
-#' Aggregate `hyperSpec` objects.
+#' Aggregate `hyperSpec` Objects
 #'
 #' Compute summary statistics for subsets of a `hyperSpec` object.
 #'

@@ -36,7 +36,7 @@
       cols <- colnames(data)
       cols <- which(cols != "spc")
       if (length(cols) > 0) {
-        data[1, cols] <- lapply(data [, cols, drop = FALSE], .na.if.different)
+        data[1, cols] <- lapply(data[, cols, drop = FALSE], .na.if.different)
       }
 
       data <- data[rep(1, nrow), , drop = FALSE]
@@ -119,7 +119,7 @@
   X
 }
 
-#' Compute summary statistics for the spectra of a `hyperSpec` object.
+#' Compute Summary Statistics for the Spectra of a `hyperSpec` Object
 #'
 #' `apply` gives the functionality of [base::apply()] for `hyperSpec` objects.
 #'

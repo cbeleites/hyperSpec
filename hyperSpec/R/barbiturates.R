@@ -1,4 +1,4 @@
-#' Barbiturates Spectra from `.spc` example files.
+#' Barbiturates Spectra from `.spc` Example Files
 #'
 #' A time series of mass spectra in a list of `hyperSpec` objects.
 #'

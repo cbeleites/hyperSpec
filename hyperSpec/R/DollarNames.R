@@ -1,6 +1,8 @@
 #' @title Command Line Completion for `$`
 #' @description
 #' Command line completion for `$`.
+#' This function is not intended to be used directly by users but provides
+#' auto-completion capabilities.
 #'
 #' @aliases .DollarNames .DollarNames,hyperSpec-method
 #' @author C. Beleites

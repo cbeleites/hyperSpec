@@ -1,4 +1,4 @@
-#' Laser Emission Dataset.
+#' Laser Emission Dataset
 #'
 #' A time series of an unstable laser emission.
 #'

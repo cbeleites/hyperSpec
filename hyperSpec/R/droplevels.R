@@ -4,7 +4,7 @@
   x
 }
 
-#' Droplevels for `hyperSpec` object.
+#' Droplevels for `hyperSpec` Objects
 #'
 #' Calls [base::droplevels()] on the data.frame in `spc@data`.
 #'

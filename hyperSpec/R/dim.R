@@ -1,5 +1,5 @@
 #' The Number of Rows (Spectra), Columns, and Data Points per Spectrum of a
-#' `hyperSpec` Object.
+#' `hyperSpec` Object
 #'
 #' These functions return the number of rows (spectra), columns, and/or
 #' data points per spectrum of a `hyperSpec` object.
