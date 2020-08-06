@@ -50,7 +50,8 @@ deprecated_ggplot2 <- function(new = "", old = as.character(sys.call(sys.parent(
 suppress_warnings <- function(...) {
   if (R.version$major < 4) {
     # Suppress all warnings
-    suppressWarnings(..1)
+    suppressWarnings(list(...)$expr)
+
   } else {
     # Selectively suppress certain class of warnings
     suppressWarnings(...)
