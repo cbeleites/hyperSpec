@@ -83,9 +83,11 @@ knitr::write_bib(
 
 
 <!-- This chunk inserts common info about all the vignettes -->
-```{r child = "list-of-vignettes.md", echo = FALSE}
-```
 
+```{r, echo = FALSE, results = "asis"}
+res <- knitr::knit_child("list-of-vignettes.md", quiet = TRUE)
+cat(res, sep = '\n')
+```
 
 # Things to Know About **_hyperSpec_**
 
@@ -870,7 +872,7 @@ As just the very maximum is too coarse, we'll use the maximum of a square polyno
 <!-- ======================================================================= -->
 
 ```{r include = FALSE}
-# FIXME: remove when the bug is solved 
+# FIXME: remove when the bug is solved
 tmp_false <- FALSE
 ```
 
