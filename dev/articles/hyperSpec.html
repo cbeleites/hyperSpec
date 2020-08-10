@@ -129,7 +129,7 @@
 <br><a class="author_email" href="mailto:#"></a><a href="mailto:chemometrie@beleites.de" class="email">chemometrie@beleites.de</a>
       </address>
                   
-            <h4 class="date">2020-08-06</h4>
+            <h4 class="date">2020-08-10</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/cbeleites/hyperSpec/blob/master/../vignettes/hyperSpec.Rmd"><code>../vignettes/hyperSpec.Rmd</code></a></small>
       <div class="hidden name"><code>hyperSpec.Rmd</code></div>
@@ -1829,7 +1829,7 @@ Figure 20: The summary spectra of <code>faux_cell</code> with 5<sup>th</sup> per
 <p>Multiplicative scatter correction (MSC) can be done using <code class="sourceCode r"><span class="kw">msc</span>()</code> from package package <strong>pls</strong> <span class="citation">[<a href="#ref-R-pls" role="doc-biblioref">5</a>]</span>.
 It operates on the spectra matrix:</p>
 <div class="sourceCode" id="cb95"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="http://mevik.net/work/software/pls.html">pls</a></span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://mevik.net/work/software/pls.html">pls</a></span>)
 <span class="kw">faux_cell_msc</span> <span class="op">&lt;-</span> <span class="kw">faux_cell</span>
 <span class="kw">faux_cell_msc</span>[[]] <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/pls/man/msc.html">msc</a></span>(<span class="kw">faux_cell</span>[[]])
 </pre></div>
@@ -2486,7 +2486,7 @@ Please refer to the documentation of the respective functions for details about 
   }
 })
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.052   0.002   0.054</span>
+<span class="co">#&gt;   0.210   0.011   0.222</span>
 </pre></div>
 <p>Calculations that involve a lot of subsetting (i.e., extracting or changing the spectra matrix or extra data) can be sped up considerably if the required parts of the <code>hyperSpec</code> object are extracted beforehand.
 This is somewhat similar to model fitting in <code>R</code> in general: many model fitting functions in <code>R</code> are much faster if the formula interface is avoided and the appropriate <code class="sourceCode r">data.frame</code>s or matrices are handed over directly.</p>
@@ -2501,7 +2501,7 @@ This is somewhat similar to model fitting in <code>R</code> in general: many mod
   <span class="kw">tmp</span>[[]] <span class="op">&lt;-</span> <span class="kw">tmp.matrix</span>
 })
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.017   0.000   0.017</span>
+<span class="co">#&gt;   0.050   0.001   0.051</span>
 </pre></div>
 </div>
 <div id="additional-packages" class="section level2">
@@ -2537,7 +2537,7 @@ The memory consumption of <code class="sourceCode r"><span class="kw">read.txt.R
 <span class="co">#&gt;  collate  en_US.UTF-8                 </span>
 <span class="co">#&gt;  ctype    en_US.UTF-8                 </span>
 <span class="co">#&gt;  tz       UTC                         </span>
-<span class="co">#&gt;  date     2020-08-06                  </span>
+<span class="co">#&gt;  date     2020-08-10                  </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; ─ Packages ───────────────────────────────────────────────────────────────────────────────────────</span>
 <span class="co">#&gt;  package        * version       date       lib source        </span>
@@ -2558,7 +2558,7 @@ The memory consumption of <code class="sourceCode r"><span class="kw">read.txt.R
 <span class="co">#&gt;  ggplot2        * 3.3.2         2020-06-19 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  glue             1.4.1         2020-05-13 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  gtable           0.3.0         2019-03-25 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  hyperSpec      * 0.99-20200728 2020-08-06 [1] local         </span>
+<span class="co">#&gt;  hyperSpec      * 0.99-20200728 2020-08-10 [1] local         </span>
 <span class="co">#&gt;  hySpc.testthat   0.2.1         2020-06-24 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  isoband          0.2.2         2020-06-20 [1] CRAN (R 4.0.1)</span>
 <span class="co">#&gt;  jpeg             0.1-8.1       2019-10-24 [1] CRAN (R 4.0.0)</span>
@@ -2620,7 +2620,7 @@ The memory consumption of <code class="sourceCode r"><span class="kw">read.txt.R
 <p>[4] K.H. Liland, T. Almøy, B.-H. Mevik, Optimal choice of baseline correction for multivariate calibration of spectra, Applied Spectroscopy. 64 (2010) 1007–1016.</p>
 </div>
 <div id="ref-R-pls">
-<p>[5] B.-H. Mevik, R. Wehrens, K.H. Liland, Pls: Partial least squares and principal component regression, 2019. <a href="https://CRAN.R-project.org/package=pls">https://CRAN.R-project.org/package=pls</a>.</p>
+<p>[5] B.-H. Mevik, R. Wehrens, K.H. Liland, Pls: Partial least squares and principal component regression, 2020. <a href="https://CRAN.R-project.org/package=pls">https://CRAN.R-project.org/package=pls</a>.</p>
 </div>
 <div id="ref-R-matrixStats">
 <p>[6] H. Bengtsson, MatrixStats: Functions that apply to rows and columns of matrices (and to vectors), 2020. <a href="https://CRAN.R-project.org/package=matrixStats">https://CRAN.R-project.org/package=matrixStats</a>.</p>
