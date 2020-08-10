@@ -163,7 +163,7 @@ reference:
   - has_concept("labels")
 
 - title: '8. Other functions' # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  desc: "Include functions not mentioned."
+  desc: "Functions not mentioned above."
 - contents:
   - lacks_concepts(c(
     "hyperSpec-main",
