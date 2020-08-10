@@ -120,7 +120,8 @@ reference:
 
 - subtitle: '! Moved to package hySpc.ggplot2'
   desc: |
-    You should use analogous functions from package **hySpc.ggplot2**
+    You should use analogous functions from package
+    [**hySpc.ggplot2**](https://r-hyperspec.github.io/hySpc.ggplot2/reference/index.html)
     as these functions will be removed soon.
 - contents:
   - has_concept("moved to hySpc.ggplot2", internal = TRUE)

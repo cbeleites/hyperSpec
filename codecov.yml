@@ -7,11 +7,12 @@ coverage:
         target: auto
         threshold: 1%
         informational: true
-    patch:
-      default:
-        target: auto
-        threshold: 1%
-        informational: true
+    patch: off
+    # patch:
+    #   default:
+    #     target: auto
+    #     threshold: 1%
+    #     informational: true
 
 fixes:
   - "::hyperSpec/"
