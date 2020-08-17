@@ -1,13 +1,19 @@
+# Note: This script automatically detects the repository in which it is run.
+# No edits are needed except in the "Install Dependencies" section where
+# one may need to install additional packages according to the needs.
+# Also: one needs to provide the secret token (we'll eliminate this soon)
+
 on:
   push:
     branches:
       - develop
 
 # Note on the above: if more than one branch given one may stomp on the other
+# during deployment, so use only one branch.
 name: R-CMD-build-check-deploy
 
 jobs:
-  R-CMD-check:
+  R-CMD-build-check-deploy:
     runs-on: ${{ matrix.config.os }}
 
     name: ${{ matrix.config.os }} (${{ matrix.config.r }})
@@ -16,12 +22,12 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - {os: ubuntu-16.04,   r: 'release', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest"}
+        - {os: ubuntu-16.04, r: 'release', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest"}
 
     env:
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
       RSPM: ${{ matrix.config.rspm }}
-      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      REPO: ${{ github.event.repository.name }}
 
     steps:
       - uses: actions/checkout@v2
@@ -29,8 +35,6 @@ jobs:
       - uses: r-lib/actions/setup-r@master
         with:
           r-version: ${{ matrix.config.r }}
-
-      - uses: r-lib/actions/setup-pandoc@master
 
       - name: Query dependencies
         run: |
@@ -60,15 +64,8 @@ jobs:
         run: |
           remotes::install_deps("./hyperSpec", dependencies = TRUE)
           remotes::install_cran("rcmdcheck")
-          remotes::install_cran("devtools")
-          remotes::install_cran("drat") # needed to deploy
-        shell: Rscript {0}
-
-      - name: Session info
-        run: |
-          options(width = 100)
-          pkgs <- installed.packages()[, "Package"]
-          sessioninfo::session_info(pkgs, include_base = TRUE)
+          remotes::install_cran("roxygen2")
+          remotes::install_cran("drat") # need later to deploy
         shell: Rscript {0}
 
       - name: Roxygenize
@@ -77,7 +74,7 @@ jobs:
           devtools::document("./hyperSpec", roclets = c('vignette'))
         shell: Rscript {0}
 
-      - name: Check
+      - name: Build and Check
         env:
           _R_CHECK_CRAN_INCOMING_: false
         run: |
@@ -89,12 +86,6 @@ jobs:
           )
         shell: Rscript {0}
 
-      - name: Show testthat output
-        if: always()
-        run: find check -name 'testthat.Rout*' -exec cat '{}' \; || true
-        shell: bash
-        working-directory: ./hyperSpec
-
       - name: Upload check results
         if: failure()
         uses: actions/upload-artifact@master
@@ -105,8 +96,16 @@ jobs:
 # Everything above is standard build & check steps
 # Now the steps to deploy to hySpc.pkgs
 
+# Very Important Note: Each "- name:" task below starts from the same
+# directory, which in this case is
+# /home/runner/work/hySpc.read.txt/hySpc.read.txt
+# Each task is run in its own shell starting from this directory.
+# This means you have to navigate to the desired directory for each task.
+
 # The following configure step is
 # from https://stackoverflow.com/a/60548651/633251
+# The token is a secret in the repo to which one deploys
+# It must be updated when re-using this yaml in other repo's
       - name: Configure git
         env:
           TOKEN: ${{ secrets.HYPERSPEC_DEPLOY_KEY }}
@@ -115,50 +114,51 @@ jobs:
       - name: Deploy -- clone
         if: success()
         run: |
+          pwd
           rm -rf hySpc.pkgs
           git clone https://github.com/r-hyperspec/hySpc.pkgs.git hySpc.pkgs
           cd hySpc.pkgs
-          git checkout master
-
-# Please leave commented lines below, they are very helpful in troubleshooting.
-      - name: Deploy -- update README.md
-        if: success()
-        run: |
-           cd hySpc.pkgs
-           # grab the portion of the file we want to re-use
-           awk '/^# hySpc\.pkgs$/, /^Packages currently residing here:$/' README.md > README.tmp
-           # append the listing of .tar.gz present, along
-           # a little formating (appending to .md that will be parsed
-           # and displayed by GH)
-           ls -lhR  --time-style=long-iso | grep \.tar\.gz$ | awk '{print "\n* "$8, " ("$6")"}' >> README.tmp
-           mv README.tmp README.md
+          git checkout gh-pages
 
       - name: Deploy -- insert
         if: success()
         run: |
-          setwd("../hyperSpec")
-          # print(getwd())
-          # print(list.files(recursive = TRUE,
-          #  pattern = "\\.tar\\.gz"))
           targz <- list.files(
-            path = "check",
+            path = "hyperSpec/check",
             pattern = "\\.tar\\.gz",
-            full.names = TRUE)[1] # there will be only one!
-          # print(targz)
-          drat::insertPackage(targz,
-            repodir = "hySpc.pkgs",
+            full.names = TRUE)[1] # there will be only one in this directory!
+          drat::insertPackage(
+            targz,
+            repodir = "hyperSpec/hySpc.pkgs",
             action = "archive")
         shell: Rscript {0}
 
-      - name: Deploy -- commit and push
+      - name: Deploy -- update README.md
         if: success()
         run: |
-          git config --global user.email "hyperSpec_Deploy_Bot@example.com"
-          git config --global user.name "hyperSpec Deploy Bot"
-          cd hySpc.pkgs # move into the subdir, which is git controlled
+           cd hyperSpec/hySpc.pkgs
+           # grab the portion of the file we want to re-use
+           awk '/^# hySpc\.pkgs$/, /^Packages currently residing here:$/' README.md > README.tmp
+           # append the listing of .tar.gz present, along with
+           # a little md formating
+           ls -lhR  --time-style=long-iso | grep \.tar\.gz$ | awk '{print "\n* "$8, " ("$6")"}' >> README.tmp
+           mv README.tmp README.md
+
+      - name: Deploy -- move the .tar.gz
+        if: success()
+        run: | #CUST update the name of the local repo
+          cp ../${REPO}/hyperSpec/check/*.tar.gz hyperSpec/hySpc.pkgs/src/contrib/
+          cd hyperSpec/hySpc.pkgs
+
+      - name: Deploy -- commit and push
+        if: success()
+        run: | #CUST update the name of the local repo "bot"
+          git config --global user.email "${REPO}_Deploy_Bot@example.com"
+          git config --global user.name "${REPO} Deploy Bot"
+          cd hyperSpec/hySpc.pkgs
           git add *
-          git commit -m "Automated deploy from hyperSpec"
-          git push origin master
-          git checkout gh-pages # always keep the branches identical!
-          git merge master
+          # .tar.gz files are globally blocked by git, must add manually
+          # and force it
+          git add -f *.tar.gz
+          git commit -m "Automated deploy from ${REPO}" #CUST
           git push origin gh-pages
