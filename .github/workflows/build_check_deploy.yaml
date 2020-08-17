@@ -1,7 +1,6 @@
 # Note: This script automatically detects the repository in which it is run.
 # No edits are needed except in the "Install Dependencies" section where
 # one may need to install additional packages according to the needs.
-# Also: one needs to provide the secret token (we'll eliminate this soon)
 
 on:
   push:
@@ -104,8 +103,6 @@ jobs:
 
 # The following configure step is
 # from https://stackoverflow.com/a/60548651/633251
-# The token is a secret in the repo to which one deploys
-# It must be updated when re-using this yaml in other repo's
       - name: Configure git
         env:
           TOKEN: ${{ secrets.DEPLOY_TOKEN }}
