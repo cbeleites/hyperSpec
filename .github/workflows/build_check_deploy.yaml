@@ -2,9 +2,7 @@ on:
   push:
     branches:
       - develop
-  pull_request:
-    branches:
-      - develop
+
 # Note on the above: if more than one branch given one may stomp on the other
 name: R-CMD-build-check-deploy
 
