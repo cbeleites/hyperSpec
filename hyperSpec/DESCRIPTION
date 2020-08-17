@@ -3,7 +3,7 @@ Encoding: UTF-8
 Type: Package
 Title: Work with Hyperspectral Data, i.e. Spectra + Meta Information (Spatial,
     Time, Concentration, ...)
-Version: 0.100.0
+Version: 0.300.0
 Date: 2020-08-17
 Maintainer: Claudia Beleites <Claudia.Beleites@chemometrix.gmbh>
 Authors@R: c(
@@ -20,7 +20,7 @@ Authors@R: c(
     person("Roman",     "Kiselev",   role = "ctb"),
     person("Sebastian", "Mellor",    role = "ctb"),
     person("Erick",     "Oduniyi",   role = "ctb"),
-    person("Valter",    "Sergo",     role = c("aut"))    
+    person("Valter",    "Sergo",     role = c("aut"))
     )
 Description: Comfortable ways to work with hyperspectral data sets,
     i.e. spatially or time-resolved spectra, or spectra with any other kind
@@ -73,7 +73,7 @@ Suggests:
     tibble,
     tripack,
     vdiffr
-URL: 
+URL:
     https://cbeleites.github.io/hyperSpec,
     https://github.com/cbeleites/hyperSpec
 BugReports: https://github.com/cbeleites/hyperSpec/issues
