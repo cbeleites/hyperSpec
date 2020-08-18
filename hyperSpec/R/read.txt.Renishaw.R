@@ -1,5 +1,15 @@
 #' Import Raman measurements from Renishaw ASCII-files  (DEPRECATED)
 #'
+#' @description
+#'
+#' These data input functions are **deprecated** and they will be removed in
+#' the next release of \pkg{hyperspec} package.
+#' Now functions in package \pkg{hySpc.read.txt}
+#' ([link](https://r-hyperspec.github.io/hySpc.read.txt/reference/index.html))
+#' should be used as the alternatives.
+#'
+#' @details
+#'
 #' Import Raman measurements from Renishaw (possibly compressed) `.txt` file.
 #'
 #' The file may be of any file type that can be read by

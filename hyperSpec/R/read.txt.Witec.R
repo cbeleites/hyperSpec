@@ -1,10 +1,21 @@
-#' Import Raman Spectra/Maps from Witec Instrument via ASCII files (DEPRECATED)
+#' @title File Import Witec Raman (DEPRECATED)
 #'
-#' `read.txt.Witec()` reads Witec ASCII files where the first column gives the
+#' @description
+#'
+#' These data input functions are **deprecated** and they will be removed in
+#' the next release of \pkg{hyperspec} package.
+#' Now functions in package \pkg{hySpc.read.txt}
+#' ([link](https://r-hyperspec.github.io/hySpc.read.txt/reference/index.html))
+#' should be used as the alternatives.
+#'
+#' @details
+#' Import Raman Spectra/Maps from Witec Instrument via ASCII files
+#'
+#' - `read.txt.Witec()` reads Witec ASCII files where the first column gives the
 #'  wavelength axes and the other columns the spectra.
-#' `read.dat.Witec()` reads Witec's ASCII exported data, which comes in separate
+#' - `read.dat.Witec()` reads Witec's ASCII exported data, which comes in separate
 #'  files with x and y data.
-#' @title File Import Witec Raman
+#'
 #' @param file filename or connection to ASCII file
 #' @param points.per.line number of spectra in x direction of the map
 #' @param lines.per.image number of spectra in y direction
@@ -13,8 +24,11 @@
 #' @param hdr.units WITec Project exports the spectra units within the `file`.
 #' @param encoding character encoding, see [base::readLines()]
 #' @param ...,quiet handed to [base::scan()]
+#'
 #' @return a hyperSpec object
+#'
 #' @author Claudia Beleites and Marcel Dahms
+#'
 #' @seealso `vignette("fileio")` for more information on file import
 #'
 #' [options()] for details on options.

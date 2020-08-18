@@ -8,12 +8,21 @@
 
 #' Import `hyperSpec` objects from ASCII (text) files (DEPRECATED)
 #'
-#' Import `hyperSpec` objects from ASCII (text) files.
+#' @description
+#'
+#' These data input functions are **deprecated** and they will be removed in
+#' the next release of \pkg{hyperspec} package.
+#' Now functions in package \pkg{hySpc.read.txt}
+#' ([link](https://r-hyperspec.github.io/hySpc.read.txt/reference/index.html))
+#' should be used as the alternatives.
+#'
 #'
 #' @rdname textio
 #' @aliases read.txt.wide
 #'
 #' @details
+#'
+#' Import `hyperSpec` objects from ASCII (text) files.
 #'
 #' A detailed discussion of \pkg{hyperSpec}'s file import and export
 #' capabilities is given in vignette `fileio`.
@@ -44,10 +53,10 @@
 #' Note that R accepts many packed formats for ASCII files, see
 #' [base::connections()]. For .zip files, see [utils::unzip()].
 #'
-#' For further information, see the examples below, `vignette("fileio")` and the documentation
-#' of [R.matlab::R.matlab()].
+#' For further information, see the examples below, `vignette("fileio")` and
+#' the documentation of [R.matlab::R.matlab()].
 #'
-#' ***
+#' `_________________________________________________________________`
 #'
 #' Besides [base::save()] and [base::load()], two general ways to import and
 #' export data into `hyperSpec` objects exist.
