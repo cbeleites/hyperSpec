@@ -1,6 +1,17 @@
-#' File import filter PerkinElmer ASCII spectra.
+#' File import filter PerkinElmer ASCII spectra (DEPRECATED)
 #'
-#' Imports a single spectrum in PerkinElmer's ASCII format. This function is experimental.
+#' @description
+#'
+#' These data input functions are **deprecated** and they will be removed in
+#' the next release of \pkg{hyperspec} package.
+#' Now functions in package \pkg{hySpc.read.txt}
+#' ([link](https://r-hyperspec.github.io/hySpc.read.txt/reference/index.html))
+#' should be used as the alternatives.
+#'
+#' @details
+#'
+#' Imports a single spectrum in PerkinElmer's ASCII format.
+#' This function is experimental.
 #'
 #' @param file filename (or connection)
 #' @param ... further parameters are handed to [hyperSpec::read.txt.long()]
@@ -9,9 +20,13 @@
 #' @importFrom utils packageDescription
 #' @export
 #'
-#' @concept io
-#'
+# @concept io
+#' @concept moved to hySpc.read.txt
+
 read.asc.PerkinElmer <- function(file = stop("filename or connection needed"), ...) {
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  deprecated_read_txt()
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   content <- readLines(con = file)
 
   message(
