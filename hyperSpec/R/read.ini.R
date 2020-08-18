@@ -1,10 +1,10 @@
-#' Read INI files.
+#' Read INI files
 #'
 #' `read.ini` reads ini files of the form
-#' \cr\cr
-#' `[section]`\cr
-#' `key = value`
-#' \cr\cr
+#' ```
+#' [section]
+#' key = value
+#' ```
 #' into a list.
 #'
 #' `read.ini` sanitizes the element names and tries to convert scalars and comma separated
@@ -19,8 +19,9 @@
 #'
 #' @export
 #'
-#' @keywords IO file
-#' @concept io
+# @keywords IO file
+# @concept io
+#' @concept moved to hySpc.read.txt
 
 
 read.ini <- function(con = stop("Connection con needed."), skip = NULL, encoding = "unknown") {

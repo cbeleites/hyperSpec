@@ -1,4 +1,4 @@
-#' Read ASCII (`.txt`) files exported by Horiba's Labspec software (LabRAM spectrometers).
+#' Read ASCII (`.txt`) files exported by Horiba's Labspec software (LabRAM spectrometers)
 #'
 #' `read.txt.Horiba.xy` reads maps, i.e. `.txt` files where the first two columns give x and y coordinates.
 #'
@@ -9,7 +9,8 @@
 #' @author C. Beleites
 #' @return hyperSpec object
 #'
-#' @concept io
+# @concept io
+#' @concept moved to hySpc.read.txt
 #'
 #' @export
 read.txt.Horiba <- function(file, cols = c(
@@ -33,7 +34,8 @@ read.txt.Horiba <- function(file, cols = c(
 #' @rdname read.txt.Horiba
 #' @export
 #'
-#' @concept io
+# @concept io
+#' @concept moved to hySpc.read.txt
 #'
 read.txt.Horiba.xy <- function(file, ...) {
   read.txt.Horiba(
@@ -52,7 +54,8 @@ read.txt.Horiba.xy <- function(file, ...) {
 #' @rdname read.txt.Horiba
 #' @export
 #'
-#' @concept io
+# @concept io
+#' @concept moved to hySpc.read.txt
 #'
 read.txt.Horiba.t <- function(file, header = TRUE, sep = "\t", row.names = NULL,
                               check.names = FALSE, ...) {

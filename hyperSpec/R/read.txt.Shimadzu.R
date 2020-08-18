@@ -1,4 +1,4 @@
-#' Reads Shimadzu GCxGC-qMS - Spectra Files (`.txt`).
+#' Reads Shimadzu GCxGC-qMS - Spectra Files (`.txt`)
 #'
 #' Reads Shimadzu GCxGC-qMS - Spectra Files (`.txt`) as exported by Shimadzu Chrome Solution (v. 2.72).
 #' Mass Spectrometer: Shimadzu GCMS-QP 2010 Ultra (www.shimadzu.com)
@@ -10,7 +10,8 @@
 #' @return list of spectra tables
 #' @author Bjoern Egert
 #'
-#' @concept io
+# @concept io
+#' @concept moved to hySpc.read.txt
 #'
 #' @export
 #' @importFrom utils read.table

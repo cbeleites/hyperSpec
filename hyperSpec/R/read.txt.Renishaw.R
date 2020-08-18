@@ -1,4 +1,4 @@
-#' Import Raman measurements from Renishaw ASCII-files.
+#' Import Raman measurements from Renishaw ASCII-files
 #'
 #' Import Raman measurements from Renishaw (possibly compressed) `.txt` file.
 #'
@@ -41,8 +41,9 @@
 #' @seealso [read.txt.long()], [read.txt.wide()],
 #'   [base::scan()]
 #'
-#' @keywords IO file
-#' @concept io
+# @keywords IO file
+# @concept io
+#' @concept moved to hySpc.read.txt
 #'
 #' @importFrom utils head
 read.txt.Renishaw <- function(file = stop("file is required"),
@@ -208,8 +209,9 @@ hySpc.testthat::test(read.txt.Renishaw) <- function() {
 #'   file's name with suffix .txt instead of .zip
 #' @rdname read.txt.Renishaw
 #'
-#' @concept io
-#'
+# @concept io
+#' @concept moved to hySpc.read.txt
+
 read.zip.Renishaw <- function(file = stop("filename is required"),
                               txt.file = sub("[.]zip", ".txt", basename(file)), ...) {
   read.txt.Renishaw(file = unz(file, filename = txt.file, "r"), ...)

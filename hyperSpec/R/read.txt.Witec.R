@@ -1,4 +1,4 @@
-#' Import Raman Spectra/Maps from Witec Instrument via ASCII files.
+#' Import Raman Spectra/Maps from Witec Instrument via ASCII files
 #'
 #' `read.txt.Witec()` reads Witec ASCII files where the first column gives the
 #'  wavelength axes and the other columns the spectra.
@@ -20,7 +20,8 @@
 #' [options()] for details on options.
 #' @export
 #'
-#' @concept io
+# @concept io
+#' @concept moved to hySpc.read.txt
 #'
 #' @importFrom utils head
 read.txt.Witec <- function(file = stop("filename or connection needed"),
@@ -176,7 +177,8 @@ hySpc.testthat::test(read.txt.Witec) <- function() {
 #' @param filex filename wavelength axis file
 #' @param filey filename intensity file
 #'
-#' @concept io
+# @concept io
+#' @concept moved to hySpc.read.txt
 #'
 #' @export
 read.dat.Witec <- function(filex = stop("filename or connection needed"),
@@ -259,7 +261,8 @@ hySpc.testthat::test(read.dat.Witec) <- function() {
 #' @rdname read.txt.Witec
 #' @param headerfile filename or connection to ASCII file with header information
 #'
-#' @concept io
+# @concept io
+#' @concept moved to hySpc.read.txt
 #'
 #' @export
 read.txt.Witec.Graph <- function(headerfile = stop("filename or connection needed"),
