@@ -90,12 +90,15 @@ reference:
   - has_concept("datasets")
 
 
-- title: '4. Create, import and export `hyperSpec` object' # ~~~~~~~~~~~~~~
+- title: '4. Create and convert `hyperSpec` objects' # ~~~~~~~~~~~~~~~~~~~~
 
 - subtitle: Create or convert from/into `hyperSpec`
 - contents:
   - "initialize"
   - has_concept("hyperSpec conversion")
+
+
+- title: '5. Import and export `hyperSpec` objects' # ~~~~~~~~~~~~~~~~~~~~~
 
 - subtitle: Read/Write from/to files
 - contents:
@@ -119,7 +122,7 @@ reference:
   - has_concept("moved to hySpc.read.mat", internal = TRUE)
 
 
-- title: '5. Plotting' # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- title: '6. Plotting' # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - subtitle: Plots
 - contents:
@@ -143,7 +146,7 @@ reference:
   - has_concept("moved to hySpc.ggplot2", internal = TRUE)
 
 
-- title: '6. Data manipulation' # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- title: '7. Data manipulation' # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - subtitle: Summary and data preview
 - contents:
@@ -160,7 +163,6 @@ reference:
 - subtitle: Binning and smoothing
 - contents:
   - has_concept("spectra smoothing")
-
 
 - subtitle: Data generation functions
 - contents:
