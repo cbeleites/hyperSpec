@@ -157,6 +157,6 @@ jobs:
           git add *
           # .tar.gz files are globally blocked by git, must add manually
           # and force it
-          # git add -f *.tar.gz
+          git add -f *.tar.gz
           git commit -m "Automated deploy from ${REPO}" #CUST
           git push origin gh-pages
