@@ -90,7 +90,7 @@ reference:
   - has_concept("datasets")
 
 
-- title: '4. Input and output' # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- title: '4. Create, import and export `hyperSpec` object' # ~~~~~~~~~~~~~~
 
 - subtitle: Create or convert from/into `hyperSpec`
 - contents:
@@ -101,6 +101,22 @@ reference:
 - contents:
   - has_concept("io")
   - has_concept("IO")
+
+- subtitle: '! Moved to package hySpc.read.txt'
+  desc: |
+    You should use analogous functions from package
+    [**hySpc.read.txt**](https://r-hyperspec.github.io/hySpc.read.txt/reference/index.html)
+    as these functions will be removed soon.
+- contents:
+  - has_concept("moved to hySpc.read.txt", internal = TRUE)
+
+- subtitle: '! Moved to package hySpc.read.mat'
+  desc: |
+    You should use analogous functions from package
+    [**hySpc.read.mat**](https://r-hyperspec.github.io/hySpc.read.mat/reference/index.html)
+    as these functions will be removed soon.
+- contents:
+  - has_concept("moved to hySpc.read.mat", internal = TRUE)
 
 
 - title: '5. Plotting' # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -176,6 +192,8 @@ reference:
     "wavelengths", "data generation", "stats",
 
     "moved to hySpc.ggplot2",
+    "moved to hySpc.read.txt",
+    "moved to hySpc.read.mat",
     "deprecated"
     ))
 
@@ -183,9 +201,16 @@ reference:
 - title: '9. Removed or deprecated functions' # ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - subtitle: Functions moved to other packages
-  desc: "You should use analogues of these functions from appropriate packages."
+  desc: >
+    The following functions were moved to other
+    **[r-hyperspec](https://r-hyperspec.github.io/)** family packages.
+    In most cases, the functions were also renamed.
+    Please, use the analogues of these functions, which are in appropriate
+    packages.
 - contents:
   - has_concept("moved to hySpc.ggplot2", internal = TRUE)
+  - has_concept("moved to hySpc.read.txt", internal = TRUE)
+  - has_concept("moved to hySpc.read.mat", internal = TRUE)
 
 - subtitle: Deprecated, renamed, or defunct functions
   desc: "You should **not** use these functions any more."
