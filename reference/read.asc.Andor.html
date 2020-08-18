@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Import Raman Spectra/Maps from Andor Cameras/Solis ASCII files. — read.asc.Andor • hyperSpec</title>
+<title>Import Raman Spectra/Maps from Andor Cameras/Solis ASCII files (DEPRECATED) — read.asc.Andor • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,9 +41,12 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Import Raman Spectra/Maps from Andor Cameras/Solis ASCII files. — read.asc.Andor" />
-<meta property="og:description" content="read.asc.Andor() reads Andor Solis ASCII (.asc) files where the first column gives the wavelength
-axes and the other columns the spectra." />
+<meta property="og:title" content="Import Raman Spectra/Maps from Andor Cameras/Solis ASCII files (DEPRECATED) — read.asc.Andor" />
+<meta property="og:description" content="These data input functions are deprecated and they will be removed in
+the next release of hyperspec package.
+Now functions in package hySpc.read.txt
+(link)
+should be used as the alternatives." />
 
 <meta name="robots" content="noindex" />
 
@@ -156,14 +159,17 @@ axes and the other columns the spectra." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Import Raman Spectra/Maps from Andor Cameras/Solis ASCII files.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/read.asc.Andor.R'><code>R/read.asc.Andor.R</code></a></small>
+    <h1>Import Raman Spectra/Maps from Andor Cameras/Solis ASCII files (DEPRECATED)</h1>
+    <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/DEPRECATED-read.asc.Andor.R'><code>R/DEPRECATED-read.asc.Andor.R</code></a></small>
     <div class="hidden name"><code>read.asc.Andor.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p><code>read.asc.Andor()</code> reads Andor Solis ASCII (<code>.asc</code>) files where the first column gives the wavelength
-axes and the other columns the spectra.</p>
+    <p>These data input functions are <strong>deprecated</strong> and they will be removed in
+the next release of <span class="pkg">hyperspec</span> package.
+Now functions in package <span class="pkg">hySpc.read.txt</span>
+(<a href='https://r-hyperspec.github.io/hySpc.read.txt/reference/index.html'>link</a>)
+should be used as the alternatives.</p>
     </div>
 
     <pre class="usage"><span class='fu'>read.asc.Andor</span>(
@@ -190,6 +196,10 @@ axes and the other columns the spectra.</p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>a hyperSpec object</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p><code>read.asc.Andor()</code> reads Andor Solis ASCII (<code>.asc</code>) files where the first column gives the wavelength
+axes and the other columns the spectra.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code>vignette ("fileio")</code> for more information on file import and</p>

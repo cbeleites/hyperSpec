@@ -267,7 +267,7 @@
     </tbody><tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section--input-and-output" class="hasAnchor"><a href="#section--input-and-output" class="anchor"></a>4. Input and output</h2>
+          <h2 id="section--create-and-convert-hyperspec-objects" class="hasAnchor"><a href="#section--create-and-convert-hyperspec-objects" class="anchor"></a>4. Create and convert `hyperSpec` objects</h2>
           <p class="section-desc"></p>
         </th>
       </tr>
@@ -305,6 +305,15 @@
         <td><p>Conversion of a <code>hyperSpec</code> Object into a Data Frame or Matrix</p></td>
       </tr>
     </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section--import-and-export-hyperspec-objects" class="hasAnchor"><a href="#section--import-and-export-hyperspec-objects" class="anchor"></a>5. Import and export `hyperSpec` objects</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
       
       <tr>
         <th colspan="2">
@@ -319,21 +328,9 @@
       <tr>
         
         <td>
-          <p><code><a href="count_lines.html">count_lines()</a></code> </p>
-        </td>
-        <td><p>Count Lines (of an ASCII File)</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="dot-read.spe.xml.html">.read.spe.xml()</a></code> </p>
         </td>
         <td><p>Read XML footer from SPE file format version 3.0.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="read-ini.html">read.ini()</a></code> </p>
-        </td>
-        <td><p>Read INI files.</p></td>
       </tr><tr>
         
         <td>
@@ -355,18 +352,6 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="read.asc.Andor.html">read.asc.Andor()</a></code> </p>
-        </td>
-        <td><p>Import Raman Spectra/Maps from Andor Cameras/Solis ASCII files.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="read.asc.PerkinElmer.html">read.asc.PerkinElmer()</a></code> </p>
-        </td>
-        <td><p>File import filter PerkinElmer ASCII spectra.</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="read.jdx.html">read.jdx()</a></code> </p>
         </td>
         <td><p>JCAMP-DX Import for Shimadzu Library Spectra.</p></td>
@@ -385,38 +370,112 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="write_txt.html">write.txt.long()</a></code> <code><a href="write_txt.html">write.txt.wide()</a></code> </p>
+        </td>
+        <td><p>Export <code>hyperSpec</code> objects to ASCII (text) files</p></td>
+      </tr>
+    </tbody><tbody>
+      
+      <tr>
+        <th colspan="2">
+          <h3 id="section--moved-to-package-hyspc-read-txt" class="hasAnchor"><a href="#section--moved-to-package-hyspc-read-txt" class="anchor"></a>! Moved to package hySpc.read.txt</h3>
+          <p class="section-desc"><p>You should use analogous functions from package <a href="https://r-hyperspec.github.io/hySpc.read.txt/reference/index.html"><strong>hySpc.read.txt</strong></a> as these functions will be removed soon.</p></p>
+        </th>
+      </tr>
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="count_lines.html">count_lines()</a></code> </p>
+        </td>
+        <td><p>Count Lines (of an ASCII File) (DEPRECATED)</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="read-ini.html">read.ini()</a></code> </p>
+        </td>
+        <td><p>Read INI files (DEPRECATED)</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="read.asc.Andor.html">read.asc.Andor()</a></code> </p>
+        </td>
+        <td><p>Import Raman Spectra/Maps from Andor Cameras/Solis ASCII files (DEPRECATED)</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="read.asc.PerkinElmer.html">read.asc.PerkinElmer()</a></code> </p>
+        </td>
+        <td><p>File import filter PerkinElmer ASCII spectra (DEPRECATED)</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="read.mat.Witec.html">read.mat.Witec()</a></code> </p>
+        </td>
+        <td><p>Read <code>.mat</code> file into <code>hyperSpec</code> object</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="read.txt.Horiba.html">read.txt.Horiba()</a></code> <code><a href="read.txt.Horiba.html">read.txt.Horiba.xy()</a></code> <code><a href="read.txt.Horiba.html">read.txt.Horiba.t()</a></code> </p>
         </td>
-        <td><p>Import Horiba Labspec exported ASCII files</p></td>
+        <td><p>Import Horiba Labspec exported ASCII files (DEPRECATED)</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="read.txt.Renishaw.html">read.txt.Renishaw()</a></code> <code><a href="read.txt.Renishaw.html">read.zip.Renishaw()</a></code> </p>
         </td>
-        <td><p>Import Raman measurements from Renishaw ASCII-files.</p></td>
+        <td><p>Import Raman measurements from Renishaw ASCII-files  (DEPRECATED)</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="read.txt.Shimadzu.html">read.txt.Shimadzu()</a></code> </p>
         </td>
-        <td><p>Reads Shimadzu GCxGC-qMS - Spectra Files (<code>.txt</code>).</p></td>
+        <td><p>Reads Shimadzu GCxGC-qMS - Spectra Files (<code>.txt</code>)  (DEPRECATED)</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="read.txt.Witec.html">read.txt.Witec()</a></code> <code><a href="read.txt.Witec.html">read.dat.Witec()</a></code> <code><a href="read.txt.Witec.html">read.txt.Witec.Graph()</a></code> </p>
         </td>
-        <td><p>File Import Witec Raman</p></td>
+        <td><p>File Import Witec Raman (DEPRECATED)</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="textio.html">read.txt.long()</a></code> <code><a href="textio.html">read.txt.wide()</a></code> <code><a href="textio.html">write.txt.long()</a></code> <code><a href="textio.html">write.txt.wide()</a></code> </p>
+          <p><code><a href="textio.html">read.txt.long()</a></code> <code><a href="textio.html">read.txt.wide()</a></code> </p>
         </td>
-        <td><p>Import and Export of <code>hyperSpec</code> objects.</p></td>
+        <td><p>Import <code>hyperSpec</code> objects from ASCII (text) files (DEPRECATED)</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="wc.html">wc()</a></code> </p>
+        </td>
+        <td><p>Line/word/character count of ASCII files (DEPRECATED)</p></td>
+      </tr>
+    </tbody><tbody>
+      
+      <tr>
+        <th colspan="2">
+          <h3 id="section--moved-to-package-hyspc-read-mat" class="hasAnchor"><a href="#section--moved-to-package-hyspc-read-mat" class="anchor"></a>! Moved to package hySpc.read.mat</h3>
+          <p class="section-desc"><p>You should use analogous functions from package <a href="https://r-hyperspec.github.io/hySpc.read.mat/reference/index.html"><strong>hySpc.read.mat</strong></a> as these functions will be removed soon.</p></p>
+        </th>
+      </tr>
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="read.mat.Witec.html">read.mat.Witec()</a></code> </p>
+        </td>
+        <td><p>Read <code>.mat</code> file into <code>hyperSpec</code> object</p></td>
       </tr>
     </tbody><tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section--plotting" class="hasAnchor"><a href="#section--plotting" class="anchor"></a>5. Plotting</h2>
+          <h2 id="section--plotting" class="hasAnchor"><a href="#section--plotting" class="anchor"></a>6. Plotting</h2>
           <p class="section-desc"></p>
         </th>
       </tr>
@@ -562,7 +621,7 @@
     </tbody><tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section--data-manipulation" class="hasAnchor"><a href="#section--data-manipulation" class="anchor"></a>6. Data manipulation</h2>
+          <h2 id="section--data-manipulation" class="hasAnchor"><a href="#section--data-manipulation" class="anchor"></a>7. Data manipulation</h2>
           <p class="section-desc"></p>
         </th>
       </tr>
@@ -1012,7 +1071,7 @@
       <tr>
         <th colspan="2">
           <h3 id="section-functions-moved-to-other-packages" class="hasAnchor"><a href="#section-functions-moved-to-other-packages" class="anchor"></a>Functions moved to other packages</h3>
-          <p class="section-desc"><p>You should use analogues of these functions from appropriate packages.</p></p>
+          <p class="section-desc"><p>The following functions were moved to other <strong><a href="https://r-hyperspec.github.io/">r-hyperspec</a></strong> family packages. In most cases, the functions were also renamed. Please, use the analogues of these functions, which are in appropriate packages.</p></p>
         </th>
       </tr>
       
@@ -1026,6 +1085,72 @@
         </td>
         <td><p>Spectra Plotting with <span class="pkg">ggplot2</span> Was Moved to <span class="pkg">hySpc.ggplot2</span>
 (DEPRECATED)</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="count_lines.html">count_lines()</a></code> </p>
+        </td>
+        <td><p>Count Lines (of an ASCII File) (DEPRECATED)</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="read-ini.html">read.ini()</a></code> </p>
+        </td>
+        <td><p>Read INI files (DEPRECATED)</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="read.asc.Andor.html">read.asc.Andor()</a></code> </p>
+        </td>
+        <td><p>Import Raman Spectra/Maps from Andor Cameras/Solis ASCII files (DEPRECATED)</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="read.asc.PerkinElmer.html">read.asc.PerkinElmer()</a></code> </p>
+        </td>
+        <td><p>File import filter PerkinElmer ASCII spectra (DEPRECATED)</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="read.mat.Witec.html">read.mat.Witec()</a></code> </p>
+        </td>
+        <td><p>Read <code>.mat</code> file into <code>hyperSpec</code> object</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="read.txt.Horiba.html">read.txt.Horiba()</a></code> <code><a href="read.txt.Horiba.html">read.txt.Horiba.xy()</a></code> <code><a href="read.txt.Horiba.html">read.txt.Horiba.t()</a></code> </p>
+        </td>
+        <td><p>Import Horiba Labspec exported ASCII files (DEPRECATED)</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="read.txt.Renishaw.html">read.txt.Renishaw()</a></code> <code><a href="read.txt.Renishaw.html">read.zip.Renishaw()</a></code> </p>
+        </td>
+        <td><p>Import Raman measurements from Renishaw ASCII-files  (DEPRECATED)</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="read.txt.Shimadzu.html">read.txt.Shimadzu()</a></code> </p>
+        </td>
+        <td><p>Reads Shimadzu GCxGC-qMS - Spectra Files (<code>.txt</code>)  (DEPRECATED)</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="read.txt.Witec.html">read.txt.Witec()</a></code> <code><a href="read.txt.Witec.html">read.dat.Witec()</a></code> <code><a href="read.txt.Witec.html">read.txt.Witec.Graph()</a></code> </p>
+        </td>
+        <td><p>File Import Witec Raman (DEPRECATED)</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="textio.html">read.txt.long()</a></code> <code><a href="textio.html">read.txt.wide()</a></code> </p>
+        </td>
+        <td><p>Import <code>hyperSpec</code> objects from ASCII (text) files (DEPRECATED)</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="wc.html">wc()</a></code> </p>
+        </td>
+        <td><p>Line/word/character count of ASCII files (DEPRECATED)</p></td>
       </tr>
     </tbody><tbody>
       
@@ -1045,12 +1170,6 @@
           <p><code><a href="deprecated.html">scan.asc.Andor()</a></code> <code><a href="deprecated.html">scan.txt.Renishaw()</a></code> <code><a href="deprecated.html">scan.zip.Renishaw()</a></code> <code><a href="deprecated.html">scan.txt.Witec()</a></code> <code><a href="deprecated.html">scan.dat.Witec()</a></code> <code><a href="deprecated.html">scan.txt.Witec.Graph()</a></code> <code><a href="deprecated.html">read.cytomat()</a></code> </p>
         </td>
         <td><p>Deprecated and Defunct Functions</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="wc.html">wc()</a></code> </p>
-        </td>
-        <td><p>Line/word/character count of ASCII files (DEPRECATED).</p></td>
       </tr>
     </tbody>
     </table>

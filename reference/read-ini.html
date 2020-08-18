@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Read INI files. — read.ini • hyperSpec</title>
+<title>Read INI files (DEPRECATED) — read.ini • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,13 +41,12 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Read INI files. — read.ini" />
-<meta property="og:description" content="read.ini reads ini files of the form
-
-[section]
-key = value
-
-into a list." />
+<meta property="og:title" content="Read INI files (DEPRECATED) — read.ini" />
+<meta property="og:description" content="These data input functions are deprecated and they will be removed in
+the next release of hyperspec package.
+Now functions in package hySpc.read.txt
+(link)
+should be used as the alternatives." />
 
 <meta name="robots" content="noindex" />
 
@@ -160,18 +159,17 @@ into a list." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Read INI files.</h1>
+    <h1>Read INI files (DEPRECATED)</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/read.ini.R'><code>R/read.ini.R</code></a></small>
     <div class="hidden name"><code>read-ini.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p><code>read.ini</code> reads ini files of the form
-<br /><br />
-<code>[section]</code><br />
-<code>key = value</code>
-<br /><br />
-into a list.</p>
+    <p>These data input functions are <strong>deprecated</strong> and they will be removed in
+the next release of <span class="pkg">hyperspec</span> package.
+Now functions in package <span class="pkg">hySpc.read.txt</span>
+(<a href='https://r-hyperspec.github.io/hySpc.read.txt/reference/index.html'>link</a>)
+should be used as the alternatives.</p>
     </div>
 
     <pre class="usage"><span class='fu'>read.ini</span>(
@@ -203,7 +201,12 @@ into a list.</p>
 for the key-value-pairs.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p><code>read.ini</code> sanitizes the element names and tries to convert scalars and comma separated
+    <p><code>read.ini</code> reads ini files of the form</p><pre>[section]
+key = value
+</pre>
+
+<p>into a list.</p>
+<p><code>read.ini</code> sanitizes the element names and tries to convert scalars and comma separated
 numeric vectors to numeric.</p>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 

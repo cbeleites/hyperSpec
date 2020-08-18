@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>File Import Witec Raman — read.txt.Witec • hyperSpec</title>
+<title>File Import Witec Raman (DEPRECATED) — read.txt.Witec • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,8 +41,12 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="File Import Witec Raman — read.txt.Witec" />
-<meta property="og:description" content="Import Raman Spectra/Maps from Witec Instrument via ASCII files." />
+<meta property="og:title" content="File Import Witec Raman (DEPRECATED) — read.txt.Witec" />
+<meta property="og:description" content="These data input functions are deprecated and they will be removed in
+the next release of hyperspec package.
+Now functions in package hySpc.read.txt
+(link)
+should be used as the alternatives." />
 
 <meta name="robots" content="noindex" />
 
@@ -155,13 +159,17 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>File Import Witec Raman</h1>
-    <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/read.txt.Witec.R'><code>R/read.txt.Witec.R</code></a></small>
+    <h1>File Import Witec Raman (DEPRECATED)</h1>
+    <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/DEPRECATED-read.txt.Witec.R'><code>R/DEPRECATED-read.txt.Witec.R</code></a></small>
     <div class="hidden name"><code>read.txt.Witec.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Import Raman Spectra/Maps from Witec Instrument via ASCII files.</p>
+    <p>These data input functions are <strong>deprecated</strong> and they will be removed in
+the next release of <span class="pkg">hyperspec</span> package.
+Now functions in package <span class="pkg">hySpc.read.txt</span>
+(<a href='https://r-hyperspec.github.io/hySpc.read.txt/reference/index.html'>link</a>)
+should be used as the alternatives.</p>
     </div>
 
     <pre class="usage"><span class='fu'>read.txt.Witec</span>(
@@ -251,10 +259,13 @@
     <p>a hyperSpec object</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p><code>read.txt.Witec()</code> reads Witec ASCII files where the first column gives the
-wavelength axes and the other columns the spectra.
-<code>read.dat.Witec()</code> reads Witec's ASCII exported data, which comes in separate
-files with x and y data.</p>
+    <p>Import Raman Spectra/Maps from Witec Instrument via ASCII files</p><ul>
+<li><p><code>read.txt.Witec()</code> reads Witec ASCII files where the first column gives the
+wavelength axes and the other columns the spectra.</p></li>
+<li><p><code>read.dat.Witec()</code> reads Witec's ASCII exported data, which comes in separate
+files with x and y data.</p></li>
+</ul>
+
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code>vignette("fileio")</code> for more information on file import</p>
