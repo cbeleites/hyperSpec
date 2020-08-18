@@ -45,6 +45,14 @@ deprecated_ggplot2 <- function(new = "", old = as.character(sys.call(sys.parent(
   hySpc_deprecated(new = new, package = "hySpc.ggplot2", old = old)
 }
 
+deprecated_read_txt <- function(new = "", old = as.character(sys.call(sys.parent()))[1L]) {
+  hySpc_deprecated(new = new, package = "hySpc.read.txt", old = old)
+}
+
+deprecated_read_mat <- function(new = "", old = as.character(sys.call(sys.parent()))[1L]) {
+  hySpc_deprecated(new = new, package = "hySpc.read.mat", old = old)
+}
+
 # suppress_warnings() is created to overcome issue that suppressWarnings()
 # in R < 4.0.0 does not have argument "classes"
 suppress_warnings <- function(...) {
