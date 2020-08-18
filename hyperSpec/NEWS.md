@@ -14,8 +14,8 @@
 **--- ELABORATE ---**
     - Dataset `chondro` was moved to package **hySpc.chondro** (https://r-hyperspec.github.io/hySpc.chondro/).
     - Functions `qplotspc()`, `qplotmap()`, `qplotc()`, `qplotmixmap()`, `legendright()`,  `qmixtile()`, `normalize.colrange()`, `normalize.range()`, `normalize.null()`, `normalize.minmax()`, `qmixlegend()`, `colmix.rgb()` were deprecated due analogous functionality in package **hySpc.ggplot2** (https://r-hyperspec.github.io/hySpc.ggplot2/).
-    - Functions `read.txt.Horiba()`, `read.txt.Horiba.xy()`, `read.txt.Horiba.t()`, `read.txt.long()`, `read.txt.Renishaw()`,  `read.zip.Renishaw()`, `read.txt.Shimadzu()`, `read.txt.wide()`, `read.txt.Witec()`, `read.txt.Witec.Graph()`, `wc()`, `count_lines()` were deprecated due analogous functionality in package **hySpc.read.txt** (https://r-hyperspec.github.io/hySpc.read.txt/).
-    - Functions `read.dat.Witec()`, **--- ELABORATE ---**  were deprecated due analogous functionality in package **hySpc.read.mat** (https://r-hyperspec.github.io/hySpc.read.mat/).
+    - Functions `read.asc.Andor()`, `read.asc.PerkinElmer()`, `read.txt.Horiba()`, `read.txt.Horiba.xy()`, `read.txt.Horiba.t()`, `read.txt.long()`, `read.txt.Renishaw()`,  `read.zip.Renishaw()`, `read.txt.Shimadzu()`, `read.txt.wide()`, `read.txt.Witec()`, `read.txt.Witec.Graph()`, `read.dat.Witec()`, `wc()`, `count_lines()` were deprecated due analogous functionality in package **hySpc.read.txt** (https://r-hyperspec.github.io/hySpc.read.txt/).
+    - Functions `read.mat.Witec()`, **--- ELABORATE ---**  were deprecated due analogous functionality in package **hySpc.read.mat** (https://r-hyperspec.github.io/hySpc.read.mat/).
 * Dataset `faux_cell` and function `generate_faux_cell` replace `chondro` dataset (#125, #156, #180, #229).
 * Function `spc.NA.linapprox()`, which was deprecated for long time, is now completely removed (#239).
 * Column names in spectra matrix (`$spc` column of `hyperSpec` object) are now returned correctly by functions `spc.bin()` (#237), and `spc.loess()` (#245).
