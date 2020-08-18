@@ -98,6 +98,9 @@ read.txt.wide <- function(file = stop("file is required"),
                           row.names = NULL,
                           check.names = FALSE,
                           ...) {
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  deprecated_read_txt()
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   .wavelength <- match(".wavelength", names(cols))
   if (is.na(.wavelength)) {
     cols <- as.list(c(cols, .wavelength = expression(lambda / nm)))

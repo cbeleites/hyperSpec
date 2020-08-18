@@ -19,6 +19,9 @@ read.txt.Horiba <- function(file, cols = c(
                             ),
                             header = TRUE, sep = "\t", row.names = NULL,
                             check.names = FALSE, ...) {
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  deprecated_read_txt(new = "read_txt_Horiba")
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   spc <- read.txt.wide(file,
     cols = cols,
     header = header, sep = sep, row.names = row.names,
@@ -38,6 +41,10 @@ read.txt.Horiba <- function(file, cols = c(
 #' @concept moved to hySpc.read.txt
 #'
 read.txt.Horiba.xy <- function(file, ...) {
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  deprecated_read_txt()
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
   read.txt.Horiba(
     file = file,
     cols = c(
@@ -59,6 +66,10 @@ read.txt.Horiba.xy <- function(file, ...) {
 #'
 read.txt.Horiba.t <- function(file, header = TRUE, sep = "\t", row.names = NULL,
                               check.names = FALSE, ...) {
+
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  deprecated_read_txt()
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   read.txt.Horiba(file,
     cols = c(
       t = "t / s",

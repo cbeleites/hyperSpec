@@ -34,6 +34,10 @@ read.txt.Witec <- function(file = stop("filename or connection needed"),
                            ...,
                            quiet = TRUE) {
 
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  deprecated_read_txt()
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
   ## check for valid data connection
   .check.con(file = file)
 
@@ -189,6 +193,11 @@ read.dat.Witec <- function(filex = stop("filename or connection needed"),
                            encoding = "unknown",
                            ...,
                            quiet = hy.getOption("debuglevel") < 1L) {
+
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  deprecated_read_txt()
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
   ## check valid data connection
   .check.con(filex = filex, filey = filey)
 
@@ -270,6 +279,11 @@ read.txt.Witec.Graph <- function(headerfile = stop("filename or connection neede
                                  filey = gsub("Header", "Y-Axis", headerfile),
                                  type = c("single", "map"), encoding = "unknown",
                                  ..., quiet = TRUE) {
+
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  deprecated_read_txt()
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
   ## check for valid data connection
   .check.con(headerfile, filex, filey)
 

@@ -48,6 +48,10 @@
 #' @importFrom utils head
 read.txt.Renishaw <- function(file = stop("file is required"),
                               data = "xyspc", nlines = 0, nspc = NULL) {
+
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  deprecated_read_txt()
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   cols <- switch(data,
     spc = NULL,
     xyspc = list(
@@ -214,6 +218,9 @@ hySpc.testthat::test(read.txt.Renishaw) <- function() {
 
 read.zip.Renishaw <- function(file = stop("filename is required"),
                               txt.file = sub("[.]zip", ".txt", basename(file)), ...) {
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  deprecated_read_txt()
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   read.txt.Renishaw(file = unz(file, filename = txt.file, "r"), ...)
 }
 
