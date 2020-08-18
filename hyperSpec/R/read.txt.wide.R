@@ -6,7 +6,7 @@
 ###  x y ... int (wl1)  int (wl2) ... int (wl p) z ...
 ###
 
-#' Import `hyperSpec` objects from ASCII (text) files
+#' Import `hyperSpec` objects from ASCII (text) files (DEPRECATED)
 #'
 #' Import `hyperSpec` objects from ASCII (text) files.
 #'

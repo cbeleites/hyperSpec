@@ -1,4 +1,5 @@
-#' Read ASCII (`.txt`) files exported by Horiba's Labspec software (LabRAM spectrometers)
+#' Read ASCII (`.txt`) files exported by Horiba's Labspec software
+#' (LabRAM spectrometers)  (DEPRECATED)
 #'
 #' `read.txt.Horiba.xy` reads maps, i.e. `.txt` files where the first two columns give x and y coordinates.
 #'

@@ -1,4 +1,4 @@
-#' Reads Shimadzu GCxGC-qMS - Spectra Files (`.txt`)
+#' Reads Shimadzu GCxGC-qMS - Spectra Files (`.txt`)  (DEPRECATED)
 #'
 #' Reads Shimadzu GCxGC-qMS - Spectra Files (`.txt`) as exported by Shimadzu Chrome Solution (v. 2.72).
 #' Mass Spectrometer: Shimadzu GCMS-QP 2010 Ultra (www.shimadzu.com)

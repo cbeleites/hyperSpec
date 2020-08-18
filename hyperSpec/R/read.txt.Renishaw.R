@@ -1,4 +1,4 @@
-#' Import Raman measurements from Renishaw ASCII-files
+#' Import Raman measurements from Renishaw ASCII-files  (DEPRECATED)
 #'
 #' Import Raman measurements from Renishaw (possibly compressed) `.txt` file.
 #'
