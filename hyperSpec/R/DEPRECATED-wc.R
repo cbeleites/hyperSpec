@@ -1,8 +1,20 @@
-#' Line/word/character count of ASCII files (DEPRECATED).
+#' Line/word/character count of ASCII files (DEPRECATED)
 #'
-#' `wc()` uses the system command `wc`. Use at your own risk.
-#' @note `wc()` now is deprecated and will be removed from \pkg{hyperSpec}
-#' in the future. Consider using [count_lines()] instead for line counting.
+#' @description
+#'
+#' These data input related functions are **deprecated** and they will be
+#' removed in the next release of \pkg{hyperspec} package.
+#' Now functions in package \pkg{hySpc.read.txt}
+#' ([link](https://r-hyperspec.github.io/hySpc.read.txt/reference/index.html))
+#' should be used as the alternatives.
+#'
+#'
+#' @details
+#' `wc()` now is deprecated and will be removed from \pkg{hyperSpec} and
+#' \pkg{hySpc.read.txt} in the future.
+#' Consider using [count_lines()] instead for line counting.
+#'
+#' `wc()` uses the system command `wc`. **Use at your own risk.**
 #'
 #' @param file the file name or pattern
 #' @param flags the parameters to count, character vector with the long form
@@ -13,15 +25,20 @@
 #'
 #' @export
 #'
-#' @concept deprecated
+# @concept deprecated
+#' @concept moved to hySpc.read.txt
 #'
 #' @author C. Beleites
 #' @importFrom utils read.table
 wc <- function(file, flags = c("lines", "words", "bytes")) {
-  .Deprecated(
-    new = "count_lines",
-    msg = "wc() is soft-deprecated: while it will not be removed in the near future, use it at your own risk. The functionality is not routinely tested."
-  )
+  # .Deprecated(
+  #   new = "count_lines",
+  #   msg = "wc() is soft-deprecated: while it will not be removed in the near future, use it at your own risk. The functionality is not routinely tested."
+  # )
+
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  deprecated_read_txt(new = "count_lines")
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   output <- try(system2("wc", args = "--help", stdout = TRUE, stderr = TRUE), silent = TRUE)
   if (class(output) == "try-error") {

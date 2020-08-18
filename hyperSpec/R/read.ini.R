@@ -1,10 +1,20 @@
-#' Read INI files.
+#' Read INI files (DEPRECATED)
+#'
+#' @description
+#'
+#' These data input functions are **deprecated** and they will be removed in
+#' the next release of \pkg{hyperspec} package.
+#' Now functions in package \pkg{hySpc.read.txt}
+#' ([link](https://r-hyperspec.github.io/hySpc.read.txt/reference/index.html))
+#' should be used as the alternatives.
+#'
+#' @details
 #'
 #' `read.ini` reads ini files of the form
-#' \cr\cr
-#' `[section]`\cr
-#' `key = value`
-#' \cr\cr
+#' ```
+#' [section]
+#' key = value
+#' ```
 #' into a list.
 #'
 #' `read.ini` sanitizes the element names and tries to convert scalars and comma separated
@@ -19,8 +29,9 @@
 #'
 #' @export
 #'
-#' @keywords IO file
-#' @concept io
+# @keywords IO file
+# @concept io
+#' @concept moved to hySpc.read.txt
 
 
 read.ini <- function(con = stop("Connection con needed."), skip = NULL, encoding = "unknown") {

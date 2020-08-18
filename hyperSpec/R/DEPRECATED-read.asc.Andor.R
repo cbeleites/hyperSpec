@@ -1,4 +1,14 @@
-#' Import Raman Spectra/Maps from Andor Cameras/Solis ASCII files.
+#' Import Raman Spectra/Maps from Andor Cameras/Solis ASCII files (DEPRECATED)
+#'
+#' @description
+#'
+#' These data input functions are **deprecated** and they will be removed in
+#' the next release of \pkg{hyperspec} package.
+#' Now functions in package \pkg{hySpc.read.txt}
+#' ([link](https://r-hyperspec.github.io/hySpc.read.txt/reference/index.html))
+#' should be used as the alternatives.
+#'
+#' @details
 #'
 #' `read.asc.Andor()` reads Andor Solis ASCII (`.asc`) files where the first column gives the wavelength
 #' axes and the other columns the spectra.
@@ -10,14 +20,19 @@
 #' @seealso `vignette ("fileio")` for more information on file import and
 #'
 #' [options()] for details on options.
-#' @include read.txt.Witec.R
+#' @include DEPRECATED-read.txt.Witec.R
 #' @include fileio.optional.R
 #'
-#' @concept io
+# @concept io
+#' @concept moved to hySpc.read.txt
 #'
 #' @export
 read.asc.Andor <- function(file = stop("filename or connection needed"),
                            ..., quiet = TRUE, dec = ".", sep = ",") {
+
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  deprecated_read_txt()
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   ## check for valid data connection
   .check.con(file = file)

@@ -1,4 +1,14 @@
-#' Import Raman measurements from Renishaw ASCII-files.
+#' Import Raman measurements from Renishaw ASCII-files  (DEPRECATED)
+#'
+#' @description
+#'
+#' These data input functions are **deprecated** and they will be removed in
+#' the next release of \pkg{hyperspec} package.
+#' Now functions in package \pkg{hySpc.read.txt}
+#' ([link](https://r-hyperspec.github.io/hySpc.read.txt/reference/index.html))
+#' should be used as the alternatives.
+#'
+#' @details
 #'
 #' Import Raman measurements from Renishaw (possibly compressed) `.txt` file.
 #'
@@ -41,12 +51,17 @@
 #' @seealso [read.txt.long()], [read.txt.wide()],
 #'   [base::scan()]
 #'
-#' @keywords IO file
-#' @concept io
+# @keywords IO file
+# @concept io
+#' @concept moved to hySpc.read.txt
 #'
 #' @importFrom utils head
 read.txt.Renishaw <- function(file = stop("file is required"),
                               data = "xyspc", nlines = 0, nspc = NULL) {
+
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  deprecated_read_txt()
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   cols <- switch(data,
     spc = NULL,
     xyspc = list(
@@ -208,10 +223,14 @@ hySpc.testthat::test(read.txt.Renishaw) <- function() {
 #'   file's name with suffix .txt instead of .zip
 #' @rdname read.txt.Renishaw
 #'
-#' @concept io
-#'
+# @concept io
+#' @concept moved to hySpc.read.txt
+
 read.zip.Renishaw <- function(file = stop("filename is required"),
                               txt.file = sub("[.]zip", ".txt", basename(file)), ...) {
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  deprecated_read_txt()
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   read.txt.Renishaw(file = unz(file, filename = txt.file, "r"), ...)
 }
 

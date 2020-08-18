@@ -6,48 +6,22 @@
 ###  (y x) wl int
 ###
 
-#' Import and Export of `hyperSpec` objects.
-#'
-#' Besides [base::save()] and [base::load()], two general ways to import and
-#' export data into `hyperSpec` objects exist.
-#'
-#' Firstly, `hyperSpec` objects can be imported and exported as ASCII files.
-#'
-#' A second option is using the package [R.matlab::R.matlab()], which
-#' provides the functions [R.matlab::readMat()] and [R.matlab::writeMat()].
-#'
-#' Package \pkg{hyperSpec} comes with a number of pre-defined functions to
-#' import manufacturer specific file formats. For details, see
-#' `vignette("file-io")`.
-#'
-#' [hyperSpec::read.spc()] imports Thermo Galactic's `.spc` file format,
-#' and ENVI files may be read using [hyperSpec::read.ENVI()].
-#'
-#' These functions are very flexible and provide lots of arguments.
-#'
-#' If you use them to read or write manufacturer specific ASCII formats,
-#' please consider writing a wrapper function and contributing this function
-#' to \pkg{hyperSpec}. An example is in the \dQuote{flu} vignette (see
-#' `vignette("flu", package = "hyperSpec"`).
-#'
-#' Note that R accepts many packed formats for ASCII files, see
-#' [base::connections()]. For `.zip` files, see [utils::unzip()].
-#'
-#' For further information, see the examples below and the documentation of
-#' [R.matlab::R.matlab()].
-#'
+#' @rdname textio
 #' @aliases read.txt.long import export
+#'
 #' @param file filename or connection
 #' @param cols the column names specifying the column order.
 #'
 #' For data import, a list with elements `colname = label`; for export a
 #'   character vector with the colnames.  Use `wavelength` to specify the
 #'   wavelengths.
-#' @param header the file has (shall have) a header line
-#' @param ... arguments handed to [utils::read.table()] and
-#'   [utils::write.table()], respectively.
-#' @param decreasing logical vector giving the sort order
+#' @param header the file has (shall have) a header line.
+#' @param sep,row.names have their usual meaning (see
+#'        [utils::read.table()]), but different default values.
+#' @param ... arguments handed to [utils::read.table()].
+#'
 #' @author C. Beleites
+#'
 #' @seealso
 #'
 #' - [utils::read.table()] and [utils::write.table()],
@@ -56,17 +30,18 @@
 #' - [hyperSpec::read.spc()] for `.spc` files,
 #' - Manufacturer specific file formats: [read.txt.Renishaw()].
 #'
-#' @rdname textio
 #'
-#' @keywords IO file
-#' @concept io
+# @keywords IO file
+# @concept io
+#' @concept moved to hySpc.read.txt
 #'
 #' @export
 #' @importFrom utils read.table unstack
+#'
 #' @examples
 #'
 #' \dontrun{
-#' vignette("file-io")
+#' vignette("fileio")
 #' }
 #'
 #' ## export & import matlab files
@@ -136,6 +111,10 @@ read.txt.long <- function(file = stop("file is required"),
                           ),
                           header = TRUE,
                           ...) {
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  deprecated_read_txt(new = "read_txt_long")
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
   txtfile <- read.table(file = file, header = header, ...)
 
   if (header) {

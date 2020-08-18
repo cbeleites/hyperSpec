@@ -1,8 +1,16 @@
-## ' @export
+
+#' Read `.mat` file into `hyperSpec` object
 #'
-#' @concept io
+#'
+#' @param file File name.
+#'
+# @concept io
+#' @concept moved to hySpc.read.txt
+#' @concept moved to hySpc.read.mat
 #'
 #' @importFrom utils maintainer
+#' @export
+
 read.mat.Witec <- function(file = stop("filename or connection needed")) {
   if (!requireNamespace("R.matlab")) {
     stop("package 'R.matlab' needed.")
