@@ -30,8 +30,7 @@
 #' on files with missing values (`NA`s are allowed).
 #'
 #' If the file is so large that it sould be read in chunks and `nspc` is
-#' not given, `read.txt.Renishaw` tries to guess it by using `wc`
-#' (if installed).
+#' not given, `read.txt.Renishaw()` tries to guess it by using `count_lines()`.
 #'
 #' @aliases read.txt.Renishaw read.zip.Renishaw
 #' @param file file name or connection
