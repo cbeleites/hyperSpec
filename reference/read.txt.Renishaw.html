@@ -244,8 +244,7 @@ wavelength intensity.  The first columns depend on the data type.</p>
 <p>This function allows reading very large ASCII files, but it does not work
 on files with missing values (<code>NA</code>s are allowed).</p>
 <p>If the file is so large that it sould be read in chunks and <code>nspc</code> is
-not given, <code>read.txt.Renishaw</code> tries to guess it by using <code>wc</code>
-(if installed).</p>
+not given, <code>read.txt.Renishaw()</code> tries to guess it by using <code>count_lines()</code>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code>read.txt.long()</code>, <code>read.txt.wide()</code>,
