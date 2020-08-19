@@ -1198,7 +1198,7 @@ read.txt.Witec.Graph("fileio/txt.Witec/nofilename (Header).txt", encoding = "lat
 
 This function reads the spectra files automatically, if they are named properly and extracts additional information of the header file. As for the other Witec functions it is possible to read image data by by selecting `type = "map"`{.r}. Line scans and z-stacks should be read as single spectra.
 
-Function {#sec:writing-Import}
+# Writing your own Import Function {#sec:writing-Import}
 
 This section gives examples of how to write import functions. The first example implements an import
 filter for an ASCII file format, basically from scratch. The second example shows how to implement
