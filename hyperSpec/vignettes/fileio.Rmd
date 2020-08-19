@@ -865,7 +865,7 @@ Spectra obtained using Kaiser's Hologram software can be saved either in their o
 Hologram can also write ASCII files and `.spc` files.
 We found working with .spc files the best option.
 
-The spectra are usually interpolated by Hologram to an evenly spaced wavelength (or $\Delta\tilde\nu$) axis unless the spectra are saved in a by-pixel manner.
+Hologram usually interpolates the spectra to an evenly spaced wavelength (or $\Delta\tilde\nu$) axis unless the spectra are saved in a by-pixel manner.
 In this case, the full spectra consist of two files with consecutive file names: one for the low and one for the high wavenumber region.
 See the example for `.spc` import.
 
@@ -882,7 +882,7 @@ The ASCII files are long format that can be imported by `read.txt.long()`{.r} (s
 
 We experienced two different problems with these files:
 
-- If the instrument computer's locale is set so that also the decimal separator is a comma, commas are used both as decimal and as column separator.
+- If the instrument computer's locale is set so that also the decimal separator is a comma, commas are used both as a decimal and as the column separator.
 -  Values with a decimal fraction of $0$ are written with decimal separator but no further digits (e.g., `2,`).
    This may be a problem for certain conversion functions (`read.table()`{.r} works fi
 
