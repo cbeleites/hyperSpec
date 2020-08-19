@@ -966,7 +966,7 @@ The ASCII files can easily become very large, particularly with linefocus or str
 Function `read.txt.Renishaw()`{.r} provides two mechanisms to avoid running out of memory during data import.
 The file may be imported in chunks of a given number of lines (see the last example). `read.txt.Renishaw()`{.r} can calculate the correct number of wavelengths (i.e., data points per spectrum) if the system command `wc` is available on your computer.
 
-In addition, the processing of the long ASCII format into the spectra matrix is done by reshaping the vector of intensities into a matrix.
+Also, the processing of the long ASCII format into the spectra matrix is done by reshaping the vector of intensities into a matrix.
 This process does not allow any missing values in the data.
 _Therefore it is not possible to import multi-spectra files with individually "zapped" spectra using `read.txt.Renishaw()`{.r}._
 
