@@ -770,7 +770,7 @@ barbiturates[[, , 25 ~ 30]]
 
 ### Deriving manufacturer specific import filters
 
-Please note that future changes inside the read.spc function are likely to occur.
+Please note that future changes inside the read.spc function is likely to occur.
 However, if you just post-process the `hyperSpec`{.r} object returned by `read.spc()`{.r}, you should be fine.
 
 
