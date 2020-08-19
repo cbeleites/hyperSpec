@@ -177,18 +177,18 @@ library(hyperSpec)
 
 # Introduction
 
-This document describes how spectra can be imported into `hyperSpec`{.r} objects.
-Some possibilities to export `hyperSpec`{.r} objects as files are mentioned, too.
+This document describes how to import spectra into `hyperSpec`{.r} objects.
+We discuss exporting `hyperSpec`{.r} objects as files as well.
 
 The most basic funtion to create `hyperSpec`{.r} objects is `new("hyperSpec")`{.r} (section \@ref(sec:new)).
 It makes a `hyperSpec`{.r} object from data already in R's workspace.
-Thus, once the spectra are imported into R, conversion to `hyperSpec`{.r} objects is straightforward.
+Thus, after spectra importation into R, conversion to `hyperSpec`{.r} objects is straightforward.
 
-In addition, package **hyperSpec** comes with predifined import functions for different data formats.
+Additionally, package **hyperSpec** comes with predefined import functions for different data formats.
 This document divides the discussion into dealing with ASCII files (section \@ref(sec:ascii)<!--, p. \pageref{sec:ascii}-->) and binary file formats (section \@ref(sec:binary-file-formats)<!--, p. \pageref{sec:binary-file-formats}-->).
-If data export for the respective format is possible, it is discussed in the same sections.
+If data export for the respective format is possible, we discuss it in the same sections.
 As sometimes the actual data written by the spectrometer software exhibits peculiarities, package **hyperSpec** offers several specialized import functions.
-These are in general named after the data format followed by the manufacturer (e.g., `read.ENVI.Nicolet`).
+In general, the naming convention is the data format followed by the manufacturer (e.g., `read.ENVI.Nicolet`).
 
 <!-- ======================================================================= -->
 ```{block, type="note-t", echo=show_reviewers_notes}
