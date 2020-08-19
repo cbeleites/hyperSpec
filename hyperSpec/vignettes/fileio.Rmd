@@ -940,11 +940,11 @@ spc
 \index{spc!Renishaw}
 \index{spc!Raman}
 
-Renishaw's Wire software comes with an file format converter. This program can produce a long ASCII format, `.spc`, or `.jdx` files.
+Renishaw's Wire software comes with a file format converter. This program can produce a long ASCII format, `.spc`, or `.jdx` files.
 
-We experienced that the conversion to `.spc` is *not* fully reliable: maps were saved as depth profile, loosing all spatial information.
-In addition, an evenly spaced wavelength axis was produced, although this was de-selected in the converter.
-We therefore recommend using the ASCII format.
+We experienced that the conversion to `.spc` is *not* fully reliable: maps were saved as depth profiles, losing all spatial information.
+Also, an evenly spaced wavelength axis was produced, although this was de-selected in the converter.
+We, therefore, recommend using the ASCII format.
 Otherwise the import using `read.spc()`{.r} worked.
 
 
