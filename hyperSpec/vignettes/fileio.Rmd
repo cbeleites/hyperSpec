@@ -825,8 +825,8 @@ The proprietary file format of the Opus software is not yet supported.
 \index{Infrared!ENVI}
 \index{Nicolet!ENVI}
 
-Also Nicolet saves imaging data in ENVI files.
-These files use some non-standard keywords in the header file that should allow to reconstruct the lateral coordinates as well as the wavelength axes and units for wavelength and intensity axis.
+Also, Nicolet saves imaging data in ENVI files.
+These files use some non-standard keywords in the header file that should reconstruct the lateral coordinates and the wavelength axes and units for wavelength and intensity axis.
 Package **hyperSpec** has a specialized function `read.ENVI.Nicolet()`{.r} that uses these header entries.
 
 It seems that the position of the first spectrum is recorded in $mu m${}, while the pixel size is in mm.
