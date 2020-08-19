@@ -243,7 +243,7 @@ With the arguments:
 ---------------- ---------------------------------------------------------------------------
 
 
-hus, once the data is in R's workspace, creating a `hyperSpec`{.r} object is easy.
+Thus, once the data is in R's workspace, creating a `hyperSpec`{.r} object is easy.
 We suggest wrapping the code to import the data and the line joining it into a `hyperSpec`{.r} object by a user-created import function.
 Users are more than welcome to contribute such import code to package **hyperSpec**.
 Secion \@ref(sec:writing-Import)<!--, (p. \pageref{sec:writing-Import})--> discusses examples of custom import functions.
@@ -1198,8 +1198,7 @@ read.txt.Witec.Graph("fileio/txt.Witec/nofilename (Header).txt", encoding = "lat
 
 This function reads the spectra files automatically, if they are named properly and extracts additional information of the header file. As for the other Witec functions it is possible to read image data by by selecting `type = "map"`{.r}. Line scans and z-stacks should be read as single spectra.
 
-
- unction {#sec:writing-Import}
+Function {#sec:writing-Import}
 
 This section gives examples of how to write import functions. The first example implements an import
 filter for an ASCII file format, basically from scratch. The second example shows how to implement
@@ -1218,7 +1217,7 @@ more details for an already existing import filter.
 The raw spectra of the `flu`{.r} data set (see also the separate vignette) are in PerkinElmer's ASCII file format, one spectrum per file.
 
 We need a function that automatically reads all files specified by a pattern, such as `*.txt`{.r}.
-To gain speed, **hyperSpec** preallocates the spectra matrix after the first reading of the file.
+To gain speed, users should preallocate the spectra matrix after the first reading of the file.
 
 
 
@@ -1247,8 +1246,7 @@ fluorescence spectra, but it should be possible to change them.
 -  The usual log entry arguments should be supplied.
 -  A sanity check should be implemented: stop with an error if a file does not have the same
 wavelength axis as the others.
--  If no file can be found, an empty `hyperSpec`{.r} object is a consistent result: There is no need
-to stop with an error, but it is polite to issue an additional warning.
+-  If no file can be found, an empty `hyperSpec`{.r} object is a consistent result: There is no need to stop with an error, but it is polite to issue an additional warning.
 -  Finally, package **hyperSpec** does some optional common post-processing for all imported files such as attaching the filename (or connection description) to the `hyperSpec`{.r} object (column `filename`{.r}) and deleting empty spectra.
    These options can be globally switched on or off by options.
 
@@ -1261,7 +1259,7 @@ writeLines(readLines("read.txt.PerkinElmer.R"))
 
 imports the spectra.
 Note how the labels are set.
-The label with the unique name `.wavelength`{.r} corresponds to the wavelength axis, all data columns should have a label with the same name.
+The label with the special name `.wavelength`{.r} corresponds to the wavelength axis, all data columns should have a label with the same name.
 The spectra are always in a data column called `spc`{.r}.
 
 Thus,
@@ -1296,7 +1294,7 @@ The units of the spectra are saved as well.
 
 Function `read.ENVI.Nicolet()`{.r} thus first adjusts the parameters for `read.ENVI()`{.r}.
 Then `read.ENVI()`{.r} does the main work of importing the file.
-The resulting `hyperSpec`{.r} object is post-processed according to the unique header entries.
+The resulting `hyperSpec`{.r} object is post-processed according to the special header entries.
 
 For using the function, see section \@ref(sec:read-ENVI-Nicolet)<!--(p. \pageref{sec:read-ENVI-Nicolet})-->.
 
@@ -1309,7 +1307,7 @@ writeLines(readLines("read.ENVI.Nicolet.R"))
 
 ## Deriving import filters for `spc` files
 
-Please note that future changes inside the `read.spc()`{.r} function is likely to occur.
+Please note that future changes inside the `read.spc()`{.r} function are likely to occur.
 However, if you just post-process the `hyperSpec`{.r} object returned by `read.spc()`{.r}, you should be fine.
 
 
