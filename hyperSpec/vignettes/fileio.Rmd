@@ -130,8 +130,8 @@ And the current names could be deprecated.
 From now on, all import functions have names starting with `read.\*()`.
 All functions previously named `scan.\*()` have been renamed accordingly.
 
-Package **hyperSpec** supports a number of file formats relevant for different types of spectroscopy.
-This is naturally only a subset of the file formats produced by different spectroscopic equipment.
+Package **hyperSpec** supports several file formats relevant for different types of spectroscopy.
+This file format is naturally only a subset of the file formats produced by different spectroscopic equipment.
 
 If you use package **hyperSpec** with data formats not mentioned in this document, please open a [new issue](https://github.com/cbeleites/hyperSpec/issues){target="_blank"} in **hyperSpec**'s GitHub repository so that this document can be updated.
 The information should include:
@@ -140,7 +140,7 @@ The information should include:
 -  Spectrometer model, manufacturer, and software,
 -  The "native" file format (including a sample file),
 -  Description of relevant procedures to convert the file,
--  R code to import the data together with an example file that can actually be read by R,
+-  R code to import the data together with an example file that is read by R,
 -  Documentation, particularly the description of the data format.
 
 
