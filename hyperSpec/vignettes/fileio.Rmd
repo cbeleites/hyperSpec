@@ -155,7 +155,7 @@ If you need help finding out how to import your data, please search and eventual
 
 1. `# FIXME:`{.r} After the translation is completed, the contents in the box below must be fixed.
 2. `# FIXME:`{.r} do not mention `vignettes.def`
-3. Check if links point to correct destitations. Links to external websites must start with `https://` or `http://`.
+3. Check if links point to correct destinations. Links to external websites must start with `https://` or `http://`.
 ```
 <!-- ======================================================================= -->
 
@@ -164,7 +164,7 @@ If you need help finding out how to import your data, please search and eventual
 ```{block, type="note", echo=TRUE}
 **Reproducing the Examples in this Manual**
 
-To run the code examples, you should create a folder named "fileio" in your working directory and copy the contents of directory <https://github.com/cbeleites/hyperSpec/tree/develop/Vignettes/fileio>.
+To run the code examples, create a folder named "fileio" in your working directory and copy the contents of the directory <https://github.com/cbeleites/hyperSpec/tree/develop/Vignettes/fileio>.
 This online directory contains the required datasets (via `git-lfs`).
 ```
 
