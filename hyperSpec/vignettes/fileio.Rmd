@@ -703,14 +703,11 @@ Anyone knowing where it moved please contact me ([**hyperSpec**'s GitHub reposit
 ```
 <!-- ======================================================================= -->
 
-
-
-
 A variety of sub-formats exists. package **hyperSpec**'s import function `read.spc()`{.r} does *not* support the old file format that was used before 1996.
-In addition, no test data with *w planes* was available --- thus the import of such files could not be tested. If you come across such files, please contact the package maintainer ([**hyperSpec**'s GitHub repository](https://github.com/cbeleites/hyperSpec/issues){target="_blank"}).
+In addition, no test data with *w planes* was available --- thus, the import of such files could not be tested. If you come across such files, please contact the package maintainer ([**hyperSpec**'s GitHub repository](https://github.com/cbeleites/hyperSpec/issues){target="_blank"}).
 
 The header and subheader blocks of spc files store additional information of pre-defined types (see the file format specification[@Galactic1997]).
-Further information can be stored in the so-called log block at the end of the file, and should be in a key-value format (although even the official example files do not always).
+Further information can be stored in the so-called log block at the end of the file and should be in a key-value format (although even the official example files do not always).
 This information is often useful (Kaiser's Hologram software, e.g., stores the stage position in the log block).
 
 Function `read.spc()`{.r} has four arguments that allow fine-grained control of storing such information in the `hyperSpec`{.r} object:
@@ -728,7 +725,7 @@ Function `read.spc()`{.r} has four arguments that allow fine-grained control of 
 The value of these arguments can either be logical (amounting to either use all or none of the information in the file) or a character vector giving the names of the parameters that should be used.
 Note that the header file field names are always lowercase.
 
-Here's how to find out what extra information could be read from the header and log:
+Here is how to find out what extra information could be read from the header and log:
 
 ```{r}
 read.spc("fileio/spc.Kaisermap/ebroAVII.spc", keys.hdr2data = TRUE)
