@@ -780,10 +780,10 @@ However, if you just post-process the `hyperSpec`{.r} object returned by `read.s
 ## Manufacturer Specific Import Functions {#sec:manuf-spec-import}
 
 Many spectrometer manufacturers provide a function to export their spectra into ASCII files.
-The functions discussed above are written in a very general way, and are highly customizable.
-We recommend wrapping these calls with the appropriate settings for your spectra format in an import function.
-Please consider contributing such import filters to package **hyperSpec**: send me the documented code (for details see the box at the beginning of this document).
-If you are able to import data of any format not mentioned in this document (even without the need of new converters), please let me know (details again in the box at the beginning of this document).
+The functions discussed above are written in a very general way and are highly customizable.
+We recommend wrapping these calls with the appropriate settings for the spectra format in an import function.
+Please consider contributing such import filters to package **hyperSpec**: send us the documented code (for details, see the box at the beginning of this document).
+If there is any format not mentioned in this document (even without the need of new converters), please let me know (details again in the box at the beginning of this document).
 
 
 ## Bruker FT-IR Imaging {#sec:read-ENVI-Bruker}
