@@ -539,14 +539,12 @@ Further import filters are provided for manufacturer/software specific ASCII for
 ASCII export can be done in wide and long format using `write.txt.long()`{.r} and `write.txt.wide()`{.r}.
 If you need a specific header or footer, use R's functions for writing files: `write.table()`{.r}, `write()`{.r}, `cat()`{.r} and so on offer fine-grained control of writing ASCII files.
 
-
-
 # Binary file formats {#sec:binary-file-formats}
 
 ## Matlab Files {#sec:readMat}
 \index{Matlab}
 
-Matlab files can be read and written using the package package **R.matlab**\citep{R.matlab}, which is available at CRAN and can be installed by `install.packages("R.matlab")`{.r}.
+Matlab files can be read and written using the package **R.matlab**\citep{R.matlab}, which is available at CRAN and can be installed by `install.packages("R.matlab")`{.r}.
 
 ```{r}
 library(R.matlab)
@@ -565,7 +563,7 @@ library(R.matlab)
 spc.mat <- readMat("fileio/spectra.mat")
 ```
 
-If the `.mat` file was saved with compression, the additional package package **Rcompression** is needed.
+If the `.mat` file was saved with compression, the additional package **Rcompression** is needed.
 It can be installed from omegahat:
 
 <!-- ======================================================================= -->
@@ -582,10 +580,10 @@ install.packages("Rcompression", repos = "http://www.omegahat.org/R")
 See the documentation of package **R.matlab** for more details and possibly needed further packages.
 
 Function `readMat()`{.r} imports the `.mat` file's contents as a list.
-The variables in the `.mat` file are properly named elements of the list.
+The variables in the `.mat` file are appropriately named elements of the list.
 The `hyperSpec`{.r} object can be created using `new()`{.r}, see section \@ref(sec:new)<!-- (p. \pageref{sec:new})-->.
 
-Again, you probably want to wrap the import of your matlab files into a function.
+Again, users probably want to wrap the import of their Matlab files into a function.
 
 
 ### Matlab Export {#sec:writing-matlab-files}
