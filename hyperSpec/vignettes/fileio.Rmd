@@ -1036,7 +1036,7 @@ spc <- read.txt.Horiba("fileio/txt.HoribaJobinYvon/ts.txt",
 spc
 ```
 
-Note that Labspec `.txt` files can contains lots of spectra with zero intensity: Labspec saves a complete rectangular grid even if only part of a map was measured.
+Note that Labspec `.txt` files can contain lots of spectra with zero intensity: Labspec saves a complete rectangular grid even if only part of a map was measured.
 These spectra are by removed by default if option `file.remove.emptyspc`{.r} is `TRUE`{.r} (the default).
 
 For convenience, functions to further wrappers to import maps (`read.txt.Horiba.xy()`{.r}) and time series (`read.txt.Horiba.t()`{.r}) are provided.
