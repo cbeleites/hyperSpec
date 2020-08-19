@@ -642,10 +642,10 @@ Please use `read.mat.Cytospec()`{.r} instead.
 
 ENVI files are binary data accompanied by an ASCII header file.
 Package **hyperSpec**'s function `read.ENVI()`{.r} can be used to import them.
-Usually, the header file name is the same as the binary data file name with the suffix replaced by `.hdr`. Otherwise, the header file name can be given via parameter **`headerfile`{.r}**.
+Usually, the header file name is the same as the binary data file name, with the suffix replaced by `.hdr`. Otherwise, the header file name can be given via parameter **header file`{.r}**.
 
 As we experienced missing header files (Bruker's Opus software frequently produced header files without any content), the data that would usually be read from the header file can also be handed to `read.ENVI()`{.r} as a list in parameter **`header**`{.r}.
-Arguments given in `header`{.r} replace corresponding entries of the header file.
+Arguments are given in `header`{.r} replace corresponding entries of the header file.
 The help page gives details on what elements the list should contain, see also the discussion of ENVI files written by Bruker's OPUS software (section \@ref(sec:read-ENVI-Bruker)<!--, p. \pageref{sec:read-ENVI-Bruker})-->.
 
 Here is how to use `read.ENVI()`{.r}:
