@@ -210,7 +210,7 @@ Overview lists of the directly supported file formats are in the appendix: sorte
 
 
 1. `# NOTE:`{.r} Do not remove `\index{}` tags. They might be useful in the future.
-2. I suggest cheating a specialized function, e.g., `hyperSpec()`{.r} that wrapps functionality of `new("hyperSpec", spc, wavelength, data, labels)`{.r}.
+2. We suggest cheating a specialized function, e.g., `hyperSpec()`{.r} that wrapps functionality of `new("hyperSpec", spc, wavelength, data, labels)`{.r}.
 ```
 <!-- ======================================================================= -->
 
@@ -244,7 +244,7 @@ With the arguments:
 
 
 Thus, once your data is in R's workspace, creating a `hyperSpec`{.r} object is easy.
-I suggest wrapping the code to import your data and the line joining it into a `hyperSpec`{.r} object by your own import function.
+We suggest wrapping the code to import your data and the line joining it into a `hyperSpec`{.r} object by your own import function.
 You are more than welcome to contribute such import code to package **hyperSpec**.
 Secion \@ref(sec:writing-Import)<!--, (p. \pageref{sec:writing-Import})--> discusses examples of custom import functions.
 
@@ -781,7 +781,7 @@ However, if you just post-process the `hyperSpec`{.r} object returned by `read.s
 
 Many spectrometer manufacturers provide a function to export their spectra into ASCII files.
 The functions discussed above are written in a very general way, and are highly customizable.
-I recommend wrapping these calls with the appropriate settings for your spectra format in an import function.
+We recommend wrapping these calls with the appropriate settings for your spectra format in an import function.
 Please consider contributing such import filters to package **hyperSpec**: send me the documented code (for details see the box at the beginning of this document).
 If you are able to import data of any format not mentioned in this document (even without the need of new converters), please let me know (details again in the box at the beginning of this document).
 
