@@ -919,9 +919,9 @@ package **hyperSpec** provides the function `read.spc.KaiserMap()`{.r} to easily
 `.spc` files written by Kaiser's Hologram software.
 The filenames of all `.spc` files to be read into one `hyperSpec`{.r} object can be provided either as a character vector or as a wildcard expression (e.g., `"path/to/files/*.spc"`).
 
-The data for the following example was saved with wavelength axis being camera pixels rather than Raman shift.
+The data for the following example was saved with the wavelength axis being camera pixels rather than the Raman shift.
 Thus two files for each spectrum were saved by Hologram.
-Thus, a file name pattern is difficult to give and a vector of file names is used instead:
+Thus, a file name pattern is difficult to give, and a vector of file names is used instead:
 
 ```{r readspcKaiserMap}
 files <- Sys.glob("fileio/spc.Kaisermap/*.spc")
