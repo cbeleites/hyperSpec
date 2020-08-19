@@ -810,8 +810,8 @@ header <- list(
 ```
 
 No spatial information is given in the ENVI header (if written).
-The lateral coordinates can be setup by specifying origin and pixel size for $x$ and $y$ directions.
-For details please see the help page.
+The lateral coordinates can be set up by specifying origin and pixel size for $x$ and $y$ directions.
+For details, please see the help page.
 
 The proprietary file format of the Opus software is not yet supported.
 
