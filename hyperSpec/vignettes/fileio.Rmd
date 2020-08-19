@@ -243,9 +243,9 @@ With the arguments:
 ---------------- ---------------------------------------------------------------------------
 
 
-Thus, once your data is in R's workspace, creating a `hyperSpec`{.r} object is easy.
-We suggest wrapping the code to import your data and the line joining it into a `hyperSpec`{.r} object by your own import function.
-You are more than welcome to contribute such import code to package **hyperSpec**.
+hus, once the data is in R's workspace, creating a `hyperSpec`{.r} object is easy.
+We suggest wrapping the code to import the data and the line joining it into a `hyperSpec`{.r} object by a user-created import function.
+Users are more than welcome to contribute such import code to package **hyperSpec**.
 Secion \@ref(sec:writing-Import)<!--, (p. \pageref{sec:writing-Import})--> discusses examples of custom import functions.
 
 
@@ -1199,10 +1199,10 @@ read.txt.Witec.Graph("fileio/txt.Witec/nofilename (Header).txt", encoding = "lat
 This function reads the spectra files automatically, if they are named properly and extracts additional information of the header file. As for the other Witec functions it is possible to read image data by by selecting `type = "map"`{.r}. Line scans and z-stacks should be read as single spectra.
 
 
-# Writing your own Import Function {#sec:writing-Import}
+ unction {#sec:writing-Import}
 
-This section gives examples how to write import functions. The first example implements an import
-filter for an ASCII file format basically from scratch. The second example shows how to implement
+This section gives examples of how to write import functions. The first example implements an import
+filter for an ASCII file format, basically from scratch. The second example shows how to implement
 more details for an already existing import filter.
 
 
@@ -1215,10 +1215,10 @@ more details for an already existing import filter.
 \index{PerkinElmer!Fluorescence}
 \index{PerkinElmer!ASCII long}
 
-The raw spectra of the `flu`{.r} data set (see also the respective vignette) are in PerkinElmer's ASCII file format, one spectrum per file.
+The raw spectra of the `flu`{.r} data set (see also the separate vignette) are in PerkinElmer's ASCII file format, one spectrum per file.
 
 We need a function that automatically reads all files specified by a pattern, such as `*.txt`{.r}.
-In order to gain speed, the spectra matrix should be preallocated after the first file is read.
+To gain speed, **hyperSpec** preallocates the spectra matrix after the first reading of the file.
 
 
 
@@ -1232,22 +1232,22 @@ In order to gain speed, the spectra matrix should be preallocated after the firs
 
 
 A short examination of the files (`flu*.txt`{.r} in directory `txt.PerkinElmer`) reveals that the actual spectrum starts at line 55, after a line containing `\#DATA`.
-For now, no other information of the files is to be extracted.
+For now, no other information about the files is to be extracted.
 It is thus easier to skip the first 54 lines than searching for the line after `\#DATA`.
 
-A fully featured import function should support:
+A fully-featured import function should support:
 
 -  Reading multiple files by giving a pattern
 -  hand further arguments to `scan()`{.r}.
    This comes handy in case the function is used later to import other data types.
--  Also skipping 54 lines would be a weird default, so we rather require it to be given
+-  Also, skipping 54 lines would be a weird default, so we instead require it to be given
 explicitly.
--  The same applies for the axis labels: they should default to reasonable settings for
-fluorescence spectra, but it should be possible to change them if needed.
+-  The same applies to the axis labels: they should default to reasonable settings for
+fluorescence spectra, but it should be possible to change them.
 -  The usual log entry arguments should be supplied.
 -  A sanity check should be implemented: stop with an error if a file does not have the same
 wavelength axis as the others.
--  If no file can be found, an empty `hyperSpec`{.r} object is a reasonable result: There is no need
+-  If no file can be found, an empty `hyperSpec`{.r} object is a consistent result: There is no need
 to stop with an error, but it is polite to issue an additional warning.
 -  Finally, package **hyperSpec** does some optional common post-processing for all imported files such as attaching the filename (or connection description) to the `hyperSpec`{.r} object (column `filename`{.r}) and deleting empty spectra.
    These options can be globally switched on or off by options.
@@ -1259,8 +1259,9 @@ to stop with an error, but it is polite to issue an additional warning.
 writeLines(readLines("read.txt.PerkinElmer.R"))
 ```
 
+imports the spectra.
 Note how the labels are set.
-The label with the special name `.wavelength`{.r} corresponds to the wavelength axis, all data columns should have a label with the same name.
+The label with the unique name `.wavelength`{.r} corresponds to the wavelength axis, all data columns should have a label with the same name.
 The spectra are always in a data column called `spc`{.r}.
 
 Thus,
@@ -1272,7 +1273,7 @@ read.txt.PerkinElmer(Sys.glob("fileio/txt.PerkinElmer/flu?.txt"), skip = 54)
 
 imports the spectra.
 
-This function is not exported by package **hyperSpec**: while it is already useful for importing files, it is not yet general enough to work immediately with new data, e.g., the the file header is completely ignored.
+The **hyperSpec** package does not export this function: while it is already useful for importing files, it is not general enough to work immediately with new data, e.g., completely ignoring the file header.
 Thus information like the excitation wavelength is lost.
 
 
@@ -1288,14 +1289,14 @@ Thus information like the excitation wavelength is lost.
 \index{Nicolet!Map}
 \index{Nicolet!Infrared}
 
-The function `read.ENVI.Nicolet()`{.r} is a good example for a more specific import filter derived from a general filter for the respective file type.
+The function `read.ENVI.Nicolet()`{.r} is an excellent example of a more specific import filter derived from a generic filter for the particular file type.
 Nicolet FT-IR Imaging software saves some non-standard keywords in the header file of the ENVI data.
-These information can be used to reconstruct the $x$ and $y$ axes of the images.
+This information can be used to reconstruct the $x$ and $y$ axes of the images.
 The units of the spectra are saved as well.
 
 Function `read.ENVI.Nicolet()`{.r} thus first adjusts the parameters for `read.ENVI()`{.r}.
 Then `read.ENVI()`{.r} does the main work of importing the file.
-The resulting `hyperSpec`{.r} object is post-processed according to the special header entries.
+The resulting `hyperSpec`{.r} object is post-processed according to the unique header entries.
 
 For using the function, see section \@ref(sec:read-ENVI-Nicolet)<!--(p. \pageref{sec:read-ENVI-Nicolet})-->.
 
@@ -1308,7 +1309,7 @@ writeLines(readLines("read.ENVI.Nicolet.R"))
 
 ## Deriving import filters for `spc` files
 
-Please note that future changes inside the `read.spc()`{.r} function are likely to occur.
+Please note that future changes inside the `read.spc()`{.r} function is likely to occur.
 However, if you just post-process the `hyperSpec`{.r} object returned by `read.spc()`{.r}, you should be fine.
 
 
