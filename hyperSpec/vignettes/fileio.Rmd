@@ -1099,7 +1099,7 @@ read.spc("fileio/spc.Witec/Witec-Map.spc")
 ```
 
 `.spc` is in general the recommended format for package **hyperSpec** import.
-For imaging data no spatial information for the set of spectra is provided (in version 2.10 this export option is not supported).
+For imaging data, no spatial information for the set of spectra is provided (in version 2.10, this export option is not supported).
 
 Imaging data (but also single spectra and time series) can be exported as ASCII X and Y files (Save ASCII X and Save ASCII Y, not supported in version 4).
 These can be read by `read.dat.Witec()`{.r}:
@@ -1112,20 +1112,20 @@ read.dat.Witec(
 )
 ```
 
-Note that the Y data files also contain a wavelength information, but (at least Witec Project 2.10) this information is always wavelength in nm, not Raman shift in wavenumbers: this is provided by the X data file only.
+Note that the Y data files also contain wavelength information, but (at least Witec Project 2.10) this information is always wavelength in nm, not Raman shift in wavenumbers: this is provided by the X data file only.
 
 Another option is Witec's txt table ASCII export (Export $\rightarrow$ Table), which produces ASCII files with each row corresponding to one wavelength.
-The first column contains the wavelength axis, all further columns contain one spectrum each column.
+The first column contains the wavelength axis; all further columns contain one spectrum each column.
 Such files can be read with `read.txt.Witec()`{.r}:
 
 ```{r witec-txt, include=FALSE}
 read.txt.Witec("fileio/txt.Witec/Witec-timeseries_no.txt")
 ```
-`read.txt.Witec()`{.r} determines the number of wavelengths automaticallly.
+`read.txt.Witec()`{.r} determines the number of wavelengths automatically.
 
 Note that there are several Export Filter Options.
-Here you can determine, which units should be used for the export (see XUnits tab).
-In addition, it is possible to export two additional header lines containing information about spectra labels and units.
+It is possible to determine which units should be used for the export (see XUnits tab).
+It is also possible to export two additional header lines containing information about spectra labels and units.
 Therefore parameters `hdr.label`{.r} and `hdr.units`{.r} have to be set properly.
 Otherwise, either an error will be displayed like
 
@@ -1186,9 +1186,9 @@ read.txt.Witec("fileio/txt.Witec/Witec-Map_no.txt",
 )
 ```
 
-For line scans and z-stacks use `type = "single"`{.r} because the provided information are looking the same like for timeseries, so no further information can be extracted from the header files.
+For line scans and z-stacks use `type = "single"`{.r} because the provided information is looking the same as for time series, so no further information can be extracted from the header files.
 
-Since version 4 WITec Project offers the Graph ASCII export (Export $\rightarrow$ Graph ASCII) which produces three ASCII files, named Header containing additional information, X-Axis containing the wavelength values and Y-Axis containing the spectra one spectrum in each column. Data exported in this way can be read with `read.txt.Witec.Graph()`{.r}:
+Since version 4 WITec Project offers the Graph ASCII export (Export $\rightarrow$ Graph ASCII), which produces three ASCII files, named Header containing additional information, X-Axis containing the wavelength values and Y-Axis containing the spectra one spectrum in each column. Data exported in this way can be read with `read.txt.Witec.Graph()`{.r}:
 
 ```{r witec-txt-Graph, results='hide'}
 read.txt.Witec.Graph("fileio/txt.Witec/Witec-timeseries (Header).txt")
@@ -1196,7 +1196,7 @@ read.txt.Witec.Graph("fileio/txt.Witec/Witec-Map (Header).txt", type = "map")
 read.txt.Witec.Graph("fileio/txt.Witec/nofilename (Header).txt", encoding = "latin1")
 ```
 
-This function reads the spectra files automatically, if they are named properly and extracts additional information of the header file. As for the other Witec functions it is possible to read image data by by selecting `type = "map"`{.r}. Line scans and z-stacks should be read as single spectra.
+This function reads the spectra files automatically, if they are appropriately named and extracts additional information of the header file. As for the other Witec functions, it is possible to read image data by selecting `type = "map"`{.r}. Line scans and z-stacks should be read as single spectra.
 
 # Writing your own Import Function {#sec:writing-Import}
 
