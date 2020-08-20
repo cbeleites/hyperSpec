@@ -204,12 +204,11 @@ To run the code examples, create a folder named “fileio” in your working dir
 <div id="introduction" class="section level1">
 <h1 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h1>
-<p>This document describes how to import spectra into <code class="sourceCode r">hyperSpec</code> objects.
-We discuss exporting <code class="sourceCode r">hyperSpec</code> objects as files as well.</p>
+<p>This document describes how to import files containing spectra into <code class="sourceCode r">hyperSpec</code> objects, as well as exporting<code>hyperSpec</code> objects as files.</p>
 <p>The most basic funtion to create <code class="sourceCode r">hyperSpec</code> objects is <code class="sourceCode r"><span class="kw">new</span>(<span class="st">"hyperSpec"</span>)</code> (section <a href="#sec:new"><strong>??</strong></a>).
 It makes a <code class="sourceCode r">hyperSpec</code> object from data already in R’s workspace.
 Thus, after spectra importation into R, conversion to <code class="sourceCode r">hyperSpec</code> objects is straightforward.</p>
-<p>Additionally, package <strong>hyperSpec</strong> comes with predefined import functions for different data formats.
+<p>Additionally, the <strong>hyperSpec</strong> package comes with predefined import functions for different data formats.
 This document divides the discussion into dealing with ASCII files (section <a href="#sec:ascii"><strong>??</strong></a><!--, p. \pageref{sec:ascii}-->) and binary file formats (section <a href="#sec:binary-file-formats"><strong>??</strong></a><!--, p. \pageref{sec:binary-file-formats}-->).
 If data export for the respective format is possible, we discuss it in the same sections.
 As sometimes the actual data written by the spectrometer software exhibits peculiarities, package <strong>hyperSpec</strong> offers several specialized import functions.
@@ -268,7 +267,7 @@ Secion <a href="#sec:writing-Import"><strong>??</strong></a><!--, (p. \pageref{s
 <div id="import-spectra-matrix" class="section level2">
 <h2 class="hasAnchor">
 <a href="#import-spectra-matrix" class="anchor"></a>Creating a <code class="sourceCode r">hyperSpec</code> Object from a Data Matrix (Spectra Matrix)</h2>
-<p>As spectra matices are the internal format of <code class="sourceCode r">hyperSpec</code>, the consructor can directly be used:</p>
+<p>As spectra matrices are the internal format of <code class="sourceCode r">hyperSpec</code>, the constructor can directly be used:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit">
 <span class="kw">spc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/initialize.html">new</a></span>(<span class="st">"hyperSpec"</span>, <span class="kw">spc</span>, <span class="kw">wavelength</span>, <span class="kw">data</span>, <span class="kw">labels</span>)
 </pre></div>
@@ -284,8 +283,8 @@ x = 41
 wavelengths = 256</p>
 <p>I do not know the way to import the hypercube.</p>
 </blockquote>
-<p>Data cubes (i.e. 3-dimensional arrays of spectral data) result from spectal imaging measurements, where spectra are supplied for each pixel of an <span class="math inline">\(px.x × px.y\)</span> imaging area.
-They have 3 directions, usually <span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span>, and the spectral dimension.</p>
+<p>Data cubes (i.e., 3-dimensional arrays of spectral data) result from spectral imaging measurements, where spectra are supplied for each pixel of an <span class="math inline">\(px.x × px.y\)</span> imaging area.
+They have three directions, usually <span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span>, and the spectral dimension.</p>
 <p>The solution is to convert the array into a spectra matrix and have separate <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> coordinates.</p>
 <p>Assume <code class="sourceCode r">data</code> is the data cube, and <code class="sourceCode r">x</code>, <code class="sourceCode r">y</code> and <code class="sourceCode r">wl</code> hold vectors with the proper <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> coordinates and the wavelengths:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit">
@@ -316,7 +315,7 @@ Of course, such sequences (the row/column/pixel numbers) can be used instead of 
 <span class="kw">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span>(<span class="kw">d</span>[<span class="fl">2</span>])
 </pre></div>
 <p>Data cubes often come from spectral imaging systems that use an “image” coordinate system counting <span class="math inline">\(y\)</span> from top to bottom.
-Note that this should accounted for in the decreasing order of the original <code class="sourceCode r">y</code> vector.</p>
+Note that this should be accounted for in the decreasing order of the original <code class="sourceCode r">y</code> vector.</p>
 <!-- ======================================================================= -->
 <!-- ======================================================================= -->
 </div>
@@ -341,8 +340,8 @@ Note that this should accounted for in the decreasing order of the original <cod
 <span class="kw">spc</span>
 </pre></div>
 <p>Note that in this particular case, the spectra are more efficiently read by <code class="sourceCode r"><span class="kw">read.spc.KaiserMap</span>()</code> (see section <a href="#sec:read-spc-KaiserMap"><strong>??</strong></a><!--, p. \pageref{sec:read-spc-KaiserMap}-->).</p>
-<p>If you regularly import huge maps or images, writing a customized import function is highly encouraged.
-You may gain speed and memory by using the internal workhorse functions for the file import.
+<p>If one regularly imports huge maps or images, writing a customized import function is highly encouraged.
+Users may gain speed and memory by using the internal workhorse functions for the file import.
 In that case, please contact the package maintainer (<a href="https://github.com/cbeleites/hyperSpec/issues" target="_blank"><strong>hyperSpec</strong>’s GitHub repository</a>) for advise (contributions to package <strong>hyperSpec</strong> are welcome and all authors are listed appropriately in the function help page’s author section).</p>
 </div>
 <div id="sec:ascii" class="section level1">
