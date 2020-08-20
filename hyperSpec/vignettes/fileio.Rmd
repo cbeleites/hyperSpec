@@ -310,15 +310,15 @@ x <- seq_len(d[2])
 Data cubes often come from spectral imaging systems that use an "image" coordinate system counting $y$ from top to bottom.
 Note that this should be accounted for in the decreasing order of the original `y`{.r} vector.
 
-
-
 <!-- ======================================================================= -->
-```{block, type="note-t", echo=show_reviewers_notes}
 
+
+```{block, type="note-t", echo=show_reviewers_notes}
 `# TODO:`{.r}  (this was a LaTeX-commented `TODO` tag)
 
 ```
 <!-- ======================================================================= -->
+
 
 
 # General behaviour of file import functions: Options `file.keep.name` and `file.remove.emptyspc` {#io-options}
@@ -528,6 +528,7 @@ plot(collapse(Hg.AES), lines.args = list(type = "h"), col = 1:2)
 ```
 
 
+
 ## Further ASCII Formats
 
 Further import filters are provided for manufacturer/software specific ASCII formats, see table \@ref(sec:format)<!-- (p. \pageref{sec:format})--> and section \@ref(sec:manuf-spec-import)<!--(p. \pageref{sec:manuf-spec-import})-->.
@@ -572,7 +573,6 @@ It can be installed from omegahat:
 1. `# FIXME:`{.r} there are issues in downloading `Rcompression` package as omegahat.org does not update as quickly as a new version of R is released.
 ```
 <!-- ======================================================================= -->
-
 ```{r eval=FALSE}
 install.packages("Rcompression", repos = "http://www.omegahat.org/R")
 ```
@@ -1212,7 +1212,6 @@ The raw spectra of the `flu`{.r} data set (see also the separate vignette) are i
 
 We need a function that automatically reads all files specified by a pattern, such as `*.txt`{.r}.
 To gain speed, users should preallocate the spectra matrix after the first reading of the file.
-
 
 
 <!-- ======================================================================= -->
