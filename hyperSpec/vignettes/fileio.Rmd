@@ -111,7 +111,7 @@ knitr::write_bib(
 **Consistent naming of file import functions in version >= 0.99**
 
 From now on, all import functions have names starting with `read.\*()`.
-All functions previously named `scan.\*()`. have been renamed accordingly.
+All functions previously named `scan.\*()` have been renamed accordingly.
 ```
 
 <!-- ======================================================================= -->
@@ -702,7 +702,8 @@ Anyone knowing where it moved please contact me ([**hyperSpec**'s GitHub reposit
 <!-- ======================================================================= -->
 
 A variety of sub-formats exists. package **hyperSpec**'s import function `read.spc()`{.r} does *not* support the old file format that was used before 1996.
-In addition, no test data with *w planes* was available --- thus, the import of such files could not be tested. If you come across such files, please contact the package maintainer ([**hyperSpec**'s GitHub repository](https://github.com/cbeleites/hyperSpec/issues){target="_blank"}).
+In addition, no test data with *w planes* was available --- thus, the import of such files could not be tested.
+If you come across such files, please contact the package maintainer ([**hyperSpec**'s GitHub repository](https://github.com/cbeleites/hyperSpec/issues){target="_blank"}).
 
 The header and subheader blocks of spc files store additional information of pre-defined types (see the file format specification[@Galactic1997]).
 Further information can be stored in the so-called log block at the end of the file and should be in a key-value format (although even the official example files do not always).
@@ -935,7 +936,8 @@ spc
 \index{spc!Renishaw}
 \index{spc!Raman}
 
-Renishaw's Wire software comes with a file format converter. This program can produce a long ASCII format, `.spc`, or `.jdx` files.
+Renishaw's Wire software comes with a file format converter.
+This program can produce a long ASCII format, `.spc`, or `.jdx` files.
 
 We experienced that the conversion to `.spc` is *not* fully reliable: maps were saved as depth profiles, losing all spatial information.
 Also, an evenly spaced wavelength axis was produced, although this was de-selected in the converter.
@@ -959,7 +961,8 @@ The file may be compressed via gzip, bzip2, xz or lzma.
 Zip compressed files are read via `read.zip.Renishaw()`{.r}.
 The ASCII files can easily become very large, particularly with linefocus or streamline imaging.
 Function `read.txt.Renishaw()`{.r} provides two mechanisms to avoid running out of memory during data import.
-The file may be imported in chunks of a given number of lines (see the last example). `read.txt.Renishaw()`{.r} can calculate the correct number of wavelengths (i.e., data points per spectrum) if the system command `wc` is available on your computer.
+The file may be imported in chunks of a given number of lines (see the last example).
+Function `read.txt.Renishaw()`{.r} can calculate the correct number of wavelengths (i.e., data points per spectrum) if the system command `wc` is available on your computer.
 
 Also, the processing of the long ASCII format into the spectra matrix is done by reshaping the vector of intensities into a matrix.
 This process does not allow any missing values in the data.
@@ -1183,7 +1186,8 @@ read.txt.Witec("fileio/txt.Witec/Witec-Map_no.txt",
 
 For line scans and z-stacks use `type = "single"`{.r} because the provided information is looking the same as for time series, so no further information can be extracted from the header files.
 
-Since version 4 WITec Project offers the Graph ASCII export (Export $\rightarrow$ Graph ASCII), which produces three ASCII files, named Header containing additional information, X-Axis containing the wavelength values and Y-Axis containing the spectra one spectrum in each column. Data exported in this way can be read with `read.txt.Witec.Graph()`{.r}:
+Since version 4 WITec Project offers the Graph ASCII export (Export $\rightarrow$ Graph ASCII), which produces three ASCII files, named Header containing additional information, X-Axis containing the wavelength values and Y-Axis containing the spectra one spectrum in each column.
+Data exported in this way can be read with `read.txt.Witec.Graph()`{.r}:
 
 ```{r witec-txt-Graph, results='hide'}
 read.txt.Witec.Graph("fileio/txt.Witec/Witec-timeseries (Header).txt")
@@ -1191,12 +1195,15 @@ read.txt.Witec.Graph("fileio/txt.Witec/Witec-Map (Header).txt", type = "map")
 read.txt.Witec.Graph("fileio/txt.Witec/nofilename (Header).txt", encoding = "latin1")
 ```
 
-This function reads the spectra files automatically, if they are appropriately named and extracts additional information of the header file. As for the other Witec functions, it is possible to read image data by selecting `type = "map"`{.r}. Line scans and z-stacks should be read as single spectra.
+This function reads the spectra files automatically, if they are appropriately named and extracts additional information of the header file.
+As for the other Witec functions, it is possible to read image data by selecting `type = "map"`{.r}.
+Line scans and z-stacks should be read as single spectra.
 
 # Writing your own Import Function {#sec:writing-Import}
 
-This section gives examples of how to write import functions. The first example implements an import
-filter for an ASCII file format, basically from scratch. The second example shows how to implement
+This section gives examples of how to write import functions.
+The first example implements an import filter for an ASCII file format, basically from scratch.
+The second example shows how to implement
 more details for an already existing import filter.
 
 
