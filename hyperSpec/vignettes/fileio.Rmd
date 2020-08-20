@@ -170,6 +170,15 @@ This online directory contains the required datasets (via `git-lfs`).
 
 ***
 
+<!-- This chunk inserts common info about all the vignettes --> 
+  
+ ```{r, echo = FALSE, results = "asis"} 
+ res <- knitr::knit_child("list-of-vignettes.md", quiet = TRUE) 
+ cat(res, sep = '\n') 
+ ``` 
+
+***
+
 ```{r}
 library(hyperSpec)
 ```
@@ -1216,7 +1225,7 @@ more details for an already existing import filter.
 \index{PerkinElmer!Fluorescence}
 \index{PerkinElmer!ASCII long}
 
-The raw spectra of the `flu`{.r} data set (see also the separate vignette) are in PerkinElmer's ASCII file format, one spectrum per file.
+The raw spectra of the `flu`{.r} data set (see also the [separate vignette](#list-of-vignettes)) are in PerkinElmer's ASCII file format, one spectrum per file.
 
 We need a function that automatically reads all files specified by a pattern, such as `*.txt`{.r}.
 To gain speed, users should preallocate the spectra matrix after the first reading of the file.
