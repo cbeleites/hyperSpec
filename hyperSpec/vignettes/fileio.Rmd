@@ -177,14 +177,13 @@ library(hyperSpec)
 
 # Introduction
 
-This document describes how to import spectra into `hyperSpec`{.r} objects.
-We discuss exporting `hyperSpec`{.r} objects as files as well.
+This document describes how to import files containing spectra into `hyperSpec`{.r} objects, as well as exporting`hyperSpec` objects as files.
 
 The most basic funtion to create `hyperSpec`{.r} objects is `new("hyperSpec")`{.r} (section \@ref(sec:new)).
 It makes a `hyperSpec`{.r} object from data already in R's workspace.
 Thus, after spectra importation into R, conversion to `hyperSpec`{.r} objects is straightforward.
 
-Additionally, package **hyperSpec** comes with predefined import functions for different data formats.
+Additionally, the **hyperSpec** package comes with predefined import functions for different data formats.
 This document divides the discussion into dealing with ASCII files (section \@ref(sec:ascii)<!--, p. \pageref{sec:ascii}-->) and binary file formats (section \@ref(sec:binary-file-formats)<!--, p. \pageref{sec:binary-file-formats}-->).
 If data export for the respective format is possible, we discuss it in the same sections.
 As sometimes the actual data written by the spectrometer software exhibits peculiarities, package **hyperSpec** offers several specialized import functions.
@@ -251,7 +250,7 @@ Secion \@ref(sec:writing-Import)<!--, (p. \pageref{sec:writing-Import})--> discu
 
 ## Creating a `hyperSpec`{.r} Object from a Data Matrix (Spectra Matrix) {#import-spectra-matrix}
 
-As spectra matices are the internal format of `hyperSpec`{.r}, the consructor can directly be used:
+As spectra matrices are the internal format of `hyperSpec`{.r}, the constructor can directly be used:
 
 ```{r eval=FALSE}
 spc <- new("hyperSpec", spc, wavelength, data, labels)
@@ -269,8 +268,8 @@ Roberto Moscetti asked how to convert a hyperspectral data cube into a `hyperSpe
 >
 > I do not know the way to import the hypercube.
 
-Data cubes (i.e. 3-dimensional arrays of spectral data) result from spectal imaging measurements, where spectra are supplied for each pixel of an $px.x × px.y$ imaging area.
-They have 3 directions, usually $x$, $y$, and the spectral dimension.
+Data cubes (i.e., 3-dimensional arrays of spectral data) result from spectral imaging measurements, where spectra are supplied for each pixel of an $px.x × px.y$ imaging area.
+They have three directions, usually $x$, $y$, and the spectral dimension.
 
 The solution is to convert the array into a spectra matrix and have separate $x$ and $y$ coordinates.
 
@@ -309,7 +308,7 @@ x <- seq_len(d[2])
 ```
 
 Data cubes often come from spectral imaging systems that use an "image" coordinate system counting $y$ from top to bottom.
-Note that this should accounted for in the decreasing order of the original `y`{.r} vector.
+Note that this should be accounted for in the decreasing order of the original `y`{.r} vector.
 
 
 
@@ -342,8 +341,8 @@ spc
 
 Note that in this particular case, the spectra are more efficiently read by `read.spc.KaiserMap()`{.r} (see section \@ref(sec:read-spc-KaiserMap)<!--, p. \pageref{sec:read-spc-KaiserMap}-->).
 
-If you regularly import huge maps or images, writing a customized import function is highly encouraged.
-You may gain speed and memory by using the internal workhorse functions for the file import.
+If one regularly imports huge maps or images, writing a customized import function is highly encouraged.
+Users may gain speed and memory by using the internal workhorse functions for the file import.
 In that case, please contact the package maintainer ([**hyperSpec**'s GitHub repository](https://github.com/cbeleites/hyperSpec/issues){target="_blank"}) for advise (contributions to package **hyperSpec** are welcome and all authors are listed appropriately in the function help page's author section).
 
 
