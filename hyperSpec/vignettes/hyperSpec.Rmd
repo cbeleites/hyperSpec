@@ -18,7 +18,7 @@ author:
 date:        "`r Sys.Date()`"
 output:
     bookdown::html_document2:
-#      base_format: rmarkdown::html_vignette
+      base_format: rmarkdown::html_vignette
       toc: yes
       toc_depth: 2
       fig_caption: yes
