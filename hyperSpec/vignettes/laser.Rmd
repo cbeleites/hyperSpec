@@ -21,6 +21,7 @@ output:
       base_format: rmarkdown::html_vignette
       toc: yes
       fig_caption: yes
+      number_sections: true
       css:
         - vignette.css
         - style.css

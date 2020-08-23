@@ -21,6 +21,7 @@ output:
       base_format: rmarkdown::html_vignette
       toc: yes
       fig_caption: yes
+      number_sections: true
       css:
         - vignette.css
         - style.css
@@ -119,7 +120,7 @@ All functions previously named `scan.\*()` have been renamed accordingly.
 ```{block, type="note-t", echo=show_reviewers_notes}
 **V. Gegznas's notes**:
 
-1. `# TODO:`{.r} I think, functions could be renamed to meet Tidyverse style guide. 
+1. `# TODO:`{.r} I think, functions could be renamed to meet Tidyverse style guide.
 And the current names could be deprecated.
 
 ```
@@ -171,12 +172,12 @@ This online directory contains the required datasets (via `git-lfs`).
 
 ***
 
-<!-- This chunk inserts common info about all the vignettes --> 
-  
- ```{r, echo = FALSE, results = "asis"} 
- res <- knitr::knit_child("list-of-vignettes.md", quiet = TRUE) 
- cat(res, sep = '\n') 
- ``` 
+<!-- This chunk inserts common info about all the vignettes -->
+
+ ```{r, echo = FALSE, results = "asis"}
+ res <- knitr::knit_child("list-of-vignettes.md", quiet = TRUE)
+ cat(res, sep = '\n')
+ ```
 
 ***
 
@@ -1322,7 +1323,7 @@ However, if you just post-process the `hyperSpec`{.r} object returned by `read.s
 
 
 
-# **Appendix A:** File Import Functions {#appendix-a} 
+# **Appendix A:** File Import Functions {#appendix-a}
 
 <!-- ======================================================================= -->
 ```{block, type="note-t", echo=show_reviewers_notes}
@@ -1345,7 +1346,7 @@ fileformats <- read.table("fileio--fileformats.txt", header = TRUE, sep = "|",
 
 fileformats$html_unfriendly_link <- NULL
 
-fileformats$Function <- 
+fileformats$Function <-
   ifelse(
     is.na(fileformats$Function),
     "",
@@ -1354,7 +1355,7 @@ fileformats$Function <-
 
 fileformats$Link <- ifelse(
   is.na(fileformats$Link),
-  "", 
+  "",
   paste0("\\@ref(sec:", fileformats$Link, ")")
 )
 
@@ -1398,7 +1399,7 @@ kbl <- knitr::kable(
   , format = "html"
   , row.names = FALSE
   # , caption = "File Import Functions by Spectroscopy.  "
-) 
+)
 
 kableExtra::pack_rows(kbl, index = table(fileformats$Spectroscopy))
 ```
