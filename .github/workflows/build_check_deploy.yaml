@@ -138,8 +138,8 @@ jobs:
         run: |
           cd hyperSpec/hySpc-pkgs
           git add *
-          # .tar.gz files are globally blocked by git, must add manually
-          # and force it
+          # .tar.gz files are globally blocked (git ignored) by git,
+          # must add manually and force it
           git add -f *.tar.gz
           git commit -m "Automated deploy from ${REPO}" #CUST
           git push origin gh-pages
