@@ -39,15 +39,19 @@ hy_load_hySpc_packages <- function(dont_load = "hySpc.testthat", ..., quiet = NA
 
     if (length(hySpc_packages) > 0) {
       message(
-        "\n-----------------------------------------------------------\n",
-        "The following `hySpc` family packages are being attached: \n\n",
-        paste0("  ", hySpc_packages, collapse = "\n"), "\n",
-        "\n-----------------------------------------------------------\n"
+        "\n-----------------------------------\n",
+        "Attaching the following r-hyperspec \n",
+        "(`hySpc`) family packages: \n\n",
+        paste0("  ", hySpc_packages, collapse = "\n"),
+        "\n",
+        "\n-----------------------------------\n"
       )
     } else {
-      message("\nAll installed `hySpc` family packages are already attached.\n")
+      message(
+        "\n",
+        "All installed r-hyperspec (`hySpc`) family packages are already attached.\n"
+      )
     }
-
   }
 
   attach_pkgs <- function() {
