@@ -1,20 +1,23 @@
-#' Load all installed packages of the `hySpc.*` package family.
+#' Load and attach `hyperSpec` and all installed `hySpc.*` packages
 #'
-#' This function loads all installed packages of the **`hySpc.`_something_**
-#' package family.
+#' This function loads and attaches **hyperSpec** and all installed
+#' [**`r-hyperspec`**](https://r-hyperspec.github.io/) family packages, which
+#' share common **`hySpc.`_something_** package name pattern.
 #'
-#' @param dont_attach Packages that should *not* be attached.
-#' @param ... Further parameters are handed to [base::library()].
-#' @param quiet (`TRUE`|`NA`|`FALSE`) Controls, which messages should be
-#'        printed:
+#' @param dont_load Character vector with the names of the packages that should
+#'        **not** be loaded. If they are already loaded and/or attached, they
+#'        will *not* be unloaded or detached.
+#' @param ... Further parameters to [base::library()].
+#' @param quiet (`TRUE`|`NA`|`FALSE`) Controls verbosity of messages:
 #'
 #' - `FALSE`: no messages will be printed to the console.
 #' - `NA` (default): short message with the names of `hySpc.*` packages to
-#'    attach will be printed, but package startup messages will be suppressed.
+#'    load and attach will be printed, but package startup messages will be
+#'    suppressed.
 #' - `TRUE`: both short and package startup messages will be printed.
 #'
 #' @return Invisibly returns a list with the output of [base::library()] for
-#'   each **`hySpc.*`** package that was attached.
+#'   each **`r-hyperspec`** family package that was loaded and attached.
 #'
 #' @export
 #' @importFrom utils installed.packages
