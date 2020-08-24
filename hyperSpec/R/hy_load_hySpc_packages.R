@@ -24,6 +24,8 @@
 #'
 #' @concept utils
 #'
+#' @author V. Gegzna and C. Beleites
+#'
 #' @examples
 #' \dontrun{
 #' hyperSpec::hy_load_hySpc_packages()
@@ -32,6 +34,7 @@
 #' }
 
 hy_load_hySpc_packages <- function(dont_load = "hySpc.testthat", ..., quiet = NA) {
+
   installed_pkgs <- row.names(installed.packages())
   hySpc_packages <- c("hyperSpec", grep("^hySpc[.]", installed_pkgs, value = TRUE))
 
