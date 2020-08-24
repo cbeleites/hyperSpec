@@ -21,7 +21,9 @@
 #'
 #' @export
 #' @importFrom utils installed.packages
-#' @concept hyperSpec-main
+#'
+#' @concept utils
+#'
 #' @examples
 #' \dontrun{
 #' hyperSpec::hy_load_hySpc_packages()
