@@ -72,12 +72,11 @@ jobs:
           devtools::document("./hyperSpec", roclets = c('rd', 'collate', 'namespace'))
           devtools::document("./hyperSpec", roclets = c('vignette'))
 
-
       - name: Build source package
         shell: Rscript {0}
         run: |
-            dir.create("check", showWarnings = FALSE)
-            devtools::build(path = "check")
+            dir.create("hyperSpec/check", showWarnings = FALSE)
+            devtools::build(path = "hyperSpec/check")
 
 # Everything above is standard build steps
 # Now the steps to deploy to hySpc.pkgs
@@ -124,9 +123,6 @@ jobs:
             repodir = "hyperSpec/hySpc-pkgs",
             action  = "archive"
           )
-
-
-
 
       - name: Drat -- commit and push
         if: success()
