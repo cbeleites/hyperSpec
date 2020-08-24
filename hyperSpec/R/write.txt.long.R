@@ -4,35 +4,112 @@
 ###
 ###
 
-#' @param object the `hyperSpec` object
-#' @param order which columns should be [base::order()]ed?
-#'   `order` is used as index vector into a `data.frame` with
-#'   columns given by `cols`.
-#' @param na.last handed to [base::order()] by
-#'   `write.txt.long`.
-#' @param quote,sep,col.names,row.names have their usual meaning (see
-#'   [utils::read.table()] and [utils::write.table()]),
-#'   but different default values.
+#' Export `hyperSpec` objects to ASCII (text) files
 #'
-#'   For file import, `row.names` should usually be `NULL` so that the
-#' first column becomes a extra data column (as opposed to row names of the extra data).
-#' @param col.labels Should the column labels be used rather than the
-#'   colnames?
-#' @param append Should the output be appended to an existing file?
+#' These functions write `hyperSpec` objects to text files.
+#'
+#' @rdname write_txt
 #' @aliases write.txt.long
-#' @rdname textio
 #'
-#' @export
+#' @param file filename or connection.
+#' @param object the `hyperSpec` object.
+#' @param cols the column names specifying the column order.
+#' @param order which columns should be [base::order()]ed? Parameter `order` is
+#'        used as index vector into a `data.frame` with columns given by `cols`.
+#' @param na.last handed to [base::order()] by `write.txt.long`.
+#' @param quote,sep,col.names,row.names have their usual meaning (see
+#'        [utils::write.table()]), but different default values.
+#'
+#' For file import, `row.names` should usually be `NULL` so that the first
+#'        column becomes a extra data column (as opposed to row names of the
+#'        extra data).
+#' @param col.labels Should the column labels be used rather than the
+#'        colnames?
+#' @param append Should the output be appended to an existing file?
+#' @param decreasing logical vector giving the sort order.
+#' @param header.lines Toggle one or two line header (wavelengths in the
+#'        second header line) for `write.txt.wide`.
+#' @param ... arguments handed to [utils::write.table()].
+#'
 #'
 #' @concept io
 #' @concept write to file
 #'
 #' @importFrom utils write.table
+#' @export
+#'
+#' @examples
+#'
+#' \dontrun{
+#' vignette("fileio")
+#' }
+#'
+#' ## export & import matlab files
+#' if (require(R.matlab)) {
+#'   # export to matlab file
+#'   writeMat(paste0(tempdir(), "/test.mat"),
+#'     x = flu[[]], wavelength = flu@wavelength,
+#'     label = lapply(flu@label, as.character)
+#'   )
+#'
+#'   # reading a matlab file
+#'   data <- readMat(paste0(tempdir(), "/test.mat"))
+#'   print(data)
+#'   mat <- new("hyperSpec",
+#'     spc = data$x,
+#'     wavelength = as.numeric(data$wavelength),
+#'     label = data$label[, , 1]
+#'   )
+#' }
+#'
+#' ## ascii export & import
+#'
+#'
+#' write.txt.long(flu,
+#'   file = paste0(tempdir(), "/flu.txt"),
+#'   cols = c(".wavelength", "spc", "c"),
+#'   order = c("c", ".wavelength"),
+#'   decreasing = c(FALSE, TRUE)
+#' )
+#'
+#' read.txt.long(
+#'   file = paste0(tempdir(), "/flu.txt"),
+#'   cols = list(
+#'     .wavelength = expression(lambda / nm),
+#'     spc = "I / a.u", c = expression("/"(c, (mg / l)))
+#'   )
+#' )
+#'
+#' write.txt.wide(flu,
+#'   file = paste0(tempdir(), "/flu.txt"),
+#'   cols = c("c", "spc"),
+#'   col.labels = TRUE, header.lines = 2, row.names = TRUE
+#' )
+#'
+#' write.txt.wide(flu,
+#'   file = paste0(tempdir(), "/flu.txt"),
+#'   col.labels = FALSE, row.names = FALSE
+#' )
+#'
+#' read.txt.wide(
+#'   file = paste0(tempdir(), "/flu.txt"),
+#'   # give columns in same order as they are in the file
+#'   cols = list(
+#'     spc = "I / a.u",
+#'     c = expression("/"("c", "mg/l")),
+#'     filename = "filename",
+#'     # plus wavelength label last
+#'     .wavelength = "lambda / nm"
+#'   ),
+#'   header = TRUE
+#' )
+
 write.txt.long <- function(object,
                            file = "",
                            order = c(".rownames", ".wavelength"),
                            na.last = TRUE, decreasing = FALSE,
-                           quote = FALSE, sep = "\t",
+                           quote = FALSE,
+                           sep = "\t",
                            row.names = FALSE,
                            cols = NULL,
                            col.names = TRUE,

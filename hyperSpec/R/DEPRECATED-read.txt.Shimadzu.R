@@ -1,6 +1,17 @@
-#' Reads Shimadzu GCxGC-qMS - Spectra Files (`.txt`).
+#' Reads Shimadzu GCxGC-qMS - Spectra Files (`.txt`)  (DEPRECATED)
 #'
-#' Reads Shimadzu GCxGC-qMS - Spectra Files (`.txt`) as exported by Shimadzu Chrome Solution (v. 2.72).
+#' @description
+#'
+#' These data input functions are **deprecated** and they will be removed in
+#' the next release of \pkg{hyperspec} package.
+#' Now functions in package \pkg{hySpc.read.txt}
+#' ([link](https://r-hyperspec.github.io/hySpc.read.txt/reference/index.html))
+#' should be used as the alternatives.
+#'
+#' @details
+#'
+#' Reads Shimadzu GCxGC-qMS - Spectra Files (`.txt`) as exported by
+#' Shimadzu Chrome Solution (v. 2.72).
 #' Mass Spectrometer: Shimadzu GCMS-QP 2010 Ultra (www.shimadzu.com)
 #'
 #' @note This is a first rough import function and the functions may change without notice.
@@ -10,11 +21,15 @@
 #' @return list of spectra tables
 #' @author Bjoern Egert
 #'
-#' @concept io
+# @concept io
+#' @concept moved to hySpc.read.txt
 #'
 #' @export
 #' @importFrom utils read.table
 read.txt.Shimadzu <- function(filename, encoding = "", quiet = TRUE) {
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  deprecated_read_txt()
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   # A file consists of several sections ([Headers])
   # Each Section consists of:

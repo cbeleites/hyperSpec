@@ -6,9 +6,24 @@
 ###  x y ... int (wl1)  int (wl2) ... int (wl p) z ...
 ###
 
-#' Import/export of `hyperSpec` objects to/from ASCII files.
+#' Import `hyperSpec` objects from ASCII (text) files (DEPRECATED)
+#'
+#' @description
+#'
+#' These data input functions are **deprecated** and they will be removed in
+#' the next release of \pkg{hyperspec} package.
+#' Now functions in package \pkg{hySpc.read.txt}
+#' ([link](https://r-hyperspec.github.io/hySpc.read.txt/reference/index.html))
+#' should be used as the alternatives.
+#'
+#'
+#' @rdname textio
+#' @aliases read.txt.wide
 #'
 #' @details
+#'
+#' Import `hyperSpec` objects from ASCII (text) files.
+#'
 #' A detailed discussion of \pkg{hyperSpec}'s file import and export
 #' capabilities is given in vignette `fileio`.
 #'
@@ -38,15 +53,48 @@
 #' Note that R accepts many packed formats for ASCII files, see
 #' [base::connections()]. For .zip files, see [utils::unzip()].
 #'
-#' For further information, see the examples below, `vignette("fileio")` and the documentation
-#' of [R.matlab::R.matlab()].
-#' @seealso `vignette("fileio")`
-#' @aliases read.txt.wide
-#' @rdname textio
-#' @param check.names handed to [utils::read.table()]. Make sure this is `FALSE`, if
-#' the column names of the spectra are the wavelength values.
+#' For further information, see the examples below, `vignette("fileio")` and
+#' the documentation of [R.matlab::R.matlab()].
 #'
-#' @concept io
+#' `_________________________________________________________________`
+#'
+#' Besides [base::save()] and [base::load()], two general ways to import and
+#' export data into `hyperSpec` objects exist.
+#'
+#' Firstly, `hyperSpec` objects can be imported and exported as ASCII files.
+#'
+#' A second option is using the package [R.matlab::R.matlab()], which
+#' provides the functions [R.matlab::readMat()] and [R.matlab::writeMat()].
+#'
+#' Package \pkg{hyperSpec} comes with a number of pre-defined functions to
+#' import manufacturer specific file formats. For details, see
+#' `vignette("file-io")`.
+#'
+#' [hyperSpec::read.spc()] imports Thermo Galactic's `.spc` file format,
+#' and ENVI files may be read using [hyperSpec::read.ENVI()].
+#'
+#' These functions are very flexible and provide lots of arguments.
+#'
+#' If you use them to read or write manufacturer specific ASCII formats,
+#' please consider writing a wrapper function and contributing this function
+#' to \pkg{hyperSpec}. An example is in the \dQuote{flu} vignette (see
+#' `vignette("flu", package = "hyperSpec"`).
+#'
+#' Note that R accepts many packed formats for ASCII files, see
+#' [base::connections()]. For `.zip` files, see [utils::unzip()].
+#'
+#' For further information, see the examples below and the documentation of
+#' [R.matlab::R.matlab()].
+#'
+#'
+#'
+#' @seealso `vignette("fileio")`
+#'
+#' @param check.names handed to [utils::read.table()]. Make sure this is
+#'        `FALSE`, if the column names of the spectra are the wavelength values.
+#'
+# @concept io
+#' @concept moved to hySpc.read.txt
 #'
 #' @export
 #' @importFrom utils read.table head
@@ -59,6 +107,9 @@ read.txt.wide <- function(file = stop("file is required"),
                           row.names = NULL,
                           check.names = FALSE,
                           ...) {
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  deprecated_read_txt()
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   .wavelength <- match(".wavelength", names(cols))
   if (is.na(.wavelength)) {
     cols <- as.list(c(cols, .wavelength = expression(lambda / nm)))

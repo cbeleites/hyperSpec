@@ -4,23 +4,20 @@
 ###
 ###
 
-#' @param header.lines Toggle one or two line header (wavelengths in the
-#'   second header line) for `write.txt.wide`
+#' @rdname write_txt
 #' @aliases write.txt.wide
-#' @rdname textio
-#'
-#' @export
 #'
 #' @concept io
 #' @concept write to file
 #'
 #' @importFrom utils write.table
-#'
+#' @export
 
 write.txt.wide <- function(object,
                            file = "",
                            cols = NULL,
-                           quote = FALSE, sep = "\t",
+                           quote = FALSE,
+                           sep = "\t",
                            row.names = FALSE,
                            col.names = TRUE,
                            header.lines = 1, # 1 or 2 line header?

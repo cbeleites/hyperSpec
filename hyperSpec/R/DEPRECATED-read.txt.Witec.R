@@ -1,10 +1,21 @@
-#' Import Raman Spectra/Maps from Witec Instrument via ASCII files.
+#' @title File Import Witec Raman (DEPRECATED)
 #'
-#' `read.txt.Witec()` reads Witec ASCII files where the first column gives the
+#' @description
+#'
+#' These data input functions are **deprecated** and they will be removed in
+#' the next release of \pkg{hyperspec} package.
+#' Now functions in package \pkg{hySpc.read.txt}
+#' ([link](https://r-hyperspec.github.io/hySpc.read.txt/reference/index.html))
+#' should be used as the alternatives.
+#'
+#' @details
+#' Import Raman Spectra/Maps from Witec Instrument via ASCII files
+#'
+#' - `read.txt.Witec()` reads Witec ASCII files where the first column gives the
 #'  wavelength axes and the other columns the spectra.
-#' `read.dat.Witec()` reads Witec's ASCII exported data, which comes in separate
+#' - `read.dat.Witec()` reads Witec's ASCII exported data, which comes in separate
 #'  files with x and y data.
-#' @title File Import Witec Raman
+#'
 #' @param file filename or connection to ASCII file
 #' @param points.per.line number of spectra in x direction of the map
 #' @param lines.per.image number of spectra in y direction
@@ -13,14 +24,18 @@
 #' @param hdr.units WITec Project exports the spectra units within the `file`.
 #' @param encoding character encoding, see [base::readLines()]
 #' @param ...,quiet handed to [base::scan()]
+#'
 #' @return a hyperSpec object
+#'
 #' @author Claudia Beleites and Marcel Dahms
+#'
 #' @seealso `vignette("fileio")` for more information on file import
 #'
 #' [options()] for details on options.
 #' @export
 #'
-#' @concept io
+# @concept io
+#' @concept moved to hySpc.read.txt
 #'
 #' @importFrom utils head
 read.txt.Witec <- function(file = stop("filename or connection needed"),
@@ -32,6 +47,10 @@ read.txt.Witec <- function(file = stop("filename or connection needed"),
                            encoding = "unknown",
                            ...,
                            quiet = TRUE) {
+
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  deprecated_read_txt()
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   ## check for valid data connection
   .check.con(file = file)
@@ -176,7 +195,8 @@ hySpc.testthat::test(read.txt.Witec) <- function() {
 #' @param filex filename wavelength axis file
 #' @param filey filename intensity file
 #'
-#' @concept io
+# @concept io
+#' @concept moved to hySpc.read.txt
 #'
 #' @export
 read.dat.Witec <- function(filex = stop("filename or connection needed"),
@@ -187,6 +207,11 @@ read.dat.Witec <- function(filex = stop("filename or connection needed"),
                            encoding = "unknown",
                            ...,
                            quiet = hy.getOption("debuglevel") < 1L) {
+
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  deprecated_read_txt()
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
   ## check valid data connection
   .check.con(filex = filex, filey = filey)
 
@@ -259,7 +284,8 @@ hySpc.testthat::test(read.dat.Witec) <- function() {
 #' @rdname read.txt.Witec
 #' @param headerfile filename or connection to ASCII file with header information
 #'
-#' @concept io
+# @concept io
+#' @concept moved to hySpc.read.txt
 #'
 #' @export
 read.txt.Witec.Graph <- function(headerfile = stop("filename or connection needed"),
@@ -267,6 +293,11 @@ read.txt.Witec.Graph <- function(headerfile = stop("filename or connection neede
                                  filey = gsub("Header", "Y-Axis", headerfile),
                                  type = c("single", "map"), encoding = "unknown",
                                  ..., quiet = TRUE) {
+
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  deprecated_read_txt()
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
   ## check for valid data connection
   .check.con(headerfile, filex, filey)
 
