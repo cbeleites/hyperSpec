@@ -51,3 +51,19 @@ hy_list_available_hySpc_packages <- function() {
   package_names <- regmatches(one_line_per_repo, m = matches)
   package_names
 }
+
+# Unit tests -----------------------------------------------------------------
+
+hySpc.testthat::test(hy_list_available_hySpc_packages) <- function() {
+  context("hy_list_available_hySpc_packages")
+
+  test_that("hy_list_available_hySpc_packages() works", {
+
+    # TODO: skip if not online
+
+    expect_silent(pkgs <- hy_list_available_hySpc_packages())
+    expect_is(pkgs, "character")
+    expect_true(length(pkgs) > 5)
+    expect_true(all(grepl("^hySpc[.]|^hyperSpec$", pkgs)))
+  })
+}
