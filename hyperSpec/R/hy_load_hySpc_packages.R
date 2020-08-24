@@ -35,18 +35,17 @@
 
 hy_load_hySpc_packages <- function(dont_load = "hySpc.testthat", ..., quiet = NA) {
 
-  installed_hySpc <- hy_list_installed_hySpc_packages()
-
-  hySpc_packages <- setdiff(installed_hySpc, unique(c(dont_load, .packages())))
+  hySpc_installed <- hy_list_installed_hySpc_packages()
+  hySpc_to_attach <- setdiff(hySpc_installed, unique(c(dont_load, .packages())))
 
   if (is.na(quiet) || isFALSE(quiet)) {
 
-    if (length(hySpc_packages) > 0) {
+    if (length(hySpc_to_attach) > 0) {
       message(
         "\n-----------------------------------\n",
         "Attaching the following r-hyperspec \n",
         "(`hySpc`) family packages: \n\n",
-        paste0("  ", hySpc_packages, collapse = "\n"),
+        paste0("  ", hySpc_to_attach, collapse = "\n"),
         "\n",
         "\n-----------------------------------\n"
       )
@@ -59,7 +58,7 @@ hy_load_hySpc_packages <- function(dont_load = "hySpc.testthat", ..., quiet = NA
   }
 
   attach_pkgs <- function() {
-    lapply(hySpc_packages, function(x) {
+    lapply(hySpc_to_attach, function(x) {
       do.call("library", list(package = x, ...))
     })
   }
