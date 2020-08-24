@@ -10,13 +10,13 @@ on:
 
 # Note on the above: if more than one branch given one may stomp on the other
 # during deployment, so use only one branch.
-name: R-CMD-build-check-deploy
+name: Insert package (drat)
 
 jobs:
-  R-CMD-build-check-deploy:
+  drat:
     runs-on: ${{ matrix.config.os }}
 
-    name: ${{ matrix.config.os }} (${{ matrix.config.r }})
+    name: "drat: ${{ matrix.config.os }} (R-${{ matrix.config.r }})"
 
     strategy:
       fail-fast: false
@@ -61,39 +61,25 @@ jobs:
           sudo -s eval "$sysreqs"
 
       - name: Install dependencies
-        run: |
-          remotes::install_deps("./hyperSpec", dependencies = TRUE)
-          remotes::install_cran("rcmdcheck")
-          remotes::install_cran("roxygen2")
-          remotes::install_cran("drat") # need later to deploy
         shell: Rscript {0}
+        run: |
+          remotes::install_cran(c("roxygen2", "devtools", "drat"))
+          remotes::install_deps("./hyperSpec", dependencies = TRUE)
 
       - name: Roxygenize
+        shell: Rscript {0}
         run: |
           devtools::document("./hyperSpec", roclets = c('rd', 'collate', 'namespace'))
           devtools::document("./hyperSpec", roclets = c('vignette'))
-        shell: Rscript {0}
 
-      - name: Build and Check
-        env:
-          _R_CHECK_CRAN_INCOMING_: false
+
+      - name: Build source package
+        shell: Rscript {0}
         run: |
-          rcmdcheck::rcmdcheck(
-            "./hyperSpec",
-            args = c("--no-manual", "--as-cran"),
-            error_on = "warning",
-            check_dir = "hyperSpec/check"
-          )
-        shell: Rscript {0}
+            dir.create("check", showWarnings = FALSE)
+            devtools::build(path = "check")
 
-      - name: Upload check results
-        if: failure()
-        uses: actions/upload-artifact@master
-        with:
-          name: ${{ runner.os }}-r${{ matrix.config.r }}-results
-          path: check
-
-# Everything above is standard build & check steps
+# Everything above is standard build steps
 # Now the steps to deploy to hySpc.pkgs
 
 # Very Important Note: Each "- name:" task below starts from the same
@@ -114,46 +100,38 @@ jobs:
           git config --global user.email "${REPO}_Deploy_Bot@example.com"
           git config --global user.name "${REPO} Deploy Bot"
 
-      - name: Deploy -- clone
+      - name: Drat -- Git clone r-hyperspec/hySpc.pkgs
         if: success()
         run: |
-          pwd
           cd hyperSpec
           rm -rf hySpc.pkgs
-          git clone https://github.com/r-hyperspec/hySpc.pkgs.git hySpc.pkgs
+          git clone https://github.com/r-hyperspec/hySpc.pkgs.git hySpc-pkgs
           cd hySpc.pkgs
           git checkout gh-pages
 
-      - name: Deploy -- insert
+      - name: Drat -- insert
         if: success()
+        shell: Rscript {0}
         run: |
           targz <- list.files(
             path = "hyperSpec/check",
             pattern = "\\.tar\\.gz",
             full.names = TRUE
-          )[1] # there will be only one in this directory!
+          )
 
           drat::insertPackage(
-            targz,
-            repodir = "hyperSpec/hySpc.pkgs",
-            action = "archive"
+            file    = targz,
+            repodir = "hyperSpec/hySpc-pkgs",
+            action  = "archive"
           )
-        shell: Rscript {0}
 
-      - name: Deploy -- update README.md
+
+
+
+      - name: Drat -- commit and push
         if: success()
         run: |
-           cd hyperSpec/hySpc.pkgs
-           # grab the portion of the file we want to re-use
-           awk '/^# hySpc\.pkgs$/, /^Packages currently residing here:$/' README.md > README.tmp
-           # append the listing of .tar.gz present, along with a little md formating
-           ls -lhR  --time-style=long-iso | grep \.tar\.gz$ | awk '{print "\n* "$8, " ("$6")"}' >> README.tmp
-           mv README.tmp README.md
-
-      - name: Deploy -- commit and push
-        if: success()
-        run: |
-          cd hyperSpec/hySpc.pkgs
+          cd hyperSpec/hySpc-pkgs
           git add *
           # .tar.gz files are globally blocked by git, must add manually
           # and force it
