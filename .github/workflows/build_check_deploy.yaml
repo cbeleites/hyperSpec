@@ -91,13 +91,13 @@ jobs:
       - name: Build source package
         shell: Rscript {0}
         run: |
-            getwd()
-            dir()
-            dir.create("./hyperSpec/check", showWarnings = FALSE)
+          getwd()
+          dir()
+          dir.create("./hyperSpec/check", showWarnings = FALSE)
 
-            getwd()
-            dir()
-            devtools::build(path = "./hyperSpec/check")
+          getwd()
+          dir()
+          devtools::build(path = "./hyperSpec/check")
 
 # Above are the steps to build package
 # Below are the steps to deploy to hySpc.pkgs
