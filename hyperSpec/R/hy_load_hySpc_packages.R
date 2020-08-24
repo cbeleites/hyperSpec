@@ -85,22 +85,22 @@ hySpc.testthat::test(hy_load_hySpc_packages) <- function() {
     exclude <- grep("^hySpc[.]", installed_pkgs, value = TRUE)
 
     # First check
-    expect_silent(hy_load_hySpc_packages(exclude, quiet = TRUE))
+    expect_silent(hyperSpec::hy_load_hySpc_packages(exclude, quiet = TRUE))
 
     # quiet = NA
     suppressWarnings({detach("package:hyperSpec", force = TRUE)})
-    expect_message(hy_load_hySpc_packages(exclude, quiet = NA), "hyperSpec")
-    expect_message(hy_load_hySpc_packages(exclude, quiet = NA), "are already attached")
+    expect_message(hyperSpec::hy_load_hySpc_packages(exclude, quiet = NA), "hyperSpec")
+    expect_message(hyperSpec::hy_load_hySpc_packages(exclude, quiet = NA), "are already attached")
 
     # quiet = TRUE
     suppressWarnings({detach("package:hyperSpec", force = TRUE)})
-    expect_silent(hy_load_hySpc_packages(exclude, quiet = TRUE))
-    expect_silent(hy_load_hySpc_packages(exclude, quiet = TRUE))
+    expect_silent(hyperSpec::hy_load_hySpc_packages(exclude, quiet = TRUE))
+    expect_silent(hyperSpec::hy_load_hySpc_packages(exclude, quiet = TRUE))
 
     # quiet = FALSE
     suppressWarnings({detach("package:hyperSpec", force = TRUE)})
-    expect_message(hy_load_hySpc_packages(exclude, quiet = FALSE), "To get started, try:")
-    expect_message(hy_load_hySpc_packages(exclude, quiet = FALSE), "are already attached")
+    expect_message(hyperSpec::hy_load_hySpc_packages(exclude, quiet = FALSE), "To get started, try:")
+    expect_message(hyperSpec::hy_load_hySpc_packages(exclude, quiet = FALSE), "are already attached")
   })
 }
 
