@@ -3,8 +3,8 @@ Encoding: UTF-8
 Type: Package
 Title: Work with Hyperspectral Data, i.e. Spectra + Meta Information (Spatial,
     Time, Concentration, ...)
-Version: 0.0.0.9001
-Date: 2020-08-17
+Version: 0.100.0
+Date: 2020-08-24
 Maintainer: Claudia Beleites <Claudia.Beleites@chemometrix.gmbh>
 Authors@R: c(
     person("Claudia",   "Beleites",  role = c("aut", "cre", "dtc"), email = "Claudia.Beleites@chemometrix.gmbh"),
@@ -105,7 +105,6 @@ Collate:
     'all.equal.R'
     'apply.R'
     'as.data.frame.R'
-    'attach_hySpc.R'
     'barbiturates.R'
     'bind.R'
     'call.list.R'
@@ -132,6 +131,8 @@ Collate:
     'flu.R'
     'generate-test-data.R'
     'getbynames.R'
+    'hy_list_installed_hySpc_packages.R'
+    'hy_load_hySpc_packages.R'
     'paracetamol.R'
     'laser.R'
     'hyperspec-package.R'
