@@ -1,15 +1,30 @@
-# Note: This script automatically detects the repository in which it is run.
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# NOTE 1:
+# This script automatically detects the repository in which it is run.
 # No edits are needed except in the "Install Dependencies" section where
 # one may need to install additional packages according to the needs.
 
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# NOTE 2:
+# Each "- name:" task below starts from the same directory, which is:
+# /home/runner/work/${{ REPOSITORY_NAME }}/${{ REPOSITORY_NAME }}
+# e.g.:
+# /home/runner/work/hyperSpec/hyperSpec
+# Each task is run in its own shell starting from this directory.
+# This means you have to navigate to the desired directory for each task.
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# NOTE 3:
+# If more than one branch given to trigger the workflow,
+# one may stomp on the other during deployment, so use only one branch.
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 on:
   push:
     branches:
       - develop
 
-# Note on the above: if more than one branch given one may stomp on the other
-# during deployment, so use only one branch.
 name: Insert package (drat)
 
 jobs:
@@ -78,18 +93,11 @@ jobs:
             dir.create("hyperSpec/check", showWarnings = FALSE)
             devtools::build(path = "hyperSpec/check")
 
-# Everything above is standard build steps
-# Now the steps to deploy to hySpc.pkgs
-
-# Very Important Note: Each "- name:" task below starts from the same
-# directory, which in this case is
-# /home/runner/work/hySpc.read.txt/hySpc.read.txt
-# Each task is run in its own shell starting from this directory.
-# This means you have to navigate to the desired directory for each task.
-
-# The following configure step is
-# from https://stackoverflow.com/a/60548651/633251
+# Above are the steps to build package
+# Below are the steps to deploy to hySpc.pkgs
       - name: Configure git
+        # The following configure step is from
+        # https://stackoverflow.com/a/60548651/633251
         env:
           TOKEN: ${{ secrets.DEPLOY_TOKEN }}
         run: |
