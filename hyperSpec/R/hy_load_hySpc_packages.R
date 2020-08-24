@@ -35,10 +35,9 @@
 
 hy_load_hySpc_packages <- function(dont_load = "hySpc.testthat", ..., quiet = NA) {
 
-  installed_pkgs <- row.names(installed.packages())
-  hySpc_packages <- c("hyperSpec", grep("^hySpc[.]", installed_pkgs, value = TRUE))
+  installed_hySpc <- hy_list_installed_hySpc_packages()
 
-  hySpc_packages <- setdiff(hySpc_packages, unique(c(dont_load, .packages())))
+  hySpc_packages <- setdiff(installed_hySpc, unique(c(dont_load, .packages())))
 
   if (is.na(quiet) || isFALSE(quiet)) {
 
