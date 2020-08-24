@@ -17,9 +17,11 @@ author:
 # Document -------------------------------------------------------------------
 date: "`r Sys.Date()`"
 output:
-    bookdown::html_vignette2:
+    bookdown::html_document2:
+      base_format: rmarkdown::html_vignette
       toc: yes
       fig_caption: yes
+      number_sections: true
       css:
         - vignette.css
         - style.css

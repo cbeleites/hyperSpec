@@ -3,8 +3,8 @@ Encoding: UTF-8
 Type: Package
 Title: Work with Hyperspectral Data, i.e. Spectra + Meta Information (Spatial,
     Time, Concentration, ...)
-Version: 0.99-20200728
-Date: 2020-07-28
+Version: 0.0.0.9001
+Date: 2020-08-17
 Maintainer: Claudia Beleites <Claudia.Beleites@chemometrix.gmbh>
 Authors@R: c(
     person("Claudia",   "Beleites",  role = c("aut", "cre", "dtc"), email = "Claudia.Beleites@chemometrix.gmbh"),
@@ -86,6 +86,18 @@ Collate:
     'Arith.R'
     'Colors.R'
     'Compare.R'
+    'DEPRECATED-count_lines.R'
+    'DEPRECATED-ggplot2.R'
+    'fileio.optional.R'
+    'DEPRECATED-read.txt.Witec.R'
+    'DEPRECATED-read.asc.Andor.R'
+    'DEPRECATED-read.asc.PerkinElmer.R'
+    'DEPRECATED-read.txt.Horiba.R'
+    'DEPRECATED-read.txt.Renishaw.R'
+    'DEPRECATED-read.txt.Shimadzu.R'
+    'DEPRECATED-read.txt.long.R'
+    'DEPRECATED-read.txt.wide.R'
+    'DEPRECATED-wc.R'
     'DollarNames.R'
     'Math.R'
     'Summary.R'
@@ -99,10 +111,10 @@ Collate:
     'chk.hy.R'
     'colMeans.R'
     'collapse.R'
-    'count_lines.R'
     'cov.R'
     'decomposition.R'
     'deprecated.R'
+    'deprecation-messages.R'
     'dim.R'
     'dimnames.R'
     'droplevels.R'
@@ -115,7 +127,6 @@ Collate:
     'guesswavelength.R'
     'initialize.R'
     'faux_cell.R'
-    'fileio.optional.R'
     'fix_spc_colnames.R'
     'flu.R'
     'generate-test-data.R'
@@ -144,16 +155,11 @@ Collate:
     'plotmat.R'
     'plotspc.R'
     'plotvoronoi.R'
-    'qplot.R'
-    'qplotmixmap.R'
     'quantile.R'
     'rbind.fill.R'
     'read.ENVI.R'
     'read.ENVI.HySpex.R'
     'read.ENVI.Nicolet.R'
-    'read.txt.Witec.R'
-    'read.asc.Andor.R'
-    'read.asc.PerkinElmer.R'
     'read.ini.R'
     'read.jdx.R'
     'read.mat.Cytospec.R'
@@ -162,11 +168,6 @@ Collate:
     'read.spc.R'
     'read.spc.Shimadzu.R'
     'read.spe.R'
-    'read.txt.Horiba.R'
-    'read.txt.Renishaw.R'
-    'read.txt.Shimadzu.R'
-    'read.txt.long.R'
-    'read.txt.wide.R'
     'replace.R'
     'sample.R'
     'scale.R'
@@ -188,7 +189,6 @@ Collate:
     'units.R'
     'unittest.R'
     'vandermonde.R'
-    'wc.R'
     'wl.R'
     'wleval.R'
     'write.txt.long.R'

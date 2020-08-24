@@ -90,20 +90,39 @@ reference:
   - has_concept("datasets")
 
 
-- title: '4. Input and output' # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- title: '4. Create and convert `hyperSpec` objects' # ~~~~~~~~~~~~~~~~~~~~
 
 - subtitle: Create or convert from/into `hyperSpec`
 - contents:
   - "initialize"
   - has_concept("hyperSpec conversion")
 
+
+- title: '5. Import and export `hyperSpec` objects' # ~~~~~~~~~~~~~~~~~~~~~
+
 - subtitle: Read/Write from/to files
 - contents:
   - has_concept("io")
   - has_concept("IO")
 
+- subtitle: '! Moved to package hySpc.read.txt'
+  desc: |
+    You should use analogous functions from package
+    [**hySpc.read.txt**](https://r-hyperspec.github.io/hySpc.read.txt/reference/index.html)
+    as these functions will be removed soon.
+- contents:
+  - has_concept("moved to hySpc.read.txt", internal = TRUE)
 
-- title: '5. Plotting' # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- subtitle: '! Moved to package hySpc.read.mat'
+  desc: |
+    You should use analogous functions from package
+    [**hySpc.read.mat**](https://r-hyperspec.github.io/hySpc.read.mat/reference/index.html)
+    as these functions will be removed soon.
+- contents:
+  - has_concept("moved to hySpc.read.mat", internal = TRUE)
+
+
+- title: '6. Plotting' # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - subtitle: Plots
 - contents:
@@ -120,13 +139,14 @@ reference:
 
 - subtitle: '! Moved to package hySpc.ggplot2'
   desc: |
-    You should use analogous functions from package **hySpc.ggplot2**
+    You should use analogous functions from package
+    [**hySpc.ggplot2**](https://r-hyperspec.github.io/hySpc.ggplot2/reference/index.html)
     as these functions will be removed soon.
 - contents:
   - has_concept("moved to hySpc.ggplot2", internal = TRUE)
 
 
-- title: '6. Data manipulation' # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- title: '7. Data manipulation' # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - subtitle: Summary and data preview
 - contents:
@@ -143,7 +163,6 @@ reference:
 - subtitle: Binning and smoothing
 - contents:
   - has_concept("spectra smoothing")
-
 
 - subtitle: Data generation functions
 - contents:
@@ -175,6 +194,8 @@ reference:
     "wavelengths", "data generation", "stats",
 
     "moved to hySpc.ggplot2",
+    "moved to hySpc.read.txt",
+    "moved to hySpc.read.mat",
     "deprecated"
     ))
 
@@ -182,9 +203,16 @@ reference:
 - title: '9. Removed or deprecated functions' # ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - subtitle: Functions moved to other packages
-  desc: "You should use analogues of these functions from appropriate packages."
+  desc: >
+    The following functions were moved to other
+    **[r-hyperspec](https://r-hyperspec.github.io/)** family packages.
+    In most cases, the functions were also renamed.
+    Please, use the analogues of these functions, which are in appropriate
+    packages.
 - contents:
   - has_concept("moved to hySpc.ggplot2", internal = TRUE)
+  - has_concept("moved to hySpc.read.txt", internal = TRUE)
+  - has_concept("moved to hySpc.read.mat", internal = TRUE)
 
 - subtitle: Deprecated, renamed, or defunct functions
   desc: "You should **not** use these functions any more."

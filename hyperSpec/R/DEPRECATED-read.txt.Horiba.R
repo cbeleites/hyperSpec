@@ -1,15 +1,29 @@
-#' Read ASCII (`.txt`) files exported by Horiba's Labspec software (LabRAM spectrometers).
+#' @title Import Horiba Labspec exported ASCII files (DEPRECATED)
+#'
+#'
+#' @description
+#'
+#' These data input functions are **deprecated** and they will be removed in
+#' the next release of \pkg{hyperspec} package.
+#' Now functions in package \pkg{hySpc.read.txt}
+#' ([link](https://r-hyperspec.github.io/hySpc.read.txt/reference/index.html))
+#' should be used as the alternatives.
+#'
+#' @details
+#'
+#' Read ASCII (`.txt`) files exported by Horiba's Labspec software
+#' (LabRAM spectrometers)
 #'
 #' `read.txt.Horiba.xy` reads maps, i.e. `.txt` files where the first two columns give x and y coordinates.
 #'
-#' @title Import Horiba Labspec exported ASCII files
 #' @param file connection (file name and path) to the `.txt` file
 #' @param cols,header,sep,row.names,check.names,... further parameters are handed over to [hyperSpec::read.txt.wide()]
 #' @rdname read.txt.Horiba
 #' @author C. Beleites
 #' @return hyperSpec object
 #'
-#' @concept io
+# @concept io
+#' @concept moved to hySpc.read.txt
 #'
 #' @export
 read.txt.Horiba <- function(file, cols = c(
@@ -18,6 +32,9 @@ read.txt.Horiba <- function(file, cols = c(
                             ),
                             header = TRUE, sep = "\t", row.names = NULL,
                             check.names = FALSE, ...) {
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  deprecated_read_txt(new = "read_txt_Horiba")
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   spc <- read.txt.wide(file,
     cols = cols,
     header = header, sep = sep, row.names = row.names,
@@ -33,9 +50,14 @@ read.txt.Horiba <- function(file, cols = c(
 #' @rdname read.txt.Horiba
 #' @export
 #'
-#' @concept io
+# @concept io
+#' @concept moved to hySpc.read.txt
 #'
 read.txt.Horiba.xy <- function(file, ...) {
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  deprecated_read_txt()
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
   read.txt.Horiba(
     file = file,
     cols = c(
@@ -48,14 +70,22 @@ read.txt.Horiba.xy <- function(file, ...) {
   )
 }
 
-#' `read.txt.Horiba.t`  reads time series, i.e. .txt files with the time in the first column
 #' @rdname read.txt.Horiba
+#'
+#' @details
+#' `read.txt.Horiba.t`  reads time series, i.e. .txt files with the time in the first column
+#'
 #' @export
 #'
-#' @concept io
+# @concept io
+#' @concept moved to hySpc.read.txt
 #'
 read.txt.Horiba.t <- function(file, header = TRUE, sep = "\t", row.names = NULL,
                               check.names = FALSE, ...) {
+
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  deprecated_read_txt()
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   read.txt.Horiba(file,
     cols = c(
       t = "t / s",
