@@ -26,6 +26,8 @@
 #'
 #' @author V. Gegzna and C. Beleites
 #'
+#' @seealso [hy_list_installed_hySpc_packages()]
+#'
 #' @examples
 #' \dontrun{
 #' hyperSpec::hy_load_hySpc_packages()

@@ -1,4 +1,4 @@
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 #' List installed r-hyperSpec family packages
 #'
 #' Convenience function that lists all installed
@@ -7,11 +7,13 @@
 #' **`hySpc.`_something_** package name pattern.
 #'
 #' @return Character vector with package names.
+#'
 #' @export
 #'
 #' @concept utils
 #'
 #' @seealso [hy_load_hySpc_packages()]
+#'
 #' @examples
 #' hy_list_installed_hySpc_packages()
 
