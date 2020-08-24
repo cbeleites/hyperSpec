@@ -24,7 +24,6 @@ on:
   push:
     branches:
       - develop
-      - feature/update-drat-workflow
 
 name: Insert package (drat)
 
