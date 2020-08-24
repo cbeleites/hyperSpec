@@ -21,9 +21,9 @@
 #' @concept hyperSpec-main
 #' @examples
 #' \dontrun{
-#' attach_hySpc()
+#' hyperSpec::hy_load_hySpc_packages()
 #'
-#' attach_hySpc(quiet = TRUE)
+#' hyperSpec::hy_load_hySpc_packages(quiet = TRUE)
 #' }
 
 hy_load_hySpc_packages <- function(dont_load = "hySpc.testthat", ..., quiet = NA) {
