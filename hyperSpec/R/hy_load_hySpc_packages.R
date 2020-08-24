@@ -42,12 +42,12 @@ hy_load_hySpc_packages <- function(dont_load = "hySpc.testthat", ..., quiet = NA
 
     if (length(hySpc_to_attach) > 0) {
       message(
-        "\n-----------------------------------\n",
+        "\n------------------------------------\n",
         "Attaching the following r-hyperspec \n",
         "(`hySpc`) family packages: \n\n",
         paste0("  ", hySpc_to_attach, collapse = "\n"),
         "\n",
-        "\n-----------------------------------\n"
+        "\n------------------------------------\n"
       )
     } else {
       message(
