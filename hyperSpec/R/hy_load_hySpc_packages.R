@@ -4,9 +4,9 @@
 #' [**`r-hyperspec`**](https://r-hyperspec.github.io/) family packages, which
 #' share common **`hySpc.`_something_** package name pattern.
 #'
-#' @param dont_load Character vector with the names of the packages that should
-#'        **not** be loaded. If they are already loaded and/or attached, they
-#'        will *not* be unloaded or detached.
+#' @param exclude Character vector with the names of the packages that should
+#'        **not** be explicitly loaded. If they are already loaded and/or
+#'        attached, they will *not* be unloaded or detached.
 #' @param ... Further parameters to [base::library()].
 #' @param quiet (`TRUE`|`NA`|`FALSE`) Controls verbosity of messages:
 #'
@@ -33,10 +33,10 @@
 #' hyperSpec::hy_load_hySpc_packages(quiet = TRUE)
 #' }
 
-hy_load_hySpc_packages <- function(dont_load = "hySpc.testthat", ..., quiet = NA) {
+hy_load_hySpc_packages <- function(exclude = "hySpc.testthat", ..., quiet = NA) {
 
   hySpc_installed <- hy_list_installed_hySpc_packages()
-  hySpc_to_attach <- setdiff(hySpc_installed, unique(c(dont_load, .packages())))
+  hySpc_to_attach <- setdiff(hySpc_installed, unique(c(exclude, .packages())))
 
   if (is.na(quiet) || isFALSE(quiet)) {
 
@@ -82,25 +82,25 @@ hySpc.testthat::test(hy_load_hySpc_packages) <- function() {
 
     # Check with hyperSpec package only
     installed_pkgs <- row.names(installed.packages())
-    exclude <- grep("^hySpc[.]", installed_pkgs, value = TRUE)
+    exclude_pkgs   <- grep("^hySpc[.]", installed_pkgs, value = TRUE)
 
     # First check
-    expect_silent(hyperSpec::hy_load_hySpc_packages(exclude, quiet = TRUE))
+    expect_silent(hyperSpec::hy_load_hySpc_packages(exclude_pkgs, quiet = TRUE))
 
     # quiet = NA
     suppressWarnings({detach("package:hyperSpec", force = TRUE)})
-    expect_message(hyperSpec::hy_load_hySpc_packages(exclude, quiet = NA), "hyperSpec")
-    expect_message(hyperSpec::hy_load_hySpc_packages(exclude, quiet = NA), "are already attached")
+    expect_message(hyperSpec::hy_load_hySpc_packages(exclude_pkgs, quiet = NA), "hyperSpec")
+    expect_message(hyperSpec::hy_load_hySpc_packages(exclude_pkgs, quiet = NA), "are already attached")
 
     # quiet = TRUE
     suppressWarnings({detach("package:hyperSpec", force = TRUE)})
-    expect_silent(hyperSpec::hy_load_hySpc_packages(exclude, quiet = TRUE))
-    expect_silent(hyperSpec::hy_load_hySpc_packages(exclude, quiet = TRUE))
+    expect_silent(hyperSpec::hy_load_hySpc_packages(exclude_pkgs, quiet = TRUE))
+    expect_silent(hyperSpec::hy_load_hySpc_packages(exclude_pkgs, quiet = TRUE))
 
     # quiet = FALSE
     suppressWarnings({detach("package:hyperSpec", force = TRUE)})
-    expect_message(hyperSpec::hy_load_hySpc_packages(exclude, quiet = FALSE), "To get started, try:")
-    expect_message(hyperSpec::hy_load_hySpc_packages(exclude, quiet = FALSE), "are already attached")
+    expect_message(hyperSpec::hy_load_hySpc_packages(exclude_pkgs, quiet = FALSE), "To get started, try:")
+    expect_message(hyperSpec::hy_load_hySpc_packages(exclude_pkgs, quiet = FALSE), "are already attached")
   })
 }
 
