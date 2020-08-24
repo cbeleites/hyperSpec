@@ -131,6 +131,8 @@ Collate:
     'flu.R'
     'generate-test-data.R'
     'getbynames.R'
+    'hy_browse_homepage.R'
+    'hy_list_available_hySpc_packages.R'
     'paracetamol.R'
     'laser.R'
     'hyperspec-package.R'
