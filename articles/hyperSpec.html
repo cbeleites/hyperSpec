@@ -2485,7 +2485,7 @@ Please refer to the documentation of the respective functions for details about 
   }
 })
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.048   0.002   0.050</span>
+<span class="co">#&gt;   0.050   0.002   0.052</span>
 </pre></div>
 <p>Calculations that involve a lot of subsetting (i.e., extracting or changing the spectra matrix or extra data) can be sped up considerably if the required parts of the <code>hyperSpec</code> object are extracted beforehand.
 This is somewhat similar to model fitting in <code>R</code> in general: many model fitting functions in <code>R</code> are much faster if the formula interface is avoided and the appropriate <code class="sourceCode r">data.frame</code>s or matrices are handed over directly.</p>
@@ -2500,7 +2500,7 @@ This is somewhat similar to model fitting in <code>R</code> in general: many mod
   <span class="kw">tmp</span>[[]] <span class="op">&lt;-</span> <span class="kw">tmp.matrix</span>
 })
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.014   0.000   0.014</span>
+<span class="co">#&gt;    0.01    0.00    0.01</span>
 </pre></div>
 </div>
 <div id="additional-packages" class="section level2">
@@ -2541,7 +2541,7 @@ The memory consumption of <code class="sourceCode r"><span class="kw">read.txt.R
 <span class="co">#&gt; ─ Packages ───────────────────────────────────────────────────────────────────────────────────────</span>
 <span class="co">#&gt;  package        * version  date       lib source        </span>
 <span class="co">#&gt;  assertthat       0.2.1    2019-03-21 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  backports        1.1.8    2020-06-17 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  backports        1.1.9    2020-08-24 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  callr            3.4.3    2020-03-28 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  cli              2.0.2    2020-02-28 [1] CRAN (R 4.0.0)</span>
 <span class="co">#&gt;  colorspace     * 1.4-1    2019-03-18 [1] CRAN (R 4.0.0)</span>
