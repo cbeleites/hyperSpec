@@ -108,7 +108,7 @@ jobs:
           git config --global user.email "${REPO}_Deploy_Bot@example.com"
           git config --global user.name "${REPO} Deploy Bot"
 
-      - name: Drat -- Git clone r-hyperspec/hySpc.pkgs
+      - name: Drat -- clone r-hyperspec/hySpc.pkgs
         if: success()
         run: |
           cd hyperSpec
