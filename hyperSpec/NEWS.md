@@ -19,7 +19,7 @@
 * Dataset `faux_cell` and function `generate_faux_cell` replace `chondro` dataset (#125, #156, #180, #229).
 * Function `spc.NA.linapprox()`, which was deprecated for long time, is now completely removed (#239).
 * Column names in spectra matrix (`$spc` column of `hyperSpec` object) are now returned correctly by functions `spc.bin()` (#237), and `spc.loess()` (#245).
-* Function `attach_hySpc()` conveniently attaches all installed **hySpc** family packages (@cbeleites, @GegznaV, #219)
+* New function `hy_list_installed_hySpc_packages()` lists and function `hy_load_hySpc_packages()` conveniently loads and attaches all installed **`r-hyperspec`** family packages (@cbeleites, @GegznaV, #219).
 
 
 ## Non-User-Facing Changes from 0.99 Series
