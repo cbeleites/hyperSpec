@@ -133,6 +133,8 @@ Collate:
     'hy_deprecation-messages.R'
     'hy_pastenames.R'
     'hy_unittest.R'
+    'hy_browse_homepage.R'
+    'hy_list_available_hySpc_packages.R'
     'paracetamol.R'
     'laser.R'
     'hyperspec-package.R'
