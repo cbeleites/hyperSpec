@@ -1,10 +1,11 @@
 
-#' Sorting the Wavelengths of a `hyperSpec` Object.
+#' Sorting the Wavelengths of a `hyperSpec` Object
 #'
-#' Rearranges the `hyperSpec` object so that the wavelength vector is in increasing (or
-#' decreasing) order.
+#' Rearranges the `hyperSpec` object so that the wavelength vector is in
+#' increasing (or decreasing) order.
 #'
-#' The wavelength vector is sorted and the columns of the spectra matrix are rearranged accordingly.
+#' The wavelength vector is sorted and the columns of the spectra matrix are
+#' rearranged accordingly.
 #'
 #' @param x The `hyperSpec` object.
 #' @param na.last,decreasing Handed to [base::order()].
@@ -49,8 +50,8 @@ orderwl <- function(x, na.last = TRUE, decreasing = FALSE) {
   ord <- order(x@wavelength, na.last = na.last, decreasing = decreasing)
 
   if (any(ord != seq_along(x@wavelength))) {
-    x@data$spc <- x@data$spc [, ord, drop = FALSE]
-    .wl(x) <- x@wavelength [ord]
+    x@data$spc <- x@data$spc[, ord, drop = FALSE]
+    .wl(x) <- x@wavelength[ord]
   }
 
   x
