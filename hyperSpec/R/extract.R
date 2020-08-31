@@ -211,7 +211,7 @@
 #' # indexing via a logical matrix (applied to spectra matrix)
 #' summary(flu[[flu < 125]])
 #'
-#' @include call.list.R
+#' @include call_list.R
 #' @export
 #'
 #' @concept manipulation
