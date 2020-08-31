@@ -113,7 +113,7 @@ knitr::write_bib(
 **Consistent naming of file import functions in version >= 0.99**
 
 From now on, all import functions have names starting with `read.\*()`.
-All functions previously named `scan.\*()` have been renamed accordingly.
+All functions previously named `scan.\*()`{.r} have been renamed accordingly.
 ```
 
 <!-- ======================================================================= -->
@@ -778,7 +778,6 @@ barbiturates[[, , 25 ~ 30]]
 
 Please note that future changes inside the read.spc function is likely to occur.
 However, if you just post-process the `hyperSpec`{.r} object returned by `read.spc()`{.r}, you should be fine.
-
 
 
 # Manufacturer-Specific Discussion of File Import
