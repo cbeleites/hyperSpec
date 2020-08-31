@@ -62,6 +62,10 @@ hySpc.testthat::test(hy_list_available_hySpc_packages) <- function() {
 
     testthat::skip_if_offline()
 
+    # FIXME: The lines below should be fixed in the future
+    # Skip on GihHub Actions (as it usually fails to connet to GH on macOS):
+    testthat::skip_on_ci()
+
     expect_silent(pkgs <- hy_list_available_hySpc_packages())
     expect_is(pkgs, "character")
     expect_true(length(pkgs) > 5)
