@@ -22,7 +22,7 @@ setGeneric(
   }
 )
 
-#' @include guesswavelength.R
+#' @include guess_wavelength.R
 .as.hyperSpec.matrix <- function(X, wl = guess.wavelength(colnames(X)), ...) {
   new("hyperSpec", spc = X, wavelength = wl, ...)
 }
