@@ -2,7 +2,7 @@
 #'
 #' character vectors used for names (e.g. colnames for matrices or data.frames)
 #' are often treated by [base::make.names()] or similar functions that
-#' produce suitable names (e.g. by prepending "X" to numbers.). Such names
+#' produce suitable names (e.g. by prepending "X" to numbers). Such names
 #' cannot be directly converted to numeric.
 #'
 #' `guess.wavlength` tries to extract numbers from X which may be
