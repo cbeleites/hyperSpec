@@ -4,7 +4,7 @@
 #' Browse homepage of [**R hyperSpec**](https://r-hyperspec.github.io/)
 #' family packages.
 #'
-#' @import utils browseURL
+#' @importFrom utils browseURL
 #' @export
 #'
 #' @concept utils
