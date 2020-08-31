@@ -60,7 +60,7 @@ hySpc.testthat::test(hy_list_available_hySpc_packages) <- function() {
 
   test_that("hy_list_available_hySpc_packages() works", {
 
-    # TODO: skip if not online
+    testthat::skip_if_offline()
 
     expect_silent(pkgs <- hy_list_available_hySpc_packages())
     expect_is(pkgs, "character")
