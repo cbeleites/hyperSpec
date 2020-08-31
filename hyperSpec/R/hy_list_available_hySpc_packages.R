@@ -65,7 +65,7 @@ hySpc.testthat::test(hy_list_available_hySpc_packages) <- function() {
     # FIXME: The lines below should be fixed in the future
     # Skip on GihHub Actions macOS (as it usually fails to connet to GH):
     testthat::skip_if(
-      isTRUE(as.logical(Sys.getenv("ci"))) && grepl("^[Dd]arwin", Sys.info()["sysname"])
+      isTRUE(Sys.getenv("ci")) && grepl("^[Dd]arwin", Sys.info()["sysname"])
     )
 
     expect_silent(pkgs <- hy_list_available_hySpc_packages())
