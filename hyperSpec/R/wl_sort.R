@@ -22,7 +22,7 @@
 #' spc <- cbind(spc, spc + .5)
 #'
 #' plotspc(spc)
-#' text(wl(spc), spc[[]], as.character(1:10), col = "darkred)
+#' text(wl(spc), spc[[]], as.character(1:10), col = "darkred")
 #'
 #' spc_sorted <- orderwl(spc)
 #' plotspc(spc_sorted)
