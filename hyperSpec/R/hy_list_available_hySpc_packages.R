@@ -32,9 +32,10 @@
 #' @author V. Gegzna
 #'
 #' @examples
-#' \dontrun{
+#' \dontrun{\donttest{
 #' hy_list_available_hySpc_packages()
-#' }
+#' }}
+
 
 hy_list_available_hySpc_packages <- function() {
 

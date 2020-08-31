@@ -10,9 +10,9 @@
 #' @concept utils
 #'
 #' @examples
-#' \dontrun{
+#' \dontrun{\donttest{
 #' hy_browse_homepage()
-#' }
+#' }}
 
 hy_browse_homepage <- function() {
   browseURL("https://r-hyperspec.github.io/")
