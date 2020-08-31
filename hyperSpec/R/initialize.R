@@ -5,7 +5,7 @@
 ###  C. Beleites
 ###
 
-#' @include paste.row.R
+#' @include paste_row.R
 #' @noRd
 .initialize <- function(.Object, spc = NULL, data = NULL, wavelength = NULL, labels = NULL) {
 

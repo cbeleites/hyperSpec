@@ -26,7 +26,7 @@
 #' @aliases [<-,hyperSpec-method
 #' @param value the replacement value
 #' @include wl2i.R
-#' @include paste.row.R
+#' @include paste_row.R
 #'
 #' @export
 #'

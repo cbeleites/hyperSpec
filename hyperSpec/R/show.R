@@ -13,7 +13,7 @@
 #'   `cat` with `sep = "\n"`.
 #'
 #' @seealso [base::as.character()]
-#' @include paste.row.R
+#' @include paste_row.R
 #' @export
 
 setMethod("as.character",
