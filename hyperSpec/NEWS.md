@@ -19,6 +19,8 @@
 * Dataset `faux_cell` and function `generate_faux_cell` replace `chondro` dataset (#125, #156, #180, #229).
 * Function `spc.NA.linapprox()`, which was deprecated for long time, is now completely removed (#239).
 * Column names in spectra matrix (`$spc` column of `hyperSpec` object) are now returned correctly by functions `spc.bin()` (#237), and `spc.loess()` (#245).
+* New function `hy_list_available_hySpc_packages()` lists packages, that are available in GitHub organization `r-hyperSpec`.
+* New function `hy_browse_homepage()` opens the homepage of *R hyperSpec* in a web browser.
 * Functions `show()`, `print()`, `summary()` gives different default output now (@GegznaV, #211).
 
 
