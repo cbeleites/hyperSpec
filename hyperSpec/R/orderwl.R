@@ -21,11 +21,12 @@
 #' spc <- new("hyperSpec", spc = matrix(rnorm(5) + 1:5, ncol = 5))
 #' spc <- cbind(spc, spc + .5)
 #'
-#' plot(spc, "spc")
-#' text(wl(spc), spc[[]], as.character(1:10))
-#' spc <- orderwl(spc)
-#' plot(spc, "spc")
-#' text(wl(spc), spc[[]], as.character(1:10))
+#' plotspc(spc)
+#' text(wl(spc), spc[[]], as.character(1:10), col = "darkred)
+#'
+#' spc_sorted <- orderwl(spc)
+#' plotspc(spc_sorted)
+#' text(wl(spc_sorted), spc_sorted[[]], as.character(1:10), col = "darkred")
 #'
 #' ## Example 2
 #' spc <- new("hyperSpec", spc = matrix(rnorm(5) * 2 + 1:5, ncol = 5))
@@ -34,9 +35,9 @@
 #' plot(seq_len(nwl(spc)), spc[[]], type = "b")
 #' spc[[]]
 #'
-#' spc <- orderwl(spc)
-#' lines(seq_len(nwl(spc)), spc[[]], type = "l", col = "red")
-#' spc[[]]
+#' spc_sorted <- orderwl(spc)
+#' lines(seq_len(nwl(spc_sorted)), spc_sorted[[]], type = "l", col = "red")
+#' spc_sorted[[]]
 orderwl <- function(x, na.last = TRUE, decreasing = FALSE) {
   chk.hy(x)
   validObject(x)
