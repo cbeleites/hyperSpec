@@ -42,13 +42,21 @@ hySpc.testthat::test(count_lines) <- function() {
 
   writeLines("blabla\nblubb", con = tmpfile)
 
+  expect_warning(
+    res1 <- count_lines(tmpfile),
+    "Function 'count_lines' is deprecated."
+  )
   test_that(
     "file read in one chunk",
-    expect_equal(count_lines(tmpfile), 2)
+    expect_equal(res1, 2)
   )
 
+  expect_warning(
+    res2 <- count_lines(tmpfile, chunksize = 1L),
+    "Function 'count_lines' is deprecated."
+  )
   test_that(
     "file read in more chunks",
-    expect_equal(count_lines(tmpfile, chunksize = 1L), 2)
+    expect_equal(res2, 2)
   )
 }
