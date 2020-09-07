@@ -127,7 +127,7 @@ setMethod("summary",
 #' @seealso [base::as.character()].
 #'
 #' @import methods
-#' @include paste.row.R
+#' @include paste_row.R
 #' @export
 #'
 #' @examples
