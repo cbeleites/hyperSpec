@@ -10,7 +10,6 @@
 #' `absorbance = f(wavelength)`, stored as a vector of absorbance values for
 #' discrete wavelengths is suitable.
 #'
-#' @include validate.R
 #' @aliases hyperSpec-class
 #' @docType class
 #' @name hyperSpec-class
@@ -29,8 +28,9 @@
 #' @keywords classes
 #' @concept hyperSpec-main
 #'
+#' @include hy_validate.R
 #' @export
-#' @include validate.R
+#'
 #' @examples
 #' showClass("hyperSpec")
 #'

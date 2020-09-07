@@ -23,7 +23,7 @@
 #'
 #' @param wl.tolerance `rbind` and `rbind2` check for equal wavelengths
 #' with this tolerance.
-#' @include paste.row.R
+#' @include paste_row.R
 #' @param direction "r" or "c" to bind rows or columns
 #'
 #' @return a `hyperSpec` object, possibly with different row order (for

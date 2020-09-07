@@ -94,7 +94,7 @@ jobs:
           devtools::build("hyperSpec", path = "hyperSpec/check")
 
 # Above are the steps to build package
-# Below are the steps to deploy to hySpc.pkgs
+# Below are the steps to deploy to pkg-repo
       - name: Configure git
         # The following configure step is from
         # https://stackoverflow.com/a/60548651/633251
@@ -107,13 +107,13 @@ jobs:
           git config --global user.email "${REPO}_Deploy_Bot@example.com"
           git config --global user.name "${REPO} Deploy Bot"
 
-      - name: Drat -- clone r-hyperspec/hySpc.pkgs
+      - name: Drat -- clone r-hyperspec/pkg-repo
         if: success()
         run: |
           cd hyperSpec
-          rm -rf hySpc-pkgs
-          git clone https://github.com/r-hyperspec/hySpc.pkgs.git hySpc-pkgs
-          cd hySpc-pkgs
+          rm -rf tmp-pkg-repo-dir
+          git clone https://github.com/r-hyperspec/pkg-repo.git tmp-pkg-repo-dir
+          cd tmp-pkg-repo-dir
           git checkout gh-pages
 
       - name: Drat -- insert
@@ -128,14 +128,14 @@ jobs:
 
           drat::insertPackage(
             file    = targz,
-            repodir = "hyperSpec/hySpc-pkgs",
+            repodir = "hyperSpec/tmp-pkg-repo-dir",
             action  = "archive"
           )
 
       - name: Drat -- commit and push
         if: success()
         run: |
-          cd hyperSpec/hySpc-pkgs
+          cd hyperSpec/tmp-pkg-repo-dir
           git add *
           # .tar.gz files are globally blocked (git ignored) by git,
           # must add manually and force it
