@@ -70,7 +70,7 @@ digraph r_hyperspec_family {
   node [shape = oval, fontcolor = "limegreen"]
 
   // web  [label = "r-hyperspec.github.io"]
-  // pkgs [label = "hySpc.pkgs"]
+  // pkgs [label = "pkg-repo"]
   sk   [label = "hySpc.skeleton"]
 
 
