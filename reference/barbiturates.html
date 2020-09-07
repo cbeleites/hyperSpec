@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Barbiturates Spectra from <code>.spc</code> Example Files — barbiturates • hyperSpec</title>
+<title>Barbiturates Spectra from .spc Example Files — barbiturates • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,7 +41,7 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Barbiturates Spectra from <code>.spc</code> Example Files — barbiturates" />
+<meta property="og:title" content="Barbiturates Spectra from .spc Example Files — barbiturates" />
 <meta property="og:description" content="A time series of mass spectra in a list of hyperSpec objects." />
 
 <meta name="robots" content="noindex" />
@@ -181,7 +181,8 @@ example data from Thermo Galactic's spc file format specification.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='kw'>barbiturates</span></div><div class='output co'>#&gt; [[1]]
+<span class='kw'>barbiturates</span>
+</div><div class='output co'>#&gt; [[1]]
 #&gt; hyperSpec object
 #&gt;    1 spectra
 #&gt;    4 data columns
@@ -240,27 +241,31 @@ example data from Thermo Galactic's spc file format specification.</p>
 #&gt;    2. z.end: t/min [numeric] 4.0546 
 #&gt;    3. spc: I/"a. u." [matrix, array22] 704 738 ... 10519 
 #&gt;    4. filename: filename [character] /home/cb/R/x86_64-pc-linux-gnu-library/3.6/hyperSpec/extdata/BARBITUATES.SPC 
-#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='kw'>barbiturates</span>)</div><div class='output co'>#&gt; [1] 5</div><div class='input'>
-<span class='kw'>barb</span> <span class='op'>&lt;-</span> <span class='fu'>collapse</span>(<span class='kw'>barbiturates</span>, collapse.equal = <span class='fl'>FALSE</span>)
-<span class='kw'>barb</span> <span class='op'>&lt;-</span> <span class='fu'>orderwl</span>(<span class='kw'>barb</span>)
+#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='kw'>barbiturates</span>)
+</div><div class='output co'>#&gt; [1] 5</div><div class='input'>
+<span class='kw'>barb</span> <span class='op'>&lt;-</span> <span class='fu'><a href='collapse.html'>collapse</a></span>(<span class='kw'>barbiturates</span>, collapse.equal = <span class='fl'>FALSE</span>)
+<span class='kw'>barb</span> <span class='op'>&lt;-</span> <span class='fu'><a href='orderwl.html'>orderwl</a></span>(<span class='kw'>barb</span>)
 
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>barb</span>,
+<span class='fu'><a href='plot-methods.html'>plot</a></span>(<span class='kw'>barb</span>,
   lines.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(type = <span class='st'>"h"</span>),
-  col = <span class='fu'>matlab.dark.palette</span>(<span class='fl'>5</span>), stacked = <span class='fl'>TRUE</span>,
+  col = <span class='fu'><a href='matlab.palette.html'>matlab.dark.palette</a></span>(<span class='fl'>5</span>), stacked = <span class='fl'>TRUE</span>,
   stacked.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(add.factor = <span class='fl'>.2</span>)
-)</div><div class='img'><img src='barbiturates-1.png' alt='' width='466' height='288' /></div><div class='input'>
+)
+</div><div class='img'><img src='barbiturates-1.png' alt='' width='466' height='288' /></div><div class='input'>
 <span class='co'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/library.html'>require</a></span>(<span class='kw'><a href='http://latticeextra.r-forge.r-project.org'>latticeExtra</a></span>)) {
-  <span class='fu'>levelplot</span>(<span class='kw'>spc</span> <span class='op'>~</span> <span class='kw'>.wavelength</span> <span class='op'>*</span> <span class='kw'>z</span>, <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span>(<span class='kw'>barb</span>),
+  <span class='fu'>levelplot</span>(<span class='kw'>spc</span> <span class='op'>~</span> <span class='kw'>.wavelength</span> <span class='op'>*</span> <span class='kw'>z</span>, <span class='fu'><a href='Math2,hyperSpec-method.html'>log</a></span>(<span class='kw'>barb</span>),
     panel = <span class='kw'>panel.levelplot.points</span>,
-    cex = <span class='fl'>0.3</span>, col = <span class='st'>"#00000000"</span>, col.regions = <span class='fu'>matlab.palette</span>(<span class='fl'>20</span>)
+    cex = <span class='fl'>0.3</span>, col = <span class='st'>"#00000000"</span>, col.regions = <span class='fu'><a href='matlab.palette.html'>matlab.palette</a></span>(<span class='fl'>20</span>)
   )
-}</div><div class='output co'>#&gt; <span class='message'>Loading required package: latticeExtra</span></div><div class='output co'>#&gt; <span class='message'></span>
+}
+</div><div class='output co'>#&gt; <span class='message'>Loading required package: latticeExtra</span></div><div class='output co'>#&gt; <span class='message'></span>
 #&gt; <span class='message'>Attaching package: ‘latticeExtra’</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from ‘package:ggplot2’:</span>
 #&gt; <span class='message'></span>
-#&gt; <span class='message'>    layer</span></div><div class='img'><img src='barbiturates-2.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='fu'>plotc</span>(<span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span>(<span class='kw'>barb</span>[, , <span class='fl'>42.9</span> <span class='op'>~</span> <span class='fl'>43.2</span>], <span class='fl'>1</span>, <span class='kw'>sum</span>, na.rm = <span class='fl'>TRUE</span>), <span class='kw'>spc</span> <span class='op'>~</span> <span class='kw'>z</span>,
+#&gt; <span class='message'>    layer</span></div><div class='output co'>#&gt; <span class='warning'>Warning: device support for raster images unknown, ignoring 'raster=TRUE'</span></div><div class='img'><img src='barbiturates-2.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='fu'><a href='plotc.html'>plotc</a></span>(<span class='fu'><a href='apply.html'>apply</a></span>(<span class='kw'>barb</span>[, , <span class='fl'>42.9</span> <span class='op'>~</span> <span class='fl'>43.2</span>], <span class='fl'>1</span>, <span class='kw'>sum</span>, na.rm = <span class='fl'>TRUE</span>), <span class='kw'>spc</span> <span class='op'>~</span> <span class='kw'>z</span>,
   panel = <span class='kw'>panel.lines</span>, ylab = <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span>(<span class='kw'>I</span>[<span class='kw'>m</span> <span class='op'>/</span> <span class='kw'>z</span> <span class='op'>==</span> <span class='fl'>43</span>] <span class='op'>/</span> <span class='st'>"a.u."</span>)
-)</div><div class='img'><img src='barbiturates-3.png' alt='' width='466' height='288' /></div></pre>
+)
+</div><div class='img'><img src='barbiturates-3.png' alt='' width='466' height='288' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -276,7 +281,7 @@ example data from Thermo Galactic's spc file format specification.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

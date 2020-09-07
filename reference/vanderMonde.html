@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function evaluation on <code>hyperSpec</code> objects. — vanderMonde • hyperSpec</title>
+<title>Function evaluation on hyperSpec objects. — vanderMonde • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,7 +41,7 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Function evaluation on <code>hyperSpec</code> objects. — vanderMonde" />
+<meta property="og:title" content="Function evaluation on hyperSpec objects. — vanderMonde" />
 <meta property="og:description" content="vandermonde() generates Vandermonde matrices, the hyperSpec method
 generates a hyperSpec object containing the van der Monde matrix of the
 wavelengths of a hyperSpec object." />
@@ -186,12 +186,12 @@ wavelengths of a <code>hyperSpec</code> object.</p>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>hyperSpec method: further arguments to <code>decomposition()</code></p></td>
+      <td><p>hyperSpec method: further arguments to <code><a href='decomposition.html'>decomposition()</a></code></p></td>
     </tr>
     <tr>
       <th>normalize.wl</th>
       <td><p>function to transorm the wavelengths before evaluating the polynomial (or
-other function). <code>normalize01()</code> maps the wavelength range to the interval
+other function). <code><a href='normalize01.html'>normalize01()</a></code> maps the wavelength range to the interval
 [0, 1]. Use <code><a href='https://rdrr.io/r/base/AsIs.html'>base::I()</a></code> to turn off.</p></td>
     </tr>
     </table>
@@ -202,18 +202,20 @@ other function). <code>normalize01()</code> maps the wavelength range to the int
 <p>hyperSpec method: hyperSpec object containing van der Monde matrix as spectra and an additional column `$.vdm.order$ giving the order of each spectrum (term).</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>It is often numerically preferrable to map <code>wl(x)</code> to [0, 1], see the
+    <p>It is often numerically preferrable to map <code><a href='wl.html'>wl(x)</a></code> to [0, 1], see the
 example.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code>wl.eval()</code> for calculating arbitrary functions of the wavelength,</p>
-<p><code>normalize01()</code></p></div>
+    <div class='dont-index'><p><code><a href='wl.eval.html'>wl.eval()</a></code> for calculating arbitrary functions of the wavelength,</p>
+<p><code><a href='normalize01.html'>normalize01()</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>C. Beleites</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='fu'>vanderMonde</span>(<span class='kw'>flu</span>, <span class='fl'>2</span>))</div><div class='img'><img src='vanderMonde-1.png' alt='' width='466' height='288' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='fu'>vanderMonde</span>(<span class='kw'>flu</span>, <span class='fl'>2</span>, normalize.wl = <span class='kw'>I</span>))</div><div class='img'><img src='vanderMonde-2.png' alt='' width='466' height='288' /></div></pre>
+    <pre class="examples"><div class='input'><span class='fu'><a href='plot-methods.html'>plot</a></span>(<span class='fu'>vanderMonde</span>(<span class='kw'>flu</span>, <span class='fl'>2</span>))
+</div><div class='img'><img src='vanderMonde-1.png' alt='' width='466' height='288' /></div><div class='input'><span class='fu'><a href='plot-methods.html'>plot</a></span>(<span class='fu'>vanderMonde</span>(<span class='kw'>flu</span>, <span class='fl'>2</span>, normalize.wl = <span class='kw'>I</span>))
+</div><div class='img'><img src='vanderMonde-2.png' alt='' width='466' height='288' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -229,7 +231,7 @@ example.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

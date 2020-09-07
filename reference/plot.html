@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plotting <code>hyperSpec</code> Objects. — plot-methods • hyperSpec</title>
+<title>Plotting hyperSpec Objects. — plot-methods • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,7 +41,7 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Plotting <code>hyperSpec</code> Objects. — plot-methods" />
+<meta property="og:title" content="Plotting hyperSpec Objects. — plot-methods" />
 <meta property="og:description" content="The plot method for hyperSpec objects is a switchyard to plotspc(),
 plotmap(), and plotc()." />
 
@@ -162,15 +162,15 @@ plotmap(), and plotc()." />
     </div>
 
     <div class="ref-description">
-    <p>The <code>plot</code> method for <code>hyperSpec</code> objects is a switchyard to <code>plotspc()</code>,
-<code>plotmap()</code>, and <code>plotc()</code>.</p>
+    <p>The <code>plot</code> method for <code>hyperSpec</code> objects is a switchyard to <code><a href='plotspc.html'>plotspc()</a></code>,
+<code><a href='plotmap.html'>plotmap()</a></code>, and <code><a href='plotc.html'>plotc()</a></code>.</p>
     </div>
 
     <pre class="usage"><span class='co'># S4 method for hyperSpec,missing</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>x</span>, <span class='kw'>y</span>, <span class='kw'>...</span>)
+<span class='fu'>plot</span>(<span class='kw'>x</span>, <span class='kw'>y</span>, <span class='kw'>...</span>)
 
 <span class='co'># S4 method for hyperSpec,character</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>x</span>, <span class='kw'>y</span>, <span class='kw'>...</span>)</pre>
+<span class='fu'>plot</span>(<span class='kw'>x</span>, <span class='kw'>y</span>, <span class='kw'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -192,11 +192,11 @@ plotmap(), and plotc()." />
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>It also supplies some convenient abbrevations for much used plots.</p>
-<p>If <code>y</code> is missing, <code>plot</code> behaves like <code><a href='https://rdrr.io/r/graphics/plot.default.html'>plot(x, y = "spc")</a></code>.</p>
+<p>If <code>y</code> is missing, <code>plot</code> behaves like <code>plot(x, y = "spc")</code>.</p>
 <p>Supported values for <code>y</code> are:</p>
 <dl>
 
-<dt>"spc"</dt><dd><p>calls <code>plotspc()</code> to produce a spectra plot.</p></dd>
+<dt>"spc"</dt><dd><p>calls <code><a href='plotspc.html'>plotspc()</a></code> to produce a spectra plot.</p></dd>
 
 <dt>"spcmeansd"</dt><dd><p>plots mean spectrum +/- one standard deviation</p></dd>
 
@@ -208,31 +208,31 @@ Then <code>"spcprctile"</code> gives a better impression of the spectral data se
 <dt>"spcprctl5"</dt><dd><p>like <code>"spcprctile"</code>, but additionally the 5th and
 95th percentile spectra are plotted.</p></dd>
 
-<dt>"map"</dt><dd><p>calls <code>plotmap()</code> to produce a map plot.</p></dd>
+<dt>"map"</dt><dd><p>calls <code><a href='plotmap.html'>plotmap()</a></code> to produce a map plot.</p></dd>
 
-<dt>"voronoi"</dt><dd><p>calls <code>plotvoronoi()</code> to produce a Voronoi plot (tesselated
+<dt>"voronoi"</dt><dd><p>calls <code><a href='plotmap.html'>plotvoronoi()</a></code> to produce a Voronoi plot (tesselated
 plot, like "map" for hyperSpec objects with uneven/non-rectangular grid).</p></dd>
 
-<dt>"mat"</dt><dd><p>calls <code>plotmat()</code> to produce a plot of the spectra matrix (not
+<dt>"mat"</dt><dd><p>calls <code><a href='plotmat.html'>plotmat()</a></code> to produce a plot of the spectra matrix (not
 to be confused with <code><a href='https://rdrr.io/r/graphics/matplot.html'>graphics::matplot()</a></code>).</p></dd>
 
-<dt>"c"</dt><dd><p>calls <code>plotc()</code> to produce a calibration (or time series,
+<dt>"c"</dt><dd><p>calls <code><a href='plotc.html'>plotc()</a></code> to produce a calibration (or time series,
 depth-profile, or the like).</p></dd>
 
 <dt>"ts"</dt><dd><p>plots a time series: abbrevation for
-<code>plotc(x, use.c = "t")</code>.</p></dd>
+<code><a href='plotc.html'>plotc(x, use.c = "t")</a></code>.</p></dd>
 
 <dt>"depth"</dt><dd><p>plots a depth profile:
-abbrevation for <code>plotc(x, use.c = "z")</code>.</p></dd>
+abbrevation for <code><a href='plotc.html'>plotc(x, use.c = "z")</a></code>.</p></dd>
 
 </dl>
 
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code>plotspc()</code> for spectra plots (intensity over wavelength),</p>
-<p><code>plotmap()</code> for plotting maps, i.e. color coded summary value on two
+    <div class='dont-index'><p><code><a href='plotspc.html'>plotspc()</a></code> for spectra plots (intensity over wavelength),</p>
+<p><code><a href='plotmap.html'>plotmap()</a></code> for plotting maps, i.e. color coded summary value on two
 (usually spatial) dimensions.</p>
-<p><code>plotc()</code></p>
+<p><code><a href='plotc.html'>plotc()</a></code></p>
 <p><code><a href='https://rdrr.io/r/graphics/plot.default.html'>graphics::plot()</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
@@ -240,13 +240,20 @@ abbrevation for <code>plotc(x, use.c = "z")</code>.</p></dd>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>flu</span>)</div><div class='img'><img src='plot-1.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>flu</span>, <span class='st'>"c"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Intensity at first wavelengh only is used.</span></div><div class='img'><img src='plot-2.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>laser</span>, <span class='st'>"ts"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Intensity at first wavelengh only is used.</span></div><div class='img'><img src='plot-3.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='kw'>spc</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span>(<span class='kw'>faux_cell</span>, <span class='fl'>2</span>, <span class='kw'>quantile</span>, probs = <span class='fl'>0.05</span>)
-<span class='kw'>spc</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sweep.html'>sweep</a></span>(<span class='kw'>faux_cell</span>, <span class='fl'>2</span>, <span class='kw'>spc</span>, <span class='st'>"-"</span>)
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>spc</span>, <span class='st'>"spcprctl5"</span>)</div><div class='img'><img src='plot-4.png' alt='' width='466' height='288' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>spc</span>, <span class='st'>"spcprctile"</span>)</div><div class='img'><img src='plot-5.png' alt='' width='466' height='288' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>spc</span>, <span class='st'>"spcmeansd"</span>)</div><div class='img'><img src='plot-6.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='co'>### use plotspc as default plot function</span></div></pre>
+<span class='fu'>plot</span>(<span class='kw'>flu</span>)
+</div><div class='img'><img src='plot-1.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='fu'>plot</span>(<span class='kw'>flu</span>, <span class='st'>"c"</span>)
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Intensity at first wavelengh only is used.</span></div><div class='img'><img src='plot-2.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='fu'>plot</span>(<span class='kw'>laser</span>, <span class='st'>"ts"</span>)
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Intensity at first wavelengh only is used.</span></div><div class='img'><img src='plot-3.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='kw'>spc</span> <span class='op'>&lt;-</span> <span class='fu'><a href='apply.html'>apply</a></span>(<span class='kw'>faux_cell</span>, <span class='fl'>2</span>, <span class='kw'>quantile</span>, probs = <span class='fl'>0.05</span>)
+<span class='kw'>spc</span> <span class='op'>&lt;-</span> <span class='fu'><a href='sweep.html'>sweep</a></span>(<span class='kw'>faux_cell</span>, <span class='fl'>2</span>, <span class='kw'>spc</span>, <span class='st'>"-"</span>)
+<span class='fu'>plot</span>(<span class='kw'>spc</span>, <span class='st'>"spcprctl5"</span>)
+</div><div class='img'><img src='plot-4.png' alt='' width='466' height='288' /></div><div class='input'><span class='fu'>plot</span>(<span class='kw'>spc</span>, <span class='st'>"spcprctile"</span>)
+</div><div class='img'><img src='plot-5.png' alt='' width='466' height='288' /></div><div class='input'><span class='fu'>plot</span>(<span class='kw'>spc</span>, <span class='st'>"spcmeansd"</span>)
+</div><div class='img'><img src='plot-6.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='co'>### use plotspc as default plot function</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -262,7 +269,7 @@ abbrevation for <code>plotc(x, use.c = "z")</code>.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

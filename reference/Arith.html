@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Arithmetical Operators: <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>^</code>, <code>%%</code>, <code>%/%</code>, <code>%*%</code> for <code>hyperSpec</code> Objects — Arith,hyperSpec,hyperSpec-method • hyperSpec</title>
+<title>Arithmetical Operators: +, -, *, /, ^, %%, %/%, %*% for hyperSpec Objects — Arith,hyperSpec,hyperSpec-method • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,7 +41,7 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Arithmetical Operators: <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>^</code>, <code>%%</code>, <code>%/%</code>, <code>%*%</code> for <code>hyperSpec</code> Objects — Arith,hyperSpec,hyperSpec-method" />
+<meta property="og:title" content="Arithmetical Operators: +, -, *, /, ^, %%, %/%, %*% for hyperSpec Objects — Arith,hyperSpec,hyperSpec-method" />
 <meta property="og:description" content="The arithmetical operators +, -, *, /, ^, %%, %/%, and %*%
 hyperSpec objects." />
 
@@ -232,16 +232,16 @@ x &lt;!-- %*% y `%*%`(x, y) --&gt;
 usual meaning (see <a href='https://rdrr.io/r/base/Arithmetic.html'>base::Arithmetic</a>).  The operators work also with
 one <code>hyperSpec</code> object and a numeric object or a matrix of the same
 size as the spectra matrix of the <code>hyperSpec</code> object.</p>
-<p>With numeric vectors <code><a href='https://rdrr.io/r/base/sweep.html'>sweep()</a></code> may be more explicit.</p>
+<p>With numeric vectors <code><a href='sweep.html'>sweep()</a></code> may be more explicit.</p>
 <p>If you want to calculate on the extra data as well, use the data.frame
-<code>hyperSpec@data</code> directly or <code><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame(x)</a></code>.</p>
+<code>hyperSpec@data</code> directly or <code><a href='as.data.frame.html'>as.data.frame(x)</a></code>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://rdrr.io/r/base/sweep.html'>sweep()</a></code> for calculations with a vector and the spectra matrix.</p>
+    <div class='dont-index'><p><code><a href='sweep.html'>sweep()</a></code> for calculations with a vector and the spectra matrix.</p>
 <p><a href='https://rdrr.io/r/methods/S4groupGeneric.html'>methods::S4groupGeneric</a> for group generic methods.</p>
 <p><a href='https://rdrr.io/r/base/Arithmetic.html'>base::Arithmetic</a> for the base arithmetic functions.</p>
-<p><a href='https://rdrr.io/r/base/Comparison.html'>Comparison</a> for comparison operators,
-<a href='https://rdrr.io/r/base/groupGeneric.html'>Math</a> for mathematical group generic functions (Math
+<p><a href='Comparison.html'>Comparison</a> for comparison operators,
+<a href='Math2,hyperSpec-method.html'>Math</a> for mathematical group generic functions (Math
 and Math2 groups) working on hyperSpec objects.</p>
 <p><a href='https://rdrr.io/r/base/matmult.html'>base::matmult</a> for matrix multiplications with <code><a href='https://rdrr.io/r/base/matmult.html'>%*%</a></code>.</p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
@@ -249,7 +249,8 @@ and Math2 groups) working on hyperSpec objects.</p>
     <p>C. Beleites</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>flu</span> <span class='op'>+</span> <span class='kw'>flu</span></div><div class='output co'>#&gt; hyperSpec object
+    <pre class="examples"><div class='input'><span class='kw'>flu</span> <span class='op'>+</span> <span class='kw'>flu</span>
+</div><div class='output co'>#&gt; hyperSpec object
 #&gt;    6 spectra
 #&gt;    3 data columns
 #&gt;    181 data points / spectrum
@@ -257,7 +258,8 @@ and Math2 groups) working on hyperSpec objects.</p>
 #&gt; data:  (6 rows x 3 columns)
 #&gt;    1. spc: I[fl]/"a.u." [matrix, array181] 54.3000 133.6027 ... 589.299 
 #&gt;    2. filename: filename [character] rawdata/flu1.txt rawdata/flu2.txt ... rawdata/flu6.txt 
-#&gt;    3. c: c / (mg / l) [numeric] 0.05 0.10 ... 0.3 </div><div class='input'><span class='fl'>1</span> <span class='op'>/</span> <span class='kw'>flu</span></div><div class='output co'>#&gt; hyperSpec object
+#&gt;    3. c: c / (mg / l) [numeric] 0.05 0.10 ... 0.3 </div><div class='input'><span class='fl'>1</span> <span class='op'>/</span> <span class='kw'>flu</span>
+</div><div class='output co'>#&gt; hyperSpec object
 #&gt;    6 spectra
 #&gt;    3 data columns
 #&gt;    181 data points / spectrum
@@ -265,7 +267,9 @@ and Math2 groups) working on hyperSpec objects.</p>
 #&gt; data:  (6 rows x 3 columns)
 #&gt;    1. spc: I[fl]/"a.u." [matrix, array181] 0.03683241 0.01496976 ... 0.003393863 
 #&gt;    2. filename: filename [character] rawdata/flu1.txt rawdata/flu2.txt ... rawdata/flu6.txt 
-#&gt;    3. c: c / (mg / l) [numeric] 0.05 0.10 ... 0.3 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/all.html'>all</a></span>((<span class='kw'>flu</span> <span class='op'>+</span> <span class='kw'>flu</span> <span class='op'>-</span> <span class='fl'>2</span> <span class='op'>*</span> <span class='kw'>flu</span>)[[]] <span class='op'>==</span> <span class='fl'>0</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='op'>-</span><span class='kw'>flu</span></div><div class='output co'>#&gt; hyperSpec object
+#&gt;    3. c: c / (mg / l) [numeric] 0.05 0.10 ... 0.3 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/all.html'>all</a></span>((<span class='kw'>flu</span> <span class='op'>+</span> <span class='kw'>flu</span> <span class='op'>-</span> <span class='fl'>2</span> <span class='op'>*</span> <span class='kw'>flu</span>)[[]] <span class='op'>==</span> <span class='fl'>0</span>)
+</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='op'>-</span><span class='kw'>flu</span>
+</div><div class='output co'>#&gt; hyperSpec object
 #&gt;    6 spectra
 #&gt;    3 data columns
 #&gt;    181 data points / spectrum
@@ -273,7 +277,8 @@ and Math2 groups) working on hyperSpec objects.</p>
 #&gt; data:  (6 rows x 3 columns)
 #&gt;    1. spc: I[fl]/"a.u." [matrix, array181] -27.15000 -66.80133 ... -294.6495 
 #&gt;    2. filename: filename [character] rawdata/flu1.txt rawdata/flu2.txt ... rawdata/flu6.txt 
-#&gt;    3. c: c / (mg / l) [numeric] 0.05 0.10 ... 0.3 </div><div class='input'><span class='kw'>flu</span> <span class='op'>/</span> <span class='kw'>flu</span><span class='op'>$</span><span class='kw'>c</span></div><div class='output co'>#&gt; hyperSpec object
+#&gt;    3. c: c / (mg / l) [numeric] 0.05 0.10 ... 0.3 </div><div class='input'><span class='kw'>flu</span> <span class='op'>/</span> <span class='kw'>flu</span><span class='op'>$</span><span class='kw'>c</span>
+</div><div class='output co'>#&gt; hyperSpec object
 #&gt;    6 spectra
 #&gt;    3 data columns
 #&gt;    181 data points / spectrum
@@ -297,7 +302,7 @@ and Math2 groups) working on hyperSpec objects.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

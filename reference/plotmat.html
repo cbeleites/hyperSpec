@@ -168,7 +168,7 @@
   <span class='kw'>object</span>,
   y = <span class='st'>".row"</span>,
   <span class='kw'>ylab</span>,
-  col = <span class='fu'>alois.palette</span>(<span class='fl'>20</span>),
+  col = <span class='fu'><a href='matlab.palette.html'>alois.palette</a></span>(<span class='fl'>20</span>),
   <span class='kw'>...</span>,
   contour = <span class='fl'>FALSE</span>
 )</pre>
@@ -216,14 +216,19 @@ The right margin is set to at least 5 lines.</p>
     <p>Claudia Beleites</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>plotmat</span>(<span class='kw'>laser</span>, col = <span class='fu'>alois.palette</span>(<span class='fl'>100</span>))</div><div class='img'><img src='plotmat-1.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>laser</span>, <span class='st'>"mat"</span>)</div><div class='input'>
+    <pre class="examples"><div class='input'><span class='fu'>plotmat</span>(<span class='kw'>laser</span>, col = <span class='fu'><a href='matlab.palette.html'>alois.palette</a></span>(<span class='fl'>100</span>))
+</div><div class='img'><img src='plotmat-1.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='fu'><a href='plot-methods.html'>plot</a></span>(<span class='kw'>laser</span>, <span class='st'>"mat"</span>)
+</div><div class='input'>
 <span class='fu'>plotmat</span>(<span class='kw'>laser</span>)
-<span class='fu'>plotmat</span>(<span class='kw'>laser</span>, contour = <span class='fl'>TRUE</span>, add = <span class='fl'>TRUE</span>)</div><div class='img'><img src='plotmat-2.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='fu'>plotmat</span>(<span class='kw'>laser</span>, contour = <span class='fl'>TRUE</span>, add = <span class='fl'>TRUE</span>)
+</div><div class='img'><img src='plotmat-2.png' alt='' width='466' height='288' /></div><div class='input'>
 <span class='co'>## use different y axis labels</span>
 
-<span class='fu'>plotmat</span>(<span class='kw'>laser</span>, <span class='st'>"t"</span>)</div><div class='img'><img src='plotmat-3.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='fu'>plotmat</span>(<span class='kw'>laser</span>, <span class='kw'>laser</span><span class='op'>$</span><span class='kw'>t</span> <span class='op'>/</span> <span class='fl'>3600</span>, ylab = <span class='st'>"t / h"</span>)</div><div class='img'><img src='plotmat-4.png' alt='' width='466' height='288' /></div></pre>
+<span class='fu'>plotmat</span>(<span class='kw'>laser</span>, <span class='st'>"t"</span>)
+</div><div class='img'><img src='plotmat-3.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='fu'>plotmat</span>(<span class='kw'>laser</span>, <span class='kw'>laser</span><span class='op'>$</span><span class='kw'>t</span> <span class='op'>/</span> <span class='fl'>3600</span>, ylab = <span class='st'>"t / h"</span>)
+</div><div class='img'><img src='plotmat-4.png' alt='' width='466' height='288' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -239,7 +244,7 @@ The right margin is set to at least 5 lines.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

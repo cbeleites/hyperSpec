@@ -166,7 +166,7 @@ stats::loess()." />
 <code><a href='https://rdrr.io/r/stats/loess.html'>stats::loess()</a></code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>spc.loess</span>(<span class='kw'>spc</span>, <span class='kw'>newx</span>, enp.target = <span class='fu'>nwl</span>(<span class='kw'>spc</span>)<span class='op'>/</span><span class='fl'>4</span>, surface = <span class='st'>"direct"</span>, <span class='kw'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>spc.loess</span>(<span class='kw'>spc</span>, <span class='kw'>newx</span>, enp.target = <span class='fu'><a href='ncol,hyperSpec-method.html'>nwl</a></span>(<span class='kw'>spc</span>)<span class='op'>/</span><span class='fl'>4</span>, surface = <span class='st'>"direct"</span>, <span class='kw'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -188,7 +188,7 @@ stats::loess()." />
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A new  <code>hyperSpec</code> object.</p>
+    <p>A new  <code><a href='hyperSpec-class.html'>hyperSpec</a></code> object.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Applying <code><a href='https://rdrr.io/r/stats/loess.html'>stats::loess()</a></code> to each of the spectra, an interpolation onto a new
@@ -205,14 +205,20 @@ smoothing.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>flu</span>, package = <span class='st'>"hyperSpec"</span>)
-<span class='fu'>nwl</span>(<span class='kw'>flu</span>)</div><div class='output co'>#&gt; [1] 181</div><div class='input'>
-<span class='kw'>smoothed_flu</span> <span class='op'>&lt;-</span> <span class='fu'>spc.loess</span>(<span class='kw'>flu</span>, <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>420</span>, <span class='fl'>470</span>, <span class='fl'>5</span>))
-<span class='fu'>nwl</span>(<span class='kw'>smoothed_flu</span>)</div><div class='output co'>#&gt; [1] 11</div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>flu</span>, col = <span class='st'>"darkgray"</span>)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>smoothed_flu</span>, add = <span class='fl'>TRUE</span>, col = <span class='st'>"red"</span>)</div><div class='img'><img src='spc-loess-1.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='fu'><a href='ncol,hyperSpec-method.html'>nwl</a></span>(<span class='kw'>flu</span>)
+</div><div class='output co'>#&gt; [1] 181</div><div class='input'>
+<span class='kw'>smoothed_flu</span> <span class='op'>&lt;-</span> <span class='fu'>spc.loess</span>(<span class='kw'>flu</span>, <span class='fu'><a href='seq.hyperSpec.html'>seq</a></span>(<span class='fl'>420</span>, <span class='fl'>470</span>, <span class='fl'>5</span>))
+<span class='fu'><a href='ncol,hyperSpec-method.html'>nwl</a></span>(<span class='kw'>smoothed_flu</span>)
+</div><div class='output co'>#&gt; [1] 11</div><div class='input'>
+<span class='fu'><a href='plot-methods.html'>plot</a></span>(<span class='kw'>flu</span>, col = <span class='st'>"darkgray"</span>)
+</div><div class='input'><span class='fu'><a href='plot-methods.html'>plot</a></span>(<span class='kw'>smoothed_flu</span>, add = <span class='fl'>TRUE</span>, col = <span class='st'>"red"</span>)
+</div><div class='img'><img src='spc-loess-1.png' alt='' width='466' height='288' /></div><div class='input'>
 
 <span class='kw'>flu_na</span> <span class='op'>&lt;-</span> <span class='kw'>flu</span>
 <span class='kw'>flu_na</span>[[<span class='fl'>3</span>, ]] <span class='op'>&lt;-</span> <span class='fl'>NA_real_</span>
-<span class='kw'>flu_na_smoothed</span> <span class='op'>&lt;-</span> <span class='fu'>spc.loess</span>(<span class='kw'>flu_na</span>, <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>420</span>, <span class='fl'>470</span>, <span class='fl'>5</span>))</div><div class='output co'>#&gt; <span class='warning'>Warning: NAs were generated. Probably `newx` was outside the spectral range covered by `spc`.</span></div><div class='input'><span class='kw'>flu_na_smoothed</span>[[]]</div><div class='output co'>#&gt;            420       425       430      435      440      445      450      455
+<span class='kw'>flu_na_smoothed</span> <span class='op'>&lt;-</span> <span class='fu'>spc.loess</span>(<span class='kw'>flu_na</span>, <span class='fu'><a href='seq.hyperSpec.html'>seq</a></span>(<span class='fl'>420</span>, <span class='fl'>470</span>, <span class='fl'>5</span>))
+</div><div class='output co'>#&gt; <span class='warning'>Warning: NAs were generated. Probably `newx` was outside the spectral range covered by `spc`.</span></div><div class='input'><span class='kw'>flu_na_smoothed</span>[[]]
+</div><div class='output co'>#&gt;            420       425       430      435      440      445      450      455
 #&gt; [1,]  69.37812  80.30948  91.84728 100.2360 104.5292 104.9064 105.7577 104.8149
 #&gt; [2,] 139.77571 164.01308 186.70646 202.3563 210.6401 213.3784 213.4778 211.8374
 #&gt; [3,]        NA        NA        NA       NA       NA       NA       NA       NA
@@ -226,7 +232,9 @@ smoothing.</p>
 #&gt; [4,] 421.76483 391.7258 354.35753
 #&gt; [5,] 524.96452 487.5104 441.95012
 #&gt; [6,] 639.70144 594.3875 539.25115</div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>flu</span>, col = <span class='st'>"darkgray"</span>)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>flu_na_smoothed</span>, add = <span class='fl'>TRUE</span>, col = <span class='st'>"blue"</span>)</div><div class='img'><img src='spc-loess-2.png' alt='' width='466' height='288' /></div></pre>
+<span class='fu'><a href='plot-methods.html'>plot</a></span>(<span class='kw'>flu</span>, col = <span class='st'>"darkgray"</span>)
+</div><div class='input'><span class='fu'><a href='plot-methods.html'>plot</a></span>(<span class='kw'>flu_na_smoothed</span>, add = <span class='fl'>TRUE</span>, col = <span class='st'>"blue"</span>)
+</div><div class='img'><img src='spc-loess-2.png' alt='' width='466' height='288' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -242,7 +250,7 @@ smoothing.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

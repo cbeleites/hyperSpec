@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Options for package <span class="pkg">hyperSpec</span>. — hy.getOptions • hyperSpec</title>
+<title>Options for package hyperSpec. — hy.getOptions • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,7 +41,7 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Options for package <span class="pkg">hyperSpec</span>. — hy.getOptions" />
+<meta property="og:title" content="Options for package hyperSpec. — hy.getOptions" />
 <meta property="og:description" content="Functions to access and set hyperSpec's options." />
 
 <meta name="robots" content="noindex" />
@@ -198,16 +198,16 @@
 
     <p>Currently, the following options are defined:</p><table class='table'>
 <tr><td><strong>Name</strong></td><td><strong>Default Value (range)</strong></td><td><strong>Description</strong></td><td><strong>Used by</strong></td></tr>
-<tr><td>debuglevel</td><td>0 (1L 2L 3L)</td><td>amount of debugging information produced</td><td><code>spc.identify()</code> <code>map.identify()</code></td></tr>
+<tr><td>debuglevel</td><td>0 (1L 2L 3L)</td><td>amount of debugging information produced</td><td><code><a href='spc.identify.html'>spc.identify()</a></code> <code><a href='plotmap.html'>map.identify()</a></code></td></tr>
 <tr><td></td><td></td><td></td><td>various file import functions</td></tr>
-<tr><td></td><td></td><td></td><td><code>spc.fit.poly.below()</code></td></tr>
-<tr><td>gc</td><td>FALSE</td><td>triggers frequent calling of gc ()</td><td><code>read.ENVI()</code>, <code>new ("hyperSpec")</code></td></tr>
+<tr><td></td><td></td><td></td><td><code><a href='spc.fit.poly.html'>spc.fit.poly.below()</a></code></td></tr>
+<tr><td>gc</td><td>FALSE</td><td>triggers frequent calling of gc ()</td><td><code><a href='read.ENVI.html'>read.ENVI()</a></code>, <code><a href='initialize.html'>new ("hyperSpec")</a></code></td></tr>
 <tr><td>file.remove.emptyspc</td><td>TRUE</td><td>remove empty spectra directly on file import</td><td>various file import functions</td></tr>
 <tr><td>file.keep.name</td><td>TRUE</td><td>always create filename column</td><td>various file import functions</td></tr>
-<tr><td>tolerance</td><td><code><a href='https://rdrr.io/r/base/MathFun.html'>sqrt (.Machine$double.eps)</a></code></td><td>tolerance for numerical comparisons</td><td><code>normalize01()</code>, file import: <code>file.remove.emptyspc</code></td></tr>
-<tr><td>wl.tolerance</td><td><code><a href='https://rdrr.io/r/base/MathFun.html'>sqrt (.Machine$double.eps)</a></code></td><td>tolerance for comparisons of the wavelength axis</td><td><code><a href='https://rdrr.io/r/base/all.equal.html'>all.equal()</a></code>, <code>collapse()</code>, <code><a href='https://rdrr.io/r/base/cbind.html'>rbind()</a></code></td></tr>
-<tr><td>plot.spc.nmax</td><td>25</td><td>number of spectra to be plotted by default</td><td><code>plotspc()</code></td></tr>
-<tr><td>ggplot.spc.nmax</td><td>10</td><td></td><td><a href='https://r-hyperspec.github.io/hySpc.ggplot2/reference/qplotspc.html'><code>qplotspc()</code></a></td></tr>
+<tr><td>tolerance</td><td><code><a href='https://rdrr.io/r/base/MathFun.html'>sqrt (.Machine$double.eps)</a></code></td><td>tolerance for numerical comparisons</td><td><code><a href='normalize01.html'>normalize01()</a></code>, file import: <code>file.remove.emptyspc</code></td></tr>
+<tr><td>wl.tolerance</td><td><code><a href='https://rdrr.io/r/base/MathFun.html'>sqrt (.Machine$double.eps)</a></code></td><td>tolerance for comparisons of the wavelength axis</td><td><code><a href='Comparison.html'>all.equal()</a></code>, <code><a href='collapse.html'>collapse()</a></code>, <code><a href='https://rdrr.io/r/base/cbind.html'>rbind()</a></code></td></tr>
+<tr><td>plot.spc.nmax</td><td>25</td><td>number of spectra to be plotted by default</td><td><code><a href='plotspc.html'>plotspc()</a></code></td></tr>
+<tr><td>ggplot.spc.nmax</td><td>10</td><td></td><td><a href='https://r-hyperspec.github.io/hySpc.ggplot2/reference/qplotspc.html'><code><a href='hyperSpec-deprecated-ggplot2.html'>qplotspc()</a></code></a></td></tr>
 </table>
 
 
@@ -218,7 +218,8 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>hy.getOptions</span>()</div><div class='output co'>#&gt; $debuglevel
+<span class='fu'>hy.getOptions</span>()
+</div><div class='output co'>#&gt; $debuglevel
 #&gt; [1] 0
 #&gt; 
 #&gt; $gc
@@ -257,7 +258,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

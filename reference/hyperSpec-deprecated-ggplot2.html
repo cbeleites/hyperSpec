@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Spectra Plotting with <span class="pkg">ggplot2</span> Was Moved to <span class="pkg">hySpc.ggplot2</span>
+<title>Spectra Plotting with ggplot2 Was Moved to hySpc.ggplot2
 (DEPRECATED) — hyperSpec-deprecated-ggplot2 • hyperSpec</title>
 
 
@@ -42,7 +42,7 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Spectra Plotting with <span class="pkg">ggplot2</span> Was Moved to <span class="pkg">hySpc.ggplot2</span>
+<meta property="og:title" content="Spectra Plotting with ggplot2 Was Moved to hySpc.ggplot2
 (DEPRECATED) — hyperSpec-deprecated-ggplot2" />
 <meta property="og:description" content="These ggplot2-related hyperSpec functions are deprecated
 and they will be removed in the next release of the package.
@@ -180,9 +180,9 @@ should be used as alternatives to plot <code>hyperSpec</code> objects with <span
   wl.range = <span class='fl'>TRUE</span>,
   <span class='kw'>...</span>,
   mapping = <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes_.html'>aes_string</a></span>(x = <span class='st'>".wavelength"</span>, y = <span class='st'>"spc"</span>, group = <span class='st'>".rownames"</span>),
-  spc.nmax = <span class='fu'>hy.getOption</span>(<span class='st'>"ggplot.spc.nmax"</span>),
+  spc.nmax = <span class='fu'><a href='hy.getOptions.html'>hy.getOption</a></span>(<span class='st'>"ggplot.spc.nmax"</span>),
   map.lineonly = <span class='fl'>FALSE</span>,
-  debuglevel = <span class='fu'>hy.getOption</span>(<span class='st'>"debuglevel"</span>)
+  debuglevel = <span class='fu'><a href='hy.getOptions.html'>hy.getOption</a></span>(<span class='st'>"debuglevel"</span>)
 )
 
 <span class='fu'>qplotmap</span>(
@@ -366,22 +366,27 @@ wavelength is used</p></td>
     <p>Claudia Beleites</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>qplotspc</span>(<span class='kw'>flu</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Function 'qplotspc' is deprecated. </span>
+    <pre class="examples"><div class='input'><span class='fu'>qplotspc</span>(<span class='kw'>flu</span>)
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Function 'qplotspc' is deprecated. </span>
 #&gt; <span class='warning'>Use function 'qplotspc' from package 'hySpc.ggplot2' instead.</span>
 #&gt; <span class='warning'>https://r-hyperspec.github.io/hySpc.ggplot2</span></div><div class='img'><img src='hyperSpec-deprecated-ggplot2-1.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='fu'>qplotmap</span>(<span class='kw'>faux_cell</span>[, , <span class='fl'>1200</span>])</div><div class='output co'>#&gt; <span class='warning'>Warning: Function 'qplotmap' is deprecated. </span>
+<span class='fu'>qplotmap</span>(<span class='kw'>faux_cell</span>[, , <span class='fl'>1200</span>])
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Function 'qplotmap' is deprecated. </span>
 #&gt; <span class='warning'>Use function 'qplotmap' from package 'hySpc.ggplot2' instead.</span>
 #&gt; <span class='warning'>https://r-hyperspec.github.io/hySpc.ggplot2</span></div><div class='img'><img src='hyperSpec-deprecated-ggplot2-2.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='fu'>qplotc</span>(<span class='kw'>flu</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Function 'qplotc' is deprecated. </span>
+<span class='fu'>qplotc</span>(<span class='kw'>flu</span>)
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Function 'qplotc' is deprecated. </span>
 #&gt; <span class='warning'>Use function 'qplotc' from package 'hySpc.ggplot2' instead.</span>
 #&gt; <span class='warning'>https://r-hyperspec.github.io/hySpc.ggplot2</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Intensity at first wavelengh only is used.</span></div><div class='img'><img src='hyperSpec-deprecated-ggplot2-3.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='kw'>faux_cell</span> <span class='op'>&lt;-</span> <span class='kw'>faux_cell</span> <span class='op'>-</span> <span class='fu'>spc.fit.poly.below</span>(<span class='kw'>faux_cell</span>)
+<span class='kw'>faux_cell</span> <span class='op'>&lt;-</span> <span class='kw'>faux_cell</span> <span class='op'>-</span> <span class='fu'><a href='spc.fit.poly.html'>spc.fit.poly.below</a></span>(<span class='kw'>faux_cell</span>)
 
 <span class='fu'>qplotmixmap</span>(<span class='kw'>faux_cell</span> [, , <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>800</span>, <span class='fl'>1200</span>, <span class='fl'>1500</span>)],
   purecol = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(A = <span class='st'>"green4"</span>, B = <span class='st'>"yellow"</span>, C = <span class='st'>"royalblue"</span>)
-)</div><div class='output co'>#&gt; <span class='warning'>Warning: Function 'qplotmixmap' is deprecated. </span>
+)
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Function 'qplotmixmap' is deprecated. </span>
 #&gt; <span class='warning'>Use function 'qplotmixmap' from package 'hySpc.ggplot2' instead.</span>
-#&gt; <span class='warning'>https://r-hyperspec.github.io/hySpc.ggplot2</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 300 rows containing missing values (geom_point).</span></div><div class='img'><img src='hyperSpec-deprecated-ggplot2-4.png' alt='' width='466' height='288' /></div><div class='input'></div></pre>
+#&gt; <span class='warning'>https://r-hyperspec.github.io/hySpc.ggplot2</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 300 rows containing missing values (geom_point).</span></div><div class='img'><img src='hyperSpec-deprecated-ggplot2-4.png' alt='' width='466' height='288' /></div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -397,7 +402,7 @@ wavelength is used</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Comparison of <code>hyperSpec</code> objects — Comparison • hyperSpec</title>
+<title>Comparison of hyperSpec objects — Comparison • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,7 +41,7 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Comparison of <code>hyperSpec</code> objects — Comparison" />
+<meta property="og:title" content="Comparison of hyperSpec objects — Comparison" />
 <meta property="og:description" content="The comparison operators &amp;gt;, &amp;lt;, &amp;gt;=, &amp;lt;=, ==, and != for hyperSpec objects.
 all.equal checks the equality of two hyperSpec objects.
 The comparison operators &amp;gt;, &amp;lt;, &amp;gt;=, &amp;lt;=,
@@ -180,7 +180,7 @@ object. They have their usual meaning (see <code><a href='https://rdrr.io/r/base
 The operators work also with one <code>hyperSpec</code> object and a numeric
 (scalar) object or a matrices of the same size as the spectra matrix of the
 <code>hyperSpec</code> object.</p>
-<p>With numeric vectors <code><a href='https://rdrr.io/r/base/sweep.html'>sweep()</a></code> might be more
+<p>With numeric vectors <code><a href='sweep.html'>sweep()</a></code> might be more
 appropriate.</p>
 <p>If you want to calculate on the <code>data.frame</code> <code>hyperSpec@data</code>,
 you have to do this directly on <code>hyperSpec@data</code>.</p>
@@ -202,7 +202,7 @@ you have to do this directly on <code>hyperSpec@data</code>.</p>
 <span class='fu'>Compare</span>(<span class='kw'>e1</span>, <span class='kw'>e2</span>)
 
 <span class='co'># S4 method for hyperSpec,hyperSpec</span>
-<span class='fu'><a href='https://rdrr.io/r/base/all.equal.html'>all.equal</a></span>(
+<span class='fu'>all.equal</span>(
   <span class='kw'>target</span>,
   <span class='kw'>current</span>,
   <span class='kw'>...</span>,
@@ -210,8 +210,8 @@ you have to do this directly on <code>hyperSpec@data</code>.</p>
   check.names = <span class='fl'>FALSE</span>,
   check.column.order = <span class='fl'>FALSE</span>,
   check.label = <span class='fl'>FALSE</span>,
-  tolerance = <span class='fu'>hy.getOption</span>(<span class='st'>"tolerance"</span>),
-  wl.tolerance = <span class='fu'>hy.getOption</span>(<span class='st'>"wl.tolerance"</span>)
+  tolerance = <span class='fu'><a href='hy.getOptions.html'>hy.getOption</a></span>(<span class='st'>"tolerance"</span>),
+  wl.tolerance = <span class='fu'><a href='hy.getOptions.html'>hy.getOption</a></span>(<span class='st'>"wl.tolerance"</span>)
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -265,12 +265,12 @@ differences. In conditions, the result must therefore be tested with
 <code><a href='https://rdrr.io/r/base/Logic.html'>base::isTRUE()</a></code>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code>sweep-methods()</code> for calculations involving
+    <div class='dont-index'><p><code><a href='sweep.html'>sweep-methods()</a></code> for calculations involving
 a vector and the spectral matrix.</p>
 <p><code><a href='https://rdrr.io/r/methods/S4groupGeneric.html'>methods::S4groupGeneric()</a></code> for group generic methods.</p>
 <p><code><a href='https://rdrr.io/r/base/Comparison.html'>base::Comparison()</a></code> for the base comparison functions.</p>
 <p><code>Arith()</code> for arithmetic operators,
-<code><a href='https://rdrr.io/r/base/groupGeneric.html'>Math()</a></code> for mathematical group generic functions
+<code><a href='Math2,hyperSpec-method.html'>Math()</a></code> for mathematical group generic functions
 (groups Math and Math2) working on <code>hyperSpec</code> objects.</p>
 <p><code><a href='https://rdrr.io/r/base/all.equal.html'>base::all.equal()</a></code> and <code><a href='https://rdrr.io/r/base/Logic.html'>base::isTRUE()</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
@@ -279,14 +279,16 @@ a vector and the spectral matrix.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='kw'>flu</span>[, , <span class='fl'>445</span> <span class='op'>~</span> <span class='fl'>450</span>] <span class='op'>&gt;</span> <span class='fl'>300</span></div><div class='output co'>#&gt;        445 445.5   446 446.5   447 447.5   448 448.5   449 449.5   450
+<span class='kw'>flu</span>[, , <span class='fl'>445</span> <span class='op'>~</span> <span class='fl'>450</span>] <span class='op'>&gt;</span> <span class='fl'>300</span>
+</div><div class='output co'>#&gt;        445 445.5   446 446.5   447 447.5   448 448.5   449 449.5   450
 #&gt; [1,] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 #&gt; [2,] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 #&gt; [3,]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
 #&gt; [4,]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
 #&gt; [5,]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
 #&gt; [6,]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE</div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/base/all.html'>all</a></span>(<span class='kw'>flu</span> <span class='op'>==</span> <span class='kw'>flu</span>[[]])</div><div class='output co'>#&gt; [1] TRUE</div></pre>
+<span class='fu'><a href='https://rdrr.io/r/base/all.html'>all</a></span>(<span class='kw'>flu</span> <span class='op'>==</span> <span class='kw'>flu</span>[[]])
+</div><div class='output co'>#&gt; [1] TRUE</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -302,7 +304,7 @@ a vector and the spectral matrix.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

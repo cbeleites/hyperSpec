@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title><code>as.hyperSpec</code>: Convenience Conversion Functions — as.hyperSpec • hyperSpec</title>
+<title>as.hyperSpec: Convenience Conversion Functions — as.hyperSpec • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,7 +41,7 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="<code>as.hyperSpec</code>: Convenience Conversion Functions — as.hyperSpec" />
+<meta property="og:title" content="as.hyperSpec: Convenience Conversion Functions — as.hyperSpec" />
 <meta property="og:description" content="These functions are shortcuts to convert other objects into hypeSpec objects." />
 
 <meta name="robots" content="noindex" />
@@ -167,13 +167,13 @@
     <pre class="usage"><span class='fu'>as.hyperSpec</span>(<span class='kw'>X</span>, <span class='kw'>...</span>)
 
 <span class='co'># S4 method for matrix</span>
-<span class='fu'>as.hyperSpec</span>(<span class='kw'>X</span>, wl = <span class='fu'>guess.wavelength</span>(<span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span>(<span class='kw'>X</span>)), <span class='kw'>...</span>)
+<span class='fu'>as.hyperSpec</span>(<span class='kw'>X</span>, wl = <span class='fu'><a href='guess.wavelength.html'>guess.wavelength</a></span>(<span class='fu'><a href='dimnames,hyperSpec-method.html'>colnames</a></span>(<span class='kw'>X</span>)), <span class='kw'>...</span>)
 
 <span class='co'># S4 method for data.frame</span>
 <span class='fu'>as.hyperSpec</span>(
   <span class='kw'>X</span>,
   spc = <span class='kw'>NULL</span>,
-  wl = <span class='fu'>guess.wavelength</span>(<span class='kw'>spc</span>),
+  wl = <span class='fu'><a href='guess.wavelength.html'>guess.wavelength</a></span>(<span class='kw'>spc</span>),
   labels = <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span>(<span class='kw'>X</span>, <span class='st'>"labels"</span>),
   <span class='kw'>...</span>
 )</pre>
@@ -190,7 +190,7 @@ a data.frame is assumed to contain extra data.</p></td>
     <tr>
       <th>...</th>
       <td><p>additional parameters that should be handed over to
-<code>new("hyperSpec")</code> (initialize)</p></td>
+<code><a href='initialize.html'>new("hyperSpec")</a></code> (initialize)</p></td>
     </tr>
     <tr>
       <th>wl</th>
@@ -216,12 +216,14 @@ assumes <code>X</code> to be extra data, and returns a hyperSpec object with 0
 wavelengths. To get the old behaviour</em></p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code>initialize()</code></p></div>
+    <div class='dont-index'><p><code><a href='initialize.html'>initialize()</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>tmp</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>flu</span>[[, , <span class='fl'>400</span> <span class='op'>~</span> <span class='fl'>410</span>]])
-(<span class='kw'>wl</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span>(<span class='kw'>tmp</span>))</div><div class='output co'>#&gt;  [1] "X405"   "X405.5" "X406"   "X406.5" "X407"   "X407.5" "X408"   "X408.5"
-#&gt;  [9] "X409"   "X409.5" "X410"  </div><div class='input'><span class='fu'>guess.wavelength</span>(<span class='kw'>wl</span>)</div><div class='output co'>#&gt;  [1] 405.0 405.5 406.0 406.5 407.0 407.5 408.0 408.5 409.0 409.5 410.0</div></pre>
+(<span class='kw'>wl</span> <span class='op'>&lt;-</span> <span class='fu'><a href='dimnames,hyperSpec-method.html'>colnames</a></span>(<span class='kw'>tmp</span>))
+</div><div class='output co'>#&gt;  [1] "X405"   "X405.5" "X406"   "X406.5" "X407"   "X407.5" "X408"   "X408.5"
+#&gt;  [9] "X409"   "X409.5" "X410"  </div><div class='input'><span class='fu'><a href='guess.wavelength.html'>guess.wavelength</a></span>(<span class='kw'>wl</span>)
+</div><div class='output co'>#&gt;  [1] 405.0 405.5 406.0 406.5 407.0 407.5 408.0 408.5 409.0 409.5 410.0</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -237,7 +239,7 @@ wavelengths. To get the old behaviour</em></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

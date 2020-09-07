@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Sorting the Wavelengths of a <code>hyperSpec</code> Object. — orderwl • hyperSpec</title>
+<title>Sorting the Wavelengths of a hyperSpec Object. — orderwl • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,7 +41,7 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Sorting the Wavelengths of a <code>hyperSpec</code> Object. — orderwl" />
+<meta property="og:title" content="Sorting the Wavelengths of a hyperSpec Object. — orderwl" />
 <meta property="og:description" content="Rearranges the hyperSpec object so that the wavelength vector is in increasing (or
 decreasing) order." />
 
@@ -197,21 +197,29 @@ decreasing) order.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'>## Example 1: different drawing order in plotspc</span>
-<span class='kw'>spc</span> <span class='op'>&lt;-</span> <span class='fu'>new</span>(<span class='st'>"hyperSpec"</span>, spc = <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>5</span>) <span class='op'>+</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>, ncol = <span class='fl'>5</span>))
+<span class='kw'>spc</span> <span class='op'>&lt;-</span> <span class='fu'><a href='initialize.html'>new</a></span>(<span class='st'>"hyperSpec"</span>, spc = <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>5</span>) <span class='op'>+</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>, ncol = <span class='fl'>5</span>))
 <span class='kw'>spc</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span>(<span class='kw'>spc</span>, <span class='kw'>spc</span> <span class='op'>+</span> <span class='fl'>.5</span>)
 
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>spc</span>, <span class='st'>"spc"</span>)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/text.html'>text</a></span>(<span class='fu'>wl</span>(<span class='kw'>spc</span>), <span class='kw'>spc</span>[[]], <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span>(<span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>))</div><div class='img'><img src='orderwl-1.png' alt='' width='466' height='288' /></div><div class='input'><span class='kw'>spc</span> <span class='op'>&lt;-</span> <span class='fu'>orderwl</span>(<span class='kw'>spc</span>)
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>spc</span>, <span class='st'>"spc"</span>)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/text.html'>text</a></span>(<span class='fu'>wl</span>(<span class='kw'>spc</span>), <span class='kw'>spc</span>[[]], <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span>(<span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>))</div><div class='img'><img src='orderwl-2.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='fu'><a href='plot-methods.html'>plot</a></span>(<span class='kw'>spc</span>, <span class='st'>"spc"</span>)
+</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/text.html'>text</a></span>(<span class='fu'><a href='wl.html'>wl</a></span>(<span class='kw'>spc</span>), <span class='kw'>spc</span>[[]], <span class='fu'><a href='as.character,hyperSpec-method.html'>as.character</a></span>(<span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>))
+</div><div class='img'><img src='orderwl-1.png' alt='' width='466' height='288' /></div><div class='input'><span class='kw'>spc</span> <span class='op'>&lt;-</span> <span class='fu'>orderwl</span>(<span class='kw'>spc</span>)
+<span class='fu'><a href='plot-methods.html'>plot</a></span>(<span class='kw'>spc</span>, <span class='st'>"spc"</span>)
+</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/text.html'>text</a></span>(<span class='fu'><a href='wl.html'>wl</a></span>(<span class='kw'>spc</span>), <span class='kw'>spc</span>[[]], <span class='fu'><a href='as.character,hyperSpec-method.html'>as.character</a></span>(<span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>))
+</div><div class='img'><img src='orderwl-2.png' alt='' width='466' height='288' /></div><div class='input'>
 <span class='co'>## Example 2</span>
-<span class='kw'>spc</span> <span class='op'>&lt;-</span> <span class='fu'>new</span>(<span class='st'>"hyperSpec"</span>, spc = <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>5</span>) <span class='op'>*</span> <span class='fl'>2</span> <span class='op'>+</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>, ncol = <span class='fl'>5</span>))
+<span class='kw'>spc</span> <span class='op'>&lt;-</span> <span class='fu'><a href='initialize.html'>new</a></span>(<span class='st'>"hyperSpec"</span>, spc = <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>5</span>) <span class='op'>*</span> <span class='fl'>2</span> <span class='op'>+</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>, ncol = <span class='fl'>5</span>))
 <span class='kw'>spc</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span>(<span class='kw'>spc</span>, <span class='kw'>spc</span>)
 
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq_len</a></span>(<span class='fu'>nwl</span>(<span class='kw'>spc</span>)), <span class='kw'>spc</span>[[]], type = <span class='st'>"b"</span>)</div><div class='input'><span class='kw'>spc</span>[[]]</div><div class='output co'>#&gt;              1        2        3        4        5         1        2        3
+<span class='fu'><a href='plot-methods.html'>plot</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq_len</a></span>(<span class='fu'><a href='ncol,hyperSpec-method.html'>nwl</a></span>(<span class='kw'>spc</span>)), <span class='kw'>spc</span>[[]], type = <span class='st'>"b"</span>)
+</div><div class='input'><span class='kw'>spc</span>[[]]
+</div><div class='output co'>#&gt;              1        2        3        4        5         1        2        3
 #&gt; [1,] 0.6526606 3.209341 3.136269 2.110489 6.626358 0.6526606 3.209341 3.136269
 #&gt;             4        5
 #&gt; [1,] 2.110489 6.626358</div><div class='input'>
 <span class='kw'>spc</span> <span class='op'>&lt;-</span> <span class='fu'>orderwl</span>(<span class='kw'>spc</span>)
-<span class='fu'><a href='https://rdrr.io/r/graphics/lines.html'>lines</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq_len</a></span>(<span class='fu'>nwl</span>(<span class='kw'>spc</span>)), <span class='kw'>spc</span>[[]], type = <span class='st'>"l"</span>, col = <span class='st'>"red"</span>)</div><div class='img'><img src='orderwl-3.png' alt='' width='466' height='288' /></div><div class='input'><span class='kw'>spc</span>[[]]</div><div class='output co'>#&gt;              1         1        2        2        3        3        4        4
+<span class='fu'><a href='https://rdrr.io/r/graphics/lines.html'>lines</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq_len</a></span>(<span class='fu'><a href='ncol,hyperSpec-method.html'>nwl</a></span>(<span class='kw'>spc</span>)), <span class='kw'>spc</span>[[]], type = <span class='st'>"l"</span>, col = <span class='st'>"red"</span>)
+</div><div class='img'><img src='orderwl-3.png' alt='' width='466' height='288' /></div><div class='input'><span class='kw'>spc</span>[[]]
+</div><div class='output co'>#&gt;              1         1        2        2        3        3        4        4
 #&gt; [1,] 0.6526606 0.6526606 3.209341 3.209341 3.136269 3.136269 2.110489 2.110489
 #&gt;             5        5
 #&gt; [1,] 6.626358 6.626358</div></pre>
@@ -230,7 +238,7 @@ decreasing) order.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

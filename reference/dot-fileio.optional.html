@@ -168,9 +168,9 @@
   <span class='kw'>spc</span>,
   <span class='kw'>filename</span>,
   <span class='kw'>...</span>,
-  file.remove.emptyspc = <span class='fu'>hy.getOption</span>(<span class='st'>"file.remove.emptyspc"</span>),
-  file.keep.name = <span class='fu'>hy.getOption</span>(<span class='st'>"file.keep.name"</span>),
-  tolerance = <span class='fu'>hy.getOption</span>(<span class='st'>"tolerance"</span>)
+  file.remove.emptyspc = <span class='fu'><a href='hy.getOptions.html'>hy.getOption</a></span>(<span class='st'>"file.remove.emptyspc"</span>),
+  file.keep.name = <span class='fu'><a href='hy.getOptions.html'>hy.getOption</a></span>(<span class='st'>"file.keep.name"</span>),
+  tolerance = <span class='fu'><a href='hy.getOptions.html'>hy.getOption</a></span>(<span class='st'>"tolerance"</span>)
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -216,7 +216,7 @@ empty spectra when measurements are cancelled)</p></li>
 <li><p>optionally keep the filenames in column <code>spc$filename</code></p></li>
 </ul>
 
-<p>The desired overall behavior can be set by options via <code>hy.setOptions()</code>. All
+<p>The desired overall behavior can be set by options via <code><a href='hy.getOptions.html'>hy.setOptions()</a></code>. All
 file import filters should call <code>.fileio.optional()</code> to ensure the same
 behavior.</p>
 
@@ -235,7 +235,7 @@ behavior.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

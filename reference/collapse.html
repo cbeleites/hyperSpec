@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Collapse/Bind Several <code>hyperSpec</code> Objects into One Object — collapse • hyperSpec</title>
+<title>Collapse/Bind Several hyperSpec Objects into One Object — collapse • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,7 +41,7 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Collapse/Bind Several <code>hyperSpec</code> Objects into One Object — collapse" />
+<meta property="og:title" content="Collapse/Bind Several hyperSpec Objects into One Object — collapse" />
 <meta property="og:description" content="The spectra from all objects will be put into one object.
 The resulting object has all wavelengths that occur in any of the input objects,
 wl.tolerance is used to determine which difference in the wavelengths is
@@ -198,7 +198,7 @@ the same applies to possible column names of the spectra matrix.</p>
 
     <pre class="usage"><span class='fu'>collapse</span>(
   <span class='kw'>...</span>,
-  wl.tolerance = <span class='fu'>hy.getOption</span>(<span class='st'>"wl.tolerance"</span>),
+  wl.tolerance = <span class='fu'><a href='hy.getOptions.html'>hy.getOption</a></span>(<span class='st'>"wl.tolerance"</span>),
   collapse.equal = <span class='fl'>TRUE</span>
 )</pre>
 
@@ -227,13 +227,14 @@ such groups, <code>collapse()</code> will be faster with this first pass being t
     <p>a hyperSpec object</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://rdrr.io/r/base/merge.html'>merge()</a></code>,  <code><a href='https://rdrr.io/r/base/cbind.html'>rbind()</a></code>, and <code><a href='https://rdrr.io/pkg/plyr/man/rbind.fill.html'>plyr::rbind.fill()</a></code></p></div>
+    <div class='dont-index'><p><code><a href='merge,hyperSpec,hyperSpec-method.html'>merge()</a></code>,  <code><a href='https://rdrr.io/r/base/cbind.html'>rbind()</a></code>, and <code><a href='https://rdrr.io/pkg/plyr/man/rbind.fill.html'>plyr::rbind.fill()</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>C. Beleites</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>barbiturates</span> [<span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>]</div><div class='output co'>#&gt; [[1]]
+    <pre class="examples"><div class='input'><span class='kw'>barbiturates</span> [<span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>]
+</div><div class='output co'>#&gt; [[1]]
 #&gt; hyperSpec object
 #&gt;    1 spectra
 #&gt;    4 data columns
@@ -268,7 +269,8 @@ such groups, <code>collapse()</code> will be faster with this first pass being t
 #&gt;    2. z.end: t/min [numeric] 4.04095 
 #&gt;    3. spc: I/"a. u." [matrix, array29] 735 1412 ... 638 
 #&gt;    4. filename: filename [character] /home/cb/R/x86_64-pc-linux-gnu-library/3.6/hyperSpec/extdata/BARBITUATES.SPC 
-#&gt; </div><div class='input'><span class='fu'>collapse</span>(<span class='kw'>barbiturates</span> [<span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>])</div><div class='output co'>#&gt; hyperSpec object
+#&gt; </div><div class='input'><span class='fu'>collapse</span>(<span class='kw'>barbiturates</span> [<span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>])
+</div><div class='output co'>#&gt; hyperSpec object
 #&gt;    3 spectra
 #&gt;    4 data columns
 #&gt;    57 data points / spectrum
@@ -282,7 +284,8 @@ such groups, <code>collapse()</code> will be faster with this first pass being t
 <span class='kw'>b</span> <span class='op'>&lt;-</span> <span class='kw'>barbiturates</span>[[<span class='fl'>2</span>]]
 <span class='kw'>c</span> <span class='op'>&lt;-</span> <span class='kw'>barbiturates</span>[[<span class='fl'>3</span>]]
 
-<span class='kw'>a</span></div><div class='output co'>#&gt; hyperSpec object
+<span class='kw'>a</span>
+</div><div class='output co'>#&gt; hyperSpec object
 #&gt;    1 spectra
 #&gt;    4 data columns
 #&gt;    37 data points / spectrum
@@ -291,7 +294,8 @@ such groups, <code>collapse()</code> will be faster with this first pass being t
 #&gt;    1. z: t/min [numeric] 4.027184 
 #&gt;    2. z.end: t/min [numeric] 4.027184 
 #&gt;    3. spc: I/"a. u." [matrix, array37] 902 896 ... 562 
-#&gt;    4. filename: filename [character] /home/cb/R/x86_64-pc-linux-gnu-library/3.6/hyperSpec/extdata/BARBITUATES.SPC </div><div class='input'><span class='kw'>b</span></div><div class='output co'>#&gt; hyperSpec object
+#&gt;    4. filename: filename [character] /home/cb/R/x86_64-pc-linux-gnu-library/3.6/hyperSpec/extdata/BARBITUATES.SPC </div><div class='input'><span class='kw'>b</span>
+</div><div class='output co'>#&gt; hyperSpec object
 #&gt;    1 spectra
 #&gt;    4 data columns
 #&gt;    34 data points / spectrum
@@ -300,7 +304,8 @@ such groups, <code>collapse()</code> will be faster with this first pass being t
 #&gt;    1. z: t/min [numeric] 4.034117 
 #&gt;    2. z.end: t/min [numeric] 4.034117 
 #&gt;    3. spc: I/"a. u." [matrix, array34] 857 864 ... 618 
-#&gt;    4. filename: filename [character] /home/cb/R/x86_64-pc-linux-gnu-library/3.6/hyperSpec/extdata/BARBITUATES.SPC </div><div class='input'><span class='kw'>c</span></div><div class='output co'>#&gt; hyperSpec object
+#&gt;    4. filename: filename [character] /home/cb/R/x86_64-pc-linux-gnu-library/3.6/hyperSpec/extdata/BARBITUATES.SPC </div><div class='input'><span class='kw'>c</span>
+</div><div class='output co'>#&gt; hyperSpec object
 #&gt;    1 spectra
 #&gt;    4 data columns
 #&gt;    29 data points / spectrum
@@ -309,7 +314,8 @@ such groups, <code>collapse()</code> will be faster with this first pass being t
 #&gt;    1. z: t/min [numeric] 4.04095 
 #&gt;    2. z.end: t/min [numeric] 4.04095 
 #&gt;    3. spc: I/"a. u." [matrix, array29] 735 1412 ... 638 
-#&gt;    4. filename: filename [character] /home/cb/R/x86_64-pc-linux-gnu-library/3.6/hyperSpec/extdata/BARBITUATES.SPC </div><div class='input'><span class='fu'>collapse</span>(<span class='kw'>a</span>, <span class='kw'>b</span>, <span class='kw'>c</span>)</div><div class='output co'>#&gt; hyperSpec object
+#&gt;    4. filename: filename [character] /home/cb/R/x86_64-pc-linux-gnu-library/3.6/hyperSpec/extdata/BARBITUATES.SPC </div><div class='input'><span class='fu'>collapse</span>(<span class='kw'>a</span>, <span class='kw'>b</span>, <span class='kw'>c</span>)
+</div><div class='output co'>#&gt; hyperSpec object
 #&gt;    3 spectra
 #&gt;    4 data columns
 #&gt;    57 data points / spectrum
@@ -319,7 +325,8 @@ such groups, <code>collapse()</code> will be faster with this first pass being t
 #&gt;    2. z.end: t/min [numeric] 4.027184 4.034117 4.040950 
 #&gt;    3. spc: I/"a. u." [matrix, array57] 562 NA ... NA + NA
 #&gt;    4. filename: filename [character] /home/cb/R/x86_64-pc-linux-gnu-library/3.6/hyperSpec/extdata/BARBITUATES.SPC /home/cb/R/x86_64-pc-linux-gnu-library/3.6/hyperSpec/extdata/BARBITUATES.SPC /home/cb/R/x86_64-pc-linux-gnu-library/3.6/hyperSpec/extdata/BARBITUATES.SPC </div><div class='input'>
-<span class='fu'>collapse</span>(<span class='kw'>barbiturates</span> [<span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>], collapse.equal = <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; hyperSpec object
+<span class='fu'>collapse</span>(<span class='kw'>barbiturates</span> [<span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>], collapse.equal = <span class='fl'>FALSE</span>)
+</div><div class='output co'>#&gt; hyperSpec object
 #&gt;    3 spectra
 #&gt;    4 data columns
 #&gt;    57 data points / spectrum
@@ -344,7 +351,7 @@ such groups, <code>collapse()</code> will be faster with this first pass being t
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

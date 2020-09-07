@@ -176,7 +176,7 @@ performed by <code><a href='https://rdrr.io/r/stats/smooth.spline.html'>stats::s
   w = <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>1</span>, <span class='fl'>2</span> <span class='op'>*</span> <span class='kw'>neighbours</span>),
   df = <span class='fl'>1</span> <span class='op'>+</span> <span class='kw'>.Machine</span><span class='op'>$</span><span class='kw'>double.eps</span>,
   spar = <span class='kw'>NULL</span>,
-  debuglevel = <span class='fu'>hy.getOption</span>(<span class='st'>"debuglevel"</span>)
+  debuglevel = <span class='fu'><a href='hy.getOptions.html'>hy.getOption</a></span>(<span class='st'>"debuglevel"</span>)
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -210,7 +210,8 @@ line</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>fluNA</span> <span class='op'>&lt;-</span> <span class='kw'>hyperSpec</span>:::<span class='kw'>fluNA</span>
-<span class='fu'>spc.NA.approx</span>(<span class='kw'>fluNA</span> [, , <span class='kw'>min</span> <span class='op'>~</span> <span class='fl'>410</span>], debuglevel = <span class='fl'>1</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Spectra containing only NAs found. They will not be approximated.</span></div><div class='img'><img src='spc.NA.approx-1.png' alt='' width='466' height='288' /></div><div class='output co'>#&gt; hyperSpec object
+<span class='fu'>spc.NA.approx</span>(<span class='kw'>fluNA</span> [, , <span class='kw'>min</span> <span class='op'>~</span> <span class='fl'>410</span>], debuglevel = <span class='fl'>1</span>)
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Spectra containing only NAs found. They will not be approximated.</span></div><div class='img'><img src='spc.NA.approx-1.png' alt='' width='466' height='288' /></div><div class='output co'>#&gt; hyperSpec object
 #&gt;    6 spectra
 #&gt;    3 data columns
 #&gt;    11 data points / spectrum
@@ -218,7 +219,8 @@ line</p></td>
 #&gt; data:  (6 rows x 3 columns)
 #&gt;    1. spc: I[fl]/"a.u." [matrix, array11] 27.15 NA ... 281.8287 + NA
 #&gt;    2. filename: filename [character] rawdata/flu1.txt rawdata/flu2.txt ... rawdata/flu6.txt 
-#&gt;    3. c: c / (mg / l) [numeric] 0.05 0.10 ... 0.3 </div><div class='input'><span class='fu'>spc.NA.approx</span>(<span class='kw'>fluNA</span> [<span class='fl'>1</span>, , <span class='kw'>min</span> <span class='op'>~</span> <span class='fl'>410</span>], debuglevel = <span class='fl'>2</span>)</div><div class='img'><img src='spc.NA.approx-2.png' alt='' width='466' height='288' /></div><div class='output co'>#&gt; hyperSpec object
+#&gt;    3. c: c / (mg / l) [numeric] 0.05 0.10 ... 0.3 </div><div class='input'><span class='fu'>spc.NA.approx</span>(<span class='kw'>fluNA</span> [<span class='fl'>1</span>, , <span class='kw'>min</span> <span class='op'>~</span> <span class='fl'>410</span>], debuglevel = <span class='fl'>2</span>)
+</div><div class='img'><img src='spc.NA.approx-2.png' alt='' width='466' height='288' /></div><div class='output co'>#&gt; hyperSpec object
 #&gt;    1 spectra
 #&gt;    3 data columns
 #&gt;    11 data points / spectrum
@@ -226,7 +228,8 @@ line</p></td>
 #&gt; data:  (1 rows x 3 columns)
 #&gt;    1. spc: I[fl]/"a.u." [matrix, array11] 27.15000 32.34467 ... 44.25133 
 #&gt;    2. filename: filename [character] rawdata/flu1.txt 
-#&gt;    3. c: c / (mg / l) [numeric] 0.05 </div><div class='input'><span class='fu'>spc.NA.approx</span>(<span class='kw'>fluNA</span> [<span class='fl'>4</span>, , <span class='kw'>min</span> <span class='op'>~</span> <span class='fl'>410</span>], neighbours = <span class='fl'>3</span>, df = <span class='fl'>4</span>, debuglevel = <span class='fl'>2</span>)</div><div class='img'><img src='spc.NA.approx-3.png' alt='' width='466' height='288' /></div><div class='output co'>#&gt; hyperSpec object
+#&gt;    3. c: c / (mg / l) [numeric] 0.05 </div><div class='input'><span class='fu'>spc.NA.approx</span>(<span class='kw'>fluNA</span> [<span class='fl'>4</span>, , <span class='kw'>min</span> <span class='op'>~</span> <span class='fl'>410</span>], neighbours = <span class='fl'>3</span>, df = <span class='fl'>4</span>, debuglevel = <span class='fl'>2</span>)
+</div><div class='img'><img src='spc.NA.approx-3.png' alt='' width='466' height='288' /></div><div class='output co'>#&gt; hyperSpec object
 #&gt;    1 spectra
 #&gt;    3 data columns
 #&gt;    11 data points / spectrum
@@ -250,7 +253,7 @@ line</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

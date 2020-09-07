@@ -221,7 +221,7 @@ to <code><a href='https://rdrr.io/pkg/lattice/man/levelplot.html'>lattice::level
     <tr>
       <th>transform.factor</th>
       <td><p>If the color-coded variable is a factor, should
-<code>trellis.factor.key()</code> be used to compute the color coding and
+<code><a href='trellis.factor.key.html'>trellis.factor.key()</a></code> be used to compute the color coding and
 legend?</p></td>
     </tr>
     <tr>
@@ -275,7 +275,7 @@ for all three. Two special column names, <code>.rownames</code> and <code>.wavel
 function defaults to <code><a href='https://rdrr.io/pkg/latticeExtra/man/panel.voronoi.html'>latticeExtra::panel.voronoi()</a></code>.
 <code><a href='https://rdrr.io/pkg/latticeExtra/man/panel.voronoi.html'>latticeExtra::panel.voronoi()</a></code> depends on either of the packages 'tripack' or 'deldir'
 being installed. For further information, please consult the help page of
-<code><a href='https://rdrr.io/pkg/latticeExtra/man/panel.voronoi.html'>latticeExtra::panel.voronoi()</a></code>.  On the <code>faux_cell()</code> data set, <code>plotmap</code>
+<code><a href='https://rdrr.io/pkg/latticeExtra/man/panel.voronoi.html'>latticeExtra::panel.voronoi()</a></code>.  On the <code><a href='generate_faux_cell.html'>faux_cell()</a></code> data set, <code>plotmap</code>
 is roughly 5 times faster than <code>plotvoronoi</code> using tripack, and ca. 15 times faster than
 <code>plotvoronoi</code> using deldir. Package tripack, however, is free only for non-commercial
 use. Also, it seems that tripack version hang (R running at full CPU power, but not responding
@@ -285,20 +285,20 @@ nor finishing the calculation) for certain data sets. In this case, <code>mix = 
 <p>Unlike <code><a href='https://rdrr.io/pkg/lattice/man/interaction.html'>lattice::panel.identify()</a></code>, the indices returned by <code>map.identify</code> are in
 the same order as the points were clicked. Also, multiple clicks on the same point are returned
 as multiple entries with the same index.</p>
-<p><code>map.identify</code> uses option <code>debuglevel</code> similar to <code>spc.identify()</code>:
+<p><code>map.identify</code> uses option <code>debuglevel</code> similar to <code><a href='spc.identify.html'>spc.identify()</a></code>:
 <code>debuglevel == 1</code> will plot the tolerance window if no data point was inside (and
 additionally labels the point) while <code>debuglevel == 2</code> will always plot the tolerance
 window.</p>
 <p>The <code>map.sel.*</code> functions offer further interactive selection, see
-<code>map.sel.poly()</code>.</p>
+<code><a href='map.sel.poly.html'>map.sel.poly()</a></code>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code>vignette(plotting)</code>, <code>vignette(hyperSpec)</code></p>
-<p><code><a href='https://rdrr.io/r/graphics/plot.default.html'>plot()</a></code></p>
+<p><code><a href='plot-methods.html'>plot()</a></code></p>
 <p><code><a href='https://rdrr.io/pkg/lattice/man/levelplot.html'>lattice::levelplot()</a></code></p>
-<p><code>trellis.factor.key()</code> for improved color coding of factors</p>
-<p><code><a href='https://rdrr.io/r/base/options.html'>hyperSpec options()</a></code> <code>spc.identify()</code>
-<code>map.sel.poly()</code></p>
+<p><code><a href='trellis.factor.key.html'>trellis.factor.key()</a></code> for improved color coding of factors</p>
+<p><code><a href='https://rdrr.io/r/base/options.html'>hyperSpec options()</a></code> <code><a href='spc.identify.html'>spc.identify()</a></code>
+<code><a href='map.sel.poly.html'>map.sel.poly()</a></code></p>
 <p><code><a href='https://rdrr.io/pkg/latticeExtra/man/panel.voronoi.html'>latticeExtra::panel.voronoi()</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
@@ -311,16 +311,22 @@ window.</p>
 <span class='fu'><a href='https://rdrr.io/r/utils/vignette.html'>vignette</a></span>(<span class='kw'>hyperSpec</span>)
 }
 
-<span class='fu'>levelplot</span>(<span class='kw'>spc</span> <span class='op'>~</span> <span class='kw'>y</span> <span class='op'>*</span> <span class='kw'>x</span>, <span class='kw'>faux_cell</span>[, , <span class='fl'>1003</span>]) <span class='co'># properly rotated</span></div><div class='img'><img src='levelplot-1.png' alt='' width='466' height='288' /></div><div class='input'><span class='fu'>plotmap</span>(<span class='kw'>faux_cell</span>[, , <span class='fl'>1003</span>])</div><div class='img'><img src='levelplot-2.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='fu'>levelplot</span>(<span class='kw'>spc</span> <span class='op'>~</span> <span class='kw'>y</span> <span class='op'>*</span> <span class='kw'>x</span>, <span class='kw'>faux_cell</span>[, , <span class='fl'>1003</span>]) <span class='co'># properly rotated</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: device support for raster images unknown, ignoring 'raster=TRUE'</span></div><div class='img'><img src='levelplot-1.png' alt='' width='466' height='288' /></div><div class='input'><span class='fu'>plotmap</span>(<span class='kw'>faux_cell</span>[, , <span class='fl'>1003</span>])
+</div><div class='output co'>#&gt; <span class='warning'>Warning: device support for raster images unknown, ignoring 'raster=TRUE'</span></div><div class='img'><img src='levelplot-2.png' alt='' width='466' height='288' /></div><div class='input'>
 <span class='co'># plot spectra matrix</span>
-<span class='fu'>levelplot</span>(<span class='kw'>spc</span> <span class='op'>~</span> <span class='kw'>.wavelength</span> <span class='op'>*</span> <span class='kw'>t</span>, <span class='kw'>laser</span>, contour = <span class='fl'>TRUE</span>, col = <span class='st'>"#00000080"</span>)</div><div class='img'><img src='levelplot-3.png' alt='' width='466' height='288' /></div><div class='input'><span class='co'># see also plotmat</span>
+<span class='fu'>levelplot</span>(<span class='kw'>spc</span> <span class='op'>~</span> <span class='kw'>.wavelength</span> <span class='op'>*</span> <span class='kw'>t</span>, <span class='kw'>laser</span>, contour = <span class='fl'>TRUE</span>, col = <span class='st'>"#00000080"</span>)
+</div><div class='img'><img src='levelplot-3.png' alt='' width='466' height='288' /></div><div class='input'><span class='co'># see also plotmat</span>
 
-<span class='fu'>plotmap</span>(<span class='kw'>faux_cell</span>, <span class='kw'>region</span> <span class='op'>~</span> <span class='kw'>x</span> <span class='op'>*</span> <span class='kw'>y</span>)</div><div class='img'><img src='levelplot-4.png' alt='' width='466' height='288' /></div><div class='input'>
+<span class='fu'>plotmap</span>(<span class='kw'>faux_cell</span>, <span class='kw'>region</span> <span class='op'>~</span> <span class='kw'>x</span> <span class='op'>*</span> <span class='kw'>y</span>)
+</div><div class='output co'>#&gt; <span class='warning'>Warning: device support for raster images unknown, ignoring 'raster=TRUE'</span></div><div class='img'><img src='levelplot-4.png' alt='' width='466' height='288' /></div><div class='input'>
 <span class='co'># Voronoi plots</span>
 <span class='kw'>smpl</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='kw'>faux_cell</span>, <span class='fl'>300</span>)
-<span class='fu'>plotmap</span>(<span class='kw'>smpl</span>, <span class='kw'>region</span> <span class='op'>~</span> <span class='kw'>x</span> <span class='op'>*</span> <span class='kw'>y</span>)</div><div class='img'><img src='levelplot-5.png' alt='' width='466' height='288' /></div><div class='input'><span class='co'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/library.html'>require</a></span>(<span class='kw'>tripack</span>)) {
+<span class='fu'>plotmap</span>(<span class='kw'>smpl</span>, <span class='kw'>region</span> <span class='op'>~</span> <span class='kw'>x</span> <span class='op'>*</span> <span class='kw'>y</span>)
+</div><div class='output co'>#&gt; <span class='warning'>Warning: device support for raster images unknown, ignoring 'raster=TRUE'</span></div><div class='img'><img src='levelplot-5.png' alt='' width='466' height='288' /></div><div class='input'><span class='co'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/library.html'>require</a></span>(<span class='kw'>tripack</span>)) {
   <span class='fu'>plotvoronoi</span>(<span class='kw'>smpl</span>, <span class='kw'>region</span> <span class='op'>~</span> <span class='kw'>x</span> <span class='op'>*</span> <span class='kw'>y</span>)
-}</div><div class='output co'>#&gt; <span class='message'>Loading required package: tripack</span></div><div class='output co'>#&gt; <span class='message'>Loading required namespace: deldir</span></div><div class='output co'>#&gt; <span class='message'></span>
+}
+</div><div class='output co'>#&gt; <span class='message'>Loading required package: tripack</span></div><div class='output co'>#&gt; <span class='message'>Loading required namespace: deldir</span></div><div class='output co'>#&gt; <span class='warning'>Warning: device support for raster images unknown, ignoring 'raster=TRUE'</span></div><div class='output co'>#&gt; <span class='message'></span>
 #&gt; <span class='message'>     PLEASE NOTE:  The components "delsgs" and "summary" of the</span>
 #&gt; <span class='message'> object returned by deldir() are now DATA FRAMES rather than</span>
 #&gt; <span class='message'> matrices (as they were prior to release 0.0-18).</span>
@@ -333,7 +339,8 @@ window.</p>
   <span class='fu'>plotvoronoi</span>(<span class='kw'>smpl</span>, <span class='kw'>region</span> <span class='op'>~</span> <span class='kw'>x</span> <span class='op'>*</span> <span class='kw'>y</span>,
     use.tripack = <span class='fl'>FALSE</span>
   )
-}</div><div class='output co'>#&gt; <span class='message'>Loading required package: deldir</span></div><div class='output co'>#&gt; <span class='message'>deldir 0.1-28</span></div><div class='img'><img src='levelplot-7.png' alt='' width='466' height='288' /></div></pre>
+}
+</div><div class='output co'>#&gt; <span class='message'>Loading required package: deldir</span></div><div class='output co'>#&gt; <span class='message'>deldir 0.1-28</span></div><div class='output co'>#&gt; <span class='warning'>Warning: device support for raster images unknown, ignoring 'raster=TRUE'</span></div><div class='img'><img src='levelplot-7.png' alt='' width='466' height='288' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -349,7 +356,7 @@ window.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>
