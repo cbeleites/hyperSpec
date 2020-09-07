@@ -41,7 +41,6 @@ csl: elsevier-with-titles.csl
 # Pkgdown --------------------------------------------------------------------
 pkgdown:
   as_is: true
-  set_null_theme: no
 ---
 
 
