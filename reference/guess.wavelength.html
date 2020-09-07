@@ -44,7 +44,7 @@
 <meta property="og:title" content="Guess wavelengths from Character Vector — guess.wavelength" />
 <meta property="og:description" content="character vectors used for names (e.g. colnames for matrices or data.frames)
 are often treated by base::make.names() or similar functions that
-produce suitable names (e.g. by prepending &quot;X&quot; to numbers.). Such names
+produce suitable names (e.g. by prepending &quot;X&quot; to numbers). Such names
 cannot be directly converted to numeric." />
 
 <meta name="robots" content="noindex" />
@@ -159,14 +159,14 @@ cannot be directly converted to numeric." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Guess wavelengths from Character Vector</h1>
-    <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/guesswavelength.R'><code>R/guesswavelength.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/guess_wavelength.R'><code>R/guess_wavelength.R</code></a></small>
     <div class="hidden name"><code>guess.wavelength.Rd</code></div>
     </div>
 
     <div class="ref-description">
     <p>character vectors used for names (e.g. colnames for matrices or data.frames)
 are often treated by <code><a href='https://rdrr.io/r/base/make.names.html'>base::make.names()</a></code> or similar functions that
-produce suitable names (e.g. by prepending "X" to numbers.). Such names
+produce suitable names (e.g. by prepending "X" to numbers). Such names
 cannot be directly converted to numeric.</p>
     </div>
 
@@ -186,8 +186,11 @@ cannot be directly converted to numeric.</p>
     <p>numeric</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p><code>guess.wavlength</code> tries to extract numbers from X which may be
+    <p><code>guess.wavlength()</code> tries to extract numbers from X which may be
 surrounded by such "protecting" characters.</p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p><a href='https://readr.tidyverse.org/reference/parse_number.html'><code><a href='https://readr.tidyverse.org/reference/parse_number.html'>readr::parse_number()</a></code></a></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>tmp</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>flu</span>[[, , <span class='fl'>400</span> <span class='op'>~</span> <span class='fl'>410</span>]])
