@@ -1,7 +1,8 @@
-#' Load and attach `hyperSpec` and all installed `hySpc.*` packages
+
+#' Load and attach `hyperSpec` and all installed *R hyperSpec* family (`hySpc.*`) packages
 #'
 #' This function loads and attaches **hyperSpec** and all installed
-#' [**`r-hyperspec`**](https://r-hyperspec.github.io/) family packages, which
+#' [*R hyperSpec*](https://r-hyperspec.github.io/) family packages, which
 #' share common **`hySpc.`_something_** package name pattern.
 #'
 #' @param exclude Character vector with the names of the packages that should
@@ -17,7 +18,7 @@
 #' - `TRUE`: both short and package startup messages will be printed.
 #'
 #' @return Invisibly returns a list with the output of [base::library()] for
-#'   each **`r-hyperspec`** family package that was loaded and attached.
+#'   each *R hyperSpec* family package that was loaded and attached.
 #'
 #' @export
 #' @importFrom utils installed.packages

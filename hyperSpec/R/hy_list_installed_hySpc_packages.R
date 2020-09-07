@@ -1,8 +1,8 @@
 
-#' List installed r-hyperSpec family packages
+#' List installed *R hyperSpec* family packages
 #'
 #' Convenience function that lists all installed
-#' [**`r-hyperspec`**](https://r-hyperspec.github.io/) family packages.
+#' [*R hyperSpec*](https://r-hyperspec.github.io/) family packages.
 #' These include **hyperSpec** and all packages that share common
 #' **`hySpc.`_something_** package name pattern.
 #'
