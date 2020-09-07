@@ -33,7 +33,7 @@ License: GPL (>= 3) + file LICENSE
 LazyLoad: yes
 LazyData: yes
 Additional_repositories: 
-    https://r-hyperspec.github.io/hySpc.pkgs/
+    https://r-hyperspec.github.io/pkg-repo/
 Depends:
     R (>= 3.6.0),
     lattice,
