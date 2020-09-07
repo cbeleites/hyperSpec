@@ -12,15 +12,15 @@ Authors@R: c(
     person("Marcel",    "Dahms",     role = "ctb"),
     person("Björn",     "Egert",     role = "ctb"),
     person("Simon",     "Fuller",    role = "ctb"),
-    person("Vilmantas", "Gegzna",    role = "ctb"),
+    person("Vilmantas", "Gegzna",    role = "aut"),
     person("Rustam",    "Guliev",    role = "ctb"),
-    person("Bryan",     "Hanson",    role = "ctb"),
+    person("Bryan",     "Hanson",    role = "aut"),
     person("Michael",   "Hermes",    role = "ctb"),
     person("Martin",    "Kammer",    role = "dtc"),
-    person("Roman",     "Kiselev",   role = "ctb"),
+    person("Roman",     "Kiselev",   role = "aut"),
     person("Sebastian", "Mellor",    role = "ctb"),
-    person("Erick",     "Oduniyi",   role = "ctb"),
-    person("Valter",    "Sergo",     role = c("aut"))    
+    person("Erick",     "Oduniyi",   role = "aut"),
+    person("Valter",    "Sergo",     role = "aut")    
     )
 Description: Comfortable ways to work with hyperspectral data sets,
     i.e. spatially or time-resolved spectra, or spectra with any other kind
@@ -33,7 +33,7 @@ License: GPL (>= 3) + file LICENSE
 LazyLoad: yes
 LazyData: yes
 Additional_repositories: 
-    https://r-hyperspec.github.io/hySpc.pkgs/
+    https://r-hyperspec.github.io/pkg-repo/
 Depends:
     R (>= 3.6.0),
     lattice,
@@ -81,12 +81,11 @@ URL:
 BugReports: https://github.com/cbeleites/hyperSpec/issues
 VignetteBuilder: knitr
 Collate:
-    'validate.R'
+    'hy_validate.R'
     'hyperspec-class.R'
-    'paste.row.R'
+    'paste_row.R'
     'expand.R'
     'Arith.R'
-    'Colors.R'
     'Compare.R'
     'DEPRECATED-count_lines.R'
     'DEPRECATED-ggplot2.R'
@@ -94,29 +93,31 @@ Collate:
     'DEPRECATED-read.txt.Witec.R'
     'DEPRECATED-read.asc.Andor.R'
     'DEPRECATED-read.asc.PerkinElmer.R'
+    'DEPRECATED-read.ini.R'
     'DEPRECATED-read.txt.Horiba.R'
     'DEPRECATED-read.txt.Renishaw.R'
     'DEPRECATED-read.txt.Shimadzu.R'
     'DEPRECATED-read.txt.long.R'
     'DEPRECATED-read.txt.wide.R'
     'DEPRECATED-wc.R'
-    'DollarNames.R'
+    'DEPRECATED.R'
     'Math.R'
     'Summary.R'
     'aggregate.R'
     'all.equal.R'
     'apply.R'
     'as.data.frame.R'
+    'hy_options.R'
+    'regexps.R'
+    'guess_wavelength.R'
+    'as_hyperSpec.R'
     'barbiturates.R'
     'bind.R'
-    'call.list.R'
-    'chk.hy.R'
+    'call_list.R'
     'colMeans.R'
     'collapse.R'
     'cov.R'
     'decomposition.R'
-    'deprecated.R'
-    'deprecation-messages.R'
     'dim.R'
     'dimnames.R'
     'droplevels.R'
@@ -124,17 +125,18 @@ Collate:
     'wl2i.R'
     'extract.R'
     'factor2num.R'
-    'options.R'
-    'regexps.R'
-    'guesswavelength.R'
     'initialize.R'
     'faux_cell.R'
-    'fix_spc_colnames.R'
     'flu.R'
     'generate-test-data.R'
-    'getbynames.R'
+    'hy_auto_completion.R'
     'hy_list_installed_hySpc_packages.R'
     'hy_load_hySpc_packages.R'
+    'hy_browse_homepage.R'
+    'hy_deprecation-messages.R'
+    'hy_list_available_hySpc_packages.R'
+    'hy_pastenames.R'
+    'hy_unittest.R'
     'paracetamol.R'
     'laser.R'
     'hyperspec-package.R'
@@ -142,18 +144,18 @@ Collate:
     'plotmap.R'
     'levelplot.R'
     'makeraster.R'
-    'map.identify.R'
-    'map.sel.poly.R'
-    'mark.dendrogram.R'
-    'mark.peak.R'
-    'matlab.palette.R'
+    'map_identify.R'
+    'map_sel_poly.R'
+    'mark_dendrogram.R'
+    'mark_peak.R'
     'mean_sd.R'
     'merge.R'
     'mergeextra.R'
     'mvtnorm.R'
     'normalize01.R'
-    'orderwl.R'
-    'pearson.dist.R'
+    'palette_cb7.R'
+    'palette_matlab.R'
+    'pearson_dist.R'
     'plot.R'
     'plotc.R'
     'plotmat.R'
@@ -164,7 +166,6 @@ Collate:
     'read.ENVI.R'
     'read.ENVI.HySpex.R'
     'read.ENVI.Nicolet.R'
-    'read.ini.R'
     'read.jdx.R'
     'read.mat.Cytospec.R'
     'read.mat.Witec.R'
@@ -177,27 +178,27 @@ Collate:
     'scale.R'
     'seq.R'
     'show.R'
-    'spc.NA.approx.R'
-    'spc.bin.R'
-    'spc.fit.poly.R'
-    'spc.identify.R'
-    'spc.loess.R'
-    'spc.rubberband.R'
-    'spc.spline.R'
+    'spc_bin.R'
+    'spc_fit_poly.R'
+    'spc_fix_colnames.R'
+    'spc_identify.R'
+    'spc_loess.R'
+    'spc_na_approx.R'
+    'spc_rubberband.R'
+    'spc_spline.R'
     'split.R'
-    'split.string.R'
     'splitdots.R'
     'subset.R'
     'sweep.R'
     'trellis.factor.key.R'
     'units.R'
-    'unittest.R'
     'vandermonde.R'
     'wl.R'
-    'wleval.R'
-    'write.txt.long.R'
-    'write.txt.wide.R'
-    'y-pastenames.R'
+    'wl_convert_units.R'
+    'wl_eval.R'
+    'wl_sort.R'
+    'write_txt_long.R'
+    'write_txt_wide.R'
     'zzz.R'
 RoxygenNote: 7.1.1
 Roxygen: list(markdown = TRUE)

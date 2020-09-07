@@ -2,10 +2,10 @@
 #'
 #' character vectors used for names (e.g. colnames for matrices or data.frames)
 #' are often treated by [base::make.names()] or similar functions that
-#' produce suitable names (e.g. by prepending "X" to numbers.). Such names
+#' produce suitable names (e.g. by prepending "X" to numbers). Such names
 #' cannot be directly converted to numeric.
 #'
-#' `guess.wavlength` tries to extract numbers from X which may be
+#' `guess.wavlength()` tries to extract numbers from X which may be
 #' surrounded by such "protecting" characters.
 #'
 #' @param X character with numbers hidden inside
@@ -15,6 +15,8 @@
 #' @export
 #'
 #' @concept wavelengths
+#' @seealso
+#' [`readr::parse_number()`](https://readr.tidyverse.org/reference/parse_number.html)
 #'
 #' @examples
 #' tmp <- data.frame(flu[[, , 400 ~ 410]])
@@ -35,7 +37,7 @@ guess.wavelength <- function(X) {
 }
 
 #' @include regexps.R
-#' @include options.R
+#' @include hy_options.R
 hySpc.testthat::test(guess.wavelength) <- function() {
   context("guess.wavelength")
 

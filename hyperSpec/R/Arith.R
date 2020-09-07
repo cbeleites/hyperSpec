@@ -102,7 +102,7 @@ hySpc.testthat::test(.arith_hh) <- function() {
 #' @keywords methods arith
 #' @concept manipulation
 #'
-#' @include paste.row.R
+#' @include paste_row.R
 #'
 #' @include hyperspec-class.R
 #' @concept hyperSpec arithmetic

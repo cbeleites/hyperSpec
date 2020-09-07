@@ -4,7 +4,7 @@
 #' @param x `hyperSpec` object
 #' @param y not supported
 #' @param use,method handed to  [stats::cov()]
-#' @return covariance matrix of size `nwl (x)` x  `nwl (x)`
+#' @return covariance matrix of size `nwl(x)` x `nwl(x)`
 #' @seealso [stats::cov()]
 #' @author C. Beleites
 #' @rdname cov
@@ -47,7 +47,7 @@ pooled.cov <- function(x, groups, ..., regularize = 1e-5 * max(abs(COV))) {
 
   means <- aggregate(x, groups, "mean") # TODO: speed up?
 
-  COV <- cov(x@data$spc - means@data$spc [as.numeric(groups), , drop = FALSE])
+  COV <- cov(x@data$spc - means@data$spc[as.numeric(groups), , drop = FALSE])
 
   ## regularization
   COV <- COV + diag(regularize, nrow(COV))
