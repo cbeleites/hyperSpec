@@ -1036,3 +1036,99 @@ hySpc.testthat::test(read.spc) <- function() {
 
   data
 }
+
+# Helper functions -----------------------------------------------------------
+### -----------------------------------------------------------------------------
+###
+### split.string - split string at pattern
+###
+###
+
+split.string <- function(x, separator, trim.blank = TRUE, remove.empty = TRUE) {
+  pos <- gregexpr(separator, x)
+  if (length(pos) == 1 && pos[[1]] == -1) {
+    return(x)
+  }
+
+  pos <- pos[[1]]
+
+  pos <- matrix(c(
+    1, pos + attr(pos, "match.length"),
+    pos - 1, nchar(x)
+  ),
+  ncol = 2
+  )
+
+  if (pos[nrow(pos), 1] > nchar(x)) {
+    pos <- pos[-nrow(pos), ]
+  }
+
+  x <- apply(pos, 1, function(p, x) substr(x, p[1], p[2]), x)
+
+  if (trim.blank) {
+    blank.pattern <- "^[[:blank:]]*([^[:blank:]]+.*[^[:blank:]]+)[[:blank:]]*$"
+    x <- sub(blank.pattern, "\\1", x)
+  }
+
+  if (remove.empty) {
+    x <- x[sapply(x, nchar) > 0]
+  }
+
+  x
+}
+
+# Unit tests -----------------------------------------------------------------
+hySpc.testthat::test(split.string) <- function() {
+  context("split.string")
+
+  # Perform tests
+  test_that("split.string() returnts output silently", {
+    expect_error(split.string())
+    expect_error(split.string(letters))
+
+    expect_silent(split.string("letters", "r"))
+  })
+
+  # FIXME (tests): add tests to check the correctness of the output!!!
+}
+
+
+### -----------------------------------------------------------------------------
+###
+### getbynames - get list elements by name and if no such element exists, NA
+###
+###
+
+getbynames <- function(x, e) {
+  x <- x[e]
+  if (length(x) > 0) {
+    if (is.character(e)) {
+      names(x) <- e
+    }
+    x[sapply(x, is.null)] <- NA
+    x
+  } else {
+    list()
+  }
+}
+
+
+
+# Unit tests -----------------------------------------------------------------
+hySpc.testthat::test(getbynames) <- function() {
+
+  context("getbynames")
+
+  # Perform tests
+  test_that("getbynames() works", {
+
+    lst <- list(a = 1, b = "b", c = 2i)
+
+    expect_equal(getbynames(lst, "a"), list(a = 1))
+    expect_equal(getbynames(lst, 1),   list(a = 1))
+    expect_equal(getbynames(lst, 2),   list(b = "b"))
+    expect_equal(getbynames(lst, 6)[[1]], NA)
+
+  })
+}
+
