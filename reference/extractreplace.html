@@ -328,36 +328,36 @@ while the last returns a <code>data.frame</code>.</p>
 <span class='co'>##### Access rows using "i"  (first index)</span>
 
 <span class='co'># numeric index</span>
-<span class='fu'><a href='plot-methods.html'>plot</a></span>(<span class='kw'>flu</span>, <span class='st'>"spc"</span>, lines.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(lty = <span class='fl'>2</span>))
-</div><div class='input'><span class='fu'><a href='plot-methods.html'>plot</a></span>(<span class='kw'>flu</span>[<span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>], <span class='st'>"spc"</span>, add = <span class='fl'>TRUE</span>, col = <span class='st'>"red"</span>) <span class='co'># select spectra</span>
-</div><div class='input'><span class='fu'><a href='plot-methods.html'>plot</a></span>(<span class='kw'>flu</span>[<span class='op'>-</span>(<span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>)], <span class='st'>"spc"</span>, add = <span class='fl'>TRUE</span>, col = <span class='st'>"blue"</span>) <span class='co'># delete spectra</span>
+<span class='fu'><a href='plot-methods.html'>plot</a></span><span class='op'>(</span><span class='va'>flu</span>, <span class='st'>"spc"</span>, lines.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>lty <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='input'><span class='fu'><a href='plot-methods.html'>plot</a></span><span class='op'>(</span><span class='va'>flu</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>]</span>, <span class='st'>"spc"</span>, add <span class='op'>=</span> <span class='cn'>TRUE</span>, col <span class='op'>=</span> <span class='st'>"red"</span><span class='op'>)</span> <span class='co'># select spectra</span>
+</div><div class='input'><span class='fu'><a href='plot-methods.html'>plot</a></span><span class='op'>(</span><span class='va'>flu</span><span class='op'>[</span><span class='op'>-</span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>)</span><span class='op'>]</span>, <span class='st'>"spc"</span>, add <span class='op'>=</span> <span class='cn'>TRUE</span>, col <span class='op'>=</span> <span class='st'>"blue"</span><span class='op'>)</span> <span class='co'># delete spectra</span>
 </div><div class='img'><img src='extractreplace-1.png' alt='' width='466' height='288' /></div><div class='input'>
 <span class='co'># logical index</span>
-<span class='fu'><a href='plot-methods.html'>plot</a></span>(<span class='kw'>flu</span>, <span class='st'>"spc"</span>, lines.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(lty = <span class='fl'>2</span>))
-</div><div class='input'><span class='kw'>index</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>6</span>) <span class='op'>&gt;</span> <span class='fl'>0</span>
-<span class='kw'>index</span>
-</div><div class='output co'>#&gt; [1]  TRUE  TRUE FALSE FALSE  TRUE  TRUE</div><div class='input'><span class='fu'><a href='plot-methods.html'>plot</a></span>(<span class='kw'>flu</span>[<span class='kw'>index</span>], <span class='st'>"spc"</span>, add = <span class='fl'>TRUE</span>, col = <span class='st'>"red"</span>) <span class='co'># select spectra</span>
-</div><div class='input'><span class='fu'><a href='plot-methods.html'>plot</a></span>(<span class='kw'>flu</span>[<span class='op'>!</span><span class='kw'>index</span>], <span class='st'>"spc"</span>, add = <span class='fl'>TRUE</span>, col = <span class='st'>"blue"</span>) <span class='co'># select spectra</span>
+<span class='fu'><a href='plot-methods.html'>plot</a></span><span class='op'>(</span><span class='va'>flu</span>, <span class='st'>"spc"</span>, lines.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>lty <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='input'><span class='va'>index</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>6</span><span class='op'>)</span> <span class='op'>&gt;</span> <span class='fl'>0</span>
+<span class='va'>index</span>
+</div><div class='output co'>#&gt; [1]  TRUE  TRUE FALSE FALSE  TRUE  TRUE</div><div class='input'><span class='fu'><a href='plot-methods.html'>plot</a></span><span class='op'>(</span><span class='va'>flu</span><span class='op'>[</span><span class='va'>index</span><span class='op'>]</span>, <span class='st'>"spc"</span>, add <span class='op'>=</span> <span class='cn'>TRUE</span>, col <span class='op'>=</span> <span class='st'>"red"</span><span class='op'>)</span> <span class='co'># select spectra</span>
+</div><div class='input'><span class='fu'><a href='plot-methods.html'>plot</a></span><span class='op'>(</span><span class='va'>flu</span><span class='op'>[</span><span class='op'>!</span><span class='va'>index</span><span class='op'>]</span>, <span class='st'>"spc"</span>, add <span class='op'>=</span> <span class='cn'>TRUE</span>, col <span class='op'>=</span> <span class='st'>"blue"</span><span class='op'>)</span> <span class='co'># select spectra</span>
 </div><div class='img'><img src='extractreplace-2.png' alt='' width='466' height='288' /></div><div class='input'>
 <span class='co'>##### Access columns using "j" (2nd index)</span>
 
-<span class='fu'><a href='https://rdrr.io/r/base/range.html'>range</a></span>(<span class='kw'>faux_cell</span>[[, <span class='st'>"x"</span>]]) <span class='co'># safest to use the name of the column</span>
-</div><div class='output co'>#&gt; [1] -11.55  22.45</div><div class='input'><span class='fu'><a href='dimnames,hyperSpec-method.html'>colnames</a></span>(<span class='kw'>faux_cell</span>[[, <span class='fl'>1</span>]])
-</div><div class='output co'>#&gt; [1] "x"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span>(<span class='kw'>faux_cell</span>[[, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>TRUE</span>, <span class='fl'>FALSE</span>, <span class='fl'>FALSE</span>)]])
-</div><div class='output co'>#&gt; [1] 875   2</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='kw'>faux_cell</span><span class='op'>$</span><span class='kw'>x</span>) <span class='co'># get "j" via name</span>
+<span class='fu'><a href='https://rdrr.io/r/base/range.html'>range</a></span><span class='op'>(</span><span class='va'>faux_cell</span><span class='op'>[[</span>, <span class='st'>"x"</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span> <span class='co'># safest to use the name of the column</span>
+</div><div class='output co'>#&gt; [1] -11.55  22.45</div><div class='input'><span class='fu'><a href='dimnames,hyperSpec-method.html'>colnames</a></span><span class='op'>(</span><span class='va'>faux_cell</span><span class='op'>[[</span>, <span class='fl'>1</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "x"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span><span class='op'>(</span><span class='va'>faux_cell</span><span class='op'>[[</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>TRUE</span>, <span class='cn'>FALSE</span>, <span class='cn'>FALSE</span><span class='op'>)</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 875   2</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>faux_cell</span><span class='op'>$</span><span class='va'>x</span><span class='op'>)</span> <span class='co'># get "j" via name</span>
 </div><div class='output co'>#&gt; [1] -11.55 -10.55  -9.55  -8.55  -7.55  -6.55</div><div class='input'>
 <span class='co'>##### Access wavelengths using "l" (3rd index)</span>
 
-<span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span>(<span class='kw'>flu</span>[[]])
-</div><div class='output co'>#&gt; [1]   6 181</div><div class='input'><span class='kw'>fluA</span> <span class='op'>&lt;-</span> <span class='kw'>flu</span>[[, , <span class='fl'>420</span><span class='op'>~</span><span class='fl'>450</span>]] <span class='co'># matches the wavelength values</span>
-<span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span>(<span class='kw'>fluA</span>)
-</div><div class='output co'>#&gt; [1]  6 61</div><div class='input'><span class='kw'>fluB</span> <span class='op'>&lt;-</span> <span class='kw'>flu</span>[[, , <span class='fl'>31</span><span class='op'>:</span><span class='fl'>91</span>, wl.index = <span class='fl'>TRUE</span>]]
-<span class='fu'><a href='https://rdrr.io/r/base/identical.html'>identical</a></span>(<span class='kw'>fluA</span>, <span class='kw'>fluB</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span><span class='op'>(</span><span class='va'>flu</span><span class='op'>[[</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1]   6 181</div><div class='input'><span class='va'>fluA</span> <span class='op'>&lt;-</span> <span class='va'>flu</span><span class='op'>[[</span>, , <span class='fl'>420</span><span class='op'>~</span><span class='fl'>450</span><span class='op'>]</span><span class='op'>]</span> <span class='co'># matches the wavelength values</span>
+<span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span><span class='op'>(</span><span class='va'>fluA</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1]  6 61</div><div class='input'><span class='va'>fluB</span> <span class='op'>&lt;-</span> <span class='va'>flu</span><span class='op'>[[</span>, , <span class='fl'>31</span><span class='op'>:</span><span class='fl'>91</span>, wl.index <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>]</span><span class='op'>]</span>
+<span class='fu'><a href='https://rdrr.io/r/base/identical.html'>identical</a></span><span class='op'>(</span><span class='va'>fluA</span>, <span class='va'>fluB</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
 <span class='co'>##### Indexing via both j and l, result is data.frame</span>
 
-<span class='kw'>result</span> <span class='op'>&lt;-</span> <span class='kw'>flu</span>[[, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span>, <span class='fl'>405</span> <span class='op'>~</span> <span class='fl'>410</span>]]
-<span class='kw'>result</span>
+<span class='va'>result</span> <span class='op'>&lt;-</span> <span class='va'>flu</span><span class='op'>[[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span>, <span class='fl'>405</span> <span class='op'>~</span> <span class='fl'>410</span><span class='op'>]</span><span class='op'>]</span>
+<span class='va'>result</span>
 </div><div class='output co'>#&gt;     spc.405 spc.405.5   spc.406 spc.406.5   spc.407 spc.407.5   spc.408
 #&gt; 1  27.15000  32.34467  33.37867  34.41933  36.53133  37.64767  38.13700
 #&gt; 2  66.80133  63.71533  66.71200  69.58233  72.52967  74.55833  77.04800
@@ -371,13 +371,13 @@ while the last returns a <code>data.frame</code>.</p>
 #&gt; 3 124.67533 129.56867 134.11733 139.98667 rawdata/flu3.txt
 #&gt; 4 168.68967 175.45900 181.58100 185.69233 rawdata/flu4.txt
 #&gt; 5 208.41933 217.55267 224.74633 231.03567 rawdata/flu5.txt
-#&gt; 6 256.89133 262.73900 270.27133 281.82867 rawdata/flu6.txt</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span>(<span class='kw'>result</span>)
-</div><div class='output co'>#&gt; [1] "data.frame"</div><div class='input'><span class='fu'><a href='dimnames,hyperSpec-method.html'>colnames</a></span>(<span class='kw'>result</span>)
+#&gt; 6 256.89133 262.73900 270.27133 281.82867 rawdata/flu6.txt</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>result</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "data.frame"</div><div class='input'><span class='fu'><a href='dimnames,hyperSpec-method.html'>colnames</a></span><span class='op'>(</span><span class='va'>result</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] "spc"      "filename"</div><div class='input'>
 <span class='co'>##### Shortcuts</span>
 
 <span class='co'># extract the spectra matrix</span>
-<span class='kw'>flu</span>[[]][<span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>] <span class='co'># show only a bit here</span>
+<span class='va'>flu</span><span class='op'>[[</span><span class='op'>]</span><span class='op'>]</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>]</span> <span class='co'># show only a bit here</span>
 </div><div class='output co'>#&gt;            405     405.5       406     406.5       407
 #&gt; [1,]  27.15000  32.34467  33.37867  34.41933  36.53133
 #&gt; [2,]  66.80133  63.71533  66.71200  69.58233  72.52967
@@ -385,7 +385,7 @@ while the last returns a <code>data.frame</code>.</p>
 #&gt; [4,] 130.66367 139.99833 143.79767 148.42000 152.13267
 #&gt; [5,] 167.26667 171.89833 177.47067 184.62467 189.75233</div><div class='input'>
 <span class='co'># extract the data.frame including the spectra matrix</span>
-<span class='kw'>flu</span><span class='op'>$</span><span class='kw'>.</span>
+<span class='va'>flu</span><span class='op'>$</span><span class='va'>.</span>
 </div><div class='output co'>#&gt;     spc.405 spc.405.5   spc.406 spc.406.5   spc.407 spc.407.5   spc.408
 #&gt; 1  27.15000  32.34467  33.37867  34.41933  36.53133  37.64767  38.13700
 #&gt; 2  66.80133  63.71533  66.71200  69.58233  72.52967  74.55833  77.04800
@@ -574,9 +574,9 @@ while the last returns a <code>data.frame</code>.</p>
 #&gt; 3 0.15
 #&gt; 4 0.20
 #&gt; 5 0.25
-#&gt; 6 0.30</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span>(<span class='kw'>flu</span><span class='op'>$</span><span class='kw'>.</span>)
-</div><div class='output co'>#&gt; [1] 6 3</div><div class='input'><span class='fu'><a href='dimnames,hyperSpec-method.html'>colnames</a></span>(<span class='kw'>flu</span><span class='op'>$</span><span class='kw'>.</span>) <span class='co'># = colnames(flu[])</span>
-</div><div class='output co'>#&gt; [1] "spc"      "filename" "c"       </div><div class='input'><span class='kw'>flu</span><span class='op'>$</span><span class='kw'>.</span><span class='op'>$</span><span class='kw'>spc</span>
+#&gt; 6 0.30</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span><span class='op'>(</span><span class='va'>flu</span><span class='op'>$</span><span class='va'>.</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 6 3</div><div class='input'><span class='fu'><a href='dimnames,hyperSpec-method.html'>colnames</a></span><span class='op'>(</span><span class='va'>flu</span><span class='op'>$</span><span class='va'>.</span><span class='op'>)</span> <span class='co'># = colnames(flu[])</span>
+</div><div class='output co'>#&gt; [1] "spc"      "filename" "c"       </div><div class='input'><span class='va'>flu</span><span class='op'>$</span><span class='va'>.</span><span class='op'>$</span><span class='va'>spc</span>
 </div><div class='output co'>#&gt;            405     405.5       406     406.5       407     407.5      408
 #&gt; [1,]  27.15000  32.34467  33.37867  34.41933  36.53133  37.64767  38.1370
 #&gt; [2,]  66.80133  63.71533  66.71200  69.58233  72.52967  74.55833  77.0480
@@ -753,57 +753,57 @@ while the last returns a <code>data.frame</code>.</p>
 #&gt; [5,] 259.4020 256.20067 252.06567 248.06700 246.95200
 #&gt; [6,] 315.6455 312.32950 307.51850 302.32550 294.64950</div><div class='input'>
 <span class='co'># extract the data.frame minus the spectra matrix</span>
-<span class='kw'>flu</span><span class='op'>$</span><span class='kw'>..</span>
+<span class='va'>flu</span><span class='op'>$</span><span class='va'>..</span>
 </div><div class='output co'>#&gt;           filename    c
 #&gt; 1 rawdata/flu1.txt 0.05
 #&gt; 2 rawdata/flu2.txt 0.10
 #&gt; 3 rawdata/flu3.txt 0.15
 #&gt; 4 rawdata/flu4.txt 0.20
 #&gt; 5 rawdata/flu5.txt 0.25
-#&gt; 6 rawdata/flu6.txt 0.30</div><div class='input'><span class='fu'><a href='dimnames,hyperSpec-method.html'>colnames</a></span>(<span class='kw'>flu</span><span class='op'>$</span><span class='kw'>..</span>)
+#&gt; 6 rawdata/flu6.txt 0.30</div><div class='input'><span class='fu'><a href='dimnames,hyperSpec-method.html'>colnames</a></span><span class='op'>(</span><span class='va'>flu</span><span class='op'>$</span><span class='va'>..</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] "filename" "c"       </div><div class='input'>
 <span class='co'>##### Indexing via matrices</span>
 
 <span class='co'># indexing the spectra matrix with index matrix nrow by 2</span>
 <span class='co'># hyperSpec converts numeric matrices to integers for indexing</span>
-<span class='kw'>ind</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>4</span>, <span class='fl'>406</span>, <span class='fl'>405.5</span>, <span class='fl'>409</span>), ncol = <span class='fl'>2</span>)
-<span class='kw'>ind</span>
+<span class='va'>ind</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>4</span>, <span class='fl'>406</span>, <span class='fl'>405.5</span>, <span class='fl'>409</span><span class='op'>)</span>, ncol <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
+<span class='va'>ind</span>
 </div><div class='output co'>#&gt;      [,1]  [,2]
 #&gt; [1,]    1 406.0
 #&gt; [2,]    2 405.5
-#&gt; [3,]    4 409.0</div><div class='input'><span class='kw'>flu</span>[[<span class='kw'>ind</span>]]
+#&gt; [3,]    4 409.0</div><div class='input'><span class='va'>flu</span><span class='op'>[[</span><span class='va'>ind</span><span class='op'>]</span><span class='op'>]</span>
 </div><div class='output co'>#&gt; [1]  33.37867  63.71533 175.45900</div><div class='input'>
 <span class='co'># same as just above, but using wl.index</span>
-<span class='kw'>ind</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>4</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>3</span>, <span class='fl'>2</span>, <span class='fl'>9</span>)), ncol = <span class='fl'>2</span>)
-<span class='kw'>ind</span>
+<span class='va'>ind</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>4</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span>, <span class='fl'>2</span>, <span class='fl'>9</span><span class='op'>)</span><span class='op'>)</span>, ncol <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
+<span class='va'>ind</span>
 </div><div class='output co'>#&gt;      [,1] [,2]
 #&gt; [1,]    1    3
 #&gt; [2,]    2    2
-#&gt; [3,]    4    9</div><div class='input'><span class='kw'>flu</span>[[<span class='kw'>ind</span>, wl.index = <span class='fl'>TRUE</span>]]
+#&gt; [3,]    4    9</div><div class='input'><span class='va'>flu</span><span class='op'>[[</span><span class='va'>ind</span>, wl.index <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>]</span><span class='op'>]</span>
 </div><div class='output co'>#&gt; [1]  33.37867  63.71533 175.45900</div><div class='input'>
 <span class='co'># indexing via a logical matrix (applied to spectra matrix)</span>
-<span class='fu'><a href='as.character,hyperSpec-method.html'>summary</a></span>(<span class='kw'>flu</span>[[<span class='kw'>flu</span> <span class='op'>&lt;</span> <span class='fl'>125</span>]])
+<span class='fu'><a href='as.character,hyperSpec-method.html'>summary</a></span><span class='op'>(</span><span class='va'>flu</span><span class='op'>[[</span><span class='va'>flu</span> <span class='op'>&lt;</span> <span class='fl'>125</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 #&gt;   27.15   66.94   90.56   85.06  104.08  124.74 </div><div class='input'>
 <span class='co'>## replacement functions</span>
-<span class='kw'>spc</span> <span class='op'>&lt;-</span> <span class='kw'>flu</span>
-<span class='co'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='kw'>spc</span><span class='op'>$</span><span class='kw'>.</span>
-}
-<span class='kw'>spc</span>[, <span class='st'>"c"</span>] <span class='op'>&lt;-</span> <span class='fl'>16</span><span class='op'>:</span><span class='fl'>11</span>
+<span class='va'>spc</span> <span class='op'>&lt;-</span> <span class='va'>flu</span>
+<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='va'>spc</span><span class='op'>$</span><span class='va'>.</span>
+<span class='op'>}</span>
+<span class='va'>spc</span><span class='op'>[</span>, <span class='st'>"c"</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fl'>16</span><span class='op'>:</span><span class='fl'>11</span>
 <span class='co'>## be careful:</span>
-<span class='fu'><a href='plot-methods.html'>plot</a></span>(<span class='kw'>spc</span>)
-</div><div class='img'><img src='extractreplace-3.png' alt='' width='466' height='288' /></div><div class='input'><span class='kw'>spc</span> [] <span class='op'>&lt;-</span> <span class='fl'>6</span><span class='op'>:</span><span class='fl'>1</span>
-<span class='kw'>spc</span><span class='op'>$</span><span class='kw'>..</span>
+<span class='fu'><a href='plot-methods.html'>plot</a></span><span class='op'>(</span><span class='va'>spc</span><span class='op'>)</span>
+</div><div class='img'><img src='extractreplace-3.png' alt='' width='466' height='288' /></div><div class='input'><span class='va'>spc</span> <span class='op'>[</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fl'>6</span><span class='op'>:</span><span class='fl'>1</span>
+<span class='va'>spc</span><span class='op'>$</span><span class='va'>..</span>
 </div><div class='output co'>#&gt;   filename c
 #&gt; 1        6 6
 #&gt; 2        5 5
 #&gt; 3        4 4
 #&gt; 4        3 3
 #&gt; 5        2 2
-#&gt; 6        1 1</div><div class='input'><span class='fu'><a href='plot-methods.html'>plot</a></span>(<span class='kw'>spc</span>)
-</div><div class='img'><img src='extractreplace-4.png' alt='' width='466' height='288' /></div><div class='input'><span class='kw'>spc</span> <span class='op'>&lt;-</span> <span class='kw'>flu</span> [, , <span class='fl'>405</span> <span class='op'>~</span> <span class='fl'>410</span>]
-<span class='kw'>spc</span>[[]]
+#&gt; 6        1 1</div><div class='input'><span class='fu'><a href='plot-methods.html'>plot</a></span><span class='op'>(</span><span class='va'>spc</span><span class='op'>)</span>
+</div><div class='img'><img src='extractreplace-4.png' alt='' width='466' height='288' /></div><div class='input'><span class='va'>spc</span> <span class='op'>&lt;-</span> <span class='va'>flu</span> <span class='op'>[</span>, , <span class='fl'>405</span> <span class='op'>~</span> <span class='fl'>410</span><span class='op'>]</span>
+<span class='va'>spc</span><span class='op'>[[</span><span class='op'>]</span><span class='op'>]</span>
 </div><div class='output co'>#&gt;            405     405.5       406     406.5       407     407.5      408
 #&gt; [1,]  27.15000  32.34467  33.37867  34.41933  36.53133  37.64767  38.1370
 #&gt; [2,]  66.80133  63.71533  66.71200  69.58233  72.52967  74.55833  77.0480
@@ -817,8 +817,8 @@ while the last returns a <code>data.frame</code>.</p>
 #&gt; [3,] 124.67533 129.56867 134.11733 139.98667
 #&gt; [4,] 168.68967 175.45900 181.58100 185.69233
 #&gt; [5,] 208.41933 217.55267 224.74633 231.03567
-#&gt; [6,] 256.89133 262.73900 270.27133 281.82867</div><div class='input'><span class='kw'>spc</span>[[<span class='fl'>3</span>]] <span class='op'>&lt;-</span> <span class='op'>-</span><span class='kw'>spc</span>[[<span class='fl'>3</span>]]
-<span class='kw'>spc</span>[[]]
+#&gt; [6,] 256.89133 262.73900 270.27133 281.82867</div><div class='input'><span class='va'>spc</span><span class='op'>[[</span><span class='fl'>3</span><span class='op'>]</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='op'>-</span><span class='va'>spc</span><span class='op'>[[</span><span class='fl'>3</span><span class='op'>]</span><span class='op'>]</span>
+<span class='va'>spc</span><span class='op'>[[</span><span class='op'>]</span><span class='op'>]</span>
 </div><div class='output co'>#&gt;            405      405.5        406      406.5        407      407.5       408
 #&gt; [1,]  27.15000   32.34467   33.37867   34.41933   36.53133   37.64767   38.1370
 #&gt; [2,]  66.80133   63.71533   66.71200   69.58233   72.52967   74.55833   77.0480
@@ -832,8 +832,8 @@ while the last returns a <code>data.frame</code>.</p>
 #&gt; [3,] -124.67533 -129.56867 -134.11733 -139.98667
 #&gt; [4,]  168.68967  175.45900  181.58100  185.69233
 #&gt; [5,]  208.41933  217.55267  224.74633  231.03567
-#&gt; [6,]  256.89133  262.73900  270.27133  281.82867</div><div class='input'><span class='kw'>spc</span>[[, , <span class='fl'>405</span><span class='op'>:</span><span class='fl'>410</span>]] <span class='op'>&lt;-</span> <span class='op'>-</span><span class='kw'>spc</span>[[, , <span class='fl'>405</span><span class='op'>:</span><span class='fl'>410</span>]]
-<span class='kw'>spc</span>[[]]
+#&gt; [6,]  256.89133  262.73900  270.27133  281.82867</div><div class='input'><span class='va'>spc</span><span class='op'>[[</span>, , <span class='fl'>405</span><span class='op'>:</span><span class='fl'>410</span><span class='op'>]</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='op'>-</span><span class='va'>spc</span><span class='op'>[[</span>, , <span class='fl'>405</span><span class='op'>:</span><span class='fl'>410</span><span class='op'>]</span><span class='op'>]</span>
+<span class='va'>spc</span><span class='op'>[[</span><span class='op'>]</span><span class='op'>]</span>
 </div><div class='output co'>#&gt;             405      405.5        406      406.5        407      407.5
 #&gt; [1,]  -27.15000   32.34467  -33.37867   34.41933  -36.53133   37.64767
 #&gt; [2,]  -66.80133   63.71533  -66.71200   69.58233  -72.52967   74.55833
@@ -847,19 +847,19 @@ while the last returns a <code>data.frame</code>.</p>
 #&gt; [3,]  121.3133 -124.67533  129.56867 -134.11733  139.98667
 #&gt; [4,] -165.0523  168.68967 -175.45900  181.58100 -185.69233
 #&gt; [5,] -205.5627  208.41933 -217.55267  224.74633 -231.03567
-#&gt; [6,] -248.0467  256.89133 -262.73900  270.27133 -281.82867</div><div class='input'><span class='kw'>spc</span>[[, , <span class='fl'>405</span> <span class='op'>~</span> <span class='fl'>410</span>]] <span class='op'>&lt;-</span> <span class='op'>-</span><span class='kw'>spc</span>[[, , <span class='fl'>405</span> <span class='op'>~</span> <span class='fl'>410</span>]]
+#&gt; [6,] -248.0467  256.89133 -262.73900  270.27133 -281.82867</div><div class='input'><span class='va'>spc</span><span class='op'>[[</span>, , <span class='fl'>405</span> <span class='op'>~</span> <span class='fl'>410</span><span class='op'>]</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='op'>-</span><span class='va'>spc</span><span class='op'>[[</span>, , <span class='fl'>405</span> <span class='op'>~</span> <span class='fl'>410</span><span class='op'>]</span><span class='op'>]</span>
 
 <span class='co'>## indexing with logical matrix</span>
-<span class='kw'>spc</span> <span class='op'>&lt;-</span> <span class='kw'>flu</span> [, , <span class='kw'>min</span> <span class='op'>~</span> <span class='fl'>410</span>]
-<span class='kw'>spc</span> <span class='op'>&lt;</span> <span class='fl'>125</span>
+<span class='va'>spc</span> <span class='op'>&lt;-</span> <span class='va'>flu</span> <span class='op'>[</span>, , <span class='va'>min</span> <span class='op'>~</span> <span class='fl'>410</span><span class='op'>]</span>
+<span class='va'>spc</span> <span class='op'>&lt;</span> <span class='fl'>125</span>
 </div><div class='output co'>#&gt;        405 405.5   406 406.5   407 407.5   408 408.5   409 409.5   410
 #&gt; [1,]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
 #&gt; [2,]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
 #&gt; [3,]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE
 #&gt; [4,] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 #&gt; [5,] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-#&gt; [6,] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</div><div class='input'><span class='kw'>spc</span>[[<span class='kw'>spc</span> <span class='op'>&lt;</span> <span class='fl'>125</span>]] <span class='op'>&lt;-</span> <span class='fl'>NA</span>
-<span class='kw'>spc</span>[[]]
+#&gt; [6,] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</div><div class='input'><span class='va'>spc</span><span class='op'>[[</span><span class='va'>spc</span> <span class='op'>&lt;</span> <span class='fl'>125</span><span class='op'>]</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='cn'>NA</span>
+<span class='va'>spc</span><span class='op'>[[</span><span class='op'>]</span><span class='op'>]</span>
 </div><div class='output co'>#&gt;           405    405.5      406    406.5      407    407.5      408    408.5
 #&gt; [1,]       NA       NA       NA       NA       NA       NA       NA       NA
 #&gt; [2,]       NA       NA       NA       NA       NA       NA       NA       NA
@@ -875,13 +875,13 @@ while the last returns a <code>data.frame</code>.</p>
 #&gt; [5,] 217.5527 224.7463 231.0357
 #&gt; [6,] 262.7390 270.2713 281.8287</div><div class='input'>
 <span class='co'>## indexing with n by 2 matrix</span>
-<span class='kw'>ind</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>4</span>, <span class='fl'>406</span>, <span class='fl'>405.5</span>, <span class='fl'>409</span>), ncol = <span class='fl'>2</span>)
-<span class='kw'>ind</span>
+<span class='va'>ind</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>4</span>, <span class='fl'>406</span>, <span class='fl'>405.5</span>, <span class='fl'>409</span><span class='op'>)</span>, ncol <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
+<span class='va'>ind</span>
 </div><div class='output co'>#&gt;      [,1]  [,2]
 #&gt; [1,]    1 406.0
 #&gt; [2,]    2 405.5
-#&gt; [3,]    4 409.0</div><div class='input'><span class='kw'>spc</span>[[<span class='kw'>ind</span>]] <span class='op'>&lt;-</span> <span class='fl'>3</span>
-<span class='kw'>spc</span>[[]]
+#&gt; [3,]    4 409.0</div><div class='input'><span class='va'>spc</span><span class='op'>[[</span><span class='va'>ind</span><span class='op'>]</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fl'>3</span>
+<span class='va'>spc</span><span class='op'>[[</span><span class='op'>]</span><span class='op'>]</span>
 </div><div class='output co'>#&gt;           405    405.5      406    406.5      407    407.5      408    408.5
 #&gt; [1,]       NA       NA   3.0000       NA       NA       NA       NA       NA
 #&gt; [2,]       NA   3.0000       NA       NA       NA       NA       NA       NA
@@ -896,13 +896,13 @@ while the last returns a <code>data.frame</code>.</p>
 #&gt; [4,]   3.0000 181.5810 185.6923
 #&gt; [5,] 217.5527 224.7463 231.0357
 #&gt; [6,] 262.7390 270.2713 281.8287</div><div class='input'>
-<span class='kw'>ind</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>4</span>, <span class='fl'>4</span><span class='op'>:</span><span class='fl'>6</span>), ncol = <span class='fl'>2</span>)
-<span class='kw'>ind</span>
+<span class='va'>ind</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>4</span>, <span class='fl'>4</span><span class='op'>:</span><span class='fl'>6</span><span class='op'>)</span>, ncol <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
+<span class='va'>ind</span>
 </div><div class='output co'>#&gt;      [,1] [,2]
 #&gt; [1,]    1    4
 #&gt; [2,]    2    5
-#&gt; [3,]    4    6</div><div class='input'><span class='kw'>spc</span>[[<span class='kw'>ind</span>, wl.index = <span class='fl'>TRUE</span>]] <span class='op'>&lt;-</span> <span class='fl'>9999</span>
-<span class='kw'>spc</span>[[]]
+#&gt; [3,]    4    6</div><div class='input'><span class='va'>spc</span><span class='op'>[[</span><span class='va'>ind</span>, wl.index <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>]</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fl'>9999</span>
+<span class='va'>spc</span><span class='op'>[[</span><span class='op'>]</span><span class='op'>]</span>
 </div><div class='output co'>#&gt;           405    405.5      406     406.5       407     407.5      408    408.5
 #&gt; [1,]       NA       NA   3.0000 9999.0000        NA        NA       NA       NA
 #&gt; [2,]       NA   3.0000       NA        NA 9999.0000        NA       NA       NA
@@ -916,7 +916,7 @@ while the last returns a <code>data.frame</code>.</p>
 #&gt; [3,] 129.5687 134.1173 139.9867
 #&gt; [4,]   3.0000 181.5810 185.6923
 #&gt; [5,] 217.5527 224.7463 231.0357
-#&gt; [6,] 262.7390 270.2713 281.8287</div><div class='input'><span class='kw'>spc</span><span class='op'>$</span><span class='kw'>.</span>
+#&gt; [6,] 262.7390 270.2713 281.8287</div><div class='input'><span class='va'>spc</span><span class='op'>$</span><span class='va'>.</span>
 </div><div class='output co'>#&gt;     spc.405 spc.405.5   spc.406 spc.406.5   spc.407 spc.407.5   spc.408
 #&gt; 1        NA        NA    3.0000 9999.0000        NA        NA        NA
 #&gt; 2        NA    3.0000        NA        NA 9999.0000        NA        NA
@@ -930,8 +930,8 @@ while the last returns a <code>data.frame</code>.</p>
 #&gt; 3        NA  129.5687  134.1173  139.9867 rawdata/flu3.txt 0.15
 #&gt; 4  168.6897    3.0000  181.5810  185.6923 rawdata/flu4.txt 0.20
 #&gt; 5  208.4193  217.5527  224.7463  231.0357 rawdata/flu5.txt 0.25
-#&gt; 6  256.8913  262.7390  270.2713  281.8287 rawdata/flu6.txt 0.30</div><div class='input'><span class='kw'>spc</span><span class='op'>$</span><span class='kw'>z</span> <span class='op'>&lt;-</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span>
-<span class='kw'>spc</span>
+#&gt; 6  256.8913  262.7390  270.2713  281.8287 rawdata/flu6.txt 0.30</div><div class='input'><span class='va'>spc</span><span class='op'>$</span><span class='va'>z</span> <span class='op'>&lt;-</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span>
+<span class='va'>spc</span>
 </div><div class='output co'>#&gt; hyperSpec object
 #&gt;    6 spectra
 #&gt;    4 data columns
@@ -941,7 +941,7 @@ while the last returns a <code>data.frame</code>.</p>
 #&gt;    1. spc: I[fl]/"a.u." [matrix, array11] NA NA ... 281.8287 + NA
 #&gt;    2. filename: filename [character] rawdata/flu1.txt rawdata/flu2.txt ... rawdata/flu6.txt 
 #&gt;    3. c: c / (mg / l) [numeric] 0.05 0.10 ... 0.3 
-#&gt;    4. z: z [integer] 1 2 ... 6 </div><div class='input'><span class='kw'>spc</span><span class='op'>$</span><span class='kw'>z</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span>, <span class='st'>"z / a.u."</span>)
+#&gt;    4. z: z [integer] 1 2 ... 6 </div><div class='input'><span class='va'>spc</span><span class='op'>$</span><span class='va'>z</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span>, <span class='st'>"z / a.u."</span><span class='op'>)</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -958,7 +958,7 @@ while the last returns a <code>data.frame</code>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -164,19 +164,19 @@
     <p>These functions are shortcuts to convert other objects into hypeSpec objects.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>as.hyperSpec</span>(<span class='kw'>X</span>, <span class='kw'>...</span>)
+    <pre class="usage"><span class='fu'>as.hyperSpec</span><span class='op'>(</span><span class='va'>X</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S4 method for matrix</span>
-<span class='fu'>as.hyperSpec</span>(<span class='kw'>X</span>, wl = <span class='fu'><a href='guess.wavelength.html'>guess.wavelength</a></span>(<span class='fu'><a href='dimnames,hyperSpec-method.html'>colnames</a></span>(<span class='kw'>X</span>)), <span class='kw'>...</span>)
+<span class='fu'>as.hyperSpec</span><span class='op'>(</span><span class='va'>X</span>, wl <span class='op'>=</span> <span class='fu'><a href='guess.wavelength.html'>guess.wavelength</a></span><span class='op'>(</span><span class='fu'><a href='dimnames,hyperSpec-method.html'>colnames</a></span><span class='op'>(</span><span class='va'>X</span><span class='op'>)</span><span class='op'>)</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S4 method for data.frame</span>
-<span class='fu'>as.hyperSpec</span>(
-  <span class='kw'>X</span>,
-  spc = <span class='kw'>NULL</span>,
-  wl = <span class='fu'><a href='guess.wavelength.html'>guess.wavelength</a></span>(<span class='kw'>spc</span>),
-  labels = <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span>(<span class='kw'>X</span>, <span class='st'>"labels"</span>),
-  <span class='kw'>...</span>
-)</pre>
+<span class='fu'>as.hyperSpec</span><span class='op'>(</span>
+  <span class='va'>X</span>,
+  spc <span class='op'>=</span> <span class='cn'>NULL</span>,
+  wl <span class='op'>=</span> <span class='fu'><a href='guess.wavelength.html'>guess.wavelength</a></span><span class='op'>(</span><span class='va'>spc</span><span class='op'>)</span>,
+  labels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span><span class='op'>(</span><span class='va'>X</span>, <span class='st'>"labels"</span><span class='op'>)</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -219,10 +219,10 @@ wavelengths. To get the old behaviour</em></p>
     <div class='dont-index'><p><code><a href='initialize.html'>initialize()</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>tmp</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>flu</span>[[, , <span class='fl'>400</span> <span class='op'>~</span> <span class='fl'>410</span>]])
-(<span class='kw'>wl</span> <span class='op'>&lt;-</span> <span class='fu'><a href='dimnames,hyperSpec-method.html'>colnames</a></span>(<span class='kw'>tmp</span>))
+    <pre class="examples"><div class='input'><span class='va'>tmp</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span><span class='va'>flu</span><span class='op'>[[</span>, , <span class='fl'>400</span> <span class='op'>~</span> <span class='fl'>410</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span>
+<span class='op'>(</span><span class='va'>wl</span> <span class='op'>&lt;-</span> <span class='fu'><a href='dimnames,hyperSpec-method.html'>colnames</a></span><span class='op'>(</span><span class='va'>tmp</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;  [1] "X405"   "X405.5" "X406"   "X406.5" "X407"   "X407.5" "X408"   "X408.5"
-#&gt;  [9] "X409"   "X409.5" "X410"  </div><div class='input'><span class='fu'><a href='guess.wavelength.html'>guess.wavelength</a></span>(<span class='kw'>wl</span>)
+#&gt;  [9] "X409"   "X409.5" "X410"  </div><div class='input'><span class='fu'><a href='guess.wavelength.html'>guess.wavelength</a></span><span class='op'>(</span><span class='va'>wl</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;  [1] 405.0 405.5 406.0 406.5 407.0 407.5 408.0 408.5 409.0 409.5 410.0</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -239,7 +239,7 @@ wavelengths. To get the old behaviour</em></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

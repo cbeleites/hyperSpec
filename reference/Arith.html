@@ -249,7 +249,7 @@ and Math2 groups) working on hyperSpec objects.</p>
     <p>C. Beleites</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>flu</span> <span class='op'>+</span> <span class='kw'>flu</span>
+    <pre class="examples"><div class='input'><span class='va'>flu</span> <span class='op'>+</span> <span class='va'>flu</span>
 </div><div class='output co'>#&gt; hyperSpec object
 #&gt;    6 spectra
 #&gt;    3 data columns
@@ -258,7 +258,7 @@ and Math2 groups) working on hyperSpec objects.</p>
 #&gt; data:  (6 rows x 3 columns)
 #&gt;    1. spc: I[fl]/"a.u." [matrix, array181] 54.3000 133.6027 ... 589.299 
 #&gt;    2. filename: filename [character] rawdata/flu1.txt rawdata/flu2.txt ... rawdata/flu6.txt 
-#&gt;    3. c: c / (mg / l) [numeric] 0.05 0.10 ... 0.3 </div><div class='input'><span class='fl'>1</span> <span class='op'>/</span> <span class='kw'>flu</span>
+#&gt;    3. c: c / (mg / l) [numeric] 0.05 0.10 ... 0.3 </div><div class='input'><span class='fl'>1</span> <span class='op'>/</span> <span class='va'>flu</span>
 </div><div class='output co'>#&gt; hyperSpec object
 #&gt;    6 spectra
 #&gt;    3 data columns
@@ -267,8 +267,8 @@ and Math2 groups) working on hyperSpec objects.</p>
 #&gt; data:  (6 rows x 3 columns)
 #&gt;    1. spc: I[fl]/"a.u." [matrix, array181] 0.03683241 0.01496976 ... 0.003393863 
 #&gt;    2. filename: filename [character] rawdata/flu1.txt rawdata/flu2.txt ... rawdata/flu6.txt 
-#&gt;    3. c: c / (mg / l) [numeric] 0.05 0.10 ... 0.3 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/all.html'>all</a></span>((<span class='kw'>flu</span> <span class='op'>+</span> <span class='kw'>flu</span> <span class='op'>-</span> <span class='fl'>2</span> <span class='op'>*</span> <span class='kw'>flu</span>)[[]] <span class='op'>==</span> <span class='fl'>0</span>)
-</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='op'>-</span><span class='kw'>flu</span>
+#&gt;    3. c: c / (mg / l) [numeric] 0.05 0.10 ... 0.3 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/all.html'>all</a></span><span class='op'>(</span><span class='op'>(</span><span class='va'>flu</span> <span class='op'>+</span> <span class='va'>flu</span> <span class='op'>-</span> <span class='fl'>2</span> <span class='op'>*</span> <span class='va'>flu</span><span class='op'>)</span><span class='op'>[[</span><span class='op'>]</span><span class='op'>]</span> <span class='op'>==</span> <span class='fl'>0</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='op'>-</span><span class='va'>flu</span>
 </div><div class='output co'>#&gt; hyperSpec object
 #&gt;    6 spectra
 #&gt;    3 data columns
@@ -277,7 +277,7 @@ and Math2 groups) working on hyperSpec objects.</p>
 #&gt; data:  (6 rows x 3 columns)
 #&gt;    1. spc: I[fl]/"a.u." [matrix, array181] -27.15000 -66.80133 ... -294.6495 
 #&gt;    2. filename: filename [character] rawdata/flu1.txt rawdata/flu2.txt ... rawdata/flu6.txt 
-#&gt;    3. c: c / (mg / l) [numeric] 0.05 0.10 ... 0.3 </div><div class='input'><span class='kw'>flu</span> <span class='op'>/</span> <span class='kw'>flu</span><span class='op'>$</span><span class='kw'>c</span>
+#&gt;    3. c: c / (mg / l) [numeric] 0.05 0.10 ... 0.3 </div><div class='input'><span class='va'>flu</span> <span class='op'>/</span> <span class='va'>flu</span><span class='op'>$</span><span class='va'>c</span>
 </div><div class='output co'>#&gt; hyperSpec object
 #&gt;    6 spectra
 #&gt;    3 data columns
@@ -302,7 +302,7 @@ and Math2 groups) working on hyperSpec objects.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

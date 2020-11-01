@@ -168,10 +168,10 @@ generates a <code>hyperSpec</code> object containing the van der Monde matrix of
 wavelengths of a <code>hyperSpec</code> object.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>vanderMonde</span>(<span class='kw'>x</span>, <span class='kw'>order</span>, <span class='kw'>...</span>)
+    <pre class="usage"><span class='fu'>vanderMonde</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>order</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S4 method for hyperSpec</span>
-<span class='fu'>vanderMonde</span>(<span class='kw'>x</span>, <span class='kw'>order</span>, <span class='kw'>...</span>, normalize.wl = <span class='kw'>normalize01</span>)</pre>
+<span class='fu'>vanderMonde</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>order</span>, <span class='va'>...</span>, normalize.wl <span class='op'>=</span> <span class='va'>normalize01</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -213,8 +213,8 @@ example.</p>
     <p>C. Beleites</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='plot-methods.html'>plot</a></span>(<span class='fu'>vanderMonde</span>(<span class='kw'>flu</span>, <span class='fl'>2</span>))
-</div><div class='img'><img src='vanderMonde-1.png' alt='' width='466' height='288' /></div><div class='input'><span class='fu'><a href='plot-methods.html'>plot</a></span>(<span class='fu'>vanderMonde</span>(<span class='kw'>flu</span>, <span class='fl'>2</span>, normalize.wl = <span class='kw'>I</span>))
+    <pre class="examples"><div class='input'><span class='fu'><a href='plot-methods.html'>plot</a></span><span class='op'>(</span><span class='fu'>vanderMonde</span><span class='op'>(</span><span class='va'>flu</span>, <span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='img'><img src='vanderMonde-1.png' alt='' width='466' height='288' /></div><div class='input'><span class='fu'><a href='plot-methods.html'>plot</a></span><span class='op'>(</span><span class='fu'>vanderMonde</span><span class='op'>(</span><span class='va'>flu</span>, <span class='fl'>2</span>, normalize.wl <span class='op'>=</span> <span class='va'>I</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='img'><img src='vanderMonde-2.png' alt='' width='466' height='288' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -231,7 +231,7 @@ example.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

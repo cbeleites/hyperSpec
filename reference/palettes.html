@@ -168,11 +168,11 @@ standard palette of Matlab does. The second one has darker green values and
 is better suited for plotting lines on white background.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>matlab.palette</span>(n = <span class='fl'>100</span>, <span class='kw'>...</span>)
+    <pre class="usage"><span class='fu'>matlab.palette</span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>100</span>, <span class='va'>...</span><span class='op'>)</span>
 
-<span class='fu'>matlab.dark.palette</span>(n = <span class='fl'>100</span>, <span class='kw'>...</span>)
+<span class='fu'>matlab.dark.palette</span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>100</span>, <span class='va'>...</span><span class='op'>)</span>
 
-<span class='fu'>alois.palette</span>(n = <span class='fl'>100</span>, <span class='kw'>...</span>)</pre>
+<span class='fu'>alois.palette</span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>100</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -201,33 +201,33 @@ is better suited for plotting lines on white background.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Matlab dark palette</span>
 
-<span class='kw'>op</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(mar = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>0</span>, <span class='fl'>0</span>, <span class='fl'>0</span>))
-<span class='fu'><a href='https://rdrr.io/r/graphics/pie.html'>pie</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>1</span>, <span class='fl'>12</span>), col = <span class='fu'>matlab.palette</span>(<span class='fl'>12</span>))
-</div><div class='img'><img src='palettes-1.png' alt='' width='466' height='288' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(<span class='kw'>op</span>)
+<span class='va'>op</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span>mar <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>0</span>, <span class='fl'>0</span>, <span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/pie.html'>pie</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>12</span><span class='op'>)</span>, col <span class='op'>=</span> <span class='fu'>matlab.palette</span><span class='op'>(</span><span class='fl'>12</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='img'><img src='palettes-1.png' alt='' width='466' height='288' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span><span class='va'>op</span><span class='op'>)</span>
 
-<span class='fu'><a href='plot-methods.html'>plot</a></span>(<span class='kw'>flu</span>, col = <span class='fu'>matlab.palette</span>(<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='kw'>flu</span>)))
+<span class='fu'><a href='plot-methods.html'>plot</a></span><span class='op'>(</span><span class='va'>flu</span>, col <span class='op'>=</span> <span class='fu'>matlab.palette</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>flu</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='img'><img src='palettes-2.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='fu'><a href='plotmap.html'>plotmap</a></span>(<span class='kw'>faux_cell</span>[, , <span class='fl'>1200</span>], col.regions = <span class='fu'>matlab.palette</span>())
+<span class='fu'><a href='plotmap.html'>plotmap</a></span><span class='op'>(</span><span class='va'>faux_cell</span><span class='op'>[</span>, , <span class='fl'>1200</span><span class='op'>]</span>, col.regions <span class='op'>=</span> <span class='fu'>matlab.palette</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='warning'>Warning: device support for raster images unknown, ignoring 'raster=TRUE'</span></div><div class='img'><img src='palettes-3.png' alt='' width='466' height='288' /></div><div class='input'>
 <span class='co'># Matlab dark palette</span>
 
-<span class='kw'>op</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(mar = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>0</span>, <span class='fl'>0</span>, <span class='fl'>0</span>))
-<span class='fu'><a href='https://rdrr.io/r/graphics/pie.html'>pie</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>1</span>, <span class='fl'>12</span>), col = <span class='fu'>matlab.dark.palette</span>(<span class='fl'>12</span>))
-</div><div class='img'><img src='palettes-4.png' alt='' width='466' height='288' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(<span class='kw'>op</span>)
+<span class='va'>op</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span>mar <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>0</span>, <span class='fl'>0</span>, <span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/pie.html'>pie</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>12</span><span class='op'>)</span>, col <span class='op'>=</span> <span class='fu'>matlab.dark.palette</span><span class='op'>(</span><span class='fl'>12</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='img'><img src='palettes-4.png' alt='' width='466' height='288' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span><span class='va'>op</span><span class='op'>)</span>
 
-<span class='fu'><a href='plot-methods.html'>plot</a></span>(<span class='kw'>flu</span>, col = <span class='fu'>matlab.dark.palette</span>(<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='kw'>flu</span>)))
+<span class='fu'><a href='plot-methods.html'>plot</a></span><span class='op'>(</span><span class='va'>flu</span>, col <span class='op'>=</span> <span class='fu'>matlab.dark.palette</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>flu</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='img'><img src='palettes-5.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='fu'><a href='plotmap.html'>plotmap</a></span>(<span class='kw'>faux_cell</span>[, , <span class='fl'>1200</span>], col.regions = <span class='fu'>matlab.dark.palette</span>())
+<span class='fu'><a href='plotmap.html'>plotmap</a></span><span class='op'>(</span><span class='va'>faux_cell</span><span class='op'>[</span>, , <span class='fl'>1200</span><span class='op'>]</span>, col.regions <span class='op'>=</span> <span class='fu'>matlab.dark.palette</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='warning'>Warning: device support for raster images unknown, ignoring 'raster=TRUE'</span></div><div class='img'><img src='palettes-6.png' alt='' width='466' height='288' /></div><div class='input'>
 <span class='co'># Alois palette</span>
 
-<span class='kw'>op</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(mar = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>0</span>, <span class='fl'>0</span>, <span class='fl'>0</span>))
-<span class='fu'><a href='https://rdrr.io/r/graphics/pie.html'>pie</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>1</span>, <span class='fl'>12</span>), col = <span class='fu'>alois.palette</span>(<span class='fl'>12</span>))
-</div><div class='img'><img src='palettes-7.png' alt='' width='466' height='288' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(<span class='kw'>op</span>)
+<span class='va'>op</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span>mar <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>0</span>, <span class='fl'>0</span>, <span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/pie.html'>pie</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>12</span><span class='op'>)</span>, col <span class='op'>=</span> <span class='fu'>alois.palette</span><span class='op'>(</span><span class='fl'>12</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='img'><img src='palettes-7.png' alt='' width='466' height='288' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span><span class='va'>op</span><span class='op'>)</span>
 
-<span class='fu'><a href='plot-methods.html'>plot</a></span>(<span class='kw'>flu</span>, col = <span class='fu'>alois.palette</span>(<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='kw'>flu</span>)))
+<span class='fu'><a href='plot-methods.html'>plot</a></span><span class='op'>(</span><span class='va'>flu</span>, col <span class='op'>=</span> <span class='fu'>alois.palette</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>flu</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='img'><img src='palettes-8.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='fu'><a href='plotmap.html'>plotmap</a></span>(<span class='kw'>faux_cell</span>[, , <span class='fl'>1200</span>], col.regions = <span class='fu'>alois.palette</span>())
+<span class='fu'><a href='plotmap.html'>plotmap</a></span><span class='op'>(</span><span class='va'>faux_cell</span><span class='op'>[</span>, , <span class='fl'>1200</span><span class='op'>]</span>, col.regions <span class='op'>=</span> <span class='fu'>alois.palette</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='warning'>Warning: device support for raster images unknown, ignoring 'raster=TRUE'</span></div><div class='img'><img src='palettes-9.png' alt='' width='466' height='288' /></div><div class='input'>
 </div></pre>
   </div>
@@ -245,7 +245,7 @@ is better suited for plotting lines on white background.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

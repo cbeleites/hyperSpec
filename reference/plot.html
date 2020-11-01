@@ -167,10 +167,10 @@ plotmap(), and plotc()." />
     </div>
 
     <pre class="usage"><span class='co'># S4 method for hyperSpec,missing</span>
-<span class='fu'>plot</span>(<span class='kw'>x</span>, <span class='kw'>y</span>, <span class='kw'>...</span>)
+<span class='fu'>plot</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>y</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S4 method for hyperSpec,character</span>
-<span class='fu'>plot</span>(<span class='kw'>x</span>, <span class='kw'>y</span>, <span class='kw'>...</span>)</pre>
+<span class='fu'>plot</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>y</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -240,17 +240,17 @@ abbrevation for <code><a href='plotc.html'>plotc(x, use.c = "z")</a></code>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>plot</span>(<span class='kw'>flu</span>)
+<span class='fu'>plot</span><span class='op'>(</span><span class='va'>flu</span><span class='op'>)</span>
 </div><div class='img'><img src='plot-1.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='fu'>plot</span>(<span class='kw'>flu</span>, <span class='st'>"c"</span>)
+<span class='fu'>plot</span><span class='op'>(</span><span class='va'>flu</span>, <span class='st'>"c"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='warning'>Warning: Intensity at first wavelengh only is used.</span></div><div class='img'><img src='plot-2.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='fu'>plot</span>(<span class='kw'>laser</span>, <span class='st'>"ts"</span>)
+<span class='fu'>plot</span><span class='op'>(</span><span class='va'>laser</span>, <span class='st'>"ts"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='warning'>Warning: Intensity at first wavelengh only is used.</span></div><div class='img'><img src='plot-3.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='kw'>spc</span> <span class='op'>&lt;-</span> <span class='fu'><a href='apply.html'>apply</a></span>(<span class='kw'>faux_cell</span>, <span class='fl'>2</span>, <span class='kw'>quantile</span>, probs = <span class='fl'>0.05</span>)
-<span class='kw'>spc</span> <span class='op'>&lt;-</span> <span class='fu'><a href='sweep.html'>sweep</a></span>(<span class='kw'>faux_cell</span>, <span class='fl'>2</span>, <span class='kw'>spc</span>, <span class='st'>"-"</span>)
-<span class='fu'>plot</span>(<span class='kw'>spc</span>, <span class='st'>"spcprctl5"</span>)
-</div><div class='img'><img src='plot-4.png' alt='' width='466' height='288' /></div><div class='input'><span class='fu'>plot</span>(<span class='kw'>spc</span>, <span class='st'>"spcprctile"</span>)
-</div><div class='img'><img src='plot-5.png' alt='' width='466' height='288' /></div><div class='input'><span class='fu'>plot</span>(<span class='kw'>spc</span>, <span class='st'>"spcmeansd"</span>)
+<span class='va'>spc</span> <span class='op'>&lt;-</span> <span class='fu'><a href='apply.html'>apply</a></span><span class='op'>(</span><span class='va'>faux_cell</span>, <span class='fl'>2</span>, <span class='va'>quantile</span>, probs <span class='op'>=</span> <span class='fl'>0.05</span><span class='op'>)</span>
+<span class='va'>spc</span> <span class='op'>&lt;-</span> <span class='fu'><a href='sweep.html'>sweep</a></span><span class='op'>(</span><span class='va'>faux_cell</span>, <span class='fl'>2</span>, <span class='va'>spc</span>, <span class='st'>"-"</span><span class='op'>)</span>
+<span class='fu'>plot</span><span class='op'>(</span><span class='va'>spc</span>, <span class='st'>"spcprctl5"</span><span class='op'>)</span>
+</div><div class='img'><img src='plot-4.png' alt='' width='466' height='288' /></div><div class='input'><span class='fu'>plot</span><span class='op'>(</span><span class='va'>spc</span>, <span class='st'>"spcprctile"</span><span class='op'>)</span>
+</div><div class='img'><img src='plot-5.png' alt='' width='466' height='288' /></div><div class='input'><span class='fu'>plot</span><span class='op'>(</span><span class='va'>spc</span>, <span class='st'>"spcmeansd"</span><span class='op'>)</span>
 </div><div class='img'><img src='plot-6.png' alt='' width='466' height='288' /></div><div class='input'>
 <span class='co'>### use plotspc as default plot function</span>
 </div></pre>
@@ -269,7 +269,7 @@ abbrevation for <code><a href='plotc.html'>plotc(x, use.c = "z")</a></code>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

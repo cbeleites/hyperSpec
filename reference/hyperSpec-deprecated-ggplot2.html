@@ -175,72 +175,72 @@ Now functions from package <span class="pkg">hySpc.ggplot2</span>
 should be used as alternatives to plot <code>hyperSpec</code> objects with <span class="pkg">ggplot2</span>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>qplotspc</span>(
-  <span class='kw'>x</span>,
-  wl.range = <span class='fl'>TRUE</span>,
-  <span class='kw'>...</span>,
-  mapping = <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes_.html'>aes_string</a></span>(x = <span class='st'>".wavelength"</span>, y = <span class='st'>"spc"</span>, group = <span class='st'>".rownames"</span>),
-  spc.nmax = <span class='fu'><a href='hy.getOptions.html'>hy.getOption</a></span>(<span class='st'>"ggplot.spc.nmax"</span>),
-  map.lineonly = <span class='fl'>FALSE</span>,
-  debuglevel = <span class='fu'><a href='hy.getOptions.html'>hy.getOption</a></span>(<span class='st'>"debuglevel"</span>)
-)
+    <pre class="usage"><span class='fu'>qplotspc</span><span class='op'>(</span>
+  <span class='va'>x</span>,
+  wl.range <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  <span class='va'>...</span>,
+  mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes_.html'>aes_string</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>".wavelength"</span>, y <span class='op'>=</span> <span class='st'>"spc"</span>, group <span class='op'>=</span> <span class='st'>".rownames"</span><span class='op'>)</span>,
+  spc.nmax <span class='op'>=</span> <span class='fu'><a href='hy.getOptions.html'>hy.getOption</a></span><span class='op'>(</span><span class='st'>"ggplot.spc.nmax"</span><span class='op'>)</span>,
+  map.lineonly <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  debuglevel <span class='op'>=</span> <span class='fu'><a href='hy.getOptions.html'>hy.getOption</a></span><span class='op'>(</span><span class='st'>"debuglevel"</span><span class='op'>)</span>
+<span class='op'>)</span>
 
-<span class='fu'>qplotmap</span>(
-  <span class='kw'>object</span>,
-  mapping = <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes_.html'>aes_string</a></span>(x = <span class='st'>"x"</span>, y = <span class='st'>"y"</span>, fill = <span class='st'>"spc"</span>),
-  <span class='kw'>...</span>,
-  func = <span class='kw'>mean</span>,
-  func.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  map.tileonly = <span class='fl'>FALSE</span>
-)
+<span class='fu'>qplotmap</span><span class='op'>(</span>
+  <span class='va'>object</span>,
+  mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes_.html'>aes_string</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"x"</span>, y <span class='op'>=</span> <span class='st'>"y"</span>, fill <span class='op'>=</span> <span class='st'>"spc"</span><span class='op'>)</span>,
+  <span class='va'>...</span>,
+  func <span class='op'>=</span> <span class='va'>mean</span>,
+  func.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
+  map.tileonly <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span>
 
-<span class='fu'>qplotc</span>(
-  <span class='kw'>object</span>,
-  mapping = <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes_.html'>aes_string</a></span>(x = <span class='st'>"c"</span>, y = <span class='st'>"spc"</span>),
-  <span class='kw'>...</span>,
-  func = <span class='kw'>NULL</span>,
-  func.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  map.pointonly = <span class='fl'>FALSE</span>
-)
+<span class='fu'>qplotc</span><span class='op'>(</span>
+  <span class='va'>object</span>,
+  mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes_.html'>aes_string</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"c"</span>, y <span class='op'>=</span> <span class='st'>"spc"</span><span class='op'>)</span>,
+  <span class='va'>...</span>,
+  func <span class='op'>=</span> <span class='cn'>NULL</span>,
+  func.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
+  map.pointonly <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span>
 
-<span class='fu'>qplotmixmap</span>(<span class='kw'>object</span>, <span class='kw'>...</span>)
+<span class='fu'>qplotmixmap</span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>...</span><span class='op'>)</span>
 
-<span class='fu'>legendright</span>(<span class='kw'>p</span>, <span class='kw'>l</span>, legend.width = <span class='fl'>8</span>, legend.unit = <span class='st'>"lines"</span>)
+<span class='fu'>legendright</span><span class='op'>(</span><span class='va'>p</span>, <span class='va'>l</span>, legend.width <span class='op'>=</span> <span class='fl'>8</span>, legend.unit <span class='op'>=</span> <span class='st'>"lines"</span><span class='op'>)</span>
 
-<span class='fu'>qmixtile</span>(
-  <span class='kw'>object</span>,
-  purecol = <span class='fu'><a href='https://rdrr.io/r/base/stop.html'>stop</a></span>(<span class='st'>"pure component colors needed."</span>),
-  mapping = <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes_.html'>aes_string</a></span>(x = <span class='st'>"x"</span>, y = <span class='st'>"y"</span>, fill = <span class='st'>"spc"</span>),
-  <span class='kw'>...</span>,
-  map.tileonly = <span class='fl'>FALSE</span>
-)
+<span class='fu'>qmixtile</span><span class='op'>(</span>
+  <span class='va'>object</span>,
+  purecol <span class='op'>=</span> <span class='kw'><a href='https://rdrr.io/r/base/stop.html'>stop</a></span><span class='op'>(</span><span class='st'>"pure component colors needed."</span><span class='op'>)</span>,
+  mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes_.html'>aes_string</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"x"</span>, y <span class='op'>=</span> <span class='st'>"y"</span>, fill <span class='op'>=</span> <span class='st'>"spc"</span><span class='op'>)</span>,
+  <span class='va'>...</span>,
+  map.tileonly <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span>
 
-<span class='fu'>normalize.colrange</span>(<span class='kw'>x</span>, na.rm = <span class='fl'>TRUE</span>, legend = <span class='fl'>FALSE</span>, n = <span class='fl'>100</span>, <span class='kw'>...</span>)
+<span class='fu'>normalize.colrange</span><span class='op'>(</span><span class='va'>x</span>, na.rm <span class='op'>=</span> <span class='cn'>TRUE</span>, legend <span class='op'>=</span> <span class='cn'>FALSE</span>, n <span class='op'>=</span> <span class='fl'>100</span>, <span class='va'>...</span><span class='op'>)</span>
 
-<span class='fu'>normalize.range</span>(<span class='kw'>x</span>, na.rm = <span class='fl'>TRUE</span>, legend = <span class='fl'>FALSE</span>, n = <span class='fl'>100</span>, <span class='kw'>...</span>)
+<span class='fu'>normalize.range</span><span class='op'>(</span><span class='va'>x</span>, na.rm <span class='op'>=</span> <span class='cn'>TRUE</span>, legend <span class='op'>=</span> <span class='cn'>FALSE</span>, n <span class='op'>=</span> <span class='fl'>100</span>, <span class='va'>...</span><span class='op'>)</span>
 
-<span class='fu'>normalize.null</span>(<span class='kw'>x</span>, na.rm = <span class='fl'>TRUE</span>, legend = <span class='fl'>FALSE</span>, n = <span class='fl'>100</span>, <span class='kw'>...</span>)
+<span class='fu'>normalize.null</span><span class='op'>(</span><span class='va'>x</span>, na.rm <span class='op'>=</span> <span class='cn'>TRUE</span>, legend <span class='op'>=</span> <span class='cn'>FALSE</span>, n <span class='op'>=</span> <span class='fl'>100</span>, <span class='va'>...</span><span class='op'>)</span>
 
-<span class='fu'>normalize.minmax</span>(<span class='kw'>x</span>, min = <span class='fl'>0</span>, max = <span class='fl'>1</span>, legend = <span class='fl'>FALSE</span>, n = <span class='fl'>100</span>, <span class='kw'>...</span>)
+<span class='fu'>normalize.minmax</span><span class='op'>(</span><span class='va'>x</span>, min <span class='op'>=</span> <span class='fl'>0</span>, max <span class='op'>=</span> <span class='fl'>1</span>, legend <span class='op'>=</span> <span class='cn'>FALSE</span>, n <span class='op'>=</span> <span class='fl'>100</span>, <span class='va'>...</span><span class='op'>)</span>
 
-<span class='fu'>qmixlegend</span>(
-  <span class='kw'>x</span>,
-  <span class='kw'>purecol</span>,
-  dx = <span class='fl'>0.33</span>,
-  ny = <span class='fl'>100</span>,
-  labels = <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='kw'>purecol</span>),
-  normalize = <span class='kw'>normalize.colrange</span>,
-  <span class='kw'>...</span>
-)
+<span class='fu'>qmixlegend</span><span class='op'>(</span>
+  <span class='va'>x</span>,
+  <span class='va'>purecol</span>,
+  dx <span class='op'>=</span> <span class='fl'>0.33</span>,
+  ny <span class='op'>=</span> <span class='fl'>100</span>,
+  labels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>purecol</span><span class='op'>)</span>,
+  normalize <span class='op'>=</span> <span class='va'>normalize.colrange</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span>
 
-<span class='fu'>colmix.rgb</span>(
-  <span class='kw'>x</span>,
-  <span class='kw'>purecol</span>,
-  against = <span class='fl'>1</span>,
-  sub = <span class='fl'>TRUE</span>,
-  normalize = <span class='kw'>normalize.colrange</span>,
-  <span class='kw'>...</span>
-)</pre>
+<span class='fu'>colmix.rgb</span><span class='op'>(</span>
+  <span class='va'>x</span>,
+  <span class='va'>purecol</span>,
+  against <span class='op'>=</span> <span class='fl'>1</span>,
+  sub <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  normalize <span class='op'>=</span> <span class='va'>normalize.colrange</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -366,23 +366,23 @@ wavelength is used</p></td>
     <p>Claudia Beleites</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>qplotspc</span>(<span class='kw'>flu</span>)
+    <pre class="examples"><div class='input'><span class='fu'>qplotspc</span><span class='op'>(</span><span class='va'>flu</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='warning'>Warning: Function 'qplotspc' is deprecated. </span>
 #&gt; <span class='warning'>Use function 'qplotspc' from package 'hySpc.ggplot2' instead.</span>
 #&gt; <span class='warning'>https://r-hyperspec.github.io/hySpc.ggplot2</span></div><div class='img'><img src='hyperSpec-deprecated-ggplot2-1.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='fu'>qplotmap</span>(<span class='kw'>faux_cell</span>[, , <span class='fl'>1200</span>])
+<span class='fu'>qplotmap</span><span class='op'>(</span><span class='va'>faux_cell</span><span class='op'>[</span>, , <span class='fl'>1200</span><span class='op'>]</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='warning'>Warning: Function 'qplotmap' is deprecated. </span>
 #&gt; <span class='warning'>Use function 'qplotmap' from package 'hySpc.ggplot2' instead.</span>
 #&gt; <span class='warning'>https://r-hyperspec.github.io/hySpc.ggplot2</span></div><div class='img'><img src='hyperSpec-deprecated-ggplot2-2.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='fu'>qplotc</span>(<span class='kw'>flu</span>)
+<span class='fu'>qplotc</span><span class='op'>(</span><span class='va'>flu</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='warning'>Warning: Function 'qplotc' is deprecated. </span>
 #&gt; <span class='warning'>Use function 'qplotc' from package 'hySpc.ggplot2' instead.</span>
 #&gt; <span class='warning'>https://r-hyperspec.github.io/hySpc.ggplot2</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Intensity at first wavelengh only is used.</span></div><div class='img'><img src='hyperSpec-deprecated-ggplot2-3.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='kw'>faux_cell</span> <span class='op'>&lt;-</span> <span class='kw'>faux_cell</span> <span class='op'>-</span> <span class='fu'><a href='spc.fit.poly.html'>spc.fit.poly.below</a></span>(<span class='kw'>faux_cell</span>)
+<span class='va'>faux_cell</span> <span class='op'>&lt;-</span> <span class='va'>faux_cell</span> <span class='op'>-</span> <span class='fu'><a href='spc.fit.poly.html'>spc.fit.poly.below</a></span><span class='op'>(</span><span class='va'>faux_cell</span><span class='op'>)</span>
 
-<span class='fu'>qplotmixmap</span>(<span class='kw'>faux_cell</span> [, , <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>800</span>, <span class='fl'>1200</span>, <span class='fl'>1500</span>)],
-  purecol = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(A = <span class='st'>"green4"</span>, B = <span class='st'>"yellow"</span>, C = <span class='st'>"royalblue"</span>)
-)
+<span class='fu'>qplotmixmap</span><span class='op'>(</span><span class='va'>faux_cell</span> <span class='op'>[</span>, , <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>800</span>, <span class='fl'>1200</span>, <span class='fl'>1500</span><span class='op'>)</span><span class='op'>]</span>,
+  purecol <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>A <span class='op'>=</span> <span class='st'>"green4"</span>, B <span class='op'>=</span> <span class='st'>"yellow"</span>, C <span class='op'>=</span> <span class='st'>"royalblue"</span><span class='op'>)</span>
+<span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='warning'>Warning: Function 'qplotmixmap' is deprecated. </span>
 #&gt; <span class='warning'>Use function 'qplotmixmap' from package 'hySpc.ggplot2' instead.</span>
 #&gt; <span class='warning'>https://r-hyperspec.github.io/hySpc.ggplot2</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 300 rows containing missing values (geom_point).</span></div><div class='img'><img src='hyperSpec-deprecated-ggplot2-4.png' alt='' width='466' height='288' /></div><div class='input'>
@@ -402,7 +402,7 @@ wavelength is used</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

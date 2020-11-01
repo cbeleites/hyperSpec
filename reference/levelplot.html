@@ -166,31 +166,31 @@ value of each spectrum is plotted. Spectra may be identified by mouse click." />
 value of each spectrum is plotted. Spectra may be identified by mouse click.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>plotmap</span>(<span class='kw'>object</span>, model = <span class='kw'>spc</span> <span class='op'>~</span> <span class='kw'>x</span> <span class='op'>*</span> <span class='kw'>y</span>, func = <span class='kw'>mean</span>, func.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(), <span class='kw'>...</span>)
+    <pre class="usage"><span class='fu'>plotmap</span><span class='op'>(</span><span class='va'>object</span>, model <span class='op'>=</span> <span class='va'>spc</span> <span class='op'>~</span> <span class='va'>x</span> <span class='op'>*</span> <span class='va'>y</span>, func <span class='op'>=</span> <span class='va'>mean</span>, func.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S4 method for hyperSpec,missing</span>
-<span class='fu'>levelplot</span>(<span class='kw'>x</span>, <span class='kw'>data</span>, <span class='kw'>...</span>)
+<span class='fu'>levelplot</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>data</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S4 method for formula,hyperSpec</span>
-<span class='fu'>levelplot</span>(
-  <span class='kw'>x</span>,
-  <span class='kw'>data</span>,
-  transform.factor = <span class='fl'>TRUE</span>,
-  <span class='kw'>...</span>,
-  contour = <span class='fl'>FALSE</span>,
-  useRaster = <span class='op'>!</span><span class='kw'>contour</span>
-)
+<span class='fu'>levelplot</span><span class='op'>(</span>
+  <span class='va'>x</span>,
+  <span class='va'>data</span>,
+  transform.factor <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  <span class='va'>...</span>,
+  contour <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  useRaster <span class='op'>=</span> <span class='op'>!</span><span class='va'>contour</span>
+<span class='op'>)</span>
 
-<span class='fu'>map.identify</span>(
-  <span class='kw'>object</span>,
-  model = <span class='kw'>spc</span> <span class='op'>~</span> <span class='kw'>x</span> <span class='op'>*</span> <span class='kw'>y</span>,
-  voronoi = <span class='fl'>FALSE</span>,
-  <span class='kw'>...</span>,
-  tol = <span class='fl'>0.02</span>,
-  warn = <span class='fl'>TRUE</span>
-)
+<span class='fu'>map.identify</span><span class='op'>(</span>
+  <span class='va'>object</span>,
+  model <span class='op'>=</span> <span class='va'>spc</span> <span class='op'>~</span> <span class='va'>x</span> <span class='op'>*</span> <span class='va'>y</span>,
+  voronoi <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  <span class='va'>...</span>,
+  tol <span class='op'>=</span> <span class='fl'>0.02</span>,
+  warn <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span>
 
-<span class='fu'>plotvoronoi</span>(<span class='kw'>object</span>, model = <span class='kw'>spc</span> <span class='op'>~</span> <span class='kw'>x</span> <span class='op'>*</span> <span class='kw'>y</span>, use.tripack = <span class='fl'>FALSE</span>, mix = <span class='fl'>FALSE</span>, <span class='kw'>...</span>)</pre>
+<span class='fu'>plotvoronoi</span><span class='op'>(</span><span class='va'>object</span>, model <span class='op'>=</span> <span class='va'>spc</span> <span class='op'>~</span> <span class='va'>x</span> <span class='op'>*</span> <span class='va'>y</span>, use.tripack <span class='op'>=</span> <span class='cn'>FALSE</span>, mix <span class='op'>=</span> <span class='cn'>FALSE</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -306,26 +306,26 @@ window.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='co'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='fu'><a href='https://rdrr.io/r/utils/vignette.html'>vignette</a></span>(<span class='kw'>plotting</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/vignette.html'>vignette</a></span>(<span class='kw'>hyperSpec</span>)
-}
+<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/vignette.html'>vignette</a></span><span class='op'>(</span><span class='va'>plotting</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/vignette.html'>vignette</a></span><span class='op'>(</span><span class='va'>hyperSpec</span><span class='op'>)</span>
+<span class='op'>}</span>
 
-<span class='fu'>levelplot</span>(<span class='kw'>spc</span> <span class='op'>~</span> <span class='kw'>y</span> <span class='op'>*</span> <span class='kw'>x</span>, <span class='kw'>faux_cell</span>[, , <span class='fl'>1003</span>]) <span class='co'># properly rotated</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: device support for raster images unknown, ignoring 'raster=TRUE'</span></div><div class='img'><img src='levelplot-1.png' alt='' width='466' height='288' /></div><div class='input'><span class='fu'>plotmap</span>(<span class='kw'>faux_cell</span>[, , <span class='fl'>1003</span>])
+<span class='fu'>levelplot</span><span class='op'>(</span><span class='va'>spc</span> <span class='op'>~</span> <span class='va'>y</span> <span class='op'>*</span> <span class='va'>x</span>, <span class='va'>faux_cell</span><span class='op'>[</span>, , <span class='fl'>1003</span><span class='op'>]</span><span class='op'>)</span> <span class='co'># properly rotated</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: device support for raster images unknown, ignoring 'raster=TRUE'</span></div><div class='img'><img src='levelplot-1.png' alt='' width='466' height='288' /></div><div class='input'><span class='fu'>plotmap</span><span class='op'>(</span><span class='va'>faux_cell</span><span class='op'>[</span>, , <span class='fl'>1003</span><span class='op'>]</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='warning'>Warning: device support for raster images unknown, ignoring 'raster=TRUE'</span></div><div class='img'><img src='levelplot-2.png' alt='' width='466' height='288' /></div><div class='input'>
 <span class='co'># plot spectra matrix</span>
-<span class='fu'>levelplot</span>(<span class='kw'>spc</span> <span class='op'>~</span> <span class='kw'>.wavelength</span> <span class='op'>*</span> <span class='kw'>t</span>, <span class='kw'>laser</span>, contour = <span class='fl'>TRUE</span>, col = <span class='st'>"#00000080"</span>)
+<span class='fu'>levelplot</span><span class='op'>(</span><span class='va'>spc</span> <span class='op'>~</span> <span class='va'>.wavelength</span> <span class='op'>*</span> <span class='va'>t</span>, <span class='va'>laser</span>, contour <span class='op'>=</span> <span class='cn'>TRUE</span>, col <span class='op'>=</span> <span class='st'>"#00000080"</span><span class='op'>)</span>
 </div><div class='img'><img src='levelplot-3.png' alt='' width='466' height='288' /></div><div class='input'><span class='co'># see also plotmat</span>
 
-<span class='fu'>plotmap</span>(<span class='kw'>faux_cell</span>, <span class='kw'>region</span> <span class='op'>~</span> <span class='kw'>x</span> <span class='op'>*</span> <span class='kw'>y</span>)
+<span class='fu'>plotmap</span><span class='op'>(</span><span class='va'>faux_cell</span>, <span class='va'>region</span> <span class='op'>~</span> <span class='va'>x</span> <span class='op'>*</span> <span class='va'>y</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='warning'>Warning: device support for raster images unknown, ignoring 'raster=TRUE'</span></div><div class='img'><img src='levelplot-4.png' alt='' width='466' height='288' /></div><div class='input'>
 <span class='co'># Voronoi plots</span>
-<span class='kw'>smpl</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='kw'>faux_cell</span>, <span class='fl'>300</span>)
-<span class='fu'>plotmap</span>(<span class='kw'>smpl</span>, <span class='kw'>region</span> <span class='op'>~</span> <span class='kw'>x</span> <span class='op'>*</span> <span class='kw'>y</span>)
-</div><div class='output co'>#&gt; <span class='warning'>Warning: device support for raster images unknown, ignoring 'raster=TRUE'</span></div><div class='img'><img src='levelplot-5.png' alt='' width='466' height='288' /></div><div class='input'><span class='co'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/library.html'>require</a></span>(<span class='kw'>tripack</span>)) {
-  <span class='fu'>plotvoronoi</span>(<span class='kw'>smpl</span>, <span class='kw'>region</span> <span class='op'>~</span> <span class='kw'>x</span> <span class='op'>*</span> <span class='kw'>y</span>)
-}
+<span class='va'>smpl</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span><span class='op'>(</span><span class='va'>faux_cell</span>, <span class='fl'>300</span><span class='op'>)</span>
+<span class='fu'>plotmap</span><span class='op'>(</span><span class='va'>smpl</span>, <span class='va'>region</span> <span class='op'>~</span> <span class='va'>x</span> <span class='op'>*</span> <span class='va'>y</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: device support for raster images unknown, ignoring 'raster=TRUE'</span></div><div class='img'><img src='levelplot-5.png' alt='' width='466' height='288' /></div><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='va'>tripack</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='fu'>plotvoronoi</span><span class='op'>(</span><span class='va'>smpl</span>, <span class='va'>region</span> <span class='op'>~</span> <span class='va'>x</span> <span class='op'>*</span> <span class='va'>y</span><span class='op'>)</span>
+<span class='op'>}</span>
 </div><div class='output co'>#&gt; <span class='message'>Loading required package: tripack</span></div><div class='output co'>#&gt; <span class='message'>Loading required namespace: deldir</span></div><div class='output co'>#&gt; <span class='warning'>Warning: device support for raster images unknown, ignoring 'raster=TRUE'</span></div><div class='output co'>#&gt; <span class='message'></span>
 #&gt; <span class='message'>     PLEASE NOTE:  The components "delsgs" and "summary" of the</span>
 #&gt; <span class='message'> object returned by deldir() are now DATA FRAMES rather than</span>
@@ -335,12 +335,20 @@ window.</p>
 #&gt; <span class='message'>     PLEASE NOTE: The process that deldir() uses for determining</span>
 #&gt; <span class='message'> duplicated points has changed from that used in version</span>
 #&gt; <span class='message'> 0.0-9 of this package (and previously). See help("deldir").</span>
-#&gt; <span class='message'></span></div><div class='img'><img src='levelplot-6.png' alt='' width='466' height='288' /></div><div class='input'><span class='co'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/library.html'>require</a></span>(<span class='kw'>deldir</span>)) {
-  <span class='fu'>plotvoronoi</span>(<span class='kw'>smpl</span>, <span class='kw'>region</span> <span class='op'>~</span> <span class='kw'>x</span> <span class='op'>*</span> <span class='kw'>y</span>,
-    use.tripack = <span class='fl'>FALSE</span>
-  )
-}
-</div><div class='output co'>#&gt; <span class='message'>Loading required package: deldir</span></div><div class='output co'>#&gt; <span class='message'>deldir 0.1-28</span></div><div class='output co'>#&gt; <span class='warning'>Warning: device support for raster images unknown, ignoring 'raster=TRUE'</span></div><div class='img'><img src='levelplot-7.png' alt='' width='466' height='288' /></div></pre>
+#&gt; <span class='message'></span></div><div class='img'><img src='levelplot-6.png' alt='' width='466' height='288' /></div><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='va'>deldir</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='fu'>plotvoronoi</span><span class='op'>(</span><span class='va'>smpl</span>, <span class='va'>region</span> <span class='op'>~</span> <span class='va'>x</span> <span class='op'>*</span> <span class='va'>y</span>,
+    use.tripack <span class='op'>=</span> <span class='cn'>FALSE</span>
+  <span class='op'>)</span>
+<span class='op'>}</span>
+</div><div class='output co'>#&gt; <span class='message'>Loading required package: deldir</span></div><div class='output co'>#&gt; <span class='message'>deldir 0.1-29</span></div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>     Please note that the arguments "col" and </span>
+#&gt; <span class='message'>     "lty" of plot.deldir() have had their </span>
+#&gt; <span class='message'>     names changed to "cmpnt_col" and "cmpnt_lty" </span>
+#&gt; <span class='message'>     respectively, basically to allow "col" and </span>
+#&gt; <span class='message'>     and "lty" to be passed as "..." arguments. </span>
+#&gt; <span class='message'>     Also the "plotit" argument of deldir() has </span>
+#&gt; <span class='message'>     been changed to (simply) "plot". </span>
+#&gt; <span class='message'>     See the help for plot.deldir() and deldir().</span></div><div class='output co'>#&gt; <span class='warning'>Warning: device support for raster images unknown, ignoring 'raster=TRUE'</span></div><div class='img'><img src='levelplot-7.png' alt='' width='466' height='288' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -356,7 +364,7 @@ window.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

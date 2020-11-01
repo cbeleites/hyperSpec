@@ -166,33 +166,33 @@ in a plot produced by plotspc()." />
 in a plot produced by <code><a href='plotspc.html'>plotspc()</a></code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>spc.identify</span>(
-  <span class='kw'>x</span>,
-  y = <span class='kw'>NULL</span>,
-  wavelengths = <span class='kw'>NULL</span>,
-  ispc = <span class='kw'>NULL</span>,
-  tol.wl = <span class='fu'><a href='https://rdrr.io/r/base/diff.html'>diff</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/range.html'>range</a></span>(<span class='kw'>x</span>))<span class='op'>/</span><span class='fl'>200</span>,
-  tol.spc = <span class='fu'><a href='https://rdrr.io/r/base/diff.html'>diff</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/range.html'>range</a></span>(<span class='kw'>y</span>))<span class='op'>/</span><span class='fl'>50</span>,
-  point.fn = <span class='kw'>spc.point.max</span>,
-  formatter = <span class='kw'>spc.label.default</span>,
-  <span class='kw'>...</span>,
-  cex = <span class='fl'>0.7</span>,
-  adj = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>0.5</span>),
-  srt = <span class='fl'>90</span>,
-  warn = <span class='fl'>TRUE</span>
-)
+    <pre class="usage"><span class='fu'>spc.identify</span><span class='op'>(</span>
+  <span class='va'>x</span>,
+  y <span class='op'>=</span> <span class='cn'>NULL</span>,
+  wavelengths <span class='op'>=</span> <span class='cn'>NULL</span>,
+  ispc <span class='op'>=</span> <span class='cn'>NULL</span>,
+  tol.wl <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/diff.html'>diff</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/range.html'>range</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>)</span><span class='op'>/</span><span class='fl'>200</span>,
+  tol.spc <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/diff.html'>diff</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/range.html'>range</a></span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span><span class='op'>)</span><span class='op'>/</span><span class='fl'>50</span>,
+  point.fn <span class='op'>=</span> <span class='va'>spc.point.max</span>,
+  formatter <span class='op'>=</span> <span class='va'>spc.label.default</span>,
+  <span class='va'>...</span>,
+  cex <span class='op'>=</span> <span class='fl'>0.7</span>,
+  adj <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>0.5</span><span class='op'>)</span>,
+  srt <span class='op'>=</span> <span class='fl'>90</span>,
+  warn <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span>
 
-<span class='fu'>spc.point.max</span>(<span class='kw'>wl</span>, <span class='kw'>spc</span>, <span class='kw'>wlclick</span>)
+<span class='fu'>spc.point.max</span><span class='op'>(</span><span class='va'>wl</span>, <span class='va'>spc</span>, <span class='va'>wlclick</span><span class='op'>)</span>
 
-<span class='fu'>spc.point.default</span>(<span class='kw'>wl</span>, <span class='kw'>spc</span>, <span class='kw'>wlclick</span>)
+<span class='fu'>spc.point.default</span><span class='op'>(</span><span class='va'>wl</span>, <span class='va'>spc</span>, <span class='va'>wlclick</span><span class='op'>)</span>
 
-<span class='fu'>spc.point.min</span>(<span class='kw'>wl</span>, <span class='kw'>spc</span>, <span class='kw'>wlclick</span>)
+<span class='fu'>spc.point.min</span><span class='op'>(</span><span class='va'>wl</span>, <span class='va'>spc</span>, <span class='va'>wlclick</span><span class='op'>)</span>
 
-<span class='fu'>spc.point.sqr</span>(<span class='kw'>wl</span>, <span class='kw'>spc</span>, <span class='kw'>wlclick</span>, delta = <span class='fl'>1L</span>)
+<span class='fu'>spc.point.sqr</span><span class='op'>(</span><span class='va'>wl</span>, <span class='va'>spc</span>, <span class='va'>wlclick</span>, delta <span class='op'>=</span> <span class='fl'>1L</span><span class='op'>)</span>
 
-<span class='fu'>spc.label.default</span>(<span class='kw'>ispc</span>, <span class='kw'>wl</span>, <span class='kw'>spc</span>, digits = <span class='fl'>3</span>)
+<span class='fu'>spc.label.default</span><span class='op'>(</span><span class='va'>ispc</span>, <span class='va'>wl</span>, <span class='va'>spc</span>, digits <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>
 
-<span class='fu'>spc.label.wlonly</span>(<span class='kw'>ispc</span>, <span class='kw'>wl</span>, <span class='kw'>spc</span>, digits = <span class='fl'>3</span>)</pre>
+<span class='fu'>spc.label.wlonly</span><span class='op'>(</span><span class='va'>ispc</span>, <span class='va'>wl</span>, <span class='va'>spc</span>, digits <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -349,7 +349,7 @@ not clipped. As a dirty shortcut, <code>xpd = NA</code> may help.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -111,7 +111,8 @@
 
       
 
-      </header><script src="laser_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="laser_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="laser_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
+<script src="laser_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Unstable Laser Emission</h1>
@@ -129,7 +130,7 @@
 <br><a class="author_email" href="mailto:#"></a><a href="mailto:chemometrie@beleites.de" class="email">chemometrie@beleites.de</a>
       </address>
                   
-            <h4 class="date">2020-09-07</h4>
+            <h4 class="date">2020-11-01</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/cbeleites/hyperSpec/blob/master/../vignettes/laser.Rmd"><code>../vignettes/laser.Rmd</code></a></small>
       <div class="hidden name"><code>laser.Rmd</code></div>
@@ -161,20 +162,17 @@ There is no Raman scattering involved in this data, but the Raman software recor
 <a href="#loading-the-data-and-preprocessing" class="anchor"></a><span class="header-section-number">2</span> Loading the Data and Preprocessing</h1>
 <p>Load the <strong>hyperSpec</strong> package.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://cbeleites.github.io/hyperSpec">hyperSpec</a></span>)
-</pre></div>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://cbeleites.github.io/hyperSpec">hyperSpec</a></span><span class="op">)</span></pre></div>
 <p>Read the data files:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit">
 <span class="co"># Renishaw file</span>
-<span class="kw">file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata/laser.txt.gz"</span>, package = <span class="st">"hyperSpec"</span>)
-<span class="kw">laser</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read.txt.Renishaw.html">read.txt.Renishaw</a></span>(<span class="kw">file</span>, data = <span class="st">"ts"</span>)
+<span class="va">file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata/laser.txt.gz"</span>, package <span class="op">=</span> <span class="st">"hyperSpec"</span><span class="op">)</span>
+<span class="va">laser</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read.txt.Renishaw.html">read.txt.Renishaw</a></span><span class="op">(</span><span class="va">file</span>, data <span class="op">=</span> <span class="st">"ts"</span><span class="op">)</span>
 <span class="co">#&gt; Warning: Function 'read.txt.Renishaw' is deprecated. </span>
 <span class="co">#&gt; Please, find alternatives in package 'hySpc.read.txt'</span>
-<span class="co">#&gt; https://r-hyperspec.github.io/hySpc.read.txt</span>
-</pre></div>
+<span class="co">#&gt; https://r-hyperspec.github.io/hySpc.read.txt</span></pre></div>
 <div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">laser</span>, <span class="st">"spcprctl5"</span>)
-</pre></div>
+<span class="fu"><a href="../reference/plot-methods.html">plot</a></span><span class="op">(</span><span class="va">laser</span>, <span class="st">"spcprctl5"</span><span class="op">)</span></pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:rawspc"></span>
 <img src="laser_files/figure-html/rawspc-1.png" alt="The raw laser emission spectra.  "><p class="caption">
@@ -186,9 +184,8 @@ Figure 2.1: The raw laser emission spectra.
 Note that negative numbers in the spectral range specification with the tilde do not exclude the spectral range but rather mean negative values of the wavelength axis.
 The results are shown in figure <a href="#fig:cutspc">2.2</a>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="kw">laser</span> <span class="op">&lt;-</span> <span class="kw">laser</span>[, , <span class="op">-</span><span class="fl">75</span> <span class="op">~</span> <span class="fl">0</span>]
-<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">laser</span>, <span class="st">"spcprctl5"</span>)
-</pre></div>
+<span class="va">laser</span> <span class="op">&lt;-</span> <span class="va">laser</span><span class="op">[</span>, , <span class="op">-</span><span class="fl">75</span> <span class="op">~</span> <span class="fl">0</span><span class="op">]</span>
+<span class="fu"><a href="../reference/plot-methods.html">plot</a></span><span class="op">(</span><span class="va">laser</span>, <span class="st">"spcprctl5"</span><span class="op">)</span></pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:cutspc"></span>
 <img src="laser_files/figure-html/cutspc-1.png" alt="The cut spectra laser emission spectra.   "><p class="caption">
@@ -199,8 +196,7 @@ Figure 2.2: The cut spectra laser emission spectra.
 However, the spectra were taken before calibrating the wavelength axis.
 The band at -50 cm<sup>-1</sup> is known to be at 405 nm.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit">
-<span class="fu"><a href="../reference/wl.html">wl</a></span>(<span class="kw">laser</span>) <span class="op">&lt;-</span> <span class="fu"><a href="../reference/wl.html">wl</a></span>(<span class="kw">laser</span>) <span class="op">+</span> <span class="fl">50</span>
-</pre></div>
+<span class="fu"><a href="../reference/wl.html">wl</a></span><span class="op">(</span><span class="va">laser</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/wl.html">wl</a></span><span class="op">(</span><span class="va">laser</span><span class="op">)</span> <span class="op">+</span> <span class="fl">50</span></pre></div>
 <p>Furthermore, as the spectra are not Raman shift but emission, the wavelength axis should be converted to proper wavelengths in nm.</p>
 <p>The Raman shift is calculated from the wavelength as follows in equation <a href="#eq:laser-eq-1">(2.1)</a> with <span class="math inline">\(\Delta\tilde\nu\)</span> being the Raman shift, and <span class="math inline">\(\lambda_0\)</span> the excitation wavelength for a Raman process, here 405 nm.</p>
 <!-- Equation ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  -->
@@ -222,14 +218,12 @@ The band at -50 cm<sup>-1</sup> is known to be at 405 nm.</p>
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  --></p>
 <p>Taking into account that 1 cm = 10<span class="math inline">\(^7\)</span> nm, we arrive at the new wavelength axis:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit">
-<span class="fu"><a href="../reference/wl.html">wl</a></span>(<span class="kw">laser</span>) <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
-  wl = <span class="fl">1e7</span> <span class="op">/</span> (<span class="fl">1</span> <span class="op">/</span> <span class="fl">405e-7</span> <span class="op">-</span> <span class="fu"><a href="../reference/wl.html">wl</a></span>(<span class="kw">laser</span>)),
-  label = <span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span>(<span class="kw">lambda</span> <span class="op">/</span> <span class="kw">nm</span>)
-)
-</pre></div>
+<span class="fu"><a href="../reference/wl.html">wl</a></span><span class="op">(</span><span class="va">laser</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+  wl <span class="op">=</span> <span class="fl">1e7</span> <span class="op">/</span> <span class="op">(</span><span class="fl">1</span> <span class="op">/</span> <span class="fl">405e-7</span> <span class="op">-</span> <span class="fu"><a href="../reference/wl.html">wl</a></span><span class="op">(</span><span class="va">laser</span><span class="op">)</span><span class="op">)</span>,
+  label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span><span class="op">(</span><span class="va">lambda</span> <span class="op">/</span> <span class="va">nm</span><span class="op">)</span>
+<span class="op">)</span></pre></div>
 <div class="sourceCode" id="cb8"><pre class="downlit">
-<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">laser</span>, <span class="st">"spcprctl5"</span>)
-</pre></div>
+<span class="fu"><a href="../reference/plot-methods.html">plot</a></span><span class="op">(</span><span class="va">laser</span>, <span class="st">"spcprctl5"</span><span class="op">)</span></pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:wlspc"></span>
 <img src="laser_files/figure-html/wlspc-1.png" alt="The spectra with wavelength axis. "><p class="caption">
@@ -238,8 +232,8 @@ Figure 2.3: The spectra with wavelength axis.
 </div>
 <p>Note that the new wavelength axis label is immediately assigned as well.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit">
-<span class="kw">laser</span><span class="op">$</span><span class="kw">filename</span> <span class="op">&lt;-</span> <span class="kw">NULL</span>
-<span class="kw">laser</span>
+<span class="va">laser</span><span class="op">$</span><span class="va">filename</span> <span class="op">&lt;-</span> <span class="cn">NULL</span>
+<span class="va">laser</span>
 <span class="co">#&gt; hyperSpec object</span>
 <span class="co">#&gt;    84 spectra</span>
 <span class="co">#&gt;    2 data columns</span>
@@ -247,8 +241,7 @@ Figure 2.3: The spectra with wavelength axis.
 <span class="co">#&gt; wavelength: lambda/nm [numeric] 404.58 404.62 ... 405.82 </span>
 <span class="co">#&gt; data:  (84 rows x 2 columns)</span>
 <span class="co">#&gt;    1. t: t / s [numeric] 0 2 ... 5722 </span>
-<span class="co">#&gt;    2. spc: I / a.u. [matrix, array36] 164.65 179.72 ... 112.09</span>
-</pre></div>
+<span class="co">#&gt;    2. spc: I / a.u. [matrix, array36] 164.65 179.72 ... 112.09</span></pre></div>
 <p>This version of <code class="sourceCode r">laser</code> datasets is shipped with package <strong>hyperSpec</strong>.</p>
 </div>
 <div id="inspecting-the-time-dependency-of-the-laser-emission" class="section level1">
@@ -257,14 +250,12 @@ Figure 2.3: The spectra with wavelength axis.
 <p>The maxima of the different emission lines encountered during this measurement are at 405.0, 405.1, 405.3, and 405.4 nm (fig. <a href="#fig:markspc">3.1</a>).</p>
 <p>Alternatively they can be extracted from the graph using <code class="sourceCode r"><span class="kw">locator</span>()</code> which reads out the coordinates of the points the user clicks with the mouse (use middle or right click to end the input):</p>
 <div class="sourceCode" id="cb10"><pre class="downlit">
-<span class="kw">wls</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/locator.html">locator</a></span>()<span class="op">$</span><span class="kw">x</span>
-</pre></div>
+<span class="va">wls</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/locator.html">locator</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">x</span></pre></div>
 <div class="sourceCode" id="cb11"><pre class="downlit">
-<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">laser</span>, <span class="st">"spcmeansd"</span>)
+<span class="fu"><a href="../reference/plot-methods.html">plot</a></span><span class="op">(</span><span class="va">laser</span>, <span class="st">"spcmeansd"</span><span class="op">)</span>
 
-<span class="kw">cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"black"</span>, <span class="st">"blue"</span>, <span class="st">"red"</span>, <span class="st">"darkgreen"</span>)
-<span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span>(v = <span class="kw">wls</span>, col = <span class="kw">cols</span>)
-</pre></div>
+<span class="va">cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"black"</span>, <span class="st">"blue"</span>, <span class="st">"red"</span>, <span class="st">"darkgreen"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span><span class="op">(</span>v <span class="op">=</span> <span class="va">wls</span>, col <span class="op">=</span> <span class="va">cols</span><span class="op">)</span></pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:markspc"></span>
 <img src="laser_files/figure-html/markspc-1.png" alt="The spectral position of the bands in the laser emission time series. "><p class="caption">
@@ -276,8 +267,7 @@ In that case, the abscissa needs to be specified in parameter <code class="sourc
 The collection time is stored in column <code class="sourceCode r"><span class="op">$</span>t</code> in seconds from start of the measurement, and can be handed over as the column name.
 The resulting time series are shown in figure <a href="#fig:ts">3.2</a>.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit">
-<span class="fu"><a href="../reference/plotc.html">plotc</a></span>(<span class="kw">laser</span>[, , <span class="kw">wls</span>], <span class="kw">spc</span> <span class="op">~</span> <span class="kw">t</span>, groups = <span class="kw">.wavelength</span>, type = <span class="st">"b"</span>, cex = <span class="fl">0.3</span>, col = <span class="kw">cols</span>)
-</pre></div>
+<span class="fu"><a href="../reference/plotc.html">plotc</a></span><span class="op">(</span><span class="va">laser</span><span class="op">[</span>, , <span class="va">wls</span><span class="op">]</span>, <span class="va">spc</span> <span class="op">~</span> <span class="va">t</span>, groups <span class="op">=</span> <span class="va">.wavelength</span>, type <span class="op">=</span> <span class="st">"b"</span>, cex <span class="op">=</span> <span class="fl">0.3</span>, col <span class="op">=</span> <span class="va">cols</span><span class="op">)</span></pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:ts"></span>
 <img src="laser_files/figure-html/ts-1.png" alt="The time series data.
@@ -288,8 +278,7 @@ The colors in this plot correspond to colors in fig. <a href="#fig:ts">3.2</a>.
 </div>
 <p>Another option is to condition the plot on <span class="math inline">\(\lambda\)</span> <a href="#fig:tsextra">3.3</a>.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit">
-<span class="fu"><a href="../reference/plotc.html">plotc</a></span>(<span class="kw">laser</span>[, , <span class="kw">wls</span>], <span class="kw">spc</span> <span class="op">~</span> <span class="kw">t</span> <span class="op">|</span> <span class="kw">.wavelength</span>, type = <span class="st">"b"</span>, cex = <span class="fl">0.3</span>, col = <span class="st">"black"</span>)
-</pre></div>
+<span class="fu"><a href="../reference/plotc.html">plotc</a></span><span class="op">(</span><span class="va">laser</span><span class="op">[</span>, , <span class="va">wls</span><span class="op">]</span>, <span class="va">spc</span> <span class="op">~</span> <span class="va">t</span> <span class="op">|</span> <span class="va">.wavelength</span>, type <span class="op">=</span> <span class="st">"b"</span>, cex <span class="op">=</span> <span class="fl">0.3</span>, col <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span></pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:tsextra"></span>
 <img src="laser_files/figure-html/tsextra-1.png" alt="The time series plots can also be conditioned on `$.wavelength`{.r}. "><p class="caption">
@@ -302,8 +291,7 @@ Figure 3.3: The time series plots can also be conditioned on <code class="source
 <a href="#sec:plotmat" class="anchor"></a><span class="header-section-number">4</span> False-colour plot of the spectral intensity over wavelength and time</h1>
 <p>Package <strong>hyperSpec</strong> supplies functions to draw the spectral matrix using package <strong>lattice</strong>’s <code class="sourceCode r"><span class="kw">levelplot</span>()</code>.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit">
-<span class="fu"><a href="../reference/plot-methods.html">plot</a></span>(<span class="kw">laser</span>, <span class="st">"mat"</span>, contour = <span class="fl">TRUE</span>, col = <span class="st">"#00000060"</span>)
-</pre></div>
+<span class="fu"><a href="../reference/plot-methods.html">plot</a></span><span class="op">(</span><span class="va">laser</span>, <span class="st">"mat"</span>, contour <span class="op">=</span> <span class="cn">TRUE</span>, col <span class="op">=</span> <span class="st">"#00000060"</span><span class="op">)</span></pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:plotmatr"></span>
 <img src="laser_files/figure-html/plotmatr-1.png" alt="The spectra matrix of the `laser`{.r} data set.
@@ -315,8 +303,7 @@ The ordinate of the plot may be the number of the spectrum accessed by <code cla
 <p>Package <strong>hyperSpec</strong>’s <code class="sourceCode r"><span class="kw">levelplot</span>()</code> method can be used to display the spectra matrix over a data column (instead of the row number): fig. <a href="#fig:plotmatr">4.1</a>, <a href="#fig:plotmatt">4.2</a>.
 Note that the <code class="sourceCode r">hyperSpec</code> object is the <em>second</em> argument to the function (according to the notation in <code class="sourceCode r"><span class="kw">levelplot</span>()</code>).</p>
 <div class="sourceCode" id="cb15"><pre class="downlit">
-<span class="fu">levelplot</span>(<span class="kw">spc</span> <span class="op">~</span> <span class="kw">.wavelength</span> <span class="op">*</span> <span class="kw">t</span>, <span class="kw">laser</span>, contour = <span class="fl">TRUE</span>, col = <span class="st">"#00000080"</span>)
-</pre></div>
+<span class="fu">levelplot</span><span class="op">(</span><span class="va">spc</span> <span class="op">~</span> <span class="va">.wavelength</span> <span class="op">*</span> <span class="va">t</span>, <span class="va">laser</span>, contour <span class="op">=</span> <span class="cn">TRUE</span>, col <span class="op">=</span> <span class="st">"#00000080"</span><span class="op">)</span></pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:plotmatt"></span>
 <img src="laser_files/figure-html/plotmatt-1.png" alt="The spectra matrix of the `laser`{.r} data set.
@@ -333,27 +320,25 @@ The ordinate of the plot may be any extra data column, here <code class="sourceC
 <p>Package <strong>rgl</strong>’s function <code class="sourceCode r"><span class="kw">persp3d</span>()</code> plots a surface in 3d defined by points in x, y, and z.
 Handing over the appropriate data columns of the <code class="sourceCode r">hyperSpec</code> object is easy (fig. <a href="#fig:laser3d">5.1</a>).</p>
 <div class="sourceCode" id="cb16"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://r-forge.r-project.org/projects/rgl">rgl</a></span>)
-</pre></div>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-forge.r-project.org/projects/rgl/">rgl</a></span><span class="op">)</span></pre></div>
 <div class="sourceCode" id="cb17"><pre class="downlit">
-<span class="kw">laser</span> <span class="op">&lt;-</span> <span class="kw">laser</span> [, , <span class="fl">404.8</span> <span class="op">~</span> <span class="fl">405.6</span>] <span class="op">/</span> <span class="fl">10000</span>
-<span class="kw">laser</span><span class="op">$</span><span class="kw">t</span> <span class="op">&lt;-</span> <span class="kw">laser</span><span class="op">$</span><span class="kw">t</span> <span class="op">/</span> <span class="fl">3600</span>
-<span class="kw">cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="fu"><a href="../reference/matlab.palette.html">matlab.palette</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="kw">laser</span>)), <span class="fu"><a href="../reference/ncol,hyperSpec-method.html">nwl</a></span>(<span class="kw">laser</span>))
+<span class="va">laser</span> <span class="op">&lt;-</span> <span class="va">laser</span> <span class="op">[</span>, , <span class="fl">404.8</span> <span class="op">~</span> <span class="fl">405.6</span><span class="op">]</span> <span class="op">/</span> <span class="fl">10000</span>
+<span class="va">laser</span><span class="op">$</span><span class="va">t</span> <span class="op">&lt;-</span> <span class="va">laser</span><span class="op">$</span><span class="va">t</span> <span class="op">/</span> <span class="fl">3600</span>
+<span class="va">cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="../reference/matlab.palette.html">matlab.palette</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">laser</span><span class="op">)</span><span class="op">)</span>, <span class="fu"><a href="../reference/ncol,hyperSpec-method.html">nwl</a></span><span class="op">(</span><span class="va">laser</span><span class="op">)</span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/pkg/rgl/man/surface3d.html">surface3d</a></span>(y = <span class="fu"><a href="../reference/wl.html">wl</a></span>(<span class="kw">laser</span>), x = <span class="kw">laser</span><span class="op">$</span><span class="kw">t</span>, z = <span class="kw">laser</span><span class="op">$</span><span class="kw">spc</span>, col = <span class="kw">cols</span>)
-<span class="fu"><a href="https://rdrr.io/pkg/rgl/man/surface3d.html">surface3d</a></span>(
-  y = <span class="fu"><a href="../reference/wl.html">wl</a></span>(<span class="kw">laser</span>), x = <span class="kw">laser</span><span class="op">$</span><span class="kw">t</span>, z = <span class="kw">laser</span><span class="op">$</span><span class="kw">spc</span> <span class="op">+</span> <span class="fl">.1</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span>(<span class="kw">laser</span>),
-  col = <span class="st">"black"</span>, alpha = <span class="fl">.2</span>, front = <span class="st">"lines"</span>, line_antialias = <span class="fl">TRUE</span>
-)
+<span class="fu"><a href="https://rdrr.io/pkg/rgl/man/surface3d.html">surface3d</a></span><span class="op">(</span>y <span class="op">=</span> <span class="fu"><a href="../reference/wl.html">wl</a></span><span class="op">(</span><span class="va">laser</span><span class="op">)</span>, x <span class="op">=</span> <span class="va">laser</span><span class="op">$</span><span class="va">t</span>, z <span class="op">=</span> <span class="va">laser</span><span class="op">$</span><span class="va">spc</span>, col <span class="op">=</span> <span class="va">cols</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/rgl/man/surface3d.html">surface3d</a></span><span class="op">(</span>
+  y <span class="op">=</span> <span class="fu"><a href="../reference/wl.html">wl</a></span><span class="op">(</span><span class="va">laser</span><span class="op">)</span>, x <span class="op">=</span> <span class="va">laser</span><span class="op">$</span><span class="va">t</span>, z <span class="op">=</span> <span class="va">laser</span><span class="op">$</span><span class="va">spc</span> <span class="op">+</span> <span class="fl">.1</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">laser</span><span class="op">)</span>,
+  col <span class="op">=</span> <span class="st">"black"</span>, alpha <span class="op">=</span> <span class="fl">.2</span>, front <span class="op">=</span> <span class="st">"lines"</span>, line_antialias <span class="op">=</span> <span class="cn">TRUE</span>
+<span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/pkg/rgl/man/aspect3d.html">aspect3d</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">0.25</span>))
+<span class="fu"><a href="https://rdrr.io/pkg/rgl/man/aspect3d.html">aspect3d</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">0.25</span><span class="op">)</span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/pkg/rgl/man/axes3d.html">axes3d</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"x+-"</span>, <span class="st">"y--"</span>, <span class="st">"z--"</span>))
-<span class="fu"><a href="https://rdrr.io/pkg/rgl/man/axes3d.html">axes3d</a></span>(<span class="st">"y--"</span>, nticks = <span class="fl">25</span>, labels = <span class="fl">FALSE</span>)
-<span class="fu"><a href="https://rdrr.io/pkg/rgl/man/axes3d.html">mtext3d</a></span>(<span class="st">"t / h"</span>, <span class="st">"x+-"</span>, line = <span class="fl">2.5</span>)
-<span class="fu"><a href="https://rdrr.io/pkg/rgl/man/axes3d.html">mtext3d</a></span>(<span class="st">"lambda / nm"</span>, <span class="st">"y--"</span>, line = <span class="fl">2.5</span>)
-<span class="fu"><a href="https://rdrr.io/pkg/rgl/man/axes3d.html">mtext3d</a></span>(<span class="st">"I / a.u."</span>, <span class="st">"z--"</span>, line = <span class="fl">2.5</span>)
-</pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/rgl/man/axes3d.html">axes3d</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"x+-"</span>, <span class="st">"y--"</span>, <span class="st">"z--"</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/rgl/man/axes3d.html">axes3d</a></span><span class="op">(</span><span class="st">"y--"</span>, nticks <span class="op">=</span> <span class="fl">25</span>, labels <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/rgl/man/axes3d.html">mtext3d</a></span><span class="op">(</span><span class="st">"t / h"</span>, <span class="st">"x+-"</span>, line <span class="op">=</span> <span class="fl">2.5</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/rgl/man/axes3d.html">mtext3d</a></span><span class="op">(</span><span class="st">"lambda / nm"</span>, <span class="st">"y--"</span>, line <span class="op">=</span> <span class="fl">2.5</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/rgl/man/axes3d.html">mtext3d</a></span><span class="op">(</span><span class="st">"I / a.u."</span>, <span class="st">"z--"</span>, line <span class="op">=</span> <span class="fl">2.5</span><span class="op">)</span></pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:laser3d"></span>
 <img src="laser--rgl-3d.png" alt="The 3d plot of the laser data.  " width="400"><p class="caption">
@@ -365,88 +350,92 @@ Figure 5.1: The 3d plot of the laser data.
 <h1 class="hasAnchor">
 <a href="#session-info" class="anchor"></a>Session Info</h1>
 <div class="sourceCode" id="cb18"><pre class="downlit">
-<span class="kw">sessioninfo</span>::<span class="fu"><a href="https://rdrr.io/pkg/sessioninfo/man/session_info.html">session_info</a></span>(<span class="st">"hyperSpec"</span>)
+<span class="fu">sessioninfo</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/sessioninfo/man/session_info.html">session_info</a></span><span class="op">(</span><span class="st">"hyperSpec"</span><span class="op">)</span>
 <span class="co">#&gt; ─ Session info ───────────────────────────────────────────────────────────────────────────────────</span>
 <span class="co">#&gt;  setting  value                       </span>
-<span class="co">#&gt;  version  R version 4.0.2 (2020-06-22)</span>
-<span class="co">#&gt;  os       macOS Catalina 10.15.6      </span>
+<span class="co">#&gt;  version  R version 4.0.3 (2020-10-10)</span>
+<span class="co">#&gt;  os       macOS Catalina 10.15.7      </span>
 <span class="co">#&gt;  system   x86_64, darwin17.0          </span>
 <span class="co">#&gt;  ui       X11                         </span>
 <span class="co">#&gt;  language (EN)                        </span>
 <span class="co">#&gt;  collate  en_US.UTF-8                 </span>
 <span class="co">#&gt;  ctype    en_US.UTF-8                 </span>
 <span class="co">#&gt;  tz       UTC                         </span>
-<span class="co">#&gt;  date     2020-09-07                  </span>
+<span class="co">#&gt;  date     2020-11-01                  </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; ─ Packages ───────────────────────────────────────────────────────────────────────────────────────</span>
 <span class="co">#&gt;  package        * version    date       lib source        </span>
-<span class="co">#&gt;  assertthat       0.2.1      2019-03-21 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  backports        1.1.9      2020-08-24 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  callr            3.4.3      2020-03-28 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  cli              2.0.2      2020-02-28 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  colorspace       1.4-1      2019-03-18 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  crayon           1.3.4      2017-09-16 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  desc             1.2.0      2018-05-01 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  digest           0.6.25     2020-02-23 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  assertthat       0.2.1      2019-03-21 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  backports        1.1.10     2020-09-15 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  brio             1.1.0      2020-08-31 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  callr            3.5.1      2020-10-13 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  cli              2.1.0      2020-10-12 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  colorspace       1.4-1      2019-03-18 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  crayon           1.3.4      2017-09-16 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  desc             1.2.0      2018-05-01 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  diffobj          0.3.2      2020-10-05 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  digest           0.6.27     2020-10-24 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  dplyr            1.0.2      2020-08-18 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  ellipsis         0.3.1      2020-05-15 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  evaluate         0.14       2019-05-28 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  fansi            0.4.1      2020-01-08 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  farver           2.0.3      2020-01-16 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  generics         0.0.2      2018-11-29 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  ggplot2        * 3.3.2      2020-06-19 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  ellipsis         0.3.1      2020-05-15 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  evaluate         0.14       2019-05-28 [1] CRAN (R 4.0.1)</span>
+<span class="co">#&gt;  fansi            0.4.1      2020-01-08 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  farver           2.0.3      2020-01-16 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  generics         0.1.0      2020-10-31 [1] CRAN (R 4.0.3)</span>
+<span class="co">#&gt;  ggplot2        * 3.3.2      2020-06-19 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  glue             1.4.2      2020-08-27 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  gtable           0.3.0      2019-03-25 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  hyperSpec      * 0.100.0    2020-09-07 [1] local         </span>
-<span class="co">#&gt;  hySpc.testthat   0.2.1.9000 2020-08-31 [1] local         </span>
-<span class="co">#&gt;  isoband          0.2.2      2020-06-20 [1] CRAN (R 4.0.1)</span>
-<span class="co">#&gt;  jpeg             0.1-8.1    2019-10-24 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  labeling         0.3        2014-08-23 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  lattice        * 0.20-41    2020-04-02 [2] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  latticeExtra     0.6-29     2019-12-19 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  lazyeval         0.2.2      2019-03-15 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  lifecycle        0.2.0      2020-03-06 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  magrittr         1.5        2014-11-22 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  MASS             7.3-51.6   2020-04-26 [2] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  Matrix           1.2-18     2019-11-27 [2] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  mgcv             1.8-31     2019-11-09 [2] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  munsell          0.5.0      2018-06-12 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  nlme             3.1-148    2020-05-24 [2] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  gtable           0.3.0      2019-03-25 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  hyperSpec      * 0.100.0    2020-11-01 [1] local         </span>
+<span class="co">#&gt;  hySpc.testthat   0.2.1.9000 2020-11-01 [1] local         </span>
+<span class="co">#&gt;  isoband          0.2.2      2020-06-20 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  jpeg             0.1-8.1    2019-10-24 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  jsonlite         1.7.1      2020-09-07 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  labeling         0.4.2      2020-10-20 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  lattice        * 0.20-41    2020-04-02 [2] CRAN (R 4.0.3)</span>
+<span class="co">#&gt;  latticeExtra     0.6-29     2019-12-19 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  lazyeval         0.2.2      2019-03-15 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  lifecycle        0.2.0      2020-03-06 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  magrittr         1.5        2014-11-22 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  MASS             7.3-53     2020-09-09 [2] CRAN (R 4.0.3)</span>
+<span class="co">#&gt;  Matrix           1.2-18     2019-11-27 [2] CRAN (R 4.0.3)</span>
+<span class="co">#&gt;  mgcv             1.8-33     2020-08-27 [2] CRAN (R 4.0.3)</span>
+<span class="co">#&gt;  munsell          0.5.0      2018-06-12 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  nlme             3.1-149    2020-08-23 [2] CRAN (R 4.0.3)</span>
 <span class="co">#&gt;  pillar           1.4.6      2020-07-10 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  pkgbuild         1.1.0      2020-07-13 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  pkgconfig        2.0.3      2019-09-22 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  pkgload          1.1.0      2020-05-29 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  png              0.1-7      2013-12-03 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  praise           1.0.0      2015-08-11 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  prettyunits      1.1.1      2020-01-24 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  pkgconfig        2.0.3      2019-09-22 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  pkgload          1.1.0      2020-05-29 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  png              0.1-7      2013-12-03 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  praise           1.0.0      2015-08-11 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  prettyunits      1.1.1      2020-01-24 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  processx         3.4.4      2020-09-03 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  ps               1.3.4      2020-08-11 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  purrr            0.3.4      2020-04-17 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  R6               2.4.1      2019-11-12 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  RColorBrewer     1.1-2      2014-12-07 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  rlang            0.4.7      2020-07-09 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  rprojroot        1.3-2      2018-01-03 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  rstudioapi       0.11       2020-02-07 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  scales           1.1.1      2020-05-11 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  testthat         2.3.2      2020-03-02 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  tibble           3.0.3      2020-07-10 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  tidyselect       1.1.0      2020-05-11 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  utf8             1.1.4      2018-05-24 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  ps               1.4.0      2020-10-07 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  purrr            0.3.4      2020-04-17 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  R6               2.5.0      2020-10-28 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  RColorBrewer     1.1-2      2014-12-07 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  rematch2         2.1.2      2020-05-01 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  rlang            0.4.8      2020-10-08 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  rprojroot        1.3-2      2018-01-03 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  rstudioapi       0.11       2020-02-07 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  scales           1.1.1      2020-05-11 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  testthat         3.0.0      2020-10-31 [1] CRAN (R 4.0.3)</span>
+<span class="co">#&gt;  tibble           3.0.4      2020-10-12 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  tidyselect       1.1.0      2020-05-11 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  utf8             1.1.4      2018-05-24 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  vctrs            0.3.4      2020-08-29 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  viridisLite      0.3.0      2018-02-01 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  withr            2.2.0      2020-04-20 [1] CRAN (R 4.0.0)</span>
-<span class="co">#&gt;  xml2             1.3.2      2020-04-23 [1] CRAN (R 4.0.0)</span>
+<span class="co">#&gt;  viridisLite      0.3.0      2018-02-01 [1] CRAN (R 4.0.1)</span>
+<span class="co">#&gt;  waldo            0.2.2      2020-10-15 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  withr            2.3.0      2020-09-22 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  xml2             1.3.2      2020-04-23 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [1] /Users/runner/work/_temp/Library</span>
-<span class="co">#&gt; [2] /Library/Frameworks/R.framework/Versions/4.0/Resources/library</span>
-</pre></div>
+<span class="co">#&gt; [2] /Library/Frameworks/R.framework/Versions/4.0/Resources/library</span></pre></div>
 </div>
 <div id="references" class="section level1 unnumbered">
 <h1 class="hasAnchor">
 <a href="#references" class="anchor"></a>References</h1>
 <div id="refs" class="references">
 <div id="ref-R-rgl">
-<p>[1] D. Adler, D. Murdoch, Rgl: 3D visualization using opengl, 2020. <a href="https://CRAN.R-project.org/package=rgl">https://CRAN.R-project.org/package=rgl</a>.</p>
+<p>[1] D. Adler, D. Murdoch, Rgl: 3D visualization using opengl, 2020. <a href="https://r-forge.r-project.org/projects/rgl/">https://r-forge.r-project.org/projects/rgl/</a>.</p>
 </div>
 </div>
 </div>
@@ -467,7 +456,7 @@ Figure 5.1: The 3d plot of the laser data.
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

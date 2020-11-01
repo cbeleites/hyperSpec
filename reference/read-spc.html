@@ -164,16 +164,16 @@
     <p>These functions allow to import Thermo Galactic/Grams <code>.spc</code> files.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>read.spc</span>(
-  <span class='kw'>filename</span>,
-  keys.hdr2data = <span class='fl'>FALSE</span>,
-  keys.log2data = <span class='fl'>FALSE</span>,
-  log.txt = <span class='fl'>TRUE</span>,
-  log.bin = <span class='fl'>FALSE</span>,
-  log.disk = <span class='fl'>FALSE</span>,
-  hdr = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  no.object = <span class='fl'>FALSE</span>
-)</pre>
+    <pre class="usage"><span class='fu'>read.spc</span><span class='op'>(</span>
+  <span class='va'>filename</span>,
+  keys.hdr2data <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  keys.log2data <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  log.txt <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  log.bin <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  log.disk <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  hdr <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
+  no.object <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -241,19 +241,19 @@ files.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'>## get the sample .spc files from ftirsearch.com (see above)</span>
-<span class='co'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 <span class='co'># single spectrum</span>
-<span class='kw'>spc</span> <span class='op'>&lt;-</span> <span class='fu'>read.spc</span>(<span class='st'>"BENZENE.SPC"</span>)
-<span class='fu'><a href='plot-methods.html'>plot</a></span>(<span class='kw'>spc</span>)
+<span class='va'>spc</span> <span class='op'>&lt;-</span> <span class='fu'>read.spc</span><span class='op'>(</span><span class='st'>"BENZENE.SPC"</span><span class='op'>)</span>
+<span class='fu'><a href='plot-methods.html'>plot</a></span><span class='op'>(</span><span class='va'>spc</span><span class='op'>)</span>
 
 <span class='co'># multi-spectra .spc file with common wavelength axis</span>
-<span class='kw'>spc</span> <span class='op'>&lt;-</span> <span class='fu'>read.spc</span>(<span class='st'>"IG_MULTI.SPC"</span>)
-<span class='kw'>spc</span>
+<span class='va'>spc</span> <span class='op'>&lt;-</span> <span class='fu'>read.spc</span><span class='op'>(</span><span class='st'>"IG_MULTI.SPC"</span><span class='op'>)</span>
+<span class='va'>spc</span>
 
 <span class='co'># multi-spectra .spc file with individual wavelength axes</span>
-<span class='kw'>spc</span> <span class='op'>&lt;-</span> <span class='fu'>read.spc</span>(<span class='st'>"BARBITUATES.SPC"</span>)
-<span class='fu'><a href='plot-methods.html'>plot</a></span>(<span class='kw'>spc</span>[[<span class='fl'>1</span>]], lines.args = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(type = <span class='st'>"h"</span>))
-}
+<span class='va'>spc</span> <span class='op'>&lt;-</span> <span class='fu'>read.spc</span><span class='op'>(</span><span class='st'>"BARBITUATES.SPC"</span><span class='op'>)</span>
+<span class='fu'><a href='plot-methods.html'>plot</a></span><span class='op'>(</span><span class='va'>spc</span><span class='op'>[[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>]</span>, lines.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>type <span class='op'>=</span> <span class='st'>"h"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='op'>}</span>
 
 </div></pre>
   </div>
@@ -271,7 +271,7 @@ files.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

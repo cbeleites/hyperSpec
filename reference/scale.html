@@ -165,7 +165,7 @@
     </div>
 
     <pre class="usage"><span class='co'># S4 method for hyperSpec</span>
-<span class='fu'>scale</span>(<span class='kw'>x</span>, center = <span class='fl'>TRUE</span>, scale = <span class='fl'>TRUE</span>)</pre>
+<span class='fu'>scale</span><span class='op'>(</span><span class='va'>x</span>, center <span class='op'>=</span> <span class='cn'>TRUE</span>, scale <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -207,19 +207,19 @@ can specify the center spectrum.</p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'>## mean center &amp; variance scale</span>
-<span class='kw'>tmp</span> <span class='op'>&lt;-</span> <span class='fu'>scale</span>(<span class='kw'>faux_cell</span>)
-<span class='fu'><a href='plot-methods.html'>plot</a></span>(<span class='kw'>tmp</span>, <span class='st'>"spcmeansd"</span>)
-</div><div class='input'><span class='fu'><a href='plot-methods.html'>plot</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='kw'>tmp</span>, <span class='fl'>5</span>), add = <span class='fl'>TRUE</span>, col = <span class='fl'>2</span>)
+<span class='va'>tmp</span> <span class='op'>&lt;-</span> <span class='fu'>scale</span><span class='op'>(</span><span class='va'>faux_cell</span><span class='op'>)</span>
+<span class='fu'><a href='plot-methods.html'>plot</a></span><span class='op'>(</span><span class='va'>tmp</span>, <span class='st'>"spcmeansd"</span><span class='op'>)</span>
+</div><div class='input'><span class='fu'><a href='plot-methods.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span><span class='op'>(</span><span class='va'>tmp</span>, <span class='fl'>5</span><span class='op'>)</span>, add <span class='op'>=</span> <span class='cn'>TRUE</span>, col <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
 </div><div class='img'><img src='scale-1.png' alt='' width='466' height='288' /></div><div class='input'>
 <span class='co'>## mean center only</span>
-<span class='kw'>tmp</span> <span class='op'>&lt;-</span> <span class='fu'>scale</span>(<span class='kw'>faux_cell</span>, scale = <span class='fl'>FALSE</span>)
-<span class='fu'><a href='plot-methods.html'>plot</a></span>(<span class='kw'>tmp</span>, <span class='st'>"spcmeansd"</span>)
-</div><div class='input'><span class='fu'><a href='plot-methods.html'>plot</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='kw'>tmp</span>, <span class='fl'>5</span>), add = <span class='fl'>TRUE</span>, col = <span class='fl'>2</span>)
+<span class='va'>tmp</span> <span class='op'>&lt;-</span> <span class='fu'>scale</span><span class='op'>(</span><span class='va'>faux_cell</span>, scale <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+<span class='fu'><a href='plot-methods.html'>plot</a></span><span class='op'>(</span><span class='va'>tmp</span>, <span class='st'>"spcmeansd"</span><span class='op'>)</span>
+</div><div class='input'><span class='fu'><a href='plot-methods.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span><span class='op'>(</span><span class='va'>tmp</span>, <span class='fl'>5</span><span class='op'>)</span>, add <span class='op'>=</span> <span class='cn'>TRUE</span>, col <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
 </div><div class='img'><img src='scale-2.png' alt='' width='466' height='288' /></div><div class='input'>
 <span class='co'>## custom center</span>
-<span class='kw'>tmp</span> <span class='op'>&lt;-</span> <span class='fu'><a href='sweep.html'>sweep</a></span>(<span class='kw'>faux_cell</span>, <span class='fl'>1</span>, <span class='kw'>mean</span>, <span class='kw'>`/`</span>)
-<span class='fu'><a href='plot-methods.html'>plot</a></span>(<span class='kw'>tmp</span>, <span class='st'>"spcmeansd"</span>)
-</div><div class='img'><img src='scale-3.png' alt='' width='466' height='288' /></div><div class='input'><span class='kw'>tmp</span> <span class='op'>&lt;-</span> <span class='fu'>scale</span>(<span class='kw'>tmp</span>, center = <span class='fu'><a href='https://rdrr.io/r/stats/quantile.html'>quantile</a></span>(<span class='kw'>tmp</span>, <span class='fl'>.05</span>), scale = <span class='fl'>FALSE</span>)
+<span class='va'>tmp</span> <span class='op'>&lt;-</span> <span class='fu'><a href='sweep.html'>sweep</a></span><span class='op'>(</span><span class='va'>faux_cell</span>, <span class='fl'>1</span>, <span class='va'>mean</span>, <span class='va'>`/`</span><span class='op'>)</span>
+<span class='fu'><a href='plot-methods.html'>plot</a></span><span class='op'>(</span><span class='va'>tmp</span>, <span class='st'>"spcmeansd"</span><span class='op'>)</span>
+</div><div class='img'><img src='scale-3.png' alt='' width='466' height='288' /></div><div class='input'><span class='va'>tmp</span> <span class='op'>&lt;-</span> <span class='fu'>scale</span><span class='op'>(</span><span class='va'>tmp</span>, center <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/quantile.html'>quantile</a></span><span class='op'>(</span><span class='va'>tmp</span>, <span class='fl'>.05</span><span class='op'>)</span>, scale <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -236,7 +236,7 @@ can specify the center spectrum.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -167,7 +167,7 @@ hyperSpec object is then initialized using the given parameters." />
     </div>
 
     <pre class="usage"><span class='co'># S4 method for hyperSpec</span>
-<span class='fu'>initialize</span>(<span class='kw'>.Object</span>, spc = <span class='kw'>NULL</span>, data = <span class='kw'>NULL</span>, wavelength = <span class='kw'>NULL</span>, labels = <span class='kw'>NULL</span>)</pre>
+<span class='fu'>initialize</span><span class='op'>(</span><span class='va'>.Object</span>, spc <span class='op'>=</span> <span class='cn'>NULL</span>, data <span class='op'>=</span> <span class='cn'>NULL</span>, wavelength <span class='op'>=</span> <span class='cn'>NULL</span>, labels <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -226,7 +226,7 @@ for slot <code>label</code>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>new</span>(<span class='st'>"hyperSpec"</span>)
+<span class='fu'>new</span><span class='op'>(</span><span class='st'>"hyperSpec"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; hyperSpec object
 #&gt;    0 spectra
 #&gt;    1 data columns
@@ -234,18 +234,18 @@ for slot <code>label</code>.</p>
 #&gt; wavelength:  [integer]
 #&gt; data:  (0 rows x 1 columns)
 #&gt;    1. spc:  [matrix, array0]</div><div class='input'>
-<span class='kw'>spc</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>12</span>), ncol = <span class='fl'>4</span>)
-<span class='fu'>new</span>(<span class='st'>"hyperSpec"</span>, spc = <span class='kw'>spc</span>)
+<span class='va'>spc</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>12</span><span class='op'>)</span>, ncol <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span>
+<span class='fu'>new</span><span class='op'>(</span><span class='st'>"hyperSpec"</span>, spc <span class='op'>=</span> <span class='va'>spc</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; hyperSpec object
 #&gt;    3 spectra
 #&gt;    1 data columns
 #&gt;    4 data points / spectrum
 #&gt; wavelength:  [integer] 1 2 3 4 
 #&gt; data:  (3 rows x 1 columns)
-#&gt;    1. spc:  [matrix, array4] -1.075224 -2.553725 ... -0.5495588 </div><div class='input'><span class='fu'>new</span>(<span class='st'>"hyperSpec"</span>,
-  data = <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(x = <span class='kw'>letters</span>[<span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>]),
-  spc = <span class='kw'>spc</span>
-)
+#&gt;    1. spc:  [matrix, array4] -1.075224 -2.553725 ... -0.5495588 </div><div class='input'><span class='fu'>new</span><span class='op'>(</span><span class='st'>"hyperSpec"</span>,
+  data <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>letters</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>]</span><span class='op'>)</span>,
+  spc <span class='op'>=</span> <span class='va'>spc</span>
+<span class='op'>)</span>
 </div><div class='output co'>#&gt; hyperSpec object
 #&gt;    3 spectra
 #&gt;    2 data columns
@@ -254,8 +254,8 @@ for slot <code>label</code>.</p>
 #&gt; data:  (3 rows x 2 columns)
 #&gt;    1. x:  [character] a b c 
 #&gt;    2. spc:  [matrix, array4] -1.075224 -2.553725 ... -0.5495588 </div><div class='input'>
-<span class='fu'><a href='dimnames,hyperSpec-method.html'>colnames</a></span>(<span class='kw'>spc</span>) <span class='op'>&lt;-</span> <span class='fl'>600</span><span class='op'>:</span><span class='fl'>603</span>
-<span class='fu'>new</span>(<span class='st'>"hyperSpec"</span>, spc = <span class='kw'>spc</span>) <span class='co'># wavelength taken from colnames (spc)</span>
+<span class='fu'><a href='dimnames,hyperSpec-method.html'>colnames</a></span><span class='op'>(</span><span class='va'>spc</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fl'>600</span><span class='op'>:</span><span class='fl'>603</span>
+<span class='fu'>new</span><span class='op'>(</span><span class='st'>"hyperSpec"</span>, spc <span class='op'>=</span> <span class='va'>spc</span><span class='op'>)</span> <span class='co'># wavelength taken from colnames (spc)</span>
 </div><div class='output co'>#&gt; hyperSpec object
 #&gt;    3 spectra
 #&gt;    1 data columns
@@ -264,7 +264,7 @@ for slot <code>label</code>.</p>
 #&gt; data:  (3 rows x 1 columns)
 #&gt;    1. spc:  [matrix, array4] -1.075224 -2.553725 ... -0.5495588 </div><div class='input'>
 <span class='co'># given wavelengths precede over colnames of spc</span>
-<span class='fu'>new</span>(<span class='st'>"hyperSpec"</span>, spc = <span class='kw'>spc</span>, wavelength = <span class='fl'>700</span><span class='op'>:</span><span class='fl'>703</span>)
+<span class='fu'>new</span><span class='op'>(</span><span class='st'>"hyperSpec"</span>, spc <span class='op'>=</span> <span class='va'>spc</span>, wavelength <span class='op'>=</span> <span class='fl'>700</span><span class='op'>:</span><span class='fl'>703</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; hyperSpec object
 #&gt;    3 spectra
 #&gt;    1 data columns
@@ -273,17 +273,17 @@ for slot <code>label</code>.</p>
 #&gt; data:  (3 rows x 1 columns)
 #&gt;    1. spc:  [matrix, array4] -1.075224 -2.553725 ... -0.5495588 </div><div class='input'>
 <span class='co'># specifying labels</span>
-<span class='kw'>h</span> <span class='op'>&lt;-</span> <span class='fu'>new</span>(<span class='st'>"hyperSpec"</span>,
-  spc = <span class='kw'>spc</span>, data = <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(pos = <span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>),
-  label = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
-    spc = <span class='st'>"I / a.u."</span>,
-    .wavelength = <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tilde.html'>tilde</a></span>(<span class='kw'>nu</span>) <span class='op'>/</span> <span class='kw'>cm</span><span class='op'>^</span><span class='op'>-</span><span class='fl'>1</span>),
-    pos = <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span>(<span class='st'>"/"</span>(<span class='kw'>x</span>, <span class='kw'>mu</span> <span class='op'>*</span> <span class='kw'>m</span>))
-  )
-)
+<span class='va'>h</span> <span class='op'>&lt;-</span> <span class='fu'>new</span><span class='op'>(</span><span class='st'>"hyperSpec"</span>,
+  spc <span class='op'>=</span> <span class='va'>spc</span>, data <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>pos <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>)</span>,
+  label <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
+    spc <span class='op'>=</span> <span class='st'>"I / a.u."</span>,
+    .wavelength <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tilde.html'>tilde</a></span><span class='op'>(</span><span class='va'>nu</span><span class='op'>)</span> <span class='op'>/</span> <span class='va'>cm</span><span class='op'>^</span><span class='op'>-</span><span class='fl'>1</span><span class='op'>)</span>,
+    pos <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span><span class='op'>(</span><span class='st'>"/"</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>mu</span> <span class='op'>*</span> <span class='va'>m</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='op'>)</span>
+<span class='op'>)</span>
 
-<span class='fu'><a href='plot-methods.html'>plot</a></span>(<span class='kw'>h</span>)
-</div><div class='img'><img src='initialize-1.png' alt='' width='466' height='288' /></div><div class='input'><span class='fu'><a href='plotc.html'>plotc</a></span>(<span class='kw'>h</span>, <span class='kw'>spc</span> <span class='op'>~</span> <span class='kw'>pos</span>)
+<span class='fu'><a href='plot-methods.html'>plot</a></span><span class='op'>(</span><span class='va'>h</span><span class='op'>)</span>
+</div><div class='img'><img src='initialize-1.png' alt='' width='466' height='288' /></div><div class='input'><span class='fu'><a href='plotc.html'>plotc</a></span><span class='op'>(</span><span class='va'>h</span>, <span class='va'>spc</span> <span class='op'>~</span> <span class='va'>pos</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='warning'>Warning: Intensity at first wavelengh only is used.</span></div><div class='img'><img src='initialize-2.png' alt='' width='466' height='288' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -300,7 +300,7 @@ for slot <code>label</code>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

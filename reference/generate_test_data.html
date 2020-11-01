@@ -178,11 +178,11 @@ profiles at a single wavelength.</p></li>
 
     </div>
 
-    <pre class="usage"><span class='fu'>generate_hy_spectra</span>(n_wl = <span class='fl'>50</span>, n = <span class='fl'>20</span>)
+    <pre class="usage"><span class='fu'>generate_hy_spectra</span><span class='op'>(</span>n_wl <span class='op'>=</span> <span class='fl'>50</span>, n <span class='op'>=</span> <span class='fl'>20</span><span class='op'>)</span>
 
-<span class='fu'>generate_hy_profile</span>(n = <span class='fl'>20</span>, wavelength = <span class='fl'>550</span>)
+<span class='fu'>generate_hy_profile</span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>20</span>, wavelength <span class='op'>=</span> <span class='fl'>550</span><span class='op'>)</span>
 
-<span class='fu'>generate_hy_map</span>(n_wl = <span class='fl'>5</span>, n_xy = <span class='fl'>7</span>, k = <span class='fl'>5</span>)</pre>
+<span class='fu'>generate_hy_map</span><span class='op'>(</span>n_wl <span class='op'>=</span> <span class='fl'>5</span>, n_xy <span class='op'>=</span> <span class='fl'>7</span>, k <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -223,8 +223,8 @@ pixels in the map. Otherwise, some pixels are empty.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Generate spectra</span>
-<span class='kw'>hy_spectra</span> <span class='op'>&lt;-</span> <span class='fu'>generate_hy_spectra</span>()
-<span class='kw'>hy_spectra</span>
+<span class='va'>hy_spectra</span> <span class='op'>&lt;-</span> <span class='fu'>generate_hy_spectra</span><span class='op'>(</span><span class='op'>)</span>
+<span class='va'>hy_spectra</span>
 </div><div class='output co'>#&gt; hyperSpec object
 #&gt;    20 spectra
 #&gt;    5 data columns
@@ -236,12 +236,12 @@ pixels in the map. Otherwise, some pixels are empty.</p></td>
 #&gt;    3. c:  [numeric] 12.64911 12.31601 ... 1.414214 
 #&gt;    4. t:  [numeric] 0.0000000 0.1578947 ... 3 
 #&gt;    5. spc: I, a.u. [matrix, array50] 1.638282 1.243157 ... 0.1831655 </div><div class='input'>
-<span class='fu'><a href='plot-methods.html'>plot</a></span>(<span class='kw'>hy_spectra</span>)
+<span class='fu'><a href='plot-methods.html'>plot</a></span><span class='op'>(</span><span class='va'>hy_spectra</span><span class='op'>)</span>
 </div><div class='img'><img src='generate_test_data-1.png' alt='' width='466' height='288' /></div><div class='input'>
 
 <span class='co'># Generate profiles</span>
-<span class='kw'>hy_profile</span> <span class='op'>&lt;-</span> <span class='fu'>generate_hy_profile</span>()
-<span class='kw'>hy_profile</span>
+<span class='va'>hy_profile</span> <span class='op'>&lt;-</span> <span class='fu'>generate_hy_profile</span><span class='op'>(</span><span class='op'>)</span>
+<span class='va'>hy_profile</span>
 </div><div class='output co'>#&gt; hyperSpec object
 #&gt;    20 spectra
 #&gt;    4 data columns
@@ -252,14 +252,14 @@ pixels in the map. Otherwise, some pixels are empty.</p></td>
 #&gt;    2. c: Concentration, mol/l [numeric] 0.8414710 0.9092974 ... 0.9129453 
 #&gt;    3. t: t, s [numeric] 0.00000 21.05263 ... 400 
 #&gt;    4. spc: I, a.u. [matrix, array1] 0.9497657 0.8041098 ... 0.9965564 </div><div class='input'>
-<span class='fu'><a href='plotc.html'>plotc</a></span>(<span class='kw'>hy_profile</span>, model = <span class='kw'>spc</span> <span class='op'>~</span> <span class='kw'>t</span>)
-</div><div class='img'><img src='generate_test_data-2.png' alt='' width='466' height='288' /></div><div class='input'><span class='fu'><a href='plotc.html'>plotc</a></span>(<span class='kw'>hy_profile</span>, model = <span class='kw'>spc</span> <span class='op'>~</span> <span class='kw'>z</span>)
-</div><div class='img'><img src='generate_test_data-3.png' alt='' width='466' height='288' /></div><div class='input'><span class='fu'><a href='plotc.html'>plotc</a></span>(<span class='kw'>hy_profile</span>, model = <span class='kw'>spc</span> <span class='op'>~</span> <span class='kw'>c</span>)
+<span class='fu'><a href='plotc.html'>plotc</a></span><span class='op'>(</span><span class='va'>hy_profile</span>, model <span class='op'>=</span> <span class='va'>spc</span> <span class='op'>~</span> <span class='va'>t</span><span class='op'>)</span>
+</div><div class='img'><img src='generate_test_data-2.png' alt='' width='466' height='288' /></div><div class='input'><span class='fu'><a href='plotc.html'>plotc</a></span><span class='op'>(</span><span class='va'>hy_profile</span>, model <span class='op'>=</span> <span class='va'>spc</span> <span class='op'>~</span> <span class='va'>z</span><span class='op'>)</span>
+</div><div class='img'><img src='generate_test_data-3.png' alt='' width='466' height='288' /></div><div class='input'><span class='fu'><a href='plotc.html'>plotc</a></span><span class='op'>(</span><span class='va'>hy_profile</span>, model <span class='op'>=</span> <span class='va'>spc</span> <span class='op'>~</span> <span class='va'>c</span><span class='op'>)</span>
 </div><div class='img'><img src='generate_test_data-4.png' alt='' width='466' height='288' /></div><div class='input'>
 
 <span class='co'># Generate hyper-spectral map</span>
-<span class='kw'>hy_map</span> <span class='op'>&lt;-</span> <span class='fu'>generate_hy_map</span>()
-<span class='kw'>hy_map</span>
+<span class='va'>hy_map</span> <span class='op'>&lt;-</span> <span class='fu'>generate_hy_map</span><span class='op'>(</span><span class='op'>)</span>
+<span class='va'>hy_map</span>
 </div><div class='output co'>#&gt; hyperSpec object
 #&gt;    35 spectra
 #&gt;    4 data columns
@@ -270,8 +270,8 @@ pixels in the map. Otherwise, some pixels are empty.</p></td>
 #&gt;    2. y: y, px [integer] 1 2 ... 7 
 #&gt;    3. gr:  [factor] A B ... B 
 #&gt;    4. spc: I, a.u. [matrix, array5] 1 2 ... 1 </div><div class='input'>
-<span class='fu'><a href='plotmap.html'>plotmap</a></span>(<span class='kw'>hy_map</span>)
-</div><div class='output co'>#&gt; <span class='warning'>Warning: device support for raster images unknown, ignoring 'raster=TRUE'</span></div><div class='img'><img src='generate_test_data-5.png' alt='' width='466' height='288' /></div><div class='input'><span class='fu'><a href='plotmap.html'>plotmap</a></span>(<span class='kw'>hy_map</span>[, , <span class='fl'>8000</span>])
+<span class='fu'><a href='plotmap.html'>plotmap</a></span><span class='op'>(</span><span class='va'>hy_map</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: device support for raster images unknown, ignoring 'raster=TRUE'</span></div><div class='img'><img src='generate_test_data-5.png' alt='' width='466' height='288' /></div><div class='input'><span class='fu'><a href='plotmap.html'>plotmap</a></span><span class='op'>(</span><span class='va'>hy_map</span><span class='op'>[</span>, , <span class='fl'>8000</span><span class='op'>]</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='warning'>Warning: device support for raster images unknown, ignoring 'raster=TRUE'</span></div><div class='img'><img src='generate_test_data-6.png' alt='' width='466' height='288' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -288,7 +288,7 @@ pixels in the map. Otherwise, some pixels are empty.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
