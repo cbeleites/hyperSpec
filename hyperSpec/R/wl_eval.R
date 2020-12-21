@@ -54,14 +54,17 @@ wl.eval.numeric <- function(x, ..., normalize.wl = I) {
 }
 
 
-hySpc.testthat::test(wl.eval) <- function() {
+# Unit tests -----------------------------------------------------------------
+
+
+hySpc.testthat::test(wl.eval.hyperSpec) <- function() {
   context("wl.eval")
 
   test_that("error on function not returning same length as input", {
     expect_error(wl.eval(flu, function(x) 1))
   })
 
-  test_that("wl.eval against manual evaluation", {
+  test_that("wl.eval(<hyperSpec>) against manual evaluation", {
     expect_equivalent(
       wl.eval(flu, function(x) rep(5, length(x)), normalize.wl = normalize01)[[]],
       matrix(rep(5, nwl(flu)), nrow = 1)
@@ -108,4 +111,29 @@ hySpc.testthat::test(wl.eval) <- function() {
 
     expect_equal(tmp$.f, c("f", "g"))
   })
+
+  test_that("wl.eval(<numeric>) works", {
+
+    expect_equal(
+      as.vector(wl.eval(1:10, f = function(x) x)$spc),
+      1:10
+    )
+
+    expect_equal(
+      as.vector(wl.eval(1:10, f = function(x) x**2)$spc),
+      (1:10)**2
+    )
+
+    expect_equal(
+      wl.eval(wl(flu), f = function(x) x)$.f,
+      wl.eval(   flu,  f = function(x) x)$.f
+    )
+
+    expect_silent(
+      tmp <- wl.eval(300:500, f = function(x) x, g = function(x) exp(-x))
+    )
+    expect_equal(tmp$.f, c("f", "g"))
+  })
+
+
 }
