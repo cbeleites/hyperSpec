@@ -70,9 +70,14 @@ jobs:
       - name: Install dependencies
         run: |
           remotes::install_deps("./hyperSpec", dependencies = TRUE)
-          remotes::install_cran("rgl")
           remotes::install_cran("rcmdcheck")
           remotes::install_cran("devtools")
+        shell: Rscript {0}
+
+      - name: Install dependencies (for R-oldrel)
+        if: matrix.config.r == 'oldrel'
+        run: |
+          remotes::install_version("rgl", "0.100.50")
         shell: Rscript {0}
 
       - name: Session info
