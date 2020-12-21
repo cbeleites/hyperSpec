@@ -17,7 +17,7 @@ jobs:
   R-CMD-check:
     runs-on: ${{ matrix.config.os }}
 
-    name: ${{ matrix.config.os }} (${{ matrix.config.r }})
+    name: ${{ matrix.config.os }} (R-${{ matrix.config.r }})
 
     strategy:
       fail-fast: false
@@ -72,6 +72,12 @@ jobs:
           remotes::install_deps("./hyperSpec", dependencies = TRUE)
           remotes::install_cran("rcmdcheck")
           remotes::install_cran("devtools")
+        shell: Rscript {0}
+
+      - name: Install dependencies (for R-oldrel)
+        if: matrix.config.r == 'oldrel'
+        run: |
+          remotes::install_version("rgl", "0.100.50")
         shell: Rscript {0}
 
       - name: Session info
