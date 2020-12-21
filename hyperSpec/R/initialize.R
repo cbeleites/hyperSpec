@@ -331,5 +331,14 @@ hySpc.testthat::test(.initialize) <- function() {
     spc <- new("hyperSpec", spc = flu[[]])
     expect_equal(spc[[]], flu[[]])
   })
+
+  test_that('new_hyperSpec() and new("hyperSpec") give identical results', {
+    expect_equal(new_hyperSpec(), new("hyperSpec"))
+    expect_equal(new_hyperSpec(spc = 1:4), new("hyperSpec", spc = 1:4))
+    expect_equal(
+      new_hyperSpec(   spc = spc, data = data.frame(x = 11:13)),
+      new("hyperSpec", spc = spc, data = data.frame(x = 11:13))
+    )
+  })
 }
 
