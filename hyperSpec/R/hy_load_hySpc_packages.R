@@ -77,6 +77,7 @@ hy_load_hySpc_packages <- function(exclude = "hySpc.testthat", ..., quiet = NA) 
   invisible(out)
 }
 
+
 # Unit tests -----------------------------------------------------------------
 hySpc.testthat::test(hy_load_hySpc_packages) <- function() {
   context("hy_load_hySpc_packages")
