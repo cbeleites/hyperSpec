@@ -21,7 +21,7 @@
 * Column names in spectra matrix (`$spc` column of `hyperSpec` object) are now returned correctly by functions `spc.bin()` (#237), and `spc.loess()` (#245).
 * New function `hy_list_available_hySpc_packages()` lists packages, that are available in GitHub organization `r-hyperSpec`.
 * New function `hy_browse_homepage()` opens the homepage of *R hyperSpec* in a web browser.
-* New function `hy_list_installed_hySpc_packages()` lists and function `hy_load_hySpc_packages()` conveniently loads and attaches all installed **`r-hyperspec`** family packages (@cbeleites, @GegznaV, #219).
+* New function `hy_list_installed_hySpc_packages()` lists and function `hy_attach()` conveniently loads and attaches all installed **`r-hyperspec`** family packages (@cbeleites, @GegznaV, #219).
 
 
 ## Non-User-Facing Changes from 0.99 Series

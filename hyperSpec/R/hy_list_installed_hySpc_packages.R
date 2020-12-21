@@ -12,7 +12,7 @@
 #'
 #' @concept utils
 #'
-#' @seealso [hy_load_hySpc_packages()]
+#' @seealso [hy_attach()]
 #'
 #' @examples
 #' hy_list_installed_hySpc_packages()
