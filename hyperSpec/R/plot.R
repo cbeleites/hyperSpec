@@ -229,7 +229,7 @@ hySpc.testthat::test(.plot) <- function() {
     expect_silent(plot_depth)
 
     expect_silent(plot_map)
-    expect_message(print(plot_voronoi))
+    expect_silent(plot_voronoi)
 
     # Visual tests
     vdiffr::expect_doppelganger("plot-c",       plot_c)
