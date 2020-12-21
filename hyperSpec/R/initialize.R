@@ -143,50 +143,54 @@
   .Object
 }
 
-#' Creating a `hyperSpec` Object
+#' Create a `hyperSpec` Object
 #'
-#' Like other S4 objects, a `hyperSpec` object can be created by `new`. The
-#' `hyperSpec` object is then `initialize`d using the given parameters.
+#' Like other S4 objects, a `hyperSpec` object can be created by [new()].
+#' The `hyperSpec` object is then `initialize`d using the given parameters.
 #'
-#' If option `gc` is `TRUE`, the initialization will have frequent
-#' calls to `gc()`, which can help to avoid swapping or running out of
-#' memory.
+#' If option `gc` is `TRUE` (see [hy.setOptions()]), the initialization will
+#' have frequent calls to [gc()], which can help to avoid swapping or running
+#' out of memory.
 #'
 #' @name initialize
 #' @rdname initialize
+#'
 #' @aliases initialize,hyperSpec-method initialize create
 #'   create,hyperSpec-method new,hyperSpec-method new
+#'
 #' @docType methods
+#'
 #' @param .Object the new `hyperSpec` object.
-#' @param data `data.frame`, possibly with the spectra in
-#'   `data$spc`, and further variates in more columns.  A matrix can be
-#'   entered as *one* column of a data frame by:
-#'  `data.frame (spc = I (as.matrix (spc)))`.
 #'
-#' However, it will usually be more convenient if the spectra are given in `spc`
-#' @param spc the spectra matrix.
+#' @param data `data.frame`, possibly with the spectra in `data$spc`, and
+#'    further variates in more columns.  A matrix can be entered as *one*
+#'    column of a data frame by: `data.frame(spc = I(as.matrix(spc)))`.
 #'
-#' `spc` does not need to be a matrix, it is converted explicitly by
-#'   `I(as.matrix (spc))`.
-#' @param wavelength The wavelengths corresponding to the columns of
-#'   `data`. If no wavelengths are given, an appropriate vector is
-#'   derived from the column names of `data$spc`. If this is not
-#'   possible, `1:ncol(data$spc)` is used instead.
-#' @param labels A `list` containing the labels for the columns of the
-#'   `data` slot of the `hyperSpec` object and for the wavelength
-#'   (in `label$.wavelength`). The labels should be given in a form ready
-#'   for the text-drawing functions (see [grDevices::plotmath()]).
+#'    However, it will usually be more convenient if the spectra are given
+#'    in `spc`.
 #'
-#' If `label` is not given, a list containing `NULL` for each of the
-#'   columns of`data` and `wavelength` is used.
+#' @param spc the spectra matrix. `spc` does not need to be a matrix, it is
+#'    converted explicitly by `I(as.matrix(spc))`.
+#'
+#' @param wavelength The wavelengths corresponding to the columns of `data`.
+#'    If no wavelengths are given, an appropriate vector is derived from the
+#'    column names of `data$spc`. If this is not possible, `1:ncol(data$spc)`
+#'    is used instead.
+#'
+#' @param labels A `list` containing the labels for the columns of the `data`
+#'   slot of the `hyperSpec` object and for the wavelength (in
+#'   `label$.wavelength`). The labels should be given in a form ready for the
+#'   text-drawing functions (see [grDevices::plotmath()]).
+#'
+#'   If `label` is not given, a list containing `NULL` for each of the columns
+#'   of `data` and `wavelength` is used.
+#'
 #' @author C.Beleites
-#' @seealso [methods::new()] for more information on creating and
-#'   initializing S4 objects.
+#' @seealso
 #'
-#' [grDevices::plotmath()] on expressions for math annotations as
-#'   for slot `label`.
-#'
-#' [hy.setOptions()]
+#' - [methods::new()] for more information on creating and initializing S4 objects.
+#' - [grDevices::plotmath()] on expressions for math annotations as for slot `label`.
+#' - [hy.setOptions()]
 #'
 #' @keywords methods datagen
 #' @concept hyperSpec conversion
