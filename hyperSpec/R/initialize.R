@@ -31,6 +31,11 @@
     nwl <- 0
   }
 
+  if (is.null(spc) && is.null(data) && !is.null(wavelength) &&
+      is.numeric(wavelength) && is.vector(wavelength)) {
+
+    spc <- matrix(NA_real_, ncol = length(wavelength), nrow = 0)
+  }
 
   if (is.null(wavelength)) {
     ## guess from spc's colnames
