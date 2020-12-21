@@ -15,10 +15,16 @@
 #' @seealso [hyperSpec::vanderMonde()] for  polynomials,
 #'
 #' [hyperSpec::normalize01()] to normalize the wavenumbers before evaluating the function
-#' @author C. Beleites
+#' @author C. Beleites, V. Gegzna
 #' @examples
 #' plot(wl.eval(laser, exp = function(x) exp(-x)))
 wl.eval <- function(x, ..., normalize.wl = I) {
+  UseMethod("wl.eval")
+}
+
+#' @rdname wl.eval
+#' @export
+wl.eval.hyperSpec <- function(x, ..., normalize.wl = I) {
   chk.hy(x)
   validObject(x)
 

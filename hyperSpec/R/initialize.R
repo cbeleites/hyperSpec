@@ -99,7 +99,6 @@
     }
   }
 
-
   if (!is.null(spc) && !is.numeric(spc) && !all(is.na(spc))) {
     dim <- dim(spc)
     spc <- suppressWarnings(as.numeric(spc))
