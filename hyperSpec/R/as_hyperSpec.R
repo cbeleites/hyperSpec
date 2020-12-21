@@ -69,6 +69,14 @@ setMethod("as.hyperSpec", "matrix", .as.hyperSpec.matrix)
 setMethod("as.hyperSpec", "data.frame", .as.hyperSpec.data.frame)
 
 
+.as.hyperSpec.hyperSpec <- function(X) {
+  X
+}
+
+#' @rdname as.hyperSpec
+setMethod("as.hyperSpec", "hyperSpec", .as.hyperSpec.hyperSpec)
+
+
 # Unit tests -----------------------------------------------------------------
 
 
