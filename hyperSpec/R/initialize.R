@@ -227,6 +227,13 @@
 setMethod("initialize", "hyperSpec", .initialize)
 
 
+#' @rdname initialize
+#' @export
+new_hyperSpec <- function(spc = NULL, data = NULL, wavelength = NULL, labels = NULL) {
+  new("hyperSpec", spc = spc, data = data, wavelength = wavelength, labels = labels)
+}
+
+
 # Unit tests -----------------------------------------------------------------
 
 
