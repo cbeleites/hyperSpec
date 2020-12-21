@@ -321,5 +321,22 @@ hySpc.testthat::test(.initialize) <- function() {
     spc <- new("hyperSpec", spc = flu[[]])
     expect_equal(spc[[]], flu[[]])
   })
+
+
+  test_that("hyperSpec initializes with wavelength only", {
+    # One wavelength
+    expect_silent(hy_obj_1 <- new("hyperSpec", wavelength = 1))
+    expect_equal(nwl(hy_obj_1), 1)
+    expect_equal(nrow(hy_obj_1), 0)
+    expect_equal(ncol(hy_obj_1), 1)
+    expect_equal(colnames(hy_obj_1), "spc")
+
+    # 100 wavelengths
+    expect_silent(hy_obj_2 <- new("hyperSpec", wavelength = 1:100))
+    expect_equal(nwl(hy_obj_2), 100)
+    expect_equal(nrow(hy_obj_2), 0)
+    expect_equal(ncol(hy_obj_2), 1)
+    expect_equal(colnames(hy_obj_2), "spc")
+  })
 }
 
