@@ -147,6 +147,7 @@
 #'
 #' Like other S4 objects, a `hyperSpec` object can be created by [new()].
 #' The `hyperSpec` object is then `initialize`d using the given parameters.
+#' As an alias, function `new_hyperSpec()` can be used.
 #'
 #' If option `gc` is `TRUE` (see [hy.setOptions()]), the initialization will
 #' have frequent calls to [gc()], which can help to avoid swapping or running
@@ -155,7 +156,7 @@
 #' @name initialize
 #' @rdname initialize
 #'
-#' @aliases initialize,hyperSpec-method initialize create
+#' @aliases initialize,hyperSpec-method initialize create new_hyperSpec
 #'   create,hyperSpec-method new,hyperSpec-method new
 #'
 #' @docType methods
@@ -198,9 +199,12 @@
 #' @examples
 #'
 #' new("hyperSpec")
+#' new_hyperSpec()
 #'
 #' spc <- matrix(rnorm(12), ncol = 4)
 #' new("hyperSpec", spc = spc)
+#' new_hyperSpec(spc = spc)
+#'
 #' new("hyperSpec",
 #'   data = data.frame(x = letters[1:3]),
 #'   spc = spc
