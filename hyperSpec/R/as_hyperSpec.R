@@ -149,4 +149,8 @@ hySpc.testthat::test(as.hyperSpec) <- function() {
     tmp <- new("hyperSpec", spc = spc, wavelength = wl)
     expect_equal(colnames(tmp$spc), as.character(signif(wl, 6)))
   })
+
+  test_that("as.hyperSpec(<hyperSpec>) works", {
+    expect_equal(as.hyperSpec(flu), flu)
+  })
 }
