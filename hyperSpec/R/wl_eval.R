@@ -42,6 +42,18 @@ wl.eval.hyperSpec <- function(x, ..., normalize.wl = I) {
 }
 
 
+#' @rdname wl.eval
+#' @export
+wl.eval.numeric <- function(x, ..., normalize.wl = I) {
+  if (!is.vector(x)) {
+    class_txt <- paste(class(x), collapse = ", ")
+    stop("`x` must be a vector. Now it is ", class_txt, ".")
+  }
+  x <- new("hyperSpec", spc = seq_along(x), wavelength = x)
+  wl.eval(x, ..., normalize.wl = normalize.wl)
+}
+
+
 hySpc.testthat::test(wl.eval) <- function() {
   context("wl.eval")
 
