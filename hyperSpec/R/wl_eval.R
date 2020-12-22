@@ -1,23 +1,33 @@
-#' Evaluate function on wavelengths of `hyperSpec` object.
+#' Evaluate function on wavelengths of `hyperSpec` object
 #'
 #' This is useful for generating certain types of baseline "reference spectra".
 #'
-#' @param x `hyperSpec` object
-#' @param ... hyperSpec method: expressions to be evaluated
-#' @param normalize.wl function to transorm the wavelengths before evaluating the polynomial (or
-#' other function). Use [hyperSpec::normalize01()] to map the wavelength range to the interval \[0, 1\].
-#' @return `hyperSpec` object containing one spectrum for each expression
+#' @param x either `hyperSpec` object or numeric vector.
+#' @param ... expressions to be evaluated.
+#' @param normalize.wl function to transorm the wavelengths before evaluating
+#' the polynomial (or  other function). Use [hyperSpec::normalize01()] to map
+#' the wavelength range to the interval \[0, 1\].
+#' @return `hyperSpec` object containing one spectrum for each expression.
 #'
 #' @export
 #'
 #' @concept wavelengths
 #'
-#' @seealso [hyperSpec::vanderMonde()] for  polynomials,
+#' @seealso
 #'
-#' [hyperSpec::normalize01()] to normalize the wavenumbers before evaluating the function
+#' - [hyperSpec::vanderMonde()] for  polynomials,
+#' - [hyperSpec::normalize01()] to normalize the wavenumbers before evaluating
+#' the function.
+#'
 #' @author C. Beleites, V. Gegzna
+#'
 #' @examples
 #' plot(wl.eval(laser, exp = function(x) exp(-x)))
+#'
+#' plot(wl.eval(1000:4000, y = function(x) 1/log(x)))
+#'
+#' plot(wl.eval(300:550, y2 = function(x) x*2, y3 = function(x) x*3))
+#'
 wl.eval <- function(x, ..., normalize.wl = I) {
   UseMethod("wl.eval")
 }
@@ -134,6 +144,4 @@ hySpc.testthat::test(wl.eval.hyperSpec) <- function() {
     )
     expect_equal(tmp$.f, c("f", "g"))
   })
-
-
 }
