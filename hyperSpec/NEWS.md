@@ -22,6 +22,7 @@
 * New function `hy_list_available_hySpc_packages()` lists packages, that are available in GitHub organization `r-hyperSpec`.
 * New function `hy_browse_homepage()` opens the homepage of *R hyperSpec* in a web browser.
 * Possibility to initialize `hyperSpec` object by providing wavelengths only (#288).
+* Function `wl.eval()` is converted into S3 generic. Methods `wl.eval(<hyperSpec>)` and `wl.eval(<numeric>)` for numeric vectors were added (#287).
 
 
 ## Non-User-Facing Changes from 0.99 Series
