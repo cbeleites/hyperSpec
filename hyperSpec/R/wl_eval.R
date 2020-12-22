@@ -144,4 +144,9 @@ hySpc.testthat::test(wl.eval.hyperSpec) <- function() {
     )
     expect_equal(tmp$.f, c("f", "g"))
   })
+
+  test_that("wl.eval fails with matrix input", {
+    expect_error(wl.eval(matrix(1:10), f = function(x) x))
+    expect_error(wl.eval(matrix(), f = function(x) x))
+  })
 }
