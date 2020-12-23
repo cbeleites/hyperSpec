@@ -23,7 +23,9 @@
 * New function `hy_browse_homepage()` opens the homepage of *R hyperSpec* in a web browser.
 * New method `as.hyperSpec(<hyperSpec>)` (#282).
 * New function `hy_list_installed_hySpc_packages()` lists and function `hy_attach()` conveniently loads and attaches all installed **`r-hyperspec`** family packages (@cbeleites, @GegznaV, #219).
-
+* Possibility to initialize `hyperSpec` object by providing wavelengths only (#288).
+* Function `wl.eval()` is converted into S3 generic. Methods `wl.eval(<hyperSpec>)` and `wl.eval(<numeric>)` for numeric vectors were added (#287).
+* New function `new_hyperSpec()` that initializes `hyperSpec` object in a similar way as `new("hyperSpec")` does but has autocompletion possibilities in RStudio (#283).
 
 ## Non-User-Facing Changes from 0.99 Series
 
