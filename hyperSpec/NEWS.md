@@ -23,6 +23,7 @@
 * New function `hy_browse_homepage()` opens the homepage of *R hyperSpec* in a web browser.
 * New method `as.hyperSpec(<hyperSpec>)` (#282).
 * Possibility to initialize `hyperSpec` object by providing wavelengths only (#288).
+* Function `wl.eval()` is converted into S3 generic. Methods `wl.eval(<hyperSpec>)` and `wl.eval(<numeric>)` for numeric vectors were added (#287).
 
 
 ## Non-User-Facing Changes from 0.99 Series
