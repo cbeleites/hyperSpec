@@ -24,6 +24,7 @@
 * New method `as.hyperSpec(<hyperSpec>)` (#282).
 * Possibility to initialize `hyperSpec` object by providing wavelengths only (#288).
 * Function `wl.eval()` is converted into S3 generic. Methods `wl.eval(<hyperSpec>)` and `wl.eval(<numeric>)` for numeric vectors were added (#287).
+* New function `new_hyperSpec()` that initializes `hyperSpec` object in a similar way as `new("hyperSpec")` does but has autocompletion possibilities in RStudio (#283).
 
 
 ## Non-User-Facing Changes from 0.99 Series
