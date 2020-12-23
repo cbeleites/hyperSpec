@@ -23,7 +23,8 @@ setGeneric(
 )
 
 #' @include guess_wavelength.R
-.as.hyperSpec.matrix <- function(X, wl = guess.wavelength(colnames(X)), ...) {
+.as.hyperSpec.matrix <- function(X, wl = NULL, ...) {
+  if (is.null(wl)) wl <- guess.wavelength(colnames(X))
   new("hyperSpec", spc = X, wavelength = wl, ...)
 }
 
@@ -41,8 +42,10 @@ setGeneric(
 #' guess.wavelength(wl)
 setMethod("as.hyperSpec", "matrix", .as.hyperSpec.matrix)
 
-.as.hyperSpec.data.frame <- function(X, spc = NULL, wl = guess.wavelength(spc),
+.as.hyperSpec.data.frame <- function(X, spc = NULL, wl = NULL,
   labels = attr(X, "labels"), ...) {
+
+  if (is.null(wl)) wl <- guess.wavelength(X)
   # TODO: remove after 31.12.2020
   if (!all(!is.na(guess.wavelength(colnames(X))))) {
     warning(
