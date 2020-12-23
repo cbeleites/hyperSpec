@@ -9,9 +9,9 @@
 #' @noRd
 .initialize <- function(.Object, spc = NULL, data = NULL, wavelength = NULL, labels = NULL) {
 
-  ## do the small stuff first, so we need not be too careful about copies
+  # Do the small stuff first, so we need not be too careful about copies
 
-  ## the wavelength axis
+  # The wavelength axis
   if (!is.null(wavelength) && !is.numeric(wavelength)) {
     stop("wavelength is not numeric but ", class(wavelength), ".")
   }
@@ -38,7 +38,7 @@
   }
 
   if (is.null(wavelength)) {
-    ## guess from spc's colnames
+    # Guess from spc's colnames
     if (!is.null(spc)) {
       wavelength <- as.numeric(colnames(spc))
     }
@@ -55,7 +55,7 @@
   }
   .Object@wavelength <- wavelength
 
-  ## column + wavelength axis labels
+  # Column + wavelength axis labels
   if (is.null(labels) || length(labels) == 0L) {
     cln <- c(colnames(data), ".wavelength")
     if (!any(grepl("spc", cln))) {
@@ -66,7 +66,7 @@
     rm(cln)
   }
 
-  ## transform labels into expressions
+  # Transform labels into expressions
   .make.expression <- function(x) {
     if (is.language(x) && !is.expression(x)) {
       class(x) <- "expression"
@@ -87,7 +87,7 @@
     warning("Spectra in data are overwritten by argument spc.")
   }
 
-  ## deal with spectra
+  # Deal with spectra
   if (is.null(spc) && is.null(data$spc)) {
     spc <- structure(numeric(0), .Dim = c(0L, 0L))
   }
@@ -118,7 +118,7 @@
     if (.options$gc) gc()
   }
 
-  ## deal with extra data
+  # Deal with extra data
   if (is.null(data)) {
     data <- data.frame(spc = spc)
   } else if (!is.null(spc)) {
@@ -132,16 +132,16 @@
   rm(spc)
   if (.options$gc) gc()
 
-  attr(data$spc, "class") <- NULL # more than one copy!?
+  attr(data$spc, "class") <- NULL # More than one copy!?
   if (.options$gc) gc()
 
   .Object@data <- data
   if (.options$gc) gc()
 
 
-  .Object <- .fix_spc_colnames(.Object) # for consistency with .wl<-
+  .Object <- .fix_spc_colnames(.Object) # For consistency with .wl<-
 
-  ## finally: check whether we got a valid hyperSpec object
+  # Finally: check whether we got a valid hyperSpec object
   validObject(.Object)
 
   .Object
