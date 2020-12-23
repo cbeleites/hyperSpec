@@ -350,6 +350,7 @@ hySpc.testthat::test(.initialize) <- function() {
     expect_equal(nrow(hy_obj_2), 0)
     expect_equal(ncol(hy_obj_2), 1)
     expect_equal(colnames(hy_obj_2), "spc")
+  })
 
   test_that('new_hyperSpec() and new("hyperSpec") give identical results', {
     expect_equal(new_hyperSpec(), new("hyperSpec"))
