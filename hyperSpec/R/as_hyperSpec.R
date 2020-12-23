@@ -69,6 +69,14 @@ setMethod("as.hyperSpec", "matrix", .as.hyperSpec.matrix)
 setMethod("as.hyperSpec", "data.frame", .as.hyperSpec.data.frame)
 
 
+.as.hyperSpec.hyperSpec <- function(X) {
+  X
+}
+
+#' @rdname as.hyperSpec
+setMethod("as.hyperSpec", "hyperSpec", .as.hyperSpec.hyperSpec)
+
+
 # Unit tests -----------------------------------------------------------------
 
 
@@ -140,5 +148,9 @@ hySpc.testthat::test(as.hyperSpec) <- function() {
   test_that("colnames of spectra matrix correctly set (as done by wl<-)", {
     tmp <- new("hyperSpec", spc = spc, wavelength = wl)
     expect_equal(colnames(tmp$spc), as.character(signif(wl, 6)))
+  })
+
+  test_that("as.hyperSpec(<hyperSpec>) works", {
+    expect_equal(as.hyperSpec(flu), flu)
   })
 }
