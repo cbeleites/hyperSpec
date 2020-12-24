@@ -190,7 +190,14 @@
 <li>Column names in spectra matrix (<code>$spc</code> column of <code>hyperSpec</code> object) are now returned correctly by functions <code><a href="../reference/spc.bin.html">spc.bin()</a></code> (<a href='https://github.com/cbeleites/hyperSpec/issues/237'>#237</a>), and <code><a href="../reference/spc.loess.html">spc.loess()</a></code> (<a href='https://github.com/cbeleites/hyperSpec/issues/245'>#245</a>).</li>
 <li>New function <code><a href="../reference/hy_list_available_hySpc_packages.html">hy_list_available_hySpc_packages()</a></code> lists packages, that are available in GitHub organization <code>r-hyperSpec</code>.</li>
 <li>New function <code><a href="../reference/hy_browse_homepage.html">hy_browse_homepage()</a></code> opens the homepage of <em>R hyperSpec</em> in a web browser.</li>
-<li>New method <code>as.hyperSpec(&lt;hyperSpec&gt;)</code> (<a href='https://github.com/cbeleites/hyperSpec/issues/282'>#282</a>).</li>
+<li>Changes related to function <code><a href="../reference/as.hyperSpec.html">as.hyperSpec()</a></code>:
+<ul>
+<li>New method <code>as.hyperSpec(&lt;hyperSpec&gt;)</code> was created (<a href='https://github.com/cbeleites/hyperSpec/issues/282'>#282</a>).</li>
+<li>The default value of argument <code>wl</code> is now set to <code>wl = NULL</code> (<a href='https://github.com/cbeleites/hyperSpec/issues/297'>#297</a>).</li>
+<li>
+<code>wl = NULL</code> now means that the default values of wavelengths should be calculated inside the methods of <code><a href="../reference/as.hyperSpec.html">as.hyperSpec()</a></code> (<a href='https://github.com/cbeleites/hyperSpec/issues/297'>#297</a>).</li>
+</ul>
+</li>
 <li>Possibility to initialize <code>hyperSpec</code> object by providing wavelengths only (<a href='https://github.com/cbeleites/hyperSpec/issues/288'>#288</a>).</li>
 <li>Function <code><a href="../reference/wl.eval.html">wl.eval()</a></code> is converted into S3 generic. Methods <code>wl.eval(&lt;hyperSpec&gt;)</code> and <code>wl.eval(&lt;numeric&gt;)</code> for numeric vectors were added (<a href='https://github.com/cbeleites/hyperSpec/issues/287'>#287</a>).</li>
 <li>New function <code><a href="../reference/initialize.html">new_hyperSpec()</a></code> that initializes <code>hyperSpec</code> object in a similar way as <code><a href="../reference/initialize.html">new("hyperSpec")</a></code> does but has autocompletion possibilities in RStudio (<a href='https://github.com/cbeleites/hyperSpec/issues/283'>#283</a>).</li>

@@ -42,7 +42,8 @@
   
 
 <meta property="og:title" content="as.hyperSpec: Convenience Conversion Functions — as.hyperSpec" />
-<meta property="og:description" content="These functions are shortcuts to convert other objects into hypeSpec objects." />
+<meta property="og:description" content="These functions are shortcuts to convert other objects into hypeSpec
+objects." />
 
 <meta name="robots" content="noindex" />
 
@@ -161,22 +162,17 @@
     </div>
 
     <div class="ref-description">
-    <p>These functions are shortcuts to convert other objects into hypeSpec objects.</p>
+    <p>These functions are shortcuts to convert other objects into <code>hypeSpec</code>
+objects.</p>
     </div>
 
     <pre class="usage"><span class='fu'>as.hyperSpec</span><span class='op'>(</span><span class='va'>X</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S4 method for matrix</span>
-<span class='fu'>as.hyperSpec</span><span class='op'>(</span><span class='va'>X</span>, wl <span class='op'>=</span> <span class='fu'><a href='guess.wavelength.html'>guess.wavelength</a></span><span class='op'>(</span><span class='fu'><a href='dimnames,hyperSpec-method.html'>colnames</a></span><span class='op'>(</span><span class='va'>X</span><span class='op'>)</span><span class='op'>)</span>, <span class='va'>...</span><span class='op'>)</span>
+<span class='fu'>as.hyperSpec</span><span class='op'>(</span><span class='va'>X</span>, wl <span class='op'>=</span> <span class='cn'>NULL</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S4 method for data.frame</span>
-<span class='fu'>as.hyperSpec</span><span class='op'>(</span>
-  <span class='va'>X</span>,
-  spc <span class='op'>=</span> <span class='cn'>NULL</span>,
-  wl <span class='op'>=</span> <span class='fu'><a href='guess.wavelength.html'>guess.wavelength</a></span><span class='op'>(</span><span class='va'>spc</span><span class='op'>)</span>,
-  labels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span><span class='op'>(</span><span class='va'>X</span>, <span class='st'>"labels"</span><span class='op'>)</span>,
-  <span class='va'>...</span>
-<span class='op'>)</span>
+<span class='fu'>as.hyperSpec</span><span class='op'>(</span><span class='va'>X</span>, spc <span class='op'>=</span> <span class='cn'>NULL</span>, wl <span class='op'>=</span> <span class='cn'>NULL</span>, labels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span><span class='op'>(</span><span class='va'>X</span>, <span class='st'>"labels"</span><span class='op'>)</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S4 method for hyperSpec</span>
 <span class='fu'>as.hyperSpec</span><span class='op'>(</span><span class='va'>X</span><span class='op'>)</span></pre>
@@ -186,26 +182,27 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>X</th>
-      <td><p>the object to convert.
-A matrix is assumed to contain the spectra matrix,
-a data.frame is assumed to contain extra data.</p></td>
+      <td><p>the object to convert. If <code>X</code> is:</p><ul>
+<li><p>a <code>matrix</code>, it is assumed to contain the spectra matrix,</p></li>
+<li><p>a <code>data.frame</code>, it is assumed to contain extra data.</p></li>
+</ul></td>
     </tr>
     <tr>
       <th>...</th>
       <td><p>additional parameters that should be handed over to
-<code><a href='initialize.html'>new("hyperSpec")</a></code> (initialize)</p></td>
+<code><a href='initialize.html'>new("hyperSpec")</a></code> (initialize).</p></td>
     </tr>
     <tr>
       <th>wl</th>
-      <td><p>wavelength vector. Defaults to guessing from the column names in <code>X</code></p></td>
+      <td><p>wavelength vector. Defaults to guessing from the column names in <code>X</code>.</p></td>
     </tr>
     <tr>
       <th>spc</th>
-      <td><p>spectra matrix</p></td>
+      <td><p>spectra matrix.</p></td>
     </tr>
     <tr>
       <th>labels</th>
-      <td><p>list with labels</p></td>
+      <td><p>list with labels.</p></td>
     </tr>
     </table>
 
@@ -214,9 +211,10 @@ a data.frame is assumed to contain extra data.</p></td>
     <p>hyperSpec object</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p><em>Note that the behaviour of <code>as.hyperSpec(X)</code> was changed: it now
-assumes <code>X</code> to be extra data, and returns a hyperSpec object with 0
-wavelengths. To get the old behaviour</em></p>
+    <p>Note that the behaviour of <code>as.hyperSpec(X)</code> was changed when <code>X</code> is a
+<code>data.frame</code>: it now assumes <code>X</code> to be extra data, and returns a <code>hyperSpec</code>
+object with 0 wavelengths. To get the old behaviour, use
+<code>as.hyperSpec(as.matrix(X))</code>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='initialize.html'>initialize()</a></code></p></div>
