@@ -21,6 +21,7 @@
 * Column names in spectra matrix (`$spc` column of `hyperSpec` object) are now returned correctly by functions `spc.bin()` (#237), and `spc.loess()` (#245).
 * New function `hy_list_available_hySpc_packages()` lists packages, that are available in GitHub organization `r-hyperSpec`.
 * New function `hy_browse_homepage()` opens the homepage of *R hyperSpec* in a web browser.
+* New function `hy_list_installed_hySpc_packages()` lists and function `hy_attach()` conveniently loads and attaches all installed **`r-hyperspec`** family packages (@cbeleites, @GegznaV, #219).
 * Changes related to function `as.hyperSpec()`:
     - New method `as.hyperSpec(<hyperSpec>)` was created (#282).
     - The default value of argument `wl` is now set to `wl = NULL` (#297).
@@ -28,7 +29,6 @@
 * Possibility to initialize `hyperSpec` object by providing wavelengths only (#288).
 * Function `wl.eval()` is converted into S3 generic. Methods `wl.eval(<hyperSpec>)` and `wl.eval(<numeric>)` for numeric vectors were added (#287).
 * New function `new_hyperSpec()` that initializes `hyperSpec` object in a similar way as `new("hyperSpec")` does but has autocompletion possibilities in RStudio (#283).
-
 
 ## Non-User-Facing Changes from 0.99 Series
 
