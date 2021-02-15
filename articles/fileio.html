@@ -129,7 +129,7 @@
 <br><a class="author_email" href="mailto:#"></a><a href="mailto:chemometrie@beleites.de" class="email">chemometrie@beleites.de</a>
       </address>
                   
-            <h4 class="date">2020-12-30</h4>
+            <h4 class="date">2021-02-15</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/cbeleites/hyperSpec/blob/master/../vignettes/fileio.Rmd"><code>../vignettes/fileio.Rmd</code></a></small>
       <div class="hidden name"><code>fileio.Rmd</code></div>
@@ -1041,54 +1041,54 @@ wavelength axis as the others.</li>
 <li>Finally, package <strong>hyperSpec</strong> does some optional common post-processing for all imported files such as attaching the filename (or connection description) to the <code class="sourceCode r">hyperSpec</code> object (column <code class="sourceCode r">filename</code>) and deleting empty spectra.
 These options can be globally switched on or off by options.</li>
 </ul>
-<!-- \VerbatimInput[frame=single, label={read.txt.PerkinElmer.R}, formatcom=\footnotesize]{read.txt.PerkinElmer.R} --><div class="sourceCode" id="cb43"><pre class="sourceCode add-border r"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a><span class="co"># The contents of "read.txt.PerkinElmer.R"</span></span>
-<span id="cb43-2"><a href="#cb43-2"></a></span>
-<span id="cb43-3"><a href="#cb43-3"></a>read.txt.PerkinElmer &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">files =</span> <span class="kw">stop</span>(<span class="st">"filenames needed"</span>), ..., <span class="dt">label =</span> <span class="kw">list</span>()) {</span>
-<span id="cb43-4"><a href="#cb43-4"></a>  <span class="co">##  set default labels</span></span>
-<span id="cb43-5"><a href="#cb43-5"></a>  label &lt;-<span class="st"> </span><span class="kw">modifyList</span>(</span>
-<span id="cb43-6"><a href="#cb43-6"></a>    <span class="kw">list</span>(</span>
-<span id="cb43-7"><a href="#cb43-7"></a>      <span class="dt">.wavelength =</span> <span class="kw">expression</span>(lambda <span class="op">/</span><span class="st"> </span>nm),</span>
-<span id="cb43-8"><a href="#cb43-8"></a>      <span class="dt">spc =</span> <span class="kw">expression</span>(I[fl] <span class="op">/</span><span class="st"> "a.u."</span>)</span>
-<span id="cb43-9"><a href="#cb43-9"></a>    ),</span>
-<span id="cb43-10"><a href="#cb43-10"></a>    label</span>
-<span id="cb43-11"><a href="#cb43-11"></a>  )</span>
-<span id="cb43-12"><a href="#cb43-12"></a></span>
-<span id="cb43-13"><a href="#cb43-13"></a>  <span class="cf">if</span> (<span class="kw">length</span>(files) <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) {</span>
-<span id="cb43-14"><a href="#cb43-14"></a>    <span class="kw">warning</span>(<span class="st">"No files found."</span>)</span>
-<span id="cb43-15"><a href="#cb43-15"></a>    <span class="kw">return</span>(<span class="kw">new</span>(<span class="st">"hyperSpec"</span>))</span>
-<span id="cb43-16"><a href="#cb43-16"></a>  }</span>
-<span id="cb43-17"><a href="#cb43-17"></a></span>
-<span id="cb43-18"><a href="#cb43-18"></a>  <span class="co">## read the first file</span></span>
-<span id="cb43-19"><a href="#cb43-19"></a>  buffer &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">scan</span>(files[<span class="dv">1</span>], ...), <span class="dt">ncol =</span> <span class="dv">2</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb43-20"><a href="#cb43-20"></a></span>
-<span id="cb43-21"><a href="#cb43-21"></a>  <span class="co">## first column gives the wavelength vector</span></span>
-<span id="cb43-22"><a href="#cb43-22"></a>  wavelength &lt;-<span class="st"> </span>buffer[, <span class="dv">1</span>]</span>
-<span id="cb43-23"><a href="#cb43-23"></a></span>
-<span id="cb43-24"><a href="#cb43-24"></a>  <span class="co">## preallocate the spectra matrix:</span></span>
-<span id="cb43-25"><a href="#cb43-25"></a>  <span class="co">##  one row per file x as many columns as the first file has</span></span>
-<span id="cb43-26"><a href="#cb43-26"></a>  spc &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">ncol =</span> <span class="kw">nrow</span>(buffer), <span class="dt">nrow =</span> <span class="kw">length</span>(files))</span>
-<span id="cb43-27"><a href="#cb43-27"></a></span>
-<span id="cb43-28"><a href="#cb43-28"></a>  <span class="co">## the first file's data goes into the first row</span></span>
-<span id="cb43-29"><a href="#cb43-29"></a>  spc[<span class="dv">1</span>, ] &lt;-<span class="st"> </span>buffer[, <span class="dv">2</span>]</span>
-<span id="cb43-30"><a href="#cb43-30"></a></span>
-<span id="cb43-31"><a href="#cb43-31"></a>  <span class="co">## now read the remaining files</span></span>
-<span id="cb43-32"><a href="#cb43-32"></a>  <span class="cf">for</span> (f <span class="cf">in</span> <span class="kw">seq</span>(<span class="dt">along =</span> files)[<span class="op">-</span><span class="dv">1</span>]) {</span>
-<span id="cb43-33"><a href="#cb43-33"></a>    buffer &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">scan</span>(files[f], ...), <span class="dt">ncol =</span> <span class="dv">2</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb43-34"><a href="#cb43-34"></a></span>
-<span id="cb43-35"><a href="#cb43-35"></a>    <span class="co">## check whether they have the same wavelength axis</span></span>
-<span id="cb43-36"><a href="#cb43-36"></a>    <span class="cf">if</span> (<span class="op">!</span><span class="kw">all.equal</span>(buffer[, <span class="dv">1</span>], wavelength)) {</span>
-<span id="cb43-37"><a href="#cb43-37"></a>      <span class="kw">stop</span>(<span class="kw">paste</span>(files[f], <span class="st">"has different wavelength axis."</span>))</span>
-<span id="cb43-38"><a href="#cb43-38"></a>    }</span>
-<span id="cb43-39"><a href="#cb43-39"></a></span>
-<span id="cb43-40"><a href="#cb43-40"></a>    spc[f, ] &lt;-<span class="st"> </span>buffer[, <span class="dv">2</span>]</span>
-<span id="cb43-41"><a href="#cb43-41"></a>  }</span>
-<span id="cb43-42"><a href="#cb43-42"></a></span>
-<span id="cb43-43"><a href="#cb43-43"></a>  <span class="co">## make the hyperSpec object</span></span>
-<span id="cb43-44"><a href="#cb43-44"></a>  spc &lt;-<span class="st"> </span><span class="kw">new</span>(<span class="st">"hyperSpec"</span>, <span class="dt">wavelength =</span> wavelength, <span class="dt">spc =</span> spc, <span class="dt">label =</span> label)</span>
-<span id="cb43-45"><a href="#cb43-45"></a></span>
-<span id="cb43-46"><a href="#cb43-46"></a>  <span class="co">## consistent file import behaviour across import functions</span></span>
-<span id="cb43-47"><a href="#cb43-47"></a>  hyperSpec<span class="op">:::</span><span class="kw">.fileio.optional</span>(spc, files)</span>
-<span id="cb43-48"><a href="#cb43-48"></a>}</span></code></pre></div>
+<!-- \VerbatimInput[frame=single, label={read.txt.PerkinElmer.R}, formatcom=\footnotesize]{read.txt.PerkinElmer.R} --><pre><code># The contents of "read.txt.PerkinElmer.R"
+
+read.txt.PerkinElmer &lt;- function(files = stop("filenames needed"), ..., label = list()) {
+  ##  set default labels
+  label &lt;- modifyList(
+    list(
+      .wavelength = expression(lambda / nm),
+      spc = expression(I[fl] / "a.u.")
+    ),
+    label
+  )
+
+  if (length(files) == 0) {
+    warning("No files found.")
+    return(new("hyperSpec"))
+  }
+
+  ## read the first file
+  buffer &lt;- matrix(scan(files[1], ...), ncol = 2, byrow = TRUE)
+
+  ## first column gives the wavelength vector
+  wavelength &lt;- buffer[, 1]
+
+  ## preallocate the spectra matrix:
+  ##  one row per file x as many columns as the first file has
+  spc &lt;- matrix(ncol = nrow(buffer), nrow = length(files))
+
+  ## the first file's data goes into the first row
+  spc[1, ] &lt;- buffer[, 2]
+
+  ## now read the remaining files
+  for (f in seq(along = files)[-1]) {
+    buffer &lt;- matrix(scan(files[f], ...), ncol = 2, byrow = TRUE)
+
+    ## check whether they have the same wavelength axis
+    if (!all.equal(buffer[, 1], wavelength)) {
+      stop(paste(files[f], "has different wavelength axis."))
+    }
+
+    spc[f, ] &lt;- buffer[, 2]
+  }
+
+  ## make the hyperSpec object
+  spc &lt;- new("hyperSpec", wavelength = wavelength, spc = spc, label = label)
+
+  ## consistent file import behaviour across import functions
+  hyperSpec:::.fileio.optional(spc, files)
+}</code></pre>
 <p>imports the spectra.
 Note how the labels are set.
 The label with the special name <code class="sourceCode r">.wavelength</code> corresponds to the wavelength axis, all data columns should have a label with the same name.
@@ -1123,106 +1123,106 @@ Then <code class="sourceCode r"><span class="kw">read.ENVI</span>()</code> does 
 The resulting <code class="sourceCode r">hyperSpec</code> object is post-processed according to the special header entries.</p>
 <p>For using the function, see section <a href="#sec:read-ENVI-Nicolet">7.3</a><!--(p. \pageref{sec:read-ENVI-Nicolet})-->.</p>
 <!-- \VerbatimInput[frame=single, label={read.ENVI.Nicolet.R}, formatcom=\footnotesize]{read.ENVI.Nicolet.R} -->
-<div class="sourceCode" id="cb45"><pre class="sourceCode add-border r"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a><span class="co"># The contents of "read.ENVI.Nicolet.R"</span></span>
-<span id="cb45-2"><a href="#cb45-2"></a></span>
-<span id="cb45-3"><a href="#cb45-3"></a>read.ENVI.Nicolet &lt;-<span class="st"> </span><span class="cf">function</span>(</span>
-<span id="cb45-4"><a href="#cb45-4"></a>  <span class="dt">file =</span> <span class="kw">stop</span>(<span class="st">"read.ENVI: file name needed"</span>),</span>
-<span id="cb45-5"><a href="#cb45-5"></a>  <span class="dt">headerfile =</span> <span class="ot">NULL</span>,</span>
-<span id="cb45-6"><a href="#cb45-6"></a>  <span class="dt">header =</span> <span class="kw">list</span>(),</span>
-<span id="cb45-7"><a href="#cb45-7"></a>  ..., <span class="co"># goes to read.ENVI</span></span>
-<span id="cb45-8"><a href="#cb45-8"></a>  <span class="dt">x =</span> <span class="ot">NA</span>, <span class="dt">y =</span> <span class="ot">NA</span>, <span class="co"># NA means: use the specifications from the header file if possible</span></span>
-<span id="cb45-9"><a href="#cb45-9"></a>  <span class="dt">nicolet.correction =</span> <span class="ot">FALSE</span>) {</span>
-<span id="cb45-10"><a href="#cb45-10"></a></span>
-<span id="cb45-11"><a href="#cb45-11"></a></span>
-<span id="cb45-12"><a href="#cb45-12"></a>  <span class="co">## the additional keywords to interprete must be read from headerfile</span></span>
-<span id="cb45-13"><a href="#cb45-13"></a>  headerfile &lt;-<span class="st"> </span><span class="kw">.find.ENVI.header</span>(file, headerfile)</span>
-<span id="cb45-14"><a href="#cb45-14"></a>  keys &lt;-<span class="st"> </span><span class="kw">readLines</span>(headerfile)</span>
-<span id="cb45-15"><a href="#cb45-15"></a>  keys &lt;-<span class="st"> </span><span class="kw">.read.ENVI.split.header</span>(keys)</span>
-<span id="cb45-16"><a href="#cb45-16"></a>  keys &lt;-<span class="st"> </span>keys[<span class="kw">c</span>(<span class="st">"description"</span>, <span class="st">"z plot titles"</span>, <span class="st">"pixel size"</span>)]</span>
-<span id="cb45-17"><a href="#cb45-17"></a></span>
-<span id="cb45-18"><a href="#cb45-18"></a>  header &lt;-<span class="st"> </span><span class="kw">modifyList</span>(keys, header)</span>
-<span id="cb45-19"><a href="#cb45-19"></a></span>
-<span id="cb45-20"><a href="#cb45-20"></a>  <span class="co">## most work is done by read.ENVI</span></span>
-<span id="cb45-21"><a href="#cb45-21"></a>  spc &lt;-<span class="st"> </span><span class="kw">read.ENVI</span>(</span>
-<span id="cb45-22"><a href="#cb45-22"></a>    <span class="dt">file =</span> file, <span class="dt">headerfile =</span> headerfile, <span class="dt">header =</span> header, ...,</span>
-<span id="cb45-23"><a href="#cb45-23"></a>    <span class="dt">x =</span> <span class="cf">if</span> (<span class="kw">is.na</span>(x)) <span class="dv">0</span><span class="op">:</span><span class="dv">1</span> <span class="cf">else</span> x,</span>
-<span id="cb45-24"><a href="#cb45-24"></a>    <span class="dt">y =</span> <span class="cf">if</span> (<span class="kw">is.na</span>(y)) <span class="dv">0</span><span class="op">:</span><span class="dv">1</span> <span class="cf">else</span> y</span>
-<span id="cb45-25"><a href="#cb45-25"></a>  )</span>
-<span id="cb45-26"><a href="#cb45-26"></a></span>
-<span id="cb45-27"><a href="#cb45-27"></a>  <span class="co">### From here on processing the additional keywords in Nicolet's ENVI header ****</span></span>
-<span id="cb45-28"><a href="#cb45-28"></a></span>
-<span id="cb45-29"><a href="#cb45-29"></a>  <span class="co">## z plot titles ----------------------------------------------------------------</span></span>
-<span id="cb45-30"><a href="#cb45-30"></a>  <span class="co">## default labels</span></span>
-<span id="cb45-31"><a href="#cb45-31"></a>  label &lt;-<span class="st"> </span><span class="kw">list</span>(</span>
-<span id="cb45-32"><a href="#cb45-32"></a>    <span class="dt">x =</span> <span class="kw">expression</span>(<span class="st">`</span><span class="dt">/</span><span class="st">`</span>(x, micro <span class="op">*</span><span class="st"> </span>m)),</span>
-<span id="cb45-33"><a href="#cb45-33"></a>    <span class="dt">y =</span> <span class="kw">expression</span>(<span class="st">`</span><span class="dt">/</span><span class="st">`</span>(y, micro <span class="op">*</span><span class="st"> </span>m)),</span>
-<span id="cb45-34"><a href="#cb45-34"></a>    <span class="dt">spc =</span> <span class="st">"I / a.u."</span>,</span>
-<span id="cb45-35"><a href="#cb45-35"></a>    <span class="dt">.wavelength =</span> <span class="kw">expression</span>(<span class="kw">tilde</span>(nu) <span class="op">/</span><span class="st"> </span>cm<span class="op">^-</span><span class="dv">1</span>)</span>
-<span id="cb45-36"><a href="#cb45-36"></a>  )</span>
-<span id="cb45-37"><a href="#cb45-37"></a></span>
-<span id="cb45-38"><a href="#cb45-38"></a>  <span class="co">## get labels from header information</span></span>
-<span id="cb45-39"><a href="#cb45-39"></a>  <span class="cf">if</span> (<span class="op">!</span><span class="kw">is.null</span>(header<span class="op">$</span><span class="st">"z plot titles"</span>)) {</span>
-<span id="cb45-40"><a href="#cb45-40"></a>    pattern &lt;-<span class="st"> "^[[:blank:]]*([[:print:]^,]+)[[:blank:]]*,.*$"</span></span>
-<span id="cb45-41"><a href="#cb45-41"></a>    tmp &lt;-<span class="st"> </span><span class="kw">sub</span>(pattern, <span class="st">"</span><span class="ch">\\</span><span class="st">1"</span>, header<span class="op">$</span><span class="st">"z plot titles"</span>)</span>
-<span id="cb45-42"><a href="#cb45-42"></a></span>
-<span id="cb45-43"><a href="#cb45-43"></a>    <span class="cf">if</span> (<span class="kw">grepl</span>(<span class="st">"Wavenumbers (cm-1)"</span>, tmp, <span class="dt">ignore.case =</span> <span class="ot">TRUE</span>)) {</span>
-<span id="cb45-44"><a href="#cb45-44"></a>      label<span class="op">$</span>.wavelength &lt;-<span class="st"> </span><span class="kw">expression</span>(<span class="kw">tilde</span>(nu) <span class="op">/</span><span class="st"> </span>cm<span class="op">^</span>(<span class="op">-</span><span class="dv">1</span>))</span>
-<span id="cb45-45"><a href="#cb45-45"></a>    } <span class="cf">else</span> {</span>
-<span id="cb45-46"><a href="#cb45-46"></a>      label<span class="op">$</span>.wavelength &lt;-<span class="st"> </span>tmp</span>
-<span id="cb45-47"><a href="#cb45-47"></a>    }</span>
-<span id="cb45-48"><a href="#cb45-48"></a></span>
-<span id="cb45-49"><a href="#cb45-49"></a>    pattern &lt;-<span class="st"> "^[[:blank:]]*[[:print:]^,]+,[[:blank:]]*([[:print:]^,]+).*$"</span></span>
-<span id="cb45-50"><a href="#cb45-50"></a>    tmp &lt;-<span class="st"> </span><span class="kw">sub</span>(pattern, <span class="st">"</span><span class="ch">\\</span><span class="st">1"</span>, header<span class="op">$</span><span class="st">"z plot titles"</span>)</span>
-<span id="cb45-51"><a href="#cb45-51"></a>    <span class="cf">if</span> (<span class="kw">grepl</span>(<span class="st">"Unknown"</span>, tmp, <span class="dt">ignore.case =</span> <span class="ot">TRUE</span>)) {</span>
-<span id="cb45-52"><a href="#cb45-52"></a>      label<span class="op">$</span>spc &lt;-<span class="st"> "I / a.u."</span></span>
-<span id="cb45-53"><a href="#cb45-53"></a>    } <span class="cf">else</span> {</span>
-<span id="cb45-54"><a href="#cb45-54"></a>      label<span class="op">$</span>spc &lt;-<span class="st"> </span>tmp</span>
-<span id="cb45-55"><a href="#cb45-55"></a>    }</span>
-<span id="cb45-56"><a href="#cb45-56"></a>  }</span>
-<span id="cb45-57"><a href="#cb45-57"></a></span>
-<span id="cb45-58"><a href="#cb45-58"></a>  <span class="co">## modify the labels accordingly</span></span>
-<span id="cb45-59"><a href="#cb45-59"></a>  spc<span class="op">@</span>label &lt;-<span class="st"> </span><span class="kw">modifyList</span>(label, spc<span class="op">@</span>label)</span>
-<span id="cb45-60"><a href="#cb45-60"></a></span>
-<span id="cb45-61"><a href="#cb45-61"></a>  <span class="co">## set up spatial coordinates --------------------------------------------------</span></span>
-<span id="cb45-62"><a href="#cb45-62"></a>  <span class="co">## look for x and y in the header only if x and y are NULL</span></span>
-<span id="cb45-63"><a href="#cb45-63"></a>  <span class="co">## they are in `description` and `pixel size`</span></span>
-<span id="cb45-64"><a href="#cb45-64"></a></span>
-<span id="cb45-65"><a href="#cb45-65"></a>  <span class="co">## set up regular expressions to extract the values</span></span>
-<span id="cb45-66"><a href="#cb45-66"></a>  p.description &lt;-<span class="st"> </span><span class="kw">paste</span>(</span>
-<span id="cb45-67"><a href="#cb45-67"></a>    <span class="st">"^Spectrum position [[:digit:]]+ of [[:digit:]]+ positions,"</span>,</span>
-<span id="cb45-68"><a href="#cb45-68"></a>    <span class="st">"X = ([[:digit:].-]+), Y = ([[:digit:].-]+)$"</span></span>
-<span id="cb45-69"><a href="#cb45-69"></a>  )</span>
-<span id="cb45-70"><a href="#cb45-70"></a>  p.pixel.size &lt;-<span class="st"> "^[[:blank:]]*([[:digit:].-]+),[[:blank:]]*([[:digit:].-]+).*$"</span></span>
-<span id="cb45-71"><a href="#cb45-71"></a></span>
-<span id="cb45-72"><a href="#cb45-72"></a>  <span class="cf">if</span> (<span class="kw">is.na</span>(x) <span class="op">&amp;&amp;</span><span class="st"> </span><span class="kw">is.na</span>(y) <span class="op">&amp;&amp;</span></span>
-<span id="cb45-73"><a href="#cb45-73"></a><span class="st">    </span><span class="op">!</span><span class="kw">is.null</span>(header<span class="op">$</span>description) <span class="op">&amp;&amp;</span><span class="st"> </span><span class="kw">grepl</span>(p.description, header<span class="op">$</span>description) <span class="op">&amp;&amp;</span></span>
-<span id="cb45-74"><a href="#cb45-74"></a><span class="st">    </span><span class="op">!</span><span class="kw">is.null</span>(header<span class="op">$</span><span class="st">"pixel size"</span>) <span class="op">&amp;&amp;</span><span class="st"> </span><span class="kw">grepl</span>(p.pixel.size, header<span class="op">$</span><span class="st">"pixel size"</span>)) {</span>
-<span id="cb45-75"><a href="#cb45-75"></a>    x[<span class="dv">1</span>] &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">sub</span>(p.description, <span class="st">"</span><span class="ch">\\</span><span class="st">1"</span>, header<span class="op">$</span>description))</span>
-<span id="cb45-76"><a href="#cb45-76"></a>    y[<span class="dv">1</span>] &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">sub</span>(p.description, <span class="st">"</span><span class="ch">\\</span><span class="st">2"</span>, header<span class="op">$</span>description))</span>
-<span id="cb45-77"><a href="#cb45-77"></a></span>
-<span id="cb45-78"><a href="#cb45-78"></a>    x[<span class="dv">2</span>] &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">sub</span>(p.pixel.size, <span class="st">"</span><span class="ch">\\</span><span class="st">1"</span>, header<span class="op">$</span><span class="st">"pixel size"</span>))</span>
-<span id="cb45-79"><a href="#cb45-79"></a>    y[<span class="dv">2</span>] &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">sub</span>(p.pixel.size, <span class="st">"</span><span class="ch">\\</span><span class="st">2"</span>, header<span class="op">$</span><span class="st">"pixel size"</span>))</span>
-<span id="cb45-80"><a href="#cb45-80"></a></span>
-<span id="cb45-81"><a href="#cb45-81"></a>    <span class="co">## it seems that the step size is given in mm while the offset is in micron</span></span>
-<span id="cb45-82"><a href="#cb45-82"></a>    <span class="cf">if</span> (nicolet.correction) {</span>
-<span id="cb45-83"><a href="#cb45-83"></a>      x[<span class="dv">2</span>] &lt;-<span class="st"> </span>x[<span class="dv">2</span>] <span class="op">*</span><span class="st"> </span><span class="dv">1000</span></span>
-<span id="cb45-84"><a href="#cb45-84"></a>      y[<span class="dv">2</span>] &lt;-<span class="st"> </span>y[<span class="dv">2</span>] <span class="op">*</span><span class="st"> </span><span class="dv">1000</span></span>
-<span id="cb45-85"><a href="#cb45-85"></a>    }</span>
-<span id="cb45-86"><a href="#cb45-86"></a></span>
-<span id="cb45-87"><a href="#cb45-87"></a>    <span class="co">## now calculate and set the x and y coordinates</span></span>
-<span id="cb45-88"><a href="#cb45-88"></a>    x &lt;-<span class="st"> </span>x[<span class="dv">2</span>] <span class="op">*</span><span class="st"> </span>spc<span class="op">$</span>x <span class="op">+</span><span class="st"> </span>x[<span class="dv">1</span>]</span>
-<span id="cb45-89"><a href="#cb45-89"></a>    <span class="cf">if</span> (<span class="op">!</span><span class="kw">any</span>(<span class="kw">is.na</span>(x))) {</span>
-<span id="cb45-90"><a href="#cb45-90"></a>      spc<span class="op">@</span>data<span class="op">$</span>x &lt;-<span class="st"> </span>x</span>
-<span id="cb45-91"><a href="#cb45-91"></a>    }</span>
-<span id="cb45-92"><a href="#cb45-92"></a></span>
-<span id="cb45-93"><a href="#cb45-93"></a>    y &lt;-<span class="st"> </span>y[<span class="dv">2</span>] <span class="op">*</span><span class="st"> </span>spc<span class="op">$</span>y <span class="op">+</span><span class="st"> </span>y[<span class="dv">1</span>]</span>
-<span id="cb45-94"><a href="#cb45-94"></a>    <span class="cf">if</span> (<span class="op">!</span><span class="kw">any</span>(<span class="kw">is.na</span>(y))) {</span>
-<span id="cb45-95"><a href="#cb45-95"></a>      spc<span class="op">@</span>data<span class="op">$</span>y &lt;-<span class="st"> </span>y</span>
-<span id="cb45-96"><a href="#cb45-96"></a>    }</span>
-<span id="cb45-97"><a href="#cb45-97"></a>  }</span>
-<span id="cb45-98"><a href="#cb45-98"></a></span>
-<span id="cb45-99"><a href="#cb45-99"></a>  spc</span>
-<span id="cb45-100"><a href="#cb45-100"></a>}</span></code></pre></div>
+<pre><code># The contents of "read.ENVI.Nicolet.R"
+
+read.ENVI.Nicolet &lt;- function(
+  file = stop("read.ENVI: file name needed"),
+  headerfile = NULL,
+  header = list(),
+  ..., # goes to read.ENVI
+  x = NA, y = NA, # NA means: use the specifications from the header file if possible
+  nicolet.correction = FALSE) {
+
+
+  ## the additional keywords to interprete must be read from headerfile
+  headerfile &lt;- .find.ENVI.header(file, headerfile)
+  keys &lt;- readLines(headerfile)
+  keys &lt;- .read.ENVI.split.header(keys)
+  keys &lt;- keys[c("description", "z plot titles", "pixel size")]
+
+  header &lt;- modifyList(keys, header)
+
+  ## most work is done by read.ENVI
+  spc &lt;- read.ENVI(
+    file = file, headerfile = headerfile, header = header, ...,
+    x = if (is.na(x)) 0:1 else x,
+    y = if (is.na(y)) 0:1 else y
+  )
+
+  ### From here on processing the additional keywords in Nicolet's ENVI header ****
+
+  ## z plot titles ----------------------------------------------------------------
+  ## default labels
+  label &lt;- list(
+    x = expression(`/`(x, micro * m)),
+    y = expression(`/`(y, micro * m)),
+    spc = "I / a.u.",
+    .wavelength = expression(tilde(nu) / cm^-1)
+  )
+
+  ## get labels from header information
+  if (!is.null(header$"z plot titles")) {
+    pattern &lt;- "^[[:blank:]]*([[:print:]^,]+)[[:blank:]]*,.*$"
+    tmp &lt;- sub(pattern, "\\1", header$"z plot titles")
+
+    if (grepl("Wavenumbers (cm-1)", tmp, ignore.case = TRUE)) {
+      label$.wavelength &lt;- expression(tilde(nu) / cm^(-1))
+    } else {
+      label$.wavelength &lt;- tmp
+    }
+
+    pattern &lt;- "^[[:blank:]]*[[:print:]^,]+,[[:blank:]]*([[:print:]^,]+).*$"
+    tmp &lt;- sub(pattern, "\\1", header$"z plot titles")
+    if (grepl("Unknown", tmp, ignore.case = TRUE)) {
+      label$spc &lt;- "I / a.u."
+    } else {
+      label$spc &lt;- tmp
+    }
+  }
+
+  ## modify the labels accordingly
+  spc@label &lt;- modifyList(label, spc@label)
+
+  ## set up spatial coordinates --------------------------------------------------
+  ## look for x and y in the header only if x and y are NULL
+  ## they are in `description` and `pixel size`
+
+  ## set up regular expressions to extract the values
+  p.description &lt;- paste(
+    "^Spectrum position [[:digit:]]+ of [[:digit:]]+ positions,",
+    "X = ([[:digit:].-]+), Y = ([[:digit:].-]+)$"
+  )
+  p.pixel.size &lt;- "^[[:blank:]]*([[:digit:].-]+),[[:blank:]]*([[:digit:].-]+).*$"
+
+  if (is.na(x) &amp;&amp; is.na(y) &amp;&amp;
+    !is.null(header$description) &amp;&amp; grepl(p.description, header$description) &amp;&amp;
+    !is.null(header$"pixel size") &amp;&amp; grepl(p.pixel.size, header$"pixel size")) {
+    x[1] &lt;- as.numeric(sub(p.description, "\\1", header$description))
+    y[1] &lt;- as.numeric(sub(p.description, "\\2", header$description))
+
+    x[2] &lt;- as.numeric(sub(p.pixel.size, "\\1", header$"pixel size"))
+    y[2] &lt;- as.numeric(sub(p.pixel.size, "\\2", header$"pixel size"))
+
+    ## it seems that the step size is given in mm while the offset is in micron
+    if (nicolet.correction) {
+      x[2] &lt;- x[2] * 1000
+      y[2] &lt;- y[2] * 1000
+    }
+
+    ## now calculate and set the x and y coordinates
+    x &lt;- x[2] * spc$x + x[1]
+    if (!any(is.na(x))) {
+      spc@data$x &lt;- x
+    }
+
+    y &lt;- y[2] * spc$y + y[1]
+    if (!any(is.na(y))) {
+      spc@data$y &lt;- y
+    }
+  }
+
+  spc
+}</code></pre>
 </div>
 <div id="deriving-import-filters-for-spc-files" class="section level2">
 <h2 class="hasAnchor">
@@ -1270,7 +1270,7 @@ Notes
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 ASCII
 </td>
 <td style="text-align:left;">
@@ -1297,7 +1297,7 @@ Raman
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 binary
 </td>
 <td style="text-align:left;">
@@ -1321,7 +1321,7 @@ array
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 ASCII
 </td>
 <td style="text-align:left;">
@@ -1341,7 +1341,7 @@ ASCII long
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 ASCII
 </td>
 <td style="text-align:left;">
@@ -1363,7 +1363,7 @@ Raman
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 ASCII
 </td>
 <td style="text-align:left;">
@@ -1386,7 +1386,7 @@ Raman
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 ASCII
 </td>
 <td style="text-align:left;">
@@ -1414,7 +1414,7 @@ Reads multiple files, needs to be sourced.
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 ASCII
 </td>
 <td style="text-align:left;">
@@ -1441,7 +1441,7 @@ Raman
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 ASCII
 </td>
 <td style="text-align:left;">
@@ -1461,7 +1461,7 @@ ASCII wide
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 ASCII
 </td>
 <td style="text-align:left;">
@@ -1484,7 +1484,7 @@ e.g., LabRAM spectrometers
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 ASCII
 </td>
 <td style="text-align:left;">
@@ -1507,7 +1507,7 @@ e.g., LabRAM spectrometer maps
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 ASCII
 </td>
 <td style="text-align:left;">
@@ -1535,7 +1535,7 @@ e.g., LabRAM spectrometer time series
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 ASCII
 </td>
 <td style="text-align:left;">
@@ -1563,7 +1563,7 @@ Export Table
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 binary
 </td>
 <td style="text-align:left;">
@@ -1583,7 +1583,7 @@ ENVI
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 binary
 </td>
 <td style="text-align:left;">
@@ -1605,7 +1605,7 @@ Infrared Imaging
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 binary
 </td>
 <td style="text-align:left;">
@@ -1632,7 +1632,7 @@ Infrared Imaging
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 binary
 </td>
 <td style="text-align:left;">
@@ -1659,7 +1659,7 @@ via Matlab
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 ASCII
 </td>
 <td style="text-align:left;">
@@ -1679,7 +1679,7 @@ JCAMP-DX
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 ASCII
 </td>
 <td style="text-align:left;">
@@ -1701,7 +1701,7 @@ Raman
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 ASCII
 </td>
 <td style="text-align:left;">
@@ -1722,7 +1722,7 @@ GCxGC-MS
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 ASCII
 </td>
 <td style="text-align:left;">
@@ -1750,7 +1750,7 @@ import for subset of the JCAMP-DX standard
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 binary
 </td>
 <td style="text-align:left;">
@@ -1771,7 +1771,7 @@ Matlab
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 binary
 </td>
 <td style="text-align:left;">
@@ -1792,7 +1792,7 @@ Cytospec
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 binary
 </td>
 <td style="text-align:left;">
@@ -1818,7 +1818,7 @@ Raman
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 binary
 </td>
 <td style="text-align:left;">
@@ -1842,7 +1842,7 @@ matrix
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 binary
 </td>
 <td style="text-align:left;">
@@ -1868,7 +1868,7 @@ Infrared Imaging
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 ASCII
 </td>
 <td style="text-align:left;">
@@ -1896,7 +1896,7 @@ import for subset of the JCAMP-DX standard
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 binary
 </td>
 <td style="text-align:left;">
@@ -1916,7 +1916,7 @@ spc
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 binary
 </td>
 <td style="text-align:left;">
@@ -1939,7 +1939,7 @@ Reads multiple files
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 binary
 </td>
 <td style="text-align:left;">
@@ -1961,7 +1961,7 @@ Efficiently reads multiple files
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 binary
 </td>
 <td style="text-align:left;">
@@ -1983,7 +1983,7 @@ Reads multiple pairs of low and high wavenumber region spcs
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 binary
 </td>
 <td style="text-align:left;">
@@ -2005,7 +2005,7 @@ Raman
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 binary
 </td>
 <td style="text-align:left;">
@@ -2028,7 +2028,7 @@ Raman
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 binary
 </td>
 <td style="text-align:left;">
@@ -2051,7 +2051,7 @@ spc export not available for images
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 binary
 </td>
 <td style="text-align:left;">
@@ -2078,7 +2078,7 @@ Raman
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 binary
 </td>
 <td style="text-align:left;">
@@ -2106,7 +2106,7 @@ WinSpec
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 ASCII
 </td>
 <td style="text-align:left;">
@@ -2134,7 +2134,7 @@ Save ASCII X, Save ASCII Y
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 ASCII
 </td>
 <td style="text-align:left;">
@@ -2193,7 +2193,7 @@ Notes
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 ASCII
 </td>
 <td style="text-align:left;">
@@ -2220,7 +2220,7 @@ Raman
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 binary
 </td>
 <td style="text-align:left;">
@@ -2242,7 +2242,7 @@ Infrared Imaging
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 binary
 </td>
 <td style="text-align:left;">
@@ -2268,7 +2268,7 @@ Infrared Imaging
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 binary
 </td>
 <td style="text-align:left;">
@@ -2294,7 +2294,7 @@ Cytospec
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 binary
 </td>
 <td style="text-align:left;">
@@ -2321,7 +2321,7 @@ Raman
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 ASCII
 </td>
 <td style="text-align:left;">
@@ -2344,7 +2344,7 @@ e.g., LabRAM spectrometers
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 ASCII
 </td>
 <td style="text-align:left;">
@@ -2367,7 +2367,7 @@ e.g., LabRAM spectrometer maps
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 ASCII
 </td>
 <td style="text-align:left;">
@@ -2395,7 +2395,7 @@ e.g., LabRAM spectrometer time series
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 ASCII
 </td>
 <td style="text-align:left;">
@@ -2418,7 +2418,7 @@ Raman
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 binary
 </td>
 <td style="text-align:left;">
@@ -2440,7 +2440,7 @@ via Matlab
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 binary
 </td>
 <td style="text-align:left;">
@@ -2463,7 +2463,7 @@ Reads multiple files
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 binary
 </td>
 <td style="text-align:left;">
@@ -2485,7 +2485,7 @@ Efficiently reads multiple files
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 binary
 </td>
 <td style="text-align:left;">
@@ -2507,7 +2507,7 @@ Reads multiple pairs of low and high wavenumber region spcs
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 binary
 </td>
 <td style="text-align:left;">
@@ -2534,7 +2534,7 @@ Raman
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 binary
 </td>
 <td style="text-align:left;">
@@ -2560,7 +2560,7 @@ Matlab
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 binary
 </td>
 <td style="text-align:left;">
@@ -2587,7 +2587,7 @@ Infrared Imaging
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 ASCII
 </td>
 <td style="text-align:left;">
@@ -2615,7 +2615,7 @@ Reads multiple files, needs to be sourced.
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 ASCII
 </td>
 <td style="text-align:left;">
@@ -2643,7 +2643,7 @@ import for subset of the JCAMP-DX standard
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 binary
 </td>
 <td style="text-align:left;">
@@ -2671,7 +2671,7 @@ WinSpec
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 ASCII
 </td>
 <td style="text-align:left;">
@@ -2693,7 +2693,7 @@ Raman
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 ASCII
 </td>
 <td style="text-align:left;">
@@ -2715,7 +2715,7 @@ Raman
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 ASCII
 </td>
 <td style="text-align:left;">
@@ -2737,7 +2737,7 @@ Raman
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 binary
 </td>
 <td style="text-align:left;">
@@ -2765,7 +2765,7 @@ Raman
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 ASCII
 </td>
 <td style="text-align:left;">
@@ -2788,7 +2788,7 @@ import for subset of the JCAMP-DX standard
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 ASCII
 </td>
 <td style="text-align:left;">
@@ -2814,7 +2814,7 @@ GCxGC-MS
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 ASCII
 </td>
 <td style="text-align:left;">
@@ -2837,7 +2837,7 @@ Save ASCII X, Save ASCII Y
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 ASCII
 </td>
 <td style="text-align:left;">
@@ -2860,7 +2860,7 @@ Export Table
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 ASCII
 </td>
 <td style="text-align:left;">
@@ -2883,7 +2883,7 @@ Export Table in 3 separate files (Header, X-Axis, Y-Axis)
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 binary
 </td>
 <td style="text-align:left;">
@@ -2904,7 +2904,7 @@ Raman
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 binary
 </td>
 <td style="text-align:left;">
@@ -3101,7 +3101,7 @@ Notes
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 ASCII
 </td>
 <td style="text-align:left;">
@@ -3129,7 +3129,7 @@ Reads multiple files, needs to be sourced.
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 ASCII
 </td>
 <td style="text-align:left;">
@@ -3157,7 +3157,7 @@ import for subset of the JCAMP-DX standard
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 ASCII
 </td>
 <td style="text-align:left;">
@@ -3183,7 +3183,7 @@ GCxGC-MS
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 ASCII
 </td>
 <td style="text-align:left;">
@@ -3211,7 +3211,7 @@ import for subset of the JCAMP-DX standard
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 binary
 </td>
 <td style="text-align:left;">
@@ -3233,7 +3233,7 @@ Infrared Imaging
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 binary
 </td>
 <td style="text-align:left;">
@@ -3254,7 +3254,7 @@ Infrared Imaging
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 binary
 </td>
 <td style="text-align:left;">
@@ -3281,7 +3281,7 @@ Infrared Imaging
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 ASCII
 </td>
 <td style="text-align:left;">
@@ -3304,7 +3304,7 @@ e.g., LabRAM spectrometers
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 ASCII
 </td>
 <td style="text-align:left;">
@@ -3327,7 +3327,7 @@ e.g., LabRAM spectrometer maps
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 ASCII
 </td>
 <td style="text-align:left;">
@@ -3350,7 +3350,7 @@ e.g., LabRAM spectrometer time series
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 ASCII
 </td>
 <td style="text-align:left;">
@@ -3372,7 +3372,7 @@ Raman
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 ASCII
 </td>
 <td style="text-align:left;">
@@ -3394,7 +3394,7 @@ Raman
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 ASCII
 </td>
 <td style="text-align:left;">
@@ -3417,7 +3417,7 @@ Raman
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 ASCII
 </td>
 <td style="text-align:left;">
@@ -3439,7 +3439,7 @@ Raman
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 ASCII
 </td>
 <td style="text-align:left;">
@@ -3462,7 +3462,7 @@ Save ASCII X, Save ASCII Y
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 ASCII
 </td>
 <td style="text-align:left;">
@@ -3485,7 +3485,7 @@ Export Table
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 ASCII
 </td>
 <td style="text-align:left;">
@@ -3508,7 +3508,7 @@ Export Table in 3 separate files (Header, X-Axis, Y-Axis)
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 ASCII
 </td>
 <td style="text-align:left;">
@@ -3530,7 +3530,7 @@ Raman
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 binary
 </td>
 <td style="text-align:left;">
@@ -3551,7 +3551,7 @@ Raman
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 binary
 </td>
 <td style="text-align:left;">
@@ -3573,7 +3573,7 @@ via Matlab
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 binary
 </td>
 <td style="text-align:left;">
@@ -3595,7 +3595,7 @@ Efficiently reads multiple files
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 binary
 </td>
 <td style="text-align:left;">
@@ -3617,7 +3617,7 @@ Reads multiple pairs of low and high wavenumber region spcs
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 binary
 </td>
 <td style="text-align:left;">
@@ -3639,7 +3639,7 @@ Raman
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 binary
 </td>
 <td style="text-align:left;">
@@ -3662,7 +3662,7 @@ Raman
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 binary
 </td>
 <td style="text-align:left;">
@@ -3685,7 +3685,7 @@ spc export not available for images
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 binary
 </td>
 <td style="text-align:left;">
@@ -3707,7 +3707,7 @@ Raman
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 binary
 </td>
 <td style="text-align:left;">
@@ -3735,7 +3735,7 @@ WinSpec
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 binary
 </td>
 <td style="text-align:left;">
@@ -3956,37 +3956,36 @@ matrix
 <span class="co">#&gt;  collate  en_US.UTF-8                 </span>
 <span class="co">#&gt;  ctype    en_US.UTF-8                 </span>
 <span class="co">#&gt;  tz       UTC                         </span>
-<span class="co">#&gt;  date     2020-12-30                  </span>
+<span class="co">#&gt;  date     2021-02-15                  </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; ─ Packages ───────────────────────────────────────────────────────────────────────────────────────</span>
 <span class="co">#&gt;  package        * version    date       lib source        </span>
 <span class="co">#&gt;  assertthat       0.2.1      2019-03-21 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  backports        1.2.1      2020-12-09 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  bookdown         0.21       2020-10-13 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  cli              2.2.0      2020-11-20 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  cli              2.3.0      2021-01-31 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  colorspace       2.0-0      2020-11-11 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  crayon           1.3.4      2017-09-16 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  crayon           1.4.1      2021-02-08 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  digest           0.6.27     2020-10-24 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  dplyr            1.0.2      2020-08-18 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  dplyr            1.0.4      2021-02-02 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  ellipsis         0.3.1      2020-05-15 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  evaluate         0.14       2019-05-28 [1] CRAN (R 4.0.1)</span>
-<span class="co">#&gt;  fansi            0.4.1      2020-01-08 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  generics         0.1.0      2020-10-31 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  ggplot2        * 3.3.2      2020-06-19 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  ggplot2        * 3.3.3      2020-12-30 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  glue             1.4.2      2020-08-27 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  gtable           0.3.0      2019-03-25 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  highr            0.8        2019-03-20 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  htmltools        0.5.0      2020-06-16 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  htmltools        0.5.1.1    2021-01-22 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  httr             1.4.2      2020-07-20 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  hyperSpec      * 0.100.0    2020-12-30 [1] local         </span>
-<span class="co">#&gt;  hySpc.testthat   0.2.1.9000 2020-12-21 [1] local         </span>
+<span class="co">#&gt;  hyperSpec      * 0.100.0    2021-02-15 [1] local         </span>
+<span class="co">#&gt;  hySpc.testthat   0.2.1.9000 2021-02-15 [1] local         </span>
 <span class="co">#&gt;  jpeg             0.1-8.1    2019-10-24 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  kableExtra       1.3.1      2020-10-22 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  knitr            1.30       2020-09-22 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  kableExtra       1.3.2      2021-02-14 [1] CRAN (R 4.0.3)</span>
+<span class="co">#&gt;  knitr            1.31       2021-01-27 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  lattice        * 0.20-41    2020-04-02 [2] CRAN (R 4.0.3)</span>
 <span class="co">#&gt;  latticeExtra     0.6-29     2019-12-19 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  lazyeval         0.2.2      2019-03-15 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  lifecycle        0.2.0      2020-03-06 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  lifecycle        1.0.0      2021-02-15 [1] CRAN (R 4.0.3)</span>
 <span class="co">#&gt;  magrittr         2.0.1      2020-11-17 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  munsell          0.5.0      2018-06-12 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  pillar           1.4.7      2020-11-20 [1] CRAN (R 4.0.2)</span>
@@ -4001,7 +4000,7 @@ matrix
 <span class="co">#&gt;  R6               2.5.0      2020-10-28 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  RColorBrewer     1.1-2      2014-12-07 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  rematch2         2.1.2      2020-05-01 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  rlang            0.4.9      2020-11-26 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  rlang            0.4.10     2020-12-30 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  rmarkdown        2.6        2020-12-14 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  rstudioapi       0.13       2020-11-12 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  rvest            0.3.6      2020-07-25 [1] CRAN (R 4.0.2)</span>
@@ -4010,14 +4009,14 @@ matrix
 <span class="co">#&gt;  stringi          1.5.3      2020-09-09 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  stringr          1.4.0      2019-02-10 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  styler           1.3.2      2020-02-23 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  testthat         3.0.1      2020-12-17 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  tibble           3.0.4      2020-10-12 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  testthat         3.0.2      2021-02-14 [1] CRAN (R 4.0.3)</span>
+<span class="co">#&gt;  tibble           3.0.6      2021-01-29 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  tidyselect       1.1.0      2020-05-11 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  vctrs            0.3.6      2020-12-17 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  viridisLite      0.3.0      2018-02-01 [1] CRAN (R 4.0.1)</span>
 <span class="co">#&gt;  webshot          0.5.2      2019-11-22 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  withr            2.3.0      2020-09-22 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  xfun             0.19       2020-10-30 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  withr            2.4.1      2021-01-26 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  xfun             0.21       2021-02-10 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  xml2             1.3.2      2020-04-23 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  yaml             2.2.1      2020-02-01 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt; </span>
