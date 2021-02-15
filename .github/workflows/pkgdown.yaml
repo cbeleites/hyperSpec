@@ -5,7 +5,6 @@ on:
       - main
       - master
       - develop
-      - feature/update_gha_code
 
 name: Website (pkgdown)
 
