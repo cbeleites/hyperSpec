@@ -2,12 +2,14 @@ on:
   push:
     branches:
       - release
+      - main
       - master
       - develop
 
   pull_request:
     branches:
       - release
+      - main
       - master
       - develop
 
@@ -23,9 +25,10 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - {os: windows-latest, r: 'devel'}
-          - {os: windows-latest, r: 'release'}
           - {os: macOS-latest,   r: 'release'}
+          - {os: windows-latest, r: 'release'}
+          - {os: windows-latest, r: '3.6'}
+          - {os: ubuntu-16.04,   r: 'devel',   rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest"}
           - {os: ubuntu-16.04,   r: 'release', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest"}
           - {os: ubuntu-16.04,   r: 'oldrel',  rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest"}
 
@@ -37,11 +40,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: r-lib/actions/setup-r@master
+      - uses: r-lib/actions/setup-r@v1
         with:
           r-version: ${{ matrix.config.r }}
 
-      - uses: r-lib/actions/setup-pandoc@master
+      - uses: r-lib/actions/setup-pandoc@v1
 
       - name: Query dependencies
         run: |
@@ -52,7 +55,7 @@ jobs:
 
       - name: Cache R packages
         if: runner.os != 'Windows'
-        uses: actions/cache@v1
+        uses: actions/cache@v2
         with:
           path: ${{ env.R_LIBS_USER }}
           key: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-3-${{ hashFiles('.github/depends.Rds') }}
@@ -60,12 +63,11 @@ jobs:
 
       - name: Install system dependencies
         if: runner.os == 'Linux'
-        env:
-          RHUB_PLATFORM: linux-x86_64-ubuntu-gcc
         run: |
-          Rscript -e "remotes::install_github('r-hub/sysreqs')"
-          sysreqs=$(Rscript -e "cat(sysreqs::sysreq_commands('./hyperSpec/DESCRIPTION'))")
-          sudo -s eval "$sysreqs"
+          while read -r cmd
+          do
+            eval sudo $cmd
+          done < <(Rscript -e 'writeLines(remotes::system_requirements("ubuntu", "16.04", "./hyperSpec"))')
 
       - name: Install dependencies
         run: |
@@ -74,8 +76,14 @@ jobs:
           remotes::install_cran("devtools")
         shell: Rscript {0}
 
+      - name: Install dependencies (for R-devel)
+        if: matrix.config.r == 'devel'
+        run: |
+          remotes::install_cran("vdiffr", type = "source", force = TRUE)
+        shell: Rscript {0}
+
       - name: Install dependencies (for R-oldrel)
-        if: matrix.config.r == 'oldrel'
+        if: matrix.config.r == 'oldrel' || matrix.config.r == '3.6'
         run: |
           remotes::install_version("rgl", "0.100.50")
         shell: Rscript {0}
@@ -97,6 +105,7 @@ jobs:
         env:
           _R_CHECK_CRAN_INCOMING_: false
         run: |
+          options(crayon.enabled = TRUE)
           rcmdcheck::rcmdcheck(
             "./hyperSpec",
             args = c("--no-manual", "--as-cran"),
@@ -113,7 +122,7 @@ jobs:
 
       - name: Upload check results
         if: failure()
-        uses: actions/upload-artifact@master
+        uses: actions/upload-artifact@main
         with:
           name: ${{ runner.os }}-r${{ matrix.config.r }}-results
           path: check
