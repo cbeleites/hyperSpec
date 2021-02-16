@@ -23,7 +23,7 @@ setGeneric("as.hyperSpec", function(X, ...) {
   }
 )
 
-#' @include guess_wavelength.R
+#' @include extract_numbers.R
 .as.hyperSpec.matrix <- function(X, wl = NULL, ...) {
   if (is.null(wl)) wl <- guess.wavelength(colnames(X))
   new("hyperSpec", spc = X, wavelength = wl, ...)
