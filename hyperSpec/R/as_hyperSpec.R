@@ -18,9 +18,7 @@
 #'
 #' @concept hyperSpec conversion
 #'
-setGeneric(
-  "as.hyperSpec",
-  function(X, ...) {
+setGeneric("as.hyperSpec", function(X, ...) {
     stop("as.hyperSpec is not available for objects of class ", class(X))
   }
 )
