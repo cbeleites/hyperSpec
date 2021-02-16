@@ -1,4 +1,4 @@
-#' @title Statistical summary and other functions for `hyperSpec`.
+#' @title Statistical Summary and Other Functions for `hyperSpec`
 #' @description
 #' The functions
 #'

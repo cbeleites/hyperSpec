@@ -1,4 +1,4 @@
-#' Guess wavelengths from Character Vector
+#' Guess Wavelengths from Character Vector
 #'
 #' character vectors used for names (e.g. colnames for matrices or data.frames)
 #' are often treated by [base::make.names()] or similar functions that
@@ -36,7 +36,7 @@ guess.wavelength <- function(X) {
   wl
 }
 
-#' @include regexps.R
+#' @include constants-regexps.R
 #' @include hy_options.R
 hySpc.testthat::test(guess.wavelength) <- function() {
   context("guess.wavelength")

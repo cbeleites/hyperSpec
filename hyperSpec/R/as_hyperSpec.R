@@ -18,14 +18,12 @@
 #'
 #' @concept hyperSpec conversion
 #'
-setGeneric(
-  "as.hyperSpec",
-  function(X, ...) {
+setGeneric("as.hyperSpec", function(X, ...) {
     stop("as.hyperSpec is not available for objects of class ", class(X))
   }
 )
 
-#' @include guess_wavelength.R
+#' @include extract_numbers.R
 .as.hyperSpec.matrix <- function(X, wl = NULL, ...) {
   if (is.null(wl)) wl <- guess.wavelength(colnames(X))
   new("hyperSpec", spc = X, wavelength = wl, ...)
