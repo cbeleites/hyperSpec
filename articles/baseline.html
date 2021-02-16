@@ -287,10 +287,10 @@ Thus one should also consider requiring more support points than the default val
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span><span class="op">(</span><span class="fu"><a href="../reference/spc.fit.poly.html">spc.fit.poly.below</a></span><span class="op">(</span><span class="va">chondro_mini</span>, <span class="cn">NULL</span>, npts.min <span class="op">=</span> <span class="fl">20</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.003   0.000   0.004</span>
+<span class="co">#&gt;   0.003   0.001   0.004</span>
 <span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span><span class="op">(</span><span class="fu"><a href="../reference/spc.fit.poly.html">spc.fit.poly.below</a></span><span class="op">(</span><span class="va">chondro_mini</span><span class="op">[</span>, , <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">min</span> <span class="op">~</span> <span class="fl">700</span>, <span class="fl">1700</span> <span class="op">~</span> <span class="va">max</span><span class="op">)</span><span class="op">]</span>, <span class="cn">NULL</span>, npts.min <span class="op">=</span> <span class="fl">20</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.004   0.000   0.004</span></code></pre></div>
+<span class="co">#&gt;   0.005   0.000   0.004</span></code></pre></div>
 <p>The choice of the spectral range in <code class="sourceCode r">fit.to</code> influences the resulting baselines to a certain extent, as becomes clear from figure <a href="#fig:spectralrange">2.3</a>.</p>
 </div>
 <div id="fitting-polynomials-of-different-orders" class="section level2">
@@ -451,7 +451,7 @@ Figure 3.4: Rubberband baselines for the paracetamol spectrum after bendin: corr
 <code class="sourceCode R"><span class="fu">sessioninfo</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/sessioninfo/man/session_info.html">session_info</a></span><span class="op">(</span><span class="st">"hyperSpec"</span><span class="op">)</span>
 <span class="co">#&gt; ─ Session info ───────────────────────────────────────────────────────────────────────────────────</span>
 <span class="co">#&gt;  setting  value                       </span>
-<span class="co">#&gt;  version  R version 4.0.3 (2020-10-10)</span>
+<span class="co">#&gt;  version  R version 4.0.4 (2021-02-15)</span>
 <span class="co">#&gt;  os       macOS Catalina 10.15.7      </span>
 <span class="co">#&gt;  system   x86_64, darwin17.0          </span>
 <span class="co">#&gt;  ui       X11                         </span>
@@ -487,16 +487,16 @@ Figure 3.4: Rubberband baselines for the paracetamol spectrum after bendin: corr
 <span class="co">#&gt;  jpeg             0.1-8.1    2019-10-24 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  jsonlite         1.7.2      2020-12-09 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  labeling         0.4.2      2020-10-20 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  lattice        * 0.20-41    2020-04-02 [2] CRAN (R 4.0.3)</span>
+<span class="co">#&gt;  lattice        * 0.20-41    2020-04-02 [2] CRAN (R 4.0.4)</span>
 <span class="co">#&gt;  latticeExtra     0.6-29     2019-12-19 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  lazyeval         0.2.2      2019-03-15 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  lifecycle        1.0.0      2021-02-15 [1] CRAN (R 4.0.3)</span>
 <span class="co">#&gt;  magrittr         2.0.1      2020-11-17 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  MASS             7.3-53     2020-09-09 [2] CRAN (R 4.0.3)</span>
-<span class="co">#&gt;  Matrix           1.2-18     2019-11-27 [2] CRAN (R 4.0.3)</span>
-<span class="co">#&gt;  mgcv             1.8-33     2020-08-27 [2] CRAN (R 4.0.3)</span>
+<span class="co">#&gt;  MASS             7.3-53     2020-09-09 [2] CRAN (R 4.0.4)</span>
+<span class="co">#&gt;  Matrix           1.3-2      2021-01-06 [2] CRAN (R 4.0.4)</span>
+<span class="co">#&gt;  mgcv             1.8-33     2020-08-27 [2] CRAN (R 4.0.4)</span>
 <span class="co">#&gt;  munsell          0.5.0      2018-06-12 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  nlme             3.1-149    2020-08-23 [2] CRAN (R 4.0.3)</span>
+<span class="co">#&gt;  nlme             3.1-152    2021-02-04 [2] CRAN (R 4.0.4)</span>
 <span class="co">#&gt;  pillar           1.4.7      2020-11-20 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  pkgbuild         1.2.0      2020-12-15 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  pkgconfig        2.0.3      2019-09-22 [1] CRAN (R 4.0.2)</span>
