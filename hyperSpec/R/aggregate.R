@@ -34,7 +34,7 @@
         append.rows <- max(100, ceiling(1 - (i / length(by)) * out.rows))
       }
       out.rows <- max(append.rows + out.rows, r + prows)
-      data <- rbind(data, data [rep(1, out.rows - nrow(data)), , drop = FALSE])
+      data <- rbind(data, data[rep(1, out.rows - nrow(data)), , drop = FALSE])
       warning(
         "At", i, "of", length(by),
         "levels: Output data.frame too small. Consider using an",
@@ -120,7 +120,10 @@
 #' )
 #'
 #' ## make some "spectra"
-#' spc <- new("hyperSpec", spc = sweep(matrix(rnorm(10 * 20), ncol = 20), 1, (1:10) * 5, "+"))
+#' spc <- new(
+#'   "hyperSpec",
+#'   spc = sweep(matrix(rnorm(10 * 20), ncol = 20), 1, (1:10) * 5, "+")
+#' )
 #'
 #' ## 3 groups
 #' color <- c("red", "blue", "black")
