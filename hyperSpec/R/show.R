@@ -232,7 +232,8 @@ hySpc.testthat::test(.show) <- function() {
     data = data.frame(
       x = letters[1:3],
       g = letters[11:13],
-      y = 3:5
+      y = 3:5,
+      stringsAsFactors = FALSE
     ),
     spc = spc
   )
@@ -256,7 +257,9 @@ hySpc.testthat::test(.print) <- function() {
   set.seed(1)
   spc <- matrix(rnorm(12), ncol = 4)
   hs <- new("hyperSpec",
-    data = data.frame(x = letters[1:3], g = letters[13:11], y = 3:5),
+    data = data.frame(
+      x = letters[1:3], g = letters[13:11], y = 3:5, stringsAsFactors = FALSE
+    ),
     spc = spc
   )
 
@@ -290,7 +293,9 @@ hySpc.testthat::test(.summary) <- function() {
   set.seed(1)
   spc <- matrix(rnorm(12), ncol = 4)
   hs <- new("hyperSpec",
-    data = data.frame(x = letters[1:3], g = letters[13:11], y = 3:5),
+    data = data.frame(
+      x = letters[1:3], g = letters[13:11], y = 3:5, stringsAsFactors = FALSE
+    ),
     spc = spc
   )
 
@@ -319,7 +324,9 @@ hySpc.testthat::test(.as.character) <- function() {
   set.seed(1)
   spc <- matrix(rnorm(12), ncol = 4)
   hs <- new("hyperSpec",
-    data = data.frame(x = letters[1:3], g = letters[13:11], y = 3:5),
+    data = data.frame(
+      x = letters[1:3], g = letters[13:11], y = 3:5, stringsAsFactors = FALSE
+    ),
     spc = spc
   )
 
