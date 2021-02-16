@@ -1,4 +1,8 @@
 # Fun: show ------------------------------------------------------------------
+.show <- function(object) {
+  print(object, range = FALSE, include = "main")
+  invisible(NULL)
+}
 
 #' @name show
 #' @rdname show
@@ -62,43 +66,121 @@
 #'
 #' summary(faux_cell, include = c("wl", "data"))
 
-setMethod("show", signature = signature(object = "hyperSpec"),
-  function(object) {
-    print(object, range = FALSE, include = "main")
-    invisible(NULL)
-  })
+setMethod("show", signature = signature(object = "hyperSpec"), .show)
 
 
 # Fun: print -----------------------------------------------------------------
+
+.print <- function(x, range = FALSE, include = "all", ...) {
+  validObject(x)
+  cat(as.character(x, range = range, include = include, ...), sep = "\n")
+  invisible(x)
+}
 
 #' @rdname show
 #' @aliases print print,hyperSpec-method
 #' @export
 
-setMethod("print", signature = signature(x = "hyperSpec"),
-  function(x, range = FALSE, include = "all", ...) {
-    validObject(x)
-    cat(as.character(x, range = range, include = include, ...), sep = "\n")
-    invisible(x)
-  })
+setMethod("print", signature = signature(x = "hyperSpec"), .print)
 
 
 
 # Fun: summary ---------------------------------------------------------------
+.summary <- function(object, ..., include = "all", range = TRUE) {
+  print(object, ..., include = include, range = range)
+}
 
 #' @rdname show
 #' @aliases summary summary,hyperSpec-method
 #' @export
 
-setMethod("summary",
-  signature = signature(object = "hyperSpec"),
-  function(object, ..., include = "all", range = TRUE) {
-    print(object, ..., include = include, range = range)
-  }
-)
+setMethod("summary", signature = signature(object = "hyperSpec"), .summary)
 
 
 # Fun: as.character ----------------------------------------------------------
+.as.character <- function(x, digits = getOption("digits"), range = FALSE,
+  max.print = 5, shorten.to = c(2, 1), include = c("all", "main", "wl", "data")) {
+  # Input checking ---------------------------------------------------------
+  validObject(x)
+
+  include <- match.arg(include, several.ok = TRUE)
+  if ("all" %in% include) {
+    include <- c("main", "wl", "data")
+  }
+  if (is.null(max.print)) {
+    max.print <- getOption("max.print")
+  }
+  if ((length(max.print) != 1) | !is.numeric(max.print)) {
+    stop("max.print needs to be a number")
+  }
+  if ((length(shorten.to) < 1) | (length(shorten.to) > 2) | !is.numeric(shorten.to)) {
+    stop("shorten.to needs to be a numeric vector with length 1 or 2")
+  }
+  if (sum(shorten.to) > max.print) {
+    stop("sum(shorten.to) > max.print: this does not make sense.")
+  }
+
+  # Preparing information --------------------------------------------------
+  # ~ Main summary ---------------------------------------------------------
+  chr_main <- if ("main" %in% include) {
+    c(
+      "hyperSpec object",
+      paste("  ", nrow(x), "spectra"),
+      paste("  ", ncol(x), "data columns"),
+      paste("  ", nwl(x),  "data points / spectrum")
+    )
+
+  } else {
+    NULL
+  }
+
+  if (all(include %in% "main")) {
+    return(chr_main)
+  }
+
+  # ~ Wavelength summary ----------------------------------------------------
+  chr_wl <- if ("wl" %in% include) {
+    .paste.row(x@wavelength, x@label$.wavelength, "wavelength",
+      ins = 0, val = TRUE, range = FALSE,
+      shorten.to = shorten.to, max.print = max.print
+    )
+  } else {
+    NULL
+  }
+
+  if (all(include %in% "wl")) {
+    return(chr_wl)
+
+  } else if (all(include %in% c("main", "wl"))) {
+    return(c(chr_main, chr_wl))
+  }
+
+  # ~ Summary of each column ------------------------------------------------
+  if ("data" %in% include) {
+    n.cols <- ncol(x@data)
+
+    chr_data <-
+      paste0("data: ", " (", nrow(x@data), " rows x ", n.cols, " columns)")
+
+    if (n.cols > 0) {
+      for (n in names(x@data)) {
+        chr_data <- c(chr_data, .paste.row(x@data[[n]], x@label[[n]], n,
+          ins = 3, i = match(n, names(x@data)), val = TRUE, range = range,
+          shorten.to = shorten.to, max.print = max.print
+        )
+        )
+      }
+    }
+
+  } else {
+    chr_data <- NULL
+  }
+
+  chr <- c(chr_main, chr_wl, chr_data)
+
+  chr
+}
+
 
 #' @rdname show
 #' @docType methods
@@ -136,95 +218,11 @@ setMethod("summary",
 #'
 #' as.character(faux_cell, include = c("wl", "data"))
 
-setMethod("as.character",
-  signature = signature(x = "hyperSpec"),
-  function(x, digits = getOption("digits"), range = FALSE,
-    max.print = 5, shorten.to = c(2, 1), include = c("all", "main", "wl", "data")) {
-    # Input checking ---------------------------------------------------------
-    validObject(x)
-
-    include <- match.arg(include, several.ok = TRUE)
-    if ("all" %in% include) {
-      include <- c("main", "wl", "data")
-    }
-    if (is.null(max.print)) {
-      max.print <- getOption("max.print")
-    }
-    if ((length(max.print) != 1) | !is.numeric(max.print)) {
-      stop("max.print needs to be a number")
-    }
-    if ((length(shorten.to) < 1) | (length(shorten.to) > 2) | !is.numeric(shorten.to)) {
-      stop("shorten.to needs to be a numeric vector with length 1 or 2")
-    }
-    if (sum(shorten.to) > max.print) {
-      stop("sum(shorten.to) > max.print: this does not make sense.")
-    }
-
-    # Preparing information --------------------------------------------------
-    # ~ Main summary ---------------------------------------------------------
-    chr_main <- if ("main" %in% include) {
-      c(
-        "hyperSpec object",
-        paste("  ", nrow(x), "spectra"),
-        paste("  ", ncol(x), "data columns"),
-        paste("  ", nwl(x),  "data points / spectrum")
-      )
-
-    } else {
-      NULL
-    }
-
-    if (all(include %in% "main")) {
-      return(chr_main)
-    }
-
-    # ~ Wavelength summary ----------------------------------------------------
-    chr_wl <- if ("wl" %in% include) {
-      .paste.row(x@wavelength, x@label$.wavelength, "wavelength",
-        ins = 0, val = TRUE, range = FALSE,
-        shorten.to = shorten.to, max.print = max.print
-      )
-    } else {
-      NULL
-    }
-
-    if (all(include %in% "wl")) {
-      return(chr_wl)
-
-    } else if (all(include %in% c("main", "wl"))) {
-      return(c(chr_main, chr_wl))
-    }
-
-    # ~ Summary of each column ------------------------------------------------
-    if ("data" %in% include) {
-      n.cols <- ncol(x@data)
-
-      chr_data <-
-        paste0("data: ", " (", nrow(x@data), " rows x ", n.cols, " columns)")
-
-      if (n.cols > 0) {
-        for (n in names(x@data)) {
-          chr_data <- c(chr_data, .paste.row(x@data[[n]], x@label[[n]], n,
-            ins = 3, i = match(n, names(x@data)), val = TRUE, range = range,
-            shorten.to = shorten.to, max.print = max.print
-          )
-          )
-        }
-      }
-
-    } else {
-      chr_data <- NULL
-    }
-
-    chr <- c(chr_main, chr_wl, chr_data)
-
-    chr
-  }
-)
+setMethod("as.character", signature = signature(x = "hyperSpec"), .as.character)
 
 
 # Unit tests -----------------------------------------------------------------
-hySpc.testthat::test(show) <- function() {
+hySpc.testthat::test(.show) <- function() {
   context("show")
 
   # Create data
@@ -251,7 +249,7 @@ hySpc.testthat::test(show) <- function() {
 }
 
 
-hySpc.testthat::test(print) <- function() {
+hySpc.testthat::test(.print) <- function() {
   context("print")
 
   # Create data
@@ -285,7 +283,7 @@ hySpc.testthat::test(print) <- function() {
 }
 
 
-hySpc.testthat::test(summary) <- function() {
+hySpc.testthat::test(.summary) <- function() {
   context("summary")
 
   # Create data
@@ -310,11 +308,11 @@ hySpc.testthat::test(summary) <- function() {
     expect_output(summary(hs, include = "data"), " rng ")
   })
 
-# }
-#
-#
-#
-# hySpc.testthat::test(as.character) <- function() {
+}
+
+
+
+hySpc.testthat::test(.as.character) <- function() {
   context("as.character")
 
   # Create data
