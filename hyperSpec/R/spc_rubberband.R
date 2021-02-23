@@ -26,11 +26,11 @@
 #'
 #' @examples
 #' plot(paracetamol[, , 175 ~ 1800])
-#' bl <- spc.rubberband(paracetamol[, , 175 ~ 1800], noise = 300, df = 20)
+#' bl <- spc_rubberband(paracetamol[, , 175 ~ 1800], noise = 300, df = 20)
 #' plot(bl, add = TRUE, col = 2)
 #'
 #' plot(paracetamol[, , 175 ~ 1800] - bl)
-spc.rubberband <- function(spc, ..., upper = FALSE, noise = 0, spline = TRUE) {
+spc_rubberband <- function(spc, ..., upper = FALSE, noise = 0, spline = TRUE) {
   spc <- wl_sort(spc)
 
   if (upper) spc@data$spc <- -spc@data$spc
@@ -105,8 +105,8 @@ spc.rubberband <- function(spc, ..., upper = FALSE, noise = 0, spline = TRUE) {
 
 # Unit tests -----------------------------------------------------------------
 
-hySpc.testthat::test(spc.rubberband) <- function() {
-  context("spc.rubberband")
+hySpc.testthat::test(spc_rubberband) <- function() {
+  context("spc_rubberband")
 
   ## use data that yields fairly stable baseline solution
   paracetamol <- paracetamol[, , 300 ~ 550]
@@ -116,10 +116,10 @@ hySpc.testthat::test(spc.rubberband) <- function() {
     tmp <- paracetamol
     tmp[[, , 400]] <- NA
 
-    coefs <- spc.rubberband(tmp)
+    coefs <- spc_rubberband(tmp)
     expect_equal(
       coefs[[, , !is.na(tmp)]],
-      spc.rubberband(paracetamol[, , !is.na(tmp)])[[]]
+      spc_rubberband(paracetamol[, , !is.na(tmp)])[[]]
     )
 
     ## bug was: all coefficients were silently 0
@@ -130,10 +130,10 @@ hySpc.testthat::test(spc.rubberband) <- function() {
     tmp <- paracetamol
     tmp[[, , 1, wl.index = TRUE]] <- NA
 
-    coefs <- spc.rubberband(tmp)
+    coefs <- spc_rubberband(tmp)
     expect_equal(
       coefs[[, , !is.na(tmp)]],
-      spc.rubberband(paracetamol[, , !is.na(tmp)])[[]]
+      spc_rubberband(paracetamol[, , !is.na(tmp)])[[]]
     )
   })
 
@@ -141,10 +141,10 @@ hySpc.testthat::test(spc.rubberband) <- function() {
     tmp <- paracetamol[1]
     tmp[[, , nwl(paracetamol), wl.index = TRUE]] <- NA
 
-    coefs <- spc.rubberband(tmp)
+    coefs <- spc_rubberband(tmp)
     expect_equal(
       coefs[[, , !is.na(tmp)]],
-      spc.rubberband(paracetamol[1, , !is.na(tmp)])[[]]
+      spc_rubberband(paracetamol[1, , !is.na(tmp)])[[]]
     )
   })
 }
