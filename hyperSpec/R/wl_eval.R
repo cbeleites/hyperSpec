@@ -22,19 +22,19 @@
 #' @author C. Beleites, V. Gegzna
 #'
 #' @examples
-#' plot(wl.eval(laser, exp = function(x) exp(-x)))
+#' plot(wl_eval(laser, exp = function(x) exp(-x)))
 #'
-#' plot(wl.eval(1000:4000, y = function(x) 1/log(x)))
+#' plot(wl_eval(1000:4000, y = function(x) 1/log(x)))
 #'
-#' plot(wl.eval(300:550, y2 = function(x) x*2, y3 = function(x) x*3))
+#' plot(wl_eval(300:550, y2 = function(x) x*2, y3 = function(x) x*3))
 #'
-wl.eval <- function(x, ..., normalize.wl = I) {
-  UseMethod("wl.eval")
+wl_eval <- function(x, ..., normalize.wl = I) {
+  UseMethod("wl_eval")
 }
 
-#' @rdname wl.eval
+#' @rdname wl_eval
 #' @export
-wl.eval.hyperSpec <- function(x, ..., normalize.wl = I) {
+wl_eval.hyperSpec <- function(x, ..., normalize.wl = I) {
   chk.hy(x)
   validObject(x)
 
@@ -52,58 +52,58 @@ wl.eval.hyperSpec <- function(x, ..., normalize.wl = I) {
 }
 
 
-#' @rdname wl.eval
+#' @rdname wl_eval
 #' @export
-wl.eval.numeric <- function(x, ..., normalize.wl = I) {
+wl_eval.numeric <- function(x, ..., normalize.wl = I) {
   if (!is.vector(x)) {
     class_txt <- paste(class(x), collapse = ", ")
     stop("`x` must be a vector. Now it is ", class_txt, ".")
   }
   x <- new("hyperSpec", spc = seq_along(x), wavelength = x)
-  wl.eval(x, ..., normalize.wl = normalize.wl)
+  wl_eval(x, ..., normalize.wl = normalize.wl)
 }
 
 
 # Unit tests -----------------------------------------------------------------
 
 
-hySpc.testthat::test(wl.eval.hyperSpec) <- function() {
-  context("wl.eval")
+hySpc.testthat::test(wl_eval.hyperSpec) <- function() {
+  context("wl_eval")
 
   test_that("error on function not returning same length as input", {
-    expect_error(wl.eval(flu, function(x) 1))
+    expect_error(wl_eval(flu, function(x) 1))
   })
 
-  test_that("wl.eval(<hyperSpec>) against manual evaluation", {
+  test_that("wl_eval(<hyperSpec>) against manual evaluation", {
     expect_equivalent(
-      wl.eval(flu, function(x) rep(5, length(x)), normalize.wl = normalize01)[[]],
+      wl_eval(flu, function(x) rep(5, length(x)), normalize.wl = normalize01)[[]],
       matrix(rep(5, nwl(flu)), nrow = 1)
     )
 
     expect_equivalent(
-      wl.eval(flu, function(x) x),
+      wl_eval(flu, function(x) x),
       vanderMonde(flu, 1)[2]
     )
 
     expect_equivalent(
-      wl.eval(flu, function(x) exp(-x))[[]],
+      wl_eval(flu, function(x) exp(-x))[[]],
       matrix(exp(-flu@wavelength), nrow = 1)
     )
   })
 
   test_that("normalization", {
     expect_equivalent(
-      wl.eval(flu, function(x) rep(5, length(x)), normalize.wl = normalize01)[[]],
+      wl_eval(flu, function(x) rep(5, length(x)), normalize.wl = normalize01)[[]],
       matrix(rep(5, nwl(flu)), nrow = 1)
     )
 
     expect_equivalent(
-      wl.eval(flu, function(x) x, normalize.wl = normalize01)[[]],
+      wl_eval(flu, function(x) x, normalize.wl = normalize01)[[]],
       matrix(seq(0, 1, length.out = nwl(flu)), nrow = 1)
     )
 
     expect_equivalent(
-      wl.eval(flu, function(x) exp(x), normalize.wl = normalize01)[[]],
+      wl_eval(flu, function(x) exp(x), normalize.wl = normalize01)[[]],
       matrix(exp(seq(0, 1, length.out = nwl(flu))), nrow = 1)
     )
   })
@@ -111,42 +111,42 @@ hySpc.testthat::test(wl.eval.hyperSpec) <- function() {
 
   test_that("multiple functions", {
     expect_equivalent(
-      wl.eval(flu, function(x) rep(1, length(x)), function(x) x),
+      wl_eval(flu, function(x) rep(1, length(x)), function(x) x),
       vanderMonde(flu, 1)
     )
   })
 
   test_that("function names", {
-    tmp <- wl.eval(flu, f = function(x) x, g = function(x) exp(-x))
+    tmp <- wl_eval(flu, f = function(x) x, g = function(x) exp(-x))
 
     expect_equal(tmp$.f, c("f", "g"))
   })
 
-  test_that("wl.eval(<numeric>) works", {
+  test_that("wl_eval(<numeric>) works", {
 
     expect_equal(
-      as.vector(wl.eval(1:10, f = function(x) x)$spc),
+      as.vector(wl_eval(1:10, f = function(x) x)$spc),
       1:10
     )
 
     expect_equal(
-      as.vector(wl.eval(1:10, f = function(x) x**2)$spc),
+      as.vector(wl_eval(1:10, f = function(x) x**2)$spc),
       (1:10)**2
     )
 
     expect_equal(
-      wl.eval(wl(flu), f = function(x) x)$.f,
-      wl.eval(   flu,  f = function(x) x)$.f
+      wl_eval(wl(flu), f = function(x) x)$.f,
+      wl_eval(   flu,  f = function(x) x)$.f
     )
 
     expect_silent(
-      tmp <- wl.eval(300:500, f = function(x) x, g = function(x) exp(-x))
+      tmp <- wl_eval(300:500, f = function(x) x, g = function(x) exp(-x))
     )
     expect_equal(tmp$.f, c("f", "g"))
   })
 
-  test_that("wl.eval fails with matrix input", {
-    expect_error(wl.eval(matrix(1:10), f = function(x) x))
-    expect_error(wl.eval(matrix(), f = function(x) x))
+  test_that("wl_eval fails with matrix input", {
+    expect_error(wl_eval(matrix(1:10), f = function(x) x))
+    expect_error(wl_eval(matrix(), f = function(x) x))
   })
 }
