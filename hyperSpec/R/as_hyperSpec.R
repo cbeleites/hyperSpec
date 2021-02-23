@@ -25,7 +25,7 @@ setGeneric("as.hyperSpec", function(X, ...) {
 
 #' @include extract_numbers.R
 .as.hyperSpec.matrix <- function(X, wl = NULL, ...) {
-  if (is.null(wl)) wl <- guess.wavelength(colnames(X))
+  if (is.null(wl)) wl <- extract_numbers(colnames(X))
   new("hyperSpec", spc = X, wavelength = wl, ...)
 }
 
@@ -40,15 +40,15 @@ setGeneric("as.hyperSpec", function(X, ...) {
 #' @examples
 #' tmp <- data.frame(flu[[, , 400 ~ 410]])
 #' (wl <- colnames(tmp))
-#' guess.wavelength(wl)
+#' extract_numbers(wl)
 setMethod("as.hyperSpec", "matrix", .as.hyperSpec.matrix)
 
 .as.hyperSpec.data.frame <- function(X, spc = NULL, wl = NULL,
   labels = attr(X, "labels"), ...) {
 
-  if (is.null(wl)) wl <- guess.wavelength(X)
+  if (is.null(wl)) wl <- extract_numbers(X)
   # TODO: remove after 31.12.2020
-  if (!all(!is.na(guess.wavelength(colnames(X))))) {
+  if (!all(!is.na(extract_numbers(colnames(X))))) {
     warning(
       "Method as.hyperSpec(<data.frame>) has changed its behaviour. ",
       "Use as.hyperSpec(as.matrix(X)) instead."
