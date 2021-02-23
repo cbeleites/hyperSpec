@@ -82,7 +82,7 @@ spc_loess <- function(spc, newx, enp.target = nwl(spc) / 4, surface = "direct",
     )
   }
 
-  .fix_spc_colnames(spc)
+  .spc_fix_colnames(spc)
 }
 
 

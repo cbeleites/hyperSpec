@@ -139,7 +139,7 @@ decomposition <- function(object, x, wavelength = seq_len(ncol(x)),
 
   object@data$spc <- unclass(object@data$spc) # remove AsIs
 
-  object <- .fix_spc_colnames(object)
+  object <- .spc_fix_colnames(object)
 
   validObject(object)
 

@@ -51,7 +51,7 @@ wl <- function(x) {
 ###
 ".wl<-" <- function(x, value) {
   x@wavelength <- value
-  spc <- .fix_spc_colnames(x)
+  spc <- .spc_fix_colnames(x)
 
   x
 }

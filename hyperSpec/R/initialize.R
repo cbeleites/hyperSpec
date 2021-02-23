@@ -139,7 +139,7 @@
   if (.options$gc) gc()
 
 
-  .Object <- .fix_spc_colnames(.Object) # For consistency with .wl<-
+  .Object <- .spc_fix_colnames(.Object) # For consistency with .wl<-
 
   # Finally: check whether we got a valid hyperSpec object
   validObject(.Object)
