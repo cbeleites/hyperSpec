@@ -331,9 +331,9 @@ Note that this should be accounted for in the decreasing order of the original `
 
 
 
-# General behaviour of file import functions: Options `file.keep.name` and `file.remove.emptyspc` {#io-options}
+# General Behaviour of File Import Functions: Options `file.keep.name` and `file.remove.emptyspc` {#io-options}
 
-# Reading Multiple files into one `hyperSpec`{.r} object {#sec:read-mult-files}
+# Reading Multiple Files into One `hyperSpec` Object {#sec:read-mult-files}
 
 Many of the function described below will work on one file, even though derived functions such as `read.spc.KaiserMap()`{.r} (see section \@ref(sec:read-spc-KaiserMap)<!--, p. \pageref{sec:read-spc-KaiserMap}-->) may take care of measurements consisting of multiple files.
 
@@ -356,7 +356,7 @@ Users may gain speed and memory by using the internal workhorse functions for th
 In that case, please contact the package maintainer ([**hyperSpec**'s GitHub repository](https://github.com/cbeleites/hyperSpec/issues){target="_blank"}) for advise (contributions to package **hyperSpec** are welcome and all authors are listed appropriately in the function help page's author section).
 
 
-# ASCII files {#sec:ascii}
+# ASCII Files {#sec:ascii}
 <!-- {#sec:ascii} {#sec:read-txt-long} {#sec:read-txt-wide} -->
 
 \index{ASCII!wide}
@@ -378,7 +378,7 @@ Note that R allows the use a variety of compressed file formats directly as ASCI
 Also, both `read.txt.long()`{.r} and `read.txt.wide()`{.r} accept connections instead of file names.
 
 
-## ASCII files with samples in columns {#sec:ascii-files-cols}
+## ASCII Files with Samples in Columns {#sec:ascii-files-cols}
 
 \index{Bruker!powder diffraction}
 \index{powder diffraction!Bruker}
@@ -549,7 +549,8 @@ Further import filters are provided for manufacturer/software specific ASCII for
 ASCII export can be done in wide and long format using `write.txt.long()`{.r} and `write.txt.wide()`{.r}.
 If you need a specific header or footer, use R's functions for writing files: `write.table()`{.r}, `write()`{.r}, `cat()`{.r} and so on offer fine-grained control of writing ASCII files.
 
-# Binary file formats {#sec:binary-file-formats}
+
+# Binary File Formats {#sec:binary-file-formats}
 
 ## Matlab Files {#sec:readMat}
 \index{Matlab}
@@ -610,7 +611,7 @@ However, it may be convenient to transform the saved data according to how it is
 The functions `as.long.df()`{.r} and `as.wide.df()`{.r} may prove useful for reshaping the data.
 
 
-### Import of Matlab files written by Cytospec {#sec:read-mat-Cytospec}
+### Import of Matlab Files Written by Cytospec {#sec:read-mat-Cytospec}
 
 \index{Cytospec}\index{Cytospec!Matlab}\index{Matlab!Cytospec}
 
@@ -670,7 +671,7 @@ Please see also the manufacturer specific notes in section \@ref(sec:manuf-spec-
 Use package package **caTools** or package **rgdal** with GDAL for writing ENVI files.
 
 
-## spc Files {#sec:read-spc}
+## `spc` Files {#sec:read-spc}
 
 \index{spc}
 \index{spc!Raman}
@@ -773,7 +774,7 @@ barbiturates[[, , 25 ~ 30]]
 ```
 
 
-### Deriving manufacturer specific import filters
+### Deriving Manufacturer Specific Import Filters
 
 Please note that future changes inside the read.spc function is likely to occur.
 However, if you just post-process the `hyperSpec`{.r} object returned by `read.spc()`{.r}, you should be fine.
@@ -1208,7 +1209,7 @@ This function reads the spectra files automatically, if they are appropriately n
 As for the other Witec functions, it is possible to read image data by selecting `type = "map"`{.r}.
 Line scans and z-stacks should be read as single spectra.
 
-# Writing your own Import Function {#sec:writing-Import}
+# Writing Your Own Import Function {#sec:writing-Import}
 
 This section gives examples of how to write import functions.
 The first example implements an import filter for an ASCII file format, basically from scratch.
@@ -1315,7 +1316,7 @@ For using the function, see section \@ref(sec:read-ENVI-Nicolet)<!--(p. \pageref
 writeLines(readLines("read.ENVI.Nicolet.R"))
 ```
 
-## Deriving import filters for `spc` files
+## Deriving Import Filters for `spc` Files
 
 Please note that future changes inside the `read.spc()`{.r} function are likely to occur.
 However, if you just post-process the `hyperSpec`{.r} object returned by `read.spc()`{.r}, you should be fine.
