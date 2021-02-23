@@ -111,7 +111,7 @@ read.txt.long <- function(file = stop("file is required"),
                           header = TRUE,
                           ...) {
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  deprecated_read_txt(new = "read_txt_long")
+  hySpc_deprecated(new = "read_txt_long")
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   txtfile <- read.table(file = file, header = header, ...)

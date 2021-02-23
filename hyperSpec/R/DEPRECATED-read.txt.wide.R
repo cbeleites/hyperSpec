@@ -108,7 +108,7 @@ read.txt.wide <- function(file = stop("file is required"),
                           check.names = FALSE,
                           ...) {
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  deprecated_read_txt()
+  hySpc_deprecated("read_txt_wide")
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   .wavelength <- match(".wavelength", names(cols))
   if (is.na(.wavelength)) {
