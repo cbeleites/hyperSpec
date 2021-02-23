@@ -2287,7 +2287,7 @@ Please refer to the documentation of the respective functions for details about 
   <span class="op">}</span>
 <span class="op">}</span><span class="op">)</span>
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.059   0.002   0.062</span></code></pre></div>
+<span class="co">#&gt;   0.055   0.002   0.057</span></code></pre></div>
 <p>Calculations that involve a lot of subsetting (i.e., extracting or changing the spectra matrix or extra data) can be sped up considerably if the required parts of the <code>hyperSpec</code> object are extracted beforehand.
 This is somewhat similar to model fitting in <code>R</code> in general: many model fitting functions in <code>R</code> are much faster if the formula interface is avoided and the appropriate <code class="sourceCode r">data.frame</code>s or matrices are handed over directly.</p>
 <div class="sourceCode" id="cb142"><pre class="downlit sourceCode r">
@@ -2301,7 +2301,7 @@ This is somewhat similar to model fitting in <code>R</code> in general: many mod
   <span class="va">tmp</span><span class="op">[[</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">tmp.matrix</span>
 <span class="op">}</span><span class="op">)</span>
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.019   0.000   0.019</span></code></pre></div>
+<span class="co">#&gt;   0.018   0.000   0.018</span></code></pre></div>
 </div>
 <div id="additional-packages" class="section level2">
 <h2 class="hasAnchor">
@@ -2343,7 +2343,7 @@ The memory consumption of <code class="sourceCode r"><span class="kw">read.txt.R
 <span class="co">#&gt;  assertthat       0.2.1      2019-03-21 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  brio             1.1.1      2021-01-20 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  callr            3.5.1      2020-10-13 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  cli              2.3.0      2021-01-31 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  cli              2.3.1      2021-02-23 [1] CRAN (R 4.0.4)</span>
 <span class="co">#&gt;  colorspace     * 2.0-0      2020-11-11 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  crayon           1.4.1      2021-02-08 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  desc             1.2.0      2018-05-01 [1] CRAN (R 4.0.2)</span>

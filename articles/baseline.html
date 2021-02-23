@@ -287,10 +287,10 @@ Thus one should also consider requiring more support points than the default val
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span><span class="op">(</span><span class="fu"><a href="../reference/spc.fit.poly.html">spc.fit.poly.below</a></span><span class="op">(</span><span class="va">chondro_mini</span>, <span class="cn">NULL</span>, npts.min <span class="op">=</span> <span class="fl">20</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.004   0.000   0.004</span>
+<span class="co">#&gt;   0.004   0.000   0.005</span>
 <span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span><span class="op">(</span><span class="fu"><a href="../reference/spc.fit.poly.html">spc.fit.poly.below</a></span><span class="op">(</span><span class="va">chondro_mini</span><span class="op">[</span>, , <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">min</span> <span class="op">~</span> <span class="fl">700</span>, <span class="fl">1700</span> <span class="op">~</span> <span class="va">max</span><span class="op">)</span><span class="op">]</span>, <span class="cn">NULL</span>, npts.min <span class="op">=</span> <span class="fl">20</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.004   0.000   0.005</span></code></pre></div>
+<span class="co">#&gt;   0.005   0.000   0.005</span></code></pre></div>
 <p>The choice of the spectral range in <code class="sourceCode r">fit.to</code> influences the resulting baselines to a certain extent, as becomes clear from figure <a href="#fig:spectralrange">2.3</a>.</p>
 </div>
 <div id="fitting-polynomials-of-different-orders" class="section level2">
@@ -463,7 +463,7 @@ Figure 3.4: Rubberband baselines for the paracetamol spectrum after bendin: corr
 <span class="co">#&gt;  assertthat       0.2.1      2019-03-21 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  brio             1.1.1      2021-01-20 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  callr            3.5.1      2020-10-13 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  cli              2.3.0      2021-01-31 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  cli              2.3.1      2021-02-23 [1] CRAN (R 4.0.4)</span>
 <span class="co">#&gt;  colorspace       2.0-0      2020-11-11 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  crayon           1.4.1      2021-02-08 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  desc             1.2.0      2018-05-01 [1] CRAN (R 4.0.2)</span>
