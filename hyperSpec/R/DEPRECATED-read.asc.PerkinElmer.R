@@ -54,5 +54,5 @@ read.asc.PerkinElmer <- function(file = stop("filename or connection needed"), .
   spc$filename <- NULL # not meaningful due to textConnection use
 
   ## consistent file import behaviour across import functions
-  .fileio.optional(spc, file)
+  .spc_io_postprocess_optional(spc, file)
 }

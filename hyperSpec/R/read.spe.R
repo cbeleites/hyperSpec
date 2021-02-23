@@ -96,7 +96,7 @@ read.spe <- function(filename, xaxis = "file", acc2avg = F, cts_sec = F,
   # Create a new x-axis, if required
   xaxis <- .wl_fix_unit_name(xaxis)
   if (xaxis == "px") {
-    return(.fileio.optional(spc, filename))
+    return(.spc_io_postprocess_optional(spc, filename))
   }
 
 
@@ -140,7 +140,7 @@ read.spe <- function(filename, xaxis = "file", acc2avg = F, cts_sec = F,
   }
 
   ## consistent file import behaviour across import functions
-  .fileio.optional(spc, filename)
+  .spc_io_postprocess_optional(spc, filename)
 }
 
 #' Read XML footer from SPE file format version 3.0.

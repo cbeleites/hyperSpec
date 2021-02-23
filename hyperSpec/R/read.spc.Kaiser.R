@@ -52,7 +52,7 @@ read.spc.Kaiser <- function(files, ..., glob = TRUE) {
   )
   ## consistent file import behaviour across import functions
   ## filenames already set
-  .fileio.optional(spc, file.keep.name = FALSE)
+  .spc_io_postprocess_optional(spc, file.keep.name = FALSE)
 }
 
 #' `read.spc.KaiserMap` is a wrapper for `read.spc.Kaiser` with predefined `log2data`

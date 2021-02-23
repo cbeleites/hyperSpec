@@ -185,5 +185,5 @@ read_txt_long <- function(file = stop("file is required"),
   spc <- new("hyperSpec", wavelength = wavelength, data = txtfile, labels = cols)
 
   ## consistent file import behaviour across import functions
-  .fileio.optional(spc, filename = file)
+  .spc_io_postprocess_optional(spc, filename = file)
 }

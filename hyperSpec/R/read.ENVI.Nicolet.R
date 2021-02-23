@@ -114,7 +114,7 @@ read.ENVI.Nicolet <- function(file = stop("read.ENVI: file name needed"),
   }
 
   ## consistent file import behaviour across import functions
-  ## .fileio.optional is called already by read.ENVI
+  ## .spc_io_postprocess_optional is called already by read.ENVI
 
   spc
 }

@@ -35,5 +35,5 @@ read.mat.Witec <- function(file = stop("filename or connection needed")) {
   spc$spcname <- spcname
 
   ## consistent file import behaviour across import functions
-  .fileio.optional(spc, file)
+  .spc_io_postprocess_optional(spc, file)
 }

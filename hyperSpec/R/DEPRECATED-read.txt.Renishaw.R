@@ -163,7 +163,7 @@ read.txt.Renishaw <- function(file = stop("file is required"),
   ))
 
   ## consistent file import behaviour across import functions
-  .fileio.optional(spc, file)
+  .spc_io_postprocess_optional(spc, file)
 }
 
 hySpc.testthat::test(read.txt.Renishaw) <- function() {

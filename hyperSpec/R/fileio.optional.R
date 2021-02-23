@@ -7,7 +7,7 @@
 #' - optionally keep the filenames in column `spc$filename`
 #'
 #' The desired overall behavior can be set by options via [hy.setOptions()]. All
-#' file import filters should call `.fileio.optional()` to ensure the same
+#' file import filters should call `.spc_io_postprocess_optional()` to ensure the same
 #' behavior.
 #'
 #' @param spc hyperSpec object for file import post-processing
@@ -28,7 +28,7 @@
 #'
 #' @export
 #'
-.fileio.optional <- function(spc, filename, ...,
+.spc_io_postprocess_optional <- function(spc, filename, ...,
                              file.remove.emptyspc = hy.getOption("file.remove.emptyspc"),
                              file.keep.name = hy.getOption("file.keep.name"),
                              tolerance = hy.getOption("tolerance")) {
@@ -61,8 +61,8 @@
 }
 
 
-hySpc.testthat::test(.fileio.optional) <- function() {
-  context(".fileio.optional")
+hySpc.testthat::test(.spc_io_postprocess_optional) <- function() {
+  context(".spc_io_postprocess_optional")
 
   test_that("removing of zero/NA spectra", {
     tmp <- fluNA # spectrum 2 is all NA
@@ -71,17 +71,17 @@ hySpc.testthat::test(.fileio.optional) <- function() {
     tmp[[, , 450 ~ 455]] <- NA
 
     expect_equivalent(
-      .fileio.optional(tmp, file.remove.emptyspc = TRUE, file.keep.name = FALSE),
+      .spc_io_postprocess_optional(tmp, file.remove.emptyspc = TRUE, file.keep.name = FALSE),
       tmp [-c(2, 3, 5)]
     )
   })
 
   test_that("filenames", {
     flu$filename <- NULL
-    tmp <- .fileio.optional(flu, filename = "test", file.remove.emptyspc = FALSE, file.keep.name = TRUE)
+    tmp <- .spc_io_postprocess_optional(flu, filename = "test", file.remove.emptyspc = FALSE, file.keep.name = TRUE)
     expect_true(all(tmp$filename == "test"))
 
-    expect_warning(tmp <- .fileio.optional(tmp,
+    expect_warning(tmp <- .spc_io_postprocess_optional(tmp,
       filename = "test2",
       file.remove.emptyspc = FALSE, file.keep.name = TRUE
     ))

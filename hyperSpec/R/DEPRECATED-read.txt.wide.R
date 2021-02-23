@@ -140,5 +140,5 @@ read.txt.wide <- function(file = stop("file is required"),
   spc <- new("hyperSpec", spc = spc.data, data = txtfile, labels = cols)
 
   ## consistent file import behaviour across import functions
-  .fileio.optional(spc, filename = file)
+  .spc_io_postprocess_optional(spc, filename = file)
 }
