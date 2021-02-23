@@ -20,7 +20,7 @@
 #'   spectral range, use \code{\link[hyperSpec:extractreplace]{[}}, for
 #'   interpolation along the spectral axis see
 #'   [hyperSpec::spc.loess()] and for spectral binning
-#'   [hyperSpec::spc.bin()].
+#'   [hyperSpec::spc_bin()].
 #' @author C. Beleites
 #'
 #' @export
@@ -33,7 +33,7 @@
 #'
 #' interpolation along the spectral axis: [hyperSpec::spc.loess()]
 #'
-#' spectral binning: [hyperSpec::spc.bin()]
+#' spectral binning: [hyperSpec::spc_bin()]
 #' @examples
 #'
 #' wl(laser)
