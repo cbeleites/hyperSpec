@@ -1,13 +1,12 @@
 
-#' Convert different wavelength units
+#' Convert between Different Wavelength Units
 #'
 #' The following units can be converted into each other:
-#' *nm*, \emph{\eqn{cm^{-1}}{inverse cm}}, *eV*, *THz* and
-#' *Raman shift*
+#' *nm*, \emph{\eqn{cm^{-1}}{inverse cm}}, *eV*, *THz* and *Raman shift*
 #'
-#' @param points data for conversion
-#' @param src source unit
-#' @param dst destination unit
+#' @param x data for conversion
+#' @param from source unit
+#' @param to destination unit
 #' @param laser laser wavelength (required for work with Raman shift)
 #' @author R. Kiselev
 #' @export
@@ -17,28 +16,28 @@
 #' @examples
 #' wl_convert_units(3200, "Raman shift", "nm", laser = 785.04)
 #' wl_convert_units(785, "nm", "invcm")
-wl_convert_units <- function(points, src, dst, laser = NULL) {
-  SRC <- .fixunitname(src)
-  DST <- .fixunitname(dst)
+wl_convert_units <- function(x, from, to, ref_wl = NULL) {
+  src  <- .fix_unit_name(from)
+  dest <- .fix_unit_name(to)
 
-  if (SRC == DST) {
-    return(points)
+  if (src == dest) {
+    return(x)
   }
 
-  if ((SRC == "raman" | DST == "raman") & is.null(laser)) {
+  if ((src == "raman" | dest == "raman") & is.null(ref_wl)) {
     stop("Working with Raman shift requires knowledge of laser wavelength")
   }
 
-  f <- paste0(SRC, "2", DST)
+  f <- paste0(src, "2", dest)
   f <- get(f)
-  return(f(points, laser))
+  return(f(x, ref_wl))
 }
 
 #' @param x wavelength points for conversion
 #' @param ... ignored
 #' @describeIn wl_convert_units conversion **nanometers** -> **Raman shift (relative wavenumber)**
 #' @export
-nm2raman <- function(x, laser) 1e7 * (1 / laser - 1 / x)
+nm2raman <- function(x, ref_wl) 1e7 * (1 / ref_wl - 1 / x)
 
 
 #' @describeIn wl_convert_units conversion **nanometers** -> **inverse cm (absolute wavenumber)**
@@ -137,7 +136,7 @@ freq2raman <- function(x, laser) nm2raman(freq2nm(x), laser)
 
 
 # Bring the argument to a conventional name
-.fixunitname <- function(unit) {
+.fix_unit_name <- function(unit) {
   unit <- gsub(" .*$", "", tolower(unit))
   if (unit %in% c("raman", "stokes", "rel", "rel.", "relative", "rel.cm-1", "rel.cm")) {
     return("raman")
@@ -212,20 +211,20 @@ hySpc.testthat::test(wl) <- function() {
 }
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-hySpc.testthat::test(.fixunitname) <- function() {
+hySpc.testthat::test(.fix_unit_name) <- function() {
 
-  context(".fixunitname")
+  context(".fix_unit_name")
 
-  test_that(".fixunitname() works", {
+  test_that(".fix_unit_name() works", {
 
-    expect_equal(.fixunitname("raman"), "raman")
-    expect_equal(.fixunitname("invcm"), "invcm")
-    expect_equal(.fixunitname("nm"),    "nm")
-    expect_equal(.fixunitname("ev"),    "ev")
-    expect_equal(.fixunitname("freq"),  "freq")
-    expect_equal(.fixunitname("px"),    "px")
-    expect_equal(.fixunitname("file"),  "file")
-    expect_error(.fixunitname("ddd"),   "Unknown unit type")
+    expect_equal(.fix_unit_name("raman"), "raman")
+    expect_equal(.fix_unit_name("invcm"), "invcm")
+    expect_equal(.fix_unit_name("nm"),    "nm")
+    expect_equal(.fix_unit_name("ev"),    "ev")
+    expect_equal(.fix_unit_name("freq"),  "freq")
+    expect_equal(.fix_unit_name("px"),    "px")
+    expect_equal(.fix_unit_name("file"),  "file")
+    expect_error(.fix_unit_name("ddd"),   "Unknown unit type")
 
   })
 
@@ -244,8 +243,8 @@ hySpc.testthat::test(wl_convert_units) <- function() {
       wl_convert_units(1000, "raman", "nm"),
       "Working with Raman shift requires knowledge of laser wavelength"
     )
-    expect_error(wl_convert_units(1000, "non-existing", "nm"),  "Unknown unit type")
-    expect_error(wl_convert_units(1000, "nm", "non-existing"),  "Unknown unit type")
+    expect_error(wl_convert_units(1000, "non-existing", "nm"), "Unknown unit type")
+    expect_error(wl_convert_units(1000, "nm", "non-existing"), "Unknown unit type")
   })
 
 
