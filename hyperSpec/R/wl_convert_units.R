@@ -15,9 +15,9 @@
 #' @concept wavelengths
 #'
 #' @examples
-#' wlconv(3200, "Raman shift", "nm", laser = 785.04)
-#' wlconv(785, "nm", "invcm")
-wlconv <- function(points, src, dst, laser = NULL) {
+#' wl_convert_units(3200, "Raman shift", "nm", laser = 785.04)
+#' wl_convert_units(785, "nm", "invcm")
+wl_convert_units <- function(points, src, dst, laser = NULL) {
   SRC <- .fixunitname(src)
   DST <- .fixunitname(dst)
 
@@ -36,102 +36,102 @@ wlconv <- function(points, src, dst, laser = NULL) {
 
 #' @param x wavelength points for conversion
 #' @param ... ignored
-#' @describeIn wlconv conversion **nanometers** -> **Raman shift (relative wavenumber)**
+#' @describeIn wl_convert_units conversion **nanometers** -> **Raman shift (relative wavenumber)**
 #' @export
 nm2raman <- function(x, laser) 1e7 * (1 / laser - 1 / x)
 
 
-#' @describeIn wlconv conversion **nanometers** -> **inverse cm (absolute wavenumber)**
+#' @describeIn wl_convert_units conversion **nanometers** -> **inverse cm (absolute wavenumber)**
 #' @export
 nm2invcm <- function(x, ...) 1e7 / x
 
 
-#' @describeIn wlconv conversion **nanometers** -> **electronvolt**
+#' @describeIn wl_convert_units conversion **nanometers** -> **electronvolt**
 #' @export
 nm2ev <- function(x, ...) 1e9 * h * c / (q * x)
 
 
-#' @describeIn wlconv conversion **nm** -> **frequency in THz**
+#' @describeIn wl_convert_units conversion **nm** -> **frequency in THz**
 #' @export
 nm2freq <- function(x, ...) 1e-3 * c / x
 
 
-#' @describeIn wlconv conversion **inverse cm (absolute wavenumber)** -> **Raman shift (relative wavenumber)**
+#' @describeIn wl_convert_units conversion **inverse cm (absolute wavenumber)** -> **Raman shift (relative wavenumber)**
 #' @export
 invcm2raman <- function(x, laser) 1e7 / laser - x
 
 
-#' @describeIn wlconv conversion **inverse cm (absolute wavenumber)** -> **nanometers**
+#' @describeIn wl_convert_units conversion **inverse cm (absolute wavenumber)** -> **nanometers**
 #' @export
 invcm2nm <- function(x, ...) 1e7 / x
 
 
-#' @describeIn wlconv conversion **inverse cm (absolute wavenumber)** -> **electronvolt**
+#' @describeIn wl_convert_units conversion **inverse cm (absolute wavenumber)** -> **electronvolt**
 #' @export
 invcm2ev <- function(x, ...) 100 * x * c * h / q
 
 
-#' @describeIn wlconv conversion **inverse cm (absolute wavenumber)** -> **frequency in THz**
+#' @describeIn wl_convert_units conversion **inverse cm (absolute wavenumber)** -> **frequency in THz**
 #' @export
 invcm2freq <- function(x, ...) nm2freq(invcm2nm(x))
 
 
-#' @describeIn wlconv conversion **Raman shift (relative wavenumber)** -> **inverse cm (absolute wavenumber)**
+#' @describeIn wl_convert_units conversion **Raman shift (relative wavenumber)** -> **inverse cm (absolute wavenumber)**
 #' @export
 raman2invcm <- function(x, laser) 1e7 / laser - x
 
 
-#' @describeIn wlconv conversion **Raman shift (relative wavenumber)** -> **nanometers**
+#' @describeIn wl_convert_units conversion **Raman shift (relative wavenumber)** -> **nanometers**
 #' @export
 raman2nm <- function(x, laser) 1e7 / (1e7 / laser - x)
 
 
-#' @describeIn wlconv conversion **Raman shift (relative wavenumber)** -> **electronvolt**
+#' @describeIn wl_convert_units conversion **Raman shift (relative wavenumber)** -> **electronvolt**
 #' @export
 raman2ev <- function(x, laser) 100 * h * c * (1e7 / laser - x) / q
 
 
-#' @describeIn wlconv conversion **Raman shift (relative wavenumber)** -> **frequency in THz**
+#' @describeIn wl_convert_units conversion **Raman shift (relative wavenumber)** -> **frequency in THz**
 #' @export
 raman2freq <- function(x, laser) nm2freq(raman2nm(x, laser))
 
 
-#' @describeIn wlconv conversion **electronvolt** -> **Raman shift (relative wavenumber)**
+#' @describeIn wl_convert_units conversion **electronvolt** -> **Raman shift (relative wavenumber)**
 #' @export
 ev2raman <- function(x, laser) 1e7 / laser - x * q / (100 * h * c)
 
 
-#' @describeIn wlconv conversion **electronvolt** -> **inverse cm (absolute wavenumber)**
+#' @describeIn wl_convert_units conversion **electronvolt** -> **inverse cm (absolute wavenumber)**
 #' @export
 ev2invcm <- function(x, ...) q * x / (100 * h * c)
 
 
-#' @describeIn wlconv conversion **electronvolt** -> **nanometers**
+#' @describeIn wl_convert_units conversion **electronvolt** -> **nanometers**
 #' @export
 ev2nm <- function(x, ...) 1e9 * h * c / (q * x)
 
 
-#' @describeIn wlconv conversion **electronvolt** -> **frequency in THz**
+#' @describeIn wl_convert_units conversion **electronvolt** -> **frequency in THz**
 #' @export
 ev2freq <- function(x, ...) nm2freq(ev2nm(x))
 
 
-#' @describeIn wlconv conversion **frequency in THz** -> **nanometers**
+#' @describeIn wl_convert_units conversion **frequency in THz** -> **nanometers**
 #' @export
 freq2nm <- function(x, ...) 1e-3 * c / x
 
 
-#' @describeIn wlconv conversion **frequency in THz** -> **inverse cm (absolute wavenumber)**
+#' @describeIn wl_convert_units conversion **frequency in THz** -> **inverse cm (absolute wavenumber)**
 #' @export
 freq2invcm <- function(x, ...) nm2invcm(freq2nm(x))
 
 
-#' @describeIn wlconv conversion **frequency in THz** -> **electronvolt**
+#' @describeIn wl_convert_units conversion **frequency in THz** -> **electronvolt**
 #' @export
 freq2ev <- function(x, ...) nm2ev(freq2nm(x))
 
 
-#' @describeIn wlconv conversion **frequency in THz** -> **Raman shift (relative wavenumber)**
+#' @describeIn wl_convert_units conversion **frequency in THz** -> **Raman shift (relative wavenumber)**
 #' @export
 freq2raman <- function(x, laser) nm2raman(freq2nm(x), laser)
 
@@ -233,33 +233,33 @@ hySpc.testthat::test(.fixunitname) <- function() {
 }
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-hySpc.testthat::test(wlconv) <- function() {
+hySpc.testthat::test(wl_convert_units) <- function() {
 
-  context("wlconv")
+  context("wl_convert_units")
 
-  test_that("wlconv() throws error", {
-    expect_error(wlconv())
+  test_that("wl_convert_units() throws error", {
+    expect_error(wl_convert_units())
 
     expect_error(
-      wlconv(1000, "raman", "nm"),
+      wl_convert_units(1000, "raman", "nm"),
       "Working with Raman shift requires knowledge of laser wavelength"
     )
-    expect_error(wlconv(1000, "non-existing", "nm"),  "Unknown unit type")
-    expect_error(wlconv(1000, "nm", "non-existing"),  "Unknown unit type")
+    expect_error(wl_convert_units(1000, "non-existing", "nm"),  "Unknown unit type")
+    expect_error(wl_convert_units(1000, "nm", "non-existing"),  "Unknown unit type")
   })
 
 
-  test_that("wlconv() output is coreect if units do not change", {
+  test_that("wl_convert_units() output is coreect if units do not change", {
     # No conversion is expected
-    expect_equal(wlconv(1000, "raman", "raman"), 1000)
-    expect_equal(wlconv(1000, "invcm", "invcm"), 1000)
-    expect_equal(wlconv(1000, "nm",    "nm"),    1000)
-    expect_equal(wlconv(1000, "ev",    "ev"),    1000)
-    expect_equal(wlconv(1000, "freq", "freq"),   1000)
+    expect_equal(wl_convert_units(1000, "raman", "raman"), 1000)
+    expect_equal(wl_convert_units(1000, "invcm", "invcm"), 1000)
+    expect_equal(wl_convert_units(1000, "nm",    "nm"),    1000)
+    expect_equal(wl_convert_units(1000, "ev",    "ev"),    1000)
+    expect_equal(wl_convert_units(1000, "freq", "freq"),   1000)
   })
 
 
-  test_that("wlconv() returns correct data type", {
+  test_that("wl_convert_units() returns correct data type", {
 
     x <- c("raman", "invcm", "nm", "ev", "freq")
     y <- expand.grid(x, x)
@@ -267,7 +267,7 @@ hySpc.testthat::test(wlconv) <- function() {
 
     expect_silent(
       d <- apply(y, MARGIN = 1, function(x) {
-        wlconv(10, x[["Var1"]], x[["Var2"]], 200)
+        wl_convert_units(10, x[["Var1"]], x[["Var2"]], 200)
       })
     )
     expect_is(d, "numeric")
@@ -276,7 +276,7 @@ hySpc.testthat::test(wlconv) <- function() {
 
   # TODO (tests): Add expected results to the conversion grid and check against them.
 
-  # test_that("wlconv() performs conversion correctly", {
+  # test_that("wl_convert_units() performs conversion correctly", {
   #  # ...
   #
   # })

@@ -116,7 +116,7 @@ read.spe <- function(filename, xaxis = "file", acc2avg = F, cts_sec = F,
   }
 
   # Perform convertion
-  spc@wavelength <- wlconv(
+  spc@wavelength <- wl_convert_units(
     src = .fixunitname(hdr$xCalPolyUnit),
     dst = xaxis,
     points = as.numeric(vM %*% coeffs),
@@ -310,7 +310,7 @@ spe.showcalpoints <- function(filename, xaxis = "file", acc2avg = F, cts_sec = F
     return("")
   }
 
-  markpeak(spc, wlconv(
+  markpeak(spc, wl_convert_units(
     src = hdr$xCalInputUnit,
     dst = .fixunitname(xaxis),
     points = hdr$xCalValues,
