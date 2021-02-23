@@ -351,7 +351,7 @@ setMethod("cbind2", signature = signature(x = "hyperSpec", y = "missing"), funct
   if (!isTRUE(all.equal(x@wavelength, y@wavelength, tolerance = wl.tolerance))) {
     stop(
       "The wavelengths of the objects differ (with respect to tolerance ", wl.tolerance, ").\n",
-      "If they are not ordered, try 'orderwl'."
+      "If they are not ordered, try 'wl_sort'."
     )
   }
 

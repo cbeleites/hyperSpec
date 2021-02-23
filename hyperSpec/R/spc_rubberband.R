@@ -31,7 +31,7 @@
 #'
 #' plot(paracetamol[, , 175 ~ 1800] - bl)
 spc.rubberband <- function(spc, ..., upper = FALSE, noise = 0, spline = TRUE) {
-  spc <- orderwl(spc)
+  spc <- wl_sort(spc)
 
   if (upper) spc@data$spc <- -spc@data$spc
 

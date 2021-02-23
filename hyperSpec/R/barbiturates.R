@@ -19,7 +19,7 @@
 #' length(barbiturates)
 #'
 #' barb <- collapse(barbiturates, collapse.equal = FALSE)
-#' barb <- orderwl(barb)
+#' barb <- wl_sort(barb)
 #'
 #' plot(barb,
 #'   lines.args = list(type = "h"),

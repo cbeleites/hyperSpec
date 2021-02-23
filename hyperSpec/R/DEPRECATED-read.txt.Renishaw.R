@@ -157,7 +157,7 @@ read.txt.Renishaw <- function(file = stop("file is required"),
 
   spc <- matrix(spc, ncol = length(wl), nrow = nspc, byrow = TRUE)
 
-  spc <- orderwl(new("hyperSpec",
+  spc <- wl_sort(new("hyperSpec",
     spc = spc, data = as.data.frame(data),
     wavelength = wl, label = cols
   ))

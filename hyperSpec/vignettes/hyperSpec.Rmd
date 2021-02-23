@@ -471,7 +471,7 @@ wl2i(faux_cell, 1000 ~ 1010)
 ```
 
 - If the object's wavelength axis is not ordered, the formula approach will give weird results.
-  In that (probably rare) case, use `orderwl()`{.r} first to obtain an object with ordered wavelength axis.
+  In that (probably rare) case, use `wl_sort()`{.r} first to obtain an object with ordered wavelength axis.
 
 Values *start* and *end* may contain the special variables `min`{.r} and `max`{.r} that
 correspond to the lowest and highest wavelengths of the object:
@@ -598,18 +598,18 @@ wl(laser) <- list(wl = frequencies, label = "f / THz")
 see `?wl<-` for more information.
 
 
-### Ordering the Wavelength Axis {#sec:orderwl}
+### Ordering the Wavelength Axis {#sec:wl-sort}
 
-\mFun{`orderwl()`{.r}}
-If the wavelength axis of an object needs reordering (e.g., after `collapse()`{.r}), `orderwl()`{.r} can be used:
+\mFun{`wl_sort()`{.r}}
+If the wavelength axis of an object needs reordering (e.g., after `collapse()`{.r}), `wl_sort()`{.r} can be used:
 
-```{r orderwl}
+```{r wl_sort}
 barb <- collapse(barbiturates[1:3])
 wl(barb)
 ```
 
-```{r orderwl-2}
-barb <- orderwl(barb)
+```{r wl_sort-2}
+barb <- wl_sort(barb)
 wl(barb)
 ```
 
@@ -1612,8 +1612,8 @@ wl(barb)[1:25]
 The resulting object does not have an ordered wavelength axis.
 This can be obtained in the second step:
 
-```{r collapse-orderwl}
-barb <- orderwl(barb)
+```{r collapse-wl-sort}
+barb <- wl_sort(barb)
 barb[[1:3, , min ~ min + 10i]]
 ```
 

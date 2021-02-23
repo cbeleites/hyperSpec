@@ -6,7 +6,7 @@
 #' After merging, the spectra matrix can contain duplicates, and is not
 #' ordered according to the wavelength.
 #'
-#' If the wavelength axis should be ordered, use [orderwl()].
+#' If the wavelength axis should be ordered, use [wl_sort()].
 #'
 #' If a `hyperSpec` object and  a `data.frame` are merged, the result is of the class of the first (`x`) object.
 #'

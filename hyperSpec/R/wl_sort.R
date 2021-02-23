@@ -25,7 +25,7 @@
 #' plotspc(spc)
 #' text(wl(spc), spc[[]], as.character(1:10), col = "darkred")
 #'
-#' spc_sorted <- orderwl(spc)
+#' spc_sorted <- wl_sort(spc)
 #' plotspc(spc_sorted)
 #' text(wl(spc_sorted), spc_sorted[[]], as.character(1:10), col = "darkred")
 #'
@@ -36,17 +36,17 @@
 #' plot(seq_len(nwl(spc)), spc[[]], type = "b")
 #' spc[[]]
 #'
-#' spc_sorted <- orderwl(spc)
+#' spc_sorted <- wl_sort(spc)
 #' lines(seq_len(nwl(spc_sorted)), spc_sorted[[]], type = "l", col = "red")
 #' spc_sorted[[]]
-orderwl <- function(x, na.last = TRUE, decreasing = FALSE) {
+wl_sort <- function(x, na.last = TRUE, decreasing = FALSE) {
   chk.hy(x)
   validObject(x)
 
-  .orderwl(x)
+  .wl_sort(x)
 }
 
-.orderwl <- function(x, na.last = TRUE, decreasing = FALSE) {
+.wl_sort <- function(x, na.last = TRUE, decreasing = FALSE) {
   ord <- order(x@wavelength, na.last = na.last, decreasing = decreasing)
 
   if (any(ord != seq_along(x@wavelength))) {
