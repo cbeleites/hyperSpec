@@ -1,6 +1,6 @@
 # Fun: show ------------------------------------------------------------------
 .show <- function(object) {
-  print(object, range = FALSE, include = "main")
+  print(object)
   invisible(NULL)
 }
 
@@ -71,11 +71,12 @@ setMethod("show", signature = signature(object = "hyperSpec"), .show)
 
 # Fun: print -----------------------------------------------------------------
 
-.print <- function(x, range = FALSE, include = "all", ...) {
+.print <- function(x, range = FALSE, include = "main", ...) {
   validObject(x)
   cat(as.character(x, range = range, include = include, ...), sep = "\n")
   invisible(x)
 }
+
 
 #' @rdname show
 #' @aliases print print,hyperSpec-method
