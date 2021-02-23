@@ -311,10 +311,10 @@ spe.showcalpoints <- function(filename, xaxis = "file", acc2avg = F, cts_sec = F
   }
 
   markpeak(spc, wl_convert_units(
-    src = hdr$xCalInputUnit,
-    dst = .fixunitname(xaxis),
-    points = hdr$xCalValues,
-    laser = hdr$LaserWavelen
+    from   = hdr$xCalInputUnit,
+    to     = .fixunitname(xaxis),
+    x      = hdr$xCalValues,
+    ref_wl = hdr$LaserWavelen
   ))
 }
 
