@@ -117,10 +117,10 @@ read.spe <- function(filename, xaxis = "file", acc2avg = F, cts_sec = F,
 
   # Perform convertion
   spc@wavelength <- wl_convert_units(
-    src = .wl_fix_unit_name(hdr$xCalPolyUnit),
-    dst = xaxis,
-    points = as.numeric(vM %*% coeffs),
-    laser = hdr$LaserWavelen
+    from   = .wl_fix_unit_name(hdr$xCalPolyUnit),
+    to     = xaxis,
+    x      = as.numeric(vM %*% coeffs),
+    ref_wl = hdr$LaserWavelen
   )
 
   spc@label$.wavelength <- switch(xaxis,
