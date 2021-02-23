@@ -7,7 +7,7 @@
 #' @return `hyperSpec` object containing smoothed spectra
 #' @rdname spc-spline
 #' @author Claudia Beleites
-#' @seealso [hyperSpec::spc.loess()]
+#' @seealso [hyperSpec::spc_loess()]
 #'
 #' [stats::smooth.spline()]
 #' @note This function is still experimental

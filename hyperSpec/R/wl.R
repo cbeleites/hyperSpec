@@ -19,7 +19,7 @@
 #'   changing the columns of the spectra matrix. If you rather want to cut the
 #'   spectral range, use \code{\link[hyperSpec:extractreplace]{[}}, for
 #'   interpolation along the spectral axis see
-#'   [hyperSpec::spc.loess()] and for spectral binning
+#'   [hyperSpec::spc_loess()] and for spectral binning
 #'   [hyperSpec::spc_bin()].
 #' @author C. Beleites
 #'
@@ -31,7 +31,7 @@
 #'
 #' cutting the spectral range: \code{\link[hyperSpec:extractreplace]{[}}
 #'
-#' interpolation along the spectral axis: [hyperSpec::spc.loess()]
+#' interpolation along the spectral axis: [hyperSpec::spc_loess()]
 #'
 #' spectral binning: [hyperSpec::spc_bin()]
 #' @examples
