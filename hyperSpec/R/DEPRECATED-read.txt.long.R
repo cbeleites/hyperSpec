@@ -6,7 +6,7 @@
 ###  (y x) wl int
 ###
 
-#' @rdname textio
+#' @rdname deprecated-textio
 #' @aliases read.txt.long import export
 #'
 #' @param file filename or connection

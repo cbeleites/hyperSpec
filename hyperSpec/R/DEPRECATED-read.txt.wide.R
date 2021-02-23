@@ -6,6 +6,9 @@
 ###  x y ... int (wl1)  int (wl2) ... int (wl p) z ...
 ###
 
+# FIXME: this functionality is returned to hyperSpec, Fix:
+#        @concept moved to hySpc.read.txt
+
 #' Import `hyperSpec` objects from ASCII (text) files (DEPRECATED)
 #'
 #' @description
@@ -17,7 +20,7 @@
 #' should be used as the alternatives.
 #'
 #'
-#' @rdname textio
+#' @rdname deprecated-textio
 #' @aliases read.txt.wide
 #'
 #' @details
