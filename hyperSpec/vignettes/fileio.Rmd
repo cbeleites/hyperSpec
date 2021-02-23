@@ -546,7 +546,7 @@ Further import filters are provided for manufacturer/software specific ASCII for
 
 ## ASCII Export
 
-ASCII export can be done in wide and long format using `write.txt.long()`{.r} and `write.txt.wide()`{.r}.
+ASCII export can be done in wide and long format using `write.txt.long()`{.r} and `write_txt_wide()`{.r}.
 If you need a specific header or footer, use R's functions for writing files: `write.table()`{.r}, `write()`{.r}, `cat()`{.r} and so on offer fine-grained control of writing ASCII files.
 
 
