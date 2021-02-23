@@ -6,7 +6,7 @@
 # July 2015
 
 
-#' Import WinSpec SPE file.
+#' Import WinSpec SPE File
 #'
 #' Import function for WinSpec SPE files (file version up to 3.0). The calibration
 #' data (polynome and calibration data pairs) for x-axis are automatically
@@ -15,8 +15,8 @@
 #' always empty.
 #'
 #' @param filename Name of the SPE file to read data from
-#' @param xaxis Units of x-axis, e.g. *"file"*, *"px"*,
-#' *"nm"*, *"energy"*, *"raman"*, *...*
+#' @param xaxis Units of x-axis, e.g., *"file"*, *"px"*, *"nm"*, *"energy"*,
+#'        *"raman"*, *...*
 #' `read.spe` function automatically checks if the x-calibration data are
 #' available and uses them (if possible) to reconstruct the xaxis
 #' in the selected units.
