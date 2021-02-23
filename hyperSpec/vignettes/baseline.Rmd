@@ -95,7 +95,7 @@ However, the baselines can be forced through particular points, if this behaviou
 The main difference between the two functions is that `spc.fit.poly()`{.r} returns a least squares fit through the complete spectrum that is given in `fit.to`{.r} whereas `spc.fit.poly.below()`{.r} tries to find appropriate spectral regions to fit the baseline to.
 
 
-## Syntax & parameters
+## Syntax and Parameters
 
 ```{r eval=FALSE}
 spc.fit.poly(fit.to, apply.to = fit.to, poly.order = 1)
@@ -123,7 +123,7 @@ Otherwise, the polynomial coefficients are returned.
 Subtracting the baseline is up to the user, it is easily done as `hyperSpec`{.r} provides the `-`{.r} (minus) operator.
 
 
-## Fitting polynomial baselines using least squares  {#sec:fitt-polyn-basel}
+## Fitting Polynomial Baselines Using Least Squares {#sec:fitt-polyn-basel}
 
 Commonly, baselines are fit using (single) support points that are specified by the user.
 Also, usually $n + 1$ support point is used for a polynomial of order $n$.
@@ -169,7 +169,7 @@ A spectral region with many data points therefore has greater influence on the r
 It is up to the user to decide whether this should be corrected for by selecting appropriate numbers of data points (e.g. by using replicates of the shorter spectral region).
 
 
-## The mechanism of automatically fitting the baseline in `spc.fit.poly.below()`{.r}
+## The Mechanism of Automatically Fitting the Baseline in `spc.fit.poly.below()` {#sec:autofit-baseline}
 
 Function `spc.fit.poly.below()`{.r} tries to automatically find appropriate spectral regions for baseline fitting.
 This is done by excluding spectral regions that contain signals from the baseline fitting.
@@ -199,7 +199,7 @@ bl <- spc.fit.poly.below(chondro_mini[1], poly.order = 1, max.iter = 8, npts.min
 
 
 
-## Specifying the spectral range
+## Specifying the Spectral Range
 
 ```{r include=FALSE}
 CAPTION <- "Influence of `fit.to`{.r} on the baseline polynomial.
@@ -242,7 +242,7 @@ The choice of the spectral range in `fit.to`{.r} influences the resulting baseli
 
 
 
-## Fitting  polynomials of different orders
+## Fitting Polynomials of Different Orders
 
 <!-- ======================================================================= -->
 ```{block, type="note-t", echo=show_reviewers_notes}
@@ -288,7 +288,7 @@ Figures \@ref(fig:figorder0), \@ref(fig:figorder1), \@ref(fig:figorder2) show th
 
 
 
-## The noise level
+## The Noise Level
 
 <!-- Upper part: -->
 ```{r include=FALSE}

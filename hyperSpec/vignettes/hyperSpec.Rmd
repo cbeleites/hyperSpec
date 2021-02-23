@@ -1876,12 +1876,11 @@ system.time({
 })
 ```
 
-## Additional packages
-
+## Additional Packages
 
 Package **matrixStats**[`r cite_pkg("matrixStats")`] implements fast functions to calculate summary statistics for each row  or each column of a matrix.
 
-## Memory usage
+## Memory Usage
 
 In general, it is not recommended to work with variables that are more than approximately a third of the available RAM in size.
 Particularly the import of raw spectroscopic data can consume large amounts of memory.
