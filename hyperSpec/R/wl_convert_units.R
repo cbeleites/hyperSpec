@@ -58,10 +58,10 @@ raman2nm    <- function(x, ref_wl) 1e7 / (1e7 / ref_wl - x)
 # Bring the argument to a conventional name
 .wl_fix_unit_name <- function(unit) {
   unit <- gsub(" .*$", "", tolower(unit))
-  if (unit %in% c("raman", "stokes", "rel", "rel.", "relative", "rel.cm-1", "rel.cm")) {
+  if (unit %in% c("raman", "stokes", "rel", "rel.", "relative", "rel.cm-1", "rel.cm", "rel.1/cm")) {
     return("raman")
   }
-  if (unit %in% c("invcm", "energy", "wavenumber", "cm-1", "inverted", "cm")) {
+  if (unit %in% c("invcm", "energy", "wavenumber", "cm-1", "inverted", "cm", "1/cm")) {
     return("invcm")
   }
   if (unit %in% c("nm", "nanometer", "wavelength")) {
