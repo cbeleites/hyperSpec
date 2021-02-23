@@ -8,7 +8,7 @@
 #' @rdname show
 #' @aliases show show,hyperSpec-method
 #'
-#' @title Show brief summary of `hyperSpec` object.
+#' @title Show Brief Summary of `hyperSpec` Object
 #'
 #' @description
 #' Functions `show()`, `print()`, `summary()`, and `as.character()` calculate
@@ -16,19 +16,20 @@
 #'
 #' @details
 #' Function `as.character()` does the main calculations. Functions `show()`,
-#' `print()`, and `summary()` use `as.character()` and print its results with
+#' `print()`, and `summary()` use `as.character()` and print their results with
 #' different defaults:
 #'
 #' - `show()` prints the summary with the most basic information on `hyperSpec`
 #'    object (number of rows, columns and spectra),
-#' - `print()` in addition to the results of `show()`, prints the information
-#'    on `@wavelength`s and each individual column of `@data` (several first
-#'    and last values are shown).
-#' - `summary()` by default the result is similar to `print()`, but the range
-#'    of values (the smallest and the largest values) is printed.
+#' - `print()`has the same default output `show()`,
+#' - `summary()` prints a bit larger summary of `hyperSpec`, that includes
+#'    the number of rows, columns and spectra, the information on
+#'    `@wavelength`s, lists column names of `@data` as well as a preview of
+#'    the smallest and the largest values.
 #'
 #' @param object,x A `hyperSpec` object.
-#' @param ... `print()` and `summary()` hand further arguments to `as.character()`.
+#' @param ... `print()` and `summary()` hand further arguments to
+#'        `as.character()`.
 #'
 #' @return
 #' After printing:
@@ -44,10 +45,12 @@
 #' @export
 #'
 #' @examples
+#' # show()
 #' faux_cell # Implicitly prints the object. The same as show(faux_cell)
 #'
 #' show(faux_cell)
 #'
+#' # print()
 #' print(faux_cell)
 #'
 #' print(faux_cell, include = "data")
@@ -62,6 +65,7 @@
 #'
 #' print(faux_cell_2, range = TRUE, include = "data")
 #'
+#' # summary()
 #' summary(faux_cell)
 #'
 #' summary(faux_cell, include = c("wl", "data"))
