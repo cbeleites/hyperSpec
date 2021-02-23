@@ -90,11 +90,11 @@ read.spe <- function(filename, xaxis = "file", acc2avg = F, cts_sec = F,
 
   # Check if we should use display units specified in the SPE file
   if (xaxis == "file") {
-    xaxis <- .fixunitname(hdr$xCalDisplayUnit)
+    xaxis <- .wl_fix_unit_name(hdr$xCalDisplayUnit)
   }
 
   # Create a new x-axis, if required
-  xaxis <- .fixunitname(xaxis)
+  xaxis <- .wl_fix_unit_name(xaxis)
   if (xaxis == "px") {
     return(.fileio.optional(spc, filename))
   }
@@ -117,7 +117,7 @@ read.spe <- function(filename, xaxis = "file", acc2avg = F, cts_sec = F,
 
   # Perform convertion
   spc@wavelength <- wl_convert_units(
-    src = .fixunitname(hdr$xCalPolyUnit),
+    src = .wl_fix_unit_name(hdr$xCalPolyUnit),
     dst = xaxis,
     points = as.numeric(vM %*% coeffs),
     laser = hdr$LaserWavelen
@@ -281,11 +281,11 @@ read.spe <- function(filename, xaxis = "file", acc2avg = F, cts_sec = F,
 #'
 spe.showcalpoints <- function(filename, xaxis = "file", acc2avg = F, cts_sec = F) {
   hdr <- .read.spe.header(filename)
-  xaxis <- .fixunitname(xaxis)
+  xaxis <- .wl_fix_unit_name(xaxis)
 
   # Check if we should use display units specified in the SPE file
   if (xaxis == "file") {
-    xaxis <- .fixunitname(hdr$xCalDisplayUnit)
+    xaxis <- .wl_fix_unit_name(hdr$xCalDisplayUnit)
   }
   if (xaxis == "px") {
     xaxis <- hdr$xCalPolyUnit
@@ -312,7 +312,7 @@ spe.showcalpoints <- function(filename, xaxis = "file", acc2avg = F, cts_sec = F
 
   markpeak(spc, wl_convert_units(
     from   = hdr$xCalInputUnit,
-    to     = .fixunitname(xaxis),
+    to     = .wl_fix_unit_name(xaxis),
     x      = hdr$xCalValues,
     ref_wl = hdr$LaserWavelen
   ))

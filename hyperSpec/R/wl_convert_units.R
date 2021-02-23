@@ -17,8 +17,8 @@
 #' wl_convert_units(3200, "Raman shift", "nm", ref_wl = 785.04)
 #' wl_convert_units(785, "nm", "invcm")
 wl_convert_units <- function(x, from, to, ref_wl = NULL) {
-  src  <- .fix_unit_name(from)
-  dest <- .fix_unit_name(to)
+  src  <- .wl_fix_unit_name(from)
+  dest <- .wl_fix_unit_name(to)
 
   if (src == dest) {
     return(x)
@@ -56,7 +56,7 @@ raman2nm    <- function(x, ref_wl) 1e7 / (1e7 / ref_wl - x)
 
 
 # Bring the argument to a conventional name
-.fix_unit_name <- function(unit) {
+.wl_fix_unit_name <- function(unit) {
   unit <- gsub(" .*$", "", tolower(unit))
   if (unit %in% c("raman", "stokes", "rel", "rel.", "relative", "rel.cm-1", "rel.cm")) {
     return("raman")
@@ -131,20 +131,20 @@ hySpc.testthat::test(wl) <- function() {
 }
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-hySpc.testthat::test(.fix_unit_name) <- function() {
+hySpc.testthat::test(.wl_fix_unit_name) <- function() {
 
-  context(".fix_unit_name")
+  context(".wl_fix_unit_name")
 
-  test_that(".fix_unit_name() works", {
+  test_that(".wl_fix_unit_name() works", {
 
-    expect_equal(.fix_unit_name("raman"), "raman")
-    expect_equal(.fix_unit_name("invcm"), "invcm")
-    expect_equal(.fix_unit_name("nm"),    "nm")
-    expect_equal(.fix_unit_name("ev"),    "ev")
-    expect_equal(.fix_unit_name("freq"),  "freq")
-    expect_equal(.fix_unit_name("px"),    "px")
-    expect_equal(.fix_unit_name("file"),  "file")
-    expect_error(.fix_unit_name("ddd"),   "Unknown unit type")
+    expect_equal(.wl_fix_unit_name("raman"), "raman")
+    expect_equal(.wl_fix_unit_name("invcm"), "invcm")
+    expect_equal(.wl_fix_unit_name("nm"),    "nm")
+    expect_equal(.wl_fix_unit_name("ev"),    "ev")
+    expect_equal(.wl_fix_unit_name("freq"),  "freq")
+    expect_equal(.wl_fix_unit_name("px"),    "px")
+    expect_equal(.wl_fix_unit_name("file"),  "file")
+    expect_error(.wl_fix_unit_name("ddd"),   "Unknown unit type")
 
   })
 
