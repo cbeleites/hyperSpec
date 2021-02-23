@@ -309,7 +309,7 @@ make.fn.expr <- function(fn, l = list()) {
 #' @export
 #'
 #' @examples
-#' faux_cell <- faux_cell - spc.fit.poly.below(faux_cell)
+#' faux_cell <- faux_cell - spc_fit_poly_below(faux_cell)
 #'
 #' qplotmixmap(faux_cell [, , c(800, 1200, 1500)],
 #'   purecol = c(A = "green4", B = "yellow", C = "royalblue")

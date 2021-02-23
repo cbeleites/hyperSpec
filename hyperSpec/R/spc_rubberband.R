@@ -13,7 +13,7 @@
 #' @return `hyperSpec` object containing the baselines
 #' @rdname spc-rubberband
 #' @author Claudia Beleites
-#' @seealso [hyperSpec::spc.fit.poly()], [hyperSpec::spc.fit.poly.below()]
+#' @seealso [hyperSpec::spc.fit.poly()], [hyperSpec::spc_fit_poly_below()]
 #'
 #' `vignette ("baseline")`
 #'
