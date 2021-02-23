@@ -8,7 +8,7 @@
 #' is returned, otherwise the polynomials are evaluated on the spectral range
 #' of `apply.to`.
 #'
-#' `spc.fit.poly()` calculates the least squares fit of order
+#' `spc_fit_poly()` calculates the least squares fit of order
 #' `poly.order` to the *complete* spectra given in `fit.to`.
 #' Thus `fit.to` needs to be cut appropriately.
 #'
@@ -40,9 +40,9 @@
 #' }
 #'
 #' spc <- faux_cell[1:10]
-#' baselines <- spc.fit.poly(spc[, , c(625 ~ 640, 1785 ~ 1800)], spc)
+#' baselines <- spc_fit_poly(spc[, , c(625 ~ 640, 1785 ~ 1800)], spc)
 #' plot(spc - baselines)
-spc.fit.poly <- function(fit.to, apply.to = NULL, poly.order = 1,
+spc_fit_poly <- function(fit.to, apply.to = NULL, poly.order = 1,
                          offset.wl = !(is.null(apply.to))) {
   chk.hy(fit.to)
   if (!is.null(apply.to)) {
@@ -92,13 +92,13 @@ spc.fit.poly <- function(fit.to, apply.to = NULL, poly.order = 1,
   }
 }
 
-hySpc.testthat::test(spc.fit.poly) <- function() {
-  context("spc.fit.poly")
+hySpc.testthat::test(spc_fit_poly) <- function() {
+  context("spc_fit_poly")
 
   test_that(
     "no normalization",
     {
-      bl.nonorm <- spc.fit.poly(flu, flu, poly.order = 3, offset.wl = FALSE)
+      bl.nonorm <- spc_fit_poly(flu, flu, poly.order = 3, offset.wl = FALSE)
     }
   )
 
@@ -108,10 +108,10 @@ hySpc.testthat::test(spc.fit.poly) <- function() {
   wl(tmp) <- wl(tmp) + 1e4
 
   test_that("normalization/offset wavelengths", {
-    expect_error(spc.fit.poly(tmp, poly.order = 3, offset.wl = FALSE))
+    expect_error(spc_fit_poly(tmp, poly.order = 3, offset.wl = FALSE))
 
-    bl.1e4 <- spc.fit.poly(tmp, tmp, poly.order = 3, offset.wl = TRUE)
-    bl.nonorm <- spc.fit.poly(flu, flu, poly.order = 3, offset.wl = FALSE)
+    bl.1e4 <- spc_fit_poly(tmp, tmp, poly.order = 3, offset.wl = TRUE)
+    bl.nonorm <- spc_fit_poly(flu, flu, poly.order = 3, offset.wl = FALSE)
     expect_equal(bl.nonorm[[]], bl.1e4[[]])
   })
 
@@ -119,10 +119,10 @@ hySpc.testthat::test(spc.fit.poly) <- function() {
     tmp <- faux_cell[1]
     tmp[[, , 1600]] <- NA
 
-    coefs <- spc.fit.poly(tmp, apply.to = NULL)[[]]
+    coefs <- spc_fit_poly(tmp, apply.to = NULL)[[]]
     expect_equal(
       coefs,
-      spc.fit.poly(faux_cell[1, , !is.na(tmp)], apply.to = NULL)[[]]
+      spc_fit_poly(faux_cell[1, , !is.na(tmp)], apply.to = NULL)[[]]
     )
 
     ## bug was: all coefficients were silently 0
