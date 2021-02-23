@@ -33,106 +33,26 @@ wl_convert_units <- function(x, from, to, ref_wl = NULL) {
   return(f(x, ref_wl))
 }
 
-#' @param x wavelength points for conversion
-#' @param ... ignored
-#' @describeIn wl_convert_units conversion **nanometers** -> **Raman shift (relative wavenumber)**
-#' @export
-nm2raman <- function(x, ref_wl) 1e7 * (1 / ref_wl - 1 / x)
-
-
-#' @describeIn wl_convert_units conversion **nanometers** -> **inverse cm (absolute wavenumber)**
-#' @export
-nm2invcm <- function(x, ...) 1e7 / x
-
-
-#' @describeIn wl_convert_units conversion **nanometers** -> **electronvolt**
-#' @export
-nm2ev <- function(x, ...) 1e9 * h * c / (q * x)
-
-
-#' @describeIn wl_convert_units conversion **nm** -> **frequency in THz**
-#' @export
-nm2freq <- function(x, ...) 1e-3 * c / x
-
-
-#' @describeIn wl_convert_units conversion **inverse cm (absolute wavenumber)** -> **Raman shift (relative wavenumber)**
-#' @export
+ev2freq     <- function(x, ...)    nm2freq(ev2nm(x))
+ev2invcm    <- function(x, ...)    q * x / (100 * h * c)
+ev2nm       <- function(x, ...)    1e9 * h * c / (q * x)
+ev2raman    <- function(x, ref_wl) 1e7 / ref_wl - x * q / (100 * h * c)
+freq2ev     <- function(x, ...)    nm2ev(freq2nm(x))
+freq2invcm  <- function(x, ...)    nm2invcm(freq2nm(x))
+freq2nm     <- function(x, ...)    1e-3 * c / x
+freq2raman  <- function(x, ref_wl) nm2raman(freq2nm(x), ref_wl)
+invcm2ev    <- function(x, ...)    100 * x * c * h / q
+invcm2freq  <- function(x, ...)    nm2freq(invcm2nm(x))
+invcm2nm    <- function(x, ...)    1e7 / x
 invcm2raman <- function(x, ref_wl) 1e7 / ref_wl - x
-
-
-#' @describeIn wl_convert_units conversion **inverse cm (absolute wavenumber)** -> **nanometers**
-#' @export
-invcm2nm <- function(x, ...) 1e7 / x
-
-
-#' @describeIn wl_convert_units conversion **inverse cm (absolute wavenumber)** -> **electronvolt**
-#' @export
-invcm2ev <- function(x, ...) 100 * x * c * h / q
-
-
-#' @describeIn wl_convert_units conversion **inverse cm (absolute wavenumber)** -> **frequency in THz**
-#' @export
-invcm2freq <- function(x, ...) nm2freq(invcm2nm(x))
-
-
-#' @describeIn wl_convert_units conversion **Raman shift (relative wavenumber)** -> **inverse cm (absolute wavenumber)**
-#' @export
+nm2ev       <- function(x, ...)    1e9 * h * c / (q * x)
+nm2freq     <- function(x, ...)    1e-3 * c / x
+nm2invcm    <- function(x, ...)    1e7 / x
+nm2raman    <- function(x, ref_wl) 1e7 * (1 / ref_wl - 1 / x)
+raman2ev    <- function(x, ref_wl) 100 * h * c * (1e7 / ref_wl - x) / q
+raman2freq  <- function(x, ref_wl) nm2freq(raman2nm(x, ref_wl))
 raman2invcm <- function(x, ref_wl) 1e7 / ref_wl - x
-
-
-#' @describeIn wl_convert_units conversion **Raman shift (relative wavenumber)** -> **nanometers**
-#' @export
-raman2nm <- function(x, ref_wl) 1e7 / (1e7 / ref_wl - x)
-
-
-#' @describeIn wl_convert_units conversion **Raman shift (relative wavenumber)** -> **electronvolt**
-#' @export
-raman2ev <- function(x, ref_wl) 100 * h * c * (1e7 / ref_wl - x) / q
-
-
-#' @describeIn wl_convert_units conversion **Raman shift (relative wavenumber)** -> **frequency in THz**
-#' @export
-raman2freq <- function(x, ref_wl) nm2freq(raman2nm(x, ref_wl))
-
-
-#' @describeIn wl_convert_units conversion **electronvolt** -> **Raman shift (relative wavenumber)**
-#' @export
-ev2raman <- function(x, ref_wl) 1e7 / ref_wl - x * q / (100 * h * c)
-
-
-#' @describeIn wl_convert_units conversion **electronvolt** -> **inverse cm (absolute wavenumber)**
-#' @export
-ev2invcm <- function(x, ...) q * x / (100 * h * c)
-
-
-#' @describeIn wl_convert_units conversion **electronvolt** -> **nanometers**
-#' @export
-ev2nm <- function(x, ...) 1e9 * h * c / (q * x)
-
-
-#' @describeIn wl_convert_units conversion **electronvolt** -> **frequency in THz**
-#' @export
-ev2freq <- function(x, ...) nm2freq(ev2nm(x))
-
-
-#' @describeIn wl_convert_units conversion **frequency in THz** -> **nanometers**
-#' @export
-freq2nm <- function(x, ...) 1e-3 * c / x
-
-
-#' @describeIn wl_convert_units conversion **frequency in THz** -> **inverse cm (absolute wavenumber)**
-#' @export
-freq2invcm <- function(x, ...) nm2invcm(freq2nm(x))
-
-
-#' @describeIn wl_convert_units conversion **frequency in THz** -> **electronvolt**
-#' @export
-freq2ev <- function(x, ...) nm2ev(freq2nm(x))
-
-
-#' @describeIn wl_convert_units conversion **frequency in THz** -> **Raman shift (relative wavenumber)**
-#' @export
-freq2raman <- function(x, ref_wl) nm2raman(freq2nm(x), ref_wl)
+raman2nm    <- function(x, ref_wl) 1e7 / (1e7 / ref_wl - x)
 
 
 # Bring the argument to a conventional name
