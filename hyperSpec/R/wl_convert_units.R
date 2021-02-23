@@ -7,14 +7,14 @@
 #' @param x data for conversion
 #' @param from source unit
 #' @param to destination unit
-#' @param laser laser wavelength (required for work with Raman shift)
+#' @param ref_wl laser wavelength (required for work with Raman shift)
 #' @author R. Kiselev
 #' @export
 #'
 #' @concept wavelengths
 #'
 #' @examples
-#' wl_convert_units(3200, "Raman shift", "nm", laser = 785.04)
+#' wl_convert_units(3200, "Raman shift", "nm", ref_wl = 785.04)
 #' wl_convert_units(785, "nm", "invcm")
 wl_convert_units <- function(x, from, to, ref_wl = NULL) {
   src  <- .fix_unit_name(from)
@@ -57,7 +57,7 @@ nm2freq <- function(x, ...) 1e-3 * c / x
 
 #' @describeIn wl_convert_units conversion **inverse cm (absolute wavenumber)** -> **Raman shift (relative wavenumber)**
 #' @export
-invcm2raman <- function(x, laser) 1e7 / laser - x
+invcm2raman <- function(x, ref_wl) 1e7 / ref_wl - x
 
 
 #' @describeIn wl_convert_units conversion **inverse cm (absolute wavenumber)** -> **nanometers**
@@ -77,27 +77,27 @@ invcm2freq <- function(x, ...) nm2freq(invcm2nm(x))
 
 #' @describeIn wl_convert_units conversion **Raman shift (relative wavenumber)** -> **inverse cm (absolute wavenumber)**
 #' @export
-raman2invcm <- function(x, laser) 1e7 / laser - x
+raman2invcm <- function(x, ref_wl) 1e7 / ref_wl - x
 
 
 #' @describeIn wl_convert_units conversion **Raman shift (relative wavenumber)** -> **nanometers**
 #' @export
-raman2nm <- function(x, laser) 1e7 / (1e7 / laser - x)
+raman2nm <- function(x, ref_wl) 1e7 / (1e7 / ref_wl - x)
 
 
 #' @describeIn wl_convert_units conversion **Raman shift (relative wavenumber)** -> **electronvolt**
 #' @export
-raman2ev <- function(x, laser) 100 * h * c * (1e7 / laser - x) / q
+raman2ev <- function(x, ref_wl) 100 * h * c * (1e7 / ref_wl - x) / q
 
 
 #' @describeIn wl_convert_units conversion **Raman shift (relative wavenumber)** -> **frequency in THz**
 #' @export
-raman2freq <- function(x, laser) nm2freq(raman2nm(x, laser))
+raman2freq <- function(x, ref_wl) nm2freq(raman2nm(x, ref_wl))
 
 
 #' @describeIn wl_convert_units conversion **electronvolt** -> **Raman shift (relative wavenumber)**
 #' @export
-ev2raman <- function(x, laser) 1e7 / laser - x * q / (100 * h * c)
+ev2raman <- function(x, ref_wl) 1e7 / ref_wl - x * q / (100 * h * c)
 
 
 #' @describeIn wl_convert_units conversion **electronvolt** -> **inverse cm (absolute wavenumber)**
@@ -132,7 +132,7 @@ freq2ev <- function(x, ...) nm2ev(freq2nm(x))
 
 #' @describeIn wl_convert_units conversion **frequency in THz** -> **Raman shift (relative wavenumber)**
 #' @export
-freq2raman <- function(x, laser) nm2raman(freq2nm(x), laser)
+freq2raman <- function(x, ref_wl) nm2raman(freq2nm(x), ref_wl)
 
 
 # Bring the argument to a conventional name
