@@ -43,10 +43,6 @@ wl_sort <- function(x, na.last = TRUE, decreasing = FALSE) {
   chk.hy(x)
   validObject(x)
 
-  .wl_sort(x)
-}
-
-.wl_sort <- function(x, na.last = TRUE, decreasing = FALSE) {
   ord <- order(x@wavelength, na.last = na.last, decreasing = decreasing)
 
   if (any(ord != seq_along(x@wavelength))) {
