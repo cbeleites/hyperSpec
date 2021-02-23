@@ -277,7 +277,7 @@ hySpc.testthat::test(.print) <- function() {
     expect_output(print(hs), "hyperSpec object")
     expect_output(print(hs), "4 data points / spectrum")
 
-    expect_output(print(hs, range = TRUE, include = "data"), " rng ")
+    expect_output(print(hs, range = TRUE, include = "data"), " range ")
     expect_output(print(hs, include = "wl"), "^wavelength: ")
 
   })
@@ -315,7 +315,7 @@ hySpc.testthat::test(.summary) <- function() {
     expect_output(summary(hs), "wavelength: ")
     expect_output(summary(hs), "data: ")
 
-    expect_output(summary(hs, include = "data"), " rng ")
+    expect_output(summary(hs, include = "data"), " range ")
   })
 
 }
@@ -353,8 +353,8 @@ hySpc.testthat::test(.as.character) <- function() {
     expect_equal(res[9], "   3. y:  [integer] 3 4 5 ")
 
     res_rng <- as.character(hs, range = TRUE, include = "data")
-    expect_match(res_rng[2:5], " rng ")
-    expect_equal(res_rng[3], "   2. g:  [character] rng  k l m ")
+    expect_match(res_rng[2:5], " range ")
+    expect_equal(res_rng[3], "   2. g:  [character] range  k l m ")
   })
 
   test_that("max.print in as.character() works", {
