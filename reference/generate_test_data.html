@@ -228,14 +228,7 @@ pixels in the map. Otherwise, some pixels are empty.</p></td>
 </div><div class='output co'>#&gt; hyperSpec object
 #&gt;    20 spectra
 #&gt;    5 data columns
-#&gt;    50 data points / spectrum
-#&gt; wavelength: lambda, nm [numeric] 400.0000 406.1224 ... 700 
-#&gt; data:  (20 rows x 5 columns)
-#&gt;    1. gr:  [character] A B ... B 
-#&gt;    2. x: l, cm [numeric] 0.25 0.50 ... 5 
-#&gt;    3. c:  [numeric] 12.64911 12.31601 ... 1.414214 
-#&gt;    4. t:  [numeric] 0.0000000 0.1578947 ... 3 
-#&gt;    5. spc: I, a.u. [matrix, array50] 1.638282 1.243157 ... 0.1831655 </div><div class='input'>
+#&gt;    50 data points / spectrum</div><div class='input'>
 <span class='fu'><a href='plot-methods.html'>plot</a></span><span class='op'>(</span><span class='va'>hy_spectra</span><span class='op'>)</span>
 </div><div class='img'><img src='generate_test_data-1.png' alt='' width='466' height='288' /></div><div class='input'>
 
@@ -245,13 +238,7 @@ pixels in the map. Otherwise, some pixels are empty.</p></td>
 </div><div class='output co'>#&gt; hyperSpec object
 #&gt;    20 spectra
 #&gt;    4 data columns
-#&gt;    1 data points / spectrum
-#&gt; wavelength: lambda, nm [numeric] 550 
-#&gt; data:  (20 rows x 4 columns)
-#&gt;    1. z: z, mm [numeric] 0.0000000 0.6931472 ... 2.995732 
-#&gt;    2. c: Concentration, mol/l [numeric] 0.8414710 0.9092974 ... 0.9129453 
-#&gt;    3. t: t, s [numeric] 0.00000 21.05263 ... 400 
-#&gt;    4. spc: I, a.u. [matrix, array1] 0.9497657 0.8041098 ... 0.9965564 </div><div class='input'>
+#&gt;    1 data points / spectrum</div><div class='input'>
 <span class='fu'><a href='plotc.html'>plotc</a></span><span class='op'>(</span><span class='va'>hy_profile</span>, model <span class='op'>=</span> <span class='va'>spc</span> <span class='op'>~</span> <span class='va'>t</span><span class='op'>)</span>
 </div><div class='img'><img src='generate_test_data-2.png' alt='' width='466' height='288' /></div><div class='input'><span class='fu'><a href='plotc.html'>plotc</a></span><span class='op'>(</span><span class='va'>hy_profile</span>, model <span class='op'>=</span> <span class='va'>spc</span> <span class='op'>~</span> <span class='va'>z</span><span class='op'>)</span>
 </div><div class='img'><img src='generate_test_data-3.png' alt='' width='466' height='288' /></div><div class='input'><span class='fu'><a href='plotc.html'>plotc</a></span><span class='op'>(</span><span class='va'>hy_profile</span>, model <span class='op'>=</span> <span class='va'>spc</span> <span class='op'>~</span> <span class='va'>c</span><span class='op'>)</span>
@@ -263,13 +250,7 @@ pixels in the map. Otherwise, some pixels are empty.</p></td>
 </div><div class='output co'>#&gt; hyperSpec object
 #&gt;    35 spectra
 #&gt;    4 data columns
-#&gt;    5 data points / spectrum
-#&gt; wavelength: k, 1/cm [numeric] 5000 5750 6500 7250 8000 
-#&gt; data:  (35 rows x 4 columns)
-#&gt;    1. x: x, px [integer] 1 1 ... 7 
-#&gt;    2. y: y, px [integer] 1 2 ... 7 
-#&gt;    3. gr:  [factor] A B ... B 
-#&gt;    4. spc: I, a.u. [matrix, array5] 1 2 ... 1 </div><div class='input'>
+#&gt;    5 data points / spectrum</div><div class='input'>
 <span class='fu'><a href='plotmap.html'>plotmap</a></span><span class='op'>(</span><span class='va'>hy_map</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='warning'>Warning: device support for raster images unknown, ignoring 'raster=TRUE'</span></div><div class='img'><img src='generate_test_data-5.png' alt='' width='466' height='288' /></div><div class='input'><span class='fu'><a href='plotmap.html'>plotmap</a></span><span class='op'>(</span><span class='va'>hy_map</span><span class='op'>[</span>, , <span class='fl'>8000</span><span class='op'>]</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='warning'>Warning: device support for raster images unknown, ignoring 'raster=TRUE'</span></div><div class='img'><img src='generate_test_data-6.png' alt='' width='466' height='288' /></div></pre>

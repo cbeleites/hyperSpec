@@ -271,7 +271,7 @@ other functions producing long-format data.frames.</p></div>
 #&gt; 2 -10.55 -4.77 matrix 168 166 159
 #&gt; 3  -9.55 -4.77 matrix 112 113  99
 #&gt; 4  -8.55 -4.77 matrix  23  33  39
-#&gt; 5  -7.55 -4.77 matrix   3   0   1</div><div class='input'><span class='fu'><a href='as.character,hyperSpec-method.html'>summary</a></span><span class='op'>(</span><span class='fu'>as.wide.df</span><span class='op'>(</span><span class='va'>faux_cell</span> <span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>, , <span class='fl'>600</span> <span class='op'>~</span> <span class='fl'>610</span><span class='op'>]</span><span class='op'>)</span><span class='op'>)</span>
+#&gt; 5  -7.55 -4.77 matrix   3   0   1</div><div class='input'><span class='fu'><a href='show.html'>summary</a></span><span class='op'>(</span><span class='fu'>as.wide.df</span><span class='op'>(</span><span class='va'>faux_cell</span> <span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>, , <span class='fl'>600</span> <span class='op'>~</span> <span class='fl'>610</span><span class='op'>]</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;        x                y             region       602             606       
 #&gt;  Min.   :-11.55   Min.   :-4.77   cell   :0   Min.   :  3.0   Min.   :  0.0  
 #&gt;  1st Qu.:-10.55   1st Qu.:-4.77   matrix :5   1st Qu.: 15.0   1st Qu.: 22.0  
@@ -353,21 +353,21 @@ other functions producing long-format data.frames.</p></div>
 #&gt; 3.10       410.0 139.98667 rawdata/flu3.txt 0.15
 #&gt; 4.10       410.0 185.69233 rawdata/flu4.txt 0.20
 #&gt; 5.10       410.0 231.03567 rawdata/flu5.txt 0.25
-#&gt; 6.10       410.0 281.82867 rawdata/flu6.txt 0.30</div><div class='input'><span class='fu'><a href='as.character,hyperSpec-method.html'>summary</a></span><span class='op'>(</span><span class='fu'>as.long.df</span><span class='op'>(</span><span class='va'>flu</span> <span class='op'>[</span>, , <span class='fl'>405</span> <span class='op'>~</span> <span class='fl'>410</span><span class='op'>]</span><span class='op'>)</span><span class='op'>)</span>
+#&gt; 6.10       410.0 281.82867 rawdata/flu6.txt 0.30</div><div class='input'><span class='fu'><a href='show.html'>summary</a></span><span class='op'>(</span><span class='fu'>as.long.df</span><span class='op'>(</span><span class='va'>flu</span> <span class='op'>[</span>, , <span class='fl'>405</span> <span class='op'>~</span> <span class='fl'>410</span><span class='op'>]</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;   .wavelength         spc           filename               c        
 #&gt;  Min.   :405.0   Min.   : 27.15   Length:66          Min.   :0.050  
 #&gt;  1st Qu.:406.0   1st Qu.: 75.18   Class :character   1st Qu.:0.100  
 #&gt;  Median :407.5   Median :137.05   Mode  :character   Median :0.175  
 #&gt;  Mean   :407.5   Mean   :137.80                      Mean   :0.175  
 #&gt;  3rd Qu.:409.0   3rd Qu.:196.02                      3rd Qu.:0.250  
-#&gt;  Max.   :410.0   Max.   :281.83                      Max.   :0.300  </div><div class='input'><span class='fu'><a href='as.character,hyperSpec-method.html'>summary</a></span><span class='op'>(</span><span class='fu'>as.long.df</span><span class='op'>(</span><span class='va'>flu</span> <span class='op'>[</span>, , <span class='fl'>405</span> <span class='op'>~</span> <span class='fl'>410</span><span class='op'>]</span>, rownames <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
+#&gt;  Max.   :410.0   Max.   :281.83                      Max.   :0.300  </div><div class='input'><span class='fu'><a href='show.html'>summary</a></span><span class='op'>(</span><span class='fu'>as.long.df</span><span class='op'>(</span><span class='va'>flu</span> <span class='op'>[</span>, , <span class='fl'>405</span> <span class='op'>~</span> <span class='fl'>410</span><span class='op'>]</span>, rownames <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;  .rownames  .wavelength         spc           filename               c        
 #&gt;  1:11      Min.   :405.0   Min.   : 27.15   Length:66          Min.   :0.050  
 #&gt;  2:11      1st Qu.:406.0   1st Qu.: 75.18   Class :character   1st Qu.:0.100  
 #&gt;  3:11      Median :407.5   Median :137.05   Mode  :character   Median :0.175  
 #&gt;  4:11      Mean   :407.5   Mean   :137.80                      Mean   :0.175  
 #&gt;  5:11      3rd Qu.:409.0   3rd Qu.:196.02                      3rd Qu.:0.250  
-#&gt;  6:11      Max.   :410.0   Max.   :281.83                      Max.   :0.300  </div><div class='input'><span class='fu'><a href='as.character,hyperSpec-method.html'>summary</a></span><span class='op'>(</span><span class='fu'>as.long.df</span><span class='op'>(</span><span class='va'>flu</span> <span class='op'>[</span>, , <span class='fl'>405</span> <span class='op'>~</span> <span class='fl'>410</span><span class='op'>]</span>, wl.factor <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
+#&gt;  6:11      Max.   :410.0   Max.   :281.83                      Max.   :0.300  </div><div class='input'><span class='fu'><a href='show.html'>summary</a></span><span class='op'>(</span><span class='fu'>as.long.df</span><span class='op'>(</span><span class='va'>flu</span> <span class='op'>[</span>, , <span class='fl'>405</span> <span class='op'>~</span> <span class='fl'>410</span><span class='op'>]</span>, wl.factor <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;   .wavelength      spc           filename               c        
 #&gt;  405    : 6   Min.   : 27.15   Length:66          Min.   :0.050  
 #&gt;  405.5  : 6   1st Qu.: 75.18   Class :character   1st Qu.:0.100  

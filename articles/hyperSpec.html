@@ -322,13 +322,7 @@ Table <a href="#tab:options">9.1</a> gives an overview of the options. You shoul
 <span class="co">#&gt; hyperSpec object</span>
 <span class="co">#&gt;    875 spectra</span>
 <span class="co">#&gt;    4 data columns</span>
-<span class="co">#&gt;    300 data points / spectrum</span>
-<span class="co">#&gt; wavelength: Delta * tilde(nu)/cm^-1 [numeric] 602 606 ... 1798 </span>
-<span class="co">#&gt; data:  (875 rows x 4 columns)</span>
-<span class="co">#&gt;    1. x: x position [numeric] -11.55 -10.55 ... 22.45 </span>
-<span class="co">#&gt;    2. y: y position [numeric] -4.77 -4.77 ... 19.23 </span>
-<span class="co">#&gt;    3. region:  [factor] matrix matrix ... matrix </span>
-<span class="co">#&gt;    4. spc: intensity (arbitrary units) [matrix, array300] 132 72 ... 130</span></code></pre></div>
+<span class="co">#&gt;    300 data points / spectrum</span></code></pre></div>
 
 <p>The data set <code class="sourceCode r">faux_cell</code> consists of 875 spectra with 300 data points each, and 4 data columns: two for the spatial information, one giving the cell region of each pixel plus <code class="sourceCode r"><span class="op">$</span>spc</code>.
 These details can be directly obtained by</p>
@@ -540,13 +534,7 @@ Figure 3.3: An example with <code>[]</code> operator and logical indices.
 <span class="co">#&gt; hyperSpec object</span>
 <span class="co">#&gt;    3 spectra</span>
 <span class="co">#&gt;    4 data columns</span>
-<span class="co">#&gt;    300 data points / spectrum</span>
-<span class="co">#&gt; wavelength: Delta * tilde(nu)/cm^-1 [numeric] 602 606 ... 1798 </span>
-<span class="co">#&gt; data:  (3 rows x 4 columns)</span>
-<span class="co">#&gt;    1. x: x position [numeric] 20.45 3.45 15.45 </span>
-<span class="co">#&gt;    2. y: y position [numeric] 13.23 0.23 16.23 </span>
-<span class="co">#&gt;    3. region:  [factor] matrix matrix matrix </span>
-<span class="co">#&gt;    4. spc: intensity (arbitrary units) [matrix, array300] 151 36 ... 79</span></code></pre></div>
+<span class="co">#&gt;    300 data points / spectrum</span></code></pre></div>
 
 <p>If indices into the selected spectra are needed instead, use <code class="sourceCode r"><span class="kw">isample</span>()</code>:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
@@ -565,13 +553,7 @@ Figure 3.3: An example with <code>[]</code> operator and logical indices.
 <span class="co">#&gt; hyperSpec object</span>
 <span class="co">#&gt;    9 spectra</span>
 <span class="co">#&gt;    4 data columns</span>
-<span class="co">#&gt;    300 data points / spectrum</span>
-<span class="co">#&gt; wavelength: Delta * tilde(nu)/cm^-1 [numeric] 602 606 ... 1798 </span>
-<span class="co">#&gt; data:  (9 rows x 4 columns)</span>
-<span class="co">#&gt;    1. x: x position [numeric] -11.55 18.45 ... 18.45 </span>
-<span class="co">#&gt;    2. y: y position [numeric] -4.77 -2.77 ... 17.23 </span>
-<span class="co">#&gt;    3. region:  [factor] matrix matrix ... matrix </span>
-<span class="co">#&gt;    4. spc: intensity (arbitrary units) [matrix, array300] 132 88 ... 11</span></code></pre></div>
+<span class="co">#&gt;    300 data points / spectrum</span></code></pre></div>
 <p>Here, indices may be requested using <code class="sourceCode r">index =<span class="st"> </span><span class="ot">TRUE</span></code>.</p>
 </div>
 </div>
@@ -989,12 +971,7 @@ As the wavelengths are in nanometers, and the frequencies are easiest expressed 
 <span class="co">#&gt; hyperSpec object</span>
 <span class="co">#&gt;    84 spectra</span>
 <span class="co">#&gt;    3 data columns</span>
-<span class="co">#&gt;    36 data points / spectrum</span>
-<span class="co">#&gt; wavelength: lambda/nm [numeric] 404.58 404.62 ... 405.82 </span>
-<span class="co">#&gt; data:  (84 rows x 3 columns)</span>
-<span class="co">#&gt;    1. t: t / s [numeric] 0 2 ... 5722 </span>
-<span class="co">#&gt;    2. spc: I / a.u. [matrix, array36] 164.65 179.72 ... 112.09 </span>
-<span class="co">#&gt;    3. filename: filename [character] rawdata/laser.txt.gz rawdata/laser.txt.gz ... rawdata/laser.txt.gz</span></code></pre></div>
+<span class="co">#&gt;    36 data points / spectrum</span></code></pre></div>
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">wavelengths</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/wl.html">wl</a></span><span class="op">(</span><span class="va">laser</span><span class="op">)</span>
 <span class="va">frequencies</span> <span class="op">&lt;-</span> <span class="fl">2.998e8</span> <span class="op">/</span> <span class="va">wavelengths</span> <span class="op">/</span> <span class="fl">1000</span>
@@ -1005,11 +982,6 @@ As the wavelengths are in nanometers, and the frequencies are easiest expressed 
 <span class="co">#&gt;    84 spectra</span>
 <span class="co">#&gt;    3 data columns</span>
 <span class="co">#&gt;    36 data points / spectrum</span>
-<span class="co">#&gt; wavelength: f / THz [numeric] 741.01 740.95 ... 738.76 </span>
-<span class="co">#&gt; data:  (84 rows x 3 columns)</span>
-<span class="co">#&gt;    1. t: t / s [numeric] 0 2 ... 5722 </span>
-<span class="co">#&gt;    2. spc: I / a.u. [matrix, array36] 164.65 179.72 ... 112.09 </span>
-<span class="co">#&gt;    3. filename: filename [character] rawdata/laser.txt.gz rawdata/laser.txt.gz ... rawdata/laser.txt.gz</span>
 <span class="fu"><a href="https://rdrr.io/r/base/rm.html">rm</a></span><span class="op">(</span><span class="va">laser</span><span class="op">)</span></code></pre></div>
 <p>You can also accomplish these steps in a single line, e.g.,</p>
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
@@ -1792,13 +1764,7 @@ This conveniently allows one to use the regular <code>hyperSpec</code> plotting 
 <span class="co">#&gt; hyperSpec object</span>
 <span class="co">#&gt;    875 spectra</span>
 <span class="co">#&gt;    4 data columns</span>
-<span class="co">#&gt;    300 data points / spectrum</span>
-<span class="co">#&gt; wavelength: PC [integer] 1 2 ... 300 </span>
-<span class="co">#&gt; data:  (875 rows x 4 columns)</span>
-<span class="co">#&gt;    1. x: x position [numeric] -11.55 -10.55 ... 22.45 </span>
-<span class="co">#&gt;    2. y: y position [numeric] -4.77 -4.77 ... 19.23 </span>
-<span class="co">#&gt;    3. region:  [factor] matrix matrix ... matrix </span>
-<span class="co">#&gt;    4. spc: score / a.u. [matrix, array300] -2358.9 -1528.2 ... 4.0023</span></code></pre></div>
+<span class="co">#&gt;    300 data points / spectrum</span></code></pre></div>
 <p>The loadings can be similarly re-imported:</p>
 <div class="sourceCode" id="cb101"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">loadings</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/decomposition.html">decomposition</a></span><span class="op">(</span><span class="va">faux_cell</span>, <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">pca</span><span class="op">$</span><span class="va">rotation</span><span class="op">)</span>,
@@ -1809,10 +1775,7 @@ This conveniently allows one to use the regular <code>hyperSpec</code> plotting 
 <span class="co">#&gt; hyperSpec object</span>
 <span class="co">#&gt;    300 spectra</span>
 <span class="co">#&gt;    1 data columns</span>
-<span class="co">#&gt;    300 data points / spectrum</span>
-<span class="co">#&gt; wavelength: Delta * tilde(nu)/cm^-1 [numeric] 602 606 ... 1798 </span>
-<span class="co">#&gt; data:  (300 rows x 1 columns)</span>
-<span class="co">#&gt;    1. spc: loading I / a.u. [matrix, array300] -0.052136 -0.011645 ... -0.10036</span></code></pre></div>
+<span class="co">#&gt;    300 data points / spectrum</span></code></pre></div>
 <p>There is, however, one important difference.
 The loadings are thought of as values computed from all spectra together.
 Thus no meaningful extra data can be assigned for the loadings object (at least not if the column consists of different values).
@@ -2161,39 +2124,18 @@ E. g., if to preserver all spectra of flu, use <code class="sourceCode r">all.x 
 <span class="co">#&gt;    682 spectra</span>
 <span class="co">#&gt;    5 data columns</span>
 <span class="co">#&gt;    300 data points / spectrum</span>
-<span class="co">#&gt; wavelength: Delta * tilde(nu)/cm^-1 [numeric] 602 606 ... 1798 </span>
-<span class="co">#&gt; data:  (682 rows x 5 columns)</span>
-<span class="co">#&gt;    1. x: x position [numeric] -11.55 -10.55 ... 22.45 </span>
-<span class="co">#&gt;    2. y: y position [numeric] -4.77 -4.77 ... 19.23 </span>
-<span class="co">#&gt;    3. region: region [factor] matrix matrix ... matrix </span>
-<span class="co">#&gt;    4. spc: intensity (arbitrary units) [matrix, array300] 132 72 ... 130 </span>
-<span class="co">#&gt;    5. measurement: measurement [numeric] 1 1 ... 1 </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $lacuna</span>
 <span class="co">#&gt; hyperSpec object</span>
 <span class="co">#&gt;    155 spectra</span>
 <span class="co">#&gt;    5 data columns</span>
 <span class="co">#&gt;    300 data points / spectrum</span>
-<span class="co">#&gt; wavelength: Delta * tilde(nu)/cm^-1 [numeric] 602 606 ... 1798 </span>
-<span class="co">#&gt; data:  (155 rows x 5 columns)</span>
-<span class="co">#&gt;    1. x: x position [numeric] 10.45 11.45 ... 8.45 </span>
-<span class="co">#&gt;    2. y: y position [numeric] 1.23 1.23 ... 19.23 </span>
-<span class="co">#&gt;    3. region: region [factor] lacuna lacuna ... lacuna </span>
-<span class="co">#&gt;    4. spc: intensity (arbitrary units) [matrix, array300] 18 131 ... 172 </span>
-<span class="co">#&gt;    5. measurement: measurement [numeric] 1 1 ... 1 </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $cell</span>
 <span class="co">#&gt; hyperSpec object</span>
 <span class="co">#&gt;    38 spectra</span>
 <span class="co">#&gt;    5 data columns</span>
-<span class="co">#&gt;    300 data points / spectrum</span>
-<span class="co">#&gt; wavelength: Delta * tilde(nu)/cm^-1 [numeric] 602 606 ... 1798 </span>
-<span class="co">#&gt; data:  (38 rows x 5 columns)</span>
-<span class="co">#&gt;    1. x: x position [numeric] 10.45 11.45 ... 14.45 </span>
-<span class="co">#&gt;    2. y: y position [numeric] 5.23 5.23 ... 11.23 </span>
-<span class="co">#&gt;    3. region: region [factor] cell cell ... cell </span>
-<span class="co">#&gt;    4. spc: intensity (arbitrary units) [matrix, array300] 150 89 ... 83 </span>
-<span class="co">#&gt;    5. measurement: measurement [numeric] 1 1 ... 1</span></code></pre></div>
+<span class="co">#&gt;    300 data points / spectrum</span></code></pre></div>
 
 <p>Splitting can be reversed by <code class="sourceCode r"><span class="kw">rbind</span>()</code> (see section <a href="#sec:bind">7.1</a>).
 
@@ -2201,20 +2143,20 @@ Another, similar way to combine a number of <code>hyperSpec</code> objects with 
 <p>Both <code class="sourceCode r"><span class="kw">rbind</span>()</code> and <code class="sourceCode r"><span class="kw">collapse</span>()</code> take care that factor levels are expanded as necessary:</p>
 <div class="sourceCode" id="cb135"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">lacunae</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/droplevels.html">droplevels</a></span><span class="op">(</span><span class="va">faux_cell</span><span class="op">[</span><span class="va">faux_cell</span><span class="op">$</span><span class="va">region</span> <span class="op">==</span> <span class="st">"matrix"</span> <span class="op">&amp;</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">faux_cell</span><span class="op">$</span><span class="va">region</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>
-<span class="fu"><a href="../reference/as.character,hyperSpec-method.html">summary</a></span><span class="op">(</span><span class="va">lacunae</span><span class="op">$</span><span class="va">region</span><span class="op">)</span>
+<span class="fu"><a href="../reference/show.html">summary</a></span><span class="op">(</span><span class="va">lacunae</span><span class="op">$</span><span class="va">region</span><span class="op">)</span>
 <span class="co">#&gt; matrix </span>
 <span class="co">#&gt;    682</span></code></pre></div>
 <div class="sourceCode" id="cb136"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">cells</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/droplevels.html">droplevels</a></span><span class="op">(</span><span class="va">faux_cell</span><span class="op">[</span><span class="va">faux_cell</span><span class="op">$</span><span class="va">region</span> <span class="op">==</span> <span class="st">"cell"</span> <span class="op">&amp;</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">faux_cell</span><span class="op">$</span><span class="va">region</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>
-<span class="fu"><a href="../reference/as.character,hyperSpec-method.html">summary</a></span><span class="op">(</span><span class="va">cells</span><span class="op">$</span><span class="va">region</span><span class="op">)</span>
+<span class="fu"><a href="../reference/show.html">summary</a></span><span class="op">(</span><span class="va">cells</span><span class="op">$</span><span class="va">region</span><span class="op">)</span>
 <span class="co">#&gt; cell </span>
 <span class="co">#&gt;   38</span></code></pre></div>
 <div class="sourceCode" id="cb137"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/as.character,hyperSpec-method.html">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">cells</span>, <span class="va">lacunae</span><span class="op">)</span><span class="op">$</span><span class="va">region</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="../reference/show.html">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">cells</span>, <span class="va">lacunae</span><span class="op">)</span><span class="op">$</span><span class="va">region</span><span class="op">)</span>
 <span class="co">#&gt;   cell matrix </span>
 <span class="co">#&gt;     38    682</span></code></pre></div>
 <div class="sourceCode" id="cb138"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/as.character,hyperSpec-method.html">summary</a></span><span class="op">(</span><span class="fu"><a href="../reference/collapse.html">collapse</a></span><span class="op">(</span><span class="va">cells</span>, <span class="va">lacunae</span><span class="op">)</span><span class="op">$</span><span class="va">region</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="../reference/show.html">summary</a></span><span class="op">(</span><span class="fu"><a href="../reference/collapse.html">collapse</a></span><span class="op">(</span><span class="va">cells</span>, <span class="va">lacunae</span><span class="op">)</span><span class="op">$</span><span class="va">region</span><span class="op">)</span>
 <span class="co">#&gt;   cell matrix </span>
 <span class="co">#&gt;     38    682</span></code></pre></div>
 </div>
@@ -2345,7 +2287,7 @@ Please refer to the documentation of the respective functions for details about 
   <span class="op">}</span>
 <span class="op">}</span><span class="op">)</span>
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.046   0.002   0.048</span></code></pre></div>
+<span class="co">#&gt;   0.059   0.002   0.062</span></code></pre></div>
 <p>Calculations that involve a lot of subsetting (i.e., extracting or changing the spectra matrix or extra data) can be sped up considerably if the required parts of the <code>hyperSpec</code> object are extracted beforehand.
 This is somewhat similar to model fitting in <code>R</code> in general: many model fitting functions in <code>R</code> are much faster if the formula interface is avoided and the appropriate <code class="sourceCode r">data.frame</code>s or matrices are handed over directly.</p>
 <div class="sourceCode" id="cb142"><pre class="downlit sourceCode r">
@@ -2359,7 +2301,7 @@ This is somewhat similar to model fitting in <code>R</code> in general: many mod
   <span class="va">tmp</span><span class="op">[[</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">tmp.matrix</span>
 <span class="op">}</span><span class="op">)</span>
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;    0.01    0.00    0.01</span></code></pre></div>
+<span class="co">#&gt;   0.019   0.000   0.019</span></code></pre></div>
 </div>
 <div id="additional-packages" class="section level2">
 <h2 class="hasAnchor">

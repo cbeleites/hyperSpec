@@ -239,47 +239,23 @@ such groups, <code>collapse()</code> will be faster with this first pass being t
 #&gt;    1 spectra
 #&gt;    4 data columns
 #&gt;    37 data points / spectrum
-#&gt; wavelength: frac(m, z)/frac(u, e) [numeric] 160.90 158.85 ... 27.05 
-#&gt; data:  (1 rows x 4 columns)
-#&gt;    1. z: t/min [numeric] 4.027184 
-#&gt;    2. z.end: t/min [numeric] 4.027184 
-#&gt;    3. spc: I/"a. u." [matrix, array37] 902 896 ... 562 
-#&gt;    4. filename: filename [character] /home/cb/R/x86_64-pc-linux-gnu-library/3.6/hyperSpec/extdata/BARBITUATES.SPC 
 #&gt; 
 #&gt; [[2]]
 #&gt; hyperSpec object
 #&gt;    1 spectra
 #&gt;    4 data columns
 #&gt;    34 data points / spectrum
-#&gt; wavelength: frac(m, z)/frac(u, e) [numeric] 158.85 140.90 ... 27.15 
-#&gt; data:  (1 rows x 4 columns)
-#&gt;    1. z: t/min [numeric] 4.034117 
-#&gt;    2. z.end: t/min [numeric] 4.034117 
-#&gt;    3. spc: I/"a. u." [matrix, array34] 857 864 ... 618 
-#&gt;    4. filename: filename [character] /home/cb/R/x86_64-pc-linux-gnu-library/3.6/hyperSpec/extdata/BARBITUATES.SPC 
 #&gt; 
 #&gt; [[3]]
 #&gt; hyperSpec object
 #&gt;    1 spectra
 #&gt;    4 data columns
 #&gt;    29 data points / spectrum
-#&gt; wavelength: frac(m, z)/frac(u, e) [numeric] 158.85 132.95 ... 27.05 
-#&gt; data:  (1 rows x 4 columns)
-#&gt;    1. z: t/min [numeric] 4.04095 
-#&gt;    2. z.end: t/min [numeric] 4.04095 
-#&gt;    3. spc: I/"a. u." [matrix, array29] 735 1412 ... 638 
-#&gt;    4. filename: filename [character] /home/cb/R/x86_64-pc-linux-gnu-library/3.6/hyperSpec/extdata/BARBITUATES.SPC 
 #&gt; </div><div class='input'><span class='fu'>collapse</span><span class='op'>(</span><span class='va'>barbiturates</span> <span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>]</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; hyperSpec object
 #&gt;    3 spectra
 #&gt;    4 data columns
-#&gt;    57 data points / spectrum
-#&gt; wavelength: frac(m, z)/frac(u, e) [numeric] 27.05 27.15 ... 160.9 
-#&gt; data:  (3 rows x 4 columns)
-#&gt;    1. z: t/min [numeric] 4.027184 4.034117 4.040950 
-#&gt;    2. z.end: t/min [numeric] 4.027184 4.034117 4.040950 
-#&gt;    3. spc: I/"a. u." [matrix, array57] 562 NA ... NA + NA
-#&gt;    4. filename: filename [character] /home/cb/R/x86_64-pc-linux-gnu-library/3.6/hyperSpec/extdata/BARBITUATES.SPC /home/cb/R/x86_64-pc-linux-gnu-library/3.6/hyperSpec/extdata/BARBITUATES.SPC /home/cb/R/x86_64-pc-linux-gnu-library/3.6/hyperSpec/extdata/BARBITUATES.SPC </div><div class='input'>
+#&gt;    57 data points / spectrum</div><div class='input'>
 <span class='va'>a</span> <span class='op'>&lt;-</span> <span class='va'>barbiturates</span><span class='op'>[[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>]</span>
 <span class='va'>b</span> <span class='op'>&lt;-</span> <span class='va'>barbiturates</span><span class='op'>[[</span><span class='fl'>2</span><span class='op'>]</span><span class='op'>]</span>
 <span class='va'>c</span> <span class='op'>&lt;-</span> <span class='va'>barbiturates</span><span class='op'>[[</span><span class='fl'>3</span><span class='op'>]</span><span class='op'>]</span>
@@ -288,54 +264,24 @@ such groups, <code>collapse()</code> will be faster with this first pass being t
 </div><div class='output co'>#&gt; hyperSpec object
 #&gt;    1 spectra
 #&gt;    4 data columns
-#&gt;    37 data points / spectrum
-#&gt; wavelength: frac(m, z)/frac(u, e) [numeric] 160.90 158.85 ... 27.05 
-#&gt; data:  (1 rows x 4 columns)
-#&gt;    1. z: t/min [numeric] 4.027184 
-#&gt;    2. z.end: t/min [numeric] 4.027184 
-#&gt;    3. spc: I/"a. u." [matrix, array37] 902 896 ... 562 
-#&gt;    4. filename: filename [character] /home/cb/R/x86_64-pc-linux-gnu-library/3.6/hyperSpec/extdata/BARBITUATES.SPC </div><div class='input'><span class='va'>b</span>
+#&gt;    37 data points / spectrum</div><div class='input'><span class='va'>b</span>
 </div><div class='output co'>#&gt; hyperSpec object
 #&gt;    1 spectra
 #&gt;    4 data columns
-#&gt;    34 data points / spectrum
-#&gt; wavelength: frac(m, z)/frac(u, e) [numeric] 158.85 140.90 ... 27.15 
-#&gt; data:  (1 rows x 4 columns)
-#&gt;    1. z: t/min [numeric] 4.034117 
-#&gt;    2. z.end: t/min [numeric] 4.034117 
-#&gt;    3. spc: I/"a. u." [matrix, array34] 857 864 ... 618 
-#&gt;    4. filename: filename [character] /home/cb/R/x86_64-pc-linux-gnu-library/3.6/hyperSpec/extdata/BARBITUATES.SPC </div><div class='input'><span class='va'>c</span>
+#&gt;    34 data points / spectrum</div><div class='input'><span class='va'>c</span>
 </div><div class='output co'>#&gt; hyperSpec object
 #&gt;    1 spectra
 #&gt;    4 data columns
-#&gt;    29 data points / spectrum
-#&gt; wavelength: frac(m, z)/frac(u, e) [numeric] 158.85 132.95 ... 27.05 
-#&gt; data:  (1 rows x 4 columns)
-#&gt;    1. z: t/min [numeric] 4.04095 
-#&gt;    2. z.end: t/min [numeric] 4.04095 
-#&gt;    3. spc: I/"a. u." [matrix, array29] 735 1412 ... 638 
-#&gt;    4. filename: filename [character] /home/cb/R/x86_64-pc-linux-gnu-library/3.6/hyperSpec/extdata/BARBITUATES.SPC </div><div class='input'><span class='fu'>collapse</span><span class='op'>(</span><span class='va'>a</span>, <span class='va'>b</span>, <span class='va'>c</span><span class='op'>)</span>
+#&gt;    29 data points / spectrum</div><div class='input'><span class='fu'>collapse</span><span class='op'>(</span><span class='va'>a</span>, <span class='va'>b</span>, <span class='va'>c</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; hyperSpec object
 #&gt;    3 spectra
 #&gt;    4 data columns
-#&gt;    57 data points / spectrum
-#&gt; wavelength: frac(m, z)/frac(u, e) [numeric] 27.05 27.15 ... 160.9 
-#&gt; data:  (3 rows x 4 columns)
-#&gt;    1. z: t/min [numeric] 4.027184 4.034117 4.040950 
-#&gt;    2. z.end: t/min [numeric] 4.027184 4.034117 4.040950 
-#&gt;    3. spc: I/"a. u." [matrix, array57] 562 NA ... NA + NA
-#&gt;    4. filename: filename [character] /home/cb/R/x86_64-pc-linux-gnu-library/3.6/hyperSpec/extdata/BARBITUATES.SPC /home/cb/R/x86_64-pc-linux-gnu-library/3.6/hyperSpec/extdata/BARBITUATES.SPC /home/cb/R/x86_64-pc-linux-gnu-library/3.6/hyperSpec/extdata/BARBITUATES.SPC </div><div class='input'>
+#&gt;    57 data points / spectrum</div><div class='input'>
 <span class='fu'>collapse</span><span class='op'>(</span><span class='va'>barbiturates</span> <span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>]</span>, collapse.equal <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; hyperSpec object
 #&gt;    3 spectra
 #&gt;    4 data columns
-#&gt;    57 data points / spectrum
-#&gt; wavelength: frac(m, z)/frac(u, e) [numeric] 27.05 27.15 ... 160.9 
-#&gt; data:  (3 rows x 4 columns)
-#&gt;    1. z: t/min [numeric] 4.027184 4.034117 4.040950 
-#&gt;    2. z.end: t/min [numeric] 4.027184 4.034117 4.040950 
-#&gt;    3. spc: I/"a. u." [matrix, array57] 562 NA ... NA + NA
-#&gt;    4. filename: filename [character] /home/cb/R/x86_64-pc-linux-gnu-library/3.6/hyperSpec/extdata/BARBITUATES.SPC /home/cb/R/x86_64-pc-linux-gnu-library/3.6/hyperSpec/extdata/BARBITUATES.SPC /home/cb/R/x86_64-pc-linux-gnu-library/3.6/hyperSpec/extdata/BARBITUATES.SPC </div></pre>
+#&gt;    57 data points / spectrum</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

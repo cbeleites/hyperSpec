@@ -290,7 +290,7 @@ Thus one should also consider requiring more support points than the default val
 <span class="co">#&gt;   0.004   0.000   0.004</span>
 <span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span><span class="op">(</span><span class="fu"><a href="../reference/spc.fit.poly.html">spc.fit.poly.below</a></span><span class="op">(</span><span class="va">chondro_mini</span><span class="op">[</span>, , <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">min</span> <span class="op">~</span> <span class="fl">700</span>, <span class="fl">1700</span> <span class="op">~</span> <span class="va">max</span><span class="op">)</span><span class="op">]</span>, <span class="cn">NULL</span>, npts.min <span class="op">=</span> <span class="fl">20</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.004   0.000   0.004</span></code></pre></div>
+<span class="co">#&gt;   0.004   0.000   0.005</span></code></pre></div>
 <p>The choice of the spectral range in <code class="sourceCode r">fit.to</code> influences the resulting baselines to a certain extent, as becomes clear from figure <a href="#fig:spectralrange">2.3</a>.</p>
 </div>
 <div id="fitting-polynomials-of-different-orders" class="section level2">
@@ -353,9 +353,6 @@ The dots indicate the points used for the fitting of the polynomial.
 <span class="co">#&gt;    1 spectra</span>
 <span class="co">#&gt;    1 data columns</span>
 <span class="co">#&gt;    100 data points / spectrum</span>
-<span class="co">#&gt; wavelength:  [integer] 1 2 ... 100 </span>
-<span class="co">#&gt; data:  (1 rows x 1 columns)</span>
-<span class="co">#&gt;    1. spc:  [AsIs matrix x 100] 99.968 99.968 ... 99.968</span>
 <span class="fu"><a href="../reference/plot-methods.html">plot</a></span><span class="op">(</span><span class="fu"><a href="../reference/spc.fit.poly.html">spc.fit.poly.below</a></span><span class="op">(</span><span class="va">spc</span>, poly.order <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">"black"</span>, add <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:fig3"></span>

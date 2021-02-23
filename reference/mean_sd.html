@@ -212,7 +212,7 @@ standard deviation, respectively.</p>
     <tr>
       <th>names</th>
       <td><p><code>"pretty"</code> results in percentages (like <code><a href='https://rdrr.io/r/stats/quantile.html'>stats::quantile()</a></code>'s
-<code>names = TRUE</code>), <code>"num"</code> results in the row names being <code><a href='as.character,hyperSpec-method.html'>as.character(probs)</a></code>
+<code>names = TRUE</code>), <code>"num"</code> results in the row names being <code><a href='show.html'>as.character(probs)</a></code>
 (good for ggplot2 getting the order of the quantiles right). Otherwise, no
 names are assigned.</p></td>
     </tr>
@@ -251,10 +251,7 @@ containing the respective quantile spectra.</p>
 </div><div class='output co'>#&gt; hyperSpec object
 #&gt;    2 spectra
 #&gt;    1 data columns
-#&gt;    11 data points / spectrum
-#&gt; wavelength: lambda/nm [numeric] 405.0 405.5 ... 410 
-#&gt; data:  (2 rows x 1 columns)
-#&gt;    1. spc: I[fl]/"a.u." [matrix, array11] 113.90939 63.95161 ... 88.86944 </div><div class='input'>
+#&gt;    11 data points / spectrum</div><div class='input'>
 <span class='fu'>mean_sd</span><span class='op'>(</span><span class='va'>flu</span><span class='op'>$</span><span class='va'>spc</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;            405     405.5       406     406.5       407     407.5       408
 #&gt; mean 113.90939 120.08039 123.88961 128.63661 132.78711 138.26267 142.52667
@@ -329,10 +326,7 @@ containing the respective quantile spectra.</p>
 </div><div class='output co'>#&gt; hyperSpec object
 #&gt;    2 spectra
 #&gt;    1 data columns
-#&gt;    181 data points / spectrum
-#&gt; wavelength: lambda/nm [numeric] 405.0 405.5 ... 495 
-#&gt; data:  (2 rows x 1 columns)
-#&gt;    1. spc: I[fl]/"a.u." [matrix, array181] 113.90939 63.95161 ... 93.76262 </div><div class='input'>
+#&gt;    181 data points / spectrum</div><div class='input'>
 <span class='fu'>mean_pm_sd</span><span class='op'>(</span><span class='va'>flu</span><span class='op'>$</span><span class='va'>c</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; mean.minus.sd          mean  mean.plus.sd 
 #&gt;    0.08145857    0.17500000    0.26854143 </div><div class='input'>
@@ -445,10 +439,7 @@ containing the respective quantile spectra.</p>
 </div><div class='output co'>#&gt; hyperSpec object
 #&gt;    3 spectra
 #&gt;    1 data columns
-#&gt;    181 data points / spectrum
-#&gt; wavelength: lambda/nm [numeric] 405.0 405.5 ... 495 
-#&gt; data:  (3 rows x 1 columns)
-#&gt;    1. spc: I[fl]/"a.u." [matrix, array181] 49.95778 113.90939 ... 264.2841 </div><div class='input'>
+#&gt;    181 data points / spectrum</div><div class='input'>
 <span class='fu'><a href='plot-methods.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>faux_cell</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='img'><img src='mean_sd-1.png' alt='' width='466' height='288' /></div><div class='input'>
 <span class='fu'><a href='plot-methods.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/quantile.html'>quantile</a></span><span class='op'>(</span><span class='va'>faux_cell</span><span class='op'>)</span><span class='op'>)</span>

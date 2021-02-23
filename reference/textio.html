@@ -299,7 +299,7 @@ to <span class="pkg">hyperSpec</span>. An example is in the &#8220;flu&#8221; vi
 
   <span class='co'># reading a matlab file</span>
   <span class='va'>data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/R.matlab/man/readMat.html'>readMat</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"/test.mat"</span><span class='op'>)</span><span class='op'>)</span>
-  <span class='fu'><a href='as.character,hyperSpec-method.html'>print</a></span><span class='op'>(</span><span class='va'>data</span><span class='op'>)</span>
+  <span class='fu'><a href='show.html'>print</a></span><span class='op'>(</span><span class='va'>data</span><span class='op'>)</span>
   <span class='va'>mat</span> <span class='op'>&lt;-</span> <span class='fu'><a href='initialize.html'>new</a></span><span class='op'>(</span><span class='st'>"hyperSpec"</span>,
     spc <span class='op'>=</span> <span class='va'>data</span><span class='op'>$</span><span class='va'>x</span>,
     wavelength <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>data</span><span class='op'>$</span><span class='va'>wavelength</span><span class='op'>)</span>,
@@ -516,7 +516,7 @@ to <span class="pkg">hyperSpec</span>. An example is in the &#8220;flu&#8221; vi
 #&gt; 
 #&gt; attr(,"header")
 #&gt; attr(,"header")$description
-#&gt; [1] "MATLAB 5.0 MAT-file, Platform: unix, Software: R v4.0.4, Created on: Tue Feb 23 15:58:34 2021                               "
+#&gt; [1] "MATLAB 5.0 MAT-file, Platform: unix, Software: R v4.0.4, Created on: Tue Feb 23 17:42:57 2021                               "
 #&gt; 
 #&gt; attr(,"header")$version
 #&gt; [1] "5"
@@ -546,12 +546,7 @@ to <span class="pkg">hyperSpec</span>. An example is in the &#8220;flu&#8221; vi
 #&gt; <span class='warning'>https://r-hyperspec.github.io/hySpc.read.txt</span></div><div class='output co'>#&gt; hyperSpec object
 #&gt;    6 spectra
 #&gt;    3 data columns
-#&gt;    181 data points / spectrum
-#&gt; wavelength: lambda/nm [numeric] 405.0 405.5 ... 495 
-#&gt; data:  (6 rows x 3 columns)
-#&gt;    1. spc: I / a.u [matrix, array181] 27.15000 66.80133 ... 294.6495 
-#&gt;    2. c: c/(mg/l) [numeric] 0.05 0.10 ... 0.3 
-#&gt;    3. filename: filename [character] /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpmOjZP3/flu.txt /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpmOjZP3/flu.txt ... /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpmOjZP3/flu.txt </div><div class='input'>
+#&gt;    181 data points / spectrum</div><div class='input'>
 <span class='fu'><a href='write.txt.long.html'>write.txt.wide</a></span><span class='op'>(</span><span class='va'>flu</span>,
   file <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"/flu.txt"</span><span class='op'>)</span>,
   cols <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"c"</span>, <span class='st'>"spc"</span><span class='op'>)</span>,
@@ -580,12 +575,7 @@ to <span class="pkg">hyperSpec</span>. An example is in the &#8220;flu&#8221; vi
 #&gt; <span class='warning'>https://r-hyperspec.github.io/hySpc.read.txt</span></div><div class='output co'>#&gt; <span class='warning'>Warning: $filename already exists. =&gt; Skipping file.keep.name</span></div><div class='output co'>#&gt; hyperSpec object
 #&gt;    6 spectra
 #&gt;    3 data columns
-#&gt;    181 data points / spectrum
-#&gt; wavelength: lambda / nm [numeric] 405.0 405.5 ... 495 
-#&gt; data:  (6 rows x 3 columns)
-#&gt;    1. c: "c"/"mg/l" [character] rawdata/flu1.txt rawdata/flu2.txt ... rawdata/flu6.txt 
-#&gt;    2. filename: filename [numeric] 0.05 0.10 ... 0.3 
-#&gt;    3. spc: I / a.u [matrix, array181] 27.15000 66.80133 ... 294.6495 </div></pre>
+#&gt;    181 data points / spectrum</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

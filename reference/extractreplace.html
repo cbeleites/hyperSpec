@@ -782,7 +782,7 @@ while the last returns a <code>data.frame</code>.</p>
 #&gt; [3,]    4    9</div><div class='input'><span class='va'>flu</span><span class='op'>[[</span><span class='va'>ind</span>, wl.index <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>]</span><span class='op'>]</span>
 </div><div class='output co'>#&gt; [1]  33.37867  63.71533 175.45900</div><div class='input'>
 <span class='co'># indexing via a logical matrix (applied to spectra matrix)</span>
-<span class='fu'><a href='as.character,hyperSpec-method.html'>summary</a></span><span class='op'>(</span><span class='va'>flu</span><span class='op'>[[</span><span class='va'>flu</span> <span class='op'>&lt;</span> <span class='fl'>125</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span>
+<span class='fu'><a href='show.html'>summary</a></span><span class='op'>(</span><span class='va'>flu</span><span class='op'>[[</span><span class='va'>flu</span> <span class='op'>&lt;</span> <span class='fl'>125</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 #&gt;   27.15   66.94   90.56   85.06  104.08  124.74 </div><div class='input'>
 <span class='co'>## replacement functions</span>
@@ -935,13 +935,7 @@ while the last returns a <code>data.frame</code>.</p>
 </div><div class='output co'>#&gt; hyperSpec object
 #&gt;    6 spectra
 #&gt;    4 data columns
-#&gt;    11 data points / spectrum
-#&gt; wavelength: lambda/nm [numeric] 405.0 405.5 ... 410 
-#&gt; data:  (6 rows x 4 columns)
-#&gt;    1. spc: I[fl]/"a.u." [matrix, array11] NA NA ... 281.8287 + NA
-#&gt;    2. filename: filename [character] rawdata/flu1.txt rawdata/flu2.txt ... rawdata/flu6.txt 
-#&gt;    3. c: c / (mg / l) [numeric] 0.05 0.10 ... 0.3 
-#&gt;    4. z: z [integer] 1 2 ... 6 </div><div class='input'><span class='va'>spc</span><span class='op'>$</span><span class='va'>z</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span>, <span class='st'>"z / a.u."</span><span class='op'>)</span>
+#&gt;    11 data points / spectrum</div><div class='input'><span class='va'>spc</span><span class='op'>$</span><span class='va'>z</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span>, <span class='st'>"z / a.u."</span><span class='op'>)</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

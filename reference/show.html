@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Convert a hyperSpec object to character strings for display. — as.character,hyperSpec-method • hyperSpec</title>
+<title>Show Brief Summary of hyperSpec Object — show • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,8 +41,9 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Convert a hyperSpec object to character strings for display. — as.character,hyperSpec-method" />
-<meta property="og:description" content="print(), show(), and summary() show the result of as.character()." />
+<meta property="og:title" content="Show Brief Summary of hyperSpec Object — show" />
+<meta property="og:description" content="Functions show(), print(), summary(), and as.character() calculate
+and show a basic summary of a hyperSpec object." />
 
 <meta name="robots" content="noindex" />
 
@@ -155,121 +156,154 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Convert a <code>hyperSpec</code> object to character strings for display.</h1>
+    <h1>Show Brief Summary of <code>hyperSpec</code> Object</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/show.R'><code>R/show.R</code></a></small>
     <div class="hidden name"><code>show.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p><code>print()</code>, <code>show()</code>, and <code>summary()</code> show the result of <code>as.character()</code>.</p>
+    <p>Functions <code>show()</code>, <code>print()</code>, <code>summary()</code>, and <code>as.character()</code> calculate
+and show a basic summary of a <code>hyperSpec</code> object.</p>
     </div>
 
     <pre class="usage"><span class='co'># S4 method for hyperSpec</span>
-<span class='fu'>as.character</span><span class='op'>(</span>
-  <span class='va'>x</span>,
-  digits <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"digits"</span><span class='op'>)</span>,
-  range <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  max.print <span class='op'>=</span> <span class='fl'>5</span>,
-  shorten.to <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>, <span class='fl'>1</span><span class='op'>)</span>
-<span class='op'>)</span>
-
-<span class='co'># S4 method for hyperSpec</span>
 <span class='fu'>show</span><span class='op'>(</span><span class='va'>object</span><span class='op'>)</span>
 
 <span class='co'># S4 method for hyperSpec</span>
-<span class='fu'>print</span><span class='op'>(</span><span class='va'>x</span>, range <span class='op'>=</span> <span class='cn'>FALSE</span>, <span class='va'>...</span><span class='op'>)</span>
+<span class='fu'>print</span><span class='op'>(</span><span class='va'>x</span>, range <span class='op'>=</span> <span class='cn'>FALSE</span>, include <span class='op'>=</span> <span class='st'>"main"</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S4 method for hyperSpec</span>
-<span class='fu'>summary</span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>...</span><span class='op'>)</span></pre>
+<span class='fu'>summary</span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>...</span>, include <span class='op'>=</span> <span class='st'>"all"</span>, range <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+
+<span class='co'># S4 method for hyperSpec</span>
+<span class='fu'>as.character</span><span class='op'>(</span>
+  <span class='va'>x</span>,
+  digits <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"digits"</span><span class='op'>)</span>,
+  range <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  max.print <span class='op'>=</span> <span class='fl'>5</span>,
+  shorten.to <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>, <span class='fl'>1</span><span class='op'>)</span>,
+  include <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"all"</span>, <span class='st'>"main"</span>, <span class='st'>"wl"</span>, <span class='st'>"data"</span><span class='op'>)</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>a <code>hyperSpec</code> object</p></td>
-    </tr>
-    <tr>
-      <th>digits</th>
-      <td><p>number of digits handed over to <code>format</code></p></td>
+      <th>object, x</th>
+      <td><p>A <code>hyperSpec</code> object.</p></td>
     </tr>
     <tr>
       <th>range</th>
-      <td><p>should the values be indicated as range rather then first and
-last elements?</p></td>
+      <td><p>Should the values be indicated as a range (from the smallest to
+the largest value) rather than as first and last elements?</p></td>
     </tr>
     <tr>
-      <th>max.print</th>
-      <td><p>maximum number of elements to be printed (of a variable)</p></td>
-    </tr>
-    <tr>
-      <th>shorten.to</th>
-      <td><p>if a vector is longer than <code>max.print</code>, only the
-first <code>shorten.to[1]</code> and the last <code>shorten.to[2]</code> elements are
-printed</p></td>
-    </tr>
-    <tr>
-      <th>object</th>
-      <td><p>a <code>hyperSpec</code> object</p></td>
+      <th>include</th>
+      <td><p>Character vector that contains at least one (but usually
+several) of <code>"all"</code>, <code>"main"</code>,<code>"wl"</code>, or <code>"data"</code>:</p><ul>
+<li><p><code>"all"</code>: the same as <code><a href='https://rdrr.io/r/base/c.html'>c("main", "wl", "data")</a></code>.</p></li>
+<li><p><code>"main"</code>: the output includes the number of spectra, as well as the number
+rows an columns in <code>@data</code> field of <code>hyperSpec</code> object.</p></li>
+<li><p><code>"wl"</code>: the output includes the summary of <code>@wavelength</code> field.</p></li>
+<li><p><code>"data</code>: the output includes the summary of each column in <code>@data</code> field.</p></li>
+</ul></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p><code>print</code> and <code>summary</code>  hand further arguments to <code>as.character</code></p></td>
+      <td><p><code>print()</code> and <code>summary()</code> hand further arguments to
+<code>as.character()</code>.</p></td>
+    </tr>
+    <tr>
+      <th>digits</th>
+      <td><p>Number of digits handed over to <code>format</code>.</p></td>
+    </tr>
+    <tr>
+      <th>max.print</th>
+      <td><p>Maximum number of elements to be printed (of a variable).</p></td>
+    </tr>
+    <tr>
+      <th>shorten.to</th>
+      <td><p>If a vector is longer than <code>max.print</code>, only the
+first <code>shorten.to[1]</code> and the last <code>shorten.to[2]</code> elements are
+printed.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>as.character</code> returns a character vector fit to be printed by
-<code>cat</code> with <code>sep = "\n"</code>.</p>
-<p><code>print</code> invisibly returns <code>x</code> after printing, <code>show</code> returns
-an invisible <code>NULL</code>.</p>
+    <p>After printing:</p><ul>
+<li><p><code>show()</code> invisibly returns <code>NULL</code>,</p></li>
+<li><p><code>print()</code> and <code>summary()</code> invisibly returns <code>x</code>.</p></li>
+</ul>
+
+<p>Function <code>as.character()</code> returns a character vector with summary of
+<code>hyperSpec</code>.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p><code>print()</code>, <code>show()</code>, and <code>summary()</code> differ only in the defaults:</p><ul>
-<li><p><code>show()</code> displays the range of values instead,</p></li>
-</ul>
-
-<ul>
-<li><p><code>print()</code> shows the overview giving the first and last values of each
-data column (fastest),</p></li>
-</ul>
-
-<ul>
-<li><p><code>summary()</code> ...</p></li>
+    <p>Function <code>as.character()</code> does the main calculations. Functions <code>show()</code>,
+<code>print()</code>, and <code>summary()</code> use <code>as.character()</code> and print their results with
+different defaults:</p><ul>
+<li><p><code>show()</code> prints the summary with the most basic information on <code>hyperSpec</code>
+object (number of rows, columns and spectra),</p></li>
+<li><p><code>print()</code>has the same default output <code>show()</code>,</p></li>
+<li><p><code>summary()</code> prints a bit larger summary of <code>hyperSpec</code>, that includes
+the number of rows, columns and spectra, the information on
+<code>@wavelength</code>s, lists column names of <code>@data</code> as well as a preview of
+the smallest and the largest values.</p></li>
 </ul>
 
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://rdrr.io/r/base/character.html'>base::as.character()</a></code></p>
-<p><code><a href='https://rdrr.io/r/methods/show.html'>methods::show()</a></code></p>
-<p><code><a href='https://rdrr.io/r/base/print.html'>base::print()</a></code></p>
-<p><code><a href='https://rdrr.io/r/base/summary.html'>base::summary()</a></code></p></div>
+    <div class='dont-index'><p><code><a href='https://rdrr.io/r/methods/show.html'>methods::show()</a></code>, <code><a href='https://rdrr.io/r/base/print.html'>base::print()</a></code>, <code><a href='https://rdrr.io/r/base/summary.html'>base::summary()</a></code>.</p>
+<p><code><a href='https://rdrr.io/r/base/character.html'>base::as.character()</a></code>.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='va'>faux_cell</span>
+    <pre class="examples"><div class='input'><span class='co'># show()</span>
+<span class='va'>faux_cell</span> <span class='co'># Implicitly prints the object. The same as show(faux_cell)</span>
 </div><div class='output co'>#&gt; hyperSpec object
 #&gt;    875 spectra
 #&gt;    4 data columns
-#&gt;    300 data points / spectrum
-#&gt; wavelength: Delta * tilde(nu)/cm^-1 [numeric] 602 606 ... 1798 
-#&gt; data:  (875 rows x 4 columns)
-#&gt;    1. x: x position [numeric] -11.55 -10.55 ... 22.45 
-#&gt;    2. y: y position [numeric] -4.77 -4.77 ... 19.23 
-#&gt;    3. region:  [factor] matrix matrix ... matrix 
-#&gt;    4. spc: intensity (arbitrary units) [matrix, array300] 15 168 ... 93 </div><div class='input'>
+#&gt;    300 data points / spectrum</div><div class='input'>
 <span class='fu'>show</span><span class='op'>(</span><span class='va'>faux_cell</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; hyperSpec object
 #&gt;    875 spectra
 #&gt;    4 data columns
-#&gt;    300 data points / spectrum
-#&gt; wavelength: Delta * tilde(nu)/cm^-1 [numeric] 602 606 ... 1798 
-#&gt; data:  (875 rows x 4 columns)
+#&gt;    300 data points / spectrum</div><div class='input'>
+<span class='co'># print()</span>
+<span class='fu'>print</span><span class='op'>(</span><span class='va'>faux_cell</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; hyperSpec object
+#&gt;    875 spectra
+#&gt;    4 data columns
+#&gt;    300 data points / spectrum</div><div class='input'>
+<span class='fu'>print</span><span class='op'>(</span><span class='va'>faux_cell</span>, include <span class='op'>=</span> <span class='st'>"data"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; data:  (875 rows x 4 columns)
 #&gt;    1. x: x position [numeric] -11.55 -10.55 ... 22.45 
 #&gt;    2. y: y position [numeric] -4.77 -4.77 ... 19.23 
 #&gt;    3. region:  [factor] matrix matrix ... matrix 
 #&gt;    4. spc: intensity (arbitrary units) [matrix, array300] 15 168 ... 93 </div><div class='input'>
+<span class='fu'>print</span><span class='op'>(</span><span class='va'>faux_cell</span>, range <span class='op'>=</span> <span class='cn'>TRUE</span>, include <span class='op'>=</span> <span class='st'>"data"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; data:  (875 rows x 4 columns)
+#&gt;    1. x: x position [numeric] range  -11.55 -10.55 ... 22.45 
+#&gt;    2. y: y position [numeric] range  -4.77 -3.77 ... 19.23 
+#&gt;    3. region:  [factor] range  cell    matrix  nucleus 
+#&gt;    4. spc: intensity (arbitrary units) [matrix, array300] range  0 1 ... 448 </div><div class='input'>
+<span class='co'># The difference between range = TRUE and FALSE</span>
+<span class='co'># is evident only when data is not sorted.</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>)</span>
+<span class='va'>faux_cell_2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span><span class='op'>(</span><span class='va'>faux_cell</span><span class='op'>)</span>
+<span class='fu'>print</span><span class='op'>(</span><span class='va'>faux_cell_2</span>, include <span class='op'>=</span> <span class='st'>"data"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; data:  (875 rows x 4 columns)
+#&gt;    1. x: x position [numeric] 18.45 1.45 ... -8.55 
+#&gt;    2. y: y position [numeric] 18.23 14.23 ... 2.23 
+#&gt;    3. region:  [factor] matrix matrix ... matrix 
+#&gt;    4. spc: intensity (arbitrary units) [matrix, array300] 72 136 ... 128 </div><div class='input'>
+<span class='fu'>print</span><span class='op'>(</span><span class='va'>faux_cell_2</span>, range <span class='op'>=</span> <span class='cn'>TRUE</span>, include <span class='op'>=</span> <span class='st'>"data"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; data:  (875 rows x 4 columns)
+#&gt;    1. x: x position [numeric] range  -11.55 -10.55 ... 22.45 
+#&gt;    2. y: y position [numeric] range  -4.77 -3.77 ... 19.23 
+#&gt;    3. region:  [factor] range  cell    matrix  nucleus 
+#&gt;    4. spc: intensity (arbitrary units) [matrix, array300] range  0 1 ... 448 </div><div class='input'>
+<span class='co'># summary()</span>
 <span class='fu'>summary</span><span class='op'>(</span><span class='va'>faux_cell</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; hyperSpec object
 #&gt;    875 spectra
@@ -277,21 +311,35 @@ data column (fastest),</p></li>
 #&gt;    300 data points / spectrum
 #&gt; wavelength: Delta * tilde(nu)/cm^-1 [numeric] 602 606 ... 1798 
 #&gt; data:  (875 rows x 4 columns)
-#&gt;    1. x: x position [numeric] -11.55 -10.55 ... 22.45 
-#&gt;    2. y: y position [numeric] -4.77 -4.77 ... 19.23 
-#&gt;    3. region:  [factor] matrix matrix ... matrix 
-#&gt;    4. spc: intensity (arbitrary units) [matrix, array300] 15 168 ... 93 </div><div class='input'>
-<span class='fu'>print</span><span class='op'>(</span><span class='va'>faux_cell</span>, range <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; hyperSpec object
-#&gt;    875 spectra
-#&gt;    4 data columns
-#&gt;    300 data points / spectrum
-#&gt; wavelength: Delta * tilde(nu)/cm^-1 [numeric] 602 606 ... 1798 
+#&gt;    1. x: x position [numeric] range  -11.55 -10.55 ... 22.45 
+#&gt;    2. y: y position [numeric] range  -4.77 -3.77 ... 19.23 
+#&gt;    3. region:  [factor] range  cell    matrix  nucleus 
+#&gt;    4. spc: intensity (arbitrary units) [matrix, array300] range  0 1 ... 448 </div><div class='input'>
+<span class='fu'>summary</span><span class='op'>(</span><span class='va'>faux_cell</span>, include <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"wl"</span>, <span class='st'>"data"</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; wavelength: Delta * tilde(nu)/cm^-1 [numeric] 602 606 ... 1798 
 #&gt; data:  (875 rows x 4 columns)
-#&gt;    1. x: x position [numeric] -11.55 -10.55 ... 22.45 
-#&gt;    2. y: y position [numeric] -4.77 -4.77 ... 19.23 
-#&gt;    3. region:  [factor] matrix matrix ... matrix 
-#&gt;    4. spc: intensity (arbitrary units) [matrix, array300] 15 168 ... 93 </div></pre>
+#&gt;    1. x: x position [numeric] range  -11.55 -10.55 ... 22.45 
+#&gt;    2. y: y position [numeric] range  -4.77 -3.77 ... 19.23 
+#&gt;    3. region:  [factor] range  cell    matrix  nucleus 
+#&gt;    4. spc: intensity (arbitrary units) [matrix, array300] range  0 1 ... 448 </div><div class='input'>
+<span class='fu'>as.character</span><span class='op'>(</span><span class='va'>faux_cell</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;  [1] "hyperSpec object"                                                        
+#&gt;  [2] "   875 spectra"                                                          
+#&gt;  [3] "   4 data columns"                                                       
+#&gt;  [4] "   300 data points / spectrum"                                           
+#&gt;  [5] "wavelength: Delta * tilde(nu)/cm^-1 [numeric] 602 606 ... 1798 "         
+#&gt;  [6] "data:  (875 rows x 4 columns)"                                           
+#&gt;  [7] "   1. x: x position [numeric] -11.55 -10.55 ... 22.45 "                  
+#&gt;  [8] "   2. y: y position [numeric] -4.77 -4.77 ... 19.23 "                    
+#&gt;  [9] "   3. region:  [factor] matrix matrix ... matrix "                       
+#&gt; [10] "   4. spc: intensity (arbitrary units) [matrix, array300] 15 168 ... 93 "</div><div class='input'>
+<span class='fu'>as.character</span><span class='op'>(</span><span class='va'>faux_cell</span>, include <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"wl"</span>, <span class='st'>"data"</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "wavelength: Delta * tilde(nu)/cm^-1 [numeric] 602 606 ... 1798 "         
+#&gt; [2] "data:  (875 rows x 4 columns)"                                           
+#&gt; [3] "   1. x: x position [numeric] -11.55 -10.55 ... 22.45 "                  
+#&gt; [4] "   2. y: y position [numeric] -4.77 -4.77 ... 19.23 "                    
+#&gt; [5] "   3. region:  [factor] matrix matrix ... matrix "                       
+#&gt; [6] "   4. spc: intensity (arbitrary units) [matrix, array300] 15 168 ... 93 "</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -176,11 +176,7 @@ The files are completely ASCII text, with the actual spectra starting at line 55
 <span class="co">#&gt; hyperSpec object</span>
 <span class="co">#&gt;    6 spectra</span>
 <span class="co">#&gt;    2 data columns</span>
-<span class="co">#&gt;    181 data points / spectrum</span>
-<span class="co">#&gt; wavelength: lambda/nm [numeric] 405.0 405.5 ... 495 </span>
-<span class="co">#&gt; data:  (6 rows x 2 columns)</span>
-<span class="co">#&gt;    1. spc: I[fl]/"a.u." [matrix, array181] 27.150 66.801 ... 294.65 </span>
-<span class="co">#&gt;    2. filename: filename [character] /Users/runner/work/_temp/Library/hyperSpec/extdata/flu/flu1.txt /Users/runner/work/_temp/Library/hyperSpec/extdata/flu/flu2.txt ... /Users/runner/work/_temp/Library/hyperSpec/extdata/flu/flu6.txt</span></code></pre></div>
+<span class="co">#&gt;    181 data points / spectrum</span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/plot-methods.html">plot</a></span><span class="op">(</span><span class="va">flu</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
@@ -203,12 +199,7 @@ This information can be stored together with the spectra, and also gets an appro
 <span class="co">#&gt; hyperSpec object</span>
 <span class="co">#&gt;    6 spectra</span>
 <span class="co">#&gt;    3 data columns</span>
-<span class="co">#&gt;    181 data points / spectrum</span>
-<span class="co">#&gt; wavelength: lambda/nm [numeric] 405.0 405.5 ... 495 </span>
-<span class="co">#&gt; data:  (6 rows x 3 columns)</span>
-<span class="co">#&gt;    1. spc: I[fl]/"a.u." [matrix, array181] 27.150 66.801 ... 294.65 </span>
-<span class="co">#&gt;    2. filename: filename [character] /Users/runner/work/_temp/Library/hyperSpec/extdata/flu/flu1.txt /Users/runner/work/_temp/Library/hyperSpec/extdata/flu/flu2.txt ... /Users/runner/work/_temp/Library/hyperSpec/extdata/flu/flu6.txt </span>
-<span class="co">#&gt;    3. c: c, mg/l [numeric] 0.05 0.10 ... 0.3</span></code></pre></div>
+<span class="co">#&gt;    181 data points / spectrum</span></code></pre></div>
 <!-- ======================================================================= -->
 <!-- ======================================================================= -->
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
@@ -317,7 +308,7 @@ The corresponding formula is <code>c ~ I</code>, or in our case <code>c ~ spc</c
 <code class="sourceCode R"><span class="va">calibration</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">c</span> <span class="op">~</span> <span class="va">spc</span>, data <span class="op">=</span> <span class="va">flu</span><span class="op">$</span><span class="va">.</span><span class="op">)</span></code></pre></div>
 <p>The <code class="sourceCode r"><span class="kw">summary</span>()</code> gives a good overview of our model:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/as.character,hyperSpec-method.html">summary</a></span><span class="op">(</span><span class="va">calibration</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="../reference/show.html">summary</a></span><span class="op">(</span><span class="va">calibration</span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Call:</span>
 <span class="co">#&gt; lm(formula = c ~ spc, data = flu$.)</span>
