@@ -75,6 +75,7 @@ jobs:
           remotes::install_deps("./hyperSpec", dependencies = TRUE)
           remotes::install_cran("rcmdcheck")
           remotes::install_cran("devtools")
+          remotes::install_github("r-lib/pkgload")
         shell: Rscript {0}
 
       - name: Install dependencies (for R-devel)
