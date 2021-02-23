@@ -28,7 +28,7 @@
 #' @param append Should the output be appended to an existing file?
 #' @param decreasing logical vector giving the sort order.
 #' @param header.lines Toggle one or two line header (wavelengths in the
-#'        second header line) for `write.txt.wide`.
+#'        second header line) for `write_txt_wide`.
 #' @param ... arguments handed to [utils::write.table()].
 #'
 #'
@@ -80,13 +80,13 @@
 #'   )
 #' )
 #'
-#' write.txt.wide(flu,
+#' write_txt_wide(flu,
 #'   file = paste0(tempdir(), "/flu.txt"),
 #'   cols = c("c", "spc"),
 #'   col.labels = TRUE, header.lines = 2, row.names = TRUE
 #' )
 #'
-#' write.txt.wide(flu,
+#' write_txt_wide(flu,
 #'   file = paste0(tempdir(), "/flu.txt"),
 #'   col.labels = FALSE, row.names = FALSE
 #' )

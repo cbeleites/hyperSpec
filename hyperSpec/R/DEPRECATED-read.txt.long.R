@@ -80,13 +80,13 @@
 #'   )
 #' )
 #'
-#' write.txt.wide(flu,
+#' write_txt_wide(flu,
 #'   file = paste0(tempdir(), "/flu.txt"),
 #'   cols = c("c", "spc"),
 #'   col.labels = TRUE, header.lines = 2, row.names = TRUE
 #' )
 #'
-#' write.txt.wide(flu,
+#' write_txt_wide(flu,
 #'   file = paste0(tempdir(), "/flu.txt"),
 #'   col.labels = FALSE, row.names = FALSE
 #' )

@@ -1,7 +1,7 @@
 ### ---------------------------------------------------------------------------
 
 #' @rdname write_txt
-#' @aliases write.txt.wide
+#' @aliases write_txt_wide
 #'
 #' @concept io
 #' @concept write to file
@@ -9,7 +9,7 @@
 #' @importFrom utils write.table
 #' @export
 
-write.txt.wide <- function(object,
+write_txt_wide <- function(object,
                            file = "",
                            cols = NULL,
                            quote = FALSE,
