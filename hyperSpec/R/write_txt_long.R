@@ -6,14 +6,14 @@
 #' These functions write `hyperSpec` objects to text files.
 #'
 #' @rdname write_txt
-#' @aliases write.txt.long
+#' @aliases write_txt_long
 #'
 #' @param file Filename or connection.
 #' @param object `hyperSpec` object.
 #' @param cols Column names specifying the column order.
 #' @param order Which columns should be [base::order()]ed? Parameter `order` is
 #'        used as index vector into a `data.frame` with columns given by `cols`.
-#' @param na.last Handed to [base::order()] by `write.txt.long`.
+#' @param na.last Handed to [base::order()] by `write_txt_long`.
 #' @param quote,sep,col.names,row.names Have their usual meaning
 #'        (see [utils::write.table()]), but different default values.
 #'
@@ -58,7 +58,7 @@
 #'
 #' ## ASCII export & import
 #'
-#' write.txt.long(flu,
+#' write_txt_long(flu,
 #'   file = paste0(tempdir(), "/flu.txt"),
 #'   cols = c(".wavelength", "spc", "c"),
 #'   order = c("c", ".wavelength"),
@@ -96,7 +96,7 @@
 #'   ),
 #'   header = TRUE
 #' )
-write.txt.long <- function(object,
+write_txt_long <- function(object,
                            file = "",
                            order = c(".rownames", ".wavelength"),
                            na.last = TRUE,
@@ -121,7 +121,7 @@ write.txt.long <- function(object,
       tmp <- match(order, colnames(X))
       if (any(is.na(tmp))) {
         stop(
-          "write.txt.long: no such columns: ",
+          "write_txt_long: no such columns: ",
           paste(order[is.na(tmp)], collapse = ", ")
         )
       }

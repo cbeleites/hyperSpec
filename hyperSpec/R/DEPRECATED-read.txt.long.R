@@ -65,7 +65,7 @@
 #' ## ascii export & import
 #'
 #'
-#' write.txt.long(flu,
+#' write_txt_long(flu,
 #'   file = paste0(tempdir(), "/flu.txt"),
 #'   cols = c(".wavelength", "spc", "c"),
 #'   order = c("c", ".wavelength"),
