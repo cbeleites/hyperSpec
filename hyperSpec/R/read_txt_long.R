@@ -42,7 +42,7 @@
 #' @aliases read_txt_long import export
 #' @param file filename or connection
 #' @param cols the column names specifying the column order.
-#' @param sep,row.names further parameters are handed over to [hySpc.read.txt::read_txt_long()]
+#' @param sep,row.names further parameters are handed over to [read_txt_long()]
 #'
 #' For data import, a list with elements `colname = label`; for export a
 #'   character vector with the colnames.  Use `wavelength` to specify the
