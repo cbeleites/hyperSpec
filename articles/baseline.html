@@ -128,7 +128,7 @@
 <br><a class="author_email" href="mailto:#"></a><a href="mailto:chemometrie@beleites.de" class="email">chemometrie@beleites.de</a>
       </address>
                   
-            <h4 class="date">2021-02-16</h4>
+            <h4 class="date">2021-02-23</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/cbeleites/hyperSpec/blob/master/../vignettes/baseline.Rmd"><code>../vignettes/baseline.Rmd</code></a></small>
       <div class="hidden name"><code>baseline.Rmd</code></div>
@@ -153,9 +153,9 @@ Using package <strong>baseline</strong> with <code class="sourceCode r">hyperSpe
 <p>In contrast to many other programs that provide baseline correction methods, package <strong>hyperSpec</strong>’s polynomial baseline functions do least squares fits.
 However, the baselines can be forced through particular points, if this behaviour is needed.</p>
 <p>The main difference between the two functions is that <code class="sourceCode r"><span class="kw">spc.fit.poly</span>()</code> returns a least squares fit through the complete spectrum that is given in <code class="sourceCode r">fit.to</code> whereas <code class="sourceCode r"><span class="kw">spc.fit.poly.below</span>()</code> tries to find appropriate spectral regions to fit the baseline to.</p>
-<div id="syntax-parameters" class="section level2">
+<div id="syntax-and-parameters" class="section level2">
 <h2 class="hasAnchor">
-<a href="#syntax-parameters" class="anchor"></a><span class="header-section-number">2.1</span> Syntax &amp; parameters</h2>
+<a href="#syntax-and-parameters" class="anchor"></a><span class="header-section-number">2.1</span> Syntax and Parameters</h2>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/spc.fit.poly.html">spc.fit.poly</a></span><span class="op">(</span><span class="va">fit.to</span>, apply.to <span class="op">=</span> <span class="va">fit.to</span>, poly.order <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
 
@@ -186,7 +186,7 @@ Otherwise, the polynomial coefficients are returned.</p>
 </div>
 <div id="sec:fitt-polyn-basel" class="section level2">
 <h2 class="hasAnchor">
-<a href="#sec:fitt-polyn-basel" class="anchor"></a><span class="header-section-number">2.3</span> Fitting polynomial baselines using least squares</h2>
+<a href="#sec:fitt-polyn-basel" class="anchor"></a><span class="header-section-number">2.3</span> Fitting Polynomial Baselines Using Least Squares</h2>
 <p>Commonly, baselines are fit using (single) support points that are specified by the user.
 Also, usually <span class="math inline">\(n + 1\)</span> support point is used for a polynomial of order <span class="math inline">\(n\)</span>.
 This approach is appropriate for spectra with high signal to noise ratio.</p>
@@ -222,9 +222,9 @@ Thus, for baseline fitting the spectra need to be cut to appropriate wavelength 
 A spectral region with many data points therefore has greater influence on the resulting baseline than a region with just a few data points.
 It is up to the user to decide whether this should be corrected for by selecting appropriate numbers of data points (e.g. by using replicates of the shorter spectral region).</p>
 </div>
-<div id="the-mechanism-of-automatically-fitting-the-baseline-in-spc-fit-poly-below" class="section level2">
+<div id="sec:autofit-baseline" class="section level2">
 <h2 class="hasAnchor">
-<a href="#the-mechanism-of-automatically-fitting-the-baseline-in-spc-fit-poly-below" class="anchor"></a><span class="header-section-number">2.4</span> The mechanism of automatically fitting the baseline in <code class="sourceCode r"><span class="kw">spc.fit.poly.below</span>()</code>
+<a href="#sec:autofit-baseline" class="anchor"></a><span class="header-section-number">2.4</span> The Mechanism of Automatically Fitting the Baseline in <code>spc.fit.poly.below()</code>
 </h2>
 <p>Function <code class="sourceCode r"><span class="kw">spc.fit.poly.below</span>()</code> tries to automatically find appropriate spectral regions for baseline fitting.
 This is done by excluding spectral regions that contain signals from the baseline fitting.
@@ -252,7 +252,7 @@ Figure 2.2: Iterative fitting of the baseline. The dots give the supporting poin
 </div>
 <div id="specifying-the-spectral-range" class="section level2">
 <h2 class="hasAnchor">
-<a href="#specifying-the-spectral-range" class="anchor"></a><span class="header-section-number">2.5</span> Specifying the spectral range</h2>
+<a href="#specifying-the-spectral-range" class="anchor"></a><span class="header-section-number">2.5</span> Specifying the Spectral Range</h2>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/plot-methods.html">plot</a></span><span class="op">(</span><span class="va">chondro_mini</span><span class="op">[</span><span class="fl">1</span>, , <span class="fl">1700</span> <span class="op">~</span> <span class="fl">1750</span><span class="op">]</span>,
   lines.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"b"</span><span class="op">)</span>,
@@ -287,15 +287,15 @@ Thus one should also consider requiring more support points than the default val
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span><span class="op">(</span><span class="fu"><a href="../reference/spc.fit.poly.html">spc.fit.poly.below</a></span><span class="op">(</span><span class="va">chondro_mini</span>, <span class="cn">NULL</span>, npts.min <span class="op">=</span> <span class="fl">20</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.003   0.001   0.004</span>
+<span class="co">#&gt;   0.004   0.000   0.004</span>
 <span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span><span class="op">(</span><span class="fu"><a href="../reference/spc.fit.poly.html">spc.fit.poly.below</a></span><span class="op">(</span><span class="va">chondro_mini</span><span class="op">[</span>, , <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">min</span> <span class="op">~</span> <span class="fl">700</span>, <span class="fl">1700</span> <span class="op">~</span> <span class="va">max</span><span class="op">)</span><span class="op">]</span>, <span class="cn">NULL</span>, npts.min <span class="op">=</span> <span class="fl">20</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.005   0.000   0.004</span></code></pre></div>
+<span class="co">#&gt;   0.004   0.000   0.004</span></code></pre></div>
 <p>The choice of the spectral range in <code class="sourceCode r">fit.to</code> influences the resulting baselines to a certain extent, as becomes clear from figure <a href="#fig:spectralrange">2.3</a>.</p>
 </div>
 <div id="fitting-polynomials-of-different-orders" class="section level2">
 <h2 class="hasAnchor">
-<a href="#fitting-polynomials-of-different-orders" class="anchor"></a><span class="header-section-number">2.6</span> Fitting polynomials of different orders</h2>
+<a href="#fitting-polynomials-of-different-orders" class="anchor"></a><span class="header-section-number">2.6</span> Fitting Polynomials of Different Orders</h2>
 <!-- ======================================================================= -->
 <!-- ======================================================================= -->
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
@@ -343,7 +343,7 @@ The dots indicate the points used for the fitting of the polynomial.
 </div>
 <div id="the-noise-level" class="section level2">
 <h2 class="hasAnchor">
-<a href="#the-noise-level" class="anchor"></a><span class="header-section-number">2.7</span> The noise level</h2>
+<a href="#the-noise-level" class="anchor"></a><span class="header-section-number">2.7</span> The Noise Level</h2>
 <!-- Upper part: -->
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">spc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/initialize.html">new</a></span><span class="op">(</span><span class="st">"hyperSpec"</span>, spc <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100</span>, mean <span class="op">=</span> <span class="fl">100</span>, sd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">100</span><span class="op">)</span><span class="op">)</span>
@@ -459,7 +459,7 @@ Figure 3.4: Rubberband baselines for the paracetamol spectrum after bendin: corr
 <span class="co">#&gt;  collate  en_US.UTF-8                 </span>
 <span class="co">#&gt;  ctype    en_US.UTF-8                 </span>
 <span class="co">#&gt;  tz       UTC                         </span>
-<span class="co">#&gt;  date     2021-02-16                  </span>
+<span class="co">#&gt;  date     2021-02-23                  </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; ─ Packages ───────────────────────────────────────────────────────────────────────────────────────</span>
 <span class="co">#&gt;  package        * version    date       lib source        </span>
@@ -481,7 +481,7 @@ Figure 3.4: Rubberband baselines for the paracetamol spectrum after bendin: corr
 <span class="co">#&gt;  ggplot2        * 3.3.3      2020-12-30 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  glue             1.4.2      2020-08-27 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  gtable           0.3.0      2019-03-25 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  hyperSpec      * 0.100.0    2021-02-16 [1] local         </span>
+<span class="co">#&gt;  hyperSpec      * 0.100.0    2021-02-23 [1] local         </span>
 <span class="co">#&gt;  hySpc.testthat   0.2.1.9000 2021-02-16 [1] local         </span>
 <span class="co">#&gt;  isoband          0.2.3      2020-12-01 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  jpeg             0.1-8.1    2019-10-24 [1] CRAN (R 4.0.2)</span>
@@ -497,10 +497,10 @@ Figure 3.4: Rubberband baselines for the paracetamol spectrum after bendin: corr
 <span class="co">#&gt;  mgcv             1.8-33     2020-08-27 [2] CRAN (R 4.0.4)</span>
 <span class="co">#&gt;  munsell          0.5.0      2018-06-12 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  nlme             3.1-152    2021-02-04 [2] CRAN (R 4.0.4)</span>
-<span class="co">#&gt;  pillar           1.4.7      2020-11-20 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  pillar           1.5.0      2021-02-22 [1] CRAN (R 4.0.4)</span>
 <span class="co">#&gt;  pkgbuild         1.2.0      2020-12-15 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  pkgconfig        2.0.3      2019-09-22 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  pkgload          1.1.0      2020-05-29 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  pkgload          1.2.0      2021-02-23 [1] CRAN (R 4.0.4)</span>
 <span class="co">#&gt;  png              0.1-7      2013-12-03 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  praise           1.0.0      2015-08-11 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  prettyunits      1.1.1      2020-01-24 [1] CRAN (R 4.0.2)</span>

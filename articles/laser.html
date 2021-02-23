@@ -129,7 +129,7 @@
 <br><a class="author_email" href="mailto:#"></a><a href="mailto:chemometrie@beleites.de" class="email">chemometrie@beleites.de</a>
       </address>
                   
-            <h4 class="date">2021-02-16</h4>
+            <h4 class="date">2021-02-23</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/cbeleites/hyperSpec/blob/master/../vignettes/laser.Rmd"><code>../vignettes/laser.Rmd</code></a></small>
       <div class="hidden name"><code>laser.Rmd</code></div>
@@ -245,7 +245,7 @@ Figure 2.3: The spectra with wavelength axis.
 </div>
 <div id="inspecting-the-time-dependency-of-the-laser-emission" class="section level1">
 <h1 class="hasAnchor">
-<a href="#inspecting-the-time-dependency-of-the-laser-emission" class="anchor"></a><span class="header-section-number">3</span> Inspecting the time dependency of the laser emission</h1>
+<a href="#inspecting-the-time-dependency-of-the-laser-emission" class="anchor"></a><span class="header-section-number">3</span> Inspecting the Time Dependency of the Laser Emission</h1>
 <p>The maxima of the different emission lines encountered during this measurement are at 405.0, 405.1, 405.3, and 405.4 nm (fig. <a href="#fig:markspc">3.1</a>).</p>
 <p>Alternatively they can be extracted from the graph using <code class="sourceCode r"><span class="kw">locator</span>()</code> which reads out the coordinates of the points the user clicks with the mouse (use middle or right click to end the input):</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
@@ -287,7 +287,7 @@ Figure 3.3: The time series plots can also be conditioned on <code class="source
 </div>
 <div id="sec:plotmat" class="section level1">
 <h1 class="hasAnchor">
-<a href="#sec:plotmat" class="anchor"></a><span class="header-section-number">4</span> False-colour plot of the spectral intensity over wavelength and time</h1>
+<a href="#sec:plotmat" class="anchor"></a><span class="header-section-number">4</span> False-Colour Plot of the Spectral Intensity Over Wavelength and Time</h1>
 <p>Package <strong>hyperSpec</strong> supplies functions to draw the spectral matrix using package <strong>lattice</strong>’s <code class="sourceCode r"><span class="kw">levelplot</span>()</code>.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/plot-methods.html">plot</a></span><span class="op">(</span><span class="va">laser</span>, <span class="st">"mat"</span>, contour <span class="op">=</span> <span class="cn">TRUE</span>, col <span class="op">=</span> <span class="st">"#00000060"</span><span class="op">)</span></code></pre></div>
@@ -314,7 +314,7 @@ The ordinate of the plot may be any extra data column, here <code class="sourceC
 </div>
 <div id="sec:3d-plot-spectral" class="section level1">
 <h1 class="hasAnchor">
-<a href="#sec:3d-plot-spectral" class="anchor"></a><span class="header-section-number">5</span> A 3d plot of the spectral intensity over wavelength and time</h1>
+<a href="#sec:3d-plot-spectral" class="anchor"></a><span class="header-section-number">5</span> A 3D Plot of the Spectral Intensity Over Wavelength and Time</h1>
 <p>Class <code class="sourceCode r">hyperSpec</code> objects can be drawn with package <strong>rgl</strong><span class="citation">[<a href="#ref-R-rgl" role="doc-biblioref">1</a>]</span>:</p>
 <p>Package <strong>rgl</strong>’s function <code class="sourceCode r"><span class="kw">persp3d</span>()</code> plots a surface in 3d defined by points in x, y, and z.
 Handing over the appropriate data columns of the <code class="sourceCode r">hyperSpec</code> object is easy (fig. <a href="#fig:laser3d">5.1</a>).</p>
@@ -360,7 +360,7 @@ Figure 5.1: The 3d plot of the laser data.
 <span class="co">#&gt;  collate  en_US.UTF-8                 </span>
 <span class="co">#&gt;  ctype    en_US.UTF-8                 </span>
 <span class="co">#&gt;  tz       UTC                         </span>
-<span class="co">#&gt;  date     2021-02-16                  </span>
+<span class="co">#&gt;  date     2021-02-23                  </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; ─ Packages ───────────────────────────────────────────────────────────────────────────────────────</span>
 <span class="co">#&gt;  package        * version    date       lib source        </span>
@@ -382,7 +382,7 @@ Figure 5.1: The 3d plot of the laser data.
 <span class="co">#&gt;  ggplot2        * 3.3.3      2020-12-30 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  glue             1.4.2      2020-08-27 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  gtable           0.3.0      2019-03-25 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  hyperSpec      * 0.100.0    2021-02-16 [1] local         </span>
+<span class="co">#&gt;  hyperSpec      * 0.100.0    2021-02-23 [1] local         </span>
 <span class="co">#&gt;  hySpc.testthat   0.2.1.9000 2021-02-16 [1] local         </span>
 <span class="co">#&gt;  isoband          0.2.3      2020-12-01 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  jpeg             0.1-8.1    2019-10-24 [1] CRAN (R 4.0.2)</span>
@@ -398,10 +398,10 @@ Figure 5.1: The 3d plot of the laser data.
 <span class="co">#&gt;  mgcv             1.8-33     2020-08-27 [2] CRAN (R 4.0.4)</span>
 <span class="co">#&gt;  munsell          0.5.0      2018-06-12 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  nlme             3.1-152    2021-02-04 [2] CRAN (R 4.0.4)</span>
-<span class="co">#&gt;  pillar           1.4.7      2020-11-20 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  pillar           1.5.0      2021-02-22 [1] CRAN (R 4.0.4)</span>
 <span class="co">#&gt;  pkgbuild         1.2.0      2020-12-15 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  pkgconfig        2.0.3      2019-09-22 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  pkgload          1.1.0      2020-05-29 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  pkgload          1.2.0      2021-02-23 [1] CRAN (R 4.0.4)</span>
 <span class="co">#&gt;  png              0.1-7      2013-12-03 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  praise           1.0.0      2015-08-11 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  prettyunits      1.1.1      2020-01-24 [1] CRAN (R 4.0.2)</span>

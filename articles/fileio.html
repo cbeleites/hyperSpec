@@ -129,7 +129,7 @@
 <br><a class="author_email" href="mailto:#"></a><a href="mailto:chemometrie@beleites.de" class="email">chemometrie@beleites.de</a>
       </address>
                   
-            <h4 class="date">2021-02-16</h4>
+            <h4 class="date">2021-02-23</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/cbeleites/hyperSpec/blob/master/../vignettes/fileio.Rmd"><code>../vignettes/fileio.Rmd</code></a></small>
       <div class="hidden name"><code>fileio.Rmd</code></div>
@@ -317,12 +317,12 @@ Note that this should be accounted for in the decreasing order of the original <
 </div>
 <div id="io-options" class="section level1">
 <h1 class="hasAnchor">
-<a href="#io-options" class="anchor"></a><span class="header-section-number">3</span> General behaviour of file import functions: Options <code>file.keep.name</code> and <code>file.remove.emptyspc</code>
+<a href="#io-options" class="anchor"></a><span class="header-section-number">3</span> General Behaviour of File Import Functions: Options <code>file.keep.name</code> and <code>file.remove.emptyspc</code>
 </h1>
 </div>
 <div id="sec:read-mult-files" class="section level1">
 <h1 class="hasAnchor">
-<a href="#sec:read-mult-files" class="anchor"></a><span class="header-section-number">4</span> Reading Multiple files into one <code class="sourceCode r">hyperSpec</code> object</h1>
+<a href="#sec:read-mult-files" class="anchor"></a><span class="header-section-number">4</span> Reading Multiple Files into One <code>hyperSpec</code> Object</h1>
 <p>Many of the function described below will work on one file, even though derived functions such as <code class="sourceCode r"><span class="kw">read.spc.KaiserMap</span>()</code> (see section <a href="#sec:read-spc-KaiserMap">7.5.2</a><!--, p. \pageref{sec:read-spc-KaiserMap}-->) may take care of measurements consisting of multiple files.</p>
 <p>Usually, the most convenient way to import multiple files into one <code class="sourceCode r">hyperSpec</code> object is reading all files into a list of <code class="sourceCode r">hyperSpec</code> objects, and then <code class="sourceCode r"><span class="kw">collapse</span>()</code>ing this list into a single <code class="sourceCode r">hyperSpec</code> object:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
@@ -340,7 +340,7 @@ In that case, please contact the package maintainer (<a href="https://github.com
 </div>
 <div id="sec:ascii" class="section level1">
 <h1 class="hasAnchor">
-<a href="#sec:ascii" class="anchor"></a><span class="header-section-number">5</span> ASCII files</h1>
+<a href="#sec:ascii" class="anchor"></a><span class="header-section-number">5</span> ASCII Files</h1>
 <!-- {#sec:ascii} {#sec:read-txt-long} {#sec:read-txt-wide} -->
 <p>
 </p>
@@ -360,7 +360,7 @@ If the data does not contain a header or is not important and can safely be skip
 Also, both <code class="sourceCode r"><span class="kw">read.txt.long</span>()</code> and <code class="sourceCode r"><span class="kw">read.txt.wide</span>()</code> accept connections instead of file names.</p>
 <div id="sec:ascii-files-cols" class="section level2">
 <h2 class="hasAnchor">
-<a href="#sec:ascii-files-cols" class="anchor"></a><span class="header-section-number">5.1</span> ASCII files with samples in columns</h2>
+<a href="#sec:ascii-files-cols" class="anchor"></a><span class="header-section-number">5.1</span> ASCII Files with Samples in Columns</h2>
 <p>
 
 
@@ -495,7 +495,7 @@ If you need a specific header or footer, use R’s functions for writing files: 
 </div>
 <div id="sec:binary-file-formats" class="section level1">
 <h1 class="hasAnchor">
-<a href="#sec:binary-file-formats" class="anchor"></a><span class="header-section-number">6</span> Binary file formats</h1>
+<a href="#sec:binary-file-formats" class="anchor"></a><span class="header-section-number">6</span> Binary File Formats</h1>
 <div id="sec:readMat" class="section level2">
 <h2 class="hasAnchor">
 <a href="#sec:readMat" class="anchor"></a><span class="header-section-number">6.1</span> Matlab Files</h2>
@@ -536,7 +536,7 @@ The functions <code class="sourceCode r"><span class="kw">as.long.df</span>()</c
 </div>
 <div id="sec:read-mat-Cytospec" class="section level3">
 <h3 class="hasAnchor">
-<a href="#sec:read-mat-Cytospec" class="anchor"></a><span class="header-section-number">6.1.2</span> Import of Matlab files written by Cytospec</h3>
+<a href="#sec:read-mat-Cytospec" class="anchor"></a><span class="header-section-number">6.1.2</span> Import of Matlab Files Written by Cytospec</h3>
 <p></p>
 <p>A custom import function for <code>.mat</code> files written by <a href="http://www.cytospec.com/" target="_blank">Cytospec</a> is available:</p>
 <p>Note that Cytospec files can contain multiple versions of the data, the so-called blocks.
@@ -585,7 +585,7 @@ The help page gives details on what elements the list should contain, see also t
 </div>
 <div id="sec:read-spc" class="section level2">
 <h2 class="hasAnchor">
-<a href="#sec:read-spc" class="anchor"></a><span class="header-section-number">6.3</span> spc Files</h2>
+<a href="#sec:read-spc" class="anchor"></a><span class="header-section-number">6.3</span> <code>spc</code> Files</h2>
 <p>
 
 
@@ -669,7 +669,7 @@ Function <code class="sourceCode r"><span class="kw">collapse</span>()</code> ma
 <code class="sourceCode R"><span class="va">barbiturates</span><span class="op">[[</span>, , <span class="fl">25</span> <span class="op">~</span> <span class="fl">30</span><span class="op">]</span><span class="op">]</span></code></pre></div>
 <div id="deriving-manufacturer-specific-import-filters" class="section level3">
 <h3 class="hasAnchor">
-<a href="#deriving-manufacturer-specific-import-filters" class="anchor"></a><span class="header-section-number">6.3.1</span> Deriving manufacturer specific import filters</h3>
+<a href="#deriving-manufacturer-specific-import-filters" class="anchor"></a><span class="header-section-number">6.3.1</span> Deriving Manufacturer Specific Import Filters</h3>
 <p>Please note that future changes inside the read.spc function is likely to occur.
 However, if you just post-process the <code class="sourceCode r">hyperSpec</code> object returned by <code class="sourceCode r"><span class="kw">read.spc</span>()</code>, you should be fine.</p>
 </div>
@@ -1002,7 +1002,7 @@ Line scans and z-stacks should be read as single spectra.</p>
 </div>
 <div id="sec:writing-Import" class="section level1">
 <h1 class="hasAnchor">
-<a href="#sec:writing-Import" class="anchor"></a><span class="header-section-number">8</span> Writing your own Import Function</h1>
+<a href="#sec:writing-Import" class="anchor"></a><span class="header-section-number">8</span> Writing Your Own Import Function</h1>
 <p>This section gives examples of how to write import functions.
 The first example implements an import filter for an ASCII file format, basically from scratch.
 The second example shows how to implement
@@ -1226,7 +1226,7 @@ read.ENVI.Nicolet &lt;- function(
 </div>
 <div id="deriving-import-filters-for-spc-files" class="section level2">
 <h2 class="hasAnchor">
-<a href="#deriving-import-filters-for-spc-files" class="anchor"></a><span class="header-section-number">8.3</span> Deriving import filters for <code>spc</code> files</h2>
+<a href="#deriving-import-filters-for-spc-files" class="anchor"></a><span class="header-section-number">8.3</span> Deriving Import Filters for <code>spc</code> Files</h2>
 <p>Please note that future changes inside the <code class="sourceCode r"><span class="kw">read.spc</span>()</code> function are likely to occur.
 However, if you just post-process the <code class="sourceCode r">hyperSpec</code> object returned by <code class="sourceCode r"><span class="kw">read.spc</span>()</code>, you should be fine.</p>
 </div>
@@ -3956,13 +3956,14 @@ matrix
 <span class="co">#&gt;  collate  en_US.UTF-8                 </span>
 <span class="co">#&gt;  ctype    en_US.UTF-8                 </span>
 <span class="co">#&gt;  tz       UTC                         </span>
-<span class="co">#&gt;  date     2021-02-16                  </span>
+<span class="co">#&gt;  date     2021-02-23                  </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; ─ Packages ───────────────────────────────────────────────────────────────────────────────────────</span>
 <span class="co">#&gt;  package        * version    date       lib source        </span>
 <span class="co">#&gt;  assertthat       0.2.1      2019-03-21 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  backports        1.2.1      2020-12-09 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  bookdown         0.21       2020-10-13 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  bslib            0.2.4      2021-01-25 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  cli              2.3.0      2021-01-31 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  colorspace       2.0-0      2020-11-11 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  crayon           1.4.1      2021-02-08 [1] CRAN (R 4.0.2)</span>
@@ -3970,6 +3971,7 @@ matrix
 <span class="co">#&gt;  dplyr            1.0.4      2021-02-02 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  ellipsis         0.3.1      2020-05-15 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  evaluate         0.14       2019-05-28 [1] CRAN (R 4.0.1)</span>
+<span class="co">#&gt;  fansi            0.4.2      2021-01-15 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  generics         0.1.0      2020-10-31 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  ggplot2        * 3.3.3      2020-12-30 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  glue             1.4.2      2020-08-27 [1] CRAN (R 4.0.2)</span>
@@ -3977,10 +3979,12 @@ matrix
 <span class="co">#&gt;  highr            0.8        2019-03-20 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  htmltools        0.5.1.1    2021-01-22 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  httr             1.4.2      2020-07-20 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  hyperSpec      * 0.100.0    2021-02-16 [1] local         </span>
+<span class="co">#&gt;  hyperSpec      * 0.100.0    2021-02-23 [1] local         </span>
 <span class="co">#&gt;  hySpc.testthat   0.2.1.9000 2021-02-16 [1] local         </span>
 <span class="co">#&gt;  jpeg             0.1-8.1    2019-10-24 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  kableExtra       1.3.2      2021-02-14 [1] CRAN (R 4.0.3)</span>
+<span class="co">#&gt;  jquerylib        0.1.3      2020-12-17 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  jsonlite         1.7.2      2020-12-09 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  kableExtra       1.3.4      2021-02-20 [1] CRAN (R 4.0.4)</span>
 <span class="co">#&gt;  knitr            1.31       2021-01-27 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  lattice        * 0.20-41    2020-04-02 [2] CRAN (R 4.0.4)</span>
 <span class="co">#&gt;  latticeExtra     0.6-29     2019-12-19 [1] CRAN (R 4.0.2)</span>
@@ -3988,7 +3992,7 @@ matrix
 <span class="co">#&gt;  lifecycle        1.0.0      2021-02-15 [1] CRAN (R 4.0.3)</span>
 <span class="co">#&gt;  magrittr         2.0.1      2020-11-17 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  munsell          0.5.0      2018-06-12 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  pillar           1.4.7      2020-11-20 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  pillar           1.5.0      2021-02-22 [1] CRAN (R 4.0.4)</span>
 <span class="co">#&gt;  pkgconfig        2.0.3      2019-09-22 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  png              0.1-7      2013-12-03 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  purrr            0.3.4      2020-04-17 [1] CRAN (R 4.0.2)</span>
@@ -4001,17 +4005,21 @@ matrix
 <span class="co">#&gt;  RColorBrewer     1.1-2      2014-12-07 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  rematch2         2.1.2      2020-05-01 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  rlang            0.4.10     2020-12-30 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  rmarkdown        2.6        2020-12-14 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  rmarkdown        2.7        2021-02-19 [1] CRAN (R 4.0.4)</span>
 <span class="co">#&gt;  rstudioapi       0.13       2020-11-12 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  rvest            0.3.6      2020-07-25 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  sass             0.3.1      2021-01-24 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  scales           1.1.1      2020-05-11 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  sessioninfo      1.1.1      2018-11-05 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  stringi          1.5.3      2020-09-09 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  stringr          1.4.0      2019-02-10 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  styler           1.3.2      2020-02-23 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  svglite          2.0.0      2021-02-20 [1] CRAN (R 4.0.4)</span>
+<span class="co">#&gt;  systemfonts      1.0.1      2021-02-09 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  testthat         3.0.2      2021-02-14 [1] CRAN (R 4.0.3)</span>
 <span class="co">#&gt;  tibble           3.0.6      2021-01-29 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  tidyselect       1.1.0      2020-05-11 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  utf8             1.1.4      2018-05-24 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  vctrs            0.3.6      2020-12-17 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  viridisLite      0.3.0      2018-02-01 [1] CRAN (R 4.0.1)</span>
 <span class="co">#&gt;  webshot          0.5.2      2019-11-22 [1] CRAN (R 4.0.2)</span>
