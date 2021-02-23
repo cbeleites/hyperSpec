@@ -89,14 +89,11 @@
 #' For further information, see the examples below and the documentation of
 #' [R.matlab::R.matlab()].
 #'
-#'
-#'
-#' @seealso `vignette("fileio")`
-#'
 #' @param check.names handed to [utils::read.table()]. Make sure this is
 #'        `FALSE`, if the column names of the spectra are the wavelength values.
 #'
 # @concept io
+# FIXME: change concept
 #' @concept moved to hySpc.read.txt
 #'
 #' @export

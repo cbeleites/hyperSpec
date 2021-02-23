@@ -7,7 +7,6 @@
 ###
 
 #' @rdname deprecated-textio
-#' @aliases read.txt.long import export
 #'
 #' @param file filename or connection
 #' @param cols the column names specifying the column order.
