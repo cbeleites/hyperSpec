@@ -42,7 +42,7 @@
 #' of [R.matlab::R.matlab()].
 #' @seealso `vignette("fileio")`
 #' @aliases read_txt_wide
-#' @rdname textio
+#' @rdname read_txt
 #' @param check.names handed to [utils::read.table()]. Make sure this is `FALSE`, if
 #' the column names of the spectra are the wavelength values.
 #'

@@ -36,6 +36,9 @@
 #' For further information, see the examples below and the documentation of
 #' [R.matlab::R.matlab()].
 #'
+#' @name read_txt
+#' @rdname read_txt
+#'
 #' @aliases read_txt_long import export
 #' @param file filename or connection
 #' @param cols the column names specifying the column order.
@@ -55,9 +58,7 @@
 #' - [R.matlab::R.matlab()] for `.mat` files,
 #' - [hyperSpec::read.ENVI()] for ENVI data,
 #' - [hyperSpec::read.spc()] for `.spc` files,
-#' - Manufacturer specific file formats: [read_txt_Renishaw()].
-#'
-#' @rdname textio
+# - Manufacturer specific file formats: [read_txt_Renishaw()].
 #'
 #' @keywords IO file
 #' @concept io
@@ -70,7 +71,7 @@
 #' vignette("file-io")
 #' }
 #'
-#' ## export & import matlab files
+#' ## Export & import matlab files
 #' if (require(R.matlab)) {
 #'   # export to matlab file
 #'   writeMat(paste0(tempdir(), "/test.mat"),
@@ -88,7 +89,7 @@
 #'   )
 #' }
 #'
-#' ## ascii export & import
+#' ## ASCII export & import
 #'
 #'
 #' write_txt_long(flu,
@@ -117,7 +118,7 @@
 #'   col.labels = FALSE, row.names = FALSE
 #' )
 #'
-#' read.txt.wide(
+#' read_txt_wide(
 #'   file = paste0(tempdir(), "/flu.txt"),
 #'   # give columns in same order as they are in the file
 #'   cols = list(
@@ -177,7 +178,7 @@ read_txt_long <- function(file = stop("file is required"),
 
   colnames(spc) <- levels(txtfile$.wavelength)
 
-  txtfile <- txtfile [txtfile$.wavelength == txtfile$.wavelength[1], ]
+  txtfile <- txtfile[txtfile$.wavelength == txtfile$.wavelength[1], ]
   txtfile$.wavelength <- NULL
   txtfile$spc <- I(spc)
 
