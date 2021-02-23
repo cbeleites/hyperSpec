@@ -1,5 +1,5 @@
-#' @name CB7
-#' @aliases CB7 cb7 palette_cb7 colors,CB7 colors,cb7
+#' @name palette_colorblind
+#' @aliases palette_colorblind colors,palette_colorblind
 #'
 #' @title Color Suggestions for `hyperSpec` Users
 #'
@@ -15,7 +15,8 @@
 #' package has further discussion and utilities for choosing qualitative
 #' colorschemes, including those for color-blind individuals.
 #'
-#' `CB7` is a selection of seven colors suitable for use on screens by people
+#' `palette_colorblind` is a selection of seven colors suitable for use on
+#' screens by people
 #' with normal color vision, as well as people with the most common type of
 #' colorblindness, deutanomaly. The last color is a shade of yellow with a
 #' gold tone. In some  viewing circumstances this may be hard to see on a
@@ -32,11 +33,11 @@
 #' @concept color palette
 #'
 #' @examples
-#' # Palette CB7
-#' data(CB7, package = "hyperSpec")
+#' # Palette palette_colorblind
+#' data(palette_colorblind, package = "hyperSpec")
 #'
 #' op <- par(mar = c(0, 0, 0, 0))
-#' pie(rep(1, 7), col = CB7)
+#' pie(rep(1, 7), col = palette_colorblind)
 #' par(op)
 #'
 NULL
