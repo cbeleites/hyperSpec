@@ -62,7 +62,7 @@ wl_raman2nm    <- function(x, ref_wl) 1e7 / (1e7 / ref_wl - x)
 #        Even if it used for internal purposes.
 .wl_fix_unit_name <- function(unit) {
   unit <- gsub(" .*$", "", tolower(unit))
-  if (unit %in% c("raman", "stokes", "rel", "rel.", "relative", "rel.cm-1", "rel.cm", "rel.1/cm")) {
+  if (unit %in% c("raman", "stokes", "rel", "rel.", "relative", "rel.cm-1", "rel.cm", "rel.1/cm", "raman shift")) {
     return("raman")
   }
   if (unit %in% c("invcm", "energy", "wavenumber", "cm-1", "inverted", "cm", "1/cm")) {
