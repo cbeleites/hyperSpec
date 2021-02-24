@@ -28,31 +28,31 @@ wl_convert_units <- function(x, from, to, ref_wl = NULL) {
     stop("Working with Raman shift requires knowledge of laser wavelength")
   }
 
-  f <- paste0(src, "2", dest)
+  f <- paste0("wl_", src, "2", dest)
   f <- get(f)
   return(f(x, ref_wl))
 }
 
-ev2freq     <- function(x, ...)    nm2freq(ev2nm(x))
-ev2invcm    <- function(x, ...)    q * x / (100 * h * c)
-ev2nm       <- function(x, ...)    1e9 * h * c / (q * x)
-ev2raman    <- function(x, ref_wl) 1e7 / ref_wl - x * q / (100 * h * c)
-freq2ev     <- function(x, ...)    nm2ev(freq2nm(x))
-freq2invcm  <- function(x, ...)    nm2invcm(freq2nm(x))
-freq2nm     <- function(x, ...)    1e-3 * c / x
-freq2raman  <- function(x, ref_wl) nm2raman(freq2nm(x), ref_wl)
-invcm2ev    <- function(x, ...)    100 * x * c * h / q
-invcm2freq  <- function(x, ...)    nm2freq(invcm2nm(x))
-invcm2nm    <- function(x, ...)    1e7 / x
-invcm2raman <- function(x, ref_wl) 1e7 / ref_wl - x
-nm2ev       <- function(x, ...)    1e9 * h * c / (q * x)
-nm2freq     <- function(x, ...)    1e-3 * c / x
-nm2invcm    <- function(x, ...)    1e7 / x
-nm2raman    <- function(x, ref_wl) 1e7 * (1 / ref_wl - 1 / x)
-raman2ev    <- function(x, ref_wl) 100 * h * c * (1e7 / ref_wl - x) / q
-raman2freq  <- function(x, ref_wl) nm2freq(raman2nm(x, ref_wl))
-raman2invcm <- function(x, ref_wl) 1e7 / ref_wl - x
-raman2nm    <- function(x, ref_wl) 1e7 / (1e7 / ref_wl - x)
+wl_ev2freq     <- function(x, ...)    wl_nm2freq(wl_ev2nm(x))
+wl_ev2invcm    <- function(x, ...)    q * x / (100 * h * c)
+wl_ev2nm       <- function(x, ...)    1e9 * h * c / (q * x)
+wl_ev2raman    <- function(x, ref_wl) 1e7 / ref_wl - x * q / (100 * h * c)
+wl_freq2ev     <- function(x, ...)    wl_nm2ev(wl_freq2nm(x))
+wl_freq2invcm  <- function(x, ...)    wl_nm2invcm(wl_freq2nm(x))
+wl_freq2nm     <- function(x, ...)    1e-3 * c / x
+wl_freq2raman  <- function(x, ref_wl) wl_nm2raman(wl_freq2nm(x), ref_wl)
+wl_invcm2ev    <- function(x, ...)    100 * x * c * h / q
+wl_invcm2freq  <- function(x, ...)    wl_nm2freq(wl_invcm2nm(x))
+wl_invcm2nm    <- function(x, ...)    1e7 / x
+wl_invcm2raman <- function(x, ref_wl) 1e7 / ref_wl - x
+wl_nm2ev       <- function(x, ...)    1e9 * h * c / (q * x)
+wl_nm2freq     <- function(x, ...)    1e-3 * c / x
+wl_nm2invcm    <- function(x, ...)    1e7 / x
+wl_nm2raman    <- function(x, ref_wl) 1e7 * (1 / ref_wl - 1 / x)
+wl_raman2ev    <- function(x, ref_wl) 100 * h * c * (1e7 / ref_wl - x) / q
+wl_raman2freq  <- function(x, ref_wl) wl_nm2freq(wl_raman2nm(x, ref_wl))
+wl_raman2invcm <- function(x, ref_wl) 1e7 / ref_wl - x
+wl_raman2nm    <- function(x, ref_wl) 1e7 / (1e7 / ref_wl - x)
 
 
 # Bring the argument to a conventional name
