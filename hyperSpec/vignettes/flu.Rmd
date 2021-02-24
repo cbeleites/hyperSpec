@@ -1,0 +1,477 @@
+---
+# For vignette ---------------------------------------------------------------
+title:       Calibration of Quinine Fluorescence Emission
+subtitle:    "Example Workflow for Fluorescence Emission Dataset `flu`"
+description: "flu: Example workflow for fluorescence emission dataset `flu`."
+# Authors --------------------------------------------------------------------
+author:
+  - name: Claudia Beleites^1,2,3,4,5^, Vilmantas Gegzna
+    email: chemometrie@beleites.de
+    corresponding : yes
+    affiliation   : |
+        1. DIA Raman Spectroscopy Group, University of Trieste/Italy (2005--2008)
+        2. Spectroscopy $\cdot$ Imaging, IPHT, Jena/Germany (2008--2017)
+        3. ÖPV, JKI, Berlin/Germany (2017--2019)
+        4. Arbeitskreis Lebensmittelmikrobiologie und Biotechnologie, Hamburg University, Hamburg/Germany (2019 -- 2020)
+        5. Chemometric Consulting and Chemometrix GmbH, Wölfersheim/Germany (since 2016)
+# Document -------------------------------------------------------------------
+date: "`r Sys.Date()`"
+output:
+    bookdown::html_document2:
+      base_format: rmarkdown::html_vignette
+      toc: yes
+      fig_caption: yes
+      number_sections: true
+      css:
+        - vignette.css
+        - style.css
+vignette: >
+    % \VignetteIndexEntry{Calibration of Quinine Fluorescence Emission}
+    % \VignetteKeyword{calibration}
+    % \VignetteKeyword{flu}
+    % \VignetteKeyword{hyperSpec}
+    % \VignettePackage{hyperSpec}
+    % \VignetteDepends{styler}
+    % \VignetteEngine{knitr::rmarkdown}
+    % \VignetteEncoding{UTF-8}
+
+# Citations/References -------------------------------------------------------
+link-citations: yes
+bibliography: resources/flu-pkg.bib
+biblio-style: plain
+csl: elsevier-with-titles.csl
+# Pkgdown --------------------------------------------------------------------
+pkgdown:
+  as_is: true
+---
+
+
+```{r cleanup-flu, include = FALSE}
+# Clean up to ensure reproducible workspace ----------------------------------
+rm(list = ls(all.names = TRUE))
+```
+
+```{r setup, include = FALSE}
+# Packages -------------------------------------------------------------------
+library(hyperSpec)
+
+# Functions ------------------------------------------------------------------
+source("vignette-functions.R", encoding = "UTF-8")
+
+# Settings -------------------------------------------------------------------
+source("vignette-default-settings.R", encoding = "UTF-8")
+
+# Temporaty options ----------------------------------------------------------
+# Change the value of this option in "vignette-default-settings.R"
+show_reviewers_notes = getOption("show_reviewers_notes", TRUE)
+```
+
+```{r bib, echo=FALSE, paged.print=FALSE}
+dir.create("resources", showWarnings = FALSE)
+
+knitr::write_bib(
+  c(
+    "hyperSpec"
+  ),
+  file = "resources/flu-pkg.bib"
+)
+```
+
+
+
+
+<!-- ======================================================================= -->
+```{block, type="note-t", echo=show_reviewers_notes}
+**V. Gegzna's notes** `flu-1`
+
+
+1. `# FIXME:`{.r} After the translation is completed, the contents in the box below must be fixed.
+2. `# FIXME:`{.r} do not mention `vignettes.def`
+```
+<!-- ======================================================================= -->
+
+
+
+```{block, type="note", echo=show_reviewers_notes}
+
+`# FIXME. Fix the contents of this box:`{.r}
+
+**Reproducing this vignette.**
+
+The spectra files are shipped with package **hyperSpec**.
+This allows reproduction of the whole vignette (source code and spectra files are in the package's documentation directory and its `rawdata` subdirectory).
+
+For reproducing the examples in a live session, the full file names of the spectra can be found with the command:
+
+`list.files(system.file("doc/rawdata", package = "hyperSpec"), pattern = "flu[1-6][.]txt")`{.r}.
+```
+
+<!-- Note that loading the package, and some definitions, e.g., of the color palettes are executed in `vignettes.def`. -->
+
+
+
+This tutorial gives an example how to:
+
+-  write an import function for a spectrometer manufacturer's proprietary ASCII files,
+-  add further data columns to the spectra, and
+-  set up a linear calibration (inverse least squares).
+
+The data set `flu`{.r} in package **hyperSpec** consists of 6 fluorescence emission spectra of quinine solutions.
+They were acquired during an student practicum and were kindly provided by M. Kammer.
+
+The concentrations of the solutions range from 0.05 to 0.30 mg/l.
+Spectra were acquired with a Perkin Elmer LS50-B fluorescence spectrometer at 350 nm excitation.
+
+
+# Writing an Import Function
+
+The raw spectra are in Perkin Elmer's ASCII file format, one spectrum per file.
+The files are completely ASCII text, with the actual spectra starting at line 55.
+
+<!-- ======================================================================= -->
+```{block, type="note-t", echo=show_reviewers_notes}
+**V. Gegzna's notes** `flu-2`
+
+
+1. `# NOTE:`{.r} `fileIO` vignette is mentioned.
+It is going to be removed from **hyperSpec** so a better link would be appreciated.
+```
+<!-- ======================================================================= -->
+
+
+The function to import these files, `read.txt.PerkinElmer()`{.r}, is discussed in the "fileIO" vignette, please refer to that document for details.
+
+
+<!-- ======================================================================= -->
+```{block, type="note-t", echo=show_reviewers_notes}
+**V. Gegzna's notes** `flu-3`
+
+
+1. `# FIXME:`{.r} Why do we need `source("read.txt.PerkinElmer.R")`?
+Why is `read.txt.PerkinElmer()` not a function of package **hyperSpec**.
+This part (`source("read.txt.PerkinElmer.R")`) is not user-friendly and must be fixed.
+
+**Selfnote**: review after `fileio` vignette is translated.
+```
+<!-- ======================================================================= -->
+
+```{r echo=FALSE}
+# From "read.txt.PerkinElmer.R"
+read.txt.PerkinElmer <- function(files = stop("filenames needed"), ..., label = list()) {
+  ##  set default labels
+  label <- modifyList(
+    list(
+      .wavelength = expression(lambda / nm),
+      spc = expression(I[fl] / "a.u.")
+    ),
+    label
+  )
+
+  if (length(files) == 0) {
+    warning("No files found.")
+    return(new("hyperSpec"))
+  }
+
+  ## read the first file
+  buffer <- matrix(scan(files[1], ...), ncol = 2, byrow = TRUE)
+
+  ## first column gives the wavelength vector
+  wavelength <- buffer[, 1]
+
+  ## preallocate the spectra matrix:
+  ##  one row per file x as many columns as the first file has
+  spc <- matrix(ncol = nrow(buffer), nrow = length(files))
+
+  ## the first file's data goes into the first row
+  spc[1, ] <- buffer[, 2]
+
+  ## now read the remaining files
+  for (f in seq(along = files)[-1]) {
+    buffer <- matrix(scan(files[f], ...), ncol = 2, byrow = TRUE)
+
+    ## check whether they have the same wavelength axis
+    if (!all.equal(buffer[, 1], wavelength)) {
+      stop(paste(files[f], "has different wavelength axis."))
+    }
+
+    spc[f, ] <- buffer[, 2]
+  }
+
+  ## make the hyperSpec object
+  spc <- new("hyperSpec", wavelength = wavelength, spc = spc, label = label)
+
+  ## consistent file import behaviour across import functions
+  hyperSpec:::.fileio.optional(spc, files)
+}
+```
+
+It needs to be `source()`{.r}d before use:
+
+<!-- ======================================================================= -->
+```{block, type="note-t", echo=show_reviewers_notes}
+`# FIXME: the code below is not user-fiendly.`{.r}
+```
+<!-- ======================================================================= -->
+
+```{r read.txt.PE}
+source("read.txt.PerkinElmer.R")
+
+folder <- system.file("extdata/flu", package = "hyperSpec")
+files  <- Sys.glob(paste0(folder, "/flu?.txt"))
+flu    <- read.txt.PerkinElmer(files, skip = 54)
+```
+Now the spectra are in a `hyperSpec`{.r} object and can be examined, e.g., by:
+
+```{r rawspc}
+flu
+```
+
+```{r include=FALSE}
+CAPTION <- "Six spectra of `flu` dataset.  "
+```
+
+```{r rawfig, fig.cap=CAPTION}
+plot(flu)
+```
+
+# Adding Further Data Columns
+
+The calibration model needs the quinine concentrations for the spectra.
+This information can be stored together with the spectra, and also gets an appropriate label:
+
+```{r newdata}
+flu$c <- seq(from = 0.05, to = 0.30, by = 0.05)
+labels(flu, "c") <- "c, mg/l"
+
+flu
+```
+
+<!-- ======================================================================= -->
+```{block, type="note-t", echo=show_reviewers_notes}
+**V. Gegzna's notes** `flu-4`
+
+1. `# FIXME:`{.r} why file saving is needed?
+`save(flu, file = "flu.rda")`
+```
+<!-- ======================================================================= -->
+
+```{r eval=FALSE}
+save(flu, file = "flu.rda")
+```
+
+
+Now the `hyperSpec`{.r} object `flu`{.r} contains two data columns, holding the actual spectra and the respective concentrations. The dollar operator returns such a data column:
+
+```{r newc}
+flu$c
+```
+
+
+
+# Dropping data columns {#sec:dropp-data-columns}
+
+Function `read.txt.PerkinElmer()`{.r} added a column with the file names that we don't need.
+
+```{r}
+flu$..
+```
+
+It is therefore deleted:
+
+```{r delcol}
+flu$filename <- NULL
+```
+
+
+# Linear Calibration
+
+As R is developed for the purpose of statistical analysis, tools for a least squares calibration
+model are readily available.
+
+The original spectra range from `r min(wl(flu))` to `r max(wl(flu))` nm.
+However, the intensities at 450 nm are perfect for a univariate calibration.
+Plotting them over the concentration is done by:
+
+
+
+<!-- \setkeys{Gin}{width = .33\textwidth} -->
+
+```{r include=FALSE}
+CAPTION <- "Spectra intensities at 450 nm. "
+```
+
+```{r calplot1, fig.cap=CAPTION}
+plotc(flu[, , 450])
+```
+
+The square bracket operator extracts parts of a `hyperSpec`{.r} object.
+The first coordinate defines which spectra are to be used, the second which data columns, and the third gives the spectral range.
+
+We discard all the wavelengths but 450 nm:
+
+```{r cutspc}
+flu <- flu[, , 450]
+labels(flu, "spc") <- expression(I["450 nm"] / a.u.)
+```
+
+The plot could be enhanced by annotating the ordinate with the emission wavelength.
+Also the axes should start at the origin, so that it is easier to see whether the calibration function will go through the origin:
+
+
+```{r include=FALSE}
+CAPTION <- "Spectra intensities at 450 nm with updated labels. "
+```
+
+```{r calplot2, fig.cap=CAPTION}
+plotc(flu, xlim = range(0, flu$c), ylim = range(0, flu$spc))
+```
+
+The actual calibration is a linear model, which can be fitted by the R function `lm()`{.r}.
+The function `lm()`{.r} needs a *formula* that specifies which data columns are dependent and independent variables.
+
+
+
+The normal calibration plot gives the emission intensity as a function of the concentration, and the calibration function thus models $I = f (c)$, i. e.  $I = m c + b$ for a linear calibration.
+This is then solved for $c$ when the calibration is used.
+
+However, R's linear model is a quite strict in predicting: a model set up as $I = f (c)$ will predict the intensity as a function of the concentration but not the other way round.
+Thus we set up an inverse calibration model[^As we can safely assume that the error on the concentrations is far larger than the error on the instrument signal, it is actually the correct type of model from the least squares fit point of view.]: $c = f (I)$.
+The corresponding \R formula is `c ~ I`, or in our case `c ~ spc`, as the intensities are stored in the data column `$spc`{.r}:
+
+In addition, `lm()`{.r} (like most R model building functions) expects the data to be a `data.frame`{.r}.
+
+There are three abbreviations that help to get the parts  of the `hyperSpec`{.r} object that are frequently  needed:
+
+
+ - **`flu[[]]`{.r}** returns the spectra matrix. It takes the same indices as `[]`{.r}.
+ - **`flu\$.`{.r}** returns the data as a `data.frame`{.r}.
+ - **`flu\$..`{.r}** returns a  `data.frame`{.r} that has all data columns but the spectra.
+
+
+```{r abbrev-1}
+flu[[]]
+```
+
+```{r abbrev-2, paged.print=FALSE}
+flu$.
+```
+
+```{r abbrev-3}
+flu$..
+```
+
+Putting this together, the calibration model is calculated:
+
+```{r cal}
+calibration <- lm(c ~ spc, data = flu$.)
+```
+
+The `summary()`{.r} gives a good overview of our model:
+
+```{r summarymodel}
+summary(calibration)
+```
+
+In order to get predictions for new measurements, a new `data.frame`{.r} with the same independent variables (in columns with the same names) as in the calibration data are needed.
+Then the function `predict()`{.r} can be used.
+It can also calculate the prediction interval.
+If we observe e.g. an intensity of 125 or 400 units, the corresponding concentrations and their 99% prediction intervals are:
+
+```{r pred}
+I <- c(125, 400)
+conc <- predict(calibration,
+  newdata = list(spc = as.matrix(I)), interval = "prediction",
+  level = .99
+)
+conc
+```
+
+Finally, we can draw the calibration function and its 99% confidence interval (also via `predict()`{.r}) together with the prediction example.
+In order to draw the confidence interval into the calibration graph, we can either use a customized panel function:
+
+
+```{r include=FALSE}
+CAPTION <- "Calibration function and its 99% confidence interval.  "
+```
+
+```{r calplot3, fig.cap=CAPTION}
+int <- list(spc = as.matrix(seq(min(flu), max(flu), length.out = 25)))
+ci <- predict(calibration, newdata = int, interval = "confidence", level = 0.99)
+
+panel.ci <- function(x, y, ..., intensity, ci.lwr, ci.upr, ci.col = "#606060") {
+  panel.xyplot(x, y, ...)
+  panel.lmline(x, y, ...)
+  panel.lines(ci.lwr, intensity, col = ci.col)
+  panel.lines(ci.upr, intensity, col = ci.col)
+}
+
+plotc(flu,
+  panel = panel.ci,
+  intensity = int$spc, ci.lwr = ci[, 2], ci.upr = ci[, 3]
+)
+```
+
+Or, we can add the respective data to the `hyperSpec`{.r} object. The meaning of the data can be saved in a new extra data column that acts as grouping variable for the plot.
+
+First, the spectral range of `flu`{.r} is cut to contain the fluorescence emission at 450 nm only, and the new column is introduced for the original data:
+
+```{r calplot4.1}
+flu$type <- "data points"
+```
+
+Next, the calculated confidence intervals are appended:
+
+```{r calplot4.2}
+tmp <- new("hyperSpec",
+  spc = as.matrix(seq(min(flu), max(flu), length.out = 25)),
+  wavelength = 450
+)
+ci <- predict(calibration, newdata = tmp$., interval = "confidence", level = 0.99)
+tmp <- tmp[rep(seq(tmp, index = TRUE), 3)]
+tmp$c <- as.numeric(ci)
+tmp$type <- rep(colnames(ci), each = 25)
+
+flu <- collapse(flu, tmp)
+```
+
+Finally, the resulting object is plotted.
+Our prediction example is handled by another customized panel function:
+
+```{r include=FALSE}
+CAPTION <- "calibration function and its 99% confidence interval and predicted points. "
+```
+
+```{r calplot4, fig.cap=CAPTION}
+panel.predict <-
+  function(x, y, ..., intensity, ci, pred.col = "red", pred.pch = 19, pred.cex = 1) {
+
+    panel.xyplot(x, y, ...)
+    mapply(function(i, lwr, upr, ...) {
+      panel.lines(c(lwr, upr), rep(i, 2), ...)
+    },
+      intensity, ci[, 2], ci[, 3],
+      MoreArgs = list(col = pred.col)
+    )
+    panel.xyplot(ci[, 1], intensity, col = pred.col, pch = pred.pch, cex = pred.cex, type = "p")
+  }
+
+plotc(flu,
+  groups = type, type = c("l", "p"),
+  col = c("black", "black", "#606060", "#606060"),
+  pch = c(19, NA, NA, NA),
+  cex = 0.5,
+  lty = c(0, 1, 1, 1),
+  panel = panel.predict,
+  intensity = I,
+  ci = conc,
+  pred.cex = 0.5
+)
+```
+
+# Session Info {-}
+
+```{r session-info-flu, paged.print=FALSE}
+sessioninfo::session_info("hyperSpec")
+```
+
+# References {-}

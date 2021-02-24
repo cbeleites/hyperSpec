@@ -1,0 +1,1416 @@
+---
+# For vignette ---------------------------------------------------------------
+title:       Import and Export Files with Spectra
+subtitle:    'Tutorial on Spectra File Import and Export for "hyperSpec"'
+description: 'fileio: Tutorial on spectra file import and export for "hyperSpec".'
+# Authors --------------------------------------------------------------------
+author:
+  - name: Claudia Beleites^1,2,3,4,5^, Vilmantas Gegzna
+    email: chemometrie@beleites.de
+    corresponding : yes
+    affiliation   : |
+        1. DIA Raman Spectroscopy Group, University of Trieste/Italy (2005--2008)
+        2. Spectroscopy $\cdot$ Imaging, IPHT, Jena/Germany (2008--2017)
+        3. ÖPV, JKI, Berlin/Germany (2017--2019)
+        4. Arbeitskreis Lebensmittelmikrobiologie und Biotechnologie, Hamburg University, Hamburg/Germany (2019 -- 2020)
+        5. Chemometric Consulting and Chemometrix GmbH, Wölfersheim/Germany (since 2016)
+# Document -------------------------------------------------------------------
+date:        "`r Sys.Date()`"
+output:
+    bookdown::html_document2:
+      base_format: rmarkdown::html_vignette
+      toc: yes
+      fig_caption: yes
+      number_sections: true
+      css:
+        - vignette.css
+        - style.css
+vignette: >
+    % \VignetteIndexEntry{Import and Export of Spectra Files}
+    % \VignetteKeyword{file}
+    % \VignetteKeyword{spectra}
+    % \VignetteKeyword{spectrum}
+    % \VignetteKeyword{import}
+    % \VignetteKeyword{export}
+    % \VignetteKeyword{hyperSpec}
+    % \VignettePackage{hyperSpec}
+    % \VignetteDepends{styler}
+    % \VignetteEngine{knitr::rmarkdown}
+    % \VignetteEncoding{UTF-8}
+# Citations/References -------------------------------------------------------
+link-citations: yes
+bibliography:
+  - resources/fileio-pkg.bib
+  - fileio.bib
+biblio-style: plain
+csl: elsevier-with-titles.csl
+# Pkgdown --------------------------------------------------------------------
+pkgdown:
+  as_is: true
+---
+
+
+```{r cleanup-fileio, include = FALSE}
+# Clean up to ensure reproducible workspace ----------------------------------
+rm(list = ls(all.names = TRUE))
+```
+
+```{r setup, include = FALSE}
+# Packages -------------------------------------------------------------------
+library(hyperSpec)
+library(R.matlab)
+
+# Functions ------------------------------------------------------------------
+source("vignette-functions.R", encoding = "UTF-8")
+
+# Settings -------------------------------------------------------------------
+source("vignette-default-settings.R", encoding = "UTF-8")
+
+# Temporaty options ----------------------------------------------------------
+# Change the value of this option in "vignette-default-settings.R"
+show_reviewers_notes = getOption("show_reviewers_notes", TRUE)
+```
+
+```{r, echo=FALSE}
+# ----------------------------------------------------------------------------
+# If all necessary datasets are coppied into "fileio" directory,
+# the examples are run. Otherwise they are disabled.
+if (dir.exists("fileio") && length(dir("fileio")) != 0) {
+  # To test locally if the exaples still work
+  knit_eval <- TRUE
+  # message("Code evaluation in fileio.Rmd enabled!")
+
+} else {
+  # Do not run code
+  knit_eval <- FALSE
+  warning("Code evaluation in fileio.Rmd DISABLED!")
+}
+
+knitr::opts_chunk$set(eval = knit_eval)
+# FIXME: this is not a good way to do in vignette,
+# but we should come up with ideas how to cope
+# with big files in this situation.
+# ----------------------------------------------------------------------------
+```
+
+```{r bib, echo=FALSE, paged.print=FALSE, eval=TRUE}
+dir.create("resources", showWarnings = FALSE)
+
+knitr::write_bib(
+  c(
+    "hyperSpec",
+    "R.matlab"
+  ),
+  file = "resources/fileio-pkg.bib"
+)
+```
+
+
+***
+
+```{block, type="redbox", echo=TRUE}
+**Consistent naming of file import functions in version >= 0.99**
+
+From now on, all import functions have names starting with `read.\*()`.
+All functions previously named `scan.\*()` have been renamed accordingly.
+```
+
+<!-- ======================================================================= -->
+```{block, type="note-t", echo=show_reviewers_notes}
+**V. Gegznas's notes**:
+
+1. `# TODO:`{.r} I think, functions could be renamed to meet Tidyverse style guide.
+And the current names could be deprecated.
+
+```
+<!-- ======================================================================= -->
+
+```{block, type="redbox", echo=TRUE}
+**Supported File Formats**
+
+From now on, all import functions have names starting with `read.\*()`.
+All functions previously named `scan.\*()` have been renamed accordingly.
+
+Package **hyperSpec** supports several file formats relevant for different types of spectroscopy.
+This file format is naturally only a subset of the file formats produced by different spectroscopic equipment.
+
+If you use package **hyperSpec** with data formats not mentioned in this document, please open a [new issue](https://github.com/cbeleites/hyperSpec/issues){target="_blank"} in **hyperSpec**'s GitHub repository so that this document can be updated.
+The information should include:
+
+-  The type of spectroscopy,
+-  Spectrometer model, manufacturer, and software,
+-  The "native" file format (including a sample file),
+-  Description of relevant procedures to convert the file,
+-  R code to import the data together with an example file that is read by R,
+-  Documentation, particularly the description of the data format.
+
+
+If you need help finding out how to import your data, please search and eventually ask on [Stackexchange](http://stackoverflow.com/questions/tagged/r+spectroscopy){target="_blank"} with tags `[r]` and `[spectroscopy]`.
+```
+
+
+<!-- ======================================================================= -->
+```{block, type="note-t", echo=show_reviewers_notes}
+**V. Gegzna's notes** `fileio-1`
+
+
+1. `# FIXME:`{.r} After the translation is completed, the contents in the box below must be fixed.
+2. `# FIXME:`{.r} do not mention `vignettes.def`
+3. Check if links point to correct destinations. Links to external websites must start with `https://` or `http://`.
+```
+<!-- ======================================================================= -->
+
+
+
+```{block, type="note", echo=TRUE}
+**Reproducing the Examples in this Manual**
+
+To run the code examples, create a folder named "fileio" in your working directory and copy the contents of the directory <https://github.com/cbeleites/hyperSpec/tree/develop/Vignettes/fileio>.
+This online directory contains the required datasets (via `git-lfs`).
+```
+
+***
+
+<!-- This chunk inserts common info about all the vignettes -->
+
+ ```{r, echo = FALSE, results = "asis"}
+ res <- knitr::knit_child("list-of-vignettes.md", quiet = TRUE)
+ cat(res, sep = '\n')
+ ```
+
+***
+
+```{r}
+library(hyperSpec)
+```
+
+
+# Introduction
+
+This document describes how to import files containing spectra into `hyperSpec`{.r} objects, as well as exporting`hyperSpec` objects as files.
+
+The most basic funtion to create `hyperSpec`{.r} objects is `new("hyperSpec")`{.r} (section \@ref(sec:new)).
+It makes a `hyperSpec`{.r} object from data already in R's workspace.
+Thus, after spectra importation into R, conversion to `hyperSpec`{.r} objects is straightforward.
+
+Additionally, the **hyperSpec** package comes with predefined import functions for different data formats.
+This document divides the discussion into dealing with ASCII files (section \@ref(sec:ascii)<!--, p. \pageref{sec:ascii}-->) and binary file formats (section \@ref(sec:binary-file-formats)<!--, p. \pageref{sec:binary-file-formats}-->).
+If data export for the respective format is possible, we discuss it in the same sections.
+As sometimes the actual data written by the spectrometer software exhibits peculiarities, package **hyperSpec** offers several specialized import functions.
+In general, the naming convention is the data format followed by the manufacturer (e.g., `read.ENVI.Nicolet`).
+
+<!-- ======================================================================= -->
+```{block, type="note-t", echo=show_reviewers_notes}
+
+`# FIXME: appendix is mentioned!`{.r}
+
+```
+<!-- ======================================================================= -->
+
+Overview lists of the directly supported file formats are in the appendix: sorted by file format (<!--appendix -->\@ref(sec:format)<!--, p. \pageref{sec:format}-->), manufacturer (<!--appendix -->\@ref(sec:manufacturer)<!--, p. \pageref{sec:manufacturer}-->), and by spectroscopy (<!--appendix -->\@ref(sec:spectroscopy)<!--, p. \pageref{sec:spectroscopy}-->).
+
+
+
+# Creating a `hyperSpec`{.r} object with `new()`{.r} {#sec:new}
+
+<!-- ======================================================================= -->
+```{block, type="note-t", echo=show_reviewers_notes}
+**V. Gegzna's notes** `fileio-2`
+
+
+1. `# NOTE:`{.r} Do not remove `\index{}` tags. They might be useful in the future.
+2. We suggest cheating a specialized function, e.g., `hyperSpec()`{.r} that wrapps functionality of `new("hyperSpec", spc, wavelength, data, labels)`{.r}.
+```
+<!-- ======================================================================= -->
+
+
+\index{new hyperSpec object}
+\index{initialize hyperSpec object}
+\index{create hyperSpec object}
+\index{hyperSpec object!create}
+
+To create a `hyperSpec`{.r} object from data in R's workspace, use:
+
+```{r eval=FALSE}
+spc <- new("hyperSpec", spc, wavelength, data, labels)
+```
+
+With the arguments:
+
+----------------  ---------------------------------------------------------------------------
+**`spc`**         the spectra matrix (may also be given as matrix inside
+                  column `$spc`{.r} of `data`{.r})
+
+**`wavelength`**  the wavelength axis vector
+
+**`data`**        the extra data (possibly already including the spectra
+                  matrix in column `spc`)
+
+**`labels`**      a list with the proper labels.
+                  Do not forget the wavelength axis label in `$.wavelength`{.r}
+                  and the spectral intensity axis label in `$spc`{.r}.
+---------------- ---------------------------------------------------------------------------
+
+
+Thus, once the data is in R's workspace, creating a `hyperSpec`{.r} object is easy.
+We suggest wrapping the code to import the data and the line joining it into a `hyperSpec`{.r} object by a user-created import function.
+Users are more than welcome to contribute such import code to package **hyperSpec**.
+Secion \@ref(sec:writing-Import)<!--, (p. \pageref{sec:writing-Import})--> discusses examples of custom import functions.
+
+
+## Creating a `hyperSpec`{.r} Object from a Data Matrix (Spectra Matrix) {#import-spectra-matrix}
+
+As spectra matrices are the internal format of `hyperSpec`{.r}, the constructor can directly be used:
+
+```{r eval=FALSE}
+spc <- new("hyperSpec", spc, wavelength, data, labels)
+```
+
+
+## Creating a `hyperSpec`{.r} Object from a Data Cube (Spectra Array)  {#import-spectra-array}
+
+Roberto Moscetti asked how to convert a hyperspectral data cube into a `hyperSpec`{.r} object:
+
+> The problem is that I have a hypercube with the following dimensions: 67 × 41 × 256
+> y = 67
+> x = 41
+> wavelengths = 256
+>
+> I do not know the way to import the hypercube.
+
+Data cubes (i.e., 3-dimensional arrays of spectral data) result from spectral imaging measurements, where spectra are supplied for each pixel of an $px.x × px.y$ imaging area.
+They have three directions, usually $x$, $y$, and the spectral dimension.
+
+The solution is to convert the array into a spectra matrix and have separate $x$ and $y$ coordinates.
+
+Assume `data`{.r} is the data cube, and `x`{.r}, `y`{.r} and `wl`{.r} hold vectors with the proper $x$ and $y$ coordinates and the wavelengths:
+
+```{r array}
+data <- array(1:24, 4:2)
+wl <- c(550, 630)
+x <- c(1000, 1200, 1400)
+y <- c(1800, 1600, 1400, 1200)
+data
+```
+
+Such data can be converted into a `hyperSpec`{.r} object by:
+
+```{r array-import}
+d <- dim(data)
+dim(data) <- c(d[1] * d[2], d[3])
+
+x <- rep(x, each = d[1])
+y <- rep(y, d[2])
+
+spectra <- new("hyperSpec",
+  spc = data,
+  data = data.frame(x, y), wavelength = wl
+)
+```
+
+If no proper coordinates (vectors `x`{.r}, `y`{.r} and `wl`{.r}) are available, they can be left out.
+In the case of $x$ and $y$, map plotting will then be impossible, missing `wavelength`{.r}s will be replaced by column indices counting from `1`{.r} to `d[3]`{.r} automatically.
+Of course, such sequences (the row/column/pixel numbers) can be used instead of the original `x`{.r} and `y`{.r} as well:
+
+```{r}
+y <- seq_len(d[1])
+x <- seq_len(d[2])
+```
+
+Data cubes often come from spectral imaging systems that use an "image" coordinate system counting $y$ from top to bottom.
+Note that this should be accounted for in the decreasing order of the original `y`{.r} vector.
+
+<!-- ======================================================================= -->
+
+
+```{block, type="note-t", echo=show_reviewers_notes}
+`# TODO:`{.r}  (this was a LaTeX-commented `TODO` tag)
+
+```
+<!-- ======================================================================= -->
+
+
+
+# General Behaviour of File Import Functions: Options `file.keep.name` and `file.remove.emptyspc` {#io-options}
+
+# Reading Multiple Files into One `hyperSpec` Object {#sec:read-mult-files}
+
+Many of the function described below will work on one file, even though derived functions such as `read.spc.KaiserMap()`{.r} (see section \@ref(sec:read-spc-KaiserMap)<!--, p. \pageref{sec:read-spc-KaiserMap}-->) may take care of measurements consisting of multiple files.
+
+Usually, the most convenient way to import multiple files into one `hyperSpec`{.r} object is reading all files into a list of `hyperSpec`{.r} objects, and then `collapse()`{.r}ing this list into a single `hyperSpec`{.r} object:
+
+```{r readcollapse}
+files <- Sys.glob("fileio/spc.Kaisermap/*.spc")
+files <- files[seq(1, length(files), by = 2)] # import low wavenumber region only
+spc <- lapply(files, read.spc)
+length(spc)
+spc[[1]]
+spc <- collapse(spc)
+spc
+```
+
+Note that in this particular case, the spectra are more efficiently read by `read.spc.KaiserMap()`{.r} (see section \@ref(sec:read-spc-KaiserMap)<!--, p. \pageref{sec:read-spc-KaiserMap}-->).
+
+If one regularly imports huge maps or images, writing a customized import function is highly encouraged.
+Users may gain speed and memory by using the internal workhorse functions for the file import.
+In that case, please contact the package maintainer ([**hyperSpec**'s GitHub repository](https://github.com/cbeleites/hyperSpec/issues){target="_blank"}) for advise (contributions to package **hyperSpec** are welcome and all authors are listed appropriately in the function help page's author section).
+
+
+# ASCII Files {#sec:ascii}
+<!-- {#sec:ascii} {#sec:read-txt-long} {#sec:read-txt-wide} -->
+
+\index{ASCII!wide}
+\index{ASCII!long}
+
+Currently, `hyperSpec`{.r} provides two functions for general ASCII data import:
+
+-  `read.txt.long()`{.r} imports long format ASCII files, i.e., one intensity value per row.
+-  `read.txt.wide()`{.r} imports wide format ASCII files, i.e., one spectrum per row.
+
+The import functions immediately return a `hyperSpec`{.r} object.
+
+Internally, they use `read.table()`{.r}, a very powerful ASCII import function.
+R supplies another ASCII import function, `scan()`{.r}.
+Function `scan()`{.r} imports numeric data matrices and is faster than `read.table()`{.r}, but cannot import column names.
+If the data does not contain a header or is not important and can safely be skipped, it may want to import the data using `scan()`{.r}.
+
+Note that R allows the use a variety of compressed file formats directly as ASCII files (for example, see section \@ref(sec:read-txt-Renishaw)<!-- on p. \pageref{sec:read-txt-Renishaw}-->).
+Also, both `read.txt.long()`{.r} and `read.txt.wide()`{.r} accept connections instead of file names.
+
+
+## ASCII Files with Samples in Columns {#sec:ascii-files-cols}
+
+\index{Bruker!powder diffraction}
+\index{powder diffraction!Bruker}
+\index{Bruker!x-ray}
+\index{x-ray!Bruker}
+\index{Bruker!AXS}
+\index{ASCII!transposed}
+\index{ASCII!samples in columns}
+
+Richard Pena asked about importing another ASCII file type:
+
+> File `Triazine5_31.txt` corresponds to X ray powder diffraction data (Bruker AXS).
+> The native files data"ra"are read with EVA software then they are converted into `.uxd` file with the
+> File Exchange software (Bruker AXS).
+> The `.uxd` file are opened with Excel software and saved as `.txt` file, `.csv` file (ChemoSpec) or `.xls`.
+>
+> The first and following columns corresponds to the angle diffraction and the intensity values of
+samples respectively.
+
+Thus, this file differs from the ASCII formats discussed above in that the samples are actually in columns whereas `hyperSpec`{.r} expects them to be in rows.
+The header line gives the name of the sample.
+Import is straightforward, and just the spectra matrix needs to be transposed to make a `hyperSpec`{.r} object:
+
+
+
+
+```{r read.txt.t}
+file <- read.table("fileio/txt.t/Triazine 5_31.txt", header = TRUE, dec = ",", sep = "\t")
+
+triazine <- new("hyperSpec",
+  wavelength = file[, 1], spc = t(file[, -1]),
+  data = data.frame(sample = colnames(file[, -1])),
+  labels = list(
+    .wavelength = expression(2 * theta / degree),
+    spc = "I / a.u."
+  )
+)
+triazine
+```
+
+
+
+```{r include=FALSE}
+# TODO: A better caption may be needed.
+CAPTION <- "Spectra of triazine. "
+```
+
+```{r plot-triazine, fig.cap=CAPTION}
+plot(triazine[1])
+```
+
+Witec also saves ASCII data with spectra in columns (Export $\rightarrow$ Table), see \@ref(sec:read-txt-Witec).
+
+
+## JCAMP-DX {#sec:jcamp-dx}
+
+\index{ASCII!JCAMP-DX}
+\index{JCAMP-DX!ASCII}
+\index{jdx|see{JCAMP-DX}}
+\index{JCAMP-DX!ASCII}
+
+<!-- % {#sec:read.jdx} -->
+\index{JCAMP-DX!Shimadzu} \index{Shimadzu!GC-MS}
+\index{Shimadzu!JCAMP-DX} \index{JCAMP-DX!PerkinElmer} \index{PerkinElmer!JCAMP-DX}
+\index{PerkinElmer!Infrared} \index{Infrared!PerkinElmer}
+\index{JCAMP-DX!Infrared} \index{Infrared!JCAMP-DX}
+<!-- % -->
+
+Limited import of JCAMP-DX files v. 4.24 [@McDonald1988] is available in function `read.jdx()`{.r}.
+These files can contain multiple spectra, supported data formats are tabular `XY..XY` and `X++(Y..Y)`.
+
+```{r}
+read.jdx("fileio/jcamp-dx/shimadzu.jdx", encoding = "latin1", keys.hdr2data = TRUE)
+read.jdx("fileio/jcamp-dx/virgilio.jdx")
+```
+
+The last file has a slight inconsistency between its meta data and spectroscopic data, causing a message.
+However, the difference is minute compared to the intensities.
+If this is known in advance, an appropriate tolerance can be chosen:
+
+```{r}
+read.jdx("fileio/jcamp-dx/virgilio.jdx", ytol = 1e-9)
+```
+
+```{block, type="redbox", echo=TRUE}
+**Function `read.jdx.Shimadzu()`{.r} has been removed.**
+
+An R package dedicated to importing JCAMP-DX is currently under development by Bryan Hanson
+(<https://github.com/bryanhanson/readJDX>).
+Package **hyperSpec** will use that package once it is available on CRAN.
+Maintenance of package **hyperSpec**'s `read.jdx()`{.r} function is limited from now on in favor of Bryan's pacakge.
+```
+
+
+
+## Basic Atomic Spectra from NIST Tables {#sec:aes-nist}
+
+\index{ASCII!reference!atomic emission!NIST}
+\index{atomic emission!NIST}
+\index{NIST!atomic emission}
+\index{reference!NIST!atomic emission}
+
+The NIST (National Institute of Standards and Technology) has published a data base of basic atomic
+emission spectra see <http://physics.nist.gov/PhysRefData/Handbook/periodictable.htm> with emission lines tabulated in ASCII (HTML) files.
+
+Here's an example how to extract the data of the Hg strong lines file:
+
+```{r nist-aes}
+file <- readLines("fileio/NIST/mercurytable2.htm")
+# file <- readLines("http://physics.nist.gov/PhysRefData/Handbook/Tables/mercurytable2.htm")
+
+file <- file[-(1:grep("Intensity.*Wavelength", file) - 1)]
+file <- file[1:(grep("</pre>", file) [1] - 1)]
+file <- gsub("<[^>]*>", "", file)
+file <- file[!grepl("^[[:space:]]+$", file)]
+
+colnames <- file[1]
+colnames <- gsub("[[:space:]][[:space:]]+", "\t", file[1])
+colnames <- strsplit(colnames, "\t")[[1]]
+if (!all(colnames == c("Intensity", "Wavelength (&Aring;)", "Spectrum", "Ref. "))) {
+  stop("file format changed!")
+}
+
+tablestart <- grep("^[[:blank:]]*[[:alpha:]]+$", file) + 1
+tableend <- c(tablestart[-1] - 2, length(file))
+tables <- list()
+for (t in seq_along(tablestart)) {
+  tmp <- file[tablestart[t]:tableend[t]]
+  tables[[t]] <- read.fwf(textConnection(tmp), c(5, 8, 12, 15, 9))
+  colnames(tables[[t]]) <- c("Intensity", "persistent", "Wavelength", "Spectrum", "Ref. ")
+  tables[[t]]$type <- gsub("[[:space:]]", "", file[tablestart[t] - 1])
+}
+tables <- do.call(rbind, tables)
+levels(tables$Spectrum) <- gsub(" ", "", levels(tables$Spectrum))
+
+Hg.AES <- list()
+for (s in levels(as.factor(tables$Spectrum))) {
+  Hg.AES[[s]] <- new("hyperSpec",
+    wavelength = tables$Wavelength[tables$Spectrum == s],
+    spc = tables$Intensity[tables$Spectrum == s],
+    data = data.frame(Spectrum = s),
+    label = list(
+      .wavelength = expression(lambda / ring(A)),
+      spc = "I"
+    )
+  )
+}
+```
+
+
+```{r include=FALSE}
+CAPTION <- "Extracted spectra from of the Hg strong lines file."
+```
+
+```{r plot-hg-aes, fig.cap=CAPTION}
+plot(collapse(Hg.AES), lines.args = list(type = "h"), col = 1:2)
+```
+
+
+
+## Further ASCII Formats
+
+Further import filters are provided for manufacturer/software specific ASCII formats, see table \@ref(sec:format)<!-- (p. \pageref{sec:format})--> and section \@ref(sec:manuf-spec-import)<!--(p. \pageref{sec:manuf-spec-import})-->.
+
+
+## ASCII Export
+
+ASCII export can be done in wide and long format using `write_txt_long()`{.r} and `write_txt_wide()`{.r}.
+If you need a specific header or footer, use R's functions for writing files: `write.table()`{.r}, `write()`{.r}, `cat()`{.r} and so on offer fine-grained control of writing ASCII files.
+
+
+# Binary File Formats {#sec:binary-file-formats}
+
+## Matlab Files {#sec:readMat}
+\index{Matlab}
+
+Matlab files can be read and written using the package **R.matlab**\citep{R.matlab}, which is available at CRAN and can be installed by `install.packages("R.matlab")`{.r}.
+
+```{r}
+library(R.matlab)
+```
+
+<!-- ======================================================================= -->
+```{block, type="note-t", echo=show_reviewers_notes}
+**V. Gegznas's notes**:
+
+1. `# FIXME:`{.r} file `spectra.mat` is not present.
+  So `eval=FALSE` is added.
+```
+<!-- ======================================================================= -->
+
+```{r eval=FALSE}
+spc.mat <- readMat("fileio/spectra.mat")
+```
+
+If the `.mat` file was saved with compression, the additional package **Rcompression** is needed.
+It can be installed from omegahat:
+
+<!-- ======================================================================= -->
+```{block, type="note-t", echo=show_reviewers_notes}
+**V. Gegznas's notes**:
+
+1. `# FIXME:`{.r} there are issues in downloading `Rcompression` package as omegahat.org does not update as quickly as a new version of R is released.
+```
+<!-- ======================================================================= -->
+```{r eval=FALSE}
+install.packages("Rcompression", repos = "http://www.omegahat.org/R")
+```
+See the documentation of package **R.matlab** for more details and possibly needed further packages.
+
+Function `readMat()`{.r} imports the `.mat` file's contents as a list.
+The variables in the `.mat` file are appropriately named elements of the list.
+The `hyperSpec`{.r} object can be created using `new()`{.r}, see section \@ref(sec:new)<!-- (p. \pageref{sec:new})-->.
+
+Again, users probably want to wrap the import of their Matlab files into a function.
+
+
+### Matlab Export {#sec:writing-matlab-files}
+
+package **R.matlab**'s function `writeMat()`{.r} can be used to write R objects into `.mat` files.
+To save an `hyperSpec`{.r} object `x`{.r} for use in Matlab, you most likely want to save:
+
+-  the wavelength axis as obtained by `wl(x)`{.r},
+-  the spectra matrix as obtained by `x[[]]`{.r}, and
+-  possibly also the extra data as obtained by `x$..`{.r}
+-  as well as the axis labels `labels(x)`{.r}.
+-  Alternatively, `x$.`{.r} yields the extra data together with the spectra matrix.
+
+However, it may be convenient to transform the saved data according to how it is needed in Matlab.
+The functions `as.long.df()`{.r} and `as.wide.df()`{.r} may prove useful for reshaping the data.
+
+
+### Import of Matlab Files Written by Cytospec {#sec:read-mat-Cytospec}
+
+\index{Cytospec}\index{Cytospec!Matlab}\index{Matlab!Cytospec}
+
+A custom import function for `.mat` files written by [Cytospec](http://www.cytospec.com/){target="_blank"} is available:
+
+Note that Cytospec files can contain multiple versions of the data, the so-called blocks.
+The block to be read can be specified with the `block`{.r} argument.
+With `block = TRUE`{.r}, the function will read all blocks into a list:
+
+```{r read.mat.Cytospec-blocks}
+read.mat.Cytospec("fileio/mat.cytospec/cytospec.mat", blocks = TRUE)
+```
+
+otherwise, select a block:
+
+```{r read.mat.Cytospec}
+read.mat.Cytospec("fileio/mat.cytospec/cytospec.mat", blocks = 1)
+```
+
+
+```{block, type="redbox", echo=TRUE}
+**Function `read.cytomat`{.r} is now _defunct_**.
+
+Function `read.cytomat()`{.r} has been renamed to  `read.mat.Cytospec()`{.r} to be more
+consistent with the general naming scheme of the file import functions.
+
+Please use `read.mat.Cytospec()`{.r} instead.
+```
+
+
+## ENVI Files {#sec:read-ENVI}
+
+\index{ENVI!Map} \index{ENVI!Infrared} \index{ENVI!Bruker} \index{ENVI!Varian} \index{Map!ENVI}
+\index{Infrared!ENVI} \index{Bruker!ENVI} \index{Varian!ENVI} \index{FT-IR|see{Infrared}}
+\index{Image|see{Map}}
+
+ENVI files are binary data accompanied by an ASCII header file.
+Package **hyperSpec**'s function `read.ENVI()`{.r} can be used to import them.
+Usually, the header file name is the same as the binary data file name, with the suffix replaced by `.hdr`. Otherwise, the header file name can be given via parameter **header file`{.r}**.
+
+As we experienced missing header files (Bruker's Opus software frequently produced header files without any content), the data that would usually be read from the header file can also be handed to `read.ENVI()`{.r} as a list in parameter **`header**`{.r}.
+Arguments are given in `header`{.r} replace corresponding entries of the header file.
+The help page gives details on what elements the list should contain, see also the discussion of ENVI files written by Bruker's OPUS software (section \@ref(sec:read-ENVI-Bruker)<!--, p. \pageref{sec:read-ENVI-Bruker})-->.
+
+Here is how to use `read.ENVI()`{.r}:
+
+```{r read.ENVI}
+spc <- read.ENVI("fileio/ENVI/example2.img")
+spc
+```
+
+Please see also the manufacturer specific notes in section \@ref(sec:manuf-spec-import)<!--, p. \pageref{sec:manuf-spec-import}-->.
+
+
+### ENVI Export {#sec:envi-export}
+
+Use package package **caTools** or package **rgdal** with GDAL for writing ENVI files.
+
+
+## `spc` Files {#sec:read-spc}
+
+\index{spc}
+\index{spc!Raman}
+\index{spc!Renishaw}
+\index{spc!Kaiser}
+\index{spc!TriVista}
+\index{Raman!spc}
+\index{Raman!Kaiser}
+\index{Raman!HoloGram}
+\index{Raman!LabRam}
+\index{Raman!LabSpec}
+\index{Raman!Horiba}
+\index{Raman!Renishaw}
+\index{Renishaw!spc}
+\index{TriVista!spc}
+\index{Horiba!spc}
+\index{LabSpec!spc}
+\index{LabRam!spc}
+\index{Kaiser!spc}
+
+Thermo Galactic's `.spc` file format can be imported by `read.spc()`{.r}.
+
+```{block, type="greenbox", echo=TRUE}
+**Official File Format Documentation**
+
+The specification used to be available at Thermo Scientific.
+Anyone knowing where it moved please contact me ([**hyperSpec**'s GitHub repository](https://github.com/cbeleites/hyperSpec/issues){target="_blank"}) --- I'm looking for a reasonably official website (i.e. at Thermo) rather than some random site with a copy.
+```
+
+<!-- ======================================================================= -->
+```{block, type="note-t", echo=show_reviewers_notes}
+**V. Gegzna's notes**:
+
+1. `# TODO:`{.r} There was a TODO tag:
+
+    `# TODO:  find out via Massimiliano`{.r}
+```
+<!-- ======================================================================= -->
+
+A variety of sub-formats exists. package **hyperSpec**'s import function `read.spc()`{.r} does *not* support the old file format that was used before 1996.
+In addition, no test data with *w planes* was available --- thus, the import of such files could not be tested.
+If you come across such files, please contact the package maintainer ([**hyperSpec**'s GitHub repository](https://github.com/cbeleites/hyperSpec/issues){target="_blank"}).
+
+The header and subheader blocks of spc files store additional information of pre-defined types (see the file format specification[@Galactic1997]).
+Further information can be stored in the so-called log block at the end of the file and should be in a key-value format (although even the official example files do not always).
+This information is often useful (Kaiser's Hologram software, e.g., stores the stage position in the log block).
+
+Function `read.spc()`{.r} has four arguments that allow fine-grained control of storing such information in the `hyperSpec`{.r} object:
+
+------------------- -----------------------------------------------------------------------
+**`keys.hdr2data`** parameters from the spc file and subfile headers that should become
+                    extra data columns.
+
+**`keys.log2data`** parameters from the spc file log block that should become extra data
+                    columns.
+
+**`keys.*2log`**    parameters are deprecated because the logbook itself is depecated.
+------------------- -----------------------------------------------------------------------
+
+The value of these arguments can either be logical (amounting to either use all or none of the information in the file) or a character vector giving the names of the parameters that should be used.
+Note that the header file field names are always lowercase.
+
+Here is how to find out what extra information could be read from the header and log:
+
+```{r}
+read.spc("fileio/spc.Kaisermap/ebroAVII.spc", keys.hdr2data = TRUE)
+```
+```{r}
+read.spc("fileio/spc.Kaisermap/ebroAVII.spc", keys.log2data = TRUE)
+```
+
+`.spc` files may contain multiple spectra that do *not* share a common wavelength axis.
+In this case, `read.spc()`{.r} returns a list of `hyperSpec`{.r} objects with one spectrum each.
+Function `collapse()`{.r} may be used to combine this list into one `hyperSpec`{.r} object:
+
+
+```{r read.spc.list, eval=FALSE, include=FALSE}
+barbiturates <- read.spc(system.file("extdata/BARBITUATES.SPC", package = "hyperSpec"))
+```
+
+```{r read.spc.list-old}
+barbiturates <- read.spc("fileio/spc/BARBITUATES.SPC")
+```
+
+<!-- NOTE: the code to save this dataset as package data was removed from this file. -->
+<!-- # save(barbiturates, file = "barbiturates.rda") -->
+
+```{r}
+class(barbiturates)
+```
+```{r}
+length(barbiturates)
+```
+```{r}
+barbiturates <- collapse(barbiturates, collapse.equal = FALSE)
+barbiturates
+```
+```{r}
+barbiturates[[, , 25 ~ 30]]
+```
+
+
+### Deriving Manufacturer Specific Import Filters
+
+Please note that future changes inside the read.spc function is likely to occur.
+However, if you just post-process the `hyperSpec`{.r} object returned by `read.spc()`{.r}, you should be fine.
+
+
+
+# Manufacturer-Specific Discussion of File Import
+
+## Manufacturer Specific Import Functions {#sec:manuf-spec-import}
+
+Many spectrometer manufacturers provide a function to export their spectra into ASCII files.
+The functions discussed above are written in a very general way and are highly customizable.
+We recommend wrapping these calls with the appropriate settings for the spectra format in an import function.
+Please consider contributing such import filters to package **hyperSpec**: send us the documented code (for details, see the box at the beginning of this document).
+If there is any format not mentioned in this document (even without the need of new converters), please let me know (details again in the box at the beginning of this document).
+
+
+## Bruker FT-IR Imaging {#sec:read-ENVI-Bruker}
+
+\index{ENVI!Map}
+\index{ENVI!Infrared}
+\index{ENVI!Bruker}
+\index{Map!ENVI}
+\index{Infrared!ENVI}
+\index{Bruker!ENVI}
+
+We use `read.ENVI()`{.r} to import IR-Images collected with a Bruker Hyperion spectrometer with OPUS software.
+As mentioned above, the header files are frequently empty.
+We found the necessary information to be:
+
+```{r eval=FALSE}
+header <- list(
+  samples = 64 * no.images.in.row,
+  lines = 64 * no.images.in.column,
+  bands = no.data.points.per.spectrum,
+  `data type` = 4,
+  interleave = "bip"
+)
+```
+
+No spatial information is given in the ENVI header (if written).
+The lateral coordinates can be set up by specifying origin and pixel size for $x$ and $y$ directions.
+For details, please see the help page.
+
+The proprietary file format of the Opus software is not yet supported.
+
+
+## Nicolet FT-IR Imaging {#sec:read-ENVI-Nicolet}
+
+\index{ENVI!Map}
+\index{ENVI!Infrared}
+\index{ENVI!Nicolet}
+\index{Map!ENVI}
+\index{Infrared!ENVI}
+\index{Nicolet!ENVI}
+
+Also, Nicolet saves imaging data in ENVI files.
+These files use some non-standard keywords in the header file that should reconstruct the lateral coordinates and the wavelength axes and units for wavelength and intensity axis.
+Package **hyperSpec** has a specialized function `read.ENVI.Nicolet()`{.r} that uses these header entries.
+
+It seems that the position of the first spectrum is recorded in $mu m${}, while the pixel size is in mm.
+Thus a flag `nicolet.correction`{.r} is provided that divides the pixel size by 1000.
+Alternatively, the correct offset and pixel size values may be given as function arguments.
+
+```{r readENVINicolet}
+spc <- read.ENVI.Nicolet("fileio/ENVI/example2.img", nicolet.correction = TRUE)
+spc ## dummy sample with all intensities zero
+```
+
+## Varian/Agilent FT-IR Imaging {#sec:varianagilent-ft-ir}
+
+\index{ENVI!Map}
+\index{ENVI!Infrared}
+\index{ENVI!Agilent}
+\index{Map!ENVI}
+\index{Infrared!ENVI}
+\index{Agilent!ENVI}
+\index{Varian|see{Agilent}}
+
+Agilent (Varian) uses a variant of ENVI (with binary header).
+
+## Kaiser Optical Systems Raman {#sec:Kaiser}
+
+\index{spc!Raman}
+\index{spc!Kaiser}
+\index{hol!Kaiser}
+\index{Raman!spc}
+\index{Raman!Kaiser}
+\index{Raman!hol}
+\index{Kaiser!hol}
+\index{Kaiser!spc}
+
+Spectra obtained using Kaiser's Hologram software can be saved either in their own `.hol` format and imported into Matlab (from where the data may be written to a `.mat` file readable by package **R.matlab**'s `readMat()`{.r}.
+Hologram can also write ASCII files and `.spc` files.
+We found working with .spc files the best option.
+
+Hologram usually interpolates the spectra to an evenly spaced wavelength (or $\Delta\tilde\nu$) axis unless the spectra are saved in a by-pixel manner.
+In this case, the full spectra consist of two files with consecutive file names: one for the low and one for the high wavenumber region.
+See the example for `.spc` import.
+
+
+### Kaiser Optical Systems ASCII Files {#sec:KaiserASCII}
+
+\index{ASCII!long!Raman}
+\index{ASCII!long!Kaiser}
+\index{Raman!Kaiser}
+\index{Raman!ASCII long}
+\index{Kaiser!ASCII long}
+
+The ASCII files are long format that can be imported by `read.txt.long()`{.r} (see section <!--\@ref(sec:read-txt-long)-->\@ref(sec:ascii)<!--, p. \pageref{sec:read-txt-long}-->).
+
+We experienced two different problems with these files:
+
+- If the instrument computer's locale is set so that also the decimal separator is a comma, commas are used both as a decimal and as the column separator.
+-  Values with a decimal fraction of $0$ are written with decimal separator but no further digits (e.g., `2,`).
+   This may be a problem for certain conversion functions (`read.table()`{.r} works fi
+
+Thus care must be taken:
+
+```{r Kaiser.txt.comma}
+## 1. import as character
+tmp <- scan("fileio/txt.Kaiser/test-lo-4.txt", what = rep("character", 4), sep = ",")
+tmp <- matrix(tmp, nrow = 4)
+
+## 2. concatenate every two columns by a dot
+wl <- apply(tmp[1:2, ],  2, paste, collapse = ".")
+spc <- apply(tmp[3:4, ], 2, paste, collapse = ".")
+
+## 3. convert to numeric and create hyperSpec objectne, though).
+
+spc <- new("hyperSpec", spc = as.numeric(spc), wavelength = as.numeric(wl))
+spc
+```
+
+
+### Kaiser Optical Systems Raman Maps {#sec:read-spc-KaiserMap}
+
+\index{Map}
+\index{Map!Raman}
+\index{Map!Kaiser}
+\index{Raman!Map}
+\index{Raman!Kaiser}
+\index{Raman!spc}
+\index{Kaiser!Map}
+\index{Kaiser!spc}
+
+package **hyperSpec** provides the function `read.spc.KaiserMap()`{.r} to easily import spatial collections of
+`.spc` files written by Kaiser's Hologram software.
+The filenames of all `.spc` files to be read into one `hyperSpec`{.r} object can be provided either as a character vector or as a wildcard expression (e.g., `"path/to/files/*.spc"`).
+
+The data for the following example was saved with the wavelength axis being camera pixels rather than the Raman shift.
+Thus two files for each spectrum were saved by Hologram.
+Thus, a file name pattern is difficult to give, and a vector of file names is used instead:
+
+```{r readspcKaiserMap}
+files <- Sys.glob("fileio/spc.Kaisermap/*.spc")
+spc.low  <- read.spc.KaiserMap(files[seq(1, length(files), by = 2)])
+spc.high <- read.spc.KaiserMap(files[seq(2, length(files), by = 2)])
+wl(spc.high) <- wl(spc.high) + 1340
+spc
+```
+
+
+## Renishaw Raman {#sec:read-txt-Renishaw}
+
+\index{Raman!Renishaw!spc}
+\index{Renishaw!Raman}
+\index{Renishaw!spc}
+\index{spc!Renishaw}
+\index{spc!Raman}
+
+Renishaw's Wire software comes with a file format converter.
+This program can produce a long ASCII format, `.spc`, or `.jdx` files.
+
+We experienced that the conversion to `.spc` is *not* fully reliable: maps were saved as depth profiles, losing all spatial information.
+Also, an evenly spaced wavelength axis was produced, although this was de-selected in the converter.
+We, therefore, recommend using the ASCII format.
+Otherwise the import using `read.spc()`{.r} worked.
+
+
+### Renishaw ASCII data {#sec:read-txt-Renishaw-ASCII}
+
+\index{ASCII!long!Raman}
+\index{ASCII!long!Renishaw}
+\index{ASCII!compressed}
+\index{ASCII!zip}
+\index{Raman!ASCII long}
+\index{Raman!Renishaw!ASCII}
+\index{Renishaw!Raman}
+\index{Renishaw!ASCII long}
+
+An optimized import function for the ASCII files is available: `read.txt.Renishaw()`{.r}.
+The file may be compressed via gzip, bzip2, xz or lzma.
+Zip compressed files are read via `read.zip.Renishaw()`{.r}.
+The ASCII files can easily become very large, particularly with linefocus or streamline imaging.
+Function `read.txt.Renishaw()`{.r} provides two mechanisms to avoid running out of memory during data import.
+The file may be imported in chunks of a given number of lines (see the last example).
+Function `read.txt.Renishaw()`{.r} can calculate the correct number of wavelengths (i.e., data points per spectrum) if the system command `wc` is available on your computer.
+
+Also, the processing of the long ASCII format into the spectra matrix is done by reshaping the vector of intensities into a matrix.
+This process does not allow any missing values in the data.
+_Therefore it is not possible to import multi-spectra files with individually "zapped" spectra using `read.txt.Renishaw()`{.r}._
+
+The second argument to `read.txt.Renishaw()`{.r} decides what type of experiment is imported.
+Supported types are:
+
+----------------------- ----------------------------------------------------------------------
+**`"xyspc"`**           maps, images, multiple spectra with $x$ and $y$ coordinates (default)
+**`"spc"`**             single spectrum
+**`"depth"`, `"zspc"`** depth series
+**`"ts"`**              time series
+----------------------- ----------------------------------------------------------------------
+
+Instead of a file name, `read.txt.Renishaw()`{.r} accepts also a connection.
+
+```{r read.txt.Renishaw}
+paracetamol <- read.txt.Renishaw("fileio/txt.Renishaw/paracetamol.txt", "spc")
+paracetamol
+```
+
+<!-- NOTE: the code to save this dataset as package data was removed from this file. -->
+<!-- save(paracetamol, file = "paracetamol.rda") -->
+
+```{r}
+read.txt.Renishaw("fileio/txt.Renishaw/laser.txt.gz", data = "ts")
+```
+
+Very large files can be read in chunks to save memory:
+
+```{r read.txt.Renishaw-file}
+read.txt.Renishaw("fileio/txt.Renishaw/chondro.txt", nlines = 1e5, nspc = 875)
+```
+
+R accepts a variety of compressed file formats for ASCII files:
+
+```{r read.txt.Renishaw-compressed, results='hide'}
+read.txt.Renishaw("fileio/txt.Renishaw/chondro.gz")
+read.txt.Renishaw("fileio/txt.Renishaw/chondro.xz")
+read.txt.Renishaw("fileio/txt.Renishaw/chondro.lzma")
+read.txt.Renishaw("fileio/txt.Renishaw/chondro.gz")
+read.txt.Renishaw("fileio/txt.Renishaw/chondro.bz2")
+read.zip.Renishaw("fileio/txt.Renishaw/chondro.zip")
+```
+
+
+## Horiba / Jobin Yvon (e.g. LabRAM) {#sec:read-txt-Horiba}
+
+\index{Horiba Jobin Yvon!ASCII!wide}
+\index{ASCII!wide!Horiba Jobin Yvon}
+\index{Raman!Horiba Jobin Yvon!ASCII wide}
+\index{Horiba!ASCII!wide}
+\index{ASCII!wide!Horiba}
+\index{Raman!Horiba!ASCII wide}
+\index{LabRAM|see{Horiba}}
+\index{ASCII!wide!LabRAM|see{Horiba}}
+\index{Raman!LabRAM|see{Horiba}}
+
+Horiba's Labspec software (e. g. LabRAM spectrometers) saves spectra in a wide ASCII format which is read by `read.txt.Horiba()`{.r}, e. g.:
+
+```{r Horiba}
+spc <- read.txt.Horiba("fileio/txt.HoribaJobinYvon/ts.txt",
+  cols = list(
+    t = "t / s", spc = "I / a.u.",
+    .wavelength = expression(Delta * tilde(nu) / cm^-1)
+  )
+)
+spc
+```
+
+Note that Labspec `.txt` files can contain lots of spectra with zero intensity: Labspec saves a complete rectangular grid even if only part of a map was measured.
+These spectra are by removed by default if option `file.remove.emptyspc`{.r} is `TRUE`{.r} (the default).
+
+For convenience, functions to further wrappers to import maps (`read.txt.Horiba.xy()`{.r}) and time series (`read.txt.Horiba.t()`{.r}) are provided.
+
+```{r testHoriba-1}
+spc <- read.txt.Horiba.xy("fileio/txt.HoribaJobinYvon/map.txt")
+if (any(dim(spc) != c(141, 4, 616)) ||
+  any(abs(spc) < .Machine$double.eps^.5) ||
+  is.null(spc$x) || any(is.na(spc$x)) ||
+  is.null(spc$y) || any(is.na(spc$y)) ||
+  length(setdiff(wl(spc), 1:616)) == 0L) {
+  stop("error in testing read.txt.Horiba.xy. Please contact ", maintainer("hyperSpec"))
+}
+spc
+```
+
+```{r testHoriba-2}
+spc <- read.txt.Horiba.t("fileio/txt.HoribaJobinYvon/ts.txt")
+if (any(dim(spc) != c(100, 3, 1024)) ||
+  is.null(spc$t) || any(is.na(spc$t)) ||
+  length(setdiff(wl(spc), 1:1024)) == 0L) {
+  stop("error in testing read.txt.Horiba.xy. Please contact ", maintainer("hyperSpec"))
+}
+
+spc
+rm(spc)
+```
+
+
+## Andor Solis {#sec:read-asc-Andor}
+
+\index{Andor Solis!ASCII}
+\index{ASCII!Andor Solis}
+\index{Raman!Andor Solis!ASCII}
+
+Andor Solis exports ASCII files that can be read with `read.asc.Andor()`{.r}:
+
+```{r}
+read.asc.Andor("fileio/asc.Andor/ASCII-Andor-Solis.asc")
+```
+
+## Witec {#sec:read-txt-Witec}
+
+\index{Witec!ASCII}
+\index{ASCII!Witec}
+\index{Graph ASCII!Witec}
+\index{Witec!Graph ASCII}
+\index{Raman!Witec!ASCII}
+\index{Raman!Witec!Save ASCII X, Save ASCII Y}
+\index{Raman!Witec!Export Table}
+\index{Raman!Witec!spc}
+\index{Raman!Witec!Graph ASCII}
+\index{spc!Witec}
+
+The Witec project software supports exporting spectra as Thermo Galactic `.spc` files.
+
+```{r witec-spc, results='hide'}
+read.spc("fileio/spc.Witec/Witec-timeseries.spc")
+read.spc("fileio/spc.Witec/Witec-Map.spc")
+```
+
+`.spc` is in general the recommended format for package **hyperSpec** import.
+For imaging data, no spatial information for the set of spectra is provided (in version 2.10, this export option is not supported).
+
+Imaging data (but also single spectra and time series) can be exported as ASCII X and Y files (Save ASCII X and Save ASCII Y, not supported in version 4).
+These can be read by `read.dat.Witec()`{.r}:
+
+```{r witec-dat, results='hide'}
+read.dat.Witec("fileio/txt.Witec/Witec-timeseries-x.dat")
+read.dat.Witec(
+  filex = "fileio/txt.Witec/Witec-Map-x.dat",
+  points.per.line = 5, lines.per.image = 5, type = "map"
+)
+```
+
+Note that the Y data files also contain wavelength information, but (at least Witec Project 2.10) this information is always wavelength in nm, not Raman shift in wavenumbers: this is provided by the X data file only.
+
+Another option is Witec's txt table ASCII export (Export $\rightarrow$ Table), which produces ASCII files with each row corresponding to one wavelength.
+The first column contains the wavelength axis; all further columns contain one spectrum each column.
+Such files can be read with `read.txt.Witec()`{.r}:
+
+```{r witec-txt, include=FALSE}
+read.txt.Witec("fileio/txt.Witec/Witec-timeseries_no.txt")
+```
+`read.txt.Witec()`{.r} determines the number of wavelengths automatically.
+
+Note that there are several Export Filter Options.
+It is possible to determine which units should be used for the export (see XUnits tab).
+It is also possible to export two additional header lines containing information about spectra labels and units.
+Therefore parameters `hdr.label`{.r} and `hdr.units`{.r} have to be set properly.
+Otherwise, either an error will be displayed like
+
+```{r witec-txt-error, echo=FALSE}
+cat("Error in scan(file, what, nmax, sep, dec, quote, skip, nlines, na.strings,  :
+  scan() expected 'a real', got 'rel.'")
+```
+or the one or two wavelengths will be skipped.
+
+Depending on the used export options the header files should look like:
+
+```{r witec-txt-textfiles, include=FALSE}
+headline <- c(
+  "with exported labels and units headerlines:",
+  "\nwith exported labels headerline:",
+  "\nwith exported units headerline:",
+  "\nwithout headerline:"
+)
+files <- c(
+  "fileio/txt.Witec/Witec-timeseries_full.txt",
+  "fileio/txt.Witec/Witec-timeseries_label.txt",
+  "fileio/txt.Witec/Witec-timeseries_unit.txt",
+  "fileio/txt.Witec/Witec-timeseries_no.txt"
+)
+
+for (f in seq_along(files)) {
+  cat(headline[f], "\n")
+  tmp <- format(as.matrix(read.table(files[f], sep = "\t")[1:4, 1:3]))
+  apply(tmp, 1, function(l) cat(l, "\n"))
+}
+```
+For imaging data set parameter `type`{.r} to "map".
+If the label header is exported, the spatial information can be extracted from this line.
+Otherwise, at least one, `points.per.line`{.r} or `lines.per.image`{.r}, has to be given manually, if not, a warning will be shown.
+
+```{r witec-txt-map, include=FALSE}
+read.txt.Witec("fileio/txt.Witec/Witec-Map_full.txt",  type = "map", hdr.label = TRUE, hdr.units = TRUE)
+
+read.txt.Witec("fileio/txt.Witec/Witec-Map_label.txt", type = "map", hdr.label = TRUE, hdr.units = FALSE)
+
+read.txt.Witec("fileio/txt.Witec/Witec-Map_unit.txt",  type = "map", hdr.label = FALSE, hdr.units = TRUE)
+
+read.txt.Witec("fileio/txt.Witec/Witec-Map_unit.txt",
+  type = "map", hdr.label = FALSE, hdr.units = TRUE,
+  points.per.line = 5
+)
+
+read.txt.Witec("fileio/txt.Witec/Witec-Map_no.txt", type = "map", hdr.label = FALSE, hdr.units = FALSE)
+
+read.txt.Witec("fileio/txt.Witec/Witec-Map_no.txt",
+  type = "map", hdr.label = FALSE, hdr.units = FALSE,
+  lines.per.image = 5
+)
+
+read.txt.Witec("fileio/txt.Witec/Witec-Map_no.txt",
+  type = "map", hdr.label = FALSE, hdr.units = FALSE,
+  points.per.line = 5, lines.per.image = 5
+)
+```
+
+For line scans and z-stacks use `type = "single"`{.r} because the provided information is looking the same as for time series, so no further information can be extracted from the header files.
+
+Since version 4 WITec Project offers the Graph ASCII export (Export $\rightarrow$ Graph ASCII), which produces three ASCII files, named Header containing additional information, X-Axis containing the wavelength values and Y-Axis containing the spectra one spectrum in each column.
+Data exported in this way can be read with `read.txt.Witec.Graph()`{.r}:
+
+```{r witec-txt-Graph, results='hide'}
+read.txt.Witec.Graph("fileio/txt.Witec/Witec-timeseries (Header).txt")
+read.txt.Witec.Graph("fileio/txt.Witec/Witec-Map (Header).txt", type = "map")
+read.txt.Witec.Graph("fileio/txt.Witec/nofilename (Header).txt", encoding = "latin1")
+```
+
+This function reads the spectra files automatically, if they are appropriately named and extracts additional information of the header file.
+As for the other Witec functions, it is possible to read image data by selecting `type = "map"`{.r}.
+Line scans and z-stacks should be read as single spectra.
+
+# Writing Your Own Import Function {#sec:writing-Import}
+
+This section gives examples of how to write import functions.
+The first example implements an import filter for an ASCII file format, basically from scratch.
+The second example shows how to implement
+more details for an already existing import filter.
+
+
+## A new ASCII Import Function: `read.txt.PerkinElmer` {#sec:read-txt-PerkinElmer}
+
+\index{ASCII!long!Fluorescence}
+\index{ASCII!long!PerkinElmer}
+\index{Fluorescence!ASCII long}
+\index{Fluorescence!PerkinElmer!ASCII}
+\index{PerkinElmer!Fluorescence}
+\index{PerkinElmer!ASCII long}
+
+The raw spectra of the `flu`{.r} data set (see also the [separate vignette](#list-of-vignettes)) are in PerkinElmer's ASCII file format, one spectrum per file.
+
+We need a function that automatically reads all files specified by a pattern, such as `*.txt`{.r}.
+To gain speed, users should preallocate the spectra matrix after the first reading of the file.
+
+
+<!-- ======================================================================= -->
+```{block, type="note-t", echo=show_reviewers_notes}
+**V. Gegzna's notes** `fileio-3`
+
+1. Should it be `\\#DATA` or just `#DATA`?
+```
+<!-- ======================================================================= -->
+
+
+A short examination of the files (`flu*.txt`{.r} in directory `txt.PerkinElmer`) reveals that the actual spectrum starts at line 55, after a line containing `\#DATA`.
+For now, no other information about the files is to be extracted.
+It is thus easier to skip the first 54 lines than searching for the line after `\#DATA`.
+
+A fully-featured import function should support:
+
+-  Reading multiple files by giving a pattern
+-  hand further arguments to `scan()`{.r}.
+   This comes handy in case the function is used later to import other data types.
+-  Also, skipping 54 lines would be a weird default, so we instead require it to be given
+explicitly.
+-  The same applies to the axis labels: they should default to reasonable settings for
+fluorescence spectra, but it should be possible to change them.
+-  The usual log entry arguments should be supplied.
+-  A sanity check should be implemented: stop with an error if a file does not have the same
+wavelength axis as the others.
+-  If no file can be found, an empty `hyperSpec`{.r} object is a consistent result: There is no need to stop with an error, but it is polite to issue an additional warning.
+-  Finally, package **hyperSpec** does some optional common post-processing for all imported files such as attaching the filename (or connection description) to the `hyperSpec`{.r} object (column `filename`{.r}) and deleting empty spectra.
+   These options can be globally switched on or off by options.
+
+
+<!-- \VerbatimInput[frame=single, label={read.txt.PerkinElmer.R}, formatcom=\footnotesize]{read.txt.PerkinElmer.R} -->
+
+```{r comment="", eval=TRUE, echo=FALSE, class.output="add-border sourceCode r"}
+writeLines(readLines("read.txt.PerkinElmer.R"))
+```
+
+imports the spectra.
+Note how the labels are set.
+The label with the special name `.wavelength`{.r} corresponds to the wavelength axis, all data columns should have a label with the same name.
+The spectra are always in a data column called `spc`{.r}.
+
+Thus,
+
+```{r read.txt.PerkinElmer, message=FALSE}
+source("read.txt.PerkinElmer.R")
+read.txt.PerkinElmer(Sys.glob("fileio/txt.PerkinElmer/flu?.txt"), skip = 54)
+```
+
+imports the spectra.
+
+The **hyperSpec** package does not export this function: while it is already useful for importing files, it is not general enough to work immediately with new data, e.g., completely ignoring the file header.
+Thus information like the excitation wavelength is lost.
+
+
+## Deriving a More Specific Function: `read.ENVI.Nicolet()`{.r}
+
+\index{Infrared!ENVI}
+\index{Infrared!Map}
+\index{Infrared!Nicolet}
+\index{ENVI!Infrared!Nicolet}
+\index{ENVI!Map}
+\index{ENVI!Nicolet}
+\index{Nicolet!ENVI}
+\index{Nicolet!Map}
+\index{Nicolet!Infrared}
+
+The function `read.ENVI.Nicolet()`{.r} is an excellent example of a more specific import filter derived from a generic filter for the particular file type.
+Nicolet FT-IR Imaging software saves some non-standard keywords in the header file of the ENVI data.
+This information can be used to reconstruct the $x$ and $y$ axes of the images.
+The units of the spectra are saved as well.
+
+Function `read.ENVI.Nicolet()`{.r} thus first adjusts the parameters for `read.ENVI()`{.r}.
+Then `read.ENVI()`{.r} does the main work of importing the file.
+The resulting `hyperSpec`{.r} object is post-processed according to the special header entries.
+
+For using the function, see section \@ref(sec:read-ENVI-Nicolet)<!--(p. \pageref{sec:read-ENVI-Nicolet})-->.
+
+
+<!-- \VerbatimInput[frame=single, label={read.ENVI.Nicolet.R}, formatcom=\footnotesize]{read.ENVI.Nicolet.R} -->
+
+```{r comment="", eval=TRUE, echo=FALSE, class.output="add-border sourceCode r"}
+writeLines(readLines("read.ENVI.Nicolet.R"))
+```
+
+## Deriving Import Filters for `spc` Files
+
+Please note that future changes inside the `read.spc()`{.r} function are likely to occur.
+However, if you just post-process the `hyperSpec`{.r} object returned by `read.spc()`{.r}, you should be fine.
+
+
+
+# **Appendix A:** File Import Functions {#appendix-a}
+
+<!-- ======================================================================= -->
+```{block, type="note-t", echo=show_reviewers_notes}
+**V. Gegzna's notes**:
+
+1. `# NOTE:`{.r} I'm not sure if we really need 3 tables (below) with almost identical information.
+The rendered page looks a bit cluttered.
+2. `# FIXME:`{.r} Section on "Princeton Instruments" (`spe`) format is missing, so there is a broken link in the tables (displayed as **??**).
+
+```
+<!-- ======================================================================= -->
+
+
+```{r read-fileformats-data, paged.print=FALSE, echo=FALSE, eval=TRUE}
+# ----------------------------------------------------------------------------
+options(knitr.kable.NA = '')
+# ----------------------------------------------------------------------------
+fileformats <- read.table("fileio--fileformats.txt", header = TRUE, sep = "|",
+  strip.white = TRUE, na.strings = "")
+
+fileformats$html_unfriendly_link <- NULL
+
+fileformats$Function <-
+  ifelse(
+    is.na(fileformats$Function),
+    "",
+   paste0("`", fileformats$Function, "()`{.r}")
+  )
+
+fileformats$Link <- ifelse(
+  is.na(fileformats$Link),
+  "",
+  paste0("\\@ref(sec:", fileformats$Link, ")")
+)
+
+rownames(fileformats) <- NULL
+```
+
+
+## File Import Functions by Format {#sec:format}
+
+```{r by-format, paged.print=FALSE, echo=FALSE, eval=TRUE}
+kbl1 <- knitr::kable(
+  fileformats[order(fileformats$Format)[!is.na(fileformats$Format)], ]
+  , format = "html"
+  , row.names = FALSE
+  # , caption = "File Import Functions by Format.  "
+)
+
+kableExtra::pack_rows(kbl1, index = table(fileformats$Format))
+```
+
+
+## File Import Functions by Manufacturer {#sec:manufacturer}
+
+```{r by-manufacturer, paged.print=FALSE, echo=FALSE, eval=TRUE}
+kbl2 <- knitr::kable(
+  fileformats[order(fileformats$Manufacturer), ]
+  , format = "html"
+  , row.names = FALSE
+  # , caption = "File Import Functions by Manufacturer.  "
+)
+
+kableExtra::pack_rows(kbl2, index = table(fileformats$Manufacturer))
+```
+
+
+## File Import Functions by Spectroscopy {#sec:spectroscopy}
+
+```{r by-spectroscopy, paged.print=FALSE, echo=FALSE, eval=TRUE}
+kbl <- knitr::kable(
+  fileformats[order(fileformats$Spectroscopy), ]
+  , format = "html"
+  , row.names = FALSE
+  # , caption = "File Import Functions by Spectroscopy.  "
+)
+
+kableExtra::pack_rows(kbl, index = table(fileformats$Spectroscopy))
+```
+
+
+# Session Info {-}
+
+```{r session-info-fileio, paged.print=FALSE, eval=TRUE}
+sessioninfo::session_info()
+```
+
+\printindex
+
+# References {-}

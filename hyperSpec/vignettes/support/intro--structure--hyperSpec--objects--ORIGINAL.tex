@@ -1,0 +1,56 @@
+%
+% Create a Diagram of the Structure of a hyperSpec Object
+%
+\documentclass[a4paper, 10pt]{scrartcl}
+\usepackage[utf8x]{inputenc}
+\usepackage{tikz}
+\usepackage{contour}
+\usepackage[active,pdftex,tightpage]{preview}
+\PreviewEnvironment[]{tikzpicture}
+
+\begin{document}
+\usetikzlibrary{decorations}
+\usetikzlibrary{snakes}
+
+\begin{tikzpicture}[scale=0.5,line width = 1pt]
+
+\foreach \x in {0,1,...,10}
+ 	\foreach \y in {0,1,...,6}
+ 	\draw (\x,\y) rectangle (1,1);
+
+\foreach \x in {2,3,...,9} \draw (\x,7) rectangle +(1,1);
+
+\draw (0.5,3) node [blue!50!black, fill=white,text height=1.5ex,text depth=.25ex] {\texttt{\$x}};
+\draw (1.48,3) node [blue!50!black, fill=white,text height=1.5ex,text depth=.25ex,] {\texttt{\$y}};
+
+\foreach \x in {2,3,...,10} {
+	\draw[color=green!50!black] (\x,0) -- (\x,6);
+	\draw[color=green!50!black, dash pattern=on 2pt off 2pt] (\x,6.9) -- (\x,6.1);
+	\draw[color=green!50!black] (\x,7) -- (\x,8);
+	}
+
+\draw (6,3) node [blue!50!black, fill=white,text height=1.5ex,text depth=.25ex] {\texttt{\$spc}};
+
+\foreach \x in {0,1,1.95,10.07} {
+	\draw[color=blue!50!black, line width=2pt] (\x,0) -- (\x,6);
+	}
+
+\foreach \y in {0,6} {
+	\draw[line width=2pt, color=blue!50!black] (-0.050,\y) -- (10.1,\y);
+	}
+
+
+\draw [<->, >=|, color=green!50!black] (2,8.6) -- +(8,0) node [fill=white, pos = 0.5] {\texttt{nwl} = 8};
+\draw [<->, >=|, color=blue!50!black] (0,-.6) -- +(10,0) node [fill=white, pos = 0.5] {\texttt{ncol} = 3};
+\draw [<->, >=|] (-.6,0) -- +(0,6) node [fill=white, pos = 0.5, rotate=90] {\texttt{nrow} = 6};
+
+
+\draw [snake=brace, segment amplitude=5, mirror snake, raise snake=10, line width=1pt] (10,0) -- (10,6);
+
+\draw (11,3) node [right, ] () {\texttt{@data}};
+\draw (10.2,7.5) node [right, ] () {\texttt{@wavelength}};
+%\draw (0,0) rectangle ;
+
+
+\end{tikzpicture}
+\end{document}
