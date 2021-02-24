@@ -59,7 +59,6 @@ suppress_warnings <- function(...) {
   if (R.version$major < 4) {
     # Suppress all warnings
     suppressWarnings(list(...)$expr)
-
   } else {
     # Selectively suppress certain class of warnings
     suppressWarnings(...)
