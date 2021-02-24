@@ -41,8 +41,6 @@
 #' @param ... arguments handed to [utils::write.table()].
 #'
 #'
-#' @concept io
-#' @concept write to file
 #'
 #' @importFrom utils write.table
 #' @export

@@ -34,7 +34,6 @@
 #' @note This function is still experimental
 #' @export
 #'
-#' @concept baseline
 #'
 #' @examples
 #' plot(paracetamol[, , 175 ~ 1800])
