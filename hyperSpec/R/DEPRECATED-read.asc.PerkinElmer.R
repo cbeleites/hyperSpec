@@ -1,4 +1,7 @@
-#' File import filter PerkinElmer ASCII spectra (DEPRECATED)
+#' @name DEPRECATED-read.asc.PerkinElmer
+#' @concept moved to hySpc.read.txt
+#'
+#' @title (DEPRECATED) File import filter PerkinElmer ASCII spectra
 #'
 #' @description
 #'
@@ -20,8 +23,6 @@
 #' @importFrom utils packageDescription
 #' @export
 #'
-# @concept io
-#' @concept moved to hySpc.read.txt
 
 read.asc.PerkinElmer <- function(file = stop("filename or connection needed"), ...) {
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

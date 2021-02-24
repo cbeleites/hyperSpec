@@ -6,7 +6,8 @@
 ###  (y x) wl int
 ###
 
-#' @rdname deprecated-textio
+#' @rdname DEPRECATED-textio
+#' @concept moved to hySpc.read.txt
 #'
 #' @param file filename or connection
 #' @param cols the column names specifying the column order.
@@ -32,7 +33,6 @@
 #'
 # @keywords IO file
 # @concept io
-#' @concept moved to hySpc.read.txt
 #'
 #' @export
 #' @importFrom utils read.table unstack

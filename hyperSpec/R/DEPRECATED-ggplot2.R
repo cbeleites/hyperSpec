@@ -1,7 +1,8 @@
-#' @name hyperSpec-deprecated-ggplot2
+#' @name DEPRECATED-ggplot2
+#' @concept moved to hySpc.ggplot2
 #'
-#' @title Spectra Plotting with \pkg{ggplot2} Was Moved to \pkg{hySpc.ggplot2}
-#'       (DEPRECATED)
+#' @title (DEPRECATED)
+#'        Spectra Plotting with \pkg{ggplot2} Was Moved to \pkg{hySpc.ggplot2}
 #'
 #' @description
 #'
@@ -13,7 +14,6 @@
 #'
 #' @author Claudia Beleites
 #'
-#' @concept moved to hySpc.ggplot2
 #'
 #' @import ggplot2
 #' @importFrom grid pushViewport viewport popViewport grid.layout unit
@@ -24,7 +24,7 @@
 NULL
 
 
-#' @rdname hyperSpec-deprecated-ggplot2
+#' @rdname DEPRECATED-ggplot2
 #'
 #' @param x `hyperSpec` object
 #' @param wl.range wavelength ranges to plot
@@ -51,7 +51,7 @@ qplotspc <- function(x,
                      debuglevel = hy.getOption("debuglevel")) {
 
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  deprecated_ggplot2(new = "qplotspc")
+ DEPRECATED-ggplot2(new = "qplotspc")
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   chk.hy(x)
@@ -109,7 +109,7 @@ qplotspc <- function(x,
 }
 
 
-#' @rdname hyperSpec-deprecated-ggplot2
+#' @rdname DEPRECATED-ggplot2
 #'
 #' @param object  hyperSpec object
 #' @param mapping see  [ggplot2::geom_tile()]
@@ -133,7 +133,7 @@ qplotmap <- function(object,
                      func = mean, func.args = list(),
                      map.tileonly = FALSE) {
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  deprecated_ggplot2(new = "qplotmap")
+ DEPRECATED-ggplot2(new = "qplotmap")
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   chk.hy(object)
   validObject(object)
@@ -183,7 +183,7 @@ qplotmap <- function(object,
 }
 
 
-#' @rdname hyperSpec-deprecated-ggplot2
+#' @rdname DEPRECATED-ggplot2
 #'
 #' @param object hyperSpec object
 #' @param mapping see  [ggplot2::geom_point()]
@@ -203,7 +203,7 @@ qplotc <- function(object, mapping = aes_string(x = "c", y = "spc"), ...,
                    func = NULL, func.args = list(),
                    map.pointonly = FALSE) {
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  deprecated_ggplot2(new = "qplotc")
+ DEPRECATED-ggplot2(new = "qplotc")
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   chk.hy(object)
   validObject(object)
@@ -295,7 +295,7 @@ make.fn.expr <- function(fn, l = list()) {
 }
 
 
-#' @rdname hyperSpec-deprecated-ggplot2
+#' @rdname DEPRECATED-ggplot2
 #'
 #' @param object `hyperSpec` object
 #' @param ... handed over to [hyperSpec::qmixlegend()] and [hyperSpec::qmixtile()]
@@ -317,7 +317,7 @@ make.fn.expr <- function(fn, l = list()) {
 #'
 qplotmixmap <- function(object, ...) {
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  deprecated_ggplot2(new = "qplotmixmap")
+ DEPRECATED-ggplot2(new = "qplotmixmap")
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   # Suppress excessive deprecation warnings from internally used functions.
   suppress_warnings(classes = "deprecatedWarning", expr = {
@@ -347,7 +347,7 @@ qplotmixmap <- function(object, ...) {
   invisible(list(map = p, legend = l))
 }
 
-#' @rdname hyperSpec-deprecated-ggplot2
+#' @rdname DEPRECATED-ggplot2
 #'
 #' @param p plot object
 #' @param l legend object
@@ -356,7 +356,7 @@ qplotmixmap <- function(object, ...) {
 #' @export
 legendright <- function(p, l, legend.width = 8, legend.unit = "lines") {
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  deprecated_ggplot2()
+ DEPRECATED-ggplot2()
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   plot.new()
   pushViewport(viewport(layout = grid.layout(1, 2,
@@ -368,7 +368,7 @@ legendright <- function(p, l, legend.width = 8, legend.unit = "lines") {
 }
 
 
-#' @rdname hyperSpec-deprecated-ggplot2
+#' @rdname DEPRECATED-ggplot2
 #'
 #' @param object matrix to be plotted with mixed colour channels
 #' @param purecol pure component colours, names determine legend labels
@@ -386,7 +386,7 @@ qmixtile <- function(object,
                      ...,
                      map.tileonly = FALSE) {
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  deprecated_ggplot2()
+ DEPRECATED-ggplot2()
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   ## calculate fill colours
@@ -404,7 +404,7 @@ qmixtile <- function(object,
   p + scale_fill_identity() + theme(legend.position = "none")
 }
 
-#' @rdname hyperSpec-deprecated-ggplot2
+#' @rdname DEPRECATED-ggplot2
 #'
 #' @param na.rm see [base::min()]
 #' @param legend should a legend be produced instead of normalized values?
@@ -413,7 +413,7 @@ qmixtile <- function(object,
 #' @export
 normalize.colrange <- function(x, na.rm = TRUE, legend = FALSE, n = 100, ...) {
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  deprecated_ggplot2()
+ DEPRECATED-ggplot2()
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   ## legend
   if (legend) {
@@ -432,11 +432,11 @@ normalize.colrange <- function(x, na.rm = TRUE, legend = FALSE, n = 100, ...) {
   }
 }
 
-#' @rdname hyperSpec-deprecated-ggplot2
+#' @rdname DEPRECATED-ggplot2
 #' @export
 normalize.range <- function(x, na.rm = TRUE, legend = FALSE, n = 100, ...) {
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  deprecated_ggplot2()
+ DEPRECATED-ggplot2()
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   if (legend) {
     y <- matrix(seq(min(x), max(x), length.out = n), nrow = n, ncol = ncol(x))
@@ -453,11 +453,11 @@ normalize.range <- function(x, na.rm = TRUE, legend = FALSE, n = 100, ...) {
   }
 }
 
-#' @rdname hyperSpec-deprecated-ggplot2
+#' @rdname DEPRECATED-ggplot2
 #' @export
 normalize.null <- function(x, na.rm = TRUE, legend = FALSE, n = 100, ...) {
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  deprecated_ggplot2()
+ DEPRECATED-ggplot2()
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   if (legend) {
     y <- apply(x, 2, function(x) seq(min(x), max(x), length.out = n))
@@ -472,7 +472,7 @@ normalize.null <- function(x, na.rm = TRUE, legend = FALSE, n = 100, ...) {
   }
 }
 
-#' @rdname hyperSpec-deprecated-ggplot2
+#' @rdname DEPRECATED-ggplot2
 #'
 #' @param min numeric with value corresponding to "lowest" colour for each column
 #' @param max numeric with value corresponding to "hightest" colour for each column
@@ -481,7 +481,7 @@ normalize.null <- function(x, na.rm = TRUE, legend = FALSE, n = 100, ...) {
 normalize.minmax <- function(x, min = 0, max = 1, legend = FALSE, n = 100,
                              ...) {
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  deprecated_ggplot2()
+ DEPRECATED-ggplot2()
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   if (legend) {
     y <- matrix(seq(0, 1, length.out = n), nrow = n, ncol = ncol(x))
@@ -507,7 +507,7 @@ normalize.minmax <- function(x, min = 0, max = 1, legend = FALSE, n = 100,
   }
 }
 
-#' @rdname hyperSpec-deprecated-ggplot2
+#' @rdname DEPRECATED-ggplot2
 #'
 #' @param dx width of label bar
 #' @param ny number of colours in legend
@@ -517,7 +517,7 @@ normalize.minmax <- function(x, min = 0, max = 1, legend = FALSE, n = 100,
 qmixlegend <- function(x, purecol, dx = 0.33, ny = 100, labels = names(purecol),
                        normalize = normalize.colrange, ...) {
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  deprecated_ggplot2()
+ DEPRECATED-ggplot2()
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   if (!is.matrix(x)) {
     x <- matrix(x, ncol = 1)
@@ -571,7 +571,7 @@ qmixlegend <- function(x, purecol, dx = 0.33, ny = 100, labels = names(purecol),
   l
 }
 
-#' @rdname hyperSpec-deprecated-ggplot2
+#' @rdname DEPRECATED-ggplot2
 #'
 #' @param x matrix with component intensities in columns
 #' @param against value to mix against (for `sub = TRUE` only, 1 = white, 0 = black)
@@ -585,7 +585,7 @@ qmixlegend <- function(x, purecol, dx = 0.33, ny = 100, labels = names(purecol),
 colmix.rgb <- function(x, purecol, against = 1, sub = TRUE,
                        normalize = normalize.colrange, ...) {
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  deprecated_ggplot2()
+ DEPRECATED-ggplot2()
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   if (!is.null(normalize)) {
     x <- normalize(x, ...)

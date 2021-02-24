@@ -1,4 +1,7 @@
-#' Import Raman measurements from Renishaw ASCII-files  (DEPRECATED)
+#' @name DEPRECATED-read.txt.Renishaw
+#' @concept moved to hySpc.read.txt
+#'
+#' @title (DEPRECATED) Import Raman measurements from Renishaw ASCII-files
 #'
 #' @description
 #'
@@ -47,12 +50,8 @@
 #' @return the `hyperSpec` object
 #' @export
 #' @author C. Beleites
-#' @seealso [read.txt.long()], [read.txt.wide()],
-#'   [base::scan()]
+#' @seealso [read.txt.long()], [read.txt.wide()],  [base::scan()]
 #'
-# @keywords IO file
-# @concept io
-#' @concept moved to hySpc.read.txt
 #'
 #' @importFrom utils head
 read.txt.Renishaw <- function(file = stop("file is required"),
@@ -217,13 +216,12 @@ hySpc.testthat::test(read.txt.Renishaw) <- function() {
   })
 }
 
+#' @rdname DEPRECATED-read.txt.Renishaw
+#' @concept moved to hySpc.read.txt
+#'
 #' @export
 #' @param txt.file name of the .txt file in the .zip archive. Defaults to zip
 #'   file's name with suffix .txt instead of .zip
-#' @rdname read.txt.Renishaw
-#'
-# @concept io
-#' @concept moved to hySpc.read.txt
 
 read.zip.Renishaw <- function(file = stop("filename is required"),
                               txt.file = sub("[.]zip", ".txt", basename(file)), ...) {

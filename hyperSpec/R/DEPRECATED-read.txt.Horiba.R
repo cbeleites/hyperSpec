@@ -1,8 +1,9 @@
-#' @title Import Horiba Labspec exported ASCII files (DEPRECATED)
+#' @name DEPRECATED-read.txt.Horiba
+#' @concept moved to hySpc.read.txt
 #'
+#' @title (DEPRECATED) Import Horiba Labspec exported ASCII files
 #'
 #' @description
-#'
 #' These data input functions are **deprecated** and they will be removed in
 #' the next release of \pkg{hyperspec} package.
 #' Now functions in package \pkg{hySpc.read.txt}
@@ -18,12 +19,8 @@
 #'
 #' @param file connection (file name and path) to the `.txt` file
 #' @param cols,header,sep,row.names,check.names,... further parameters are handed over to [hyperSpec::read.txt.wide()]
-#' @rdname read.txt.Horiba
 #' @author C. Beleites
 #' @return hyperSpec object
-#'
-# @concept io
-#' @concept moved to hySpc.read.txt
 #'
 #' @export
 read.txt.Horiba <- function(file, cols = c(
@@ -47,7 +44,7 @@ read.txt.Horiba <- function(file, cols = c(
   spc
 }
 
-#' @rdname read.txt.Horiba
+#' @rdname DEPRECATED-read.txt.Horiba
 #' @export
 #'
 # @concept io
@@ -70,7 +67,7 @@ read.txt.Horiba.xy <- function(file, ...) {
   )
 }
 
-#' @rdname read.txt.Horiba
+#' @rdname DEPRECATED-read.txt.Horiba
 #'
 #' @details
 #' `read.txt.Horiba.t`  reads time series, i.e. .txt files with the time in the first column

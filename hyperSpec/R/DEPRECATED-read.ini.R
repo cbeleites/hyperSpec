@@ -1,4 +1,7 @@
-#' Read INI files (DEPRECATED)
+#' @name DEPRECATED-read.ini
+#' @concept moved to hySpc.read.txt
+#'
+#' @title (DEPRECATED) Read INI files
 #'
 #' @description
 #'
@@ -19,7 +22,7 @@
 #'
 #' `read.ini` sanitizes the element names and tries to convert scalars and comma separated
 #' numeric vectors to numeric.
-#' @rdname read-ini
+#' @rdname DEPRECATED-read-ini
 #' @param con connection or file name
 #' @param skip number of lines to skip before first `[section]` starts
 #' @param encoding see [base::readLines()]
@@ -29,9 +32,6 @@
 #'
 #' @export
 #'
-# @keywords IO file
-# @concept io
-#' @concept moved to hySpc.read.txt
 
 
 read.ini <- function(con = stop("Connection con needed."), skip = NULL, encoding = "unknown") {

@@ -1,4 +1,7 @@
-#' @title File Import Witec Raman (DEPRECATED)
+#' @name DEPRECATED-read.txt.Witec
+#' @concept moved to hySpc.read.txt
+#'
+#' @title (DEPRECATED) File Import Witec Raman
 #'
 #' @description
 #'
@@ -33,9 +36,6 @@
 #'
 #' [options()] for details on options.
 #' @export
-#'
-# @concept io
-#' @concept moved to hySpc.read.txt
 #'
 #' @importFrom utils head
 read.txt.Witec <- function(file = stop("filename or connection needed"),
@@ -191,12 +191,11 @@ hySpc.testthat::test(read.txt.Witec) <- function() {
   })
 }
 
-#' @rdname read.txt.Witec
+#' @rdname DEPRECATED-read.txt.Witec
+#' @concept moved to hySpc.read.txt
+#'
 #' @param filex filename wavelength axis file
 #' @param filey filename intensity file
-#'
-# @concept io
-#' @concept moved to hySpc.read.txt
 #'
 #' @export
 read.dat.Witec <- function(filex = stop("filename or connection needed"),
@@ -281,11 +280,10 @@ hySpc.testthat::test(read.dat.Witec) <- function() {
 }
 
 
-#' @rdname read.txt.Witec
-#' @param headerfile filename or connection to ASCII file with header information
-#'
-# @concept io
+#' @rdname DEPRECATED-read.txt.Witec
 #' @concept moved to hySpc.read.txt
+#'
+#' @param headerfile filename or connection to ASCII file with header information
 #'
 #' @export
 read.txt.Witec.Graph <- function(headerfile = stop("filename or connection needed"),

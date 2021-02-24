@@ -1,4 +1,4 @@
-### -----------------------------------------------------------------------------
+### --------------------------------------------------------------------------~
 ###
 ###  read.txt.wide
 ###
@@ -6,24 +6,19 @@
 ###  x y ... int (wl1)  int (wl2) ... int (wl p) z ...
 ###
 
-# FIXME: this functionality is returned to hyperSpec, Fix:
-#        @concept moved to hySpc.read.txt
-
-#' Import `hyperSpec` objects from ASCII (text) files (DEPRECATED)
+#' @rdname DEPRECATED-textio
+#' @concept deprecated
+#'
+#' @title (DEPRECATED) Import `hyperSpec` objects from ASCII (text) files
 #'
 #' @description
+#' These \pkg{hyperSpec} functions are **deprecated** and not maintained any
+#' more. You should not use these.
+#' Currently they are present due to back-compatibility reasons and will be
+#' removed in the next release of the package.
+#' Please, use the suggested alternative functions instead.
 #'
-#' These data input functions are **deprecated** and they will be removed in
-#' the next release of \pkg{hyperspec} package.
-#' Now functions in package \pkg{hySpc.read.txt}
-#' ([link](https://r-hyperspec.github.io/hySpc.read.txt/reference/index.html))
-#' should be used as the alternatives.
-#'
-#'
-#' @rdname deprecated-textio
-#' @aliases read.txt.wide
-#'
-#' @details
+#' `_____________`
 #'
 #' Import `hyperSpec` objects from ASCII (text) files.
 #'
@@ -91,10 +86,6 @@
 #'
 #' @param check.names handed to [utils::read.table()]. Make sure this is
 #'        `FALSE`, if the column names of the spectra are the wavelength values.
-#'
-# @concept io
-# FIXME: change concept
-#' @concept moved to hySpc.read.txt
 #'
 #' @export
 #' @importFrom utils read.table head
