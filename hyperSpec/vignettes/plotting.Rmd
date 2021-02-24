@@ -154,7 +154,7 @@ For some plots of the `faux_cell`{.r} dataset, the pre-processed spectra and the
 set.seed(1)
 faux_cell <- generate_faux_cell()
 
-faux_cell_preproc <- faux_cell - spc.fit.poly.below(faux_cell)
+faux_cell_preproc <- faux_cell - spc_fit_poly_below(faux_cell)
 faux_cell_preproc <- faux_cell_preproc / rowMeans(faux_cell)
 faux_cell_preproc <- faux_cell_preproc - quantile(faux_cell_preproc, 0.05)
 
