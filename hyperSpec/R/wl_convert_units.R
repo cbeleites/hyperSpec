@@ -172,7 +172,7 @@ hySpc.testthat::test(wl_convert_units) <- function() {
   })
 
 
-  test_that("wl_convert_units() output is coreect if units do not change", {
+  test_that("wl_convert_units() output is correct if units do not change", {
     # No conversion is expected
     expect_equal(wl_convert_units(1000, "raman", "raman"), 1000)
     expect_equal(wl_convert_units(1000, "invcm", "invcm"), 1000)
