@@ -44,5 +44,5 @@ read.txt.PerkinElmer <- function(files = stop("filenames needed"), ..., label = 
   spc <- new("hyperSpec", wavelength = wavelength, spc = spc, label = label)
 
   ## consistent file import behaviour across import functions
-  hyperSpec:::.fileio.optional(spc, files)
+  hyperSpec::.spc_io_postprocess_optional(spc, files)
 }
