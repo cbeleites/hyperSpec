@@ -30,3 +30,4 @@ vignettes/fileio
 # Documentation
 man/*.Rd
 NAMESPACE
+NEWS.html
