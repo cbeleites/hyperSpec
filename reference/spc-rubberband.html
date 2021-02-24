@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Rubberband baseline correction. — spc.rubberband • hyperSpec</title>
+<title>Rubberband baseline correction. — spc_rubberband • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,7 +41,7 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Rubberband baseline correction. — spc.rubberband" />
+<meta property="og:title" content="Rubberband baseline correction. — spc_rubberband" />
 <meta property="og:description" content="Baseline with support points determined from a convex hull of the spectrum.
 Use debuglevel &amp;gt;= 1 to obtain debug plots, either directly via function
 argument or by setting hyperSpec's debuglevel option." />
@@ -168,7 +168,7 @@ argument or by setting hyperSpec's debuglevel option." />
 argument or by setting hyperSpec's <code>debuglevel</code> option.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>spc.rubberband</span><span class='op'>(</span><span class='va'>spc</span>, <span class='va'>...</span>, upper <span class='op'>=</span> <span class='cn'>FALSE</span>, noise <span class='op'>=</span> <span class='fl'>0</span>, spline <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>spc_rubberband</span><span class='op'>(</span><span class='va'>spc</span>, <span class='va'>...</span>, upper <span class='op'>=</span> <span class='cn'>FALSE</span>, noise <span class='op'>=</span> <span class='fl'>0</span>, spline <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -204,7 +204,7 @@ the support points or piecewise linear.</p></td>
     <p>This function is still experimental</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='spc.fit.poly.html'>spc.fit.poly()</a></code>, <code><a href='spc.fit.poly.html'>spc.fit.poly.below()</a></code></p>
+    <div class='dont-index'><p><code><a href='spc_fit_poly.html'>spc_fit_poly()</a></code>, <code><a href='spc_fit_poly.html'>spc_fit_poly_below()</a></code></p>
 <p><code><a href='../articles/baseline.html'>vignette ("baseline")</a></code></p>
 <p><code><a href='hy.getOptions.html'>hy.setOptions()</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
@@ -213,7 +213,7 @@ the support points or piecewise linear.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='plot-methods.html'>plot</a></span><span class='op'>(</span><span class='va'>paracetamol</span><span class='op'>[</span>, , <span class='fl'>175</span> <span class='op'>~</span> <span class='fl'>1800</span><span class='op'>]</span><span class='op'>)</span>
-</div><div class='input'><span class='va'>bl</span> <span class='op'>&lt;-</span> <span class='fu'>spc.rubberband</span><span class='op'>(</span><span class='va'>paracetamol</span><span class='op'>[</span>, , <span class='fl'>175</span> <span class='op'>~</span> <span class='fl'>1800</span><span class='op'>]</span>, noise <span class='op'>=</span> <span class='fl'>300</span>, df <span class='op'>=</span> <span class='fl'>20</span><span class='op'>)</span>
+</div><div class='input'><span class='va'>bl</span> <span class='op'>&lt;-</span> <span class='fu'>spc_rubberband</span><span class='op'>(</span><span class='va'>paracetamol</span><span class='op'>[</span>, , <span class='fl'>175</span> <span class='op'>~</span> <span class='fl'>1800</span><span class='op'>]</span>, noise <span class='op'>=</span> <span class='fl'>300</span>, df <span class='op'>=</span> <span class='fl'>20</span><span class='op'>)</span>
 <span class='fu'><a href='plot-methods.html'>plot</a></span><span class='op'>(</span><span class='va'>bl</span>, add <span class='op'>=</span> <span class='cn'>TRUE</span>, col <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
 </div><div class='img'><img src='spc-rubberband-1.png' alt='' width='466' height='288' /></div><div class='input'>
 <span class='fu'><a href='plot-methods.html'>plot</a></span><span class='op'>(</span><span class='va'>paracetamol</span><span class='op'>[</span>, , <span class='fl'>175</span> <span class='op'>~</span> <span class='fl'>1800</span><span class='op'>]</span> <span class='op'>-</span> <span class='va'>bl</span><span class='op'>)</span>

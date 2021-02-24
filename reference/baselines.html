@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Polynomial Baseline Fitting. — spc.fit.poly • hyperSpec</title>
+<title>Polynomial Baseline Fitting. — spc_fit_poly • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,7 +41,7 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Polynomial Baseline Fitting. — spc.fit.poly" />
+<meta property="og:title" content="Polynomial Baseline Fitting. — spc_fit_poly" />
 <meta property="og:description" content="These functions fit polynomal baselines." />
 
 <meta name="robots" content="noindex" />
@@ -164,14 +164,14 @@
     <p>These functions fit polynomal baselines.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>spc.fit.poly</span><span class='op'>(</span>
+    <pre class="usage"><span class='fu'>spc_fit_poly</span><span class='op'>(</span>
   <span class='va'>fit.to</span>,
   apply.to <span class='op'>=</span> <span class='cn'>NULL</span>,
   poly.order <span class='op'>=</span> <span class='fl'>1</span>,
   offset.wl <span class='op'>=</span> <span class='op'>!</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/NULL.html'>is.null</a></span><span class='op'>(</span><span class='va'>apply.to</span><span class='op'>)</span><span class='op'>)</span>
 <span class='op'>)</span>
 
-<span class='fu'>spc.fit.poly.below</span><span class='op'>(</span>
+<span class='fu'>spc_fit_poly_below</span><span class='op'>(</span>
   <span class='va'>fit.to</span>,
   apply.to <span class='op'>=</span> <span class='va'>fit.to</span>,
   poly.order <span class='op'>=</span> <span class='fl'>1</span>,
@@ -244,10 +244,10 @@ the spectral range of <code>apply.to</code></p>
 is <code>NULL</code>, a <code>hyperSpec</code> object with the polynomial coefficients
 is returned, otherwise the polynomials are evaluated on the spectral range
 of <code>apply.to</code>.</p>
-<p><code>spc.fit.poly()</code> calculates the least squares fit of order
+<p><code>spc_fit_poly()</code> calculates the least squares fit of order
 <code>poly.order</code> to the <em>complete</em> spectra given in <code>fit.to</code>.
 Thus <code>fit.to</code> needs to be cut appropriately.</p>
-<p><code>spc.fit.poly.below()</code> tries to fit the baseline on appropriate spectral
+<p><code>spc_fit_poly_below()</code> tries to fit the baseline on appropriate spectral
 ranges of the spectra in <code>fit.to</code>.  For details, see the
 <code><a href='../articles/baseline.html'>vignette("baseline")</a></code>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
@@ -265,21 +265,21 @@ ranges of the spectra in <code>fit.to</code>.  For details, see the
 <span class='op'>}</span>
 
 <span class='va'>spc</span> <span class='op'>&lt;-</span> <span class='va'>faux_cell</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>]</span>
-<span class='va'>baselines</span> <span class='op'>&lt;-</span> <span class='fu'>spc.fit.poly</span><span class='op'>(</span><span class='va'>spc</span><span class='op'>[</span>, , <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>625</span> <span class='op'>~</span> <span class='fl'>640</span>, <span class='fl'>1785</span> <span class='op'>~</span> <span class='fl'>1800</span><span class='op'>)</span><span class='op'>]</span>, <span class='va'>spc</span><span class='op'>)</span>
+<span class='va'>baselines</span> <span class='op'>&lt;-</span> <span class='fu'>spc_fit_poly</span><span class='op'>(</span><span class='va'>spc</span><span class='op'>[</span>, , <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>625</span> <span class='op'>~</span> <span class='fl'>640</span>, <span class='fl'>1785</span> <span class='op'>~</span> <span class='fl'>1800</span><span class='op'>)</span><span class='op'>]</span>, <span class='va'>spc</span><span class='op'>)</span>
 <span class='fu'><a href='plot-methods.html'>plot</a></span><span class='op'>(</span><span class='va'>spc</span> <span class='op'>-</span> <span class='va'>baselines</span><span class='op'>)</span>
 </div><div class='img'><img src='baselines-1.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='va'>baselines</span> <span class='op'>&lt;-</span> <span class='fu'>spc.fit.poly.below</span><span class='op'>(</span><span class='va'>spc</span><span class='op'>)</span>
+<span class='va'>baselines</span> <span class='op'>&lt;-</span> <span class='fu'>spc_fit_poly_below</span><span class='op'>(</span><span class='va'>spc</span><span class='op'>)</span>
 <span class='fu'><a href='plot-methods.html'>plot</a></span><span class='op'>(</span><span class='va'>spc</span> <span class='op'>-</span> <span class='va'>baselines</span><span class='op'>)</span>
 </div><div class='img'><img src='baselines-2.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='fu'>spc.fit.poly.below</span><span class='op'>(</span><span class='va'>faux_cell</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>]</span>, debuglevel <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
+<span class='fu'>spc_fit_poly_below</span><span class='op'>(</span><span class='va'>faux_cell</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>]</span>, debuglevel <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Fitting with npts.min = 15</span></div><div class='output co'>#&gt; <span class='message'>spectrum      1:    16 support points, noise = 0.0,   5 iterations</span></div><div class='output co'>#&gt; <span class='message'>spectrum      2:    37 support points, noise = 0.0,   4 iterations</span></div><div class='output co'>#&gt; <span class='message'>spectrum      3:    30 support points, noise = 0.0,   4 iterations</span></div><div class='output co'>#&gt; hyperSpec object
 #&gt;    3 spectra
 #&gt;    4 data columns
-#&gt;    300 data points / spectrum</div><div class='input'><span class='fu'>spc.fit.poly.below</span><span class='op'>(</span><span class='va'>faux_cell</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>]</span>, debuglevel <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
+#&gt;    300 data points / spectrum</div><div class='input'><span class='fu'>spc_fit_poly_below</span><span class='op'>(</span><span class='va'>faux_cell</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>]</span>, debuglevel <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Fitting with npts.min = 15</span></div><div class='output co'>#&gt; <span class='message'>start: 300 support points</span></div><div class='output co'>#&gt; <span class='message'>spectrum      1:    16 support points, noise = 0.0,   5 iterations</span></div><div class='output co'>#&gt; <span class='message'>spectrum      2:    37 support points, noise = 0.0,   4 iterations</span></div><div class='output co'>#&gt; <span class='message'>spectrum      3:    30 support points, noise = 0.0,   4 iterations</span></div><div class='img'><img src='baselines-3.png' alt='' width='466' height='288' /></div><div class='output co'>#&gt; hyperSpec object
 #&gt;    3 spectra
 #&gt;    4 data columns
-#&gt;    300 data points / spectrum</div><div class='input'><span class='fu'>spc.fit.poly.below</span><span class='op'>(</span><span class='va'>faux_cell</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>]</span>,
+#&gt;    300 data points / spectrum</div><div class='input'><span class='fu'>spc_fit_poly_below</span><span class='op'>(</span><span class='va'>faux_cell</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>]</span>,
   debuglevel <span class='op'>=</span> <span class='fl'>3</span>,
   noise <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>rowMeans</a></span><span class='op'>(</span><span class='va'>faux_cell</span><span class='op'>[[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span><span class='op'>)</span>
 <span class='op'>)</span>

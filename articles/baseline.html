@@ -128,7 +128,7 @@
 <br><a class="author_email" href="mailto:#"></a><a href="mailto:chemometrie@beleites.de" class="email">chemometrie@beleites.de</a>
       </address>
                   
-            <h4 class="date">2021-02-23</h4>
+            <h4 class="date">2021-02-24</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/cbeleites/hyperSpec/blob/master/../vignettes/baseline.Rmd"><code>../vignettes/baseline.Rmd</code></a></small>
       <div class="hidden name"><code>baseline.Rmd</code></div>
@@ -141,8 +141,8 @@
 <h1 class="hasAnchor">
 <a href="#sec:introduction" class="anchor"></a><span class="header-section-number">1</span> Introduction</h1>
 <p>This document discusses baseline correction methods that can be used with package <strong>hyperSpec</strong>.
-Package <strong>hyperSpec</strong> provides two fitting functions for polynomial baselines, <code class="sourceCode r"><span class="kw">spc.fit.poly</span>()</code> and <code class="sourceCode r"><span class="kw">spc.fit.poly.below</span>()</code>.
-Another possibility is <code class="sourceCode r"><span class="kw">spc.rubberband</span>()</code>, a “rubberband” method that determines support points by finding the convex hull of each spectrum.
+Package <strong>hyperSpec</strong> provides two fitting functions for polynomial baselines, <code class="sourceCode r"><span class="kw">spc_fit_poly</span>()</code> and <code class="sourceCode r"><span class="kw">spc_fit_poly_below</span>()</code>.
+Another possibility is <code class="sourceCode r"><span class="kw">spc_rubberband</span>()</code>, a “rubberband” method that determines support points by finding the convex hull of each spectrum.
 The baselines are then piecewise linear or (smoothing) splines through the support points.</p>
 <p>Please note that a specialized package for baseline fitting, package <strong>baseline</strong><span class="citation">[<a href="#ref-R-baseline" role="doc-biblioref">1</a>,<a href="#ref-baseline2010" role="doc-biblioref">2</a>]</span>, exists that provides many more methods to fit baselines to spectroscopic data.
 Using package <strong>baseline</strong> with <code class="sourceCode r">hyperSpec</code> objects is demonstrated in <code class="sourceCode r"><span class="kw">vignette</span> (<span class="st">"hyperspec"</span>)</code>.</p>
@@ -152,14 +152,14 @@ Using package <strong>baseline</strong> with <code class="sourceCode r">hyperSpe
 <a href="#sec:polynomial-baselines" class="anchor"></a><span class="header-section-number">2</span> Polynomial Baselines</h1>
 <p>In contrast to many other programs that provide baseline correction methods, package <strong>hyperSpec</strong>’s polynomial baseline functions do least squares fits.
 However, the baselines can be forced through particular points, if this behaviour is needed.</p>
-<p>The main difference between the two functions is that <code class="sourceCode r"><span class="kw">spc.fit.poly</span>()</code> returns a least squares fit through the complete spectrum that is given in <code class="sourceCode r">fit.to</code> whereas <code class="sourceCode r"><span class="kw">spc.fit.poly.below</span>()</code> tries to find appropriate spectral regions to fit the baseline to.</p>
+<p>The main difference between the two functions is that <code class="sourceCode r"><span class="kw">spc_fit_poly</span>()</code> returns a least squares fit through the complete spectrum that is given in <code class="sourceCode r">fit.to</code> whereas <code class="sourceCode r"><span class="kw">spc_fit_poly_below</span>()</code> tries to find appropriate spectral regions to fit the baseline to.</p>
 <div id="syntax-and-parameters" class="section level2">
 <h2 class="hasAnchor">
 <a href="#syntax-and-parameters" class="anchor"></a><span class="header-section-number">2.1</span> Syntax and Parameters</h2>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/spc.fit.poly.html">spc.fit.poly</a></span><span class="op">(</span><span class="va">fit.to</span>, apply.to <span class="op">=</span> <span class="va">fit.to</span>, poly.order <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="../reference/spc_fit_poly.html">spc_fit_poly</a></span><span class="op">(</span><span class="va">fit.to</span>, apply.to <span class="op">=</span> <span class="va">fit.to</span>, poly.order <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
 
-<span class="fu"><a href="../reference/spc.fit.poly.html">spc.fit.poly.below</a></span><span class="op">(</span><span class="va">fit.to</span>, apply.to <span class="op">=</span> <span class="va">fit.to</span>, poly.order <span class="op">=</span> <span class="fl">1</span>, npts.min <span class="op">=</span> <span class="cn">NULL</span>, noise <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="../reference/spc_fit_poly.html">spc_fit_poly_below</a></span><span class="op">(</span><span class="va">fit.to</span>, apply.to <span class="op">=</span> <span class="va">fit.to</span>, poly.order <span class="op">=</span> <span class="fl">1</span>, npts.min <span class="op">=</span> <span class="cn">NULL</span>, noise <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></code></pre></div>
 <ul>
 <li>
 <strong><code class="sourceCode r">fit.to</code>:</strong> <code class="sourceCode r">hyperSpec</code> object with the spectra whose baselines are to be fitted.</li>
@@ -196,7 +196,7 @@ This approach is appropriate for spectra with high signal to noise ratio.</p>
 <span class="va">file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata/chondro_mini.rds"</span>, package <span class="op">=</span> <span class="st">"hyperSpec"</span><span class="op">)</span>
 <span class="va">chondro_mini</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span><span class="op">(</span><span class="va">file</span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">bl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/spc.fit.poly.html">spc.fit.poly</a></span><span class="op">(</span><span class="va">chondro_mini</span><span class="op">[</span>, , <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">633</span>, <span class="fl">1788</span><span class="op">)</span><span class="op">]</span>, <span class="va">chondro_mini</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">bl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/spc_fit_poly.html">spc_fit_poly</a></span><span class="op">(</span><span class="va">chondro_mini</span><span class="op">[</span>, , <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">633</span>, <span class="fl">1788</span><span class="op">)</span><span class="op">]</span>, <span class="va">chondro_mini</span><span class="op">)</span>
 
 <span class="fu"><a href="../reference/plot-methods.html">plot</a></span><span class="op">(</span><span class="va">chondro_mini</span>, plot.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">200</span>, <span class="fl">600</span><span class="op">)</span><span class="op">)</span>, col <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span>
 <span class="fu"><a href="../reference/plot-methods.html">plot</a></span><span class="op">(</span><span class="va">chondro_mini</span><span class="op">[</span>, , <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">633</span>, <span class="fl">1788</span><span class="op">)</span><span class="op">]</span>,
@@ -214,8 +214,8 @@ If the signal to noise ratio is not ideal, wavelengths that work fine for one sp
 </div>
 <p>However, if the signal to noise ratio is not ideal, a polynomial with <span class="math inline">\(n + 1\)</span> supporting points (i.e. with zero degrees of freedom) is subject to a considerable amount of noise.
 If on the other hand, more data points consisting of baseline only are available, the uncertainty on the polynomial can be reduced by a least squares fit.</p>
-<p>Both <code class="sourceCode r"><span class="kw">spc.fit.poly</span>()</code> and <code class="sourceCode r"><span class="kw">spc.fit.poly.below</span>()</code> therefore provide least squares fitting for the polynomial.</p>
-<p>Function <code class="sourceCode r"><span class="kw">spc.fit.poly</span>()</code> fits to the whole spectral region of <code class="sourceCode r">fit.to</code>.
+<p>Both <code class="sourceCode r"><span class="kw">spc_fit_poly</span>()</code> and <code class="sourceCode r"><span class="kw">spc_fit_poly_below</span>()</code> therefore provide least squares fitting for the polynomial.</p>
+<p>Function <code class="sourceCode r"><span class="kw">spc_fit_poly</span>()</code> fits to the whole spectral region of <code class="sourceCode r">fit.to</code>.
 Thus, for baseline fitting the spectra need to be cut to appropriate wavelength ranges that do not contain any signal.</p>
 <p>In order to speed up calculations, the least squares fit is done by using the Vandermonde matrix and solving the equation system by <code class="sourceCode r"><span class="kw">qr.solve</span>()</code>.</p>
 <p>This fit is not weighted.
@@ -224,9 +224,9 @@ It is up to the user to decide whether this should be corrected for by selecting
 </div>
 <div id="sec:autofit-baseline" class="section level2">
 <h2 class="hasAnchor">
-<a href="#sec:autofit-baseline" class="anchor"></a><span class="header-section-number">2.4</span> The Mechanism of Automatically Fitting the Baseline in <code>spc.fit.poly.below()</code>
+<a href="#sec:autofit-baseline" class="anchor"></a><span class="header-section-number">2.4</span> The Mechanism of Automatically Fitting the Baseline in <code>spc_fit_poly_below()</code>
 </h2>
-<p>Function <code class="sourceCode r"><span class="kw">spc.fit.poly.below</span>()</code> tries to automatically find appropriate spectral regions for baseline fitting.
+<p>Function <code class="sourceCode r"><span class="kw">spc_fit_poly_below</span>()</code> tries to automatically find appropriate spectral regions for baseline fitting.
 This is done by excluding spectral regions that contain signals from the baseline fitting.
 The idea is that all data points that lie above a fitted polynomial (initially through the whole spectrum, then through the remaining parts of the spectrum) will be treated as signal and thus be excluded from the baseline fitting.</p>
 <p>The supporting points for the baseline polynomials are calculated iteratively:</p>
@@ -240,9 +240,9 @@ The idea is that all data points that lie above a fitted polynomial (initially t
 <li>no further points are excluded, or</li>
 <li>the next polynomial would have less than <code class="sourceCode r">npts.min</code> supporting points.</li>
 </ul>
-<p>The baselines and respective supporting points for each iteration of <code class="sourceCode r"><span class="kw">spc.fit.poly.below</span>(chondro_mini[<span class="dv">1</span>], <span class="dt">poly.order =</span> <span class="dv">1</span>)</code> are shown in figure <a href="#fig:iter">2.2</a>.</p>
+<p>The baselines and respective supporting points for each iteration of <code class="sourceCode r"><span class="kw">spc_fit_poly_below</span>(chondro_mini[<span class="dv">1</span>], <span class="dt">poly.order =</span> <span class="dv">1</span>)</code> are shown in figure <a href="#fig:iter">2.2</a>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">bl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/spc.fit.poly.html">spc.fit.poly.below</a></span><span class="op">(</span><span class="va">chondro_mini</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, poly.order <span class="op">=</span> <span class="fl">1</span>, max.iter <span class="op">=</span> <span class="fl">8</span>, npts.min <span class="op">=</span> <span class="fl">2</span>, debuglevel <span class="op">=</span> <span class="fl">3L</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">bl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/spc_fit_poly.html">spc_fit_poly_below</a></span><span class="op">(</span><span class="va">chondro_mini</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, poly.order <span class="op">=</span> <span class="fl">1</span>, max.iter <span class="op">=</span> <span class="fl">8</span>, npts.min <span class="op">=</span> <span class="fl">2</span>, debuglevel <span class="op">=</span> <span class="fl">3L</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:iter"></span>
 <img src="baseline_files/figure-html/iter-1.png" alt="Iterative fitting of the baseline. The dots give the supporting points for the next iteration's baseline, color: iterations.  "><p class="caption">
@@ -259,7 +259,7 @@ Figure 2.2: Iterative fitting of the baseline. The dots give the supporting poin
   plot.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span><span class="op">(</span><span class="va">chondro_mini</span><span class="op">[</span><span class="fl">1</span>, , <span class="fl">1700</span> <span class="op">~</span> <span class="fl">1750</span><span class="op">]</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">50</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span>
 <span class="op">)</span>
 
-<span class="va">bl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/spc.fit.poly.html">spc.fit.poly.below</a></span><span class="op">(</span><span class="va">chondro_mini</span><span class="op">[</span><span class="fl">1</span>, , <span class="fl">1700</span> <span class="op">~</span> <span class="fl">1750</span><span class="op">]</span>, <span class="cn">NULL</span>, poly.order <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+<span class="va">bl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/spc_fit_poly.html">spc_fit_poly_below</a></span><span class="op">(</span><span class="va">chondro_mini</span><span class="op">[</span><span class="fl">1</span>, , <span class="fl">1700</span> <span class="op">~</span> <span class="fl">1750</span><span class="op">]</span>, <span class="cn">NULL</span>, poly.order <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span><span class="op">(</span><span class="va">bl</span><span class="op">[[</span><span class="op">]</span><span class="op">]</span>, col <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span>
 
 <span class="fu"><a href="../reference/plot-methods.html">plot</a></span><span class="op">(</span>
@@ -269,7 +269,7 @@ Figure 2.2: Iterative fitting of the baseline. The dots give the supporting poin
   add <span class="op">=</span> <span class="cn">T</span>
 <span class="op">)</span>
 
-<span class="va">bl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/spc.fit.poly.html">spc.fit.poly.below</a></span><span class="op">(</span><span class="va">chondro_mini</span><span class="op">[</span><span class="fl">1</span>, , <span class="fl">1720</span> <span class="op">~</span> <span class="fl">1750</span><span class="op">]</span>, <span class="cn">NULL</span>, poly.order <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+<span class="va">bl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/spc_fit_poly.html">spc_fit_poly_below</a></span><span class="op">(</span><span class="va">chondro_mini</span><span class="op">[</span><span class="fl">1</span>, , <span class="fl">1720</span> <span class="op">~</span> <span class="fl">1750</span><span class="op">]</span>, <span class="cn">NULL</span>, poly.order <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span><span class="op">(</span><span class="va">bl</span><span class="op">[[</span><span class="op">]</span><span class="op">]</span>, col <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:spectralrange"></span>
@@ -280,17 +280,17 @@ The black baseline is fit to the spectral range 1700 - 1750 <span class="math in
 </p>
 </div>
 <p>It is possible to exclude spectral regions that do not contribute to the baseline from the fitting, while the baseline is used for the whole spectrum.
-This selection of appropriate spectral regions is essential for <code class="sourceCode r"><span class="kw">spc.fit.poly</span>()</code>.
-But also <code class="sourceCode r"><span class="kw">spc.fit.poly.below</span>()</code> can benefit from narrower spectral ranges: the fitting gains speed.
+This selection of appropriate spectral regions is essential for <code class="sourceCode r"><span class="kw">spc_fit_poly</span>()</code>.
+But also <code class="sourceCode r"><span class="kw">spc_fit_poly_below</span>()</code> can benefit from narrower spectral ranges: the fitting gains speed.
 The default value for <code class="sourceCode r">npts.min</code> depends on the number of data points per spectrum.
 Thus one should also consider requiring more support points than the default value suggests.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span><span class="op">(</span><span class="fu"><a href="../reference/spc.fit.poly.html">spc.fit.poly.below</a></span><span class="op">(</span><span class="va">chondro_mini</span>, <span class="cn">NULL</span>, npts.min <span class="op">=</span> <span class="fl">20</span><span class="op">)</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span><span class="op">(</span><span class="fu"><a href="../reference/spc_fit_poly.html">spc_fit_poly_below</a></span><span class="op">(</span><span class="va">chondro_mini</span>, <span class="cn">NULL</span>, npts.min <span class="op">=</span> <span class="fl">20</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.004   0.000   0.005</span>
-<span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span><span class="op">(</span><span class="fu"><a href="../reference/spc.fit.poly.html">spc.fit.poly.below</a></span><span class="op">(</span><span class="va">chondro_mini</span><span class="op">[</span>, , <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">min</span> <span class="op">~</span> <span class="fl">700</span>, <span class="fl">1700</span> <span class="op">~</span> <span class="va">max</span><span class="op">)</span><span class="op">]</span>, <span class="cn">NULL</span>, npts.min <span class="op">=</span> <span class="fl">20</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt;   0.003   0.000   0.003</span>
+<span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span><span class="op">(</span><span class="fu"><a href="../reference/spc_fit_poly.html">spc_fit_poly_below</a></span><span class="op">(</span><span class="va">chondro_mini</span><span class="op">[</span>, , <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">min</span> <span class="op">~</span> <span class="fl">700</span>, <span class="fl">1700</span> <span class="op">~</span> <span class="va">max</span><span class="op">)</span><span class="op">]</span>, <span class="cn">NULL</span>, npts.min <span class="op">=</span> <span class="fl">20</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.005   0.000   0.005</span></code></pre></div>
+<span class="co">#&gt;   0.004   0.000   0.004</span></code></pre></div>
 <p>The choice of the spectral range in <code class="sourceCode r">fit.to</code> influences the resulting baselines to a certain extent, as becomes clear from figure <a href="#fig:spectralrange">2.3</a>.</p>
 </div>
 <div id="fitting-polynomials-of-different-orders" class="section level2">
@@ -299,7 +299,7 @@ Thus one should also consider requiring more support points than the default val
 <!-- ======================================================================= -->
 <!-- ======================================================================= -->
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">bl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/spc.fit.poly.html">spc.fit.poly.below</a></span><span class="op">(</span><span class="va">chondro_mini</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, poly.order <span class="op">=</span> <span class="fl">0</span>, debuglevel <span class="op">=</span> <span class="fl">2</span>, max.iter <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">bl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/spc_fit_poly.html">spc_fit_poly_below</a></span><span class="op">(</span><span class="va">chondro_mini</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, poly.order <span class="op">=</span> <span class="fl">0</span>, debuglevel <span class="op">=</span> <span class="fl">2</span>, max.iter <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>
 <span class="co">#&gt; Fitting with npts.min = 8</span>
 <span class="co">#&gt; start: 150 support points</span>
 <span class="co">#&gt; spectrum      1:    10 support points, noise = 0.0,   5 iterations</span></code></pre></div>
@@ -312,10 +312,10 @@ The dots indicate the points used for the fitting of the polynomial.
 </p>
 </div>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">bl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/spc.fit.poly.html">spc.fit.poly.below</a></span><span class="op">(</span><span class="va">chondro_mini</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, poly.order <span class="op">=</span> <span class="fl">1</span>, debuglevel <span class="op">=</span> <span class="fl">2</span>, max.iter <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">bl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/spc_fit_poly.html">spc_fit_poly_below</a></span><span class="op">(</span><span class="va">chondro_mini</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, poly.order <span class="op">=</span> <span class="fl">1</span>, debuglevel <span class="op">=</span> <span class="fl">2</span>, max.iter <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>
 <span class="co">#&gt; Fitting with npts.min = 8</span>
 <span class="co">#&gt; start: 150 support points</span>
-<span class="co">#&gt; Warning in spc.fit.poly.below(chondro_mini[1], poly.order = 1, debuglevel = 2, : Stopped after 5</span>
+<span class="co">#&gt; Warning in spc_fit_poly_below(chondro_mini[1], poly.order = 1, debuglevel = 2, : Stopped after 5</span>
 <span class="co">#&gt; iterations with 14 support points.</span>
 <span class="co">#&gt; spectrum      1:    14 support points, noise = 0.0,   5 iterations</span></code></pre></div>
 <div class="figure" style="text-align: center">
@@ -327,7 +327,7 @@ The dots indicate the points used for the fitting of the polynomial.
 </p>
 </div>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">bl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/spc.fit.poly.html">spc.fit.poly.below</a></span><span class="op">(</span><span class="va">chondro_mini</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, poly.order <span class="op">=</span> <span class="fl">2</span>, debuglevel <span class="op">=</span> <span class="fl">2</span>, max.iter <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">bl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/spc_fit_poly.html">spc_fit_poly_below</a></span><span class="op">(</span><span class="va">chondro_mini</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, poly.order <span class="op">=</span> <span class="fl">2</span>, debuglevel <span class="op">=</span> <span class="fl">2</span>, max.iter <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>
 <span class="co">#&gt; Fitting with npts.min = 9</span>
 <span class="co">#&gt; start: 150 support points</span>
 <span class="co">#&gt; spectrum      1:    11 support points, noise = 0.0,   5 iterations</span></code></pre></div>
@@ -339,7 +339,7 @@ Figure 2.6: Baseline polynomial fit to the first spectrum of the chondro_mini da
 The dots indicate the points used for the fitting of the polynomial.
 </p>
 </div>
-<p>Figures <a href="#fig:figorder0">2.4</a>, <a href="#fig:figorder1">2.5</a>, <a href="#fig:figorder2">2.6</a> show the resulting baseline polynomial of <code class="sourceCode r"><span class="kw">spc.fit.poly.below</span> (chondro_mini [<span class="dv">1</span>], <span class="dt">poly.order =</span> order)</code> with <code class="sourceCode r">order</code> <span class="math inline">\(=\)</span> 0 to 3 for the first spectrum of the chondro_mini data set.</p>
+<p>Figures <a href="#fig:figorder0">2.4</a>, <a href="#fig:figorder1">2.5</a>, <a href="#fig:figorder2">2.6</a> show the resulting baseline polynomial of <code class="sourceCode r"><span class="kw">spc_fit_poly_below</span> (chondro_mini [<span class="dv">1</span>], <span class="dt">poly.order =</span> order)</code> with <code class="sourceCode r">order</code> <span class="math inline">\(=\)</span> 0 to 3 for the first spectrum of the chondro_mini data set.</p>
 </div>
 <div id="the-noise-level" class="section level2">
 <h2 class="hasAnchor">
@@ -348,12 +348,12 @@ The dots indicate the points used for the fitting of the polynomial.
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">spc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/initialize.html">new</a></span><span class="op">(</span><span class="st">"hyperSpec"</span>, spc <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100</span>, mean <span class="op">=</span> <span class="fl">100</span>, sd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">100</span><span class="op">)</span><span class="op">)</span>
 <span class="va">noise</span> <span class="op">&lt;-</span> <span class="fl">4</span>
-<span class="fu"><a href="../reference/spc.fit.poly.html">spc.fit.poly.below</a></span><span class="op">(</span><span class="va">spc</span>, poly.order <span class="op">=</span> <span class="fl">0</span>, noise <span class="op">=</span> <span class="va">noise</span>, debuglevel <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
+<span class="fu"><a href="../reference/spc_fit_poly.html">spc_fit_poly_below</a></span><span class="op">(</span><span class="va">spc</span>, poly.order <span class="op">=</span> <span class="fl">0</span>, noise <span class="op">=</span> <span class="va">noise</span>, debuglevel <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 <span class="co">#&gt; hyperSpec object</span>
 <span class="co">#&gt;    1 spectra</span>
 <span class="co">#&gt;    1 data columns</span>
 <span class="co">#&gt;    100 data points / spectrum</span>
-<span class="fu"><a href="../reference/plot-methods.html">plot</a></span><span class="op">(</span><span class="fu"><a href="../reference/spc.fit.poly.html">spc.fit.poly.below</a></span><span class="op">(</span><span class="va">spc</span>, poly.order <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">"black"</span>, add <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="../reference/plot-methods.html">plot</a></span><span class="op">(</span><span class="fu"><a href="../reference/spc_fit_poly.html">spc_fit_poly_below</a></span><span class="op">(</span><span class="va">spc</span>, poly.order <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">"black"</span>, add <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:fig3"></span>
 <img src="baseline_files/figure-html/fig3-1.png" alt="Iterative fitting of the baseline with noise level.
@@ -366,8 +366,8 @@ A noise level of 4 results in the blue baseline.
 </div>
 <!-- The lower part show -->
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">bl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/spc.fit.poly.html">spc.fit.poly.below</a></span><span class="op">(</span><span class="va">chondro_mini</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, poly.order <span class="op">=</span> <span class="fl">1</span>, noise <span class="op">=</span> <span class="fl">15</span>, max.iter <span class="op">=</span> <span class="fl">8</span>, debuglevel <span class="op">=</span> <span class="fl">3L</span><span class="op">)</span>
-<span class="co">#&gt; Warning in spc.fit.poly.below(chondro_mini[1], poly.order = 1, noise = 15, : Stopped after 8</span>
+<code class="sourceCode R"><span class="va">bl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/spc_fit_poly.html">spc_fit_poly_below</a></span><span class="op">(</span><span class="va">chondro_mini</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, poly.order <span class="op">=</span> <span class="fl">1</span>, noise <span class="op">=</span> <span class="fl">15</span>, max.iter <span class="op">=</span> <span class="fl">8</span>, debuglevel <span class="op">=</span> <span class="fl">3L</span><span class="op">)</span>
+<span class="co">#&gt; Warning in spc_fit_poly_below(chondro_mini[1], poly.order = 1, noise = 15, : Stopped after 8</span>
 <span class="co">#&gt; iterations with 13 support points.</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:fig4"></span>
@@ -388,7 +388,7 @@ Consider a spectral range consisting only of noise.
 The upper part of figures <a href="#fig:fig3">2.7</a>, <a href="#fig:fig4">2.8</a> illustrate the problem.
 As the baseline fitting algorithm cannot distinguish between noise and real bands appearing above the fitted polynomial, the resulting baseline (black) is too low if the <code class="sourceCode r">noise</code> parameter is not given.</p>
 <p>Setting the noise level to 4 (2 standard deviations), the fitting converges immediately with a much better result.
-The resulting baselines for <code class="sourceCode r"><span class="kw">spc.fit.poly.below</span> (chondro_mini [<span class="dv">1</span>], <span class="dt">poly.order =</span> <span class="dv">1</span>, <span class="dt">noise =</span> <span class="dv">12</span>)</code> of the whole spectrum are shown in the middle and lower part of figure <a href="#fig:fig4">2.8</a>.</p>
+The resulting baselines for <code class="sourceCode r"><span class="kw">spc_fit_poly_below</span> (chondro_mini [<span class="dv">1</span>], <span class="dt">poly.order =</span> <span class="dv">1</span>, <span class="dt">noise =</span> <span class="dv">12</span>)</code> of the whole spectrum are shown in the middle and lower part of figure <a href="#fig:fig4">2.8</a>.</p>
 <p>The <code class="sourceCode r">noise</code> may be a single value for all spectra, or a vector with the noise level for each of the spectra separately.</p>
 </div>
 </div>
@@ -400,7 +400,7 @@ In this case, polynomial baselines often either need high order or residual back
 <p>In that case, smoothing splines fitted through the supporting points are a good alternative.</p>
 <p>For the <code class="sourceCode r">paracetamol</code> spectrum (fig. <a href="#fig:rubberband-raw">3.1</a>, <a href="#fig:rubberband">3.2</a>), a noise level of 300 counts and the equivalent of 20 degrees of freedom work well.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">bl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/spc.rubberband.html">spc.rubberband</a></span><span class="op">(</span><span class="va">paracetamol</span><span class="op">[</span>, , <span class="fl">175</span> <span class="op">~</span> <span class="fl">1800</span><span class="op">]</span>, noise <span class="op">=</span> <span class="fl">300</span>, df <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">bl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/spc_rubberband.html">spc_rubberband</a></span><span class="op">(</span><span class="va">paracetamol</span><span class="op">[</span>, , <span class="fl">175</span> <span class="op">~</span> <span class="fl">1800</span><span class="op">]</span>, noise <span class="op">=</span> <span class="fl">300</span>, df <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/plot-methods.html">plot</a></span><span class="op">(</span><span class="va">paracetamol</span><span class="op">[</span>, , <span class="fl">175</span> <span class="op">~</span> <span class="fl">1800</span><span class="op">]</span><span class="op">)</span>
 <span class="fu"><a href="../reference/plot-methods.html">plot</a></span><span class="op">(</span><span class="va">bl</span>, add <span class="op">=</span> <span class="cn">TRUE</span>, col <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></code></pre></div>
@@ -421,8 +421,8 @@ Figure 3.2: Rubberband baselines for the paracetamol spectrum: corrected spectru
 <p>However, there is possibly some background left between 1200 and 1750 cm<sup>-1</sup> where the original spectrum is slightly concave.
 This can be corrected by bending the spectrum before applying the rubberband correction (fig. <a href="#fig:rubberband-bent-raw">3.3</a>, <a href="#fig:rubberband-bent-corrected">3.4</a>):</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">bend</span> <span class="op">&lt;-</span> <span class="fl">5e4</span> <span class="op">*</span> <span class="fu"><a href="../reference/wl.eval.html">wl.eval</a></span><span class="op">(</span><span class="va">paracetamol</span><span class="op">[</span>, , <span class="fl">175</span> <span class="op">~</span> <span class="fl">1800</span><span class="op">]</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="va">x</span><span class="op">^</span><span class="fl">2</span>, normalize.wl <span class="op">=</span> <span class="va">normalize01</span><span class="op">)</span>
-<span class="va">bl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/spc.rubberband.html">spc.rubberband</a></span><span class="op">(</span><span class="va">paracetamol</span><span class="op">[</span>, , <span class="fl">175</span> <span class="op">~</span> <span class="fl">1800</span><span class="op">]</span> <span class="op">+</span> <span class="va">bend</span><span class="op">)</span> <span class="op">-</span> <span class="va">bend</span></code></pre></div>
+<code class="sourceCode R"><span class="va">bend</span> <span class="op">&lt;-</span> <span class="fl">5e4</span> <span class="op">*</span> <span class="fu"><a href="../reference/wl_eval.html">wl_eval</a></span><span class="op">(</span><span class="va">paracetamol</span><span class="op">[</span>, , <span class="fl">175</span> <span class="op">~</span> <span class="fl">1800</span><span class="op">]</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="va">x</span><span class="op">^</span><span class="fl">2</span>, normalize.wl <span class="op">=</span> <span class="va">normalize01</span><span class="op">)</span>
+<span class="va">bl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/spc_rubberband.html">spc_rubberband</a></span><span class="op">(</span><span class="va">paracetamol</span><span class="op">[</span>, , <span class="fl">175</span> <span class="op">~</span> <span class="fl">1800</span><span class="op">]</span> <span class="op">+</span> <span class="va">bend</span><span class="op">)</span> <span class="op">-</span> <span class="va">bend</span></code></pre></div>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/plot-methods.html">plot</a></span><span class="op">(</span><span class="va">paracetamol</span><span class="op">[</span>, , <span class="fl">175</span> <span class="op">~</span> <span class="fl">1800</span><span class="op">]</span> <span class="op">+</span> <span class="va">bend</span><span class="op">)</span>
 <span class="fu"><a href="../reference/plot-methods.html">plot</a></span><span class="op">(</span><span class="va">bl</span> <span class="op">+</span> <span class="va">bend</span>, add <span class="op">=</span> <span class="cn">T</span>, col <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></code></pre></div>
@@ -456,7 +456,7 @@ Figure 3.4: Rubberband baselines for the paracetamol spectrum after bendin: corr
 <span class="co">#&gt;  collate  en_US.UTF-8                 </span>
 <span class="co">#&gt;  ctype    en_US.UTF-8                 </span>
 <span class="co">#&gt;  tz       UTC                         </span>
-<span class="co">#&gt;  date     2021-02-23                  </span>
+<span class="co">#&gt;  date     2021-02-24                  </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; ─ Packages ───────────────────────────────────────────────────────────────────────────────────────</span>
 <span class="co">#&gt;  package        * version    date       lib source        </span>
@@ -478,7 +478,7 @@ Figure 3.4: Rubberband baselines for the paracetamol spectrum after bendin: corr
 <span class="co">#&gt;  ggplot2        * 3.3.3      2020-12-30 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  glue             1.4.2      2020-08-27 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  gtable           0.3.0      2019-03-25 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  hyperSpec      * 0.100.0    2021-02-23 [1] local         </span>
+<span class="co">#&gt;  hyperSpec      * 0.100.0    2021-02-24 [1] local         </span>
 <span class="co">#&gt;  hySpc.testthat   0.2.1.9000 2021-02-16 [1] local         </span>
 <span class="co">#&gt;  isoband          0.2.3      2020-12-01 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  jpeg             0.1-8.1    2019-10-24 [1] CRAN (R 4.0.2)</span>

@@ -129,7 +129,7 @@
 <br><a class="author_email" href="mailto:#"></a><a href="mailto:chemometrie@beleites.de" class="email">chemometrie@beleites.de</a>
       </address>
                   
-            <h4 class="date">2021-02-23</h4>
+            <h4 class="date">2021-02-24</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/cbeleites/hyperSpec/blob/master/../vignettes/fileio.Rmd"><code>../vignettes/fileio.Rmd</code></a></small>
       <div class="hidden name"><code>fileio.Rmd</code></div>
@@ -489,7 +489,7 @@ emission spectra see <a href="http://physics.nist.gov/PhysRefData/Handbook/perio
 <div id="ascii-export" class="section level2">
 <h2 class="hasAnchor">
 <a href="#ascii-export" class="anchor"></a><span class="header-section-number">5.5</span> ASCII Export</h2>
-<p>ASCII export can be done in wide and long format using <code class="sourceCode r"><span class="kw">write.txt.long</span>()</code> and <code class="sourceCode r"><span class="kw">write.txt.wide</span>()</code>.
+<p>ASCII export can be done in wide and long format using <code class="sourceCode r"><span class="kw">write_txt_long</span>()</code> and <code class="sourceCode r"><span class="kw">write_txt_wide</span>()</code>.
 If you need a specific header or footer, use R’s functions for writing files: <code class="sourceCode r"><span class="kw">write.table</span>()</code>, <code class="sourceCode r"><span class="kw">write</span>()</code>, <code class="sourceCode r"><span class="kw">cat</span>()</code> and so on offer fine-grained control of writing ASCII files.</p>
 </div>
 </div>
@@ -872,23 +872,23 @@ Supported types are:</p>
 </tbody></table>
 <p>Instead of a file name, <code class="sourceCode r"><span class="kw">read.txt.Renishaw</span>()</code> accepts also a connection.</p>
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">paracetamol</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read.txt.Renishaw.html">read.txt.Renishaw</a></span><span class="op">(</span><span class="st">"fileio/txt.Renishaw/paracetamol.txt"</span>, <span class="st">"spc"</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">paracetamol</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/DEPRECATED-read.txt.Renishaw.html">read.txt.Renishaw</a></span><span class="op">(</span><span class="st">"fileio/txt.Renishaw/paracetamol.txt"</span>, <span class="st">"spc"</span><span class="op">)</span>
 <span class="va">paracetamol</span></code></pre></div>
 <!-- NOTE: the code to save this dataset as package data was removed from this file. -->
 <!-- save(paracetamol, file = "paracetamol.rda") -->
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/read.txt.Renishaw.html">read.txt.Renishaw</a></span><span class="op">(</span><span class="st">"fileio/txt.Renishaw/laser.txt.gz"</span>, data <span class="op">=</span> <span class="st">"ts"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="../reference/DEPRECATED-read.txt.Renishaw.html">read.txt.Renishaw</a></span><span class="op">(</span><span class="st">"fileio/txt.Renishaw/laser.txt.gz"</span>, data <span class="op">=</span> <span class="st">"ts"</span><span class="op">)</span></code></pre></div>
 <p>Very large files can be read in chunks to save memory:</p>
 <div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/read.txt.Renishaw.html">read.txt.Renishaw</a></span><span class="op">(</span><span class="st">"fileio/txt.Renishaw/chondro.txt"</span>, nlines <span class="op">=</span> <span class="fl">1e5</span>, nspc <span class="op">=</span> <span class="fl">875</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="../reference/DEPRECATED-read.txt.Renishaw.html">read.txt.Renishaw</a></span><span class="op">(</span><span class="st">"fileio/txt.Renishaw/chondro.txt"</span>, nlines <span class="op">=</span> <span class="fl">1e5</span>, nspc <span class="op">=</span> <span class="fl">875</span><span class="op">)</span></code></pre></div>
 <p>R accepts a variety of compressed file formats for ASCII files:</p>
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/read.txt.Renishaw.html">read.txt.Renishaw</a></span><span class="op">(</span><span class="st">"fileio/txt.Renishaw/chondro.gz"</span><span class="op">)</span>
-<span class="fu"><a href="../reference/read.txt.Renishaw.html">read.txt.Renishaw</a></span><span class="op">(</span><span class="st">"fileio/txt.Renishaw/chondro.xz"</span><span class="op">)</span>
-<span class="fu"><a href="../reference/read.txt.Renishaw.html">read.txt.Renishaw</a></span><span class="op">(</span><span class="st">"fileio/txt.Renishaw/chondro.lzma"</span><span class="op">)</span>
-<span class="fu"><a href="../reference/read.txt.Renishaw.html">read.txt.Renishaw</a></span><span class="op">(</span><span class="st">"fileio/txt.Renishaw/chondro.gz"</span><span class="op">)</span>
-<span class="fu"><a href="../reference/read.txt.Renishaw.html">read.txt.Renishaw</a></span><span class="op">(</span><span class="st">"fileio/txt.Renishaw/chondro.bz2"</span><span class="op">)</span>
-<span class="fu"><a href="../reference/read.txt.Renishaw.html">read.zip.Renishaw</a></span><span class="op">(</span><span class="st">"fileio/txt.Renishaw/chondro.zip"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="../reference/DEPRECATED-read.txt.Renishaw.html">read.txt.Renishaw</a></span><span class="op">(</span><span class="st">"fileio/txt.Renishaw/chondro.gz"</span><span class="op">)</span>
+<span class="fu"><a href="../reference/DEPRECATED-read.txt.Renishaw.html">read.txt.Renishaw</a></span><span class="op">(</span><span class="st">"fileio/txt.Renishaw/chondro.xz"</span><span class="op">)</span>
+<span class="fu"><a href="../reference/DEPRECATED-read.txt.Renishaw.html">read.txt.Renishaw</a></span><span class="op">(</span><span class="st">"fileio/txt.Renishaw/chondro.lzma"</span><span class="op">)</span>
+<span class="fu"><a href="../reference/DEPRECATED-read.txt.Renishaw.html">read.txt.Renishaw</a></span><span class="op">(</span><span class="st">"fileio/txt.Renishaw/chondro.gz"</span><span class="op">)</span>
+<span class="fu"><a href="../reference/DEPRECATED-read.txt.Renishaw.html">read.txt.Renishaw</a></span><span class="op">(</span><span class="st">"fileio/txt.Renishaw/chondro.bz2"</span><span class="op">)</span>
+<span class="fu"><a href="../reference/DEPRECATED-read.txt.Renishaw.html">read.zip.Renishaw</a></span><span class="op">(</span><span class="st">"fileio/txt.Renishaw/chondro.zip"</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
 <div id="sec:read-txt-Horiba" class="section level2">
@@ -905,7 +905,7 @@ Supported types are:</p>
 </p>
 <p>Horiba’s Labspec software (e. g. LabRAM spectrometers) saves spectra in a wide ASCII format which is read by <code class="sourceCode r"><span class="kw">read.txt.Horiba</span>()</code>, e. g.:</p>
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">spc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read.txt.Horiba.html">read.txt.Horiba</a></span><span class="op">(</span><span class="st">"fileio/txt.HoribaJobinYvon/ts.txt"</span>,
+<code class="sourceCode R"><span class="va">spc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/DEPRECATED-read.txt.Horiba.html">read.txt.Horiba</a></span><span class="op">(</span><span class="st">"fileio/txt.HoribaJobinYvon/ts.txt"</span>,
   cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
     t <span class="op">=</span> <span class="st">"t / s"</span>, spc <span class="op">=</span> <span class="st">"I / a.u."</span>,
     .wavelength <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span><span class="op">(</span><span class="va">Delta</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/tilde.html">tilde</a></span><span class="op">(</span><span class="va">nu</span><span class="op">)</span> <span class="op">/</span> <span class="va">cm</span><span class="op">^</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span>
@@ -916,7 +916,7 @@ Supported types are:</p>
 These spectra are by removed by default if option <code class="sourceCode r">file.remove.emptyspc</code> is <code class="sourceCode r"><span class="ot">TRUE</span></code> (the default).</p>
 <p>For convenience, functions to further wrappers to import maps (<code class="sourceCode r"><span class="kw">read.txt.Horiba.xy</span>()</code>) and time series (<code class="sourceCode r"><span class="kw">read.txt.Horiba.t</span>()</code>) are provided.</p>
 <div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">spc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read.txt.Horiba.html">read.txt.Horiba.xy</a></span><span class="op">(</span><span class="st">"fileio/txt.HoribaJobinYvon/map.txt"</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">spc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/DEPRECATED-read.txt.Horiba.html">read.txt.Horiba.xy</a></span><span class="op">(</span><span class="st">"fileio/txt.HoribaJobinYvon/map.txt"</span><span class="op">)</span>
 <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/any.html">any</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">spc</span><span class="op">)</span> <span class="op">!=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">141</span>, <span class="fl">4</span>, <span class="fl">616</span><span class="op">)</span><span class="op">)</span> <span class="op">||</span>
   <span class="fu"><a href="https://rdrr.io/r/base/any.html">any</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">spc</span><span class="op">)</span> <span class="op">&lt;</span> <span class="va">.Machine</span><span class="op">$</span><span class="va">double.eps</span><span class="op">^</span><span class="fl">.5</span><span class="op">)</span> <span class="op">||</span>
   <span class="fu"><a href="https://rdrr.io/r/base/NULL.html">is.null</a></span><span class="op">(</span><span class="va">spc</span><span class="op">$</span><span class="va">x</span><span class="op">)</span> <span class="op">||</span> <span class="fu"><a href="https://rdrr.io/r/base/any.html">any</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">spc</span><span class="op">$</span><span class="va">x</span><span class="op">)</span><span class="op">)</span> <span class="op">||</span>
@@ -926,7 +926,7 @@ These spectra are by removed by default if option <code class="sourceCode r">fil
 <span class="op">}</span>
 <span class="va">spc</span></code></pre></div>
 <div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">spc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read.txt.Horiba.html">read.txt.Horiba.t</a></span><span class="op">(</span><span class="st">"fileio/txt.HoribaJobinYvon/ts.txt"</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">spc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/DEPRECATED-read.txt.Horiba.html">read.txt.Horiba.t</a></span><span class="op">(</span><span class="st">"fileio/txt.HoribaJobinYvon/ts.txt"</span><span class="op">)</span>
 <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/any.html">any</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">spc</span><span class="op">)</span> <span class="op">!=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">3</span>, <span class="fl">1024</span><span class="op">)</span><span class="op">)</span> <span class="op">||</span>
   <span class="fu"><a href="https://rdrr.io/r/base/NULL.html">is.null</a></span><span class="op">(</span><span class="va">spc</span><span class="op">$</span><span class="va">t</span><span class="op">)</span> <span class="op">||</span> <span class="fu"><a href="https://rdrr.io/r/base/any.html">any</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">spc</span><span class="op">$</span><span class="va">t</span><span class="op">)</span><span class="op">)</span> <span class="op">||</span>
   <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sets.html">setdiff</a></span><span class="op">(</span><span class="fu"><a href="../reference/wl.html">wl</a></span><span class="op">(</span><span class="va">spc</span><span class="op">)</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">1024</span><span class="op">)</span><span class="op">)</span> <span class="op">==</span> <span class="fl">0L</span><span class="op">)</span> <span class="op">{</span>
@@ -944,7 +944,7 @@ These spectra are by removed by default if option <code class="sourceCode r">fil
 </p>
 <p>Andor Solis exports ASCII files that can be read with <code class="sourceCode r"><span class="kw">read.asc.Andor</span>()</code>:</p>
 <div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/read.asc.Andor.html">read.asc.Andor</a></span><span class="op">(</span><span class="st">"fileio/asc.Andor/ASCII-Andor-Solis.asc"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="../reference/DEPRECATED-read.asc.Andor.html">read.asc.Andor</a></span><span class="op">(</span><span class="st">"fileio/asc.Andor/ASCII-Andor-Solis.asc"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="sec:read-txt-Witec" class="section level2">
 <h2 class="hasAnchor">
@@ -968,8 +968,8 @@ For imaging data, no spatial information for the set of spectra is provided (in 
 <p>Imaging data (but also single spectra and time series) can be exported as ASCII X and Y files (Save ASCII X and Save ASCII Y, not supported in version 4).
 These can be read by <code class="sourceCode r"><span class="kw">read.dat.Witec</span>()</code>:</p>
 <div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/read.txt.Witec.html">read.dat.Witec</a></span><span class="op">(</span><span class="st">"fileio/txt.Witec/Witec-timeseries-x.dat"</span><span class="op">)</span>
-<span class="fu"><a href="../reference/read.txt.Witec.html">read.dat.Witec</a></span><span class="op">(</span>
+<code class="sourceCode R"><span class="fu"><a href="../reference/DEPRECATED-read.txt.Witec.html">read.dat.Witec</a></span><span class="op">(</span><span class="st">"fileio/txt.Witec/Witec-timeseries-x.dat"</span><span class="op">)</span>
+<span class="fu"><a href="../reference/DEPRECATED-read.txt.Witec.html">read.dat.Witec</a></span><span class="op">(</span>
   filex <span class="op">=</span> <span class="st">"fileio/txt.Witec/Witec-Map-x.dat"</span>,
   points.per.line <span class="op">=</span> <span class="fl">5</span>, lines.per.image <span class="op">=</span> <span class="fl">5</span>, type <span class="op">=</span> <span class="st">"map"</span>
 <span class="op">)</span></code></pre></div>
@@ -992,9 +992,9 @@ Otherwise, at least one, <code class="sourceCode r">points.per.line</code> or <c
 <p>Since version 4 WITec Project offers the Graph ASCII export (Export <span class="math inline">\(\rightarrow\)</span> Graph ASCII), which produces three ASCII files, named Header containing additional information, X-Axis containing the wavelength values and Y-Axis containing the spectra one spectrum in each column.
 Data exported in this way can be read with <code class="sourceCode r"><span class="kw">read.txt.Witec.Graph</span>()</code>:</p>
 <div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/read.txt.Witec.html">read.txt.Witec.Graph</a></span><span class="op">(</span><span class="st">"fileio/txt.Witec/Witec-timeseries (Header).txt"</span><span class="op">)</span>
-<span class="fu"><a href="../reference/read.txt.Witec.html">read.txt.Witec.Graph</a></span><span class="op">(</span><span class="st">"fileio/txt.Witec/Witec-Map (Header).txt"</span>, type <span class="op">=</span> <span class="st">"map"</span><span class="op">)</span>
-<span class="fu"><a href="../reference/read.txt.Witec.html">read.txt.Witec.Graph</a></span><span class="op">(</span><span class="st">"fileio/txt.Witec/nofilename (Header).txt"</span>, encoding <span class="op">=</span> <span class="st">"latin1"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="../reference/DEPRECATED-read.txt.Witec.html">read.txt.Witec.Graph</a></span><span class="op">(</span><span class="st">"fileio/txt.Witec/Witec-timeseries (Header).txt"</span><span class="op">)</span>
+<span class="fu"><a href="../reference/DEPRECATED-read.txt.Witec.html">read.txt.Witec.Graph</a></span><span class="op">(</span><span class="st">"fileio/txt.Witec/Witec-Map (Header).txt"</span>, type <span class="op">=</span> <span class="st">"map"</span><span class="op">)</span>
+<span class="fu"><a href="../reference/DEPRECATED-read.txt.Witec.html">read.txt.Witec.Graph</a></span><span class="op">(</span><span class="st">"fileio/txt.Witec/nofilename (Header).txt"</span>, encoding <span class="op">=</span> <span class="st">"latin1"</span><span class="op">)</span></code></pre></div>
 <p>This function reads the spectra files automatically, if they are appropriately named and extracts additional information of the header file.
 As for the other Witec functions, it is possible to read image data by selecting <code class="sourceCode r">type =<span class="st"> "map"</span></code>.
 Line scans and z-stacks should be read as single spectra.</p>
@@ -1087,7 +1087,7 @@ read.txt.PerkinElmer &lt;- function(files = stop("filenames needed"), ..., label
   spc &lt;- new("hyperSpec", wavelength = wavelength, spc = spc, label = label)
 
   ## consistent file import behaviour across import functions
-  hyperSpec:::.fileio.optional(spc, files)
+  hyperSpec::.spc_io_postprocess_optional(spc, files)
 }</code></pre>
 <p>imports the spectra.
 Note how the labels are set.
@@ -3956,7 +3956,7 @@ matrix
 <span class="co">#&gt;  collate  en_US.UTF-8                 </span>
 <span class="co">#&gt;  ctype    en_US.UTF-8                 </span>
 <span class="co">#&gt;  tz       UTC                         </span>
-<span class="co">#&gt;  date     2021-02-23                  </span>
+<span class="co">#&gt;  date     2021-02-24                  </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; ─ Packages ───────────────────────────────────────────────────────────────────────────────────────</span>
 <span class="co">#&gt;  package        * version    date       lib source        </span>
@@ -3979,7 +3979,7 @@ matrix
 <span class="co">#&gt;  highr            0.8        2019-03-20 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  htmltools        0.5.1.1    2021-01-22 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  httr             1.4.2      2020-07-20 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  hyperSpec      * 0.100.0    2021-02-23 [1] local         </span>
+<span class="co">#&gt;  hyperSpec      * 0.100.0    2021-02-24 [1] local         </span>
 <span class="co">#&gt;  hySpc.testthat   0.2.1.9000 2021-02-16 [1] local         </span>
 <span class="co">#&gt;  jpeg             0.1-8.1    2019-10-24 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  jquerylib        0.1.3      2020-12-17 [1] CRAN (R 4.0.2)</span>

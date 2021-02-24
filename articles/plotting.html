@@ -127,7 +127,7 @@
 <br><a class="author_email" href="mailto:#"></a><a href="mailto:chemometrie@beleites.de" class="email">chemometrie@beleites.de</a>
       </address>
                   
-            <h4 class="date">2021-02-23</h4>
+            <h4 class="date">2021-02-24</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/cbeleites/hyperSpec/blob/master/../vignettes/plotting.Rmd"><code>../vignettes/plotting.Rmd</code></a></small>
       <div class="hidden name"><code>plotting.Rmd</code></div>
@@ -181,7 +181,7 @@ Throughout the documentation of the package, the following terms are used:</p>
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>
 <span class="va">faux_cell</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/generate_faux_cell.html">generate_faux_cell</a></span><span class="op">(</span><span class="op">)</span>
 
-<span class="va">faux_cell_preproc</span> <span class="op">&lt;-</span> <span class="va">faux_cell</span> <span class="op">-</span> <span class="fu"><a href="../reference/spc.fit.poly.html">spc.fit.poly.below</a></span><span class="op">(</span><span class="va">faux_cell</span><span class="op">)</span>
+<span class="va">faux_cell_preproc</span> <span class="op">&lt;-</span> <span class="va">faux_cell</span> <span class="op">-</span> <span class="fu"><a href="../reference/spc_fit_poly.html">spc_fit_poly_below</a></span><span class="op">(</span><span class="va">faux_cell</span><span class="op">)</span>
 <span class="va">faux_cell_preproc</span> <span class="op">&lt;-</span> <span class="va">faux_cell_preproc</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html">rowMeans</a></span><span class="op">(</span><span class="va">faux_cell</span><span class="op">)</span>
 <span class="va">faux_cell_preproc</span> <span class="op">&lt;-</span> <span class="va">faux_cell_preproc</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">faux_cell_preproc</span>, <span class="fl">0.05</span><span class="op">)</span>
 
@@ -987,7 +987,7 @@ Figure 6.3: Spectra matrix with added contour lines.
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="http://latticeextra.r-forge.r-project.org/">"latticeExtra"</a></span><span class="op">)</span>
 
 <span class="va">barb</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/collapse.html">collapse</a></span><span class="op">(</span><span class="va">barbiturates</span><span class="op">)</span>
-<span class="va">barb</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/orderwl.html">orderwl</a></span><span class="op">(</span><span class="va">barb</span><span class="op">)</span></code></pre></div>
+<span class="va">barb</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/wl_sort.html">wl_sort</a></span><span class="op">(</span><span class="va">barb</span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">levelplot</span><span class="op">(</span><span class="va">spc</span> <span class="op">~</span> <span class="va">.wavelength</span> <span class="op">*</span> <span class="va">z</span>, <span class="va">barb</span>,
   panel <span class="op">=</span> <span class="va">panel.levelplot.points</span>,
@@ -1409,7 +1409,7 @@ The same holds for package <strong>ggplot2</strong> graphics.</p>
 <span class="co">#&gt;  collate  en_US.UTF-8                 </span>
 <span class="co">#&gt;  ctype    en_US.UTF-8                 </span>
 <span class="co">#&gt;  tz       UTC                         </span>
-<span class="co">#&gt;  date     2021-02-23                  </span>
+<span class="co">#&gt;  date     2021-02-24                  </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; ─ Packages ───────────────────────────────────────────────────────────────────────────────────────</span>
 <span class="co">#&gt;  package        * version    date       lib source        </span>
@@ -1431,7 +1431,7 @@ The same holds for package <strong>ggplot2</strong> graphics.</p>
 <span class="co">#&gt;  ggplot2        * 3.3.3      2020-12-30 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  glue             1.4.2      2020-08-27 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  gtable           0.3.0      2019-03-25 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  hyperSpec      * 0.100.0    2021-02-23 [1] local         </span>
+<span class="co">#&gt;  hyperSpec      * 0.100.0    2021-02-24 [1] local         </span>
 <span class="co">#&gt;  hySpc.testthat   0.2.1.9000 2021-02-16 [1] local         </span>
 <span class="co">#&gt;  isoband          0.2.3      2020-12-01 [1] CRAN (R 4.0.2)</span>
 <span class="co">#&gt;  jpeg             0.1-8.1    2019-10-24 [1] CRAN (R 4.0.2)</span>
