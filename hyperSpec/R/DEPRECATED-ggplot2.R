@@ -51,7 +51,7 @@ qplotspc <- function(x,
                      debuglevel = hy.getOption("debuglevel")) {
 
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- DEPRECATED-ggplot2(new = "qplotspc")
+  deprecated_ggplot2(new = "qplotspc")
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   chk.hy(x)
@@ -133,7 +133,7 @@ qplotmap <- function(object,
                      func = mean, func.args = list(),
                      map.tileonly = FALSE) {
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- DEPRECATED-ggplot2(new = "qplotmap")
+  deprecated_ggplot2(new = "qplotmap")
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   chk.hy(object)
   validObject(object)
@@ -203,7 +203,7 @@ qplotc <- function(object, mapping = aes_string(x = "c", y = "spc"), ...,
                    func = NULL, func.args = list(),
                    map.pointonly = FALSE) {
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- DEPRECATED-ggplot2(new = "qplotc")
+  deprecated_ggplot2(new = "qplotc")
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   chk.hy(object)
   validObject(object)
@@ -317,7 +317,7 @@ make.fn.expr <- function(fn, l = list()) {
 #'
 qplotmixmap <- function(object, ...) {
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- DEPRECATED-ggplot2(new = "qplotmixmap")
+  deprecated_ggplot2(new = "qplotmixmap")
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   # Suppress excessive deprecation warnings from internally used functions.
   suppress_warnings(classes = "deprecatedWarning", expr = {
@@ -356,7 +356,7 @@ qplotmixmap <- function(object, ...) {
 #' @export
 legendright <- function(p, l, legend.width = 8, legend.unit = "lines") {
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- DEPRECATED-ggplot2()
+  deprecated_ggplot2()
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   plot.new()
   pushViewport(viewport(layout = grid.layout(1, 2,
@@ -386,7 +386,7 @@ qmixtile <- function(object,
                      ...,
                      map.tileonly = FALSE) {
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- DEPRECATED-ggplot2()
+  deprecated_ggplot2()
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   ## calculate fill colours
@@ -413,7 +413,7 @@ qmixtile <- function(object,
 #' @export
 normalize.colrange <- function(x, na.rm = TRUE, legend = FALSE, n = 100, ...) {
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- DEPRECATED-ggplot2()
+  deprecated_ggplot2()
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   ## legend
   if (legend) {
@@ -436,7 +436,7 @@ normalize.colrange <- function(x, na.rm = TRUE, legend = FALSE, n = 100, ...) {
 #' @export
 normalize.range <- function(x, na.rm = TRUE, legend = FALSE, n = 100, ...) {
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- DEPRECATED-ggplot2()
+  deprecated_ggplot2()
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   if (legend) {
     y <- matrix(seq(min(x), max(x), length.out = n), nrow = n, ncol = ncol(x))
@@ -457,7 +457,7 @@ normalize.range <- function(x, na.rm = TRUE, legend = FALSE, n = 100, ...) {
 #' @export
 normalize.null <- function(x, na.rm = TRUE, legend = FALSE, n = 100, ...) {
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- DEPRECATED-ggplot2()
+  deprecated_ggplot2()
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   if (legend) {
     y <- apply(x, 2, function(x) seq(min(x), max(x), length.out = n))
@@ -481,7 +481,7 @@ normalize.null <- function(x, na.rm = TRUE, legend = FALSE, n = 100, ...) {
 normalize.minmax <- function(x, min = 0, max = 1, legend = FALSE, n = 100,
                              ...) {
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- DEPRECATED-ggplot2()
+  deprecated_ggplot2()
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   if (legend) {
     y <- matrix(seq(0, 1, length.out = n), nrow = n, ncol = ncol(x))
@@ -517,7 +517,7 @@ normalize.minmax <- function(x, min = 0, max = 1, legend = FALSE, n = 100,
 qmixlegend <- function(x, purecol, dx = 0.33, ny = 100, labels = names(purecol),
                        normalize = normalize.colrange, ...) {
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- DEPRECATED-ggplot2()
+  deprecated_ggplot2()
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   if (!is.matrix(x)) {
     x <- matrix(x, ncol = 1)
@@ -585,7 +585,7 @@ qmixlegend <- function(x, purecol, dx = 0.33, ny = 100, labels = names(purecol),
 colmix.rgb <- function(x, purecol, against = 1, sub = TRUE,
                        normalize = normalize.colrange, ...) {
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- DEPRECATED-ggplot2()
+  deprecated_ggplot2()
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   if (!is.null(normalize)) {
     x <- normalize(x, ...)
