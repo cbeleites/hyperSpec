@@ -20,7 +20,7 @@
 
   e1[[]] <- callGeneric(e1[[]], e2[[]])
 
-  e1 <- mergeextra(e1, e2)
+  e1 <- merge_data(e1, e2)
 
   e1
 }

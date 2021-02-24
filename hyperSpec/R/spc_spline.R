@@ -7,7 +7,7 @@
 #' @return `hyperSpec` object containing smoothed spectra
 #' @rdname spc-spline
 #' @author Claudia Beleites
-#' @seealso [hyperSpec::spc.loess()]
+#' @seealso [hyperSpec::spc_loess()]
 #'
 #' [stats::smooth.spline()]
 #' @note This function is still experimental
@@ -19,21 +19,21 @@
 #' @examples
 #' p <- paracetamol[, , 2200 ~ max]
 #' plot(p, col = "gray")
-#' smooth <- spc.smooth.spline(p[, , c(2200 ~ 2400, 2500 ~ 2825, 3150 ~ max)],
+#' smooth <- spc_smooth_spline(p[, , c(2200 ~ 2400, 2500 ~ 2825, 3150 ~ max)],
 #'   wl(paracetamol[, , 2200 ~ max]),
 #'   df = 4, spar = 1
 #' )
 #' plot(smooth, col = "red", add = TRUE)
 #'
 #' plot(p - smooth)
-spc.smooth.spline <- function(spc, newx = wl(spc), ...) {
+spc_smooth_spline <- function(spc, newx = wl(spc), ...) {
   .spline <- function(x, y, newx) {
     pts <- !is.na(y)
     fit <- smooth.spline(x[pts], y[pts], ...)$fit
     predict(fit, newx, deriv = 0)$y
   }
 
-  spc <- orderwl(spc) # includes chk.hy and validObject
+  spc <- wl_sort(spc) # includes chk.hy and validObject
 
   newspc <- matrix(NA_real_, ncol = length(newx), nrow = nrow(spc))
   i <- rowSums(is.na(spc@data$spc)) < nwl(spc)
@@ -56,13 +56,13 @@ spc.smooth.spline <- function(spc, newx = wl(spc), ...) {
 }
 
 # Unit tests -----------------------------------------------------------------
-hySpc.testthat::test(spc.smooth.spline) <- function() {
-  context("spc.smooth.spline")
+hySpc.testthat::test(spc_smooth_spline) <- function() {
+  context("spc_smooth_spline")
 
   # Perform tests
-  test_that("spc.smooth.spline() returnts output silently", {
-    expect_error(spc.smooth.spline())
-    expect_silent(hy <- spc.smooth.spline(flu))
+  test_that("spc_smooth_spline() returnts output silently", {
+    expect_error(spc_smooth_spline())
+    expect_silent(hy <- spc_smooth_spline(flu))
     expect_is(hy, "hyperSpec")
   })
 

@@ -1,4 +1,7 @@
-#' Count Lines (of an ASCII File) (DEPRECATED)
+#' @name DEPRECATED-count_lines
+#' @concept moved to hySpc.read.txt
+#'
+#' @title (DEPRECATED) Count Lines (of an ASCII File)
 #'
 #' @description
 #'
@@ -12,9 +15,6 @@
 #' @param chunksize `file` is read in chunks of `chunksize` lines.
 #' @return number of lines in file
 #' @export
-#'
-# @concept io
-#' @concept moved to hySpc.read.txt
 #'
 #' @author C. Beleites
 count_lines <- function(file, chunksize = 1e4) {

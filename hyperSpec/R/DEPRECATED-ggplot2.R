@@ -1,7 +1,8 @@
-#' @name hyperSpec-deprecated-ggplot2
+#' @name DEPRECATED-ggplot2
+#' @concept moved to hySpc.ggplot2
 #'
-#' @title Spectra Plotting with \pkg{ggplot2} Was Moved to \pkg{hySpc.ggplot2}
-#'       (DEPRECATED)
+#' @title (DEPRECATED)
+#'        Spectra Plotting with \pkg{ggplot2} Was Moved to \pkg{hySpc.ggplot2}
 #'
 #' @description
 #'
@@ -13,7 +14,6 @@
 #'
 #' @author Claudia Beleites
 #'
-#' @concept moved to hySpc.ggplot2
 #'
 #' @import ggplot2
 #' @importFrom grid pushViewport viewport popViewport grid.layout unit
@@ -24,7 +24,7 @@
 NULL
 
 
-#' @rdname hyperSpec-deprecated-ggplot2
+#' @rdname DEPRECATED-ggplot2
 #'
 #' @param x `hyperSpec` object
 #' @param wl.range wavelength ranges to plot
@@ -109,7 +109,7 @@ qplotspc <- function(x,
 }
 
 
-#' @rdname hyperSpec-deprecated-ggplot2
+#' @rdname DEPRECATED-ggplot2
 #'
 #' @param object  hyperSpec object
 #' @param mapping see  [ggplot2::geom_tile()]
@@ -183,7 +183,7 @@ qplotmap <- function(object,
 }
 
 
-#' @rdname hyperSpec-deprecated-ggplot2
+#' @rdname DEPRECATED-ggplot2
 #'
 #' @param object hyperSpec object
 #' @param mapping see  [ggplot2::geom_point()]
@@ -295,7 +295,7 @@ make.fn.expr <- function(fn, l = list()) {
 }
 
 
-#' @rdname hyperSpec-deprecated-ggplot2
+#' @rdname DEPRECATED-ggplot2
 #'
 #' @param object `hyperSpec` object
 #' @param ... handed over to [hyperSpec::qmixlegend()] and [hyperSpec::qmixtile()]
@@ -309,7 +309,7 @@ make.fn.expr <- function(fn, l = list()) {
 #' @export
 #'
 #' @examples
-#' faux_cell <- faux_cell - spc.fit.poly.below(faux_cell)
+#' faux_cell <- faux_cell - spc_fit_poly_below(faux_cell)
 #'
 #' qplotmixmap(faux_cell [, , c(800, 1200, 1500)],
 #'   purecol = c(A = "green4", B = "yellow", C = "royalblue")
@@ -347,7 +347,7 @@ qplotmixmap <- function(object, ...) {
   invisible(list(map = p, legend = l))
 }
 
-#' @rdname hyperSpec-deprecated-ggplot2
+#' @rdname DEPRECATED-ggplot2
 #'
 #' @param p plot object
 #' @param l legend object
@@ -368,7 +368,7 @@ legendright <- function(p, l, legend.width = 8, legend.unit = "lines") {
 }
 
 
-#' @rdname hyperSpec-deprecated-ggplot2
+#' @rdname DEPRECATED-ggplot2
 #'
 #' @param object matrix to be plotted with mixed colour channels
 #' @param purecol pure component colours, names determine legend labels
@@ -404,7 +404,7 @@ qmixtile <- function(object,
   p + scale_fill_identity() + theme(legend.position = "none")
 }
 
-#' @rdname hyperSpec-deprecated-ggplot2
+#' @rdname DEPRECATED-ggplot2
 #'
 #' @param na.rm see [base::min()]
 #' @param legend should a legend be produced instead of normalized values?
@@ -432,7 +432,7 @@ normalize.colrange <- function(x, na.rm = TRUE, legend = FALSE, n = 100, ...) {
   }
 }
 
-#' @rdname hyperSpec-deprecated-ggplot2
+#' @rdname DEPRECATED-ggplot2
 #' @export
 normalize.range <- function(x, na.rm = TRUE, legend = FALSE, n = 100, ...) {
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -453,7 +453,7 @@ normalize.range <- function(x, na.rm = TRUE, legend = FALSE, n = 100, ...) {
   }
 }
 
-#' @rdname hyperSpec-deprecated-ggplot2
+#' @rdname DEPRECATED-ggplot2
 #' @export
 normalize.null <- function(x, na.rm = TRUE, legend = FALSE, n = 100, ...) {
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -472,7 +472,7 @@ normalize.null <- function(x, na.rm = TRUE, legend = FALSE, n = 100, ...) {
   }
 }
 
-#' @rdname hyperSpec-deprecated-ggplot2
+#' @rdname DEPRECATED-ggplot2
 #'
 #' @param min numeric with value corresponding to "lowest" colour for each column
 #' @param max numeric with value corresponding to "hightest" colour for each column
@@ -507,7 +507,7 @@ normalize.minmax <- function(x, min = 0, max = 1, legend = FALSE, n = 100,
   }
 }
 
-#' @rdname hyperSpec-deprecated-ggplot2
+#' @rdname DEPRECATED-ggplot2
 #'
 #' @param dx width of label bar
 #' @param ny number of colours in legend
@@ -571,7 +571,7 @@ qmixlegend <- function(x, purecol, dx = 0.33, ny = 100, labels = names(purecol),
   l
 }
 
-#' @rdname hyperSpec-deprecated-ggplot2
+#' @rdname DEPRECATED-ggplot2
 #'
 #' @param x matrix with component intensities in columns
 #' @param against value to mix against (for `sub = TRUE` only, 1 = white, 0 = black)

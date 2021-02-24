@@ -1,24 +1,21 @@
-### -----------------------------------------------------------------------------
-###
-### write.txt.long
-###
-###
+### ---------------------------------------------------------------------------
+# FIXME: update examples
 
-#' Export `hyperSpec` objects to ASCII (text) files
+#' Export `hyperSpec` Objects to ASCII (text) Files
 #'
 #' These functions write `hyperSpec` objects to text files.
 #'
 #' @rdname write_txt
-#' @aliases write.txt.long
+#' @aliases write_txt_long
 #'
-#' @param file filename or connection.
-#' @param object the `hyperSpec` object.
-#' @param cols the column names specifying the column order.
-#' @param order which columns should be [base::order()]ed? Parameter `order` is
+#' @param file Filename or connection.
+#' @param object `hyperSpec` object.
+#' @param cols Column names specifying the column order.
+#' @param order Which columns should be [base::order()]ed? Parameter `order` is
 #'        used as index vector into a `data.frame` with columns given by `cols`.
-#' @param na.last handed to [base::order()] by `write.txt.long`.
-#' @param quote,sep,col.names,row.names have their usual meaning (see
-#'        [utils::write.table()]), but different default values.
+#' @param na.last Handed to [base::order()] by `write_txt_long`.
+#' @param quote,sep,col.names,row.names Have their usual meaning
+#'        (see [utils::write.table()]), but different default values.
 #'
 #' For file import, `row.names` should usually be `NULL` so that the first
 #'        column becomes a extra data column (as opposed to row names of the
@@ -28,7 +25,7 @@
 #' @param append Should the output be appended to an existing file?
 #' @param decreasing logical vector giving the sort order.
 #' @param header.lines Toggle one or two line header (wavelengths in the
-#'        second header line) for `write.txt.wide`.
+#'        second header line) for `write_txt_wide`.
 #' @param ... arguments handed to [utils::write.table()].
 #'
 #'
@@ -40,11 +37,7 @@
 #'
 #' @examples
 #'
-#' \dontrun{
-#' vignette("fileio")
-#' }
-#'
-#' ## export & import matlab files
+#' ## Export & import Matlab files
 #' if (require(R.matlab)) {
 #'   # export to matlab file
 #'   writeMat(paste0(tempdir(), "/test.mat"),
@@ -62,10 +55,10 @@
 #'   )
 #' }
 #'
-#' ## ascii export & import
 #'
+#' ## ASCII export & import
 #'
-#' write.txt.long(flu,
+#' write_txt_long(flu,
 #'   file = paste0(tempdir(), "/flu.txt"),
 #'   cols = c(".wavelength", "spc", "c"),
 #'   order = c("c", ".wavelength"),
@@ -80,13 +73,13 @@
 #'   )
 #' )
 #'
-#' write.txt.wide(flu,
+#' write_txt_wide(flu,
 #'   file = paste0(tempdir(), "/flu.txt"),
 #'   cols = c("c", "spc"),
 #'   col.labels = TRUE, header.lines = 2, row.names = TRUE
 #' )
 #'
-#' write.txt.wide(flu,
+#' write_txt_wide(flu,
 #'   file = paste0(tempdir(), "/flu.txt"),
 #'   col.labels = FALSE, row.names = FALSE
 #' )
@@ -103,17 +96,18 @@
 #'   ),
 #'   header = TRUE
 #' )
-
-write.txt.long <- function(object,
+write_txt_long <- function(object,
                            file = "",
                            order = c(".rownames", ".wavelength"),
-                           na.last = TRUE, decreasing = FALSE,
+                           na.last = TRUE,
+                           decreasing = FALSE,
                            quote = FALSE,
                            sep = "\t",
                            row.names = FALSE,
                            cols = NULL,
                            col.names = TRUE,
-                           col.labels = FALSE, # use labels instead of column names?
+                           # col.labels: use labels instead of column names?
+                           col.labels = FALSE,
                            append = FALSE,
                            ...) {
   validObject(object)
@@ -127,8 +121,8 @@ write.txt.long <- function(object,
       tmp <- match(order, colnames(X))
       if (any(is.na(tmp))) {
         stop(
-          "write.txt.long: no such columns: ",
-          paste(order [is.na(tmp)], collapse = ", ")
+          "write_txt_long: no such columns: ",
+          paste(order[is.na(tmp)], collapse = ", ")
         )
       }
       order <- tmp
@@ -139,14 +133,15 @@ write.txt.long <- function(object,
       decreasing <- rep(decreasing, length.out = length(order))
     }
 
-    order.data <- as.list(X [, order, drop = FALSE])
+    order.data <- as.list(X[, order, drop = FALSE])
 
     for (i in seq_along(order)) {
       if (is.factor(order.data[[i]])) {
-        order.data[[i]] <- rank(order.data[[i]], na.last = na.last | is.na(na.last))
+        order.data[[i]] <-
+          rank(order.data[[i]], na.last = na.last | is.na(na.last))
       }
 
-      if (decreasing [i]) {
+      if (decreasing[i]) {
         order.data[[i]] <- -order.data[[i]]
       }
     }
@@ -162,20 +157,20 @@ write.txt.long <- function(object,
   }
 
   if (!is.null(cols)) {
-    X <- X [, cols, drop = FALSE]
+    X <- X[, cols, drop = FALSE]
   }
 
   if (!row.names) {
     X$.rownames <- NULL
   } else {
-    cln [match(".rownames", cln)] <- "row"
+    cln[match(".rownames", cln)] <- "row"
   }
 
   if (col.names) {
     if (col.labels) {
       cln <- match(colnames(X), names(object@label))
-      cln[!is.na(cln)] <- object@label [cln[!is.na(cln)]]
-      cln[is.na(cln)] <- colnames(X) [is.na(cln)]
+      cln[!is.na(cln)] <- object@label[cln[!is.na(cln)]]
+      cln[is.na(cln)] <- colnames(X)[is.na(cln)]
       cln <- sapply(cln, as.character)
     } else {
       cln <- colnames(X)

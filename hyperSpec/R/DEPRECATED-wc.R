@@ -1,4 +1,7 @@
-#' Line/word/character count of ASCII files (DEPRECATED)
+#' @name DEPRECATED-wc
+#' @concept moved to hySpc.read.txt
+#'
+#' @title (DEPRECATED) Line/word/character count of ASCII files
 #'
 #' @description
 #'
@@ -24,9 +27,6 @@
 #' @seealso [count_lines()]
 #'
 #' @export
-#'
-# @concept deprecated
-#' @concept moved to hySpc.read.txt
 #'
 #' @author C. Beleites
 #' @importFrom utils read.table

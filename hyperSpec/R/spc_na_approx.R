@@ -20,10 +20,10 @@
 #' @author Claudia Beleites
 #' @examples
 #' fluNA <- hyperSpec:::fluNA
-#' spc.NA.approx(fluNA [, , min ~ 410], debuglevel = 1)
-#' spc.NA.approx(fluNA [1, , min ~ 410], debuglevel = 2)
-#' spc.NA.approx(fluNA [4, , min ~ 410], neighbours = 3, df = 4, debuglevel = 2)
-spc.NA.approx <- function(spc, neighbours = 1, w = rep(1, 2 * neighbours),
+#' spc_na_approx(fluNA [, , min ~ 410], debuglevel = 1)
+#' spc_na_approx(fluNA [1, , min ~ 410], debuglevel = 2)
+#' spc_na_approx(fluNA [4, , min ~ 410], neighbours = 3, df = 4, debuglevel = 2)
+spc_na_approx <- function(spc, neighbours = 1, w = rep(1, 2 * neighbours),
   df = 1 + .Machine$double.eps, spar = NULL,
   debuglevel = hy.getOption("debuglevel")) {
   chk.hy(spc)
@@ -118,11 +118,11 @@ spc.NA.approx <- function(spc, neighbours = 1, w = rep(1, 2 * neighbours),
 
 # Unit tests -----------------------------------------------------------------
 
-hySpc.testthat::test(spc.NA.approx) <- function() {
-  context("spc.NA.approx")
+hySpc.testthat::test(spc_na_approx) <- function() {
+  context("spc_na_approx")
 
   test_that("linear interpolation", {
-    tmp <- spc.NA.approx(fluNA[-2, , min ~ 410])
+    tmp <- spc_na_approx(fluNA[-2, , min ~ 410])
     expect_equivalent(
       as.numeric(tmp[[, , 406]]),
       rowMeans(fluNA[[-2, , 405.5 ~ 406.5]], na.rm = TRUE)
@@ -130,7 +130,7 @@ hySpc.testthat::test(spc.NA.approx) <- function() {
   })
 
   test_that("spline interpolation", {
-    tmp <- spc.NA.approx(fluNA[-2, , min ~ 410], neighbours = 2)
+    tmp <- spc_na_approx(fluNA[-2, , min ~ 410], neighbours = 2)
     expect_true(
       all(abs(tmp[[, , 406]] - rowMeans(fluNA[[-2, , 405 ~ 407]],
         na.rm = TRUE)) <= 1e-5)
@@ -143,7 +143,7 @@ hySpc.testthat::test(spc.NA.approx) <- function() {
     ranges <- list(405 ~ 407, 405.5 ~ 406.5, 405.6 ~ 406)
     for (d in 0:2) {
       for (r in ranges) {
-        tmp <- spc.NA.approx(fluNA[-2, , r], neighbours = 3, debuglevel = d)
+        tmp <- spc_na_approx(fluNA[-2, , r], neighbours = 3, debuglevel = d)
         # expect_equal(round(as.numeric(tmp[[,, 406]]), 5),
         #   round(rowMeans(fluNA[[-2,, r]], na.rm = TRUE), 5),
         #   tolerance = 1e-5,

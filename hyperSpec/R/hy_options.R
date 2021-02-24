@@ -20,7 +20,7 @@
 #' **Name**          \tab **Default Value (range)**      \tab **Description**                               \tab **Used by**\cr
 #' debuglevel           \tab 0 (1L 2L 3L)                      \tab amount of debugging information produced         \tab [spc.identify()] [map.identify()]\cr
 #'                      \tab                                   \tab                                                  \tab various file import functions\cr
-#'                      \tab                                   \tab                                                  \tab [spc.fit.poly.below()]\cr
+#'                      \tab                                   \tab                                                  \tab [spc_fit_poly_below()]\cr
 #' gc                   \tab FALSE                             \tab triggers frequent calling of gc ()               \tab [read.ENVI()], `new ("hyperSpec")`\cr
 #' file.remove.emptyspc \tab TRUE                              \tab remove empty spectra directly on file import     \tab various file import functions\cr
 #' file.keep.name       \tab TRUE                              \tab always create filename column                    \tab various file import functions\cr

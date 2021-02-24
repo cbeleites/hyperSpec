@@ -39,7 +39,7 @@ plotmat <- function(object, y = ".row", ylab, col = alois.palette(20), ...,
                     contour = FALSE) {
   chk.hy(object)
   validObject(object)
-  object <- orderwl(object)
+  object <- wl_sort(object)
 
   if (is.character(y)) {
     if (missing(ylab)) {

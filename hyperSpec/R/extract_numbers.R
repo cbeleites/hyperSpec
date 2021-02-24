@@ -5,7 +5,7 @@
 #' produce suitable names (e.g. by prepending "X" to numbers). Such names
 #' cannot be directly converted to numeric.
 #'
-#' `guess.wavlength()` tries to extract numbers from X which may be
+#' `extract_numbers()` tries to extract numbers from X which may be
 #' surrounded by such "protecting" characters.
 #'
 #' @param X character with numbers hidden inside
@@ -21,8 +21,8 @@
 #' @examples
 #' tmp <- data.frame(flu[[, , 400 ~ 410]])
 #' (wl <- colnames(tmp))
-#' guess.wavelength(wl)
-guess.wavelength <- function(X) {
+#' extract_numbers(wl)
+extract_numbers <- function(X) {
   wl <- regmatches(X, regexpr(.PATTERN.number, X))
   wl <- as.numeric(wl)
 
@@ -38,20 +38,20 @@ guess.wavelength <- function(X) {
 
 #' @include constants-regexps.R
 #' @include hy_options.R
-hySpc.testthat::test(guess.wavelength) <- function() {
-  context("guess.wavelength")
+hySpc.testthat::test(extract_numbers) <- function() {
+  context("extract_numbers")
 
   test_that("simple test", {
-    expect_equal(guess.wavelength(1:5), 1:5)
+    expect_equal(extract_numbers(1:5), 1:5)
   })
 
   test_that("wavelengths containing characters", {
     wl <- seq(600, 602, length.out = 11)
-    expect_equal(guess.wavelength(make.names(wl)), wl)
+    expect_equal(extract_numbers(make.names(wl)), wl)
   })
 
   test_that("return NULL if could not guess wavelenths", {
-    expect_equal(guess.wavelength(colnames(matrix(1:12, 3))), NULL)
-    expect_equal(guess.wavelength(letters[1:4]), NULL)
+    expect_equal(extract_numbers(colnames(matrix(1:12, 3))), NULL)
+    expect_equal(extract_numbers(letters[1:4]), NULL)
   })
 }

@@ -1,4 +1,4 @@
-### -----------------------------------------------------------------------------
+### --------------------------------------------------------------------------~
 ###
 ###  read.txt.wide
 ###
@@ -6,21 +6,19 @@
 ###  x y ... int (wl1)  int (wl2) ... int (wl p) z ...
 ###
 
-#' Import `hyperSpec` objects from ASCII (text) files (DEPRECATED)
+#' @rdname DEPRECATED-textio
+#' @concept deprecated
+#'
+#' @title (DEPRECATED) Import `hyperSpec` objects from ASCII (text) files
 #'
 #' @description
+#' These \pkg{hyperSpec} functions are **deprecated** and not maintained any
+#' more. You should not use these.
+#' Currently they are present due to back-compatibility reasons and will be
+#' removed in the next release of the package.
+#' Please, use the suggested alternative functions instead.
 #'
-#' These data input functions are **deprecated** and they will be removed in
-#' the next release of \pkg{hyperspec} package.
-#' Now functions in package \pkg{hySpc.read.txt}
-#' ([link](https://r-hyperspec.github.io/hySpc.read.txt/reference/index.html))
-#' should be used as the alternatives.
-#'
-#'
-#' @rdname textio
-#' @aliases read.txt.wide
-#'
-#' @details
+#' `_____________`
 #'
 #' Import `hyperSpec` objects from ASCII (text) files.
 #'
@@ -86,15 +84,8 @@
 #' For further information, see the examples below and the documentation of
 #' [R.matlab::R.matlab()].
 #'
-#'
-#'
-#' @seealso `vignette("fileio")`
-#'
 #' @param check.names handed to [utils::read.table()]. Make sure this is
 #'        `FALSE`, if the column names of the spectra are the wavelength values.
-#'
-# @concept io
-#' @concept moved to hySpc.read.txt
 #'
 #' @export
 #' @importFrom utils read.table head
@@ -108,7 +99,7 @@ read.txt.wide <- function(file = stop("file is required"),
                           check.names = FALSE,
                           ...) {
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  deprecated_read_txt()
+  hySpc_deprecated("read_txt_wide")
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   .wavelength <- match(".wavelength", names(cols))
   if (is.na(.wavelength)) {
@@ -140,5 +131,5 @@ read.txt.wide <- function(file = stop("file is required"),
   spc <- new("hyperSpec", spc = spc.data, data = txtfile, labels = cols)
 
   ## consistent file import behaviour across import functions
-  .fileio.optional(spc, filename = file)
+  .spc_io_postprocess_optional(spc, filename = file)
 }

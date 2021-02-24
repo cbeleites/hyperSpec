@@ -1,13 +1,20 @@
 #' @name deprecated
+#' @concept deprecated
+#'
 #' @title Deprecated and Defunct Functions
-#' @description Deprecated and defunct functions. You should not use these.
-#' See section "Details" for proposed replacement.
+#' @description
+#' These \pkg{hyperSpec} functions are **deprecated** and not maintained any
+#' more. You should not use these.
+#' Currently they are present due to back-compatibility reasons and will be
+#' removed in the next release of the package.
+#' Please, use the suggested alternative functions instead.
+#'
+#' `_____________`
 #'
 #' @param ... Arguments passed to appropriate replacement function.
 #'       (See the description of that function).
 #'
 #' @keywords internal
-#' @concept deprecated
 NULL
 
 #' @rdname deprecated

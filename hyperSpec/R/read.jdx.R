@@ -108,7 +108,7 @@ read.jdx <- function(filename = stop("filename is needed"), encoding = "",
   }
 
   ## consistent file import behaviour across import functions
-  .fileio.optional(spc, filename)
+  .spc_io_postprocess_optional(spc, filename)
 }
 
 ### HEADER ------------------------------------------------------------------------------------------

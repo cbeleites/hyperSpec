@@ -8,20 +8,20 @@
 #'
 #' @export
 #'
-.fix_spc_colnames <- function(spc) {
+.spc_fix_colnames <- function(spc) {
   colnames(spc@data$spc) <- signif(spc@wavelength, digits = 6)
 
   spc
 }
 
-hySpc.testthat::test(.fix_spc_colnames) <- function() {
-  context(".fix_spc_colnames")
+hySpc.testthat::test(.spc_fix_colnames) <- function() {
+  context(".spc_fix_colnames")
 
   test_that("colnames get fixed", {
     tmp <- flu
     colnames(tmp@data$spc) <- NULL
 
-    tmp <- .fix_spc_colnames(tmp)
+    tmp <- .spc_fix_colnames(tmp)
     expect_equal(colnames(tmp@data$spc), as.character(wl(tmp)))
   })
 }

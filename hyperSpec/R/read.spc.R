@@ -815,7 +815,7 @@ read.spc <- function(filename,
   if (hdr$ftflgs ["TXYXYS"] && hdr$ftflgs ["TMULTI"]) {
     ## list of hyperSpec objects
     ## consistent file import behaviour across import functions
-    lapply(spc, .fileio.optional, filename = filename)
+    lapply(spc, .spc_io_postprocess_optional, filename = filename)
   } else if (no.object) {
     list(spc = spc, wavelength = wavelength, data = data, labels = label)
   } else {
@@ -829,7 +829,7 @@ read.spc <- function(filename,
     )
 
     ## consistent file import behaviour across import functions
-    .fileio.optional(spc, filename)
+    .spc_io_postprocess_optional(spc, filename)
   }
 }
 
