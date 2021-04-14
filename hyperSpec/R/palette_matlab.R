@@ -1,5 +1,5 @@
 #' @rdname palettes
-#' @aliases matlab.palette colors,matlab.palette
+#' @aliases palette_matlab colors,palette_matlab
 #'
 #' @title Matlab-Like Color Palettes
 #'
@@ -11,7 +11,7 @@
 #'
 #' @param n the number of colors to be in the palette.
 #' @param ... further arguments are handed to [grDevices::rainbow()]
-#'        (`alois.palette`: [grDevices::colorRampPalette()]).
+#'        (`palette_alois`: [grDevices::colorRampPalette()]).
 #'
 #' @return A vector containing the color values in the form `"#rrbbggaa"`.
 #'
@@ -30,19 +30,19 @@
 #' # Matlab dark palette
 #'
 #' op <- par(mar = c(0, 0, 0, 0))
-#' pie(rep(1, 12), col = matlab.palette(12))
+#' pie(rep(1, 12), col = palette_matlab(12))
 #' par(op)
 #'
-#' plot(flu, col = matlab.palette(nrow(flu)))
+#' plot(flu, col = palette_matlab(nrow(flu)))
 #'
-#' plotmap(faux_cell[, , 1200], col.regions = matlab.palette())
+#' plotmap(faux_cell[, , 1200], col.regions = palette_matlab())
 #'
-matlab.palette <- function(n = 100, ...) {
+palette_matlab <- function(n = 100, ...) {
   rev(rainbow(n, start = 0, end = 4 / 6, ...))
 }
 
 #' @rdname palettes
-#' @aliases matlab.dark.palette colors,matlab.dark.palette
+#' @aliases palette_matlab_dark colors,palette_matlab_dark
 #'
 #' @concept plotting
 #' @concept color palette
@@ -54,14 +54,14 @@ matlab.palette <- function(n = 100, ...) {
 #' # Matlab dark palette
 #'
 #' op <- par(mar = c(0, 0, 0, 0))
-#' pie(rep(1, 12), col = matlab.dark.palette(12))
+#' pie(rep(1, 12), col = palette_matlab_dark(12))
 #' par(op)
 #'
-#' plot(flu, col = matlab.dark.palette(nrow(flu)))
+#' plot(flu, col = palette_matlab_dark(nrow(flu)))
 #'
-#' plotmap(faux_cell[, , 1200], col.regions = matlab.dark.palette())
+#' plotmap(faux_cell[, , 1200], col.regions = palette_matlab_dark())
 #'
-matlab.dark.palette <- function(n = 100, ...) {
+palette_matlab_dark <- function(n = 100, ...) {
   pal <- rev(rainbow(n, start = 0, end = 4 / 6, ...))
   pal <- col2rgb(pal)
   pal["green", ] <- pal["green", ] / 2
@@ -70,7 +70,7 @@ matlab.dark.palette <- function(n = 100, ...) {
 }
 
 #' @rdname palettes
-#' @aliases alois.palette colors,alois.palette
+#' @aliases palette_alois colors,palette_alois
 #'
 #' @concept plotting
 #' @concept color palette
@@ -82,13 +82,42 @@ matlab.dark.palette <- function(n = 100, ...) {
 #' # Alois palette
 #'
 #' op <- par(mar = c(0, 0, 0, 0))
-#' pie(rep(1, 12), col = alois.palette(12))
+#' pie(rep(1, 12), col = palette_alois(12))
 #' par(op)
 #'
-#' plot(flu, col = alois.palette(nrow(flu)))
+#' plot(flu, col = palette_alois(nrow(flu)))
 #'
-#' plotmap(faux_cell[, , 1200], col.regions = alois.palette())
+#' plotmap(faux_cell[, , 1200], col.regions = palette_alois())
 #'
-alois.palette <- function(n = 100, ...) {
+palette_alois <- function(n = 100, ...) {
   colorRampPalette(c("black", "blue", "cyan", "green", "yellow", "red"), ...)(n)
 }
+
+# Unit tests -----------------------------------------------------------------
+
+#' @import hySpc.testthat
+library(hySpc.testthat)
+hySpc.testthat::test(palette_matlab_dark) <- function() {
+  test_that("test palette matlab dark color", {
+    dark <- palette_matlab_dark()
+    expect_equal(dark[1], "#0000FF")
+    expect_equal(dark[2], "#0005FF")})
+}
+
+hySpc.testthat::test(palette_matlab) <- function() {
+  test_that("test pallete matlab", {
+    pal <- palette_matlab()
+    expect_equal(pal[1], "#0000FF")
+    expect_equal(pal[2], "#000AFF")})
+}
+
+hySpc.testthat::test(palette_alois) <- function() {
+  test_that("test palette alois", {
+    alois <- palette_alois()
+    expect_equal(alois[1], "#000000")
+    expect_equal(alois[2], "#00000C")})
+}
+
+library(testthat)
+with_reporter("summary", get_test(palette_alois)())
+

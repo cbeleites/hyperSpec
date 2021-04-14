@@ -116,7 +116,7 @@
 #' region.means <- aggregate(faux_cell, faux_cell$region, mean_pm_sd)
 #' plot(region.means,
 #'   stacked = ".aggregate", fill = ".aggregate",
-#'   col = matlab.dark.palette(3)
+#'   col = palette_matlab_dark(3)
 #' )
 #'
 #' ## make some "spectra"
