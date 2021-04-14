@@ -7,8 +7,8 @@
     by <- split(seq(x, index = TRUE), by, drop = TRUE)
   }
 
-  # main work here is to avoid calling stats::aggregate as there splitting and
-  # rearranging is involved. That is slow with the spectra.
+  ## main work here is to avoid calling stats::aggregate as there splitting and
+  ## rearranging is involved. That is slow with the spectra.
 
   # try a guess how many rows the result will have
   if (is.null(out.rows)) {
