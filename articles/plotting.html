@@ -127,7 +127,7 @@
 <br><a class="author_email" href="mailto:#"></a><a href="mailto:chemometrie@beleites.de" class="email">chemometrie@beleites.de</a>
       </address>
                   
-            <h4 class="date">2021-02-24</h4>
+            <h4 class="date">2021-05-27</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/cbeleites/hyperSpec/blob/master/../vignettes/plotting.Rmd"><code>../vignettes/plotting.Rmd</code></a></small>
       <div class="hidden name"><code>plotting.Rmd</code></div>
@@ -753,7 +753,7 @@ The arguments for these functions should be given in lists as <code class="sourc
   <span class="op">)</span>
   <span class="fu"><a href="../reference/plot-methods.html">plot</a></span><span class="op">(</span><span class="va">faux_cell_preproc</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>,
     yoffset <span class="op">=</span> <span class="va">yoffset</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>,
-    col <span class="op">=</span> <span class="fu"><a href="../reference/matlab.palette.html">matlab.dark.palette</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span> <span class="op">[</span><span class="va">i</span><span class="op">]</span>, add <span class="op">=</span> <span class="cn">TRUE</span>,
+    col <span class="op">=</span> <span class="fu"><a href="../reference/matlab.palette.html">matlab.dark.palette</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>, add <span class="op">=</span> <span class="cn">TRUE</span>,
     lines.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>lwd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
   <span class="op">)</span>
 <span class="op">}</span></code></pre></div>
@@ -1077,8 +1077,8 @@ Use function <code class="sourceCode r"><span class="kw">trellis.par.get</span>(
 <span class="co">#&gt; [17] "strip.background"  "strip.shingle"     "strip.border"      "superpose.line"   </span>
 <span class="co">#&gt; [21] "superpose.symbol"  "superpose.polygon" "regions"           "shade.colors"     </span>
 <span class="co">#&gt; [25] "axis.line"         "axis.text"         "axis.components"   "layout.heights"   </span>
-<span class="co">#&gt; [29] "layout.widths"     "box.3d"            "par.xlab.text"     "par.ylab.text"    </span>
-<span class="co">#&gt; [33] "par.zlab.text"     "par.main.text"     "par.sub.text"</span></code></pre></div>
+<span class="co">#&gt; [29] "layout.widths"     "box.3d"            "par.title.text"    "par.xlab.text"    </span>
+<span class="co">#&gt; [33] "par.ylab.text"     "par.zlab.text"     "par.main.text"     "par.sub.text"</span></code></pre></div>
 <p>Any of these parameters can be fine-tuned to produce the desired output.
 For example, parameter <code class="sourceCode r">my_theme<span class="op">$</span>region</code> is responsible for the appearance of color maps, and it contains elements <code class="sourceCode r"><span class="op">$</span>alpha</code> and <code class="sourceCode r"><span class="op">$</span>col</code>.
 By changing these parameters you can create your own theme for plotting and pass it to the plotting function via <code class="sourceCode r">par.settings</code>.</p>
@@ -1315,19 +1315,19 @@ As package <strong>rgl</strong>’s axis annotations are sometimes awkward, they
 <div class="sourceCode" id="cb74"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dmurdoch/rgl">rgl</a></span><span class="op">)</span>
 
-<span class="va">laser</span> <span class="op">&lt;-</span> <span class="va">laser</span> <span class="op">[</span>, , <span class="fl">404.8</span> <span class="op">~</span> <span class="fl">405.6</span><span class="op">]</span> <span class="op">/</span> <span class="fl">10000</span>
+<span class="va">laser</span> <span class="op">&lt;-</span> <span class="va">laser</span><span class="op">[</span>, , <span class="fl">404.8</span> <span class="op">~</span> <span class="fl">405.6</span><span class="op">]</span> <span class="op">/</span> <span class="fl">10000</span>
 <span class="va">laser</span><span class="op">$</span><span class="va">t</span> <span class="op">&lt;-</span> <span class="va">laser</span><span class="op">$</span><span class="va">t</span> <span class="op">/</span> <span class="fl">3600</span>
 <span class="va">cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="../reference/matlab.palette.html">matlab.palette</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">laser</span><span class="op">)</span><span class="op">)</span>, <span class="fu"><a href="../reference/ncol,hyperSpec-method.html">nwl</a></span><span class="op">(</span><span class="va">laser</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/rgl/man/surface3d.html">surface3d</a></span><span class="op">(</span>
+<span class="fu"><a href="https://dmurdoch.github.io/rgl/dev/reference/surface3d.html">surface3d</a></span><span class="op">(</span>
   y <span class="op">=</span> <span class="fu"><a href="../reference/wl.html">wl</a></span><span class="op">(</span><span class="va">laser</span><span class="op">)</span>, x <span class="op">=</span> <span class="va">laser</span><span class="op">$</span><span class="va">t</span>,
   z <span class="op">=</span> <span class="va">laser</span><span class="op">$</span><span class="va">spc</span>, col <span class="op">=</span> <span class="va">cols</span>
 <span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/rgl/man/aspect3d.html">aspect3d</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">0.25</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/rgl/man/axes3d.html">axes3d</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"x+-"</span>, <span class="st">"y--"</span>, <span class="st">"z--"</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/rgl/man/axes3d.html">axes3d</a></span><span class="op">(</span><span class="st">"y--"</span>, nticks <span class="op">=</span> <span class="fl">25</span>, labels <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/rgl/man/axes3d.html">mtext3d</a></span><span class="op">(</span><span class="st">"t / h"</span>, <span class="st">"x+-"</span>, line <span class="op">=</span> <span class="fl">2.5</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/rgl/man/axes3d.html">mtext3d</a></span><span class="op">(</span><span class="st">"lambda / nm"</span>, <span class="st">"y--"</span>, line <span class="op">=</span> <span class="fl">2.5</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/rgl/man/axes3d.html">mtext3d</a></span><span class="op">(</span><span class="st">"I / a.u."</span>, edge <span class="op">=</span> <span class="st">"z--"</span>, line <span class="op">=</span> <span class="fl">2.5</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://dmurdoch.github.io/rgl/dev/reference/aspect3d.html">aspect3d</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">0.25</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://dmurdoch.github.io/rgl/dev/reference/axes3d.html">axes3d</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"x+-"</span>, <span class="st">"y--"</span>, <span class="st">"z--"</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://dmurdoch.github.io/rgl/dev/reference/axes3d.html">axes3d</a></span><span class="op">(</span><span class="st">"y--"</span>, nticks <span class="op">=</span> <span class="fl">25</span>, labels <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+<span class="fu"><a href="https://dmurdoch.github.io/rgl/dev/reference/axes3d.html">mtext3d</a></span><span class="op">(</span><span class="st">"t / h"</span>, <span class="st">"x+-"</span>, line <span class="op">=</span> <span class="fl">2.5</span><span class="op">)</span>
+<span class="fu"><a href="https://dmurdoch.github.io/rgl/dev/reference/axes3d.html">mtext3d</a></span><span class="op">(</span><span class="st">"lambda / nm"</span>, <span class="st">"y--"</span>, line <span class="op">=</span> <span class="fl">2.5</span><span class="op">)</span>
+<span class="fu"><a href="https://dmurdoch.github.io/rgl/dev/reference/axes3d.html">mtext3d</a></span><span class="op">(</span><span class="st">"I / a.u."</span>, edge <span class="op">=</span> <span class="st">"z--"</span>, line <span class="op">=</span> <span class="fl">2.5</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:rgl-plot-png"></span>
 <img src="plotting--fig-3D-01.png" alt="A snapshot of an **rgl** plot.  " width="100%"><p class="caption">
@@ -1401,7 +1401,7 @@ The same holds for package <strong>ggplot2</strong> graphics.</p>
 <code class="sourceCode R"><span class="fu">sessioninfo</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/sessioninfo/man/session_info.html">session_info</a></span><span class="op">(</span><span class="st">"hyperSpec"</span><span class="op">)</span>
 <span class="co">#&gt; ─ Session info ───────────────────────────────────────────────────────────────────────────────────</span>
 <span class="co">#&gt;  setting  value                       </span>
-<span class="co">#&gt;  version  R version 4.0.4 (2021-02-15)</span>
+<span class="co">#&gt;  version  R version 4.1.0 (2021-05-18)</span>
 <span class="co">#&gt;  os       macOS Catalina 10.15.7      </span>
 <span class="co">#&gt;  system   x86_64, darwin17.0          </span>
 <span class="co">#&gt;  ui       X11                         </span>
@@ -1409,73 +1409,70 @@ The same holds for package <strong>ggplot2</strong> graphics.</p>
 <span class="co">#&gt;  collate  en_US.UTF-8                 </span>
 <span class="co">#&gt;  ctype    en_US.UTF-8                 </span>
 <span class="co">#&gt;  tz       UTC                         </span>
-<span class="co">#&gt;  date     2021-02-24                  </span>
+<span class="co">#&gt;  date     2021-05-27                  </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; ─ Packages ───────────────────────────────────────────────────────────────────────────────────────</span>
 <span class="co">#&gt;  package        * version    date       lib source        </span>
-<span class="co">#&gt;  assertthat       0.2.1      2019-03-21 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  brio             1.1.1      2021-01-20 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  callr            3.5.1      2020-10-13 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  cli              2.3.1      2021-02-23 [1] CRAN (R 4.0.4)</span>
-<span class="co">#&gt;  colorspace       2.0-0      2020-11-11 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  crayon           1.4.1      2021-02-08 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  desc             1.2.0      2018-05-01 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  diffobj          0.3.3      2021-01-07 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  digest           0.6.27     2020-10-24 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  dplyr            1.0.4      2021-02-02 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  ellipsis         0.3.1      2020-05-15 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  evaluate         0.14       2019-05-28 [1] CRAN (R 4.0.1)</span>
-<span class="co">#&gt;  fansi            0.4.2      2021-01-15 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  farver           2.0.3      2020-01-16 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  generics         0.1.0      2020-10-31 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  ggplot2        * 3.3.3      2020-12-30 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  glue             1.4.2      2020-08-27 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  gtable           0.3.0      2019-03-25 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  hyperSpec      * 0.100.0    2021-02-24 [1] local         </span>
-<span class="co">#&gt;  hySpc.testthat   0.2.1.9000 2021-02-16 [1] local         </span>
-<span class="co">#&gt;  isoband          0.2.3      2020-12-01 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  jpeg             0.1-8.1    2019-10-24 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  jsonlite         1.7.2      2020-12-09 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  labeling         0.4.2      2020-10-20 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  lattice        * 0.20-41    2020-04-02 [2] CRAN (R 4.0.4)</span>
-<span class="co">#&gt;  latticeExtra   * 0.6-29     2019-12-19 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  lazyeval         0.2.2      2019-03-15 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  lifecycle        1.0.0      2021-02-15 [1] CRAN (R 4.0.3)</span>
-<span class="co">#&gt;  magrittr         2.0.1      2020-11-17 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  MASS             7.3-53     2020-09-09 [2] CRAN (R 4.0.4)</span>
-<span class="co">#&gt;  Matrix           1.3-2      2021-01-06 [2] CRAN (R 4.0.4)</span>
-<span class="co">#&gt;  mgcv             1.8-33     2020-08-27 [2] CRAN (R 4.0.4)</span>
-<span class="co">#&gt;  munsell          0.5.0      2018-06-12 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  nlme             3.1-152    2021-02-04 [2] CRAN (R 4.0.4)</span>
-<span class="co">#&gt;  pillar           1.5.0      2021-02-22 [1] CRAN (R 4.0.4)</span>
-<span class="co">#&gt;  pkgbuild         1.2.0      2020-12-15 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  pkgconfig        2.0.3      2019-09-22 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  pkgload          1.2.0      2021-02-23 [1] CRAN (R 4.0.4)</span>
-<span class="co">#&gt;  png              0.1-7      2013-12-03 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  praise           1.0.0      2015-08-11 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  prettyunits      1.1.1      2020-01-24 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  processx         3.4.5      2020-11-30 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  ps               1.5.0      2020-12-05 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  purrr            0.3.4      2020-04-17 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  R6               2.5.0      2020-10-28 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  RColorBrewer     1.1-2      2014-12-07 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  rematch2         2.1.2      2020-05-01 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  rlang            0.4.10     2020-12-30 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  rprojroot        2.0.2      2020-11-15 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  rstudioapi       0.13       2020-11-12 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  scales           1.1.1      2020-05-11 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  testthat         3.0.2      2021-02-14 [1] CRAN (R 4.0.3)</span>
-<span class="co">#&gt;  tibble           3.0.6      2021-01-29 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  tidyselect       1.1.0      2020-05-11 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  utf8             1.1.4      2018-05-24 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  vctrs            0.3.6      2020-12-17 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  viridisLite      0.3.0      2018-02-01 [1] CRAN (R 4.0.1)</span>
-<span class="co">#&gt;  waldo            0.2.4      2021-02-11 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  withr            2.4.1      2021-01-26 [1] CRAN (R 4.0.2)</span>
-<span class="co">#&gt;  xml2             1.3.2      2020-04-23 [1] CRAN (R 4.0.2)</span>
+<span class="co">#&gt;  brio             1.1.2      2021-04-23 [1] CRAN (R 4.1.0)</span>
+<span class="co">#&gt;  callr            3.7.0      2021-04-20 [1] CRAN (R 4.1.0)</span>
+<span class="co">#&gt;  cli              2.5.0      2021-04-26 [1] CRAN (R 4.1.0)</span>
+<span class="co">#&gt;  colorspace       2.0-1      2021-05-04 [1] CRAN (R 4.1.0)</span>
+<span class="co">#&gt;  crayon           1.4.1      2021-02-08 [1] CRAN (R 4.1.0)</span>
+<span class="co">#&gt;  desc             1.3.0      2021-03-05 [1] CRAN (R 4.1.0)</span>
+<span class="co">#&gt;  diffobj          0.3.4      2021-03-22 [1] CRAN (R 4.1.0)</span>
+<span class="co">#&gt;  digest           0.6.27     2020-10-24 [1] CRAN (R 4.1.0)</span>
+<span class="co">#&gt;  dplyr            1.0.6      2021-05-05 [1] CRAN (R 4.1.0)</span>
+<span class="co">#&gt;  ellipsis         0.3.2      2021-04-29 [1] CRAN (R 4.1.0)</span>
+<span class="co">#&gt;  evaluate         0.14       2019-05-28 [1] CRAN (R 4.1.0)</span>
+<span class="co">#&gt;  fansi            0.5.0      2021-05-25 [1] CRAN (R 4.1.0)</span>
+<span class="co">#&gt;  farver           2.1.0      2021-02-28 [1] CRAN (R 4.1.0)</span>
+<span class="co">#&gt;  generics         0.1.0      2020-10-31 [1] CRAN (R 4.1.0)</span>
+<span class="co">#&gt;  ggplot2        * 3.3.3      2020-12-30 [1] CRAN (R 4.1.0)</span>
+<span class="co">#&gt;  glue             1.4.2      2020-08-27 [1] CRAN (R 4.1.0)</span>
+<span class="co">#&gt;  gtable           0.3.0      2019-03-25 [1] CRAN (R 4.1.0)</span>
+<span class="co">#&gt;  hyperSpec      * 0.100.0    2021-05-27 [1] local         </span>
+<span class="co">#&gt;  hySpc.testthat   0.2.1.9000 2021-05-27 [1] local         </span>
+<span class="co">#&gt;  isoband          0.2.4      2021-03-03 [1] CRAN (R 4.1.0)</span>
+<span class="co">#&gt;  jpeg             0.1-8.1    2019-10-24 [1] CRAN (R 4.1.0)</span>
+<span class="co">#&gt;  jsonlite         1.7.2      2020-12-09 [1] CRAN (R 4.1.0)</span>
+<span class="co">#&gt;  labeling         0.4.2      2020-10-20 [1] CRAN (R 4.1.0)</span>
+<span class="co">#&gt;  lattice        * 0.20-44    2021-05-02 [2] CRAN (R 4.1.0)</span>
+<span class="co">#&gt;  latticeExtra   * 0.6-29     2019-12-19 [1] CRAN (R 4.1.0)</span>
+<span class="co">#&gt;  lazyeval         0.2.2      2019-03-15 [1] CRAN (R 4.1.0)</span>
+<span class="co">#&gt;  lifecycle        1.0.0      2021-02-15 [1] CRAN (R 4.1.0)</span>
+<span class="co">#&gt;  magrittr         2.0.1      2020-11-17 [1] CRAN (R 4.1.0)</span>
+<span class="co">#&gt;  MASS             7.3-54     2021-05-03 [2] CRAN (R 4.1.0)</span>
+<span class="co">#&gt;  Matrix           1.3-3      2021-05-04 [2] CRAN (R 4.1.0)</span>
+<span class="co">#&gt;  mgcv             1.8-35     2021-04-18 [2] CRAN (R 4.1.0)</span>
+<span class="co">#&gt;  munsell          0.5.0      2018-06-12 [1] CRAN (R 4.1.0)</span>
+<span class="co">#&gt;  nlme             3.1-152    2021-02-04 [2] CRAN (R 4.1.0)</span>
+<span class="co">#&gt;  pillar           1.6.1      2021-05-16 [1] CRAN (R 4.1.0)</span>
+<span class="co">#&gt;  pkgconfig        2.0.3      2019-09-22 [1] CRAN (R 4.1.0)</span>
+<span class="co">#&gt;  pkgload          1.2.1      2021-04-06 [1] CRAN (R 4.1.0)</span>
+<span class="co">#&gt;  png              0.1-7      2013-12-03 [1] CRAN (R 4.1.0)</span>
+<span class="co">#&gt;  praise           1.0.0      2015-08-11 [1] CRAN (R 4.1.0)</span>
+<span class="co">#&gt;  processx         3.5.2      2021-04-30 [1] CRAN (R 4.1.0)</span>
+<span class="co">#&gt;  ps               1.6.0      2021-02-28 [1] CRAN (R 4.1.0)</span>
+<span class="co">#&gt;  purrr            0.3.4      2020-04-17 [1] CRAN (R 4.1.0)</span>
+<span class="co">#&gt;  R6               2.5.0      2020-10-28 [1] CRAN (R 4.1.0)</span>
+<span class="co">#&gt;  RColorBrewer     1.1-2      2014-12-07 [1] CRAN (R 4.1.0)</span>
+<span class="co">#&gt;  rematch2         2.1.2      2020-05-01 [1] CRAN (R 4.1.0)</span>
+<span class="co">#&gt;  rlang            0.4.11     2021-04-30 [1] CRAN (R 4.1.0)</span>
+<span class="co">#&gt;  rprojroot        2.0.2      2020-11-15 [1] CRAN (R 4.1.0)</span>
+<span class="co">#&gt;  rstudioapi       0.13       2020-11-12 [1] CRAN (R 4.1.0)</span>
+<span class="co">#&gt;  scales           1.1.1      2020-05-11 [1] CRAN (R 4.1.0)</span>
+<span class="co">#&gt;  testthat         3.0.2      2021-02-14 [1] CRAN (R 4.1.0)</span>
+<span class="co">#&gt;  tibble           3.1.2      2021-05-16 [1] CRAN (R 4.1.0)</span>
+<span class="co">#&gt;  tidyselect       1.1.1      2021-04-30 [1] CRAN (R 4.1.0)</span>
+<span class="co">#&gt;  utf8             1.2.1      2021-03-12 [1] CRAN (R 4.1.0)</span>
+<span class="co">#&gt;  vctrs            0.3.8      2021-04-29 [1] CRAN (R 4.1.0)</span>
+<span class="co">#&gt;  viridisLite      0.4.0      2021-04-13 [1] CRAN (R 4.1.0)</span>
+<span class="co">#&gt;  waldo            0.2.5      2021-03-08 [1] CRAN (R 4.1.0)</span>
+<span class="co">#&gt;  withr            2.4.2      2021-04-18 [1] CRAN (R 4.1.0)</span>
+<span class="co">#&gt;  xml2             1.3.2      2020-04-23 [1] CRAN (R 4.1.0)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [1] /Users/runner/work/_temp/Library</span>
-<span class="co">#&gt; [2] /Library/Frameworks/R.framework/Versions/4.0/Resources/library</span></code></pre></div>
+<span class="co">#&gt; [2] /Library/Frameworks/R.framework/Versions/4.1/Resources/library</span></code></pre></div>
 </div>
 <div id="references" class="section level1 unnumbered">
 <h1 class="hasAnchor">
@@ -1485,7 +1482,7 @@ The same holds for package <strong>ggplot2</strong> graphics.</p>
 <p>[1] F. code by R. J. Renka. R functions by Albrecht Gebhardt. With contributions from Stephen Eglen &lt;stephen@anc.ed.ac.uk&gt;, S. Zuyev, D. White, Tripack: Triangulation of irregularly spaced data, 2020. <a href="https://CRAN.R-project.org/package=tripack">https://CRAN.R-project.org/package=tripack</a>.</p>
 </div>
 <div id="ref-R-lattice">
-<p>[2] D. Sarkar, Lattice: Trellis graphics for r, 2020. <a href="http://lattice.r-forge.r-project.org/">http://lattice.r-forge.r-project.org/</a>.</p>
+<p>[2] D. Sarkar, Lattice: Trellis graphics for r, 2021. <a href="http://lattice.r-forge.r-project.org/">http://lattice.r-forge.r-project.org/</a>.</p>
 </div>
 <div id="ref-lattice2008">
 <p>[3] D. Sarkar, Lattice: Multivariate data visualization with r, Springer, New York, 2008. <a href="http://lmdvr.r-forge.r-project.org">http://lmdvr.r-forge.r-project.org</a>.</p>
@@ -1503,7 +1500,7 @@ The same holds for package <strong>ggplot2</strong> graphics.</p>
 <p>[7] R. Turner, Deldir: Delaunay triangulation and dirichlet (voronoi) tessellation, 2021. <a href="https://CRAN.R-project.org/package=deldir">https://CRAN.R-project.org/package=deldir</a>.</p>
 </div>
 <div id="ref-R-rgl">
-<p>[8] D. Adler, D. Murdoch, Rgl: 3D visualization using opengl, 2021. <a href="https://github.com/dmurdoch/rgl">https://github.com/dmurdoch/rgl</a>.</p>
+<p>[8] D. Adler, D. Murdoch, Rgl: 3D visualization using opengl, 2021. <a href="https://CRAN.R-project.org/package=rgl">https://CRAN.R-project.org/package=rgl</a>.</p>
 </div>
 </div>
 </div>
