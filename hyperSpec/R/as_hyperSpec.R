@@ -1,13 +1,16 @@
 
 #' `as.hyperSpec`: Convenience Conversion Functions
 #'
-#' These functions are shortcuts to convert other objects into hypeSpec objects.
+#' These functions are shortcuts to convert other objects into `hypeSpec`
+#' objects.
 #'
-#' @param X the object to convert.
-#' A matrix is assumed to contain the spectra matrix,
-#' a data.frame is assumed to contain extra data.
+#' @param X the object to convert. If `X` is:
+#'
+#' - a `matrix`, it is assumed to contain the spectra matrix,
+#' - a `data.frame`, it is assumed to contain extra data.
+#'
 #' @param ... additional parameters that should be handed over to
-#'       `new("hyperSpec")` (initialize)
+#'       `new("hyperSpec")` (initialize).
 #'
 #' @return hyperSpec object
 #' @seealso [hyperSpec::initialize()]
@@ -15,22 +18,21 @@
 #'
 #' @concept hyperSpec conversion
 #'
-setGeneric(
-  "as.hyperSpec",
-  function(X, ...) {
+setGeneric("as.hyperSpec", function(X, ...) {
     stop("as.hyperSpec is not available for objects of class ", class(X))
   }
 )
 
-#' @include guess_wavelength.R
-.as.hyperSpec.matrix <- function(X, wl = guess.wavelength(colnames(X)), ...) {
+#' @include extract_numbers.R
+.as.hyperSpec.matrix <- function(X, wl = NULL, ...) {
+  if (is.null(wl)) wl <- extract_numbers(colnames(X))
   new("hyperSpec", spc = X, wavelength = wl, ...)
 }
 
 #' @rdname as.hyperSpec
-#' @param wl wavelength vector. Defaults to guessing from the column names in `X`
-#' @param spc spectra matrix
-#' @param labels list with labels
+#' @param wl wavelength vector. Defaults to guessing from the column names in `X`.
+#' @param spc spectra matrix.
+#' @param labels list with labels.
 #' @export
 #'
 #' @concept hyperSpec conversion
@@ -38,15 +40,17 @@ setGeneric(
 #' @examples
 #' tmp <- data.frame(flu[[, , 400 ~ 410]])
 #' (wl <- colnames(tmp))
-#' guess.wavelength(wl)
+#' extract_numbers(wl)
 setMethod("as.hyperSpec", "matrix", .as.hyperSpec.matrix)
 
-.as.hyperSpec.data.frame <- function(X, spc = NULL, wl = guess.wavelength(spc),
+.as.hyperSpec.data.frame <- function(X, spc = NULL, wl = NULL,
   labels = attr(X, "labels"), ...) {
+
+  if (is.null(wl)) wl <- extract_numbers(X)
   # TODO: remove after 31.12.2020
-  if (!all(!is.na(guess.wavelength(colnames(X))))) {
+  if (!all(!is.na(extract_numbers(colnames(X))))) {
     warning(
-      "as.hyperSpec.data.frame has changed its behaviour. ",
+      "Method as.hyperSpec(<data.frame>) has changed its behaviour. ",
       "Use as.hyperSpec(as.matrix(X)) instead."
     )
   }
@@ -60,11 +64,10 @@ setMethod("as.hyperSpec", "matrix", .as.hyperSpec.matrix)
 }
 
 #' @rdname as.hyperSpec
-#' @note *Note that the behaviour of `as.hyperSpec(X)` was changed: it now
-#' assumes `X` to be extra data, and returns a hyperSpec object with 0
-#' wavelengths. To get the old behaviour*
-
-# FIXME: it seems that the documentation sentence in incomplete.
+#' @note Note that the behaviour of `as.hyperSpec(X)` was changed when `X` is a
+#' `data.frame`: it now assumes `X` to be extra data, and returns a `hyperSpec`
+#' object with 0 wavelengths. To get the old behaviour, use
+#' `as.hyperSpec(as.matrix(X))`.
 
 setMethod("as.hyperSpec", "data.frame", .as.hyperSpec.data.frame)
 

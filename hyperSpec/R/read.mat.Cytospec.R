@@ -63,7 +63,7 @@ read.mat.Cytospec <- function(file, keys2data = FALSE, blocks = TRUE) {
   }
 
   ## consistent file import behaviour across import functions
-  ## .fileio.optional is called inside .block2hyperSpec
+  ## .spc_io_postprocess_optional is called inside .block2hyperSpec
 
   result
 }
@@ -77,7 +77,7 @@ read.mat.Cytospec <- function(file, keys2data = FALSE, blocks = TRUE) {
   df$block <- block
 
   ## consistent file import behaviour across import functions
-  .fileio.optional(new("hyperSpec", spc = spc, wavelength = wn, data = df),
+  .spc_io_postprocess_optional(new("hyperSpec", spc = spc, wavelength = wn, data = df),
     filename = file
   )
 }

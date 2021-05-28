@@ -34,7 +34,7 @@
 #' data(flu, package = "hyperSpec")
 #' nwl(flu)
 #'
-#' smoothed_flu <- spc.loess(flu, seq(420, 470, 5))
+#' smoothed_flu <- spc_loess(flu, seq(420, 470, 5))
 #' nwl(smoothed_flu)
 #'
 #' plot(flu, col = "darkgray")
@@ -43,12 +43,12 @@
 #'
 #' flu_na <- flu
 #' flu_na[[3, ]] <- NA_real_
-#' flu_na_smoothed <- spc.loess(flu_na, seq(420, 470, 5))
+#' flu_na_smoothed <- spc_loess(flu_na, seq(420, 470, 5))
 #' flu_na_smoothed[[]]
 #'
 #' plot(flu, col = "darkgray")
 #' plot(flu_na_smoothed, add = TRUE, col = "blue")
-spc.loess <- function(spc, newx, enp.target = nwl(spc) / 4, surface = "direct",
+spc_loess <- function(spc, newx, enp.target = nwl(spc) / 4, surface = "direct",
                       ...) {
 
   .loess <- function(y, x) {
@@ -82,31 +82,31 @@ spc.loess <- function(spc, newx, enp.target = nwl(spc) / 4, surface = "direct",
     )
   }
 
-  .fix_spc_colnames(spc)
+  .spc_fix_colnames(spc)
 }
 
 
 # Unit tests -----------------------------------------------------------------
 
-hySpc.testthat::test(spc.loess) <- function() {
-  context("spc.loess")
+hySpc.testthat::test(spc_loess) <- function() {
+  context("spc_loess")
 
   # Perform tests
-  test_that("spc.loess() returns correct spc colnames", {
-    expect_silent(res <- spc.loess(flu, seq(420, 470, 5)))
+  test_that("spc_loess() returns correct spc colnames", {
+    expect_silent(res <- spc_loess(flu, seq(420, 470, 5)))
 
     spc_col_names <- as.numeric(colnames(res$spc))
     expect_equal(spc_col_names, wl(res))
     expect_equal(spc_col_names, seq(420, 470, 5))
   })
 
-  test_that("spc.loess() returns errors", {
-    expect_error(spc.loess())
+  test_that("spc_loess() returns errors", {
+    expect_error(spc_loess())
   })
 
-  test_that("spc.loess() returns warnings", {
+  test_that("spc_loess() returns warnings", {
     flu[[3, ]] <- NA_real_
-    expect_warning(spc.loess(flu, seq(420, 470, 5)), "NAs were generated.")
+    expect_warning(spc_loess(flu, seq(420, 470, 5)), "NAs were generated.")
   })
 
 

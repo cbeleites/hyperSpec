@@ -35,14 +35,14 @@
 #' @author C. Beleites
 #'
 #' @examples
-#' spc <- spc.bin(flu, 5)
+#' spc <- spc_bin(flu, 5)
 #'
 #' plot(flu[1, , 425:475])
 #' plot(spc[1, , 425:475], add = TRUE, col = "blue")
 #'
 #' nwl(flu)
 #' nwl(spc)
-spc.bin <- function(spc, by = stop("reduction factor needed"), na.rm = TRUE, ...) {
+spc_bin <- function(spc, by = stop("reduction factor needed"), na.rm = TRUE, ...) {
   chk.hy(spc)
   validObject(spc)
 
@@ -85,7 +85,7 @@ spc.bin <- function(spc, by = stop("reduction factor needed"), na.rm = TRUE, ...
   }
 
   .wl(spc) <- as.numeric(tapply(spc@wavelength, bin, mean, na.rm = na.rm > 0))
-  spc <- .fix_spc_colnames(spc)
+  spc <- .spc_fix_colnames(spc)
 
   validObject(spc)
   spc
@@ -94,44 +94,44 @@ spc.bin <- function(spc, by = stop("reduction factor needed"), na.rm = TRUE, ...
 
 # Unit tests -----------------------------------------------------------------
 
-hySpc.testthat::test(spc.bin) <- function() {
-  context("spc.bin")
+hySpc.testthat::test(spc_bin) <- function() {
+  context("spc_bin")
 
   sp <- generate_hy_spectra()
 
   # Perform tests
-  test_that("spc.bin() returnts output silently", {
-    expect_silent(spc.bin(sp, 1))
-    expect_silent(spc.bin(sp, 10))
+  test_that("spc_bin() returnts output silently", {
+    expect_silent(spc_bin(sp, 1))
+    expect_silent(spc_bin(sp, 10))
   })
 
 
-  test_that("spc.bin() returns errors", {
-    expect_error(spc.bin(sp), "reduction factor needed")
+  test_that("spc_bin() returns errors", {
+    expect_error(spc_bin(sp), "reduction factor needed")
   })
 
-  test_that("$spc after spc.bin() is correct", {
+  test_that("$spc after spc_bin() is correct", {
     bin_1_6 <- new("hyperSpec", matrix(rep(1:6, 5), nrow = 1))
 
-    expect_silent(res1 <- spc.bin(bin_1_6, 5)[[]])
+    expect_silent(res1 <- spc_bin(bin_1_6, 5)[[]])
     expect_equal(ncol(res1), 6)
     expect_equal(as.vector(res1), c(3.0, 3.2, 3.4, 3.6, 3.8, 4.0))
 
-    expect_silent(res2 <- spc.bin(bin_1_6, 6)[[]])
+    expect_silent(res2 <- spc_bin(bin_1_6, 6)[[]])
     expect_equal(ncol(res2), 5)
     expect_equal(as.vector(res2), c(3.5, 3.5, 3.5, 3.5, 3.5))
   })
 
 
-  test_that("spc.bin() returns warnings", {
-    expect_warning(spc.bin(sp, 7), "Last data point averages only 1 point.")
-    expect_warning(spc.bin(sp, 3), "Last data point averages only 2 points.")
+  test_that("spc_bin() returns warnings", {
+    expect_warning(spc_bin(sp, 7), "Last data point averages only 1 point.")
+    expect_warning(spc_bin(sp, 3), "Last data point averages only 2 points.")
   })
 
 
-  test_that("spc.bin() sets spc matrix column names correctly", {
+  test_that("spc_bin() sets spc matrix column names correctly", {
     # Wavelengths should be identical
-    sp_binned <- spc.bin(sp, 1)
+    sp_binned <- spc_bin(sp, 1)
 
     # Wavelengths should be identical
     expect_silent(wl_regular <- wl(sp))
@@ -145,13 +145,13 @@ hySpc.testthat::test(spc.bin) <- function() {
   })
 
 
-  test_that("na.rm in spc.bin() works", {
+  test_that("na.rm in spc_bin() works", {
     sp_na <- generate_hy_spectra(n_wl = 9, n = 5)
     sp_na[[, , 3, wl.index = TRUE]] <- NA_real_
     expect_true(any(is.na(sp_na[[]])))
 
     # NA's are present
-    na_rm_false <- spc.bin(sp_na, 3, na.rm = FALSE)[[]]
+    na_rm_false <- spc_bin(sp_na, 3, na.rm = FALSE)[[]]
     expect_equal(ncol(na_rm_false), 3)
     expect_equal(nrow(na_rm_false), 5)
     expect_true(any(is.na(na_rm_false)))
@@ -169,7 +169,7 @@ hySpc.testthat::test(spc.bin) <- function() {
     )
 
     # NA's are removed (1st algorithm)
-    expect_silent(na_rm_true1 <- spc.bin(sp_na, 3, na.rm = TRUE)[[]])
+    expect_silent(na_rm_true1 <- spc_bin(sp_na, 3, na.rm = TRUE)[[]])
     expect_equal(ncol(na_rm_true1), 3)
     expect_equal(nrow(na_rm_true1), 5)
     expect_false(any(is.na(na_rm_true1)))
@@ -178,7 +178,7 @@ hySpc.testthat::test(spc.bin) <- function() {
 
     # FIXME (tests): add appropriate example to work with na.rm = 2
 
-    # expect_silent(na_rm_true2 <- spc.bin(sp_na, 3, na.rm = 2)[[]])
+    # expect_silent(na_rm_true2 <- spc_bin(sp_na, 3, na.rm = 2)[[]])
     # expect_equal(ncol(na_rm_true2), 3)
     # expect_equal(nrow(na_rm_true2), 5)
     # expect_false(any(is.na(na_rm_true2)))

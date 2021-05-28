@@ -12,7 +12,7 @@
 #' @param ... additional parameters such as `tolerance` handed down.
 #' @return vector with `x` values mapped to the interval \[0, 1\]
 #' @author C. Beleites
-#' @seealso [hyperSpec::wl.eval()], [hyperSpec::vanderMonde()]
+#' @seealso [hyperSpec::wl_eval()], [hyperSpec::vanderMonde()]
 #' @export
 #'
 #' @concept manipulation

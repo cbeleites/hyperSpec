@@ -37,7 +37,7 @@
 #' index corresponding to start : index corresponding to end
 #'
 #' is returned. If the wavelengths are not ordered, that may lead to chaos. In this case, call
-#' [hyperSpec::orderwl()] first.
+#' [hyperSpec::wl_sort()] first.
 #'
 #' Two special variables can be used: `min` and `max`, corresponding to the lowest and
 #' highest wavelength of `x`, respectively.

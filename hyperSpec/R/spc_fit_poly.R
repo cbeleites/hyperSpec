@@ -8,7 +8,7 @@
 #' is returned, otherwise the polynomials are evaluated on the spectral range
 #' of `apply.to`.
 #'
-#' `spc.fit.poly()` calculates the least squares fit of order
+#' `spc_fit_poly()` calculates the least squares fit of order
 #' `poly.order` to the *complete* spectra given in `fit.to`.
 #' Thus `fit.to` needs to be cut appropriately.
 #'
@@ -40,9 +40,9 @@
 #' }
 #'
 #' spc <- faux_cell[1:10]
-#' baselines <- spc.fit.poly(spc[, , c(625 ~ 640, 1785 ~ 1800)], spc)
+#' baselines <- spc_fit_poly(spc[, , c(625 ~ 640, 1785 ~ 1800)], spc)
 #' plot(spc - baselines)
-spc.fit.poly <- function(fit.to, apply.to = NULL, poly.order = 1,
+spc_fit_poly <- function(fit.to, apply.to = NULL, poly.order = 1,
                          offset.wl = !(is.null(apply.to))) {
   chk.hy(fit.to)
   if (!is.null(apply.to)) {
@@ -92,13 +92,13 @@ spc.fit.poly <- function(fit.to, apply.to = NULL, poly.order = 1,
   }
 }
 
-hySpc.testthat::test(spc.fit.poly) <- function() {
-  context("spc.fit.poly")
+hySpc.testthat::test(spc_fit_poly) <- function() {
+  context("spc_fit_poly")
 
   test_that(
     "no normalization",
     {
-      bl.nonorm <- spc.fit.poly(flu, flu, poly.order = 3, offset.wl = FALSE)
+      bl.nonorm <- spc_fit_poly(flu, flu, poly.order = 3, offset.wl = FALSE)
     }
   )
 
@@ -108,10 +108,10 @@ hySpc.testthat::test(spc.fit.poly) <- function() {
   wl(tmp) <- wl(tmp) + 1e4
 
   test_that("normalization/offset wavelengths", {
-    expect_error(spc.fit.poly(tmp, poly.order = 3, offset.wl = FALSE))
+    expect_error(spc_fit_poly(tmp, poly.order = 3, offset.wl = FALSE))
 
-    bl.1e4 <- spc.fit.poly(tmp, tmp, poly.order = 3, offset.wl = TRUE)
-    bl.nonorm <- spc.fit.poly(flu, flu, poly.order = 3, offset.wl = FALSE)
+    bl.1e4 <- spc_fit_poly(tmp, tmp, poly.order = 3, offset.wl = TRUE)
+    bl.nonorm <- spc_fit_poly(flu, flu, poly.order = 3, offset.wl = FALSE)
     expect_equal(bl.nonorm[[]], bl.1e4[[]])
   })
 
@@ -119,10 +119,10 @@ hySpc.testthat::test(spc.fit.poly) <- function() {
     tmp <- faux_cell[1]
     tmp[[, , 1600]] <- NA
 
-    coefs <- spc.fit.poly(tmp, apply.to = NULL)[[]]
+    coefs <- spc_fit_poly(tmp, apply.to = NULL)[[]]
     expect_equal(
       coefs,
-      spc.fit.poly(faux_cell[1, , !is.na(tmp)], apply.to = NULL)[[]]
+      spc_fit_poly(faux_cell[1, , !is.na(tmp)], apply.to = NULL)[[]]
     )
 
     ## bug was: all coefficients were silently 0
@@ -131,7 +131,7 @@ hySpc.testthat::test(spc.fit.poly) <- function() {
 }
 
 #' @details
-#' `spc.fit.poly.below()` tries to fit the baseline on appropriate spectral
+#' `spc_fit_poly_below()` tries to fit the baseline on appropriate spectral
 #' ranges of the spectra in `fit.to`.  For details, see the
 #' `vignette("baseline")`.
 #' @rdname baselines
@@ -154,16 +154,16 @@ hySpc.testthat::test(spc.fit.poly) <- function() {
 #'
 #' @examples
 #'
-#' baselines <- spc.fit.poly.below(spc)
+#' baselines <- spc_fit_poly_below(spc)
 #' plot(spc - baselines)
 #'
-#' spc.fit.poly.below(faux_cell[1:3], debuglevel = 1)
-#' spc.fit.poly.below(faux_cell[1:3], debuglevel = 2)
-#' spc.fit.poly.below(faux_cell[1:3],
+#' spc_fit_poly_below(faux_cell[1:3], debuglevel = 1)
+#' spc_fit_poly_below(faux_cell[1:3], debuglevel = 2)
+#' spc_fit_poly_below(faux_cell[1:3],
 #'   debuglevel = 3,
 #'   noise = sqrt(rowMeans(faux_cell[[1:3]]))
 #' )
-spc.fit.poly.below <- function(fit.to, apply.to = fit.to, poly.order = 1,
+spc_fit_poly_below <- function(fit.to, apply.to = fit.to, poly.order = 1,
                                npts.min = max(
                                  round(nwl(fit.to) * 0.05),
                                  3 * (poly.order + 1)
@@ -315,13 +315,13 @@ spc.fit.poly.below <- function(fit.to, apply.to = fit.to, poly.order = 1,
   }
 }
 
-hySpc.testthat::test(spc.fit.poly.below) <- function() {
-  context("spc.fit.poly.below")
+hySpc.testthat::test(spc_fit_poly_below) <- function() {
+  context("spc_fit_poly_below")
 
   test_that(
     "no normalization",
     {
-      bl.nonorm <- spc.fit.poly.below(flu, flu,
+      bl.nonorm <- spc_fit_poly_below(flu, flu,
         poly.order = 3, offset.wl = FALSE,
         npts.min = 25
       )
@@ -334,17 +334,17 @@ hySpc.testthat::test(spc.fit.poly.below) <- function() {
   wl(tmp) <- wl(tmp) + 1e4
 
   test_that("normalization/offset wavelengths", {
-    expect_error(spc.fit.poly.below(tmp,
+    expect_error(spc_fit_poly_below(tmp,
       poly.order = 3, offset.wl = FALSE,
       npts.min = 25
     ))
 
-    bl.1e4 <- spc.fit.poly.below(tmp, tmp,
+    bl.1e4 <- spc_fit_poly_below(tmp, tmp,
       poly.order = 3, offset.wl = TRUE,
       npts.min = 25
     )
 
-    bl.nonorm <- spc.fit.poly.below(flu, flu,
+    bl.nonorm <- spc_fit_poly_below(flu, flu,
       poly.order = 3, offset.wl = FALSE,
       npts.min = 25
     )
@@ -370,11 +370,11 @@ hySpc.testthat::test(spc.fit.poly.below) <- function() {
     wl(tmp) <- c(seq(602, 698, by = 4), seq(1650, 1798, by = 4))
 
     expect_warning(
-      spc.fit.poly.below(tmp, npts.min = 2),
+      spc_fit_poly_below(tmp, npts.min = 2),
       "Reached npts.min, but the solution is not stable."
     )
     expect_warning(
-      spc.fit.poly.below(tmp,
+      spc_fit_poly_below(tmp,
         npts.min = 2,
         stop.on.increase = TRUE
       ),
@@ -386,10 +386,10 @@ hySpc.testthat::test(spc.fit.poly.below) <- function() {
     tmp <- faux_cell[1]
     tmp[[, , 1600]] <- NA
 
-    coefs <- spc.fit.poly.below(tmp, apply.to = NULL)[[]]
+    coefs <- spc_fit_poly_below(tmp, apply.to = NULL)[[]]
     expect_equal(
       coefs,
-      spc.fit.poly.below(faux_cell[1, , !is.na(tmp)], apply.to = NULL)[[]]
+      spc_fit_poly_below(faux_cell[1, , !is.na(tmp)], apply.to = NULL)[[]]
     )
 
     ## bug was: all coefficients were silently 0

@@ -7,7 +7,7 @@
 #' Columns with different content than a column in `x` with the same name will
 #' get `".y"` appended to its name.
 #'
-#' **`mergeextra()` relies on `x` and `y` having the same row order.**
+#' **`merge_data()` relies on `x` and `y` having the same row order.**
 #'
 #' @param x hyperSpec object into which extra data columns of y are to be merged
 #' @param y hyperSpec object with further extra data columns
@@ -22,8 +22,8 @@
 #' tmp$prediction <- 1:6
 #' tmp
 #'
-#' mergeextra(flu, tmp)
-mergeextra <- function(x, y) {
+#' merge_data(flu, tmp)
+merge_data <- function(x, y) {
   validObject(x)
   validObject(y)
 
@@ -70,16 +70,16 @@ mergeextra <- function(x, y) {
   x
 }
 
-hySpc.testthat::test(mergeextra) <- function() {
-  context("mergeextra")
+hySpc.testthat::test(merge_data) <- function() {
+  context("merge_data")
 
   test_that("nothing to do", {
-    expect_equal(mergeextra(flu, flu), flu)
+    expect_equal(merge_data(flu, flu), flu)
 
     tmp <- flu[, , 405]
     tmp$c <- NULL
     tmp$filename <- NULL
-    expect_equal(mergeextra(flu, tmp), flu)
+    expect_equal(merge_data(flu, tmp), flu)
   })
 
   ## sort list by name
@@ -93,7 +93,7 @@ hySpc.testthat::test(mergeextra) <- function() {
     tmp$pred <- 1:6
     labels(tmp, "pred") <- expression(c / mg * l)
 
-    res <- mergeextra(flu, tmp)
+    res <- merge_data(flu, tmp)
 
     expect_equal(res$spc, flu$spc)
     expect_equal(sort(colnames(res)), sort(c(colnames(flu), "pred")))
@@ -111,7 +111,7 @@ hySpc.testthat::test(mergeextra) <- function() {
     tmp$c <- 1:6
     labels(tmp, "c") <- labels(flu, "c")
 
-    res <- mergeextra(flu, tmp)
+    res <- merge_data(flu, tmp)
 
     expect_equal(res$spc, flu$spc)
     expect_equal(sort(colnames(res)), sort(c(colnames(flu), "c.y")))
@@ -127,7 +127,7 @@ hySpc.testthat::test(mergeextra) <- function() {
     tmp <- flu
     tmp$filename <- as.factor(tmp$filename)
 
-    res <- mergeextra(flu, tmp)
+    res <- merge_data(flu, tmp)
 
     expect_equal(res$spc, flu$spc)
     expect_equal(sort(colnames(res)), sort(c(colnames(flu), "filename.y")))
@@ -148,7 +148,7 @@ hySpc.testthat::test(mergeextra) <- function() {
     tmp$c <- flu$c
     labels(tmp, "c") <- expression(c / mg * l)
 
-    res <- mergeextra(flu, tmp)
+    res <- merge_data(flu, tmp)
 
     expect_equal(res$spc, flu$spc)
     expect_equal(sort(colnames(res)), sort(c(colnames(flu), "c.y")))

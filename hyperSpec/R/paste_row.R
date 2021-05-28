@@ -45,7 +45,7 @@
         )
       }
 
-      paste(if (range) " rng ", text, collapse = "")
+      paste(if (range) " range ", text, collapse = "")
     }
   }
 

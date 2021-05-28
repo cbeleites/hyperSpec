@@ -1,4 +1,7 @@
-#' Reads Shimadzu GCxGC-qMS - Spectra Files (`.txt`)  (DEPRECATED)
+#' @name DEPRECATED-read.txt.Shimadzu
+#' @concept moved to hySpc.read.txt
+#'
+#' @title (DEPRECATED) Reads Shimadzu GCxGC-qMS - Spectra Files (`.txt`)
 #'
 #' @description
 #'
@@ -21,8 +24,6 @@
 #' @return list of spectra tables
 #' @author Bjoern Egert
 #'
-# @concept io
-#' @concept moved to hySpc.read.txt
 #'
 #' @export
 #' @importFrom utils read.table

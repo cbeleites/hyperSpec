@@ -1,5 +1,8 @@
-#' Import Raman Spectra/Maps from Andor Cameras/Solis ASCII files (DEPRECATED)
+#' @name DEPRECATED-read.asc.Andor
+#' @concept moved to hySpc.read.txt
 #'
+#' @title (DEPRECATED)
+#'        Import Raman Spectra/Maps from Andor Cameras/Solis ASCII Files
 #' @description
 #'
 #' These data input functions are **deprecated** and they will be removed in
@@ -10,8 +13,8 @@
 #'
 #' @details
 #'
-#' `read.asc.Andor()` reads Andor Solis ASCII (`.asc`) files where the first column gives the wavelength
-#' axes and the other columns the spectra.
+#' `read.asc.Andor()` reads Andor Solis ASCII (`.asc`) files where the first
+#'  column gives the wavelength axes and the other columns the spectra.
 #'
 #' @param file filename or connection to ASCII file
 #' @param ...,quiet,dec,sep handed to [base::scan()]
@@ -23,8 +26,6 @@
 #' @include DEPRECATED-read.txt.Witec.R
 #' @include fileio.optional.R
 #'
-# @concept io
-#' @concept moved to hySpc.read.txt
 #'
 #' @export
 read.asc.Andor <- function(file = stop("filename or connection needed"),
@@ -52,7 +53,7 @@ read.asc.Andor <- function(file = stop("filename or connection needed"),
   spc <- new("hyperSpec", wavelength = txt [1, ], spc = txt [-1, ])
 
   ## consistent file import behaviour across import functions
-  .fileio.optional(spc, file)
+  .spc_io_postprocess_optional(spc, file)
 }
 
 hySpc.testthat::test(read.asc.Andor) <- function() {

@@ -201,7 +201,7 @@ read.txt.PerkinElmer <- function(files = stop("filenames needed"), ..., label = 
   spc <- new("hyperSpec", wavelength = wavelength, spc = spc, label = label)
 
   ## consistent file import behaviour across import functions
-  hyperSpec:::.fileio.optional(spc, files)
+  hyperSpec::.spc_io_postprocess_optional(spc, files)
 }
 ```
 
@@ -234,7 +234,7 @@ CAPTION <- "Six spectra of `flu` dataset.  "
 plot(flu)
 ```
 
-# Adding further Data Columns
+# Adding Further Data Columns
 
 The calibration model needs the quinine concentrations for the spectra.
 This information can be stored together with the spectra, and also gets an appropriate label:

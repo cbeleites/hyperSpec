@@ -1,148 +1,71 @@
 
-#' Convert different wavelength units
+#' Convert between Different Wavelength Units
 #'
 #' The following units can be converted into each other:
-#' *nm*, \emph{\eqn{cm^{-1}}{inverse cm}}, *eV*, *THz* and
-#' *Raman shift*
+#' *nm*, \emph{\eqn{cm^{-1}}{inverse cm}}, *eV*, *THz* and *Raman shift*
 #'
-#' @param points data for conversion
-#' @param src source unit
-#' @param dst destination unit
-#' @param laser laser wavelength (required for work with Raman shift)
+#' @param x data for conversion
+#' @param from source unit
+#' @param to destination unit
+#' @param ref_wl laser wavelength (required for work with Raman shift)
 #' @author R. Kiselev
 #' @export
 #'
 #' @concept wavelengths
 #'
 #' @examples
-#' wlconv(3200, "Raman shift", "nm", laser = 785.04)
-#' wlconv(785, "nm", "invcm")
-wlconv <- function(points, src, dst, laser = NULL) {
-  SRC <- .fixunitname(src)
-  DST <- .fixunitname(dst)
+#' wl_convert_units(3200, "Raman shift", "nm", ref_wl = 785.04)
+#' wl_convert_units(785, "nm", "invcm")
+wl_convert_units <- function(x, from, to, ref_wl = NULL) {
+  src  <- .wl_fix_unit_name(from)
+  dest <- .wl_fix_unit_name(to)
 
-  if (SRC == DST) {
-    return(points)
+  if (src == dest) {
+    return(x)
   }
 
-  if ((SRC == "raman" | DST == "raman") & is.null(laser)) {
+  if ((src == "raman" | dest == "raman") & is.null(ref_wl)) {
     stop("Working with Raman shift requires knowledge of laser wavelength")
   }
 
-  f <- paste0(SRC, "2", DST)
+  f <- paste0("wl_", src, "2", dest)
   f <- get(f)
-  return(f(points, laser))
+  return(f(x, ref_wl))
 }
 
-#' @param x wavelength points for conversion
-#' @param ... ignored
-#' @describeIn wlconv conversion **nanometers** -> **Raman shift (relative wavenumber)**
-#' @export
-nm2raman <- function(x, laser) 1e7 * (1 / laser - 1 / x)
-
-
-#' @describeIn wlconv conversion **nanometers** -> **inverse cm (absolute wavenumber)**
-#' @export
-nm2invcm <- function(x, ...) 1e7 / x
-
-
-#' @describeIn wlconv conversion **nanometers** -> **electronvolt**
-#' @export
-nm2ev <- function(x, ...) 1e9 * h * c / (q * x)
-
-
-#' @describeIn wlconv conversion **nm** -> **frequency in THz**
-#' @export
-nm2freq <- function(x, ...) 1e-3 * c / x
-
-
-#' @describeIn wlconv conversion **inverse cm (absolute wavenumber)** -> **Raman shift (relative wavenumber)**
-#' @export
-invcm2raman <- function(x, laser) 1e7 / laser - x
-
-
-#' @describeIn wlconv conversion **inverse cm (absolute wavenumber)** -> **nanometers**
-#' @export
-invcm2nm <- function(x, ...) 1e7 / x
-
-
-#' @describeIn wlconv conversion **inverse cm (absolute wavenumber)** -> **electronvolt**
-#' @export
-invcm2ev <- function(x, ...) 100 * x * c * h / q
-
-
-#' @describeIn wlconv conversion **inverse cm (absolute wavenumber)** -> **frequency in THz**
-#' @export
-invcm2freq <- function(x, ...) nm2freq(invcm2nm(x))
-
-
-#' @describeIn wlconv conversion **Raman shift (relative wavenumber)** -> **inverse cm (absolute wavenumber)**
-#' @export
-raman2invcm <- function(x, laser) 1e7 / laser - x
-
-
-#' @describeIn wlconv conversion **Raman shift (relative wavenumber)** -> **nanometers**
-#' @export
-raman2nm <- function(x, laser) 1e7 / (1e7 / laser - x)
-
-
-#' @describeIn wlconv conversion **Raman shift (relative wavenumber)** -> **electronvolt**
-#' @export
-raman2ev <- function(x, laser) 100 * h * c * (1e7 / laser - x) / q
-
-
-#' @describeIn wlconv conversion **Raman shift (relative wavenumber)** -> **frequency in THz**
-#' @export
-raman2freq <- function(x, laser) nm2freq(raman2nm(x, laser))
-
-
-#' @describeIn wlconv conversion **electronvolt** -> **Raman shift (relative wavenumber)**
-#' @export
-ev2raman <- function(x, laser) 1e7 / laser - x * q / (100 * h * c)
-
-
-#' @describeIn wlconv conversion **electronvolt** -> **inverse cm (absolute wavenumber)**
-#' @export
-ev2invcm <- function(x, ...) q * x / (100 * h * c)
-
-
-#' @describeIn wlconv conversion **electronvolt** -> **nanometers**
-#' @export
-ev2nm <- function(x, ...) 1e9 * h * c / (q * x)
-
-
-#' @describeIn wlconv conversion **electronvolt** -> **frequency in THz**
-#' @export
-ev2freq <- function(x, ...) nm2freq(ev2nm(x))
-
-
-#' @describeIn wlconv conversion **frequency in THz** -> **nanometers**
-#' @export
-freq2nm <- function(x, ...) 1e-3 * c / x
-
-
-#' @describeIn wlconv conversion **frequency in THz** -> **inverse cm (absolute wavenumber)**
-#' @export
-freq2invcm <- function(x, ...) nm2invcm(freq2nm(x))
-
-
-#' @describeIn wlconv conversion **frequency in THz** -> **electronvolt**
-#' @export
-freq2ev <- function(x, ...) nm2ev(freq2nm(x))
-
-
-#' @describeIn wlconv conversion **frequency in THz** -> **Raman shift (relative wavenumber)**
-#' @export
-freq2raman <- function(x, laser) nm2raman(freq2nm(x), laser)
+wl_ev2freq     <- function(x, ...)    wl_nm2freq(wl_ev2nm(x))
+wl_ev2invcm    <- function(x, ...)    q * x / (100 * h * c)
+wl_ev2nm       <- function(x, ...)    1e9 * h * c / (q * x)
+wl_ev2raman    <- function(x, ref_wl) 1e7 / ref_wl - x * q / (100 * h * c)
+wl_freq2ev     <- function(x, ...)    wl_nm2ev(wl_freq2nm(x))
+wl_freq2invcm  <- function(x, ...)    wl_nm2invcm(wl_freq2nm(x))
+wl_freq2nm     <- function(x, ...)    1e-3 * c / x
+wl_freq2raman  <- function(x, ref_wl) wl_nm2raman(wl_freq2nm(x), ref_wl)
+wl_invcm2ev    <- function(x, ...)    100 * x * c * h / q
+wl_invcm2freq  <- function(x, ...)    wl_nm2freq(wl_invcm2nm(x))
+wl_invcm2nm    <- function(x, ...)    1e7 / x
+wl_invcm2raman <- function(x, ref_wl) 1e7 / ref_wl - x
+wl_nm2ev       <- function(x, ...)    1e9 * h * c / (q * x)
+wl_nm2freq     <- function(x, ...)    1e-3 * c / x
+wl_nm2invcm    <- function(x, ...)    1e7 / x
+wl_nm2raman    <- function(x, ref_wl) 1e7 * (1 / ref_wl - 1 / x)
+wl_raman2ev    <- function(x, ref_wl) 100 * h * c * (1e7 / ref_wl - x) / q
+wl_raman2freq  <- function(x, ref_wl) wl_nm2freq(wl_raman2nm(x, ref_wl))
+wl_raman2invcm <- function(x, ref_wl) 1e7 / ref_wl - x
+wl_raman2nm    <- function(x, ref_wl) 1e7 / (1e7 / ref_wl - x)
 
 
 # Bring the argument to a conventional name
-.fixunitname <- function(unit) {
+# FIXME: This function should be exported when `read.spe()` function is moved to
+#        another package.
+# FIXME: This function should be documented.
+#        Even if it used for internal purposes.
+.wl_fix_unit_name <- function(unit) {
   unit <- gsub(" .*$", "", tolower(unit))
-  if (unit %in% c("raman", "stokes", "rel", "rel.", "relative", "rel.cm-1", "rel.cm")) {
+  if (unit %in% c("raman", "stokes", "rel", "rel.", "relative", "rel.cm-1", "rel.cm", "rel.1/cm", "raman shift")) {
     return("raman")
   }
-  if (unit %in% c("invcm", "energy", "wavenumber", "cm-1", "inverted", "cm")) {
+  if (unit %in% c("invcm", "energy", "wavenumber", "cm-1", "inverted", "cm", "1/cm")) {
     return("invcm")
   }
   if (unit %in% c("nm", "nanometer", "wavelength")) {
@@ -212,20 +135,20 @@ hySpc.testthat::test(wl) <- function() {
 }
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-hySpc.testthat::test(.fixunitname) <- function() {
+hySpc.testthat::test(.wl_fix_unit_name) <- function() {
 
-  context(".fixunitname")
+  context(".wl_fix_unit_name")
 
-  test_that(".fixunitname() works", {
+  test_that(".wl_fix_unit_name() works", {
 
-    expect_equal(.fixunitname("raman"), "raman")
-    expect_equal(.fixunitname("invcm"), "invcm")
-    expect_equal(.fixunitname("nm"),    "nm")
-    expect_equal(.fixunitname("ev"),    "ev")
-    expect_equal(.fixunitname("freq"),  "freq")
-    expect_equal(.fixunitname("px"),    "px")
-    expect_equal(.fixunitname("file"),  "file")
-    expect_error(.fixunitname("ddd"),   "Unknown unit type")
+    expect_equal(.wl_fix_unit_name("raman"), "raman")
+    expect_equal(.wl_fix_unit_name("invcm"), "invcm")
+    expect_equal(.wl_fix_unit_name("nm"),    "nm")
+    expect_equal(.wl_fix_unit_name("ev"),    "ev")
+    expect_equal(.wl_fix_unit_name("freq"),  "freq")
+    expect_equal(.wl_fix_unit_name("px"),    "px")
+    expect_equal(.wl_fix_unit_name("file"),  "file")
+    expect_error(.wl_fix_unit_name("ddd"),   "Unknown unit type")
 
   })
 
@@ -233,33 +156,33 @@ hySpc.testthat::test(.fixunitname) <- function() {
 }
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-hySpc.testthat::test(wlconv) <- function() {
+hySpc.testthat::test(wl_convert_units) <- function() {
 
-  context("wlconv")
+  context("wl_convert_units")
 
-  test_that("wlconv() throws error", {
-    expect_error(wlconv())
+  test_that("wl_convert_units() throws error", {
+    expect_error(wl_convert_units())
 
     expect_error(
-      wlconv(1000, "raman", "nm"),
+      wl_convert_units(1000, "raman", "nm"),
       "Working with Raman shift requires knowledge of laser wavelength"
     )
-    expect_error(wlconv(1000, "non-existing", "nm"),  "Unknown unit type")
-    expect_error(wlconv(1000, "nm", "non-existing"),  "Unknown unit type")
+    expect_error(wl_convert_units(1000, "non-existing", "nm"), "Unknown unit type")
+    expect_error(wl_convert_units(1000, "nm", "non-existing"), "Unknown unit type")
   })
 
 
-  test_that("wlconv() output is coreect if units do not change", {
+  test_that("wl_convert_units() output is correct if units do not change", {
     # No conversion is expected
-    expect_equal(wlconv(1000, "raman", "raman"), 1000)
-    expect_equal(wlconv(1000, "invcm", "invcm"), 1000)
-    expect_equal(wlconv(1000, "nm",    "nm"),    1000)
-    expect_equal(wlconv(1000, "ev",    "ev"),    1000)
-    expect_equal(wlconv(1000, "freq", "freq"),   1000)
+    expect_equal(wl_convert_units(1000, "raman", "raman"), 1000)
+    expect_equal(wl_convert_units(1000, "invcm", "invcm"), 1000)
+    expect_equal(wl_convert_units(1000, "nm",    "nm"),    1000)
+    expect_equal(wl_convert_units(1000, "ev",    "ev"),    1000)
+    expect_equal(wl_convert_units(1000, "freq", "freq"),   1000)
   })
 
 
-  test_that("wlconv() returns correct data type", {
+  test_that("wl_convert_units() returns correct data type", {
 
     x <- c("raman", "invcm", "nm", "ev", "freq")
     y <- expand.grid(x, x)
@@ -267,7 +190,7 @@ hySpc.testthat::test(wlconv) <- function() {
 
     expect_silent(
       d <- apply(y, MARGIN = 1, function(x) {
-        wlconv(10, x[["Var1"]], x[["Var2"]], 200)
+        wl_convert_units(10, x[["Var1"]], x[["Var2"]], 200)
       })
     )
     expect_is(d, "numeric")
@@ -276,7 +199,7 @@ hySpc.testthat::test(wlconv) <- function() {
 
   # TODO (tests): Add expected results to the conversion grid and check against them.
 
-  # test_that("wlconv() performs conversion correctly", {
+  # test_that("wl_convert_units() performs conversion correctly", {
   #  # ...
   #
   # })

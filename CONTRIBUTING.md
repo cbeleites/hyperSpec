@@ -16,7 +16,7 @@ By contributing, you understand and agree that your work becomes the part of the
 
 ## Color Use (Vignettes & Perhaps Examples)
 
-* There is a built-in colorblind friendly qualitative palette `CB7`; please use whenever possible. 
+* There is a built-in colorblind friendly qualitative palette `palette_colorblind`; please use whenever possible. 
 * These next two palettes are also colorblind-friendly:
   - For a diverging palette, please use `colorspace::diverging_hcl(n, palette = "Blue-Red2")`.
   - For a sequential palette, please use `colorspace::sequential_hcl(n, palette = "viridis")`.

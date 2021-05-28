@@ -68,7 +68,7 @@ collapse <- function(..., wl.tolerance = hy.getOption("wl.tolerance"), collapse.
   lapply(dots, chk.hy)
   lapply(dots, validObject)
 
-  dots <- lapply(dots, orderwl)
+  dots <- lapply(dots, wl_sort)
 
   ## check: wl.tolerance should be smaller than *half* of the smallest wavelength difference within each object
   ## half because we later check for distance <= wl.tolerance, so ± => window size is 2 wl.tolerance
@@ -480,7 +480,7 @@ hySpc.testthat::test(collapse) <- function() {
   }
 
   ## cluster numbers so far are in no particular order => rename them so they correspond to increasing wavelengths
-  ## this saves one call to orderwl () later on.
+  ## this saves one call to wl_sort () later on.
   wl.df$wlcluster <- as.numeric(factor(wl.df$wlcluster, levels = unique(wl.df$wlcluster)))
 
   wl.df

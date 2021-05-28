@@ -413,7 +413,7 @@ read.ENVI <- function(file = stop("read.ENVI: file name needed"), headerfile = N
   spc <- new("hyperSpec", data = data, spc = spc, wavelength = wavelength, labels = label)
 
   ## consistent file import behaviour across import functions
-  .fileio.optional(spc, file)
+  .spc_io_postprocess_optional(spc, file)
 }
 
 hySpc.testthat::test(read.ENVI) <- function() {

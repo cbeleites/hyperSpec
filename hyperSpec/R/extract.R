@@ -211,7 +211,6 @@
 #' # indexing via a logical matrix (applied to spectra matrix)
 #' summary(flu[[flu < 125]])
 #'
-#' @include call_list.R
 #' @export
 #'
 #' @concept manipulation
@@ -276,8 +275,8 @@ setMethod("[[",
         i [, 2] <- .getindex(x, i [, 2], extrapolate = FALSE)
       }
 
-      x@data$spc [i] # return value
-    } else { # index by row and columns
+      x@data$spc[i] # return value
+    } else {# index by row and columns
       x <- .extract(x, i, j, l, wl.index = wl.index)
       if (missing(j)) {
         unclass(x@data$spc[, , drop = drop])
@@ -301,7 +300,7 @@ setMethod("$",
     validObject(x)
 
     if (name == ".") { ## shortcut
-      x@data [, , drop = FALSE]
+      x@data[, , drop = FALSE]
     } else if (name == "..") {
       x@data[, -match("spc", colnames(x@data)), drop = FALSE]
     } else {

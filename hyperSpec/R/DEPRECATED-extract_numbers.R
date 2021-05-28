@@ -1,6 +1,20 @@
-#' Guess wavelengths from Character Vector
+#' @name DEPRECATED-guess.wavlength
+#' @concept deprecated
 #'
-#' character vectors used for names (e.g. colnames for matrices or data.frames)
+#' @title (DEPRECATED) Guess Wavelengths from Character Vector
+#'
+#'
+#' @description
+#'
+#' These \pkg{hyperSpec} functions are **deprecated** and not maintained any
+#' more. You should not use these.
+#' Currently they are present due to back-compatibility reasons and will be
+#' removed in the next release of the package.
+#' Please, use the suggested alternative functions instead.
+#'
+#' `_____________`
+#'
+#' Character vectors used for names (e.g. colnames for matrices or data.frames)
 #' are often treated by [base::make.names()] or similar functions that
 #' produce suitable names (e.g. by prepending "X" to numbers). Such names
 #' cannot be directly converted to numeric.
@@ -14,7 +28,6 @@
 #'
 #' @export
 #'
-#' @concept wavelengths
 #' @seealso
 #' [`readr::parse_number()`](https://readr.tidyverse.org/reference/parse_number.html)
 #'
@@ -23,6 +36,10 @@
 #' (wl <- colnames(tmp))
 #' guess.wavelength(wl)
 guess.wavelength <- function(X) {
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  hySpc_deprecated("extract_numbers")
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
   wl <- regmatches(X, regexpr(.PATTERN.number, X))
   wl <- as.numeric(wl)
 
@@ -36,7 +53,7 @@ guess.wavelength <- function(X) {
   wl
 }
 
-#' @include regexps.R
+#' @include constants-regexps.R
 #' @include hy_options.R
 hySpc.testthat::test(guess.wavelength) <- function() {
   context("guess.wavelength")

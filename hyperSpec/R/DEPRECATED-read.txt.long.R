@@ -6,8 +6,8 @@
 ###  (y x) wl int
 ###
 
-#' @rdname textio
-#' @aliases read.txt.long import export
+#' @rdname DEPRECATED-textio
+#' @concept moved to hySpc.read.txt
 #'
 #' @param file filename or connection
 #' @param cols the column names specifying the column order.
@@ -33,7 +33,6 @@
 #'
 # @keywords IO file
 # @concept io
-#' @concept moved to hySpc.read.txt
 #'
 #' @export
 #' @importFrom utils read.table unstack
@@ -65,7 +64,7 @@
 #' ## ascii export & import
 #'
 #'
-#' write.txt.long(flu,
+#' write_txt_long(flu,
 #'   file = paste0(tempdir(), "/flu.txt"),
 #'   cols = c(".wavelength", "spc", "c"),
 #'   order = c("c", ".wavelength"),
@@ -80,13 +79,13 @@
 #'   )
 #' )
 #'
-#' write.txt.wide(flu,
+#' write_txt_wide(flu,
 #'   file = paste0(tempdir(), "/flu.txt"),
 #'   cols = c("c", "spc"),
 #'   col.labels = TRUE, header.lines = 2, row.names = TRUE
 #' )
 #'
-#' write.txt.wide(flu,
+#' write_txt_wide(flu,
 #'   file = paste0(tempdir(), "/flu.txt"),
 #'   col.labels = FALSE, row.names = FALSE
 #' )
@@ -112,7 +111,7 @@ read.txt.long <- function(file = stop("file is required"),
                           header = TRUE,
                           ...) {
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  deprecated_read_txt(new = "read_txt_long")
+  hySpc_deprecated(new = "read_txt_long")
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   txtfile <- read.table(file = file, header = header, ...)
@@ -162,5 +161,5 @@ read.txt.long <- function(file = stop("file is required"),
   spc <- new("hyperSpec", wavelength = wavelength, data = txtfile, labels = cols)
 
   ## consistent file import behaviour across import functions
-  .fileio.optional(spc, filename = file)
+  .spc_io_postprocess_optional(spc, filename = file)
 }
