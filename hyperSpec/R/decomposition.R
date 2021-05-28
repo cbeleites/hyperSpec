@@ -197,4 +197,21 @@ hySpc.testthat::test(decomposition) <- function() {
     tmp <- decomposition(flu, flu[[]], scores = FALSE, label.wavelength = "bla")
     expect_equal(labels(tmp, ".wavelength"), labels(flu, ".wavelength"))
   })
+
+  test_that("decomposition on empty hyperSpec object", {
+    spc_empty <- new("hyperSpec",
+                     wavelength = 1:5,
+                     spc = matrix(NA, ncol = 5, nrow = 0))
+
+    loading_matrix <- matrix(5:1, ncol = 5, nrow = 1)
+
+    #
+    expect_error (decomposition(spc_empty, scores = TRUE),
+                  regexp = "")
+
+    decomposition(spc_empty,
+                  ,
+                  scores = FALSE)[[]]
+
+  })
 }
