@@ -48,7 +48,7 @@ wl.eval.hyperSpec <- function(x, ..., normalize.wl = I) {
   hySpc_deprecated("wl_eval.hyperSpec")
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-  wl_eval.hyperSpec (x, ..., normalize.wl = I)
+  wl_eval.hyperSpec (x, ..., normalize.wl = normalize.wl)
 }
 
 
@@ -59,7 +59,7 @@ wl.eval.numeric <- function(x, ..., normalize.wl = I) {
   hySpc_deprecated("wl_eval.numeric")
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-  wl_eval.numeric (x, ..., normalize.wl = I)
+  wl_eval.numeric (x, ..., normalize.wl = normalize.wl)
 
 }
 
