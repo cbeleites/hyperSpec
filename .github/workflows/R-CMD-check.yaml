@@ -2,12 +2,14 @@ on:
   push:
     branches:
       - release
+      - main
       - master
       - develop
 
   pull_request:
     branches:
       - release
+      - main
       - master
       - develop
 
@@ -48,7 +50,7 @@ jobs:
       - name: Query dependencies
         run: |
           install.packages('remotes')
-          saveRDS(remotes::dev_package_deps(dependencies = TRUE), ".github/depends.Rds", version = 2)
+          saveRDS(remotes::dev_package_deps("./hyperSpec", dependencies = TRUE), ".github/depends.Rds", version = 2)
           writeLines(sprintf("R-%i.%i", getRversion()$major, getRversion()$minor), ".github/R-version")
         shell: Rscript {0}
 
@@ -66,12 +68,25 @@ jobs:
           while read -r cmd
           do
             eval sudo $cmd
-          done < <(Rscript -e 'writeLines(remotes::system_requirements("ubuntu", "18.04"))')
+          done < <(Rscript -e 'writeLines(remotes::system_requirements("ubuntu", "18.04", "./hyperSpec"))')
+
       - name: Install dependencies
         run: |
-          remotes::install_deps(dependencies = TRUE)
+          remotes::install_deps("./hyperSpec", dependencies = TRUE)
           remotes::install_cran("rcmdcheck")
           remotes::install_cran("devtools")
+        shell: Rscript {0}
+
+      - name: Install dependencies (for R-devel)
+        if: matrix.config.r == 'devel'
+        run: |
+          remotes::install_cran("vdiffr", type = "source", force = TRUE)
+        shell: Rscript {0}
+
+      - name: Install dependencies (for R-oldrel)
+        if: matrix.config.r == 'oldrel' || matrix.config.r == '3.6'
+        run: |
+          remotes::install_version("rgl", "0.100.50")
         shell: Rscript {0}
 
       - name: Session info
@@ -83,8 +98,8 @@ jobs:
 
       - name: Roxygenize
         run: |
-          devtools::document(roclets = c('rd', 'collate', 'namespace'))
-          devtools::document(roclets = c('vignette'))
+          devtools::document("./hyperSpec", roclets = c('rd', 'collate', 'namespace'))
+          devtools::document("./hyperSpec", roclets = c('vignette'))
         shell: Rscript {0}
 
       - name: Check
@@ -93,6 +108,7 @@ jobs:
         run: |
           options(crayon.enabled = TRUE)
           rcmdcheck::rcmdcheck(
+            "./hyperSpec",
             args = c("--no-manual", "--as-cran"),
             error_on = "warning",
             check_dir = "check"
@@ -103,6 +119,7 @@ jobs:
         if: always()
         run: find check -name 'testthat.Rout*' -exec cat '{}' \; || true
         shell: bash
+        working-directory: ./hyperSpec
 
       - name: Upload check results
         if: failure()
@@ -115,3 +132,6 @@ jobs:
         if: ${{ runner.os == 'Windows' && startsWith(steps.install-r.outputs.installed-r-version, '3.6' ) }}
         shell: bash
         run: echo "C:/Program Files/Git/usr/bin" >> $GITHUB_PATH
+
+
+
