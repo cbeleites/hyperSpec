@@ -55,7 +55,6 @@ jobs:
 
       - uses: r-lib/actions/setup-pandoc@v1
 
-
       - name: Query dependencies
         run: |
           install.packages('remotes')
@@ -65,7 +64,7 @@ jobs:
 
       - name: Cache R packages
         # if: runner.os != 'Windows'
-        uses: actions/cache@v1
+        uses: actions/cache@v2
         with:
           path: ${{ env.R_LIBS_USER }}
           key: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-${{ hashFiles('.github/depends.Rds') }}
