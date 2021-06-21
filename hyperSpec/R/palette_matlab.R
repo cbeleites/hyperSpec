@@ -95,20 +95,20 @@ palette_alois <- function(n = 100, ...) {
 
 # Unit tests -----------------------------------------------------------------
 #' @import hySpc.testthat
-hySpc.testthat::test(palette_matlab_dark) <- function() {
-  context("palette_matlab_dark")
-  test_that("palette_matlab_dark() generates correct colors", {
-    dark <- palette_matlab_dark()
-    expect_equal(dark[1], "#0000FF")
-    expect_equal(dark[2], "#0005FF")})
-}
-
 hySpc.testthat::test(palette_matlab) <- function() {
   context("palette_matlab")
   test_that("palette_matlab() works", {
     pal <- palette_matlab()
     expect_true(pal[1] == "#0000FF" | pal[1] == "#0000FFFF")
     expect_true(pal[2] == "#000AFF" | pal[2] == "#000AFFFF")})
+}
+
+hySpc.testthat::test(palette_matlab_dark) <- function() {
+  context("palette_matlab_dark")
+  test_that("palette_matlab_dark() generates correct colors", {
+    dark <- palette_matlab_dark()
+    expect_equal(dark[1], "#0000FF")
+    expect_equal(dark[2], "#0005FF")})
 }
 
 hySpc.testthat::test(palette_alois) <- function() {
@@ -118,6 +118,3 @@ hySpc.testthat::test(palette_alois) <- function() {
     expect_equal(alois[1], "#000000")
     expect_equal(alois[2], "#00000C")})
 }
-
-
-
