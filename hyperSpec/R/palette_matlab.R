@@ -95,7 +95,6 @@ palette_alois <- function(n = 100, ...) {
 
 # Unit tests -----------------------------------------------------------------
 #' @import hySpc.testthat
-library(hySpc.testthat)
 hySpc.testthat::test(palette_matlab_dark) <- function() {
   context("palette_matlab_dark")
   test_that("test palette matlab dark color", {
