@@ -105,7 +105,7 @@ hySpc.testthat::test(palette_matlab_dark) <- function() {
 
 hySpc.testthat::test(palette_matlab) <- function() {
   context("palette_matlab")
-  test_that("test palette matlab", {
+  test_that("palette_matlab() works", {
     pal <- palette_matlab()
     expect_true(pal[1] == "#0000FF" | pal[1] == "#0000FFFF")
     expect_true(pal[2] == "#000AFF" | pal[2] == "#000AFFFF")})
@@ -113,7 +113,7 @@ hySpc.testthat::test(palette_matlab) <- function() {
 
 hySpc.testthat::test(palette_alois) <- function() {
   context("palette_alois")
-  test_that("test palette alois", {
+  test_that("palette_alois() works", {
     alois <- palette_alois()
     expect_equal(alois[1], "#000000")
     expect_equal(alois[2], "#00000C")})
