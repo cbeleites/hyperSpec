@@ -432,48 +432,6 @@ plot(triazine[1])
 
 Witec also saves ASCII data with spectra in columns (Export $\rightarrow$ Table), see \@ref(sec:read-txt-Witec).
 
-
-## JCAMP-DX {#sec:jcamp-dx}
-
-\index{ASCII!JCAMP-DX}
-\index{JCAMP-DX!ASCII}
-\index{jdx|see{JCAMP-DX}}
-\index{JCAMP-DX!ASCII}
-
-<!-- % {#sec:read.jdx} -->
-\index{JCAMP-DX!Shimadzu} \index{Shimadzu!GC-MS}
-\index{Shimadzu!JCAMP-DX} \index{JCAMP-DX!PerkinElmer} \index{PerkinElmer!JCAMP-DX}
-\index{PerkinElmer!Infrared} \index{Infrared!PerkinElmer}
-\index{JCAMP-DX!Infrared} \index{Infrared!JCAMP-DX}
-<!-- % -->
-
-Limited import of JCAMP-DX files v. 4.24 [@McDonald1988] is available in function `read.jdx()`{.r}.
-These files can contain multiple spectra, supported data formats are tabular `XY..XY` and `X++(Y..Y)`.
-
-```{r}
-read.jdx("fileio/jcamp-dx/shimadzu.jdx", encoding = "latin1", keys.hdr2data = TRUE)
-read.jdx("fileio/jcamp-dx/virgilio.jdx")
-```
-
-The last file has a slight inconsistency between its meta data and spectroscopic data, causing a message.
-However, the difference is minute compared to the intensities.
-If this is known in advance, an appropriate tolerance can be chosen:
-
-```{r}
-read.jdx("fileio/jcamp-dx/virgilio.jdx", ytol = 1e-9)
-```
-
-```{block, type="redbox", echo=TRUE}
-**Function `read.jdx.Shimadzu()`{.r} has been removed.**
-
-An R package dedicated to importing JCAMP-DX is currently under development by Bryan Hanson
-(<https://github.com/bryanhanson/readJDX>).
-Package **hyperSpec** will use that package once it is available on CRAN.
-Maintenance of package **hyperSpec**'s `read.jdx()`{.r} function is limited from now on in favor of Bryan's pacakge.
-```
-
-
-
 ## Basic Atomic Spectra from NIST Tables {#sec:aes-nist}
 
 \index{ASCII!reference!atomic emission!NIST}
