@@ -97,7 +97,7 @@ palette_alois <- function(n = 100, ...) {
 #' @import hySpc.testthat
 hySpc.testthat::test(palette_matlab_dark) <- function() {
   context("palette_matlab_dark")
-  test_that("test palette matlab dark color", {
+  test_that("palette_matlab_dark() generates correct colors", {
     dark <- palette_matlab_dark()
     expect_equal(dark[1], "#0000FF")
     expect_equal(dark[2], "#0005FF")})
