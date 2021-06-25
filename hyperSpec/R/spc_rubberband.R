@@ -54,7 +54,7 @@ spc_rubberband <- function(spc, ..., upper = FALSE, noise = 0, spline = TRUE) {
 
     if (debuglevel >= 1L) {
       plot(x, y[s, ], type = "l")
-      points(x[pts], y[s, pts], pch = 1, col = matlab.dark.palette(length(pts)))
+      points(x[pts], y[s, pts], pch = 1, col = palette_matlab_dark(length(pts)))
     }
 
     ## `chull` returns points in cw order
@@ -82,7 +82,7 @@ spc_rubberband <- function(spc, ..., upper = FALSE, noise = 0, spline = TRUE) {
     if (pts[2] == pts[1] + 1) pts <- pts[-1]
 
     if (debuglevel >= 1L) {
-      points(x[pts], y[s, pts], pch = 19, col = matlab.dark.palette(length(pts)), cex = 0.7)
+      points(x[pts], y[s, pts], pch = 19, col = palette_matlab_dark(length(pts)), cex = 0.7)
     }
 
     tmp <- approx(x = x[pts], y = y[s, pts], xout = x, method = "linear")$y

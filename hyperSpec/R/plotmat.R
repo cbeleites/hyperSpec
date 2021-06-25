@@ -22,7 +22,7 @@
 #' @export
 #'
 #' @examples
-#' plotmat(laser, col = alois.palette(100))
+#' plotmat(laser, col = palette_alois(100))
 #'
 #' plot(laser, "mat")
 #'
@@ -35,7 +35,7 @@
 #'
 #' plotmat(laser, laser$t / 3600, ylab = "t / h")
 #' @importFrom utils modifyList
-plotmat <- function(object, y = ".row", ylab, col = alois.palette(20), ...,
+plotmat <- function(object, y = ".row", ylab, col = palette_alois(20), ...,
                     contour = FALSE) {
   chk.hy(object)
   validObject(object)

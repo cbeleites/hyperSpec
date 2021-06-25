@@ -6,6 +6,6 @@ test_that("BARBITURATES", {
   )
 
   expect_silent(
-    plotspc(spc, col = matlab.dark.palette(3), stacked = TRUE, lines.args = list(type = "h"))
+    plotspc(spc, col = palette_matlab_dark(3), stacked = TRUE, lines.args = list(type = "h"))
   )
 })

@@ -20,9 +20,9 @@
     
      Deprecated function     | New (replacement) function       | Related issues
     -------------------------|-------------------------------   | ----------------
-     `matlab.dark.palette`   | `palette_matlab_dark`            |  #208, #299 NOT DONE
-     `matlab.palette`        | `palette_matlab`                 |  #208, #299 NOT DONE
-     `alois.palette`         | `palette_alois`                  |  #208, #299 NOT DONE
+     `matlab.dark.palette`   | `palette_matlab_dark`            |  #208, #299 
+     `matlab.palette`        | `palette_matlab`                 |  #208, #299 
+     `alois.palette`         | `palette_alois`                  |  #208, #299 
      `spc.NA.approx()`       | `spc_na_approx()`                |  #208, #301
      `spc.bin()`             | `spc_bin()`                      |  #208, #301
      `spc.fit.poly()`        | `spc_fit_poly()`                 |  #208, #301
@@ -54,6 +54,10 @@
 * Functions `show()` and `print()` give more concise default output now (@GegznaV, #211).
 * The default output of function `summary()` was changed (@GegznaV, #211).
 * New color palette `palette_colorblind` introduced (@bryanhanson).
+* Changing name of color palette functions with prefix palette_ (@sangttruong, #299):
+	- Change matlab.dark.palette() to palette_matlab_dark().
+	- Change matlab.palette() to palette_matlab().
+	- Change alois.palette() to palette_alois().
 
 
 ## Non-User-Facing Changes from 0.99 Series
