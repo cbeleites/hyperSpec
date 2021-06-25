@@ -127,7 +127,7 @@
 <br><a class="author_email" href="mailto:#"></a><a href="mailto:chemometrie@beleites.de" class="email">chemometrie@beleites.de</a>
       </address>
                   
-            <h4 class="date">2021-06-21</h4>
+            <h4 class="date">2021-06-25</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/cbeleites/hyperSpec/blob/master/../vignettes/plotting.Rmd"><code>../vignettes/plotting.Rmd</code></a></small>
       <div class="hidden name"><code>plotting.Rmd</code></div>
@@ -552,7 +552,7 @@ Figure 3.3: Plot with reversed/descending wavelength (wavenumber) range.
 <a href="#plot-in-different-colours" class="anchor"></a><span class="header-section-number">3.4</span> Plot in Different Colours</h2>
 <p>To have different colours of spectra (Fig. <a href="#fig:colours">3.4</a>), use <code class="sourceCode r">col =<span class="st"> </span>vector_of_colours</code>.</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/plotspc.html">plotspc</a></span><span class="op">(</span><span class="va">flu</span>, col <span class="op">=</span> <span class="fu"><a href="../reference/matlab.palette.html">matlab.dark.palette</a></span><span class="op">(</span><span class="fl">6</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="../reference/plotspc.html">plotspc</a></span><span class="op">(</span><span class="va">flu</span>, col <span class="op">=</span> <span class="fu"><a href="../reference/palette_matlab.html">palette_matlab_dark</a></span><span class="op">(</span><span class="fl">6</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:colours"></span>
 <img src="plotting_files/figure-html/colours-1.png" alt="Spectra plotted in different colours.  "><p class="caption">
@@ -753,7 +753,7 @@ The arguments for these functions should be given in lists as <code class="sourc
   <span class="op">)</span>
   <span class="fu"><a href="../reference/plot-methods.html">plot</a></span><span class="op">(</span><span class="va">faux_cell_preproc</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>,
     yoffset <span class="op">=</span> <span class="va">yoffset</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>,
-    col <span class="op">=</span> <span class="fu"><a href="../reference/matlab.palette.html">matlab.dark.palette</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>, add <span class="op">=</span> <span class="cn">TRUE</span>,
+    col <span class="op">=</span> <span class="fu"><a href="../reference/palette_matlab.html">palette_matlab_dark</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>, add <span class="op">=</span> <span class="cn">TRUE</span>,
     lines.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>lwd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
   <span class="op">)</span>
 <span class="op">}</span></code></pre></div>
@@ -970,7 +970,7 @@ Figure 6.2: Spectra matrix with time (in column <code>t</code>) on y axis.
 <a href="#contour-lines" class="anchor"></a><span class="header-section-number">6.3</span> Contour Lines</h2>
 <p>Contour lines may also be added (Fig. <a href="#fig:plotmat3">6.3</a>).</p>
 <div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/plotmat.html">plotmat</a></span><span class="op">(</span><span class="va">flu</span>, col <span class="op">=</span> <span class="fu"><a href="../reference/matlab.palette.html">matlab.dark.palette</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="../reference/plotmat.html">plotmat</a></span><span class="op">(</span><span class="va">flu</span>, col <span class="op">=</span> <span class="fu"><a href="../reference/palette_matlab.html">palette_matlab_dark</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="../reference/plotmat.html">plotmat</a></span><span class="op">(</span><span class="va">flu</span>, col <span class="op">=</span> <span class="st">"white"</span>, contour <span class="op">=</span> <span class="cn">TRUE</span>, add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:plotmat3"></span>
@@ -992,7 +992,7 @@ Figure 6.3: Spectra matrix with added contour lines.
 <code class="sourceCode R"><span class="fu">levelplot</span><span class="op">(</span><span class="va">spc</span> <span class="op">~</span> <span class="va">.wavelength</span> <span class="op">*</span> <span class="va">z</span>, <span class="va">barb</span>,
   panel <span class="op">=</span> <span class="va">panel.levelplot.points</span>,
   cex <span class="op">=</span> <span class="fl">.33</span>, col.symbol <span class="op">=</span> <span class="cn">NA</span>,
-  col.regions <span class="op">=</span> <span class="va">matlab.palette</span>
+  col.regions <span class="op">=</span> <span class="va">palette_matlab</span>
 <span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:plotmap-barb"></span>
@@ -1124,7 +1124,7 @@ in the <a href="https://www.nceas.ucsb.edu/~frazier/RSpatialGuides/colorPaletteC
 <div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/plotmap.html">plotmap</a></span><span class="op">(</span>
   <span class="va">faux_cell_preproc</span><span class="op">[</span>, , <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">800</span>, <span class="fl">1500</span><span class="op">)</span><span class="op">]</span>,
-  col.regions <span class="op">=</span> <span class="va">matlab.palette</span>
+  col.regions <span class="op">=</span> <span class="va">palette_matlab</span>
 <span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:plotmap-wave"></span>
@@ -1141,7 +1141,7 @@ Figure 8.3: A map of average intensity at explicitly indicated wavelengths.
 <code class="sourceCode R"><span class="fu"><a href="../reference/plotmap.html">plotmap</a></span><span class="op">(</span>
   <span class="va">faux_cell</span><span class="op">[</span>, , <span class="fl">1500</span><span class="op">]</span>,
   <span class="va">spc</span> <span class="op">~</span> <span class="va">y</span> <span class="op">*</span> <span class="va">x</span> <span class="op">|</span> <span class="va">x</span> <span class="op">&gt;</span> <span class="fl">5</span>,
-  col.regions <span class="op">=</span> <span class="fu"><a href="../reference/matlab.palette.html">matlab.palette</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span>
+  col.regions <span class="op">=</span> <span class="fu"><a href="../reference/palette_matlab.html">palette_matlab</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:plotmap-pca"></span>
@@ -1171,7 +1171,7 @@ This allows conditioning on the wavelengths.</p>
   <span class="va">scores</span><span class="op">[</span>, , <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span>,
   <span class="va">spc</span> <span class="op">~</span> <span class="va">y</span> <span class="op">*</span> <span class="va">x</span> <span class="op">|</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">.wavelength</span><span class="op">)</span>,
   func <span class="op">=</span> <span class="cn">NULL</span>,
-  col.regions <span class="op">=</span> <span class="fu"><a href="../reference/matlab.palette.html">matlab.palette</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span>
+  col.regions <span class="op">=</span> <span class="fu"><a href="../reference/palette_matlab.html">palette_matlab</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:plotmap-pca2"></span>
@@ -1185,7 +1185,7 @@ Figure 8.5: The maps of the scores of the first two principal components (I).
   <span class="va">spc</span> <span class="op">~</span> <span class="va">y</span> <span class="op">*</span> <span class="va">x</span> <span class="op">|</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">.wavelength</span><span class="op">)</span>,
   <span class="va">scores</span><span class="op">[</span>, , <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span>,
   aspect <span class="op">=</span> <span class="st">"iso"</span>,
-  col.regions <span class="op">=</span> <span class="fu"><a href="../reference/matlab.palette.html">matlab.palette</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span>
+  col.regions <span class="op">=</span> <span class="fu"><a href="../reference/palette_matlab.html">palette_matlab</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:plotmap-pca3"></span>
@@ -1205,7 +1205,7 @@ Furthermore, it is not FOSS (free and open-source software), so users are kindly
 <div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/plotmap.html">plotvoronoi</a></span><span class="op">(</span>
   <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">faux_cell</span>, <span class="fl">300</span><span class="op">)</span>, <span class="va">region</span> <span class="op">~</span> <span class="va">x</span> <span class="op">*</span> <span class="va">y</span>,
-  col.regions <span class="op">=</span> <span class="fu"><a href="../reference/matlab.palette.html">matlab.palette</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span>
+  col.regions <span class="op">=</span> <span class="fu"><a href="../reference/palette_matlab.html">palette_matlab</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span id="fig:voronoi-2"></span>
@@ -1230,7 +1230,7 @@ Figure 8.7: Voronoi plot that uses non-default discrette colour palette.
 <p>Fig. <a href="#fig:missing">8.8</a> shows the result.</p>
 <div class="sourceCode" id="cb68"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/plotmap.html">plotmap</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">faux_cell</span><span class="op">[</span>, , <span class="fl">1200</span><span class="op">]</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">faux_cell</span><span class="op">)</span> <span class="op">-</span> <span class="fl">20</span><span class="op">)</span>,
-  col.regions <span class="op">=</span> <span class="fu"><a href="../reference/matlab.palette.html">matlab.palette</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span>,
+  col.regions <span class="op">=</span> <span class="fu"><a href="../reference/palette_matlab.html">palette_matlab</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span>,
   col <span class="op">=</span> <span class="st">"black"</span>,
   panel <span class="op">=</span> <span class="va">mark.missing</span>
 <span class="op">)</span></code></pre></div>
@@ -1317,7 +1317,7 @@ As package <strong>rgl</strong>’s axis annotations are sometimes awkward, they
 
 <span class="va">laser</span> <span class="op">&lt;-</span> <span class="va">laser</span><span class="op">[</span>, , <span class="fl">404.8</span> <span class="op">~</span> <span class="fl">405.6</span><span class="op">]</span> <span class="op">/</span> <span class="fl">10000</span>
 <span class="va">laser</span><span class="op">$</span><span class="va">t</span> <span class="op">&lt;-</span> <span class="va">laser</span><span class="op">$</span><span class="va">t</span> <span class="op">/</span> <span class="fl">3600</span>
-<span class="va">cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="../reference/matlab.palette.html">matlab.palette</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">laser</span><span class="op">)</span><span class="op">)</span>, <span class="fu"><a href="../reference/ncol,hyperSpec-method.html">nwl</a></span><span class="op">(</span><span class="va">laser</span><span class="op">)</span><span class="op">)</span>
+<span class="va">cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="../reference/palette_matlab.html">palette_matlab</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">laser</span><span class="op">)</span><span class="op">)</span>, <span class="fu"><a href="../reference/ncol,hyperSpec-method.html">nwl</a></span><span class="op">(</span><span class="va">laser</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="https://dmurdoch.github.io/rgl/dev/reference/surface3d.html">surface3d</a></span><span class="op">(</span>
   y <span class="op">=</span> <span class="fu"><a href="../reference/wl.html">wl</a></span><span class="op">(</span><span class="va">laser</span><span class="op">)</span>, x <span class="op">=</span> <span class="va">laser</span><span class="op">$</span><span class="va">t</span>,
   z <span class="op">=</span> <span class="va">laser</span><span class="op">$</span><span class="va">spc</span>, col <span class="op">=</span> <span class="va">cols</span>
@@ -1409,14 +1409,14 @@ The same holds for package <strong>ggplot2</strong> graphics.</p>
 <span class="co">#&gt;  collate  en_US.UTF-8                 </span>
 <span class="co">#&gt;  ctype    en_US.UTF-8                 </span>
 <span class="co">#&gt;  tz       UTC                         </span>
-<span class="co">#&gt;  date     2021-06-21                  </span>
+<span class="co">#&gt;  date     2021-06-25                  </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; ─ Packages ───────────────────────────────────────────────────────────────────────────────────────</span>
 <span class="co">#&gt;  package        * version    date       lib source        </span>
 <span class="co">#&gt;  brio             1.1.2      2021-04-23 [1] CRAN (R 4.1.0)</span>
 <span class="co">#&gt;  callr            3.7.0      2021-04-20 [1] CRAN (R 4.1.0)</span>
 <span class="co">#&gt;  cli              2.5.0      2021-04-26 [1] CRAN (R 4.1.0)</span>
-<span class="co">#&gt;  colorspace       2.0-1      2021-05-04 [1] CRAN (R 4.1.0)</span>
+<span class="co">#&gt;  colorspace       2.0-2      2021-06-24 [1] CRAN (R 4.1.0)</span>
 <span class="co">#&gt;  crayon           1.4.1      2021-02-08 [1] CRAN (R 4.1.0)</span>
 <span class="co">#&gt;  desc             1.3.0      2021-03-05 [1] CRAN (R 4.1.0)</span>
 <span class="co">#&gt;  diffobj          0.3.4      2021-03-22 [1] CRAN (R 4.1.0)</span>
@@ -1427,10 +1427,10 @@ The same holds for package <strong>ggplot2</strong> graphics.</p>
 <span class="co">#&gt;  fansi            0.5.0      2021-05-25 [1] CRAN (R 4.1.0)</span>
 <span class="co">#&gt;  farver           2.1.0      2021-02-28 [1] CRAN (R 4.1.0)</span>
 <span class="co">#&gt;  generics         0.1.0      2020-10-31 [1] CRAN (R 4.1.0)</span>
-<span class="co">#&gt;  ggplot2        * 3.3.4      2021-06-16 [1] CRAN (R 4.1.0)</span>
+<span class="co">#&gt;  ggplot2        * 3.3.5      2021-06-25 [1] CRAN (R 4.1.0)</span>
 <span class="co">#&gt;  glue             1.4.2      2020-08-27 [1] CRAN (R 4.1.0)</span>
 <span class="co">#&gt;  gtable           0.3.0      2019-03-25 [1] CRAN (R 4.1.0)</span>
-<span class="co">#&gt;  hyperSpec      * 0.100.0    2021-06-21 [1] local         </span>
+<span class="co">#&gt;  hyperSpec      * 0.100.0    2021-06-25 [1] local         </span>
 <span class="co">#&gt;  hySpc.testthat   0.2.1.9000 2021-06-15 [1] local         </span>
 <span class="co">#&gt;  isoband          0.2.4      2021-03-03 [1] CRAN (R 4.1.0)</span>
 <span class="co">#&gt;  jpeg             0.1-8.1    2019-10-24 [1] CRAN (R 4.1.0)</span>
