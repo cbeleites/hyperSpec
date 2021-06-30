@@ -23,14 +23,14 @@
 #'
 #' plot(barb,
 #'   lines.args = list(type = "h"),
-#'   col = matlab.dark.palette(5), stacked = TRUE,
+#'   col = palette_matlab_dark(5), stacked = TRUE,
 #'   stacked.args = list(add.factor = .2)
 #' )
 #'
 #' if (require(latticeExtra)) {
 #'   levelplot(spc ~ .wavelength * z, log(barb),
 #'     panel = panel.levelplot.points,
-#'     cex = 0.3, col = "#00000000", col.regions = matlab.palette(20)
+#'     cex = 0.3, col = "#00000000", col.regions = palette_matlab(20)
 #'   )
 #' }
 #'

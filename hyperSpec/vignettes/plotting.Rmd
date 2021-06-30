@@ -522,7 +522,7 @@ CAPTION = "Spectra plotted in different colours.  "
 ```
 
 ```{r colours, fig.cap=CAPTION}
-plotspc(flu, col = matlab.dark.palette(6))
+plotspc(flu, col = palette_matlab_dark(6))
 ```
 
 ## Plot Dots Instead of Lines
@@ -738,7 +738,7 @@ for (i in 1:3) {
   )
   plot(faux_cell_preproc[i],
     yoffset = yoffset[i],
-    col = matlab.dark.palette(3) [i], add = TRUE,
+    col = palette_matlab_dark(3) [i], add = TRUE,
     lines.args = list(lwd = 2)
   )
 }
@@ -961,7 +961,7 @@ CAPTION = "Spectra matrix with added contour lines.  "
 ```
 
 ```{r plotmat3, fig.cap=CAPTION}
-plotmat(flu, col = matlab.dark.palette(20))
+plotmat(flu, col = palette_matlab_dark(20))
 plotmat(flu, col = "white", contour = TRUE, add = TRUE)
 ```
 
@@ -985,7 +985,7 @@ CAPTION = "Colour-coded points via special panel function.  "
 levelplot(spc ~ .wavelength * z, barb,
   panel = panel.levelplot.points,
   cex = .33, col.symbol = NA,
-  col.regions = matlab.palette
+  col.regions = palette_matlab
 )
 ```
 
@@ -1124,7 +1124,7 @@ CAPTION = "A map of average intensity at explicitly indicated wavelengths.  "
 ```{r plotmap-wave, fig.cap=CAPTION}
 plotmap(
   faux_cell_preproc[, , c(800, 1500)],
-  col.regions = matlab.palette
+  col.regions = palette_matlab
 )
 ```
 
@@ -1141,7 +1141,7 @@ CAPTION = "Subplots created by logical conditions.  "
 plotmap(
   faux_cell[ , , 1500],
   spc ~ y * x | x > 5,
-  col.regions = matlab.palette(20)
+  col.regions = palette_matlab(20)
 )
 ```
 
@@ -1171,7 +1171,7 @@ plotmap(
   scores[, , 1:3],
   spc ~ y * x | as.factor(.wavelength),
   func = NULL,
-  col.regions = matlab.palette(20)
+  col.regions = palette_matlab(20)
 )
 ```
 
@@ -1186,7 +1186,7 @@ levelplot(
   spc ~ y * x | as.factor(.wavelength),
   scores[, , 1:3],
   aspect = "iso",
-  col.regions = matlab.palette(20)
+  col.regions = palette_matlab(20)
 )
 ```
 
@@ -1207,7 +1207,7 @@ CAPTION = "Voronoi plot that uses non-default discrette colour palette.  "
 ```{r voronoi-2, fig.cap=CAPTION}
 plotvoronoi(
   sample(faux_cell, 300), region ~ x * y,
-  col.regions = matlab.palette(20)
+  col.regions = palette_matlab(20)
 )
 ```
 
@@ -1235,7 +1235,7 @@ CAPTION = "Marks of missing spectra in a false-colour map.  "
 
 ```{r missing, fig.cap=CAPTION}
 plotmap(sample(faux_cell[, , 1200], length(faux_cell) - 20),
-  col.regions = matlab.palette(20),
+  col.regions = palette_matlab(20),
   col = "black",
   panel = mark.missing
 )
@@ -1321,7 +1321,7 @@ library(rgl)
 
 laser <- laser [, , 404.8 ~ 405.6] / 10000
 laser$t <- laser$t / 3600
-cols <- rep(matlab.palette(nrow(laser)), nwl(laser))
+cols <- rep(palette_matlab(nrow(laser)), nwl(laser))
 surface3d(
   y = wl(laser), x = laser$t,
   z = laser$spc, col = cols

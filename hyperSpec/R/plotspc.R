@@ -163,7 +163,7 @@
 #' )
 #'
 #' mean.pm.sd <- aggregate(faux_cell, faux_cell$region, mean_pm_sd)
-#' plot(mean.pm.sd, col = matlab.palette(3), fill = ".aggregate", stacked = ".aggregate")
+#' plot(mean.pm.sd, col = palette_matlab(3), fill = ".aggregate", stacked = ".aggregate")
 #' @importFrom utils modifyList relist head tail
 #' @importFrom grDevices rgb col2rgb
 plotspc <- function(object,
@@ -582,7 +582,7 @@ plotspc <- function(object,
 #'
 #' offset <- stacked.offsets(mean.pm.sd, ".aggregate")
 #' plot(mean.pm.sd,
-#'   fill.col = matlab.palette(3), fill = ".aggregate",
+#'   fill.col = palette_matlab(3), fill = ".aggregate",
 #'   stacked = ".aggregate"
 #' )
 #'
