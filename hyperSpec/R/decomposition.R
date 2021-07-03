@@ -209,9 +209,9 @@ hySpc.testthat::test(decomposition) <- function() {
     expect_error (decomposition(spc_empty, scores = TRUE),
                   regexp = "")
 
-    decomposition(spc_empty,
+    expect_error (decomposition(spc_empty,
                   ,
-                  scores = FALSE)[[]]
+                  scores = FALSE)[[]])
 
   })
 }
