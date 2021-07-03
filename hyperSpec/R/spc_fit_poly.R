@@ -173,7 +173,7 @@ spc_fit_poly_below <- function(fit.to, apply.to = fit.to, poly.order = 1,
                                stop.on.increase = FALSE,
                                debuglevel = hy.getOption("debuglevel")) {
   ## for debuglevel >= 2L
-  cols <- matlab.dark.palette(max.iter)
+  cols <- palette_matlab_dark(max.iter)
 
   chk.hy(fit.to)
   if (!is.null(apply.to)) {

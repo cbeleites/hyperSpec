@@ -33,7 +33,7 @@
 #'   ## customized version
 #'   data <- sample(faux_cell [, , 1004 - 2i ~ 1004 + 2i], 300)
 #'
-#'   plotdata <- plotvoronoi(data, region ~ y * x, col.regions = alois.palette())
+#'   plotdata <- plotvoronoi(data, region ~ y * x, col.regions = palette_alois())
 #'   print(plotdata)
 #'   map.sel.poly(plotdata)
 #'
