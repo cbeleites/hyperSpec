@@ -28,6 +28,7 @@
 #'
 #' plot(wl_eval(300:550, y2 = function(x) x*2, y3 = function(x) x*3))
 #'
+#' @include normalize01.R
 wl_eval <- function(x, ..., normalize.wl = I) {
   UseMethod("wl_eval")
 }
