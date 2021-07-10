@@ -1,7 +1,7 @@
 #' @name DEPRECATED-fix_spc_colnames
 #' @concept deprecated
 #'
-#' @title (DEPRECATED) Ensure That the Spectra Matrix Has the Wavelengths in Column Names
+#' @title (DEPRECATED) Ensure that the spectra matrix has the wavelengths in column names
 #'
 #'
 #' @description
@@ -32,10 +32,13 @@
 hySpc.testthat::test(.fix_spc_colnames) <- function() {
   context(".fix_spc_colnames")
 
-  test_that ("deprecated",
-             expect_warning (.fix_spc_colnames(flu),
-                             "Function '.fix_spc_colnames' is deprecated.")
-             )
+  test_that(
+    "deprecated",
+    expect_warning(
+      .fix_spc_colnames(flu),
+      "Function '.fix_spc_colnames' is deprecated."
+    )
+  )
 
   test_that("colnames get fixed", {
     tmp <- flu
