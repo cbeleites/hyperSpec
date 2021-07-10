@@ -1,4 +1,4 @@
-#' @describeIn  read.ENVI
+#' @describeIn  DEPRECATED-read.ENVI
 #' @include DEPRECATED-read.ENVI.R
 #' @export
 

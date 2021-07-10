@@ -15,7 +15,7 @@
 #' pixel size values (i.e. the step sizes) are multiplied by 1000.
 #'
 #' @param nicolet.correction see details
-#' @describeIn  read.ENVI
+#' @describeIn  DEPRECATED-read.ENVI
 #' @export
 #'
 #' @importFrom utils modifyList

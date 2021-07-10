@@ -214,7 +214,7 @@ read.spe <- function(filename, xaxis = "file", acc2avg = F, cts_sec = F,
 
 
 
-#' @describeIn read.spe Read only header of a WinSpec SPE file (version 2.5)
+#' @describeIn DEPRECATED-read.spe Read only header of a WinSpec SPE file (version 2.5)
 #' @return hdr list with `key=value` pairs
 #' @noRd
 .read.spe.header <- function(filename) {
@@ -286,7 +286,7 @@ read.spe <- function(filename, xaxis = "file", acc2avg = F, cts_sec = F,
 }
 
 
-#' @describeIn read.spe Plot the WinSpec SPE file (version 2.5) and show the
+#' @describeIn DEPRECATED-read.spe Plot the WinSpec SPE file (version 2.5) and show the
 #' calibration points stored inside of it (x-axis calibration)
 #' @export
 #'
