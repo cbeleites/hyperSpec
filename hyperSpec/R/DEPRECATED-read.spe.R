@@ -5,8 +5,22 @@
 # R. Kiselev
 # July 2015
 
-
-#' Import WinSpec SPE File
+#' @name DEPRECATED-read.spe
+#' @concept moved to hySpc.read.spe
+#'
+#' @title (DEPRECATED)
+#'        Import WinSpec SPE File
+#'
+#' @description
+#'
+#' These data input functions are **deprecated** and they will be removed in
+#' the next release of \pkg{hyperspec} package.
+#' Now functions in package \pkg{hySpc.read.spe}
+#' ([link](https://r-hyperspec.github.io/hySpc.read.spe/reference/index.html))
+#' should be used as the alternatives.
+#'
+#'
+#' **Old description:**
 #'
 #' Import function for WinSpec SPE files (file version up to 3.0). The calibration
 #' data (polynome and calibration data pairs) for x-axis are automatically
@@ -36,9 +50,7 @@
 #'
 #' @author R. Kiselev, C. Beleites
 #' @export
-#'
-#' @concept io
-#'
+
 read.spe <- function(filename, xaxis = "file", acc2avg = F, cts_sec = F,
                      keys.hdr2data = c(
                        "exposure_sec",
@@ -47,6 +59,11 @@ read.spe <- function(filename, xaxis = "file", acc2avg = F, cts_sec = F,
                        "numFrames",
                        "darkSubtracted"
                      )) {
+
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  deprecated_read_spe()
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
   hdr <- .read.spe.header(filename)
 
   # This is the size of one data point in bytes. WinSpec uses 2 bytes or 4 bytes only
@@ -160,7 +177,6 @@ read.spe <- function(filename, xaxis = "file", acc2avg = F, cts_sec = F,
 #' @return xml data from the file converted to R list
 #' @importFrom xml2 as_list read_xml
 #'
-#' @concept io
 .read.spe.xml <- function(filename) {
   as_list(read_xml(.read.spe.xml_string(filename)))
 }
@@ -177,7 +193,6 @@ read.spe <- function(filename, xaxis = "file", acc2avg = F, cts_sec = F,
 #'
 #' @return string containing XML footer
 #'
-#' @concept io
 #' @noRd
 
 .read.spe.xml_string <- function(filename) {
@@ -277,9 +292,12 @@ read.spe <- function(filename, xaxis = "file", acc2avg = F, cts_sec = F,
 #' calibration points stored inside of it (x-axis calibration)
 #' @export
 #'
-#' @concept io
-#'
 spe.showcalpoints <- function(filename, xaxis = "file", acc2avg = F, cts_sec = F) {
+
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  deprecated_read_spe()
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
   hdr <- .read.spe.header(filename)
   xaxis <- .wl_fix_unit_name(xaxis)
 
