@@ -95,7 +95,7 @@ Collate:
     'DEPRECATED-read.ENVI.R'
     'DEPRECATED-read.ENVI.HySpex.R'
     'DEPRECATED-read.ENVI.Nicolet.R'
-    'fileio.optional.R'
+    'spc_io_postprocess_optional.R'
     'DEPRECATED-read.txt.Witec.R'
     'DEPRECATED-read.asc.Andor.R'
     'DEPRECATED-read.asc.PerkinElmer.R'
