@@ -1,4 +1,4 @@
-#' Getting and Setting the Wavelength Axis
+#' Getting and setting the wavelength axis
 #'
 #' `wl()` returns the wavelength axis, `wl<-` sets it.
 #'
