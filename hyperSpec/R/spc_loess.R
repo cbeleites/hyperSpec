@@ -50,7 +50,6 @@
 #' plot(flu_na_smoothed, add = TRUE, col = "blue")
 spc_loess <- function(spc, newx, enp.target = nwl(spc) / 4, surface = "direct",
                       ...) {
-
   .loess <- function(y, x) {
     if (all(is.na(y))) {
       NA
