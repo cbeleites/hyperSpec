@@ -264,7 +264,6 @@ split.line <- function(x, separator, trim.blank = TRUE) {
 #' ([link](https://r-hyperspec.github.io/hySpc.read.ENVI/reference/index.html))
 #' should be used as the alternatives.
 #'
-#' ***
 #'
 #' **Old description:**
 #'
