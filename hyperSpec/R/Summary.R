@@ -1,4 +1,4 @@
-#' @title Statistical Summary and Other Functions for `hyperSpec`
+#' @title Statistical summary and other functions for `hyperSpec`
 #' @description
 #' The functions
 #'
@@ -87,6 +87,7 @@ all_wl <- function(expression, na.rm = FALSE) {
   res
 }
 
+
 # Unit tests -----------------------------------------------------------------
 
 hySpc.testthat::test(all_wl) <- function() {
@@ -146,6 +147,7 @@ any_wl <- function(expression, na.rm = FALSE) {
 
 
 # Unit tests -----------------------------------------------------------------
+
 hySpc.testthat::test(any_wl) <- function() {
   context("any_wl")
 
