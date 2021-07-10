@@ -1,5 +1,5 @@
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-.math2 <-  function(x, digits) {
+.math2 <- function(x, digits) {
   validObject(x)
 
   x[[]] <- callGeneric(x[[]], digits)
@@ -7,7 +7,7 @@
   x
 }
 
-#' Mathematical Functions for `hyperSpec` Objects.
+#' Mathematical functions for `hyperSpec` objects
 #'
 #' The functions `abs()`, `sign()`, `sqrt()`, `floor()`, `ceiling()`, `trunc()`,
 #' `round()`, `signif()`, `exp()`, `log()`, `expm1()`, `log1p()`, `cos()`,
@@ -49,7 +49,8 @@
 #'
 #' log(flu)
 setMethod(
-  "Math2", signature(x = "hyperSpec"), .math2)
+  "Math2", signature(x = "hyperSpec"), .math2
+)
 
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -94,7 +95,6 @@ setMethod("Math", signature(x = "hyperSpec"), .math)
 
 # Unit tests -----------------------------------------------------------------
 hySpc.testthat::test(.math) <- function() {
-
   context("math")
 
   # Perform tests
@@ -104,7 +104,7 @@ hySpc.testthat::test(.math) <- function() {
 
   test_that("math works", {
     expect_silent(flu + flu)
-    expect_silent(flu ^ flu)
+    expect_silent(flu^flu)
 
     expect_silent(abs(flu))
     expect_silent(sqrt(flu))
