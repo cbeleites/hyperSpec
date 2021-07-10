@@ -4,11 +4,11 @@
 ###
 ###  plots intensity or extra data column over 2 extra data columns
 
-## TODO: check wheter func should be applied or not
+## TODO: check whether function should be applied or not
 
 
 
-#' Plot a Map and Identify/Select Spectra in the Map.
+#' Plot a map and identify/select spectra in the map
 #'
 #' [lattice::levelplot()] functions for hyperSpec objects.  An image or map of a summary
 #' value of each spectrum is plotted. Spectra may be identified by mouse click.
@@ -80,7 +80,6 @@
 #' @concept plot generation
 #'
 #' @examples
-#'
 #' \dontrun{
 #' vignette(plotting)
 #' vignette(hyperSpec)
