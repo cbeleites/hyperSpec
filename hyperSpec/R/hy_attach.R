@@ -35,14 +35,12 @@
 #'
 #' hyperSpec::hy_attach(quiet = TRUE)
 #' }
-
+#'
 hy_attach <- function(exclude = "hySpc.testthat", ..., quiet = NA) {
-
   hySpc_installed <- hy_list_installed_hySpc_packages()
   hySpc_to_attach <- setdiff(hySpc_installed, unique(c(exclude, .packages())))
 
   if (is.na(quiet) || isFALSE(quiet)) {
-
     if (length(hySpc_to_attach) > 0) {
       message(
         "\n------------------------------------\n",
@@ -68,8 +66,9 @@ hy_attach <- function(exclude = "hySpc.testthat", ..., quiet = NA) {
 
   out <-
     if (is.na(quiet) || isTRUE(quiet)) {
-      suppressPackageStartupMessages({attach_pkgs()})
-
+      suppressPackageStartupMessages({
+        attach_pkgs()
+      })
     } else {
       attach_pkgs()
     }
@@ -86,25 +85,30 @@ hySpc.testthat::test(hy_attach) <- function() {
 
     # Check with hyperSpec package only
     installed_pkgs <- row.names(installed.packages())
-    exclude_pkgs   <- grep("^hySpc[.]", installed_pkgs, value = TRUE)
+    exclude_pkgs <- grep("^hySpc[.]", installed_pkgs, value = TRUE)
 
     # First check
     expect_silent(hyperSpec::hy_attach(exclude_pkgs, quiet = TRUE))
 
     # quiet = NA
-    suppressWarnings({detach("package:hyperSpec", force = TRUE)})
+    suppressWarnings({
+      detach("package:hyperSpec", force = TRUE)
+    })
     expect_message(hyperSpec::hy_attach(exclude_pkgs, quiet = NA), "hyperSpec")
     expect_message(hyperSpec::hy_attach(exclude_pkgs, quiet = NA), "are already attached")
 
     # quiet = TRUE
-    suppressWarnings({detach("package:hyperSpec", force = TRUE)})
+    suppressWarnings({
+      detach("package:hyperSpec", force = TRUE)
+    })
     expect_silent(hyperSpec::hy_attach(exclude_pkgs, quiet = TRUE))
     expect_silent(hyperSpec::hy_attach(exclude_pkgs, quiet = TRUE))
 
     # quiet = FALSE
-    suppressWarnings({detach("package:hyperSpec", force = TRUE)})
+    suppressWarnings({
+      detach("package:hyperSpec", force = TRUE)
+    })
     expect_message(hyperSpec::hy_attach(exclude_pkgs, quiet = FALSE), "To get started, try:")
     expect_message(hyperSpec::hy_attach(exclude_pkgs, quiet = FALSE), "are already attached")
   })
 }
-
