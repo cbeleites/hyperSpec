@@ -24,7 +24,7 @@
 #'
 #' [options()] for details on options.
 #' @include DEPRECATED-read.txt.Witec.R
-#' @include fileio.optional.R
+#' @include spc_io_postprocess_optional.R
 #'
 #'
 #' @export
