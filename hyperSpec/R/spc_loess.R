@@ -1,6 +1,6 @@
 #' @rdname spc-loess
 #'
-#' @title LOESS Smoothing Interpolation for Spectra
+#' @title LOESS smoothing interpolation for spectra
 #'
 #' @description
 #' Spectra smoothing and interpolation on a new wavelength axis using
