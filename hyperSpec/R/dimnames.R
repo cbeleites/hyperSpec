@@ -1,4 +1,4 @@
-#' Dimnames for `hyperSpec` Objects
+#' Dimnames for `hyperSpec` objects
 #'
 #' `hyperSpec` objects can have row- and column names like data.frames.
 #' The "names" of the wavelengths are treated separately: see [wl()].
