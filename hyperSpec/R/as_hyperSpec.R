@@ -1,5 +1,5 @@
 
-#' `as.hyperSpec`: Convenience Conversion Functions
+#' `as.hyperSpec`: convenience conversion functions
 #'
 #' These functions are shortcuts to convert other objects into `hypeSpec`
 #' objects.
@@ -19,9 +19,8 @@
 #' @concept hyperSpec conversion
 #'
 setGeneric("as.hyperSpec", function(X, ...) {
-    stop("as.hyperSpec is not available for objects of class ", class(X))
-  }
-)
+  stop("as.hyperSpec is not available for objects of class ", class(X))
+})
 
 #' @include extract_numbers.R
 .as.hyperSpec.matrix <- function(X, wl = NULL, ...) {
@@ -44,8 +43,7 @@ setGeneric("as.hyperSpec", function(X, ...) {
 setMethod("as.hyperSpec", "matrix", .as.hyperSpec.matrix)
 
 .as.hyperSpec.data.frame <- function(X, spc = NULL, wl = NULL,
-  labels = attr(X, "labels"), ...) {
-
+                                     labels = attr(X, "labels"), ...) {
   if (is.null(wl)) wl <- extract_numbers(X)
   # TODO: remove after 31.12.2020
   if (!all(!is.na(extract_numbers(colnames(X))))) {
@@ -110,8 +108,8 @@ hySpc.testthat::test(as.hyperSpec) <- function() {
     expect_equal(dim(tmp), c(nrow = 6L, ncol = 3L, nwl = 0L))
     expect_equal(wl(tmp), numeric(0))
     expect_equal(
-      labels(tmp) [order(names(labels(tmp)))],
-      lapply(labels(flu) [order(names(labels(flu)))], as.expression)
+      labels(tmp)[order(names(labels(tmp)))],
+      lapply(labels(flu)[order(names(labels(flu)))], as.expression)
     )
   })
 
