@@ -1,4 +1,4 @@
-#' Mark peak.
+#' Mark peak
 #'
 #' Marks location of the *first* spectrum at the data point closest to the
 #' specified position on the current plot.
