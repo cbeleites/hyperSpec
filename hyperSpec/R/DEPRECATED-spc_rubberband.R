@@ -47,9 +47,11 @@ spc.rubberband <- function(...) {
 hySpc.testthat::test(spc.rubberband) <- function() {
   context("spc.rubberband")
 
-  test_that("deprecated",
-            expect_warning(spc.rubberband(paracetamol),
-                           "Function 'spc.rubberband' is deprecated.")
-            )
-
+  test_that(
+    "deprecated",
+    expect_warning(
+      spc.rubberband(paracetamol),
+      "Function 'spc.rubberband' is deprecated."
+    )
+  )
 }
