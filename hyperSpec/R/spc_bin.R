@@ -1,5 +1,5 @@
-#' @rdname spc-bin
-#' @title Wavelength Binning
+#' @name spc-bin
+#' @title Wavelength binning
 #'
 #' @description
 #' In order to reduce the spectral resolution and thus gain signal to noise
