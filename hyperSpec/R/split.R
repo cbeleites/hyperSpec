@@ -10,7 +10,7 @@
   hyperlist
 }
 
-#' Split a `hyperSpec` object according to groups.
+#' Split a `hyperSpec` object according to groups
 #'
 #' `split()` divides the `hyperSpec` object into a list of
 #' `hyperSpec` objects according to the groups given by `f`.
@@ -51,6 +51,7 @@ setMethod("split", signature = signature(x = "hyperSpec"), .split)
 
 
 # Unit tests -----------------------------------------------------------------
+
 hySpc.testthat::test(.split) <- function() {
 
   context("split")
