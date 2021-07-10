@@ -12,7 +12,8 @@
 
   # try a guess how many rows the result will have
   if (is.null(out.rows)) {
-    tmp <- .apply_workhorse(data = x@data[by[[1]], , drop = FALSE], MARGIN = 2, FUN = FUN, ...)
+    tmp <- .apply_workhorse(data = x@data[by[[1]], , drop = FALSE], MARGIN = 2,
+      FUN = FUN, ...)
 
     out.rows <- nrow(tmp) * length(by)
   }
@@ -24,7 +25,8 @@
   r <- 1 # keeping track of the actually filled rows
 
   for (i in seq(along = by)) {
-    tmp <- .apply_workhorse(data = x@data[by[[i]], , drop = FALSE], MARGIN = 2, FUN = FUN, ...)
+    tmp <- .apply_workhorse(data = x@data[by[[i]], , drop = FALSE], MARGIN = 2,
+      FUN = FUN, ...)
 
     prows <- nrow(tmp) - 1
 
@@ -61,7 +63,7 @@
 }
 
 
-#' Aggregate `hyperSpec` Objects
+#' Aggregate `hyperSpec` objects
 #'
 #' Compute summary statistics for subsets of a `hyperSpec` object.
 #'
@@ -152,7 +154,7 @@
 #'   } else if (length(x) == 2) {
 #'     NULL
 #'   } else {
-#'     x [1]
+#'     x[1]
 #'   }
 #' }
 #'
