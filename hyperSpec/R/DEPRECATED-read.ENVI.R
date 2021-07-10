@@ -1,4 +1,4 @@
-####################################################################################################
+#############################################################################
 ###
 ###  read.ENVI - read ENVI files, missing header files may be replaced by list in parameter header
 ###
@@ -7,11 +7,11 @@
 ###
 ###  Time-stamp: <Claudia Beleites on Saturday, 2011-02-05 at 19:19:00 on cb>
 ###
-####################################################################################################
+##############################################################################
 
 ### some general helper functions ..................................................................
 
-### -----------------------------------------------------------------------------
+### ---------------------------------------------------------------------------
 ###
 ### split.line - split line into list of key-value pairs
 ###
@@ -247,13 +247,27 @@ split.line <- function(x, separator, trim.blank = TRUE) {
   spc
 }
 
-# ..................................................................................................
+# .............................................................................
 
 
-
-#' @title Import of ENVI data.
+#' @name DEPRECATED-read.ENVI
+#' @concept moved to hySpc.read.ENVI
+#'
+#' @title (DEPRECATED)
+#'        Import of ENVI data
 #'
 #' @description
+#'
+#' These data input functions are **deprecated** and they will be removed in
+#' the next release of \pkg{hyperspec} package.
+#' Now functions in package \pkg{hySpc.read.ENVI}
+#' ([link](https://r-hyperspec.github.io/hySpc.read.ENVI/reference/index.html))
+#' should be used as the alternatives.
+#'
+#' ***
+#'
+#' **Old description:**
+#'
 #' This function allows ENVI data import as `hyperSpec` object.
 #'
 #' `read.ENVI.Nicolet()` should be a good starting point for writing custom
@@ -341,7 +355,6 @@ split.line <- function(x, separator, trim.blank = TRUE) {
 #' @export
 #'
 #' @keywords IO file
-#' @concept io
 #'
 #' @importFrom utils modifyList
 read.ENVI <- function(file = stop("read.ENVI: file name needed"), headerfile = NULL,
@@ -351,6 +364,10 @@ read.ENVI <- function(file = stop("read.ENVI: file name needed"), headerfile = N
                       wavelength = NULL, label = list(),
                       block.lines.skip = 0, block.lines.size = NULL, ...,
                       pull.header.lines = TRUE) {
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  deprecated_read_envi()
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
   force(y)
 
   if (!file.exists(file)) {

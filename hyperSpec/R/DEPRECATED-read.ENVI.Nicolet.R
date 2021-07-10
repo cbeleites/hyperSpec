@@ -18,13 +18,14 @@
 #' @describeIn  read.ENVI
 #' @export
 #'
-#' @concept io
-#'
 #' @importFrom utils modifyList
 read.ENVI.Nicolet <- function(file = stop("read.ENVI: file name needed"),
                               headerfile = NULL, header = list(), ...,
                               x = NA, y = NA,
                               nicolet.correction = FALSE) {
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  deprecated_read_envi()
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   ## the additional keywords to interprete must be read from headerfile
   headerfile <- .find.ENVI.header(file, headerfile)
