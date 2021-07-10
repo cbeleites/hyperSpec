@@ -150,4 +150,3 @@ hySpc.testthat::test(spc_rubberband) <- function() {
     )
   })
 }
-
