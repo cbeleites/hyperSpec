@@ -1,5 +1,5 @@
 
-#' Sequence generation along spectra or wavelengths.
+#' Sequence generation along spectra or wavelengths
 #'
 #' This function generates sequences along the spectra (rows) or wavelengths of
 #' `hyperSpec` objects.
@@ -80,6 +80,7 @@ wl.seq <- function(x, from = 1, to = ncol(x@data$spc), ...) {
     seq(from = from, to = to, ...)
   }
 }
+
 
 # Unit tests -----------------------------------------------------------------
 
