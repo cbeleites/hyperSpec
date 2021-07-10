@@ -1,6 +1,6 @@
 # @title normalization for mixed colors
 
-#' Normalize numbers to interval \[0, 1\].
+#' Normalize numbers to interval \[0, 1\]
 #'
 #' The input `x` is mapped to \[0, 1\] by subtracting the minimum and
 #' subsequently dividing by the maximum. If all elements of `x` are equal,
