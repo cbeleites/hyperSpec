@@ -1,5 +1,5 @@
 #' @describeIn  read.ENVI
-#' @include read.ENVI.R
+#' @include DEPRECATED-read.ENVI.R
 #' @export
 #'
 #' @concept io
