@@ -9,6 +9,7 @@ setGeneric("levelplot", package = "lattice")
 ###
 
 ### the workhorse function
+
 #' @importFrom utils modifyList
 .levelplot <- function(x, data, transform.factor = TRUE, ...,
                        contour = FALSE, useRaster = !contour) {
@@ -19,7 +20,7 @@ setGeneric("levelplot", package = "lattice")
   ## parse formula to find the columns to be plotted
   ## they may include also "wavelength"
   parsed.formula <- latticeParseFormula(x,
-    as.long.df(data [1, , 1, wl.index = TRUE], rownames = TRUE),
+    as.long.df(data[1, , 1, wl.index = TRUE], rownames = TRUE),
     dimension = 3
   )
   use.x <- parsed.formula$right.x.name
@@ -35,7 +36,7 @@ setGeneric("levelplot", package = "lattice")
       as.character(dots$groups),
       as.character(dots$subset)
     )))) {
-    data <- data [, , 1, wl.index = TRUE]
+    data <- data[, , 1, wl.index = TRUE]
     warning("Only first wavelength is used for plotting")
   }
 
