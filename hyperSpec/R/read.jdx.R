@@ -1,3 +1,5 @@
+# TODO: rename this file to "DEPRECATED-read.jdx.R" in a separate pull request.
+
 #' @name DEPRECATED-read.jdx
 #' @concept moved to hySpc.read.jdx
 #'
