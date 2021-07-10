@@ -6,7 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Options for package hyperSpec. — hy.getOptions • hyperSpec</title>
+<title>(DEPRECATED)
+Import functions for Kaiser Optical Systems .spc files — DEPRECATED-read.spc.Kaiser • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,8 +42,18 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Options for package hyperSpec. — hy.getOptions" />
-<meta property="og:description" content="Functions to access and set hyperSpec's options." />
+<meta property="og:title" content="(DEPRECATED)
+Import functions for Kaiser Optical Systems .spc files — DEPRECATED-read.spc.Kaiser" />
+<meta property="og:description" content="These data input functions are deprecated and they will be removed in
+the next release of hyperspcc package.
+Now functions in package hySpc.read.spc
+(link)
+should be used as the alternatives.
+Old description:
+Read Kaiser .spc files.
+read.spc.Kaiser imports sets of .spc files written by Kaiser Optical Systems' Hologram
+software.  It may also serve as an example how to write wrapper functions for read.spc to
+conveniently import specialized sets of .spc files." />
 
 <meta name="robots" content="noindex" />
 
@@ -155,94 +166,68 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Options for package <span class="pkg">hyperSpec</span>.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/hy_options.R'><code>R/hy_options.R</code></a></small>
-    <div class="hidden name"><code>options.Rd</code></div>
+    <h1>(DEPRECATED)
+Import functions for Kaiser Optical Systems <code>.spc</code> files</h1>
+    <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/DEPRECATED-read.spc.Kaiser.R'><code>R/DEPRECATED-read.spc.Kaiser.R</code></a></small>
+    <div class="hidden name"><code>DEPRECATED-read.spc.Kaiser.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Functions to access and set <span class="pkg">hyperSpec</span>'s options.</p>
+    <p>These data input functions are <strong>deprecated</strong> and they will be removed in
+the next release of <span class="pkg">hyperspcc</span> package.
+Now functions in package <span class="pkg">hySpc.read.spc</span>
+(<a href='https://r-hyperspcc.github.io/hySpc.read.spc/reference/index.html'>link</a>)
+should be used as the alternatives.</p>
+<p><strong>Old description:</strong></p>
+<p>Read Kaiser <code>.spc</code> files.</p>
+<p><code>read.spc.Kaiser</code> imports sets of <code>.spc</code> files written by Kaiser Optical Systems' Hologram
+software.  It may also serve as an example how to write wrapper functions for <code>read.spc</code> to
+conveniently import specialized sets of <code>.spc</code> files.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>hy.getOptions</span><span class='op'>(</span><span class='va'>...</span><span class='op'>)</span>
+    <pre class="usage"><span class='fu'>read.spc.Kaiser</span><span class='op'>(</span><span class='va'>files</span>, <span class='va'>...</span>, glob <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 
-<span class='fu'>hy.getOption</span><span class='op'>(</span><span class='va'>name</span><span class='op'>)</span>
+<span class='fu'>read.spc.KaiserMap</span><span class='op'>(</span><span class='va'>files</span>, keys.log2data <span class='op'>=</span> <span class='cn'>NULL</span>, <span class='va'>...</span><span class='op'>)</span>
 
-<span class='fu'>hy.setOptions</span><span class='op'>(</span><span class='va'>...</span><span class='op'>)</span></pre>
+<span class='fu'>read.spc.KaiserLowHigh</span><span class='op'>(</span>
+  files <span class='op'>=</span> <span class='kw'><a href='https://rdrr.io/r/base/stop.html'>stop</a></span><span class='op'>(</span><span class='st'>"file names needed"</span><span class='op'>)</span>,
+  type <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"single"</span>, <span class='st'>"map"</span><span class='op'>)</span>,
+  <span class='va'>...</span>,
+  glob <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>...</th>
-      <td><p><code>hy.setOptions</code>: pairs of argument names and values.</p>
-<p><code>hy.getOptions</code>: indices (or names) of the options.</p></td>
+      <th>files</th>
+      <td><p>If <code>glob = TRUE</code>, <code>filename</code> can contain wildcards.
+Thus all files matching the name pattern in <code>filename</code> can be
+specified.</p></td>
     </tr>
     <tr>
-      <th>name</th>
-      <td><p>the name of the option</p></td>
+      <th>glob</th>
+      <td><p>If <code>TRUE</code> the filename is interpreted as a wildcard
+containing file name pattern and expanded to all matching file names.</p></td>
+    </tr>
+    <tr>
+      <th>keys.log2data, ...</th>
+      <td><p>All further arguments are handed over directly to <code><a href='DEPRECATED-read.spc.html'>read.spc()</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>type</th>
+      <td><p>what kind of measurement was done? If <code>"map"</code>, <code>read.spc.KaiserMap</code> is used
+instead of <code>read.spc.Kaiser</code>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    
-<table class='table'>
-<tr><td><code>hy.getOptions</code></td><td>returns a list of all options</td></tr>
-<tr><td><code>hy.setOptions</code></td><td>invisibly returns a list with the options</td></tr>
-<tr><td><code>hy.getOption</code></td><td>returns the value of the requested option</td></tr>
-</table>
-
-
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>Currently, the following options are defined:</p><table class='table'>
-<tr><td><strong>Name</strong></td><td><strong>Default Value (range)</strong></td><td><strong>Description</strong></td><td><strong>Used by</strong></td></tr>
-<tr><td>debuglevel</td><td>0 (1L 2L 3L)</td><td>amount of debugging information produced</td><td><code><a href='spc.identify.html'>spc.identify()</a></code> <code><a href='plotmap.html'>map.identify()</a></code></td></tr>
-<tr><td></td><td></td><td></td><td>various file import functions</td></tr>
-<tr><td></td><td></td><td></td><td><code><a href='spc_fit_poly.html'>spc_fit_poly_below()</a></code></td></tr>
-<tr><td>gc</td><td>FALSE</td><td>triggers frequent calling of gc ()</td><td><code><a href='DEPRECATED-read.ENVI.html'>read.ENVI()</a></code>, <code><a href='initialize.html'>new ("hyperSpec")</a></code></td></tr>
-<tr><td>file.remove.emptyspc</td><td>TRUE</td><td>remove empty spectra directly on file import</td><td>various file import functions</td></tr>
-<tr><td>file.keep.name</td><td>TRUE</td><td>always create filename column</td><td>various file import functions</td></tr>
-<tr><td>tolerance</td><td><code><a href='https://rdrr.io/r/base/MathFun.html'>sqrt (.Machine$double.eps)</a></code></td><td>tolerance for numerical comparisons</td><td><code><a href='normalize01.html'>normalize01()</a></code>, file import: <code>file.remove.emptyspc</code></td></tr>
-<tr><td>wl.tolerance</td><td><code><a href='https://rdrr.io/r/base/MathFun.html'>sqrt (.Machine$double.eps)</a></code></td><td>tolerance for comparisons of the wavelength axis</td><td><code><a href='Comparison.html'>all.equal()</a></code>, <code><a href='collapse.html'>collapse()</a></code>, <code><a href='https://rdrr.io/r/base/cbind.html'>rbind()</a></code></td></tr>
-<tr><td>plot.spc.nmax</td><td>25</td><td>number of spectra to be plotted by default</td><td><code><a href='plotspc.html'>plotspc()</a></code></td></tr>
-<tr><td>ggplot.spc.nmax</td><td>10</td><td></td><td><a href='https://r-hyperspec.github.io/hySpc.ggplot2/reference/qplotspc.html'><code><a href='DEPRECATED-ggplot2.html'>qplotspc()</a></code></a></td></tr>
-</table>
-
-
-<p><code>hy.setOptions</code> will discard any values that were given without a  name.</p>
-    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
-
-    <p>C. Beleites</p>
+    <p>hyperSpec</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='fu'>hy.getOptions</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; $debuglevel
-#&gt; [1] 0
-#&gt; 
-#&gt; $gc
-#&gt; [1] FALSE
-#&gt; 
-#&gt; $file.remove.emptyspc
-#&gt; [1] TRUE
-#&gt; 
-#&gt; $file.keep.name
-#&gt; [1] TRUE
-#&gt; 
-#&gt; $tolerance
-#&gt; [1] 1.490116e-08
-#&gt; 
-#&gt; $wl.tolerance
-#&gt; [1] 1.490116e-08
-#&gt; 
-#&gt; $plot.spc.nmax
-#&gt; [1] 25
-#&gt; 
-#&gt; $ggplot.spc.nmax
-#&gt; [1] 10
-#&gt; </div></pre>
+    <pre class="examples"><div class='input'><span class='co'>## for examples, please see `vignette ("fileio", package = "hyperSpec")`.</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -6,7 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Options for package hyperSpec. — hy.getOptions • hyperSpec</title>
+<title>(DEPRECATED)
+Import for Thermo Galactic's spc file format — DEPRECATED-read.spc • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,8 +42,15 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Options for package hyperSpec. — hy.getOptions" />
-<meta property="og:description" content="Functions to access and set hyperSpec's options." />
+<meta property="og:title" content="(DEPRECATED)
+Import for Thermo Galactic's spc file format — DEPRECATED-read.spc" />
+<meta property="og:description" content="These data input functions are deprecated and they will be removed in
+the next release of hyperspcc package.
+Now functions in package hySpc.read.spc
+(link)
+should be used as the alternatives.
+Old description:
+These functions allow to import Thermo Galactic/Grams .spc files." />
 
 <meta name="robots" content="noindex" />
 
@@ -155,94 +163,114 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Options for package <span class="pkg">hyperSpec</span>.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/hy_options.R'><code>R/hy_options.R</code></a></small>
-    <div class="hidden name"><code>options.Rd</code></div>
+    <h1>(DEPRECATED)
+Import for Thermo Galactic's <code>spc</code> file format</h1>
+    <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/DEPRECATED-read.spc.R'><code>R/DEPRECATED-read.spc.R</code></a></small>
+    <div class="hidden name"><code>DEPRECATED-read.spc.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Functions to access and set <span class="pkg">hyperSpec</span>'s options.</p>
+    <p>These data input functions are <strong>deprecated</strong> and they will be removed in
+the next release of <span class="pkg">hyperspcc</span> package.
+Now functions in package <span class="pkg">hySpc.read.spc</span>
+(<a href='https://r-hyperspcc.github.io/hySpc.read.spc/reference/index.html'>link</a>)
+should be used as the alternatives.</p>
+<p><strong>Old description:</strong></p>
+<p>These functions allow to import Thermo Galactic/Grams <code>.spc</code> files.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>hy.getOptions</span><span class='op'>(</span><span class='va'>...</span><span class='op'>)</span>
-
-<span class='fu'>hy.getOption</span><span class='op'>(</span><span class='va'>name</span><span class='op'>)</span>
-
-<span class='fu'>hy.setOptions</span><span class='op'>(</span><span class='va'>...</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>read.spc</span><span class='op'>(</span>
+  <span class='va'>filename</span>,
+  keys.hdr2data <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  keys.log2data <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  log.txt <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  log.bin <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  log.disk <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  hdr <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
+  no.object <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>...</th>
-      <td><p><code>hy.setOptions</code>: pairs of argument names and values.</p>
-<p><code>hy.getOptions</code>: indices (or names) of the options.</p></td>
+      <th>filename</th>
+      <td><p>The complete file name of the <code>.spc</code> file.</p></td>
     </tr>
     <tr>
-      <th>name</th>
-      <td><p>the name of the option</p></td>
+      <th>keys.hdr2data, keys.log2data</th>
+      <td><p>character vectors with the names of parameters in the <code>.spc</code>
+file's log block (log2xxx) or header (hdr2xxx) that should go into the extra data (yyy2data) of
+the returned hyperSpec object.</p>
+<p>All header fields specified in the <code>.spc</code> file format specification (see
+below) are imported and can be referred to by their de-capitalized names.</p></td>
+    </tr>
+    <tr>
+      <th>log.txt</th>
+      <td><p>Should the text part of the <code>.spc</code> file's log block be read?</p></td>
+    </tr>
+    <tr>
+      <th>log.bin, log.disk</th>
+      <td><p>Should the normal and on-disk binary parts of the
+<code>.spc</code> file's log block be read?  If so, they will be put as raw vectors
+into the hyperSpec object's log.</p></td>
+    </tr>
+    <tr>
+      <th>hdr</th>
+      <td><p>A list with fileheader fields that overwrite the settings of
+actual file's header.</p>
+<p>Use with care, and look into the source code for detailed insight on the
+elements of this list.</p></td>
+    </tr>
+    <tr>
+      <th>no.object</th>
+      <td><p>If <code>TRUE</code>, a list with wavelengths, spectra, labels,
+log and data are returned instead of a hyperSpec object.</p>
+<p>This parameter will likely be subject to change in future - use with care.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    
-<table class='table'>
-<tr><td><code>hy.getOptions</code></td><td>returns a list of all options</td></tr>
-<tr><td><code>hy.setOptions</code></td><td>invisibly returns a list with the options</td></tr>
-<tr><td><code>hy.getOption</code></td><td>returns the value of the requested option</td></tr>
-</table>
+    <p>If the file contains multiple spectra with individual wavelength
+axes, <code>read.spc</code> returns a list of hyperSpec objects.  Otherwise the
+result is a hyperSpec object.</p>
+<p><code>read.spc.KaiserMap</code> returns a hyperSpec object with data columns x,
+y, and z containing the stage position as recorded in the <code>.spc</code> files'
+log.</p>
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
+    <p>Only a restricted set of test files was available for development.
+Particularly, the w-planes feature could not be tested.</p>
+<p>If you have <code>.spc</code> files that cannot be read with these function, don't
+hesitate to contact the package maintainer with your code patch or asking
+advice.</p>
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>Currently, the following options are defined:</p><table class='table'>
-<tr><td><strong>Name</strong></td><td><strong>Default Value (range)</strong></td><td><strong>Description</strong></td><td><strong>Used by</strong></td></tr>
-<tr><td>debuglevel</td><td>0 (1L 2L 3L)</td><td>amount of debugging information produced</td><td><code><a href='spc.identify.html'>spc.identify()</a></code> <code><a href='plotmap.html'>map.identify()</a></code></td></tr>
-<tr><td></td><td></td><td></td><td>various file import functions</td></tr>
-<tr><td></td><td></td><td></td><td><code><a href='spc_fit_poly.html'>spc_fit_poly_below()</a></code></td></tr>
-<tr><td>gc</td><td>FALSE</td><td>triggers frequent calling of gc ()</td><td><code><a href='DEPRECATED-read.ENVI.html'>read.ENVI()</a></code>, <code><a href='initialize.html'>new ("hyperSpec")</a></code></td></tr>
-<tr><td>file.remove.emptyspc</td><td>TRUE</td><td>remove empty spectra directly on file import</td><td>various file import functions</td></tr>
-<tr><td>file.keep.name</td><td>TRUE</td><td>always create filename column</td><td>various file import functions</td></tr>
-<tr><td>tolerance</td><td><code><a href='https://rdrr.io/r/base/MathFun.html'>sqrt (.Machine$double.eps)</a></code></td><td>tolerance for numerical comparisons</td><td><code><a href='normalize01.html'>normalize01()</a></code>, file import: <code>file.remove.emptyspc</code></td></tr>
-<tr><td>wl.tolerance</td><td><code><a href='https://rdrr.io/r/base/MathFun.html'>sqrt (.Machine$double.eps)</a></code></td><td>tolerance for comparisons of the wavelength axis</td><td><code><a href='Comparison.html'>all.equal()</a></code>, <code><a href='collapse.html'>collapse()</a></code>, <code><a href='https://rdrr.io/r/base/cbind.html'>rbind()</a></code></td></tr>
-<tr><td>plot.spc.nmax</td><td>25</td><td>number of spectra to be plotted by default</td><td><code><a href='plotspc.html'>plotspc()</a></code></td></tr>
-<tr><td>ggplot.spc.nmax</td><td>10</td><td></td><td><a href='https://r-hyperspec.github.io/hySpc.ggplot2/reference/qplotspc.html'><code><a href='DEPRECATED-ggplot2.html'>qplotspc()</a></code></a></td></tr>
-</table>
-
-
-<p><code>hy.setOptions</code> will discard any values that were given without a  name.</p>
+    <p>Source development kit and file format specification of <code>.spc</code>
+files.</p>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>C. Beleites</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>hy.getOptions</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; $debuglevel
-#&gt; [1] 0
-#&gt; 
-#&gt; $gc
-#&gt; [1] FALSE
-#&gt; 
-#&gt; $file.remove.emptyspc
-#&gt; [1] TRUE
-#&gt; 
-#&gt; $file.keep.name
-#&gt; [1] TRUE
-#&gt; 
-#&gt; $tolerance
-#&gt; [1] 1.490116e-08
-#&gt; 
-#&gt; $wl.tolerance
-#&gt; [1] 1.490116e-08
-#&gt; 
-#&gt; $plot.spc.nmax
-#&gt; [1] 25
-#&gt; 
-#&gt; $ggplot.spc.nmax
-#&gt; [1] 10
-#&gt; </div></pre>
+<span class='co'>## get the sample .spc files from ftirsearch.com (see above)</span>
+<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='co'># single spectrum</span>
+<span class='va'>spc</span> <span class='op'>&lt;-</span> <span class='fu'>read.spc</span><span class='op'>(</span><span class='st'>"BENZENE.SPC"</span><span class='op'>)</span>
+<span class='fu'><a href='plot-methods.html'>plot</a></span><span class='op'>(</span><span class='va'>spc</span><span class='op'>)</span>
+
+<span class='co'># multi-spectra .spc file with common wavelength axis</span>
+<span class='va'>spc</span> <span class='op'>&lt;-</span> <span class='fu'>read.spc</span><span class='op'>(</span><span class='st'>"IG_MULTI.SPC"</span><span class='op'>)</span>
+<span class='va'>spc</span>
+
+<span class='co'># multi-spectra .spc file with individual wavelength axes</span>
+<span class='va'>spc</span> <span class='op'>&lt;-</span> <span class='fu'>read.spc</span><span class='op'>(</span><span class='st'>"BARBITUATES.SPC"</span><span class='op'>)</span>
+<span class='fu'><a href='plot-methods.html'>plot</a></span><span class='op'>(</span><span class='va'>spc</span><span class='op'>[[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>]</span>, lines.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>type <span class='op'>=</span> <span class='st'>"h"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='op'>}</span>
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
