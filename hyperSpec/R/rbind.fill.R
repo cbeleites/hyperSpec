@@ -2,7 +2,7 @@
 ### dependency, but do not export it anymore.
 
 
-#' Quick data frame.
+#' Quick data frame
 #'
 #' Experimental version of [as.data.frame()] that converts a list to a data
 #' frame, but doesn't do any checks to make sure it's a valid format.
