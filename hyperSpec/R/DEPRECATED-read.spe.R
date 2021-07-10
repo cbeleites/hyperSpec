@@ -46,8 +46,6 @@
 #'
 #' @return hyperSpec object
 #'
-#' @rdname read.spe
-#'
 #' @author R. Kiselev, C. Beleites
 #' @export
 
