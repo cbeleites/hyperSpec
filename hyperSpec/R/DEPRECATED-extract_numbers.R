@@ -1,7 +1,7 @@
 #' @name DEPRECATED-guess.wavlength
 #' @concept deprecated
 #'
-#' @title (DEPRECATED) Guess Wavelengths from Character Vector
+#' @title (DEPRECATED) Guess wavelengths from character vector
 #'
 #'
 #' @description
@@ -16,7 +16,7 @@
 #'
 #' Character vectors used for names (e.g. colnames for matrices or data.frames)
 #' are often treated by [base::make.names()] or similar functions that
-#' produce suitable names (e.g. by prepending "X" to numbers). Such names
+#' produce suitable names (e.g. by pre-pending "X" to numbers). Such names
 #' cannot be directly converted to numeric.
 #'
 #' `guess.wavlength()` tries to extract numbers from X which may be
@@ -40,9 +40,7 @@ guess.wavelength <- function(X) {
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   hySpc_deprecated("extract_numbers")
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
   extract_numbers(X)
-
 }
 
 #' @include constants-regexps.R
@@ -51,7 +49,9 @@ hySpc.testthat::test(guess.wavelength) <- function() {
   context("guess.wavelength")
 
   test_that("deprecated", {
-    expect_warning (guess.wavelength(1:5),
-                    "Function 'guess.wavelength' is deprecated.")
+    expect_warning(
+      guess.wavelength(1:5),
+      "Function 'guess.wavelength' is deprecated."
+    )
   })
 }
