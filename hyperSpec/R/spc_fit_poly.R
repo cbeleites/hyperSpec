@@ -34,7 +34,6 @@
 #' @concept baseline
 #'
 #' @examples
-#'
 #' \dontrun{
 #' vignette("baseline", package = "hyperSpec")
 #' }
@@ -219,7 +218,7 @@ spc_fit_poly_below <- function(fit.to, apply.to = fit.to, poly.order = 1,
     use.old <- logical(nwl(fit.to))
     use <- !is.na(y[, i])
 
-    if (debuglevel %in% c(2L, 3L) && i == 1L || debuglevel >= 4L)  {
+    if (debuglevel %in% c(2L, 3L) && i == 1L || debuglevel >= 4L) {
       plot(fit.to[i], title.args = list(main = paste("spectrum", i)))
       message("start: ", sum(use, na.rm = TRUE), " support points")
     }
