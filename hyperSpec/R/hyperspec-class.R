@@ -33,7 +33,6 @@
 #'
 #' @examples
 #' showClass("hyperSpec")
-#'
 #' \dontrun{
 #' vignette("hyperSpec")
 #' }

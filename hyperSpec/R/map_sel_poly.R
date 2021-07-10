@@ -1,4 +1,4 @@
-#' Interactively select a polygon (grid graphics) and highlight points.
+#' Interactively select a polygon (grid graphics) and highlight points
 #'
 #' Click the points that should be connected as polygon. Input ends with right click (see
 #' [grid::grid.locator()]). Polygon will be drawn closed.
@@ -76,7 +76,7 @@ map.sel.poly <- function(data, pch = 19, size = 0.3, ...) {
 
   poly <- sel.poly(pch = pch, size = size, ...)
 
-  pts <- sp::point.in.polygon(x, y, poly [, 1], poly [, 2])
+  pts <- sp::point.in.polygon(x, y, poly[, 1], poly[, 2])
 
   ind <- pts > 0
 
@@ -116,24 +116,24 @@ sel.poly <- function(pch = 19, size = 0.3, ...) {
       pts <- rbind(pts, as.numeric(pt)) # comparably few executions: low performance doesn't matter
 
       ## display the clicked point
-      grid.points(unit(tail(pts [, 1], 1), "native"),
-        unit(tail(pts [, 2], 1), "native"),
+      grid.points(unit(tail(pts[, 1], 1), "native"),
+        unit(tail(pts[, 2], 1), "native"),
         pch = pch,
         size = unit(size, "char"), gp = gpar(...)
       )
 
       ## connect last 2 points by line
       if (nrow(pts) > 1L) {
-        grid.lines(unit(tail(pts [, 1L], 2L), "native"),
-          unit(tail(pts [, 2L], 2L), "native"),
+        grid.lines(unit(tail(pts[, 1L], 2L), "native"),
+          unit(tail(pts[, 2L], 2L), "native"),
           gp = gpar(...)
         )
       }
     } else {
       ## visually close polygon (if at least 3 pts)
       if (nrow(pts) > 2L) {
-        grid.lines(unit(c(tail(pts [, 1L], 1L), pts [1L, 1L]), "native"),
-          unit(c(tail(pts [, 2L], 1L), pts [1L, 2L]), "native"),
+        grid.lines(unit(c(tail(pts[, 1L], 1L), pts[1L, 1L]), "native"),
+          unit(c(tail(pts[, 2L], 1L), pts[1L, 2L]), "native"),
           gp = gpar(...)
         )
       }

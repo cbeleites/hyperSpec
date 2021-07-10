@@ -6,7 +6,7 @@
 ###  (y x) wl int
 ###
 
-#' Import and Export of `hyperSpec` objects.
+#' Import and Export of `hyperSpec` objects
 #'
 #' Besides [base::save()] and [base::load()], two general ways to import and
 #' export data into `hyperSpec` objects exist.
@@ -66,7 +66,6 @@
 #' @export
 #' @importFrom utils read.table unstack
 #' @examples
-#'
 #' \dontrun{
 #' vignette("file-io")
 #' }
@@ -130,7 +129,6 @@
 #'   ),
 #'   header = TRUE
 #' )
-
 read_txt_long <- function(file = stop("file is required"),
                           cols = list(
                             .wavelength = expression(lambda / nm),

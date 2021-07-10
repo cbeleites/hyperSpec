@@ -1,4 +1,4 @@
-#' Plot spectra matrix.
+#' Plot spectra matrix
 #'
 #' Plots the spectra matrix.
 #'
@@ -72,9 +72,9 @@ plotmat <- function(object, y = ".row", ylab, col = palette_alois(20), ...,
     do.call("contour", dots)
   } else {
     ## leave at least 4 lines right margin
-    mar <- par()$ mar
-    if (mar [4] < 5) {
-      par(mar = c(mar [1:3], 5))
+    mar <- par()$mar
+    if (mar[4] < 5) {
+      par(mar = c(mar[1:3], 5))
     }
 
     do.call("image", dots)
@@ -84,12 +84,12 @@ plotmat <- function(object, y = ".row", ylab, col = palette_alois(20), ...,
     if (requireNamespace("plotrix", quietly = TRUE)) {
       usr <- par()$usr
 
-      dx <- diff(usr [1:2])
+      dx <- diff(usr[1:2])
 
-      plotrix::color.legend(usr [2] + 0.05 * dx,
-        usr [3],
-        usr [2] + 0.10 * dx,
-        usr [4],
+      plotrix::color.legend(usr[2] + 0.05 * dx,
+        usr[3],
+        usr[2] + 0.10 * dx,
+        usr[4],
         pretty(range(object, na.rm = TRUE)),
         col,
         align = "rb", gradient = "y"
@@ -112,5 +112,5 @@ hySpc.testthat::test(plotmat) <- function() {
     expect_silent(plotmat(tmp))
   })
 
-  ## TODO vdiffr
+  ## TODO: vdiffr
 }

@@ -1,4 +1,4 @@
-#' @title Statistical Summary and Other Functions for `hyperSpec`
+#' @title Statistical summary and other functions for `hyperSpec`
 #' @description
 #' The functions
 #'
@@ -57,7 +57,7 @@ setMethod(
 #' @export
 #' @examples
 #'
-#' is.na(flu [, , 405 ~ 410])
+#' is.na(flu[, , 405 ~ 410])
 setMethod(
   "is.na", signature(x = "hyperSpec"),
   function(x) {
@@ -86,6 +86,7 @@ all_wl <- function(expression, na.rm = FALSE) {
 
   res
 }
+
 
 # Unit tests -----------------------------------------------------------------
 
@@ -146,6 +147,7 @@ any_wl <- function(expression, na.rm = FALSE) {
 
 
 # Unit tests -----------------------------------------------------------------
+
 hySpc.testthat::test(any_wl) <- function() {
   context("any_wl")
 
@@ -192,6 +194,5 @@ hySpc.testthat::test(any_wl) <- function() {
       sum(flu),
       "Do you really want to use sum on a hyperSpec object?"
     )
-
   })
 }

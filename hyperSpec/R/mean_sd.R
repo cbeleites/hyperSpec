@@ -1,10 +1,11 @@
 ## make generic functions without default
+
 #' @noRd
 setGeneric("mean_sd", function(x, na.rm = TRUE, ...) standardGeneric("mean_sd"))
 #' @noRd
 setGeneric("mean_pm_sd", function(x, na.rm = TRUE, ...) standardGeneric("mean_pm_sd"))
 
-#' Mean and Standard Deviation.
+#' Mean and standard deviation
 #'
 #' Calculate mean and standard deviation, and mean, mean \eqn{\pm}{+-} one
 #' standard deviation, respectively.

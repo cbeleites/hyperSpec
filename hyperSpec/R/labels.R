@@ -16,9 +16,9 @@
     )
     label <- modifyList(label, object@label[!sapply(object@label, is.null)])
 
-    label <- label [which]
+    label <- label[which]
   } else {
-    label <- object@label [which]
+    label <- object@label[which]
   }
 
   if (drop && length(label) == 1L) {
@@ -33,7 +33,7 @@ hySpc.testthat::test(.labels) <- function() {
   context(".labels")
 
   .sort <- function(x) {
-    x [order(names(x))]
+    x[order(names(x))]
   }
 
   test_that(
@@ -108,7 +108,7 @@ hySpc.testthat::test(.labels) <- function() {
 }
 
 
-#' Get and Set Labels of a `hyperSpec` Object
+#' Get and set labels of a `hyperSpec` object
 #'
 #' `value` may be a list or vector of labels giving the new label for
 #' each of the entries specified by `which`.

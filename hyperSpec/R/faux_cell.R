@@ -5,12 +5,12 @@
 #' @aliases faux_cell generate_faux_cell
 #' @docType data
 #'
-#' @title Faux Cell Data Set for Testing & Demonstration
+#' @title Faux cell dataset for testing & demonstration
 #'
 #' @description
 #' This is a synthetic data set intended for testing and demonstration.
 #' Function `generate_faux_cell()` simulates the faux cell data (*note:* in
-#' the future, it is planned to parameterize thefuncion) and object `faux_cell`
+#' the future, it is planned to parameterize the funcion) and object `faux_cell`
 #' is an instance of this dataset generated first time it is used.
 #'
 #' The data set resembles the
@@ -64,7 +64,6 @@
 #'   xlab = "PC 1", ylab = "PC 2",
 #'   bg = mapcols[faux_cell$region], col = "black", pch = 21
 #' )
-
 generate_faux_cell <- function() {
 
   # Check for points inside ellipse
@@ -175,7 +174,6 @@ delayedAssign("faux_cell", generate_faux_cell())
 
 # Unit tests -----------------------------------------------------------------
 hySpc.testthat::test(generate_faux_cell) <- function() {
-
   context("generate_faux_cell")
 
   # Perform tests
@@ -189,4 +187,3 @@ hySpc.testthat::test(generate_faux_cell) <- function() {
     expect_identical(faux_cell_data, faux_cell_data_2)
   })
 }
-

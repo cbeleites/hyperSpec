@@ -1,6 +1,6 @@
-#' Polynomial Baseline Fitting.
+#' Polynomial baseline fitting
 #'
-#' These functions fit polynomal baselines.
+#' These functions fit polynomial baselines.
 #'
 #' @details
 #' Both functions fit polynomials to be used as baselines. If `apply.to`
@@ -34,7 +34,6 @@
 #' @concept baseline
 #'
 #' @examples
-#'
 #' \dontrun{
 #' vignette("baseline", package = "hyperSpec")
 #' }
@@ -92,6 +91,9 @@ spc_fit_poly <- function(fit.to, apply.to = NULL, poly.order = 1,
   }
 }
 
+
+# Unit tests -----------------------------------------------------------------
+
 hySpc.testthat::test(spc_fit_poly) <- function() {
   context("spc_fit_poly")
 
@@ -130,17 +132,20 @@ hySpc.testthat::test(spc_fit_poly) <- function() {
   })
 }
 
+
+# ... ------------------------------------------------------------------------
+
 #' @details
 #' `spc_fit_poly_below()` tries to fit the baseline on appropriate spectral
-#' ranges of the spectra in `fit.to`.  For details, see the
-#' `vignette("baseline")`.
+#' ranges of the spectra in `fit.to`.
+#' For details, see the `vignette("baseline")`.
 #' @rdname baselines
 #' @param npts.min minimal number of points used for fitting the polynomial
 #' @param noise noise level to be considered during the fit. It may be given as
 #'   one value for all the spectra, or for each spectrum separately.
 #' @param max.iter stop at the latest after so many iterations.
 #' @param stop.on.increase additional stopping rule: stop if the number of
-#'   support points would increase, regardless whether npts.min was reached or
+#'   support points would increase, regardless whether `npts.min` was reached or
 #'   not.
 #' @param debuglevel  additional output: `1` shows `npts.min`,
 #'   `2` plots support points for the final baseline of 1st spectrum,
@@ -213,7 +218,7 @@ spc_fit_poly_below <- function(fit.to, apply.to = fit.to, poly.order = 1,
     use.old <- logical(nwl(fit.to))
     use <- !is.na(y[, i])
 
-    if (debuglevel %in% c(2L, 3L) && i == 1L || debuglevel >= 4L)  {
+    if (debuglevel %in% c(2L, 3L) && i == 1L || debuglevel >= 4L) {
       plot(fit.to[i], title.args = list(main = paste("spectrum", i)))
       message("start: ", sum(use, na.rm = TRUE), " support points")
     }
@@ -314,6 +319,9 @@ spc_fit_poly_below <- function(fit.to, apply.to = fit.to, poly.order = 1,
     apply.to
   }
 }
+
+
+# Unit tests -----------------------------------------------------------------
 
 hySpc.testthat::test(spc_fit_poly_below) <- function() {
   context("spc_fit_poly_below")

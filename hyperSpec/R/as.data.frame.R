@@ -1,4 +1,4 @@
-#' Conversion of a `hyperSpec` Object into a Data Frame or Matrix
+#' Conversion of a `hyperSpec` object into a data frame or matrix
 #'
 #' `as.data.frame()` returns `x@@data` (as data.frame), `as.matrix()`
 #' returns the spectra matrix `x@@data$spc` as matrix.
@@ -22,9 +22,9 @@
 #'
 #' @examples
 #'
-#' as.data.frame(faux_cell [1:3, , 600 ~ 620])
-#' as.matrix(faux_cell [1:3, , 600 ~ 620])
-#' lm(c ~ spc, data = flu [, , 450])
+#' as.data.frame(faux_cell[1:3, , 600 ~ 620])
+#' as.matrix(faux_cell[1:3, , 600 ~ 620])
+#' lm(c ~ spc, data = flu[, , 450])
 as.data.frame.hyperSpec <- function(x, row.names = TRUE, optional = NULL, ...) {
   validObject(x)
 
@@ -80,8 +80,8 @@ as.matrix.hyperSpec <- function(x, ...) {
 #'   expanded *in place*.
 #' @examples
 #'
-#' as.wide.df(faux_cell [1:5, , 600 ~ 610])
-#' summary(as.wide.df(faux_cell [1:5, , 600 ~ 610]))
+#' as.wide.df(faux_cell[1:5, , 600 ~ 610])
+#' summary(as.wide.df(faux_cell[1:5, , 600 ~ 610]))
 as.wide.df <- function(x, wl.prefix = "") {
   chk.hy(x)
   validObject(x)
@@ -95,15 +95,15 @@ as.wide.df <- function(x, wl.prefix = "") {
 
   ## colnames should be preserved
   cols <- c(
-    colnames(x@data)  [before],
+    colnames(x@data)[before],
     paste0(wl.prefix, colnames(x@data$spc)),
-    colnames(x@data) [after]
+    colnames(x@data)[after]
   )
 
   x <- cbind(
-    x@data [, before],
-    as.data.frame(unclass(x@data [, ispc])),
-    x@data [, after]
+    x@data[, before],
+    as.data.frame(unclass(x@data[, ispc])),
+    x@data[, after]
   )
   colnames(x) <- cols
   x
@@ -114,8 +114,8 @@ hySpc.testthat::test(as.wide.df) <- function() {
 
   test_that("faux_cell", {
     expect_equal(
-      as.wide.df(faux_cell [1:5, , 600 ~ 610]),
-      cbind(faux_cell [1:5]$.., faux_cell[[1:5, , 600 ~ 610]])
+      as.wide.df(faux_cell[1:5, , 600 ~ 610]),
+      cbind(faux_cell[1:5]$.., faux_cell[[1:5, , 600 ~ 610]])
     )
   })
 
@@ -166,10 +166,10 @@ hySpc.testthat::test(as.wide.df) <- function() {
 #' other functions producing long-format data.frames.
 #' @examples
 #'
-#' as.long.df(flu [, , 405 ~ 410])
-#' summary(as.long.df(flu [, , 405 ~ 410]))
-#' summary(as.long.df(flu [, , 405 ~ 410], rownames = TRUE))
-#' summary(as.long.df(flu [, , 405 ~ 410], wl.factor = TRUE))
+#' as.long.df(flu[, , 405 ~ 410])
+#' summary(as.long.df(flu[, , 405 ~ 410]))
+#' summary(as.long.df(flu[, , 405 ~ 410], rownames = TRUE))
+#' summary(as.long.df(flu[, , 405 ~ 410], wl.factor = TRUE))
 as.long.df <- function(x, rownames = FALSE, wl.factor = FALSE, na.rm = TRUE) {
   chk.hy(x)
   validObject(x)
@@ -182,10 +182,10 @@ as.long.df <- function(x, rownames = FALSE, wl.factor = FALSE, na.rm = TRUE) {
         .wavelength = rep(NA, nrow(x)),
         spc = rep(NA, nrow(x))
       ),
-      x@data [, -ispc, drop = FALSE]
+      x@data[, -ispc, drop = FALSE]
     )
   } else {
-    tmp <- x@data [rep(row.seq(x), nwl(x)), -ispc, drop = FALSE]
+    tmp <- x@data[rep(row.seq(x), nwl(x)), -ispc, drop = FALSE]
 
     tmp <- cbind(
       data.frame(
@@ -216,7 +216,7 @@ as.long.df <- function(x, rownames = FALSE, wl.factor = FALSE, na.rm = TRUE) {
   }
 
   if (na.rm) {
-    tmp <- tmp [!is.na(tmp$spc), ]
+    tmp <- tmp[!is.na(tmp$spc), ]
   }
 
   tmp

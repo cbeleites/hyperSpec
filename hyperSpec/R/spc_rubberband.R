@@ -1,4 +1,5 @@
-#' @title Rubberband baseline correction.
+#' @title Rubberband baseline correction
+#'
 #' @description
 #' Baseline with support points determined from a convex hull of the spectrum.
 #'
@@ -9,7 +10,7 @@
 #' @param upper logical indicating whether the lower or upper part of the hull should be used
 #' @param noise noise level to be taken into account
 #' @param spline logical indicating whether the baseline should be an interpolating spline through
-#' the support points or piecewise linear.
+#' the support points or piece wise linear.
 #' @return `hyperSpec` object containing the baselines
 #' @rdname spc-rubberband
 #' @author Claudia Beleites
@@ -103,6 +104,7 @@ spc_rubberband <- function(spc, ..., upper = FALSE, noise = 0, spline = TRUE) {
   y
 }
 
+
 # Unit tests -----------------------------------------------------------------
 
 hySpc.testthat::test(spc_rubberband) <- function() {
@@ -148,4 +150,3 @@ hySpc.testthat::test(spc_rubberband) <- function() {
     )
   })
 }
-

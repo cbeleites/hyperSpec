@@ -8,7 +8,7 @@
 }
 
 
-#' Subset for `hyperSpec` object.
+#' Subset `hyperSpec` object
 #'
 #' @name subset
 #' @param x `hyperSpec` object

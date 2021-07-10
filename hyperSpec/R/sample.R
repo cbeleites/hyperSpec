@@ -5,7 +5,7 @@
 
   s <- sample.int(nrow(x@data), size = size, replace = replace, prob = prob)
 
-  x [s]
+  x[s]
 }
 
 hySpc.testthat::test(.sample) <- function() {
@@ -13,7 +13,7 @@ hySpc.testthat::test(.sample) <- function() {
 
   test_that("defaults", {
     tmp <- sample(flu)
-    expect_equal(tmp [order(tmp$c)], flu)
+    expect_equal(tmp[order(tmp$c)], flu)
 
     set.seed(101)
     expect_equal(sample(flu)$c, c(0.05, 0.3, 0.1, 0.15, 0.25, 0.2))
@@ -35,7 +35,7 @@ hySpc.testthat::test(.sample) <- function() {
 
 
 
-#' Random Samples and Permutations.
+#' Random samples and permutations
 #'
 #' Take a sample of the specified size from the elements of x with or without
 #' replacement.
@@ -47,8 +47,9 @@ hySpc.testthat::test(.sample) <- function() {
 #' @param replace Should sampling be with replacement?
 #' @param prob A vector of probability weights for obtaining the elements of
 #'   the vector being sampled.
-#' @return a hyperSpec object, data.frame or matrix with `size` rows for `sample`, and an
-#' integer vector for `isample` that is suitable for indexing (into the spectra) of x.
+#' @return a hyperSpec object, data.frame or matrix with `size` rows for
+#'        `sample`, and an integer vector for `isample` that is suitable for
+#'        indexing (into the spectra) of x.
 #' @author C. Beleites
 #' @seealso [base::sample()]
 #'
@@ -71,7 +72,7 @@ hySpc.testthat::test(.sample) <- function() {
 #' )
 setMethod("sample", signature = signature(x = "hyperSpec"), .sample)
 
-#' `isample` returns an vector of indices, `sample` returns the
+#' `isample()` returns an vector of indices, `sample()` returns the
 #' corresponding hyperSpec object.
 #'
 #' @rdname sample
@@ -106,17 +107,17 @@ hySpc.testthat::test(isample) <- function() {
   })
 
   test_that("prob", {
-    expect_equal(sample(flu, size = 1, prob = c(1, rep(0, 5))), flu [1L])
+    expect_equal(sample(flu, size = 1, prob = c(1, rep(0, 5))), flu[1L])
   })
 
   test_that("replace", {
-    expect_equal(sample(flu, size = 3, replace = TRUE, prob = c(1, rep(0, 5))), flu [rep(1L, 3)])
+    expect_equal(sample(flu, size = 3, replace = TRUE, prob = c(1, rep(0, 5))), flu[rep(1L, 3)])
   })
 }
 
 .sample.data.frame <- function(x, size, replace = FALSE, prob = NULL, drop = FALSE) {
   if (missing(size)) size <- nrow(x)
-  x [sample.int(nrow(x), size = size, replace = replace, prob = prob), , drop = drop]
+  x[sample.int(nrow(x), size = size, replace = replace, prob = prob), , drop = drop]
 }
 
 #' @rdname sample
@@ -152,7 +153,7 @@ hySpc.testthat::test(.sample.data.frame) <- function() {
       "36", "78", "107", "76", "104", "71", "49", "53", "124"
     ))
     expect_equal(dim(tmp), dim(iris))
-    expect_equal(tmp, iris [as.numeric(rownames(tmp)), ])
+    expect_equal(tmp, iris[as.numeric(rownames(tmp)), ])
   })
 }
 
@@ -160,7 +161,7 @@ hySpc.testthat::test(.sample.data.frame) <- function() {
 
 .sample.matrix <- function(x, size, replace = FALSE, prob = NULL, drop = FALSE) {
   if (missing(size)) size <- nrow(x)
-  x [sample.int(nrow(x), size = size, replace = replace, prob = prob), , drop = drop]
+  x[sample.int(nrow(x), size = size, replace = replace, prob = prob), , drop = drop]
 }
 
 #' @rdname sample
@@ -178,6 +179,6 @@ hySpc.testthat::test(.sample.matrix) <- function() {
     set.seed(101)
     tmp <- sample(flu[[]])
     expect_equal(dim(tmp), dim(flu[[]]))
-    expect_equal(tmp [c(1L, 3L, 4L, 6L, 5L, 2L), ], flu[[]])
+    expect_equal(tmp[c(1L, 3L, 4L, 6L, 5L, 2L), ], flu[[]])
   })
 }

@@ -1,4 +1,4 @@
-#' @title Find an evenly spaced grid for x.
+#' @title Find an evenly spaced grid for x
 #' @description
 #' `makeraster()` fits the data to the specified raster.
 #'
@@ -25,7 +25,7 @@
 #' @author Claudia Beleites
 #' @examples
 #' x <- c(sample(1:20, 10), (0:5) + 0.5)
-#' raster <- makeraster(x, x [1], 2)
+#' raster <- makeraster(x, x[1], 2)
 #' raster
 #' plot(x)
 #' abline(h = raster$levels, col = "#00000040")
@@ -36,13 +36,13 @@
 #'
 #' ## points acutally on the raster
 #' onraster <- raster$x %in% raster$levels
-#' points(which(onraster), raster$x [onraster], col = "blue", pch = 20)
+#' points(which(onraster), raster$x[onraster], col = "blue", pch = 20)
 #' @importFrom utils tail
 makeraster <- function(x, startx, d, newlevels, tol = 0.1) {
   if (missing(newlevels)) {
     ## make sure to cover the whole data range + 1 point
     newlevels <- c(
-      rev(seq(startx, min(x, na.rm = TRUE) - d, by = -d) [-1]),
+      rev(seq(startx, min(x, na.rm = TRUE) - d, by = -d)[-1]),
       seq(startx, max(x, na.rm = TRUE) + d, by = d)
     )
   }
@@ -54,14 +54,14 @@ makeraster <- function(x, startx, d, newlevels, tol = 0.1) {
   wholenum <- abs(inew - rinew) < tol
 
   xnew <- x
-  xnew [wholenum] <- newlevels [rinew [wholenum]]
+  xnew[wholenum] <- newlevels[rinew[wholenum]]
 
 
   list(
     x = xnew,
 
     ## usually: drop outside levels 1 and length (newlevels)
-    levels = newlevels [min(rinew [wholenum]):max(rinew [wholenum])]
+    levels = newlevels[min(rinew[wholenum]):max(rinew[wholenum])]
   )
 }
 
@@ -83,7 +83,7 @@ makeraster <- function(x, startx, d, newlevels, tol = 0.1) {
 #'
 #' ## points acutally on the raster
 #' onraster <- raster$x %in% raster$levels
-#' points(which(onraster), raster$x [onraster], col = "blue", pch = 20)
+#' points(which(onraster), raster$x[onraster], col = "blue", pch = 20)
 #'
 #' x <- c(sample(1:20, 10), (0:5) + 0.45)
 #' raster <- fitraster(x)
@@ -97,7 +97,7 @@ makeraster <- function(x, startx, d, newlevels, tol = 0.1) {
 #'
 #' ## points acutally on the raster
 #' onraster <- raster$x %in% raster$levels
-#' points(which(onraster), raster$x [onraster], col = "blue", pch = 20)
+#' points(which(onraster), raster$x[onraster], col = "blue", pch = 20)
 fitraster <- function(x, tol = 0.1) {
   levels <- sort(unique(x))
 
@@ -108,7 +108,7 @@ fitraster <- function(x, tol = 0.1) {
   dx <- sort(unique(diff(levels)))
 
   ## reduce by rounding?
-  dx <- c(dx [!diff(dx) < tol], tail(dx, 1))
+  dx <- c(dx[!diff(dx) < tol], tail(dx, 1))
 
   dx <- rev(dx)
 
@@ -118,7 +118,7 @@ fitraster <- function(x, tol = 0.1) {
     totry <- order(x)
     while (length(totry) > 0L) {
       ## cat ("totry: ", totry, "\n")
-      startx <- x [totry [1]]
+      startx <- x[totry[1]]
       ## cat ("startx: ", startx, "\n")
 
       ## cat ("fit: ", c (startx, d), "\n")
@@ -134,7 +134,7 @@ fitraster <- function(x, tol = 0.1) {
         break
       }
 
-      totry <- totry [!raster$x [totry] %in% raster$levels]
+      totry <- totry[!raster$x[totry] %in% raster$levels]
     }
   }
 

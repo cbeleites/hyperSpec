@@ -28,9 +28,7 @@
   }
 
   switch(tolower(y),
-
     spc = plotspc(x, ...),
-
     spcmeansd = {
       dots <- modifyList(
         list(object = mean_pm_sd(x), fill = c(1, NA, 1)),
@@ -39,7 +37,6 @@
 
       do.call(plotspc, dots)
     },
-
     spcprctile = {
       dots <- modifyList(
         list(object = quantile(x, probs = c(0.16, 0.5, 0.84)), fill = c(1, NA, 1)),
@@ -48,29 +45,23 @@
 
       do.call(plotspc, dots)
     },
-
     spcprctl5 = {
       dots <- modifyList(
-        list(object = quantile(x, probs = c(0.05, 0.16, 0.5, 0.84, 0.95)),
-          fill = c(1, 2, 3, 2, 1), fill.col = c("#00000040")),
+        list(
+          object = quantile(x, probs = c(0.05, 0.16, 0.5, 0.84, 0.95)),
+          fill = c(1, 2, 3, 2, 1), fill.col = c("#00000040")
+        ),
         dots
       )
 
       do.call(plotspc, dots)
     },
-
     map = plotmap(x, ...),
-
     voronoi = plotvoronoi(x, ...),
-
     mat = plotmat(x, ...),
-
     c = plotc(x, ...),
-
     ts = plotc(x, spc ~ t, ...),
-
     depth = plotc(x, spc ~ z, ...),
-
     stop(paste("y = ", y, "unknown.", collapse = " "))
   )
 }
@@ -188,19 +179,19 @@ hySpc.testthat::test(.plot) <- function() {
     # Data ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     expect_silent(hy_spectra <- generate_hy_spectra())
     expect_silent(hy_profile <- generate_hy_profile())
-    expect_silent(hy_map     <- generate_hy_map())
+    expect_silent(hy_map <- generate_hy_map())
 
     # Regular tests: warnings ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     expect_warning(plot(hy_spectra, "ts"), "Intensity at first wavelengh only is used.")
-    expect_warning(plot(hy_spectra, "c"),  "Intensity at first wavelengh only is used.")
+    expect_warning(plot(hy_spectra, "c"), "Intensity at first wavelengh only is used.")
 
     # Regular tests: errors ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     expect_error(plot(hy_spectra, "depth"), "object 'z' not found")
-    expect_error(plot(hy_spectra[0, ]),     "No spectra.")
+    expect_error(plot(hy_spectra[0, ]), "No spectra.")
     expect_error(plot(hy_spectra, xoffset = "a"), "xoffset must be a numeric")
     expect_error(plot(hy_spectra, func = "a"), "func needs to be a function")
 
-    expect_error(plot(hy_spectra, "???"), '??? unknown')
+    expect_error(plot(hy_spectra, "???"), "??? unknown")
     expect_error(plot(hy_spectra, contour = TRUE))
   })
 
@@ -211,14 +202,14 @@ hySpc.testthat::test(.plot) <- function() {
     # Data ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     expect_silent(hy_spectra <- generate_hy_spectra())
     expect_silent(hy_profile <- generate_hy_profile())
-    expect_silent(hy_map     <- generate_hy_map())
+    expect_silent(hy_map <- generate_hy_map())
 
     # Preparation ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    plot_c       <- plot(hy_profile, "c")
-    plot_ts      <- plot(hy_profile, "ts")
-    plot_depth   <- plot(hy_profile, "depth")
+    plot_c <- plot(hy_profile, "c")
+    plot_ts <- plot(hy_profile, "ts")
+    plot_depth <- plot(hy_profile, "depth")
 
-    plot_map     <- plot(hy_map, "map")
+    plot_map <- plot(hy_map, "map")
     plot_voronoi <- plot(hy_map, "voronoi")
 
     # Perform tests ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -232,9 +223,9 @@ hySpc.testthat::test(.plot) <- function() {
     expect_silent(plot_voronoi)
 
     # Visual tests
-    vdiffr::expect_doppelganger("plot-c",       plot_c)
-    vdiffr::expect_doppelganger("plot-ts",      plot_ts)
-    vdiffr::expect_doppelganger("plot-depth",   plot_depth)
+    vdiffr::expect_doppelganger("plot-c", plot_c)
+    vdiffr::expect_doppelganger("plot-ts", plot_ts)
+    vdiffr::expect_doppelganger("plot-depth", plot_depth)
 
 
     # Skip if R < 4.0.0 (due to different defaults)
@@ -244,7 +235,7 @@ hySpc.testthat::test(.plot) <- function() {
 
     skip_if(r_version < "4.0.0", "R version is < 4.0.0")
 
-    vdiffr::expect_doppelganger("plot-map",     plot_map)
+    vdiffr::expect_doppelganger("plot-map", plot_map)
     vdiffr::expect_doppelganger("plot-voronoi", plot_voronoi)
   })
 
@@ -255,20 +246,20 @@ hySpc.testthat::test(.plot) <- function() {
     # Data ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     expect_silent(hy_spectra <- generate_hy_spectra())
     expect_silent(hy_profile <- generate_hy_profile())
-    expect_silent(hy_map     <- generate_hy_map())
+    expect_silent(hy_map <- generate_hy_map())
 
 
     # Preparation ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    plot_1           <- function() plot(hy_spectra)
-    plot_spc         <- function() plot(hy_spectra, "spc")
-    plot_spcmeansd   <- function() plot(hy_spectra, "spcmeansd")
-    plot_spcprctile  <- function() plot(hy_spectra, "spcprctile")
-    plot_spcprctl5   <- function() plot(hy_spectra, "spcprctl5")
-    plot_mat         <- function() plot(hy_spectra, "mat")
+    plot_1 <- function() plot(hy_spectra)
+    plot_spc <- function() plot(hy_spectra, "spc")
+    plot_spcmeansd <- function() plot(hy_spectra, "spcmeansd")
+    plot_spcprctile <- function() plot(hy_spectra, "spcprctile")
+    plot_spcprctl5 <- function() plot(hy_spectra, "spcprctl5")
+    plot_mat <- function() plot(hy_spectra, "mat")
     plot_mat_contour <- function() plot(hy_spectra, "mat", contour = TRUE)
 
-    plot_1_rev       <- function() plot(hy_spectra, wl.reverse = TRUE)
-    plot_1_fill      <- function() plot(hy_spectra, fill = TRUE)
+    plot_1_rev <- function() plot(hy_spectra, wl.reverse = TRUE)
+    plot_1_fill <- function() plot(hy_spectra, fill = TRUE)
 
 
     # Perform tests ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -285,13 +276,13 @@ hySpc.testthat::test(.plot) <- function() {
     expect_silent(plot_mat_contour())
 
     # Visual tests
-    vdiffr::expect_doppelganger("plot",             plot_1)
-    vdiffr::expect_doppelganger("plot-spc",         plot_spc)
-    vdiffr::expect_doppelganger("plot-spcmeansd",   plot_spcmeansd)
-    vdiffr::expect_doppelganger("plot-spcprctile",  plot_spcprctile)
-    vdiffr::expect_doppelganger("plot-spcprctl5",   plot_spcprctl5)
-    vdiffr::expect_doppelganger("plot_1_rev",       plot_1_rev)
-    vdiffr::expect_doppelganger("plot_1_fill",      plot_1_fill)
+    vdiffr::expect_doppelganger("plot", plot_1)
+    vdiffr::expect_doppelganger("plot-spc", plot_spc)
+    vdiffr::expect_doppelganger("plot-spcmeansd", plot_spcmeansd)
+    vdiffr::expect_doppelganger("plot-spcprctile", plot_spcprctile)
+    vdiffr::expect_doppelganger("plot-spcprctl5", plot_spcprctl5)
+    vdiffr::expect_doppelganger("plot_1_rev", plot_1_rev)
+    vdiffr::expect_doppelganger("plot_1_fill", plot_1_fill)
 
 
     # These tests are skipped on CI systems, as they fail on R devel.
@@ -300,10 +291,7 @@ hySpc.testthat::test(.plot) <- function() {
       "Failures on devel version of R"
     )
 
-    vdiffr::expect_doppelganger("plot-mat",         plot_mat)
+    vdiffr::expect_doppelganger("plot-mat", plot_mat)
     vdiffr::expect_doppelganger("plot-mat-contour", plot_mat_contour)
-
   })
 }
-
-

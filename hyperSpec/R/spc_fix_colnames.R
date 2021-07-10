@@ -1,4 +1,4 @@
-#' Ensure That the Spectra Matrix Has the Wavelengths in Column Names
+#' Ensure that the spectra matrix has the wavelengths in column names
 #'
 #' @param spc `hyperSpec` object.
 #'
@@ -13,6 +13,9 @@
 
   spc
 }
+
+
+# Unit tests -----------------------------------------------------------------
 
 hySpc.testthat::test(.spc_fix_colnames) <- function() {
   context(".spc_fix_colnames")

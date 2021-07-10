@@ -16,7 +16,6 @@
 #'
 #' @examples
 #' hy_list_installed_hySpc_packages()
-
 hy_list_installed_hySpc_packages <- function() {
   installed_pkgs <- row.names(installed.packages())
   c("hyperSpec", grep("^hySpc[.]", installed_pkgs, value = TRUE))
@@ -34,4 +33,3 @@ hySpc.testthat::test(hy_list_installed_hySpc_packages) <- function() {
     expect_true(all(c("hyperSpec", "hySpc.testthat") %in% pkgs))
   })
 }
-

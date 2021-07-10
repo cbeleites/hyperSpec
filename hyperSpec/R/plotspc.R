@@ -7,7 +7,7 @@
 
 
 
-#' Plotting Spectra.
+#' Plotting spectra
 #'
 #' Plot the spectra of a `hyperSpec` object, i.e. intensity over
 #' wavelength. Instead of the intensity values of the spectra matrix summary
@@ -133,18 +133,18 @@
 #' plotspc(flu)
 #'
 #' ## artificial example to show wavelength axis cutting
-#' plotspc(faux_cell [sample(nrow(faux_cell), 50)],
+#' plotspc(faux_cell[sample(nrow(faux_cell), 50)],
 #'   wl.range = list(600 ~ 650, 1000 ~ 1100, 1600 ~ 1700),
 #'   xoffset = c(0, 300, 450)
 #' )
 #'
-#' plotspc(faux_cell [sample(nrow(faux_cell), 50)],
+#' plotspc(faux_cell[sample(nrow(faux_cell), 50)],
 #'   wl.range = list(600 ~ 650, 1000 ~ 1100, 1600 ~ 1700),
 #'   xoffset = c(300, 450)
 #' )
 #'
 #' ## some journals publish Raman spectra backwards
-#' plotspc(faux_cell [sample(nrow(faux_cell), 50)], wl.reverse = TRUE)
+#' plotspc(faux_cell[sample(nrow(faux_cell), 50)], wl.reverse = TRUE)
 #'
 #' plotspc(laser[(0:4) * 20 + 1, , ], stacked = TRUE)
 #'
@@ -207,7 +207,7 @@ plotspc <- function(object,
 
   if (!wl.index) {
     wl.range <- wl2i(object, wl.range, unlist = FALSE)
-    wl.range <- lapply(wl.range, function(r) r [!is.na(r)])
+    wl.range <- lapply(wl.range, function(r) r[!is.na(r)])
   }
 
   ## xoffset ........................................................................................
@@ -232,7 +232,7 @@ plotspc <- function(object,
   u.wl.range <- unlist(wl.range)
 
   ## wavelengths are the numbers to print at the x axis
-  wavelengths <- relist(object@wavelength [u.wl.range], wl.range)
+  wavelengths <- relist(object@wavelength[u.wl.range], wl.range)
 
   ## x are the actual x coordinates
   x <- wavelengths
@@ -271,7 +271,7 @@ plotspc <- function(object,
       message("Number of spectra exceeds spc.nmax. Only the first", spc.nmax, "are plotted.")
     }
 
-    spc <- spc [seq_len(spc.nmax), , drop = FALSE]
+    spc <- spc[seq_len(spc.nmax), , drop = FALSE]
   }
 
   ## stacked plot
@@ -287,9 +287,9 @@ plotspc <- function(object,
 
     stacked <- do.call(stacked.offsets, stacked.args)
     if (all(yoffset == 0)) {
-      yoffset <- stacked$offsets [stacked$groups]
+      yoffset <- stacked$offsets[stacked$groups]
     } else if (length(yoffset) == length(unique(stacked$groups))) {
-      yoffset <- yoffset [stacked$groups]
+      yoffset <- yoffset[stacked$groups]
     }
   }
 
@@ -300,7 +300,7 @@ plotspc <- function(object,
     if (length(yoffset) == 1) {
       yoffset <- rep(yoffset, nrow(spc))
     } else if (length(yoffset) > nrow(spc)) {
-      yoffset <- yoffset [seq_len(nrow(spc))]
+      yoffset <- yoffset[seq_len(nrow(spc))]
     } else {
       stop("yoffset must be single number or one number for each spectrum (or stacking group).")
     }
@@ -355,7 +355,7 @@ plotspc <- function(object,
       cuts <- .cut.ticks(sapply(wavelengths, min), sapply(wavelengths, max), xoffset, nxticks)
 
       axis.args$x <- modifyList(
-        axis.args [!names(axis.args) %in% c("x", "y")],
+        axis.args[!names(axis.args) %in% c("x", "y")],
         axis.args$x
       )
       if (is.null(axis.args$x$labels) & !is.null(axis.args$x$at)) {
@@ -390,7 +390,7 @@ plotspc <- function(object,
     ## y-axis labels & ticks
     if (bty %in% c("o", "l", "c", "u", "y")) {
       axis.args$y <- modifyList(
-        axis.args [!names(axis.args) %in% c("x", "y", "main", "sub")],
+        axis.args[!names(axis.args) %in% c("x", "y", "main", "sub")],
         axis.args$y
       )
 
@@ -405,7 +405,7 @@ plotspc <- function(object,
         axis.args$y <- modifyList(
           list(
             at = stacked$offsets,
-            labels = stacked$levels [!duplicated(stacked$levels)]
+            labels = stacked$levels[!duplicated(stacked$levels)]
           ),
           axis.args$y
         )
@@ -418,21 +418,21 @@ plotspc <- function(object,
 
     ## Title: axis labels ---------------------------------------------------------------------------
 
-    tmp <- title.args [!names(title.args) %in% c("x", "y", "ylab", "main", "sub")]
+    tmp <- title.args[!names(title.args) %in% c("x", "y", "ylab", "main", "sub")]
     tmp <- modifyList(tmp, as.list(title.args$x))
 
     tmp <- modifyList(list(xlab = object@label$.wavelength, line = 2.5), tmp)
     do.call(title, tmp)
     tmp$xlab <- NULL
 
-    tmp <- title.args [!names(title.args) %in% c("x", "y", "xlab", "main", "sub")]
+    tmp <- title.args[!names(title.args) %in% c("x", "y", "xlab", "main", "sub")]
     tmp <- modifyList(tmp, as.list(title.args$y))
     tmp <- modifyList(list(ylab = object@label$spc), tmp)
     do.call(title, tmp)
     tmp$ylab <- NULL
 
-    tmp <- title.args [!names(title.args) %in% c("x", "y", "xlab", "ylab")]
-    tmp <- modifyList(tmp, as.list(title.args [c("main", "sub")]))
+    tmp <- title.args[!names(title.args) %in% c("x", "y", "xlab", "ylab")]
+    tmp <- modifyList(tmp, as.list(title.args[c("main", "sub")]))
     do.call(title, tmp)
   }
 
@@ -473,7 +473,7 @@ plotspc <- function(object,
       }
 
       groups <- unique(fill)
-      groups <- groups [!is.na(groups)]
+      groups <- groups[!is.na(groups)]
 
 
       polygon.args <- modifyList(
@@ -486,8 +486,8 @@ plotspc <- function(object,
         fill.col <- character(length(groups))
 
         for (j in seq_along(groups)) {
-          tmp <- which(fill == groups [j])
-          fill.col [j] <- rgb(t(col2rgb(col [tmp[1]]) / 255) / 3 + 2 / 3)
+          tmp <- which(fill == groups[j])
+          fill.col[j] <- rgb(t(col2rgb(col[tmp[1]]) / 255) / 3 + 2 / 3)
         }
       } else {
         fill.col <- rep(fill.col, length.out = length(groups))
@@ -498,10 +498,10 @@ plotspc <- function(object,
       polygon.args$x <- c(x[[i]], rev(x[[i]]))
 
       for (j in seq_along(groups)) {
-        tmp <- which(fill == groups [j])
-        polygon.args$y <- c(spc[head(tmp, 1), ispc[[i]]], rev(spc [tail(tmp, 1), ispc[[i]]]))
-        polygon.args$col <- fill.col [groups [j]]
-        polygon.args$border <- border [groups [j]]
+        tmp <- which(fill == groups[j])
+        polygon.args$y <- c(spc[head(tmp, 1), ispc[[i]]], rev(spc[tail(tmp, 1), ispc[[i]]]))
+        polygon.args$col <- fill.col[groups[j]]
+        polygon.args$border <- border[groups[j]]
 
         do.call(polygon, polygon.args)
       }
@@ -514,26 +514,26 @@ plotspc <- function(object,
     if (lines.args$type == "h" && is.list(stacked)) {
       ## specialty: lines from the stacked zero line on!
       for (j in seq_len(nrow(spc))) {
-        keep <- !is.na(spc [j, ispc[[i]]])
-        lines.args$x <- rep(x[[i]] [keep], each = 3)
+        keep <- !is.na(spc[j, ispc[[i]]])
+        lines.args$x <- rep(x[[i]][keep], each = 3)
         lines.args$y <- as.numeric(matrix(c(
-          rep(yoffset [j], sum(keep)),
-          spc [j, ispc[[i]]] [keep],
+          rep(yoffset[j], sum(keep)),
+          spc[j, ispc[[i]]][keep],
           rep(NA, sum(keep))
         ),
         byrow = TRUE, nrow = 3
         ))
         lines.args$type <- "l"
-        lines.args$col <- col [j]
+        lines.args$col <- col[j]
         do.call(lines, lines.args)
       }
     } else {
       for (j in seq_len(nrow(spc))) {
-        keep <- !is.na(spc [j, ispc[[i]]])
+        keep <- !is.na(spc[j, ispc[[i]]])
 
         lines.args$x <- x[[i]][keep]
-        lines.args$y <- spc [j, ispc[[i]]] [keep]
-        lines.args$col <- col [j]
+        lines.args$y <- spc[j, ispc[[i]]][keep]
+        lines.args$col <- col[j]
 
         do.call(lines, lines.args)
       }
@@ -591,7 +591,7 @@ plotspc <- function(object,
 #'   lines.args = list(lty = 2, lwd = 2), add = TRUE
 #' )
 #'
-#' barb <- do.call(collapse, barbiturates [1:3])
+#' barb <- do.call(collapse, barbiturates[1:3])
 #' plot(barb,
 #'   lines.args = list(type = "h"), stacked = TRUE,
 #'   stacked.args = list(add.factor = .2)
@@ -633,23 +633,23 @@ stacked.offsets <- function(x, stacked = TRUE,
   offset <- matrix(nrow = 2, ncol = length(groups))
 
   for (i in groups) {
-    offset[, i] <- range(.spc [stacked == groups [i], ], na.rm = TRUE)
+    offset[, i] <- range(.spc[stacked == groups[i], ], na.rm = TRUE)
   }
 
   ## should the minimum be at zero (or less)?
   if (min.zero) {
-    offset [1, ] <- sapply(offset [1, ], min, 0, na.rm = TRUE)
+    offset[1, ] <- sapply(offset[1, ], min, 0, na.rm = TRUE)
   }
 
-  offset [2, ] <- offset[2, ] - offset [1, ]
+  offset[2, ] <- offset[2, ] - offset[1, ]
 
   ## add some extra space
-  offset [2, ] <- offset [2, ] * (1 + add.factor) + add.sum
+  offset[2, ] <- offset[2, ] * (1 + add.factor) + add.sum
 
   offset <- c(-offset[1, ], 0) + c(0, cumsum(offset[2, ]))
 
   list(
-    offsets = offset [seq_along(groups)],
+    offsets = offset[seq_along(groups)],
     groups = stacked,
     levels = if (is.null(lvl)) stacked else lvl
   )
@@ -660,7 +660,7 @@ hySpc.testthat::test(stacked.offsets) <- function() {
   context("stacked.offsets")
 
   test_that("ranges do not overlap", {
-    spc <- do.call(collapse, barbiturates [1:3])
+    spc <- do.call(collapse, barbiturates[1:3])
     ofs <- stacked.offsets(spc)
     spc <- spc + ofs$offsets
     rngs <- apply(spc[[]], 1, range, na.rm = TRUE)
@@ -726,12 +726,12 @@ hySpc.testthat::test(stacked.offsets) <- function() {
 
   ## make sure that the ticks are not too close
   for (i in seq_along(delta)) {
-    keep <- at[[i]] < end.ranges[i] + delta [i] / 4
-        at[[i]] <-     at[[i]][keep]
+    keep <- at[[i]] < end.ranges[i] + delta[i] / 4
+    at[[i]] <- at[[i]][keep]
     labels[[i]] <- labels[[i]][keep]
 
     keep <- at[[i + 1]] > start.ranges[i + 1] - delta[i] / 4
-        at[[i + 1]] <-     at[[i + 1]][keep]
+    at[[i + 1]] <- at[[i + 1]][keep]
     labels[[i + 1]] <- labels[[i + 1]][keep]
   }
 

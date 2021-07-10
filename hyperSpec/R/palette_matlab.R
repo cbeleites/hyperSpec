@@ -1,7 +1,7 @@
 #' @rdname palettes
 #' @aliases palette_matlab colors,palette_matlab
 #'
-#' @title Matlab-Like Color Palettes
+#' @title Matlab-like color palettes
 #'
 #' @description
 #' Two palettes going from blue over green to red, approximately as the
@@ -36,7 +36,6 @@
 #' plot(flu, col = palette_matlab(nrow(flu)))
 #'
 #' plotmap(faux_cell[, , 1200], col.regions = palette_matlab())
-#'
 palette_matlab <- function(n = 100, ...) {
   rev(rainbow(n, start = 0, end = 4 / 6, ...))
 }
@@ -60,7 +59,6 @@ palette_matlab <- function(n = 100, ...) {
 #' plot(flu, col = palette_matlab_dark(nrow(flu)))
 #'
 #' plotmap(faux_cell[, , 1200], col.regions = palette_matlab_dark())
-#'
 palette_matlab_dark <- function(n = 100, ...) {
   pal <- rev(rainbow(n, start = 0, end = 4 / 6, ...))
   pal <- col2rgb(pal)
@@ -88,7 +86,6 @@ palette_matlab_dark <- function(n = 100, ...) {
 #' plot(flu, col = palette_alois(nrow(flu)))
 #'
 #' plotmap(faux_cell[, , 1200], col.regions = palette_alois())
-#'
 palette_alois <- function(n = 100, ...) {
   colorRampPalette(c("black", "blue", "cyan", "green", "yellow", "red"), ...)(n)
 }
@@ -100,7 +97,8 @@ hySpc.testthat::test(palette_matlab) <- function() {
   test_that("palette_matlab() works", {
     pal <- palette_matlab()
     expect_true(pal[1] == "#0000FF" | pal[1] == "#0000FFFF")
-    expect_true(pal[2] == "#000AFF" | pal[2] == "#000AFFFF")})
+    expect_true(pal[2] == "#000AFF" | pal[2] == "#000AFFFF")
+  })
 }
 
 hySpc.testthat::test(palette_matlab_dark) <- function() {
@@ -108,7 +106,8 @@ hySpc.testthat::test(palette_matlab_dark) <- function() {
   test_that("palette_matlab_dark() generates correct colors", {
     dark <- palette_matlab_dark()
     expect_equal(dark[1], "#0000FF")
-    expect_equal(dark[2], "#0005FF")})
+    expect_equal(dark[2], "#0005FF")
+  })
 }
 
 hySpc.testthat::test(palette_alois) <- function() {
@@ -116,5 +115,6 @@ hySpc.testthat::test(palette_alois) <- function() {
   test_that("palette_alois() works", {
     alois <- palette_alois()
     expect_equal(alois[1], "#000000")
-    expect_equal(alois[2], "#00000C")})
+    expect_equal(alois[2], "#00000C")
+  })
 }

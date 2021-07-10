@@ -1,4 +1,4 @@
-#' @title Command Line Completion for `$`
+#' @title Command line completion for `$`
 #' @description
 #' Command line completion for `$`.
 #' This function is not intended to be used directly by users but provides

@@ -7,7 +7,7 @@
 
   ## make indices so that pooled or individual covariance matrices can be used.
   if (length(dim(sigma)) == 3L) {
-    isigma <- seq_len(dim(sigma) [3])
+    isigma <- seq_len(dim(sigma)[3])
   } else {
     isigma <- rep(1L, nrow(mean))
     dim(sigma) <- c(dim(sigma), 1L)
@@ -15,7 +15,7 @@
 
   tmp <- matrix(NA_real_, sum(n), ncol(mean))
   for (i in seq_along(n)) {
-    tmp[.group == i, ] <- mvtnorm::rmvnorm(n [i], mean [i, ], sigma [, , isigma [i]])
+    tmp[.group == i, ] <- mvtnorm::rmvnorm(n[i], mean[i, ], sigma[, , isigma[i]])
   }
 
   attr(tmp, "group") <- .group
@@ -28,7 +28,7 @@
 setGeneric("rmmvnorm", .rmmvnorm)
 
 
-#' Multivariate normal random numbers.
+#' Multivariate normal random numbers
 #'
 #' Interface functions to use [mvtnorm::rmvnorm()] for
 #' [hyperSpec::hyperSpec-class()] objects.

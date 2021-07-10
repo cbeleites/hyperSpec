@@ -1,6 +1,7 @@
 
-#' Sorting the Wavelengths of a `hyperSpec` Object
+#' Sorting the wavelengths of a `hyperSpec` object
 #'
+#' @description
 #' Rearranges the `hyperSpec` object so that the wavelength vector is in
 #' increasing (or decreasing) order.
 #'

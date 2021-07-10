@@ -23,8 +23,8 @@
     )
   } else {
     cmp <- all.equal(
-      target = target@data  [order(colnames(target@data))],
-      current = current@data [order(colnames(current@data))],
+      target = target@data[order(colnames(target@data))],
+      current = current@data[order(colnames(current@data))],
       ...,
       tolerance = tolerance,
       check.attributes = check.attributes, check.names = check.names
@@ -34,8 +34,8 @@
 
   if (check.label) {
     cmp <- all.equal(
-      target = target@label  [order(names(target@label))],
-      current = current@label [order(names(current@label))],
+      target = target@label[order(names(target@label))],
+      current = current@label[order(names(current@label))],
       ...,
       check.attributes = check.attributes, check.names = check.names
     )
@@ -77,8 +77,8 @@ hySpc.testthat::test(.all.equal) <- function() {
 
   test_that("column order", {
     expect_true(all.equal(flu, --flu, check.column.order = TRUE))
-    expect_true(!isTRUE(all.equal(flu, flu [, rev(colnames(flu))], check.column.order = TRUE)))
-    expect_true(all.equal(flu, flu [, rev(colnames(flu))], check.column.order = FALSE))
+    expect_true(!isTRUE(all.equal(flu, flu[, rev(colnames(flu))], check.column.order = TRUE)))
+    expect_true(all.equal(flu, flu[, rev(colnames(flu))], check.column.order = FALSE))
   })
 }
 

@@ -2,7 +2,7 @@
 ### dependency, but do not export it anymore.
 
 
-#' Quick data frame.
+#' Quick data frame
 #'
 #' Experimental version of [as.data.frame()] that converts a list to a data
 #' frame, but doesn't do any checks to make sure it's a valid format.
@@ -132,7 +132,6 @@ rbind.fill.matrix <- function(...) {
 #' @rdname rbind.fill
 #' @examples
 #' # rbind.fill(mtcars[c("mpg", "wt")], mtcars[c("wt", "cyl")])
-#'
 rbind.fill <- function(...) {
   dfs <- list(...)
   if (length(dfs) == 0) {
@@ -161,7 +160,7 @@ rbind.fill <- function(...) {
 
   ## find which cols contain matrices
   matrixcols <- unique(unlist(lapply(dfs, function(x) {
-    names(x) [sapply(x, is.matrix)]
+    names(x)[sapply(x, is.matrix)]
   })))
   seen[matrixcols] <- TRUE # class<- will fail if the matrix is not protected by I
   # because 2 dims are needed
