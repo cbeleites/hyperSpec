@@ -1,4 +1,4 @@
-#' Quinine Fluorescence Spectra
+#' Quinine fluorescence spectra
 #'
 #' Fluorescence spectra of different dilutions of quinine forming a
 #' calibration set.
