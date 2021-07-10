@@ -13,7 +13,7 @@
 #'
 #' `_____________`
 #'
-#' These functions fit polynomal baselines.
+#' These functions fit polynomial baselines.
 #'
 #' @details
 #' Both functions fit polynomials to be used as baselines. If `apply.to`
@@ -26,9 +26,9 @@
 #' Thus `fit.to` needs to be cut appropriately.
 #'
 #' @param ... handed to [hyperSpec::spc_fit_poly_below()]
-#' @return `hyperSpec` object containing the baselines in the spectra
-#'   matrix, either as polynomial coefficients or as polynomials evaluted on
-#'   the spectral range of `apply.to`
+#' @return `hyperSpec` object containing the baselines in the spectra matrix,
+#'         either as polynomial coefficients or as polynomials evaluted on
+#'         the spectral range of `apply.to`
 #' @author C. Beleites
 #' @include spc_fit_poly.R
 #'
@@ -50,10 +50,11 @@ hySpc.testthat::test(spc.fit.poly) <- function() {
 
   test_that(
     "deprecated",
-      expect_warning (spc.fit.poly(flu),
-                      "Function 'spc.fit.poly' is deprecated.")
+    expect_warning(
+      spc.fit.poly(flu),
+      "Function 'spc.fit.poly' is deprecated."
+    )
   )
-
 }
 
 #' @rdname DEPRECATED-baselines
@@ -71,7 +72,7 @@ spc.fit.poly.below <- function(...) {
   hySpc_deprecated("spc_fit_poly_below")
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-  spc_fit_poly_below (...)
+  spc_fit_poly_below(...)
 
 }
 
@@ -80,8 +81,9 @@ hySpc.testthat::test(spc.fit.poly.below) <- function() {
 
   test_that(
     "deprecated",
-    expect_warning (spc.fit.poly.below(flu),
-                    "Function 'spc.fit.poly.below' is deprecated.")
+    expect_warning(
+      spc.fit.poly.below(flu),
+      "Function 'spc.fit.poly.below' is deprecated."
+    )
   )
-
 }
