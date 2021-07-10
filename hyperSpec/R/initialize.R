@@ -32,8 +32,7 @@
   }
 
   if (is.null(spc) && is.null(data) && !is.null(wavelength) &&
-      is.numeric(wavelength) && is.vector(wavelength)) {
-
+    is.numeric(wavelength) && is.vector(wavelength)) {
     spc <- matrix(NA_real_, ncol = length(wavelength), nrow = 0)
   }
 
@@ -147,7 +146,7 @@
   .Object
 }
 
-#' Create a `hyperSpec` Object
+#' Create a `hyperSpec` object
 #'
 #' Like other S4 objects, a `hyperSpec` object can be created by [new()].
 #' The `hyperSpec` object is then `initialize`d using the given parameters.
@@ -356,9 +355,8 @@ hySpc.testthat::test(.initialize) <- function() {
     expect_equal(new_hyperSpec(), new("hyperSpec"))
     expect_equal(new_hyperSpec(spc = 1:4), new("hyperSpec", spc = 1:4))
     expect_equal(
-      new_hyperSpec(   spc = spc, data = data.frame(x = 11:13)),
+      new_hyperSpec(spc = spc, data = data.frame(x = 11:13)),
       new("hyperSpec", spc = spc, data = data.frame(x = 11:13))
     )
   })
 }
-
