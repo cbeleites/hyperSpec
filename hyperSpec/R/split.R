@@ -53,7 +53,6 @@ setMethod("split", signature = signature(x = "hyperSpec"), .split)
 # Unit tests -----------------------------------------------------------------
 
 hySpc.testthat::test(.split) <- function() {
-
   context("split")
 
   # Perform tests
@@ -74,6 +73,5 @@ hySpc.testthat::test(.split) <- function() {
     expect_is(obj$`2`, "hyperSpec")
     expect_equal(obj$`1`, flu[c(1, 3, 6), , ])
     expect_equal(obj$`2`, flu[c(2, 4, 5), , ])
-
   })
 }
