@@ -1476,7 +1476,7 @@ Package <strong>hyperSpec</strong> provides two functions to do so: <code class=
 <span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/spc_loess.html">spc_loess</a></span><span class="op">(</span><span class="va">paracetamol</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="../reference/seq.hyperSpec.html">seq</a></span><span class="op">(</span><span class="fl">300</span>, <span class="fl">1800</span>, <span class="fl">2</span><span class="op">)</span>, <span class="fu"><a href="../reference/seq.hyperSpec.html">seq</a></span><span class="op">(</span><span class="fl">2850</span>, <span class="fl">3150</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="../reference/plot-methods.html">plot</a></span><span class="op">(</span><span class="va">p</span>, wl.range <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">300</span> <span class="op">~</span> <span class="fl">1800</span>, <span class="fl">2800</span> <span class="op">~</span> <span class="va">max</span><span class="op">)</span>, xoffset <span class="op">=</span> <span class="fl">850</span>, col <span class="op">=</span> <span class="va">palette_colorblind</span><span class="op">[</span><span class="fl">4</span><span class="op">]</span>, add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 
-<span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/spc_bin.html">spc_bin</a></span><span class="op">(</span><span class="va">paracetamol</span>, <span class="fl">4</span><span class="op">)</span>
+<span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/spc-bin.html">spc_bin</a></span><span class="op">(</span><span class="va">paracetamol</span>, <span class="fl">4</span><span class="op">)</span>
 <span class="fu"><a href="../reference/plot-methods.html">plot</a></span><span class="op">(</span><span class="va">b</span>,
   wl.range <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">300</span> <span class="op">~</span> <span class="fl">1800</span>, <span class="fl">2800</span> <span class="op">~</span> <span class="va">max</span><span class="op">)</span>, xoffset <span class="op">=</span> <span class="fl">850</span>,
   lines.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>pch <span class="op">=</span> <span class="fl">20</span>, cex <span class="op">=</span> <span class="fl">.3</span>, type <span class="op">=</span> <span class="st">"p"</span><span class="op">)</span>, col <span class="op">=</span> <span class="va">palette_colorblind</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span>, add <span class="op">=</span> <span class="cn">TRUE</span>
@@ -2287,7 +2287,7 @@ Please refer to the documentation of the respective functions for details about 
   <span class="op">}</span>
 <span class="op">}</span><span class="op">)</span>
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.059   0.033   0.092</span></code></pre></div>
+<span class="co">#&gt;   0.054   0.002   0.056</span></code></pre></div>
 <p>Calculations that involve a lot of subsetting (i.e., extracting or changing the spectra matrix or extra data) can be sped up considerably if the required parts of the <code>hyperSpec</code> object are extracted beforehand.
 This is somewhat similar to model fitting in <code>R</code> in general: many model fitting functions in <code>R</code> are much faster if the formula interface is avoided and the appropriate <code class="sourceCode r">data.frame</code>s or matrices are handed over directly.</p>
 <div class="sourceCode" id="cb142"><pre class="downlit sourceCode r">
@@ -2301,7 +2301,7 @@ This is somewhat similar to model fitting in <code>R</code> in general: many mod
   <span class="va">tmp</span><span class="op">[[</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">tmp.matrix</span>
 <span class="op">}</span><span class="op">)</span>
 <span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.018   0.000   0.018</span></code></pre></div>
+<span class="co">#&gt;   0.017   0.000   0.017</span></code></pre></div>
 </div>
 <div id="additional-packages" class="section level2">
 <h2 class="hasAnchor">

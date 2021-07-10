@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Matlab-Like Color Palettes — palette_matlab • hyperSpec</title>
+<title>Matlab-like color palettes — palette_matlab • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,7 +41,7 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Matlab-Like Color Palettes — palette_matlab" />
+<meta property="og:title" content="Matlab-like color palettes — palette_matlab" />
 <meta property="og:description" content="Two palettes going from blue over green to red, approximately as the
 standard palette of Matlab does. The second one has darker green values and
 is better suited for plotting lines on white background." />
@@ -157,7 +157,7 @@ is better suited for plotting lines on white background." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Matlab-Like Color Palettes</h1>
+    <h1>Matlab-like color palettes</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/palette_matlab.R'><code>R/palette_matlab.R</code></a></small>
     <div class="hidden name"><code>palettes.Rd</code></div>
     </div>
@@ -208,8 +208,7 @@ is better suited for plotting lines on white background.</p>
 <span class='fu'><a href='plot-methods.html'>plot</a></span><span class='op'>(</span><span class='va'>flu</span>, col <span class='op'>=</span> <span class='fu'>palette_matlab</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>flu</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='img'><img src='palettes-2.png' alt='' width='466' height='288' /></div><div class='input'>
 <span class='fu'><a href='plotmap.html'>plotmap</a></span><span class='op'>(</span><span class='va'>faux_cell</span><span class='op'>[</span>, , <span class='fl'>1200</span><span class='op'>]</span>, col.regions <span class='op'>=</span> <span class='fu'>palette_matlab</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: device support for raster images unknown, ignoring 'raster=TRUE'</span></div><div class='img'><img src='palettes-3.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='co'># Matlab dark palette</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: device support for raster images unknown, ignoring 'raster=TRUE'</span></div><div class='img'><img src='palettes-3.png' alt='' width='466' height='288' /></div><div class='input'><span class='co'># Matlab dark palette</span>
 
 <span class='va'>op</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span>mar <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>0</span>, <span class='fl'>0</span>, <span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/graphics/pie.html'>pie</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>12</span><span class='op'>)</span>, col <span class='op'>=</span> <span class='fu'>palette_matlab_dark</span><span class='op'>(</span><span class='fl'>12</span><span class='op'>)</span><span class='op'>)</span>
@@ -218,8 +217,7 @@ is better suited for plotting lines on white background.</p>
 <span class='fu'><a href='plot-methods.html'>plot</a></span><span class='op'>(</span><span class='va'>flu</span>, col <span class='op'>=</span> <span class='fu'>palette_matlab_dark</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>flu</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='img'><img src='palettes-5.png' alt='' width='466' height='288' /></div><div class='input'>
 <span class='fu'><a href='plotmap.html'>plotmap</a></span><span class='op'>(</span><span class='va'>faux_cell</span><span class='op'>[</span>, , <span class='fl'>1200</span><span class='op'>]</span>, col.regions <span class='op'>=</span> <span class='fu'>palette_matlab_dark</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: device support for raster images unknown, ignoring 'raster=TRUE'</span></div><div class='img'><img src='palettes-6.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='co'># Alois palette</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: device support for raster images unknown, ignoring 'raster=TRUE'</span></div><div class='img'><img src='palettes-6.png' alt='' width='466' height='288' /></div><div class='input'><span class='co'># Alois palette</span>
 
 <span class='va'>op</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span>mar <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>0</span>, <span class='fl'>0</span>, <span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/graphics/pie.html'>pie</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>12</span><span class='op'>)</span>, col <span class='op'>=</span> <span class='fu'>palette_alois</span><span class='op'>(</span><span class='fl'>12</span><span class='op'>)</span><span class='op'>)</span>
@@ -228,8 +226,7 @@ is better suited for plotting lines on white background.</p>
 <span class='fu'><a href='plot-methods.html'>plot</a></span><span class='op'>(</span><span class='va'>flu</span>, col <span class='op'>=</span> <span class='fu'>palette_alois</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>flu</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='img'><img src='palettes-8.png' alt='' width='466' height='288' /></div><div class='input'>
 <span class='fu'><a href='plotmap.html'>plotmap</a></span><span class='op'>(</span><span class='va'>faux_cell</span><span class='op'>[</span>, , <span class='fl'>1200</span><span class='op'>]</span>, col.regions <span class='op'>=</span> <span class='fu'>palette_alois</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: device support for raster images unknown, ignoring 'raster=TRUE'</span></div><div class='img'><img src='palettes-9.png' alt='' width='466' height='288' /></div><div class='input'>
-</div></pre>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: device support for raster images unknown, ignoring 'raster=TRUE'</span></div><div class='img'><img src='palettes-9.png' alt='' width='466' height='288' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

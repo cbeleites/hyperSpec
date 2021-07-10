@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Getting and Setting the Wavelength Axis — wl • hyperSpec</title>
+<title>Getting and setting the wavelength axis — wl • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,7 +41,7 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Getting and Setting the Wavelength Axis — wl" />
+<meta property="og:title" content="Getting and setting the wavelength axis — wl" />
 <meta property="og:description" content="wl() returns the wavelength axis, wl&amp;lt;- sets it." />
 
 <meta name="robots" content="noindex" />
@@ -155,7 +155,7 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Getting and Setting the Wavelength Axis</h1>
+    <h1>Getting and setting the wavelength axis</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/wl.R'><code>R/wl.R</code></a></small>
     <div class="hidden name"><code>wl.Rd</code></div>
     </div>
@@ -212,13 +212,13 @@ changing the columns of the spectra matrix. If you rather want to cut the
 spectral range, use <code><a href='[,hyperSpec-method.html'>[</a></code>, for
 interpolation along the spectral axis see
 <code><a href='spc_loess.html'>spc_loess()</a></code> and for spectral binning
-<code><a href='spc_bin.html'>spc_bin()</a></code>.</p>
+<code><a href='spc-bin.html'>spc_bin()</a></code>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='https://rdrr.io/r/base/Round.html'>base::signif()</a></code></p>
 <p>cutting the spectral range: <code><a href='[,hyperSpec-method.html'>[</a></code></p>
 <p>interpolation along the spectral axis: <code><a href='spc_loess.html'>spc_loess()</a></code></p>
-<p>spectral binning: <code><a href='spc_bin.html'>spc_bin()</a></code></p></div>
+<p>spectral binning: <code><a href='spc-bin.html'>spc_bin()</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>C. Beleites</p>
@@ -237,12 +237,12 @@ interpolation along the spectral axis see
 </div><div class='img'><img src='wl-2.png' alt='' width='466' height='288' /></div><div class='input'>
 <span class='co'># convert from Raman shift to wavelength</span>
 <span class='co'># excitation was at 785 nm</span>
-<span class='fu'><a href='plot-methods.html'>plot</a></span><span class='op'>(</span><span class='va'>faux_cell</span> <span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>)</span>
+<span class='fu'><a href='plot-methods.html'>plot</a></span><span class='op'>(</span><span class='va'>faux_cell</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>)</span>
 </div><div class='img'><img src='wl-3.png' alt='' width='466' height='288' /></div><div class='input'><span class='fu'>wl</span><span class='op'>(</span><span class='va'>faux_cell</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
   wl <span class='op'>=</span> <span class='fl'>1e7</span> <span class='op'>/</span> <span class='op'>(</span><span class='fl'>1e7</span> <span class='op'>/</span> <span class='fl'>785</span> <span class='op'>-</span> <span class='fu'>wl</span><span class='op'>(</span><span class='va'>faux_cell</span><span class='op'>)</span><span class='op'>)</span>,
   label <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span><span class='op'>(</span><span class='va'>lambda</span> <span class='op'>/</span> <span class='va'>nm</span><span class='op'>)</span>
 <span class='op'>)</span>
-<span class='fu'><a href='plot-methods.html'>plot</a></span><span class='op'>(</span><span class='va'>faux_cell</span> <span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>)</span>
+<span class='fu'><a href='plot-methods.html'>plot</a></span><span class='op'>(</span><span class='va'>faux_cell</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>)</span>
 </div><div class='img'><img src='wl-4.png' alt='' width='466' height='288' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

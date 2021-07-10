@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Compute Summary Statistics for the Spectra of a hyperSpec Object — apply • hyperSpec</title>
+<title>Compute summary statistics for the spectra of a hyperSpec object — apply • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,7 +41,7 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Compute Summary Statistics for the Spectra of a hyperSpec Object — apply" />
+<meta property="og:title" content="Compute summary statistics for the spectra of a hyperSpec object — apply" />
 <meta property="og:description" content="apply gives the functionality of base::apply() for hyperSpec objects." />
 
 <meta name="robots" content="noindex" />
@@ -155,7 +155,7 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Compute Summary Statistics for the Spectra of a <code>hyperSpec</code> Object</h1>
+    <h1>Compute summary statistics for the spectra of a <code>hyperSpec</code> object</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/apply.R'><code>R/apply.R</code></a></small>
     <div class="hidden name"><code>apply.Rd</code></div>
     </div>
@@ -227,10 +227,10 @@ the resulting object.</p></td>
     <p>A <code>hyperSpec</code> object</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>The generic functions of group <code><a href='https://rdrr.io/r/methods/S4groupGeneric.html'>methods::Math()</a></code> are not definded
+    <p>The generic functions of group <code><a href='https://rdrr.io/r/methods/S4groupGeneric.html'>methods::Math()</a></code> are not defined
 for <code>hyperSpec</code> objects. Instead, <code>apply</code> can be used. For
 functions like <code><a href='Math2,hyperSpec-method.html'>log()</a></code> that work on scalars, <code>MARGIN = 1 : 2</code> gives
-the appropriate behaviour.</p>
+the appropriate behavior.</p>
 <p><code>spcapply</code> does the same as <code>apply</code> with <code>MARGIN = 1</code>, but
 additionally allows to set a new wavelength axis and adjust the labels.</p>
 <p><code>wlapply</code> does the same as <code>apply</code> with <code>MARGIN = 2</code>, but
@@ -273,7 +273,7 @@ the <code>hyperSpec</code> object: <code><a href='aggregate.html'>aggregate()</a
 #&gt; [5,] -167.26667 -177.47067 -189.75233
 #&gt; [6,] -198.43033 -215.78500 -232.52800</div><div class='input'>
 <span class='co'>## without MARGIN the whole matrix is handed to FUN</span>
-<span class='fu'>apply</span><span class='op'>(</span><span class='va'>flu</span> <span class='op'>[</span>, , <span class='fl'>405</span><span class='op'>:</span><span class='fl'>407</span><span class='op'>]</span>, , <span class='va'>print</span><span class='op'>)</span><span class='op'>[[</span><span class='op'>]</span><span class='op'>]</span>
+<span class='fu'>apply</span><span class='op'>(</span><span class='va'>flu</span><span class='op'>[</span>, , <span class='fl'>405</span><span class='op'>:</span><span class='fl'>407</span><span class='op'>]</span>, , <span class='va'>print</span><span class='op'>)</span><span class='op'>[[</span><span class='op'>]</span><span class='op'>]</span>
 </div><div class='output co'>#&gt;            405       406       407
 #&gt; [1,]  27.15000  33.37867  36.53133
 #&gt; [2,]  66.80133  66.71200  72.52967
@@ -288,7 +288,7 @@ the <code>hyperSpec</code> object: <code><a href='aggregate.html'>aggregate()</a
 #&gt; [5,] 167.26667 177.47067 189.75233
 #&gt; [6,] 198.43033 215.78500 232.52800</div><div class='input'>
 <span class='co'>## whereas MARGIN = 1 : 2 leads to FUN being called for each element separately</span>
-<span class='fu'>apply</span><span class='op'>(</span><span class='va'>flu</span> <span class='op'>[</span>, , <span class='fl'>405</span><span class='op'>:</span><span class='fl'>407</span><span class='op'>]</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span>, <span class='va'>print</span><span class='op'>)</span><span class='op'>[[</span><span class='op'>]</span><span class='op'>]</span>
+<span class='fu'>apply</span><span class='op'>(</span><span class='va'>flu</span><span class='op'>[</span>, , <span class='fl'>405</span><span class='op'>:</span><span class='fl'>407</span><span class='op'>]</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span>, <span class='va'>print</span><span class='op'>)</span><span class='op'>[[</span><span class='op'>]</span><span class='op'>]</span>
 </div><div class='output co'>#&gt; [1] 27.15
 #&gt; [1] 66.80133
 #&gt; [1] 93.14433

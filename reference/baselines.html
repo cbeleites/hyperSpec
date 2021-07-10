@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Polynomial Baseline Fitting. — spc_fit_poly • hyperSpec</title>
+<title>Polynomial baseline fitting — spc_fit_poly • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,8 +41,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Polynomial Baseline Fitting. — spc_fit_poly" />
-<meta property="og:description" content="These functions fit polynomal baselines." />
+<meta property="og:title" content="Polynomial baseline fitting — spc_fit_poly" />
+<meta property="og:description" content="These functions fit polynomial baselines." />
 
 <meta name="robots" content="noindex" />
 
@@ -155,13 +155,13 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Polynomial Baseline Fitting.</h1>
+    <h1>Polynomial baseline fitting</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/spc_fit_poly.R'><code>R/spc_fit_poly.R</code></a></small>
     <div class="hidden name"><code>baselines.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>These functions fit polynomal baselines.</p>
+    <p>These functions fit polynomial baselines.</p>
     </div>
 
     <pre class="usage"><span class='fu'>spc_fit_poly</span><span class='op'>(</span>
@@ -221,7 +221,7 @@ one value for all the spectra, or for each spectrum separately.</p></td>
     <tr>
       <th>stop.on.increase</th>
       <td><p>additional stopping rule: stop if the number of
-support points would increase, regardless whether npts.min was reached or
+support points would increase, regardless whether <code>npts.min</code> was reached or
 not.</p></td>
     </tr>
     <tr>
@@ -248,8 +248,8 @@ of <code>apply.to</code>.</p>
 <code>poly.order</code> to the <em>complete</em> spectra given in <code>fit.to</code>.
 Thus <code>fit.to</code> needs to be cut appropriately.</p>
 <p><code>spc_fit_poly_below()</code> tries to fit the baseline on appropriate spectral
-ranges of the spectra in <code>fit.to</code>.  For details, see the
-<code><a href='../articles/baseline.html'>vignette("baseline")</a></code>.</p>
+ranges of the spectra in <code>fit.to</code>.
+For details, see the <code><a href='../articles/baseline.html'>vignette("baseline")</a></code>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='../articles/baseline.html'>vignette("baseline", package = "hyperSpec")</a></code></p>
@@ -259,8 +259,7 @@ ranges of the spectra in <code>fit.to</code>.  For details, see the
     <p>C. Beleites</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/vignette.html'>vignette</a></span><span class='op'>(</span><span class='st'>"baseline"</span>, package <span class='op'>=</span> <span class='st'>"hyperSpec"</span><span class='op'>)</span>
 <span class='op'>}</span>
 

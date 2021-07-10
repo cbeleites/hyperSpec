@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plotting Spectra. — plotspc • hyperSpec</title>
+<title>Plotting spectra — plotspc • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,7 +41,7 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Plotting Spectra. — plotspc" />
+<meta property="og:title" content="Plotting spectra — plotspc" />
 <meta property="og:description" content="Plot the spectra of a hyperSpec object, i.e. intensity over
 wavelength. Instead of the intensity values of the spectra matrix summary
 values calculated from these may be used.
@@ -159,7 +159,7 @@ need fine control over the stacking, you may calculate the y offsets yourself." 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Plotting Spectra.</h1>
+    <h1>Plotting spectra</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/plotspc.R'><code>R/plotspc.R</code></a></small>
     <div class="hidden name"><code>plotspc.Rd</code></div>
     </div>
@@ -430,18 +430,18 @@ interaction with plots.</p>
 <span class='fu'>plotspc</span><span class='op'>(</span><span class='va'>flu</span><span class='op'>)</span>
 </div><div class='img'><img src='plotspc-1.png' alt='' width='466' height='288' /></div><div class='input'>
 <span class='co'>## artificial example to show wavelength axis cutting</span>
-<span class='fu'>plotspc</span><span class='op'>(</span><span class='va'>faux_cell</span> <span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>faux_cell</span><span class='op'>)</span>, <span class='fl'>50</span><span class='op'>)</span><span class='op'>]</span>,
+<span class='fu'>plotspc</span><span class='op'>(</span><span class='va'>faux_cell</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>faux_cell</span><span class='op'>)</span>, <span class='fl'>50</span><span class='op'>)</span><span class='op'>]</span>,
   wl.range <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='fl'>600</span> <span class='op'>~</span> <span class='fl'>650</span>, <span class='fl'>1000</span> <span class='op'>~</span> <span class='fl'>1100</span>, <span class='fl'>1600</span> <span class='op'>~</span> <span class='fl'>1700</span><span class='op'>)</span>,
   xoffset <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>300</span>, <span class='fl'>450</span><span class='op'>)</span>
 <span class='op'>)</span>
 </div><div class='img'><img src='plotspc-2.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='fu'>plotspc</span><span class='op'>(</span><span class='va'>faux_cell</span> <span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>faux_cell</span><span class='op'>)</span>, <span class='fl'>50</span><span class='op'>)</span><span class='op'>]</span>,
+<span class='fu'>plotspc</span><span class='op'>(</span><span class='va'>faux_cell</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>faux_cell</span><span class='op'>)</span>, <span class='fl'>50</span><span class='op'>)</span><span class='op'>]</span>,
   wl.range <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='fl'>600</span> <span class='op'>~</span> <span class='fl'>650</span>, <span class='fl'>1000</span> <span class='op'>~</span> <span class='fl'>1100</span>, <span class='fl'>1600</span> <span class='op'>~</span> <span class='fl'>1700</span><span class='op'>)</span>,
   xoffset <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>300</span>, <span class='fl'>450</span><span class='op'>)</span>
 <span class='op'>)</span>
 </div><div class='img'><img src='plotspc-3.png' alt='' width='466' height='288' /></div><div class='input'>
 <span class='co'>## some journals publish Raman spectra backwards</span>
-<span class='fu'>plotspc</span><span class='op'>(</span><span class='va'>faux_cell</span> <span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>faux_cell</span><span class='op'>)</span>, <span class='fl'>50</span><span class='op'>)</span><span class='op'>]</span>, wl.reverse <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='fu'>plotspc</span><span class='op'>(</span><span class='va'>faux_cell</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>faux_cell</span><span class='op'>)</span>, <span class='fl'>50</span><span class='op'>)</span><span class='op'>]</span>, wl.reverse <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 </div><div class='img'><img src='plotspc-4.png' alt='' width='466' height='288' /></div><div class='input'>
 <span class='fu'>plotspc</span><span class='op'>(</span><span class='va'>laser</span><span class='op'>[</span><span class='op'>(</span><span class='fl'>0</span><span class='op'>:</span><span class='fl'>4</span><span class='op'>)</span> <span class='op'>*</span> <span class='fl'>20</span> <span class='op'>+</span> <span class='fl'>1</span>, , <span class='op'>]</span>, stacked <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 </div><div class='img'><img src='plotspc-5.png' alt='' width='466' height='288' /></div><div class='input'>
@@ -475,7 +475,7 @@ interaction with plots.</p>
   lines.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>lty <span class='op'>=</span> <span class='fl'>2</span>, lwd <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>, add <span class='op'>=</span> <span class='cn'>TRUE</span>
 <span class='op'>)</span>
 </div><div class='img'><img src='plotspc-8.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='va'>barb</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/do.call.html'>do.call</a></span><span class='op'>(</span><span class='va'>collapse</span>, <span class='va'>barbiturates</span> <span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>]</span><span class='op'>)</span>
+<span class='va'>barb</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/do.call.html'>do.call</a></span><span class='op'>(</span><span class='va'>collapse</span>, <span class='va'>barbiturates</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>]</span><span class='op'>)</span>
 <span class='fu'><a href='plot-methods.html'>plot</a></span><span class='op'>(</span><span class='va'>barb</span>,
   lines.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>type <span class='op'>=</span> <span class='st'>"h"</span><span class='op'>)</span>, stacked <span class='op'>=</span> <span class='cn'>TRUE</span>,
   stacked.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>add.factor <span class='op'>=</span> <span class='fl'>.2</span><span class='op'>)</span>

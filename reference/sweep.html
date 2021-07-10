@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Sweep Summary Statistic out of an hyperSpec Object. — sweep • hyperSpec</title>
+<title>Sweep summary statistic out of an hyperSpec object — sweep • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,7 +41,7 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Sweep Summary Statistic out of an hyperSpec Object. — sweep" />
+<meta property="og:title" content="Sweep summary statistic out of an hyperSpec object — sweep" />
 <meta property="og:description" content="base::sweep() for hyperSpec objects." />
 
 <meta name="robots" content="noindex" />
@@ -155,7 +155,7 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Sweep Summary Statistic out of an hyperSpec Object.</h1>
+    <h1>Sweep summary statistic out of an <code>hyperSpec</code> object</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/sweep.R'><code>R/sweep.R</code></a></small>
     <div class="hidden name"><code>sweep.Rd</code></div>
     </div>
@@ -211,8 +211,8 @@ dimensions of <code>STATS</code> do not match the specified dimensions of
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Calls <code><a href='https://rdrr.io/r/base/sweep.html'>base::sweep()</a></code> for the spectra matrix.</p>
-<p><code>sweep</code> is useful for some spectra preprocessing, like offset
-correction, substraction of background spectra, and normalization of the
+<p><code>sweep</code> is useful for some spectra pre-processing, like offset
+correction, subtraction of background spectra, and normalization of the
 spectra.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -223,9 +223,9 @@ spectra.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='co'>## Substract the background / slide / blank spectrum</span>
+<span class='co'>## Subtract the background / slide / blank spectrum</span>
 <span class='co'># the example data does not have spectra of the empty slide,</span>
-<span class='co'># so instead the overall composition of the sample is substracted</span>
+<span class='co'># so instead the overall composition of the sample is subtracted</span>
 <span class='va'>background</span> <span class='op'>&lt;-</span> <span class='fu'><a href='apply.html'>apply</a></span><span class='op'>(</span><span class='va'>faux_cell</span>, <span class='fl'>2</span>, <span class='va'>quantile</span>, probs <span class='op'>=</span> <span class='fl'>0.05</span><span class='op'>)</span>
 <span class='va'>corrected</span> <span class='op'>&lt;-</span> <span class='fu'>sweep</span><span class='op'>(</span><span class='va'>faux_cell</span>, <span class='fl'>2</span>, <span class='va'>background</span>, <span class='st'>"-"</span><span class='op'>)</span>
 <span class='fu'><a href='plot-methods.html'>plot</a></span><span class='op'>(</span><span class='va'>corrected</span>, <span class='st'>"spcprctl5"</span><span class='op'>)</span>

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Merge hyperSpec objects. — merge,hyperSpec,hyperSpec-method • hyperSpec</title>
+<title>Merge hyperSpec objects — merge,hyperSpec,hyperSpec-method • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,7 +41,7 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Merge hyperSpec objects. — merge,hyperSpec,hyperSpec-method" />
+<meta property="og:title" content="Merge hyperSpec objects — merge,hyperSpec,hyperSpec-method" />
 <meta property="og:description" content="Merges two hyperSpec objects and base::cbind()s their spectra
 matrices, or merges additional extra data into a hyperSpec object." />
 
@@ -156,7 +156,7 @@ matrices, or merges additional extra data into a hyperSpec object." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Merge <code>hyperSpec</code> objects.</h1>
+    <h1>Merge <code>hyperSpec</code> objects</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/merge.R'><code>R/merge.R</code></a></small>
     <div class="hidden name"><code>merge.Rd</code></div>
     </div>
@@ -197,7 +197,8 @@ matrices, or merges additional extra data into a <code>hyperSpec</code> object.<
     <p>After merging, the spectra matrix can contain duplicates, and is not
 ordered according to the wavelength.</p>
 <p>If the wavelength axis should be ordered, use <code><a href='wl_sort.html'>wl_sort()</a></code>.</p>
-<p>If a <code>hyperSpec</code> object and  a <code>data.frame</code> are merged, the result is of the class of the first (<code>x</code>) object.</p>
+<p>If a <code>hyperSpec</code> object and  a <code>data.frame</code> are merged, the result is of the
+class of the first (<code>x</code>) object.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='https://rdrr.io/r/base/merge.html'>base::merge()</a></code>.</p>
@@ -209,14 +210,14 @@ ordered according to the wavelength.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>merge</span><span class='op'>(</span><span class='va'>faux_cell</span> <span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>, , <span class='fl'>600</span><span class='op'>]</span>, <span class='va'>faux_cell</span> <span class='op'>[</span><span class='fl'>5</span><span class='op'>:</span><span class='fl'>15</span>, , <span class='fl'>600</span><span class='op'>]</span>, by <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"x"</span>, <span class='st'>"y"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>$</span><span class='va'>.</span>
+<span class='fu'>merge</span><span class='op'>(</span><span class='va'>faux_cell</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>, , <span class='fl'>600</span><span class='op'>]</span>, <span class='va'>faux_cell</span><span class='op'>[</span><span class='fl'>5</span><span class='op'>:</span><span class='fl'>15</span>, , <span class='fl'>600</span><span class='op'>]</span>, by <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"x"</span>, <span class='st'>"y"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>$</span><span class='va'>.</span>
 </div><div class='output co'>#&gt;       x     y region.x .nx region.y .ny spc.1 spc.2
 #&gt; 1 -2.55 -4.77   matrix  10   matrix   6    NA    NA
 #&gt; 2 -3.55 -4.77   matrix   9   matrix   5    NA    NA
 #&gt; 3 -4.55 -4.77   matrix   8   matrix   4    NA    NA
 #&gt; 4 -5.55 -4.77   matrix   7   matrix   3    NA    NA
 #&gt; 5 -6.55 -4.77   matrix   6   matrix   2    NA    NA
-#&gt; 6 -7.55 -4.77   matrix   5   matrix   1    NA    NA</div><div class='input'><span class='va'>tmp</span> <span class='op'>&lt;-</span> <span class='fu'>merge</span><span class='op'>(</span><span class='va'>faux_cell</span> <span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>, , <span class='fl'>610</span><span class='op'>]</span>, <span class='va'>faux_cell</span> <span class='op'>[</span><span class='fl'>5</span><span class='op'>:</span><span class='fl'>15</span>, , <span class='fl'>610</span><span class='op'>]</span>,
+#&gt; 6 -7.55 -4.77   matrix   5   matrix   1    NA    NA</div><div class='input'><span class='va'>tmp</span> <span class='op'>&lt;-</span> <span class='fu'>merge</span><span class='op'>(</span><span class='va'>faux_cell</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>, , <span class='fl'>610</span><span class='op'>]</span>, <span class='va'>faux_cell</span><span class='op'>[</span><span class='fl'>5</span><span class='op'>:</span><span class='fl'>15</span>, , <span class='fl'>610</span><span class='op'>]</span>,
   by <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"x"</span>, <span class='st'>"y"</span><span class='op'>)</span>, all <span class='op'>=</span> <span class='cn'>TRUE</span>
 <span class='op'>)</span>
 <span class='va'>tmp</span><span class='op'>$</span><span class='va'>.</span>
@@ -245,7 +246,7 @@ ordered according to the wavelength.</p>
   <span class='op'>)</span><span class='op'>$</span><span class='va'>y</span>
 <span class='op'>}</span>
 
-<span class='va'>merged</span> <span class='op'>&lt;-</span> <span class='fu'>merge</span><span class='op'>(</span><span class='va'>faux_cell</span> <span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>7</span>, , <span class='fl'>610</span> <span class='op'>~</span> <span class='fl'>620</span><span class='op'>]</span>, <span class='va'>faux_cell</span> <span class='op'>[</span><span class='fl'>5</span><span class='op'>:</span><span class='fl'>10</span>, , <span class='fl'>615</span> <span class='op'>~</span> <span class='fl'>625</span><span class='op'>]</span>, all <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='va'>merged</span> <span class='op'>&lt;-</span> <span class='fu'>merge</span><span class='op'>(</span><span class='va'>faux_cell</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>7</span>, , <span class='fl'>610</span> <span class='op'>~</span> <span class='fl'>620</span><span class='op'>]</span>, <span class='va'>faux_cell</span><span class='op'>[</span><span class='fl'>5</span><span class='op'>:</span><span class='fl'>10</span>, , <span class='fl'>615</span> <span class='op'>~</span> <span class='fl'>625</span><span class='op'>]</span>, all <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 <span class='va'>merged</span><span class='op'>$</span><span class='va'>.</span>
 </div><div class='output co'>#&gt;         x     y region .nx .ny spc.1 spc.2 spc.3 spc.4 spc.5 spc.6 spc.7
 #&gt; 1  -11.55 -4.77 matrix   1  NA    15    13    15    NA    NA    NA    NA

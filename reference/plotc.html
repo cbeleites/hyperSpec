@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Calibration Plots, Timeseries Plots, and Depth-Profiles. — plotc • hyperSpec</title>
+<title>Calibration plots, timeseries plots, and depth-profiles — plotc • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,7 +41,7 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Calibration Plots, Timeseries Plots, and Depth-Profiles. — plotc" />
+<meta property="og:title" content="Calibration plots, timeseries plots, and depth-profiles — plotc" />
 <meta property="og:description" content="Calibration- and timeseries plots, depth-profiles and the like
 plotc plots intensities of a hyperSpec object over another
 dimension such as concentration, time, or a spatial coordinate." />
@@ -157,7 +157,7 @@ dimension such as concentration, time, or a spatial coordinate." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Calibration Plots, Timeseries Plots, and Depth-Profiles.</h1>
+    <h1>Calibration plots, timeseries plots, and depth-profiles</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/plotc.R'><code>R/plotc.R</code></a></small>
     <div class="hidden name"><code>plotc.Rd</code></div>
     </div>
@@ -237,7 +237,7 @@ and a warning is issued.</p>
 <span class='fu'>plotc</span><span class='op'>(</span><span class='va'>flu</span>, func <span class='op'>=</span> <span class='va'>mean</span><span class='op'>)</span>
 </div><div class='img'><img src='plotc-2.png' alt='' width='466' height='288' /></div><div class='input'><span class='fu'>plotc</span><span class='op'>(</span><span class='va'>flu</span>, func <span class='op'>=</span> <span class='va'>range</span>, groups <span class='op'>=</span> <span class='va'>.wavelength</span><span class='op'>)</span>
 </div><div class='img'><img src='plotc-3.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='fu'>plotc</span><span class='op'>(</span><span class='va'>flu</span><span class='op'>[</span>, , <span class='fl'>450</span><span class='op'>]</span>, ylab <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span><span class='op'>(</span><span class='va'>I</span> <span class='op'>[</span><span class='st'>"450 nm"</span><span class='op'>]</span> <span class='op'>/</span> <span class='va'>a.u.</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'>plotc</span><span class='op'>(</span><span class='va'>flu</span><span class='op'>[</span>, , <span class='fl'>450</span><span class='op'>]</span>, ylab <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span><span class='op'>(</span><span class='va'>I</span><span class='op'>[</span><span class='st'>"450 nm"</span><span class='op'>]</span> <span class='op'>/</span> <span class='va'>a.u.</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='img'><img src='plotc-4.png' alt='' width='466' height='288' /></div><div class='input'>
 
 <span class='va'>calibration</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>spc</span> <span class='op'>~</span> <span class='va'>c</span>, data <span class='op'>=</span> <span class='va'>flu</span><span class='op'>[</span>, , <span class='fl'>450</span><span class='op'>]</span><span class='op'>$</span><span class='va'>.</span><span class='op'>)</span>
@@ -260,7 +260,7 @@ and a warning is issued.</p>
 #&gt; Residual standard error: 3.089 on 4 degrees of freedom
 #&gt; Multiple R-squared:  0.9998,	Adjusted R-squared:  0.9998 
 #&gt; F-statistic: 2.359e+04 on 1 and 4 DF,  p-value: 1.078e-08
-#&gt; </div><div class='input'><span class='fu'>plotc</span><span class='op'>(</span><span class='va'>flu</span> <span class='op'>[</span>, , <span class='fl'>450</span><span class='op'>]</span>, type <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"p"</span>, <span class='st'>"r"</span><span class='op'>)</span><span class='op'>)</span>
+#&gt; </div><div class='input'><span class='fu'>plotc</span><span class='op'>(</span><span class='va'>flu</span><span class='op'>[</span>, , <span class='fl'>450</span><span class='op'>]</span>, type <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"p"</span>, <span class='st'>"r"</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='img'><img src='plotc-5.png' alt='' width='466' height='288' /></div><div class='input'>
 <span class='va'>conc</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>c <span class='op'>=</span> <span class='fu'><a href='seq.hyperSpec.html'>seq</a></span><span class='op'>(</span>from <span class='op'>=</span> <span class='fl'>0.04</span>, to <span class='op'>=</span> <span class='fl'>0.31</span>, by <span class='op'>=</span> <span class='fl'>0.01</span><span class='op'>)</span><span class='op'>)</span>
 <span class='va'>ci</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span><span class='op'>(</span><span class='va'>calibration</span>, newdata <span class='op'>=</span> <span class='va'>conc</span>, interval <span class='op'>=</span> <span class='st'>"confidence"</span>, level <span class='op'>=</span> <span class='fl'>0.999</span><span class='op'>)</span>
@@ -273,9 +273,9 @@ and a warning is issued.</p>
   <span class='fu'>panel.lines</span><span class='op'>(</span><span class='va'>conc</span>, <span class='va'>ci.upr</span>, col <span class='op'>=</span> <span class='va'>ci.col</span><span class='op'>)</span>
 <span class='op'>}</span>
 
-<span class='fu'>plotc</span><span class='op'>(</span><span class='va'>flu</span> <span class='op'>[</span>, , <span class='fl'>450</span><span class='op'>]</span>,
+<span class='fu'>plotc</span><span class='op'>(</span><span class='va'>flu</span><span class='op'>[</span>, , <span class='fl'>450</span><span class='op'>]</span>,
   panel <span class='op'>=</span> <span class='va'>panel.ci</span>,
-  conc <span class='op'>=</span> <span class='va'>conc</span><span class='op'>$</span><span class='va'>c</span>, ci.lwr <span class='op'>=</span> <span class='va'>ci</span> <span class='op'>[</span>, <span class='fl'>2</span><span class='op'>]</span>, ci.upr <span class='op'>=</span> <span class='va'>ci</span> <span class='op'>[</span>, <span class='fl'>3</span><span class='op'>]</span>
+  conc <span class='op'>=</span> <span class='va'>conc</span><span class='op'>$</span><span class='va'>c</span>, ci.lwr <span class='op'>=</span> <span class='va'>ci</span><span class='op'>[</span>, <span class='fl'>2</span><span class='op'>]</span>, ci.upr <span class='op'>=</span> <span class='va'>ci</span><span class='op'>[</span>, <span class='fl'>3</span><span class='op'>]</span>
 <span class='op'>)</span>
 </div><div class='img'><img src='plotc-6.png' alt='' width='466' height='288' /></div><div class='input'>
 <span class='co'>## example 2: time-trace of laser emission modes</span>
@@ -287,7 +287,7 @@ and a warning is issued.</p>
   <span class='fu'><a href='https://rdrr.io/r/graphics/abline.html'>abline</a></span><span class='op'>(</span>v <span class='op'>=</span> <span class='va'>wl</span><span class='op'>[</span><span class='va'>i</span><span class='op'>]</span>, col <span class='op'>=</span> <span class='va'>cols</span><span class='op'>[</span><span class='va'>i</span><span class='op'>]</span>, lwd <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
 <span class='op'>}</span>
 </div><div class='img'><img src='plotc-7.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='fu'>plotc</span><span class='op'>(</span><span class='va'>laser</span> <span class='op'>[</span>, , <span class='va'>wl</span><span class='op'>]</span>, <span class='va'>spc</span> <span class='op'>~</span> <span class='va'>t</span>,
+<span class='fu'>plotc</span><span class='op'>(</span><span class='va'>laser</span><span class='op'>[</span>, , <span class='va'>wl</span><span class='op'>]</span>, <span class='va'>spc</span> <span class='op'>~</span> <span class='va'>t</span>,
   groups <span class='op'>=</span> <span class='va'>.wavelength</span>, type <span class='op'>=</span> <span class='st'>"b"</span>,
   col <span class='op'>=</span> <span class='va'>cols</span>
 <span class='op'>)</span>

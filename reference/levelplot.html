@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plot a Map and Identify/Select Spectra in the Map. — plotmap • hyperSpec</title>
+<title>Plot a map and identify/select spectra in the map — plotmap • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,7 +41,7 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Plot a Map and Identify/Select Spectra in the Map. — plotmap" />
+<meta property="og:title" content="Plot a map and identify/select spectra in the map — plotmap" />
 <meta property="og:description" content="lattice::levelplot() functions for hyperSpec objects.  An image or map of a summary
 value of each spectrum is plotted. Spectra may be identified by mouse click." />
 
@@ -156,7 +156,7 @@ value of each spectrum is plotted. Spectra may be identified by mouse click." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Plot a Map and Identify/Select Spectra in the Map.</h1>
+    <h1>Plot a map and identify/select spectra in the map</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/plotmap.R'><code>R/plotmap.R</code></a>, <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/levelplot.R'><code>R/levelplot.R</code></a>, <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/map_identify.R'><code>R/map_identify.R</code></a>, and 1 more</small>
     <div class="hidden name"><code>levelplot.Rd</code></div>
     </div>
@@ -245,15 +245,16 @@ tolerance? See also details.</p></td>
     </tr>
     <tr>
       <th>use.tripack</th>
-      <td><p>Whether package tripack should be used for calculating
-the voronoi polygons. If <code>FALSE</code>, package deldir is used instead.
+      <td><p>Whether package <span class="pkg">tripack</span> should be used for
+calculating the voronoi polygons. If <code>FALSE</code>, package <span class="pkg">deldir</span>
+is used instead.
 See details.</p></td>
     </tr>
     <tr>
       <th>mix</th>
-      <td><p>For Voronoi plots using package tripack, I experienced errors if
-the data was spatially ordered. Randomly rearrangig the rows of the
-hyperSpec object circumvents this problem.</p></td>
+      <td><p>For Voronoi plots using package <span class="pkg">tripack</span>, I experienced
+errors if the data was spatially ordered. Randomly rearranging the
+rows of the hyperSpec object circumvents this problem.</p></td>
     </tr>
     </table>
 
@@ -305,8 +306,7 @@ window.</p>
     <p>C. Beleites</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/vignette.html'>vignette</a></span><span class='op'>(</span><span class='va'>plotting</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/vignette.html'>vignette</a></span><span class='op'>(</span><span class='va'>hyperSpec</span><span class='op'>)</span>
 <span class='op'>}</span>
