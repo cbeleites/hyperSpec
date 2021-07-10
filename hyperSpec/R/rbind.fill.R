@@ -132,7 +132,6 @@ rbind.fill.matrix <- function(...) {
 #' @rdname rbind.fill
 #' @examples
 #' # rbind.fill(mtcars[c("mpg", "wt")], mtcars[c("wt", "cyl")])
-#'
 rbind.fill <- function(...) {
   dfs <- list(...)
   if (length(dfs) == 0) {
@@ -161,7 +160,7 @@ rbind.fill <- function(...) {
 
   ## find which cols contain matrices
   matrixcols <- unique(unlist(lapply(dfs, function(x) {
-    names(x) [sapply(x, is.matrix)]
+    names(x)[sapply(x, is.matrix)]
   })))
   seen[matrixcols] <- TRUE # class<- will fail if the matrix is not protected by I
   # because 2 dims are needed
