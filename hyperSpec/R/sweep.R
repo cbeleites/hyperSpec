@@ -17,14 +17,14 @@
   x
 }
 
-#' Sweep Summary Statistic out of an hyperSpec Object.
+#' Sweep summary statistic out of an `hyperSpec` object
 #'
 #' [base::sweep()] for `hyperSpec` objects.
 #'
 #' Calls [base::sweep()] for the spectra matrix.
 #'
-#' `sweep` is useful for some spectra preprocessing, like offset
-#' correction, substraction of background spectra, and normalization of the
+#' `sweep` is useful for some spectra pre-processing, like offset
+#' correction, subtraction of background spectra, and normalization of the
 #' spectra.
 #'
 #' @name sweep
@@ -60,9 +60,9 @@
 #'
 #' @examples
 #'
-#' ## Substract the background / slide / blank spectrum
+#' ## Subtract the background / slide / blank spectrum
 #' # the example data does not have spectra of the empty slide,
-#' # so instead the overall composition of the sample is substracted
+#' # so instead the overall composition of the sample is subtracted
 #' background <- apply(faux_cell, 2, quantile, probs = 0.05)
 #' corrected <- sweep(faux_cell, 2, background, "-")
 #' plot(corrected, "spcprctl5")
@@ -88,6 +88,7 @@ setMethod("sweep", signature = signature(x = "hyperSpec"), .sweep)
 
 
 # Unit tests -----------------------------------------------------------------
+
 hySpc.testthat::test(.sweep) <- function() {
   context("sweep")
 
