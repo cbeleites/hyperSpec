@@ -8,7 +8,7 @@
 #' @rdname show
 #' @aliases show show,hyperSpec-method
 #'
-#' @title Show Brief Summary of `hyperSpec` Object
+#' @title Show brief summary of `hyperSpec` object
 #'
 #' @description
 #' Functions `show()`, `print()`, `summary()`, and `as.character()` calculate
