@@ -12,10 +12,10 @@
   validObject(e2)
 
   if (length(e2[[]]) > length(e1[[]])) {
-    e1 <- .expand(e1, dim(e2) [c(1, 3)])
+    e1 <- .expand(e1, dim(e2)[c(1, 3)])
   }
   if (length(e1[[]]) > length(e2[[]])) {
-    e2 <- .expand(e2, dim(e1) [c(1, 3)])
+    e2 <- .expand(e2, dim(e1)[c(1, 3)])
   }
 
   e1[[]] <- callGeneric(e1[[]], e2[[]])
@@ -52,7 +52,9 @@ hySpc.testthat::test(.arith_hh) <- function() {
   })
 }
 
-#' @title Arithmetical Operators: `+`, `-`, `*`, `/`, `^`, `%%`, `%/%`, `%*%` for `hyperSpec` Objects
+#' @title Arithmetical operators: `+`, `-`, `*`, `/`, `^`, `%%`, `%/%`, `%*%`
+#'        for `hyperSpec` objects
+#'
 #' @description
 #' The arithmetical operators `+`, `-`, `*`, `/`, `^`, `%%`, `%/%`, and `%*%`
 #' `hyperSpec` objects.
@@ -177,7 +179,7 @@ setMethod("Arith", signature(e1 = "hyperSpec", e2 = "missing"), .arith_h_)
     e1 <- .expand(e1, dim(e2))
   }
   if (length(e1[[]]) > length(e2)) {
-    e2 <- .expand(e2, dim(e1) [c(1, 3)])
+    e2 <- .expand(e2, dim(e1)[c(1, 3)])
   }
 
   e1[[]] <- callGeneric(e1[[]], e2)
@@ -278,7 +280,7 @@ setMethod("Arith", signature(e1 = "hyperSpec", e2 = "matrix"), .arith_hn)
 
   ## called /only/ with e2 hyperSpec but e1 numeric
   if (length(e2[[]]) > length(e1)) {
-    e1 <- .expand(e1, dim(e2) [c(1, 3)])
+    e1 <- .expand(e1, dim(e2)[c(1, 3)])
   }
   if (length(e1) > length(e2[[]])) {
     e2 <- .expand(e2, dim(e1))
