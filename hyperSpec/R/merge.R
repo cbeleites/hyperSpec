@@ -1,4 +1,4 @@
-#' Merge `hyperSpec` objects.
+#' Merge `hyperSpec` objects
 #'
 #' Merges two `hyperSpec` objects and [base::cbind()]s their spectra
 #' matrices, or merges additional extra data into a `hyperSpec` object.
@@ -8,7 +8,8 @@
 #'
 #' If the wavelength axis should be ordered, use [wl_sort()].
 #'
-#' If a `hyperSpec` object and  a `data.frame` are merged, the result is of the class of the first (`x`) object.
+#' If a `hyperSpec` object and  a `data.frame` are merged, the result is of the
+#' class of the first (`x`) object.
 #'
 #' @aliases merge,hyperSpec,hyperSpec-method merge
 #' @param x a `hyperSpec` object or data.frame
@@ -30,8 +31,8 @@
 #' @keywords manip
 #' @examples
 #'
-#' merge(faux_cell [1:10, , 600], faux_cell [5:15, , 600], by = c("x", "y"))$.
-#' tmp <- merge(faux_cell [1:10, , 610], faux_cell [5:15, , 610],
+#' merge(faux_cell[1:10, , 600], faux_cell[5:15, , 600], by = c("x", "y"))$.
+#' tmp <- merge(faux_cell[1:10, , 610], faux_cell[5:15, , 610],
 #'   by = c("x", "y"), all = TRUE
 #' )
 #' tmp$.
@@ -45,7 +46,7 @@
 #'   )$y
 #' }
 #'
-#' merged <- merge(faux_cell [1:7, , 610 ~ 620], faux_cell [5:10, , 615 ~ 625], all = TRUE)
+#' merged <- merge(faux_cell[1:7, , 610 ~ 620], faux_cell[5:10, , 615 ~ 625], all = TRUE)
 #' merged$.
 #' merged <- apply(merged, 1, approxfun,
 #'   wl = wl(merged), new.wl = unique(wl(merged)),
@@ -102,13 +103,13 @@ setMethod("merge",
   x.spc <- match("spc", colnames(x))
   y.spc <- match("spc", colnames(y))
 
-  tmp <- merge(x@data [, -x.spc], y@data [, -y.spc], by.x = by.x, by.y = by.y, ...)
+  tmp <- merge(x@data[, -x.spc], y@data[, -y.spc], by.x = by.x, by.y = by.y, ...)
 
   spc.x <- matrix(NA, nrow = nrow(tmp), ncol = nwl(x))
-  spc.x [!is.na(tmp$.nx), ] <- x@data [tmp$.nx[!is.na(tmp$.nx)], x.spc]
+  spc.x[!is.na(tmp$.nx), ] <- x@data[tmp$.nx[!is.na(tmp$.nx)], x.spc]
 
   spc.y <- matrix(NA, nrow = nrow(tmp), ncol = nwl(y))
-  spc.y [!is.na(tmp$.ny), ] <- y@data [tmp$.ny[!is.na(tmp$.ny)], y.spc]
+  spc.y[!is.na(tmp$.ny), ] <- y@data[tmp$.ny[!is.na(tmp$.ny)], y.spc]
 
   tmp$spc <- cbind(spc.x, spc.y) # omit I ()
 
@@ -154,8 +155,8 @@ hySpc.testthat::test(.merge) <- function() {
   context("merge")
 
   test_that("correct number of rows", {
-    expect_equivalent(nrow(merge(faux_cell [1:10], faux_cell [5:15], all = TRUE)), 15)
-    expect_equivalent(nrow(merge(faux_cell [1:10], faux_cell [5:15])), 6)
+    expect_equivalent(nrow(merge(faux_cell[1:10], faux_cell[5:15], all = TRUE)), 15)
+    expect_equivalent(nrow(merge(faux_cell[1:10], faux_cell[5:15])), 6)
   })
 
   test_that("merging hyperSpec object with data.frame", {
@@ -170,20 +171,20 @@ hySpc.testthat::test(.merge) <- function() {
     expect_equivalent(sort(unique(c(colnames(flu), colnames(y)))), sort(colnames(tmp)))
 
     ## y has rows x does not have
-    tmp <- merge(flu [1:2], y)
+    tmp <- merge(flu[1:2], y)
     expect_equivalent(nrow(tmp), 4L)
 
     ## all.y = TRUE
-    tmp <- merge(flu [1:2], y, all.y = TRUE)
+    tmp <- merge(flu[1:2], y, all.y = TRUE)
     expect_equivalent(nrow(tmp), 12L)
     expect_equivalent(sum(is.na(tmp$c)), 8)
 
     ## x has rows y does not have
-    tmp <- merge(flu, y [1:2, ])
+    tmp <- merge(flu, y[1:2, ])
     expect_equivalent(nrow(tmp), 2L)
 
     ## all.x = TRUE
-    tmp <- merge(flu, y [c(1, 7), ], all.x = TRUE)
+    tmp <- merge(flu, y[c(1, 7), ], all.x = TRUE)
     expect_equivalent(nrow(tmp), 7L)
     expect_equivalent(sum(is.na(tmp$cpred)), 5)
   })
