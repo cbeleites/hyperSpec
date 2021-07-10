@@ -1,7 +1,7 @@
 ### ---------------------------------------------------------------------------
 # FIXME: update examples
 
-#' Export `hyperSpec` Objects to ASCII (text) Files
+#' Export `hyperSpec` objects to ASCII (text) files
 #'
 #' These functions write `hyperSpec` objects to text files.
 #'
