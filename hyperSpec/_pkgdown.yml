@@ -105,6 +105,14 @@ reference:
   - has_concept("io")
   - has_concept("IO")
 
+- subtitle: '! Moved to package hySpc.read.ENVI'
+  desc: |
+    You should use analogous functions from package
+    [**hySpc.read.ENVI**](https://r-hyperspec.github.io/hySpc.read.ENVI/reference/index.html)
+    as these functions will be removed soon.
+- contents:
+  - has_concept("moved to hySpc.read.ENVI", internal = TRUE)
+
 - subtitle: '! Moved to package hySpc.read.jdx'
   desc: |
     You should use analogous functions from package
@@ -234,12 +242,13 @@ reference:
     Please, use the analogues of these functions, which are in appropriate
     packages.
 - contents:
-  - has_concept("moved to hySpc.ggplot2",  internal = TRUE)
-  - has_concept("moved to hySpc.read.jdx", internal = TRUE)
-  - has_concept("moved to hySpc.read.mat", internal = TRUE)
-  - has_concept("moved to hySpc.read.spc", internal = TRUE)
-  - has_concept("moved to hySpc.read.spe", internal = TRUE)
-  - has_concept("moved to hySpc.read.txt", internal = TRUE)
+  - has_concept("moved to hySpc.ggplot2",   internal = TRUE)
+  - has_concept("moved to hySpc.read.ENVI", internal = TRUE)
+  - has_concept("moved to hySpc.read.jdx",  internal = TRUE)
+  - has_concept("moved to hySpc.read.mat",  internal = TRUE)
+  - has_concept("moved to hySpc.read.spc",  internal = TRUE)
+  - has_concept("moved to hySpc.read.spe",  internal = TRUE)
+  - has_concept("moved to hySpc.read.txt",  internal = TRUE)
 
 - subtitle: Deprecated, renamed, or defunct functions
   desc: "You should **not** use these functions any more."
