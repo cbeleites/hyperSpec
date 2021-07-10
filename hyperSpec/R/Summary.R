@@ -57,7 +57,7 @@ setMethod(
 #' @export
 #' @examples
 #'
-#' is.na(flu [, , 405 ~ 410])
+#' is.na(flu[, , 405 ~ 410])
 setMethod(
   "is.na", signature(x = "hyperSpec"),
   function(x) {
@@ -194,6 +194,5 @@ hySpc.testthat::test(any_wl) <- function() {
       sum(flu),
       "Do you really want to use sum on a hyperSpec object?"
     )
-
   })
 }
