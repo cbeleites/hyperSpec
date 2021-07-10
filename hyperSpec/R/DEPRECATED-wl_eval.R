@@ -17,7 +17,7 @@
 #'
 #' @param x either `hyperSpec` object or numeric vector.
 #' @param ... expressions to be evaluated.
-#' @param normalize.wl function to transorm the wavelengths before evaluating
+#' @param normalize.wl function to transform the wavelengths before evaluating
 #' the polynomial (or  other function). Use [hyperSpec::normalize01()] to map
 #' the wavelength range to the interval \[0, 1\].
 #' @return `hyperSpec` object containing one spectrum for each expression.
@@ -27,7 +27,7 @@
 #'
 #' @seealso
 #'
-#' - [hyperSpec::vanderMonde()] for  polynomials,
+#' - [hyperSpec::vanderMonde()] for polynomials,
 #' - [hyperSpec::normalize01()] to normalize the wavenumbers before evaluating
 #' the function.
 #'
@@ -48,7 +48,7 @@ wl.eval.hyperSpec <- function(x, ..., normalize.wl = I) {
   hySpc_deprecated("wl_eval.hyperSpec")
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-  wl_eval.hyperSpec (x, ..., normalize.wl = normalize.wl)
+  wl_eval.hyperSpec(x, ..., normalize.wl = normalize.wl)
 }
 
 
@@ -59,7 +59,7 @@ wl.eval.numeric <- function(x, ..., normalize.wl = I) {
   hySpc_deprecated("wl_eval.numeric")
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-  wl_eval.numeric (x, ..., normalize.wl = normalize.wl)
+  wl_eval.numeric(x, ..., normalize.wl = normalize.wl)
 
 }
 
@@ -71,10 +71,13 @@ hySpc.testthat::test(wl.eval.hyperSpec) <- function() {
   context("wl.eval")
 
   test_that("deprecated", {
-    expect_warning(wl.eval.hyperSpec (flu, function(x) x),
-                   "Function 'wl.eval.hyperSpec' is deprecated.")
-    expect_warning(wl.eval.numeric (1:5, function(x) x),
-                   "Function 'wl.eval.numeric' is deprecated.")
+    expect_warning(
+      wl.eval.hyperSpec(flu, function(x) x),
+      "Function 'wl.eval.hyperSpec' is deprecated."
+    )
+    expect_warning(
+      wl.eval.numeric(1:5, function(x) x),
+      "Function 'wl.eval.numeric' is deprecated."
+    )
   })
-
 }
