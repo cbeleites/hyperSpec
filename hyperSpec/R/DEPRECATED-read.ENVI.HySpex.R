@@ -1,11 +1,13 @@
-#' @describeIn  read.ENVI
+#' @describeIn  DEPRECATED-read.ENVI
 #' @include DEPRECATED-read.ENVI.R
 #' @export
-#'
-#' @concept io
-#'
+
 read.ENVI.HySpex <- function(file = stop("read.ENVI.HySpex: file name needed"),
                              headerfile = NULL, header = list(), keys.hdr2data = NULL, ...) {
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  deprecated_read_envi()
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
   headerfile <- .find.ENVI.header(file, headerfile)
   keys <- readLines(headerfile)
   keys <- .read.ENVI.split.header(keys)
@@ -33,6 +35,8 @@ hySpc.testthat::test(read.ENVI.HySpex) <- function() {
 
   test_that("Hyspex ENVI file", {
     skip_if_not_fileio_available()
-    expect_known_hash(read.ENVI.HySpex("fileio/ENVI/HySpexNIR.hyspex"), "cf35ba92334f22513486f25c5d8ebe32")
+    expect_known_hash(
+      read.ENVI.HySpex("fileio/ENVI/HySpexNIR.hyspex"),
+      "cf35ba92334f22513486f25c5d8ebe32")
   })
 }
