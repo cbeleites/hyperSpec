@@ -1,4 +1,4 @@
-#' @name DEPRECATED-read.mat
+#' @name DEPRECATED-read.mat.Cytospec
 #' @concept moved to hySpc.read.mat
 #'
 #' @title (DEPRECATED)
