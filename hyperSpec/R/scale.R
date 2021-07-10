@@ -9,7 +9,7 @@
   x
 }
 
-#' Center and scale `hyperSpec` object.
+#' Center and scale `hyperSpec` object
 #'
 #' Scales the spectra matrix. `scale(x, scale = FALSE)` centers the data.
 #'
