@@ -104,7 +104,6 @@ Collate:
     'DEPRECATED-read.mat.Witec.R'
     'DEPRECATED-read.spc.Kaiser.R'
     'DEPRECATED-read.spc.R'
-    'DEPRECATED-read.spc.Shimadzu.R'
     'DEPRECATED-read.spe.R'
     'DEPRECATED-read.txt.Horiba.R'
     'DEPRECATED-read.txt.Renishaw.R'
