@@ -131,7 +131,7 @@ wl2i <- function(x, wavelength = stop("wavelengths are required."), unlist = TRU
 
     ## conversion to indices
     if (is.logical(to)) {
-      to <- seq_len(nwl(x)) [to]
+      to <- seq_len(nwl(x))[to]
     } else {
       to <- .getindex(x, Re(to), extrapolate = FALSE) + Im(to)
     }
