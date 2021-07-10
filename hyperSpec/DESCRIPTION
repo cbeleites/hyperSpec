@@ -132,7 +132,6 @@ Collate:
     'constants-units.R'
     'cov.R'
     'decomposition.R'
-    'deprecated.R'
     'dim.R'
     'dimnames.R'
     'droplevels.R'
