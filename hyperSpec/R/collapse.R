@@ -1,4 +1,4 @@
-#' @title Collapse/Bind Several `hyperSpec` Objects into One Object
+#' @title Collapse/bind several `hyperSpec` objects into one object
 #' @description
 #' The spectra from all objects will be put into one object.
 #' The resulting object has all wavelengths that occur in any of the input objects,
@@ -42,8 +42,8 @@
 #' @concept manipulation
 #'
 #' @examples
-#' barbiturates [1:3]
-#' collapse(barbiturates [1:3])
+#' barbiturates[1:3]
+#' collapse(barbiturates[1:3])
 #'
 #' a <- barbiturates[[1]]
 #' b <- barbiturates[[2]]
@@ -54,7 +54,7 @@
 #' c
 #' collapse(a, b, c)
 #'
-#' collapse(barbiturates [1:3], collapse.equal = FALSE)
+#' collapse(barbiturates[1:3], collapse.equal = FALSE)
 collapse <- function(..., wl.tolerance = hy.getOption("wl.tolerance"), collapse.equal = TRUE) {
   wl.tolerance <- .checkpos(wl.tolerance, "wl.tolerance")
   dots <- list(...)
@@ -100,7 +100,7 @@ collapse <- function(..., wl.tolerance = hy.getOption("wl.tolerance"), collapse.
 
   ## prepare new labels
   labels <- unlist(lapply(dots, slot, "label"))
-  labels <- labels [unique(names(labels))]
+  labels <- labels[unique(names(labels))]
   labels <- lapply(labels, function(l) if (is.language(l)) l <- as.expression(l) else l)
 
   ## cluster wavelengths into groups of ± wl.tolerance from center
@@ -109,7 +109,7 @@ collapse <- function(..., wl.tolerance = hy.getOption("wl.tolerance"), collapse.
   ## assign cluster number to columns
   # wl.df is ordered by wavelength, each object in dots is ordered by wavelength, so
   for (i in seq_along(dots)) {
-    colnames(dots[[i]]@data$spc) <- wl.df$wlcluster [wl.df$iobj == i]
+    colnames(dots[[i]]@data$spc) <- wl.df$wlcluster[wl.df$iobj == i]
   }
 
   ## now we're ready for the  actual work of collapsing the objects
@@ -118,13 +118,13 @@ collapse <- function(..., wl.tolerance = hy.getOption("wl.tolerance"), collapse.
   ## careful with constructing the wavelength vector: the columns in $spc are in no particular order,
   ## but the colnames indicate wavelength rank.
   ## so reorder $spc accor
-  dots$spc <- dots$spc [, order(as.numeric(colnames(dots$spc)))]
+  dots$spc <- dots$spc[, order(as.numeric(colnames(dots$spc)))]
 
   ## we now need summarized wl.df data:
   wl.df <- group_by(wl.df, .data$wlcluster)
   wl.df <- summarise(wl.df,
     wl = sum(.data$wl * .data$nspc) / sum(.data$nspc), # weighted average
-    old.wlnames = .data$old.wlnames [1L]
+    old.wlnames = .data$old.wlnames[1L]
   )
 
   ## prepare wavelength vector & restore old names (as far as possible)
@@ -142,11 +142,11 @@ hySpc.testthat::test(collapse) <- function() {
   context("collapse")
 
   test_that("correctly assembled", {
-    new <- do.call(collapse, barbiturates [1:3])
-    wl <- unlist(lapply(barbiturates [1:3], slot, "wavelength"))
+    new <- do.call(collapse, barbiturates[1:3])
+    wl <- unlist(lapply(barbiturates[1:3], slot, "wavelength"))
     expect_equal(
       wl(new),
-      sort(wl [!duplicated(wl)])
+      sort(wl[!duplicated(wl)])
     )
 
     for (s in 1:3) {
@@ -163,7 +163,7 @@ hySpc.testthat::test(collapse) <- function() {
     tmp <- collapse(flu, flu)
     expect_equal(labels(tmp, ".wavelength"), labels(flu, ".wavelength"))
 
-    tmp <- collapse(flu [, , min ~ 410], flu [, , 414 ~ 420])
+    tmp <- collapse(flu[, , min ~ 410], flu[, , 414 ~ 420])
     expect_equal(labels(tmp, ".wavelength"), labels(flu, ".wavelength"))
   })
 
@@ -172,14 +172,14 @@ hySpc.testthat::test(collapse) <- function() {
     expect_true(is.expression(labels(tmp)$.wavelength))
     expect_true(is.expression(labels(tmp)$spc))
 
-    tmp <- collapse(flu [, , min ~ 405], flu [, , 414 ~ 420])
+    tmp <- collapse(flu[, , min ~ 405], flu[, , 414 ~ 420])
     expect_true(is.expression(labels(tmp)$.wavelength))
     expect_true(is.expression(labels(tmp)$spc))
   })
 
   test_that("collapse does not mess up labels if a named list is collapsed", {
     expect_equal(
-      labels(tmp) [names(labels(flu))],
+      labels(tmp)[names(labels(flu))],
       labels(flu)
     )
   })
@@ -214,7 +214,7 @@ hySpc.testthat::test(collapse) <- function() {
   })
 
   test_that("result has orded wavelengths", {
-    tmp <- collapse(barbiturates [1:3])
+    tmp <- collapse(barbiturates[1:3])
 
     expect_true(all(diff(wl(tmp)) >= 0))
   })
@@ -258,9 +258,9 @@ hySpc.testthat::test(collapse) <- function() {
 
 
   test_that("factor behaviour of collapse", {
-    a <- faux_cell [faux_cell$region == "nucleus"]
+    a <- faux_cell[faux_cell$region == "nucleus"]
     a$region <- droplevels(a$region)
-    b <- faux_cell [faux_cell$region != "nucleus"]
+    b <- faux_cell[faux_cell$region != "nucleus"]
     b$region <- droplevels(b$region)
 
     tmp <- collapse(a, b)
@@ -273,44 +273,44 @@ hySpc.testthat::test(collapse) <- function() {
   })
 
   test_that("hyperSpec objects with 1 wavelength", {
-    expect_equivalent(collapse(flu [, , 450], flu [, , 450]),
-      flu [rep(1:nrow(flu), 2), , 450],
+    expect_equivalent(collapse(flu[, , 450], flu[, , 450]),
+      flu[rep(1:nrow(flu), 2), , 450],
       check.labels = TRUE
     )
 
-    tmp <- flu [rep(1:nrow(flu), 2)]
+    tmp <- flu[rep(1:nrow(flu), 2)]
     tmp[[7:12]] <- NA
     tmp[[7:12, , 450]] <- flu[[, , 450]]
-    expect_equivalent(collapse(flu [, , 450], flu),
+    expect_equivalent(collapse(flu[, , 450], flu),
       tmp,
       check.labels = TRUE
     )
   })
 
   test_that("hyperSpec objects with 0 wavelengths", {
-    expect_equivalent(collapse(flu [, , FALSE], flu [, , FALSE]),
-      flu [rep(1:nrow(flu), 2), , FALSE],
+    expect_equivalent(collapse(flu[, , FALSE], flu[, , FALSE]),
+      flu[rep(1:nrow(flu), 2), , FALSE],
       check.labels = TRUE
     )
 
-    tmp <- collapse(flu [, , FALSE], flu [, "spc", 405 ~ 406])
+    tmp <- collapse(flu[, , FALSE], flu[, "spc", 405 ~ 406])
     expect_equal(tmp$c, c(flu$c, rep(NA, nrow(flu))))
     expect_equal(tmp$spc, rbind(flu[[, , 405 ~ 406]] + NA, flu[[, , 405 ~ 406]]))
     expect_equal(labels(tmp), lapply(labels(flu), as.expression))
   })
 
   test_that("hyperSpec objects with wavelength being/containing NA", {
-    expect_warning(collapse(flu [, , 0]))
+    expect_warning(collapse(flu[, , 0]))
 
 
     expect_equal(
-      suppressWarnings(collapse(flu [, , 0], flu)),
-      collapse(flu [, , FALSE], flu)
+      suppressWarnings(collapse(flu[, , 0], flu)),
+      collapse(flu[, , FALSE], flu)
     )
 
     expect_equal(
-      suppressWarnings(collapse(flu [, , c(0, 405)], flu)),
-      collapse(flu [, , 405], flu)
+      suppressWarnings(collapse(flu[, , c(0, 405)], flu)),
+      collapse(flu[, , 405], flu)
     )
   })
 }
@@ -324,7 +324,7 @@ hySpc.testthat::test(collapse) <- function() {
   if (any(isTRUE(i.warn))) {
     warning(sprintf(
       "object %i: wl.tolerance (%g) too large compared to smallest wavelength difference within object (%f). Columns will be lost.",
-      which(i.warn), wl.tolerance, wl.diff [i.warn]
+      which(i.warn), wl.tolerance, wl.diff[i.warn]
     ))
   }
 }
@@ -337,7 +337,7 @@ hySpc.testthat::test(collapse) <- function() {
       "object %i: wavelength vector contains NAs: these columns will be dropped",
       which(i.NA)
     ))
-    dots [i.NA] <- lapply(dots [i.NA], function(x) x [, , !is.na(wl(x))])
+    dots[i.NA] <- lapply(dots[i.NA], function(x) x[, , !is.na(wl(x))])
   }
 
   dots
@@ -379,15 +379,15 @@ hySpc.testthat::test(collapse) <- function() {
       }
       wl <- wl / n
 
-      dots[[i]]@data <- rbind.fill(lapply(dots [c(i, i + bind_directly)], slot, "data"))
+      dots[[i]]@data <- rbind.fill(lapply(dots[c(i, i + bind_directly)], slot, "data"))
       .wl(dots[[i]]) <- structure(wl, names = names(wl(dots[[i]])))
 
-      labels <- unlist(lapply(dots [c(i, i + bind_directly)], labels))
+      labels <- unlist(lapply(dots[c(i, i + bind_directly)], labels))
       labels <- lapply(labels, function(l) if (is.language(l)) l <- as.expression(l) else l)
 
-      labels(dots[[i]]) <- labels [!duplicated(names(labels))]
+      labels(dots[[i]]) <- labels[!duplicated(names(labels))]
 
-      dots <- dots [-(i + bind_directly)]
+      dots <- dots[-(i + bind_directly)]
     }
 
     i <- i + 1
@@ -429,10 +429,10 @@ hySpc.testthat::test(collapse) <- function() {
 
   for (i in seq_along(dots)) {
     wln <- names(dots[[i]]@wavelength)
-    if (!is.null(wln)) wl.df$old.wlnames [wl.df$iobj == i] <- wln
+    if (!is.null(wln)) wl.df$old.wlnames[wl.df$iobj == i] <- wln
   }
 
-  wl.df <- wl.df [order(wl.df$wl), ]
+  wl.df <- wl.df[order(wl.df$wl), ]
 
   ## computational shortcut:
   ## wavelengths that are > 2 * wl.tolerance apart must be in different clusters,
@@ -447,7 +447,7 @@ hySpc.testthat::test(collapse) <- function() {
 
   ## preliminary clusters may need to be split further
   for (i in seq_len(tail(wl.df$wlcluster, 1))) {
-    tmp <- wl.df [wl.df$wlcluster == i, ]
+    tmp <- wl.df[wl.df$wlcluster == i, ]
 
     ## only 1 wavelength in cluster => nothing to do
     if (length(tmp) <= 1L) {
@@ -455,7 +455,7 @@ hySpc.testthat::test(collapse) <- function() {
     }
 
     ## all wavelengths within 2 * wl.tolerance => nothing to do
-    if (tail(tmp$wl, 1) - tmp$wl [1] <= 2 * wl.tolerance) {
+    if (tail(tmp$wl, 1) - tmp$wl[1] <= 2 * wl.tolerance) {
       next
     }
 
@@ -476,7 +476,7 @@ hySpc.testthat::test(collapse) <- function() {
     tmp <- merge(tmp, u, by = "wl", suffixes = c(".prelim", ""))
     tmp$wlcluster.prelim <- NULL
 
-    wl.df$wlcluster [wl.df$wlcluster == i] <- tmp$wlcluster
+    wl.df$wlcluster[wl.df$wlcluster == i] <- tmp$wlcluster
   }
 
   ## cluster numbers so far are in no particular order => rename them so they correspond to increasing wavelengths
