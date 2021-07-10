@@ -1,7 +1,7 @@
 #' @name palette_colorblind
 #' @aliases palette_colorblind colors,palette_colorblind
 #'
-#' @title Color Suggestions for `hyperSpec` Users
+#' @title Color suggestions for `hyperSpec` users
 #'
 #' @description
 #' In \pkg{hyperSpec} the user may use any color name/format known to `R`.
@@ -13,7 +13,7 @@
 #' discussion of color issues can be found in the \pkg{colorspace} package.
 #' The [\pkg{Polychrome}](https://CRAN.R-project.org/package=Polychrome)
 #' package has further discussion and utilities for choosing qualitative
-#' colorschemes, including those for color-blind individuals.
+#' color schemes, including those for color-blind individuals.
 #'
 #' `palette_colorblind` is a selection of seven colors suitable for use on
 #' screens by people
