@@ -6,7 +6,7 @@
 
 
 
-#' Calibration Plots, Timeseries Plots, and Depth-Profiles.
+#' Calibration plots, timeseries plots, and depth-profiles
 #'
 #' Calibration- and timeseries plots, depth-profiles and the like
 #' `plotc` plots intensities of a `hyperSpec` object over another
@@ -54,12 +54,12 @@
 #' plotc(flu, func = mean)
 #' plotc(flu, func = range, groups = .wavelength)
 #'
-#' plotc(flu[, , 450], ylab = expression(I ["450 nm"] / a.u.))
+#' plotc(flu[, , 450], ylab = expression(I["450 nm"] / a.u.))
 #'
 #'
 #' calibration <- lm(spc ~ c, data = flu[, , 450]$.)
 #' summary(calibration)
-#' plotc(flu [, , 450], type = c("p", "r"))
+#' plotc(flu[, , 450], type = c("p", "r"))
 #'
 #' conc <- list(c = seq(from = 0.04, to = 0.31, by = 0.01))
 #' ci <- predict(calibration, newdata = conc, interval = "confidence", level = 0.999)
@@ -72,9 +72,9 @@
 #'   panel.lines(conc, ci.upr, col = ci.col)
 #' }
 #'
-#' plotc(flu [, , 450],
+#' plotc(flu[, , 450],
 #'   panel = panel.ci,
-#'   conc = conc$c, ci.lwr = ci [, 2], ci.upr = ci [, 3]
+#'   conc = conc$c, ci.lwr = ci[, 2], ci.upr = ci[, 3]
 #' )
 #'
 #' ## example 2: time-trace of laser emission modes
@@ -86,7 +86,7 @@
 #'   abline(v = wl[i], col = cols[i], lwd = 2)
 #' }
 #'
-#' plotc(laser [, , wl], spc ~ t,
+#' plotc(laser[, , wl], spc ~ t,
 #'   groups = .wavelength, type = "b",
 #'   col = cols
 #' )
@@ -110,7 +110,7 @@ plotc <- function(object, model = spc ~ c, groups = NULL,
   ## find out whether the wavelengths are needed individually,
   ## if not, use only the first wavelength and issue a warning
   parsed.formula <- latticeParseFormula(model,
-    as.long.df(object [1, , 1, wl.index = TRUE], rownames = TRUE),
+    as.long.df(object[1, , 1, wl.index = TRUE], rownames = TRUE),
     groups = groups, dimension = 2
   )
 
@@ -123,7 +123,7 @@ plotc <- function(object, model = spc ~ c, groups = NULL,
       as.character(groups),
       as.character(dots$subset)
     )))) {
-    object <- object [, , 1, wl.index = TRUE]
+    object <- object[, , 1, wl.index = TRUE]
     warning("Intensity at first wavelengh only is used.")
   }
 
