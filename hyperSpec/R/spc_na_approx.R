@@ -1,15 +1,15 @@
-#' Impute Missing Data Points
+#' Impute missing data points
 #'
 #' Replace `NA`s in the spectra matrix by interpolation. With
-#' less than 4 points available linear interpolation of the 2 neighbour points
-#' is used. For larger numbers of neighbour points, smoothing interpolation is
+#' less than 4 points available linear interpolation of the 2 neighbor points
+#' is used. For larger numbers of neighbor points, smoothing interpolation is
 #'  performed by [stats::smooth.spline()].
 #'
 #' @param spc hyperSpec object with spectra matrix containing `NA`s
-#' @param neighbours how many neighbour data points should be used to fit the
+#' @param neighbours how many neighbor data points should be used to fit the
 #'   line
 #' @param w,df,spar see [stats::smooth.spline()]
-#' @param debuglevel  see [hyperSpec::options()]
+#' @param debuglevel see [hyperSpec::options()]
 #' @return hyperSpec object
 #'
 #' @export
