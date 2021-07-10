@@ -1,15 +1,28 @@
-#' Import functions for Kaiser Optical Systems `.spc` files.
+#' @name DEPRECATED-read.spc.Kaiser
+#' @concept moved to hySpc.read.spc
+#'
+#' @title (DEPRECATED)
+#'        Import functions for Kaiser Optical Systems `.spc` files
+#'
+#' @description
+#'
+#' These data input functions are **deprecated** and they will be removed in
+#' the next release of \pkg{hyperspcc} package.
+#' Now functions in package \pkg{hySpc.read.spc}
+#' ([link](https://r-hyperspcc.github.io/hySpc.read.spc/reference/index.html))
+#' should be used as the alternatives.
+#'
+#'
+#' **Old description:**
+#'
+#' Read Kaiser `.spc` files.
 #'
 #' `read.spc.Kaiser` imports sets of `.spc` files written by Kaiser Optical Systems' Hologram
 #' software.  It may also serve as an example how to write wrapper functions for `read.spc` to
 #' conveniently import specialized sets of `.spc` files.
 #'
-#' @title read Kaiser `.spc` files
 #' @export
 #'
-#' @concept io
-#'
-#' @rdname read-spc-Kaiser
 #' @param files If `glob = TRUE`, `filename` can contain wildcards.
 #'   Thus all files matching the name pattern in `filename` can be
 #'   specified.
@@ -20,6 +33,11 @@
 #' @examples
 #' ## for examples, please see `vignette ("fileio", package = "hyperSpec")`.
 read.spc.Kaiser <- function(files, ..., glob = TRUE) {
+
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  deprecated_read_spc()
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
   if (glob) {
     files <- Sys.glob(files)
   }
@@ -57,12 +75,14 @@ read.spc.Kaiser <- function(files, ..., glob = TRUE) {
 
 #' `read.spc.KaiserMap` is a wrapper for `read.spc.Kaiser` with predefined `log2data`
 #' to fetch the stage position for each file.
-#' @rdname read-spc-Kaiser
+#' @rdname DEPRECATED-read.spc.Kaiser
 #' @export
-#'
-#' @concept io
-#'
+
 read.spc.KaiserMap <- function(files, keys.log2data = NULL, ...) {
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  deprecated_read_spc()
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
   keys.log2data <- c("Stage_X_Position", "Stage_Y_Position", "Stage_Z_Position", keys.log2data)
 
   spc <- read.spc.Kaiser(files, keys.log2data = keys.log2data, ...)
@@ -86,16 +106,18 @@ read.spc.KaiserMap <- function(files, keys.log2data = NULL, ...) {
 #' in separate files for low and high wavenumber range.  The wavelength axis holds the pixel
 #' numbers, which repeat for low and high wavenumber ranges.
 #'
-#' @rdname read-spc-Kaiser
+#' @rdname DEPRECATED-read.spc.Kaiser
 #' @param type what kind of measurement was done? If `"map"`, `read.spc.KaiserMap` is used
 #' instead of `read.spc.Kaiser`.
 #' @export
-#'
-#' @concept io
-#'
+
 read.spc.KaiserLowHigh <- function(files = stop("file names needed"),
                                    type = c("single", "map"),
                                    ..., glob = TRUE) {
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  deprecated_read_spc()
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
   if (glob) {
     files <- Sys.glob(files)
   }

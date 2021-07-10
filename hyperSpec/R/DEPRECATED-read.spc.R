@@ -621,8 +621,22 @@ raw.split.nul <- function(raw, trunc = c(TRUE, TRUE), firstonly = FALSE, paste.c
 
 #####################################################################################################
 
-
-#' Import for Thermo Galactic's `spc` file format.
+#' @name DEPRECATED-read.spc
+#' @concept moved to hySpc.read.spc
+#'
+#' @title (DEPRECATED)
+#'        Import for Thermo Galactic's `spc` file format
+#'
+#' @description
+#'
+#' These data input functions are **deprecated** and they will be removed in
+#' the next release of \pkg{hyperspcc} package.
+#' Now functions in package \pkg{hySpc.read.spc}
+#' ([link](https://r-hyperspcc.github.io/hySpc.read.spc/reference/index.html))
+#' should be used as the alternatives.
+#'
+#'
+#' **Old description:**
 #'
 #' These functions allow to import Thermo Galactic/Grams `.spc` files.
 #'
@@ -660,13 +674,11 @@ raw.split.nul <- function(raw, trunc = c(TRUE, TRUE), firstonly = FALSE, paste.c
 #'   hesitate to contact the package maintainer with your code patch or asking
 #'   advice.
 #' @author C. Beleites
-#' @rdname read-spc
 #' @references Source development kit and file format specification of `.spc`
 #'   files.
 #' @export
 #'
 #' @keywords IO file
-#' @concept io
 #'
 #' @examples
 #'
@@ -691,6 +703,9 @@ read.spc <- function(filename,
                      log.txt = TRUE, log.bin = FALSE, log.disk = FALSE,
                      hdr = list(),
                      no.object = FALSE) {
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  deprecated_read_spc()
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   ## f contains the raw bytes of the file
 
