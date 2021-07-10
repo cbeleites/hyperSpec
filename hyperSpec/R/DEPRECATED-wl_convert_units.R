@@ -1,7 +1,8 @@
 #' @name DEPRECATED-wlconv
 #' @concept deprecated
 #'
-#' @title (DEPRECATED) Convert different wavelength units
+#' @title (DEPRECATED)
+#'        Convert different wavelength units
 #'
 #' @description
 #' These \pkg{hyperSpec} functions are **deprecated** and not maintained any

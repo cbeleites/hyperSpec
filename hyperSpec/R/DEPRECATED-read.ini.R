@@ -1,7 +1,8 @@
 #' @name DEPRECATED-read.ini
 #' @concept moved to hySpc.read.txt
 #'
-#' @title (DEPRECATED) Read INI files
+#' @title (DEPRECATED)
+#'        Read INI files
 #'
 #' @description
 #'

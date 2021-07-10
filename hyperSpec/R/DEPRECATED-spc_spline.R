@@ -1,7 +1,8 @@
 #' @name DEPRECATED-spc.spline
 #' @concept deprecated
 #'
-#' @title (DEPRECATED) Spectral smoothing by splines
+#' @title (DEPRECATED)
+#'        Spectral smoothing by splines
 #'
 #' @description
 #'

@@ -1,7 +1,8 @@
 #' @name DEPRECATED-baselines
 #' @concept deprecated
 #'
-#' @title (DEPRECATED) Polynomial Baseline Fitting
+#' @title (DEPRECATED)
+#'        Polynomial baseline fitting
 #'
 #'
 #' @description

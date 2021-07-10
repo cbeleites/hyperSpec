@@ -1,7 +1,8 @@
 #' @name DEPRECATED-guess.wavlength
 #' @concept deprecated
 #'
-#' @title (DEPRECATED) Guess wavelengths from character vector
+#' @title (DEPRECATED)
+#'        Guess wavelengths from character vector
 #'
 #'
 #' @description

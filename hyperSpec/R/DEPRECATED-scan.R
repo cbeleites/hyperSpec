@@ -1,7 +1,8 @@
 #' @name deprecated
 #' @concept deprecated
 #'
-#' @title Deprecated and Defunct Functions
+#' @title Deprecated and defunct functions
+#'
 #' @description
 #' These \pkg{hyperSpec} functions are **deprecated** and not maintained any
 #' more. You should not use these.
@@ -72,8 +73,7 @@ scan.txt.Witec.Graph <- function(...) {
 }
 
 
-#### DEFUNCT ##################################################################################################
-
+#### DEFUNCT ##################################################################
 #' @rdname deprecated
 #' @details
 #' - Instead of `read.cytomat()` use [read.mat.Cytospec()].

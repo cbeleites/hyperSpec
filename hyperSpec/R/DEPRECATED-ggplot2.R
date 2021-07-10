@@ -2,7 +2,7 @@
 #' @concept moved to hySpc.ggplot2
 #'
 #' @title (DEPRECATED)
-#'        Spectra Plotting with \pkg{ggplot2} Was Moved to \pkg{hySpc.ggplot2}
+#'        Spectra plotting with \pkg{ggplot2} was moved to \pkg{hySpc.ggplot2}
 #'
 #' @description
 #'

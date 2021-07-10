@@ -1,7 +1,8 @@
 #' @name DEPRECATED-spc-rubberband
 #' @concept deprecated
 #'
-#' @title (DEPRECATED) Rubberband baseline correction
+#' @title (DEPRECATED)
+#'        Rubberband baseline correction
 #'
 #' @description
 #' These \pkg{hyperSpec} functions are **deprecated** and not maintained any

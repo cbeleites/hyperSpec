@@ -1,7 +1,8 @@
 #' @name DEPRECATED-read.txt.Witec
 #' @concept moved to hySpc.read.txt
 #'
-#' @title (DEPRECATED) File Import Witec Raman
+#' @title (DEPRECATED)
+#'        File import Witec Raman
 #'
 #' @description
 #'

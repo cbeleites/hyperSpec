@@ -1,7 +1,8 @@
 #' @name DEPRECATED-fix_spc_colnames
 #' @concept deprecated
 #'
-#' @title (DEPRECATED) Ensure that the spectra matrix has the wavelengths in column names
+#' @title (DEPRECATED)
+#'        Ensure that the spectra matrix has the wavelengths in column names
 #'
 #'
 #' @description

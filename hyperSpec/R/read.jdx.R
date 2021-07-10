@@ -3,7 +3,8 @@
 #' @name DEPRECATED-read.jdx
 #' @concept moved to hySpc.read.jdx
 #'
-#' @title (DEPRECATED) JCAMP-DX import for Shimadzu library spectra
+#' @title (DEPRECATED)
+#'        JCAMP-DX import for Shimadzu library spectra
 #'
 #' @description
 #' This function is **deprecated** and  will be  removed in the next release

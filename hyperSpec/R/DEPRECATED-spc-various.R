@@ -1,7 +1,8 @@
 #' @name DEPRECATED-count_lines
 #' @concept moved to hySpc.read.txt
 #'
-#' Count Lines (of an ASCII File) (DEPRECATED)
+#' @title (DEPRECATED)
+#'        Count lines (of an ASCII file)
 #'
 #' @description
 #'

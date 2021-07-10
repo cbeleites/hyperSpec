@@ -1,7 +1,8 @@
 #' @name DEPRECATED-spc.NA.approx
 #' @concept deprecated
 #'
-#' @title (DEPRECATED) Impute Missing Data Points
+#' @title (DEPRECATED)
+#'        Impute missing data points
 #'
 #' @description
 #' These \pkg{hyperSpec} functions are **deprecated** and not maintained any

@@ -1,7 +1,8 @@
 #' @name DEPRECATED-read.txt.Renishaw
 #' @concept moved to hySpc.read.txt
 #'
-#' @title (DEPRECATED) Import Raman measurements from Renishaw ASCII-files
+#' @title (DEPRECATED)
+#'        Import Raman measurements from Renishaw ASCII-files
 #'
 #' @description
 #'

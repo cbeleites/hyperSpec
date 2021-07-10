@@ -1,7 +1,8 @@
 #' @name DEPRECATED-orderwl
 #' @concept deprecated
 #'
-#' @title (DEPRECATED) Sorting the Wavelengths of a `hyperSpec` Object
+#' @title (DEPRECATED)
+#'        Sorting the wavelengths of a `hyperSpec` object
 #'
 #' @description
 #' These \pkg{hyperSpec} functions are **deprecated** and not maintained any

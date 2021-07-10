@@ -1,7 +1,8 @@
 #' @name DEPRECATED-spc.bin
 #' @concept deprecated
 #'
-#' @title (DEPRECATED) Wavelength Binning
+#' @title (DEPRECATED)
+#'        Wavelength binning
 #'
 #'
 #' @description

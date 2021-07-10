@@ -2,9 +2,9 @@
 #' @concept moved to hySpc.read.txt
 #'
 #' @title (DEPRECATED)
-#'        Import Raman Spectra/Maps from Andor Cameras/Solis ASCII Files
-#' @description
+#'        Import Raman spectra/maps from Andor cameras/solis ASCII files
 #'
+#' @description
 #' These data input functions are **deprecated** and they will be removed in
 #' the next release of \pkg{hyperspec} package.
 #' Now functions in package \pkg{hySpc.read.txt}
