@@ -1,10 +1,10 @@
-#' Distance based on Pearson's \eqn{R^2}{R squared}.
+#' Distance based on Pearson's \eqn{R^2}{R squared}
 #'
 #' The calculated distance is
 #' \eqn{D^2 = \frac{1 - COR (`x`')}{2}}{D^2 = (1 - COR (x')) / 2}
 #'
 #' The distance between the rows of `x` is calculated.  The possible
-#' values range from 0 (prefectly correlated) over 0.5 (uncorrelated) to 1
+#' values range from 0 (perfectly correlated) over 0.5 (uncorrelated) to 1
 #' (perfectly anti-correlated).
 #'
 #' @param x a matrix
@@ -56,7 +56,7 @@ hySpc.testthat::test(pearson.dist) <- function() {
 ## benchmark
 # function (){
 #   m <- sample (faux_cell, 10000)[[]]
-#   microbenchmark (
+#   microbenchmark(
 #     cor = as.dist (0.5 - cor (t (as.matrix (m))) / 2),
 #     tcross = pearson.dist (m),
 #     times = 10L
