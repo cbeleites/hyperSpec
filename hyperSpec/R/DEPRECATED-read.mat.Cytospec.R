@@ -1,4 +1,19 @@
-#' Import for Cytospec `mat` files.
+#' @name DEPRECATED-read.mat
+#' @concept moved to hySpc.read.mat
+#'
+#' @title (DEPRECATED)
+#'        Import for Cytospec `mat` files
+#'
+#' @description
+#'
+#' These data input functions are **deprecated** and they will be removed in
+#' the next release of \pkg{hyperspec} package.
+#' Now functions in package \pkg{hySpc.read.mat}
+#' ([link](https://r-hyperspec.github.io/hySpc.read.mat/reference/index.html))
+#' should be used as the alternatives.
+#'
+#'
+#' **Old description:**
 #'
 #' These functions allow to import `.mat` (Matlab V5) files written by Cytospec.
 #'
@@ -18,6 +33,11 @@
 #' @concept io
 #'
 read.mat.Cytospec <- function(file, keys2data = FALSE, blocks = TRUE) {
+
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  deprecated_read_mat()
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
   if (!requireNamespace("R.matlab")) {
     stop("package 'R.matlab' needed.")
   }

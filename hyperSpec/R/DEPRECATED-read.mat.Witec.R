@@ -1,11 +1,19 @@
-
-#' Read `.mat` file into `hyperSpec` object
+#' @name DEPRECATED-read.mat
+#' @concept moved to hySpc.read.mat
 #'
+#' @title (DEPRECATED)
+#'        Read `.mat` file into `hyperSpec` object
+#'
+#' @description
+#'
+#' These data input functions are **deprecated** and they will be removed in
+#' the next release of \pkg{hyperspec} package.
+#' Now functions in package \pkg{hySpc.read.mat}
+#' ([link](https://r-hyperspec.github.io/hySpc.read.mat/reference/index.html))
+#' should be used as the alternatives.
 #'
 #' @param file File name.
 #'
-# @concept io
-#' @concept moved to hySpc.read.txt
 #' @concept moved to hySpc.read.mat
 #'
 #' @importFrom utils maintainer
@@ -13,6 +21,11 @@
 
 read.mat.Witec <- function(file = stop("filename or connection needed")) {
   if (!requireNamespace("R.matlab")) {
+
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  deprecated_read_mat()
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
     stop("package 'R.matlab' needed.")
   }
 
