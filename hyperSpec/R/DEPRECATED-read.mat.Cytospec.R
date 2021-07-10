@@ -25,7 +25,6 @@
 #' @return `hyperSpec` object if the file contains a single spectra block,
 #'   otherwise a list with one `hyperSpec` object for each block.
 #' @author C. Beleites
-#' @rdname read.mat.Cytospec
 #' @seealso [R.matlab::readMat()]
 #' @export
 #'
