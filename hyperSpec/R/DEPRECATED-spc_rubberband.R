@@ -17,10 +17,13 @@
 #' Use `debuglevel >= 1` to obtain debug plots, either directly via function
 #' argument or by setting hyperSpec's `debuglevel` option.
 #' @param ... handed to [hyperSpec::spc_rubberband()]
-#' @param upper logical indicating whether the lower or upper part of the hull should be used
-#' @param noise noise level to be taken into account
-#' @param spline logical indicating whether the baseline should be an interpolating spline through
-#' the support points or piecewise linear.
+#
+# @param upper logical indicating whether the lower or upper part of the
+#        hull should be used
+# @param noise noise level to be taken into account
+# @param spline logical indicating whether the baseline should be an
+#        interpolating spline through the support points or piecewise linear.
+#'
 #' @return `hyperSpec` object containing the baselines
 #'
 #' @author Claudia Beleites
