@@ -1,3 +1,5 @@
+#' Helper function for unit testing
+#'
 #' @export
 
 skip_if_not_fileio_available <- function() {
