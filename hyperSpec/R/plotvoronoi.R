@@ -4,12 +4,13 @@
 ###
 ###  plots intensity or extra data column over 2 extra data columns
 
-#' @param use.tripack Whether package tripack should be used for calculating
-#'   the voronoi polygons. If `FALSE`, package deldir is used instead.
-#'   See details.
-#' @param mix For Voronoi plots using package tripack, I experienced errors if
-#'   the data was spatially ordered. Randomly rearrangig the rows of the
-#'   hyperSpec object circumvents this problem.
+#' @param use.tripack Whether package \pkg{tripack} should be used for
+#'        calculating the voronoi polygons. If `FALSE`, package \pkg{deldir}
+#'        is used instead.
+#'        See details.
+#' @param mix For Voronoi plots using package \pkg{tripack}, I experienced
+#'        errors if the data was spatially ordered. Randomly rearranging the
+#'        rows of the hyperSpec object circumvents this problem.
 #' @rdname levelplot
 #' @include levelplot.R
 #'
@@ -38,7 +39,7 @@ plotvoronoi <- function(object, model = spc ~ x * y,
   }
 
   if (use.tripack && mix) {
-    object@data <- object@data [sample(nrow(object)), ]
+    object@data <- object@data[sample(nrow(object)), ]
   }
 
   dots <- modifyList(
