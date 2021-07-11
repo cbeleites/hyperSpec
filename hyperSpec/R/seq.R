@@ -1,5 +1,5 @@
 
-#' Sequence generation along spectra or wavelengths.
+#' Sequence generation along spectra or wavelengths
 #'
 #' This function generates sequences along the spectra (rows) or wavelengths of
 #' `hyperSpec` objects.
@@ -81,10 +81,10 @@ wl.seq <- function(x, from = 1, to = ncol(x@data$spc), ...) {
   }
 }
 
+
 # Unit tests -----------------------------------------------------------------
 
 hySpc.testthat::test(seq.hyperSpec) <- function() {
-
   context("seq.hyperSpec")
 
   # Perform tests
@@ -93,7 +93,7 @@ hySpc.testthat::test(seq.hyperSpec) <- function() {
 
     expect_equal(seq(sp, index = TRUE), 1:nrow(sp))
 
-    expect_is(seq(sp),       "hyperSpec")
+    expect_is(seq(sp), "hyperSpec")
     expect_is(seq_along(sp), "integer")
 
     expect_equal(seq_along(sp), seq(sp, index = TRUE))
@@ -139,5 +139,4 @@ hySpc.testthat::test(seq.hyperSpec) <- function() {
     expect_length(w, 0)
     expect_is(w, "integer")
   })
-
 }

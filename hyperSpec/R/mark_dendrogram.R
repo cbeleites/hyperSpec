@@ -1,4 +1,4 @@
-#' Groups are marked by colored rectangles as well as by their levels.
+#' Groups are marked by colored rectangles as well as by their levels
 #'
 #' The dendrogram should be plotted separately, see the example.
 #' @title Mark groups in [stats::hclust()] dendrograms
@@ -28,18 +28,18 @@
 #'
 #' ## mark clusters
 #' clusters <- as.factor(cutree(dend, k = 4))
-#' levels(clusters) <- LETTERS [1:4]
+#' levels(clusters) <- LETTERS[1:4]
 #' mark.dendrogram(dend, clusters, label = "cluster")
 #'
 #' ## mark independent factor
-#' mark.dendrogram(dend, as.factor(laser [, , 405.36] > 11000),
+#' mark.dendrogram(dend, as.factor(laser[, , 405.36] > 11000),
 #'   pos.marker = -0.02, pos.text = -0.03
 #' )
 #'
 #' ## mark continuous variable: convert it to a factor and omit labels
 #' mark.dendrogram(dend, cut(laser[[, , 405.36]], 100), palette_alois(100),
 #'   pos.marker = -.015, text.col = NA,
-#'   label = expression(I [lambda == 405.36 ~ nm]), label.right = FALSE
+#'   label = expression(I[lambda == 405.36 ~ nm]), label.right = FALSE
 #' )
 #' @importFrom utils head tail
 mark.dendrogram <- function(dendrogram, groups, col = seq_along(unique(groups)),
@@ -52,7 +52,7 @@ mark.dendrogram <- function(dendrogram, groups, col = seq_along(unique(groups)),
     groups <- as.factor(groups)
   }
 
-  groups.x <- groups [dendrogram$order] # clusters in order on x axis
+  groups.x <- groups[dendrogram$order] # clusters in order on x axis
 
   rle.groups <- rle(as.integer(groups.x)) # run-length encoding gives borders
 
@@ -64,15 +64,15 @@ mark.dendrogram <- function(dendrogram, groups, col = seq_along(unique(groups)),
 
   for (g in seq_along(rle.groups$lengths)) {
     rect(
-      xleft = start [g], ybottom = pos.marker - height,
-      xright = end   [g], ytop = pos.marker,
-      col = col [rle.groups$values[g]], border = border, ...
+      xleft = start[g], ybottom = pos.marker - height,
+      xright = end[g], ytop = pos.marker,
+      col = col[rle.groups$values[g]], border = border, ...
     )
-    if (!is.na(text.col [g])) {
+    if (!is.na(text.col[g])) {
       text(
-        x = text [g], y = pos.text,
-        levels(groups) [rle.groups$values [g]],
-        col = text.col [rle.groups$values [g]], ...
+        x = text[g], y = pos.text,
+        levels(groups)[rle.groups$values[g]],
+        col = text.col[rle.groups$values[g]], ...
       )
     }
   }

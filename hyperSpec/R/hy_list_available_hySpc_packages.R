@@ -59,7 +59,6 @@ hySpc.testthat::test(hy_list_available_hySpc_packages) <- function() {
   context("hy_list_available_hySpc_packages")
 
   test_that("hy_list_available_hySpc_packages() works", {
-
     testthat::skip_if_offline()
 
     # FIXME: The lines below should be fixed in the future

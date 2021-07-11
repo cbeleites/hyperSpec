@@ -4,7 +4,7 @@
 #'
 #' @param x either `hyperSpec` object or numeric vector.
 #' @param ... expressions to be evaluated.
-#' @param normalize.wl function to transorm the wavelengths before evaluating
+#' @param normalize.wl function to transform the wavelengths before evaluating
 #' the polynomial (or  other function). Use [hyperSpec::normalize01()] to map
 #' the wavelength range to the interval \[0, 1\].
 #' @return `hyperSpec` object containing one spectrum for each expression.
@@ -24,11 +24,9 @@
 #' @examples
 #' plot(wl_eval(laser, exp = function(x) exp(-x)))
 #'
-#' plot(wl_eval(1000:4000, y = function(x) 1/log(x)))
+#' plot(wl_eval(1000:4000, y = function(x) 1 / log(x)))
 #'
-#' plot(wl_eval(300:550, y2 = function(x) x*2, y3 = function(x) x*3))
-#'
-#' @include normalize01.R
+#' plot(wl_eval(300:550, y2 = function(x) x * 2, y3 = function(x) x * 3))
 wl_eval <- function(x, ..., normalize.wl = I) {
   UseMethod("wl_eval")
 }
@@ -124,7 +122,6 @@ hySpc.testthat::test(wl_eval.hyperSpec) <- function() {
   })
 
   test_that("wl_eval(<numeric>) works", {
-
     expect_equal(
       as.vector(wl_eval(1:10, f = function(x) x)$spc),
       1:10
@@ -137,7 +134,7 @@ hySpc.testthat::test(wl_eval.hyperSpec) <- function() {
 
     expect_equal(
       wl_eval(wl(flu), f = function(x) x)$.f,
-      wl_eval(   flu,  f = function(x) x)$.f
+      wl_eval(flu, f = function(x) x)$.f
     )
 
     expect_silent(

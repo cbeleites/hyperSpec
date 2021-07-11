@@ -8,7 +8,7 @@
 #' @rdname show
 #' @aliases show show,hyperSpec-method
 #'
-#' @title Show Brief Summary of `hyperSpec` Object
+#' @title Show brief summary of `hyperSpec` object
 #'
 #' @description
 #' Functions `show()`, `print()`, `summary()`, and `as.character()` calculate
@@ -69,7 +69,6 @@
 #' summary(faux_cell)
 #'
 #' summary(faux_cell, include = c("wl", "data"))
-
 setMethod("show", signature = signature(object = "hyperSpec"), .show)
 
 
@@ -104,7 +103,7 @@ setMethod("summary", signature = signature(object = "hyperSpec"), .summary)
 
 # Fun: as.character ----------------------------------------------------------
 .as.character <- function(x, digits = getOption("digits"), range = FALSE,
-  max.print = 5, shorten.to = c(2, 1), include = c("all", "main", "wl", "data")) {
+                          max.print = 5, shorten.to = c(2, 1), include = c("all", "main", "wl", "data")) {
   # Input checking ---------------------------------------------------------
   validObject(x)
 
@@ -132,9 +131,8 @@ setMethod("summary", signature = signature(object = "hyperSpec"), .summary)
       "hyperSpec object",
       paste("  ", nrow(x), "spectra"),
       paste("  ", ncol(x), "data columns"),
-      paste("  ", nwl(x),  "data points / spectrum")
+      paste("  ", nwl(x), "data points / spectrum")
     )
-
   } else {
     NULL
   }
@@ -155,7 +153,6 @@ setMethod("summary", signature = signature(object = "hyperSpec"), .summary)
 
   if (all(include %in% "wl")) {
     return(chr_wl)
-
   } else if (all(include %in% c("main", "wl"))) {
     return(c(chr_main, chr_wl))
   }
@@ -172,11 +169,9 @@ setMethod("summary", signature = signature(object = "hyperSpec"), .summary)
         chr_data <- c(chr_data, .paste.row(x@data[[n]], x@label[[n]], n,
           ins = 3, i = match(n, names(x@data)), val = TRUE, range = range,
           shorten.to = shorten.to, max.print = max.print
-        )
-        )
+        ))
       }
     }
-
   } else {
     chr_data <- NULL
   }
@@ -222,7 +217,6 @@ setMethod("summary", signature = signature(object = "hyperSpec"), .summary)
 #' as.character(faux_cell)
 #'
 #' as.character(faux_cell, include = c("wl", "data"))
-
 setMethod("as.character", signature = signature(x = "hyperSpec"), .as.character)
 
 
@@ -279,7 +273,6 @@ hySpc.testthat::test(.print) <- function() {
 
     expect_output(print(hs, range = TRUE, include = "data"), " range ")
     expect_output(print(hs, include = "wl"), "^wavelength: ")
-
   })
 
   test_that("print() does not give certain output", {
@@ -317,7 +310,6 @@ hySpc.testthat::test(.summary) <- function() {
 
     expect_output(summary(hs, include = "data"), " range ")
   })
-
 }
 
 

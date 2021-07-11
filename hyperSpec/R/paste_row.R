@@ -29,8 +29,8 @@
       }
 
       if (length(x) > max.print) {
-        from <- format(head(x, shorten.to [1]), digits = digits, trim = TRUE)
-        to <- format(tail(x, shorten.to [2]), digits = digits, trim = TRUE)
+        from <- format(head(x, shorten.to[1]), digits = digits, trim = TRUE)
+        to <- format(tail(x, shorten.to[2]), digits = digits, trim = TRUE)
 
         text <- paste(paste(from, collapse = " "), "...",
           paste(to, collapse = " "), text,
@@ -65,7 +65,7 @@
       if (is.array(x) & all(class(x) != "array") & all(class(x) != "matrix")) {
         " array x "
       },
-      paste(dim(x) [-1], collapse = " x "),
+      paste(dim(x)[-1], collapse = " x "),
       sep = ""
       )
     },

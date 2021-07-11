@@ -1,4 +1,4 @@
-#' Laser Emission Dataset
+#' Laser emission dataset
 #'
 #' A time series of an unstable laser emission.
 #'
@@ -24,7 +24,7 @@
 #'   abline(v = wl[i], col = cols[i], lwd = 2, lty = 2)
 #' }
 #'
-#' plotc(laser [, , wl], spc ~ t,
+#' plotc(laser[, , wl], spc ~ t,
 #'   groups = .wavelength, type = "b",
 #'   col = cols
 #' )

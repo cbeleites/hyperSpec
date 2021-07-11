@@ -6,7 +6,7 @@
 ###  x y ... int (wl1)  int (wl2) ... int (wl p) z ...
 ###
 
-#' Import/export of `hyperSpec` objects to/from ASCII files.
+#' Import/export of `hyperSpec` objects to/from ASCII files
 #'
 #' @details
 #' A detailed discussion of \pkg{hyperSpec}'s file import and export
@@ -64,7 +64,7 @@ read_txt_wide <- function(file = stop("file is required"),
     cols <- as.list(c(cols, .wavelength = expression(lambda / nm)))
   } else
   if (.wavelength != length(cols)) { # .wavelength should be at the end of cols
-    cols <- cols [c(seq_along(cols)[-.wavelength], .wavelength)]
+    cols <- cols[c(seq_along(cols)[-.wavelength], .wavelength)]
   }
 
   ## columns containing the spectra
@@ -81,10 +81,10 @@ read_txt_wide <- function(file = stop("file is required"),
   ispc <- 0:(ncol(txtfile) - length(cols) + 1) + spc
 
   spc.data <- as.matrix(txtfile[, ispc])
-  txtfile <- txtfile [, -ispc, drop = FALSE]
+  txtfile <- txtfile[, -ispc, drop = FALSE]
 
   ## enforce colnames given by cols
-  colnames(txtfile) <- head(names(cols) [-spc], -1)
+  colnames(txtfile) <- head(names(cols)[-spc], -1)
 
   spc <- new("hyperSpec", spc = spc.data, data = txtfile, labels = cols)
 

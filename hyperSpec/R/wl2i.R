@@ -3,23 +3,24 @@
 ### .getindex
 ###
 ###
-## does the acual work of looking up the index for wl2i, .extract and .replace
-## extrapolate = TRUE returns first resp. last index for wavelength outside hyperSpec@wavelength.
+## does the actual work of looking up the index for wl2i, .extract and .replace
+## extrapolate = TRUE returns first resp. last index for wavelength outside
+## hyperSpec@wavelength.
 ## extrapolate = FALSE returns NA in this case
 
 .getindex <- function(x, wavelength, extrapolate = TRUE) {
   if (!extrapolate) {
-    wavelength [wavelength < min(x@wavelength)] <- -Inf
-    wavelength [wavelength > max(x@wavelength)] <- +Inf
+    wavelength[wavelength < min(x@wavelength)] <- -Inf
+    wavelength[wavelength > max(x@wavelength)] <- +Inf
   }
-  tmp <- wavelength [is.finite(wavelength)]
+  tmp <- wavelength[is.finite(wavelength)]
   if (length(tmp) > 0) {
     tmp <- sapply(
       tmp,
       function(x, y) which.min(abs(x - y)),
       x@wavelength
     )
-    wavelength [is.finite(wavelength)] <- tmp
+    wavelength[is.finite(wavelength)] <- tmp
   }
   wavelength
 }
@@ -36,11 +37,11 @@
 #'
 #' index corresponding to start : index corresponding to end
 #'
-#' is returned. If the wavelengths are not ordered, that may lead to chaos. In this case, call
-#' [hyperSpec::wl_sort()] first.
+#' is returned. If the wavelengths are not ordered, that may lead to chaos.
+#' In this case, call [hyperSpec::wl_sort()] first.
 #'
-#' Two special variables can be used: `min` and `max`, corresponding to the lowest and
-#' highest wavelength of `x`, respectively.
+#' Two special variables can be used: `min` and `max`, corresponding to the
+#' lowest and highest wavelength of `x`, respectively.
 #'
 #' start and end may be complex numbers. The resulting index for a complex x is then
 #'
@@ -130,7 +131,7 @@ wl2i <- function(x, wavelength = stop("wavelengths are required."), unlist = TRU
 
     ## conversion to indices
     if (is.logical(to)) {
-      to <- seq_len(nwl(x)) [to]
+      to <- seq_len(nwl(x))[to]
     } else {
       to <- .getindex(x, Re(to), extrapolate = FALSE) + Im(to)
     }
@@ -242,7 +243,7 @@ i2wl <- function(x, i) {
   chk.hy(x)
   validObject(x)
 
-  x@wavelength [i]
+  x@wavelength[i]
 }
 
 ## check for wrong complex invocation

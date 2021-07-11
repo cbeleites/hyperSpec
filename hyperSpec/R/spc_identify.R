@@ -1,4 +1,4 @@
-#' Identifying Spectra and Spectral Data Points.
+#' Identifying spectra and spectral data points
 #'
 #' This function allows to identify the spectrum and the wavelength of a point
 #' in a plot produced by [plotspc()].

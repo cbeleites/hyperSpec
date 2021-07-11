@@ -1,8 +1,9 @@
-#' @title Spectral smoothing by splines.
+#' @title Spectral smoothing by splines
+#'
 #' @description
 #' Spectral smoothing by splines.
 #' @param spc `hyperSpec` object
-#' @param newx  wavelengh axis to interpolate on
+#' @param newx  wavelength axis to interpolate on
 #' @param ... further parameters handed to [stats::smooth.spline()]
 #' @return `hyperSpec` object containing smoothed spectra
 #' @rdname spc-spline
@@ -55,7 +56,9 @@ spc_smooth_spline <- function(spc, newx = wl(spc), ...) {
   spc
 }
 
+
 # Unit tests -----------------------------------------------------------------
+
 hySpc.testthat::test(spc_smooth_spline) <- function() {
   context("spc_smooth_spline")
 

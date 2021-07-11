@@ -2,7 +2,9 @@
 # Generate spectroscopic data for testing and exploration --------------------
 
 #' @name generate_test_data
-#' @title Generate Spectroscopic Data
+#'
+#' @title Generate spectroscopic data
+#'
 #' @description
 #' These functions generate hyper-spectral datasets that are mainly used for
 #' exploring and testing functionality of \pkg{hyperSpec}.

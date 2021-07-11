@@ -1,4 +1,4 @@
-#' Convert Principal Component Decomposition or the Like into a `hyperSpec` Object
+#' Convert principal component decomposition or the like into a `hyperSpec` object
 #'
 #' Decomposition of the spectra matrix is a common procedure in chemometric
 #' data analysis. `scores` and `loadings` convert the result matrices
@@ -110,16 +110,16 @@ decomposition <- function(object, x, wavelength = seq_len(ncol(x)),
 
     cols <- rep(TRUE, ncol(object@data)) # columns to keep
 
-    for (i in seq_len(ncol(object@data)) [-spc]) {
+    for (i in seq_len(ncol(object@data))[-spc]) {
       tmp <- as.data.frame(lapply(object@data[, i, drop = FALSE], .na.if.different))
-      object@data [1, i] <- tmp
+      object@data[1, i] <- tmp
       if (all(is.na(tmp))) {
-        cols [i] <- FALSE
+        cols[i] <- FALSE
       }
     }
 
     if (!retain.columns) {
-      object@label [colnames(object@data) [!cols]] <- NULL
+      object@label[colnames(object@data)[!cols]] <- NULL
       object@data <- object@data[, cols, drop = FALSE]
     }
 
@@ -154,7 +154,7 @@ hySpc.testthat::test(decomposition) <- function() {
     flu$matrix <- cbind(flu$c, flu$c)
     expect_true(is.matrix(flu$matrix))
 
-    tmp <- flu [, , 405 ~ 410]
+    tmp <- flu[, , 405 ~ 410]
     tmp@wavelength <- seq_len(nwl(tmp))
     colnames(tmp@data$spc) <- seq_len(nwl(tmp))
 
@@ -173,7 +173,7 @@ hySpc.testthat::test(decomposition) <- function() {
   })
 
   test_that("check loadings-like", {
-    tmp <- flu [1, c("spc"), ]
+    tmp <- flu[1, c("spc"), ]
     loadings <- decomposition(flu, flu[[1, , ]])
     expect_equal(loadings, tmp)
   })
@@ -202,13 +202,13 @@ hySpc.testthat::test(decomposition) <- function() {
     # FIXME: these unit test below must be reviewed
 
     spc_empty <- new("hyperSpec",
-                     wavelength = 1:5,
-                     spc = matrix(NA, ncol = 5, nrow = 0))
+      wavelength = 1:5,
+      spc = matrix(NA, ncol = 5, nrow = 0)
+    )
 
     loading_matrix <- matrix(5:1, ncol = 5, nrow = 1)
 
     expect_error(decomposition(spc_empty, scores = TRUE))
     expect_error(decomposition(spc_empty, scores = FALSE))
-
   })
 }

@@ -51,7 +51,7 @@
 }
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .apply <- function(X, MARGIN, FUN, ..., label.wl = NULL,
-  label.spc = NULL, new.wavelength = NULL, simplify) {
+                   label.spc = NULL, new.wavelength = NULL, simplify) {
   validObject(X)
 
   if (missing(MARGIN)) { # apply for functions that the complete spectra matrix
@@ -119,14 +119,14 @@
   X
 }
 
-#' Compute Summary Statistics for the Spectra of a `hyperSpec` Object
+#' Compute summary statistics for the spectra of a `hyperSpec` object
 #'
 #' `apply` gives the functionality of [base::apply()] for `hyperSpec` objects.
 #'
-#' The generic functions of group [methods::Math()] are not definded
+#' The generic functions of group [methods::Math()] are not defined
 #' for `hyperSpec` objects. Instead, `apply` can be used. For
 #' functions like `log()` that work on scalars, `MARGIN = 1 : 2` gives
-#' the appropriate behaviour.
+#' the appropriate behavior.
 #'
 #' `spcapply` does the same as `apply` with `MARGIN = 1`, but
 #' additionally allows to set a new wavelength axis and adjust the labels.
@@ -183,10 +183,10 @@
 #' apply(flu, 1:2, "*", -1)[[, , 405:407]]
 #'
 #' ## without MARGIN the whole matrix is handed to FUN
-#' apply(flu [, , 405:407], , print)[[]]
+#' apply(flu[, , 405:407], , print)[[]]
 #'
 #' ## whereas MARGIN = 1 : 2 leads to FUN being called for each element separately
-#' apply(flu [, , 405:407], 1:2, print)[[]]
+#' apply(flu[, , 405:407], 1:2, print)[[]]
 setMethod("apply", signature = signature(X = "hyperSpec"), .apply)
 
 

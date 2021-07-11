@@ -1,4 +1,4 @@
-#' Functions `colSums()`, `colMeans()`, `rowSums()`, and `rowMeans()` for `hyperSpec` Objects
+#' Functions `colSums()`, `colMeans()`, `rowSums()`, and `rowMeans()` for `hyperSpec` objects
 #'
 #' `hyperSpec` objects can use the base functions [base::colMeans()],
 #' [base::colSums()], [base::rowMeans()] and [base::rowSums()].
@@ -108,16 +108,14 @@ setMethod("rowSums", signature = signature(x = "hyperSpec"), .rowSums)
 
 # Unit tests -----------------------------------------------------------------
 
-
 hySpc.testthat::test(.colMeans) <- function() {
-
   for (fun in c("colMeans", "colSums", "rowMeans", "rowSums")) {
     context(fun)
     f <- get(fun, mode = "function")
     test_that("basic operation", {
       expect_equal(
         as.numeric(f(flu)[[]]),
-        as.numeric(f(flu[[]],   na.rm = TRUE)),
+        as.numeric(f(flu[[]], na.rm = TRUE)),
         label = fun
       )
     })
@@ -137,4 +135,3 @@ hySpc.testthat::test(.colMeans) <- function() {
     })
   }
 }
-

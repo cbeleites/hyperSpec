@@ -1,7 +1,6 @@
-#' Paracetamol Spectrum.
+#' Paracetamol spectrum
 #'
 #' A Raman spectrum of a paracetamol tablet.
-#'
 #'
 #' @name paracetamol
 #' @docType data

@@ -1,8 +1,8 @@
 
-#' Convert between Different Wavelength Units
+#' Convert between different wavelength units
 #'
 #' The following units can be converted into each other:
-#' *nm*, \emph{\eqn{cm^{-1}}{inverse cm}}, *eV*, *THz* and *Raman shift*
+#' *nm*, \emph{\eqn{cm^{-1}}{inverse cm}}, *eV*, *THz* and *Raman shift*.
 #'
 #' @param x data for conversion
 #' @param from source unit

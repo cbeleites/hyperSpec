@@ -18,7 +18,7 @@
 #' @concept manipulation
 #'
 #' @examples
-#' tmp <- flu [, FALSE, ]
+#' tmp <- flu[, FALSE, ]
 #' tmp$prediction <- 1:6
 #' tmp
 #'
@@ -56,7 +56,7 @@ merge_data <- function(x, y) {
     } else if (colname %in% colnames(x)) {
       # y column needs to be renamed
 
-      colnames(y)[col] <- paste0(colnames(y) [col], ".y")
+      colnames(y)[col] <- paste0(colnames(y)[col], ".y")
       names(ylabels)[names(ylabels) == colname] <-
         paste0(names(ylabels)[names(ylabels) == colname], ".y")
     }

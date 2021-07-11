@@ -1,6 +1,6 @@
 #' @rdname spc-loess
 #'
-#' @title LOESS Smoothing Interpolation for Spectra
+#' @title LOESS smoothing interpolation for spectra
 #'
 #' @description
 #' Spectra smoothing and interpolation on a new wavelength axis using
@@ -50,7 +50,6 @@
 #' plot(flu_na_smoothed, add = TRUE, col = "blue")
 spc_loess <- function(spc, newx, enp.target = nwl(spc) / 4, surface = "direct",
                       ...) {
-
   .loess <- function(y, x) {
     if (all(is.na(y))) {
       NA

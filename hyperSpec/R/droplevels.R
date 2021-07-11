@@ -4,7 +4,7 @@
   x
 }
 
-#' Droplevels for `hyperSpec` Objects
+#' Droplevels for `hyperSpec` objects
 #'
 #' Calls [base::droplevels()] on the data.frame in `spc@data`.
 #'
@@ -20,7 +20,7 @@
 #'
 #' @examples
 #' faux_cell[1:3]$region
-#' droplevels(faux_cell [1:3])$region
+#' droplevels(faux_cell[1:3])$region
 setMethod("droplevels", signature = "hyperSpec", definition = .droplevels)
 
 hySpc.testthat::test(.droplevels) <- function() {
@@ -35,7 +35,7 @@ hySpc.testthat::test(.droplevels) <- function() {
     expect_equal(tmp@data, droplevels(faux_cell@data[1:3, ]))
 
     expect_equal(
-            tmp[, c("x", "y", "spc")],
+      tmp[, c("x", "y", "spc")],
       faux_cell[1:3, c("x", "y", "spc")]
     )
 

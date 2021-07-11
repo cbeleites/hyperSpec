@@ -1,4 +1,4 @@
-#' Getting and Setting the Wavelength Axis
+#' Getting and setting the wavelength axis
 #'
 #' `wl()` returns the wavelength axis, `wl<-` sets it.
 #'
@@ -80,12 +80,12 @@ wl <- function(x) {
 #'
 #' # convert from Raman shift to wavelength
 #' # excitation was at 785 nm
-#' plot(faux_cell [1])
+#' plot(faux_cell[1])
 #' wl(faux_cell) <- list(
 #'   wl = 1e7 / (1e7 / 785 - wl(faux_cell)),
 #'   label = expression(lambda / nm)
 #' )
-#' plot(faux_cell [1])
+#' plot(faux_cell[1])
 "wl<-" <- function(x, label = NULL, digits = 6, value) {
   chk.hy(x)
   validObject(x)

@@ -11,7 +11,7 @@
   ggplot.spc.nmax = 10
 )
 
-#' Options for package \pkg{hyperSpec}.
+#' Options for package \pkg{hyperSpec}
 #'
 #' Functions to access and set \pkg{hyperSpec}'s options.
 #'
@@ -57,7 +57,7 @@ hy.getOptions <- function(...) {
   if (length(dots) == 0L) {
     .options
   } else {
-    .options [dots]
+    .options[dots]
   }
 }
 
@@ -109,7 +109,7 @@ hy.setOptions <- function(...) {
     warning("options without name are discarded: ", which(!names))
   }
 
-  opts <- modifyList(.options, new [names])
+  opts <- modifyList(.options, new[names])
 
   opts$tolerance <- .checkpos(opts$tolerance, "tolerance")
   opts$wl.tolerance <- .checkpos(opts$wl.tolerance, "wl.tolerance")

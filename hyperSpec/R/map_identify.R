@@ -36,7 +36,7 @@ map.identify <- function(object, model = spc ~ x * y, voronoi = FALSE, ...,
     ## complete rectangular maps. mix keeps track of the reordering.
     dots$mix <- FALSE
     mix <- sample(nrow(object))
-    dots$object <- object [mix]
+    dots$object <- object[mix]
     lattice <- do.call(plotvoronoi, dots)
     mix <- order(mix)
   } else {
@@ -48,8 +48,8 @@ map.identify <- function(object, model = spc ~ x * y, voronoi = FALSE, ...,
   trellis.focus()
 
   tol <- tol^2
-  xn <- lattice$panel.args.common$x [mix]
-  yn <- lattice$panel.args.common$y [mix]
+  xn <- lattice$panel.args.common$x[mix]
+  yn <- lattice$panel.args.common$y[mix]
   x <- as.numeric(convertX(unit(xn, "native"), "npc"))
   y <- as.numeric(convertY(unit(yn, "native"), "npc"))
 
@@ -67,12 +67,12 @@ map.identify <- function(object, model = spc ~ x * y, voronoi = FALSE, ...,
     }
 
     tmp <- as.numeric(tmp)
-    d2 <- (x - tmp [1])^2 + (y - tmp [2])^2
+    d2 <- (x - tmp[1])^2 + (y - tmp[2])^2
     pt <- which.min(d2)
-    if (d2 [pt] <= tol) {
+    if (d2[pt] <= tol) {
       res <- c(res, pt)
       if (debuglevel >= 1L) {
-        ltext(xn [pt], yn [pt], label = pt)
+        ltext(xn[pt], yn[pt], label = pt)
       }
     } else {
       if (warn) {
