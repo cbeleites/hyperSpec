@@ -609,3 +609,15 @@ colmix.rgb <- function(x, purecol, against = 1, sub = TRUE,
 
   cols
 }
+
+# Unit tests -----------------------------------------------------------------
+
+hySpc.testthat::test(qplotspc) <- function() {
+  context("ggplot2")
+
+  test_that("deprecated", {
+    expect_warning(res <- qplotspc(flu), "deprecated")
+    expect_warning(res <- qplotmap(flu), "deprecated")
+    expect_warning(res <- qplotc(flu), "deprecated")
+  })
+}
