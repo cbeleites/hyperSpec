@@ -226,8 +226,13 @@ reference:
     "wavelengths", "data generation", "stats",
 
     "moved to hySpc.ggplot2",
-    "moved to hySpc.read.txt",
+    "moved to hySpc.read.ENVI",
+    "moved to hySpc.read.jdx",
     "moved to hySpc.read.mat",
+    "moved to hySpc.read.spc",
+    "moved to hySpc.read.spe",
+    "moved to hySpc.read.txt",
+
     "deprecated"
     ))
 
