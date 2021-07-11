@@ -112,7 +112,7 @@ hySpc.testthat::test(spc.loess) <- function() {
   })
 
   test_that("spc.loess() returns errors", {
-    expect_error(spc.loess())
+    expect_warning(expect_error(spc.loess()), "deprecated")
   })
 
   test_that("spc.loess() returns warnings", {

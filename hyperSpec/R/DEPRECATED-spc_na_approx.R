@@ -136,7 +136,10 @@ hySpc.testthat::test(spc.NA.approx) <- function() {
   context("spc.NA.approx")
 
   test_that("linear interpolation", {
-    tmp <- spc.NA.approx(fluNA[-2, , min ~ 410])
+    tmp <- expect_warning(
+      spc.NA.approx(fluNA[-2, , min ~ 410]),
+      "deprecated"
+    )
     expect_equivalent(
       as.numeric(tmp[[, , 406]]),
       rowMeans(fluNA[[-2, , 405.5 ~ 406.5]], na.rm = TRUE)
@@ -144,7 +147,10 @@ hySpc.testthat::test(spc.NA.approx) <- function() {
   })
 
   test_that("spline interpolation", {
-    tmp <- spc.NA.approx(fluNA[-2, , min ~ 410], neighbours = 2)
+    tmp <- expect_warning(
+      spc.NA.approx(fluNA[-2, , min ~ 410], neighbours = 2), "deprecated"
+    )
+
     expect_true(
       all(abs(tmp[[, , 406]] - rowMeans(fluNA[[-2, , 405 ~ 407]],
         na.rm = TRUE)) <= 1e-5)
@@ -157,7 +163,11 @@ hySpc.testthat::test(spc.NA.approx) <- function() {
     ranges <- list(405 ~ 407, 405.5 ~ 406.5, 405.6 ~ 406)
     for (d in 0:2) {
       for (r in ranges) {
-        tmp <- spc.NA.approx(fluNA[-2, , r], neighbours = 3, debuglevel = d)
+        tmp <-
+          expect_warning(
+            spc.NA.approx(fluNA[-2, , r], neighbours = 3, debuglevel = d),
+            "deprecated"
+          )
         # expect_equal(round(as.numeric(tmp[[,, 406]]), 5),
         #   round(rowMeans(fluNA[[-2,, r]], na.rm = TRUE), 5),
         #   tolerance = 1e-5,
