@@ -1,22 +1,43 @@
-#' @title JCAMP-DX Import for Shimadzu Library Spectra.
+# TODO: rename this file to "DEPRECATED-read.jdx.R" in a separate pull request.
+
+#' @name DEPRECATED-read.jdx
+#' @concept moved to hySpc.read.jdx
+#'
+#' @title (DEPRECATED)
+#'        JCAMP-DX import for Shimadzu library spectra
 #'
 #' @description
+#' This function is **deprecated** and  will be  removed in the next release
+#' of \pkg{hyperSpec} package.
+#' Please use function `hySpc.read.jdx::read_jdx()` instead.
+#' More on functions in package \pkg{hySpc.read.jdx}
+#' [here (link)](https://r-hyperspec.github.io/hySpc.read.jdx/reference/index.html).
+#'
+#' ***
+#'
+#' **Old description:**
+#'
 #' This is a first rough import function for JCAMP-DX spectra.
 #'
-#' So far, AFFN and PAC formats are supported for simple XYDATA, DATA TABLEs and PEAK TABLEs.
+#' So far, AFFN and PAC formats are supported for simple XYDATA, DATA TABLEs and
+#' PEAK TABLEs.
 #'
 #' NTUPLES / PAGES are not (yet) supported.
 #'
 #' DIF, DUF, DIFDUP and SQZ data formats are not (yet) supported.
 #'
-#' @note JCAMP-DX support is incomplete and the functions may change without notice. See
-#' `vignette ("fileio")`  and the details section.
+#' @note JCAMP-DX support is incomplete and the functions may change without
+#'       notice.
+#
+#        See `vignette ("fileio")` and the details section.
+#
 #' @param filename file name and path of the .jdx file
 #' @param encoding encoding of the JCAMP-DX file (used by [base::readLines()])
 #' @param header list with manually set header values
-#' @param keys.hdr2data index vector indicating which header entries should be tranfered into the
-#' extra data. Usually a character vector of labels (lowercase, without and dashes, blanks,
-#' underscores). If `TRUE`, all header entries are read.
+#' @param keys.hdr2data index vector indicating which header entries should be
+#'        transferred into the extra data. Usually a character vector of labels
+#'        (lowercase, without and dashes, blanks, underscores). If `TRUE`, all
+#'        header entries are read.
 #' @param ... further parameters handed to the data import function, e.g.
 #'
 #' | parameter | meaning                                                                             | default |
@@ -24,25 +45,34 @@
 #' | `xtol`    | tolerance for checking calculated x values against checkpoints at beginning of line | XFACTOR |
 #' | `ytol`    | tolerance for checking Y values against MINY and MAXY                               | YFACTOR |
 #'
-#' @param NA.symbols character vector of text values that should be converted to `NA`
-#' @param collapse.multi should hyperSpec objects from multispectra files be collapsed into one
-#' hyperSpec object (if `FALSE`, a list of hyperSpec objects is returned).
+#' @param NA.symbols character vector of text values that should be converted
+#'        to `NA`
+#' @param collapse.multi should hyperSpec objects from multispectra files be
+#'        collapsed into one hyperSpec object (if `FALSE`, a list of hyperSpec
+#'        objects is returned).
 #' @param wl.tolerance,collapse.equal see [collapse]
 #' @return hyperSpec object
 #' @author C. Beleites with contributions by Bryan Hanson
 #'
 #' @export
 #'
-#' @concept io
-#'
 #' @importFrom utils head modifyList maintainer
-read.jdx <- function(filename = stop("filename is needed"), encoding = "",
+read.jdx <- function(filename = NULL, encoding = "",
                      header = list(), keys.hdr2data = FALSE, ...,
                      NA.symbols = c("NA", "N/A", "N.A."),
                      collapse.multi = TRUE,
-                     wl.tolerance = hy.getOption("wl.tolerance"), collapse.equal = TRUE) {
+                     wl.tolerance = hy.getOption("wl.tolerance"),
+                     collapse.equal = TRUE) {
 
-  ## see readLines help: this way, encoding is translated to standard encoding on current system.
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  hySpc_deprecated(new = "read_jdx()", package = "hySpc.read.jdx")
+
+  if (is.null(filename)) return(NA)
+
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  ## see readLines help: this way, encoding is translated to standard encoding
+  ## on current system.
   file <- file(filename, "r", encoding = encoding, blocking = FALSE)
   jdx <- readLines(file)
   close(file)
@@ -73,7 +103,7 @@ read.jdx <- function(filename = stop("filename is needed"), encoding = "",
 
   for (s in seq_along(datastart)) {
     ## look for header data
-    hdr <- modifyList(header, .jdx.readhdr(jdx [hdrstart [s]:(datastart [s] - 1)]))
+    hdr <- modifyList(header, .jdx.readhdr(jdx[hdrstart[s]:(datastart[s] - 1)]))
 
     if (!is.null(hdr$page) || !is.null(hdr$ntuples)) {
       stop("NTUPLES / PAGEs are not yet supported.")
@@ -81,18 +111,18 @@ read.jdx <- function(filename = stop("filename is needed"), encoding = "",
 
     if (s == 1L) { ## file header may contain overall settings
       hdr <- modifyList(list(file = as.character(filename)), hdr)
-      header <- hdr [!names(hdr) %in% .key2names(.DATA.START)]
+      header <- hdr[!names(hdr) %in% .key2names(.DATA.START)]
     }
 
     ## evaluate data block
 
-    if (grepl("[A-DF-Za-df-z%@]", jdx[datastart [s]])) {
+    if (grepl("[A-DF-Za-df-z%@]", jdx[datastart[s]])) {
       stop("SQZ, DIF, and DIFDUP forms are not yet supported.")
     }
 
     spc[[s]] <- switch(hdr$.format,
-      `(X++(Y..Y))` = .jdx.TABULAR.PAC(hdr, jdx [datastart [s]:spcend [s]], ...),
-      `(XY..XY)` = .jdx.TABULAR.AFFN(hdr, jdx [datastart [s]:spcend [s]], ...),
+      `(X++(Y..Y))` = .jdx.TABULAR.PAC(hdr, jdx[datastart[s]:spcend[s]], ...),
+      `(XY..XY)` = .jdx.TABULAR.AFFN(hdr, jdx[datastart[s]:spcend[s]], ...),
 
       stop("unknown JCAMP-DX data format: ", hdr$xydata)
     )
@@ -116,16 +146,16 @@ read.jdx <- function(filename = stop("filename is needed"), encoding = "",
 .jdx.readhdr <- function(hdr) {
 
   ## get rid of comments. JCAMP-DX comments start with $$ and go to the end of the line.
-  hdr <- hdr [!grepl("^[[:blank:]]*[$][$]", hdr)]
+  hdr <- hdr[!grepl("^[[:blank:]]*[$][$]", hdr)]
   hdr <- gsub("([[:blank:]][$][$].*)$", "", hdr)
 
   ## now join lines that are not starting with ##KEY= with the KEYed line before
   nokey <- grep("^[[:blank:]]*##.*=", hdr, invert = TRUE)
   if (length(nokey) > 0) {
     for (l in rev(nokey)) { # these are few, so no optimization needed
-      hdr [l - 1] <- paste(hdr [(l - 1):l], collapse = " ")
+      hdr[l - 1] <- paste(hdr[(l - 1):l], collapse = " ")
     }
-    hdr <- hdr [-nokey]
+    hdr <- hdr[-nokey]
   }
 
   names <- .key2names(sub("^[[:blank:]]*##(.*)=.*$", "\\1", hdr))
@@ -135,7 +165,7 @@ read.jdx <- function(filename = stop("filename is needed"), encoding = "",
   i <- grepl("^[[:blank:]]*[-+]?[.[:digit:]]*[eE]?[-+]?[.[:digit:]]*[[:blank:]]*$", hdr) &
     !names %in% c("title", "datatype", "owner")
   hdr <- as.list(hdr)
-  hdr [i] <- as.numeric(hdr [i])
+  hdr[i] <- as.numeric(hdr[i])
   names(hdr) <- names
 
   ## e.g. Shimadzu does not always save XFACTOR and YFACTOR
@@ -143,8 +173,8 @@ read.jdx <- function(filename = stop("filename is needed"), encoding = "",
   if (is.null(hdr$xfactor)) hdr$xfactor <- 1
 
   ## we treat XYDATA and PEAK TABLEs the same way
-  format <- hdr [names(hdr) %in% .key2names(.DATA.START)]
-  format <- format [!sapply(format, is.null)]
+  format <- hdr[names(hdr) %in% .key2names(.DATA.START)]
+  format <- format[!sapply(format, is.null)]
   if (length(format) != 1) {
     stop(
       "contradicting format specification: please contact the maintainer (",
@@ -197,9 +227,9 @@ read.jdx <- function(filename = stop("filename is needed"), encoding = "",
     "concentrations"
   )] <- NULL
   if (is.character(keys)) {
-    keys <- keys [keys %in% names(hdr)]
+    keys <- keys[keys %in% names(hdr)]
   }
-  hdr <- hdr [keys]
+  hdr <- hdr[keys]
 
   if (length(hdr) > 0L) {
     spc@data <- cbind(spc@data, hdr)
@@ -208,8 +238,7 @@ read.jdx <- function(filename = stop("filename is needed"), encoding = "",
   spc
 }
 
-### DATA FORMATS ------------------------------------------------------------------------------------
-
+### DATA FORMATS --------------------------------------------------------------
 .jdx.TABULAR.PAC <- function(hdr, data, ..., xtol = hdr$xfactor) {
 
   ## regexp for numbers including scientific notation
@@ -239,7 +268,7 @@ read.jdx <- function(filename = stop("filename is needed"), encoding = "",
   ## X checkpoints
   x <- sub(paste0("^[[:blank:]]*(", .PATTERN.number, ")[[:blank:]]*.*$"), "\\1", data)
   x <- as.numeric(x) * hdr$xfactor
-  diffx <- abs(wl [c(1, head(cumsum(ny) + 1, -1))] - x)
+  diffx <- abs(wl[c(1, head(cumsum(ny) + 1, -1))] - x)
   if (any(diffx > xtol)) {
     message(
       "JDX file inconsistency: X axis differs from checkpoints. ",
@@ -260,7 +289,7 @@ read.jdx <- function(filename = stop("filename is needed"), encoding = "",
   data <- unlist(data)
   data <- matrix(as.numeric(data), nrow = 2)
 
-  new("hyperSpec", wavelength = data [1, ] * hdr$xfactor, spc = data [2, ] * hdr$yfactor)
+  new("hyperSpec", wavelength = data[1, ] * hdr$xfactor, spc = data[2, ] * hdr$yfactor)
 }
 
 ### UNITS -------------------------------------------------------------------------------------------
@@ -297,30 +326,30 @@ read.jdx <- function(filename = stop("filename is needed"), encoding = "",
 ## HDR processing functions
 .jdx.hdr.concentrations <- function(spc, hdr, NA.symbols) {
   hdr <- strsplit(hdr$concentrations, "[)][[:blank:]]*[(]")[[1]]
-  hdr [length(hdr)] <- gsub(")$", "", hdr [length(hdr)])
-  if (hdr [1] == "(NCU") {
-    hdr <- hdr [-1]
+  hdr[length(hdr)] <- gsub(")$", "", hdr[length(hdr)])
+  if (hdr[1] == "(NCU") {
+    hdr <- hdr[-1]
   } else {
-    message("Unknown type of concentration specification in JDX file: ", hdr [1], ")")
+    message("Unknown type of concentration specification in JDX file: ", hdr[1], ")")
   }
 
   hdr <- simplify2array(strsplit(hdr, ","))
-  hdr [hdr %in% NA.symbols] <- NA
+  hdr[hdr %in% NA.symbols] <- NA
 
   ## names
-  N <- hdr [1, ]
+  N <- hdr[1, ]
   N <- sub("^([^[:alpha:]]*)", "", N)
   N <- sub("([^[:alpha:]]*)$", "", N)
   N <- gsub("([^[:alnum:]_-])", ".", N)
 
   ## concentrations
-  C <- t(as.numeric(hdr [2, ]))
+  C <- t(as.numeric(hdr[2, ]))
   colnames(C) <- N
   C <- as.data.frame(C)
   spc@data <- cbind(spc@data, C)
 
   ## units
-  U <- as.list(hdr [3, ])
+  U <- as.list(hdr[3, ])
   names(U) <- N
 
   spc@label <- modifyList(spc@label, U)
@@ -339,85 +368,9 @@ read.jdx <- function(filename = stop("filename is needed"), encoding = "",
 hySpc.testthat::test(read.jdx) <- function() {
   context("test-read.jdx")
 
-  files <- c(
-    Sys.glob("fileio/jcamp-dx/*.DX"), Sys.glob("fileio/jcamp-dx/*.dx"),
-    Sys.glob("fileio/jcamp-dx/*.jdx"), Sys.glob("fileio/jcamp-dx/*.JCM"),
-    Sys.glob("fileio/jcamp-dx/PE-IR/*.DX"),
-    "fileio/jcamp-dx/GMD_20111121_MDN35_ALK_JCAMP-shortened.txt" # MPI Golm, long version one is *slow* to read and exceeds memory limit
+  test_that(
+    "deprecated",
+    expect_warning(read.jdx(), "deprecated.*hySpc.read.jdx")
   )
 
-  ## these files need special parameters:
-  files <- setdiff(files, c("fileio/jcamp-dx/shimadzu.jdx", "fileio/jcamp-dx/virgilio.jdx"))
-
-  test_that("JCAMP-DX examples that need particular parameter sets", {
-    skip_if_not_fileio_available()
-
-    expect_known_hash(
-      read.jdx("fileio/jcamp-dx/shimadzu.jdx", encoding = "latin1", keys.hdr2data = TRUE),
-      "55c392d767f7a7f268e55540d4496fb1"
-    )
-    expect_known_hash(
-      read.jdx("fileio/jcamp-dx/virgilio.jdx", ytol = 1e-9),
-      "da4a725d23efe4a1888496f1739294c2"
-    )
-  })
-
-  unsupported <- c(
-    "fileio/jcamp-dx/BRUKER2.JCM",
-    "fileio/jcamp-dx/BRUKER1.JCM",
-    "fileio/jcamp-dx/TESTSPEC.DX",
-    "fileio/jcamp-dx/TEST32.DX",
-    "fileio/jcamp-dx/SPECFILE.DX",
-    "fileio/jcamp-dx/ISAS_MS2.DX",
-    "fileio/jcamp-dx/ISAS_MS3.DX", # NTUPLES
-    "fileio/jcamp-dx/BRUKSQZ.DX",
-    "fileio/jcamp-dx/BRUKDIF.DX",
-    "fileio/jcamp-dx/BRUKNTUP.DX", # NTUPLES
-    "fileio/jcamp-dx/ISAS_CDX.DX", # PEAK ASSIGNMENTS= (XYMA)
-    "fileio/jcamp-dx/TESTFID.DX", # NTUPLES
-    "fileio/jcamp-dx/TESTNTUP.DX" # NTUPLES
-  )
-
-  checksums <- c(
-    `fileio/jcamp-dx/AMA1.DX` = "5e8523b7022ec26cfb2541fdf929e997",
-    `fileio/jcamp-dx/AMA2.DX` = "b336f71c592bc81de04d27bbbb9ede52",
-    `fileio/jcamp-dx/AMA3.DX` = "34344a42a232227c14ab5de5dc04e096",
-    `fileio/jcamp-dx/br_154_1.DX` = "232ef45bf818221c05927e311ac407a3",
-    `fileio/jcamp-dx/BRUKAFFN.DX` = "2498cac17635ad21e4998a3e3e7eebfa",
-    `fileio/jcamp-dx/BRUKPAC.DX` = "401cbaa375b79323ed0dcc30a135d11d",
-    `fileio/jcamp-dx/IR_S_1.DX` = "8d7032508efaf79fcc955f888d60cd8f",
-    `fileio/jcamp-dx/ISAS_MS1.DX` = "43017647aa339d8e7aaf3fadbdbbf065",
-    `fileio/jcamp-dx/LABCALC.DX` = "55ffdb250279aee967b2f65bbbf7dd5e",
-    `fileio/jcamp-dx/PE1800.DX` = "31ac39a5db243c3aa01e1978b9ab1aa3",
-    `fileio/jcamp-dx/testjose.dx` = "3b229eb9b8f229acd57783328d36a697",
-    `fileio/jcamp-dx/sign-rustam.jdx` = "386bf0b94baa5007e11e6af294895012",
-    `fileio/jcamp-dx/PE-IR/br_1.DX` = "ab5fa92227625c287871d9e95091c364",
-    `fileio/jcamp-dx/PE-IR/br_2.DX` = "eff5a1b37121a8902c0e62ebb5de0013",
-    `fileio/jcamp-dx/PE-IR/br_3.DX` = "2762712b1317631d32969624c97fa940",
-    `fileio/jcamp-dx/PE-IR/br_4.DX` = "11ddb20e9f6676f709827ececda360ab",
-    `fileio/jcamp-dx/PE-IR/br_5.DX` = "ffa08204bfb2521dd8caa9d286eba519",
-    `fileio/jcamp-dx/PE-IR/fort_1.DX` = "e808e243ae646c0526ba009f3ac3f80a",
-    `fileio/jcamp-dx/PE-IR/fort_2.DX` = "df90e70f203294c8bfeac7a6141a552d",
-    `fileio/jcamp-dx/PE-IR/fort_3.DX` = "d43a2c4fbb2598a5028a1406f83e3c3d",
-    `fileio/jcamp-dx/PE-IR/fort_4.DX` = "5382afba5c8b7fffdc26f00e129035c7",
-    `fileio/jcamp-dx/PE-IR/fort_5.DX` = "745c8b0fdad48a945e084d6e6cb9f0c6",
-    `fileio/jcamp-dx/PE-IR/lp_1.DX` = "bcb0a1e1150bcd038a3e0e0e5a896b2b",
-    `fileio/jcamp-dx/PE-IR/lp_2.DX` = "7bc1c53f1363b2b02374442a1e8baa74",
-    `fileio/jcamp-dx/PE-IR/lp_3.DX` = "eaa58c46360be604169e979c0fe2caeb",
-    `fileio/jcamp-dx/PE-IR/lp_4.DX` = "3b8d54eca48095d3f6c3eafc7b903a25",
-    `fileio/jcamp-dx/PE-IR/lp_5.DX` = "a0eaa3ca11fb5a0dde83fa01296d72db",
-    `fileio/jcamp-dx/GMD_20111121_MDN35_ALK_JCAMP-shortened.txt` = "fd2e686f5dc78691c22033805ed56463"
-  )
-
-
-  test_that("JCAMP-DX example files", {
-    skip_if_not_fileio_available()
-    for (f in files [!files %in% unsupported]) {
-      spc <- read.jdx(f, ytol = 1e-6)
-      ## for wholesale updating of hashes (e.g. due to changes in initialize)
-      ## output filename hash pairs:
-      # cat (sprintf ("`%s` = '%s',\n", f, digest (spc)))
-      expect_known_hash(spc, checksums [f])
-    }
-  })
 }

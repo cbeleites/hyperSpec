@@ -158,7 +158,23 @@ read.spe <- function(filename, xaxis = "file", acc2avg = F, cts_sec = F,
   .spc_io_postprocess_optional(spc, filename)
 }
 
-#' Read XML footer from SPE file format version 3.0.
+
+#' @name DEPRECATED-read.spe.xml
+#' @concept moved to hySpc.read.spe
+#'
+#' @title (DEPRECATED)
+#'        Read XML footer from SPE file format version 3.0
+#'
+#' @description
+#'
+#' These data input functions are **deprecated** and they will be removed in
+#' the next release of \pkg{hyperspec} package.
+#' Now functions in package \pkg{hySpc.read.spe}
+#' ([link](https://r-hyperspec.github.io/hySpc.read.spe/reference/index.html))
+#' should be used as the alternatives.
+#'
+#'
+#' **Old description:**
 #'
 #' The new SPE file format, introduced in 2012, was designed to be backwards compatible with the
 #' previous format 2.5. The most prominent change is the new plain text XML footer holding vast
@@ -176,6 +192,10 @@ read.spe <- function(filename, xaxis = "file", acc2avg = F, cts_sec = F,
 #' @importFrom xml2 as_list read_xml
 #'
 .read.spe.xml <- function(filename) {
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  deprecated_read_spe()
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
   as_list(read_xml(.read.spe.xml_string(filename)))
 }
 

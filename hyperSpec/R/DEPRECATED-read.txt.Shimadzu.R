@@ -1,7 +1,8 @@
 #' @name DEPRECATED-read.txt.Shimadzu
 #' @concept moved to hySpc.read.txt
 #'
-#' @title (DEPRECATED) Reads Shimadzu GCxGC-qMS - Spectra Files (`.txt`)
+#' @title (DEPRECATED)
+#'        Read Shimadzu GCxGC-qMS - spectra files (`.txt`)
 #'
 #' @description
 #'

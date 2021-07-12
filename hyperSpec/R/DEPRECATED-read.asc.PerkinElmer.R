@@ -1,7 +1,8 @@
 #' @name DEPRECATED-read.asc.PerkinElmer
 #' @concept moved to hySpc.read.txt
 #'
-#' @title (DEPRECATED) File import filter PerkinElmer ASCII spectra
+#' @title (DEPRECATED)
+#'        File import filter PerkinElmer ASCII spectra
 #'
 #' @description
 #'

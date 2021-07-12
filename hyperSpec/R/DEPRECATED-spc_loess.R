@@ -1,7 +1,8 @@
 #' @name DEPRECATED-spc.loess
 #' @concept deprecated
 #'
-#' @title (DEPRECATED) LOESS Smoothing Interpolation for Spectra
+#' @title (DEPRECATED)
+#'        LOESS smoothing interpolation for spectra
 #'
 #' @description
 #' These \pkg{hyperSpec} functions are **deprecated** and not maintained any
@@ -111,7 +112,7 @@ hySpc.testthat::test(spc.loess) <- function() {
   })
 
   test_that("spc.loess() returns errors", {
-    expect_error(spc.loess())
+    expect_warning(expect_error(spc.loess()), "deprecated")
   })
 
   test_that("spc.loess() returns warnings", {

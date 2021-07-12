@@ -1,7 +1,8 @@
 #' @name DEPRECATED-read.txt.Witec
 #' @concept moved to hySpc.read.txt
 #'
-#' @title (DEPRECATED) File Import Witec Raman
+#' @title (DEPRECATED)
+#'        File import Witec Raman
 #'
 #' @description
 #'
@@ -38,7 +39,7 @@
 #' @export
 #'
 #' @importFrom utils head
-read.txt.Witec <- function(file = stop("filename or connection needed"),
+read.txt.Witec <- function(file = NULL,
                            points.per.line = NULL,
                            lines.per.image = NULL,
                            type = c("single", "map"),
@@ -50,6 +51,9 @@ read.txt.Witec <- function(file = stop("filename or connection needed"),
 
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   deprecated_read_txt()
+
+  if (is.null (file)) return (NA) # allow checking for deprecation w/o failure
+
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   ## check for valid data connection
@@ -94,101 +98,7 @@ read.txt.Witec <- function(file = stop("filename or connection needed"),
 hySpc.testthat::test(read.txt.Witec) <- function() {
   context("read.txt.Witec")
 
-  test_that("Map with neither header nor label lines", {
-    skip_if_not_fileio_available()
-    expect_error(suppressWarnings(read.txt.Witec("fileio/txt.Witec/Witec-Map_no.txt",
-      type = "map", hdr.units = TRUE, hdr.label = TRUE
-    )))
-    expect_warning(read.txt.Witec("fileio/txt.Witec/Witec-Map_no.txt", type = "map"))
-
-    spc <- read.txt.Witec("fileio/txt.Witec/Witec-Map_no.txt", type = "map", points.per.line = 5, lines.per.image = 5)
-    expect_known_hash(spc, hash = "6816a87cf3")
-  })
-
-  test_that("Map: one of points.per.line and lines.per.image is sufficient", {
-    skip_if_not_fileio_available()
-    spc <- read.txt.Witec("fileio/txt.Witec/Witec-Map_no.txt", type = "map", lines.per.image = 5)
-    expect_known_hash(spc, hash = "6816a87cf3")
-
-    spc <- read.txt.Witec("fileio/txt.Witec/Witec-Map_no.txt", type = "map", points.per.line = 5)
-    expect_known_hash(spc, hash = "6816a87cf3")
-  })
-
-  test_that("Map with label line but no units header", {
-    skip_if_not_fileio_available()
-    spc <- read.txt.Witec("fileio/txt.Witec/Witec-Map_label.txt", type = "map", hdr.units = FALSE, hdr.label = TRUE)
-    expect_known_hash(spc, "c4a384d6b2")
-  })
-
-  test_that("Map with units header line but no labels", {
-    skip_if_not_fileio_available()
-    expect_warning(spc <- read.txt.Witec("fileio/txt.Witec/Witec-Map_unit.txt", type = "map", hdr.units = TRUE, hdr.label = FALSE))
-    expect_null(spc$x)
-    expect_null(spc$y)
-
-    spc <- read.txt.Witec("fileio/txt.Witec/Witec-Map_unit.txt",
-      type = "map", hdr.units = TRUE, hdr.label = FALSE,
-      points.per.line = 5, lines.per.image = 5
-    )
-    expect_known_hash(spc, "86ecc17360")
-  })
-
-  test_that("Map with header and label lines", {
-    skip_if_not_fileio_available()
-    spc <- read.txt.Witec("fileio/txt.Witec/Witec-Map_full.txt", type = "map", hdr.units = TRUE, hdr.label = TRUE)
-    expect_known_hash(spc, "76db6397fc")
-  })
-
-  test_that("Map can be read as time series", {
-    skip_if_not_fileio_available()
-    spc <- read.txt.Witec("fileio/txt.Witec/Witec-Map_no.txt")
-    expect_known_hash(spc, "6213aefc6b")
-    expect_null(spc$x)
-    expect_null(spc$y)
-  })
-
-
-  test_that("parameter default type = 'single'", {
-    skip_if_not_fileio_available()
-    spc <- read.txt.Witec("fileio/txt.Witec/Witec-timeseries_no.txt")
-    expect_known_hash(spc, "1a8c3be079")
-  })
-
-  test_that("Time series with neither header nor label lines", {
-    skip_if_not_fileio_available()
-    spc <- read.txt.Witec("fileio/txt.Witec/Witec-timeseries_no.txt")
-    expect_known_hash(spc, "1a8c3be079")
-  })
-
-  test_that("Time series with label line but no units header", {
-    skip_if_not_fileio_available()
-    spc <- read.txt.Witec("fileio/txt.Witec/Witec-timeseries_label.txt", hdr.units = FALSE, hdr.label = TRUE)
-    expect_known_hash(spc, "4cb098a671")
-  })
-
-  test_that("Time series with units header line but no labels", {
-    skip_if_not_fileio_available()
-    spc <- read.txt.Witec("fileio/txt.Witec/Witec-timeseries_unit.txt", hdr.units = TRUE, hdr.label = FALSE)
-
-    expect_known_hash(spc, "6b6abac4e8")
-  })
-
-  test_that("Time series with header and label lines", {
-    skip_if_not_fileio_available()
-    expect_error(spc <- read.txt.Witec("fileio/txt.Witec/Witec-timeseries_full.txt"))
-
-    spc <- read.txt.Witec("fileio/txt.Witec/Witec-timeseries_full.txt", hdr.units = TRUE, hdr.label = TRUE)
-    expect_known_hash(spc, "db5b1a5db0")
-  })
-
-  test_that("encoding", {
-    skip_if_not_fileio_available()
-    spc <- read.txt.Witec("fileio/txt.Witec/Witec-timeseries_full.txt",
-      hdr.units = TRUE, hdr.label = TRUE,
-      encoding = "ascii"
-    )
-    expect_known_hash(spc, "db5b1a5db0")
-  })
+  test_that("deprecated", expect_warning(read.txt.Witec (), "deprecated"))
 }
 
 #' @rdname DEPRECATED-read.txt.Witec
@@ -198,7 +108,7 @@ hySpc.testthat::test(read.txt.Witec) <- function() {
 #' @param filey filename intensity file
 #'
 #' @export
-read.dat.Witec <- function(filex = stop("filename or connection needed"),
+read.dat.Witec <- function(filex = NULL,
                            filey = sub("-x", "-y", filex),
                            points.per.line = NULL,
                            lines.per.image = NULL,
@@ -209,6 +119,9 @@ read.dat.Witec <- function(filex = stop("filename or connection needed"),
 
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   deprecated_read_txt()
+
+  if (is.null (filex)) return (NA) # allow checking for deprecation w/o failure
+
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   ## check valid data connection
@@ -240,43 +153,8 @@ read.dat.Witec <- function(filex = stop("filename or connection needed"),
 hySpc.testthat::test(read.dat.Witec) <- function() {
   context("read.dat.Witec")
 
-  test_that("-y file guessing", {
-    skip_if_not_fileio_available()
-    spc <- read.dat.Witec("fileio/txt.Witec/Witec-timeseries-x.dat")
-    expect_known_hash(spc, "9562f59323")
-  })
+  test_that("deprecated", expect_warning(read.dat.Witec (), "deprecated"))
 
-  test_that("encoding", {
-    skip_if_not_fileio_available()
-    spc <- read.dat.Witec("fileio/txt.Witec/Witec-timeseries-x.dat", encoding = "ascii")
-    expect_known_hash(spc, "9562f59323")
-  })
-
-  test_that("Time series", {
-    skip_if_not_fileio_available()
-    spc <- read.dat.Witec("fileio/txt.Witec/Witec-timeseries-x.dat", "fileio/txt.Witec/Witec-timeseries-y.dat")
-    expect_known_hash(spc, "9562f59323")
-  })
-
-  test_that("Map: .dat does not have spatial information", {
-    skip_if_not_fileio_available()
-    spc <- read.dat.Witec("fileio/txt.Witec/Witec-Map-x.dat", "fileio/txt.Witec/Witec-Map-y.dat")
-    expect_null(spc$x)
-    expect_null(spc$y)
-    expect_known_hash(spc, "8a7ed06b0b")
-  })
-
-  test_that("Map", {
-    skip_if_not_fileio_available()
-    expect_warning(read.dat.Witec("fileio/txt.Witec/Witec-Map-x.dat", "fileio/txt.Witec/Witec-Map-y.dat",
-      points.per.line = 5, lines.per.image = 5
-    ))
-
-    spc <- read.dat.Witec("fileio/txt.Witec/Witec-Map-x.dat", "fileio/txt.Witec/Witec-Map-y.dat",
-      type = "map", points.per.line = 5, lines.per.image = 5
-    )
-    expect_known_hash(spc, "3d6339675b")
-  })
 }
 
 
@@ -286,7 +164,7 @@ hySpc.testthat::test(read.dat.Witec) <- function() {
 #' @param headerfile filename or connection to ASCII file with header information
 #'
 #' @export
-read.txt.Witec.Graph <- function(headerfile = stop("filename or connection needed"),
+read.txt.Witec.Graph <- function(headerfile = NULL,
                                  filex = gsub("Header", "X-Axis", headerfile),
                                  filey = gsub("Header", "Y-Axis", headerfile),
                                  type = c("single", "map"), encoding = "unknown",
@@ -294,6 +172,9 @@ read.txt.Witec.Graph <- function(headerfile = stop("filename or connection neede
 
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   deprecated_read_txt()
+
+  if (is.null (headerfile)) return (NA) # allow checking for deprecation w/o failure
+
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   ## check for valid data connection
@@ -341,45 +222,7 @@ read.txt.Witec.Graph <- function(headerfile = stop("filename or connection neede
 hySpc.testthat::test(read.txt.Witec.Graph) <- function() {
   context("read.txt.Witec.Graph")
 
-  test_that("defaults and (X-Axis)/(Y-Axis) file guessing", {
-    skip_if_not_fileio_available()
-    spc <- read.txt.Witec.Graph("fileio/txt.Witec/Witec-timeseries (Header).txt")
-    expect_known_hash(spc, "295499c43c")
-  })
-
-  test_that("encoding", {
-    skip_if_not_fileio_available()
-    expect_warning(read.txt.Witec.Graph("fileio/txt.Witec/nofilename (Header).txt"))
-
-    spc <- read.txt.Witec.Graph("fileio/txt.Witec/nofilename (Header).txt", encoding = "latin1")
-    expect_known_hash(spc, "2bad36adb3")
-  })
-
-  test_that("Time Series", {
-    skip_if_not_fileio_available()
-    spc <- read.txt.Witec.Graph("fileio/txt.Witec/Witec-timeseries (Header).txt", type = "single")
-    expect_known_hash(spc, "295499c43c")
-  })
-
-  test_that("Map", {
-    skip_if_not_fileio_available()
-    expect_warning(read.txt.Witec.Graph("fileio/txt.Witec/Witec-Map (Header).txt"))
-    expect_warning(read.txt.Witec.Graph("fileio/txt.Witec/Witec-Map (Header).txt", type = "single"))
-
-    spc <- read.txt.Witec.Graph("fileio/txt.Witec/Witec-Map (Header).txt", type = "map")
-    expect_known_hash(spc, "cb9cd9757a")
-  })
-
-  test_that("missing filename", {
-    skip_if_not_fileio_available()
-    spc <- read.txt.Witec.Graph("fileio/txt.Witec/nofilename (Header).txt", encoding = "latin1")
-    expect_known_hash(spc, "2bad36adb3")
-  })
-
-  test_that("wrong combination of file names", {
-    skip_if_not_fileio_available()
-    expect_error(read.txt.Witec.Graph("fileio/txt.Witec/Witec-timeseries (Header).txt", "fileio/txt.Witec/Witec-timeseries (Y-Axis).txt"))
-  })
+  test_that("deprecated", expect_warning(read.txt.Witec.Graph (), "deprecated"))
 }
 
 ### -------- helpers ------------------------

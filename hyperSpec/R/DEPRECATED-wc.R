@@ -1,7 +1,8 @@
 #' @name DEPRECATED-wc
 #' @concept moved to hySpc.read.txt
 #'
-#' @title (DEPRECATED) Line/word/character count of ASCII files
+#' @title (DEPRECATED)
+#'        Line/word/character count of ASCII files
 #'
 #' @description
 #'

@@ -1,7 +1,8 @@
 #' @name DEPRECATED-spc.spline
 #' @concept deprecated
 #'
-#' @title (DEPRECATED) Spectral smoothing by splines
+#' @title (DEPRECATED)
+#'        Spectral smoothing by splines
 #'
 #' @description
 #'
@@ -75,7 +76,7 @@ hySpc.testthat::test(spc.smooth.spline) <- function() {
 
   # Perform tests
   test_that("spc.smooth.spline() returnts output silently", {
-    expect_error(spc.smooth.spline())
+    expect_warning(expect_error(spc.smooth.spline()), "deprecated")
     expect_warning(hy <- spc.smooth.spline(flu), "deprecated")
     expect_is(hy, "hyperSpec")
   })

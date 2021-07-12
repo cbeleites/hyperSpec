@@ -1,7 +1,8 @@
 #' @name DEPRECATED-read.txt.Horiba
 #' @concept moved to hySpc.read.txt
 #'
-#' @title (DEPRECATED) Import Horiba Labspec exported ASCII files
+#' @title (DEPRECATED)
+#'        Import Horiba Labspec exported ASCII files
 #'
 #' @description
 #' These data input functions are **deprecated** and they will be removed in

@@ -2,7 +2,7 @@
 #' @concept moved to hySpc.ggplot2
 #'
 #' @title (DEPRECATED)
-#'        Spectra Plotting with \pkg{ggplot2} Was Moved to \pkg{hySpc.ggplot2}
+#'        Spectra plotting with \pkg{ggplot2} was moved to \pkg{hySpc.ggplot2}
 #'
 #' @description
 #'
@@ -608,4 +608,16 @@ colmix.rgb <- function(x, purecol, against = 1, sub = TRUE,
   cols[!is.na(x[, 1])] <- rgb(x[!is.na(x[, 1]), ])
 
   cols
+}
+
+# Unit tests -----------------------------------------------------------------
+
+hySpc.testthat::test(qplotspc) <- function() {
+  context("ggplot2")
+
+  test_that("deprecated", {
+    expect_warning(res <- qplotspc(flu), "deprecated")
+    expect_warning(res <- qplotmap(flu), "deprecated")
+    expect_warning(res <- qplotc(flu), "deprecated")
+  })
 }

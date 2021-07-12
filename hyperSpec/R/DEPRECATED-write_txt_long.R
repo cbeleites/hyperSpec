@@ -7,7 +7,8 @@
 #' @name DEPRECATED-write_txt
 #' @concept deprecated
 #'
-#' @title (DEPRECATED) Export `hyperSpec` objects to ASCII (text) files
+#' @title (DEPRECATED)
+#'        Export `hyperSpec` objects to ASCII (text) files
 #'
 #' @description
 #' These \pkg{hyperSpec} functions are **deprecated** and not maintained any

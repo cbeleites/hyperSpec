@@ -9,7 +9,8 @@
 #' @rdname DEPRECATED-textio
 #' @concept deprecated
 #'
-#' @title (DEPRECATED) Import `hyperSpec` objects from ASCII (text) files
+#' @title (DEPRECATED)
+#'        Import `hyperSpec` objects from ASCII (text) files
 #'
 #' @description
 #' These \pkg{hyperSpec} functions are **deprecated** and not maintained any

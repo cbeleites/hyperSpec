@@ -1,7 +1,8 @@
 #' @name DEPRECATED-wlconv
 #' @concept deprecated
 #'
-#' @title (DEPRECATED) Convert different wavelength units
+#' @title (DEPRECATED)
+#'        Convert different wavelength units
 #'
 #' @description
 #' These \pkg{hyperSpec} functions are **deprecated** and not maintained any
@@ -323,24 +324,32 @@ hySpc.testthat::test(wlconv) <- function() {
   context("wlconv")
 
   test_that("wlconv() throws error", {
-    expect_error(wlconv())
+    expect_error(expect_warning(wlconv(), "deprecated"))
 
     expect_error(
-      wlconv(1000, "raman", "nm"),
+      expect_warning(wlconv(1000, "raman", "nm"), "deprecated"),
       "Working with Raman shift requires knowledge of laser wavelength"
     )
-    expect_error(wlconv(1000, "non-existing", "nm"),  "Unknown unit type")
-    expect_error(wlconv(1000, "nm", "non-existing"),  "Unknown unit type")
+
+    expect_error(
+      expect_warning(wlconv(1000, "non-existing", "nm"), "deprecated"),
+      "Unknown unit type"
+    )
+
+    expect_error(
+      expect_warning(wlconv(1000, "nm", "non-existing"), "deprecated"),
+      "Unknown unit type"
+    )
   })
 
 
   test_that("wlconv() output is correct if units do not change", {
     # No conversion is expected
-    expect_equal(wlconv(1000, "raman", "raman"), 1000)
-    expect_equal(wlconv(1000, "invcm", "invcm"), 1000)
-    expect_equal(wlconv(1000, "nm",    "nm"),    1000)
-    expect_equal(wlconv(1000, "ev",    "ev"),    1000)
-    expect_equal(wlconv(1000, "freq", "freq"),   1000)
+    expect_warning(expect_equal(wlconv(1000, "raman", "raman"), 1000), "deprecated")
+    expect_warning(expect_equal(wlconv(1000, "invcm", "invcm"), 1000), "deprecated")
+    expect_warning(expect_equal(wlconv(1000, "nm",    "nm"),    1000), "deprecated")
+    expect_warning(expect_equal(wlconv(1000, "ev",    "ev"),    1000), "deprecated")
+    expect_warning(expect_equal(wlconv(1000, "freq", "freq"),   1000), "deprecated")
   })
 
 

@@ -1,7 +1,8 @@
 #' @name DEPRECATED-guess.wavlength
 #' @concept deprecated
 #'
-#' @title (DEPRECATED) Guess Wavelengths from Character Vector
+#' @title (DEPRECATED)
+#'        Guess wavelengths from character vector
 #'
 #'
 #' @description
@@ -16,7 +17,7 @@
 #'
 #' Character vectors used for names (e.g. colnames for matrices or data.frames)
 #' are often treated by [base::make.names()] or similar functions that
-#' produce suitable names (e.g. by prepending "X" to numbers). Such names
+#' produce suitable names (e.g. by pre-pending "X" to numbers). Such names
 #' cannot be directly converted to numeric.
 #'
 #' `guess.wavlength()` tries to extract numbers from X which may be
@@ -35,22 +36,12 @@
 #' tmp <- data.frame(flu[[, , 400 ~ 410]])
 #' (wl <- colnames(tmp))
 #' guess.wavelength(wl)
+#' @include extract_numbers.R
 guess.wavelength <- function(X) {
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   hySpc_deprecated("extract_numbers")
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-  wl <- regmatches(X, regexpr(.PATTERN.number, X))
-  wl <- as.numeric(wl)
-
-  if (is.null(wl) || length(wl) == 0L || any(is.na(wl))) {
-    if (hy.getOption("debuglevel") >= 1L) {
-      message("could not guess wavelengths")
-    }
-    wl <- NULL
-  }
-
-  wl
+  extract_numbers(X)
 }
 
 #' @include constants-regexps.R
@@ -58,17 +49,10 @@ guess.wavelength <- function(X) {
 hySpc.testthat::test(guess.wavelength) <- function() {
   context("guess.wavelength")
 
-  test_that("simple test", {
-    expect_equal(guess.wavelength(1:5), 1:5)
-  })
-
-  test_that("wavelengths containing characters", {
-    wl <- seq(600, 602, length.out = 11)
-    expect_equal(guess.wavelength(make.names(wl)), wl)
-  })
-
-  test_that("return NULL if could not guess wavelenths", {
-    expect_equal(guess.wavelength(colnames(matrix(1:12, 3))), NULL)
-    expect_equal(guess.wavelength(letters[1:4]), NULL)
+  test_that("deprecated", {
+    expect_warning(
+      guess.wavelength(1:5),
+      "Function 'guess.wavelength' is deprecated."
+    )
   })
 }

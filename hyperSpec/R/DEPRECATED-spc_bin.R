@@ -1,7 +1,8 @@
 #' @name DEPRECATED-spc.bin
 #' @concept deprecated
 #'
-#' @title (DEPRECATED) Wavelength Binning
+#' @title (DEPRECATED)
+#'        Wavelength binning
 #'
 #'
 #' @description
@@ -122,7 +123,7 @@ hySpc.testthat::test(spc.bin) <- function() {
 
 
   test_that("spc.bin() returns errors", {
-    expect_error(spc.bin(sp), "reduction factor needed")
+    expect_warning(expect_error(spc.bin(sp), "reduction factor needed"), "deprecated")
   })
 
   test_that("$spc after spc.bin() is correct", {
@@ -146,7 +147,7 @@ hySpc.testthat::test(spc.bin) <- function() {
 
   test_that("spc.bin() sets spc matrix column names correctly", {
     # Wavelengths should be identical
-    sp_binned <- spc.bin(sp, 1)
+    sp_binned <- expect_warning(spc.bin(sp, 1), "deprecated")
 
     # Wavelengths should be identical
     expect_silent(wl_regular <- wl(sp))
@@ -166,7 +167,9 @@ hySpc.testthat::test(spc.bin) <- function() {
     expect_true(any(is.na(sp_na[[]])))
 
     # NA's are present
-    na_rm_false <- spc.bin(sp_na, 3, na.rm = FALSE)[[]]
+    na_rm_false <-
+      expect_warning(spc.bin(sp_na, 3, na.rm = FALSE)[[]], "deprecated")
+
     expect_equal(ncol(na_rm_false), 3)
     expect_equal(nrow(na_rm_false), 5)
     expect_true(any(is.na(na_rm_false)))
