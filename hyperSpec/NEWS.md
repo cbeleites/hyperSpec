@@ -10,35 +10,39 @@
 * `NEWS.md` (this file) added so that users can readily see changes that may affect the use of the package.
 * Documentation now available in `pkgdown` sites (https://r-hyperspec.github.io/).
 * Introductory vignette reorganized and enhanced, thanks to Bryan Hanson.
+* Dataset `faux_cell` and function `generate_faux_cell()` replace `chondro` dataset (#125, #156, #180, #229).
 * Portions of `hyperSpec` were spun out into their own packages for ease of maintenance. 
 **--- ELABORATE ---**
     - Dataset `chondro` was moved to package **hySpc.chondro** (https://r-hyperspec.github.io/hySpc.chondro/).
     - Functions `qplotspc()`, `qplotmap()`, `qplotc()`, `qplotmixmap()`, `legendright()`,  `qmixtile()`, `normalize.colrange()`, `normalize.range()`, `normalize.null()`, `normalize.minmax()`, `qmixlegend()`, `colmix.rgb()` were deprecated due analogous functionality in package **hySpc.ggplot2** (https://r-hyperspec.github.io/hySpc.ggplot2/).
+    - Functions `read.ENVI()`, `read.ENVI.HySpex()`, `read.ENVI.Nicolet()` were deprecated due to analogous functionality in package **hySpc.read.ENVI** (https://r-hyperspec.github.io/hySpc.read.ENVI/).
+    - Functions `read.spc()`, `read.spc.Kaiser()`, `read.spc.KaiserMap()`, `read.spc.KaiserLowHigh()` were deprecated due to analogous functionality in package **hySpc.read.spc** (https://r-hyperspec.github.io/hySpc.read.spc/).
+    - Functions `read.spe()`, `spe.showcalpoints()` were deprecated due to analogous functionality in package **hySpc.read.spe** (https://r-hyperspec.github.io/hySpc.read.spe/).
+    - Functions `read.mat.Cytospec()`, `read.mat.Witec()` were deprecated due to analogous functionality in package **hySpc.read.mat** (https://r-hyperspec.github.io/hySpc.read.mat/).
+    - Function `read.jdx()` was deprecated due to analogous functionality in package **hySpc.read.jdx** (https://r-hyperspec.github.io/hySpc.read.jdx/).
     - Functions `read.asc.Andor()`, `read.asc.PerkinElmer()`, `read.txt.Horiba()`, `read.txt.Horiba.xy()`, `read.txt.Horiba.t()`, `read.txt.long()`, `read.txt.Renishaw()`,  `read.zip.Renishaw()`, `read.txt.Shimadzu()`, `read.txt.wide()`, `read.txt.Witec()`, `read.txt.Witec.Graph()`, `read.dat.Witec()`, `wc()`, `count_lines()` were deprecated due analogous functionality in package **hySpc.read.txt** (https://r-hyperspec.github.io/hySpc.read.txt/).
-    - Functions `read.mat.Witec()`, **--- ELABORATE ---**  were deprecated due analogous functionality in package **hySpc.read.mat** (https://r-hyperspec.github.io/hySpc.read.mat/).
     - The following functions were renamed or replaced by new ones (see table below).
     
      Deprecated function     | New (replacement) function       | Related issues
     -------------------------|-------------------------------   | ----------------
-     `matlab.dark.palette`   | `palette_matlab_dark`            |  #208, #299 
-     `matlab.palette`        | `palette_matlab`                 |  #208, #299 
-     `alois.palette`         | `palette_alois`                  |  #208, #299 
-     `spc.NA.approx()`       | `spc_na_approx()`                |  #208, #301
+     `.fileio.optional()`    | `.spc_io_postprocess_optional()` |  #208, #302
+     `.fix_spc_colnames()`   | `.spc_fix_colnames()`            |  #208, #301
+     `alois.palette()`       | `palette_alois()`                |  #208, #299, @sangttruong 
+     `guess.wavelength()`    | `extract_numbers()`              |  #208, #309
+     `matlab.dark.palette()` | `palette_matlab_dark()`          |  #299, #299, @sangttruong
+     `matlab.palette()`      | `palette_matlab()`               |  #208, #299, @sangttruong
+     `mergeextra()`          | `merge_data()`                   |  #208, #302
+     `orderwl()`             | `wl_sort()`                      |  #208, #309
      `spc.bin()`             | `spc_bin()`                      |  #208, #301
      `spc.fit.poly()`        | `spc_fit_poly()`                 |  #208, #301
      `spc.fit.poly.below()`  | `spc_fit_poly_below()`           |  #208, #301
      `spc.loess()`           | `spc_loess()`                    |  #208, #301
-     `spc.smooth.spline()`   | `spc_smooth_spline()`            |  #208, #301
+     `spc.NA.approx()`       | `spc_na_approx()`                |  #208, #301
      `spc.rubberband()`      | `spc_rubberband()`               |  #208, #301
-    `.fix_spc_colnames()`    | `.spc_fix_colnames()`            |  #208, #301
-     `mergeextra()`          | `merge_data()`                   |  #208, #302
-    `.fileio.optional()`     | `.spc_io_postprocess_optional()` |  #208, #302
-     `guess.wavelength()`    | `extract_numbers()`              |  #208, #309
-     `orderwl()`             | `wl_sort()`                      |  #208, #309
+     `spc.smooth.spline()`   | `spc_smooth_spline()`            |  #208, #301
      `wl.eval()`             | `wl_eval()`                      |  #208, #309
      `wlconv()`              | `wl_convert_units()`             |  #208, #309
     - Wavelength unit conversion functions `ev2freq()`, `ev2invcm()`, `ev2nm()`, `ev2raman()`, `freq2ev()`, `freq2invcm()`, `freq2nm()`, `freq2raman()`, `invcm2ev()`, `invcm2freq()`, `invcm2nm()`, `invcm2raman()`, `nm2ev()`, `nm2freq()`, `nm2invcm()`, `nm2raman()`, `raman2ev()`, `raman2freq()`, `raman2invcm()`, `raman2nm()` are deprecated in favor of `wl_convert_units()` (#300).
-* Dataset `faux_cell` and function `generate_faux_cell()` replace `chondro` dataset (#125, #156, #180, #229).
 * Function `spc.NA.linapprox()`, which was deprecated for long time, is now completely removed (#239).
 * Column names in spectra matrix (`$spc` column of `hyperSpec` object) are now returned correctly by functions `spc.bin()` (#237), and `spc.loess()` (#245).
 * New function `hy_list_available_hySpc_packages()` lists packages, that are available in GitHub organization `r-hyperSpec`.
@@ -54,10 +58,7 @@
 * Functions `show()` and `print()` give more concise default output now (@GegznaV, #211).
 * The default output of function `summary()` was changed (@GegznaV, #211).
 * New color palette `palette_colorblind` introduced (@bryanhanson).
-* Changing name of color palette functions with prefix palette_ (@sangttruong, #299):
-	- Change matlab.dark.palette() to palette_matlab_dark().
-	- Change matlab.palette() to palette_matlab().
-	- Change alois.palette() to palette_alois().
+
 
 
 ## Non-User-Facing Changes from 0.99 Series
