@@ -2,7 +2,7 @@
 #' @concept moved to hySpc.read.txt
 #'
 #' @title (DEPRECATED)
-#'        File import Witec Raman
+#'        Import Raman spectra from Witec files
 #'
 #' @description
 #'

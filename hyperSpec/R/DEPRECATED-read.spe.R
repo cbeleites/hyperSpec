@@ -9,7 +9,7 @@
 #' @concept moved to hySpc.read.spe
 #'
 #' @title (DEPRECATED)
-#'        Import WinSpec SPE File
+#'        Import WinSpec SPE file
 #'
 #' @description
 #'

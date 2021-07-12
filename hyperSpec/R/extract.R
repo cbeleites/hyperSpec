@@ -107,7 +107,7 @@
 #' | `labels<-` | Sets the labels. |
 #'
 #'
-#' @title Extract and Replace Parts of `hyperSpec` Objects
+#' @title Extract and replace parts of `hyperSpec` objects
 #' @rdname extractreplace
 #' @docType methods
 #' @aliases [ [,hyperSpec-method

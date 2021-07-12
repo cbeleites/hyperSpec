@@ -17,7 +17,7 @@
   x
 }
 
-#' Sweep summary statistic out of an `hyperSpec` object
+#' Sweep summary statistic out of `hyperSpec` objects
 #'
 #' [base::sweep()] for `hyperSpec` objects.
 #'

@@ -16,7 +16,7 @@
 }
 
 
-#' @title Validation of `hyperSpec` Objects
+#' @title Validation of `hyperSpec` objects
 #' @description
 #' Check whether an object is a `hyperSpec` object and validate the object.
 #'

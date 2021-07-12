@@ -1,4 +1,4 @@
-#' @title comparison of `hyperSpec` objects
+#' @title Comparison of `hyperSpec` objects
 #'
 #' @description
 #' The comparison operators `>`, `<`, `>=`, `<=`, `==`, and `!=` for `hyperSpec` objects.
