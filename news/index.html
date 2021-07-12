@@ -177,12 +177,17 @@
 <code>NEWS.md</code> (this file) added so that users can readily see changes that may affect the use of the package.</li>
 <li>Documentation now available in <code>pkgdown</code> sites (<a href="https://r-hyperspec.github.io/" class="uri">https://r-hyperspec.github.io/</a>).</li>
 <li>Introductory vignette reorganized and enhanced, thanks to Bryan Hanson.</li>
+<li>Dataset <code>faux_cell</code> and function <code><a href="../reference/generate_faux_cell.html">generate_faux_cell()</a></code> replace <code>chondro</code> dataset (<a href='https://github.com/cbeleites/hyperSpec/issues/125'>#125</a>, <a href='https://github.com/cbeleites/hyperSpec/issues/156'>#156</a>, <a href='https://github.com/cbeleites/hyperSpec/issues/180'>#180</a>, <a href='https://github.com/cbeleites/hyperSpec/issues/229'>#229</a>).</li>
 <li>Portions of <code>hyperSpec</code> were spun out into their own packages for ease of maintenance. <strong>— ELABORATE —</strong>
 <ul>
 <li>Dataset <code>chondro</code> was moved to package <strong>hySpc.chondro</strong> (<a href="https://r-hyperspec.github.io/hySpc.chondro/" class="uri">https://r-hyperspec.github.io/hySpc.chondro/</a>).</li>
 <li>Functions <code><a href="../reference/DEPRECATED-ggplot2.html">qplotspc()</a></code>, <code><a href="../reference/DEPRECATED-ggplot2.html">qplotmap()</a></code>, <code><a href="../reference/DEPRECATED-ggplot2.html">qplotc()</a></code>, <code><a href="../reference/DEPRECATED-ggplot2.html">qplotmixmap()</a></code>, <code><a href="../reference/DEPRECATED-ggplot2.html">legendright()</a></code>, <code><a href="../reference/DEPRECATED-ggplot2.html">qmixtile()</a></code>, <code><a href="../reference/DEPRECATED-ggplot2.html">normalize.colrange()</a></code>, <code><a href="../reference/DEPRECATED-ggplot2.html">normalize.range()</a></code>, <code><a href="../reference/DEPRECATED-ggplot2.html">normalize.null()</a></code>, <code><a href="../reference/DEPRECATED-ggplot2.html">normalize.minmax()</a></code>, <code><a href="../reference/DEPRECATED-ggplot2.html">qmixlegend()</a></code>, <code><a href="../reference/DEPRECATED-ggplot2.html">colmix.rgb()</a></code> were deprecated due analogous functionality in package <strong>hySpc.ggplot2</strong> (<a href="https://r-hyperspec.github.io/hySpc.ggplot2/" class="uri">https://r-hyperspec.github.io/hySpc.ggplot2/</a>).</li>
+<li>Functions <code><a href="../reference/DEPRECATED-read.ENVI.html">read.ENVI()</a></code>, <code><a href="../reference/DEPRECATED-read.ENVI.html">read.ENVI.HySpex()</a></code>, <code><a href="../reference/DEPRECATED-read.ENVI.html">read.ENVI.Nicolet()</a></code> were deprecated due to analogous functionality in package <strong>hySpc.read.ENVI</strong> (<a href="https://r-hyperspec.github.io/hySpc.read.ENVI/" class="uri">https://r-hyperspec.github.io/hySpc.read.ENVI/</a>).</li>
+<li>Functions <code><a href="../reference/DEPRECATED-read.spc.html">read.spc()</a></code>, <code><a href="../reference/DEPRECATED-read.spc.Kaiser.html">read.spc.Kaiser()</a></code>, <code><a href="../reference/DEPRECATED-read.spc.Kaiser.html">read.spc.KaiserMap()</a></code>, <code><a href="../reference/DEPRECATED-read.spc.Kaiser.html">read.spc.KaiserLowHigh()</a></code> were deprecated due to analogous functionality in package <strong>hySpc.read.spc</strong> (<a href="https://r-hyperspec.github.io/hySpc.read.spc/" class="uri">https://r-hyperspec.github.io/hySpc.read.spc/</a>).</li>
+<li>Functions <code><a href="../reference/DEPRECATED-read.spe.html">read.spe()</a></code>, <code><a href="../reference/DEPRECATED-read.spe.html">spe.showcalpoints()</a></code> were deprecated due to analogous functionality in package <strong>hySpc.read.spe</strong> (<a href="https://r-hyperspec.github.io/hySpc.read.spe/" class="uri">https://r-hyperspec.github.io/hySpc.read.spe/</a>).</li>
+<li>Functions <code><a href="../reference/DEPRECATED-read.mat.Cytospec.html">read.mat.Cytospec()</a></code>, <code><a href="../reference/DEPRECATED-read.mat.Witec.html">read.mat.Witec()</a></code> were deprecated due to analogous functionality in package <strong>hySpc.read.mat</strong> (<a href="https://r-hyperspec.github.io/hySpc.read.mat/" class="uri">https://r-hyperspec.github.io/hySpc.read.mat/</a>).</li>
+<li>Function <code><a href="../reference/DEPRECATED-read.jdx.html">read.jdx()</a></code> was deprecated due to analogous functionality in package <strong>hySpc.read.jdx</strong> (<a href="https://r-hyperspec.github.io/hySpc.read.jdx/" class="uri">https://r-hyperspec.github.io/hySpc.read.jdx/</a>).</li>
 <li>Functions <code><a href="../reference/DEPRECATED-read.asc.Andor.html">read.asc.Andor()</a></code>, <code><a href="../reference/DEPRECATED-read.asc.PerkinElmer.html">read.asc.PerkinElmer()</a></code>, <code><a href="../reference/DEPRECATED-read.txt.Horiba.html">read.txt.Horiba()</a></code>, <code><a href="../reference/DEPRECATED-read.txt.Horiba.html">read.txt.Horiba.xy()</a></code>, <code><a href="../reference/DEPRECATED-read.txt.Horiba.html">read.txt.Horiba.t()</a></code>, <code><a href="../reference/read.txt.long.html">read.txt.long()</a></code>, <code><a href="../reference/DEPRECATED-read.txt.Renishaw.html">read.txt.Renishaw()</a></code>, <code><a href="../reference/DEPRECATED-read.txt.Renishaw.html">read.zip.Renishaw()</a></code>, <code><a href="../reference/DEPRECATED-read.txt.Shimadzu.html">read.txt.Shimadzu()</a></code>, <code><a href="../reference/read.txt.long.html">read.txt.wide()</a></code>, <code><a href="../reference/DEPRECATED-read.txt.Witec.html">read.txt.Witec()</a></code>, <code><a href="../reference/DEPRECATED-read.txt.Witec.html">read.txt.Witec.Graph()</a></code>, <code><a href="../reference/DEPRECATED-read.txt.Witec.html">read.dat.Witec()</a></code>, <code><a href="../reference/DEPRECATED-wc.html">wc()</a></code>, <code><a href="../reference/DEPRECATED-count_lines.html">count_lines()</a></code> were deprecated due analogous functionality in package <strong>hySpc.read.txt</strong> (<a href="https://r-hyperspec.github.io/hySpc.read.txt/" class="uri">https://r-hyperspec.github.io/hySpc.read.txt/</a>).</li>
-<li>Functions <code><a href="../reference/DEPRECATED-read.mat.Witec.html">read.mat.Witec()</a></code>, <strong>— ELABORATE —</strong> were deprecated due analogous functionality in package <strong>hySpc.read.mat</strong> (<a href="https://r-hyperspec.github.io/hySpc.read.mat/" class="uri">https://r-hyperspec.github.io/hySpc.read.mat/</a>).</li>
 <li>The following functions were renamed or replaced by new ones (see table below).</li>
 </ul>
 <table>
@@ -193,24 +198,44 @@
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td><code>matlab.dark.palette</code></td>
-<td><code>palette_matlab_dark</code></td>
-<td><a href='https://github.com/cbeleites/hyperSpec/issues/208'>#208</a>, <a href='https://github.com/cbeleites/hyperSpec/issues/299'>#299</a></td>
+<td><code>.fileio.optional()</code></td>
+<td><code><a href="../reference/.spc_io_postprocess_optional.html">.spc_io_postprocess_optional()</a></code></td>
+<td><a href='https://github.com/cbeleites/hyperSpec/issues/208'>#208</a>, <a href='https://github.com/cbeleites/hyperSpec/issues/302'>#302</a></td>
 </tr>
 <tr class="even">
-<td><code>matlab.palette</code></td>
-<td><code>palette_matlab</code></td>
-<td><a href='https://github.com/cbeleites/hyperSpec/issues/208'>#208</a>, <a href='https://github.com/cbeleites/hyperSpec/issues/299'>#299</a></td>
+<td><code><a href="../reference/DEPRECATED-fix_spc_colnames.html">.fix_spc_colnames()</a></code></td>
+<td><code><a href="../reference/.spc_fix_colnames.html">.spc_fix_colnames()</a></code></td>
+<td><a href='https://github.com/cbeleites/hyperSpec/issues/208'>#208</a>, <a href='https://github.com/cbeleites/hyperSpec/issues/301'>#301</a></td>
 </tr>
 <tr class="odd">
-<td><code>alois.palette</code></td>
-<td><code>palette_alois</code></td>
-<td><a href='https://github.com/cbeleites/hyperSpec/issues/208'>#208</a>, <a href='https://github.com/cbeleites/hyperSpec/issues/299'>#299</a></td>
+<td><code>alois.palette()</code></td>
+<td><code><a href="../reference/palette_matlab.html">palette_alois()</a></code></td>
+<td><a href='https://github.com/cbeleites/hyperSpec/issues/208'>#208</a>, <a href='https://github.com/cbeleites/hyperSpec/issues/299'>#299</a>, <a href='https://github.com/sangttruong'>@sangttruong</a></td>
 </tr>
 <tr class="even">
-<td><code><a href="../reference/DEPRECATED-spc.NA.approx.html">spc.NA.approx()</a></code></td>
-<td><code><a href="../reference/spc_na_approx.html">spc_na_approx()</a></code></td>
-<td><a href='https://github.com/cbeleites/hyperSpec/issues/208'>#208</a>, <a href='https://github.com/cbeleites/hyperSpec/issues/301'>#301</a></td>
+<td><code><a href="../reference/DEPRECATED-guess.wavlength.html">guess.wavelength()</a></code></td>
+<td><code><a href="../reference/extract_numbers.html">extract_numbers()</a></code></td>
+<td><a href='https://github.com/cbeleites/hyperSpec/issues/208'>#208</a>, <a href='https://github.com/cbeleites/hyperSpec/issues/309'>#309</a></td>
+</tr>
+<tr class="odd">
+<td><code>matlab.dark.palette()</code></td>
+<td><code><a href="../reference/palette_matlab.html">palette_matlab_dark()</a></code></td>
+<td><a href='https://github.com/cbeleites/hyperSpec/issues/299'>#299</a>, <a href='https://github.com/cbeleites/hyperSpec/issues/299'>#299</a>, <a href='https://github.com/sangttruong'>@sangttruong</a></td>
+</tr>
+<tr class="even">
+<td><code>matlab.palette()</code></td>
+<td><code><a href="../reference/palette_matlab.html">palette_matlab()</a></code></td>
+<td><a href='https://github.com/cbeleites/hyperSpec/issues/208'>#208</a>, <a href='https://github.com/cbeleites/hyperSpec/issues/299'>#299</a>, <a href='https://github.com/sangttruong'>@sangttruong</a></td>
+</tr>
+<tr class="odd">
+<td><code>mergeextra()</code></td>
+<td><code><a href="../reference/merge_data.html">merge_data()</a></code></td>
+<td><a href='https://github.com/cbeleites/hyperSpec/issues/208'>#208</a>, <a href='https://github.com/cbeleites/hyperSpec/issues/302'>#302</a></td>
+</tr>
+<tr class="even">
+<td><code><a href="../reference/DEPRECATED-orderwl.html">orderwl()</a></code></td>
+<td><code><a href="../reference/wl_sort.html">wl_sort()</a></code></td>
+<td><a href='https://github.com/cbeleites/hyperSpec/issues/208'>#208</a>, <a href='https://github.com/cbeleites/hyperSpec/issues/309'>#309</a></td>
 </tr>
 <tr class="odd">
 <td><code><a href="../reference/DEPRECATED-spc.bin.html">spc.bin()</a></code></td>
@@ -233,8 +258,8 @@
 <td><a href='https://github.com/cbeleites/hyperSpec/issues/208'>#208</a>, <a href='https://github.com/cbeleites/hyperSpec/issues/301'>#301</a></td>
 </tr>
 <tr class="odd">
-<td><code><a href="../reference/DEPRECATED-spc.spline.html">spc.smooth.spline()</a></code></td>
-<td><code><a href="../reference/spc_smooth_spline.html">spc_smooth_spline()</a></code></td>
+<td><code><a href="../reference/DEPRECATED-spc.NA.approx.html">spc.NA.approx()</a></code></td>
+<td><code><a href="../reference/spc_na_approx.html">spc_na_approx()</a></code></td>
 <td><a href='https://github.com/cbeleites/hyperSpec/issues/208'>#208</a>, <a href='https://github.com/cbeleites/hyperSpec/issues/301'>#301</a></td>
 </tr>
 <tr class="even">
@@ -243,29 +268,9 @@
 <td><a href='https://github.com/cbeleites/hyperSpec/issues/208'>#208</a>, <a href='https://github.com/cbeleites/hyperSpec/issues/301'>#301</a></td>
 </tr>
 <tr class="odd">
-<td><code><a href="../reference/DEPRECATED-fix_spc_colnames.html">.fix_spc_colnames()</a></code></td>
-<td><code><a href="../reference/.spc_fix_colnames.html">.spc_fix_colnames()</a></code></td>
+<td><code><a href="../reference/DEPRECATED-spc.spline.html">spc.smooth.spline()</a></code></td>
+<td><code><a href="../reference/spc_smooth_spline.html">spc_smooth_spline()</a></code></td>
 <td><a href='https://github.com/cbeleites/hyperSpec/issues/208'>#208</a>, <a href='https://github.com/cbeleites/hyperSpec/issues/301'>#301</a></td>
-</tr>
-<tr class="even">
-<td><code>mergeextra()</code></td>
-<td><code><a href="../reference/merge_data.html">merge_data()</a></code></td>
-<td><a href='https://github.com/cbeleites/hyperSpec/issues/208'>#208</a>, <a href='https://github.com/cbeleites/hyperSpec/issues/302'>#302</a></td>
-</tr>
-<tr class="odd">
-<td><code>.fileio.optional()</code></td>
-<td><code><a href="../reference/.spc_io_postprocess_optional.html">.spc_io_postprocess_optional()</a></code></td>
-<td><a href='https://github.com/cbeleites/hyperSpec/issues/208'>#208</a>, <a href='https://github.com/cbeleites/hyperSpec/issues/302'>#302</a></td>
-</tr>
-<tr class="even">
-<td><code><a href="../reference/DEPRECATED-guess.wavlength.html">guess.wavelength()</a></code></td>
-<td><code><a href="../reference/extract_numbers.html">extract_numbers()</a></code></td>
-<td><a href='https://github.com/cbeleites/hyperSpec/issues/208'>#208</a>, <a href='https://github.com/cbeleites/hyperSpec/issues/309'>#309</a></td>
-</tr>
-<tr class="odd">
-<td><code><a href="../reference/DEPRECATED-orderwl.html">orderwl()</a></code></td>
-<td><code><a href="../reference/wl_sort.html">wl_sort()</a></code></td>
-<td><a href='https://github.com/cbeleites/hyperSpec/issues/208'>#208</a>, <a href='https://github.com/cbeleites/hyperSpec/issues/309'>#309</a></td>
 </tr>
 <tr class="even">
 <td><code><a href="../reference/DEPRECATED-wl.eval.html">wl.eval()</a></code></td>
@@ -283,7 +288,6 @@
 <li>Wavelength unit conversion functions <code><a href="../reference/DEPRECATED-wlconv.html">ev2freq()</a></code>, <code><a href="../reference/DEPRECATED-wlconv.html">ev2invcm()</a></code>, <code><a href="../reference/DEPRECATED-wlconv.html">ev2nm()</a></code>, <code><a href="../reference/DEPRECATED-wlconv.html">ev2raman()</a></code>, <code><a href="../reference/DEPRECATED-wlconv.html">freq2ev()</a></code>, <code><a href="../reference/DEPRECATED-wlconv.html">freq2invcm()</a></code>, <code><a href="../reference/DEPRECATED-wlconv.html">freq2nm()</a></code>, <code><a href="../reference/DEPRECATED-wlconv.html">freq2raman()</a></code>, <code><a href="../reference/DEPRECATED-wlconv.html">invcm2ev()</a></code>, <code><a href="../reference/DEPRECATED-wlconv.html">invcm2freq()</a></code>, <code><a href="../reference/DEPRECATED-wlconv.html">invcm2nm()</a></code>, <code><a href="../reference/DEPRECATED-wlconv.html">invcm2raman()</a></code>, <code><a href="../reference/DEPRECATED-wlconv.html">nm2ev()</a></code>, <code><a href="../reference/DEPRECATED-wlconv.html">nm2freq()</a></code>, <code><a href="../reference/DEPRECATED-wlconv.html">nm2invcm()</a></code>, <code><a href="../reference/DEPRECATED-wlconv.html">nm2raman()</a></code>, <code><a href="../reference/DEPRECATED-wlconv.html">raman2ev()</a></code>, <code><a href="../reference/DEPRECATED-wlconv.html">raman2freq()</a></code>, <code><a href="../reference/DEPRECATED-wlconv.html">raman2invcm()</a></code>, <code><a href="../reference/DEPRECATED-wlconv.html">raman2nm()</a></code> are deprecated in favor of <code><a href="../reference/wl_convert_units.html">wl_convert_units()</a></code> (<a href='https://github.com/cbeleites/hyperSpec/issues/300'>#300</a>).</li>
 </ul>
 </li>
-<li>Dataset <code>faux_cell</code> and function <code><a href="../reference/generate_faux_cell.html">generate_faux_cell()</a></code> replace <code>chondro</code> dataset (<a href='https://github.com/cbeleites/hyperSpec/issues/125'>#125</a>, <a href='https://github.com/cbeleites/hyperSpec/issues/156'>#156</a>, <a href='https://github.com/cbeleites/hyperSpec/issues/180'>#180</a>, <a href='https://github.com/cbeleites/hyperSpec/issues/229'>#229</a>).</li>
 <li>Function <code>spc.NA.linapprox()</code>, which was deprecated for long time, is now completely removed (<a href='https://github.com/cbeleites/hyperSpec/issues/239'>#239</a>).</li>
 <li>Column names in spectra matrix (<code>$spc</code> column of <code>hyperSpec</code> object) are now returned correctly by functions <code><a href="../reference/DEPRECATED-spc.bin.html">spc.bin()</a></code> (<a href='https://github.com/cbeleites/hyperSpec/issues/237'>#237</a>), and <code><a href="../reference/DEPRECATED-spc.loess.html">spc.loess()</a></code> (<a href='https://github.com/cbeleites/hyperSpec/issues/245'>#245</a>).</li>
 <li>New function <code><a href="../reference/hy_list_available_hySpc_packages.html">hy_list_available_hySpc_packages()</a></code> lists packages, that are available in GitHub organization <code>r-hyperSpec</code>.</li>
@@ -303,13 +307,6 @@
 <li>Functions <code><a href="../reference/show.html">show()</a></code> and <code><a href="../reference/show.html">print()</a></code> give more concise default output now (<a href='https://github.com/GegznaV'>@GegznaV</a>, <a href='https://github.com/cbeleites/hyperSpec/issues/211'>#211</a>).</li>
 <li>The default output of function <code><a href="../reference/show.html">summary()</a></code> was changed (<a href='https://github.com/GegznaV'>@GegznaV</a>, <a href='https://github.com/cbeleites/hyperSpec/issues/211'>#211</a>).</li>
 <li>New color palette <code>palette_colorblind</code> introduced (<a href='https://github.com/bryanhanson'>@bryanhanson</a>).</li>
-<li>Changing name of color palette functions with prefix palette_ (<a href='https://github.com/sangttruong'>@sangttruong</a>, <a href='https://github.com/cbeleites/hyperSpec/issues/299'>#299</a>):
-<ul>
-<li>Change matlab.dark.palette() to palette_matlab_dark().</li>
-<li>Change matlab.palette() to palette_matlab().</li>
-<li>Change alois.palette() to palette_alois().</li>
-</ul>
-</li>
 </ul>
 </div>
 <div id="non-user-facing-changes-from-099-series" class="section level2">
