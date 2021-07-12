@@ -1,5 +1,7 @@
 # @title normalization for mixed colors
 
+# Set generic ----------------------------------------------------------------
+
 #' Normalize numbers to interval \[0, 1\]
 #'
 #' The input `x` is mapped to \[0, 1\] by subtracting the minimum and
@@ -7,23 +9,27 @@
 #'  1 is returned.
 #'
 #' @name normalize01
+#'
 #' @param x  vector with values to transform
 #' @param tolerance tolerance level for determining what is 0 and 1
 #' @param ... additional parameters such as `tolerance` handed down.
+#'
 #' @return vector with `x` values mapped to the interval \[0, 1\]
+#'
 #' @author C. Beleites
-#' @seealso [hyperSpec::wl_eval()], [hyperSpec::vanderMonde()]
-#' @export
 #'
 #' @concept manipulation
+#' @seealso [hyperSpec::wl_eval()], [hyperSpec::vanderMonde()]
+#'
+#' @export
 #'
 setGeneric("normalize01", function(x, ...) standardGeneric("normalize01"))
 
+# Functions ------------------------------------------------------------------
+
+#' @rdname normalize01
 #' @export
 #'
-#' @concept manipulation
-#'
-#' @rdname normalize01
 setMethod(
   normalize01, signature(x = "matrix"),
   function(x, tolerance = hy.getOption("tolerance")) {
@@ -36,11 +42,9 @@ setMethod(
   }
 )
 
+#' @rdname normalize01
 #' @export
 #'
-#' @concept manipulation
-#'
-#' @rdname normalize01
 setMethod("normalize01", signature(x = "numeric"), function(x, tolerance = hy.getOption("tolerance")) {
   x <- x - min(x)
 
@@ -52,20 +56,18 @@ setMethod("normalize01", signature(x = "numeric"), function(x, tolerance = hy.ge
   }
 })
 
+
+#' @rdname normalize01
 #' @export
 #'
-#' @concept manipulation
-#'
-#' @rdname normalize01
 setMethod(normalize01, signature(x = "hyperSpec"), function(x, ...) {
   validObject(x)
-
   x@data$spc <- normalize01(unclass(x@data$spc), ...)
-
-  ## logbook
   x
 })
 
+
+# Unit tests -----------------------------------------------------------------
 
 hySpc.testthat::test(normalize01) <- function() {
   context("normalize01")
