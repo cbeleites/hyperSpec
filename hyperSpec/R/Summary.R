@@ -1,87 +1,98 @@
-#' @title Statistical summary and other functions for `hyperSpec`
+# Function -------------------------------------------------------------------
+.Summary <- function(x, ..., na.rm = FALSE) {
+  validObject(x)
+
+  if ((.Generic == "prod") || (.Generic == "sum")) {
+    warning(paste(
+      "Do you really want to use", .Generic, "on a 'hyperSpec' object?"
+    ))
+  }
+
+  ## dispatch also on the objects in ...
+  x <- sapply(list(x[[]], ...), .Generic, na.rm = na.rm)
+
+  callGeneric(x, na.rm = na.rm)
+}
+
+#' Statistical summary and other functions for `hyperSpec`
+#'
 #' @description
-#' The functions
+#' The following functions for `hyperSpec` objects:
 #'
-#' `all`, `any`,
-#'
-#' `sum`, `prod`,
-#'
-#' `min`, `max`,
-#'
-#' `range`, and
-#'
-#' `is.na`
-#'
-#' for `hyperSpec` objects.
+#' - `all()`, `any()`,
+#' - `sum()`, `prod()`,
+#' - `min()`, `max()`,
+#' - `range()`, and
+#' - `is.na()`
 #'
 #' All these functions work on the spectra matrix.
+#'
 #' @name Summary
-#' @docType methods
 #' @rdname summary
+#'
+#' @concept stats
+#' @docType methods
 #' @aliases Summary,hyperSpec-method Summary all,hyperSpec-method
 #'   any,hyperSpec-method sum,hyperSpec-method prod,hyperSpec-method
 #'   min,hyperSpec-method max,hyperSpec-method range,hyperSpec-method
+#'
 #' @param x hyperSpec object
 #' @param ... further objects
 #' @param na.rm logical indicating whether missing values should be removed
 #' @return `sum`, `prod`, `min`, `max`, and `range` return  a numeric,
 #' `all`, `any`, and `is.na` a logical.
+#'
 #' @seealso [base::Summary()] for the base summary functions.
-#'
-#' @export
-#'
-#' @concept stats
 #'
 #' @examples
 #'
 #' range(flu)
-setMethod(
-  "Summary", signature(x = "hyperSpec"),
-  function(x, ..., na.rm = FALSE) {
-    validObject(x)
+#' @export
+setMethod("Summary", signature(x = "hyperSpec"), .Summary)
 
-    if ((.Generic == "prod") || (.Generic == "sum")) {
-      warning(paste("Do you really want to use", .Generic, "on a hyperSpec object?"))
-    }
 
-    ## dispatch also on the objects in ...
-    x <- sapply(list(x[[]], ...), .Generic, na.rm = na.rm)
+# TODO: add unit tests for '.Summary'
 
-    callGeneric(x, na.rm = na.rm)
+
+# Function -------------------------------------------------------------------
+.is.na <- function(x) {
+    is.na(x@data$spc)
   }
-)
 
 #' @rdname summary
 #' @aliases is.na,hyperSpec-method
 #' @seealso [base::all.equal()] and [base::isTRUE()]
-#' @export
 #' @examples
 #'
 #' is.na(flu[, , 405 ~ 410])
-setMethod(
-  "is.na", signature(x = "hyperSpec"),
-  function(x) {
-    is.na(x@data$spc)
-  }
-)
-
-#' @details
-#' `all_wl` and `any_wl` are shortcut function to check whether
-#' any or all intensities fulfill the condition per spectrum.
-#' `na.rm` behaviour is like [base::all()] and [base::any()].
-#'
-#' @param expression expression that evaluates to a logical matrix of the same size as the spectra matrix
-#'
-#' @rdname summary
 #' @export
+setMethod("is.na", signature(x = "hyperSpec"), .is.na)
+
+
+# TODO: add unit tests for '.is.na'
+
+
+# Function -------------------------------------------------------------------
+
+#' @rdname summary
+#' @details
+#' `all_wl()` and `any_wl()` are shortcut function to check whether
+#' any or all intensities fulfill the condition per spectrum.
+#' `na.rm` behavior is like [base::all()] and [base::any()].
+#'
+#' @param expression expression that evaluates to a logical matrix of the same
+#'        size as the spectra matrix
+#'
 #' @examples
 #'
 #' all_wl(flu > 100)
+#' @export
 all_wl <- function(expression, na.rm = FALSE) {
   res <- rowSums(!expression, na.rm = TRUE) == 0
 
   if (!na.rm) {
-    res[res] <- rowSums(expression[res, , drop = FALSE], na.rm = FALSE) == ncol(expression)
+    res[res] <-
+      rowSums(expression[res, , drop = FALSE], na.rm = FALSE) == ncol(expression)
   }
 
   res
@@ -127,14 +138,14 @@ hySpc.testthat::test(all_wl) <- function() {
   })
 }
 
-# ... ------------------------------------------------------------------------
+# Function -------------------------------------------------------------------
 
 #' @rdname summary
-#' @export
 #' @examples
 #'
 #' any_wl(flu > 300)
 #' !any_wl(is.na(flu))
+#' @export
 any_wl <- function(expression, na.rm = FALSE) {
   res <- rowSums(expression, na.rm = TRUE) > 0
 
@@ -187,12 +198,12 @@ hySpc.testthat::test(any_wl) <- function() {
   test_that("Summary warnings", {
     expect_warning(
       prod(flu),
-      "Do you really want to use prod on a hyperSpec object?"
+      "Do you really want to use prod on a 'hyperSpec' object?"
     )
 
     expect_warning(
       sum(flu),
-      "Do you really want to use sum on a hyperSpec object?"
+      "Do you really want to use sum on a 'hyperSpec' object?"
     )
   })
 }
