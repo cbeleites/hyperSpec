@@ -48,9 +48,7 @@
 #' @examples
 #'
 #' log(flu)
-setMethod(
-  "Math2", signature(x = "hyperSpec"), .math2
-)
+setMethod("Math2", signature(x = "hyperSpec"), .math2)
 
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
