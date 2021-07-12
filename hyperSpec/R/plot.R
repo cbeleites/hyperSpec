@@ -76,6 +76,12 @@ setGeneric("plot")
   )
 }
 
+.plot_hy_miss <- function(x, y, ...) {
+  plotspc(x, ...)
+}
+
+
+
 #' Plotting `hyperSpec` objects
 #'
 #' @description
@@ -85,8 +91,6 @@ setGeneric("plot")
 #'
 #'
 #' @details
-#'
-#'
 #' Supported values for `y` are:
 #'
 #' \describe{
@@ -167,20 +171,12 @@ setGeneric("plot")
 #' plot(spc, "spcmeansd")
 #'
 #' ### Use plotspc() as a default plot function.
-setMethod(
-  "plot",
-  signature(x = "hyperSpec", y = "missing"),
-  function(x, y, ...) plotspc(x, ...)
-)
+setMethod("plot", signature(x = "hyperSpec", y = "missing"), .plot_hy_miss)
 
 ### allow choice of plot type by second argument:
 #' @rdname plot
 #' @export
-setMethod(
-  "plot",
-  signature(x = "hyperSpec", y = "character"),
-  .plot
-)
+setMethod("plot", signature(x = "hyperSpec", y = "character"), .plot)
 
 
 
