@@ -1,3 +1,5 @@
+# Set generic ----------------------------------------------------------------
+
 .rmmvnorm <- function(n, mean, sigma) {
   if (!requireNamespace("mvtnorm")) {
     stop("package 'mvtnorm' needed to generate multivariate normal random data.")
@@ -27,6 +29,7 @@
 #' @name rmmvnorm
 setGeneric("rmmvnorm", .rmmvnorm)
 
+# Function -------------------------------------------------------------------
 
 #' Multivariate normal random numbers
 #'
@@ -37,22 +40,24 @@ setGeneric("rmmvnorm", .rmmvnorm)
 #' normal data for groups with different mean but common covariance matrix,
 #' see the examples.
 #'
-#' @param n vector giving the numer of cases to generate for each group
+#' @rdname rmmvnorm
+#' @aliases rmmvnorm rmmvnorm,hyperSpec-method
+#' @docType methods
+#'
+#' @param n vector giving the number of cases to generate for each group
 #' @param mean matrix with mean cases in rows
 #' @param sigma common covariance matrix or array
 #' (`ncol(mean)` x `ncol(mean)` x `nrow(mean)`) with individual covariance
 #' matrices for the groups.
-#' @export
 #'
 #' @concept data generation
-#'
 #' @seealso [mvtnorm::rmvnorm()]
 #'
 #' [hyperSpec::cov()] and [hyperSpec::pooled.cov()] about calculating covariance
 #' of `hyperSpec` objects.
-#' @rdname rmmvnorm
-#' @aliases rmmvnorm rmmvnorm,hyperSpec-method
-#' @docType methods
+#'
+#' @export
+#'
 #' @examples
 #' ## multiple groups, common covariance matrix
 #'
@@ -76,22 +81,29 @@ setMethod(
   }
 )
 
+# Function -------------------------------------------------------------------
+
+.rmmvnorm_num_hy_arr <- function(n, mean, sigma) {
+  tmp <- .rmmvnorm(n, mean@data$spc, sigma)
+
+  data <- mean[attr(tmp, "group"), , drop = FALSE]
+  if (hy.getOption("gc")) gc()
+  data@data$spc <- tmp
+  if (hy.getOption("gc")) gc()
+  data$.group <- attr(tmp, "group")
+  if (hy.getOption("gc")) gc()
+  data
+}
+
 #' @rdname rmmvnorm
 #' @export
 setMethod(
   "rmmvnorm", signature(n = "numeric", mean = "hyperSpec", sigma = "array"),
-  function(n, mean, sigma) {
-    tmp <- .rmmvnorm(n, mean@data$spc, sigma)
-
-    data <- mean[attr(tmp, "group"), , drop = FALSE]
-    if (hy.getOption("gc")) gc()
-    data@data$spc <- tmp
-    if (hy.getOption("gc")) gc()
-    data$.group <- attr(tmp, "group")
-    if (hy.getOption("gc")) gc()
-    data
-  }
+  .rmmvnorm_num_hy_arr
 )
+
+
+# Function -------------------------------------------------------------------
 
 #' @rdname rmmvnorm
 #' @export
@@ -100,6 +112,9 @@ setMethod(
   .rmmvnorm
 )
 
+
+# Function -------------------------------------------------------------------
+
 #' @rdname rmmvnorm
 #' @export
 setMethod(
@@ -107,5 +122,11 @@ setMethod(
   .rmmvnorm
 )
 
-## produces matrices instead of hyperSpec objects.
-## mapply (rmvnorm, n = 1:3, mean = pcov$mean, MoreArgs= list (sigma = pcov$COV), SIMPLIFY = FALSE))
+# FIXME:
+# produces matrices instead of hyperSpec objects.
+# mapply(rmvnorm, n = 1:3, mean = pcov$mean, MoreArgs= list(sigma = pcov$COV), SIMPLIFY = FALSE)
+
+
+# Unit testes ----------------------------------------------------------------
+
+# TODO: add unit tests
