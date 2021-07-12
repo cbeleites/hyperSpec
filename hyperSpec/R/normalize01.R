@@ -10,11 +10,11 @@
 #'
 #' @name normalize01
 #'
-#' @param x  vector with values to transform
-#' @param tolerance tolerance level for determining what is 0 and 1
+#' @param x  Object (e.g., vector) with values to transform.
+#' @param tolerance Tolerance level for determining what is 0 and 1.
 #' @param ... additional parameters such as `tolerance` handed down.
 #'
-#' @return vector with `x` values mapped to the interval \[0, 1\]
+#' @return object (e.g., vector) with `x` values mapped to the interval \[0, 1\].
 #'
 #' @author C. Beleites
 #'
@@ -25,27 +25,27 @@
 #'
 setGeneric("normalize01", function(x, ...) standardGeneric("normalize01"))
 
-# Functions ------------------------------------------------------------------
+
+# Function -------------------------------------------------------------------
+
+.normalize01_mat <- function(x, tolerance = hy.getOption("tolerance")) {
+  m <- apply(x, 1, min)
+  x <- sweep(x, 1, m, `-`)
+  m <- apply(x, 1, max)
+  x <- sweep(x, 1, m, `/`)
+  x[m < tolerance, ] <- 1
+  x
+}
 
 #' @rdname normalize01
 #' @export
 #'
-setMethod(
-  normalize01, signature(x = "matrix"),
-  function(x, tolerance = hy.getOption("tolerance")) {
-    m <- apply(x, 1, min)
-    x <- sweep(x, 1, m, `-`)
-    m <- apply(x, 1, max)
-    x <- sweep(x, 1, m, `/`)
-    x[m < tolerance, ] <- 1
-    x
-  }
-)
+setMethod(normalize01, signature(x = "matrix"), .normalize01_mat)
 
-#' @rdname normalize01
-#' @export
-#'
-setMethod("normalize01", signature(x = "numeric"), function(x, tolerance = hy.getOption("tolerance")) {
+
+# Function -------------------------------------------------------------------
+
+.normalize01_num <- function(x, tolerance = hy.getOption("tolerance")) {
   x <- x - min(x)
 
   m <- max(x)
@@ -54,17 +54,26 @@ setMethod("normalize01", signature(x = "numeric"), function(x, tolerance = hy.ge
   } else {
     x / m
   }
-})
-
+}
 
 #' @rdname normalize01
 #' @export
 #'
-setMethod(normalize01, signature(x = "hyperSpec"), function(x, ...) {
+setMethod("normalize01", signature(x = "numeric"), .normalize01_num)
+
+
+# Function -------------------------------------------------------------------
+
+.normalize01_hy <- function(x, ...) {
   validObject(x)
   x@data$spc <- normalize01(unclass(x@data$spc), ...)
   x
-})
+}
+
+#' @rdname normalize01
+#' @export
+#'
+setMethod(normalize01, signature(x = "hyperSpec"), .normalize01_hy)
 
 
 # Unit tests -----------------------------------------------------------------
