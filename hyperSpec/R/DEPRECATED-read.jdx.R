@@ -1,5 +1,3 @@
-# TODO: rename this file to "DEPRECATED-read.jdx.R" in a separate pull request.
-
 #' @name DEPRECATED-read.jdx
 #' @concept moved to hySpc.read.jdx
 #'
@@ -13,7 +11,6 @@
 #' More on functions in package \pkg{hySpc.read.jdx}
 #' [here (link)](https://r-hyperspec.github.io/hySpc.read.jdx/reference/index.html).
 #'
-#' ***
 #'
 #' **Old description:**
 #'
