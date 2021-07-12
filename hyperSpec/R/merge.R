@@ -1,83 +1,4 @@
-#' Merge `hyperSpec` objects
-#'
-#' Merges two `hyperSpec` objects and [base::cbind()]s their spectra
-#' matrices, or merges additional extra data into a `hyperSpec` object.
-#'
-#' After merging, the spectra matrix can contain duplicates, and is not
-#' ordered according to the wavelength.
-#'
-#' If the wavelength axis should be ordered, use [wl_sort()].
-#'
-#' If a `hyperSpec` object and  a `data.frame` are merged, the result is of the
-#' class of the first (`x`) object.
-#'
-#' @aliases merge,hyperSpec,hyperSpec-method merge
-#' @param x a `hyperSpec` object or data.frame
-#' @param y a `hyperSpec` object or data.frame (including derived classes like tibble)
-#' @param ... handed to [base::merge.data.frame()]
-#' @author C. Beleites
-#'
-#' @export
-#'
-#' @concept manipulation
-#'
-#' @rdname merge
-#' @docType methods
-#' @aliases merge
-#' @seealso [base::merge()].
-#'
-#' [collapse()] combines `hyperSpec` objects that do not share the wavelength axis.
-#' [rbind()], and [cbind()] for combining `hyperSpec` objects that.
-#' @keywords manip
-#' @examples
-#'
-#' merge(faux_cell[1:10, , 600], faux_cell[5:15, , 600], by = c("x", "y"))$.
-#' tmp <- merge(faux_cell[1:10, , 610], faux_cell[5:15, , 610],
-#'   by = c("x", "y"), all = TRUE
-#' )
-#' tmp$.
-#' wl(tmp)
-#'
-#' ## remove duplicated wavelengths:
-#' approxfun <- function(y, wl, new.wl) {
-#'   approx(wl, y, new.wl,
-#'     method = "constant",
-#'     ties = function(x) mean(x, na.rm = TRUE)
-#'   )$y
-#' }
-#'
-#' merged <- merge(faux_cell[1:7, , 610 ~ 620], faux_cell[5:10, , 615 ~ 625], all = TRUE)
-#' merged$.
-#' merged <- apply(merged, 1, approxfun,
-#'   wl = wl(merged), new.wl = unique(wl(merged)),
-#'   new.wavelength = "new.wl"
-#' )
-#' merged$.
-#'
-#' ## merging data.frame into hyperSpec object => hyperSpec object
-#' y <- data.frame(filename = sample(flu$filename, 4, replace = TRUE), cpred = 1:4)
-#' y
-#' tmp <- merge(flu, y)
-#' tmp$..
-#'
-#' ## merging hyperSpec object into data.frame => data.frame
-#' merge(y, flu)
-setMethod("merge",
-  signature = signature(x = "hyperSpec", y = "hyperSpec"),
-  function(x, y, ...) {
-    validObject(x)
-    validObject(y)
-
-    tmp <- .merge(x, y, ...)
-
-    if (nrow(tmp) == 0 && nrow(x) > 0 && nrow(y) > 0) {
-      warning("Merge results in 0 spectra.")
-    }
-
-    tmp
-  }
-)
-
+# Functions ------------------------------------------------------------------
 
 .merge <- function(x, y,
                    by = setdiff(intersect(colnames(x), colnames(y)), "spc"),
@@ -119,37 +40,143 @@ setMethod("merge",
   x
 }
 
+.merge_hy_hy <- function(x, y, ...) {
+  validObject(x)
+  validObject(y)
+
+  tmp <- .merge(x, y, ...)
+
+  if (nrow(tmp) == 0 && nrow(x) > 0 && nrow(y) > 0) {
+    warning("Merge results in 0 spectra.")
+  }
+
+  tmp
+}
+
+#' Merge `hyperSpec` objects
+#'
+#' Merges two `hyperSpec` objects and [base::cbind()]s their spectra
+#' matrices, or merges additional extra data into a `hyperSpec` object.
+#'
+#' After merging, the spectra matrix can contain duplicates, and is not
+#' ordered according to the wavelength.
+#'
+#' If the wavelength axis should be ordered, use [wl_sort()].
+#'
+#' If a `hyperSpec` object and  a `data.frame` are merged, the result is
+#' of the class of the first (`x`) object.
+#'
+#'
+#' @param x a `hyperSpec` object or `data.frame`
+#' @param y a `hyperSpec` object or `data.frame`
+#'       (including derived classes like `tibble`)
+#' @param ... handed to [base::merge.data.frame()]
+#'
+#' @author C. Beleites
+#'
 #' @rdname merge
+#' @aliases merge
+#' @aliases merge,hyperSpec,hyperSpec-method merge
+#' @docType methods
+#'
+#' @concept manipulation
+#' @seealso [base::merge()]
+#'
+#' [collapse()] combines `hyperSpec` objects that do not share the wavelength axis.
+#'
+#' [rbind()], and [cbind()] for combining `hyperSpec` objects that.
+#'
+#' [merge_data()]
+#' @keywords manip
+#'
+#' @export
+#'
+#' @examples
+#'
+#' merge(faux_cell[1:10, , 600], faux_cell[5:15, , 600], by = c("x", "y"))$.
+#'
+#' tmp <- merge(faux_cell[1:10, , 610], faux_cell[5:15, , 610],
+#'   by = c("x", "y"), all = TRUE
+#' )
+#' tmp$.
+#'
+#' wl(tmp)
+#'
+#' ## remove duplicated wavelengths:
+#' approxfun <- function(y, wl, new.wl) {
+#'   approx(wl, y, new.wl,
+#'     method = "constant",
+#'     ties = function(x) mean(x, na.rm = TRUE)
+#'   )$y
+#' }
+#'
+#' merged <- merge(faux_cell[1:7, , 610 ~ 620], faux_cell[5:10, , 615 ~ 625], all = TRUE)
+#' merged$.
+#'
+#' merged <- apply(merged, 1, approxfun,
+#'   wl = wl(merged), new.wl = unique(wl(merged)),
+#'   new.wavelength = "new.wl"
+#' )
+#' merged$.
+#'
+#' ## merging data.frame into hyperSpec object => hyperSpec object
+#' y <- data.frame(filename = sample(flu$filename, 4, replace = TRUE), cpred = 1:4)
+#' y
+#'
+#' tmp <- merge(flu, y)
+#' tmp$..
+#'
+#' ## merging hyperSpec object into data.frame => data.frame
+#' merge(y, flu)
+setMethod("merge",
+  signature = signature(x = "hyperSpec", y = "hyperSpec"),
+  .merge_hy_hy
+)
+
+
+# Function -------------------------------------------------------------------
+
+.merge_hy_df <- function(x, y, ...) {
+  validObject(x)
+
+  tmp <- merge(x@data, y, ...)
+  tmp
+  if (nrow(tmp) == 0 && nrow(x) > 0 && nrow(y) > 0) {
+    warning("Merge results in 0 spectra.")
+  }
+
+  x@data <- tmp
+
+  x
+}
+
+#' @rdname merge
+#' @export
+#'
 setMethod("merge",
   signature = signature(x = "hyperSpec", y = "data.frame"),
-  function(x, y, ...) {
-    validObject(x)
-
-    tmp <- merge(x@data, y, ...)
-    tmp
-    if (nrow(tmp) == 0 && nrow(x) > 0 && nrow(y) > 0) {
-      warning("Merge results in 0 spectra.")
-    }
-
-    x@data <- tmp
-
-    x
-  }
+  .merge_hy_df
 )
+
+
+# Function -------------------------------------------------------------------
+
+.merge_df_hy <- function(x, y, ...) {
+  validObject(y)
+  merge(x, y@data, ...)
+}
 
 #' @rdname merge
+#' @export
+#'
 setMethod("merge",
   signature = signature(x = "data.frame", y = "hyperSpec"),
-  function(x, y, ...) {
-    validObject(y)
-
-    merge(x, y@data, ...)
-  }
+  .merge_df_hy
 )
 
 
 
-
+# Unit tests -----------------------------------------------------------------
 
 hySpc.testthat::test(.merge) <- function() {
   context("merge")
