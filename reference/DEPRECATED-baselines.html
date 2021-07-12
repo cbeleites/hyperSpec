@@ -6,7 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>(DEPRECATED) Polynomial Baseline Fitting — DEPRECATED-baselines • hyperSpec</title>
+<title>(DEPRECATED)
+Polynomial baseline fitting — DEPRECATED-baselines • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,14 +42,15 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="(DEPRECATED) Polynomial Baseline Fitting — DEPRECATED-baselines" />
+<meta property="og:title" content="(DEPRECATED)
+Polynomial baseline fitting — DEPRECATED-baselines" />
 <meta property="og:description" content="These hyperSpec functions are deprecated and not maintained any
 more. You should not use these.
 Currently they are present due to back-compatibility reasons and will be
 removed in the next release of the package.
 Please, use the suggested alternative functions instead.
 _____________
-These functions fit polynomal baselines." />
+These functions fit polynomial baselines." />
 
 <meta name="robots" content="noindex" />
 
@@ -161,7 +163,8 @@ These functions fit polynomal baselines." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>(DEPRECATED) Polynomial Baseline Fitting</h1>
+    <h1>(DEPRECATED)
+Polynomial baseline fitting</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/DEPRECATED-spc_fit_poly.R'><code>R/DEPRECATED-spc_fit_poly.R</code></a></small>
     <div class="hidden name"><code>DEPRECATED-baselines.Rd</code></div>
     </div>
@@ -173,82 +176,26 @@ Currently they are present due to back-compatibility reasons and will be
 removed in the next release of the package.
 Please, use the suggested alternative functions instead.</p>
 <p><code>_____________</code></p>
-<p>These functions fit polynomal baselines.</p>
+<p>These functions fit polynomial baselines.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>spc.fit.poly</span><span class='op'>(</span>
-  <span class='va'>fit.to</span>,
-  apply.to <span class='op'>=</span> <span class='cn'>NULL</span>,
-  poly.order <span class='op'>=</span> <span class='fl'>1</span>,
-  offset.wl <span class='op'>=</span> <span class='op'>!</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/NULL.html'>is.null</a></span><span class='op'>(</span><span class='va'>apply.to</span><span class='op'>)</span><span class='op'>)</span>
-<span class='op'>)</span>
+    <pre class="usage"><span class='fu'>spc.fit.poly</span><span class='op'>(</span><span class='va'>...</span><span class='op'>)</span>
 
-<span class='fu'>spc.fit.poly.below</span><span class='op'>(</span>
-  <span class='va'>fit.to</span>,
-  apply.to <span class='op'>=</span> <span class='va'>fit.to</span>,
-  poly.order <span class='op'>=</span> <span class='fl'>1</span>,
-  npts.min <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='fu'><a href='ncol,hyperSpec-method.html'>nwl</a></span><span class='op'>(</span><span class='va'>fit.to</span><span class='op'>)</span> <span class='op'>*</span> <span class='fl'>0.05</span><span class='op'>)</span>, <span class='fl'>3</span> <span class='op'>*</span> <span class='op'>(</span><span class='va'>poly.order</span> <span class='op'>+</span> <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>,
-  noise <span class='op'>=</span> <span class='fl'>0</span>,
-  offset.wl <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  max.iter <span class='op'>=</span> <span class='fu'><a href='ncol,hyperSpec-method.html'>nwl</a></span><span class='op'>(</span><span class='va'>fit.to</span><span class='op'>)</span>,
-  stop.on.increase <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  debuglevel <span class='op'>=</span> <span class='fu'><a href='hy.getOptions.html'>hy.getOption</a></span><span class='op'>(</span><span class='st'>"debuglevel"</span><span class='op'>)</span>
-<span class='op'>)</span></pre>
+<span class='fu'>spc.fit.poly.below</span><span class='op'>(</span><span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>fit.to</th>
-      <td><p><code>hyperSpec</code> object on which the baselines are fitted</p></td>
-    </tr>
-    <tr>
-      <th>apply.to</th>
-      <td><p><code>hyperSpec</code> object on which the baselines are evaluted
-If <code>NULL</code>, a <code>hyperSpec</code> object containing the polynomial
-coefficients rather than evaluted baselines is returned.</p></td>
-    </tr>
-    <tr>
-      <th>poly.order</th>
-      <td><p>order of the polynomial to be used</p></td>
-    </tr>
-    <tr>
-      <th>offset.wl</th>
-      <td><p>should the wavelength range be mapped to -&gt; [0, delta wl]?
-This enhances numerical stability.</p></td>
-    </tr>
-    <tr>
-      <th>npts.min</th>
-      <td><p>minimal number of points used for fitting the polynomial</p></td>
-    </tr>
-    <tr>
-      <th>noise</th>
-      <td><p>noise level to be considered during the fit. It may be given as
-one value for all the spectra, or for each spectrum separately.</p></td>
-    </tr>
-    <tr>
-      <th>max.iter</th>
-      <td><p>stop at the latest after so many iterations.</p></td>
-    </tr>
-    <tr>
-      <th>stop.on.increase</th>
-      <td><p>additional stopping rule: stop if the number of
-support points would increase, regardless whether npts.min was reached or
-not.</p></td>
-    </tr>
-    <tr>
-      <th>debuglevel</th>
-      <td><p>additional output: <code>1</code> shows <code>npts.min</code>,
-<code>2</code> plots support points for the final baseline of 1st spectrum,
-<code>3</code> plots support points for 1st spectrum, <code>4</code> plots support
-points for all spectra.</p></td>
+      <th>...</th>
+      <td><p>handed to <code><a href='spc_fit_poly.html'>spc_fit_poly_below()</a></code></p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>hyperSpec</code> object containing the baselines in the spectra
-matrix, either as polynomial coefficients or as polynomials evaluted on
+    <p><code>hyperSpec</code> object containing the baselines in the spectra matrix,
+either as polynomial coefficients or as polynomials evaluted on
 the spectral range of <code>apply.to</code></p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
@@ -264,46 +211,11 @@ ranges of the spectra in <code>fit.to</code>.  For details, see the
 <code><a href='../articles/baseline.html'>vignette("baseline")</a></code>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='../articles/baseline.html'>vignette("baseline", package = "hyperSpec")</a></code></p>
-<p>see <code><a href='https://rdrr.io/r/base/options.html'>options()</a></code> for more on <code>debuglevel</code></p></div>
+    <div class='dont-index'><p><code><a href='../articles/baseline.html'>vignette("baseline", package = "hyperSpec")</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>C. Beleites</p>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/vignette.html'>vignette</a></span><span class='op'>(</span><span class='st'>"baseline"</span>, package <span class='op'>=</span> <span class='st'>"hyperSpec"</span><span class='op'>)</span>
-<span class='op'>}</span>
-
-<span class='va'>spc</span> <span class='op'>&lt;-</span> <span class='va'>faux_cell</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>]</span>
-<span class='va'>baselines</span> <span class='op'>&lt;-</span> <span class='fu'>spc.fit.poly</span><span class='op'>(</span><span class='va'>spc</span><span class='op'>[</span>, , <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>625</span> <span class='op'>~</span> <span class='fl'>640</span>, <span class='fl'>1785</span> <span class='op'>~</span> <span class='fl'>1800</span><span class='op'>)</span><span class='op'>]</span>, <span class='va'>spc</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: Function 'spc.fit.poly' is deprecated. </span>
-#&gt; <span class='warning'>Use function 'spc_fit_poly' instead.</span></div><div class='input'><span class='fu'><a href='plot-methods.html'>plot</a></span><span class='op'>(</span><span class='va'>spc</span> <span class='op'>-</span> <span class='va'>baselines</span><span class='op'>)</span>
-</div><div class='img'><img src='DEPRECATED-baselines-1.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='va'>baselines</span> <span class='op'>&lt;-</span> <span class='fu'>spc.fit.poly.below</span><span class='op'>(</span><span class='va'>spc</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: Function 'spc.fit.poly.below' is deprecated. </span>
-#&gt; <span class='warning'>Use function 'spc_fit_poly_below' instead.</span></div><div class='input'><span class='fu'><a href='plot-methods.html'>plot</a></span><span class='op'>(</span><span class='va'>spc</span> <span class='op'>-</span> <span class='va'>baselines</span><span class='op'>)</span>
-</div><div class='img'><img src='DEPRECATED-baselines-2.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='fu'>spc.fit.poly.below</span><span class='op'>(</span><span class='va'>faux_cell</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>]</span>, debuglevel <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: Function 'spc.fit.poly.below' is deprecated. </span>
-#&gt; <span class='warning'>Use function 'spc_fit_poly_below' instead.</span></div><div class='output co'>#&gt; <span class='message'>Fitting with npts.min = 15</span></div><div class='output co'>#&gt; <span class='message'>spectrum      1:    16 support points, noise = 0.0,   5 iterations</span></div><div class='output co'>#&gt; <span class='message'>spectrum      2:    37 support points, noise = 0.0,   4 iterations</span></div><div class='output co'>#&gt; <span class='message'>spectrum      3:    30 support points, noise = 0.0,   4 iterations</span></div><div class='output co'>#&gt; hyperSpec object
-#&gt;    3 spectra
-#&gt;    4 data columns
-#&gt;    300 data points / spectrum</div><div class='input'><span class='fu'>spc.fit.poly.below</span><span class='op'>(</span><span class='va'>faux_cell</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>]</span>, debuglevel <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: Function 'spc.fit.poly.below' is deprecated. </span>
-#&gt; <span class='warning'>Use function 'spc_fit_poly_below' instead.</span></div><div class='output co'>#&gt; <span class='message'>Fitting with npts.min = 15</span></div><div class='output co'>#&gt; <span class='message'>start: 300 support points</span></div><div class='output co'>#&gt; <span class='message'>spectrum      1:    16 support points, noise = 0.0,   5 iterations</span></div><div class='output co'>#&gt; <span class='message'>spectrum      2:    37 support points, noise = 0.0,   4 iterations</span></div><div class='output co'>#&gt; <span class='message'>spectrum      3:    30 support points, noise = 0.0,   4 iterations</span></div><div class='img'><img src='DEPRECATED-baselines-3.png' alt='' width='466' height='288' /></div><div class='output co'>#&gt; hyperSpec object
-#&gt;    3 spectra
-#&gt;    4 data columns
-#&gt;    300 data points / spectrum</div><div class='input'><span class='fu'>spc.fit.poly.below</span><span class='op'>(</span><span class='va'>faux_cell</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>]</span>,
-  debuglevel <span class='op'>=</span> <span class='fl'>3</span>,
-  noise <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>rowMeans</a></span><span class='op'>(</span><span class='va'>faux_cell</span><span class='op'>[[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span><span class='op'>)</span>
-<span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: Function 'spc.fit.poly.below' is deprecated. </span>
-#&gt; <span class='warning'>Use function 'spc_fit_poly_below' instead.</span></div><div class='output co'>#&gt; <span class='message'>Fitting with npts.min = 15</span></div><div class='output co'>#&gt; <span class='message'>start: 300 support points</span></div><div class='output co'>#&gt; <span class='message'>Iteration 1: 260 support points</span></div><div class='output co'>#&gt; <span class='message'>Iteration 2: 229 support points</span></div><div class='output co'>#&gt; <span class='message'>Iteration 3: 216 support points</span></div><div class='output co'>#&gt; <span class='message'>Iteration 4: 213 support points</span></div><div class='output co'>#&gt; <span class='message'>Iteration 5: 212 support points</span></div><div class='output co'>#&gt; <span class='message'>Iteration 6: 212 support points</span></div><div class='output co'>#&gt; <span class='message'>spectrum      1:   212 support points, noise = 5.7,   6 iterations</span></div><div class='output co'>#&gt; <span class='message'>spectrum      2:   201 support points, noise = 13.4,  10 iterations</span></div><div class='output co'>#&gt; <span class='message'>spectrum      3:   181 support points, noise = 11.8,   9 iterations</span></div><div class='img'><img src='DEPRECATED-baselines-4.png' alt='' width='466' height='288' /></div><div class='output co'>#&gt; hyperSpec object
-#&gt;    3 spectra
-#&gt;    4 data columns
-#&gt;    300 data points / spectrum</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

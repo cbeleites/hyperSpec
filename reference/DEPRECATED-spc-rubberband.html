@@ -6,7 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>(DEPRECATED) Rubberband baseline correction — DEPRECATED-spc-rubberband • hyperSpec</title>
+<title>(DEPRECATED)
+Rubberband baseline correction — DEPRECATED-spc-rubberband • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,7 +42,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="(DEPRECATED) Rubberband baseline correction — DEPRECATED-spc-rubberband" />
+<meta property="og:title" content="(DEPRECATED)
+Rubberband baseline correction — DEPRECATED-spc-rubberband" />
 <meta property="og:description" content="These hyperSpec functions are deprecated and not maintained any
 more. You should not use these.
 Currently they are present due to back-compatibility reasons and will be
@@ -163,7 +165,8 @@ argument or by setting hyperSpec's debuglevel option." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>(DEPRECATED) Rubberband baseline correction</h1>
+    <h1>(DEPRECATED)
+Rubberband baseline correction</h1>
     <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/DEPRECATED-spc_rubberband.R'><code>R/DEPRECATED-spc_rubberband.R</code></a></small>
     <div class="hidden name"><code>DEPRECATED-spc-rubberband.Rd</code></div>
     </div>
@@ -180,58 +183,29 @@ Please, use the suggested alternative functions instead.</p>
 argument or by setting hyperSpec's <code>debuglevel</code> option.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>spc.rubberband</span><span class='op'>(</span><span class='va'>spc</span>, <span class='va'>...</span>, upper <span class='op'>=</span> <span class='cn'>FALSE</span>, noise <span class='op'>=</span> <span class='fl'>0</span>, spline <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>spc.rubberband</span><span class='op'>(</span><span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>spc</th>
-      <td><p><code>hyperSpec</code> object</p></td>
-    </tr>
-    <tr>
       <th>...</th>
-      <td><p>further parameters handed to <code><a href='https://rdrr.io/r/stats/smooth.spline.html'>stats::smooth.spline()</a></code></p></td>
-    </tr>
-    <tr>
-      <th>upper</th>
-      <td><p>logical indicating whether the lower or upper part of the hull should be used</p></td>
-    </tr>
-    <tr>
-      <th>noise</th>
-      <td><p>noise level to be taken into account</p></td>
-    </tr>
-    <tr>
-      <th>spline</th>
-      <td><p>logical indicating whether the baseline should be an interpolating spline through
-the support points or piecewise linear.</p></td>
+      <td><p>handed to <code><a href='spc_rubberband.html'>spc_rubberband()</a></code></p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p><code>hyperSpec</code> object containing the baselines</p>
-    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
-
-    <p>This function is still experimental</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='DEPRECATED-baselines.html'>spc.fit.poly()</a></code>, <code><a href='DEPRECATED-baselines.html'>spc.fit.poly.below()</a></code></p>
+    <div class='dont-index'><p><code><a href='spc_rubberband.html'>spc_rubberband()</a></code></p>
 <p><code><a href='../articles/baseline.html'>vignette ("baseline")</a></code></p>
 <p><code><a href='hy.getOptions.html'>hy.setOptions()</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Claudia Beleites</p>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='plot-methods.html'>plot</a></span><span class='op'>(</span><span class='va'>paracetamol</span><span class='op'>[</span>, , <span class='fl'>175</span> <span class='op'>~</span> <span class='fl'>1800</span><span class='op'>]</span><span class='op'>)</span>
-</div><div class='input'><span class='va'>bl</span> <span class='op'>&lt;-</span> <span class='fu'>spc.rubberband</span><span class='op'>(</span><span class='va'>paracetamol</span><span class='op'>[</span>, , <span class='fl'>175</span> <span class='op'>~</span> <span class='fl'>1800</span><span class='op'>]</span>, noise <span class='op'>=</span> <span class='fl'>300</span>, df <span class='op'>=</span> <span class='fl'>20</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: Function 'spc.rubberband' is deprecated. </span>
-#&gt; <span class='warning'>Use function 'spc_rubberband' instead.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Function 'orderwl' is deprecated. </span>
-#&gt; <span class='warning'>Use function 'wl_sort' instead.</span></div><div class='input'><span class='fu'><a href='plot-methods.html'>plot</a></span><span class='op'>(</span><span class='va'>bl</span>, add <span class='op'>=</span> <span class='cn'>TRUE</span>, col <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
-</div><div class='img'><img src='DEPRECATED-spc-rubberband-1.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='fu'><a href='plot-methods.html'>plot</a></span><span class='op'>(</span><span class='va'>paracetamol</span><span class='op'>[</span>, , <span class='fl'>175</span> <span class='op'>~</span> <span class='fl'>1800</span><span class='op'>]</span> <span class='op'>-</span> <span class='va'>bl</span><span class='op'>)</span>
-</div><div class='img'><img src='DEPRECATED-spc-rubberband-2.png' alt='' width='466' height='288' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

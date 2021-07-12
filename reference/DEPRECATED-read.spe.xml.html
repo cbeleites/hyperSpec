@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>(DEPRECATED)
-Read INI files — DEPRECATED-read.ini • hyperSpec</title>
+Read XML footer from SPE file format version 3.0 — DEPRECATED-read.spe.xml • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -43,12 +43,21 @@ Read INI files — DEPRECATED-read.ini • hyperSpec</title>
   
 
 <meta property="og:title" content="(DEPRECATED)
-Read INI files — DEPRECATED-read.ini" />
+Read XML footer from SPE file format version 3.0 — DEPRECATED-read.spe.xml" />
 <meta property="og:description" content="These data input functions are deprecated and they will be removed in
 the next release of hyperspec package.
-Now functions in package hySpc.read.txt
+Now functions in package hySpc.read.spe
 (link)
-should be used as the alternatives." />
+should be used as the alternatives.
+Old description:
+The new SPE file format, introduced in 2012, was designed to be backwards compatible with the
+previous format 2.5. The most prominent change is the new plain text XML footer holding vast
+experimental metadata that gets attached at the end of the file. Thus, the file contains 3
+blocks: a 4100-bytes long binary header, a chunk with spectral data, and the XML footer.
+This function retrieves the XML footer converted to R list, and throws error if it is not available.
+The file format specification is available at Princeton Instruments FTP server under name
+'SPE 3.0 File Format Specification'.
+This function relies on R package xml2 to work correctly" />
 
 <meta name="robots" content="noindex" />
 
@@ -162,58 +171,44 @@ should be used as the alternatives." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>(DEPRECATED)
-Read INI files</h1>
-    <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/DEPRECATED-read.ini.R'><code>R/DEPRECATED-read.ini.R</code></a></small>
-    <div class="hidden name"><code>DEPRECATED-read-ini.Rd</code></div>
+Read XML footer from SPE file format version 3.0</h1>
+    <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/DEPRECATED-read.spe.R'><code>R/DEPRECATED-read.spe.R</code></a></small>
+    <div class="hidden name"><code>DEPRECATED-read.spe.xml.Rd</code></div>
     </div>
 
     <div class="ref-description">
     <p>These data input functions are <strong>deprecated</strong> and they will be removed in
 the next release of <span class="pkg">hyperspec</span> package.
-Now functions in package <span class="pkg">hySpc.read.txt</span>
-(<a href='https://r-hyperspec.github.io/hySpc.read.txt/reference/index.html'>link</a>)
+Now functions in package <span class="pkg">hySpc.read.spe</span>
+(<a href='https://r-hyperspec.github.io/hySpc.read.spe/reference/index.html'>link</a>)
 should be used as the alternatives.</p>
+<p><strong>Old description:</strong></p>
+<p>The new SPE file format, introduced in 2012, was designed to be backwards compatible with the
+previous format 2.5. The most prominent change is the new plain text XML footer holding vast
+experimental metadata that gets attached at the end of the file. Thus, the file contains 3
+blocks: a 4100-bytes long binary header, a chunk with spectral data, and the XML footer.
+This function retrieves the XML footer converted to R list, and throws error if it is not available.
+The file format specification is available at Princeton Instruments FTP server under name
+'SPE 3.0 File Format Specification'.</p>
+<p>This function relies on R package xml2 to work correctly</p>
     </div>
 
-    <pre class="usage"><span class='fu'>read.ini</span><span class='op'>(</span>
-  con <span class='op'>=</span> <span class='kw'><a href='https://rdrr.io/r/base/stop.html'>stop</a></span><span class='op'>(</span><span class='st'>"Connection con needed."</span><span class='op'>)</span>,
-  skip <span class='op'>=</span> <span class='cn'>NULL</span>,
-  encoding <span class='op'>=</span> <span class='st'>"unknown"</span>
-<span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>.read.spe.xml</span><span class='op'>(</span><span class='va'>filename</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>con</th>
-      <td><p>connection or file name</p></td>
-    </tr>
-    <tr>
-      <th>skip</th>
-      <td><p>number of lines to skip before first <code>[section]</code> starts</p></td>
-    </tr>
-    <tr>
-      <th>encoding</th>
-      <td><p>see <code><a href='https://rdrr.io/r/base/readLines.html'>base::readLines()</a></code></p></td>
+      <th>filename</th>
+      <td><ul>
+<li><p>SPE filename</p></li>
+</ul></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a list with one element per section in the .ini file, each containing a list with elements
-for the key-value-pairs.</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p><code>read.ini</code> reads ini files of the form</p><pre>[section]
-key = value
-</pre>
-
-<p>into a list.</p>
-<p><code>read.ini</code> sanitizes the element names and tries to convert scalars and comma separated
-numeric vectors to numeric.</p>
-    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
-
-    <p>C. Beleites</p>
+    <p>xml data from the file converted to R list</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

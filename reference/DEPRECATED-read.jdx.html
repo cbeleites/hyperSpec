@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>(DEPRECATED)
-Read INI files — DEPRECATED-read.ini • hyperSpec</title>
+JCAMP-DX import for Shimadzu library spectra — DEPRECATED-read.jdx • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -43,12 +43,18 @@ Read INI files — DEPRECATED-read.ini • hyperSpec</title>
   
 
 <meta property="og:title" content="(DEPRECATED)
-Read INI files — DEPRECATED-read.ini" />
-<meta property="og:description" content="These data input functions are deprecated and they will be removed in
-the next release of hyperspec package.
-Now functions in package hySpc.read.txt
-(link)
-should be used as the alternatives." />
+JCAMP-DX import for Shimadzu library spectra — DEPRECATED-read.jdx" />
+<meta property="og:description" content="This function is deprecated and  will be  removed in the next release
+of hyperSpec package.
+Please use function hySpc.read.jdx::read_jdx() instead.
+More on functions in package hySpc.read.jdx
+here (link).
+Old description:
+This is a first rough import function for JCAMP-DX spectra.
+So far, AFFN and PAC formats are supported for simple XYDATA, DATA TABLEs and
+PEAK TABLEs.
+NTUPLES / PAGES are not (yet) supported.
+DIF, DUF, DIFDUP and SQZ data formats are not (yet) supported." />
 
 <meta name="robots" content="noindex" />
 
@@ -162,58 +168,95 @@ should be used as the alternatives." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>(DEPRECATED)
-Read INI files</h1>
-    <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/DEPRECATED-read.ini.R'><code>R/DEPRECATED-read.ini.R</code></a></small>
-    <div class="hidden name"><code>DEPRECATED-read-ini.Rd</code></div>
+JCAMP-DX import for Shimadzu library spectra</h1>
+    <small class="dont-index">Source: <a href='https://github.com/cbeleites/hyperSpec/blob/master/R/read.jdx.R'><code>R/read.jdx.R</code></a></small>
+    <div class="hidden name"><code>DEPRECATED-read.jdx.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>These data input functions are <strong>deprecated</strong> and they will be removed in
-the next release of <span class="pkg">hyperspec</span> package.
-Now functions in package <span class="pkg">hySpc.read.txt</span>
-(<a href='https://r-hyperspec.github.io/hySpc.read.txt/reference/index.html'>link</a>)
-should be used as the alternatives.</p>
+    <p>This function is <strong>deprecated</strong> and  will be  removed in the next release
+of <span class="pkg">hyperSpec</span> package.
+Please use function <code>hySpc.read.jdx::read_jdx()</code> instead.
+More on functions in package <span class="pkg">hySpc.read.jdx</span>
+<a href='https://r-hyperspec.github.io/hySpc.read.jdx/reference/index.html'>here (link)</a>.</p>
+<p><strong>Old description:</strong></p>
+<p>This is a first rough import function for JCAMP-DX spectra.</p>
+<p>So far, AFFN and PAC formats are supported for simple XYDATA, DATA TABLEs and
+PEAK TABLEs.</p>
+<p>NTUPLES / PAGES are not (yet) supported.</p>
+<p>DIF, DUF, DIFDUP and SQZ data formats are not (yet) supported.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>read.ini</span><span class='op'>(</span>
-  con <span class='op'>=</span> <span class='kw'><a href='https://rdrr.io/r/base/stop.html'>stop</a></span><span class='op'>(</span><span class='st'>"Connection con needed."</span><span class='op'>)</span>,
-  skip <span class='op'>=</span> <span class='cn'>NULL</span>,
-  encoding <span class='op'>=</span> <span class='st'>"unknown"</span>
+    <pre class="usage"><span class='fu'>read.jdx</span><span class='op'>(</span>
+  filename <span class='op'>=</span> <span class='cn'>NULL</span>,
+  encoding <span class='op'>=</span> <span class='st'>""</span>,
+  header <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
+  keys.hdr2data <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  <span class='va'>...</span>,
+  NA.symbols <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"NA"</span>, <span class='st'>"N/A"</span>, <span class='st'>"N.A."</span><span class='op'>)</span>,
+  collapse.multi <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  wl.tolerance <span class='op'>=</span> <span class='fu'><a href='hy.getOptions.html'>hy.getOption</a></span><span class='op'>(</span><span class='st'>"wl.tolerance"</span><span class='op'>)</span>,
+  collapse.equal <span class='op'>=</span> <span class='cn'>TRUE</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>con</th>
-      <td><p>connection or file name</p></td>
-    </tr>
-    <tr>
-      <th>skip</th>
-      <td><p>number of lines to skip before first <code>[section]</code> starts</p></td>
+      <th>filename</th>
+      <td><p>file name and path of the .jdx file</p></td>
     </tr>
     <tr>
       <th>encoding</th>
-      <td><p>see <code><a href='https://rdrr.io/r/base/readLines.html'>base::readLines()</a></code></p></td>
+      <td><p>encoding of the JCAMP-DX file (used by <code><a href='https://rdrr.io/r/base/readLines.html'>base::readLines()</a></code>)</p></td>
+    </tr>
+    <tr>
+      <th>header</th>
+      <td><p>list with manually set header values</p></td>
+    </tr>
+    <tr>
+      <th>keys.hdr2data</th>
+      <td><p>index vector indicating which header entries should be
+transferred into the extra data. Usually a character vector of labels
+(lowercase, without and dashes, blanks, underscores). If <code>TRUE</code>, all
+header entries are read.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>further parameters handed to the data import function, e.g.</p><table class='table'>
+<tr><td>parameter</td><td>meaning</td><td>default</td></tr>
+<tr><td><code>xtol</code></td><td>tolerance for checking calculated x values against checkpoints at beginning of line</td><td>XFACTOR</td></tr>
+<tr><td><code>ytol</code></td><td>tolerance for checking Y values against MINY and MAXY</td><td>YFACTOR</td></tr>
+</table>
+</td>
+    </tr>
+    <tr>
+      <th>NA.symbols</th>
+      <td><p>character vector of text values that should be converted
+to <code>NA</code></p></td>
+    </tr>
+    <tr>
+      <th>collapse.multi</th>
+      <td><p>should hyperSpec objects from multispectra files be
+collapsed into one hyperSpec object (if <code>FALSE</code>, a list of hyperSpec
+objects is returned).</p></td>
+    </tr>
+    <tr>
+      <th>wl.tolerance, collapse.equal</th>
+      <td><p>see <a href='collapse.html'>collapse</a></p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a list with one element per section in the .ini file, each containing a list with elements
-for the key-value-pairs.</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <p>hyperSpec object</p>
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p><code>read.ini</code> reads ini files of the form</p><pre>[section]
-key = value
-</pre>
-
-<p>into a list.</p>
-<p><code>read.ini</code> sanitizes the element names and tries to convert scalars and comma separated
-numeric vectors to numeric.</p>
+    <p>JCAMP-DX support is incomplete and the functions may change without
+notice.</p>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
-    <p>C. Beleites</p>
+    <p>C. Beleites with contributions by Bryan Hanson</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
