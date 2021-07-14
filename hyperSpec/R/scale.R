@@ -1,3 +1,5 @@
+# Function -------------------------------------------------------------------
+
 .scale <- function(x, center = TRUE, scale = TRUE) {
   validObject(x)
 
@@ -19,6 +21,7 @@
 #' @rdname scale
 #' @aliases scale scale-methods scale,hyperSpec-method
 #' @docType methods
+#'
 #' @param x the `hyperSpec` object
 #' @param center if `TRUE`, the data is centered to `colMeans(x)`, `FALSE`
 #' suppresses centering. Alternatively, an object that can be converted to numeric of length
@@ -28,6 +31,8 @@
 #' `FALSE` suppresses scaling. Alternatively, an object that can be converted to numeric of
 #' length `nwl(x)` by [base::as.matrix()] (e.g. hyperSpec object containing 1 spectrum)
 #' can specify the center spectrum.
+#'
+#'
 #' @return the centered & scaled `hyperSpec` object
 #' @author C. Beleites
 #' @seealso [base::scale()]
@@ -60,6 +65,7 @@ setMethod("scale", signature = signature(x = "hyperSpec"), .scale)
 
 
 # Unit tests -----------------------------------------------------------------
+
 hySpc.testthat::test(.scale) <- function() {
   context("scale")
 
