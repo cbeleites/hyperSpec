@@ -1,3 +1,6 @@
+
+# Function -------------------------------------------------------------------
+
 #' @importFrom utils modifyList
 .labels <- function(object, which = bquote(), drop = TRUE, ..., use.colnames = TRUE) {
   validObject(object)
@@ -28,6 +31,53 @@
   label
 }
 
+
+#' Get and set labels of a `hyperSpec` object
+#'
+#' Get and set labels of a `hyperSpec` object.
+#'
+#'
+#' `value` may be a list or vector of labels giving the new label for
+#' each of the entries specified by `which`.
+#'
+#' The names of the labels are the same as the colnames of the
+#' `data.frame`.  The label for the wavelength axis has the name
+#' `.wavelength`.
+#'
+#' The labels should be given in a form ready for the text-drawing functions
+#' (see [grDevices::plotmath()]), e.g. as `expression` or a
+#' `character`.
+#'
+#' @rdname labels
+#' @docType methods
+#'
+#' @param object a `hyperSpec` object
+#' @param which numeric or character to specify the label(s)
+#' @param ... ignored
+#' @param drop if the result would be a list with only one element, should the
+#'        element be returned instead?
+#' @param use.colnames should missing labels be replaced by column names of
+#'        the extra data?
+#'
+#' @return `labels` returns a list of labels.  If `drop` is
+#'         `TRUE` and the list contains only one element, the element is
+#'         returned instead.
+#'
+#'
+#' @author C. Beleites
+#' @seealso [base::labels()]
+#'
+#' @export
+#'
+#' @concept labels
+#'
+#' @examples
+#'
+#' labels(faux_cell)
+setMethod("labels", signature = signature(object = "hyperSpec"), .labels)
+
+
+# Unit tests -----------------------------------------------------------------
 
 hySpc.testthat::test(.labels) <- function() {
   context(".labels")
@@ -70,17 +120,23 @@ hySpc.testthat::test(.labels) <- function() {
   })
 }
 
+
+# Function -------------------------------------------------------------------
+
 #' @rdname labels
+#' @aliases labels<-,hyperSpec-method
+#'
 #' @usage
 #' labels(object, which = NULL, ...) <- value
 #'
-#' @aliases labels<-,hyperSpec-method
+#' @param value the new label(s)
+#'
+#' @return  `labels<-` returns a `hyperSpec` object.
+#'
 #' @export "labels<-"
 #'
 #' @concept labels
 #'
-#' @param value the new label(s)
-#' @return  `labels<-` returns a `hyperSpec` object.
 #' @examples
 #'
 #' labels(flu, "c") <- expression("/"("c", "mg / l"))
@@ -108,38 +164,6 @@ hySpc.testthat::test(.labels) <- function() {
 }
 
 
-#' Get and set labels of a `hyperSpec` object
-#'
-#' `value` may be a list or vector of labels giving the new label for
-#' each of the entries specified by `which`.
-#'
-#' The names of the labels are the same as the colnames of the
-#' `data.frame`.  The label for the wavelength axis has the name
-#' `.wavelength`.
-#'
-#' The labels should be given in a form ready for the text-drawing functions
-#' (see [grDevices::plotmath()]), e.g. as `expression` or a
-#' `character`.
-#'
-#' @param object a `hyperSpec` object
-#' @param which numeric or character to specify the label(s)
-#' @param ... ignored
-#' @param drop if the result would be a list with only one element, should the
-#'   element be returned instead?
-#' @param use.colnames should missing labels be replaced by column names of
-#'   the extra data?
-#' @return `labels` returns a list of labels.  If `drop` is
-#'   `TRUE` and the list contains only one element, the element is
-#'   returned instead.
-#' @docType methods
-#' @rdname labels
-#' @author C. Beleites
-#' @seealso [base::labels()]
-#' @export
-#'
-#' @concept labels
-#'
-#' @examples
-#'
-#' labels(faux_cell)
-setMethod("labels", signature = signature(object = "hyperSpec"), .labels)
+# Unit tests -----------------------------------------------------------------
+
+# TODO: Add unit test for "set labels"
