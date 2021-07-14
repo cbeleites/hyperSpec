@@ -79,27 +79,17 @@ setGeneric("levelplot", package = "lattice")
   do.call(levelplot, c(list(x, data), dots))
 }
 
+#' @rdname levelplot
+#' @export
+setMethod("levelplot",
+  signature = signature(x = "formula", data = "hyperSpec"),
+  definition = .levelplot
+)
 
-# Unit tests -----------------------------------------------------------------
-
-hySpc.testthat::test(.levelplot) <- function() {
-  context(".levelplot")
-
-  test_that("no errors", {
-    ## just check that no errors occur
-    expect_silent(levelplot(laser, contour = TRUE, col = "#00000080"))
-
-    ## applying a function before plotting
-    expect_silent(plotmap(faux_cell, func = max, col.regions = gray(seq(0, 1, 0.05))))
-
-    expect_silent(plotmap(faux_cell, region ~ x * y, transform.factor = FALSE))
-    expect_silent(plotmap(faux_cell, region ~ x * y, col.regions = gray(seq(0, 1, 0.05))))
-  })
-}
 
 # Function -------------------------------------------------------------------
 
-.levelplot_hy_miss <- function(x, data, ...) {
+.levelplot_h_ <- function(x, data, ...) {
   .levelplot(x = formula(spc ~ .wavelength * .row), data = x, ...)
 }
 
@@ -122,15 +112,24 @@ hySpc.testthat::test(.levelplot) <- function() {
 #'  [trellis.factor.key()] for improved color coding of factors
 setMethod("levelplot",
   signature = signature(x = "hyperSpec", data = "missing"),
-  .levelplot_hy_miss
+  .levelplot_h_
 )
 
 
-# Function -------------------------------------------------------------------
+# Unit tests -----------------------------------------------------------------
 
-#' @rdname levelplot
-#' @export
-setMethod("levelplot",
-  signature = signature(x = "formula", data = "hyperSpec"),
-  definition = .levelplot
-)
+hySpc.testthat::test(.levelplot) <- function() {
+  context(".levelplot")
+
+  test_that("no errors", {
+    ## just check that no errors occur
+    expect_silent(levelplot(laser, contour = TRUE, col = "#00000080"))
+
+    ## applying a function before plotting
+    expect_silent(plotmap(faux_cell, func = max, col.regions = gray(seq(0, 1, 0.05))))
+
+    expect_silent(plotmap(faux_cell, region ~ x * y, transform.factor = FALSE))
+    expect_silent(plotmap(faux_cell, region ~ x * y, col.regions = gray(seq(0, 1, 0.05))))
+  })
+}
+
