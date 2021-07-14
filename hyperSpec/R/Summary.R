@@ -1,4 +1,5 @@
 # Function -------------------------------------------------------------------
+#
 .Summary <- function(x, ..., na.rm = FALSE) {
   validObject(x)
 
@@ -55,6 +56,7 @@ setMethod("Summary", signature(x = "hyperSpec"), .Summary)
 
 
 # Function -------------------------------------------------------------------
+
 .is.na <- function(x) {
     is.na(x@data$spc)
   }
@@ -137,6 +139,7 @@ hySpc.testthat::test(all_wl) <- function() {
     )
   })
 }
+
 
 # Function -------------------------------------------------------------------
 
