@@ -11,6 +11,7 @@
 <!-- ---------------------------------------------------------------------- -->
 
 
+
 # R Package **hyperSpec**
 
 [**R**](https://www.r-project.org/) package **hyperSpec** is the main package in the [**`r-hyperspec`**](https://r-hyperspec.github.io/) family of packages.
@@ -35,8 +36,8 @@ More generally, any data that is recorded over a discretized variable, e.g. `abs
 
 There are two versions of **hyperSpec** online documentation:
 
-a. for the [released version](https://cbeleites.github.io/hyperSpec/) and
-b. for the [development version](https://cbeleites.github.io/hyperSpec/dev/) of **hyperSpec**.
+a. for the [released version](https://r-hyperspec.github.io/hyperSpec/) and
+b. for the [development version](https://r-hyperspec.github.io/hyperSpec/dev/) of **hyperSpec**.
 
 The documentation of the other **`r-hyperspec`** family packages can be found at [r-hyperspec.github.io](https://r-hyperspec.github.io/).
 
@@ -44,7 +45,7 @@ The documentation of the other **`r-hyperspec`** family packages can be found at
 
 ## Issues, Bug Reports and Feature Requests
 
-Issues, bug reports and feature requests should go [here](https://github.com/cbeleites/hyperSpec/issues)!
+Issues, bug reports and feature requests should go [here](https://github.com/r-hyperspec/hyperSpec/issues)!
 <!-- ---------------------------------------------------------------------- -->
 
 ## Installation
@@ -60,11 +61,11 @@ install.packages("hyperSpec")
 
 ### Install from GitHub
 
-You can install the development version of the package from [GitHub](https://github.com/cbeleites/hyperSpec):
+You can install the development version of the package from [GitHub](https://github.com/r-hyperspec/hyperSpec):
 
 ```r 
 if (!require(remotes)) {install.packages("remotes")}
-remotes::install_github("cbeleites/hyperSpec/hyperSpec")
+remotes::install_github("r-hyperspec/hyperSpec/hyperSpec")
 ```
 
 **NOTE 1:**
@@ -72,12 +73,12 @@ Usually, "Windows" users need to download, install and properly configure **Rtoo
 
 **NOTE 2:** 
 This method will **not** install package's documentation (help pages and vignettes) into your computer.
-So you can either use the [online documentation](https://cbeleites.github.io/hyperSpec/dev/) or build the package from source (see the next section).
+So you can either use the [online documentation](https://r-hyperspec.github.io/hyperSpec/dev/) or build the package from source (see the next section).
 
 
 ### Install from Source
 
-1. From the **hyperSpec**'s GitHub [repository](https://github.com/cbeleites/hyperSpec):
+1. From the **hyperSpec**'s GitHub [repository](https://github.com/r-hyperspec/hyperSpec):
     - If you use Git, `git clone` the branch of interest.
       You may need to fork it before cloning.
     - Or just chose the branch of interest (1 in Figure below), download a ZIP archive with the code (2, 3) and unzip it on your computer.  
