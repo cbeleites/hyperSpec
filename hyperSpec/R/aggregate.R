@@ -1,3 +1,5 @@
+# Function -------------------------------------------------------------------
+
 .aggregate <- function(x, by = stop("by is needed"), FUN = stop("FUN is needed."),
                        ..., out.rows = NULL, append.rows = NULL,
                        by.isindex = FALSE) {
@@ -71,7 +73,7 @@
 #' It combines the functionality of [stats::aggregate()], [base::tapply()],
 #' and [stats::ave()] for `hyperSpec` objects.
 #'
-#' `aggregate` avoids splitting `x@@data`.
+#' `aggregate` avoids splitting `x@data`.
 #'
 #' `FUN` does not need to return exactly one value.  The number of
 #' returned values needs to be the same for all wavelengths (otherwise the
@@ -80,40 +82,43 @@
 #' If the initially preallocated `data.frame` turns out to be too small,
 #' more rows are appended and a warning is issued.
 #'
-#' @include hyperspec-class.R
-#' @aliases aggregate,hyperSpec-method ave,hyperSpec-method
 #' @name aggregate
-#' @docType methods
-#' @param x a `hyperSpec` object
-#' @param by grouping for the rows of `x@@data`.
+#' @rdname aggregate
+#' @aliases aggregate,hyperSpec-method ave,hyperSpec-method
 #'
-#' Either a list containing an index vector for each of the subgroups or a
-#'   vector that can be `split` in such a list.
+#' @docType methods
+#'
+#' @param x a `hyperSpec` object
+#' @param by grouping for the rows of `x@@data`. \cr
+#'        Either a list containing an index vector for each of the subgroups
+#'        or a vector that can be `split` in such a list.
 #' @param FUN function to compute the summary statistics
 #' @param out.rows number of rows in the resulting `hyperSpec` object,
-#'   for memory preallocation.
-#' @param append.rows If more rows are needed, how many should be appended?
-#'
-#' Defaults to 100 or an estimate based on the percentage of groups that are
-#'   still to be done, whatever is larger.
+#'        for memory preallocation.
+#' @param append.rows If more rows are needed, how many should be appended? \cr
+#'        Defaults to 100 or an estimate based on the percentage of groups that
+#'        are still to be done, whatever is larger.
 #' @param by.isindex If a list is given in `by`: does the list already
-#'   contain the row indices of the groups? If `FALSE`, the list in
-#'   `by` is computed first (as in [stats::aggregate()]).
+#'        contain the row indices of the groups? If `FALSE`, the list in
+#'        `by` is computed first (as in [stats::aggregate()]).
 #' @param ... further arguments passed to `FUN`
-#' @return A `hyperSpec` object with an additional column
-#'   `@@data$.aggregate` tracing which group the rows belong to.
+#'
+#' @return A `hyperSpec` object with an additional column `@data$.aggregate`
+#'         tracing which group the rows belong to.
+#'
 #' @author C. Beleites
 #' @seealso [base::tapply()], [stats::aggregate()],
+#'
 #'   [stats::ave()]
-#' @rdname aggregate
-#' @export
 #'
 #' @keywords methods category array
 #' @concept manipulation
 #' @concept stats
 #'
-#' @import stats
 #' @include hyperspec-class.R
+#' @import stats
+#' @export
+#'
 #' @examples
 #' region.means <- aggregate(faux_cell, faux_cell$region, mean_pm_sd)
 #' plot(region.means,
