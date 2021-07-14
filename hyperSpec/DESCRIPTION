@@ -4,7 +4,7 @@ Type: Package
 Title: Work with Hyperspectral Data, i.e. Spectra + Meta Information (Spatial,
     Time, Concentration, ...)
 Version: 0.100.0
-Date: 2021-07-10
+Date: 2021-07-14
 Maintainer: Claudia Beleites <Claudia.Beleites@chemometrix.gmbh>
 Authors@R: c(
     person("Claudia",   "Beleites",  role = c("aut", "cre", "dtc"), email = "Claudia.Beleites@chemometrix.gmbh"),
@@ -76,9 +76,9 @@ Suggests:
     tripack,
     vdiffr
 URL: 
-    https://cbeleites.github.io/hyperSpec,
-    https://github.com/cbeleites/hyperSpec
-BugReports: https://github.com/cbeleites/hyperSpec/issues
+    https://r-hyperspec.github.io/hyperSpec,
+    https://github.com/r-hyperspec/hyperSpec
+BugReports: https://github.com/r-hyperspec/hyperSpec/issues
 VignetteBuilder: knitr
 Collate:
     'hy_validate.R'
