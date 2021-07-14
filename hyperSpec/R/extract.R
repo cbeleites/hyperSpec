@@ -1,7 +1,10 @@
-### -----------------------------------------------------------------------------
+### --------------------------------------------------------------------------~
 ###
 ### .extract - internal function doing the work for extracting with [] and [[]]
 ###
+### --------------------------------------------------------------------------~
+
+# Function -------------------------------------------------------------------
 
 #' @include wl2i.R
 #' @noRd
@@ -32,6 +35,33 @@
 
   x
 }
+
+
+.extract_h <- function(x, i, j, l, ...,
+                        wl.index = FALSE,
+                        drop = FALSE # drop has to be at end
+) {
+  validObject(x)
+
+  if (drop) {
+    warning("Ignoring drop = TRUE.")
+  }
+
+  dots <- list(...)
+  if (length(dots) > 0L) {
+    warning("Ignoring additional parameters: ", .pastenames(dots))
+  }
+
+  x <- .extract(x, i, j, l, wl.index = wl.index)
+
+  if (is.null(x@data$spc)) {
+    x@data$spc <- matrix(NA, nrow(x@data), 0)
+    x@wavelength <- numeric(0)
+  }
+
+  x
+}
+
 
 #' These methods allow one to extract and replace parts of the `hyperSpec` object.
 #' They can be used for selecting/deleting spectra, cutting the spectral range, and extracting
@@ -111,6 +141,7 @@
 #' @rdname extractreplace
 #' @docType methods
 #' @aliases [ [,hyperSpec-method
+#'
 #' @param x A `hyperSpec` Object.
 #' @param i Index of rows in `x@@data`. Integer, logical, or in the case of
 #'          `[[` and `[[<-`, a `nrow` by 2 logical matrix or
@@ -129,6 +160,7 @@
 #'          `[`, as otherwise invalid `hyperSpec` objects might result.
 #' @param ... Ignored.
 #' @param name Name of the data column to extract. `$spc` yields the spectra matrix.
+#'
 #' @return
 #'  * For `[`, `[<-`, `[[<-`, and `$<-` a `hyperSpec` object.
 #'  * For `[[` a matrix or `data.frame`.
@@ -214,33 +246,43 @@
 #'
 #' @concept manipulation
 #'
-setMethod("[",
-  signature = signature(x = "hyperSpec"),
-  function(x, i, j, l, ...,
-           wl.index = FALSE,
-           drop = FALSE # drop has to be at end
-  ) {
-    validObject(x)
+setMethod("[", signature = signature(x = "hyperSpec"), .extract_h)
 
-    if (drop) {
-      warning("Ignoring drop = TRUE.")
-    }
 
-    dots <- list(...)
-    if (length(dots) > 0L) {
-      warning("Ignoring additional parameters: ", .pastenames(dots))
-    }
+# Function -------------------------------------------------------------------
 
-    x <- .extract(x, i, j, l, wl.index = wl.index)
+.extract2_h <- function(x, i, j, l, ..., wl.index = FALSE, drop = FALSE) {
+  validObject(x)
 
-    if (is.null(x@data$spc)) {
-      x@data$spc <- matrix(NA, nrow(x@data), 0)
-      x@wavelength <- numeric(0)
-    }
-
-    x
+  dots <- list(...)
+  if (length(dots) > 0L) {
+    warning("Ignoring additional parameters: ", .pastenames(dots))
   }
-)
+
+  ## check wheter a index matrix is used
+  if (!missing(i) && is.matrix(i)) {
+    if (!is.logical(i) && !(is.numeric(i) && ncol(i) == 2)) {
+      stop(
+        "Index matrix i  must either be logical of the size of x$spc,",
+        "or a n by 2 matrix."
+      )
+    }
+
+    if (is.numeric(i) && !wl.index) {
+      i[, 2] <- .getindex(x, i[, 2], extrapolate = FALSE)
+    }
+
+    x@data$spc[i] # return value
+  } else { # index by row and columns
+    x <- .extract(x, i, j, l, wl.index = wl.index)
+    if (missing(j)) {
+      unclass(x@data$spc[, , drop = drop])
+    } # retrun value; removes the "AsIs"
+    else {
+      x@data[, , drop = drop] # return value: data.frame
+    }
+  }
+}
 
 #' @rdname extractreplace
 #' @export
@@ -249,43 +291,23 @@ setMethod("[",
 #'
 #' @aliases [[ [[,hyperSpec-method
 ## ' @name [[
-setMethod("[[",
-  signature = signature(x = "hyperSpec"),
-  function(x, i, j, l, ...,
-           wl.index = FALSE,
-           drop = FALSE) {
-    validObject(x)
+setMethod("[[", signature = signature(x = "hyperSpec"), .extract2_h)
 
-    dots <- list(...)
-    if (length(dots) > 0L) {
-      warning("Ignoring additional parameters: ", .pastenames(dots))
-    }
 
-    ## check wheter a index matrix is used
-    if (!missing(i) && is.matrix(i)) {
-      if (!is.logical(i) && !(is.numeric(i) && ncol(i) == 2)) {
-        stop(
-          "Index matrix i  must either be logical of the size of x$spc,",
-          "or a n by 2 matrix."
-        )
-      }
+# Function -------------------------------------------------------------------
 
-      if (is.numeric(i) && !wl.index) {
-        i[, 2] <- .getindex(x, i[, 2], extrapolate = FALSE)
-      }
+.dollar_shortcuts <- function(x, name) {
+  validObject(x)
 
-      x@data$spc[i] # return value
-    } else { # index by row and columns
-      x <- .extract(x, i, j, l, wl.index = wl.index)
-      if (missing(j)) {
-        unclass(x@data$spc[, , drop = drop])
-      } # retrun value; removes the "AsIs"
-      else {
-        x@data[, , drop = drop] # return value: data.frame
-      }
-    }
+  if (name == ".") { ## shortcut
+    x@data[, , drop = FALSE]
+  } else if (name == "..") {
+    x@data[, -match("spc", colnames(x@data)), drop = FALSE]
+  } else {
+    x@data[[name]]
   }
-)
+}
+
 
 #' @rdname extractreplace
 #' @aliases $ $,hyperSpec-method
@@ -293,17 +315,4 @@ setMethod("[[",
 #'
 #' @concept manipulation
 #'
-setMethod("$",
-  signature = signature(x = "hyperSpec"),
-  function(x, name) {
-    validObject(x)
-
-    if (name == ".") { ## shortcut
-      x@data[, , drop = FALSE]
-    } else if (name == "..") {
-      x@data[, -match("spc", colnames(x@data)), drop = FALSE]
-    } else {
-      x@data[[name]]
-    }
-  }
-)
+setMethod("$", signature = signature(x = "hyperSpec"), .dollar_shortcuts)

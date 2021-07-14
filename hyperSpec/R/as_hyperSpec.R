@@ -1,3 +1,4 @@
+# Set generic ----------------------------------------------------------------
 
 #' `as.hyperSpec`: convenience conversion functions
 #'
@@ -22,6 +23,9 @@ setGeneric("as.hyperSpec", function(X, ...) {
   stop("as.hyperSpec is not available for objects of class ", class(X))
 })
 
+
+# Function -------------------------------------------------------------------
+
 #' @include extract_numbers.R
 .as.hyperSpec.matrix <- function(X, wl = NULL, ...) {
   if (is.null(wl)) wl <- extract_numbers(colnames(X))
@@ -41,6 +45,9 @@ setGeneric("as.hyperSpec", function(X, ...) {
 #' (wl <- colnames(tmp))
 #' extract_numbers(wl)
 setMethod("as.hyperSpec", "matrix", .as.hyperSpec.matrix)
+
+
+# Function -------------------------------------------------------------------
 
 .as.hyperSpec.data.frame <- function(X, spc = NULL, wl = NULL,
                                      labels = attr(X, "labels"), ...) {
@@ -69,6 +76,8 @@ setMethod("as.hyperSpec", "matrix", .as.hyperSpec.matrix)
 
 setMethod("as.hyperSpec", "data.frame", .as.hyperSpec.data.frame)
 
+
+# Function -------------------------------------------------------------------
 
 .as.hyperSpec.hyperSpec <- function(X) {
   X

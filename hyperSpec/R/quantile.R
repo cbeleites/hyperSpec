@@ -1,3 +1,5 @@
+# Function -------------------------------------------------------------------
+
 .quantile <- function(x, probs = seq(0, 1, 0.5), na.rm = TRUE, names = "num", ...) {
   x <- apply(x, 2, quantile,
     probs = probs, na.rm = na.rm, names = FALSE, ...,
@@ -21,18 +23,21 @@
 }
 
 #' @rdname mean_sd
-#' @return For `hyperSpec` object, `quantile()` returns a `hyperSpec` object
-#' containing the respective quantile spectra.
+#'
 #' @param probs the quantiles, see [stats::quantile()]
 #' @param names `"pretty"` results in percentages (like [stats::quantile()]'s
 #' `names = TRUE`), `"num"` results in the row names being `as.character(probs)`
 #' (good for ggplot2 getting the order of the quantiles right). Otherwise, no
 #' names are assigned.
-#' @seealso  [stats::quantile()]
-#' @export
+#'
+#' @return For `hyperSpec` object, `quantile()` returns a `hyperSpec` object
+#' containing the respective quantile spectra.
 #'
 #' @concept stats
 #' @concept manipulation
+#'
+#' @seealso  [stats::quantile()]
+#' @export
 #'
 #' @examples
 #'

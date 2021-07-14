@@ -1,3 +1,6 @@
+
+# Function -------------------------------------------------------------------
+
 .split <- function(x, f, drop = TRUE) {
   validObject(x)
 
@@ -22,12 +25,14 @@
 #' @rdname split
 #' @aliases split split-methods split,ANY-method split,hyperSpec-method
 #' @docType methods
+#'
 #' @param x the `hyperSpec` object
 #' @param f a factor giving the grouping (or a variable that can be converted
-#'   into a factor by `as.factor`)
-#' @param drop if `TRUE`, levels of`f` that do not occur are
-#'   dropped.
+#'        into a factor by `as.factor`)
+#' @param drop if `TRUE`, levels of`f` that do not occur are dropped.
+#'
 #' @return A list of `hyperSpec` objects.
+#'
 #' @author C. Beleites
 #' @seealso [base::split()]
 #'

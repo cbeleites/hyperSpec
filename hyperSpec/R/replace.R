@@ -1,4 +1,6 @@
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# Function -------------------------------------------------------------------
+
 .replace <- function(x, i, j, ..., value) {
   validObject(x)
 
@@ -19,18 +21,20 @@
 
 #' @rdname extractreplace
 #' @name [<-
+#' @aliases [<-,hyperSpec-method
+#'
 #' @usage
 #'
 #' \S4method{[}{hyperSpec}(x, i, j, \dots) <- value
 #'
-#' @aliases [<-,hyperSpec-method
 #' @param value the replacement value
+#'
+#' @concept manipulation
+#'
 #' @include wl2i.R
 #' @include paste_row.R
 #'
 #' @export
-#'
-#' @concept manipulation
 #'
 #' @examples
 #' ## replacement functions
@@ -41,12 +45,14 @@
 #' spc[, "c"] <- 16:11
 #' ## be careful:
 #' plot(spc)
-#' spc [] <- 6:1
+#' spc[] <- 6:1
 #' spc$..
 #' plot(spc)
 setReplaceMethod("[", signature = signature(x = "hyperSpec"), .replace)
 
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# Function -------------------------------------------------------------------
+
 .replace2 <- function(x, i, j, l, wl.index = FALSE, ..., value) {
   validObject(x)
 
@@ -73,7 +79,7 @@ setReplaceMethod("[", signature = signature(x = "hyperSpec"), .replace)
         "or a n by 2 matrix."
       )
     }
-  } else {# index by row and columns
+  } else { # index by row and columns
     if (!missing(j)) {
       stop(
         "The spectra matrix may only be indexed by i (spectra) and l",
@@ -95,20 +101,21 @@ setReplaceMethod("[", signature = signature(x = "hyperSpec"), .replace)
 
 
 #' @rdname extractreplace
+#' @name [[<-
+#' @aliases [[<-,hyperSpec-method
+#'
 #' @usage
 #'
 #' \S4method{[[}{hyperSpec}(x, i, j, l, wl.index = FALSE, \dots) <- value
 #'
-#' @aliases [[<-,hyperSpec-method
-#' @name [[<-
-#'
-#' @export
 #'
 #' @concept manipulation
 #'
 #' @include wl2i.R
+#' @export
+#'
 #' @examples
-#' spc <- flu [, , 405 ~ 410]
+#' spc <- flu[, , 405 ~ 410]
 #' spc[[]]
 #' spc[[3]] <- -spc[[3]]
 #' spc[[]]
@@ -117,7 +124,7 @@ setReplaceMethod("[", signature = signature(x = "hyperSpec"), .replace)
 #' spc[[, , 405 ~ 410]] <- -spc[[, , 405 ~ 410]]
 #'
 #' ## indexing with logical matrix
-#' spc <- flu [, , min ~ 410]
+#' spc <- flu[, , min ~ 410]
 #' spc < 125
 #' spc[[spc < 125]] <- NA
 #' spc[[]]
@@ -135,7 +142,8 @@ setReplaceMethod("[", signature = signature(x = "hyperSpec"), .replace)
 setReplaceMethod("[[", signature = signature(x = "hyperSpec"), .replace2)
 
 
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Function -------------------------------------------------------------------
+
 .replace_dollar <- function(x, name, value) {
   validObject(x)
 
@@ -173,15 +181,16 @@ setReplaceMethod("[[", signature = signature(x = "hyperSpec"), .replace2)
 
 
 #' @rdname extractreplace
+#' @name $<-
+#' @aliases $<-,hyperSpec-method
+#'
 #' @usage
 #'
 #' \S4method{$}{hyperSpec}(x, name) <- value
 #'
-#' @aliases $<-,hyperSpec-method
-#' @name $<-
-#' @export
-#'
 #' @concept manipulation
+#'
+#' @export
 #'
 #' @examples
 #' spc$.
@@ -192,6 +201,7 @@ setReplaceMethod("$", signature = signature(x = "hyperSpec"), .replace_dollar)
 
 
 # Unit tests -----------------------------------------------------------------
+
 hySpc.testthat::test(.replace) <- function() {
   ## replacement functions
   context("replace")
@@ -254,12 +264,11 @@ hySpc.testthat::test(.replace) <- function() {
     spc <- spc0
     expect_silent(spc$z <- list(1:6, "z / a.u."))
     expect_equal(labels(spc, "z"),   "z / a.u.")
-    expect_true("z" %in%  colnames(spc))
+    expect_true("z" %in% colnames(spc))
 
     spc <- spc0
     expect_silent(spc$.. <- NULL)
     expect_equal(ncol(spc$..), 0) # empty data frame.
     expect_equal(ncol(spc),    1) # only "spc" column is left.
   })
-
 }

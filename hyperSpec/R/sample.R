@@ -1,3 +1,5 @@
+# Function -------------------------------------------------------------------
+
 .sample <- function(x, size, replace = FALSE, prob = NULL) {
   validObject(x)
 
@@ -7,6 +9,9 @@
 
   x[s]
 }
+
+
+# Unit tests -----------------------------------------------------------------
 
 hySpc.testthat::test(.sample) <- function() {
   context(".sample")
@@ -33,7 +38,7 @@ hySpc.testthat::test(.sample) <- function() {
 }
 
 
-
+# Function -------------------------------------------------------------------
 
 #' Random samples and permutations
 #'
@@ -42,22 +47,25 @@ hySpc.testthat::test(.sample) <- function() {
 #'
 #' @rdname sample
 #' @docType methods
+#'
 #' @param x The hyperSpec object, data.frame or matrix to sample fromto sample from
 #' @param size positive integer giving the number of spectra (rows) to choose.
 #' @param replace Should sampling be with replacement?
 #' @param prob A vector of probability weights for obtaining the elements of
-#'   the vector being sampled.
+#'        the vector being sampled.
+#'
 #' @return a hyperSpec object, data.frame or matrix with `size` rows for
 #'        `sample`, and an integer vector for `isample` that is suitable for
 #'        indexing (into the spectra) of x.
-#' @author C. Beleites
-#' @seealso [base::sample()]
 #'
-#' @export
+#' @author C. Beleites
 #'
 #' @keywords methods distribution
 #' @concept stats
 #'
+#' @export
+#'
+#' @seealso [base::sample()]
 #' @examples
 #'
 #' sample(flu, 3)
@@ -71,6 +79,11 @@ hySpc.testthat::test(.sample) <- function() {
 #'   lines.args = list(lwd = 2)
 #' )
 setMethod("sample", signature = signature(x = "hyperSpec"), .sample)
+
+
+
+
+# Function -------------------------------------------------------------------
 
 #' `isample()` returns an vector of indices, `sample()` returns the
 #' corresponding hyperSpec object.
@@ -91,6 +104,9 @@ isample <- function(x, size = nrow(x), replace = FALSE, prob = NULL) {
 
   sample.int(nrow(x), size = size, replace = replace, prob = prob)
 }
+
+
+# Unit tests -----------------------------------------------------------------
 
 hySpc.testthat::test(isample) <- function() {
   context("isample")
@@ -115,6 +131,10 @@ hySpc.testthat::test(isample) <- function() {
   })
 }
 
+
+# Function -------------------------------------------------------------------
+
+
 .sample.data.frame <- function(x, size, replace = FALSE, prob = NULL, drop = FALSE) {
   if (missing(size)) size <- nrow(x)
   x[sample.int(nrow(x), size = size, replace = replace, prob = prob), , drop = drop]
@@ -129,6 +149,9 @@ hySpc.testthat::test(isample) <- function() {
 #' @examples
 #' sample(cars, 2)
 setMethod("sample", signature = signature(x = "data.frame"), .sample.data.frame)
+
+
+# Unit tests -----------------------------------------------------------------
 
 hySpc.testthat::test(.sample.data.frame) <- function() {
   context("sample data.frame")
@@ -158,6 +181,7 @@ hySpc.testthat::test(.sample.data.frame) <- function() {
 }
 
 
+# Function -------------------------------------------------------------------
 
 .sample.matrix <- function(x, size, replace = FALSE, prob = NULL, drop = FALSE) {
   if (missing(size)) size <- nrow(x)
@@ -172,6 +196,9 @@ hySpc.testthat::test(.sample.data.frame) <- function() {
 #' @examples
 #' sample(matrix(1:24, 6), 2)
 setMethod("sample", signature = signature(x = "matrix"), .sample.matrix)
+
+
+# Unit tests -----------------------------------------------------------------
 
 hySpc.testthat::test(.sample.matrix) <- function() {
   context(".sample.matrix")

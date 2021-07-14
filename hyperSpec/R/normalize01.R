@@ -1,5 +1,7 @@
 # @title normalization for mixed colors
 
+# Set generic ----------------------------------------------------------------
+
 #' Normalize numbers to interval \[0, 1\]
 #'
 #' The input `x` is mapped to \[0, 1\] by subtracting the minimum and
@@ -7,41 +9,43 @@
 #'  1 is returned.
 #'
 #' @name normalize01
-#' @param x  vector with values to transform
-#' @param tolerance tolerance level for determining what is 0 and 1
+#'
+#' @param x  Object (e.g., vector) with values to transform.
+#' @param tolerance Tolerance level for determining what is 0 and 1.
 #' @param ... additional parameters such as `tolerance` handed down.
-#' @return vector with `x` values mapped to the interval \[0, 1\]
+#'
+#' @return object (e.g., vector) with `x` values mapped to the interval \[0, 1\].
+#'
 #' @author C. Beleites
-#' @seealso [hyperSpec::wl_eval()], [hyperSpec::vanderMonde()]
-#' @export
 #'
 #' @concept manipulation
+#' @seealso [hyperSpec::wl_eval()], [hyperSpec::vanderMonde()]
+#'
+#' @export
 #'
 setGeneric("normalize01", function(x, ...) standardGeneric("normalize01"))
 
-#' @export
-#'
-#' @concept manipulation
-#'
-#' @rdname normalize01
-setMethod(
-  normalize01, signature(x = "matrix"),
-  function(x, tolerance = hy.getOption("tolerance")) {
-    m <- apply(x, 1, min)
-    x <- sweep(x, 1, m, `-`)
-    m <- apply(x, 1, max)
-    x <- sweep(x, 1, m, `/`)
-    x[m < tolerance, ] <- 1
-    x
-  }
-)
 
+# Function -------------------------------------------------------------------
+
+.normalize01_mat <- function(x, tolerance = hy.getOption("tolerance")) {
+  m <- apply(x, 1, min)
+  x <- sweep(x, 1, m, `-`)
+  m <- apply(x, 1, max)
+  x <- sweep(x, 1, m, `/`)
+  x[m < tolerance, ] <- 1
+  x
+}
+
+#' @rdname normalize01
 #' @export
 #'
-#' @concept manipulation
-#'
-#' @rdname normalize01
-setMethod("normalize01", signature(x = "numeric"), function(x, tolerance = hy.getOption("tolerance")) {
+setMethod(normalize01, signature(x = "matrix"), .normalize01_mat)
+
+
+# Function -------------------------------------------------------------------
+
+.normalize01_num <- function(x, tolerance = hy.getOption("tolerance")) {
   x <- x - min(x)
 
   m <- max(x)
@@ -50,22 +54,29 @@ setMethod("normalize01", signature(x = "numeric"), function(x, tolerance = hy.ge
   } else {
     x / m
   }
-})
+}
 
+#' @rdname normalize01
 #' @export
 #'
-#' @concept manipulation
-#'
-#' @rdname normalize01
-setMethod(normalize01, signature(x = "hyperSpec"), function(x, ...) {
+setMethod("normalize01", signature(x = "numeric"), .normalize01_num)
+
+
+# Function -------------------------------------------------------------------
+
+.normalize01_hy <- function(x, ...) {
   validObject(x)
-
   x@data$spc <- normalize01(unclass(x@data$spc), ...)
-
-  ## logbook
   x
-})
+}
 
+#' @rdname normalize01
+#' @export
+#'
+setMethod(normalize01, signature(x = "hyperSpec"), .normalize01_hy)
+
+
+# Unit tests -----------------------------------------------------------------
 
 hySpc.testthat::test(normalize01) <- function() {
   context("normalize01")

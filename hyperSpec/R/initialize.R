@@ -1,13 +1,17 @@
-### -----------------------------------------------------------------------------
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ###
 ###  initialize -- initialization, called by new("hyperSpec", ...)
 ###
 ###  C. Beleites
 ###
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# Function -------------------------------------------------------------------
 
 #' @include paste_row.R
 #' @noRd
-.initialize <- function(.Object, spc = NULL, data = NULL, wavelength = NULL, labels = NULL) {
+.initialize <- function(.Object, spc = NULL, data = NULL, wavelength = NULL,
+                        labels = NULL) {
 
   # Do the small stuff first, so we need not be too careful about copies
 
@@ -159,8 +163,14 @@
 #' @name initialize
 #' @rdname initialize
 #'
-#' @aliases initialize,hyperSpec-method initialize create new_hyperSpec
-#'   create,hyperSpec-method new,hyperSpec-method new
+#' @aliases
+#'  initialize
+#'  initialize,hyperSpec-method
+#'  create
+#'  create,hyperSpec-method
+#'  new
+#'  new,hyperSpec-method
+#'  new_hyperSpec
 #'
 #' @docType methods
 #'
@@ -233,7 +243,7 @@
 #' plotc(h, spc ~ pos)
 setMethod("initialize", "hyperSpec", .initialize)
 
-
+# Function -------------------------------------------------------------------
 #' @rdname initialize
 #' @export
 new_hyperSpec <- function(spc = NULL, data = NULL, wavelength = NULL, labels = NULL) {
@@ -242,7 +252,6 @@ new_hyperSpec <- function(spc = NULL, data = NULL, wavelength = NULL, labels = N
 
 
 # Unit tests -----------------------------------------------------------------
-
 
 hySpc.testthat::test(.initialize) <- function() {
   context(".initialize / new (\"hyperSpec\")")

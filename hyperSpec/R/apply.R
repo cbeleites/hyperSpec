@@ -1,3 +1,5 @@
+# Functions ------------------------------------------------------------------
+
 .na.if.different <- function(x) {
   if (length(unique(x)) > 1) NA else x[1]
 }
@@ -49,6 +51,7 @@
   data$spc <- unclass(data$spc)
   data
 }
+
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .apply <- function(X, MARGIN, FUN, ..., label.wl = NULL,
                    label.spc = NULL, new.wavelength = NULL, simplify) {
@@ -76,8 +79,8 @@
 
     if (all(MARGIN == 1)) {
 
-      ## if the number of data points per spectrum is changed, the wavelength vector needs to be
-      ## adapted, too
+      ## if the number of data points per spectrum is changed, the wavelength
+      ## vector needs to be adapted, too
 
       if (ncol(X@data$spc) != length(X@wavelength)) {
 
@@ -121,7 +124,7 @@
 
 #' Compute summary statistics for the spectra of a `hyperSpec` object
 #'
-#' `apply` gives the functionality of [base::apply()] for `hyperSpec` objects.
+#' `apply()` gives the functionality of [base::apply()] for `hyperSpec` objects.
 #'
 #' The generic functions of group [methods::Math()] are not defined
 #' for `hyperSpec` objects. Instead, `apply` can be used. For
@@ -138,6 +141,7 @@
 #' @rdname apply
 #' @aliases apply apply,hyperSpec-method
 #' @docType methods
+#'
 #' @param X,spc a `hyperSpec` object
 #' @param MARGIN The subscript which the function will be applied over.
 #'
@@ -191,7 +195,6 @@ setMethod("apply", signature = signature(X = "hyperSpec"), .apply)
 
 
 # Unit tests -----------------------------------------------------------------
-
 
 hySpc.testthat::test(.apply) <- function() {
   context("apply")

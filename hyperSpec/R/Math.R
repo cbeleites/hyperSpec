@@ -1,4 +1,5 @@
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Function -------------------------------------------------------------------
+
 .math2 <- function(x, digits) {
   validObject(x)
 
@@ -16,6 +17,7 @@
 #' `trigamma()`, `cumsum()`, `cumprod()`, `cummax()`, `cummin()` for `hyperSpec`
 #'  objects.
 #'
+#' @rdname math
 #' @aliases  Math Math2 Math,hyperSpec-method Math2,hyperSpec-method abs,hyperSpec-method
 #' sign,hyperSpec-method sqrt,hyperSpec-method floor,hyperSpec-method ceiling,hyperSpec-method
 #' trunc,hyperSpec-method round,hyperSpec-method signif,hyperSpec-method exp,hyperSpec-method
@@ -26,10 +28,12 @@
 #' gamma,hyperSpec-method digamma,hyperSpec-method trigamma,hyperSpec-method cumsum,hyperSpec-method
 #' cumprod,hyperSpec-method cummax,hyperSpec-method cummin,hyperSpec-method round,hyperSpec-method
 #' signif,hyperSpec-method
+#'
 #' @param x the `hyperSpec` object
 #' @param digits integer stating the rounding precision
+#'
 #' @return a `hyperSpec` object
-#' @rdname math
+#'
 #' @author C. Beleites
 #' @seealso [methods::S4groupGeneric()] for group generic methods.
 #'
@@ -41,19 +45,18 @@
 #' objects.
 #'
 #' @keywords methods math
-#' @export
-#'
 #' @concept manipulation
+#'
+#' @export
 #'
 #' @examples
 #'
 #' log(flu)
-setMethod(
-  "Math2", signature(x = "hyperSpec"), .math2
-)
+setMethod("Math2", signature(x = "hyperSpec"), .math2)
 
 
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Function -------------------------------------------------------------------
+
 .log <- function(x, base = exp(1), ...) {
   validObject(x)
 
@@ -62,17 +65,20 @@ setMethod(
 }
 
 #' @rdname math
+#' @aliases log log,hyperSpec-method
+#'
 #' @param ... ignored
 #' @param base base of logarithm
+#'
 #' @export
 #'
 #' @concept manipulation
 #'
-#' @aliases log log,hyperSpec-method
 setMethod("log", signature(x = "hyperSpec"), .log)
 
 
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Function -------------------------------------------------------------------
+
 .math <- function(x) {
   validObject(x)
 
@@ -86,14 +92,15 @@ setMethod("log", signature(x = "hyperSpec"), .log)
 
 
 #' @rdname math
-#' @export
 #'
 #' @concept manipulation
+#' @export
 #'
 setMethod("Math", signature(x = "hyperSpec"), .math)
 
 
 # Unit tests -----------------------------------------------------------------
+
 hySpc.testthat::test(.math) <- function() {
   context("math")
 

@@ -1,14 +1,17 @@
+# Set generic ----------------------------------------------------------------
+
 #' @importFrom lattice latticeParseFormula
 setGeneric("levelplot", package = "lattice")
 
-#################################################################################
-###
+###--------------------------------------------------------------------------~
 ###  levelplot.R - everything that has to do with levelplot-like plotting:
 ###
 ###  levelplot is used by plotmap, plotvoronoi
 ###
+###--------------------------------------------------------------------------~
 
-### the workhorse function
+# Function -------------------------------------------------------------------
+# the workhorse function
 
 #' @importFrom utils modifyList
 .levelplot <- function(x, data, transform.factor = TRUE, ...,
@@ -76,6 +79,44 @@ setGeneric("levelplot", package = "lattice")
   do.call(levelplot, c(list(x, data), dots))
 }
 
+#' @rdname levelplot
+#' @export
+setMethod("levelplot",
+  signature = signature(x = "formula", data = "hyperSpec"),
+  definition = .levelplot
+)
+
+
+# Function -------------------------------------------------------------------
+
+.levelplot_h_ <- function(x, data, ...) {
+  .levelplot(x = formula(spc ~ .wavelength * .row), data = x, ...)
+}
+
+#' @rdname levelplot
+#'
+#' @param transform.factor If the color-coded variable is a factor, should
+#'   [trellis.factor.key()] be used to compute the color coding and
+#'   legend?
+#' @param contour,useRaster see  [lattice::levelplot()]
+#'
+#' @include plotmap.R
+#' @importFrom lattice levelplot
+#' @export
+#'
+#' @concept plotting
+#' @concept plot generation
+#'
+#' @seealso  [lattice::levelplot()]
+#'
+#'  [trellis.factor.key()] for improved color coding of factors
+setMethod("levelplot",
+  signature = signature(x = "hyperSpec", data = "missing"),
+  .levelplot_h_
+)
+
+
+# Unit tests -----------------------------------------------------------------
 
 hySpc.testthat::test(.levelplot) <- function() {
   context(".levelplot")
@@ -92,31 +133,3 @@ hySpc.testthat::test(.levelplot) <- function() {
   })
 }
 
-#' @include plotmap.R
-#' @rdname levelplot
-#' @param transform.factor If the color-coded variable is a factor, should
-#'   [trellis.factor.key()] be used to compute the color coding and
-#'   legend?
-#' @param contour,useRaster see  [lattice::levelplot()]
-#' @export
-#'
-#' @concept plotting
-#' @concept plot generation
-#'
-#' @seealso  [lattice::levelplot()]
-#'
-#'  [trellis.factor.key()] for improved color coding of factors
-#' @importFrom lattice levelplot
-setMethod(
-  f = "levelplot", signature = signature(x = "hyperSpec", data = "missing"),
-  definition = function(x, data, ...) {
-    .levelplot(x = formula(spc ~ .wavelength * .row), data = x, ...)
-  }
-)
-
-#' @rdname levelplot
-#' @export
-setMethod(
-  f = "levelplot", signature = signature(x = "formula", data = "hyperSpec"),
-  definition = .levelplot
-)
