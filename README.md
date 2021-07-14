@@ -5,12 +5,21 @@
 [![metacran downloads](https://cranlogs.r-pkg.org/badges/hyperSpec)](https://cran.r-project.org/package=hyperSpec)
 [![R-CMD-check](https://github.com/cbeleites/hyperSpec/workflows/R-CMD-check/badge.svg?branch=develop)](https://github.com/cbeleites/hyperSpec/actions)
 [![Codecov](https://codecov.io/gh/cbeleites/hyperSpec/branch/develop/graph/badge.svg)](https://codecov.io/gh/cbeleites/hyperSpec?branch=develop)
-[![license](https://img.shields.io/badge/license-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
+<!-- [![license](https://img.shields.io/badge/license-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html) -->
 <!-- badges: end -->
 
 <!-- ---------------------------------------------------------------------- -->
 
 
+# R Package **hyperSpec** was moved to new repository
+
+Package **hyperSpec** was moved to repository https://github.com/r-hyperspec/hyperSpec so all your new contributions must go there.
+
+Most recent online documentation could be found at https://r-hyperspec.github.io/hyperSpec/
+
+
+
+<!-- 
 
 # R Package **hyperSpec**
 
@@ -30,7 +39,6 @@ etc. spectroscopy measurements.
 More generally, any data that is recorded over a discretized variable, e.g. `absorbance = f(wavelength)`, stored as a vector of absorbance values for discrete wavelengths is suitable.
 
 
-<!-- ---------------------------------------------------------------------- -->
 
 ## Documentation
 
@@ -41,12 +49,11 @@ b. for the [development version](https://r-hyperspec.github.io/hyperSpec/dev/) o
 
 The documentation of the other **`r-hyperspec`** family packages can be found at [r-hyperspec.github.io](https://r-hyperspec.github.io/).
 
-<!-- ---------------------------------------------------------------------- -->
 
 ## Issues, Bug Reports and Feature Requests
 
 Issues, bug reports and feature requests should go [here](https://github.com/r-hyperspec/hyperSpec/issues)!
-<!-- ---------------------------------------------------------------------- -->
+
 
 ## Installation
 
@@ -113,4 +120,6 @@ devtools::install("hyperSpec", build_vignettes = TRUE)
 
 **NOTE 1:**
 Usually, "Windows" users need to download, install and properly configure **Rtools** (see [these instructions](https://cran.r-project.org/bin/windows/Rtools/)) to make the code above work.
+
+-->
 
