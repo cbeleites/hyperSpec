@@ -124,3 +124,8 @@ setMethod("dim", signature = signature("hyperSpec"), .dim)
 #'
 #' length(faux_cell)
 setMethod("length", signature = signature("hyperSpec"), .length)
+
+
+# Unit tests -----------------------------------------------------------------
+
+# TODO: add unit tests
