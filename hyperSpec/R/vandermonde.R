@@ -1,4 +1,4 @@
-# Function -------------------------------------------------------------------
+# Set generic ----------------------------------------------------------------
 
 #' Function evaluation on `hyperSpec` objects
 #'
@@ -17,6 +17,7 @@
 #' @param order of the polynomial
 #'
 #' @return Vandermonde matrix
+#'
 #' @author C. Beleites
 #'
 #' @export
@@ -28,8 +29,6 @@ vanderMonde <- function(x, order, ...) {
 
   outer(x, 0:order, `^`)
 }
-
-# Set generic ----------------------------------------------------------------
 
 #' @noRd
 setGeneric("vanderMonde")
