@@ -5,6 +5,9 @@
 # m ... matrix
 # _ ... missing
 
+
+# Function -------------------------------------------------------------------
+
 #' @include expand.R
 ## arithmetic function called with both parameters hyperSpec
 .arith_hh <- function(e1, e2) {
@@ -23,33 +26,6 @@
   e1 <- merge_data(e1, e2)
 
   e1
-}
-
-hySpc.testthat::test(.arith_hh) <- function() {
-  context("Arithmetic operators, 2 hyperSpec objects")
-
-  tmp <- as.hyperSpec(matrix(1:length(flu[[]]), nrow = nrow(flu)))
-  tmp[[]] <- 1:length(tmp[[]])
-  tmp$testcolumn <- 1:nrow(tmp)
-
-  test_that("correct results for 2 equal-sized objects", {
-    for (operator in c(`+`, `-`, `*`, `/`, `^`, `%%`, `%/%`)) {
-      res <- operator(flu, tmp)
-      expect_equal(res[[]], operator(flu[[]], tmp[[]]))
-      expect_equal(res$.., cbind(flu$.., tmp$..))
-      expect_equal(dim(res), dim(flu) + c(0, 1, 0))
-      expect_equal(wl(res), wl(flu))
-    }
-  })
-
-  test_that("correct results with row-sized object", {
-  })
-
-  test_that("correct results with column-sized object", {
-  })
-
-  test_that("correct results with 1x1 object", {
-  })
 }
 
 #' @title Arithmetical operators: `+`, `-`, `*`, `/`, `^`, `%%`, `%/%`, `%*%`
@@ -80,38 +56,42 @@ hySpc.testthat::test(.arith_hh) <- function() {
 #'
 #' If you want to calculate on the extra data as well, use the data.frame
 #' `hyperSpec@data` directly or [`as.data.frame(x)`][as.data.frame()].
+#'
 #' @author C. Beleites
 #'
 #' @rdname Arith
 #' @docType methods
+#'
 #' @param e1,e2 or
 #' @param x,y either two `hyperSpec` objects or
 #'
 #'   one `hyperSpec` object and  matrix of same size as `x[[]]` or
 #'
-#'   a vector which length equalling either the number of rows or the number of
+#'   a vector which length equaling either the number of rows or the number of
 #'   wavelengths of the `hyperSpec` object, or
 #'
 #'   a scalar (numeric of length 1).
+#'
 #' @return `hyperSpec` object with the new spectra matrix.
 #'
-#' If
-#' If the `e2` is a `hyperSpec` objects, its extra data columns will silently be
-#' dropped silently.
+#' If the `e2` is a `hyperSpec` object, its extra data columns will be dropped
+#' silently.
 #'
-#' @export
 #'
 #' @keywords methods arith
 #' @concept manipulation
-#'
-#' @include paste_row.R
-#'
-#' @include hyperspec-class.R
 #' @concept hyperSpec arithmetic
 #' @concept hyperSpec arithmetical operators
 #' @concept hyperSpec plus
 #' @concept hyperSpec division
 #' @concept hyperSpec spectra conversion
+#'
+#'
+#' @include paste_row.R
+#' @include hyperspec-class.R
+#'
+#' @export
+#'
 #' @seealso [sweep()] for calculations with a vector and the spectra matrix.
 #'
 #' [methods::S4groupGeneric] for group generic methods.
@@ -121,6 +101,7 @@ hySpc.testthat::test(.arith_hh) <- function() {
 #' [hyperSpec::Comparison] for comparison operators,
 #' [hyperSpec::Math] for mathematical group generic functions (Math
 #' and Math2 groups) working on hyperSpec objects.
+#'
 #' @examples
 #' flu + flu
 #' 1 / flu
@@ -129,6 +110,41 @@ hySpc.testthat::test(.arith_hh) <- function() {
 #' flu / flu$c
 setMethod("Arith", signature(e1 = "hyperSpec", e2 = "hyperSpec"), .arith_hh)
 
+
+# Unit tests -----------------------------------------------------------------
+
+hySpc.testthat::test(.arith_hh) <- function() {
+  context("Arithmetic operators, 2 hyperSpec objects")
+
+  tmp <- as.hyperSpec(matrix(1:length(flu[[]]), nrow = nrow(flu)))
+  tmp[[]] <- 1:length(tmp[[]])
+  tmp$testcolumn <- 1:nrow(tmp)
+
+  test_that("correct results for 2 equal-sized objects", {
+    for (operator in c(`+`, `-`, `*`, `/`, `^`, `%%`, `%/%`)) {
+      res <- operator(flu, tmp)
+      expect_equal(res[[]], operator(flu[[]], tmp[[]]))
+      expect_equal(res$.., cbind(flu$.., tmp$..))
+      expect_equal(dim(res), dim(flu) + c(0, 1, 0))
+      expect_equal(wl(res), wl(flu))
+    }
+  })
+
+  test_that("correct results with row-sized object", {
+    # TODO: add unit tests
+  })
+
+  test_that("correct results with column-sized object", {
+    # TODO: add unit tests
+  })
+
+  test_that("correct results with 1x1 object", {
+    # TODO: add unit tests
+  })
+}
+
+
+# Function -------------------------------------------------------------------
 ## unary operators
 
 .arith_h_ <- function(e1, e2) {
@@ -141,6 +157,13 @@ setMethod("Arith", signature(e1 = "hyperSpec", e2 = "hyperSpec"), .arith_hh)
   e1[[]] <- callGeneric(e1[[]])
   e1
 }
+
+#' @rdname Arith
+setMethod("Arith", signature(e1 = "hyperSpec", e2 = "missing"), .arith_h_)
+
+
+# Unit tests -----------------------------------------------------------------
+
 hySpc.testthat::test(.arith_h_) <- function() {
   context("Unary arithmetic operators")
 
@@ -167,9 +190,8 @@ hySpc.testthat::test(.arith_h_) <- function() {
   })
 }
 
-#' @rdname Arith
-setMethod("Arith", signature(e1 = "hyperSpec", e2 = "missing"), .arith_h_)
 
+# Function -------------------------------------------------------------------
 
 ## arithmetic function called with first parameter hyperSpec
 .arith_hn <- function(e1, e2) {
@@ -186,6 +208,14 @@ setMethod("Arith", signature(e1 = "hyperSpec", e2 = "missing"), .arith_h_)
 
   e1
 }
+
+#' @rdname Arith
+setMethod("Arith", signature(e1 = "hyperSpec", e2 = "numeric"), .arith_hn)
+#' @rdname Arith
+setMethod("Arith", signature(e1 = "hyperSpec", e2 = "matrix"), .arith_hn)
+
+
+# Unit tests -----------------------------------------------------------------
 
 hySpc.testthat::test(.arith_hn) <- function() {
   context("Arithmetic operators, hyperSpec object x")
@@ -268,12 +298,10 @@ hySpc.testthat::test(.arith_hn) <- function() {
 }
 
 
-#' @rdname Arith
-setMethod("Arith", signature(e1 = "hyperSpec", e2 = "numeric"), .arith_hn)
-#' @rdname Arith
-setMethod("Arith", signature(e1 = "hyperSpec", e2 = "matrix"), .arith_hn)
+# Function -------------------------------------------------------------------
 
 ## arithmetic function called with second parameter hyperSpec
+
 .arith_nh <- function(e1, e2) {
   # e1 <- as.matrix(e1)
   validObject(e2)
@@ -297,6 +325,8 @@ setMethod("Arith", signature(e1 = "numeric", e2 = "hyperSpec"), .arith_nh)
 setMethod("Arith", signature(e1 = "matrix", e2 = "hyperSpec"), .arith_nh)
 
 
+# Function -------------------------------------------------------------------
+
 ## matrix multiplication two hyperSpec objects
 .matmul_hh <- function(x, y) {
   validObject(x)
@@ -308,6 +338,18 @@ setMethod("Arith", signature(e1 = "matrix", e2 = "hyperSpec"), .arith_nh)
 
   x
 }
+
+#' @rdname Arith
+#' @export
+#'
+#' @concept hyperSpec matrix multiplication
+#' @concept manipulation
+#'
+#' @seealso  [base::matmult] for matrix multiplications with `%*%`.
+setMethod("%*%", signature(x = "hyperSpec", y = "hyperSpec"), .matmul_hh)
+
+
+# Unit tests -----------------------------------------------------------------
 
 hySpc.testthat::test(.matmul_hh) <- function() {
   context("matrix multiplication: 2 hyperSpec objects")
@@ -330,14 +372,7 @@ hySpc.testthat::test(.matmul_hh) <- function() {
 }
 
 
-#' @rdname Arith
-#' @export
-#'
-#' @concept hyperSpec matrix multiplication
-#' @concept manipulation
-#'
-#' @seealso  [base::matmult] for matrix multiplications with `%*%`.
-setMethod("%*%", signature(x = "hyperSpec", y = "hyperSpec"), .matmul_hh)
+# Function -------------------------------------------------------------------
 
 ## matrix multiplication hyperSpec object %*% matrix
 .matmul_hm <- function(x, y) {
@@ -350,6 +385,12 @@ setMethod("%*%", signature(x = "hyperSpec", y = "hyperSpec"), .matmul_hh)
 
   x
 }
+
+#' @rdname Arith
+setMethod("%*%", signature(x = "hyperSpec", y = "matrix"), .matmul_hm)
+
+
+# Unit tests -----------------------------------------------------------------
 
 hySpc.testthat::test(.matmul_hm) <- function() {
   context("matrix multiplication hyperSpec x matrix")
@@ -369,8 +410,8 @@ hySpc.testthat::test(.matmul_hm) <- function() {
   })
 }
 
-#' @rdname Arith
-setMethod("%*%", signature(x = "hyperSpec", y = "matrix"), .matmul_hm)
+
+# Function -------------------------------------------------------------------
 
 ## matrix multiplication matrix %*% hyperSpec object
 .matmul_mh <- function(x, y) {
@@ -378,6 +419,12 @@ setMethod("%*%", signature(x = "hyperSpec", y = "matrix"), .matmul_hm)
 
   new("hyperSpec", wavelength = y@wavelength, spc = x %*% y@data$spc)
 }
+
+#' @rdname Arith
+setMethod("%*%", signature(x = "matrix", y = "hyperSpec"), .matmul_mh)
+
+
+# Unit tests -----------------------------------------------------------------
 
 hySpc.testthat::test(.matmul_mh) <- function() {
   context("matrix multiplication: matrix x hyperSpec")
@@ -392,7 +439,3 @@ hySpc.testthat::test(.matmul_mh) <- function() {
     expect_equal(wl(res), wl(flu))
   })
 }
-
-
-#' @rdname Arith
-setMethod("%*%", signature(x = "matrix", y = "hyperSpec"), .matmul_mh)
