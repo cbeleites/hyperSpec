@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get and set labels of a hyperSpec object — labels&lt;- • hyperSpec</title>
+<title>Get and set labels of a hyperSpec object — labels,hyperSpec-method • hyperSpec</title>
 
 
 <!-- jquery -->
@@ -41,9 +41,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Get and set labels of a hyperSpec object — labels&lt;-" />
-<meta property="og:description" content="value may be a list or vector of labels giving the new label for
-each of the entries specified by which." />
+<meta property="og:title" content="Get and set labels of a hyperSpec object — labels,hyperSpec-method" />
+<meta property="og:description" content="Get and set labels of a hyperSpec object." />
 
 <meta name="robots" content="noindex" />
 
@@ -162,14 +161,13 @@ each of the entries specified by which." />
     </div>
 
     <div class="ref-description">
-    <p><code>value</code> may be a list or vector of labels giving the new label for
-each of the entries specified by <code>which</code>.</p>
+    <p>Get and set labels of a <code>hyperSpec</code> object.</p>
     </div>
 
-    <pre class="usage"><span class='fu'><a href='https://rdrr.io/r/base/labels.html'>labels</a></span><span class='op'>(</span><span class='va'>object</span>, which <span class='op'>=</span> <span class='cn'>NULL</span>, <span class='va'>...</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='va'>value</span>
+    <pre class="usage"><span class='co'># S4 method for hyperSpec</span>
+<span class='fu'><a href='https://rdrr.io/r/base/labels.html'>labels</a></span><span class='op'>(</span><span class='va'>object</span>, which <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/bquote.html'>bquote</a></span><span class='op'>(</span><span class='op'>)</span>, drop <span class='op'>=</span> <span class='cn'>TRUE</span>, <span class='va'>...</span>, use.colnames <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 
-<span class='co'># S4 method for hyperSpec</span>
-<span class='fu'><a href='https://rdrr.io/r/base/labels.html'>labels</a></span><span class='op'>(</span><span class='va'>object</span>, which <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/bquote.html'>bquote</a></span><span class='op'>(</span><span class='op'>)</span>, drop <span class='op'>=</span> <span class='cn'>TRUE</span>, <span class='va'>...</span>, use.colnames <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
+<span class='fu'><a href='https://rdrr.io/r/base/labels.html'>labels</a></span><span class='op'>(</span><span class='va'>object</span>, which <span class='op'>=</span> <span class='cn'>NULL</span>, <span class='va'>...</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='va'>value</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -183,34 +181,36 @@ each of the entries specified by <code>which</code>.</p>
       <td><p>numeric or character to specify the label(s)</p></td>
     </tr>
     <tr>
-      <th>...</th>
-      <td><p>ignored</p></td>
-    </tr>
-    <tr>
-      <th>value</th>
-      <td><p>the new label(s)</p></td>
-    </tr>
-    <tr>
       <th>drop</th>
       <td><p>if the result would be a list with only one element, should the
 element be returned instead?</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>ignored</p></td>
     </tr>
     <tr>
       <th>use.colnames</th>
       <td><p>should missing labels be replaced by column names of
 the extra data?</p></td>
     </tr>
+    <tr>
+      <th>value</th>
+      <td><p>the new label(s)</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>labels&lt;-</code> returns a <code>hyperSpec</code> object.</p>
-<p><code>labels</code> returns a list of labels.  If <code>drop</code> is
+    <p><code>labels</code> returns a list of labels.  If <code>drop</code> is
 <code>TRUE</code> and the list contains only one element, the element is
 returned instead.</p>
+<p><code>labels&lt;-</code> returns a <code>hyperSpec</code> object.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>The names of the labels are the same as the colnames of the
+    <p><code>value</code> may be a list or vector of labels giving the new label for
+each of the entries specified by <code>which</code>.</p>
+<p>The names of the labels are the same as the colnames of the
 <code>data.frame</code>.  The label for the wavelength axis has the name
 <code>.wavelength</code>.</p>
 <p>The labels should be given in a form ready for the text-drawing functions
@@ -225,8 +225,6 @@ returned instead.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/base/labels.html'>labels</a></span><span class='op'>(</span><span class='va'>flu</span>, <span class='st'>"c"</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span><span class='op'>(</span><span class='st'>"/"</span><span class='op'>(</span><span class='st'>"c"</span>, <span class='st'>"mg / l"</span><span class='op'>)</span><span class='op'>)</span>
-
 <span class='fu'><a href='https://rdrr.io/r/base/labels.html'>labels</a></span><span class='op'>(</span><span class='va'>faux_cell</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; $x
 #&gt; expression("x position")
@@ -242,7 +240,9 @@ returned instead.</p>
 #&gt; 
 #&gt; $.wavelength
 #&gt; expression(Delta * tilde(nu)/cm^-1)
-#&gt; </div></pre>
+#&gt; </div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/base/labels.html'>labels</a></span><span class='op'>(</span><span class='va'>flu</span>, <span class='st'>"c"</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span><span class='op'>(</span><span class='st'>"/"</span><span class='op'>(</span><span class='st'>"c"</span>, <span class='st'>"mg / l"</span><span class='op'>)</span><span class='op'>)</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

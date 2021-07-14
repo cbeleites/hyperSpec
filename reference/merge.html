@@ -180,11 +180,12 @@ matrices, or merges additional extra data into a <code>hyperSpec</code> object.<
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>a <code>hyperSpec</code> object or data.frame</p></td>
+      <td><p>a <code>hyperSpec</code> object or <code>data.frame</code></p></td>
     </tr>
     <tr>
       <th>y</th>
-      <td><p>a <code>hyperSpec</code> object or data.frame (including derived classes like tibble)</p></td>
+      <td><p>a <code>hyperSpec</code> object or <code>data.frame</code>
+(including derived classes like <code>tibble</code>)</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -197,13 +198,14 @@ matrices, or merges additional extra data into a <code>hyperSpec</code> object.<
     <p>After merging, the spectra matrix can contain duplicates, and is not
 ordered according to the wavelength.</p>
 <p>If the wavelength axis should be ordered, use <code><a href='wl_sort.html'>wl_sort()</a></code>.</p>
-<p>If a <code>hyperSpec</code> object and  a <code>data.frame</code> are merged, the result is of the
-class of the first (<code>x</code>) object.</p>
+<p>If a <code>hyperSpec</code> object and  a <code>data.frame</code> are merged, the result is
+of the class of the first (<code>x</code>) object.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://rdrr.io/r/base/merge.html'>base::merge()</a></code>.</p>
-<p><code><a href='collapse.html'>collapse()</a></code> combines <code>hyperSpec</code> objects that do not share the wavelength axis.
-<code><a href='https://rdrr.io/r/base/cbind.html'>rbind()</a></code>, and <code><a href='https://rdrr.io/r/base/cbind.html'>cbind()</a></code> for combining <code>hyperSpec</code> objects that.</p></div>
+    <div class='dont-index'><p><code><a href='https://rdrr.io/r/base/merge.html'>base::merge()</a></code></p>
+<p><code><a href='collapse.html'>collapse()</a></code> combines <code>hyperSpec</code> objects that do not share the wavelength axis.</p>
+<p><code><a href='https://rdrr.io/r/base/cbind.html'>rbind()</a></code>, and <code><a href='https://rdrr.io/r/base/cbind.html'>cbind()</a></code> for combining <code>hyperSpec</code> objects that.</p>
+<p><code><a href='merge_data.html'>merge_data()</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>C. Beleites</p>
@@ -217,7 +219,8 @@ class of the first (<code>x</code>) object.</p>
 #&gt; 3 -4.55 -4.77   matrix   8   matrix   4    NA    NA
 #&gt; 4 -5.55 -4.77   matrix   7   matrix   3    NA    NA
 #&gt; 5 -6.55 -4.77   matrix   6   matrix   2    NA    NA
-#&gt; 6 -7.55 -4.77   matrix   5   matrix   1    NA    NA</div><div class='input'><span class='va'>tmp</span> <span class='op'>&lt;-</span> <span class='fu'>merge</span><span class='op'>(</span><span class='va'>faux_cell</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>, , <span class='fl'>610</span><span class='op'>]</span>, <span class='va'>faux_cell</span><span class='op'>[</span><span class='fl'>5</span><span class='op'>:</span><span class='fl'>15</span>, , <span class='fl'>610</span><span class='op'>]</span>,
+#&gt; 6 -7.55 -4.77   matrix   5   matrix   1    NA    NA</div><div class='input'>
+<span class='va'>tmp</span> <span class='op'>&lt;-</span> <span class='fu'>merge</span><span class='op'>(</span><span class='va'>faux_cell</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>, , <span class='fl'>610</span><span class='op'>]</span>, <span class='va'>faux_cell</span><span class='op'>[</span><span class='fl'>5</span><span class='op'>:</span><span class='fl'>15</span>, , <span class='fl'>610</span><span class='op'>]</span>,
   by <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"x"</span>, <span class='st'>"y"</span><span class='op'>)</span>, all <span class='op'>=</span> <span class='cn'>TRUE</span>
 <span class='op'>)</span>
 <span class='va'>tmp</span><span class='op'>$</span><span class='va'>.</span>
@@ -236,7 +239,8 @@ class of the first (<code>x</code>) object.</p>
 #&gt; 12  -0.55 -4.77     &lt;NA&gt;  NA   matrix   8    NA    33
 #&gt; 13   0.45 -4.77     &lt;NA&gt;  NA   matrix   9    NA    11
 #&gt; 14   1.45 -4.77     &lt;NA&gt;  NA   matrix  10    NA    66
-#&gt; 15   2.45 -4.77     &lt;NA&gt;  NA   matrix  11    NA    84</div><div class='input'><span class='fu'><a href='wl.html'>wl</a></span><span class='op'>(</span><span class='va'>tmp</span><span class='op'>)</span>
+#&gt; 15   2.45 -4.77     &lt;NA&gt;  NA   matrix  11    NA    84</div><div class='input'>
+<span class='fu'><a href='wl.html'>wl</a></span><span class='op'>(</span><span class='va'>tmp</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] 610 610</div><div class='input'>
 <span class='co'>## remove duplicated wavelengths:</span>
 <span class='va'>approxfun</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>y</span>, <span class='va'>wl</span>, <span class='va'>new.wl</span><span class='op'>)</span> <span class='op'>{</span>
@@ -258,7 +262,8 @@ class of the first (<code>x</code>) object.</p>
 #&gt; 7   -5.55 -4.77 matrix   7   3    79    93    96    93    96   108   103
 #&gt; 8   -4.55 -4.77 matrix  NA   4    NA    NA    NA    71    58    66    59
 #&gt; 9   -3.55 -4.77 matrix  NA   5    NA    NA    NA   142   130   136   141
-#&gt; 10  -2.55 -4.77 matrix  NA   6    NA    NA    NA   164   144   163   153</div><div class='input'><span class='va'>merged</span> <span class='op'>&lt;-</span> <span class='fu'><a href='apply.html'>apply</a></span><span class='op'>(</span><span class='va'>merged</span>, <span class='fl'>1</span>, <span class='va'>approxfun</span>,
+#&gt; 10  -2.55 -4.77 matrix  NA   6    NA    NA    NA   164   144   163   153</div><div class='input'>
+<span class='va'>merged</span> <span class='op'>&lt;-</span> <span class='fu'><a href='apply.html'>apply</a></span><span class='op'>(</span><span class='va'>merged</span>, <span class='fl'>1</span>, <span class='va'>approxfun</span>,
   wl <span class='op'>=</span> <span class='fu'><a href='wl.html'>wl</a></span><span class='op'>(</span><span class='va'>merged</span><span class='op'>)</span>, new.wl <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='fu'><a href='wl.html'>wl</a></span><span class='op'>(</span><span class='va'>merged</span><span class='op'>)</span><span class='op'>)</span>,
   new.wavelength <span class='op'>=</span> <span class='st'>"new.wl"</span>
 <span class='op'>)</span>
@@ -281,7 +286,8 @@ class of the first (<code>x</code>) object.</p>
 #&gt; 1 rawdata/flu6.txt     1
 #&gt; 2 rawdata/flu3.txt     2
 #&gt; 3 rawdata/flu5.txt     3
-#&gt; 4 rawdata/flu4.txt     4</div><div class='input'><span class='va'>tmp</span> <span class='op'>&lt;-</span> <span class='fu'>merge</span><span class='op'>(</span><span class='va'>flu</span>, <span class='va'>y</span><span class='op'>)</span>
+#&gt; 4 rawdata/flu4.txt     4</div><div class='input'>
+<span class='va'>tmp</span> <span class='op'>&lt;-</span> <span class='fu'>merge</span><span class='op'>(</span><span class='va'>flu</span>, <span class='va'>y</span><span class='op'>)</span>
 <span class='va'>tmp</span><span class='op'>$</span><span class='va'>..</span>
 </div><div class='output co'>#&gt;           filename    c cpred
 #&gt; 1 rawdata/flu3.txt 0.15     2

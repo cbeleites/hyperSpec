@@ -43,7 +43,8 @@
 
 <meta property="og:title" content="Plotting hyperSpec objects — plot-methods" />
 <meta property="og:description" content="The plot method for hyperSpec objects is a switchyard to plotspc(),
-plotmap(), and plotc()." />
+plotmap(), and plotc(). The function also supplies some convenient
+abbreviations for frequently used plots (see 'Details')." />
 
 <meta name="robots" content="noindex" />
 
@@ -163,7 +164,8 @@ plotmap(), and plotc()." />
 
     <div class="ref-description">
     <p>The <code>plot</code> method for <code>hyperSpec</code> objects is a switchyard to <code><a href='plotspc.html'>plotspc()</a></code>,
-<code><a href='plotmap.html'>plotmap()</a></code>, and <code><a href='plotc.html'>plotc()</a></code>.</p>
+<code><a href='plotmap.html'>plotmap()</a></code>, and <code><a href='plotc.html'>plotc()</a></code>. The function also supplies some convenient
+abbreviations for frequently used plots (see 'Details').</p>
     </div>
 
     <pre class="usage"><span class='co'># S4 method for hyperSpec,missing</span>
@@ -177,32 +179,33 @@ plotmap(), and plotc()." />
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>the <code>hyperSpec</code> object</p></td>
+      <td><p><code>hyperSpec</code> object.</p></td>
     </tr>
     <tr>
       <th>y</th>
-      <td><p>selects what plot should be produced</p></td>
+      <td><p>String (<code>"spc"</code>, <code>"map"</code>, etc.) to select what type of plot should
+be produced. See section 'Details' for available values.
+If <code>y</code> is missing, <code>plot(x)</code> behaves like <code>plot(x, y = "spc")</code>.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>arguments passed to the respective plot function</p></td>
+      <td><p>Arguments passed to the respective plot function</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>It also supplies some convenient abbrevations for much used plots.</p>
-<p>If <code>y</code> is missing, <code>plot</code> behaves like <code>plot(x, y = "spc")</code>.</p>
-<p>Supported values for <code>y</code> are:</p>
+    <p>Supported values for <code>y</code> are:</p>
 <dl>
 
-<dt>"spc"</dt><dd><p>calls <code><a href='plotspc.html'>plotspc()</a></code> to produce a spectra plot.</p></dd>
+<dt>"spc" or nothing</dt><dd><p>calls <code><a href='plotspc.html'>plotspc()</a></code> to produce a spectra plot.</p></dd>
 
 <dt>"spcmeansd"</dt><dd><p>plots mean spectrum +/- one standard deviation</p></dd>
 
-<dt>"spcprctile"</dt><dd><p>plots 16th, 50th, and 84th percentile spectre. If the
-distributions of the intensities at all wavelengths were normal, this would
-correspond to <code>"spcmeansd"</code>. However, this is frequently not the case.
+<dt>"spcprctile"</dt><dd><p>plots 16th, 50th, and 84th percentile spectra. If the
+distributions of the intensities at all wavelengths were normal, this
+would correspond to <code>"spcmeansd"</code>. However, this is frequently not the
+case.
 Then <code>"spcprctile"</code> gives a better impression of the spectral data set.</p></dd>
 
 <dt>"spcprctl5"</dt><dd><p>like <code>"spcprctile"</code>, but additionally the 5th and
@@ -210,20 +213,21 @@ Then <code>"spcprctile"</code> gives a better impression of the spectral data se
 
 <dt>"map"</dt><dd><p>calls <code><a href='plotmap.html'>plotmap()</a></code> to produce a map plot.</p></dd>
 
-<dt>"voronoi"</dt><dd><p>calls <code><a href='plotmap.html'>plotvoronoi()</a></code> to produce a Voronoi plot (tesselated
-plot, like "map" for hyperSpec objects with uneven/non-rectangular grid).</p></dd>
+<dt>"voronoi"</dt><dd><p>calls <code><a href='plotmap.html'>plotvoronoi()</a></code> to produce a Voronoi plot
+(tessellated plot, like "map" for hyperSpec objects with
+uneven/non-rectangular grid).</p></dd>
 
-<dt>"mat"</dt><dd><p>calls <code><a href='plotmat.html'>plotmat()</a></code> to produce a plot of the spectra matrix (not
-to be confused with <code><a href='https://rdrr.io/r/graphics/matplot.html'>graphics::matplot()</a></code>).</p></dd>
+<dt>"mat"</dt><dd><p>calls <code><a href='plotmat.html'>plotmat()</a></code> to produce a plot of the spectra matrix
+(not to be confused with <code><a href='https://rdrr.io/r/graphics/matplot.html'>graphics::matplot()</a></code>).</p></dd>
 
 <dt>"c"</dt><dd><p>calls <code><a href='plotc.html'>plotc()</a></code> to produce a calibration (or time series,
 depth-profile, or the like).</p></dd>
 
-<dt>"ts"</dt><dd><p>plots a time series: abbrevation for
+<dt>"ts"</dt><dd><p>plots a time series: abbreviation for
 <code><a href='plotc.html'>plotc(x, use.c = "t")</a></code>.</p></dd>
 
 <dt>"depth"</dt><dd><p>plots a depth profile:
-abbrevation for <code><a href='plotc.html'>plotc(x, use.c = "z")</a></code>.</p></dd>
+abbreviation for <code><a href='plotc.html'>plotc(x, use.c = "z")</a></code>.</p></dd>
 
 </dl>
 
@@ -252,7 +256,7 @@ abbrevation for <code><a href='plotc.html'>plotc(x, use.c = "z")</a></code>.</p>
 </div><div class='img'><img src='plot-4.png' alt='' width='466' height='288' /></div><div class='input'><span class='fu'>plot</span><span class='op'>(</span><span class='va'>spc</span>, <span class='st'>"spcprctile"</span><span class='op'>)</span>
 </div><div class='img'><img src='plot-5.png' alt='' width='466' height='288' /></div><div class='input'><span class='fu'>plot</span><span class='op'>(</span><span class='va'>spc</span>, <span class='st'>"spcmeansd"</span><span class='op'>)</span>
 </div><div class='img'><img src='plot-6.png' alt='' width='466' height='288' /></div><div class='input'>
-<span class='co'>### use plotspc as default plot function</span>
+<span class='co'>### Use plotspc() as a default plot function.</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

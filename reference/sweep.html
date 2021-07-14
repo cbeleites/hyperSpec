@@ -183,7 +183,7 @@ along.</p></td>
       <th>STATS</th>
       <td><p>the summary statistic to sweep out. Either a vector or a
 <code>hyperSpec</code> object.</p>
-<p>hyperSpec offers a non-standard convenience function: if <code>STATS</code> is a
+<p><span class="pkg">hyperSpec</span> offers a non-standard convenience function: if <code>STATS</code> is a
 function, this function is applied first (with the same <code>MARGIN</code>) to
 compute the statistic. However, no further arguments to the apply
 function can be given.  See the examples.</p></td>
@@ -211,7 +211,7 @@ dimensions of <code>STATS</code> do not match the specified dimensions of
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Calls <code><a href='https://rdrr.io/r/base/sweep.html'>base::sweep()</a></code> for the spectra matrix.</p>
-<p><code>sweep</code> is useful for some spectra pre-processing, like offset
+<p><code>sweep()</code> is useful for some spectra pre-processing, like offset
 correction, subtraction of background spectra, and normalization of the
 spectra.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>

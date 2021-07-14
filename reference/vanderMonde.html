@@ -42,9 +42,9 @@
   
 
 <meta property="og:title" content="Function evaluation on hyperSpec objects — vanderMonde" />
-<meta property="og:description" content="vandermonde() generates Vandermonde matrices, the hyperSpec method
-generates a hyperSpec object containing the Vandermonde matrix of the
-wavelengths of a hyperSpec object." />
+<meta property="og:description" content="Function vanderMonde() generates Vandermonde matrices, the hyperSpec
+method generates a hyperSpec object containing the Vandermonde matrix
+of the wavelengths of a hyperSpec object." />
 
 <meta name="robots" content="noindex" />
 
@@ -163,9 +163,9 @@ wavelengths of a hyperSpec object." />
     </div>
 
     <div class="ref-description">
-    <p><code>vandermonde()</code> generates Vandermonde matrices, the <code>hyperSpec</code> method
-generates a <code>hyperSpec</code> object containing the Vandermonde matrix of the
-wavelengths of a <code>hyperSpec</code> object.</p>
+    <p>Function <code>vanderMonde()</code> generates Vandermonde matrices, the <code>hyperSpec</code>
+method generates a <code>hyperSpec</code> object containing the Vandermonde matrix
+of the wavelengths of a <code>hyperSpec</code> object.</p>
     </div>
 
     <pre class="usage"><span class='fu'>vanderMonde</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>order</span>, <span class='va'>...</span><span class='op'>)</span>
@@ -190,23 +190,26 @@ wavelengths of a <code>hyperSpec</code> object.</p>
     </tr>
     <tr>
       <th>normalize.wl</th>
-      <td><p>function to transform the wavelengths before evaluating the polynomial (or
-other function). <code><a href='normalize01.html'>normalize01()</a></code> maps the wavelength range to the interval
-[0, 1]. Use <code><a href='https://rdrr.io/r/base/AsIs.html'>base::I()</a></code> to turn off.</p></td>
+      <td><p>function to transform the wavelengths before evaluating
+the polynomial (or other function). <code><a href='normalize01.html'>normalize01()</a></code> maps
+the wavelength range to the interval [0, 1]. Use <code><a href='https://rdrr.io/r/base/AsIs.html'>base::I()</a></code> to
+turn off.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>Vandermonde matrix</p>
-<p>hyperSpec method: hyperSpec object containing Vandermonde matrix as spectra and an additional column `$.vdm.order$ giving the order of each spectrum (term).</p>
+<p><code>hyperSpec</code> method: hyperSpec object containing Vandermonde matrix
+as spectra and an additional column <code>$.vdm.order</code> giving the order
+of each spectrum (term).</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>It is often numerically preferable to map <code><a href='wl.html'>wl(x)</a></code> to [0, 1], see the
 example.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='wl_eval.html'>wl_eval()</a></code> for calculating arbitrary functions of the wavelength,</p>
+    <div class='dont-index'><p><code><a href='wl_eval.html'>wl_eval()</a></code> for calculating arbitrary functions of the wavelength</p>
 <p><code><a href='normalize01.html'>normalize01()</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 

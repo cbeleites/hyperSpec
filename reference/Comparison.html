@@ -42,7 +42,8 @@
   
 
 <meta property="og:title" content="Comparison of hyperSpec objects — Comparison" />
-<meta property="og:description" content="The comparison operators &amp;gt;, &amp;lt;, &amp;gt;=, &amp;lt;=, ==, and != for hyperSpec objects.
+<meta property="og:description" content="The comparison operators &amp;gt;, &amp;lt;, &amp;gt;=, &amp;lt;=, ==, and != for hyperSpec
+objects.
 all.equal checks the equality of two hyperSpec objects.
 The comparison operators &amp;gt;, &amp;lt;, &amp;gt;=, &amp;lt;=,
 ==, and != work on the spectra matrix of the hyperSpec
@@ -172,7 +173,8 @@ you have to do this directly on hyperSpec@data." />
     </div>
 
     <div class="ref-description">
-    <p>The comparison operators <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code>, <code><a href='https://rdrr.io/r/base/Comparison.html'>==</a></code>, and <code><a href='https://rdrr.io/r/base/Comparison.html'>!=</a></code> for <code>hyperSpec</code> objects.</p>
+    <p>The comparison operators <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code>, <code><a href='https://rdrr.io/r/base/Comparison.html'>==</a></code>, and <code><a href='https://rdrr.io/r/base/Comparison.html'>!=</a></code> for <code>hyperSpec</code>
+objects.</p>
 <p><code>all.equal</code> checks the equality of two <code>hyperSpec</code> objects.</p>
 <p>The comparison operators <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code>,
 <code><a href='https://rdrr.io/r/base/Comparison.html'>==</a></code>, and <code><a href='https://rdrr.io/r/base/Comparison.html'>!=</a></code> work on the spectra matrix of the <code>hyperSpec</code>
@@ -242,27 +244,28 @@ equality</p></td>
     <tr>
       <th>check.column.order</th>
       <td><p>If two objects have the same data, but the order
-of the columns (determined by the names) differs, should they be regarded
-as different?</p></td>
+of the columns (determined by the names) differs, should they be
+regarded as different?</p></td>
     </tr>
     <tr>
       <th>check.label</th>
-      <td><p>Should the slot <code>label</code> be checked? <br /> If the
-labels differ only in the order of their entries, they are conidered
-equal.</p></td>
+      <td><p>Should the slot <code>label</code> be checked? <br />
+If the labels differ only in the order of their entries, they are
+considered equal.</p></td>
     </tr>
     <tr>
       <th>tolerance, wl.tolerance</th>
-      <td><p>tolerances for checking wavelengths and data, respectively</p></td>
+      <td><p>tolerances for checking wavelengths and data,
+respectively</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>a logical matrix for the comparison operators.</p>
-<p><code>all.equal</code> returns either <code>TRUE</code>, or a character vector describing the
-differences. In conditions, the result must therefore be tested with
-<code><a href='https://rdrr.io/r/base/Logic.html'>base::isTRUE()</a></code>.</p>
+<p><code>all.equal</code> returns either <code>TRUE</code>, or a character vector describing
+the differences. In conditions, the result must therefore be tested
+with  <code><a href='https://rdrr.io/r/base/Logic.html'>base::isTRUE()</a></code>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='sweep.html'>sweep-methods()</a></code> for calculations involving

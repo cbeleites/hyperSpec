@@ -168,9 +168,6 @@ value of each spectrum is plotted. Spectra may be identified by mouse click.</p>
 
     <pre class="usage"><span class='fu'>plotmap</span><span class='op'>(</span><span class='va'>object</span>, model <span class='op'>=</span> <span class='va'>spc</span> <span class='op'>~</span> <span class='va'>x</span> <span class='op'>*</span> <span class='va'>y</span>, func <span class='op'>=</span> <span class='va'>mean</span>, func.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='va'>...</span><span class='op'>)</span>
 
-<span class='co'># S4 method for hyperSpec,missing</span>
-<span class='fu'>levelplot</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>data</span>, <span class='va'>...</span><span class='op'>)</span>
-
 <span class='co'># S4 method for formula,hyperSpec</span>
 <span class='fu'>levelplot</span><span class='op'>(</span>
   <span class='va'>x</span>,
@@ -180,6 +177,9 @@ value of each spectrum is plotted. Spectra may be identified by mouse click.</p>
   contour <span class='op'>=</span> <span class='cn'>FALSE</span>,
   useRaster <span class='op'>=</span> <span class='op'>!</span><span class='va'>contour</span>
 <span class='op'>)</span>
+
+<span class='co'># S4 method for hyperSpec,missing</span>
+<span class='fu'>levelplot</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>data</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='fu'>map.identify</span><span class='op'>(</span>
   <span class='va'>object</span>,

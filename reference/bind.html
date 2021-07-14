@@ -43,9 +43,9 @@
 
 <meta property="og:title" content="Binding hyperSpec objects — bind" />
 <meta property="og:description" content="Functions to bind hyperSpec objects.
-cbind2 binds the spectral matrices of two hyperSpec objects
-by column. All columns besides spc with the same name in x@data and
-y@data must have the same elements.  Rows are ordered before checking." />
+cbind2() binds the spectral matrices of two hyperSpec
+objects by column. All columns besides spc with the same name in x@data
+and y@data must have the same elements.  Rows are ordered before checking." />
 
 <meta name="robots" content="noindex" />
 
@@ -165,9 +165,9 @@ y@data must have the same elements.  Rows are ordered before checking." />
 
     <div class="ref-description">
     <p>Functions to bind <code>hyperSpec</code> objects.</p>
-<p><code>cbind2</code> binds the spectral matrices of two <code>hyperSpec</code> objects
-by column. All columns besides <code>spc</code> with the same name in <code>x@data</code> and
-<code>y@data</code> must have the same elements.  Rows are ordered before checking.</p>
+<p><code>cbind2()</code> binds the spectral matrices of two <code>hyperSpec</code>
+objects by column. All columns besides <code>spc</code> with the same name in <code>x@data</code>
+and <code>y@data</code> must have the same elements.  Rows are ordered before checking.</p>
     </div>
 
     <pre class="usage"><span class='fu'>bind</span><span class='op'>(</span>
@@ -199,17 +199,18 @@ by column. All columns besides <code>spc</code> with the same name in <code>x@da
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>direction</th>
-      <td><p>"r" or "c" to bind rows or columns</p></td>
+      <td><p>"r" or "c" to bind rows or columns.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>The <code>hyperSpec</code> objects to be combined.</p>
-<p>Alternatively, <em>one</em> list of <code>hyperSpec</code> objects can be given to <code>bind()</code>.</p></td>
+      <td><p>The <code>hyperSpec</code> objects to be combined. <br />
+Alternatively, <em>one</em> list of <code>hyperSpec</code> objects can be given to
+<code>bind()</code>.</p></td>
     </tr>
     <tr>
       <th>wl.tolerance</th>
-      <td><p><code>rbind</code> and <code>rbind2</code> check for equal wavelengths
-with this tolerance.</p></td>
+      <td><p><code>rbind</code> and <code>rbind2</code> check for equal wavelengths with
+this tolerance.</p></td>
     </tr>
     <tr>
       <th>x, y</th>
@@ -219,17 +220,17 @@ with this tolerance.</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a <code>hyperSpec</code> object, possibly with different row order (for
-<code>bind ("c", ...{})</code> and <code>cbind2</code>).</p>
+    <p>A <code>hyperSpec</code> object, possibly with different row order
+(for <code>bind("c", ...)</code> and <code>cbind2()</code>).</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>The former difficulties with binding S4 objects are resolved since R version
 3.2.0 and <code><a href='https://rdrr.io/r/base/cbind.html'>cbind()</a></code> and <code><a href='https://rdrr.io/r/base/cbind.html'>rbind()</a></code> now work as intended and expected for
 <code>hyperSpec</code> objects.</p>
-<p>Therefore, calling <code>rbind.hyperSpec</code> and <code>cbind.hyperSpec</code> is now depecated:
+<p>Therefore, calling <code>rbind.hyperSpec</code> and <code>cbind.hyperSpec</code> is now deprecated:
 <code>cbind</code> and <code>rbind</code> should now be called directly.</p>
-<p>However, in consequence it is no longer possible to call <code><a href='https://rdrr.io/r/base/cbind.html'>cbind()</a></code> or <code><a href='https://rdrr.io/r/base/cbind.html'>rbind()</a></code>
-with a list of <code>hyperSpec</code> objects. In that case, use <code>bind()</code> or
+<p>However, in consequence it is no longer possible to call <code><a href='https://rdrr.io/r/base/cbind.html'>cbind()</a></code> or
+<code><a href='https://rdrr.io/r/base/cbind.html'>rbind()</a></code> with a list of <code>hyperSpec</code> objects. In that case, use <code>bind()</code> or
 <code><a href='https://rdrr.io/r/base/do.call.html'>base::do.call()</a></code> (see example).</p>
 <p><code>bind()</code> does the common work for both column- and row-wise binding.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
@@ -238,8 +239,8 @@ with a list of <code>hyperSpec</code> objects. In that case, use <code>bind()</c
 do not have rownames and/or colnames.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://rdrr.io/r/methods/cbind2.html'>methods::rbind2()</a></code>, <code><a href='https://rdrr.io/r/methods/cbind2.html'>methods::cbind2()</a></code>
-<code><a href='https://rdrr.io/r/base/cbind.html'>base::rbind()</a></code>, <code><a href='https://rdrr.io/r/base/cbind.html'>base::cbind()</a></code></p>
+    <div class='dont-index'><p><code><a href='https://rdrr.io/r/methods/cbind2.html'>methods::rbind2()</a></code>, <code><a href='https://rdrr.io/r/methods/cbind2.html'>methods::cbind2()</a></code>,
+<code><a href='https://rdrr.io/r/base/cbind.html'>base::rbind()</a></code>, <code><a href='https://rdrr.io/r/base/cbind.html'>base::cbind()</a></code>,</p>
 <p><code><a href='merge,hyperSpec,hyperSpec-method.html'>merge()</a></code> and <code><a href='collapse.html'>collapse()</a></code> for combining objects that do not share spectra
 or wavelengths, respectively.</p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>

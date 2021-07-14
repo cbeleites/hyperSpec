@@ -792,7 +792,7 @@ while the last returns a <code>data.frame</code>.</p>
 <span class='va'>spc</span><span class='op'>[</span>, <span class='st'>"c"</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fl'>16</span><span class='op'>:</span><span class='fl'>11</span>
 <span class='co'>## be careful:</span>
 <span class='fu'><a href='plot-methods.html'>plot</a></span><span class='op'>(</span><span class='va'>spc</span><span class='op'>)</span>
-</div><div class='img'><img src='extractreplace-3.png' alt='' width='466' height='288' /></div><div class='input'><span class='va'>spc</span> <span class='op'>[</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fl'>6</span><span class='op'>:</span><span class='fl'>1</span>
+</div><div class='img'><img src='extractreplace-3.png' alt='' width='466' height='288' /></div><div class='input'><span class='va'>spc</span><span class='op'>[</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fl'>6</span><span class='op'>:</span><span class='fl'>1</span>
 <span class='va'>spc</span><span class='op'>$</span><span class='va'>..</span>
 </div><div class='output co'>#&gt;   filename c
 #&gt; 1        6 6
@@ -801,7 +801,7 @@ while the last returns a <code>data.frame</code>.</p>
 #&gt; 4        3 3
 #&gt; 5        2 2
 #&gt; 6        1 1</div><div class='input'><span class='fu'><a href='plot-methods.html'>plot</a></span><span class='op'>(</span><span class='va'>spc</span><span class='op'>)</span>
-</div><div class='img'><img src='extractreplace-4.png' alt='' width='466' height='288' /></div><div class='input'><span class='va'>spc</span> <span class='op'>&lt;-</span> <span class='va'>flu</span> <span class='op'>[</span>, , <span class='fl'>405</span> <span class='op'>~</span> <span class='fl'>410</span><span class='op'>]</span>
+</div><div class='img'><img src='extractreplace-4.png' alt='' width='466' height='288' /></div><div class='input'><span class='va'>spc</span> <span class='op'>&lt;-</span> <span class='va'>flu</span><span class='op'>[</span>, , <span class='fl'>405</span> <span class='op'>~</span> <span class='fl'>410</span><span class='op'>]</span>
 <span class='va'>spc</span><span class='op'>[[</span><span class='op'>]</span><span class='op'>]</span>
 </div><div class='output co'>#&gt;            405     405.5       406     406.5       407     407.5      408
 #&gt; [1,]  27.15000  32.34467  33.37867  34.41933  36.53133  37.64767  38.1370
@@ -849,7 +849,7 @@ while the last returns a <code>data.frame</code>.</p>
 #&gt; [6,] -248.0467  256.89133 -262.73900  270.27133 -281.82867</div><div class='input'><span class='va'>spc</span><span class='op'>[[</span>, , <span class='fl'>405</span> <span class='op'>~</span> <span class='fl'>410</span><span class='op'>]</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='op'>-</span><span class='va'>spc</span><span class='op'>[[</span>, , <span class='fl'>405</span> <span class='op'>~</span> <span class='fl'>410</span><span class='op'>]</span><span class='op'>]</span>
 
 <span class='co'>## indexing with logical matrix</span>
-<span class='va'>spc</span> <span class='op'>&lt;-</span> <span class='va'>flu</span> <span class='op'>[</span>, , <span class='va'>min</span> <span class='op'>~</span> <span class='fl'>410</span><span class='op'>]</span>
+<span class='va'>spc</span> <span class='op'>&lt;-</span> <span class='va'>flu</span><span class='op'>[</span>, , <span class='va'>min</span> <span class='op'>~</span> <span class='fl'>410</span><span class='op'>]</span>
 <span class='va'>spc</span> <span class='op'>&lt;</span> <span class='fl'>125</span>
 </div><div class='output co'>#&gt;        405 405.5   406 406.5   407 407.5   408 408.5   409 409.5   410
 #&gt; [1,]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
