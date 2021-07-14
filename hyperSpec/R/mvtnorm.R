@@ -29,7 +29,20 @@
 #' @name rmmvnorm
 setGeneric("rmmvnorm", .rmmvnorm)
 
+
 # Function -------------------------------------------------------------------
+
+.rmmvnorm_nhm <- function(n, mean, sigma) {
+    tmp <- .rmmvnorm(n, mean@data$spc, sigma)
+
+    data <- mean[attr(tmp, "group"), , drop = FALSE]
+    if (hy.getOption("gc")) gc()
+    data@data$spc <- tmp
+    if (hy.getOption("gc")) gc()
+    data$.group <- attr(tmp, "group")
+    if (hy.getOption("gc")) gc()
+    data
+  }
 
 #' Multivariate normal random numbers
 #'
@@ -66,24 +79,15 @@ setGeneric("rmmvnorm", .rmmvnorm)
 #'   rnd <- rmmvnorm(rep(10, 3), mean = pcov$mean, sigma = pcov$COV)
 #'   plot(rnd, col = rnd$.group)
 #' }
-setMethod(
-  "rmmvnorm", signature(n = "numeric", mean = "hyperSpec", sigma = "matrix"),
-  function(n, mean, sigma) {
-    tmp <- .rmmvnorm(n, mean@data$spc, sigma)
-
-    data <- mean[attr(tmp, "group"), , drop = FALSE]
-    if (hy.getOption("gc")) gc()
-    data@data$spc <- tmp
-    if (hy.getOption("gc")) gc()
-    data$.group <- attr(tmp, "group")
-    if (hy.getOption("gc")) gc()
-    data
-  }
+setMethod("rmmvnorm",
+  signature(n = "numeric", mean = "hyperSpec", sigma = "matrix"),
+  .rmmvnorm_nhm
 )
+
 
 # Function -------------------------------------------------------------------
 
-.rmmvnorm_num_hy_arr <- function(n, mean, sigma) {
+.rmmvnorm_nha <- function(n, mean, sigma) {
   tmp <- .rmmvnorm(n, mean@data$spc, sigma)
 
   data <- mean[attr(tmp, "group"), , drop = FALSE]
@@ -97,9 +101,9 @@ setMethod(
 
 #' @rdname rmmvnorm
 #' @export
-setMethod(
-  "rmmvnorm", signature(n = "numeric", mean = "hyperSpec", sigma = "array"),
-  .rmmvnorm_num_hy_arr
+setMethod("rmmvnorm",
+  signature(n = "numeric", mean = "hyperSpec", sigma = "array"),
+  .rmmvnorm_nha
 )
 
 
@@ -107,8 +111,8 @@ setMethod(
 
 #' @rdname rmmvnorm
 #' @export
-setMethod(
-  "rmmvnorm", signature(n = "numeric", mean = "matrix", sigma = "matrix"),
+setMethod("rmmvnorm",
+  signature(n = "numeric", mean = "matrix", sigma = "matrix"),
   .rmmvnorm
 )
 
@@ -117,8 +121,8 @@ setMethod(
 
 #' @rdname rmmvnorm
 #' @export
-setMethod(
-  "rmmvnorm", signature(n = "numeric", mean = "matrix", sigma = "array"),
+setMethod("rmmvnorm",
+  signature(n = "numeric", mean = "matrix", sigma = "array"),
   .rmmvnorm
 )
 
