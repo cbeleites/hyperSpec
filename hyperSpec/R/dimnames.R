@@ -4,8 +4,9 @@
   validObject(x)
 
   list(
-    row = rownames(x@data), data = colnames(x@data),
-    wl = colnames(x@data$spc)
+    row  = rownames(x@data),
+    data = colnames(x@data),
+    wl   = colnames(x@data$spc)
   )
 }
 
@@ -34,23 +35,31 @@
 #' dimnames(flu)
 setMethod("dimnames", signature = signature(x = "hyperSpec"), .dimnames)
 
-#' @rdname dimnames
-#' @aliases rownames
-#' @param do.NULL handed to [base::rownames()] or [base::colnames()]: logical.
-#' Should this create names if they are `NULL`?
-#' @param prefix handed to [base::rownames()] or [base::colnames()]
-#' @seealso [base::rownames()]
-#' @export
-#'
-#' @concept manipulation
-#'
-#' @examples
-#' rownames(flu)
-setMethod("rownames", signature = signature(x = "hyperSpec"), function(x, do.NULL = TRUE, prefix = "row") {
+
+# Function -------------------------------------------------------------------
+
+.rownames <- function(x, do.NULL = TRUE, prefix = "row") {
   validObject(x)
 
   rownames(x@data, do.NULL = do.NULL, prefix = prefix)
-})
+}
+
+#' @rdname dimnames
+#' @aliases rownames
+#'
+#' @param do.NULL handed to [base::rownames()] or [base::colnames()]: logical.
+#'        Should this create names if they are `NULL`?
+#' @param prefix handed to [base::rownames()] or [base::colnames()]
+#'
+#' @seealso [base::rownames()]
+#'
+#' @concept manipulation
+#'
+#' @export
+#'
+#' @examples
+#' rownames(flu)
+setMethod("rownames", signature = signature(x = "hyperSpec"), .rownames)
 
 
 # Function -------------------------------------------------------------------
@@ -68,7 +77,7 @@ setMethod("rownames", signature = signature(x = "hyperSpec"), function(x, do.NUL
 #'
 #' @param value the new names
 #' @usage
-#' \S4method{rownames}{hyperSpec} (x) <- value
+#' \S4method{rownames}{hyperSpec}(x) <- value
 #'
 #' @export "rownames<-"
 #'
@@ -117,7 +126,7 @@ setMethod("colnames", signature = signature(x = "hyperSpec"), .colnames)
 #' @aliases colnames<-,hyperSpec-method
 #'
 #' @usage
-#' \S4method{colnames}{hyperSpec} (x) <- value
+#' \S4method{colnames}{hyperSpec}(x) <- value
 #'
 #' @export "colnames<-"
 #'
