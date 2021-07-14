@@ -389,7 +389,7 @@ setMethod("rbind2", signature = signature(x = "hyperSpec", y = "hyperSpec"), .rb
 
 # Function -------------------------------------------------------------------
 
-.rbind2_h_  <- function(x, y, wl.tolerance) {
+.rbind2_h_ <- function(x, y, wl.tolerance) {
   x
 }
 
