@@ -76,7 +76,7 @@ setGeneric("plot")
   )
 }
 
-.plot_hy_miss <- function(x, y, ...) {
+.plot_h_ <- function(x, y, ...) {
   plotspc(x, ...)
 }
 
@@ -171,7 +171,7 @@ setGeneric("plot")
 #' plot(spc, "spcmeansd")
 #'
 #' ### Use plotspc() as a default plot function.
-setMethod("plot", signature(x = "hyperSpec", y = "missing"), .plot_hy_miss)
+setMethod("plot", signature(x = "hyperSpec", y = "missing"), .plot_h_)
 
 ### allow choice of plot type by second argument:
 #' @rdname plot
