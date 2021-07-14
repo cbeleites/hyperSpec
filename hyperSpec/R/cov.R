@@ -1,36 +1,44 @@
-#' Covariance matrices for `hyperSpec` objects
-#'
-#'
-#' @param x `hyperSpec` object
-#' @param y not supported
-#' @param use,method handed to  [stats::cov()]
-#' @return covariance matrix of size `nwl(x)` x `nwl(x)`
-#' @seealso [stats::cov()]
-#' @author C. Beleites
-#' @rdname cov
-#'
-#' @export
-#'
-#' @concept stats
-#'
-#' @examples
-#' image(cov(faux_cell))
-setMethod("cov",
-  signature = signature(x = "hyperSpec", y = "missing"),
-  function(x, y, use, method) {
+# Function -------------------------------------------------------------------
+
+.cov_h_ <-  function(x, y, use, method) {
     validObject(x)
 
     cov(x@data$spc, use = use, method = method)
   }
-)
+
+#' Covariance matrices for `hyperSpec` objects
+#'
+#' @rdname cov
+#'
+#' @param x `hyperSpec` object
+#' @param y not supported
+#' @param use,method handed to [stats::cov()]
+#'
+#' @return covariance matrix of size `nwl(x)` x `nwl(x)`
+#'
+#' @concept stats
+#'
+#' @author C. Beleites
+#'
+#' @export
+#'
+#' @seealso [stats::cov()]
+#'
+#' @examples
+#' image(cov(faux_cell))
+setMethod("cov", signature = signature(x = "hyperSpec", y = "missing"), .cov_h_)
 
 
+# Function -------------------------------------------------------------------
+
+#' @rdname cov
+#'
 #' @param ... ignored
 #' @param regularize regularization of the covariance matrix. Set `0` to switch off
 #'
 #' `pooled.cov` calculates pooled covariance like e.g. in LDA.
 #' @param groups factor indicating the groups
-#' @rdname cov
+#'
 #' @export
 #' @examples
 #' pcov <- pooled.cov(faux_cell, faux_cell$region)
