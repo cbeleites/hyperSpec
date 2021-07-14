@@ -1,3 +1,5 @@
+# Function -------------------------------------------------------------------
+
 .sweep <- function(x, MARGIN, STATS, FUN = "-",
                    check.margin = TRUE, ...) {
   validObject(x)
@@ -21,9 +23,10 @@
 #'
 #' [base::sweep()] for `hyperSpec` objects.
 #'
+#'
 #' Calls [base::sweep()] for the spectra matrix.
 #'
-#' `sweep` is useful for some spectra pre-processing, like offset
+#' `sweep()` is useful for some spectra pre-processing, like offset
 #' correction, subtraction of background spectra, and normalization of the
 #' spectra.
 #'
@@ -31,13 +34,14 @@
 #' @rdname sweep
 #' @aliases sweep-methods sweep,hyperSpec-method
 #' @docType methods
+#'
 #' @param x a `hyperSpec object.`
 #' @param MARGIN direction of the spectra matrix that `STATS` goees
-#'   along.
+#'        along.
 #' @param STATS the summary statistic to sweep out. Either a vector or a
-#'   `hyperSpec` object.
+#'        `hyperSpec` object.
 #'
-#' hyperSpec offers a non-standard convenience function: if `STATS` is a
+#' \pkg{hyperSpec} offers a non-standard convenience function: if `STATS` is a
 #'   function, this function is applied first (with the same `MARGIN`) to
 #'   compute the statistic. However, no further arguments to the apply
 #'   function can be given.  See the examples.
@@ -47,7 +51,9 @@
 #'   `x`.  Set to `FALSE` for a small speed gain when you
 #'   *know* that dimensions match.
 #' @param ... further arguments for `FUN`
+#'
 #' @return A `hyperSpec` object.
+#'
 #' @author C. Beleites
 #' @seealso [base::sweep()]
 #'
