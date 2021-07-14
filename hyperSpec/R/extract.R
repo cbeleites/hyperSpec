@@ -36,7 +36,8 @@
   x
 }
 
-.extract_hy <- function(x, i, j, l, ...,
+
+.extract_h <- function(x, i, j, l, ...,
                         wl.index = FALSE,
                         drop = FALSE # drop has to be at end
 ) {
@@ -245,7 +246,7 @@
 #'
 #' @concept manipulation
 #'
-setMethod("[", signature = signature(x = "hyperSpec"), .extract_hy)
+setMethod("[", signature = signature(x = "hyperSpec"), .extract_h)
 
 
 # Function -------------------------------------------------------------------
