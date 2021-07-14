@@ -1,24 +1,35 @@
-#' Functions `colSums()`, `colMeans()`, `rowSums()`, and `rowMeans()` for `hyperSpec` objects
+# Set generic ----------------------------------------------------------------
+
+#' Functions `colSums()`, `colMeans()`, `rowSums()`, and `rowMeans()` for
+#' `hyperSpec` objects
 #'
 #' `hyperSpec` objects can use the base functions [base::colMeans()],
 #' [base::colSums()], [base::rowMeans()] and [base::rowSums()].
 #'
+#' @name colSums
+#' @rdname colSums
+#'
+#'
 #' @param x `hyperSpec` object
-#' @param label.spc labels for the intensity axis for loadings-like (col) statistics
-#' @param label.wavelength labels for the wavelength axis for scores-like (row) statistics
+#' @param label.spc labels for the intensity axis for loadings-like (col)
+#'        statistics
+#' @param label.wavelength labels for the wavelength axis for scores-like (row)
+#'        statistics
 #' @param na.rm,... further parameters to the base functions
 #'
 #' `na.rm` defaults to `TRUE` for `hyperSpec` objects.
+#'
 #' @seealso [colSums][base::colSums]
 #'
 #' @concept stats
 #'
-#' @rdname colSums
-#' @name colSums
 NULL
 
 #' @noRd
 setGeneric("colMeans") # , package = 'matrixStats')
+
+
+# Function -------------------------------------------------------------------
 
 .colMeans <- function(x, na.rm = TRUE, ..., label.spc) {
   result <- colMeans(x@data$spc, na.rm = na.rm, ...)
@@ -39,8 +50,13 @@ setGeneric("colMeans") # , package = 'matrixStats')
 setMethod("colMeans", signature = signature(x = "hyperSpec"), .colMeans)
 
 
+# Set generic ----------------------------------------------------------------
+
 #' @noRd
 setGeneric("colSums") # , package = 'matrixStats')
+
+
+# Function -------------------------------------------------------------------
 
 .colSums <- function(x, na.rm = TRUE, ..., label.spc) {
   result <- colSums(x@data$spc, na.rm = na.rm, ...)
@@ -61,8 +77,12 @@ setGeneric("colSums") # , package = 'matrixStats')
 setMethod("colSums", signature = signature(x = "hyperSpec"), .colSums)
 
 
+# Set generic ----------------------------------------------------------------
+
 #' @noRd
 setGeneric("rowMeans") # , package = 'matrixStats')
+
+# Function -------------------------------------------------------------------
 
 .rowMeans <- function(x, na.rm = TRUE, ..., label.wavelength) {
   result <- rowMeans(x@data$spc, na.rm = na.rm, ...)
@@ -83,9 +103,13 @@ setGeneric("rowMeans") # , package = 'matrixStats')
 setMethod("rowMeans", signature = signature(x = "hyperSpec"), .rowMeans)
 
 
+# Set generic ----------------------------------------------------------------
+
 #' @noRd
 setGeneric("rowSums") # , package = 'matrixStats')
 
+
+# Function -------------------------------------------------------------------
 
 .rowSums <- function(x, na.rm = TRUE, ..., label.wavelength) {
   result <- rowSums(x@data$spc, na.rm = na.rm, ...)
