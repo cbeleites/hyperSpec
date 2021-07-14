@@ -1,3 +1,5 @@
+# Function -------------------------------------------------------------------
+
 .droplevels <- function(x, ...) {
   x@data <- droplevels(x@data, ...)
 
@@ -22,6 +24,9 @@
 #' faux_cell[1:3]$region
 #' droplevels(faux_cell[1:3])$region
 setMethod("droplevels", signature = "hyperSpec", definition = .droplevels)
+
+
+# Unit tests -----------------------------------------------------------------
 
 hySpc.testthat::test(.droplevels) <- function() {
   context("droplevels")
