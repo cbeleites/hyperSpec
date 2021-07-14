@@ -251,7 +251,7 @@ setMethod("[", signature = signature(x = "hyperSpec"), .extract_h)
 
 # Function -------------------------------------------------------------------
 
-.extract2_hy <- function(x, i, j, l, ..., wl.index = FALSE, drop = FALSE) {
+.extract2_h <- function(x, i, j, l, ..., wl.index = FALSE, drop = FALSE) {
   validObject(x)
 
   dots <- list(...)
@@ -291,7 +291,7 @@ setMethod("[", signature = signature(x = "hyperSpec"), .extract_h)
 #'
 #' @aliases [[ [[,hyperSpec-method
 ## ' @name [[
-setMethod("[[", signature = signature(x = "hyperSpec"), .extract2_hy)
+setMethod("[[", signature = signature(x = "hyperSpec"), .extract2_h)
 
 
 # Function -------------------------------------------------------------------
