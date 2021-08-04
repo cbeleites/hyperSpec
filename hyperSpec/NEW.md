@@ -2,4 +2,4 @@
 
 ## Changes
 
-Use more regular package version format.
+* Use more regular package version format.
