@@ -78,6 +78,8 @@ Collate:
     'Compare.R'
     'DollarNames.R'
     'Math.R'
+    'fileio.optional.R'
+    'NEW-functions.R'
     'Summary.R'
     'aggregate.R'
     'all.equal.R'
@@ -101,7 +103,6 @@ Collate:
     'wl2i.R'
     'extract.R'
     'factor2num.R'
-    'fileio.optional.R'
     'fix_spc_colnames.R'
     'flu.R'
     'getbynames.R'
@@ -182,4 +183,4 @@ Collate:
     'write.txt.wide.R'
     'y-pastenames.R'
     'zzz.R'
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
