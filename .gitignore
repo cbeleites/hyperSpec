@@ -14,35 +14,6 @@
 *.idx
 *.ind
 
-hyperSpec/NAMESPACE
-hyperSpec/data/*.rda
-hyperSpec/R/sysdata.rda
-hyperSpec/vignettes/*.Rnw
-hyperSpec/vignettes/vignettes.defs
-hyperSpec/vignettes/read.txt.PerkinElmer.R
-hyperSpec/vignettes/fig-3D.png
-hyperSpec/vignettes/hyperspec.bib
-hyperSpec/vignettes/functions.RData
-hyperSpec/vignettes/rawdata
-hyperSpec/inst/doc/*.pdf
-hyperSpec/inst/doc/vignettes.defs
-hyperSpec/inst/doc/rawdata
-hyperSpec/vignettes/rawdata
-hyperSpec/vignettes/strukturhyperspec.pdf
-hyperSpec/man/*.Rd
-Vignettes/*/*.pdf
-Vignettes/*/*.png
-Vignettes/*/vignettes.defs
-Vignettes/chondro/rawdata/
-Vignettes/flu/read.txt.PerkinElmer.R
-Vignettes/fileio/wdf.Renishaw/WdfAccess
-Vignettes/flu/rawdata/flu*.txt
-Vignettes/plotting/plotting-pkg.bib
-Vignettes/laser/rawdata/*
-hyperSpec/vignettes/chondro.pdf*
-hyperSpec/vignettes/fileio.pdf*
-
-
 hyperSpec_*.tar.gz
 *.Rcheck
 
@@ -54,19 +25,36 @@ hyperSpec_*.tar.gz
 
 # Session Data files
 .RData
+.Ruserdata
 
 # Example code in package build process
 *-Ex.R
+
+# Mac directory files
+*.DS_Store
 
 # RStudio files
 .Rproj.user
 *.Rproj
 
+# Rnw vignettes
 Vignettes/*/*-pkg.bib
+Vignettes/*/*.pdf
+Vignettes/*/*.png
+Vignettes/*/vignettes.defs
 Vignettes/chondro/chondro-internal.rda
+Vignettes/chondro/rawdata/
 Vignettes/fileio/barbiturates.rda
 Vignettes/fileio/paracetamol.rda
+Vignettes/fileio/wdf.Renishaw/WdfAccess
 Vignettes/flu/flu.rda
+Vignettes/flu/rawdata/flu*.txt
+Vignettes/flu/read.txt.PerkinElmer.R
 Vignettes/laser/laser.rda
-hyperSpec/tests/testthat/Rplots.pdf
-hyperSpec/tests/testthat/fileio
+Vignettes/laser/rawdata/*
+Vignettes/plotting/plotting-pkg.bib
+
+# Other
+_tmp/
+
+
