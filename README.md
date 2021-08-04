@@ -46,10 +46,10 @@ Only 'new' spc files (1996 file format) with LSB word order are supported.`
    ***Solution:*** Execute `git lfs pull` to get them.
 * Old versions of `GNU make` don't support order-only prerequisites (|).
 
-   ***Typical erros:*** `No rule to make target '|', needed by 'fileio.pdf'. Stop.`
+   ***Typical errors:*** `No rule to make target '|', needed by 'fileio.pdf'. Stop.`
 
-   ***Solution:*** Update version of `GNU make`. *For Linux*, just downloand last version from the link above. *For Windows*, run `system('where make')` and replace that file by make.exe from [here] (http://www.equation.com/servlet/equation.cmd?fa=make). To check version of `GNU make` use `make -v`.
-* Default language of your R enviroment is not English.
+   ***Solution:*** Update version of `GNU make`. *For Linux*, just download last version from the link above. *For Windows*, run `system('where make')` and replace that file by make.exe from [here] (http://www.equation.com/servlet/equation.cmd?fa=make). To check version of `GNU make` use `make -v`.
+* Default language of your R environment is not English.
 
    ***Typical error:*** `inputenc Error: Unicode char \u8:árq not set up for use with LaTeX`
 
