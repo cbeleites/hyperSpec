@@ -64,8 +64,10 @@ Imports:
     latticeExtra,
     lazyeval,
     dplyr
-URL: https://github.com/cbeleites/hyperSpec
-BugReports: https://github.com/cbeleites/hyperSpec/issues
+URL: 
+    https://r-hyperspec.github.io/hyperSpec,
+    https://github.com/r-hyperspec/hyperSpec
+BugReports: https://github.com/r-hyperspec/hyperSpec/issues
 VignetteBuilder: R.rsp
 Collate: 
     'validate.R'
