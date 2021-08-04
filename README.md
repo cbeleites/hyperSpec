@@ -2,9 +2,9 @@
 
 [![CRAN status](https://www.r-pkg.org/badges/version/hyperSpec)](https://cran.r-project.org/package=hyperSpec)
 
-This is the new home for R package hyperSpec.
+https://github.com/r-hyperspec/hyperSpec is the new home for R package hyperSpec.
 
-Issues and feature requests should go [here](https://github.com/cbeleites/hyperSpec/issues)!
+Issues and feature requests should go [here](https://github.com/r-hyperspec/hyperSpec/issues)!
 
 # Installation instructions
 
