@@ -57,4 +57,32 @@ Vignettes/plotting/plotting-pkg.bib
 # Other
 _tmp/
 
+hyperSpec/R/sysdata.rda
+hyperSpec/data/barbiturates.rda
+hyperSpec/data/flu.rda
+hyperSpec/data/laser.rda
+hyperSpec/data/paracetamol.rda
+hyperSpec/vignettes/baseline.Rnw
+hyperSpec/vignettes/flu.Rnw
+hyperSpec/vignettes/functions.RData
+hyperSpec/vignettes/hyperspec.Rnw
+hyperSpec/vignettes/hyperspec.bib
+hyperSpec/vignettes/laser.Rnw
+hyperSpec/vignettes/plotting.Rnw
+hyperSpec/vignettes/vignettes.defs
+hyperSpec/vignettes/read.txt.PerkinElmer.R
+hyperSpec/vignettes/strukturhyperspec.pdf
+hyperSpec/vignettes/chondro.pdf
+hyperSpec/vignettes/chondro.pdf.asis
+hyperSpec/vignettes/fileio.pdf
+hyperSpec/vignettes/fileio.pdf.asis
+hyperSpec/vignettes/rawdata/flu?.txt
+hyperSpec/vignettes/rawdata/laser.txt.gz
+
+hyperSpec/inst/doc/vignettes.defs
+hyperSpec/inst/doc/rawdata/flu?.txt
+hyperSpec/inst/doc/rawdata/laser.txt.gz
+
+
+
 
