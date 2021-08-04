@@ -87,3 +87,8 @@
     do.call (hy.setOptions, options.state)
   })
 }
+
+
+#' @export
+#' @rdname fileio.optional
+.spc_io_postprocess_optional <- .fileio.optional
