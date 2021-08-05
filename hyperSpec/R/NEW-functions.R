@@ -6,6 +6,8 @@
 #' other packages, which should be released on CRAN. They are not intended to
 #' be used by \pkg{hyperSpec} v0.100 users directly.
 #'
+#' @param ... Arguments to functions.
+#'
 #' @name Future-funcrions
 NULL
 
@@ -13,4 +15,6 @@ NULL
 #' @rdname Future-funcrions
 #' @include fileio.optional.R
 #' @export
-.spc_io_postprocess_optional <- .fileio.optional
+.spc_io_postprocess_optional <- function(...) {
+  .fileio.optional(...)
+}
