@@ -9,11 +9,11 @@
 #' @param ... Arguments to functions.
 #' @param x,from,to,ref_wl Arguments to functions.
 #'
-#' @name Future-funcrions
+#' @name Future-functions
 NULL
 
 
-#' @rdname Future-funcrions
+#' @rdname Future-functions
 #' @include fileio.optional.R
 #' @export
 .spc_io_postprocess_optional <- function(...) {
@@ -21,7 +21,7 @@ NULL
 }
 
 
-#' @rdname Future-funcrions
+#' @rdname Future-functions
 #' @include wl.R
 #' @export
 wl_convert_units <- function(x, from, to, ref_wl = NULL) {
