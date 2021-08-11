@@ -7,6 +7,7 @@
 #' be used by \pkg{hyperSpec} v0.100 users directly.
 #'
 #' @param ... Arguments to functions.
+#' @param x,from,to,ref_wl Arguments to functions.
 #'
 #' @name Future-funcrions
 NULL
@@ -17,4 +18,12 @@ NULL
 #' @export
 .spc_io_postprocess_optional <- function(...) {
   .fileio.optional(...)
+}
+
+
+#' @rdname Future-funcrions
+#' @include wl.R
+#' @export
+wl_convert_units <- function(x, from, to, ref_wl = NULL) {
+  wlconv(points = x, src = from, dst = to, laser = ref_wl)
 }
