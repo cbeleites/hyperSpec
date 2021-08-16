@@ -17,7 +17,7 @@
 ##' @export
 ##' @examples
 ##'
-##' hy.unittest ()
+##' \donttest{hy.unittest ()}
 ##'
 hy.unittest <- function (standalone = TRUE, reporter = "progress"){
   if (!requireNamespace("testthat", quietly=TRUE)) {
