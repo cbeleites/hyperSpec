@@ -6,7 +6,7 @@
 ###  x y ... int (wl1)  int (wl2) ... int (wl p) z ...
 ###
 ##' Import/export of hyperSpec objects to/from ASCII files
-##' A detailed discussion of hyperSpec's file import and export capabilities is given in vignette \quote{fileio}.
+##' A detailed discussion of hyperSpec's file import and export capabilities is given in vignette \dQuote{fileio}.
 ##'
 ##' Besides \code{\link[base]{save}} and \code{\link[base]{load}}, two general ways to import and
 ##' export data into \code{hyperSpec} objects exist.
@@ -73,7 +73,7 @@ read.txt.wide <- function (file = stop ("file is required"),
 
   spc.data <- as.matrix (txtfile[, ispc])
   txtfile <- txtfile [, -ispc, drop = FALSE]
-  
+
   ## enforce colnames given by cols
   colnames (txtfile) <- head (names (cols) [-spc], -1)
 
