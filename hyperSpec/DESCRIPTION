@@ -15,7 +15,7 @@ Authors@R: c(
     person("Simon",     "Fuller",    role = "ctb"),
     person("Vilmantas", "Gegzna",    role = "ctb"),
     person("Rustam",    "Guliev",    role = "ctb"),
-    person("Bryan",     "Hanson",    role = "ctb"),
+    person("Bryan A.",  "Hanson",    role = "ctb"),
     person("Michael",   "Hermes",    role = "ctb"),
     person("Martin",    "Kammer",    role = "dtc"),
     person("Roman",     "Kiselev",   role = "ctb"),
