@@ -1,4 +1,4 @@
-### plyr has rbind.fill for matrices now. We keep with our version to avoid the 
+### plyr has rbind.fill for matrices now. We keep with our version to avoid the
 ### dependency, but do not export it anymore.
 
 
@@ -14,7 +14,7 @@ quickdf <- function(list) {
     n <- nrow (list [[1]])
   else
     n <- length (list [[1]])
-  
+
   structure(list,
     class = "data.frame",
     row.names = seq_len(n))
@@ -41,27 +41,27 @@ quickdf <- function(list) {
 ##' The return matrix will always have column names.
 ##'
 ##' @author C. Beleites
-##' @seealso   \code{\link[base]{rbind}}, \code{\link[base]{cbind}}, \code{\link[plyr]{rbind.fill}}
+##' @seealso   \code{\link[base]{rbind}}, \code{\link[base]{cbind}}, \code{plyr::rbind.fill()}
 ##' @keywords manip
 ##' @rdname rbind.fill
-##' @examples 
+##' @examples
 ##'  A <- matrix (1:4, 2)
 ##'  B <- matrix (6:11, 2)
 ##'  A
 ##'  B
 ##'  hyperSpec:::rbind.fill.matrix (A, B)
-##' 
+##'
 ##'  colnames (A) <- c (3, 1)
 ##'  A
 ##'  hyperSpec:::rbind.fill.matrix (A, B)
 ##'
 ##'  hyperSpec:::rbind.fill.matrix (A, 99)
-##' 
+##'
 ##' @return a matrix
 ##' @method rbind.fill matrix
 rbind.fill.matrix <- function (...){
   matrices <- list (...)
-  
+
   ## check the arguments
   tmp <- unlist (lapply (matrices, is.factor))
   if (any  (tmp))
@@ -70,8 +70,8 @@ rbind.fill.matrix <- function (...){
 
   tmp <- ! unlist (lapply (matrices, is.matrix))
   matrices [tmp] <- lapply (matrices [tmp], as.matrix)
-  
-  ## if the matrices have column names, use them 
+
+  ## if the matrices have column names, use them
   lcols <- lapply (matrices, .cols)
   cols  <- unique (unlist (lcols))
 
@@ -86,14 +86,14 @@ rbind.fill.matrix <- function (...){
   ## make an index vector for the row positions
   pos <- c (0, cumsum (pos))
 
-  ## fill in the new matrix 
+  ## fill in the new matrix
   for (i in seq_along (matrices)){
     icols <- match (lcols[[i]], cols)
     result [(pos [i] + 1) : pos [i + 1], icols] <- matrices [[i]]
   }
 
   colnames (result) <- cols
-  
+
   result
 }
 
@@ -106,11 +106,11 @@ rbind.fill.matrix <- function (...){
 
 ##' Combine objects by row, filling in missing columns.
 ##' \code{rbind}s a list of data frames filling missing columns with NA.
-##'  
+##'
 ##' This is an enhancement to \code{\link{rbind}} which adds in columns
-##' that are not present in all inputs, accepts a list of data frames, and 
+##' that are not present in all inputs, accepts a list of data frames, and
 ##' operates substantially faster
-##'  
+##'
 ##' @param ... data frames/matrices to row bind together
 ##' @keywords manip
 ##' @rdname rbind.fill
@@ -123,29 +123,29 @@ rbind.fill <- function(...) {
     dfs <- dfs[[1]]
   }
   dfs <- dfs [!sapply (dfs, is.null)]  # compact(dfs) -> dependency plyr.
-  
+
   if (length(dfs) == 1) return(dfs[[1]])
-  
+
   # About 6 times faster than using nrow
   rows <- unlist(lapply(dfs, .row_names_info, 2L))
   nrows <- sum(rows)
-  
+
   # Build up output template -------------------------------------------------
   vars <- unique(unlist(lapply(dfs, base::names)))   # ~ 125,000/s
   output <- rep(list(rep(NA, nrows)), length(vars))  # ~ 70,000,000/s
   names(output) <- vars
-  
+
   seen <- rep(FALSE, length(output))
   names(seen) <- vars
 
-  ## find which cols contain matrices 
+  ## find which cols contain matrices
   matrixcols <- unique (unlist (lapply (dfs, function (x)
                                         names (x) [sapply (x, is.matrix)])
                                 ))
   seen [matrixcols] <- TRUE             # class<- will fail if the matrix is not protected by I
                                         # because 2 dims are needed
-    
-  for(df in dfs) {    
+
+  for(df in dfs) {
     if (all(seen)) break  # Quit as soon as all done
 
     matching <- intersect(names(df), vars[!seen])
@@ -159,7 +159,7 @@ rbind.fill <- function(...) {
     }
     seen[matching] <- TRUE
   }
-  
+
   # Set up factors
   factors <- names(output)[unlist(lapply(output, is.factor))]
   for(var in factors) {
@@ -173,19 +173,19 @@ rbind.fill <- function(...) {
     df <- lapply (dfs, .get.or.make.matrix, var)
     output [[var]] <- I (do.call (rbind.fill.matrix, df))
   }
-  
+
   # Compute start and end positions for each data frame
   pos <- matrix(cumsum(rbind(1, rows - 1)), ncol = 2, byrow = TRUE)
-  
-  for(i in seq_along(rows)) { 
+
+  for(i in seq_along(rows)) {
     rng <- pos[i, 1]:pos[i, 2]
     df <- dfs[[i]]
-    
+
     for(var in setdiff (names (df), matrixcols)) {
       output[[var]][rng] <- df[[var]]
     }
-  }  
-  
+  }
+
   quickdf(output)
 }
 

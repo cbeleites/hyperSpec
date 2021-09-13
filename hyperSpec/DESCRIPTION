@@ -4,10 +4,10 @@ Type: Package
 Title: Work with Hyperspectral Data, i.e. Spectra + Meta Information (Spatial,
     Time, Concentration, ...)
 Version: 0.100.0
-Date: 2021-08-16
+Date: 2021-09-13
 Maintainer: Claudia Beleites <Claudia.Beleites@chemometrix.gmbh>
 Authors@R: c(
-    person("Claudia",   "Beleites",  role = c("aut","cre", "dtc"), email = "Claudia.Beleites@chemometrix.gmbh"),
+    person("Claudia",   "Beleites",  role = c("aut","cre", "dtc"), email = "Claudia.Beleites@chemometrix.gmbh", comment = c(ORCID = "0000-0003-1626-154X")),
     person("Valter",    "Sergo",     role = c("aut")),
     person("Alois",     "Bonifacio", role = c("ctb", "dtc")),
     person("Marcel",    "Dahms",     role = "ctb"),
@@ -65,8 +65,8 @@ Imports:
     lazyeval,
     dplyr
 URL: 
-    https://r-hyperspec.github.io/hyperSpec,
-    https://github.com/r-hyperspec/hyperSpec
+    https://r-hyperspec.github.io/hyperSpec/ (documentation),
+    https://github.com/r-hyperspec/hyperSpec (code)
 BugReports: https://github.com/r-hyperspec/hyperSpec/issues
 VignetteBuilder: R.rsp
 Collate: 

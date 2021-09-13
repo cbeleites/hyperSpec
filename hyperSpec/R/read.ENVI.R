@@ -305,11 +305,11 @@ split.line <- function (x, separator, trim.blank = TRUE) {
 ##'   braces should be pulled into one line each.
 ##' @return a \code{hyperSpec} object
 ##' @author C. Beleites, testing for the Nicolet files C. Dicko
-##' @seealso \code{\link[caTools]{read.ENVI}}
+##' @seealso \code{caTools::read.ENVI()}
 ##'
 ##' \code{\link[hyperSpec]{textio}}
 ##' @references This function was adapted from
-##'   \code{\link[caTools]{read.ENVI}}:
+##'   \code{caTools::read.ENVI()}:
 ##'
 ##' Jarek Tuszynski (2008). caTools: Tools: moving window statistics, GIF,
 ##'   Base64, ROC AUC, etc.. R package version 1.9.
@@ -417,24 +417,24 @@ read.ENVI <- function (file = stop ("read.ENVI: file name needed"), headerfile =
     expect_equal(range (tmp$x), c (86, 149))
     expect_equal(range (tmp$y), c (150, 166))
   })
-  
+
   test_that ("Guessing messages", {
     skip_if_not_fileio_available ()
     expect_message(read.ENVI ("fileio/ENVI/example2.img"), ".read.ENVI.bin: 'byte order' not given => Guessing 'little'")
   })
-  
+
   test_that ("empty spectra", {
     skip_if_not_fileio_available ()
     old <- hy.getOption("file.remove.emptyspc")
     on.exit(hy.setOptions(file.remove.emptyspc = old))
-    
+
     hy.setOptions(file.remove.emptyspc = TRUE)
     expect_known_hash(read.ENVI ("fileio/ENVI/example2.img"), "e987ac694ac1d6b81cd070f2f1680887")
-    
+
     hy.setOptions(file.remove.emptyspc = FALSE)
     expect_known_hash(read.ENVI ("fileio/ENVI/example2.img"), "9911a87b8c29c6d23af41a8de5a2508a")
-    
+
     hy.setOptions(file.remove.emptyspc = old)
   })
-  
+
 }

@@ -48,7 +48,7 @@ installdev: roxygenize pkg-vignettes
 
 # Code building
 build: all
-	R CMD build hyperSpec
+	R CMD build --compact-vignettes="both" hyperSpec
 
 roxygenize: DESCRIPTION hyperSpec/R/*.R
 	@echo "Roxygenize"
