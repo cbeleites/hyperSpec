@@ -5,11 +5,15 @@
 ###
 
 split.string <- function (x, separator, trim.blank = TRUE, remove.empty = TRUE) {
-  pos <- gregexpr (separator, x)
-  if (length (pos) == 1 && pos [[1]] == -1)
-    return (x)
 
-  pos <- pos [[1]]
+  stopifnot(length(x) == 1) # we want a single character string
+
+  pos <- gregexpr(separator, x)
+  pos <- pos[[1]]
+
+  if (length(pos) == 1 & pos[1] == -1) { # -1 means no match
+    return(x)
+  }
 
   pos <- matrix (c (1, pos + attr (pos, "match.length"),
                     pos - 1, nchar (x)),
