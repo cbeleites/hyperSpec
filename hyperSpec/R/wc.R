@@ -13,17 +13,17 @@
 ##' @author C. Beleites
 ##' @importFrom utils read.table
 wc <- function (file, flags = c("lines", "words", "bytes")){
-  .Deprecated(new = "count_lines", 
+  .Deprecated(new = "count_lines",
               msg = "wc() is soft-deprecated: while it will not be removed in the near future, use it at your own risk. The functionality is not routinely tested.")
-  
-  output <- try (system2 ("wc", args = "--help", stdout = TRUE, stderr = TRUE), silent = TRUE) 
-  if (class (output) == "try-error")
+
+  output <- try (system2 ("wc", args = "--help", stdout = TRUE, stderr = TRUE), silent = TRUE)
+  if (inherits(output, "try-error"))
     return (NULL)
 
   output <- paste ("wc", paste ("--", flags, sep = "", collapse = " "), file)
   output <- read.table(pipe (output))
   colnames (output) <- c(flags, "file")
-  
+
   output
 }
 
@@ -38,7 +38,7 @@ wc <- function (file, flags = c("lines", "words", "bytes")){
     skip_if_not_fileio_available() # see issue #97
 
     suppressWarnings(res <- wc (tmpfile))
-    
+
     if (is.null (res))
       skip ("wc not available")
 
