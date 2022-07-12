@@ -1,15 +1,13 @@
 #################################################################################
 ###
 ###  plotvoronoi - plot spectral maps with irregular point pattern
-###  
+###
 ###  plots intensity or extra data column over 2 extra data columns
 
-##' @param use.tripack Whether package tripack should be used for calculating
-##'   the voronoi polygons. If \code{FALSE}, package deldir is used instead.
-##'   See details.
-##' @param mix For Voronoi plots using package tripack, I experienced errors if
-##'   the data was spatially ordered. Randomly rearrangig the rows of the
-##'   hyperSpec object circumvents this problem.
+##' @param use.tripack (DEPECATED) See [latticeExtra::panel.voronoi] for
+#'        details.
+#' @param mix (DEPRECATED) This argument is deprecated due to deprecation of
+#'        argument `use.tripack`.
 ##' @rdname levelplot
 ##' @include levelplot.R
 ##' @export
@@ -18,20 +16,23 @@
 ##' @importFrom lattice prepanel.default.levelplot
 ##' @importFrom utils modifyList
 plotvoronoi <- function (object, model = spc ~ x * y,
-                         use.tripack = FALSE, mix = FALSE, ...){
+                         use.tripack, mix, ...){
   if (!requireNamespace ("latticeExtra"))
    stop ("package latticeExtra is needed for Voronoi plots.")
 
-  if (use.tripack){
-    if (!requireNamespace ("tripack"))
-      stop ("package tripack requested but not available.")
-  } else {
-    if (!requireNamespace ("deldir"))
-      stop ("package deldir requested but not available.")
+  if (!missing(use.tripack)){
+    warning("Argument 'use.tripack' is deprecated and ignored. ",
+            "See ?latticeExtra::panel.voronoi ",
+            "for more details.")
   }
- 
-  if (use.tripack && mix)
-      object@data <- object@data [sample (nrow (object)),]
+
+  if (!missing(mix)){
+    warning("Argument 'mix' is deprecated and ignored due to deprecation of ",
+            "'use.tripack'. ",
+            "On deprecation of 'use.tripack', see ?latticeExtra::panel.voronoi "
+    )
+  }
+
 
   dots <- modifyList (list (object = object,
                             model = model,
@@ -39,8 +40,8 @@ plotvoronoi <- function (object, model = spc ~ x * y,
                             prepanel = prepanel.default.levelplot,
                             pch = 19, cex = .25,
                             col.symbol = "#00000020",
-                            border = "#00000020",
-                            use.tripack = use.tripack),
+                            border = "#00000020"
+                            ),
                       list (...))
   do.call (plotmap, dots)
 }

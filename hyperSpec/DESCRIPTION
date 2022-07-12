@@ -39,8 +39,6 @@ Depends:
     xml2
 Suggests:
     R.matlab,
-    tripack,
-    deldir,
     rgl,
     plotrix,
     sp,
@@ -61,7 +59,7 @@ Imports:
     testthat,
     methods,
     utils,
-    latticeExtra,
+    latticeExtra (>= 0.6-30),
     lazyeval,
     dplyr
 URL: 

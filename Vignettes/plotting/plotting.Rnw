@@ -1,4 +1,4 @@
-% -*- mode: noweb; noweb-default-code-mode: R-mode; -*- 
+% -*- mode: noweb; noweb-default-code-mode: R-mode; -*-
 \documentclass[english, a4paper, 10pt, headings=small, DIV11]{scrartcl}
 \usepackage[utf8]{inputenc} % Sweave doesn't find the encoding definition in vignettes.defs
 \SweaveInput{vignettes.defs}
@@ -14,7 +14,7 @@
 % \VignetteIndexEntry{plotting: graphical manual of hyperSpec's plotting functions}
 % \VignetteKeywords{hyperspec}
 % \VignettePackage{hyperSpec}
-% \VignetteDepends{latticeExtra, tripack, deldir, rgl, ggplot2}
+% \VignetteDepends{latticeExtra, rgl, ggplot2}
 
 \newcommand{\plottab}[2]{
 \vspace{1ex}\tabularnewline
@@ -39,7 +39,7 @@
 % This file is currently undergoing a thorough revision. Changes may happen frequently.
 % }
 \warnbox{Reproducing the Examples in this Vignette}{
-All spectra used in this manual are installed automatically with \phy. 
+All spectra used in this manual are installed automatically with \phy.
 
 Note that some definitions are executed in \texttt{vignette.defs}, and others invisibly at the
 beginning of the file in order to have the code as similar as possible to interactive sessions.
@@ -52,20 +52,18 @@ beginning of the file in order to have the code as similar as possible to intera
 <<check-required, echo = FALSE, results = tex>>=
 msg <- function (...) system (sprintf ("echo '%s'", paste (...)))
 
-required.pkgs <- c("latticeExtra", "deldir", "rgl", "ggplot2")
+required.pkgs <- c("latticeExtra", "rgl", "ggplot2")
 
 dummies <- check.req.pkg ("latticeExtra", griderrors = "panel.levelplot.points",
                           hynsgrid = "plotvoronoi")
 for (i in seq_along (dummies))
   eval (dummies [[i]])
 
-check.req.pkg ("deldir", hynsgrid = "plotvoronoi")
-
-for (p in required.pkgs [! required.pkgs %in% c("latticeExtra", "deldir")])
+for (p in required.pkgs [! required.pkgs %in% c("latticeExtra")])
   check.req.pkg (p, donothing = "")
 @
 \end{labeling}
-In addition \Rpackage{tripack}, and \Rpackage{latticist} are mentioned, but not
+In addition, \Rpackage{latticist} is mentioned, but not
 used in this vignette.
 }
 \section*{Preliminary Calculations}
@@ -96,7 +94,7 @@ For details about the pre-processing, please refer to the example work flow in \
 \item[\Rfunction{plotmap}] more specialized version of \Rfunction{levelplot} for map or image plots.\\
   \Rfunction{plotmap} is a \Rpackage{lattice} function
 \item[\Rfunction{plotvoronoi}] more specialized version of \Rfunction{plotmap} that produces Voronoi tesselations.\\
-  \Rfunction{plotvoronoi} is a \Rpackage{lattice} function 
+  \Rfunction{plotvoronoi} is a \Rpackage{lattice} function
 \end{labeling}
 
 \Rcode{plotmap}, \Rfunction{plotvoronoi}, and \Rcode{levelplot} are \Rpackage{lattice} functions.
@@ -113,13 +111,13 @@ by e.\,g. \Rcode{print (plotmap (object))}
 plots the spectra, \ie the intensities \Rcode{\$spc} over the wavelengths \Rcode{@wavelength}.
 <<plotspc, fig = TRUE, width = 4, height = 2.6, include = FALSE >>=
 plotspc (flu)
-@ 
+@
 \\
 \plottab{plotmat}{plotmat-flu}
 plots the spectra, \ie the colour coded intensities \Rcode{\$spc} over the wavelengths \Rcode{@wavelength} and the row number.
 <<plotmat-flu, fig = TRUE, width = 4, height = 2.6, include = FALSE >>=
 plotmat (flu)
-@ 
+@
 \\\plottab{plotc}{plotflu}
     plots an intensity over a single other data column, \eg
     \begin{itemize}
@@ -156,7 +154,7 @@ plotvoronoi (sample (chondro, 300), clusters ~ x * y)
 % %\setlength{\labelwidth}{2.5cm}
 % %\setlength{\itemindent}{1.7cm}
 
-% \item [{\Rcode{plotmap}}] plots a false colour map: a single value (e.\,g. average intensity or 
+% \item [{\Rcode{plotmap}}] plots a false colour map: a single value (e.\,g. average intensity or
 %    cluster membership) over two data columns (default \Rcode{\$x} and \Rcode{\$y}).
 % \item [{\Rcode{plotc}}] plots a time series or calibration plot: e.\,g. an intensity over a single % other data column (like concentration, depth, or time).
 % \end{description}
@@ -169,12 +167,12 @@ plotvoronoi (sample (chondro, 300), clusters ~ x * y)
 
 %\begin{tabular}{@{}p{.45\textwidth} p{.55\textwidth}}
 \begin{longtable}{@{}p{\plotcol} p{\textcol}}
-\plottab{plot (x, \textquotedbl{}spc\textquotedbl{})}{plotspcflu} 
+\plottab{plot (x, \textquotedbl{}spc\textquotedbl{})}{plotspcflu}
 is equivalent to \Rcode{plotspc (flu)}
 <<plotspcflu, fig = TRUE, width = 4, height = 2.6,include = FALSE >>=
 plot (flu, "spc")
-@ 
-\\ 
+@
+\\
  \plottab{plot (x, \textquotedbl{}spcmeansd\textquotedbl{})}{plotchomean}
 plots mean spectrum $\pm$ 1 standard deviation
 <<plotchomean, fig = TRUE, width = 4, height = 2.6,include = FALSE >>=
@@ -216,7 +214,7 @@ plots a depth profile plot
 depth.profile <- new ("hyperSpec",
     spc = as.matrix (rnorm (20) + 1:20),
     data = data.frame (z = 1 : 20),
-    labels = list (spc = "I / a.u.", 
+    labels = list (spc = "I / a.u.",
        z = expression (`/` (z, mu*m)),
        .wavelength = expression (lambda)))
 plot (depth.profile, "depth")
@@ -228,7 +226,7 @@ plots the spectra matrix.
 <<plotmat, fig = TRUE, width = 4, height = 2.6,include = FALSE >>=
 plot (laser, "mat")
 @
-Equivalent to 
+Equivalent to
 <<include = FALSE>>=
 plotmat (laser)
 @
@@ -253,7 +251,7 @@ See \Rfunction{plotvoronoi}
 \section{Spectra}\mFun{\Rfunction{plotspc}}
 
 \Rfunction{plotspc} offers a variety of parameters for customized
-plots. To plot ... 
+plots. To plot ...
 \begin{longtable}{@{}p{\plotcol} p{\textcol}}
   \plottab{particular wavelength range}{wavelength} if only one wavelength range is needed, the
   extract command (see \verb+vignette ("introduction")+) is handiest:
@@ -266,8 +264,8 @@ wavelengths. If \Rcode{wl.range} already contains indices use \Rcode{wl.index = 
   1800, 2800 \textasciitilde{} 3100)}.  Cut the wavelength axis appropriately with \Rcode{xoffset =
   750}
 <<wavelength-2, fig = TRUE, width = 4, height = 2.6,include = FALSE >>=
-plotspc (paracetamol, 
-         wl.range = c (300 ~ 1800, 2800 ~ max), 
+plotspc (paracetamol,
+         wl.range = c (300 ~ 1800, 2800 ~ max),
          xoffset = 750)
 @
 %
@@ -288,7 +286,7 @@ plotspc (flu, col = matlab.dark.palette (6))
 \plottab{dots instead of lines }{dots}
 use \Rcode{lines.args = list (pch = 20, type = \textquotedbl{}p\textquotedbl{})}
 <<dots, fig = TRUE, width = 4, height = 2.6,include = FALSE >>=
-plotspc (paracetamol [,, 2800 ~ 3200], 
+plotspc (paracetamol [,, 2800 ~ 3200],
          lines.args = list (pch = 20, type = "p"))
 @
 \\
@@ -315,7 +313,7 @@ plotspc (chondro.preproc, func = sd)
 \Rfunarg{zeroline} takes a list with parameters to \Rfunction{abline},
 \Rcode{NA} suppresses the line.
 <<diffline, fig = TRUE, width = 4, height = 2.6,include = FALSE >>=
-plotspc (paracetamol, 
+plotspc (paracetamol,
          zeroline = list (col = "red"))
 @
 \\
@@ -323,7 +321,7 @@ plotspc (paracetamol,
 the spectra, more content may be added to the graphic by \Rfunction{abline}, \Rfunction{lines}, \Rfunction{points}, etc.
 <<add-line, fig = TRUE, width = 4, height = 2.6,include = FALSE >>=
 plot (laser, "spcmeansd")
-abline (v = c(405.0063, 405.1121, 405.2885, 405.3591), 
+abline (v = c(405.0063, 405.1121, 405.2885, 405.3591),
         col = c("black", "blue", "red", "darkgreen"))
 @
 \end{longtable}
@@ -335,7 +333,7 @@ abline (v = c(405.0063, 405.1121, 405.2885, 405.3591),
 \plottab{stacked}{stacked1}
 use \Rcode{stacked = TRUE}
 <<stacked1, fig = TRUE, width = 4, height = 2.6,include = FALSE >>=
-plotspc (cluster.means, 
+plotspc (cluster.means,
          col = cluster.cols,
          stacked = TRUE)
 @
@@ -344,7 +342,7 @@ plotspc (cluster.means,
 \Rcode{stacked = \emph{factor}}. Alternatively, the name of the grouping extra data column can be
 used:
 <<stacked2, fig = TRUE, width = 4, height = 2.6,include = FALSE >>=
-plot (cluster.meansd, 
+plot (cluster.meansd,
       stacked = ".aggregate",
       fill = ".aggregate",
       col = cluster.cols)
@@ -353,8 +351,8 @@ plot (cluster.meansd,
 \plottab{Manually giving yoffset}{stacked3}
 Stacking values can also be given manually as numeric values in \Rfunarg{yoffset}:
 <<stacked3, fig = TRUE, width = 4, height = 2.6,include = FALSE >>=
-plotspc (cluster.meansd, 
-         yoffset = rep (0:2, each = 3), 
+plotspc (cluster.meansd,
+         yoffset = rep (0:2, each = 3),
          col = rep (cluster.cols, each = 3))
 @
 \\
@@ -362,8 +360,8 @@ plotspc (cluster.meansd,
 To obtain a denser stacking:
 <<stacked4, fig = TRUE, width = 4, height = 2.6,include = FALSE >>=
 yoffsets <- apply (cluster.means [[]], 2, diff)
-yoffsets <- - apply (yoffsets, 1, min) 
-plot (cluster.means, yoffset = c (0, cumsum (yoffsets)), 
+yoffsets <- - apply (yoffsets, 1, min)
+plot (cluster.means, yoffset = c (0, cumsum (yoffsets)),
       col = cluster.cols)
 @
 \\
@@ -371,15 +369,15 @@ plot (cluster.means, yoffset = c (0, cumsum (yoffsets)),
 <<stacked5, fig = TRUE, width = 4, height = 2.6,include = FALSE >>=
 yoffset <- apply (chondro.preproc, 2, quantile, c(0.05, 0.95))
 yoffset <- range (yoffset)
-plot(chondro.preproc[1], 
+plot(chondro.preproc[1],
      plot.args = list (ylim = c (0, 2) * yoffset),
      lines.args = list( type = "n"))
 yoffset <- (0:1) * diff (yoffset)
 for (i in 1 : 3){
   plot(chondro.preproc, "spcprctl5", yoffset = yoffset [i],
        col = "gray", add = TRUE)
-  plot (chondro.preproc [i], yoffset = yoffset [i], 
-        col = matlab.dark.palette (3) [i], add = TRUE, 
+  plot (chondro.preproc [i], yoffset = yoffset [i],
+        col = matlab.dark.palette (3) [i], add = TRUE,
         lines.args = list (lwd = 2))
 }
 @
@@ -415,7 +413,7 @@ If \Rfunction{func} returns more than one value, the different results are acces
 \\
 \plottab{Conditioning: plotting more traces separately}{plotc2}
 <<plotc2, fig = TRUE, width = 4, height = 2.6,include = FALSE>>=
-plotc (flu [,, c (405, 445)], spc ~ c | .wavelength, 
+plotc (flu [,, c (405, 445)], spc ~ c | .wavelength,
        cex = .3, scales = list (alternating = c(1, 1)))
 @
 \\
@@ -427,15 +425,15 @@ plotc (flu [,, c (405, 445)], spc ~ c | .wavelength,
 \plottab{Changing Axis Labels (and other parameters)}{lin-cal-4}
 Arguments for \Rfunction{xyplot} can be given to \Rfunction{plotc}:
 <<lin-cal-4, fig = TRUE, width = 4, height = 2.6,include = FALSE>>=
-plotc (flu [,, 450], 
+plotc (flu [,, 450],
        ylab = expression (I ["450 nm"] / a.u.),
-       xlim = range (0, flu$c + .01), 
+       xlim = range (0, flu$c + .01),
        ylim = range (0, flu$spc + 10),
        pch = 4)
 @
 \\
-\plottab{Adding things to the plot: customized panel function}{lin-cal-5} 
-As \Rfunction{plotc} uses the \Rpackage{lattice} function \Rfunction{xyplot}, additions to 
+\plottab{Adding things to the plot: customized panel function}{lin-cal-5}
+As \Rfunction{plotc} uses the \Rpackage{lattice} function \Rfunction{xyplot}, additions to
 the plot must be made via the panel function:
 <<lincal-panel>>=
 panelcalibration <- function (x, y, ..., clim = range (x), level = .95) {
@@ -443,9 +441,9 @@ panelcalibration <- function (x, y, ..., clim = range (x), level = .95) {
   lm <- lm (y ~ x)
   panel.abline (coef (lm), ...)
   cx <- seq (clim [1], clim [2], length.out = 50)
-  cy <- predict (lm, data.frame (x = cx), 
-                 interval = "confidence", 
-                 level = level) 
+  cy <- predict (lm, data.frame (x = cx),
+                 interval = "confidence",
+                 level = level)
   panel.lines (cx, cy [,2], col = "gray")
   panel.lines (cx, cy [,3], col = "gray")
 }
@@ -463,10 +461,10 @@ plotc (flu [,,405], panel = panelcalibration,
 \plottab{Abscissae other than c}{plotc4}
  Other abscissae may be specified by explicitly giving the model formula:
 <<plotc4, fig = TRUE, width = 4, height = 2.6,include = FALSE>>=
- plotc (laser [,, c(405.0063, 405.1121, 405.2885, 405.3591)], 
-        spc ~ t, 
-        groups = .wavelength, 
-        type = "b", 
+ plotc (laser [,, c(405.0063, 405.1121, 405.2885, 405.3591)],
+        spc ~ t,
+        groups = .wavelength,
+        type = "b",
         col = c ("black", "blue", "red", "darkgreen"))
 @
 \end{longtable}
@@ -509,7 +507,7 @@ conditioned.
 <<>>=
 plot (laser, "mat", col = heat.colors (20))
 @
-is the same as 
+is the same as
 <<plotmat1, fig = TRUE, width = 4, height = 2.6,include = FALSE >>=
 plotmat (laser, col = heat.colors (20))
 @
@@ -528,7 +526,7 @@ plotmat (laser, y = laser$t, ylab = labels (laser, "t"))
 Contour lines may be added:
 <<plotmat2, fig = TRUE, width = 4, height = 2.6,include = FALSE >>=
 plotmat (flu, col = matlab.dark.palette (20))
-plotmat (flu, col = "white", 
+plotmat (flu, col = "white",
          contour = TRUE, add = TRUE)
 @
 \\
@@ -537,7 +535,7 @@ plotmat (flu, col = "white",
 require ("latticeExtra")
 barb <- do.call (collapse, barbiturates[1:50])
 barb <- orderwl (barb)
-levelplot (spc ~ .wavelength * z, barb, 
+levelplot (spc ~ .wavelength * z, barb,
            panel = panel.levelplot.points,
            cex = .33, col.symbol = NA,
            col.regions = matlab.palette)
@@ -566,11 +564,11 @@ plotmap (chondro, spc ~ y * x)
 \plottab{colour-coded factors}{plotmap-clu}
 <<plotmap-clu, fig = TRUE, width = 4, height = 2.6,include = FALSE >>=
 plotmap (chondro, clusters ~ x * y)
-@ 
+@
 If the colour-coded variable is a factor, each level gets its own colour, and the legend is labeled
 accordingly.
 \\
-\plottab{different palette}{plotmap-col} 
+\plottab{different palette}{plotmap-col}
 To plot with a different palette, use argument \Rcode{col.regions}.
 <<plotmap-col, fig = TRUE, width = 4, height = 2.6,include = FALSE >>=
 plotmap (chondro, clusters ~ x * y,
@@ -627,17 +625,17 @@ in the \textbf{R color cheatsheet}.
 
 \begin{longtable}{@{}p{\plotcol} p{\textcol}}
 \plottab{defined wavelengths}{plotmap-wave}
-To plot a map of the average intensity at particular wavelengths use extraction:  
+To plot a map of the average intensity at particular wavelengths use extraction:
 <<plotmap-wave, fig = TRUE, width = 4, height = 2.6,include = FALSE >>=
-plotmap (chondro.preproc [, , c(728, 782, 1098, 
+plotmap (chondro.preproc [, , c(728, 782, 1098,
                                 1240, 1482, 1577)],
          col.regions = matlab.palette)
-@ 
+@
 \\
 \plottab{Conditioning}{plotmap-pca}
 <<plotmap-pca, fig = TRUE, width = 4, height = 2.6,include = FALSE >>=
-plotmap (chondro, 
-         spc ~ y * x | x > 5, 
+plotmap (chondro,
+         spc ~ y * x | x > 5,
          col.regions = matlab.palette(20))
 @
 \\
@@ -649,36 +647,32 @@ conditioning on the wavelengths.
 To plot \eg the first two score maps of a principal component analysis:
 <<plotmap-pca2, fig = TRUE, width = 4, height = 2.6,include = FALSE >>=
 pca <- prcomp (~ spc, data = chondro.preproc$.)
-scores <- decomposition (chondro, pca$x, 
-                         label.wavelength = "PC", 
+scores <- decomposition (chondro, pca$x,
+                         label.wavelength = "PC",
                          label.spc = "score /  a.u.")
-plotmap (scores [,,1:2], 
-         spc ~ y * x | as.factor(.wavelength), 
+plotmap (scores [,,1:2],
+         spc ~ y * x | as.factor(.wavelength),
          func = NULL,
          col.regions = matlab.palette(20))
-@ 
+@
 \\
 \plottab{Conditioning on \Rcode{.wavelength} II}{plotmap-pca3}
 Alternatively, use \Rfunction{levelplot} directly:
 <<plotmap-pca3, fig = TRUE, width = 4, height = 2.6,include = FALSE >>=
-levelplot (spc ~ y * x | as.factor(.wavelength), 
-           scores [,,1:2], 
+levelplot (spc ~ y * x | as.factor(.wavelength),
+           scores [,,1:2],
            aspect = "iso",
            col.regions = matlab.palette(20))
-@ 
+@
 \\
 \plottab{Voronoi plot}{voronoi-2}
 <<voronoi-2, fig = TRUE, width = 4, height = 2.6,include = FALSE >>=
-plotvoronoi (sample (chondro, 300), clusters ~ x * y, 
+plotvoronoi (sample (chondro, 300), clusters ~ x * y,
              col.regions = matlab.palette(20))
 @
 %
 Voronoi uses \Rfunction{panel.voronoi} from
-\Rpackage{latticeExtra}\Sexpr{cite.pkg("latticeExtra")}. The tesselation is calculated by default
-using \Rpackage{deldir}\Sexpr{cite.pkg("deldir")}, but \Rpackage{tripack}\Sexpr{cite.pkg("tripack")}
-can also be used. \Rpackage{tripack} seems to faster in general, but may ``hang'' with certain data
-sets (particularly regular grids with missing spectra as in this example). Furthermore, it is not
-FOSS (free and open source software), so users are kindly asked to review \Rpackage{tripack}'s license before using it.
+\Rpackage{latticeExtra}\Sexpr{cite.pkg("latticeExtra")}.
 \\
 \plottab{Mark missing spectra}{missing} If the spectra come from a rectangular grid, missing
 positions can be marked with this panel function:
@@ -687,7 +681,7 @@ mark.missing <- function (x, y, z, ...){
   panel.levelplot (x, y, z, ...)
 
   miss <- expand.grid (x = unique (x), y = unique (y))
-  miss <- merge (miss, data.frame (x, y, TRUE), 
+  miss <- merge (miss, data.frame (x, y, TRUE),
                  all.x = TRUE)
   miss <- miss [is.na (miss[, 3]),]
   panel.xyplot (miss [, 1], miss [, 2], pch = 4, ...)
@@ -703,7 +697,7 @@ plotmap (sample (chondro, length(chondro) - 20),
 The panel function used by \Rfunction{plotmap} defaults to \Rfunction{panel.levelplot.raster} which assumes an evenly spaced measurement grid.
 Even if the spectra are measured on a nominally evenly spaced grid, the actual stage position may be slightly varying due to positioning inaccuracy and some manufacturers (e.\,g. Kaiser) record the position reported by the stage rather than the position requested by the stage control.
 \begin{longtable}{@{}p{\plotcol} p{\textcol}}
-\plottab{}{uneven-I}This leads to weird looking output with holes, and possibly wrong columns: 
+\plottab{}{uneven-I}This leads to weird looking output with holes, and possibly wrong columns:
 <<uneven-prep, echo=FALSE, results=hide>>=
 uneven <- chondro
 uneven$x <- uneven$x + round (rnorm (nrow (uneven), sd = 0.05), digits = 1)
@@ -719,7 +713,7 @@ plotvoronoi (uneven)
 @
 \\\plottab{}{uneven-III} Another possibility that underlines a point shape of the measurements is switching to \Rfunction{latticeExtra::panel.levelplot.points}:
 <<uneven-III, fig = TRUE, width = 4, height = 2.6,include = FALSE >>=
-plotmap (uneven, panel = panel.levelplot.points, 
+plotmap (uneven, panel = panel.levelplot.points,
 				 cex = 0.75, col.symbol=NA)
 @
 \\\plottab{}{uneven-IV} Alternatively, the measurement raster positions can be rounded to their nominal raster, e.\,g.:
@@ -753,7 +747,7 @@ plotmap (uneven)
 laser <- laser [,,404.8 ~ 405.6] / 10000
 laser$t <- laser$t / 3600
 cols <- rep (matlab.palette (nrow (laser)), nwl (laser))
-surface3d (y = wl (laser), x = laser$t, 
+surface3d (y = wl (laser), x = laser$t,
            z = laser$spc, col =  cols)
 aspect3d (c (1, 1, 0.25))
 axes3d (c ('x+-', 'y--', 'z--'))
@@ -765,12 +759,12 @@ mtext3d ("I / a.u.", edge = 'z--', line = 2.5)
 \end{longtable}
 <<rgl-do, echo = FALSE, results = hide>>=
   if (require (rgl)){
-    open3d (windowRect=c(20,20,600, 350))  # this is needed only for automatically 
+    open3d (windowRect=c(20,20,600, 350))  # this is needed only for automatically
                                         # producing the snapshot
 <<rgl-plot>>
-     par3d (userMatrix = matrix (c (-0.52,  0.4, -0.75, 0, 
-                                    -0.85, -0.28, 0.44, 0, 
-                                    -0.04,  0.87, 0.49, 0, 
+     par3d (userMatrix = matrix (c (-0.52,  0.4, -0.75, 0,
+                                    -0.85, -0.28, 0.44, 0,
+                                    -0.04,  0.87, 0.49, 0,
                                     -0.75,  0.75,     0, 1), ncol = 4L),
             scale = c (2.75, 5, 0.175),
             windowRect = c(20L, 50L, 520L, 330L),
@@ -789,18 +783,18 @@ mtext3d ("I / a.u.", edge = 'z--', line = 2.5)
 \section{Using \Rpackage{ggplot2} with \phy objects}
 \label{sec:ggplot2}
 \chy objects do not yet directly support plotting with \Rpackage{ggplot2}
-\Sexpr{cite.pkg("ggplot2")}. Nevertheless, \Rpackage{ggplot2} graphics can easily be obtained, and \texttt{qplot*} equivalents to plotspc and plotmap are defined: 
+\Sexpr{cite.pkg("ggplot2")}. Nevertheless, \Rpackage{ggplot2} graphics can easily be obtained, and \texttt{qplot*} equivalents to plotspc and plotmap are defined:
 
 \begin{longtable}{@{}p{\plotcol} p{\textcol}}
-  \plottab{plot spectra with \Rfunction{as.long.df}}{ggplotspc} 
+  \plottab{plot spectra with \Rfunction{as.long.df}}{ggplotspc}
 <<ggplotspc, eval = FALSE>>=
 qplotspc (flu) + aes (colour = c)
-@ 
+@
 \\
-\plottab{Map with \Rpackage{ggplot2}}{ggplotmap} 
+\plottab{Map with \Rpackage{ggplot2}}{ggplotmap}
 <<ggplotmap, eval = FALSE>>=
-qplotmap (chondro) + 
-  scale_fill_gradientn ("spc", colours = matlab.palette ()) 
+qplotmap (chondro) +
+  scale_fill_gradientn ("spc", colours = matlab.palette ())
 @
 \\
 The two special columns \Rcode{.wavelength} and \Rcode{.rownames} contain the wavelength axis and
@@ -808,32 +802,32 @@ allow to distinguish the spectra.
 \end{longtable}
 
 For more general plotting, \Rfunction{as.long.df} transforms a \chy object into a long-form \df that is suitable for
-\Rfunction{qplot}, while \Rfunction{as.t.df} produces a \df where each spectrum is one column, and an additional first column gives the wavelength (see ``plotting mean $\pm$ sd'' below for an example). 
+\Rfunction{qplot}, while \Rfunction{as.t.df} produces a \df where each spectrum is one column, and an additional first column gives the wavelength (see ``plotting mean $\pm$ sd'' below for an example).
 Long \df{}s can be \emph{very} memory consuming as they are of size $nrow \cdot
 nwl \times (ncol + 2)$ with respect to the dimensions of the \chy object. Thus, \eg the
 \Robject{chondro} data set (\Sexpr{round (object.size (chondro) / 1048576, digits = 0)}\,MB) as \chy
 object) needs
 \Sexpr{round (object.size (as.long.df (chondro, rownames = TRUE)) / 1048576, digits = 0)}\,MB as
 long-format \df. It is therefore highly recommended to calculate the particular data to be plotted
-beforehand. 
+beforehand.
 
 \begin{longtable}{@{}p{\plotcol} p{\textcol}}
-\plottab{Mean $\pm$ standard deviation with \Rpackage{ggplot2}}{ggplotmeansd} 
+\plottab{Mean $\pm$ standard deviation with \Rpackage{ggplot2}}{ggplotmeansd}
 <<ggplotmeansd, eval = FALSE>>=
 qplotspc (mean (chondro)) +
-geom_ribbon (aes (ymin = mean + sd, 
-                  ymax = mean - sd, 
-                  y = 0, group = NA), 
-             alpha = 0.25, 
+geom_ribbon (aes (ymin = mean + sd,
+                  ymax = mean - sd,
+                  y = 0, group = NA),
+             alpha = 0.25,
              data = as.t.df (mean_sd (chondro)))
 @
 Note that \Rfunction{qpotspc} specifies aesthetics \texttt{y = spc} and \texttt{groups = .rownames}, which do not have corresponding columns in the \texttt{data.frame} returned by \Rfunction{as.t.df}. These aesthetics must therefore be set manually in the aesthetics definition in \Rfunction{geom\_ribbon} (or any other \Rfunction{geom\_} that uses \Rfunction{as.t.df}). Otherwise, errors occur that object \texttt{spc} (and/or \texttt{.rownames}) cannot be found.
 \\\plottab{Cut spectra with \Rpackage{ggplot2}}{ggplotspccut} %
 Cut axes can be implemented by faceting:
 <<ggplotspccut, eval = FALSE>>=
-qplotspc (paracetamol / 1e4, 
+qplotspc (paracetamol / 1e4,
           wl.range = c( min ~ 1800, 2800 ~ max)) +
-	  scale_x_continuous (breaks = seq (0, 3200, 400)) 
+	  scale_x_continuous (breaks = seq (0, 3200, 400))
 @
 \end{longtable}
 <<ggplot2-do, echo = FALSE, results = hide>>=
@@ -848,7 +842,7 @@ if (require (ggplot2)){
   ggsave("plotting-fig--ggplotspccut.pdf", width = 4, height = 2.6)
 } else {
   for (f in c ("ggplotspc", "ggplotmap", "ggplotmeansd", "ggplotspccut")){
-    pdf (sprintf ("plotting-fig--%s.pdf", f), width = 4, height = 2.6) 
+    pdf (sprintf ("plotting-fig--%s.pdf", f), width = 4, height = 2.6)
     ploterrormsg ("", "ggplot2")
     dev.off ()
   }
@@ -886,7 +880,7 @@ works correctly with reversed and cut wavelength axes.
 <<eval = FALSE>>=
 spc.identify (plotspc (paracetamol, wl.range = c (600 ~ 1800, 2800 ~ 3200), xoffset = 800))
 @
-The result is a data.frame with the indices of the spectra, the wavelength, and its intensity. 
+The result is a data.frame with the indices of the spectra, the wavelength, and its intensity.
 
 \subsection{\Rfunction{map.identify}: finding a spectrum in a map plot}
 \label{sec:map.identify}
@@ -925,11 +919,11 @@ of the plot directly. Note that the returned indices correspond to the plotted o
 
 \bibliographystyle{unsrtnat}
 \bibliography{plotting-pkg}
- 
+
 \section*{Session Info}
 \begin{footnotesize}
 <<bib, echo = FALSE>>=
-make.bib (c("latticeExtra", "rgl", "ggplot2", "playwith",  "plotrix", "deldir", "tripack"), 
+make.bib (c("latticeExtra", "rgl", "ggplot2", "playwith",  "plotrix"),
           file = "plotting-pkg.bib")
 print (as.matrix(Sys.info()))
 <<cleanup>>
